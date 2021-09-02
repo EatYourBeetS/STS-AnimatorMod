@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.animator.beta.special.JumpyDumpty;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Klee extends AnimatorCard
@@ -35,12 +32,7 @@ public class Klee extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
 
-        for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
-        {
-            GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb.cX, m1.hb.cY), 0.1F);
-        }
-
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
         GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Vulnerable, magicNumber);
 
         int additionalCount = (CheckAffinity(Affinity.Red) ? 1 : 0);

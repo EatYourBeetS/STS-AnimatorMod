@@ -30,7 +30,7 @@ public class WaterOrbEvokeAction extends EYBAction
         GameEffects.Queue.Add(VFX.Water(x,y));
         SFX.Play(SFX.ANIMATOR_ORB_WATER_EVOKE, 0.9f, 1.1f);
         GameActions.Bottom.GainTemporaryHP(amount);
-        Complete();
         GameActions.Bottom.RemovePower(player,player, BurningPower.POWER_ID);
+        Complete();
     }
 }

@@ -245,10 +245,10 @@
 		"DESCRIPTIONS": ["Reduces the #yStrength reduction of #yBlinded to #b1."],
 		"NAME": "Night Vision"
 	},
-	"animator:OrbCore_AetherPower":
+	"animator:OrbCore_AirPower":
 	{
 		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, draw #b{1} cards, then discard 1 card."],
-		"NAME": "Aether Core"
+		"NAME": "Air Core"
 	},
 	"animator:OrbCore_ChaosPower":
 	{

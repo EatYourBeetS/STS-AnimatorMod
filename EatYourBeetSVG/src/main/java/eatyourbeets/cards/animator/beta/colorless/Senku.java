@@ -71,7 +71,7 @@ public class Senku extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        AbstractGameAction.AttackEffect attackEffect = this.attackType.equals(EYBAttackType.Elemental) ? AttackEffects.DARK : AttackEffects.BLUNT_LIGHT;
+        AbstractGameAction.AttackEffect attackEffect = this.transformed ? AttackEffects.SMALL_EXPLOSION : this.attackType.equals(EYBAttackType.Elemental) ? AttackEffects.PSYCHOKINESIS : AttackEffects.BLUNT_LIGHT;
         if (this.attackTarget.equals(EYBCardTarget.ALL)) {
             int[] damageMatrix = DamageInfo.createDamageMatrix(damage, true);
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, attackEffect);
@@ -237,10 +237,12 @@ public class Senku extends AnimatorCard
                 }
                 case IncreaseDamage2:
                 case IncreaseDamage3:{
+                    copy.SetAttackType(EYBAttackType.Elemental);
                     copy.baseDamage += effect.amount + (senku.upgraded ? 1 : 0);
                     break;
                 }
                 case MakeAOE:{
+                    copy.SetAttackType(EYBAttackType.Elemental);
                     copy.SetAttackTarget(EYBCardTarget.ALL);
                     break;
                 }

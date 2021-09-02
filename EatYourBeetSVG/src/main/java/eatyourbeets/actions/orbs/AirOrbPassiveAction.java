@@ -7,15 +7,15 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class AetherOrbPassiveAction extends EYBAction
+public class AirOrbPassiveAction extends EYBAction
 {
-    protected final Aether orb;
+    protected final Air orb;
 
-    public AetherOrbPassiveAction(Aether orb, int damage)
+    public AirOrbPassiveAction(Air orb, int damage)
     {
         super(ActionType.DAMAGE, Settings.ACTION_DUR_XFAST);
 

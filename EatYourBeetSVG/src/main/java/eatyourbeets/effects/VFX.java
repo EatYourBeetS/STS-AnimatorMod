@@ -136,14 +136,18 @@ public class VFX
                 .SetFading(30);
     }
 
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source)
+    public static ExplosionSmallEffect2 SmallExplosion(Hitbox source)
     {
-        return new ExplosionSmallEffect(source.cX, source.cY);
+        return new ExplosionSmallEffect2(source.cX, source.cY);
     }
 
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source, float variance)
+    public static ExplosionSmallEffect2 SmallExplosion(Hitbox source, float variance)
     {
-        return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
+        return new ExplosionSmallEffect2(RandomX(source, variance), RandomY(source, variance));
+    }
+    public static ExplosionSmallEffect2 SmallExplosion(float cX, float cY)
+    {
+        return new ExplosionSmallEffect2(cX, cY);
     }
 
     public static IronWaveEffect2 IronWave(Hitbox source, Hitbox target)
@@ -311,6 +315,16 @@ public class VFX
                 .SetDuration(duration, true);
     }
 
+    public static TornadoEffect Tornado(Hitbox source)
+    {
+        return Tornado(source.cX, source.cY);
+    }
+
+    public static TornadoEffect Tornado(float cX, float cY)
+    {
+        return new TornadoEffect(cX, cY);
+    }
+
     public static VerticalImpactEffect2 VerticalImpact(Hitbox target)
     {
         return new VerticalImpactEffect2(target.cX + target.width / 4f, target.cY - target.height / 4f);
@@ -333,7 +347,7 @@ public class VFX
 
     public static FadingParticleEffect Water(float cX, float cY)
     {
-        return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.Water.Texture(), cX, cY).SetColor(Color.WHITE)
+        return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.WaterSplash1.Texture(), cX, cY).SetColor(Color.WHITE)
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000).SetSpeed(0f, 0f, MathUtils.random(500f, 750f)).SetTargetScale(1f,5f))
                 .SetTranslucent(MathUtils.random(0.7f,1f))
                 .SetDuration(1.3f,false);

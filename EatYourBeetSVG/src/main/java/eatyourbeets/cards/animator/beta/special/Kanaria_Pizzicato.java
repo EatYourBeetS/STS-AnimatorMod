@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.utilities.GameActions;
 
 public class Kanaria_Pizzicato extends AnimatorCard
@@ -39,7 +39,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(1);
         boolean hasAether = false;
         for (AbstractOrb orb : p.orbs)
-            if (Aether.ORB_ID.equals(orb.ID))
+            if (Air.ORB_ID.equals(orb.ID))
             {
                 hasAether = true;
                 break;
@@ -48,7 +48,7 @@ public class Kanaria_Pizzicato extends AnimatorCard
         if (hasAether)
             GameActions.Bottom.Draw(magicNumber);
         else
-            GameActions.Bottom.ChannelOrb(new Aether());
+            GameActions.Bottom.ChannelOrb(new Air());
 
         GameActions.Bottom.DiscardFromHand(name, 1, false);
     }

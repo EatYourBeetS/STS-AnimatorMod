@@ -98,7 +98,7 @@ public class CardTooltips
     public EYBCardTooltip Fire = FindByID("Fire");
     public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip Earth = FindByID("Earth");
-    public EYBCardTooltip Aether = FindByID("Aether");
+    public EYBCardTooltip Air = FindByID("Air");
     public EYBCardTooltip Water = FindByID("Water");
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Aura = FindByID("Aura");
@@ -228,7 +228,7 @@ public class CardTooltips
         Plasma.SetIcon(tooltips.Plasma.Texture(), 6);
         Dark.SetIcon(tooltips.Dark.Texture(), 6);
         Frost.SetIcon(tooltips.Frost.Texture(), 6);
-        Aether.SetIcon(tooltips.Aether.Texture(), 6);
+        Air.SetIcon(tooltips.Air.Texture(), 6);
         Earth.SetIcon(tooltips.Earth.Texture(), 6);
         Water.SetIcon(tooltips.Water.Texture(), 6);
         Chaos.SetIcon(tooltips.Chaos.Texture(), 6);

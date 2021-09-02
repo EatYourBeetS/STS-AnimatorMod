@@ -1463,7 +1463,7 @@
 			"DESCRIPTION": "获得 !M! [A] 。",
 			"NAME": "梅鲁扎嘎鲁多"
 		},
-		"animator:OrbCore_Aether":
+		"animator:OrbCore_Air":
 		{
 			"DESCRIPTION": "生成 !S! 个 <空气> 。 || 每回合第二次 同调 ： ** 抽 !M! 张牌，丢弃 1 张牌。",
 			"NAME": "空气核心"

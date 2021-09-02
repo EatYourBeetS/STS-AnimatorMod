@@ -1,5 +1,7 @@
 package eatyourbeets.effects.vfx;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
@@ -14,7 +16,7 @@ public class PsychokinesisEffect extends EYBEffect
     protected float spreadY = 10f * Settings.scale;
     protected float spreadGrowth = 2.2f * Settings.scale;
     protected float scaleLower = 0.2f;
-    protected float scaleUpper = 1f;
+    protected float scaleUpper = 1.35f;
     protected float scaleGrowth = -0.020f;
     protected float vfxTimer;
     protected float vfxFrequency = 0.04f;
@@ -65,10 +67,21 @@ public class PsychokinesisEffect extends EYBEffect
             final float x = this.x + Random(-spreadX, spreadX);
             final float y = this.y + Random(-spreadY, spreadY);
             final float scale = Random(Math.max(0.05f,this.scaleLower),this.scaleUpper);
-            GameEffects.Queue.Add(new GenericAnimationEffect(EYBEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f)
-                    .SetColor(Colors.Random(0.83f, 1f, false))
-                    .SetScale(this.scaleLower * 0.05f)
-                    .SetTargetScale(scale, 5f));
+            final Color color = new Color(MathUtils.random(0.8f, 1f), MathUtils.random(0.7f, 1f), 1, 1);
+            if (RandomBoolean(0.2f)) {
+                GameEffects.Queue.Add(new FadingParticleEffect(EYBEffect.IMAGES.Circle.Texture(), x, y)
+                        .SetColor(Colors.Random(0.83f, 1f, false))
+                        .SetScale(this.scaleLower * 0.05f)
+                        .SetTargetScale(scale * 2, 5f))
+                        .SetDuration(1.5f,true);
+            }
+            else {
+                GameEffects.Queue.Add(new GenericAnimationEffect(EYBEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f)
+                        .SetColor(Colors.Random(0.83f, 1f, false))
+                        .SetScale(this.scaleLower * 0.05f)
+                        .SetTargetScale(scale, 5f));
+            }
+
             vfxFrequency += vfxFrequencyGrowth;
             vfxTimer = vfxFrequency;
         }

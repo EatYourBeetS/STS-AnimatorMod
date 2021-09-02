@@ -1,10 +1,10 @@
 
 {
-	"Aether":
+	"Air":
 	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["aether", "aether+"],
-		"PROPER_NAME": "Aether"
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies. Draw #b1 card the first #b3 times it is #yEvoked.",
+		"NAMES": ["aether", "aether+","air","air+"],
+		"PROPER_NAME": "Air"
 	},
 	"Afterlife": {
 	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",

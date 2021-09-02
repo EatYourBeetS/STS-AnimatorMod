@@ -45,7 +45,7 @@ import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.orbs.animator.Water;
@@ -819,7 +819,7 @@ public class GameUtilities
             orbs.Add(new Fire(), 6);
             orbs.Add(new Dark(), 6);
             orbs.Add(new Earth(), 5);
-            orbs.Add(new Aether(), 4);
+            orbs.Add(new Air(), 4);
             orbs.Add(new Plasma(), 3);
             orbs.Add(new Water(), 3);
         }

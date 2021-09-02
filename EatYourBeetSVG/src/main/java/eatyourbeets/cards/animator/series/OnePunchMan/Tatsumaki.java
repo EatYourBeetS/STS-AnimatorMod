@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
@@ -43,7 +43,7 @@ public class Tatsumaki extends AnimatorCard
             GameActions.Bottom.GainOrbSlots(1);
         }
 
-        GameActions.Bottom.ChannelOrb(new Aether());
+        GameActions.Bottom.ChannelOrb(new Air());
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {

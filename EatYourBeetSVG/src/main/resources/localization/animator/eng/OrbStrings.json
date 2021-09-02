@@ -16,12 +16,12 @@
 			"#yPassive: At the end of turn, gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
 		]
 	},
-	"animator:Aether":
+	"animator:Air":
 	{
-		"NAME": "Aether",
+		"NAME": "Air",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Draw #b{1} cards."
+			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies for each card in hand + #b4 (max. #b9 times)."
 		]
 	},
 	"animator:Fire":
@@ -37,7 +37,7 @@
 	  "NAME": "Water",
 	  "DESCRIPTION":
 	  [
-		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Gain #b{1} #yTemporary #yHP and remove #yBurning. NL After #b{2} turns have passed, automatically #yEvoke this Orb."
+		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Gain #b{1} #yTemporary #yHP and remove your #yBurning. NL After #b{2} turns have passed, automatically #yEvoke this Orb."
 	  ]
 	}
 }

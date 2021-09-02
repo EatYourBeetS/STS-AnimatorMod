@@ -86,7 +86,7 @@ public abstract class OrbCore extends AnimatorCard
             cores1.Add(new OrbCore_Frost());
             cores2.Add(new OrbCore_Plasma());
             cores2.Add(new OrbCore_Chaos());
-            cores2.Add(new OrbCore_Aether());
+            cores2.Add(new OrbCore_Air());
             cores2.Add(new OrbCore_Earth());
             cores2.Add(new OrbCore_Water());
 

@@ -82,7 +82,7 @@ public class Patchouli extends AnimatorCard
         {
             if (actions.Size() == 0)
             {
-                actions.Add(this::Aether);
+                actions.Add(this::Air);
                 actions.Add(this::Fire);
                 actions.Add(this::Frost);
                 actions.Add(this::Lightning);
@@ -132,7 +132,7 @@ public class Patchouli extends AnimatorCard
         });
     }
 
-    private void Aether()
+    private void Air()
     {
         CreateDamageAction().SetDamageEffect(__ ->
         {

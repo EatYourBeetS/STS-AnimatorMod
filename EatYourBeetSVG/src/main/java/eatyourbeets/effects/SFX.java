@@ -27,6 +27,7 @@ public class SFX
         BaseMod.addAudio(ANIMATOR_PSI, "audio/animator/sound/PSI.ogg");
         BaseMod.addAudio(ANIMATOR_PUNCH, "audio/animator/sound/PUNCH.ogg");
         BaseMod.addAudio(ANIMATOR_STAR, "audio/animator/sound/STAR.ogg");
+        BaseMod.addAudio(ANIMATOR_ORB_AIR_EVOKE, "audio/animator/sound/ORB_AIR_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_WATER_EVOKE, "audio/animator/sound/ORB_WATER_EVOKE.ogg");
@@ -49,6 +50,7 @@ public class SFX
     public static final String ANIMATOR_SPEAR_2 = "ANIMATOR_SPEAR_2";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
+    public static final String ANIMATOR_ORB_AIR_EVOKE = "ANIMATOR_ORB_AIR_EVOKE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";
     public static final String ANIMATOR_ORB_EARTH_EVOKE = "ANIMATOR_ORB_EARTH_EVOKE";
     public static final String ANIMATOR_ORB_WATER_CHANNEL = "ANIMATOR_ORB_WATER_CHANNEL";

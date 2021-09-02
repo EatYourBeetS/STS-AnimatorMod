@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
@@ -42,7 +42,7 @@ public class Venti extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        AbstractOrb orb = new Aether();
+        AbstractOrb orb = new Air();
         GameActions.Bottom.ChannelOrb(orb);
 
         // Not using Cycle function here because we need a callback on the drawn cards

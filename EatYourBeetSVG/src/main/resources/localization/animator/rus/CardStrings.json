@@ -1465,7 +1465,7 @@
 			"DESCRIPTION": "Даёт !M! [A].",
 			"NAME": "Мерзергард"
 		},
-		"animator:OrbCore_Aether":
+		"animator:OrbCore_Air":
 		{
 			"DESCRIPTION": "Заряжает !S! <Св>. || При второй Синергии каждый ход: ** <DRW-M>, и сбрасывает 1 карту.",
 			"NAME": "Ядро Воздуха"

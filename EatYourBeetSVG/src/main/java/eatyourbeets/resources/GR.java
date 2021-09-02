@@ -469,6 +469,7 @@ public class GR
 
         public static class AttackEffect
         {
+            @SpireEnum public static AbstractGameAction.AttackEffect SMALL_EXPLOSION;
             @SpireEnum public static AbstractGameAction.AttackEffect FIRE_EXPLOSION;
             @SpireEnum public static AbstractGameAction.AttackEffect ICE;
             @SpireEnum public static AbstractGameAction.AttackEffect DARKNESS;

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -45,7 +45,7 @@ public class CatoElAltestan extends AnimatorCard
         }
         if (CheckAffinity(Affinity.Green))
         {
-            GameActions.Bottom.ChannelOrb(new Aether());
+            GameActions.Bottom.ChannelOrb(new Air());
         }
 
         GameActions.Bottom.FetchFromPile(name, 2, player.drawPile)

@@ -1217,7 +1217,7 @@
 			"DESCRIPTION": "獲得 !M! 點 [A]。",
 			"NAME": "梅魯扎嘎魯多之三"
 		},
-		"animator:OrbCore_Aether":
+		"animator:OrbCore_Air":
 		{
 			"DESCRIPTION": "生成 !S! 個 ** 凌風 充能球。 ** 每回合第二次 ** 同調 時， **抽 !M! 張牌，然後 ** 丟棄 1 張牌。",
 			"NAME": "凌風核心"

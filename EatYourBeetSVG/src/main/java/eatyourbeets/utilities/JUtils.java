@@ -536,6 +536,25 @@ public class JUtils
         GetLogger(source).warn(Format(format, values));
     }
 
+    public static <T, N> ArrayList<N> Map(T[] array, FuncT1<N, T> predicate)
+    {
+        final ArrayList<N> res = new ArrayList<>();
+        for (T t : array)
+        {
+            res.add(predicate.Invoke(t));
+        }
+
+        return res;
+    }
+
+    public static <T> float Mean(List<T> list, FuncT1<Float, T> predicate)
+    {
+        if (list.size() <= 0) {
+            return 0;
+        }
+        return Sum(list,predicate) / list.size();
+    }
+
     public static float ParseFloat(String value, float defaultValue)
     {
         try
@@ -569,6 +588,16 @@ public class JUtils
     public static <T> T SafeCast(Object o, Class<T> type)
     {
         return type.isInstance(o) ? (T)o : null;
+    }
+
+    public static <T> float Sum(Iterable<T> list, FuncT1<Float, T> predicate)
+    {
+        float sum = 0;
+        for (T t : list)
+        {
+            sum += predicate.Invoke(t);
+        }
+        return sum;
     }
 
     public static float Lerp(float current, float target, float amount)

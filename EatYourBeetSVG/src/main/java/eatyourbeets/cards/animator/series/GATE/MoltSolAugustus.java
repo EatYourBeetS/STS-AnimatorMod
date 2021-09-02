@@ -29,6 +29,7 @@ public class MoltSolAugustus extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Red(1);
+        SetAffinity_Orange(1);
 
         SetDelayed(true);
     }

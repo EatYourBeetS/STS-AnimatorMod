@@ -53,7 +53,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
                                 CombatStats.onShuffle.Subscribe(this);
                             }
                         }
-                )).SetDuration(0.5f,true);
+                )).SetDuration(0.5f,false);
 
     }
 

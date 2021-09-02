@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Aether;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,7 +39,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrbs(Aether::new, secondaryValue).AddCallback(() -> {
+        GameActions.Bottom.ChannelOrbs(Air::new, secondaryValue).AddCallback(() -> {
             int orbsInduced = 0;
 
             for (AbstractOrb orb : player.orbs) {

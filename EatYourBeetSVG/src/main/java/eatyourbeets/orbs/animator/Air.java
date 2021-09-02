@@ -3,10 +3,11 @@ package eatyourbeets.orbs.animator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import eatyourbeets.actions.orbs.AetherOrbEvokeAction;
-import eatyourbeets.actions.orbs.AetherOrbPassiveAction;
+import eatyourbeets.actions.orbs.AirOrbEvokeAction;
+import eatyourbeets.actions.orbs.AirOrbPassiveAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
@@ -14,20 +15,23 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class Aether extends AnimatorOrb
+public class Air extends AnimatorOrb
 {
-    public static final String ORB_ID = CreateFullID(Aether.class);
+    public static final String ORB_ID = CreateFullID(Air.class);
+    public static final int EVOKE_BASE_HITS = 4;
+    public static final int EVOKE_DAMAGE_PER_HIT = 2;
+    public static final int MAX_EVOKE_EFFECTS = 3;
 
     public static TextureCache imgExt1 = IMAGES.AirLeft;
     public static TextureCache imgExt2 = IMAGES.AirRight;
     private final boolean hFlip1;
 
-    public Aether()
+    public Air()
     {
         super(ORB_ID, Timing.EndOfTurn);
 
         this.hFlip1 = MathUtils.randomBoolean();
-        this.baseEvokeAmount = this.evokeAmount = 3;
+        this.baseEvokeAmount = this.evokeAmount = EVOKE_BASE_HITS;
         this.basePassiveAmount = this.passiveAmount = 4;
 
         this.updateDescription();
@@ -52,6 +56,7 @@ public class Aether extends AnimatorOrb
     public void applyFocus()
     {
         this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
+        this.evokeAmount = Math.max(0, this.baseEvokeAmount + GetFocus());
 
         CombatStats.OnOrbApplyFocus(this);
     }
@@ -70,10 +75,21 @@ public class Aether extends AnimatorOrb
 
         float scaleExt1 = this.bobEffect.y / 88f;
         float scaleExt2 = this.bobEffect.y / 77f;
-        float angleExt = this.angle / 12f;
+        float angleExt1 = this.angle / 2.2f;
+        float angleExt2 = this.angle / 1.5f;
 
-        sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, angleExt, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, angleExt1, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt2, 0, 0, 96, 96, this.hFlip1, false);
+
+        sb.setBlendFunction(770, 1);
+        this.shineColor.a = Interpolation.sine.apply(0.1f,0.33f, angleExt2 / 185);
+        sb.setColor(this.shineColor);
+        sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, this.angle * 1.8f, 0, 0, 96, 96, this.hFlip1, false);
+
+        this.shineColor.a = Interpolation.sine.apply(0.1f,0.33f, angleExt1 / 135);
+        sb.setColor(this.shineColor);
+        sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, this.angle * 1.2f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.setBlendFunction(770, 771);
 
         this.renderText(sb);
         this.hb.render(sb);
@@ -92,7 +108,11 @@ public class Aether extends AnimatorOrb
     {
         super.Evoke();
 
-        GameActions.Top.Add(new AetherOrbEvokeAction(this.evokeAmount));
+        GameActions.Top.Add(new AirOrbEvokeAction(EVOKE_DAMAGE_PER_HIT, this.evokeAmount));
+        if (CombatStats.TryActivateLimited(ID, MAX_EVOKE_EFFECTS))
+        {
+            GameActions.Bottom.Draw(1);
+        }
     }
 
     @Override
@@ -100,7 +120,7 @@ public class Aether extends AnimatorOrb
     {
         super.Passive();
 
-        GameActions.Bottom.Add(new AetherOrbPassiveAction(this, this.passiveAmount));
+        GameActions.Bottom.Add(new AirOrbPassiveAction(this, this.passiveAmount));
     }
 
     @Override

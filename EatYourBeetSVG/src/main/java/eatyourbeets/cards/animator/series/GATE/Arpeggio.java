@@ -77,7 +77,7 @@ public class Arpeggio extends AnimatorCard
         public void OnUse(AbstractMonster m)
         {
             super.OnUse(m);
-            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(999, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
+            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
         }
     }
 }

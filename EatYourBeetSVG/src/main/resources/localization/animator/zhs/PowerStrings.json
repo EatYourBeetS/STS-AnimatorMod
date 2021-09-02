@@ -230,7 +230,7 @@
 		"DESCRIPTIONS": ["下一回合，获得 #b", " 点临时 #y敏捷 。"],
 		"NAME": "下回合敏捷"
 	},
-	"animator:OrbCore_AetherPower":
+	"animator:OrbCore_AirPower":
 	{
 		"DESCRIPTIONS": ["本回合接下来 #b", " 次 #y同调，抽 #b", " 张牌，然后丢弃1张牌。"],
 		"NAME": "空气核心"

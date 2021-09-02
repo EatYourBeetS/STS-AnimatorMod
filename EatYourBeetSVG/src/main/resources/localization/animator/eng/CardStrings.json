@@ -723,6 +723,11 @@
 			"NAME": "Kaeya Alberich",
 			"UPGRADE_DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first Orb and your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies."
 		},
+		"animator:Kazuha":
+		{
+			"DESCRIPTION": "Take half your current HP as [Delayed Damage]. Next turn: Single-target attacks target ALL enemies. AOE attacks attack twice if there is only one enemy.",
+			"NAME": "Kazuha Kaedehara"
+		},
 		"animator:Keqing":
 		{
 			"DESCRIPTION": "{Ricochet} !S!. Reduce by 1 ** upon Evoking [Lightning] ** or gaining [Blur]. || Motivate and give {~Haste} to this card and a random card in your discard pile.",
@@ -766,7 +771,7 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel !S! [Aether]. {Evoke} a copy of your first !M! {Common Orbs}. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
+		    "DESCRIPTION": "Channel !S! [Air]. {Evoke} a copy of your first !M! {Common Orbs}. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
@@ -781,7 +786,7 @@
         },
 		"animator:Venti":
 		{
-			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Aether] and Trigger it once for every Skill or Power drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Air] and Trigger it once for every Skill or Power drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
@@ -923,7 +928,7 @@
 		},
 		"animator:Kanaria_Pizzicato":
 		{
-			"DESCRIPTION": "If you have [Aether]: <DRW-M>. Otherwise: Channel [Aether]. || Discard a card.",
+			"DESCRIPTION": "If you have [Air]: <DRW-M>. Otherwise: Channel [Air]. || Discard a card.",
 			"NAME": "Pizzicato"
 		},
 		"animator:Kirakishou":
@@ -1530,8 +1535,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Once per turn, Pay [E]: Trigger all your [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger all your [Earth]. || Your <B> Synergy bonus grants #b{1} additional [I] (max #b{2}^)."],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Once per turn, Pay [E]: Trigger your first [Earth].",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger your first [Earth]. || Your <B> Synergy bonus grants #b{1} additional [I] (max #b{2}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1541,7 +1546,7 @@
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "!A! <B>: Apply !S! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Aether] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
+			"DESCRIPTION": "!A! <B>: Apply !S! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Air] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
 			"NAME": "Cato El Altestan"
 		},
 		"animator:ItamiYouji":
@@ -2200,7 +2205,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. || <IS>: Gain 1 orb slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
+			"DESCRIPTION": "Channel 1 [Air]. || <IS>: Gain 1 orb slot. || <slm>. If in Neutral ** Stance: Enter <IS>. ** Otherwise: Exit your Stance.",
 			"NAME": "Tatsumaki"
 		}
 	},
@@ -2526,10 +2531,10 @@
 			"EXTENDED_DESCRIPTION": ["Every #b{0} #ySynergies, #yChannel #b1 {1}."],
 			"NAME": "Orb Core"
 		},
-		"animator:OrbCore_Aether":
+		"animator:OrbCore_Air":
 		{
 			"DESCRIPTION": "DESCRIPTION",
-			"NAME": "Aether Core"
+			"NAME": "Air Core"
 		},
 		"animator:OrbCore_Chaos":
 		{

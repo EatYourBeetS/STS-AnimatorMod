@@ -99,7 +99,7 @@ public class CommonImages
         public final TextureCache Lightning        = new TextureCache("images/eyb/cardui/tooltips/Lightning.png");
         public final TextureCache Plasma           = new TextureCache("images/eyb/cardui/tooltips/Plasma.png");
         public final TextureCache Dark             = new TextureCache("images/eyb/cardui/tooltips/Dark.png");
-        public final TextureCache Aether           = new TextureCache("images/eyb/cardui/tooltips/Aether.png");
+        public final TextureCache Air              = new TextureCache("images/eyb/cardui/tooltips/Air.png");
         public final TextureCache Frost            = new TextureCache("images/eyb/cardui/tooltips/Frost.png");
         public final TextureCache Earth            = new TextureCache("images/eyb/cardui/tooltips/Earth.png");
         public final TextureCache Water            = new TextureCache("images/eyb/cardui/tooltips/Water.png");
@@ -159,13 +159,20 @@ public class CommonImages
         public final TextureCache FrostSnow3       = new TextureCache("images/animator/effects/FrostSnow3.png");
         public final TextureCache FrostSnow4       = new TextureCache("images/animator/effects/FrostSnow4.png");
         public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
-        public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
+        public final TextureCache AirTornado1      = new TextureCache("images/animator/effects/AirTornado1.png");
+        public final TextureCache AirTornado2      = new TextureCache("images/animator/effects/AirTornado2.png");
+        public final TextureCache AirTrail1        = new TextureCache("images/animator/effects/AirTrail1.png");
+        public final TextureCache AirTrail2        = new TextureCache("images/animator/effects/AirTrail2.png");
+        public final TextureCache AirTrail3        = new TextureCache("images/animator/effects/AirTrail3.png");
         public final TextureCache Spear            = new TextureCache("images/animator/effects/Spear.png");
+        public final TextureCache Circle           = new TextureCache("images/animator/effects/Circle.png");
         public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
         public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
-        public final TextureCache Water            = new TextureCache("images/animator/effects/Water.png");
         public final TextureCache WaterDome        = new TextureCache("images/animator/effects/WaterDome.png");
+        public final TextureCache WaterSplash1     = new TextureCache("images/animator/effects/WaterSplash1.png");
+        public final TextureCache WaterSplash2     = new TextureCache("images/animator/effects/WaterSplash2.png");
+        public final TextureCache WaterSplash3     = new TextureCache("images/animator/effects/WaterSplash3.png");
     }
 }

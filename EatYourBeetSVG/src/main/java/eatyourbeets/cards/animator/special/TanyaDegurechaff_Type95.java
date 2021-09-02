@@ -15,7 +15,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
             .SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(TanyaDegurechaff.DATA.Series)
-            .AddPreview(new OrbCore_Plasma(), false);
+            .PostInitialize(data -> data.AddPreview(new OrbCore_Plasma(), false));
 
     public TanyaDegurechaff_Type95()
     {

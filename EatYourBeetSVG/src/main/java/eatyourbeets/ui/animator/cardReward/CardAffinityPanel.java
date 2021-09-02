@@ -94,7 +94,7 @@ public class CardAffinityPanel extends GUIElement
 
     public void Refresh(boolean showUpgrades)
     {
-        statistics.RefreshStatistics(showUpgrades, true);
+        statistics.RefreshStatistics(showUpgrades, false);
 
         counters.sort((a, b) -> (int)(1000 * (b.AffinityGroup.GetPercentage(0) - a.AffinityGroup.GetPercentage(0))));
 

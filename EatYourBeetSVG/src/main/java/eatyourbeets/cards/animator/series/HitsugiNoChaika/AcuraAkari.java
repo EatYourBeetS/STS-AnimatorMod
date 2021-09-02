@@ -14,14 +14,14 @@ public class AcuraAkari extends AnimatorCard
     public static final EYBCardData DATA = Register(AcuraAkari.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(3)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, true);
-        }
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, true);
+                }
+            });
 
     public AcuraAkari()
     {

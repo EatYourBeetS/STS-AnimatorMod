@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.monsters.EnemyIntent;
@@ -15,14 +16,15 @@ import eatyourbeets.utilities.TargetHelper;
 public class Priestess extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Priestess.class)
-            .SetSkill(1, CardRarity.COMMON)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
 
     public Priestess()
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 1);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -33,16 +35,9 @@ public class Priestess extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
-        if (upgraded)
+        for (EnemyIntent intent : GameUtilities.GetIntents())
         {
-            for (EnemyIntent intent : GameUtilities.GetIntents())
-            {
-                intent.AddWeak();
-            }
-        }
-        else if (m != null)
-        {
-            GameUtilities.GetIntent(m).AddWeak();
+            intent.AddWeak();
         }
     }
 
@@ -53,17 +48,11 @@ public class Priestess extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        target = CardTarget.ALL;
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.RetainPower(Affinity.Light);
-        GameActions.Bottom.ApplyWeak(upgraded ? TargetHelper.Enemies() : TargetHelper.Normal(m), secondaryValue);
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
 
         if (isSynergizing || CheckAffinity(Affinity.Light))
         {

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -44,14 +45,26 @@ public class Caster extends AnimatorCard
         {
             GameUtilities.GetIntent(m).AddStrength(-magicNumber);
         }
+
+        if (!GameUtilities.HasArtifact(player))
+        {
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddPlayerVulnerable();
+            }
+        }
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.ChannelOrb(new Dark());
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
-        GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
+        GameActions.Bottom.ApplyVulnerable(null, p, secondaryValue);
         GameActions.Bottom.GainCorruption(secondaryValue);
+
+        if (isSynergizing)
+        {
+            GameActions.Bottom.ChannelOrb(new Dark());
+        }
     }
 }

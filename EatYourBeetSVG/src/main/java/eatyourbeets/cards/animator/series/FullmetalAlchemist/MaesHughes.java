@@ -24,7 +24,7 @@ public class MaesHughes extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1);
         SetAffinity_Light(1, 1, 0);
     }
 
@@ -66,7 +66,7 @@ public class MaesHughes extends AnimatorCard
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
                     GameActions.Top.MoveCard(c, group, player.hand)
                     .ShowEffect(true, true)
-                    .AddCallback(card -> card.setCostForTurn(card.costForTurn-1));
+                    .AddCallback(card -> GameActions.Bottom.Motivate(card, 1));
                 }
 
                 return true;

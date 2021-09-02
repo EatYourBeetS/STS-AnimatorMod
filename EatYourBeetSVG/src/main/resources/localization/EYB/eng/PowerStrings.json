@@ -15,6 +15,11 @@
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
 		"NAME": "Burning"
 	},
+	"eyb:CounterAttackPower":
+	{
+		"DESCRIPTIONS": ["If you fully block all enemy #yAttacks, gain #b{0} #yVigor and apply #b{1} [Vulnerable] to ALL enemies."],
+		"NAME": "Counter-Attack"
+	},
 	"eyb:CorruptionPower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " If you reach #b{0} [C], obtain {1}."],
@@ -40,20 +45,15 @@
 		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " If you reach #b{0} [I], gain #b{1} #yFocus."],
 		"NAME": "Intellect"
 	},
-	"eyb:MarkedPower":
-	{
-		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
-		"NAME": "Marked"
-	},
 	"eyb:PoisonPlayerPower":
 	{
 		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
 		"NAME": "Poison"
 	},
-	"eyb:SelfDamagePower":
+	"eyb:DelayedDamagePower":
 	{
-		"DESCRIPTIONS": ["At the end of this turn, take #b{0} damage."],
-		"NAME": "Self Damage"
+		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
+		"NAME": "Delayed Damage"
 	},
 	"eyb:ShacklesPower":
 	{
@@ -62,7 +62,7 @@
 	},
 	"eyb:VitalityPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP."],
+		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
 		"NAME": "Vitality"
 	}
 }

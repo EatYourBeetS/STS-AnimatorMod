@@ -140,7 +140,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
-        if (shouldCancelAction() || HardCodedStuff_NoDraw() || !GameUtilities.CanApplyPower(source, target, powerToApply))
+        if (shouldCancelAction() || HardCodedStuff_NoDraw() || !GameUtilities.CanApplyPower(source, target, powerToApply, this))
         {
             Complete(callbackResult);
             return;

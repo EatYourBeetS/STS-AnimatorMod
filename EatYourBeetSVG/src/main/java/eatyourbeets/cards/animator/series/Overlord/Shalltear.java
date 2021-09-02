@@ -1,77 +1,67 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Shalltear extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shalltear.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(CardSeries.Overlord);
 
     public Shalltear()
     {
         super(DATA);
 
-        Initialize(3, 0, 3, 1);
-        SetUpgrade(0, 0, 0);
+        Initialize(2, 0, 2, 6);
+        SetUpgrade(1, 0, 1);
 
-        SetEthereal(true);
-
-        SetAffinity_Blue(1, 1, 1);
         SetAffinity_Green(1);
-        SetAffinity_Dark(2, 0, 2);
-    }
+        SetAffinity_Blue(2, 0, 3);
+        SetAffinity_Dark(2, 0, 3);
 
-    @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        boolean stealStrength = HasSynergy();
-        for (EnemyIntent intent : GameUtilities.GetIntents())
-        {
-            intent.AddWeak();
-            if (stealStrength)
-            {
-                intent.AddStrength(-secondaryValue);
-            }
-        }
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        SetHealing(true);
+        SetExhaust(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
-        .SetDamageEffect((enemy, __) ->
+        .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb)))
+        .AddCallback(enemies ->
         {
-            GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb));
-            GameActions.Bottom.ApplyWeak(player, enemy, 1);
-
-            if (isSynergizing)
+            int healAmount = 0;
+            for (AbstractCreature enemy : enemies)
             {
-                GameActions.Bottom.ReduceStrength(enemy, secondaryValue, true).SetForceGain(true);
+                final int loseHP = Math.min(magicNumber, enemy.currentHealth);
+                if (loseHP > 0)
+                {
+                    GameActions.Bottom.LoseHP(player, enemy, loseHP, AttackEffects.NONE);
+                    healAmount += loseHP;
+                }
+            }
+
+            if (healAmount > 0)
+            {
+                GameActions.Bottom.HealPlayerLimited(this, healAmount);
             }
         });
+
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(Affinity.Light);
+        if (power.amount > 0)
+        {
+            final int amount = Math.min(secondaryValue, power.amount);
+            GameActions.Bottom.GainCorruption(amount);
+            power.reducePower(amount);
+        }
     }
 }

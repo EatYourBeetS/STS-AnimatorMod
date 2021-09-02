@@ -78,7 +78,7 @@ public class WordToken extends CTToken
                 {
                     break;
                 }
-                else if (next == '/')
+                else if (next == '|')
                 {
                     if (parser.card.upgraded)
                     {

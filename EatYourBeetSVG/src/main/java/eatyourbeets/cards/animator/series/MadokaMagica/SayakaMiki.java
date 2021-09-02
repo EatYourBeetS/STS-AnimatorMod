@@ -19,12 +19,12 @@ public class SayakaMiki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SayakaMiki.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new SayakaMiki_Oktavia(), true);
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new SayakaMiki_Oktavia(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+            });
 
     public SayakaMiki()
     {

@@ -5,12 +5,19 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import javassist.CtBehavior;
 
 public class AbstractMonsterPatches
 {
+    @SpirePatch(clz = AbstractMonster.class, method = "<class>")
+    public static class AbstractMonster_Fields
+    {
+        public static final SpireField<EnemyIntent> enemyIntent = new SpireField<>(() -> null);
+    }
+
     @SpirePatch(clz = AbstractMonster.class, method = "damage", paramtypez = {DamageInfo.class})
     public static class AbstractMonster_Damage
     {

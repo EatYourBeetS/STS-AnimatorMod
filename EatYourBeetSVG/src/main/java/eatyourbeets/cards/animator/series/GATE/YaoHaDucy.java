@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,6 +27,15 @@ public class YaoHaDucy extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Green(1);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        if (m != null && !GameUtilities.HasArtifact(m))
+        {
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
+        }
     }
 
     @Override
@@ -61,7 +70,7 @@ public class YaoHaDucy extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
 
-        if (GameUtilities.IsAttacking(m.intent))
+        if (!GameUtilities.HasArtifact(m))
         {
             GameActions.Bottom.ReduceStrength(m, magicNumber, true);
         }

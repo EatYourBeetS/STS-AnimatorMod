@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class EmiyaShirou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(EmiyaShirou.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public EmiyaShirou()

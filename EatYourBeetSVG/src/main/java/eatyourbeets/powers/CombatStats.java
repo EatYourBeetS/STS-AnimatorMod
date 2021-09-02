@@ -51,37 +51,40 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static AbstractRoom Room;
     public static UUID BattleID;
 
-    public static final GameEvent<OnSynergySubscriber> onSynergy = new GameEvent<>();
-    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = new GameEvent<>();
-    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = new GameEvent<>();
-    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = new GameEvent<>();
-    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = new GameEvent<>();
-    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = new GameEvent<>();
-    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = new GameEvent<>();
-    public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = new GameEvent<>();
-    public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = new GameEvent<>();
-    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = new GameEvent<>();
-    public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = new GameEvent<>();
-    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = new GameEvent<>();
-    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = new GameEvent<>();
-    public static final GameEvent<OnAttackSubscriber> onAttack = new GameEvent<>();
-    public static final GameEvent<OnLoseHpSubscriber> onLoseHp = new GameEvent<>();
-    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = new GameEvent<>();
-    public static final GameEvent<OnShuffleSubscriber> onShuffle = new GameEvent<>();
-    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = new GameEvent<>();
-    public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = new GameEvent<>();
-    public static final GameEvent<OnRawDamageReceived> onRawDamageReceived = new GameEvent<>();
-    public static final GameEvent<OnCardResetSubscriber> onCardReset = new GameEvent<>();
-    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = new GameEvent<>();
-    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = new GameEvent<>();
-    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = new GameEvent<>();
-    public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = new GameEvent<>();
+    static final ArrayList<GameEvent<?>> events = new ArrayList<>();
+    //
+    public static final GameEvent<OnSynergySubscriber> onSynergy = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAttackSubscriber> onAttack = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnLoseHpSubscriber> onLoseHp = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnShuffleSubscriber> onShuffle = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnRawDamageReceived> onRawDamageReceived = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardResetSubscriber> onCardReset = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = RegisterEvent(new GameEvent<>());
+    //
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
-    public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = new GameEvent<>();
-    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
-
+    //
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();
     private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
@@ -96,19 +99,26 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static int cardsExhaustedThisTurn = 0;
 
     //@Formatter: Off
-    public static boolean CanActivateLimited(String id) { return !combatData.containsKey(id); }
+    public static boolean CanActivateLimited(String id) { return !HasActivatedLimited(id); }
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
-    public static boolean CanActivateSemiLimited(String id) { return !turnData.containsKey(id); }
-    public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateLimited(String id) { return combatData.put(id, 1) == null; }
+    public static boolean CanActivateSemiLimited(String id) { return !HasActivatedSemiLimited(id); }
+    public static boolean HasActivatedSemiLimited(String id) { return turnData.containsKey(id); }
     public static boolean TryActivateSemiLimited(String id) { return turnData.put(id, 1) == null; }
-
-//    Unused, uncomment if you decide to reimplement Limited/Semi-limited with more than 1 use
-//    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
-//    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
-//    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
-//    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
+    //
+    public static boolean CanActivateLimited(String id, int cap) { return !HasActivatedLimited(id, cap); }
+    public static boolean HasActivatedLimited(String id, int cap) { return combatData.containsKey(id) && (int)combatData.get(id) >= cap; }
+    public static boolean TryActivateLimited(String id, int cap) { return JUtils.IncrementMapElement(combatData, id) <= cap; }
+    public static boolean CanActivateSemiLimited(String id, int cap) { return !HasActivatedSemiLimited(id, cap); }
+    public static boolean HasActivatedSemiLimited(String id, int cap) { return turnData.containsKey(id) && (int)turnData.get(id) >= cap; }
+    public static boolean TryActivateSemiLimited(String id, int cap) { return JUtils.IncrementMapElement(turnData, id) <= cap; }
     //@Formatter: On
+
+    protected static <T> GameEvent<T> RegisterEvent(GameEvent<T> event)
+    {
+        events.add(event);
+        return event;
+    }
 
     protected CombatStats()
     {
@@ -142,40 +152,19 @@ public class CombatStats extends EYBPower implements InvisiblePower
         combatData.clear();
         turnData.clear();
 
-        onSynergy.Clear();
-        onEnemyDying.Clear();
-        onBlockBroken.Clear();
-        onBeforeLoseBlock.Clear();
-        onTryUsingCard.Clear();
-        onAfterCardDrawn.Clear();
-        onAfterCardPlayed.Clear();
-        onAfterCardDiscarded.Clear();
-        onAfterCardExhausted.Clear();
-        onOrbPassiveEffect.Clear();
-        onClickablePowerUsed.Clear();
-        onChannelOrb.Clear();
-        onEvokeOrb.Clear();
-        onAttack.Clear();
-        onLoseHp.Clear();
-        onEndOfTurn.Clear();
-        onShuffle.Clear();
-        onApplyPower.Clear();
-        onAfterDeath.Clear();
-        onRawDamageReceived.Clear();
-        onCardReset.Clear();
-        onCardCreated.Clear();
-        onStartOfTurn.Clear();
-        onStartOfTurnPostDraw.Clear();
-        onPhaseChanged.Clear();
-        onStanceChanged.Clear();
-        onSynergyCheck.Clear();
+        for (GameEvent event : events)
+        {
+            event.Clear();
+        }
 
         CardGlowBorderPatches.overrideColor = null;
         CombatStats.Affinities.Initialize();
         CombatStats.Affinities.SetLastCardPlayed(null);
 
-        // Iterate onStatsCleared, remove those that return true.
-        onStatsCleared.GetSubscribers().removeIf(OnStatsClearedSubscriber::OnStatsCleared);
+        for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
+        {
+            s.OnStatsCleared();
+        }
     }
 
     public static void Refresh()
@@ -560,6 +549,26 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return fromZero ? turnCount : (turnCount + 1);
     }
 
+    public static void ApplyPowerPriority(AbstractPower power)
+    {
+        if (StrengthPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2099;
+        }
+        else if (DexterityPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2098;
+        }
+        else if (FocusPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2097;
+        }
+        else if (VitalityPower.POWER_ID.equals(power.ID))
+        {
+            power.priority = -2096;
+        }
+    }
+
     @Override
     public void onChannel(AbstractOrb orb)
     {
@@ -661,22 +670,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super.onApplyPower(power, target, source);
 
-        if (StrengthPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2099;
-        }
-        else if (DexterityPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2098;
-        }
-        else if (FocusPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2097;
-        }
-        else if (VitalityPower.POWER_ID.equals(power.ID))
-        {
-            power.priority = -2096;
-        }
+        ApplyPowerPriority(power);
 
         for (OnApplyPowerSubscriber p : onApplyPower.GetSubscribers())
         {

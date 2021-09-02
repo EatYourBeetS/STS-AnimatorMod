@@ -1,5 +1,6 @@
 package eatyourbeets.powers.monsters;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -22,7 +23,7 @@ public class HornedBat_RedPower extends AnimatorPower implements OnTryApplyPower
     }
 
     @Override
-    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
         return (target != owner || !power.ID.equals(BurningPower.POWER_ID));
     }

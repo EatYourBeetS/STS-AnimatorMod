@@ -327,10 +327,10 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     private void RemoveExtraCopies(AbstractCard card)
     {
         final EYBCard eybCard = JUtils.SafeCast(card, EYBCard.class);
-        if (eybCard != null && eybCard.cardData.MaxCopies > 0)
+        if (!Settings.isEndless && eybCard != null && eybCard.cardData.MaxCopies > 0)
         {
             final int copies = GameUtilities.GetAllCopies(eybCard.cardID, AbstractDungeon.player.masterDeck).size();
-            if (copies > eybCard.cardData.MaxCopies)
+            if (copies >= eybCard.cardData.MaxCopies)
             {
                 RemoveCardFromPools(eybCard);
             }

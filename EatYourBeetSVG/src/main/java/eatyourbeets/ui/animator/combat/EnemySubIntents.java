@@ -7,37 +7,54 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BobEffect;
-import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class EnemySubIntents
 {
     protected final static FieldInfo<BobEffect> _bobEffect = JUtils.GetField("bobEffect", AbstractMonster.class);
     protected final static FieldInfo<Boolean> _isMultiDmg = JUtils.GetField("isMultiDmg", AbstractMonster.class);
     protected final static FieldInfo<Integer> _intentMultiAmt = JUtils.GetField("intentMultiAmt", AbstractMonster.class);
+    protected final ArrayList<EnemyIntent> intents = new ArrayList<>();
 
-    protected final Map<AbstractMonster, FuncT0<ColoredString>> intents = new HashMap<>();
-
-    public void Add(AbstractMonster monster, FuncT0<ColoredString> calculateIntent)
+    public void Add(EnemyIntent intent)
     {
-        intents.put(monster, calculateIntent);
+        if (!intents.contains(intent))
+        {
+            intents.add(intent);
+        }
+    }
+
+    public void Clear()
+    {
+        for (EnemyIntent intent : intents)
+        {
+            intent.modifiers.clear();
+        }
+
+        intents.clear();
     }
 
     public void RenderMonsterInfo(AbstractMonster m, SpriteBatch sb)
     {
-        if (intents.containsKey(m))
+        for (int i = 0; i < intents.size(); i++)
         {
-            RenderSubIntent(sb, m, m.intent, intents.get(m).Invoke());
-            intents.remove(m);
+            final EnemyIntent intent = intents.get(i);
+            if (intent.enemy == m)
+            {
+                RenderSubIntent(sb, m, intent.CreateIntentDamageString());
+                intent.modifiers.clear();
+                intents.remove(i);
+                return;
+            }
         }
     }
 
-    private void RenderSubIntent(SpriteBatch sb, AbstractMonster m, AbstractMonster.Intent intent, ColoredString damage)
+    private void RenderSubIntent(SpriteBatch sb, AbstractMonster m, ColoredString damage)
     {
-        if (intent == null || damage == null || damage.color == null)
+        if (damage == null || damage.color == null)
         {
             return;
         }

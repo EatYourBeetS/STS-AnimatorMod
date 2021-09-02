@@ -1,17 +1,19 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
@@ -23,23 +25,10 @@ public class Entoma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
-        SetUpgrade(1, 0, 0);
+        Initialize(3, 0);
+        SetUpgrade(2, 0);
 
-        SetAffinity_Dark(1);
-
-        SetUnique(true, true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (timesUpgraded % 3 == 0)
-        {
-            upgradeMagicNumber(1);
-        }
-
-        upgradedMagicNumber = true;
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override
@@ -47,28 +36,40 @@ public class Entoma extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration)
-        .AddCallback(enemy ->
-        {
-            GameActions.Bottom.ApplyPoison(player, enemy, magicNumber).ShowEffect(false, true);
-            if (GameUtilities.IsFatal(enemy, true) && CombatStats.TryActivateLimited(cardID))
-            {
-                player.increaseMaxHp(2, false);
+        .AddCallback(e -> GameActions.Bottom.ApplyPoison(player, e, damage).ShowEffect(false, true));
 
-                GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                .IncludeMasterDeck(true)
-                .IsCancellable(false);
-            }
-        });
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.StackPower(new EntomaPower(p, 2));
+        }
     }
 
-    @Override
-    public void atTurnStart()
+    public static class EntomaPower extends AnimatorPower
     {
-        super.atTurnStart();
-
-        if (CombatStats.TurnCount(true) > 0 && baseDamage > 0)
+        public EntomaPower(AbstractCreature owner, int amount)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
+            super(owner, Entoma.DATA);
+
+            Initialize(amount, PowerType.BUFF, true);
+        }
+
+        @Override
+        public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+        {
+            super.onApplyPower(power, target, source);
+
+            if (source == owner && PoisonPower.POWER_ID.equals(power.ID))
+            {
+                GameActions.Bottom.GainTemporaryHP(1);
+            }
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            ReducePower(1);
         }
     }
 }

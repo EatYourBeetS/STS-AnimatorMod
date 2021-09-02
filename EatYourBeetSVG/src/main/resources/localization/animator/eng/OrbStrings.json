@@ -13,7 +13,7 @@
 		"NAME": "Earth",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, gain #b{0} temporary #yThorns. NL #yEvoke: Deal #b{1} damage randomly split amongst ALL enemies. NL After #b{2} turns have passed, automatically #yEvoke this Orb."
+			"#yPassive: At the end of turn, gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
 		]
 	},
 	"animator:Aether":
@@ -21,7 +21,7 @@
 		"NAME": "Aether",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #b{0} #yPiercing damage to ALL enemies. NL #yEvoke: Draw #b{1} cards."
+			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Draw #b{1} cards."
 		]
 	},
 	"animator:Fire":
@@ -29,7 +29,7 @@
 		"NAME": "Fire",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #b{0} damage to the highest health enemy and apply #b{1} #yBurning. NL #yEvoke: Apply #b{2} #yBurning to ALL enemies."
+			"#yPassive: At the end of turn, deal #g{0} damage to the highest health enemy and apply #b{1} #yBurning. NL #yEvoke: Apply #g{2} #yBurning to ALL enemies."
 		]
 	},
 	"animator:Water":

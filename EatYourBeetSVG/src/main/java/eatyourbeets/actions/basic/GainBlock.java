@@ -1,6 +1,5 @@
 package eatyourbeets.actions.basic;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
@@ -60,11 +59,7 @@ public class GainBlock extends EYBActionWithCallback<AbstractCreature>
             GameEffects.List.Attack(source, target, attackEffect, 0.95f, 1.05f, null);
 
             target.addBlock(amount);
-
-            for (AbstractCard c : player.hand.group)
-            {
-                c.applyPowers();
-            }
+            player.hand.applyPowers();
         }
     }
 

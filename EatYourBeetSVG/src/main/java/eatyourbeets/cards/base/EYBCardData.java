@@ -12,12 +12,16 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.TupleT2;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EYBCardData
 {
+    private static final ArrayList<TupleT2<EYBCardData, ActionT1<EYBCardData>>> postInitialize = new ArrayList<>();
     private Constructor<? extends EYBCard> constructor;
 
     public final Class<? extends EYBCard> type;
@@ -56,6 +60,16 @@ public class EYBCardData
         this.type = type;
     }
 
+    public static void PostInitialize()
+    {
+        for (TupleT2<EYBCardData, ActionT1<EYBCardData>> pair : postInitialize)
+        {
+            pair.V2.Invoke(pair.V1);
+        }
+
+        postInitialize.clear();
+    }
+
     public AbstractCard CreateNewInstance(boolean upgrade) throws RuntimeException
     {
         AbstractCard card = CreateNewInstance();
@@ -88,6 +102,16 @@ public class EYBCardData
     public EYBCard MakeCopy(boolean upgraded)
     {
         return (EYBCard) (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
+    }
+
+    public EYBCardData AddPreviews(List<? extends AbstractCard> cards, boolean showUpgrade)
+    {
+        for (AbstractCard c : cards)
+        {
+            AddPreview(c, showUpgrade);
+        }
+
+        return this;
     }
 
     public EYBCardData AddPreview(AbstractCard card, boolean showUpgrade)
@@ -178,6 +202,24 @@ public class EYBCardData
         return this;
     }
 
+    public EYBCardData SetRarity(AbstractCard.CardRarity rarity)
+    {
+        CardRarity = rarity;
+
+        if (MaxCopies == -1)
+        {
+            switch (rarity)
+            {
+                case COMMON: return SetMaxCopies(5);
+                case UNCOMMON: return SetMaxCopies(4);
+                case RARE: return SetMaxCopies(3);
+                default: return SetMaxCopies(0);
+            }
+        }
+
+        return this;
+    }
+
     public EYBCardData SetImagePath(String imagePath)
     {
         ImagePath = imagePath;
@@ -197,18 +239,12 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetRarity(rarity);
+
         CardTarget = target;
         CardType = AbstractCard.CardType.ATTACK;
         AttackType = attackType;
         BaseCost = cost;
-
-        return this;
-    }
-
-    public EYBCardData SetRarity(AbstractCard.CardRarity rarity)
-    {
-        CardRarity = rarity;
 
         return this;
     }
@@ -220,7 +256,8 @@ public class EYBCardData
 
     public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetRarity(rarity);
+
         CardTarget = target;
         CardType = AbstractCard.CardType.SKILL;
         AttackType = EYBAttackType.None;
@@ -231,7 +268,8 @@ public class EYBCardData
 
     public EYBCardData SetPower(int cost, AbstractCard.CardRarity rarity)
     {
-        CardRarity = rarity;
+        SetRarity(rarity);
+
         CardTarget = EYBCardTarget.Self;
         CardType = AbstractCard.CardType.POWER;
         AttackType = EYBAttackType.None;
@@ -242,7 +280,8 @@ public class EYBCardData
 
     public EYBCardData SetCurse(int cost, EYBCardTarget target, boolean special)
     {
-        CardRarity = special ? AbstractCard.CardRarity.SPECIAL : AbstractCard.CardRarity.CURSE;
+        SetRarity(special ? AbstractCard.CardRarity.SPECIAL : AbstractCard.CardRarity.CURSE);
+
         CardColor = AbstractCard.CardColor.CURSE;
         CardType = AbstractCard.CardType.CURSE;
         AttackType = EYBAttackType.None;
@@ -254,7 +293,8 @@ public class EYBCardData
 
     public EYBCardData SetStatus(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetRarity(rarity);
+
         CardColor = AbstractCard.CardColor.COLORLESS;
         CardType = AbstractCard.CardType.STATUS;
         AttackType = EYBAttackType.None;
@@ -264,9 +304,9 @@ public class EYBCardData
         return this;
     }
 
-    public EYBCardData Edit(ActionT1<EYBCardData> data)
+    public EYBCardData PostInitialize(ActionT1<EYBCardData> action)
     {
-        data.Invoke(this);
+        postInitialize.add(new TupleT2<>(this, action));
 
         return this;
     }

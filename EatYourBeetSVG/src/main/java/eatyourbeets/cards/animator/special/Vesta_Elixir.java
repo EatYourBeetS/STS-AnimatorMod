@@ -3,8 +3,8 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.TenseiSlime.Vesta;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect;
@@ -17,7 +17,7 @@ public class Vesta_Elixir extends AnimatorCard
     public static final EYBCardData DATA = Register(Vesta_Elixir.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(Vesta.DATA.Series);
+            .SetSeries(CardSeries.TenseiSlime);
 
     public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
 

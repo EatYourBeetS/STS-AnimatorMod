@@ -126,7 +126,7 @@ public class SummoningRitual extends AnimatorCard_UltraRare
         {
             if (doll != null)
             {
-                int playerDamage = damageAmount / 2;
+                final int playerDamage = damageAmount / 2;
                 doll.damage(new DamageInfo(null, damageAmount - playerDamage, DamageInfo.DamageType.HP_LOSS));
                 return super.onLoseHp(playerDamage);
             }

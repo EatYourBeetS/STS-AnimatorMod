@@ -14,11 +14,8 @@ public class Shiro extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shiro.class)
             .SetPower(4, CardRarity.RARE)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Sora(), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Sora(), false));
 
     public Shiro()
     {

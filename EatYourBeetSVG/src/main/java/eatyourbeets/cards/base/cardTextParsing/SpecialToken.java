@@ -19,7 +19,6 @@ public abstract class SpecialToken extends CTToken
         // {#:Text} -> Reset to default color
     }
 
-    @SuppressWarnings("DuplicateExpressions")
     public static int TryAdd(CTContext parser)
     {
         if (parser.character == '{' && parser.remaining > 1)

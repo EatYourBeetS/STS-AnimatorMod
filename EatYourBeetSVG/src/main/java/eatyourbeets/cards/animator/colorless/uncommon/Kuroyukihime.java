@@ -11,11 +11,8 @@ public class Kuroyukihime extends AnimatorCard
     public static final EYBCardData DATA = Register(Kuroyukihime.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.AccelWorld);
-    static
-    {
-        DATA.AddPreview(new Kuroyukihime_BlackLotus(), false);
-    }
+            .SetSeries(CardSeries.AccelWorld)
+            .PostInitialize(data -> data.AddPreview(new Kuroyukihime_BlackLotus(), false));
 
     public Kuroyukihime()
     {

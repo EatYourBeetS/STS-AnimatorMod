@@ -18,17 +18,19 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
-    public static final int PROJECTILES = 8;
+    public static final int BASE_PROJECTILES = 6;
+    public static final int MAX_PROJECTILES = 24;
+    public static final int PROJECTILES_PER_TURN = 2;
+    public static final int PROJECTILE_DAMAGE = 2;
+    public static final int THORNS_PER_CHANNEL = 2;
+    public static final int MAX_CHANNEL_EFFECTS = 3;
 
     private static final TextureCache[] images = { IMAGES.Earth1, IMAGES.Earth2, IMAGES.Earth3, IMAGES.Earth4 };
     private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
@@ -36,6 +38,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
 
     public final ArrayList<Projectile> projectiles = new ArrayList<>();
     public boolean evoked;
+    public int projectilesCount;
     public int turns;
 
     public static Texture GetRandomTexture()
@@ -53,24 +56,26 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         super(ORB_ID, Timing.EndOfTurn);
 
         this.evoked = false;
-        this.evokeAmount = this.baseEvokeAmount = 16;
-        this.passiveAmount = this.basePassiveAmount = 2;
+        this.evokeAmount = this.baseEvokeAmount = PROJECTILE_DAMAGE;
+        this.passiveAmount = this.basePassiveAmount = PROJECTILES_PER_TURN;
+        this.projectilesCount = BASE_PROJECTILES;
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
 
         this.updateDescription();
     }
 
-    public void GenerateProjectiles()
+    public void AddProjectiles(int amount)
     {
-        projectiles.clear();
-        for (int i = 0; i < PROJECTILES; i++)
+        final int max = Math.min(MAX_PROJECTILES - projectiles.size(), amount);
+        for (int i = 0; i < max; i++)
         {
             projectiles.add(new Projectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
             .SetPosition(cX, cY)
             .SetColor(Colors.Random(0.9f, 1f, false))
-            .SetScale(MathUtils.random(0.6f, 1f))
-            .SetFlip(i % 2 == 0, null)
+            .SetScale(0.05f)
+            .SetTargetScale(MathUtils.random(0.6f, 1f))
+            .SetFlip(projectiles.size() % 2 == 0, null)
             .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
             .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
         }
@@ -81,15 +86,21 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     {
         turns = 3;
         evoked = false;
+        projectiles.clear();
+        AddProjectiles(projectilesCount);
+
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        GenerateProjectiles();
+        if (CombatStats.TryActivateLimited(ID, MAX_CHANNEL_EFFECTS))
+        {
+            GameActions.Bottom.GainThorns(THORNS_PER_CHANNEL);
+        }
     }
 
     @Override
     public void updateDescription()
     {
         this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount, this.turns);
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], passiveAmount, MAX_PROJECTILES, evokeAmount, turns);
     }
 
     @Override
@@ -125,9 +136,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void applyFocus()
     {
-        final int focus = GetFocus();
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
-        this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 4));
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
     @Override
@@ -170,9 +179,11 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     protected void renderText(SpriteBatch sb)
     {
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, this.c, this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, evokeAmount + "x" + projectilesCount, this.cX + NUM_X_OFFSET,
+                this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
+
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX + NUM_X_OFFSET,
+                this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
     }
 
     @Override
@@ -188,6 +199,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         if (!evoked)
         {
             copy.turns = turns;
+            copy.projectilesCount = projectilesCount;
         }
 
         return copy;
@@ -196,7 +208,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void Passive()
     {
-        GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
+        GameActions.Bottom.Add(new EarthOrbPassiveAction(this, passiveAmount));
 
         super.Passive();
     }
@@ -208,7 +220,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         {
             if (projectiles.isEmpty())
             {
-                GenerateProjectiles();
+                AddProjectiles(projectilesCount);
             }
 
             GameActions.Bottom.Add(new EarthOrbEvokeAction(this, evokeAmount));
@@ -217,8 +229,8 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
 
         turns = 0;
-        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 
     @Override

@@ -15,11 +15,8 @@ public class YuiTsuruno extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YuiTsuruno.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public YuiTsuruno()
     {

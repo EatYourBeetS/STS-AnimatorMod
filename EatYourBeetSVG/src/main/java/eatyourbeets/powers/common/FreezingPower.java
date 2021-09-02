@@ -36,7 +36,7 @@ public class FreezingPower extends CommonPower
     @Override
     public void playApplyPowerSfx()
     {
-        SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
+        SFX.Play(SFX.ORB_FROST_EVOKE, 0.45f, 0.55f);
     }
 
     @Override

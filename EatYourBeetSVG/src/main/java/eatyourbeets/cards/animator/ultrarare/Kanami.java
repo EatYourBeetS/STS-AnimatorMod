@@ -17,11 +17,8 @@ public class Kanami extends AnimatorCard_UltraRare
     public static final EYBCardData DATA = Register(Kanami.class)
             .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.LogHorizon);
-    static
-    {
-        DATA.AddPreview(new KanamiAlt(), true);
-    }
+            .SetSeries(CardSeries.LogHorizon)
+            .PostInitialize(data -> data.AddPreview(new KanamiAlt(), true));
 
     public Kanami()
     {

@@ -64,8 +64,11 @@ public class Fire extends AnimatorOrb {
     }
 
     @Override
-    public void applyFocus() {
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
+    public void applyFocus()
+    {
+        int focus = GetFocus();
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+        this.evokeAmount = Math.max(0, this.baseEvokeAmount + focus);
     }
 
     public void updateAnimation() {

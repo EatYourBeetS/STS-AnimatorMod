@@ -14,7 +14,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
 {
-    public static final EYBCardData DATA = Register(QuestionMark.class).SetSkill(-2, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(QuestionMark.class)
+            .SetSkill(-2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS);
 
     public AnimatorCard copy = null;
 

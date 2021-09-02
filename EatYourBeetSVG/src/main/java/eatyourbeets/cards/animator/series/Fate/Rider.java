@@ -8,15 +8,11 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.HashSet;
-
 public class Rider extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rider.class)
             .SetSkill(2, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
-
-    private static final HashSet<CardTags> tagCache = new HashSet<>();
 
     public Rider()
     {

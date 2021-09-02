@@ -31,7 +31,7 @@ public class Saber_Excalibur extends AnimatorCard
         SetAffinity_Red(2);
         SetAffinity_Light(2, 0, 4);
 
-        SetRetain(true);
+        SetRetainOnce(true);
         SetExhaust(true);
     }
 

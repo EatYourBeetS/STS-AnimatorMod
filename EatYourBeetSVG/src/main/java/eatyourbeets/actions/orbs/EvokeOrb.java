@@ -70,7 +70,7 @@ public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
     {
         if (player.orbs == null || player.orbs.isEmpty())
         {
-            Complete();
+            Complete(orbs);
             return;
         }
 

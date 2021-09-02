@@ -23,10 +23,15 @@ public class Canti extends AnimatorCard
         super(DATA);
 
         Initialize(2, 3);
-        SetUpgrade(4, 0);
 
         SetAffinity_Red(2);
         SetAffinity_Light(2);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override

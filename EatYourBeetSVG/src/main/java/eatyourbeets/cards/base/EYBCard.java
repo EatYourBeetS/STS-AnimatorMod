@@ -101,6 +101,7 @@ public abstract class EYBCard extends EYBCardBase
         copy.selfRetain = selfRetain;
         copy.isEthereal = isEthereal;
         copy.isInnate = isInnate;
+        copy.heal = heal;
 
         copy.affinities.Initialize(affinities);
         copy.magicNumber = magicNumber;

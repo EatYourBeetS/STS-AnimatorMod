@@ -15,13 +15,13 @@ public class Melzalgald extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Melzalgald.class)
             .SetAttack(3, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new Melzalgald_1(), true);
-        DATA.AddPreview(new Melzalgald_2(), true);
-        DATA.AddPreview(new Melzalgald_3(), true);
-    }
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Melzalgald_1(), true);
+                data.AddPreview(new Melzalgald_2(), true);
+                data.AddPreview(new Melzalgald_3(), true);
+            });
 
     public Melzalgald()
     {

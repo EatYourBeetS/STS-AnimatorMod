@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -81,7 +82,7 @@ public class LaughingMan extends AnimatorCard implements OnEndOfTurnSubscriber, 
         }
 
         public void onCardDraw(AbstractCard card) {
-            if (!card.type.equals(cardType)) {
+            if (!card.type.equals(cardType) && !(card instanceof Necronomicurse)) {
                 GameActions.Bottom.Exhaust(card);
                 GameActions.Bottom.Draw(1);
             }

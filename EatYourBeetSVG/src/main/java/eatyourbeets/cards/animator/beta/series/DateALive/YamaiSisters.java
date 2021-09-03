@@ -1,17 +1,18 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YamaiSisters extends AnimatorCard
+public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
 {
     public static final EYBCardData DATA = Register(YamaiSisters.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
 
@@ -22,20 +23,7 @@ public class YamaiSisters extends AnimatorCard
         Initialize(2, 0);
         SetUpgrade(1, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 1, 0);
-    }
-
-    @Override
-    protected float ModifyDamage(AbstractMonster enemy, float damage)
-    {
-        int forceAmount = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
-
-        if (enemy != null && GameUtilities.IsAttacking(enemy.intent) && forceAmount > 0)
-        {
-            damage += forceAmount;
-        }
-
-        return super.ModifyDamage(enemy, damage);
+        SetAffinity_Green(1, 0, 0);
     }
 
     @Override
@@ -46,6 +34,13 @@ public class YamaiSisters extends AnimatorCard
         if (IsStarter())
         {
             GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
+        }
+    }
+
+    @Override
+    public void OnSynergy(AbstractCard card) {
+        if ((GameUtilities.HasRedAffinity(card) || GameUtilities.HasLightAffinity(card)) && CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.MoveCard(this,player.hand);
         }
     }
 }

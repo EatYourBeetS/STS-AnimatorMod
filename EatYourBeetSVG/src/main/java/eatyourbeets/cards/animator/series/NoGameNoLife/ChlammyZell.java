@@ -26,6 +26,7 @@ public class ChlammyZell extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Orange(1);
         SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Blue, 2);

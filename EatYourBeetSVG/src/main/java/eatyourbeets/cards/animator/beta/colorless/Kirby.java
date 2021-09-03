@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.cards.animator.special.Kirby_MysteryCard;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
@@ -21,7 +22,10 @@ import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.misc.KirbyEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
@@ -191,9 +195,8 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
         super.triggerWhenCreated(startOfBattle);
 
         if (inheritedCards.size() < COPIED_CARDS) {
-            RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>(JUtils.Filter(AbstractDungeon.commonCardPool.group, c -> !KirbyEffect.isBanned(c)));
             while (inheritedCards.size() < COPIED_CARDS) {
-                AddInheritedCard(possiblePicks.Retrieve(rng));
+                AddInheritedCard(new Kirby_MysteryCard());
             }
             updateProperties();
         }
@@ -247,7 +250,11 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
     @Override
     public boolean OnAddToDeck() {
-        GameEffects.Queue.Add(new KirbyEffect(this, COPIED_CARDS));
+        GameEffects.Queue.Add(new KirbyEffect(this, COPIED_CARDS)).AddCallback(() -> {
+            while (inheritedCards.size() < COPIED_CARDS) {
+                AddInheritedCard(new Kirby_MysteryCard());
+            }
+        });
         return true;
     }
 

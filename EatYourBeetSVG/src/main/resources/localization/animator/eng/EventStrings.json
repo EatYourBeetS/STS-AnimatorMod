@@ -38,6 +38,39 @@
 			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP"
 		]
 	},
+	"animator:TheFloatyThing":
+	{
+	  "DESCRIPTIONS":
+	  [
+		"As you are strolling around, minding your own business, a tiny floaty thing suddenly barges right up to your face.",
+
+		"\"Hey Traveler! I have some great, great bargains for you! Check them out!\" NL NL The @floaty thing@ screeches into your face. NL NL As annoying as the floaty thing is, you decide it couldn't hurt to take a look of what it has to offer.",
+
+		"\"For just #b16 #yGold, you can cast a wish to obtain a prize! Every #b10 wishes will guarantee a rarer prize as well!\" NL NL The @floaty thing@ screeches with undue excitement.",
+
+		"\"That's too bad. Maybe you'll have better luck if you WISH AGAIN!\" NL NL The @floaty thing@ screeches into your face. NL NL (You have made X wishes so far).",
+
+		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The @floaty thing@ screeches into your face again. NL NL The 'prize' you've gotten can't really be called a prize... NL NL (You have made X wishes so far)",
+
+		"\"NO REFUNDS!!!\" NL NL The @floaty thing@ screeches into your face. (Seriously, does it really have to screech so much...) NL NL (You have made X wishes so far).",
+
+		"\"Urgh, fine... I can give you a partial refund... But my business is dying... Don't you care about small businesses?\" NL NL The @floaty thing@ grumbles, finally uttering a noise that isn't a ear-wrenching screech. NL NL Reluctantly, it hands you some of the money it swindled from you and saunters away in disappointment.",
+
+		"A trinket plops down onto your hands. You look to see that it is a luxurious golden lockbox! When you open it, you are greeted with a very valuable reward indeed!",
+
+		"\"H-h-hey... That wasn't supposed to be given out. GIVE IT BACK!\" NL NL The @floaty thing@ screeches into your face as it charges towards you. NL NL You quickly dodge it and run away as fast as you can from the screeching floaty thing throwing curses at you.",
+
+		"You decide that the floaty thing is probably trying to rip you off and quickly make your leave before it is able to pester you anymore."
+	  ],
+	  "NAME": "The Pharmacy",
+	  "OPTIONS":
+	  [
+		"[Wish] #g{0}% #gchance #gto #gobtain #ga #gPrize. #rLose #r{1} #rGold.",
+		"[Locked] Not enough Gold.",
+		"[Demand your Gold back] #g50% chance to Gain #g{0} Gold.",
+		"[Leave]"
+	  ]
+	},
 	"animator:TheHaunt":
 	{
 		"DESCRIPTIONS":

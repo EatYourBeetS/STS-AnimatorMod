@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.stances.AgilityStance;
@@ -25,7 +25,8 @@ public class Shigure extends AnimatorCard
         Initialize(7, 0, 2, 3);
         SetUpgrade(2, 0, 1, 0);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Orange(1, 1, 1);
     }
 
     @Override

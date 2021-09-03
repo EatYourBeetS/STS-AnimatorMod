@@ -28,7 +28,7 @@ public class Vesta extends AnimatorCard
         Initialize(0, 0, 3);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Blue, 3);
         SetExhaust(true);
@@ -44,6 +44,7 @@ public class Vesta extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.RetainPower(Affinity.Blue);
+        GameActions.Bottom.RetainPower(Affinity.Orange);
 
         //TODO: This could all be done in VestaPower
         VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), CheckAffinity(Affinity.Blue));

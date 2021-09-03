@@ -24,6 +24,7 @@ public class Tatsumaki extends AnimatorCard
         Initialize(0, 0, 1);
 
         SetAffinity_Blue(2);
+        SetAffinity_Light(1);
 
         SetEthereal(true);
         SetEvokeOrbCount(1);

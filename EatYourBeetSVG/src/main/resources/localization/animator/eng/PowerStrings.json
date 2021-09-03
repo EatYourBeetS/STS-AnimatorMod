@@ -232,7 +232,7 @@
 	},
 	"animator:NegateBlockPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from any source."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain #yDelayed #yDamage whenever you obtain Block from other sources."],
 	  "NAME": "Negate Block"
 	},
 	"animator:NextTurnDexterityPower":

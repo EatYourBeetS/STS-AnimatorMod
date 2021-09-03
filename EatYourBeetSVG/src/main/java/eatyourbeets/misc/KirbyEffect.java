@@ -59,19 +59,7 @@ public class KirbyEffect extends EYBEffectWithCallback<Kirby>
         {
             if (AbstractDungeon.gridSelectScreen.selectedCards.size() == cardsToRemove)
             {
-                for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
-                {
-                    AbstractDungeon.player.masterDeck.removeCard(card);
-                    AbstractCard newCard = card.makeCopy();
-                    for (int i = 0; i < kirby.timesUpgraded; i++) {
-                        newCard.upgrade();
-                    }
-                    kirby.AddInheritedCard(newCard);
-                }
-
-                AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                kirby.refreshDescription();
-                cardsToRemove = 0;
+                Finish_Selection();
             }
         }
         else if (TickDuration(deltaTime))
@@ -90,6 +78,23 @@ public class KirbyEffect extends EYBEffectWithCallback<Kirby>
         {
             AbstractDungeon.gridSelectScreen.render(sb);
         }
+    }
+
+    public void Finish_Selection()
+    {
+        for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards)
+        {
+            AbstractDungeon.player.masterDeck.removeCard(card);
+            AbstractCard newCard = card.makeCopy();
+            for (int i = 0; i < kirby.timesUpgraded; i++) {
+                newCard.upgrade();
+            }
+            kirby.AddInheritedCard(newCard);
+        }
+
+        AbstractDungeon.gridSelectScreen.selectedCards.clear();
+        kirby.refreshDescription();
+        cardsToRemove = 0;
     }
 
     public void OpenPanel_Remove()
@@ -117,6 +122,7 @@ public class KirbyEffect extends EYBEffectWithCallback<Kirby>
 
         AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.INCOMPLETE;
         AbstractDungeon.gridSelectScreen.open(cardGroup, cardsToRemove, purgeMessage, false, false, false, true);
+        AbstractDungeon.gridSelectScreen.confirmScreenUp = true;
     }
 
     public static boolean isBanned(AbstractCard c) {

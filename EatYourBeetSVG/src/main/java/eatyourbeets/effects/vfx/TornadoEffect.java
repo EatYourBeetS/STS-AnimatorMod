@@ -57,7 +57,7 @@ public class TornadoEffect extends EYBEffect
             final float x = this.x + Random(-spreadX, spreadX);
             final float y = this.y + Random(-spreadY, spreadY);
             GameEffects.Queue.Add(new TornadoParticleEffect(x, y,
-                    Random(6f, 21f)  * Settings.scale));
+                    Random(14f, 35f)  * Settings.scale));
             vfxTimer = vfxFrequency;
         }
 

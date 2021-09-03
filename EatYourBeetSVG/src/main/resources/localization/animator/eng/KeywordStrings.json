@@ -3,7 +3,7 @@
 	"Air":
 	{
 		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies. Draw #b1 card the first #b3 times it is #yEvoked.",
-		"NAMES": ["aether", "aether+","air","air+"],
+		"NAMES": ["aether", "aether+", "air", "air+"],
 		"PROPER_NAME": "Air"
 	},
 	"Afterlife": {
@@ -21,7 +21,7 @@
 	},
 	"Chaos":
 	{
-		"DESCRIPTION": "Orb: Changes into a random orb when you play an #yAttack. Permanently retains its last form at the end of turn.",
+		"DESCRIPTION": "Orb: Reduces the cost of a random card by #b1, and increases the cost of another random card by #b1.",
 		"NAMES": ["chaos", "chaos+"],
 		"PROPER_NAME": "Chaos"
 	},
@@ -90,6 +90,12 @@
 		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
 		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
 		"PROPER_NAME": "Synergy"
+	},
+	"Water":
+	{
+	  "DESCRIPTION": "Orb: Heal #b2 HP the first time it is #yChanneled. Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP.",
+	  "NAMES": ["water", "water+"],
+	  "PROPER_NAME": "Water"
 	},
 	"~Orb Core":
 	{

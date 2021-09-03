@@ -23,6 +23,7 @@ import eatyourbeets.utilities.JUtils;
 public class Water extends AnimatorOrb
 {
     public static final String ORB_ID = CreateFullID(Water.class);
+    public static final int HP_HEAL = 2;
     private static final float RADIUS = 260;
 
     private boolean hFlip1;
@@ -52,6 +53,10 @@ public class Water extends AnimatorOrb
         turns = 3;
         evoked = false;
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        if (CombatStats.TryActivateLimited(ID))
+        {
+            GameActions.Bottom.Heal(HP_HEAL);
+        }
     }
 
     public void updateDescription()

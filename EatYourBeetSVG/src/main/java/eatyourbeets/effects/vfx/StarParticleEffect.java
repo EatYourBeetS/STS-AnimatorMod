@@ -16,12 +16,14 @@ public class StarParticleEffect extends EYBEffect
 
     protected float x;
     protected float y;
+    protected float horizontalSpeed;
+    protected float verticalSpeed;
     protected float rotationSpeed;
     protected float alpha;
     protected boolean flipX;
     protected Texture image;
 
-    public StarParticleEffect(float x, float y, Color mainColor)
+    public StarParticleEffect(float x, float y, float horizontalSpeed, float verticalSpeed, float scale, Color mainColor)
     {
         super(MathUtils.random(0.4F, 0.8F));
 
@@ -34,13 +36,15 @@ public class StarParticleEffect extends EYBEffect
 
         this.x = x + offsetX;
         this.y = y + offsetY;
+        this.horizontalSpeed = horizontalSpeed * Settings.scale;
+        this.verticalSpeed = verticalSpeed * Settings.scale;
         this.image = JUtils.Random(images).Texture();
         this.color = mainColor.cpy();
         this.color.a = this.alpha = Random(0.5F, 1.0F);
-        this.scale = Random(0.05f, 0.3f);
+        this.scale = scale;
         this.flipX = RandomBoolean();
         this.rotation = Random(-10f, 10f);
-        this.rotationSpeed = Random(-10f, 10f);
+        this.rotationSpeed = Random(-12f, 12f);
     }
 
     @Override

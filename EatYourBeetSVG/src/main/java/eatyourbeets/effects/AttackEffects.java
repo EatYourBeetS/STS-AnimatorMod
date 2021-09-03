@@ -182,7 +182,7 @@ public class AttackEffects
               .SetSFX(SFX.ORB_DARK_CHANNEL);
 
       Add(magic, WATER)
-              .SetVFX(VFX::Water)
+              .SetVFX(VFX::Water2)
               .SetSFX(SFX.ANIMATOR_ORB_WATER_EVOKE);
    }
 

@@ -18,6 +18,12 @@
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},
+	"animator:Blindfold":
+	{
+		"DESCRIPTIONS": ["Increase the #yStrength reduction of #yBlinded by 1."],
+		"FLAVOR": "Okay... don't be afraid.",
+		"NAME": "Blindfold"
+	},
 	"animator:BountyMap":
 	{
 	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yElite room, a #yTreasure room, and a #yShop room, the next ? room you enter will trigger a special event.{0}"],
@@ -72,17 +78,23 @@
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
 		"NAME": "Exquisite Blood Vial"
 	},
-	"animator:GroovyHeadphones":
+	"animator:FireBlade":
 	{
-	  "DESCRIPTIONS": ["At the start of battle, give #b{0} random Animator cards in your hand #y{Harmonic}."],
-	  "FLAVOR": "Let's get scratchin.",
-	  "NAME": "Groovy Headphones"
+		"DESCRIPTIONS": ["For the first #b2 turns of combat, apply #b2 #yBurning whenever you deal unblocked #yAttack damage."],
+		"FLAVOR": "I'm on fire!",
+		"NAME": "Fire Blade"
 	},
 	"animator:HallowedScabbard":
 	{
 		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [B]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
+	},
+	"animator:Headphones":
+	{
+		"DESCRIPTIONS": ["At the start of combat, give all cards in your hand #yHarmonic."],
+		"FLAVOR": "Now you too can become a DIVA!",
+		"NAME": "Headphones"
 	},
 	"animator:HeavyHalberd":
 	{
@@ -174,9 +186,15 @@
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Soul Gem"
 	},
+	"animator:SpiritPoop2":
+	{
+		"DESCRIPTIONS": ["Just like Spirit Poop, except rarer."],
+		"FLAVOR": "Just like Spirit Poop, except rarer.",
+		"NAME": "4-Star Spirit Poop"
+	},
 	"animator:StraightShooter":
 	{
-	  "DESCRIPTIONS": ["Whenever you shuffle your deck, add an upgraded Jumpy Dumpty to your Draw Pile."],
+	  "DESCRIPTIONS": ["Whenever you shuffle your deck, add an upgraded #yJumpy #yDumpty to your Draw Pile."],
 	  "FLAVOR": "Pretty straightforward.",
 	  "NAME": "Straight Shooter"
 	},
@@ -212,7 +230,7 @@
 	},
 	"animator:WitchsHeartFlames":
 	{
-	  "DESCRIPTIONS": ["Whenever a Burn is created, transform it into a Searing Burn."],
+	  "DESCRIPTIONS": ["Whenever a Burn is created, transform it into a Searing Burn. At the start of combat, increase #yBurning's damage bonus by #b15%."],
 	  "FLAVOR": "A clear bottle containing liquid fire.",
 	  "NAME": "Witch's Heart Flames"
 	},

@@ -103,10 +103,10 @@
 	},
 	"BETA":
 	{
-		"animator:ManiwaHouou":
+		"animator:Kirby_MysteryCard":
 		{
-			"DESCRIPTION": "{Ricochet} !S!: Return this card to your hand. It costs 0 and gains Purge.",
-			"NAME": "Maniwa Houou"
+			"DESCRIPTION": "At the start of combat: Takes on the effect of a random {Low-Cost} card.",
+			"NAME": "? ? ?"
 		},
 		"animator:Haniwa":
 		{
@@ -339,7 +339,7 @@
 		},
 		"animator:BlazingHeat":
 		{
-			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals !S!X damage to ALL enemies when Evoked. || Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] and remove 1 [Burning] and [Freezing].",
+			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals !S!X damage to ALL enemies when Evoked. || Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] twice, then remove 1 [Burning] and [Freezing].",
 			"NAME": "Blazing Heat"
 		},
 		"animator:ForceImpulseGundam":
@@ -382,6 +382,11 @@
 		{
 			"DESCRIPTION": "Next turn, <DRW-M>.",
 			"NAME": "Wound"
+		},
+		"animator:Ginko_Void":
+		{
+			"DESCRIPTION": "Gain [E]. Next turn, Gain !M! [E].",
+			"NAME": "Void"
 		},
 		"animator:Guts":
 		{
@@ -430,7 +435,7 @@
         },
 		"animator:Kirby":
 		{
-			"DESCRIPTION": "When you add this card to your deck, remove 2 Basic or Common cards from your deck. Give this card their combined cost and effects.",
+			"DESCRIPTION": "When Obtained: Remove up to 2 Basic or Common cards from your deck. Give this card their combined cost and effects. (Leftover slots are filled with {Mystery Cards})",
 			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}."],
 			"NAME": "Kirby"
 		},
@@ -524,7 +529,7 @@
 		"animator:TakashiNatsume_Circle":
         {
         	"DESCRIPTION": "Played at the end of turn.",
-        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","Move ALL copies of {Takashi Natsume} to your draw pile and give them {Afterlife}."],
+        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","<LIM>. Move ALL copies of {Takashi Natsume} to your draw pile. Motivate them and give them {Afterlife}."],
         	"NAME": "Youkai Circle"
         },
 		"animator:TomoyaOkazaki":
@@ -574,7 +579,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "If this card attacks an enemy with [Freezing]: Deal double damage, remove !M! [Freezing], and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning].",
+			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <LIM>. If the target has 12 [Freezing]: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -611,7 +616,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a card this turn: Gain !M! [Block]. Gain triple [Block] if it Synergized. || When Discarded: Draw a random card that Synergizes with this card.",
+			"DESCRIPTION": "Whenever you play a card this turn: Gain !M! [Block]. Gain triple [Block] if it Synergized. || <SLM>. When Discarded: Gain <B>.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -645,7 +650,7 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. If you {Synergize} while this card is in your hand, increase this card's damage by !M! this combat.",
+			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. If you make a {Synergy} with a <L> or <R> card: Move this card in your hand.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
@@ -781,7 +786,7 @@
         },
 		"animator:Traveler_Wish":
         {
-        	"DESCRIPTION": "At the end of your next 2 turns, apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel} or {Evoke} an Orb.",
+        	"DESCRIPTION": "Gain|Boost [B]. || At the end of your next 2 turns: Apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel} or {Evoke} an Orb.",
         	"NAME": "Wish"
         },
 		"animator:Venti":
@@ -1854,7 +1859,7 @@
 		"animator:Kazuma":
 		{
 			"DESCRIPTION": "Cycle 1 card. || Synergy: Gain !M! ** additional [Block].",
-			"NAME": "Kazuma"
+			"NAME": "Kazuma Satou"
 		},
 		"animator:Megumin":
 		{
@@ -2340,7 +2345,7 @@
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 {Demon Form}. ** Add 2 {Wounds} to ** your hand.",
+			"DESCRIPTION": "Gain !M! [F] [A] [I]. ** Gain 2 [Demon Form]. ** Add 2 {Wounds} to ** your hand.",
 			"NAME": "Asuramaru"
 		}
 	},
@@ -2353,7 +2358,7 @@
 		},
 		"animator:GazelDwargon":
 		{
-			"DESCRIPTION": "Gain X [Plated Armor]. Boost [W] if X is greater than !S!. || At the start of turn: ** Maintain up to !M! [Block], ** multiplied by X.",
+			"DESCRIPTION": "Gain X + !S! [Plated Armor]. Boost [W] if X is at least 2. || At the start of turn: ** Maintain up to !M! [Block], ** multiplied by X.",
 			"NAME": "Gazel Dwargon"
 		},
 		"animator:Hakurou":
@@ -2398,7 +2403,7 @@
 		},
 		"animator:Shizu_Ifrit":
 		{
-			"DESCRIPTION": "Gain 2 {Demon Form}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
+			"DESCRIPTION": "Gain 2 [Demon Form]. || Increase the damage bonus of [Burning] by !M!% this combat. ** <LIM>. If [Burning]'s damage bonus is greater than 50%, play {Blazing Heat} instead.",
 			"NAME": "Ifrit"
 		},
 		"animator:Shuna":
@@ -2413,7 +2418,7 @@
 		},
 		"animator:Vesta":
 		{
-			"DESCRIPTION": "Retain [I]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
+			"DESCRIPTION": "Retain [I] [W]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
 			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
 		},

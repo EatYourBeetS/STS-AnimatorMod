@@ -22,7 +22,7 @@ public class HidekiHinata extends AnimatorCard
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(1, 0, 0);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

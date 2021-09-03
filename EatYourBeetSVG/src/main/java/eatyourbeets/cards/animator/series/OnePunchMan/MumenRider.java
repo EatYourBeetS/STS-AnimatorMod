@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -24,7 +24,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         Initialize(3, 0, 20);
 
         SetAffinity_Red(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 1, 0);
 
         SetExhaust(true);
     }

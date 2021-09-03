@@ -1,15 +1,19 @@
 package eatyourbeets.cards.animator.beta.special;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.cards.animator.beta.colorless.TakashiNatsume;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.TemporaryThousandCutsPower;
 import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.resources.GR;
@@ -85,13 +89,16 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 this.type = CardType.ATTACK;
                 break;
             case Curse_Nutcracker:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.HealHP(HEAL_NUTCRACKER + magicNumber, true), true);
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.HealHP(HEAL_NUTCRACKER + magicNumber, false), true);
                 break;
             case Curse_JunTormented:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true) + " NL  NL " + ACTIONS.ApplyToALL(magicNumber, GR.Tooltips.Frail, true), true);
                 break;
             case Doubt:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true), true);
+                break;
+            case Necronomicurse:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " " + ACTIONS.NextTurnDraw(secondaryValue, true) + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[4], true);
                 break;
             case Normality:
                 this.cost = 1;
@@ -154,6 +161,21 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 break;
             case Doubt:
                 GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
+                break;
+            case Necronomicurse:
+                GameActions.Bottom.DrawNextTurn(secondaryValue);
+                if (CombatStats.TryActivateLimited(cardID)) {
+                    GameActions.Bottom.SelectFromPile(name,999,player.exhaustPile).SetFilter(card -> card.cardID.equals(TakashiNatsume.DATA.ID)).AddCallback(
+                            cards -> {
+                                for (AbstractCard card : cards) {
+                                    GameActions.Bottom.MoveCard(card,player.drawPile).AddCallback(cCard -> {
+                                        GameActions.Bottom.Motivate(card, 1);
+                                        AfterLifeMod.Add(card);
+                                    });
+                                }
+                            }
+                    );
+                }
                 break;
             case Normality:
                 GameActions.Bottom.StackPower(player, new TakashiNatsumeCirclePower(player, NORMALITY_HITS));

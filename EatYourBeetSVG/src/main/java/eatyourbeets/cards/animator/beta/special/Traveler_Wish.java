@@ -17,7 +17,7 @@ public class Traveler_Wish extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 20, 5);
+        Initialize(0, 0, 15, 5);
         SetUpgrade(0, 0, 5, 0);
         SetAffinity_Star(2);
         SetPermanentHaste(true);
@@ -28,6 +28,7 @@ public class Traveler_Wish extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
+        GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
     }
 }

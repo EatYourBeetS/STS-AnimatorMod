@@ -29,7 +29,7 @@ public class Shinku extends AnimatorCard  //TODO
         Initialize(3, 3, 2, 3);
         SetUpgrade(1, 1);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
 
         SetUnique(false, true);
     }

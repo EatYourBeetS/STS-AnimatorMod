@@ -24,6 +24,7 @@ public class AuraBellaFiora extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Red(1);
+        SetAffinity_Orange(1);
     }
 
     @Override

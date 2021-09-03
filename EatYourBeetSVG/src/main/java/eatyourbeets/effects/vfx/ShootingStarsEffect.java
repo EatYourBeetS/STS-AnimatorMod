@@ -11,7 +11,7 @@ public class ShootingStarsEffect extends EYBEffect
     protected float spreadX;
     protected float spreadY;
     protected float vfxTimer;
-    protected float vfxFrequency = 0.023f;
+    protected float vfxFrequency = 0.021f;
     protected float horizontalSpeedMin = 2150;
     protected float horizontalSpeedMax = 2650;
     protected float verticalSpeedMin;

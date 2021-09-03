@@ -18,7 +18,6 @@ public class Yusa extends AnimatorCard
         Initialize(0, 6, 1, 2);
         SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Green(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
     }
 

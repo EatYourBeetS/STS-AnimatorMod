@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
 
@@ -23,17 +24,21 @@ public class StarEffect extends EYBEffect
     protected float y;
     protected float vfxTimer;
 
-    public StarEffect(float x, float y, float horizontalSpeed, float verticalSpeed)
+    public StarEffect(float x, float y, float horizontalSpeed, float verticalSpeed) {
+        this(x,y,horizontalSpeed,verticalSpeed,Random(-600f, 600f),Random(0.5f, 3.0f));
+    }
+
+    public StarEffect(float x, float y, float horizontalSpeed, float verticalSpeed, float rotationSpeed, float scale)
     {
         super(Random(0.5f, 1f));
 
         this.x = x;
         this.y = y;
-        this.rotation = Random(5f, 10f);
-        this.scale = Random(0.2f, 3.0f);
+        this.scale = scale;
+        this.rotation = Random(-10f, 10f);
         this.horizontalSpeed = horizontalSpeed;
         this.verticalSpeed = verticalSpeed;
-        this.rotationSpeed = Random(-600f, 600f);
+        this.rotationSpeed = rotationSpeed;
 
         if (RandomBoolean())
         {
@@ -46,9 +51,9 @@ public class StarEffect extends EYBEffect
     public StarEffect SetRandomColor()
     {
         RGB.clear();
-        RGB.add(0.4f);
+        RGB.add(0.48f);
         RGB.add(1f);
-        RGB.add(Random(0.5f, 1f));
+        RGB.add(Random(0.48f, 1f));
 
         this.color = new Color(RGB.remove(Random(0, 2)), RGB.remove(Random(0, 1)), RGB.remove(0), 0.15f);
 
@@ -86,7 +91,10 @@ public class StarEffect extends EYBEffect
         vfxTimer -= deltaTime;
         if (vfxTimer < 0f)
         {
-            GameEffects.Queue.Add(new StarParticleEffect(x, y, Color.WHITE));
+            GameEffects.Queue.Add(new StarParticleEffect(x, y, Random(-120f, -30f) * Math.signum(horizontalSpeed), Random(-60f, 60f), Random(0.01f, 0.28f) * Math.min(1f,this.scale), Colors.Random(0.83f,1f,false)));
+            if (RandomBoolean(0.7f) && this.scale >= 0.7f) {
+                GameEffects.Queue.Add(new StarEffect(x, y, horizontalSpeed * -0.25f, Random(-horizontalSpeed * 0.05f, horizontalSpeed * 0.05f), Random(-1000f, 1000f), Random(0.05f,Math.min(0.5f,this.scale))));
+            }
             vfxTimer = vfxFrequency;
         }
 

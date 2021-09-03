@@ -372,12 +372,6 @@
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
 	},
-	"Water":
-	{
-	  "DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP.",
-	  "NAMES": ["water", "water+"],
-	  "PROPER_NAME": "Water"
-	},
 	"Willpower":
 	{
 	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Balance].",

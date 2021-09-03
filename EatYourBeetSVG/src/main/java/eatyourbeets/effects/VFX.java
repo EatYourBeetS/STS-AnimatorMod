@@ -211,6 +211,16 @@ public class VFX
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
     }
 
+    public static GenericAnimationEffect IceImpact(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.IceImpact.Texture(), cX, cY, 5, 5)
+                .SetScale(0f)
+                .SetTargetScale(1f,10f)
+                .SetMode(AnimatedProjectile.AnimationMode.Loop,25)
+                .SetFading(30);
+    }
+
+
     public static LightningEffect2 Lightning(Hitbox target)
     {
         return Lightning(target.cX, target.cY);
@@ -352,6 +362,20 @@ public class VFX
                 .SetTranslucent(MathUtils.random(0.7f,1f))
                 .SetDuration(1.3f,false);
     }
+
+    public static FadingParticleEffect Water2(Hitbox target, float spread)
+    {
+        return Water2(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static FadingParticleEffect Water2(float cX, float cY)
+    {
+        return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.WaterSplash2.Texture(), cX, cY).SetColor(Color.WHITE)
+                .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000).SetSpeed(0f, 0f, MathUtils.random(500f, 750f)).SetTargetScale(1f,5f))
+                .SetTranslucent(MathUtils.random(0.7f,1f))
+                .SetDuration(1.3f,false);
+    }
+
 
     public static GenericAnimationEffect WaterDome(float cX, float cY)
     {

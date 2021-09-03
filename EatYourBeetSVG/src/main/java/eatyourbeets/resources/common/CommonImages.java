@@ -168,6 +168,7 @@ public class CommonImages
         public final TextureCache Circle           = new TextureCache("images/animator/effects/Circle.png");
         public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
         public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
+        public final TextureCache IceImpact        = new TextureCache("images/animator/effects/IceImpact.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
         public final TextureCache WaterDome        = new TextureCache("images/animator/effects/WaterDome.png");

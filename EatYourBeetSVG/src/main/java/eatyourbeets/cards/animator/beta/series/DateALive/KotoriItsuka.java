@@ -2,23 +2,29 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.special.BlazingHeat;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class KotoriItsuka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));
+    public static final int THRESHOLD = 12;
+    public static final int BURNING_ATTACK_BONUS = 20;
 
     public KotoriItsuka()
     {
         super(DATA);
 
-        Initialize(8, 0, 4, 1);
+        Initialize(8, 0, 4, 2);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
@@ -45,6 +51,13 @@ public class KotoriItsuka extends AnimatorCard
             }
             else {
                 GameActions.Bottom.ApplyBurning(player, enemy, secondaryValue);
+            }
+
+        });
+
+        GameActions.Bottom.Callback(m, (enemy, __) -> {
+            if (GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= THRESHOLD && CombatStats.TryActivateLimited(cardID)) {
+                GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
             }
         });
     }

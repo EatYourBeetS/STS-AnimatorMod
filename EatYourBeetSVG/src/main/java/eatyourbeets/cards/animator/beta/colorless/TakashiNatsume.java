@@ -79,6 +79,9 @@ public class TakashiNatsume extends AnimatorCard
         else if (c instanceof Doubt) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Doubt);
         }
+        else if (c instanceof Necronomicurse) {
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Necronomicurse);
+        }
         else if (c instanceof Normality) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Normality);
         }

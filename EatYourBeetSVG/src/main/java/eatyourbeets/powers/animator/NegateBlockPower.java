@@ -3,8 +3,8 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 
 public class NegateBlockPower extends AnimatorPower
@@ -45,7 +45,7 @@ public class NegateBlockPower extends AnimatorPower
     public void onGainedBlock(float blockAmount) {
         int amount = MathUtils.floor(blockAmount);
         if (amount > 0)
-            GameActions.Bottom.TakeDamage(amount, AttackEffects.NONE);
+            GameActions.Bottom.StackPower(new DelayedDamagePower(owner, amount));
     }
 
     @Override
@@ -53,14 +53,14 @@ public class NegateBlockPower extends AnimatorPower
     {
         int amount = MathUtils.floor(blockAmount);
         if (amount > 0)
-            GameActions.Bottom.TakeDamage(amount, AttackEffects.NONE);
+            GameActions.Bottom.StackPower(new DelayedDamagePower(owner, amount));
         return super.onPlayerGainedBlock(blockAmount);
     }
 
     @Override
     public int onPlayerGainedBlock(int blockAmount)
     {
-        GameActions.Bottom.TakeDamage(amount, AttackEffects.NONE);
+        GameActions.Bottom.StackPower(new DelayedDamagePower(owner, amount));
         return super.onPlayerGainedBlock(blockAmount);
     }
 

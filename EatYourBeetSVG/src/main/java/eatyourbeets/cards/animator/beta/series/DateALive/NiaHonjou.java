@@ -41,8 +41,9 @@ public class NiaHonjou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Top.Draw(1)
-                .SetFilter(this::WouldSynergize, false);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Top.GainBlessing(secondaryValue, upgraded);
+        }
     }
 
     public static class NiaHonjouPower extends AnimatorPower implements OnSynergySubscriber

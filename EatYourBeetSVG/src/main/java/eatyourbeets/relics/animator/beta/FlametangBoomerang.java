@@ -10,7 +10,7 @@ public class FlametangBoomerang extends AnimatorRelic
 
     public FlametangBoomerang()
     {
-        super(ID, RelicTier.RARE, LandingSound.SOLID);
+        super(ID, RelicTier.RARE, LandingSound.CLINK);
     }
 
     @Override

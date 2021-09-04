@@ -70,7 +70,7 @@ public class Cirno extends AnimatorCard
         .SetVFX(true, false)
         .SetDamageEffect((c, __) -> {
             GameActions.Bottom.ReduceStrength(c, secondaryValue, true);
-            GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(false, true);
+            GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(true, true);
         });
     }
 }

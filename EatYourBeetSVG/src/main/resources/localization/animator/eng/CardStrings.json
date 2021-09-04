@@ -105,8 +105,10 @@
 	{
 		"animator:Kirby_MysteryCard":
 		{
-			"DESCRIPTION": "At the start of combat: Takes on the effect of a random {Low-Cost} card.",
-			"NAME": "? ? ?"
+			"DESCRIPTION": "At the start of combat: Transforms into a random {Low-Cost} Common card.",
+			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random {Low-Cost} Common card that changes every combat instead of removing a card from your deck."],
+			"NAME": "? ? ?",
+			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded {Low-Cost} Common card."
 		},
 		"animator:Haniwa":
 		{
@@ -339,7 +341,7 @@
 		},
 		"animator:BlazingHeat":
 		{
-			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals !S!X damage to ALL enemies when Evoked. || Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] twice, then remove 1 [Burning] and [Freezing].",
+			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals !S!X damage to ALL enemies when Evoked. || Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] twice, then remove 1 [Freezing].",
 			"NAME": "Blazing Heat"
 		},
 		"animator:ForceImpulseGundam":
@@ -435,8 +437,8 @@
         },
 		"animator:Kirby":
 		{
-			"DESCRIPTION": "When Obtained: Remove up to 2 Basic or Common cards from your deck. Give this card their combined cost and effects. (Leftover slots are filled with {Mystery Cards})",
-			"EXTENDED_DESCRIPTION": ["Choose 2 cards to fuse.", "Unique. || This card has the effects of {{0}} and {{1}}."],
+			"DESCRIPTION": "Unique. || When Obtained: Remove up to 2 Basic or Common cards from your deck. Give this card their combined cost and effects.",
+			"EXTENDED_DESCRIPTION": ["Unique. || This card has the effects of {{0}} and {{1}}.", "Choose the first card to be played when playing this card.", "Choose the second card to be played when playing this card." ],
 			"NAME": "Kirby"
 		},
 		"animator:LaughingMan":
@@ -616,7 +618,7 @@
 		},
 		"animator:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you play a card this turn: Gain !M! [Block]. Gain triple [Block] if it Synergized. || <SLM>. When Discarded: Gain <B>.",
+			"DESCRIPTION": "Whenever you play a card this turn: Gain !M! [Block]. Gain triple [Block] if it Synergized. || <SLM>. When Discarded: Gain [B].",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card this turn, gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -776,13 +778,14 @@
 		},
 		"animator:Traveler_Aether":
 		{
-		    "DESCRIPTION": "Channel !S! [Air]. {Evoke} a copy of your first !M! {Common Orbs}. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
+		    "DESCRIPTION": "Channel !S! [Air]. {Evoke} a copy of !M! random {Common Orbs} you have. || <SLM>. If you have at least 3 unique Orbs, add {Wish} to your draw pile.",
 		    "NAME": "Aether"
 		},
 		"animator:Traveler_Lumine":
         {
-        	"DESCRIPTION": "Add {Wish} and {Abyssal Void} to your draw and discard piles. Next turn, trigger the last !M! Orbs Evoked this combat. || <SLM>. If you have exactly !S! debuffs, Gain|Boost [I] equal to <D>.",
-        	"NAME": "Lumine"
+        	"DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, trigger the last !M! Orbs Evoked this combat. || If you have exactly 2 debuffs: Gain [I] equal to <D> + !S!.",
+        	"NAME": "Lumine",
+        	"UPGRADE_DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, trigger ALL Orbs Evoked this combat. || If you have exactly 2 debuffs: Gain [I] equal to <D> + !S!."
         },
 		"animator:Traveler_Wish":
         {
@@ -871,7 +874,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "Gain additional [Block] equal to half of your [W]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
+			"DESCRIPTION": "This card's [W] scaling also applies to its [Block]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":
@@ -2363,7 +2366,7 @@
 		},
 		"animator:Hakurou":
 		{
-		    "DESCRIPTION": "<FS> or !A! <R>: ** Obtain {<G> Token}{+} || When Drawn: Gain [A].",
+		    "DESCRIPTION": "This card's [A] scaling also applies to its [Block]. || <FS> or !A! <R>: ** Obtain {<G> Token}{+} || <SLM>. When Drawn: Gain [A].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":
@@ -2408,7 +2411,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain 1 [B] [W]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
+			"DESCRIPTION": "Gain|Boost [B] [W]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":

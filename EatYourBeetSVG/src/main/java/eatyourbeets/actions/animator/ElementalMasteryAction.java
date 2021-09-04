@@ -27,7 +27,7 @@ public class ElementalMasteryAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Top.VFX(new ShootingStarsEffect(-170, player.hb.cY).SetSpread(0,110));
+        GameActions.Top.VFX(new ShootingStarsEffect(-170, player.hb.cY).SetSpread(0,180));
         GameActions.Top.SFX(SFX.ANIMATOR_STAR, 0.9f, 1.1f);
         GameEffects.List.Add(new BorderFlashEffect(Color.CORAL));
 

@@ -44,25 +44,27 @@
 	  [
 		"As you are strolling around, minding your own business, a tiny floaty thing suddenly barges right up to your face.",
 
-		"\"Hey Traveler! I have some great, great bargains for you! Check them out!\" NL NL The @floaty thing@ screeches into your face. NL NL As annoying as the floaty thing is, you decide it couldn't hurt to take a look of what it has to offer.",
+		"\"Hey Traveler! I have some great, great bargains for you! Check them out!\" NL NL The ~floaty thing~ screeches into your face. NL NL As annoying as the floaty thing is, you decide it couldn't hurt to take a look of what it has to offer.",
 
-		"\"For just #b16 #yGold, you can cast a wish to obtain a prize! Every #b10 wishes will guarantee a rarer prize as well!\" NL NL The @floaty thing@ screeches with undue excitement.",
+		"\"For just #b16 #yGold, you can cast a wish to obtain a prize! Every #b10 wishes will guarantee a rarer prize as well!\" NL NL The ~floaty thing~ screeches with undue excitement.",
 
-		"\"That's too bad. Maybe you'll have better luck if you WISH AGAIN!\" NL NL The @floaty thing@ screeches into your face. NL NL (You have made X wishes so far).",
+		"\"That's too bad. Maybe you'll have better luck if you WISH AGAIN!\" NL NL The ~floaty thing~ screeches into your face. NL NL (You have made {0} wishes so far).",
 
-		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The @floaty thing@ screeches into your face again. NL NL The 'prize' you've gotten can't really be called a prize... NL NL (You have made X wishes so far)",
+		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL (You have made {0} wishes so far)",
 
-		"\"NO REFUNDS!!!\" NL NL The @floaty thing@ screeches into your face. (Seriously, does it really have to screech so much...) NL NL (You have made X wishes so far).",
+		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL The 'prize' you've gotten can't really be called a prize... NL NL (You have made {0} wishes so far)",
 
-		"\"Urgh, fine... I can give you a partial refund... But my business is dying... Don't you care about small businesses?\" NL NL The @floaty thing@ grumbles, finally uttering a noise that isn't a ear-wrenching screech. NL NL Reluctantly, it hands you some of the money it swindled from you and saunters away in disappointment.",
+		"\"NO REFUNDS!!!\" NL NL The ~floaty thing~ screeches into your face. (Seriously, does it really have to screech so much...) NL NL (You have made {0} wishes so far).",
+
+		"\"Urgh, fine... I can give you a partial refund... But my business is dying... Don't you care about small businesses?\" NL NL The ~floaty thing~ grumbles, finally uttering a noise that isn't a ear-wrenching screech. NL NL Reluctantly, it hands you some of the money it swindled from you and saunters away in disappointment.",
 
 		"A trinket plops down onto your hands. You look to see that it is a luxurious golden lockbox! When you open it, you are greeted with a very valuable reward indeed!",
 
-		"\"H-h-hey... That wasn't supposed to be given out. GIVE IT BACK!\" NL NL The @floaty thing@ screeches into your face as it charges towards you. NL NL You quickly dodge it and run away as fast as you can from the screeching floaty thing throwing curses at you.",
+		"\"H-h-hey... That wasn't supposed to be given out. GIVE IT BACK!\" NL NL The ~floaty thing~ screeches into your face as it charges towards you. NL NL You quickly dodge it and run away as fast as you can from the screeching floaty thing throwing curses at you.",
 
-		"You decide that the floaty thing is probably trying to rip you off and quickly make your leave before it is able to pester you anymore."
+		"You decide that the ~floaty thing~ is probably trying to rip you off and quickly make your leave before it is able to pester you anymore."
 	  ],
-	  "NAME": "The Pharmacy",
+	  "NAME": "The Floaty Thing",
 	  "OPTIONS":
 	  [
 		"[Wish] #g{0}% #gchance #gto #gobtain #ga #gPrize. #rLose #r{1} #rGold.",
@@ -84,6 +86,27 @@
 		[
 			"[Take the Gold] #yGain #y{0} #yGold.",
 			"[Leave] #gHeal #g{0} #gHP"
+		]
+	},
+	"animator:TheHeroAssociation":
+	{
+		"DESCRIPTIONS":
+		[
+			"You come across a giant building that compels you to enter it by virtue of how badass it looks. Inside, you spot a receptionist desk, which you promptly walk towards. NL NL The receptionist greets you warmly, and then hands you what appears to be a bounty. Your eyes are immediately drawn to the title of this bounty: \"Do you have what it takes to be a hero? If so, prove your worth by slaying the beast that plagues this land!\"",
+
+			"\"{0}\" NL NL #y{1} pronounces as they promptly snatch the bounty and venture out of the building to prove their worth. NL NL The receptionist informs you that they will notify you if the bounty gets completed and takes their leave. NL NL Several days pass without any news. NL NL Finally, out of the blue, you get a call from the receptionist, who tells you to return to the Hero Association.",
+
+			"\"I have some good and bad news. The good news is that we have recovered the body of the beast, so you will receive your due reward. The bad news... is that #y{0} has gone missing and there are no leads whatsoever on their whereabouts. \" NL NL \"My sincere condolences for your loss.\" NL NL The receptionist hands you your reward. Both you and the receptionist honor your comrades loss with a moment of silence. Then, you head out of the building and continue on your journey.",
+
+			"You decide that you're not enough of a Hero to take on the bounty and opt to hire someone else to complete the bounty for your instead. NL NL When you return to the Hero Association to claim your reward, however, the receptionist informs you that buying off others to complete bounties is strictly forbidden, leaving you with nothing."
+		],
+		"NAME": "The Hero Association",
+		"OPTIONS":
+		[
+			"[Be the Hero!] #gObtain #ga #gspecial #greward. #rLose #r{0}.",
+			"[Hire a Hero] #gObtain #g1 #gof #g3 #gcards. #rLose #r{0} #rGold.",
+			"[Locked] ???.",
+			"[Locked] Not enough Gold."
 		]
 	},
 	"animator:TheMaskedTraveler1":
@@ -185,15 +208,15 @@
 	  [
 		"You stumble into an indescript pharmacy on the side of the road. NL NL It is ~dark~ and ~humid~ inside, and the floorboards creak as you step on them. NL NL As you approach what appears to be a receptionist desk, the pharmacy suddenly ~lights~ up. A small girl wearing a strange hat peeps out of the desk. She appears to be the @receptionist@ of this pharmacy.",
 
-		"\"Buy #ypotions. Or take on bounties.\" NL NL The @receptionist@ says in an emotionless tone.",
+		"\"Buy #ypotions. Or take on bounties.\" NL NL The ~receptionist~ says in an emotionless tone.",
 
-		"\"Thank you. Buy more potions? Or take on bounties.\" NL NL The @receptionist@ says, again with no emotion whatsoever.",
+		"\"Thank you. Buy more potions? Or take on bounties.\" NL NL The ~receptionist~ says, again with no emotion whatsoever.",
 
-		"\"Are you interested in bounties? If so, hunt a @Cocogoat@ for me. You will receive a great reward. Use this map to locate it.\"",
+		"\"Are you interested in bounties? If so, hunt a #yCocogoat for me. You will receive a great reward. Use this map to locate it.\"",
 
 		"\"Please hunt a Cocogoat soon. Thank you.\"",
 
-		"You decide that it is not wise to shop in such an ominous place as this and quickly take your leave before the @receptionist@ can say anything else."
+		"You decide that it is not wise to shop in such an ominous place as this and quickly take your leave before the ~receptionist~ can say anything else."
 	  ],
 	  "NAME": "The Pharmacy",
 	  "OPTIONS":
@@ -209,17 +232,17 @@
   {
 	"DESCRIPTIONS":
 	[
-	  "You finally come across the location given to you in the map you got from The Pharmacy. NL NL ~Thick~ fog covers your eyes, obscuring your vision. NL NL You wander aimlessly for a while to search for a @Cocogoat@. NL NL Finally, the fog breaks up. Through the clearing fog, you spot a @strange@ @figure@ grazing on a hill in the distance.",
+	  "You finally come across the location given to you in the map you got from The Pharmacy. NL NL ~Thick~ fog covers your eyes, obscuring your vision. NL NL You wander aimlessly for a while to search for a #yCocogoat. NL NL Finally, the fog breaks up. Through the clearing fog, you spot a ~strange~ ~figure~ grazing on a hill in the distance.",
 
-	  "You feel a tug on your pants. You quickly spin around to find the @receptionist@ from the pharmacy next to you. NL NL The receptionist points at the figure in the distance and states NL NL \"There is the @Cocogoat@. Hunt it.\"",
+	  "You feel a tug on your pants. You quickly spin around to find the ~receptionist~ from the pharmacy next to you. NL NL The receptionist points at the figure in the distance and states NL NL \"There is the #yCocogoat. Hunt it.\"",
 
-	  "You muster all the courage you have and charge towards the @Cocogoat@. NL NL As you approach the goat, it suddenly swivels its head towards you. NL NL To your utter shock, it lets out a ~bone-chilling~ screech before blasting you with a hailstorm of icicles that knocks you to the ground.",
+	  "You muster all the courage you have and charge towards the #yCocogoat. NL NL As you approach the goat, it suddenly swivels its head towards you. NL NL To your utter shock, it lets out a ~bone-chilling~ screech before blasting you with a hailstorm of icicles that knocks you to the ground.",
 
-	  "Somehow, you manage to get up and stagger towards the @Cocogoat@. NL NL You fight the goat and endure waves of icicles for what seems like an eternity. NL NL Finally, you manage to deliver the finishing blow to the goat. The goat emits one final cry before falling to the ground.",
+	  "Somehow, you manage to get up and stagger towards the #yCocogoat. NL NL You fight the goat and endure waves of icicles for what seems like an eternity. NL NL Finally, you manage to deliver the finishing blow to the goat. The goat emits one final cry before falling to the ground.",
 
-	  "You set up a trap and lay the Relic in it as bait for the @Cocogoat@. NL NL Then, you hide in the nearest bush and wait for the goat to arrive. NL NL After a few minutes, you spot the goat walking straight into the trap. NL NL The trap ~explodes~ as the goat steps on it, instantly knocking the goat out.",
+	  "You set up a trap and lay the Relic in it as bait for the #yCocogoat. NL NL Then, you hide in the nearest bush and wait for the goat to arrive. NL NL After a few minutes, you spot the goat walking straight into the trap. NL NL The trap ~explodes~ as the goat steps on it, instantly knocking the goat out.",
 
-	  "The @receptionist@ walks up to the defeated goat and kneels down to examine it. She searches the goat for a while. Finally, she finds a bottle of liquid and gets up. NL NL \"Obtained Cocomilk. My goal is complete. Thank you.\"",
+	  "The ~receptionist~ walks up to the defeated goat and kneels down to examine it. She searches the goat for a while. Finally, she finds a bottle of liquid and gets up. NL NL \"Obtained Cocomilk. My goal is complete. Thank you.\"",
 
 	  "In her hands... is a bottle of a generic-branded coconut milk that can be bought at any supermarket. So many things about this situation just don't make sense. How did the receptionist know that a goat would be carrying a bottle of store-brand coconut milk? Why did we have to fight a goat instead of just buying coconut milk from a supermarket? NL NL As you are struck dumb and fall flat from the utter ~insanity~ of the situation, the @receptionist@ sneaks away with her coconut milk. NL NL By the time you snap back to your senses and realize that the receptionist never paid you, she is long gone.",
 

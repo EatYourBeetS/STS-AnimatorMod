@@ -50,7 +50,7 @@ public class Rena extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(1);
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }

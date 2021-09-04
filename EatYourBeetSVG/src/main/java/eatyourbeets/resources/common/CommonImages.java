@@ -112,12 +112,16 @@ public class CommonImages
 
     public static class Events
     {
+        public final TextureCache BubuPharmacy     = new TextureCache("images/animator/events/BubuPharmacy.png");
         public final TextureCache Cabin1           = new TextureCache("images/animator/events/Cabin1.png");
         public final TextureCache Cabin2           = new TextureCache("images/animator/events/Cabin2.png");
         public final TextureCache CursedForest     = new TextureCache("images/animator/events/CursedForest.png");
         public final TextureCache GoldRiver        = new TextureCache("images/animator/events/GoldRiver.png");
+        public final TextureCache HeroAssociation  = new TextureCache("images/animator/events/HeroAssociation.png");
         public final TextureCache MaskedTraveler   = new TextureCache("images/animator/events/MaskedTraveler.png");
         public final TextureCache Merchant         = new TextureCache("images/animator/events/Merchant.png");
+        public final TextureCache QingyunPeak      = new TextureCache("images/animator/events/QingyunPeak.png");
+        public final TextureCache PaimonsBargains  = new TextureCache("images/animator/events/PaimonsBargains.png");
         public final TextureCache Portal           = new TextureCache("images/animator/events/Portal.png");
         public final TextureCache Placeholder      = new TextureCache("images/animator/events/Placeholder.png");
     }

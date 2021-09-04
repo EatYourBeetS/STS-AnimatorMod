@@ -33,7 +33,7 @@ public class OrihimeInoue extends AnimatorCard
 
         GameActions.Bottom.StackPower(new OrihimeInouePower(p, magicNumber));
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }

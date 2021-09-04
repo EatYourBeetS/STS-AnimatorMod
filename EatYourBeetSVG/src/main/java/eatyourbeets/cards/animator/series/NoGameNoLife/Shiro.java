@@ -26,6 +26,8 @@ public class Shiro extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
+
+        SetProtagonist(true);
     }
 
     @Override

@@ -32,6 +32,7 @@ public class MadokaKaname extends AnimatorCard
 
         SetHealing(true);
         SetPurge(true);
+        SetProtagonist(true);
     }
 
     @Override

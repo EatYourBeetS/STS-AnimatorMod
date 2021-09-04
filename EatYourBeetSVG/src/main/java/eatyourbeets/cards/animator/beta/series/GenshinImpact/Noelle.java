@@ -43,7 +43,7 @@ public class Noelle extends AnimatorCard
                     });
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)

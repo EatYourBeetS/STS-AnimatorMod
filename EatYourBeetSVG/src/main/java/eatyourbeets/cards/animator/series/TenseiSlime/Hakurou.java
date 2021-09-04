@@ -1,14 +1,16 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.effects.AttackEffects;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -23,7 +25,7 @@ public class Hakurou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 3);
+        Initialize(1, 1, 3, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 0);
@@ -31,6 +33,13 @@ public class Hakurou extends AnimatorCard
 
         SetAffinityRequirement(Affinity.Red, 4);
     }
+
+    @Override
+    protected float ModifyBlock(AbstractMonster enemy, float amount)
+    {
+        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Green) * affinities.GetScaling(Affinity.Green, true) * 0.5f));
+    }
+
 
     @Override
     protected void OnUpgrade()
@@ -45,12 +54,20 @@ public class Hakurou extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return super.GetBlockInfo().AddMultiplier(secondaryValue);
+    }
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainAgility(1);
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -65,6 +82,10 @@ public class Hakurou extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        }
+        for (int i = 0; i < secondaryValue; i++)
+        {
+            GameActions.Bottom.GainBlock(block);
         }
     }
 }

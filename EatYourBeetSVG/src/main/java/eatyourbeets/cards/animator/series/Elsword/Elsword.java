@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +23,9 @@ public class Elsword extends AnimatorCard
         SetUpgrade(3,  0, 0);
 
         SetAffinity_Red(2, 0, 2);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 1, 0);
+
+        SetProtagonist(true);
     }
 
     @Override

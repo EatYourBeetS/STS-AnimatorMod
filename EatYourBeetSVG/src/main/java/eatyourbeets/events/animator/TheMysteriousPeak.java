@@ -20,7 +20,7 @@ public class TheMysteriousPeak extends EYBEvent
 
     public TheMysteriousPeak()
     {
-        super(ID, new EventStrings(),"QingyunPeak.png");
+        super(ID, new EventStrings(),IMAGES.QingyunPeak.Path());
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Hunt());

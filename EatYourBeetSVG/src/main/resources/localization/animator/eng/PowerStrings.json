@@ -20,6 +20,11 @@
 		"DESCRIPTIONS": ["Whenever you apply a debuff, gain #b{0} Strength."],
 		"NAME": "Azriel"
 	},
+	"animator:BlazingHeatPower":
+	{
+	  "DESCRIPTIONS": ["#yFire applies #b{0} times its damage to ALL enemies when Evoked. Whenever #yBurning is applied to a target with #yFreezing, trigger #yFreezing twice, then remove 1 #yFreezing."],
+	  "NAME": "Blazing Heat"
+	},
 	"animator:BorosPower":
 	{
 		"DESCRIPTIONS": ["All #yPowers are played twice."],

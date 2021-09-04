@@ -32,6 +32,8 @@ public class Tetora extends AnimatorCard
         SetAffinity_Light(1);
         SetAffinity_Orange(1);
 
+        SetHarmonic(true);
+
         SetAffinityRequirement(Affinity.General, 4);
     }
 

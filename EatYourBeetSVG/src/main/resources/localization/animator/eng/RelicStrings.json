@@ -6,6 +6,12 @@
 		"FLAVOR": "You can control the flames with the snap of a finger.",
 		"NAME": "Alchemist Glove"
 	},
+	"animator:AscensionStone":
+	{
+	  "DESCRIPTIONS": ["Alternate upgrades are now available for certain cards."],
+	  "FLAVOR": "I leveled up!",
+	  "NAME": "Ascension Stone"
+	},
 	"animator:AncientMedallion":
 	{
 		"DESCRIPTIONS": ["Upon pickup, #yUpgrade 2 random cards and a card of your choice, the chosen card is upgraded twice. At the start of combat, heal #b{0} HP. ", "Healing {0} less HP (Ascension 18+)."],
@@ -83,6 +89,12 @@
 		"DESCRIPTIONS": ["For the first #b2 turns of combat, apply #b2 #yBurning whenever you deal unblocked #yAttack damage."],
 		"FLAVOR": "I'm on fire!",
 		"NAME": "Fire Blade"
+	},
+	"animator:GranviaShieldCrest":
+	{
+		"DESCRIPTIONS": ["If you have exactly 1 type of Protagonist in your deck and you would die from an attack, prevent all damage, then destroy this relic and all Protagonists in your deck.", "Current Protagonists:"],
+		"FLAVOR": "Awarded to those that display true honor and valor.",
+		"NAME": "Granvia Shield Crest"
 	},
 	"animator:HallowedScabbard":
 	{
@@ -188,9 +200,15 @@
 	},
 	"animator:SpiritPoop2":
 	{
-		"DESCRIPTIONS": ["Just like Spirit Poop, except rarer."],
+		"DESCRIPTIONS": ["It's unpleasant and rarer."],
 		"FLAVOR": "Just like Spirit Poop, except rarer.",
 		"NAME": "4-Star Spirit Poop"
+	},
+	"animator:SpiritPoop3":
+	{
+		"DESCRIPTIONS": ["At the start of battle, gain #b2 #yInspiration."],
+		"FLAVOR": "Well, what do you know. It's actually pretty pleasant!",
+		"NAME": "5-Star Spirit Poop"
 	},
 	"animator:StraightShooter":
 	{

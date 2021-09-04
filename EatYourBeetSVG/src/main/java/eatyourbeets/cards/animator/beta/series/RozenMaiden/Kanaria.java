@@ -37,7 +37,7 @@ public class Kanaria extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new KanariaPower(p, 1));
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.MakeCardInHand(new Kanaria_Pizzicato())
                     .AddCallback(GameUtilities::Retain);

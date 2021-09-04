@@ -36,6 +36,8 @@ public class JunSakurada extends AnimatorCard
         SetUnique(true, true);
         SetEthereal(true);
         SetExhaust(true);
+
+        SetProtagonist(true);
     }
 
     @Override

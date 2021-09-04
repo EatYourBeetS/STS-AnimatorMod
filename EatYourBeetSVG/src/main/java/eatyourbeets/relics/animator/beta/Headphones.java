@@ -13,7 +13,7 @@ public class Headphones extends AnimatorRelic
 
     public Headphones()
     {
-        super(ID, RelicTier.RARE, LandingSound.SOLID);
+        super(ID, RelicTier.RARE, LandingSound.CLINK);
     }
 
     @Override

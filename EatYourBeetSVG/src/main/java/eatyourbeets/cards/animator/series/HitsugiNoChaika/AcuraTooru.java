@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
@@ -32,6 +32,8 @@ public class AcuraTooru extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Red(1);
+
+        SetProtagonist(true);
     }
 
     @Override

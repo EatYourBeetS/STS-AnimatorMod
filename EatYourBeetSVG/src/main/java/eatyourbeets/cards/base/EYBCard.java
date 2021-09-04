@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
+
 public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber
 {
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
@@ -456,27 +458,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         this.isMultiDamage = value;
     }
 
-    public void SetHaste(boolean value)
-    {
-        SetTag(HASTE, value);
-    }
-
-    public void SetPermanentHaste(boolean value)
-    {
-        SetTag(HASTE_INFINITE, value);
-        SetTag(HASTE, value);
-    }
-
-    public void SetDelayed(boolean value)
-    {
-        SetTag(DELAYED, value);
-
-        if (value)
-        {
-            SetInnate(false);
-        }
-    }
-
     public void SetRetain(boolean value)
     {
         this.selfRetain = value;
@@ -518,9 +499,35 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         SetTag(GR.Enums.CardTags.AUTOPLAY, value);
     }
 
+    public void SetDelayed(boolean value)
+    {
+        SetTag(DELAYED, value);
+
+        if (value)
+        {
+            SetInnate(false);
+        }
+    }
+
     public void SetHarmonic(boolean value)
     {
         SetTag(GR.Enums.CardTags.HARMONIC, value);
+    }
+
+    public void SetHaste(boolean value)
+    {
+        SetTag(HASTE, value);
+    }
+
+    public void SetPermanentHaste(boolean value)
+    {
+        SetTag(HASTE_INFINITE, value);
+        SetTag(HASTE, value);
+    }
+
+    public void SetProtagonist(boolean value)
+    {
+        SetTag(PROTAGONIST, value);
     }
 
     public void SetObtainableInCombat(boolean value)
@@ -796,7 +803,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     }
 
     @Override
-    public final void applyPowers()
+    public void applyPowers()
     {
         if (isMultiDamage)
         {

@@ -11,7 +11,7 @@ public class ColorlessFragment extends AbstractMissingPiece
 {
     public static final String ID = CreateFullID(ColorlessFragment.class);
     public static final int COLORLESS_WEIGHT = 12;
-    public static final int REWARD_INTERVAL = 3;
+    public static final int REWARD_INTERVAL = 2;
 
     private boolean whyAreThere300ObtainMethods = false;
 

@@ -29,7 +29,8 @@ public class GenericEffect_EnterStance extends GenericEffect
         String text = tooltip.title
         .replace(GR.Tooltips.Agility.title, "[A]")
         .replace(GR.Tooltips.Force.title, "[F]")
-        .replace(GR.Tooltips.Intellect.title, "[I]");
+        .replace(GR.Tooltips.Intellect.title, "[I]")
+        .replace(GR.Tooltips.Willpower.title, "[W]");
 
         return GR.Animator.Strings.Actions.EnterStance("{" + text + "}", true);
     }

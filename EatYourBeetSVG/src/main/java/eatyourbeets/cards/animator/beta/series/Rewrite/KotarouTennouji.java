@@ -34,6 +34,7 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
         SetAffinity_Star(2, 0, 1);
 
         SetUnique(true, true);
+        SetProtagonist(true);
     }
 
     @Override

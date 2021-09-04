@@ -25,6 +25,8 @@ public class EmiyaShirou extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 1, 0);
+
+        SetProtagonist(true);
     }
 
     @Override

@@ -188,7 +188,7 @@ public class VFX
 
     public static GenericAnimationEffect FireBurst(float cX, float cY)
     {
-        return new GenericAnimationEffect(EYBEffect.IMAGES.FireBurst.Texture(), cX, cY, 8, 8);
+        return new GenericAnimationEffect(EYBEffect.IMAGES.FireBurst.Texture(), cX, cY, 8, 8, 0.01f);
     }
 
     public static FlameBarrierEffect FlameBarrier(Hitbox source)

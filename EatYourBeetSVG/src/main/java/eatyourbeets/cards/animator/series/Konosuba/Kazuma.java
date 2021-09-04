@@ -23,6 +23,8 @@ public class Kazuma extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Green(1);
         SetAffinity_Orange(1);
+
+        SetProtagonist(true);
     }
 
     @Override

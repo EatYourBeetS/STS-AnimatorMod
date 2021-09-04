@@ -33,7 +33,7 @@ public class Amber extends AnimatorCard {
             GameActions.Bottom.GainAgility(secondaryValue, false);
         }
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
         }

@@ -34,13 +34,14 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
                 data.AddPreview(new Traveler_Wish(), false);
                 data.AddPreview(new AbyssalVoid(), false);
             });
+    public static final int DEBUFFS_COUNT = 2;
 
     public Traveler_Lumine()
     {
         super(DATA);
 
-        Initialize(0, 0, 20, 2);
-        SetUpgrade(0, 0, 979, 0);
+        Initialize(0, 0, 20, 1);
+        SetUpgrade(0, 0, 979, 1);
         SetAffinity_Light(2);
         SetAffinity_Dark(1);
         SetEthereal(true);
@@ -48,16 +49,22 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
-        GameActions.Bottom.MakeCardInDrawPile(new AbyssalVoid());
-        GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish());
-        GameActions.Bottom.MakeCardInDiscardPile(new AbyssalVoid());
-        GameActions.Bottom.MakeCardInDiscardPile(new Traveler_Wish());
+        for (int i = 0; i < secondaryValue; i++) {
+            GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish());
+            GameActions.Bottom.MakeCardInDrawPile(new AbyssalVoid());
+        }
 
-        if (GameUtilities.GetDebuffsCount(player.powers) == secondaryValue && CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark), upgraded);
+        if (GameUtilities.GetDebuffsCount(player.powers) == DEBUFFS_COUNT) {
+            GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
         }
 
         Traveler_Lumine other = (Traveler_Lumine) makeStatEquivalentCopy();

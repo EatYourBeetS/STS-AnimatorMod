@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.special;
+package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -21,34 +20,35 @@ public class Kirby_MysteryCard extends AnimatorCard
 
     public CardRarity rarity;
 
-    public Kirby_MysteryCard()
+    public Kirby_MysteryCard() {
+        this(false);
+    }
+
+    public Kirby_MysteryCard(boolean isDummy)
     {
         super(DATA);
+        SetObtainableInCombat(false);
 
         Initialize(0, 0, 1, 0);
-
+        if (isDummy) {
+            this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+        }
     }
+
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        ChangeIntoCard();
+        GameActions.Last.ReplaceCard(uuid,CreateObscuredCard());
     }
 
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        ChangeIntoCard();
-    }
-
-    private void ChangeIntoCard() {
+    public AbstractCard CreateObscuredCard() {
         RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>(JUtils.Filter(AbstractDungeon.commonCardPool.group, this::CheckCondition));
         AbstractCard card = possiblePicks.Retrieve(rng).makeCopy();
-        GameActions.Bottom.ReplaceCard(uuid,card).AddCallback(()-> {
-            GameUtilities.CopyVisualProperties(this, card);
-            card.cost = card.costForTurn = this.cost;
-        });
+        if (upgraded) {
+            card.upgrade();
+        }
+        card.cost = card.costForTurn = this.cost;
+        return card;
     }
 
     public boolean CheckCondition(AbstractCard c) {

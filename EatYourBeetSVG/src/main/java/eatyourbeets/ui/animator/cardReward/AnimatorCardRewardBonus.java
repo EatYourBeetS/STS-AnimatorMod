@@ -141,17 +141,17 @@ public class AnimatorCardRewardBonus extends GUIElement
         {
             for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
             {
-                if (series.promoted && series.bonus < 6)
+                if (series.promoted && series.bonus < 8)
                 {
                     if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {
                         if (series.bonus % 2 == 0)
                         {
-                            return GetGoldBundle(card, series.bonus >= 4 ? 24 : 12);
+                            return GetGoldBundle(card, series.bonus >= 4 ? 20 : 10);
                         }
                         else
                         {
-                            return GetMaxHPBundle(card, series.bonus >= 4 ? 2 : 1);
+                            return GetMaxHPBundle(card, series.bonus >= 6 ? 2 : 1);
                         }
                     }
                 }

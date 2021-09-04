@@ -28,6 +28,7 @@ public class Sora extends AnimatorCard
         SetAffinity_Orange(2);
 
         SetMultiDamage(true);
+        SetProtagonist(true);
     }
 
     @Override

@@ -128,11 +128,11 @@ public class AttackEffects
               .SetSFX(SFX.ATTACK_FIRE);
 
       Add(magic, FIRE_EXPLOSION)
-              .SetVFX(VFX::SmallExplosion)
+              .SetVFX(VFX::FireBurst)
               .SetSFX(SFX.ATTACK_FLAME_BARRIER);
 
       Add(magic, SMALL_EXPLOSION)
-              .SetVFX(VFX::FireBurst)
+              .SetVFX(VFX::SmallExplosion)
               .SetSFX(SFX.ATTACK_FLAME_BARRIER);
 
       Add(magic, POISON, ImageMaster.ATK_POISON)

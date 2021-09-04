@@ -27,6 +27,7 @@ public class Shiroe extends AnimatorCard
         SetAffinity_Orange(2);
 
         SetExhaust(true);
+        SetProtagonist(true);
     }
 
     @Override

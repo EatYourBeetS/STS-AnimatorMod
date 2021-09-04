@@ -42,7 +42,7 @@ public class ToukaNishikujou extends AnimatorCard
                 GameActions.Bottom.CreateThrowingKnives(throwingKnives);
             }
 
-            if (HasSynergy())
+            if (isSynergizing)
             {
                 GameActions.Bottom.Cycle(name, 1)
                 .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));

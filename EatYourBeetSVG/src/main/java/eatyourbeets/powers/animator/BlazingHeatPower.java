@@ -6,14 +6,14 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class BlazingHeatPower extends AnimatorPower implements OnApplyPowerSubscriber
+public class BlazingHeatPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(BlazingHeatPower.class);
 
@@ -50,9 +50,14 @@ public class BlazingHeatPower extends AnimatorPower implements OnApplyPowerSubsc
     }
 
     @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        if (BurningPower.POWER_ID.equals(power.ID) && target.hasPower(FreezingPower.POWER_ID) && source == owner) {
-            GameActions.Bottom.DealDamage(null, player, ((FreezingPower) target.getPower(FreezingPower.POWER_ID)).GetPassiveDamage(), DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION);
+    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        super.onApplyPower(power, target, source);
+
+        if (BurningPower.POWER_ID.equals(power.ID) && GameUtilities.GetPowerAmount(target,FreezingPower.POWER_ID) > 0 && GameUtilities.IsPlayer(source)) {
+            GameActions.Bottom.DealDamage(null, target, ((FreezingPower) target.getPower(FreezingPower.POWER_ID)).GetPassiveDamage() * 2, DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION).AddCallback(target, (enemy, __) -> {
+                GameActions.Bottom.ReducePower(enemy,player,FreezingPower.POWER_ID,1);
+            });
         }
     }
 }

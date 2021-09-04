@@ -30,6 +30,7 @@ public class ItamiYouji extends AnimatorCard
         SetAffinity_Orange(1);
 
         SetExhaust(true);
+        SetProtagonist(true);
     }
 
     @Override

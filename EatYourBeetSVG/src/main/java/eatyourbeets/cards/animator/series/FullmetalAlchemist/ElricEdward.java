@@ -29,6 +29,7 @@ public class ElricEdward extends AnimatorCard
         SetAffinity_Orange(1, 1, 1);
 
         SetEvokeOrbCount(1);
+        SetProtagonist(true);
     }
 
     @Override

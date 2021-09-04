@@ -24,6 +24,8 @@ public class IchigoKurosaki extends AnimatorCard
 
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(1, 1, 1);
+
+        SetProtagonist(true);
     }
 
     @Override

@@ -31,6 +31,7 @@ public class GoblinSlayer extends AnimatorCard
         SetAffinity_Light(1);
 
         SetRetain(true);
+        SetProtagonist(true);
     }
 
     @Override

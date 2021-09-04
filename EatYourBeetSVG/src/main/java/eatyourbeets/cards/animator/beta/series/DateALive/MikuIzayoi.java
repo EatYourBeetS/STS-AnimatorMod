@@ -48,7 +48,7 @@ public class MikuIzayoi extends AnimatorCard
             GameActions.Bottom.GainInspiration(secondaryValue);
         }
 
-        if (HasSynergy()) {
+        if (isSynergizing) {
             GameActions.Bottom.Motivate(secondaryValue);
         }
     }

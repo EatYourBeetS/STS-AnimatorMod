@@ -12,6 +12,8 @@ import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Traveler_Aether extends AnimatorCard_UltraRare
 {
@@ -42,13 +44,10 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
         GameActions.Bottom.ChannelOrbs(Air::new, secondaryValue).AddCallback(() -> {
             int orbsInduced = 0;
 
-            for (AbstractOrb orb : player.orbs) {
-                if (GameUtilities.IsCommonOrb(orb)) {
-                    GameActions.Bottom.InduceOrb(orb.makeCopy());
-                    orbsInduced++;
-                    if (orbsInduced >= magicNumber) {
-                        break;
-                    }
+            RandomizedList<AbstractOrb> orbList = new RandomizedList<AbstractOrb>(JUtils.Filter(player.orbs, GameUtilities::IsCommonOrb));
+            if (orbList.Size() > 0) {
+                for (int i = 0; i < magicNumber; i++) {
+                    GameActions.Bottom.InduceOrb(orbList.Retrieve(rng,false).makeCopy());
                 }
             }
 

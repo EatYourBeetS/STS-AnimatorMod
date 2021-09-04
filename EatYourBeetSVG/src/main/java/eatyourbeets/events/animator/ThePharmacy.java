@@ -24,7 +24,7 @@ public class ThePharmacy extends EYBEvent
 
     public ThePharmacy()
     {
-        super(ID, new EventStrings(),"BubuPharmacy.png");
+        super(ID, new EventStrings(),IMAGES.BubuPharmacy.Path());
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());
         RegisterPhase(2, new Bounty());

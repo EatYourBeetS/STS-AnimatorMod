@@ -50,6 +50,8 @@ public class Saitama extends AnimatorCard
         GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;
         SetEffect(stage);
+
+        SetProtagonist(true);
     }
 
     public Saitama()

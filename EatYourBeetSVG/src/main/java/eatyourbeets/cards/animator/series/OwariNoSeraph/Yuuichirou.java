@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yuuichirou_Asuramaru;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou extends AnimatorCard
@@ -24,6 +24,8 @@ public class Yuuichirou extends AnimatorCard
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1, 1, 1);
+
+        SetProtagonist(true);
     }
 
     @Override

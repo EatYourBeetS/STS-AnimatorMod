@@ -36,8 +36,8 @@ public class Shuna extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainBlessing(1);
-        GameActions.Bottom.GainWillpower(1);
+        GameActions.Bottom.GainBlessing(1, upgraded);
+        GameActions.Bottom.GainWillpower(1, upgraded);
         GameActions.Bottom.Draw(magicNumber);
     }
 }

@@ -30,7 +30,7 @@ public class KanadeTachibana extends AnimatorCard
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]);
 
-        if (HasSynergy())
+        if (isSynergizing)
         {
             GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
             .SetOptions(true, true, true);

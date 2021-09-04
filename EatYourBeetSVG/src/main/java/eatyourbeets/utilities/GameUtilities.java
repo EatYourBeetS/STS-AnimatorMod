@@ -1219,6 +1219,9 @@ public class GameUtilities
             else if (tag.equals(LOYAL)) {
                 aCard.SetLoyal(value);
             }
+            else if (tag.equals(PROTAGONIST)) {
+                aCard.SetHarmonic(value);
+            }
             else if (tag.equals(PURGE)) {
                 aCard.SetPurge(value);
             }

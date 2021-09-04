@@ -30,7 +30,7 @@ public class KaeyaAlberich extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
 

@@ -1,21 +1,24 @@
 package eatyourbeets.events.animator;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.relics.SpiritPoop;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import eatyourbeets.cards.animator.beta.special.BlazingHeat;
+import eatyourbeets.cards.animator.beta.special.Ganyu;
+import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
+import eatyourbeets.relics.animator.beta.SpiritPoop2;
+import eatyourbeets.relics.animator.beta.SpiritPoop3;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class TheFloatyThing extends EYBEvent
 {
@@ -28,24 +31,27 @@ public class TheFloatyThing extends EYBEvent
 
     public static TheFloatyThing TryCreate(Random rng)
     {
-        if (rolls >= 0 && rng.randomBoolean(0.15f)) {
+        if (!(GameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
             return new TheFloatyThing();
         }
         return null;
     }
 
     private static float GetChance() {
-        return rolls >= 89 ? 1f : rolls >= 75 ? 0.324f : 0.06f;
+        return rolls >= 89 ? 1f : rolls >= 75 ? 0.324f : 0.006f;
     }
 
     private static int GetGoldToRefund() {return rolls * PRICE / 2;}
 
     public TheFloatyThing()
     {
-        super(ID, new EventStrings(),"PaimonsBargains.png");
+        super(ID, new EventStrings(),IMAGES.PaimonsBargains.Path());
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Introduction2());
         RegisterPhase(2, new Offering());
+        RegisterPhase(3, new Leave1());
+        RegisterPhase(4, new Leave2());
+        RegisterPhase(5, new Refund());
         ProgressPhase();
     }
 
@@ -54,6 +60,7 @@ public class TheFloatyThing extends EYBEvent
         @Override
         protected void OnEnter()
         {
+            rolls = 0;
             AddText(text.Introduction());
             AddContinueOption();
         }
@@ -87,7 +94,7 @@ public class TheFloatyThing extends EYBEvent
 
             if (hasEnoughGold)
             {
-                AddOption(text.WishOption(GetChance(), PRICE)).AddCallback(this::Wish);
+                AddOption(text.WishOption(GetChance() * 100f, PRICE)).AddCallback(this::Wish);
             }
             else
             {
@@ -109,14 +116,22 @@ public class TheFloatyThing extends EYBEvent
             }
             else {
                 if (rolls % 10 == 0) {
-                    SpiritPoop relic = new SpiritPoop();
-                    relic.instantObtain();
-                    CardCrawlGame.metricData.addRelicObtainData(relic);
-                    merchantLine = text.Offering3(rolls);
-                    canDemand = true;
+                    if (MathUtils.randomBoolean()) {
+                        AbstractRelic relic = AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.UNCOMMON);
+                        relic.instantObtain();
+                        CardCrawlGame.metricData.addRelicObtainData(relic);
+                        merchantLine = text.WishSuccess(rolls);
+                    }
+                    else {
+                        SpiritPoop2 relic = new SpiritPoop2();
+                        relic.instantObtain();
+                        CardCrawlGame.metricData.addRelicObtainData(relic);
+                        merchantLine = text.WishKindaSuccess(rolls);
+                        canDemand = true;
+                    }
                 }
                 else {
-                    merchantLine = text.Offering2(rolls);
+                    merchantLine = text.WishFail(rolls);
                 }
                 Refresh();
             }
@@ -128,7 +143,7 @@ public class TheFloatyThing extends EYBEvent
                 ChangePhase(Refund.class);
             }
             else {
-                merchantLine = text.Offering4(rolls);
+                merchantLine = text.WishRefundFail(rolls);
                 hasDemanded = true;
                 Refresh();
             }
@@ -136,18 +151,17 @@ public class TheFloatyThing extends EYBEvent
 
         private void ObtainReward()
         {
+            SpiritPoop3 relic = new SpiritPoop3();
+            relic.instantObtain();
+            CardCrawlGame.metricData.addRelicObtainData(relic);
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             RewardItem rewardItem = new RewardItem(GR.Animator.CardColor);
-            RandomizedList<AbstractCard> cards = new RandomizedList<>(JUtils.Filter(CardLibrary.getAllCards(), c -> c instanceof AnimatorCard_UltraRare));
 
             room.rewards.clear();
             rewardItem.cards.clear();
-            for (int i = 0; i < 3; i++)
-            {
-                AbstractCard card = cards.Retrieve(RNG).makeCopy();
-                card.upgrade();
-                rewardItem.cards.add(card);
-            }
+            rewardItem.cards.add(new SheerCold());
+            rewardItem.cards.add(new BlazingHeat());
+            rewardItem.cards.add(new Ganyu());
 
             room.addCardReward(rewardItem);
             AbstractDungeon.combatRewardScreen.open();
@@ -181,7 +195,8 @@ public class TheFloatyThing extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            player.gainGold(PRICE * rolls / 2);
+            GameEffects.List.Add(new RainingGoldEffect(600));
+            player.gainGold(GetGoldToRefund());
             AddText(text.Refund());
             AddLeaveOption();
         }
@@ -204,34 +219,39 @@ public class TheFloatyThing extends EYBEvent
             return GetDescription(2);
         }
 
-        public final String Offering2(int rolls)
+        public final String WishFail(int rolls)
         {
             return GetDescription(3, rolls);
         }
 
-        public final String Offering3(int rolls)
+        public final String WishSuccess(int rolls)
         {
             return GetDescription(4, rolls);
         }
 
-        public final String Offering4(int rolls)
+        public final String WishKindaSuccess(int rolls)
         {
             return GetDescription(5, rolls);
         }
 
-        public final String Refund()
+        public final String WishRefundFail(int rolls)
         {
-            return GetDescription(6);
+            return GetDescription(6, rolls);
         }
 
-        public final String Leave1()
+        public final String Refund()
         {
             return GetDescription(7);
         }
 
-        public final String Leave2()
+        public final String Leave1()
         {
             return GetDescription(8);
+        }
+
+        public final String Leave2()
+        {
+            return GetDescription(9);
         }
 
         public final String WishOption(float chance, int gold)
@@ -246,7 +266,7 @@ public class TheFloatyThing extends EYBEvent
 
         public final String DemandOption(int gold)
         {
-            return GetOption(2);
+            return GetOption(2, gold);
         }
 
         public final String RefuseBountyOption()

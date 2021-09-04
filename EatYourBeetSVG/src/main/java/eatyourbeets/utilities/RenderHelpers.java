@@ -740,6 +740,10 @@ public class RenderHelpers
     {
         switch (c)
         {
+            case 'c':
+                return Settings.CREAM_COLOR.cpy();
+            case 'e':
+                return Color.GRAY.cpy();
             case 'b':
                 return Settings.BLUE_TEXT_COLOR.cpy();
             case 'g':

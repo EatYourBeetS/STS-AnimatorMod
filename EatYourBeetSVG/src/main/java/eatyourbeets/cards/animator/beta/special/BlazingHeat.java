@@ -16,8 +16,8 @@ public class BlazingHeat extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 1, 3);
+        SetUpgrade(0, 0, 1, 1);
         SetAffinity_Red(2);
     }
 
@@ -25,6 +25,6 @@ public class BlazingHeat extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.ChannelOrbs(Fire::new, magicNumber);
-        GameActions.Bottom.StackPower(new BlazingHeatPower(p, 1));
+        GameActions.Bottom.StackPower(new BlazingHeatPower(p, secondaryValue));
     }
 }

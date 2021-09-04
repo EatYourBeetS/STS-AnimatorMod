@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.RestRoom;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import eatyourbeets.cards.animator.beta.colorless.Kirby;
-import eatyourbeets.misc.KirbyEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 
@@ -56,7 +55,7 @@ public class KirbyCampfireOption extends AbstractCampfireOption
         room = (RestRoom) AbstractDungeon.getCurrRoom();
         room.campfireUI.somethingSelected = true;
 
-        GameEffects.Queue.Add(new KirbyEffect(kirby, kirby.COPIED_CARDS)).AddCallback(() -> {
+        GameEffects.Queue.Callback(kirby::RemoveInheritedCards).AddCallback(() -> {
             room.campfireUI.reopen();
         });
     }

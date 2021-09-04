@@ -40,7 +40,7 @@ public class Yoichi extends AnimatorCard
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(power ->
         {
-            if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+            if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
             {
                 SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
                 if (supportDamage != null)

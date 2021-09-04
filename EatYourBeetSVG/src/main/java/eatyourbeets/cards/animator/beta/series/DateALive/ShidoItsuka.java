@@ -34,6 +34,7 @@ public class ShidoItsuka extends AnimatorCard
 
         SetHarmonic(true);
         SetExhaust(true);
+        SetProtagonist(true);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        if (HasSynergy()) {
+                        if (isSynergizing) {
                             GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
                                     .SetDuration(Settings.ACTION_DUR_FASTER, true);
                         }

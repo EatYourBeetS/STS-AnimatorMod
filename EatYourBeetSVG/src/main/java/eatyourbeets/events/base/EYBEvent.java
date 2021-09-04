@@ -34,9 +34,16 @@ public abstract class EYBEvent extends AbstractImageEvent
         if (isAnimator)
         {
             AbstractEvent event = TheCursedForest.TryCreate(rng);
-            if (event != null) {
-                return ThePharmacy.TryCreate(rng);
+            if (event == null) {
+                event = ThePharmacy.TryCreate(rng);
             }
+            if (event == null) {
+                event = TheFloatyThing.TryCreate(rng);
+            }
+            if (event == null) {
+                event = TheHeroAssociation.TryCreate(rng);
+            }
+            return event;
         }
 
         return null;
@@ -62,6 +69,9 @@ public abstract class EYBEvent extends AbstractImageEvent
         BaseMod.addEvent(TheHaunt.ID, TheHaunt.class, TheUnnamedReign.ID);
         BaseMod.addEvent(TheUnnamedMerchant.ID, TheUnnamedMerchant.class, TheUnnamedReign.ID);
         BaseMod.addEvent(TheAbandonedCabin.ID, TheAbandonedCabin.class, TheUnnamedReign.ID);
+        BaseMod.addEvent(TheCursedForest.ID, TheCursedForest.class, TheCursedForest.ID);
+        BaseMod.addEvent(TheFloatyThing.ID, TheFloatyThing.class, TheFloatyThing.ID);
+        BaseMod.addEvent(TheHeroAssociation.ID, TheHeroAssociation.class, TheHeroAssociation.ID);
         BaseMod.addEvent(ThePharmacy.ID, ThePharmacy.class, ThePharmacy.ID);
     }
 

@@ -20,7 +20,7 @@ public class SougenEsaka extends AnimatorCard
 
         Initialize(2, 3, 1);
         SetUpgrade(2, 1, 1);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Orange, 3);
     }
@@ -28,7 +28,7 @@ public class SougenEsaka extends AnimatorCard
     @Override
     protected float ModifyBlock(AbstractMonster enemy, float amount)
     {
-        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Orange) * 0.5f));
+        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Orange) * affinities.GetScaling(Affinity.Orange, true) * 0.5f));
     }
 
 

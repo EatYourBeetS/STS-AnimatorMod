@@ -16,7 +16,7 @@ public class StarEffect extends EYBEffect
     protected static final ArrayList<Float> RGB = new ArrayList<>(3);
     protected static final TextureCache image = IMAGES.Star;
 
-    protected float vfxFrequency = 0.016f;
+    protected float vfxFrequency = 0.015f;
     protected float horizontalSpeed;
     protected float verticalSpeed;
     protected float rotationSpeed;
@@ -92,7 +92,7 @@ public class StarEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             GameEffects.Queue.Add(new StarParticleEffect(x, y, Random(-120f, -30f) * Math.signum(horizontalSpeed), Random(-60f, 60f), Random(0.01f, 0.28f) * Math.min(1f,this.scale), Colors.Random(0.83f,1f,false)));
-            if (RandomBoolean(0.7f) && this.scale >= 0.7f) {
+            if (RandomBoolean(0.72f) && this.scale >= 0.7f) {
                 GameEffects.Queue.Add(new StarEffect(x, y, horizontalSpeed * -0.25f, Random(-horizontalSpeed * 0.05f, horizontalSpeed * 0.05f), Random(-1000f, 1000f), Random(0.05f,Math.min(0.5f,this.scale))));
             }
             vfxTimer = vfxFrequency;

@@ -31,7 +31,7 @@ public class TheFloatyThing extends EYBEvent
 
     public static TheFloatyThing TryCreate(Random rng)
     {
-        if (!(GameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
+        if (AbstractDungeon.floorNum > 14 && !(GameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
             return new TheFloatyThing();
         }
         return null;
@@ -41,7 +41,7 @@ public class TheFloatyThing extends EYBEvent
         return rolls >= 89 ? 1f : rolls >= 75 ? 0.324f : 0.006f;
     }
 
-    private static int GetGoldToRefund() {return rolls * PRICE / 2;}
+    private static int GetGoldToRefund() {return rolls * PRICE;}
 
     public TheFloatyThing()
     {
@@ -117,7 +117,7 @@ public class TheFloatyThing extends EYBEvent
             else {
                 if (rolls % 10 == 0) {
                     if (MathUtils.randomBoolean()) {
-                        AbstractRelic relic = AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.UNCOMMON);
+                        AbstractRelic relic = MathUtils.randomBoolean(0.25f) ? AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.RARE) : AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.UNCOMMON);
                         relic.instantObtain();
                         CardCrawlGame.metricData.addRelicObtainData(relic);
                         merchantLine = text.WishSuccess(rolls);

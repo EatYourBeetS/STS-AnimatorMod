@@ -30,7 +30,7 @@ public class Suiseiseki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 5, 3);
+        Initialize(0, 6, 4, 3);
         SetUpgrade(0, 1, 1);
 
         SetAffinity_Green(1, 0, 1);
@@ -55,10 +55,7 @@ public class Suiseiseki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        for (int i=0; i<secondaryValue; i++)
-        {
-            GameActions.Bottom.MakeCard(new Slimed(), player.hand);
-        }
+        GameActions.Bottom.MakeCard(new Slimed(), player.hand);
 
         if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {

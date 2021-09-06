@@ -75,6 +75,11 @@ public class KuragesOathPower extends AnimatorPower
                 GameActions.Bottom.DealDamage(owner, info.owner, damageAmount - newDamage, DamageInfo.DamageType.THORNS, AttackEffects.WATER);
                 flashWithoutSound();
             }
+            else if (owner.isPlayer) {
+                int[] damageMatrix = DamageInfo.createDamageMatrix(damageAmount - newDamage, false);
+                GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.WATER);
+                flashWithoutSound();
+            }
         }
 
         return super.onAttackedToChangeDamage(info, newDamage);

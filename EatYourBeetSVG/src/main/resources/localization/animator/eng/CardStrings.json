@@ -103,13 +103,6 @@
 	},
 	"BETA":
 	{
-		"animator:Kirby_MysteryCard":
-		{
-			"DESCRIPTION": "At the start of combat: Transforms into a random {Low-Cost} Common card.",
-			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random {Low-Cost} Common card that changes every combat instead of removing a card from your deck."],
-			"NAME": "? ? ?",
-			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded {Low-Cost} Common card."
-		},
 		"animator:Haniwa":
 		{
 		  "DESCRIPTION": "Costs 1 less if you have another Haniwa in your hand.",
@@ -119,6 +112,20 @@
 		{
 			"DESCRIPTION": "Gain !M! [E].",
 			"NAME": "Miracle"
+		},
+		"animator:MysteryCard":
+		{
+			"DESCRIPTION": "At the start of combat: Transforms into a random {Low-Cost} Common card.",
+			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random {Low-Cost} Common card that changes every combat instead of removing a card from your deck."],
+			"NAME": "? ? ?",
+			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded {Low-Cost} Common card."
+		},
+		"animator:MysteryCard2":
+		{
+			"DESCRIPTION": "At the start of combat: Transforms into a random Common card.",
+			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random Common card that changes every combat instead of removing a card from your deck."],
+			"NAME": "? ? ?",
+			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded Common card."
 		}
 	},
 	"BETA:ANGELBEATS":
@@ -179,6 +186,11 @@
 		{
 			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random {Afterlife} card in your exhaust pile and {Purge} it. || When Discarded, Gain|Boost [W].",
 			"NAME": "Shiori Sekine"
+		},
+		"animator:TK":
+		{
+			"DESCRIPTION": "Boost [A]. || <LIM>: If you would die while this card is in your exhaust pile: Purge this. Remove 1 of !M! cards in your deck: Purge and play all copies of it in play.",
+			"NAME": "Angel Alter"
 		},
 		"animator:Yui":
 		{
@@ -581,7 +593,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <LIM>. If the target has 12 [Freezing]: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <LIM>. <If the target has 12 [Freezing]: Increase the damage bonus of [Burning] ** by !S!% this combat>.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -596,7 +608,7 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "On your first Synergy each turn: Lose !M! HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge.",
+			"DESCRIPTION": "At the start of turn: Gain !S! [~Focus]. || When a card Synergizes: Increase the damage and block of ALL cards in its series by !M!.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} Synergies this turn: Lose #b{1} HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge."],
 			"NAME": "Mio Takamiya"
 		},
@@ -686,7 +698,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "Below 40% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: Take !S! damage.",
+        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: Take !S! damage.",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -701,7 +713,7 @@
 		},
 		"animator:Fischl":
 		{
-			"DESCRIPTION": "Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+			"DESCRIPTION": "Gain [C]. Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
 			"NAME": "Fischl"
 		},
 		"animator:Ganyu":
@@ -760,16 +772,21 @@
 			"DESCRIPTION": "<ST>: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
 			"NAME": "Noelle"
 		},
-		"animator:OgoshoNarukami":
-		{
-			"DESCRIPTION": "Set your HP to 1. You cannot no longer die from damage. || Die at the end of your !M!th turn (This effect cannot be prevented).",
-			"NAME": "Ogosho Narukami"
-		},
 		"animator:Oz":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
-			"EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 Blue card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 Blue card(s)."],
+			"DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> or <D> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
+			"EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 #yBlue or LV.2 #yDark card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 #yBlue and LV.2 #yDark card(s)."],
 			"NAME": "Oz"
+		},
+		"animator:RaidenEi":
+		{
+			"DESCRIPTION": "Set your HP to [C] times !S!. You cannot no longer die from damage. || Die at the end of your !M!th turn (This effect cannot be prevented).",
+			"NAME": "Raiden Ei"
+		},
+		"animator:Sayu":
+		{
+			"DESCRIPTION": "Add !M! [T-Knife]. Transform ALL Hindrances into [T-Knife] and give them Shapeshifter. || When Exhausted, gain [Blur].",
+			"NAME": "Venti"
 		},
 		"animator:Tartaglia":
 		{
@@ -783,9 +800,9 @@
 		},
 		"animator:Traveler_Lumine":
         {
-        	"DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, trigger the last !M! Orbs Evoked this combat. || If you have exactly 2 debuffs: Gain [I] equal to <D> + !S!.",
+        	"DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, Evoke (or Trigger if it is [Plasma]) the last !M! Orbs Evoked this combat. || Synergy with <D>: Gain [I] equal to <D> + !S!.",
         	"NAME": "Lumine",
-        	"UPGRADE_DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, trigger ALL Orbs Evoked this combat. || If you have exactly 2 debuffs: Gain [I] equal to <D> + !S!."
+        	"UPGRADE_DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, Evoke (or Trigger if it is [Plasma]) ALL Orbs Evoked this combat. || Synergy with <D>: Gain [I] equal to <D> + !S!."
         },
 		"animator:Traveler_Wish":
         {
@@ -795,6 +812,26 @@
 		"animator:Venti":
 		{
 			"DESCRIPTION": "Cycle !M! cards. {Channel} 1 [Air] and Trigger it once for every Skill or Power drawn. || <LIM>. When Exhausted: Gain !S! [Support Damage].",
+			"NAME": "Venti"
+		},
+		"animator:Xiangling":
+		{
+			"DESCRIPTION": "Whenever this hits an enemy with [Burning] or [Vulnerable], shuffle Guoba into your draw pile. || {Synergy}: Gain !M! [Temp. HP]",
+			"NAME": "Venti"
+		},
+		"animator:Xiangling_Guoba":
+		{
+			"DESCRIPTION": "At the end of your next !M! turns: Apply !S! [Burning] to ALL enemies. Afterwards, increase the damage bonus of Burning by 5% this combat.",
+			"NAME": "Venti"
+		},
+		"animator:Xingqiu":
+		{
+			"DESCRIPTION": "Trigger all [Water]. Whenever you play an attack, deal !M! damage to its target. Double this damage if the target has [Burning].",
+			"NAME": "Xingqiu"
+		},
+		"animator:Yoimiya":
+		{
+			"DESCRIPTION": "Whenever this deals unblocked damage: Add a [T-Knife] to your hand. <LIM> !A! <R>: Play {Blazing Heat}.",
 			"NAME": "Venti"
 		},
 		"animator:Zhongli":
@@ -919,7 +956,7 @@
 		},
 		"animator:Hinaichigo":
 		{
-			"DESCRIPTION": "Apply !M! [Weak] [Vulnerable]. || <FS>: Apply !S! [Poison]. ** Otherwise: Enter <FS>.",
+			"DESCRIPTION": "Apply !M! [Weak] [Vulnerable]. || <WS>: Apply !S! [Poison]. ** Otherwise: Enter <WS>.",
 			"NAME": "Hinaichigo"
 		},
 		"animator:JunSakurada":
@@ -995,7 +1032,7 @@
 		},
 		"animator:Suiseiseki":
 		{
-			"DESCRIPTION": "Add !S! {Slimed} to your hand. || {Synergy}: Exit your Stance, then gain !S! of that Stance's affinity power.",
+			"DESCRIPTION": "Add {Slimed} to your hand. || {Synergy}: Exit your Stance, then gain !S! of that Stance's affinity power.",
 			"NAME": "Suiseiseki"
 		},
 		"animator:TomoeKashiwaba":
@@ -1543,8 +1580,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || Once per turn, Pay [E]: Trigger your first [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger your first [Earth]. || Your <B> Synergy bonus grants #b{1} additional [I] (max #b{2}^)."],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay [E]: Trigger your first 3 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":

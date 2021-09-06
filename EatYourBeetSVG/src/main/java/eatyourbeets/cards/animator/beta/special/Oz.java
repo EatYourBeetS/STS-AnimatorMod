@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Oz extends AnimatorCard
 {
@@ -63,7 +64,7 @@ public class Oz extends AnimatorCard
 
             super.onPlayCard(card, m);
 
-            if (this.spellcastersPlayed < this.amount && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(Affinity.Blue) > 1) {
+            if (this.spellcastersPlayed < this.amount && (GameUtilities.GetAffinityLevel(card, Affinity.Blue, false) > 1 || GameUtilities.GetAffinityLevel(card, Affinity.Dark, false) > 1)) {
                 GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
                 this.spellcastersPlayed += 1;
                 updateDescription();

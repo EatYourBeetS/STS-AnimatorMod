@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Hinaichigo extends AnimatorCard
@@ -28,13 +28,13 @@ public class Hinaichigo extends AnimatorCard
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.ApplyWeak(p, m, magicNumber);
 
-        if (player.stance.ID.equals(ForceStance.STANCE_ID))
+        if (player.stance.ID.equals(WillpowerStance.STANCE_ID))
         {
             GameActions.Bottom.ApplyPoison(p, m, secondaryValue);
         }
         else
         {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
         }
     }
 }

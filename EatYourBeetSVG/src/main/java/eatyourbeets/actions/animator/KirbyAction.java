@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.animator.beta.colorless.AbstractMysteryCard;
 import eatyourbeets.cards.animator.beta.colorless.Kirby;
-import eatyourbeets.cards.animator.beta.colorless.Kirby_MysteryCard;
+import eatyourbeets.cards.animator.beta.colorless.MysteryCard;
+import eatyourbeets.cards.animator.beta.colorless.MysteryCard2;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
 
@@ -35,12 +36,9 @@ public class KirbyAction extends EYBActionWithCallback<Kirby>
 
         CardGroup cardGroupPlaceholder = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-        Kirby_MysteryCard placeholder = new Kirby_MysteryCard(true);
-        UnlockTracker.markCardAsSeen(placeholder.cardID);
-        placeholder.isLocked = false;
+        AbstractMysteryCard placeholder = kirby.GetCard(0) instanceof MysteryCard ? new MysteryCard2(true) : new MysteryCard(true);
         placeholder.isSeen = true;
-
-        cardGroupPlaceholder.addToBottom(new Kirby_MysteryCard(true));
+        cardGroupPlaceholder.addToBottom(placeholder);
         GridCardSelectScreenPatch.AddGroup(cardGroupPlaceholder);
 
 

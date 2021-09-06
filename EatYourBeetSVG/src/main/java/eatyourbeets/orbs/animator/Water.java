@@ -53,10 +53,6 @@ public class Water extends AnimatorOrb
         turns = 3;
         evoked = false;
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        if (CombatStats.TryActivateLimited(ID))
-        {
-            GameActions.Bottom.Heal(HP_HEAL);
-        }
     }
 
     public void updateDescription()
@@ -188,6 +184,11 @@ public class Water extends AnimatorOrb
         turns = 0;
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
+
+        if (CombatStats.TryActivateLimited(ID))
+        {
+            GameActions.Bottom.Heal(HP_HEAL);
+        }
     }
 
     @Override

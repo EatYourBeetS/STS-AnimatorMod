@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -63,7 +64,9 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
             GameActions.Bottom.MakeCardInDrawPile(new AbyssalVoid());
         }
 
-        if (GameUtilities.GetDebuffsCount(player.powers) == DEBUFFS_COUNT) {
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
+        if (isSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
+        {
             GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
         }
 
@@ -94,7 +97,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
                     GameActions.Bottom.Add(new WaterOrbEvokeAction(orb.hb, orb.passiveAmount));
                 }
                 else {
-                    GameActions.Bottom.TriggerOrbPassive(orb, 1);
+                    GameActions.Bottom.InduceOrb(orb,false);
                 }
             }
 

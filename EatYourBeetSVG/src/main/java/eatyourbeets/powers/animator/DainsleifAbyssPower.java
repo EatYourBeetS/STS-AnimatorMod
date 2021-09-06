@@ -161,7 +161,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
         }),
         EnemiesGainStrength(ACTIONS.GiveAllEnemies(2, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Strength, 2)),
         EnemiesGainStrength2(ACTIONS.GiveAllEnemies(4, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Strength, 4)),
-        EnemiesGainTemporaryThorns(ACTIONS.GiveAllEnemies(5, GR.Tooltips.Thorns, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.TemporaryThorns, 5)),
+        EnemiesGainTemporaryThorns(ACTIONS.GiveAllEnemies(5, GR.Tooltips.TemporaryThorns, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.TemporaryThorns, 5)),
         PlayerGainBurning(ACTIONS.GainAmount(4, GR.Tooltips.Burning, true), 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(null, p, 4)),
         PlayerGainFrail(ACTIONS.GainAmount(2, GR.Tooltips.Frail, true), 1, (c, p, m) -> GameActions.Bottom.ApplyFrail(null, p, 2)),
         PlayerGainFreezing(ACTIONS.GainAmount(4, GR.Tooltips.Freezing, true), 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(null, p, 4)),
@@ -200,21 +200,18 @@ public class DainsleifAbyssPower extends AnimatorPower {
 
     private enum AbyssPositiveEffect {
         ApplyBlinded(ACTIONS.ApplyToALL(2, GR.Tooltips.Blinded, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), 2)),
-        ApplyBurning(ACTIONS.ApplyToALL(4, GR.Tooltips.Burning, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 4)),
-        ApplyBurning2(ACTIONS.ApplyToALL(6, GR.Tooltips.Burning, true), 10, 2, (c, p, m) -> GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 6)),
-        ApplyFreezing(ACTIONS.ApplyToALL(4, GR.Tooltips.Freezing, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), 4)),
+        ApplyBurning(ACTIONS.ApplyToALL(5, GR.Tooltips.Burning, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 4)),
+        ApplyFreezing(ACTIONS.ApplyToALL(5, GR.Tooltips.Freezing, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), 4)),
         ApplyVulnerable(ACTIONS.ApplyToALL(3, GR.Tooltips.Vulnerable, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 3)),
         ApplyWeak(ACTIONS.ApplyToALL(3, GR.Tooltips.Weak, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3)),
         ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(2)),
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
         NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(3, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
-        GainCorruption(ACTIONS.GainAmount(3, GR.Tooltips.Corruption, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainCorruption(3, false)),
-        GainCorruption2(ACTIONS.GainAmount(4, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
-        GainIntellect(ACTIONS.GainAmount(3, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
-        GainIntellect2(ACTIONS.GainAmount(4, GR.Tooltips.Intellect, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainIntellect(4, false)),
-        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 6, 3, (c, p, m) -> {
+        GainBlessing(ACTIONS.GainAmount(4, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
+        GainCorruption(ACTIONS.GainAmount(6, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
+        GainIntellect(ACTIONS.GainAmount(4, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
+        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 7, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());
 
@@ -235,8 +232,8 @@ public class DainsleifAbyssPower extends AnimatorPower {
                         }
                     });
         }),
-        ObtainWish(ACTIONS.AddToDrawPile(1, Traveler_Wish.DATA.Strings.NAME, true), 5, 3, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish())),
-        PlayDainsleif(ACTIONS.PlayFromAnywhere(Dainsleif.DATA.Strings.NAME, true), 2, 4, (c, p, m) -> GameActions.Bottom.PlayFromPile(null, 1, m, p.drawPile, p.discardPile, p.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif));
+        ObtainWish(ACTIONS.AddToDrawPile(1, Traveler_Wish.DATA.Strings.NAME, true), 7, 3, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish())),
+        PlayDainsleif(ACTIONS.PlayFromAnywhere(Dainsleif.DATA.Strings.NAME, true), 6, 4, (c, p, m) -> GameActions.Bottom.PlayFromPile(null, 1, m, p.drawPile, p.discardPile, p.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif));
 
 
         private final String text;

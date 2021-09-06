@@ -33,6 +33,7 @@ import com.megacrit.cardcrawl.screens.stats.AchievementGrid;
 import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.blights.animator.UpgradedHand;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
@@ -1018,6 +1019,19 @@ public class GameUtilities
     public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, card.baseDamage + amount, temporary);
+    }
+
+    public static void IncreaseHandSizePermanently(float cX, float cY)
+    {
+        for (AbstractBlight blight : player.blights)
+        {
+            if (blight instanceof UpgradedHand)
+            {
+                ((UpgradedHand)blight).addAmount(1);
+                return;
+            }
+        }
+        GetCurrentRoom(true).spawnBlightAndObtain(cX, cY, new UpgradedHand());
     }
 
     public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)

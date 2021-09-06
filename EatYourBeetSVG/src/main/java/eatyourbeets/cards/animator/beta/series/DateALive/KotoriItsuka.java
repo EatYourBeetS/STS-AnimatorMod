@@ -13,7 +13,7 @@ import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class KotoriItsuka extends AnimatorCard
+public class KotoriItsuka extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));

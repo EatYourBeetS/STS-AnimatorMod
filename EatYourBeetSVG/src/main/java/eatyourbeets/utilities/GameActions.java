@@ -708,14 +708,14 @@ public final class GameActions
         return Add(new ModifyAffinityScaling(group, cards, affinity, amount, true));
     }
 
-    public InduceOrb InduceOrb(AbstractOrb orb)
+    public InduceOrb InduceOrb(AbstractOrb orb, boolean shouldTriggerEvokeEffect)
     {
-        return Add(new InduceOrb(orb));
+        return Add(new InduceOrb(orb, shouldTriggerEvokeEffect));
     }
 
-    public InduceOrb InduceOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
+    public InduceOrb InduceOrbs(FuncT0<AbstractOrb> orbConstructor, int amount, boolean shouldTriggerEvokeEffect)
     {
-        return Add(new InduceOrb(orbConstructor, amount));
+        return Add(new InduceOrb(orbConstructor, amount, shouldTriggerEvokeEffect));
     }
 
     public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)

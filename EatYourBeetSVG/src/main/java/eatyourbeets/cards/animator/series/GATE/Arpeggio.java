@@ -20,13 +20,14 @@ public class Arpeggio extends AnimatorCard
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
     private static final int POWER_ENERGY_COST = 1;
+    private static final int TRIGGER_LIMIT = 3;
 
     public Arpeggio()
     {
         super(DATA);
 
-        Initialize(0, 0, 0, POWER_ENERGY_COST);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(2);
         SetAffinity_Orange(2);
@@ -40,7 +41,7 @@ public class Arpeggio extends AnimatorCard
             GameActions.Bottom.GainOrbSlots(magicNumber);
         }
 
-        GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
+        GameActions.Bottom.StackPower(new ArpeggioPower(p, secondaryValue));
     }
 
     public static class ArpeggioPower extends AnimatorClickablePower
@@ -61,7 +62,7 @@ public class Arpeggio extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, intellectBonus, MAX_BONUS);
+            return FormatDescription(0, triggerCondition.requiredAmount, TRIGGER_LIMIT,  intellectBonus, MAX_BONUS);
         }
 
         @Override
@@ -77,7 +78,7 @@ public class Arpeggio extends AnimatorCard
         public void OnUse(AbstractMonster m)
         {
             super.OnUse(m);
-            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(1, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
+            GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(TRIGGER_LIMIT, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
         }
     }
 }

@@ -197,12 +197,12 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
         if (inheritedCards.size() < COPIED_CARDS) {
             while (inheritedCards.size() < COPIED_CARDS) {
-                AddInheritedCard(new Kirby_MysteryCard());
+                AddInheritedCard(new MysteryCard());
             }
         }
         for (AbstractCard card : inheritedCards) {
-            if (card instanceof Kirby_MysteryCard) {
-                AbstractCard newCard = ((Kirby_MysteryCard) card).CreateObscuredCard();
+            if (card instanceof AbstractMysteryCard) {
+                AbstractCard newCard = ((AbstractMysteryCard) card).CreateObscuredCard();
                 ReplaceInheritedCard(card, newCard);
                 if (newCard instanceof AnimatorCard) {
                     ((AnimatorCard) newCard).triggerWhenCreated(startOfBattle);
@@ -211,6 +211,8 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
             else if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).triggerWhenCreated(startOfBattle);
             }
+            card.isLocked = false;
+            card.isSeen = true;
         }
         CombatStats.onCostChanged.Subscribe(this);
         CombatStats.onTagChanged.Subscribe(this);
@@ -258,7 +260,7 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     public void RemoveInheritedCards() {
         GameEffects.Queue.Callback(() -> {
             for (AbstractCard card : inheritedCards) {
-                if (!(card instanceof Kirby_MysteryCard)) {
+                if (!(card instanceof AbstractMysteryCard)) {
                     GameEffects.TopLevelList.ShowAndObtain(card);
                 }
             }
@@ -289,6 +291,10 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
 
     public int GetInheritedCardsSize() {
         return inheritedCards.size();
+    }
+
+    public AbstractCard GetCard(int index) {
+        return inheritedCards.size() > index ? inheritedCards.get(index) : null;
     }
 
     public void ReplaceInheritedCard(AbstractCard original, AbstractCard incoming) {

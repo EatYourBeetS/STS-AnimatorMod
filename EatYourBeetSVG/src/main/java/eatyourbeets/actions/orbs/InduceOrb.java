@@ -12,41 +12,44 @@ import java.util.ArrayList;
 
 public class InduceOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 {
-    private final ArrayList<AbstractOrb> inducedOrbs = new ArrayList<>();
-    private final FuncT0<AbstractOrb> orbConstructor;
-    private final int initialOrbSlotCount;
-    private AbstractOrb orb;
+    protected final ArrayList<AbstractOrb> inducedOrbs = new ArrayList<>();
+    protected final FuncT0<AbstractOrb> orbConstructor;
+    protected final int initialOrbSlotCount;
+    protected boolean shouldTriggerOnEvoke;
+    protected AbstractOrb orb;
 
-    public InduceOrb(AbstractOrb orb)
+    public InduceOrb(AbstractOrb orb, boolean shouldTriggerOnEvoke)
+    {
+        this(orb,null,1,shouldTriggerOnEvoke);
+    }
+
+    public InduceOrb(FuncT0<AbstractOrb> orbConstructor, int amount, boolean shouldTriggerOnEvoke)
+    {
+        this(null,orbConstructor,amount,shouldTriggerOnEvoke);
+    }
+
+    public InduceOrb(AbstractOrb orb, FuncT0<AbstractOrb> orbConstructor, int amount, boolean shouldTriggerOnEvoke)
     {
         super(ActionType.SPECIAL, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
         this.orb = orb;
-        this.orbConstructor = null;
-        this.initialOrbSlotCount = player.orbs.size();
-
-        Initialize(1);
-    }
-
-    public InduceOrb(FuncT0<AbstractOrb> orbConstructor, int amount)
-    {
-        super(ActionType.SPECIAL, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
-
-        this.orb = null;
         this.orbConstructor = orbConstructor;
         this.initialOrbSlotCount = player.orbs.size();
+        this.shouldTriggerOnEvoke = shouldTriggerOnEvoke;
 
         Initialize(amount);
+    }
+
+    public InduceOrb SetShouldTriggerOnEvoke(boolean shouldTriggerOnEvoke)
+    {
+        this.shouldTriggerOnEvoke = shouldTriggerOnEvoke;
+
+        return this;
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        if (!TickDuration(deltaTime))
-        {
-            return;
-        }
-
         if (amount > 0)
         {
             if (orbConstructor != null)
@@ -54,7 +57,22 @@ public class InduceOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
                 orb = orbConstructor.Invoke();
             }
 
-            if (GameUtilities.IsValidOrb(orb))
+            if (shouldTriggerOnEvoke) {
+                TriggerEffectOnly(orb, amount);
+            }
+            else {
+                TriggerEffectAndEvoke(orb, amount);
+            }
+        }
+
+        Complete(inducedOrbs);
+    }
+
+    protected void TriggerEffectOnly(AbstractOrb orb, int times)
+    {
+        if (GameUtilities.IsValidOrb(orb))
+        {
+            for (int i = 0; i < times; i++)
             {
                 orb.applyFocus();
                 GameActions.Top.Callback(new EvokeSpecificOrbAction(orb))
@@ -66,20 +84,19 @@ public class InduceOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
                         });
                 inducedOrbs.add(orb);
             }
-            inducedOrbs.add(orb);
-
-            amount -= 1;
         }
+    }
 
-        if (amount > 0)
+    protected void TriggerEffectAndEvoke(AbstractOrb orb, int times)
+    {
+        if (GameUtilities.IsValidOrb(orb))
         {
-            //repeat
-            duration = startDuration;
-            isDone = false;
-        }
-        else
-        {
-            Complete(inducedOrbs);
+            for (int i = 0; i < times; i++)
+            {
+                orb.applyFocus();
+                orb.onEvoke();
+                inducedOrbs.add(orb);
+            }
         }
     }
 }

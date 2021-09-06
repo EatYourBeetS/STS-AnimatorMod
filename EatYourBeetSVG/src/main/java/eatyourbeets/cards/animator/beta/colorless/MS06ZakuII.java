@@ -55,7 +55,7 @@ public class MS06ZakuII extends AnimatorCard
         if (!player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General)) {
             for (Affinity t : Affinity.Basic()) {
                 if (CombatStats.Affinities.GetPowerThreshold(t) > secondaryValue && CombatStats.TryActivateLimited(cardID)) {
-                    GameUtilities.ObtainBlight(hb.cX, hb.cY, new UpgradedHand());
+                    GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
                     break;
                 }
             }

@@ -47,7 +47,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
             RandomizedList<AbstractOrb> orbList = new RandomizedList<AbstractOrb>(JUtils.Filter(player.orbs, GameUtilities::IsCommonOrb));
             if (orbList.Size() > 0) {
                 for (int i = 0; i < magicNumber; i++) {
-                    GameActions.Bottom.InduceOrb(orbList.Retrieve(rng,false).makeCopy());
+                    GameActions.Bottom.InduceOrb(orbList.Retrieve(rng,false).makeCopy(), true);
                 }
             }
 

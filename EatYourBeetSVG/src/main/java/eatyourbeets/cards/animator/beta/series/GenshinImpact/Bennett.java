@@ -17,7 +17,7 @@ public class Bennett extends AnimatorCard {
     public Bennett() {
         super(DATA);
 
-        Initialize(9, 0, 4, 4);
+        Initialize(9, 0, 5, 4);
         SetUpgrade(3, 0, 2);
         SetAffinity_Red(1, 0 ,0);
 
@@ -28,7 +28,7 @@ public class Bennett extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        if (GameUtilities.GetHealthPercentage(player) < 0.4f || isSynergizing) {
+        if (GameUtilities.GetHealthPercentage(player) < 0.3f || isSynergizing) {
             GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
         }
         if (!CheckAffinity(Affinity.Red)) {

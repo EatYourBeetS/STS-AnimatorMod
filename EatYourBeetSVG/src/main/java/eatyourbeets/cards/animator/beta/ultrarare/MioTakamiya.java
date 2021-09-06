@@ -16,7 +16,7 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class MioTakamiya extends AnimatorCard_UltraRare
+public class MioTakamiya extends AnimatorCard_UltraRare //TODO
 {
     public static final EYBCardData DATA = Register(MioTakamiya.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DateALive)
             .PostInitialize(data -> data.AddPreview(new ShidoItsuka(), false));

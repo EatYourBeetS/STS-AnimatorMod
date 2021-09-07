@@ -1,9 +1,9 @@
 {
-  "modid": "eatyourbeetsvg-theanimator",
-  "name": "The Animator",
+  "modid": "eatyourbeetsvg-theanimator_beta",
+  "name": "The Animator (Beta)",
   "author_list": ["EatYourBeetS"],
-  "description": "Adds a new playable character, a new Act, 150+ cards, and 25+ relics.",
-  "version": "3.7.1",
+  "description": "Adds a new playable character, a new Act, 150+ cards, and 25+ relics. This is a beta version with unreleased cards and relics.",
+  "version": "v6.0.0",
   "sts_version": "12-22-2020",
   "mts_version": "3.22.0",
   "dependencies": ["basemod", "stslib"],

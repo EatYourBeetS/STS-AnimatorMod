@@ -13,7 +13,7 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class KurumiTokisaki extends AnimatorCard
+public class KurumiTokisaki extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 

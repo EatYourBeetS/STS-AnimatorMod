@@ -31,7 +31,7 @@ public class TheFloatyThing extends EYBEvent
 
     public static TheFloatyThing TryCreate(Random rng)
     {
-        if (AbstractDungeon.floorNum > 14 && !(GameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
+        if (AbstractDungeon.floorNum > 14 && GameUtilities.GetGold() > 160 && !(GameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
             return new TheFloatyThing();
         }
         return null;

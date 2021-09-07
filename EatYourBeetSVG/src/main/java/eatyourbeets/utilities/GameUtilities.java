@@ -604,6 +604,11 @@ public class GameUtilities
         return monsters;
     }
 
+    public static int GetGold()
+    {
+        return player != null ? player.gold : 0;
+    }
+
     public static float GetHealthPercentage(AbstractCreature creature)
     {
         return creature.currentHealth / (float) creature.maxHealth;

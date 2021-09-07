@@ -598,7 +598,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Apply !M! [Blinded]. || !A! <D>: Gain !M! [E] next turn. || Cooldown !S!: Add !M! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
+			"DESCRIPTION": "Apply !M! [Blinded]. Give {Delayed} to any number of cards in your hand, up to <D>. || Cooldown !S!: Add !M! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -708,7 +708,7 @@
 		},
 		"animator:Dainsleif":
 		{
-			"DESCRIPTION": "At the start of battle: Become cursed by the Abyss. || Channel !M! [Chaos]. Add 1 of 2 cards to your Draw pile. ** !A! <W>. Add both cards.",
+			"DESCRIPTION": "This combat: Periodically trigger a curse. Play this card whenever it is triggered. || Channel !M! [Chaos]. Add 1 of 2 cards to your Draw pile. ** !A! <W>. Add both cards.",
 			"NAME": "Dainsleif"
 		},
 		"animator:Fischl":

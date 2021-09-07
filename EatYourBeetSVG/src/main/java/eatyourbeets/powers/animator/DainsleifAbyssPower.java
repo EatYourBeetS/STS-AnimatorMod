@@ -67,6 +67,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
             this.playApplyPowerSfx();
             CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
             AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.PURPLE, true));
+            GameActions.Bottom.PlayFromPile(null, 1, null, player.drawPile, player.discardPile, player.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif);
             ChooseEffect();
         }
         this.updateDescription();
@@ -178,11 +179,6 @@ public class DainsleifAbyssPower extends AnimatorPower {
         RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(3, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 3)),
         RandomEnemyGainStrength2(ACTIONS.GiveRandomEnemy(6, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 6)),
         EndTurn(ACTIONS.DainsleifEndTurn(true), 4, (c, p, m) -> {
-            GameActions.Bottom.Callback(() -> {
-                for (PowerHelper po : GameUtilities.GetCommonDebuffs()) {
-                    GameActions.Bottom.StackPower(TargetHelper.Player(), po, 2);
-                }
-            });
             GameActions.Last.Add(new PressEndTurnButtonAction());
         });
 
@@ -232,8 +228,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
                         }
                     });
         }),
-        ObtainWish(ACTIONS.AddToDrawPile(1, Traveler_Wish.DATA.Strings.NAME, true), 7, 3, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish())),
-        PlayDainsleif(ACTIONS.PlayFromAnywhere(Dainsleif.DATA.Strings.NAME, true), 6, 4, (c, p, m) -> GameActions.Bottom.PlayFromPile(null, 1, m, p.drawPile, p.discardPile, p.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif));
+        ObtainWish(ACTIONS.AddToDrawPile(2, Traveler_Wish.DATA.Strings.NAME, true), 6, 4, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish()));
 
 
         private final String text;

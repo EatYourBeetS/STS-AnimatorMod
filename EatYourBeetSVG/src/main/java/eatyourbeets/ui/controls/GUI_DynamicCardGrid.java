@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 
@@ -164,7 +165,12 @@ public class GUI_DynamicCardGrid extends GUIElement
         {
             hoveredCard.renderHoverShadow(sb);
             RenderCard(sb, hoveredCard);
-            hoveredCard.renderCardTip(sb);
+
+            if (!AfterLifeMod.IsAdded(hoveredCard))
+            {
+                //Prevent Afterlife cards from showing card tooltips when in the control pile which can cause a crash
+                hoveredCard.renderCardTip(sb);
+            }
         }
 
         if (message != null)

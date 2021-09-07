@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.*;
 import eatyourbeets.resources.animator.misc.*;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -277,6 +278,12 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_OnePunchMan(), 6);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);
+        add.Invoke(new Loadout_Rewrite(), 7);
+        add.Invoke(new Loadout_AngelBeats(), 7);
+        add.Invoke(new Loadout_TouhouProject(), 7);
+        add.Invoke(new Loadout_RozenMaiden(), 7);
+        add.Invoke(new Loadout_Bleach(), 7);
+        add.Invoke(new Loadout_DateALive(), 7);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

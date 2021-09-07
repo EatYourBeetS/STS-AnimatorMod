@@ -6,6 +6,13 @@
 		"NAMES": ["aether", "aether+"],
 		"PROPER_NAME": "Aether"
 	},
+	"Afterlife": {
+	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
+	  "NAMES": [
+		"afterlife"
+	  ],
+	  "PROPER_NAME": "Afterlife"
+	},
 	"Chaos":
 	{
 		"DESCRIPTION": "Orb: Changes into a random orb when you play an #yAttack. Permanently retains its last form at the end of turn.",

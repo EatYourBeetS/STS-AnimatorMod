@@ -194,5 +194,14 @@
 			"The console is disabled while in this act.",
 			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time."
 		]
-	}
+	},
+       "animator:CardMods":
+       {
+     	"TEXT":
+     	[
+     	  "",
+     	  "",
+     	  "I do not have a non-Afterlife card in my exhaust pile to purge."
+     	]
+       }
 }

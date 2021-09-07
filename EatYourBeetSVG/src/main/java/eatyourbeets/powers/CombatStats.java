@@ -155,6 +155,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         currentPhase = null;
         combatData.clear();
         turnData.clear();
+        ControlPile.Clear();
 
         for (GameEvent event : events)
         {

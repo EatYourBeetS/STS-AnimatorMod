@@ -66,13 +66,9 @@ public class TheHeroAssociation extends EYBEvent
             boolean hasEnoughGold = (player.gold >= price);
             AbstractCard hero = null;
             ArrayList<AbstractCard> heroes = JUtils.Filter(player.masterDeck.group, c -> c.hasTag(PROTAGONIST));
-            if (heroes.size() > 0) {
-                hero = JUtils.Random(heroes);
-            }
-
-            if (hero != null)
+            if (heroes.size() > 0)
             {
-                AddOption(text.HeroOption(hero.name), hero).AddCallback(this::Hero);
+                AddOption(text.HeroOption()).AddCallback(this::Hero);
             }
             else
             {
@@ -132,6 +128,8 @@ public class TheHeroAssociation extends EYBEvent
         @Override
         protected void OnEnter()
         {
+
+
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             RewardItem rewardItem = new RewardItem(GR.Animator.CardColor);
             RandomizedList<AbstractCard> cards = new RandomizedList<>(GameUtilities.GetAvailableCards(c -> c.hasTag(PROTAGONIST)));
@@ -177,9 +175,9 @@ public class TheHeroAssociation extends EYBEvent
             return GetDescription(3);
         }
 
-        public final String HeroOption(String name)
+        public final String HeroOption()
         {
-            return GetOption(0, name);
+            return GetOption(0);
         }
 
         public final String HireOption(int gold)

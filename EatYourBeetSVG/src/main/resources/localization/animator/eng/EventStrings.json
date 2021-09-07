@@ -98,13 +98,13 @@
 
 			"\"I have some good and bad news. The good news is that we have recovered the body of the beast, so you will receive your due reward. The bad news... is that #y{0} has gone missing and there are no leads whatsoever on their whereabouts. \" NL NL \"My sincere condolences for your loss.\" NL NL The receptionist hands you your reward. Both you and the receptionist honor your comrades loss with a moment of silence. Then, you head out of the building and continue on your journey.",
 
-			"You decide that you're not enough of a Hero to take on the bounty and opt to hire someone else to complete the bounty for your instead. NL NL When you return to the Hero Association to claim your reward, however, the receptionist informs you that buying off others to complete bounties is strictly forbidden, leaving you with nothing."
+			"You decide that you're not enough of a Hero to take on the bounty and opt to hire someone else to complete the bounty for your instead. NL NL When you return to the Hero Association to claim your reward, however, the receptionist informs you that buying off others to complete bounties is strictly forbidden, leaving you with nothing but a fuming hero who won't leave you alone."
 		],
 		"NAME": "The Hero Association",
 		"OPTIONS":
 		[
-			"[Be the Hero!] #gObtain #ga #gspecial #greward. #rLose #r{0}.",
-			"[Hire a Hero] #gObtain #g1 #gof #g3 #gcards. #rLose #r{0} #rGold.",
+			"[Be the Hero!] #gObtain #ga #gspecial #greward. #rLose #ra #rProtagonist.",
+			"[Hire a Hero] #gChoose #g1 #gof #g5 #gProtagonists #gto #gobtain. #rLose #r{0} #rGold.",
 			"[Locked] ???.",
 			"[Locked] Not enough Gold."
 		]

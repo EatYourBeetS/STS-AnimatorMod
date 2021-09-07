@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " If you reach #b{0} [C], obtain {1}."],
 		"NAME": "Corruption"
 	},
+	"eyb:ExitStanceNextTurnPower":
+    {
+		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
+		"NAME": "Exit Stance Next Turn"
+    },
 	"eyb:ForcePower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " If you reach #b{0} [F], gain #b{1} #yStrength."],
@@ -64,5 +69,10 @@
 	{
 		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
 		"NAME": "Vitality"
+	},
+	"eyb:PhasingPower":
+	{
+		"DESCRIPTIONS": ["You have a #b{0}% chance to dodge each attack.", " This chance starts decaying in #b{0} turn(s).", " Reduce this chance by #b{0}% each turn."],
+		"NAME": "Phasing"
 	}
 }

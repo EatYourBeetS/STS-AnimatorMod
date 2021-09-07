@@ -1,24 +1,19 @@
-package eatyourbeets.cards.animator.beta;
+package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Kagari extends AnimatorCard implements Hidden //TODO:
+public class Kagari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kagari.class)
-            .SetPower(2, CardRarity.UNCOMMON)
-            .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.Rewrite);
+    public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 
     public Kagari()
     {
@@ -26,8 +21,7 @@ public class Kagari extends AnimatorCard implements Hidden //TODO:
 
         Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
         SetUpgrade(0, 0, 3);
-
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(2, 0, 0);
     }
 
     @Override

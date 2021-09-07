@@ -81,6 +81,7 @@ public class CommonImages
         public final TextureCache Retain                  = new TextureCache("images/eyb/cardui/badges/Retain.png");
         public final TextureCache RetainOnce              = new TextureCache("images/eyb/cardui/badges/RetainOnce.png");
         public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
+        public final TextureCache Autoplay                = new TextureCache("images/cardui/eyb/badges/Autoplay.png");
     }
 
     public static class Tooltips

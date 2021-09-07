@@ -33,6 +33,7 @@ import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
+import eatyourbeets.ui.common.ControllableCardPile;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -84,7 +85,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
     public static final GameEvent<OnBattleEndSubscriber> onBattleEnd = new GameEvent<>();
-    //
+
+    public static final ControllableCardPile ControlPile = new ControllableCardPile();
+
     private static final Map<String, Object> combatData = new HashMap<>();
     private static final Map<String, Object> turnData = new HashMap<>();
     private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
@@ -98,6 +101,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static int cardsDrawnThisTurn = 0;
     private static int cardsExhaustedThisTurn = 0;
 
+    private static HashMap<String, Integer> amountIncreasedOnOrbs = new HashMap<>();
     //@Formatter: Off
     public static boolean CanActivateLimited(String id) { return !HasActivatedLimited(id); }
     public static boolean HasActivatedLimited(String id) { return combatData.containsKey(id); }
@@ -544,9 +548,41 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return orbsEvokedThisTurn;
     }
 
+    public static HashMap<String, Integer> AmountIncreasedOnOrbs(boolean fromZero)
+    {
+        return amountIncreasedOnOrbs;
+    }
+
     public static int TurnCount(boolean fromZero)
     {
         return fromZero ? turnCount : (turnCount + 1);
+    }
+
+    public static void AddAmountIncreasedOnOrbs(String orbType, int amount)
+    {
+        if (amountIncreasedOnOrbs.containsKey(orbType))
+        {
+            int currentAmount = amountIncreasedOnOrbs.get(orbType);
+
+            amountIncreasedOnOrbs.put(orbType, currentAmount + amount);
+        }
+        else
+        {
+            amountIncreasedOnOrbs.put(orbType, amount);
+        }
+    }
+
+    public static int GetAmountIncreasedOnOrb(String orbType)
+    {
+        for (String orbID : amountIncreasedOnOrbs.keySet())
+        {
+            if (orbID.equals(orbType))
+            {
+                return amountIncreasedOnOrbs.get(orbID);
+            }
+        }
+
+        return 0;
     }
 
     public static void ApplyPowerPriority(AbstractPower power)

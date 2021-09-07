@@ -187,7 +187,11 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
         }
-
+        if (card.hasTag(GR.Enums.CardTags.AUTOPLAY))
+        {
+            //noinspection UnusedAssignment
+            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
+        }
         if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE))
         {
             //noinspection UnusedAssignment

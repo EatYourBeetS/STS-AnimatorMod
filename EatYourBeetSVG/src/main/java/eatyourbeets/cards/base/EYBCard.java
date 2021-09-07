@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static eatyourbeets.resources.GR.Enums.CardTags.AUTOPLAY;
+
 public abstract class EYBCard extends EYBCardBase
 {
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
@@ -218,6 +220,20 @@ public abstract class EYBCard extends EYBCardBase
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (hasTag(AUTOPLAY))
+        {
+            GameActions.Bottom.PlayCard(this, player.hand, null)
+                    .SpendEnergy(true)
+                    .AddCondition(AbstractCard::hasEnoughEnergy);
+        }
+    }
+
+
+    @Override
     public final void triggerWhenCopied()
     {
         // this is only used by ShowCardAndAddToHandEffect
@@ -308,6 +324,10 @@ public abstract class EYBCard extends EYBCardBase
         if (exhaust || exhaustOnUseOnce)
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
+        }
+        if (hasTag(AUTOPLAY))
+        {
+            dynamicTooltips.add(GR.Tooltips.Autoplay);
         }
         if (affinities.HasStar())
         {
@@ -455,6 +475,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetLoyal(boolean value)
     {
         SetTag(GR.Enums.CardTags.LOYAL, value);
+    }
+
+    public void SetAutoplay(boolean value)
+    {
+        SetTag(AUTOPLAY, value);
     }
 
     public void SetObtainableInCombat(boolean value)

@@ -14,6 +14,8 @@ public class CounterAttackPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(CounterAttackPower.class);
     public static final int VULNERABLE_AMOUNT = 1;
+    public static boolean retain = false;
+    public boolean canActivate = false;
 
     public CounterAttackPower(AbstractCreature owner, int amount)
     {
@@ -39,7 +41,12 @@ public class CounterAttackPower extends CommonPower
     {
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > owner.currentBlock)
         {
-            RemovePower(GameActions.Top);
+            if (!retain) {
+                RemovePower();
+            }
+        }
+        else {
+            canActivate = true;
         }
 
         return super.onAttacked(info, damageAmount);
@@ -50,7 +57,7 @@ public class CounterAttackPower extends CommonPower
     {
         super.atEndOfTurn(isPlayer);
 
-        if (isPlayer)
+        if (isPlayer && canActivate)
         {
             for (AbstractMonster m : GameUtilities.GetEnemies(true))
             {
@@ -60,7 +67,9 @@ public class CounterAttackPower extends CommonPower
                 }
             }
 
-            RemovePower();
+            if (!retain) {
+                RemovePower();
+            }
         }
     }
 
@@ -72,6 +81,10 @@ public class CounterAttackPower extends CommonPower
         GameActions.Bottom.StackPower(new VigorPower(owner, amount));
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), VULNERABLE_AMOUNT);
         flashWithoutSound();
-        RemovePower();
+        canActivate = false;
+        if (!retain) {
+            RemovePower();
+        }
+
     }
 }

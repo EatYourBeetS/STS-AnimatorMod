@@ -1,10 +1,9 @@
-package eatyourbeets.cards.animator.colorless.rare;
+package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -12,10 +11,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class KotoriKanbe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriKanbe.class)
-            .SetSkill(1, CardRarity.RARE)
-            .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.Rewrite);
+    public static final EYBCardData DATA = Register(KotoriKanbe.class).SetSkill(1, CardRarity.RARE).SetSeriesFromClassPackage();
     public static final int HP_HEAL_THRESHOLD = 30;
 
     public KotoriKanbe()
@@ -24,16 +20,16 @@ public class KotoriKanbe extends AnimatorCard
 
         Initialize(0, 0, 3, 4);
 
-        SetAffinity_Blue(1);
-
         SetEthereal(true);
         SetExhaust(true);
+        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
     public String GetRawDescription()
     {
-        return GetRawDescription(HP_HEAL_THRESHOLD);
+        return super.GetRawDescription(HP_HEAL_THRESHOLD);
     }
 
     @Override
@@ -52,7 +48,7 @@ public class KotoriKanbe extends AnimatorCard
             if (stacks > 0)
             {
                 EnemyIntent intent = GameUtilities.GetIntent(m).AddWeak();
-                if (heal >= HP_HEAL_THRESHOLD && CombatStats.CanActivateLimited(cardID))
+                if (heal >= HP_HEAL_THRESHOLD && !CombatStats.HasActivatedLimited(cardID))
                 {
                     intent.AddStrength(-secondaryValue);
                 }

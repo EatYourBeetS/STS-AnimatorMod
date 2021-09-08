@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -128,18 +129,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
             {
                 if (!GameUtilities.IsDeadOrEscaped(enemy))
                 {
-                    if (this.attackEffect == AttackEffect.POISON)
-                    {
-                        enemy.tint.color.set(Color.CHARTREUSE.cpy());
-                        enemy.tint.changeColor(Color.WHITE.cpy());
-                    }
-                    else if (this.attackEffect == AttackEffect.FIRE)
-                    {
-                        enemy.tint.color.set(Color.RED.cpy());
-                        enemy.tint.changeColor(Color.WHITE.cpy());
-                    }
-
-                    DamageHelper.DealDamage(enemy, new DamageInfo(this.source, this.damage[i], this.damageType), bypassBlock, bypassThorns);
+                    DamageHelper.DealDamage(enemy, new DamageInfo(this.source, this.damage[i], this.damageType), attackEffect, bypassBlock, bypassThorns);
                     targets.add(enemy);
                 }
 

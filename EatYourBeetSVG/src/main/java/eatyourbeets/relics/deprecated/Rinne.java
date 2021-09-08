@@ -76,7 +76,7 @@ public class Rinne extends AnimatorRelic
     {
         if (AddCounter(1 + (value % 7)) % 21 == RINNE_DOES)
         {
-            GameActions.Bottom.Add(new HigakiRinneAction(RINNE_ITSELF));
+            GameActions.Bottom.Add(new HigakiRinneAction(RINNE_ITSELF, 1));
         }
     }
 }

@@ -2,12 +2,10 @@ package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.resources.GR;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,18 +20,12 @@ public class TakanashiRikka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Light(1);
 
-        SetEthereal(true);
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override
@@ -41,16 +33,39 @@ public class TakanashiRikka extends AnimatorCard
     {
         for (AbstractCard c : p.hand.getAttacks().group)
         {
-            GameActions.Top.MakeCardInHand(c)
-            .SetUpgrade(false, true)
-            .AddCallback(card ->
+            GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
+        }
+
+        GameActions.Bottom.StackPower(new TakanashiRikkaPower(p, magicNumber));
+    }
+
+    public static class TakanashiRikkaPower extends AnimatorPower
+    {
+        public TakanashiRikkaPower(AbstractCreature owner, int amount)
+        {
+            super(owner, TakanashiRikka.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        {
+            super.onPlayCard(card, m);
+
+            if (card.type == CardType.ATTACK)
             {
-                GameUtilities.ModifyCostForCombat(card, 0, false);
-                card.freeToPlayOnce = true;
-                card.baseDamage = 0;
-                card.tags.add(GR.Enums.CardTags.PURGE);
-                card.applyPowers();
-            });
+                GameActions.Top.GainBlock(amount);
+                this.flashWithoutSound();
+            }
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            RemovePower();
         }
     }
 }

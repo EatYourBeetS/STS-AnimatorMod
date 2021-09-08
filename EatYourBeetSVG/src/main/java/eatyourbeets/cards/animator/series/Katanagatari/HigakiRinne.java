@@ -5,8 +5,6 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
@@ -14,27 +12,56 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.cards.animator.status.Konosuba_Slimed;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.animator.HigakiRinnePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.WeightedList;
 
 public class HigakiRinne extends AnimatorCard
 {
+    private static final WeightedList<ActionT1<HigakiRinne>> drawActions = new WeightedList<>();
+    private static final WeightedList<ActionT1<HigakiRinne>> exhaustActions = new WeightedList<>();
+
     public static final EYBCardData DATA = Register(HigakiRinne.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                drawActions.Add(c -> { }, 10);
+                drawActions.Add(c -> GameActions.Bottom.SFX(HigakiRinneAction.GetRandomSFX(), 0.6f, 1.6f), 20);
+                drawActions.Add(c -> c.ChangeForm(CardType.ATTACK), 10);
+                drawActions.Add(c -> c.ChangeForm(CardType.POWER), 10);
+                drawActions.Add(c ->
+                {
+                    GameActions.Bottom.WaitRealtime(0.3f);
+                    GameActions.Bottom.MakeCardInHand(c.makeStatEquivalentCopy());
+                }, 1);
+                drawActions.Add(c ->
+                {
+                    GameActions.Bottom.WaitRealtime(0.3f);
+                    GameActions.Bottom.MakeCardInHand(ThrowingKnife.GetRandomCard());
+                }, 5);
+                drawActions.Add(c ->
+                {
+                    GameActions.Top.Draw(1);
+                    GameActions.Top.MoveCard(c, player.hand, player.discardPile).ShowEffect(true, false);
+                }, 5);
+
+                exhaustActions.Add(c -> { }, 10);
+                exhaustActions.Add(c -> GameActions.Bottom.SFX(HigakiRinneAction.GetRandomSFX(), 0.6f, 1.6f), 10);
+                exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(ThrowingKnife.GetRandomCard()), 5);
+                exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(c.makeStatEquivalentCopy()), 1);
+                exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(new Konosuba_Slimed()), 5);
+            });
 
     public HigakiRinne()
     {
@@ -56,7 +83,7 @@ public class HigakiRinne extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return type == CardType.ATTACK ? DamageAttribute.Instance.SetCard(this).SetText("?", Settings.CREAM_COLOR) : null;
+        return type == CardType.ATTACK ? DamageAttribute.Instance.SetCard(this).SetText("!", Settings.CREAM_COLOR) : null;
     }
 
     @Override
@@ -81,34 +108,7 @@ public class HigakiRinne extends AnimatorCard
             ChangeForm(CardType.SKILL);
         }
 
-        int n = rng.random(100);
-        if (n < 3)
-        {
-            GameActions.Bottom.WaitRealtime(0.3f);
-            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
-        }
-        else if (n < 12)
-        {
-            GameActions.Bottom.WaitRealtime(0.3f);
-            GameActions.Bottom.MakeCardInHand(new Shiv());
-        }
-        else if (n < 38)
-        {
-            GameActions.Top.Draw(1);
-            GameActions.Top.MoveCard(this, player.hand, player.discardPile).ShowEffect(true, false);
-        }
-        else if (n < 49)
-        {
-            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds), 0.6f, 1.6f);
-        }
-        else if (n < 59)
-        {
-            ChangeForm(CardType.ATTACK);
-        }
-        else if (n < 69)
-        {
-            ChangeForm(CardType.POWER);
-        }
+        drawActions.Retrieve(rng, false).Invoke(this);
     }
 
     @Override
@@ -116,23 +116,7 @@ public class HigakiRinne extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        int n = rng.random(100);
-        if (n < 20)
-        {
-            GameActions.Bottom.MakeCardInHand(new Shiv());
-        }
-        else if (n < 40)
-        {
-            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds), 0.6f, 1.6f);
-        }
-        else if (n < 60)
-        {
-            GameActions.Bottom.MakeCardInHand(new Slimed());
-        }
-        else if (n < 64)
-        {
-            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
-        }
+        exhaustActions.Retrieve(rng, false).Invoke(this);
     }
 
     @Override
@@ -148,11 +132,8 @@ public class HigakiRinne extends AnimatorCard
         }
         else
         {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                GameActions.Bottom.Wait(0.2f);
-                GameActions.Bottom.Add(new HigakiRinneAction(this));
-            }
+            GameActions.Bottom.Wait(0.2f);
+            GameActions.Bottom.Add(new HigakiRinneAction(this, magicNumber));
         }
     }
 
@@ -192,7 +173,7 @@ public class HigakiRinne extends AnimatorCard
             GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AttackEffects.POISON);
             GameActions.Bottom.DealDamage(p, m, rng.random(2, d), DamageInfo.DamageType.THORNS, AttackEffects.POISON);
 
-            GameActions.Bottom.SFX(GameUtilities.GetRandomElement(sounds));
+            GameActions.Bottom.SFX(HigakiRinneAction.GetRandomSFX());
         }
     }
 
@@ -208,7 +189,7 @@ public class HigakiRinne extends AnimatorCard
         {
             LoadImage("Power");
             this.type = CardType.POWER;
-            this.target = CardTarget.ALL;
+            this.target = CardTarget.SELF;
         }
         else
         {
@@ -216,29 +197,5 @@ public class HigakiRinne extends AnimatorCard
             this.type = CardType.SKILL;
             this.target = CardTarget.ALL;
         }
-    }
-
-    private static final ArrayList<String> sounds = new ArrayList<>();
-
-    static
-    {
-        sounds.add(SFX.VO_AWAKENEDONE_3);
-        sounds.add(SFX.VO_GIANTHEAD_1B);
-        sounds.add(SFX.VO_GREMLINANGRY_1A);
-        sounds.add(SFX.VO_GREMLINCALM_2A);
-        sounds.add(SFX.VO_GREMLINFAT_2A);
-        sounds.add(SFX.VO_GREMLINNOB_1B);
-        sounds.add(SFX.VO_HEALER_1A);
-        sounds.add(SFX.VO_MERCENARY_1B);
-        sounds.add(SFX.VO_MERCHANT_MB);
-        sounds.add(SFX.VO_SLAVERBLUE_2A);
-        sounds.add(SFX.THUNDERCLAP);
-        sounds.add(SFX.BELL);
-        sounds.add(SFX.ENEMY_TURN);
-        sounds.add(SFX.DEATH_STINGER);
-        sounds.add(SFX.BOSS_VICTORY_STINGER);
-        sounds.add(SFX.TINGSHA);
-        sounds.add(SFX.NECRONOMICON);
-        sounds.add(SFX.INTIMIDATE);
     }
 }

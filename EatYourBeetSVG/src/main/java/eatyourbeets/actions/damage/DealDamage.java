@@ -137,18 +137,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (TickDuration(deltaTime))
         {
-            if (this.attackEffect == AttackEffect.POISON)
-            {
-                this.target.tint.color.set(Color.CHARTREUSE.cpy());
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-            else if (this.attackEffect == AttackEffect.FIRE)
-            {
-                this.target.tint.color.set(Color.RED.cpy());
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-
-            DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
+            DamageHelper.DealDamage(target, info, attackEffect, bypassBlock, bypassThorns);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {

@@ -170,17 +170,6 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (TickDuration(deltaTime))
         {
-            if (this.attackEffect == AttackEffect.POISON)
-            {
-                this.target.tint.color = Color.CHARTREUSE.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-            else if (this.attackEffect == AttackEffect.FIRE)
-            {
-                this.target.tint.color = Color.RED.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-
             if (applyPowers)
             {
                 if (card != null)
@@ -199,7 +188,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
                 this.info.output = AbstractOrb.applyLockOn(target, this.info.output);
             }
 
-            DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
+            DamageHelper.DealDamage(target, info, attackEffect, bypassBlock, bypassThorns);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {

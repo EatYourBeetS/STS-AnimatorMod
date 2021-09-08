@@ -21,12 +21,11 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 2);
-        SetUpgrade(0,0,0);
+        Initialize(12, 12, 1);
+        SetUpgrade(0,0,1);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
         SetAutoplay(true);
         SetEthereal(true);
 
@@ -37,7 +36,6 @@ public class KurumiTokisaki extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
-        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override
@@ -47,17 +45,16 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
-        if (CheckAffinity(Affinity.Dark)) {
-            GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
-        }
-        GameActions.Bottom.SelectFromHand(name, 999, false)
+
+        GameActions.Bottom.SelectFromHand(name, GetHandAffinity(Affinity.Dark) + magicNumber, false)
                 .SetOptions(true, true, true)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null && !c.hasTag(DELAYED))
+                .SetFilter(c -> !c.hasTag(DELAYED))
                 .AddCallback(cards ->
                 {
                     for (AbstractCard card : cards) {
                         GameActions.Bottom.ModifyTag(card,DELAYED,true);
+                        GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
                     }
                 });
         cooldown.ProgressCooldownAndTrigger(m);
@@ -66,22 +63,20 @@ public class KurumiTokisaki extends AnimatorCard
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-                    .SetFilter(GameUtilities::CanPlayTwice)
-                    .AddCallback(cards ->
-                    {
-                        final String key = cardID + uuid;
-                        for (AbstractCard card : cards) {
-                            GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded,true).AddCallback(c -> {
-                                CostModifiers.For(card).Add(key, -1);
-                                GameActions.Bottom.ModifyTag(c,AUTOPLAY,true);
-                                GameActions.Bottom.ModifyTag(c,PURGE,true);
-                            });
-                        }
-                    });
-        }
+        GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
+                .SetOptions(true,false)
+                .SetFilter(GameUtilities::CanPlayTwice)
+                .AddCallback(cards ->
+                {
+                    final String key = cardID + uuid;
+                    for (AbstractCard card : cards) {
+                        GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(card.upgraded,true).AddCallback(c -> {
+                            CostModifiers.For(card).Add(key, -1);
+                            GameActions.Bottom.ModifyTag(c,AUTOPLAY,true);
+                            //GameActions.Bottom.ModifyTag(c,PURGE,true);
+                        });
+                    }
+                });
+        GameActions.Bottom.Purge(this);
     }
 }

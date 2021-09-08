@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Yui extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yui.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(Yui.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new GirlDeMo(), false));
 
     public Yui()
@@ -28,15 +28,9 @@ public class Yui extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.Motivate(secondaryValue);
 
         if (CombatStats.ControlPile.Contains(this))

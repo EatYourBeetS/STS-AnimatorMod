@@ -9,9 +9,9 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YuzuruOtonashi extends AnimatorCard
+public class YuzuruOtonashi extends AnimatorCard //TODO
 {
-    public static final EYBCardData DATA = Register(YuzuruOtonashi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(YuzuruOtonashi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public YuzuruOtonashi()
     {
@@ -38,7 +38,7 @@ public class YuzuruOtonashi extends AnimatorCard
             {
                 if (card.type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.GainForce(1, true);
+                    GameActions.Bottom.GainBlessing(1, true);
                 }
                 else if (card.type == CardType.SKILL)
                 {

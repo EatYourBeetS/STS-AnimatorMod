@@ -11,7 +11,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Chaa extends AnimatorCard
+public class Chaa extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Chaa.class).SetPower(3, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 

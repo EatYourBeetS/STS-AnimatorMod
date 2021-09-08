@@ -110,6 +110,7 @@ public class CardTooltips
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
+    public EYBCardTooltip Energized = FindByID("Energized");
     public EYBCardTooltip DemonForm = FindByID("Demon Form");
     public EYBCardTooltip Strength = FindByID("~Strength");
     public EYBCardTooltip Dexterity = FindByID("~Dexterity");
@@ -266,6 +267,7 @@ public class CardTooltips
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
         LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));
         LoadFromPower(DemonForm, new DemonFormPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));

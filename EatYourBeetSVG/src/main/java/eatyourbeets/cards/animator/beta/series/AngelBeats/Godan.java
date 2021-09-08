@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -12,17 +13,19 @@ import eatyourbeets.utilities.GameActions;
 
 public class Godan extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Godan.class).SetAttack(1, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Godan.class).SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage();
 
     public Godan()
     {
         super(DATA);
 
-        Initialize(5, 0, 2);
+        Initialize(5, 0, 1);
         SetUpgrade(1, 0, 1);
 
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 1, 1);
+
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
@@ -30,7 +33,7 @@ public class Godan extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

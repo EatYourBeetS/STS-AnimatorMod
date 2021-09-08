@@ -28,8 +28,8 @@ public class EriShiina extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 2);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(7, 0, 3, 2);
+        SetUpgrade(3, 0, 0, 1);
 
         SetAffinity_Green(2, 0, 2);
         SetExhaust(true);

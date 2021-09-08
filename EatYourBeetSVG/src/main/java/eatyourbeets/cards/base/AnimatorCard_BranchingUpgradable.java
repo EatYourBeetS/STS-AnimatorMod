@@ -1,40 +1,47 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.BranchingUpgradesCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.utilities.JUtils;
+import patches.cardStrings.CardStringPatches;
 
-public abstract class AnimatorCard_BranchingUpgradable extends AnimatorCard implements BranchingUpgradesCard
+public abstract class AnimatorCard_BranchingUpgradable extends AnimatorCard implements BranchingUpgradesCard //TODO
 {
-    protected boolean playAtEndOfTurn;
-
-    protected AnimatorCard_BranchingUpgradable(EYBCardData data, boolean playAtEndOfTurn)
+    protected AnimatorCard_BranchingUpgradable(EYBCardData data)
     {
         super(data);
-
-        this.playAtEndOfTurn = playAtEndOfTurn;
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
+    protected String GetRawDescription(Object... args)
     {
-        if (playAtEndOfTurn)
-        {
-            dontTriggerOnUseCard = true;
-
-            AbstractDungeon.actionManager.cardQueue.add(new CardQueueItem(this, true));
+        if (isBranchUpgrade()) {
+            String[] alternateDescriptions = CardStringPatches.ALTERNATE_DESCRIPTION.get(cardData.Strings);
+            if (alternateDescriptions != null && alternateDescriptions.length > 0) {
+                return upgraded && alternateDescriptions.length > 1
+                        ? JUtils.Format(alternateDescriptions[1], args)
+                        : JUtils.Format(alternateDescriptions[0], args);
+            }
         }
+        return super.GetRawDescription(args);
     }
 
     @Override
-    public boolean canUpgrade()
+    public void renderUpgradePreview(SpriteBatch sb)
     {
-        return false;
-    }
+        AnimatorCard_BranchingUpgradable upgrade = JUtils.SafeCast(cardData.tempCard,AnimatorCard_BranchingUpgradable.class);
 
-    @Override
-    public void upgrade()
-    {
+        if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
+        {
+            cardData.tempCard = upgrade = (AnimatorCard_BranchingUpgradable) this.makeSameInstanceOf();
+            upgrade.isPreview = true;
+            upgrade.upgrade();
+            upgrade.displayUpgrades();
+        }
 
+        upgrade.current_x = this.current_x;
+        upgrade.current_y = this.current_y;
+        upgrade.drawScale = this.drawScale;
+        upgrade.render(sb, false);
     }
 }

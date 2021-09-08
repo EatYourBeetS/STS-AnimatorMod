@@ -150,6 +150,12 @@
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
 	},
+	"Energized":
+	{
+		"DESCRIPTION": "Gain [E] next turn.",
+		"NAMES": ["energized"],
+		"PROPER_NAME": "Energized"
+	},
 	"Envenom":
 	{
 		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",

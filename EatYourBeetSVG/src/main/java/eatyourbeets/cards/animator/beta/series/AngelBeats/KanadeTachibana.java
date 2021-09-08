@@ -1,11 +1,15 @@
 package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KanadeTachibana extends AnimatorCard
 {
@@ -15,8 +19,8 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
         SetAffinity_Blue(2, 0, 0);
@@ -30,10 +34,23 @@ public class KanadeTachibana extends AnimatorCard
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]);
 
-        if (isSynergizing)
+        GameActions.Bottom.GainBlessing(secondaryValue,true);
+
+        if (!CombatStats.HasActivatedLimited(cardID))
         {
-            GameActions.Bottom.ExhaustFromHand(name, secondaryValue, false)
-            .SetOptions(true, true, true);
+            GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
+                    .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))
+                    .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
+                        {
+                            AbstractCard card = cards.get(0);
+                            AfterLifeMod.Add(card);
+                            card.exhaust = false;
+                            AfterLifeMod.AfterlifeAddToControlPile(card);
+                        }
+                    });
         }
     }
 }

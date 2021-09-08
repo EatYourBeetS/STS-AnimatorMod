@@ -6,8 +6,11 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.List;
@@ -16,6 +19,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 {
     public static String ID = GR.CreateID("eyb", MotivateAction.class.getName());
 
+    protected GenericCondition<AbstractCard> filter;
     protected boolean motivateZeroCost = true;
     protected boolean costReduced = false;
     protected AbstractCard card;
@@ -38,6 +42,20 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     public MotivateAction MotivateZeroCost(boolean value)
     {
         this.motivateZeroCost = value;
+
+        return this;
+    }
+
+    public MotivateAction SetFilter(FuncT1<Boolean, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> MotivateAction SetFilter(S state, FuncT2<Boolean, S, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -76,13 +94,16 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
             for (AbstractCard c : group.group)
             {
-                if (c.costForTurn > 0)
+                if (filter == null || filter.Check(card))
                 {
-                    betterPossible.Add(c);
-                }
-                else if (c.cost > 0)
-                {
-                    possible.Add(c);
+                    if (c.costForTurn > 0)
+                    {
+                        betterPossible.Add(c);
+                    }
+                    else if (c.cost > 0)
+                    {
+                        possible.Add(c);
+                    }
                 }
             }
 

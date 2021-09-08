@@ -35,7 +35,7 @@ public class Mayuri extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.SelectFromHand(name, secondaryValue, false)

@@ -9,14 +9,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class Yusa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yusa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Yusa.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public Yusa()
     {
         super(DATA);
 
-        Initialize(0, 6, 1, 2);
-        SetUpgrade(0, 1, 0, 1);
+        Initialize(0, 1, 1, 2);
+        SetUpgrade(0, 1, 1, 1);
 
         SetAffinity_Light(1, 0, 0);
     }

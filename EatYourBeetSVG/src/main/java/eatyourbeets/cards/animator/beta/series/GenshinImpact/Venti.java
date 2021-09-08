@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Venti extends AnimatorCard
 {
@@ -21,22 +20,11 @@ public class Venti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 2, 0);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 1, 0);
         SetAffinity_Star(2, 0, 0);
 
         SetEthereal(true);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
-        }
     }
 
     @Override
@@ -45,24 +33,17 @@ public class Venti extends AnimatorCard
         AbstractOrb orb = new Air();
         GameActions.Bottom.ChannelOrb(orb);
 
-        // Not using Cycle function here because we need a callback on the drawn cards
-        GameActions.Bottom.DiscardFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards ->
+        GameActions.Bottom.Cycle(name, magicNumber).SetOptions(true, true, true).AddCallback(cards ->
         {
-            int discardedCards = cards.size();
-            if (discardedCards > 0)
+            for (AbstractCard card : cards)
             {
-                GameActions.Bottom.Draw(discardedCards).AddCallback(cardsDrawn ->
+                if (GameUtilities.IsHindrance(card) || card.type == CardType.POWER)
                 {
-                    for (AbstractCard card : cardsDrawn)
-                    {
-                        if (card.type == CardType.SKILL || card.type == CardType.POWER)
-                        {
-                            GameActions.Bottom.VFX(new WhirlwindEffect(), 0f);
-                            orb.onStartOfTurn();
-                            orb.onEndOfTurn();
-                        }
-                    }
-                });
+                    GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+                }
+                else {
+                    GameActions.Bottom.TriggerOrbPassive(1).SetFilter(o -> Air.ORB_ID.equals(o.ID));
+                }
             }
         });
 

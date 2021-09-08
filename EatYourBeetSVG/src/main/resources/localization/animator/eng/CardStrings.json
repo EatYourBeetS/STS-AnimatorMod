@@ -137,18 +137,18 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Enter <IS>. Channel ** !M! Dark. || When played from Afterlife: ** ALL enemies lose HP equal to ** their Attack damage.",
+			"DESCRIPTION": "Enter <IS>. ** Channel !M! [Dark]. || When played from {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.  ",
+			"DESCRIPTION": "At the start of your turn, Exhaust a card, then add a random card of the next rarity to your hand.",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
 			"NAME": "Chaa"
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "When played from Afterlife, add !M! {Throwing-Knives} to your hand.",
+			"DESCRIPTION": "When played from Afterlife, add !M! [T-Knife] to your hand. || Synergy with {0-cost} cards: Boost !S! [A].",
 			"NAME": "Eri Shiina"
 		},
 		"animator:GirlDeMo":
@@ -163,8 +163,13 @@
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "If the enemy intends to attack, deal damage again.",
+			"DESCRIPTION": "If the enemy intends to attack, deal damage again. Otherwise, randomly gain [F], [A], or [W].",
 			"NAME": "Hideki Hinata"
+		},
+		"animator:Hisako":
+		{
+			"DESCRIPTION": "Deal additional damage equal to !M! times the count of the most populous card series in your discard pile. || !A! <O>: Enter <WS>.",
+			"NAME": "Hisako"
 		},
 		"animator:KanadeTachibana":
 		{
@@ -174,7 +179,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "<LIM>. Put !S! {Dazed} on top of your draw pile. || Starter: Apply !M! Vulnerable.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || <LIM>. Put !S! {Dazed} on top of your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -189,8 +194,8 @@
 		},
 		"animator:TK":
 		{
-			"DESCRIPTION": "Boost [A]. || <LIM>: If you would die while this card is in your exhaust pile: Purge this. Remove 1 of !M! cards in your deck: Purge and play all copies of it in play.",
-			"NAME": "Angel Alter"
+			"DESCRIPTION": "Boost [A]. || <LIM>: If you would die while this card is in your exhaust pile: Purge. Remove 1 of !M! cards in your deck: Purge and play all copies of it in play.",
+			"NAME": "TK"
 		},
 		"animator:Yui":
 		{
@@ -593,12 +598,13 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <LIM>. <If the target has 12 [Freezing]: Increase the damage bonus of [Burning] ** by !S!% this combat>.",
+			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <SLM>. Synergy: Trigger ALL your [Fire].",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Apply !M! [Blinded]. Give {Delayed} to any number of cards in your hand, up to <D>. || Cooldown !S!: Add !M! 0-cost copies of {Shido Itsuka} to your draw pile with Autoplay.",
+			"DESCRIPTION": "Give any number of cards in your hand {Delayed}. || !A! <D>: Gain 2 [E] next turn. || Cooldown !S!: Create a Motivated copy of a random card in your hand with {Autoplay} and {Purge}.",
+			"EXTENDED_DESCRIPTION": ["give Delayed."],
 			"NAME": "Kurumi Tokisaki"
 		},
 		"animator:MikuIzayoi":
@@ -608,7 +614,7 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "At the start of turn: Gain !S! [~Focus]. || When a card Synergizes: Increase the damage and block of ALL cards in its series by !M!.",
+			"DESCRIPTION": "At the start of turn: Gain !S! [~Focus]. || Whenever you play a card: Increase the damage and block of ALL cards in its series by !M! until played.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} Synergies this turn: Lose #b{1} HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge."],
 			"NAME": "Mio Takamiya"
 		},
@@ -642,13 +648,13 @@
 		},
 		"animator:ReineMurasame":
 		{
-			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce ** their [Block] by !M!. || Synergy: Draw X cards next turn.",
+			"DESCRIPTION": "Add X copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce ** their [Block] by !M!. || {Synergy}: Draw X cards next turn.",
 			"NAME": "Reine Murasame",
 		 	"UPGRADE_DESCRIPTION": "Add X Upgraded copies of {Shido Itsuka} to your draw pile. {Motivate} them and reduce their [Block] by !M!. || Synergy: Draw X cards next turn."
 		},
 		"animator:Ren":
 		{
-			"DESCRIPTION": "Trigger an Orb at random. Apply !M! {Poison} for each {Dark} channeled. || <SLM>. The next time you Evoke {Dark}, apply !S! [Blinded] to ALL enemies.",
+			"DESCRIPTION": "Channel [Dark] if you have no [Dark]. Otherwise, trigger a random Orb. Then, apply !M! [Poison] for each [Dark] Channeled. || <SLM>. If you have !S! [Dark]: Apply !S! [Blinded].",
 			"NAME": "Ren"
 		},
 		"animator:ShidoItsuka":
@@ -713,12 +719,12 @@
 		},
 		"animator:Fischl":
 		{
-			"DESCRIPTION": "Gain [C]. Randomly Channel ** [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+			"DESCRIPTION": "Gain !M! [C]. Randomly Channel [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
 			"NAME": "Fischl"
 		},
 		"animator:Ganyu":
 		{
-			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. When Exhausted, apply !M! [Freezing] ** to ALL enemies.",
+			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. When Exhausted, Channel !M! [Frost].",
 			"NAME": "Ganyu"
 		},
 		"animator:HuTao":

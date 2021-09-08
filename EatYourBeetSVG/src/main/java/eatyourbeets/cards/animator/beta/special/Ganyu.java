@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
 import eatyourbeets.cards.animator.beta.status.Frostbite;
@@ -13,7 +14,6 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -41,7 +41,7 @@ public class Ganyu extends AnimatorCard
         super.triggerOnExhaust();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Freezing, magicNumber);
+            GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
     }
 

@@ -20,7 +20,7 @@ public class Fischl extends AnimatorCard {
         super(DATA);
 
         Initialize(2, 0, 1);
-        SetUpgrade(3, 0, 0);
+        SetUpgrade(1, 0, 1);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 

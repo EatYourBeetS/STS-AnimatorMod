@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -18,7 +19,7 @@ public class HidekiHinata extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 0, 0);
+        Initialize(6, 0, 1, 0);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
@@ -30,11 +31,14 @@ public class HidekiHinata extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        }
+        else {
+            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green, Affinity.Orange);
         }
     }
 }

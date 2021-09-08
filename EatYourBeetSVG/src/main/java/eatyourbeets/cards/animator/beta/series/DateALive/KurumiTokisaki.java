@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
@@ -9,11 +10,10 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.GameUtilities;
 
-public class KurumiTokisaki extends AnimatorCard //TODO
+public class KurumiTokisaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
@@ -46,12 +46,20 @@ public class KurumiTokisaki extends AnimatorCard //TODO
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
-        GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Blinded, magicNumber);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
         if (CheckAffinity(Affinity.Dark)) {
             GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
         }
-
+        GameActions.Bottom.SelectFromHand(name, 999, false)
+                .SetOptions(true, true, true)
+                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null && !c.hasTag(DELAYED))
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards) {
+                        GameActions.Bottom.ModifyTag(card,DELAYED,true);
+                    }
+                });
         cooldown.ProgressCooldownAndTrigger(m);
     }
 
@@ -61,15 +69,17 @@ public class KurumiTokisaki extends AnimatorCard //TODO
 
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.MakeCardInDrawPile(new ShidoItsuka())
-                    .SetUpgrade(upgraded, true)
-                    .AddCallback(card -> {
-                        if (card.costForTurn > 0 && card instanceof AnimatorCard)
-                        {
-                            final String key = cardID + uuid;
-
-                            CostModifiers.For(card).Add(key, -1);
-                            ((AnimatorCard) card).SetAutoplay(true);
+            GameActions.Bottom.SelectFromHand(name, 1, true)
+                    .SetFilter(GameUtilities::CanPlayTwice)
+                    .AddCallback(cards ->
+                    {
+                        final String key = cardID + uuid;
+                        for (AbstractCard card : cards) {
+                            GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(upgraded,true).AddCallback(c -> {
+                                CostModifiers.For(card).Add(key, -1);
+                                GameActions.Bottom.ModifyTag(c,AUTOPLAY,true);
+                                GameActions.Bottom.ModifyTag(c,PURGE,true);
+                            });
                         }
                     });
         }

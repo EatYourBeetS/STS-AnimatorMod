@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
@@ -16,11 +17,13 @@ public class MasamiIwasawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 11, 2, 3);
+        Initialize(0, 11, 1, 3);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Light(1, 0, 2);
+
+        AfterLifeMod.Add(this);
     }
 
     @Override
@@ -28,7 +31,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed())
+        GameActions.Bottom.MakeCardInDiscardPile(new Dazed())
                 .SetDestination(CardSelection.Top)
                 .Repeat(secondaryValue);
 

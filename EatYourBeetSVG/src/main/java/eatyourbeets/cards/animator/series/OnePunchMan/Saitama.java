@@ -160,7 +160,7 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
                 GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetPiercing(true, true);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH).SetPiercing(true, true);
                 GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
                 GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));
@@ -276,6 +276,7 @@ public class Saitama extends AnimatorCard
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;
+                this.cropPortrait = false;
 
                 LoadImage("_4");
 

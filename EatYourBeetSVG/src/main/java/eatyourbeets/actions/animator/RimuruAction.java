@@ -59,8 +59,7 @@ public class RimuruAction extends EYBAction
             }
 
             newCopy.tags.add(GR.Enums.CardTags.TEMPORARY);
-            newCopy.name = rimuru.name;
-
+            GameUtilities.ChangeCardName(newCopy, rimuru.originalName);
             GameUtilities.CopyVisualProperties(newCopy, copy);
 
             if (group.type == CardGroup.CardGroupType.HAND)

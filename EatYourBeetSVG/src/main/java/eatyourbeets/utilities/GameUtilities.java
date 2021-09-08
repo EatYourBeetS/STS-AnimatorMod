@@ -974,6 +974,39 @@ public class GameUtilities
             || CombatStats.GetTurnData(relicID, false);
     }
 
+    public static void ChangeCardName(AbstractCard card, String newName)
+    {
+        card.name = card.name.replace(card.originalName, newName);
+        card.originalName = newName;
+    }
+
+    public static AbstractCard Imitate(AbstractCard card)
+    {
+        card = card.makeStatEquivalentCopy();
+
+        if (!card.originalName.startsWith("\""))
+        {
+            ChangeCardName(card, "\"" + card.originalName + "\"");
+        }
+        if (card.baseDamage >= 0)
+        {
+            ModifyDamage(card, 1, false);
+        }
+        if (card.baseBlock >= 0)
+        {
+            ModifyBlock(card, 1, false);
+        }
+        if (card.cost >= 0)
+        {
+            ModifyCostForCombat(card, 0, false);
+        }
+
+        card.tags.add(GR.Enums.CardTags.PURGE);
+        card.freeToPlayOnce = true;
+
+        return card;
+    }
+
     public static boolean InBattle()
     {
         return InBattle(false);
@@ -1063,6 +1096,39 @@ public class GameUtilities
     public static boolean IsHindrance(AbstractCard card)
     {
         return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;
+    }
+
+    public static boolean IsPlayable(AbstractCard card)
+    {
+        final boolean temp = card.freeToPlayOnce;
+        card.freeToPlayOnce = true;
+        boolean canUse = card.canUse(player, null);
+
+        if (!canUse && (card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY))
+        {
+            final ArrayList<AbstractMonster> enemies = GetEnemies(true);
+            for (AbstractMonster m : enemies)
+            {
+                if (card.canUse(player, m))
+                {
+                    canUse = true;
+                    break;
+                }
+            }
+        }
+
+        card.freeToPlayOnce = temp;
+        return canUse;
+    }
+
+    public static boolean IsPlayable(AbstractCard card, AbstractMonster target)
+    {
+        final boolean temp = card.freeToPlayOnce;
+        card.freeToPlayOnce = true;
+        boolean canUse = card.canUse(player, target);
+        card.freeToPlayOnce = temp;
+
+        return canUse;
     }
 
     public static boolean IsHighCost(AbstractCard card)
@@ -1169,7 +1235,7 @@ public class GameUtilities
             && !data.is_endless && JUtils.IsNullOrEmpty(data.daily_mods) && !data.is_special_run;
     }
 
-    private static boolean IsObtainableInCombat(AbstractCard c)
+    public static boolean IsObtainableInCombat(AbstractCard c)
     {
         return !c.hasTag(AbstractCard.CardTags.HEALING);
     }

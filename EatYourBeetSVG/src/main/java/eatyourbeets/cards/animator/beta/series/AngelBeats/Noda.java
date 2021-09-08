@@ -15,11 +15,10 @@ public class Noda extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 1, 1);
+        Initialize(12, 0, 1, 1);
         SetUpgrade(3, 0, 1, 0);
 
         SetAffinity_Red(1, 1, 0);
-        SetExhaust(true);
         AfterLifeMod.Add(this);
 
         SetAffinityRequirement(Affinity.Red, 3);

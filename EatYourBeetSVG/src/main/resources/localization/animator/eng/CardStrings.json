@@ -179,7 +179,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || Put !S! {Dazed} on top of your draw pile. || Synergy: <DRW-M> next turn.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || Add !S! {Dazed} to your discard pile. || Synergy: <DRW-M> next turn.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -210,7 +210,7 @@
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. || Exhaust !M! card(s) from your discard pile.",
+			"DESCRIPTION": "{Scry} !S!. || Exhaust !M! card(s) from your discard pile. Gain [B] for each <L> one.",
 			"NAME": "Yusa"
 		},
 		"animator:YuzuruOtonashi":
@@ -1794,23 +1794,24 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !S! [Plated Armor]. Reduce ** the [Block] of all cards ** in your hand by !M!. || <FS> or when ** Exhausted: Gain !S! [Thorns].",
+			"DESCRIPTION": "Gain !M! [Plated Armor], then reduce ** this number by 1. || Less than !A! <R>: Draw 1 ** less card next turn.",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact] and !M! [Thorns]. || Once per turn, pay [E]: ** Gain 2 [F] and 2 [A].",
-			"EXTENDED_DESCRIPTION": ["Pay #b1 [E] to gain #b{1} [F] [A]."],
+			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once per turn, pay [E]: ** Gain 1 {Temp.} [Artifact].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
 		{
-			"DESCRIPTION": "<LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu}{++} to ** your draw pile.",
+			"DESCRIPTION": "<LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu}{+} to ** your draw pile.",
 			"NAME": "Emonzaemon"
 		},
 		"animator:Emonzaemon_EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! [A]. || Whenever you deal ** unblocked damage: ** Apply 1 [Burning].",
+			"DESCRIPTION": "Gain !M! [A]. || Your first 2 {Attacks} ** each turn deal !S! ** additional damage.",
+			"EXTENDED_DESCRIPTION": ["Your first #b2 #yAttacks each turn deal #b{0} additional damage."],
 			"NAME": "Entou Jyuu"
 		},
 		"animator:HigakiRinne":
@@ -1821,23 +1822,35 @@
 		},
 		"animator:Hitei":
 		{
-			"DESCRIPTION": "At the start of turn: ** Exhaust 1 of !S! random ** cards in draw or discard ** pile, then draw 1 card.",
+			"DESCRIPTION": "At the start of each turn: Choose and Exhaust 1 of !M! cards in your draw pile. || Once per turn, take !S! ** Damage: Draw 2 cards.",
+			"EXTENDED_DESCRIPTION": ["Take #b{0} Damage: Draw #b{1} cards. || At the start of each turn, #yExhaust #b1 of #b{2} cards in your draw pile."],
 			"NAME": "Hitei"
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || <LIM>. !A! <R>: ** Deal !S! damage to ** a random enemy.",
+			"DESCRIPTION": "If you have more than 6 [Force]: ** Gain [E] and Exhaust. ** Otherwise: Gain !M! [Force]. || Gain !S! additional [Block] for ** each High-Cost card.",
 			"NAME": "Konayuki"
+		},
+		"animator:ManiwaKyouken":
+		{
+			"DESCRIPTION": "Draw [A] + 1 cards. ** Discard cards equal ** to double your [E]. || 3 [C]: Exhaust, then ** give a card LV2 <S>.",
+			"NAME": "Maniwa Kyouken"
+		},
+		"animator:ManiwaHouou":
+		{
+			"DESCRIPTION": "Have +!M! [Strength] and [Dexterity]. || At the end of each turn: ** Gain !S! [Poison], then increase ** this number by 1. || Pay 1 [E]: Remove this.",
+			"EXTENDED_DESCRIPTION": ["Pay {0} [E]: Remove this power. || Have #b+{1} [Strength] and [Dexterity]. At the end of each turn, gain #b{2} [Poison], then increase this number by #b1^."],
+			"NAME": "Maniwa Houou"
 		},
 		"animator:Nanami":
 		{
-			"DESCRIPTION": "{Counter} the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting. <SPACE>",
-			"NAME": "Nanami",
-			"UPGRADE_DESCRIPTION": "Strongly {Counter} ** the enemy intent. || This card will have a ** different text based on the ** enemy you are targeting."
+			"DESCRIPTION": "{Counter}{+} the enemy ** intent (Hover the ** enemy to check).",
+			"NAME": "Nanami"
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Gain|Boost !M! [F] [A]. || Add {Kyotouryuu} ** to your hand.",
+			"DESCRIPTION": "Choose 1: ** Enter <AS> ** and gain !M! [Counter-Attack]; ** Enter <FS> and ** obtain {Kyotouryuu}{+}.",
+			"EXTENDED_DESCRIPTION": ["Enter <FS>. ** Obtain {{0}}.", "Enter <AS>. ** Gain {0} [Counter-Attack]."],
 			"NAME": "Shichika"
 		},
 		"animator:Shichika_Kyotouryuu":
@@ -1847,13 +1860,14 @@
 		},
 		"animator:Togame":
 		{
-			"DESCRIPTION": "<DRW-M>. ** You may Exhaust a card ** to draw 1 additional card. || <slm>. If you Exhausted ** a Hindrance: Motivate 1.",
+			"DESCRIPTION": "<DRW>. || Exhaust 1 card, if it was a ** Hindrance or Unplayable: ** Gain {+[E] }[E]. Otherwise: ** Obtain {<D> Token}{+}.",
 			"NAME": "Togame"
 		},
 		"animator:TsurugaMeisai":
 		{
-			"DESCRIPTION": "Exhaust a card. Activate ** an effect based on its type: || {Power} -> Motivate 2. ** {Skill} -> Enter <AS>. ** {Attack} -> Add !M! copies of ** it to your draw pile.",
-			"NAME": "Meisai"
+			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a Low-Cost ** {Attack} and add it ** to your draw pile.",
+			"NAME": "Meisai",
+			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a Low-Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
 		},
 		"animator:UneriGinkaku":
 		{
@@ -1862,7 +1876,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "<slm>. Re-Enter ** your current Stance. || When Exhausted: Move ** this card to your hand ** and give it Purge.",
+			"DESCRIPTION": "[A] < [F]: Gain|Boost [A]. ** [F] < [A]: Gain|Boost [F]. || <slm>. Exit your ** Stance to gain 1 [Inspiration].",
 			"NAME": "Zanki Kiguchi"
 		}
 	},

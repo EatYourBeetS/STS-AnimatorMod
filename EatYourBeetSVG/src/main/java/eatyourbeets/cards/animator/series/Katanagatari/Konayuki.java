@@ -1,16 +1,11 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import eatyourbeets.effects.AttackEffects;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Konayuki extends AnimatorCard
 {
@@ -22,12 +17,25 @@ public class Konayuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 3, 50);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 6, 2, 3);
+        SetUpgrade(0, 2, 1, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(2, 0, 2);
+    }
 
-        SetAffinityRequirement(Affinity.Red, 5);
+    @Override
+    protected float GetInitialBlock()
+    {
+        int bonus = 0;
+        for (AbstractCard c : player.hand.group)
+        {
+            if (c.uuid != uuid && GameUtilities.IsHighCost(c))
+            {
+                bonus += secondaryValue;
+            }
+        }
+
+        return super.GetInitialBlock() + bonus;
     }
 
     @Override
@@ -36,12 +44,16 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
 
-        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateLimited(cardID))
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(secondaryValue, damageTypeForTurn, AttackEffects.NONE)
-            .SetDamageEffect(c -> GameEffects.List.Add(new WeightyImpactEffect(c.hb.cX, c.hb.cY)).duration)
-            .SetOptions(false, false, false)
-            .SetPiercing(true, false);
+            GameActions.Bottom.GainEnergy(1);
+            this.exhaustOnUseOnce = true;
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetPowerAmount(Affinity.Red) > 6;
     }
 }

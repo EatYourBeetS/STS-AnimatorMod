@@ -1,13 +1,9 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,39 +17,25 @@ public class Azekura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 11, 3, 2);
-        SetUpgrade(0, 0, -1, 0);
+        Initialize(0, 9, 3);
+        SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1);
-    }
 
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.GainThorns(secondaryValue);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainPlatedArmor(secondaryValue);
+        GameActions.Bottom.GainPlatedArmor(magicNumber);
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
 
-        for (AbstractCard c : GameUtilities.GetOtherCardsInHand(this))
+        if (!CheckAffinity(Affinity.Red))
         {
-            if (c.baseBlock > 0)
-            {
-                GameUtilities.DecreaseBlock(c, magicNumber, false);
-                GameUtilities.Flash(c, Color.RED, false);
-            }
-        }
-
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainThorns(secondaryValue);
+            GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1));
         }
     }
 }

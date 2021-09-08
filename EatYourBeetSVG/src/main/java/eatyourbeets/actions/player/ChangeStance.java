@@ -12,10 +12,11 @@ import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.utilities.JUtils;
 
-public class ChangeStance extends EYBActionWithCallback<Boolean>
+public class ChangeStance extends EYBActionWithCallback<AbstractStance>
 {
     private String id;
     private AbstractStance newStance;
+    private AbstractStance previousStance;
     private boolean requireNeutralStance;
     private boolean triggerOnSameStance;
 
@@ -52,25 +53,25 @@ public class ChangeStance extends EYBActionWithCallback<Boolean>
     {
         if (player.hasPower(CannotChangeStancePower.POWER_ID))
         {
-            Complete(false);
+            Complete(null);
             return;
         }
 
         if (requireNeutralStance && !player.stance.ID.equals(NeutralStance.STANCE_ID))
         {
-            Complete(false);
+            Complete(null);
             return;
         }
 
-        AbstractStance oldStance = player.stance;
-        if (oldStance.ID.equals(id))
+        previousStance = player.stance;
+        if (previousStance.ID.equals(id))
         {
-            if (oldStance instanceof EYBStance)
+            if (previousStance instanceof EYBStance)
             {
-                ((EYBStance)oldStance).onRefreshStance();
+                ((EYBStance) previousStance).onRefreshStance();
             }
 
-            Complete(triggerOnSameStance);
+            Complete(triggerOnSameStance ? previousStance : null);
             return;
         }
 
@@ -81,15 +82,15 @@ public class ChangeStance extends EYBActionWithCallback<Boolean>
 
         for (AbstractPower p : player.powers)
         {
-            p.onChangeStance(oldStance, newStance);
+            p.onChangeStance(previousStance, newStance);
         }
 
         for (AbstractRelic r : player.relics)
         {
-            r.onChangeStance(oldStance, newStance);
+            r.onChangeStance(previousStance, newStance);
         }
 
-        oldStance.onExitStance();
+        previousStance.onExitStance();
         player.stance = newStance;
         newStance.onEnterStance();
 
@@ -108,7 +109,7 @@ public class ChangeStance extends EYBActionWithCallback<Boolean>
 
         if (Settings.FAST_MODE)
         {
-            Complete(true);
+            Complete(previousStance);
         }
     }
 
@@ -117,7 +118,7 @@ public class ChangeStance extends EYBActionWithCallback<Boolean>
     {
         if (TickDuration(deltaTime))
         {
-            Complete(true);
+            Complete(previousStance);
         }
     }
 }

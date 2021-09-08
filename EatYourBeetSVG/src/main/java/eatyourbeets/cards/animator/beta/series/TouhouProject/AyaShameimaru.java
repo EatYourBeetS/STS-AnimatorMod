@@ -31,9 +31,9 @@ public class AyaShameimaru extends AnimatorCard
 
         GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
         .RequireNeutralStance(true)
-        .AddCallback(changed ->
+        .AddCallback(stance ->
         {
-            if (changed)
+            if (stance != null)
             {
                 GameActions.Bottom.Flash(this);
             }

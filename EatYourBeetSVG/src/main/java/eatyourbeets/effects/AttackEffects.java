@@ -1,5 +1,6 @@
 package eatyourbeets.effects;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,6 +10,7 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -80,6 +82,16 @@ public class AttackEffects
       SFX.Play(GetSoundKey(effect), pitchMin, pitchMax);
    }
 
+   public static void ApplyDamageTint(AttackEffect attackEffect, AbstractCreature target)
+   {
+      AttackEffectData data = map.get(attackEffect);
+      if (data != null && data.damageTint != null)
+      {
+         target.tint.color.set(data.damageTint.cpy());
+         target.tint.changeColor(Color.WHITE.cpy());
+      }
+   }
+
    public static String GetSoundKey(AttackEffect effect)
    {
       return effect == NONE ? null : map.get(effect).GetSound();
@@ -125,30 +137,37 @@ public class AttackEffects
               .SetSFX(SFX.BLUNT_FAST);
 
       Add(magic, FIRE, ImageMaster.ATK_FIRE)
-              .SetSFX(SFX.ATTACK_FIRE);
+              .SetSFX(SFX.ATTACK_FIRE)
+              .SetDamageTint(Color.RED);
 
       Add(magic, FIRE_EXPLOSION)
               .SetVFX(VFX::FireBurst)
-              .SetSFX(SFX.ATTACK_FLAME_BARRIER);
+              .SetSFX(SFX.ATTACK_FLAME_BARRIER)
+              .SetDamageTint(Color.SCARLET);
 
       Add(magic, SMALL_EXPLOSION)
               .SetVFX(VFX::SmallExplosion)
-              .SetSFX(SFX.ATTACK_FLAME_BARRIER);
+              .SetSFX(SFX.ATTACK_FLAME_BARRIER)
+              .SetDamageTint(Color.SCARLET);
 
       Add(magic, POISON, ImageMaster.ATK_POISON)
-              .SetSFX(SFX.ATTACK_POISON, SFX.ATTACK_POISON2);
+              .SetSFX(SFX.ATTACK_POISON, SFX.ATTACK_POISON2)
+              .SetDamageTint(Color.CHARTREUSE);
 
       Add(magic, ICE)
               .SetVFX(VFX::SnowballTrigger)
-              .SetSFX(SFX.ORB_FROST_CHANNEL);
+              .SetSFX(SFX.ORB_FROST_CHANNEL)
+              .SetDamageTint(Color.SKY);
 
       Add(magic, DARKNESS)
               .SetVFX(VFX::Darkness)
-              .SetSFX(SFX.ANIMATOR_DARKNESS);
+              .SetSFX(SFX.ANIMATOR_DARKNESS)
+              .SetDamageTint(Color.VIOLET);
 
       Add(magic, PSYCHOKINESIS)
               .SetVFX(VFX::Psychokinesis)
-              .SetSFX(SFX.ANIMATOR_PSI);
+              .SetSFX(SFX.ANIMATOR_PSI)
+              .SetDamageTint(Color.PINK);
 
       Add(other, SHIELD, ImageMaster.ATK_SHIELD)
               .SetVFX(VFX::Shield)
@@ -156,7 +175,8 @@ public class AttackEffects
 
       Add(magic, LIGHTNING)
               .SetVFX(VFX::Lightning)
-              .SetSFX(SFX.ORB_LIGHTNING_EVOKE);
+              .SetSFX(SFX.ORB_LIGHTNING_EVOKE)
+              .SetDamageTint(Colors.Lerp(Color.YELLOW, Color.WHITE, 0.3f));
 
       Add(other, SHIELD_FROST, ImageMaster.ATK_SHIELD) // TODO: dedicated texture
               .SetVFX(VFX::Shield)
@@ -179,11 +199,13 @@ public class AttackEffects
 
       Add(magic, DARK)
               .SetVFX(VFX::Dark)
-              .SetSFX(SFX.ORB_DARK_CHANNEL);
+              .SetSFX(SFX.ORB_DARK_CHANNEL)
+              .SetDamageTint(Color.VIOLET);
 
       Add(magic, WATER)
-              .SetVFX(VFX::Water2)
-              .SetSFX(SFX.ANIMATOR_ORB_WATER_EVOKE);
+              .SetVFX(VFX::Water)
+              .SetSFX(SFX.ANIMATOR_ORB_WATER_EVOKE)
+              .SetDamageTint(Color.BLUE);
    }
 
    private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)
@@ -206,6 +228,7 @@ public class AttackEffects
       private FuncT2<EYBEffect, Float, Float> createVFX;
       private FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2;
       private TextureRegion texture;
+      private Color damageTint;
 
       private AttackEffectData SetSFX(String... sounds)
       {
@@ -231,6 +254,13 @@ public class AttackEffects
       private AttackEffectData SetVFX2(FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2)
       {
          this.createVFX2 = createVFX2;
+
+         return this;
+      }
+
+      private AttackEffectData SetDamageTint(Color color)
+      {
+         this.damageTint = color.cpy();
 
          return this;
       }

@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Yusa extends AnimatorCard
 {
@@ -15,8 +17,8 @@ public class Yusa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 1, 2);
-        SetUpgrade(0, 1, 1, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Light(1, 0, 0);
     }
@@ -24,8 +26,13 @@ public class Yusa extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile);
         GameActions.Top.Scry(secondaryValue);
-        GameActions.Top.GainBlock(block);
+        GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile).AddCallback(cards -> {
+            for (AbstractCard c : cards) {
+                if (GameUtilities.HasLightAffinity(c)) {
+                    GameActions.Bottom.GainBlessing(1);
+                }
+            }
+        });
     }
 }

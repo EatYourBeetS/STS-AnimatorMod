@@ -2,24 +2,18 @@ package eatyourbeets.events.animator;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.cards.animator.series.GATE.ItamiYouji;
-import eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer;
-import eatyourbeets.cards.animator.series.Konosuba.Kazuma;
-import eatyourbeets.cards.animator.series.OwariNoSeraph.Yuuichirou;
+import eatyourbeets.effects.special.GenericChooseCardsToObtainEffect;
+import eatyourbeets.effects.special.GenericChooseCardsToRemoveEffect;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.beta.GranviaShieldCrest;
-import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -31,7 +25,6 @@ public class TheHeroAssociation extends EYBEvent
     public static final String ID = CreateFullID(TheHeroAssociation.class);
     private static final int PRICE_MIN = 70;
     private static final int PRICE_MAX = 120;
-    private static AbstractCard hero;
 
     public static TheHeroAssociation TryCreate(Random rng)
     {
@@ -44,7 +37,6 @@ public class TheHeroAssociation extends EYBEvent
     public TheHeroAssociation()
     {
         super(ID, new EventStrings(),IMAGES.HeroAssociation.Path());
-        hero = null;
         RegisterPhase(0, new Offering());
         RegisterPhase(1, new Hero1());
         RegisterPhase(2, new Hero2());
@@ -88,9 +80,10 @@ public class TheHeroAssociation extends EYBEvent
 
         private void Hero(EYBEventOption option)
         {
-            player.masterDeck.removeCard(option.card);
-            hero = option.card;
-            ProgressPhase();
+            ClearOptions();
+            GameEffects.List.Add(new GenericChooseCardsToRemoveEffect(1, c -> c.hasTag(PROTAGONIST))).AddCallback(() -> {
+                ProgressPhase();
+            });
         }
 
         private void Hire(EYBEventOption option)
@@ -105,7 +98,7 @@ public class TheHeroAssociation extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            AddText(text.Hero1(GetHeroQuote(hero), hero.name));
+            AddText(text.Hero1());
             AddContinueOption();
         }
     }
@@ -115,10 +108,7 @@ public class TheHeroAssociation extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            GranviaShieldCrest relic = new GranviaShieldCrest();
-            relic.instantObtain();
-            CardCrawlGame.metricData.addRelicObtainData(relic);
-            AddText(text.Hero2(hero.name));
+            AddText(text.Hero2());
             AddLeaveOption();
         }
     }
@@ -128,24 +118,7 @@ public class TheHeroAssociation extends EYBEvent
         @Override
         protected void OnEnter()
         {
-
-
-            AbstractRoom room = AbstractDungeon.getCurrRoom();
-            RewardItem rewardItem = new RewardItem(GR.Animator.CardColor);
-            RandomizedList<AbstractCard> cards = new RandomizedList<>(GameUtilities.GetAvailableCards(c -> c.hasTag(PROTAGONIST)));
-
-            room.rewards.clear();
-            rewardItem.cards.clear();
-            for (int i = 0; i < 3; i++)
-            {
-                AbstractCard card = cards.Retrieve(RNG).makeCopy();
-                card.upgrade();
-                rewardItem.cards.add(card);
-            }
-
-
-            room.addCardReward(rewardItem);
-            AbstractDungeon.combatRewardScreen.open();
+            GameEffects.List.Add(new GenericChooseCardsToObtainEffect(1));
 
             AddText(text.Hire());
             AddLeaveOption();
@@ -160,14 +133,14 @@ public class TheHeroAssociation extends EYBEvent
             return GetDescription(0);
         }
 
-        public final String Hero1(String quote, String name)
+        public final String Hero1()
         {
-            return GetDescription(1, quote, name);
+            return GetDescription(1);
         }
 
-        public final String Hero2(String name)
+        public final String Hero2()
         {
-            return GetDescription(2, name);
+            return GetDescription(2);
         }
 
         public final String Hire()
@@ -193,27 +166,6 @@ public class TheHeroAssociation extends EYBEvent
         public final String HireLockedOption()
         {
             return GetOption(3);
-        }
-    }
-
-    private static String GetHeroQuote(AbstractCard c) {
-        if (c == null) {
-            return "I'm not a hero...";
-        }
-        if (c.cardID.equals(Kazuma.DATA.ID)) {
-            return "This isn’t how I imagined life in a parallel world would be.";
-        }
-        else if (c.cardID.equals(ItamiYouji.DATA.ID)) {
-            return "I work to support my hobby.";
-        }
-        else if (c.cardID.equals(GoblinSlayer.DATA.ID)) {
-            return "Yeah.";
-        }
-        else if (c.cardID.equals(Yuuichirou.DATA.ID)) {
-            return "Even if I have to use myself as bait, I'll still save her.";
-        }
-        else {
-            return "Let's go.";
         }
     }
 }

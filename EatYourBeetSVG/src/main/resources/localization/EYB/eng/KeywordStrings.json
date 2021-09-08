@@ -6,6 +6,12 @@
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity"
 	},
+	"Affinity Count":
+	{
+		"DESCRIPTION": "The numbers to the right of each #yAffinity denote the number of cards in your hand that have that #yAffinity. NL [A-Gen] denotes your current highest #yAffinity #yCount. NL NL #yAffinity effects on cards will only activate if your hand's #yAffinity #yCount passes the threshold of the #yAffinity listed on the card.",
+		"NAMES": ["affinity"],
+		"PROPER_NAME": "Affinity Count"
+	},
 	"Affinity Power":
 	{
 		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Light] -> [B], [A-Dark] -> [C]",

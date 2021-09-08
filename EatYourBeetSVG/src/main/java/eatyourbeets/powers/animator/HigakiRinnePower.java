@@ -32,10 +32,7 @@ public class HigakiRinnePower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        for (int i = 0; i < this.amount; i++)
-        {
-            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
-        }
+        GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne, amount));
 
         this.flash();
     }

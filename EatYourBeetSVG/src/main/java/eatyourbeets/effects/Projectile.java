@@ -17,6 +17,7 @@ public class Projectile extends ColoredTexture
     public float width;
     public float height;
     public float target_scale = 1;
+    public float scale_growth_rate = 2f;
     public Vector3f current_pos = new Vector3f();
     public Vector3f target_pos = new Vector3f();
     public Vector3f current_offset = new Vector3f();
@@ -132,6 +133,14 @@ public class Projectile extends ColoredTexture
         return this;
     }
 
+    public Projectile SetTargetScale(float scale, float growthRate)
+    {
+        this.target_scale = scale;
+        this.scale_growth_rate = growthRate;
+
+        return this;
+    }
+
     public Projectile SetRotation(float degrees)
     {
         this.current_pos.z = this.target_pos.z = degrees;
@@ -210,7 +219,7 @@ public class Projectile extends ColoredTexture
     {
         if (scale != target_scale)
         {
-            scale = Mathf.MoveTowards(scale, target_scale, delta * 2f);
+            scale = Mathf.MoveTowards(scale, target_scale, delta * scale_growth_rate);
         }
 
         Mathf.ApplyMovement(current_pos, target_pos, speed, delta);

@@ -23,9 +23,14 @@ public class GenericAnimationEffect extends EYBEffect
 
     public GenericAnimationEffect(Texture texture, float x, float y, int rows, int columns)
     {
+        this(texture,x,y,rows,columns,0.03f);
+    }
+
+    public GenericAnimationEffect(Texture texture, float x, float y, int rows, int columns, float frameDuration)
+    {
         super(Settings.ACTION_DUR_MED, false);
 
-        this.projectile = new AnimatedProjectile(texture, rows, columns);
+        this.projectile = new AnimatedProjectile(texture, rows, columns, frameDuration);
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.endFrame = this.projectile.totalFrames;
         this.scale = 1;
@@ -47,9 +52,24 @@ public class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
+    public GenericAnimationEffect SetRotation(float startRotation, float targetRotation)
+    {
+        this.projectile.SetRotation(startRotation);
+        this.projectile.SetTargetRotation(targetRotation);
+
+        return this;
+    }
+
     public GenericAnimationEffect SetScale(float scale)
     {
         this.projectile.SetScale(this.scale = scale);
+
+        return this;
+    }
+
+    public GenericAnimationEffect SetTargetScale(float scale, float growthRate)
+    {
+        this.projectile.SetTargetScale(scale, growthRate);
 
         return this;
     }

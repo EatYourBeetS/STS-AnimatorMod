@@ -50,9 +50,9 @@ public class Lu extends AnimatorCard
 
         GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID)
         .RequireNeutralStance(true)
-        .AddCallback(changed ->
+        .AddCallback(stance ->
         {
-            if (changed)
+            if (stance != null)
             {
                 GameActions.Bottom.Flash(this);
             }

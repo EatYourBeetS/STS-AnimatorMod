@@ -15,6 +15,7 @@ public class GenericRenderEffect extends EYBEffect
     private boolean flipY;
     private float x;
     private float y;
+    private float rotationSpeed;
 
     public GenericRenderEffect(Texture texture, float x, float y)
     {

@@ -3,9 +3,7 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.NanamiEffects.NanamiEffect;
 import eatyourbeets.ui.cards.TargetEffectPreview;
@@ -38,6 +36,8 @@ public class Nanami extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (currentEffect != null)
         {
             currentEffect.OnDrag(m);

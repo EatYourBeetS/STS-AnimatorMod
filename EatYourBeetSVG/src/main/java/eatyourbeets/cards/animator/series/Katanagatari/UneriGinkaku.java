@@ -28,7 +28,7 @@ public class UneriGinkaku extends AnimatorCard
         Initialize(13, 0, 3);
         SetUpgrade(4, 0, 1);
 
-        SetAffinity_Green(2, 0, 3);
+        SetAffinity_Green(2, 0, 5);
 
         SetEthereal(true);
     }

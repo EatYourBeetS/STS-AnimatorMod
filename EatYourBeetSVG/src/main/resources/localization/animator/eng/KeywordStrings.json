@@ -43,6 +43,12 @@
 		"NAMES": ["fire", "fire+"],
 		"PROPER_NAME": "Fire"
 	},
+	"Imitate":
+	{
+		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
+		"NAMES": ["imitate", "imitation"],
+		"PROPER_NAME": "Imitate"
+	},
 	"Motivate":
 	{
 		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",

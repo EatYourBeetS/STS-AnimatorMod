@@ -3,12 +3,14 @@ package eatyourbeets.console.commands;
 import basemod.DevConsole;
 import basemod.devcommands.ConsoleCommand;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
@@ -20,6 +22,7 @@ import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.resources.GR;
@@ -55,6 +58,27 @@ public class ParseGenericCommand extends ConsoleCommand
                 if (tokens[1].equals("ghost"))
                 {
                     player.tint.color.a = (tokens.length > 2 ? JUtils.ParseFloat(tokens[2], 1) : 0.3f);
+
+                    return;
+                }
+
+                if (tokens[1].equals("vfx"))
+                {
+                    final String key = tokens[2].toUpperCase();
+                    try
+                    {
+                        final FieldInfo<AbstractGameAction.AttackEffect> effectField = JUtils.GetField(key, AttackEffects.class);
+                        final AbstractGameAction.AttackEffect effect = effectField.Get(null);
+                        GameActions.Bottom.WaitRealtime(0.3f);
+                        GameActions.Bottom.Callback(effect, (vfx, __) ->
+                        {
+                            final AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+                            GameEffects.List.Attack(player, m, vfx, 1, 1);
+                            AttackEffects.ApplyDamageTint(vfx, m);
+                            m.useStaggerAnimation();
+                        });
+                    }
+                    catch (Exception ignored) { }
 
                     return;
                 }

@@ -102,6 +102,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
+    public EYBCardTooltip Affinity_Count = FindByID("Affinity Count");
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);

@@ -1,8 +1,10 @@
 package eatyourbeets.actions.damage;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -10,8 +12,10 @@ import java.util.ArrayList;
 
 public class DamageHelper
 {
-    public static void DealDamage(AbstractCreature target, DamageInfo info, boolean bypassBlock, boolean bypassThorns)
+    public static void DealDamage(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect, boolean bypassBlock, boolean bypassThorns)
     {
+        AttackEffects.ApplyDamageTint(effect, target);
+
         int previousBlock = 0;
         if (bypassBlock)
         {

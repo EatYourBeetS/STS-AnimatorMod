@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
 
 public class SnowballParticleEffect extends EYBEffect
@@ -27,7 +26,16 @@ public class SnowballParticleEffect extends EYBEffect
     {
         super(Random(0.5f, 1f));
 
-        this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow" + Random(1, 3) + ".png");
+        switch (Random(0,2)) {
+            case 0:
+                this.img = EYBEffect.IMAGES.FrostSnow2.Texture();
+                break;
+            case 1:
+                this.img = EYBEffect.IMAGES.FrostSnow3.Texture();
+                break;
+            default:
+                this.img = EYBEffect.IMAGES.FrostSnow1.Texture();
+        }
         this.x = x - (float) (SIZE / 2);
         this.y = y - (float) (SIZE / 2);
         this.rotation = Random(-10f, 10f);
@@ -52,6 +60,13 @@ public class SnowballParticleEffect extends EYBEffect
             this.color.g = Math.max(0, color.g - Random(0, variance));
             this.color.b = Math.max(0, color.b - Random(0, variance));
         }
+
+        return this;
+    }
+
+    public SnowballParticleEffect SetScale(float scale)
+    {
+        this.scale = scale;
 
         return this;
     }
@@ -91,7 +106,7 @@ public class SnowballParticleEffect extends EYBEffect
     {
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         sb.setColor(this.color);
-        sb.draw(img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, flip, false);
+        sb.draw(this.img, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, flip, false);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 }

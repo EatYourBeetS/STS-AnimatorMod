@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -28,12 +29,14 @@ public class EriShiina extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 3, 2);
+        Initialize(6, 0, 3, 2);
         SetUpgrade(3, 0, 0, 1);
 
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Green(2, 0, 4);
         SetExhaust(true);
         AfterLifeMod.Add(this);
+
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -57,6 +60,10 @@ public class EriShiina extends AnimatorCard
         if (isSynergizing && last != null && (last.cost <= 0 || last.costForTurn <= 0))
         {
             GameActions.Bottom.GainAgility(2,true);
+        }
+
+        if (CheckAffinity(Affinity.Green)) {
+            GameActions.Bottom.GainBlur(1);
         }
     }
 }

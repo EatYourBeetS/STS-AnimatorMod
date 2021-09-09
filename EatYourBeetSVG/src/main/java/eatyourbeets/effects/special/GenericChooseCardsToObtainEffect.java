@@ -21,31 +21,32 @@ import java.util.ArrayList;
 
 public class GenericChooseCardsToObtainEffect extends EYBEffectWithCallback<GenericChooseCardsToObtainEffect>
 {
-    private static final int GROUP_SIZE = 3;
     private final CardGroup[] groups;
     private final GenericCondition<AbstractCard> filter;
     private final RandomizedList<AbstractCard> offeredCards = new RandomizedList<>();
     private final Color screenColor;
+    private final int groupSize;
     private int cardsToAdd;
     public final ArrayList<AbstractCard> cards = new ArrayList<>();
 
-    public GenericChooseCardsToObtainEffect(int obtain) {
-        this(obtain, null, AbstractDungeon.commonCardPool, AbstractDungeon.uncommonCardPool, AbstractDungeon.rareCardPool);
+    public GenericChooseCardsToObtainEffect(int obtain, int groupSize) {
+        this(obtain, groupSize, null, AbstractDungeon.commonCardPool, AbstractDungeon.uncommonCardPool, AbstractDungeon.rareCardPool);
     }
 
-    public GenericChooseCardsToObtainEffect(int obtain, FuncT1<Boolean, AbstractCard> filter) {
-        this(obtain, filter, AbstractDungeon.commonCardPool, AbstractDungeon.uncommonCardPool, AbstractDungeon.rareCardPool);
+    public GenericChooseCardsToObtainEffect(int obtain, int groupSize, FuncT1<Boolean, AbstractCard> filter) {
+        this(obtain, groupSize, filter, AbstractDungeon.commonCardPool, AbstractDungeon.uncommonCardPool, AbstractDungeon.rareCardPool);
     }
 
-    public GenericChooseCardsToObtainEffect(int obtain, FuncT1<Boolean, AbstractCard> filter, CardGroup... groups)
+    public GenericChooseCardsToObtainEffect(int obtain, int groupSize, FuncT1<Boolean, AbstractCard> filter, CardGroup... groups)
     {
         super(0.75f, true);
 
         this.cardsToAdd = obtain;
+        this.groupSize = groupSize;
         this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0f;
         this.groups = groups;
-        this.filter = GenericCondition.FromT1(filter);
+        this.filter = filter != null ? GenericCondition.FromT1(filter) : null;
         AbstractDungeon.overlayMenu.proceedButton.hide();
     }
 
@@ -109,7 +110,7 @@ public class GenericChooseCardsToObtainEffect extends EYBEffectWithCallback<Gene
             for (CardGroup cGroup: groups) {
                 for (AbstractCard card : cGroup.group) {
                     if (filter == null || filter.Check(card)) {
-                        cardGroup.addToBottom(card);
+                        offeredCards.Add(card);
                     }
                 }
             }
@@ -121,7 +122,7 @@ public class GenericChooseCardsToObtainEffect extends EYBEffectWithCallback<Gene
             }
         }
 
-        for (int i = 0; i < GROUP_SIZE; i++)
+        for (int i = 0; i < groupSize; i++)
         {
             cardGroup.group.add(offeredCards.Retrieve(AbstractDungeon.cardRandomRng, true).makeCopy());
         }

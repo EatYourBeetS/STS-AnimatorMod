@@ -219,7 +219,7 @@
 			"The Animator Steam page.",
 			"Not enough cards of this type.",
 			"Dynamic Portraits",
-			"Dynamic cards portraits.",
+			"Dynamic card portraits",
 			"'CTRL' to cycle",
 			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
 			"Display Beta Series",
@@ -228,7 +228,8 @@
 			"Simplify Card UI",
 			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file",
 			"The console is disabled while in this act.",
-			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time."
+			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time.",
+			"Enable certain events for non-Animator characters"
 		]
 	},
        "animator:CardMods":

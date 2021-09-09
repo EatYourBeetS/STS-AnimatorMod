@@ -96,9 +96,9 @@
 
 			"Your hero valiantly snatches the bounty and ventures out of the building to prove their worth. NL NL The receptionist informs you that they will notify you if the bounty gets completed and takes their leave. NL NL Several days pass without any news. NL NL Finally, out of the blue, you get a call from the receptionist, who tells you to return to the Hero Association.",
 
-			"\"I have some good and bad news. The good news is that we have recovered the body of the beast, so you will receive your due reward. The bad news... is that #y{0} has gone missing and there are no leads whatsoever on their whereabouts. \" NL NL \"My sincere condolences for your loss.\" NL NL The receptionist hands you your reward. Both you and the receptionist honor your comrades loss with a moment of silence. Then, you head out of the building and continue on your journey.",
+			"\"I have some good and bad news. The good news is that we have recovered the body of the beast, so you will receive your due reward. The bad news... is that your friend has gone missing and there are no leads whatsoever on their whereabouts. \" NL NL \"My sincere condolences for your loss.\" NL NL The receptionist hands you your reward. Both you and the receptionist honor your comrades loss with a moment of silence. Then, you head out of the building and continue on your journey.",
 
-			"You decide that you're not enough of a Hero to take on the bounty and opt to hire someone else to complete the bounty for your instead. NL NL When you return to the Hero Association to claim your reward, however, the receptionist informs you that buying off others to complete bounties is strictly forbidden, leaving you with nothing but a fuming hero who won't leave you alone."
+			"You decide that you're not enough of a hero to take on the bounty and opt to hire someone else to complete the bounty for your instead. NL NL When you return to the Hero Association to claim your reward, however, the receptionist informs you that buying off others to complete bounties is strictly forbidden, leaving you with nothing but a fuming hero who won't leave you alone."
 		],
 		"NAME": "The Hero Association",
 		"OPTIONS":

@@ -137,7 +137,7 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Enter <IS>. ** Channel !M! [Dark]. || When played from {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
+			"DESCRIPTION": "Enter <IS>. ** Channel !M! [Dark]. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:Chaa":
@@ -148,7 +148,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "When played from Afterlife, add !M! [T-Knife] to your hand. || Synergy with {0-cost} cards: Boost !S! [A].",
+			"DESCRIPTION": "In {Afterlife}: Add !M! [T-Knife] to your hand. || Synergy with {0-cost} cards: Boost !S! [A]. || !A! <G>: Gain [Blur].",
 			"NAME": "Eri Shiina"
 		},
 		"animator:GirlDeMo":
@@ -168,18 +168,18 @@
 		},
 		"animator:Hisako":
 		{
-			"DESCRIPTION": "The first time you play a card from {Afterlife} each turn, Choose 1: Gain !M! [W], Gain !M! [B], or Motivate !S!.",
+			"DESCRIPTION": "The first time you play a card from {Afterlife} each turn, Choose 1: Randomly gain !M! [W] or [B], or Motivate !S!.",
 			"NAME": "Hisako"
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Boost [B]. Put up to !M! cards from your discard pile into your hand. || <LIM>. Give a Non-{Hindrance} card in your Exhaust pile {Afterlife}.",
+			"DESCRIPTION": "Boost [B]. Put up to !M! cards from your discard pile into your hand and increase their <L> by 1. || <LIM>. Synergy. Give a Non-{Hindrance} card in your Exhaust pile {Afterlife}.",
 			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand.", "Choose a card to give Afterlife."],
 			"NAME": "Kanade Tachibana"
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || Add !S! {Dazed} to your discard pile. || Synergy: <DRW-M> next turn.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || Add !S! {Dazed} to ** your draw pile. || <SLM>. Synergy: <DRW-M> next turn.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -199,12 +199,12 @@
 		},
 		"animator:Yui":
 		{
-			"DESCRIPTION": "Gain|Boost [B]. Motivate !S!. || When played from {Afterlife}: Add a {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Obtain {<L> Token}{+}, then Motivate !S!. ** !A! <W>: Motivate !M! more. || In {Afterlife}: Add {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"animator:YuriNakamura":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards. Restore !S! HP lost last turn for each. || {Synergy} or !A! <L>: Motivate an {Afterlife} card in your exhaust pile.",
+			"DESCRIPTION": "Exhaust up to !M! cards. Restore !S! HP lost last turn for each. || {Synergy} or !A! <L>: Motivate !M! {Afterlife} cards in your exhaust pile.",
 			"EXTENDED_DESCRIPTION": ["Give a card Retain.", "Choose a card to give Afterlife."],
 			"NAME": "Yuri Nakamura"
 		},
@@ -603,7 +603,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Give <D> + !M! cards in your hand {~Delayed}. Gain [Energized] for each. || Cooldown !S!: Duplicate a random {~Delayed} card in your draw pile. It costs 1 less and has {Autoplay}.",
+			"DESCRIPTION": "Give up to !M! cards in your hand {~Delayed}. Gain [Energized] for each. || Cooldown !S!: Duplicate a random {~Delayed} card in your draw pile. It costs 1 less and has {Autoplay}.",
 			"EXTENDED_DESCRIPTION": ["give Delayed."],
 			"NAME": "Kurumi Tokisaki"
 		},
@@ -1860,7 +1860,7 @@
 		},
 		"animator:Togame":
 		{
-			"DESCRIPTION": "<DRW>. || Exhaust 1 card, if it was a ** Hindrance or Unplayable: ** Gain {+[E] }[E]. Otherwise: ** Obtain {<D> Token}{+}.",
+			"DESCRIPTION": "<DRW>. || Exhaust 1 card, if it was a ** Hindrance or Unplayable: ** Gain {+[E] }[E]. Otherwise: ** Obtain {<O> Token}{+}.",
 			"NAME": "Togame"
 		},
 		"animator:TsurugaMeisai":

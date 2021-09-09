@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -10,6 +11,7 @@ import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class KanadeTachibana extends AnimatorCard
 {
@@ -32,11 +34,21 @@ public class KanadeTachibana extends AnimatorCard
     {
         GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)
-        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]);
+        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]).AddCallback(
+                cards -> {
+                    AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
+                    int lightLevel = GameUtilities.GetAffinityLevel(card, Affinity.Light, true);
+                    if (card != null && lightLevel < 2)
+                    {
+                        card.affinities.Set(Affinity.Light, lightLevel + 1);
+                        card.flash();
+                    }
+                }
+        );
 
         GameActions.Bottom.GainBlessing(secondaryValue,true);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
+        if (isSynergizing && !CombatStats.HasActivatedLimited(cardID))
         {
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
                     .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))

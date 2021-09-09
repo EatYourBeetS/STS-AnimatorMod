@@ -39,7 +39,7 @@ public class AbstractDungeonPatches
         @SpirePrefixPatch
         public static SpireReturn<AbstractEvent> Prefix(Random rng)
         {
-            AbstractEvent event = EYBEvent.GenerateSpecialEvent(CardCrawlGame.dungeon, rng, GameUtilities.IsPlayerClass(GR.Animator.PlayerClass));
+            AbstractEvent event = EYBEvent.GenerateSpecialEvent(CardCrawlGame.dungeon, rng, GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) || GR.Animator.Config.EnableEventsForOtherCharacters.Get());
             if (event != null)
             {
                 return SpireReturn.Return(event);

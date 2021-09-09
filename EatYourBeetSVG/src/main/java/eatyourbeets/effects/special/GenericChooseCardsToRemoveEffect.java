@@ -16,13 +16,13 @@ import eatyourbeets.utilities.GenericCondition;
 
 import java.util.ArrayList;
 
-public class GenericChooseCardsToRemoveEffect extends EYBEffectWithCallback<ArrayList<AbstractCard>>
+public class GenericChooseCardsToRemoveEffect extends EYBEffectWithCallback<GenericChooseCardsToRemoveEffect>
 {
     private static final int GROUP_SIZE = 3;
-    private final ArrayList<AbstractCard> cards = new ArrayList<>();
     private final GenericCondition<AbstractCard> filter;
     private final Color screenColor;
     private int cardsToRemove;
+    public final ArrayList<AbstractCard> cards = new ArrayList<>();
 
     public GenericChooseCardsToRemoveEffect(int remove) {
         this(remove, null);
@@ -33,7 +33,7 @@ public class GenericChooseCardsToRemoveEffect extends EYBEffectWithCallback<Arra
         super(0.75f, true);
 
         this.cardsToRemove = remove;
-        this.filter = GenericCondition.FromT1(filter);
+        this.filter = filter != null ? GenericCondition.FromT1(filter) : null;
         this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0f;
         AbstractDungeon.overlayMenu.proceedButton.hide();
@@ -68,14 +68,14 @@ public class GenericChooseCardsToRemoveEffect extends EYBEffectWithCallback<Arra
                 }
 
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
+                AbstractDungeon.gridSelectScreen.targetGroup.clear();
                 cardsToRemove = 0;
-                Complete(cards);
             }
         }
         else if (TickDuration(deltaTime))
         {
             AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-            Complete(cards);
+            Complete(this);
         }
     }
 

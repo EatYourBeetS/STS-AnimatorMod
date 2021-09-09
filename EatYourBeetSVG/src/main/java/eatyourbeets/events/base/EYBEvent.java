@@ -40,9 +40,9 @@ public abstract class EYBEvent extends AbstractImageEvent
             if (event == null) {
                 event = TheFloatyThing.TryCreate(rng);
             }
-            //if (event == null) {
-            //    event = TheHeroAssociation.TryCreate(rng);
-            //}
+            if (event == null) {
+                event = TheHeroAssociation.TryCreate(rng);
+            }
             return event;
         }
 

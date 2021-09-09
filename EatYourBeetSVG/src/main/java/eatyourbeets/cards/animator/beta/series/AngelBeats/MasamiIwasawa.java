@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.utilities.CardSelection;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MasamiIwasawa extends AnimatorCard
@@ -31,8 +31,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Dazed())
-                .SetDestination(CardSelection.Top)
+        GameActions.Bottom.MakeCardInDrawPile(new Dazed())
                 .Repeat(secondaryValue);
 
         if (IsStarter())
@@ -40,7 +39,7 @@ public class MasamiIwasawa extends AnimatorCard
             GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         }
 
-        if (isSynergizing) {
+        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.DrawNextTurn(magicNumber);
         }
     }

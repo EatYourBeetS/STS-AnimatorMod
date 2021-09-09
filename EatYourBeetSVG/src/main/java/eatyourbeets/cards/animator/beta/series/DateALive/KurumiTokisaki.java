@@ -7,7 +7,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -21,7 +24,7 @@ public class KurumiTokisaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 12, 1);
+        Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
         SetAffinity_Orange(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
@@ -46,7 +49,7 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.VFX(new DieDieDieEffect());
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
 
-        GameActions.Bottom.SelectFromHand(name, GetHandAffinity(Affinity.Dark) + magicNumber, false)
+        GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                 .SetOptions(true, true, true)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
                 .SetFilter(c -> !c.hasTag(DELAYED))

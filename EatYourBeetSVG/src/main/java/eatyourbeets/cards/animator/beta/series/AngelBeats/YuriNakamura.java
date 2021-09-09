@@ -22,8 +22,8 @@ public class YuriNakamura extends AnimatorCard
 
         Initialize(4, 8, 2, 5);
         SetUpgrade(1, 2,0, 1);
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Light(2, 0, 2);
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 3);
@@ -38,8 +38,8 @@ public class YuriNakamura extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ExhaustFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards -> {
@@ -47,6 +47,7 @@ public class YuriNakamura extends AnimatorCard
         });
 
         if (CheckAffinity(Affinity.Light) || isSynergizing) {
+            GameActions.Bottom.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
             GameActions.Bottom.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
         }
     }

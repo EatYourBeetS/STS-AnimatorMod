@@ -22,6 +22,7 @@ public class AnimatorConfig
     private static final String CUSTOM_LOADOUTS_KEY =  "TheAnimator-Loadouts";
     private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
+    private static final String ENABLE_EVENTS_FOR_OTHER_CHARACTERS =  "TheAnimator-EnableEventsForOtherCharacters";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
     private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
@@ -36,6 +37,7 @@ public class AnimatorConfig
     public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
     public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
+    public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
 
     public void Load(int slot)
@@ -52,6 +54,7 @@ public class AnimatorConfig
             SimplifyCardUI.SetConfig(config);
             CropCardImages.SetConfig(config);
             DisplayBetaSeries.SetConfig(config);
+            EnableEventsForOtherCharacters.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
         }
         catch (IOException e)
@@ -68,10 +71,11 @@ public class AnimatorConfig
         //FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
         CropCardImages.AddToPanel(panel, misc.UseCardHoveringAnimation, 400, 650);
         SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
+        EnableEventsForOtherCharacters.AddToPanel(panel, misc.SimplifyCardUI, 400, 550);
 
         if (GR.Animator.Data.BetaLoadouts.size() > 0)
         {
-            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 550);
+            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 500);
         }
         else
         {

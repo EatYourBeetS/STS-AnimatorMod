@@ -2,8 +2,10 @@ package eatyourbeets.events.animator;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.effects.special.GenericChooseCardsToObtainEffect;
 import eatyourbeets.effects.special.GenericChooseCardsToRemoveEffect;
 import eatyourbeets.events.base.EYBEvent;
@@ -11,6 +13,7 @@ import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.beta.GranviaShieldCrest;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -28,7 +31,7 @@ public class TheHeroAssociation extends EYBEvent
 
     public static TheHeroAssociation TryCreate(Random rng)
     {
-        if (AbstractDungeon.floorNum > 8 && !(GameUtilities.HasRelic(GranviaShieldCrest.ID)) && rng.randomBoolean(0.15f)) {
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && AbstractDungeon.floorNum > 8 && !(GameUtilities.HasRelic(GranviaShieldCrest.ID)) && rng.randomBoolean(0.15f)) {
             return new TheHeroAssociation();
         }
         return null;
@@ -80,15 +83,36 @@ public class TheHeroAssociation extends EYBEvent
 
         private void Hero(EYBEventOption option)
         {
-            ClearOptions();
-            GameEffects.List.Add(new GenericChooseCardsToRemoveEffect(1, c -> c.hasTag(PROTAGONIST))).AddCallback(() -> {
-                ProgressPhase();
+            GameEffects.Queue.Add(new GenericChooseCardsToRemoveEffect(1, c -> c.hasTag(PROTAGONIST))).AddCallback(result -> {
+                if (result.cards.size() > 0) {
+                    GranviaShieldCrest relic = new GranviaShieldCrest();
+                    relic.instantObtain();
+                    CardCrawlGame.metricData.addRelicObtainData(relic);
+
+                    AbstractCard.CardRarity rarity = result.cards.get(0).rarity;
+                    int gold;
+                    switch (rarity) {
+                        case RARE:
+                            gold = MathUtils.random(70,130);
+                            break;
+                        case UNCOMMON:
+                            gold = MathUtils.random(30,70);
+                        case COMMON:
+                            gold = MathUtils.random(10,30);
+                        default:
+                            gold = MathUtils.random(1,10);
+                    }
+                    GameEffects.Queue.Add(new RainingGoldEffect(gold));
+                    player.gainGold(gold);
+                }
             });
+            ChangePhase(Hero1.class);
         }
 
         private void Hire(EYBEventOption option)
         {
             player.loseGold(price);
+            GameEffects.Queue.Add(new GenericChooseCardsToObtainEffect(1, 5, c -> c.hasTag(PROTAGONIST)));
             ChangePhase(Hire.class);
         }
     }
@@ -118,8 +142,6 @@ public class TheHeroAssociation extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            GameEffects.List.Add(new GenericChooseCardsToObtainEffect(1));
-
             AddText(text.Hire());
             AddLeaveOption();
         }

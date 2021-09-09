@@ -100,6 +100,7 @@ public class AnimatorStrings
         public final String RewardsDisabled = Strings.TEXT[13];
         public final String ConsoleDisabled = Strings.TEXT[14];
         public final String HealingWarning = Strings.TEXT[15];
+        public final String EnableEventsForOtherCharacters = Strings.TEXT[16];
     }
 
     public class CharacterSelect

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -71,6 +72,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardMovedSubscriber> onCardMoved = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCardResetSubscriber> onCardReset = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
@@ -304,6 +306,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnCardCreatedSubscriber s : onCardCreated.GetSubscribers())
         {
             s.OnCardCreated(card, startOfBattle);
+        }
+    }
+
+    public static void OnCardMoved(AbstractCard card, CardGroup source, CardGroup destination)
+    {
+        for (OnCardMovedSubscriber s : onCardMoved.GetSubscribers())
+        {
+            s.OnCardMoved(card, source, destination);
         }
     }
 

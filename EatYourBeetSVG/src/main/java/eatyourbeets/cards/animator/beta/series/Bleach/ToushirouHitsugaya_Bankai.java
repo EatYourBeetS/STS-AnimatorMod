@@ -40,7 +40,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(1, 0, 0);
-        SetCooldown(3,0,this::OnCooldownCompleted);
+        SetCooldown(2,0,this::OnCooldownCompleted);
     }
 
     @Override

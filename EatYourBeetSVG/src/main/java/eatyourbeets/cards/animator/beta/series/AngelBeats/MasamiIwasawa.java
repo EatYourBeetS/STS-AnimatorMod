@@ -17,7 +17,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 11, 1, 3);
+        Initialize(0, 11, 1, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Orange(1, 0, 0);
@@ -36,11 +36,7 @@ public class MasamiIwasawa extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        }
-
-        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.DrawNextTurn(magicNumber);
+            GameActions.Bottom.ApplyVulnerable(p, m, CombatStats.ControlPile.Contains(this) ? secondaryValue : magicNumber);
         }
     }
 }

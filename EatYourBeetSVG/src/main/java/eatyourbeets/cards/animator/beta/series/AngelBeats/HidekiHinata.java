@@ -32,8 +32,6 @@ public class HidekiHinata extends AnimatorCard
         SetAffinity_Green(1, 0, 0);
         SetExhaust(true);
         AfterLifeMod.Add(this);
-
-        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -62,7 +60,7 @@ public class HidekiHinata extends AnimatorCard
             GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
         }
 
-        if (CheckAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (CombatStats.ControlPile.Contains(this)) {
             GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
         }
     }

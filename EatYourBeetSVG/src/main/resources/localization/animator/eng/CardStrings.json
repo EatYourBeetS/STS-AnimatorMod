@@ -142,13 +142,13 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "Whenever a card is removed from your Exhaust pile, gain !M! [Block]. Once per turn, pay [E]: Add 1 of 2 Motivated Common {Afterlife} cards to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["At the start of your turn: #yExhaust #b{0} card(s), then add a random card of the next rarity to your hand for each card #yExhausted."],
+			"DESCRIPTION": "Whenever your Exhaust pile changes in size: Gain !M! [Block]. || Once per turn, pay 3 [Block]: Obtain 1 of !S! Common {Afterlife} cards.",
+			"EXTENDED_DESCRIPTION": ["Whenever your Exhaust pile changes in size: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of 2 cards to your draw pile."],
 			"NAME": "Chaa"
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "In {Afterlife}: Add !M! [T-Knife] to your hand. || Synergy with {0-cost} cards: Boost !S! [A]. || !A! <G>: Gain [Blur].",
+			"DESCRIPTION": "In {Afterlife}: Obtain !M! [T-Knife]. || Synergy with {0-cost} cards: Boost !S! [A]. || !A! <G>: Gain [Blur].",
 			"NAME": "Eri Shiina"
 		},
 		"animator:GirlDeMo":
@@ -158,12 +158,12 @@
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "!A! <R>: ** Enter <FS>. || Cooldown !S!: Gain !M! [F] and add a {~Wound} to your hand.",
+			"DESCRIPTION": "!A! <R>: Enter <FS>. || Cooldown !S!: Gain !M! [F] and add a {~Wound} to your hand.",
 			"NAME": "Matsushita Godan"
 		},
 		"animator:HidekiHinata":
 		{
-			"DESCRIPTION": "Attack twice if the enemy intends to attack. Otherwise, randomly gain [F] or [A] twice. || !A! <G>: Gain [Energized].",
+			"DESCRIPTION": "Attack twice if the enemy intends to attack. Otherwise, randomly gain [F] or [A] twice. || In {Afterlife}: Gain [Energized].",
 			"NAME": "Hideki Hinata"
 		},
 		"animator:Hisako":
@@ -173,13 +173,13 @@
 		},
 		"animator:KanadeTachibana":
 		{
-			"DESCRIPTION": "Boost [B]. Put up to !M! cards from your discard pile into your hand and increase their <L> by 1. || <LIM>. Synergy. Give a Non-{Hindrance} card in your Exhaust pile {Afterlife}.",
+			"DESCRIPTION": "Boost [B]. {Fetch} !M! cards from your discard pile and increase their <L> by 1. || <LIM>. Synergy. Give a Non-{Hindrance} card in your Exhaust pile {Afterlife}.",
 			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand.", "Choose a card to give Afterlife."],
 			"NAME": "Kanade Tachibana"
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable]. || Add !S! {Dazed} to ** your draw pile. || <SLM>. Synergy: <DRW-M> next turn.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] (!S! in {Afterlife}). || Add !S! {Dazed} to ** your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -244,7 +244,7 @@
 		},
 		"animator:IchigoKurosaki":
 		{
-			"DESCRIPTION": "Boost [F] [A]. || If you ** reached !S! [F] this combat: Exhaust, then add {Ichigo Bankai} to ** your draw pile.",
+			"DESCRIPTION": "Boost [F] [A]. || If you reached !S! [F] this combat: Exhaust, then add {Ichigo Bankai} to your draw pile.",
 			"NAME": "Ichigo Kurosaki"
 		},
 		"animator:IchigoKurosaki_Bankai":
@@ -282,7 +282,7 @@
 		},
 		"animator:RenjiAbarai":
 		{
-			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! this combat. || !A! <R>: This card deals Piercing Damage.",
+			"DESCRIPTION": "Not in [A] Stance: Decrease this card's damage by !M! ** this combat. || !A! <R>: This card deals Piercing Damage.",
 			"NAME": "Renji Abarai"
 		},
 		"animator:RukiaBankai":
@@ -297,7 +297,7 @@
 		},
 		"animator:SajinKomamura":
 		{
-			"DESCRIPTION": "Gain|Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a ** random Stance. || <SLM>. Synergy: Gain ** !S! [Metallicize].",
+			"DESCRIPTION": "Gain|Boost !M! [F], [A], [I], or [W] depending on your Stance. Otherwise, enter a ** random Stance. || <SLM>. Synergy: ** Gain !S! [Metallicize].",
 			"NAME": "Sajin Komamura"
 		},
 		"animator:SosukeAizen":
@@ -670,7 +670,7 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. If you make a {Synergy} with a <L> or <R> card: Move this card in your hand.",
+			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. When you make a <L> or <R> {Synergy}: Move this card in your hand.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
@@ -775,7 +775,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "<ST>: If you have [Earth], ** Trigger your first [Earth]. ** Otherwise, Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
+			"DESCRIPTION": "<ST>: Trigger your ** first [Earth]. Otherwise, ** Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -791,8 +791,8 @@
 		},
 		"animator:Sayu":
 		{
-			"DESCRIPTION": "Add !M! [T-Knife]. Transform ALL Hindrances into [T-Knife] and give them Shapeshifter. || When Exhausted, gain [Blur].",
-			"NAME": "Venti"
+			"DESCRIPTION": "Imitate a random card in your hand. Transform ALL Hindrances into [T-Knife] and give them Shapeshifter. || When Exhausted, gain [Blur].",
+			"NAME": "Sayu"
 		},
 		"animator:Tartaglia":
 		{
@@ -837,8 +837,8 @@
 		},
 		"animator:Yoimiya":
 		{
-			"DESCRIPTION": "Whenever this deals unblocked damage: Add a [T-Knife] to your hand. <LIM> !A! <R>: Play {Blazing Heat}.",
-			"NAME": "Venti"
+			"DESCRIPTION": "Whenever this deals unblocked damage: Add a [T-Knife] to your hand. <LIM> If you have [Burning]: Play {Blazing Heat}.",
+			"NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
 		{
@@ -1750,7 +1750,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Add !S! {Throwing-} ** {Knives} to your hand. || Synergy or Discard: ** Gain [A] and !M! [Block].",
+			"DESCRIPTION": "Obtain !S! [T-Knife]. || Synergy or Discard: ** Gain [A] and !M! [Block].",
 			"NAME": "Tooru Acura"
 		},
 		"animator:ChaikaBohdan":
@@ -2418,7 +2418,7 @@
 		},
 		"animator:GazelDwargon":
 		{
-			"DESCRIPTION": "Gain X + !S! [Plated Armor]. Boost [W] if X is at least 2. || At the start of turn: ** Maintain up to !M! [Block], ** multiplied by X.",
+			"DESCRIPTION": "Gain X + !S! [Plated Armor]. Boost [W] if ** X is at least 2. || At the start of turn: ** Maintain up to !M!X [Block].",
 			"NAME": "Gazel Dwargon"
 		},
 		"animator:Hakurou":

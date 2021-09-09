@@ -16,14 +16,14 @@ import eatyourbeets.utilities.GameActions;
 
 public class HuTao extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new SearingBurn(), false));
 
     public HuTao()
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 2);
+        Initialize(2, 0, 4, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(2, 0, 8);

@@ -17,6 +17,7 @@ public class Boros extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Boros.class)
             .SetPower(3, CardRarity.RARE)
+            .SetMultiformData(2)
             .SetSeriesFromClassPackage();
     private static final int POWER_ENERGY_COST = 1;
 
@@ -37,8 +38,18 @@ public class Boros extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetDelayed(false);
+        if (auxiliaryData.form == 0) {
+            SetDelayed(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

@@ -194,6 +194,18 @@
 	]
   },
 
+  "animator:SingleCardPopupButtons":
+  {
+	"TEXT":
+	[
+	  "Variant",
+	  "Switch Variant",
+	  "Permanently change this card's variant to the currently-displayed variant. NL #rThis #rcan #ronly #rbe #rdone #ronce.",
+	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes."
+	]
+  },
+
+
 	"animator:CharacterSelect":
 	{
 		"TEXT":

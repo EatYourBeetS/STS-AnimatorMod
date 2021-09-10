@@ -13,7 +13,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class Zhongli extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage().SetMultiformData(2);
     private static final int POWER_ENERGY_COST = 1;
 
     public Zhongli()
@@ -23,13 +23,23 @@ public class Zhongli extends AnimatorCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
-        SetDelayed(true);
     }
 
-    public void OnUpgrade() {
-        SetDelayed(false);
-        SetInnate(true);
+    @Override
+    protected void OnUpgrade()
+    {
+        if (auxiliaryData.form == 0) {
+            SetInnate(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form != 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
 
     @Override

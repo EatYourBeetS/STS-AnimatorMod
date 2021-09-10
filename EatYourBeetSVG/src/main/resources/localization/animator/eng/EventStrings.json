@@ -38,6 +38,34 @@
 			"[Try to Run] #r50% #rchance #rto #rlose #r{0} #rHP"
 		]
 	},
+	"animator:TheContract":
+	{
+		"DESCRIPTIONS":
+		[
+			"As you make your way through a sprawling city, you spot a strange cat-like creature perched on top of a fence. Suddenly, you hear a mysterious voice that seems to emanate from your head. NL NL \" Hello traveler. If you make a contract with me, I can grant you any wish you want.\"",
+
+			"Out of the corner of your eye, you spot a black-haired girl readying a rifle whilst rushing towards you and the cat-like creature.  NL NL \" DON'T LISTEN TO THAT THING! IT IS TRYING TO TAKE YOUR SOUL!\" she screams at you. NL NL The cat-like creatures completely ignores her and stares at you, awaiting your response.",
+
+			"\"Great! To seal the contract, please choose one of these gems below. \" The voice in your head says. NL NL Three gems suddenly appear before your eyes, suspended in mid-air as if they were beckoning you to grab them. Which one do you choose?",
+
+			"\"The contract has been sealed. Make sure to kill those witches!\" The voice in your head says as it fades, along with the strange cat-like creature. NL NL You notice that the black-haired girl has fallen to her knees, sobbing hysterically. NL NL \"I-I-I couldn't save them... I'm so sorry...\" The girl sobs uncontrollably. You decide it is best to let the girl be and go on your way.",
+
+			"The girl reaches out a hand towards you and you take it. Suddenly, your surroundings warp and distort. In the blink of an eye, you find yourself in the countryside, far away from the city. NL NL \"I'm glad I could save at least you\" she sighs with relief as she walks away.",
+
+			"\"Let me negotiate a reasonable contract.\" #yZhongli states calmly as he strides over to the cat-like creature. NL NL You and the girl watch as #yZhongli and the cat-like creature negotiate nonstop. Finally, after what seems like forever, #yZhongli approaches you with a written contract and a strange gem in his hand.",
+
+			"\"The contract has been forged. Please honor it. Breaking the contract will incur the wrath of the rock.\" he states as he places the strange gem and the contract into your hands. NL NL You take a look at the contract and then quickly give up as you are greeted with a flood of legal mumbo jumbo. You decide that you'll probably be fine without reading it in detail and proceed on your way."
+		],
+		"NAME": "The Contract",
+		"OPTIONS":
+		[
+			"[Accept a Contract] #gChoose #g1 #gof #g3 #grelics #rwith #ra #rcatch",
+			"[Escape] Teleport to a random floor",
+			"[Bring in a professional diplomat] #g???",
+			"[Locked] ???.",
+			"[Accept] #gObtain #gRelic"
+		]
+	},
 	"animator:TheFloatyThing":
 	{
 	  "DESCRIPTIONS":

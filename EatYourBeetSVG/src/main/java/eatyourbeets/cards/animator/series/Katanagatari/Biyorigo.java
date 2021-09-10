@@ -17,6 +17,7 @@ public class Biyorigo extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Biyorigo.class)
             .SetPower(2, CardRarity.RARE)
+            .SetMultiformData(2)
             .SetSeriesFromClassPackage();
 
     public Biyorigo()
@@ -34,8 +35,18 @@ public class Biyorigo extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetDelayed(false);
+        if (auxiliaryData.form == 0) {
+            SetDelayed(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

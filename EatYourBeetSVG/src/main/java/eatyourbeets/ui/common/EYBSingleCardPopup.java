@@ -2,6 +2,7 @@ package eatyourbeets.ui.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -19,8 +20,15 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Label;
+import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.ui.controls.GUI_Toggle;
+import eatyourbeets.ui.hitboxes.RelativeHitbox;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -28,25 +36,44 @@ public class EYBSingleCardPopup extends GUIElement
 {
     // TODO: This method cannot be found in certain unknown circumstances
     //private static final MethodInfo _canToggleBetaArt = JUtils.GetMethod("canToggleBetaArt", SingleCardViewPopup.class);
+    private static final float ICON_SIZE = 64f * Settings.scale;
     private static final String[] TEXT = SingleCardViewPopup.TEXT;
 
     private final GUI_Toggle upgradeToggle;
     private final GUI_Toggle betaArtToggle;
+    private final GUI_Button changeVariant;
+    private final GUI_Button changeVariantNext;
+    private final GUI_Button changeVariantPrev;
+    private final GUI_TextBox changeVariantNumber;
+    private final GUI_Label changeVariantLabel;
+    private final GUI_Label changeVariantDescription;
 
     private final Hitbox nextHb;
     private final Hitbox prevHb;
     private final Hitbox cardHb;
     private final Hitbox upgradeHb;
     private final Hitbox betaArtHb;
+    private final Hitbox changeVariantHb;
+    private final Hitbox changeVariantNextHb;
+    private final Hitbox changeVariantPrevHb;
+    private final Hitbox changeVariantValueHb;
 
+    private final Texture buttonTexture = GR.Common.Images.HexagonalButton.Texture();
+    private final Texture buttonBorderTexture = GR.Common.Images.HexagonalButtonBorder.Texture();
+
+    private final AnimatorStrings.SingleCardPopupButtons buttonStrings = GR.Animator.Strings.SingleCardPopupButtons;
+
+    private EYBCard baseCard;
     private EYBCard card;
     private EYBCard upgradedCard;
     private CardGroup group;
     private AbstractCard prevCard;
     private AbstractCard nextCard;
     private boolean viewBetaArt;
+    private boolean viewChangeVariant;
     private float fadeTimer;
     private Color fadeColor;
+    private int currentForm;
 
     public EYBSingleCardPopup()
     {
@@ -56,8 +83,13 @@ public class EYBSingleCardPopup extends GUIElement
         this.prevHb = new Hitbox(160f * Settings.scale, 160f * Settings.scale);
         this.nextHb = new Hitbox(160f * Settings.scale, 160f * Settings.scale);
         this.cardHb = new Hitbox(550f * Settings.scale, 770f * Settings.scale);
+        this.changeVariantHb = new Hitbox(200f * Settings.scale, 150f * Settings.scale);
+        this.changeVariantNextHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 2, changeVariantHb.height * 0.8f, false);
+        this.changeVariantPrevHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2, changeVariantHb.height * 0.8f, false);
+        this.changeVariantValueHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE, changeVariantHb.height * 0.8f, false);
         this.viewBetaArt = false;
         this.isActive = false;
+        this.currentForm = 0;
 
         this.upgradeToggle = new GUI_Toggle(upgradeHb).SetText(TEXT[6])
         .SetBackground(RenderHelpers.ForTexture(ImageMaster.CHECKBOX))
@@ -74,18 +106,52 @@ public class EYBSingleCardPopup extends GUIElement
         .SetControllerAction(CInputActionSet.proceed)
         .SetFont(FontHelper.cardTitleFont, 1)
         .SetOnToggle(this::ToggleBetaArt);
+
+        this.changeVariant = new GUI_Button(buttonTexture, changeVariantHb)
+                .SetBorder(buttonBorderTexture, Color.WHITE)
+                .SetClickDelay(0.3f)
+                .SetDimensions(ScreenW(0.18f), ScreenH(0.07f))
+                .SetText(buttonStrings.ChangeVariant)
+                .SetOnClick(this::ChangeCardForm)
+                .SetColor(Color.FIREBRICK);
+
+        this.changeVariantNext = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, changeVariantNextHb)
+                .SetOnClick(() -> ChangePreviewForm(currentForm + 1))
+                .SetText(null);
+
+        this.changeVariantPrev = new GUI_Button(ImageMaster.CF_LEFT_ARROW, changeVariantPrevHb)
+                .SetOnClick(() -> ChangePreviewForm(currentForm - 1))
+                .SetText(null);
+
+        this.changeVariantNumber = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), changeVariantValueHb)
+                .SetBackgroundTexture(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Color(0.5f, 0.5f, 0.5f , 1f), 1.05f)
+                .SetColors(new Color(0, 0, 0, 0.85f), Settings.CREAM_COLOR)
+                .SetAlignment(0.5f, 0.5f)
+                .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
+
+        this.changeVariantLabel = new GUI_Label(EYBFontHelper.CardDescriptionFont_Large,
+                new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 - ICON_SIZE / 4, changeVariantHb.height * 2.3f, false))
+                .SetAlignment(0.5f, 0.5f) // 0.1f
+                .SetText(buttonStrings.Variant);
+
+        this.changeVariantDescription = new GUI_Label(EYBFontHelper.CardTooltipFont,
+                new RelativeHitbox(changeVariantHb, ScreenW(0.21f), ScreenH(0.07f), changeVariantHb.width / 2, -changeVariantHb.height * 0.6f, false))
+                .SetAlignment(0.85f, 0.1f, true)
+                .SetText(buttonStrings.ChangeVariantTooltipAlways);
     }
 
     public void Open(EYBCard card, CardGroup group)
     {
         CardCrawlGame.isPopupOpen = true;
 
+        this.baseCard = card;
         this.card = card.MakePopupCopy();
         this.upgradedCard = null;
         this.isActive = true;
         this.prevCard = null;
         this.nextCard = null;
         this.group = group;
+        this.currentForm = card.auxiliaryData.form;
 
         if (group != null)
         {
@@ -136,6 +202,11 @@ public class EYBSingleCardPopup extends GUIElement
         {
             this.upgradeHb.move((float) Settings.WIDTH / 2f, 70f * Settings.scale);
         }
+
+        this.changeVariantHb.move((float) Settings.WIDTH / 2f  - 680f * Settings.scale, Settings.HEIGHT / 2f + 220 * Settings.scale);
+
+        viewChangeVariant = (baseCard != null && baseCard.cardData.CanToggleFromPopup);
+        changeVariantDescription.SetText((baseCard != null && !baseCard.cardData.CanToggleFromAlternateForm) ? buttonStrings.ChangeVariantTooltipPermanent : buttonStrings.ChangeVariantTooltipAlways);
     }
 
     public EYBCard GetCard()
@@ -167,14 +238,20 @@ public class EYBSingleCardPopup extends GUIElement
         InputHelper.justReleasedClickLeft = false;
         CardCrawlGame.isPopupOpen = false;
         this.isActive = false;
+        this.baseCard = null;
         this.card = null;
         this.upgradedCard = null;
+        this.currentForm = 0;
     }
 
     @Override
     public void Update()
     {
         this.cardHb.update();
+        this.changeVariantHb.update();
+        this.changeVariantNextHb.update();
+        this.changeVariantPrevHb.update();
+        this.changeVariantValueHb.update();
         this.UpdateArrows();
         this.UpdateInput();
 
@@ -183,6 +260,14 @@ public class EYBSingleCardPopup extends GUIElement
 
         this.upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).TryUpdate();
         this.betaArtToggle.SetToggle(viewBetaArt).TryUpdate();
+
+        this.changeVariantNumber.SetText(currentForm);
+        this.changeVariantNumber.TryUpdate();
+        this.changeVariantPrev.TryUpdate();
+        this.changeVariantNext.TryUpdate();
+        this.changeVariant.TryUpdate();
+        this.changeVariantLabel.TryUpdate();
+        this.changeVariantDescription.TryUpdate();
     }
 
     @Override
@@ -226,6 +311,26 @@ public class EYBSingleCardPopup extends GUIElement
             if (Settings.isControllerMode)
             {
                 sb.draw(CInputActionSet.topPanel.getKeyImg(), this.betaArtHb.cX - 132f * Settings.scale - 32f, -32f + 67f * Settings.scale, 32f, 32f, 64f, 64f, Settings.scale, Settings.scale, 0f, 0, 0, 64, 64, false, false);
+            }
+        }
+
+        if (viewChangeVariant && baseCard != null && (baseCard.auxiliaryData.form == 0 || baseCard.cardData.CanToggleFromAlternateForm) && (baseCard.upgraded || SingleCardViewPopup.isViewingUpgrade || baseCard.cardData.UnUpgradedCanToggleForms)) {
+            changeVariant.SetInteractable(baseCard.auxiliaryData.form != currentForm);
+            changeVariantHb.render(sb);
+            changeVariantValueHb.render(sb);
+            changeVariantNumber.Render(sb);
+            changeVariantLabel.Render(sb);
+            if (currentForm > 0) {
+                changeVariantPrevHb.render(sb);
+                changeVariantPrev.Render(sb);
+            }
+            if (currentForm < card.cardData.MaxForms - 1) {
+                changeVariantNextHb.render(sb);
+                changeVariantNext.Render(sb);
+            }
+            if (baseCard.upgraded || baseCard.cardData.UnUpgradedCanToggleForms) {
+                changeVariant.Render(sb);
+                changeVariantDescription.Render(sb);
             }
         }
     }
@@ -298,7 +403,7 @@ public class EYBSingleCardPopup extends GUIElement
 
         if (InputHelper.justClickedLeft)
         {
-            if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered))
+            if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered) && (!this.viewChangeVariant || (!this.changeVariantHb.hovered && !this.changeVariantNextHb.hovered && !this.changeVariantPrevHb.hovered && !this.changeVariantValueHb.hovered)))
             {
                 JUtils.LogInfo(this, "Closing");
                 Close();
@@ -351,4 +456,25 @@ public class EYBSingleCardPopup extends GUIElement
 
         hb.render(sb);
     }
+
+    private void ChangeCardForm()
+    {
+        if (baseCard != null && baseCard.auxiliaryData.form != currentForm) {
+            baseCard.SetForm(currentForm, baseCard.timesUpgraded);
+            //aCard.canBranch = false;
+        }
+    }
+
+    public void ChangePreviewForm(int newForm)
+    {
+        if (card != null) {
+            this.currentForm = card.SetForm(newForm, card.timesUpgraded);
+            upgradedCard = card.MakePopupCopy();
+            upgradedCard.SetForm(newForm, card.timesUpgraded);
+            upgradedCard.upgrade();
+            upgradedCard.displayUpgrades();
+        }
+
+    }
+
 }

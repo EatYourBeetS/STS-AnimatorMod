@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
-import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +25,7 @@ import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
-public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<String>>,
+public class Kirby extends AnimatorCard implements
         OnAddToDeckListener,
         OnCostChangedSubscriber,
         OnTagChangedSubscriber,
@@ -234,25 +233,30 @@ public class Kirby extends AnimatorCard implements CustomSavable<ArrayList<Strin
     }
 
     @Override
-    public ArrayList<String> onSave() {
+    public EYBCardSaveData onSave() {
+
         ArrayList<String> ids = new ArrayList<>();
         for (AbstractCard card : inheritedCards) {
             ids.add(card.cardID);
         }
-        return ids;
+        auxiliaryData.additionalData = ids;
+        return auxiliaryData;
     }
 
     @Override
-    public void onLoad(ArrayList<String> cardIDs) {
+    public void onLoad(EYBCardSaveData data) {
+        super.onLoad(data);
         inheritedCards.clear();
         previews.Clear();
-        for (String id : cardIDs) {
-            AbstractCard card = CardLibrary.getCard(id);
-            for (int i = 0; i < this.timesUpgraded; i++) {
-                card.upgrade();
-            }
+        if (data.additionalData != null) {
+            for (String id : data.additionalData) {
+                AbstractCard card = CardLibrary.getCard(id);
+                for (int i = 0; i < this.timesUpgraded; i++) {
+                    card.upgrade();
+                }
 
-            AddInheritedCard(card);
+                AddInheritedCard(card);
+            }
         }
         refreshDescription();
     }

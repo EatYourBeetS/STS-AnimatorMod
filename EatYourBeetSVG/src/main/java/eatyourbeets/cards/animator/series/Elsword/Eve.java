@@ -25,6 +25,7 @@ public class Eve extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
+            .SetMultiformData(2)
             .PostInitialize(data ->
             {
                 for (EYBCardData d : AffinityToken.GetCards())
@@ -50,8 +51,19 @@ public class Eve extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetDelayed(false);
+        if (auxiliaryData.form == 0) {
+            SetDelayed(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

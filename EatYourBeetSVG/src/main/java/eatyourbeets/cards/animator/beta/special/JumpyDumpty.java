@@ -4,17 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class JumpyDumpty extends AnimatorCard {
-    public static final EYBCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Elemental).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.Random).SetSeries(CardSeries.GenshinImpact);
 
     public JumpyDumpty() {
         super(DATA);
@@ -28,19 +26,34 @@ public class JumpyDumpty extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
-        GameActions.Bottom.VFX(new ExplosionSmallEffect(m.hb.cX, m.hb.cY), 0.1F);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-                .AddCallback(m.currentBlock, (initialBlock, target) ->
-                {
-                    if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
-                        if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-                            GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-                            GameActions.Bottom.StackPower(new DelayedDamagePower(player, secondaryValue));
+        AbstractMonster priorityTarget;
+        RandomizedList<AbstractMonster> priorityTargets = new RandomizedList<>();
+        for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
+            if ((mo.currentBlock > 0 && mo.currentBlock <= damage) || mo.currentHealth <= damage) {
+                priorityTargets.Add(mo);
+            }
+        }
+        priorityTarget = priorityTargets.Retrieve(rng);
+        if (priorityTarget == null) {
+            priorityTarget = GameUtilities.GetRandomEnemy(true);
+        }
+
+        if (priorityTarget != null) {
+            GameActions.Bottom.VFX(new ExplosionSmallEffect(priorityTarget.hb.cX, priorityTarget.hb.cY), 0.1F);
+            GameActions.Bottom.DealDamage(this, priorityTarget, AttackEffects.NONE)
+                    .AddCallback(priorityTarget.currentBlock, (initialBlock, target) ->
+                    {
+                        if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
+                            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                                GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
+                                GameActions.Bottom.StackPower(new DelayedDamagePower(player, secondaryValue));
+                            }
                         }
-                    }
 
-                });
+                    });
 
-        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
+            GameActions.Bottom.ApplyBurning(p, priorityTarget, magicNumber);
+        }
+
     }
 }

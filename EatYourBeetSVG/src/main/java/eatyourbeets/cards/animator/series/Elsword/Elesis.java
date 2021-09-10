@@ -1,7 +1,5 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import basemod.abstracts.CustomSavable;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,51 +7,45 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
+public class Elesis extends AnimatorCard
 {
-    public enum Form
-    {
-        None,
-        Saber,
-        Pyro,
-        Dark,
-    }
-
+    public static final int FORM_NONE = 0;
+    public static final int FORM_SABER = 1;
+    public static final int FORM_PYRO = 2;
+    public static final int FORM_DARK = 3;
     public static final EYBCardData DATA = Register(Elesis.class)
             .SetAttack(-2, CardRarity.RARE)
             .SetSeriesFromClassPackage()
+            .SetMultiformData(4, true, false, true, true)
             .PostInitialize(data ->
             {
-                data.AddPreview(new Elesis(Form.Saber, false), true);
-                data.AddPreview(new Elesis(Form.Pyro, false), true);
-                data.AddPreview(new Elesis(Form.Dark, false), true);
+                data.AddPreview(new Elesis(1, 0), true);
+                data.AddPreview(new Elesis(2, 0), true);
+                data.AddPreview(new Elesis(3, 0), true);
             });
 
-    private Form currentForm;
     private int bonusDamage = 0;
 
     public Elesis()
     {
-        this(Form.None, false);
+        this(FORM_NONE, 0);
     }
 
-    private Elesis(Form form, boolean upgraded)
+    private Elesis(int form, int timesUpgraded)
     {
-        super(DATA);
-
-        this.upgraded = upgraded;
-        ChangeForm(form);
+        super(DATA, form, timesUpgraded);
     }
 
     @Override
     public EYBCardPreview GetCardPreview()
     {
-        return currentForm != Form.None ? null : super.GetCardPreview();
+        return auxiliaryData.form != FORM_NONE ? null : super.GetCardPreview();
     }
 
     @Override
@@ -61,7 +53,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         super.triggerWhenDrawn();
 
-        if (currentForm == Form.Saber)
+        if (auxiliaryData.form == 1)
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c ->
             {
@@ -77,11 +69,11 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         super.triggerOnManualDiscard();
 
-        if (currentForm == Form.Saber)
+        if (auxiliaryData.form == FORM_SABER)
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
         }
-        else if (currentForm == Form.Pyro && CombatStats.TryActivateSemiLimited(cardID))
+        else if (auxiliaryData.form == FORM_PYRO && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
         }
@@ -92,9 +84,9 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        switch (currentForm)
+        switch (auxiliaryData.form)
         {
-            case Saber:
+            case FORM_SABER:
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
@@ -105,7 +97,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 break;
             }
 
-            case Pyro:
+            case FORM_PYRO:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
                 if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
@@ -115,7 +107,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 break;
             }
 
-            case Dark:
+            case FORM_DARK:
             {
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 break;
@@ -126,42 +118,21 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        return currentForm == Form.None ? makeCopy() : super.makeStatEquivalentCopy();
+        return auxiliaryData.form == FORM_NONE ? makeCopy() : super.makeStatEquivalentCopy();
     }
 
     @Override
     public AbstractCard makeCopy()
     {
-        if (currentForm == Form.None && GameUtilities.InBattle(true) && GameUtilities.GetMasterDeckInstance(uuid) == null)
+        if (auxiliaryData.form == FORM_NONE && GameUtilities.InBattle(true) && GameUtilities.GetMasterDeckInstance(uuid) == null)
         {
-            int roll = rng.random(0, 2);
-            if (roll == 0)
-            {
-                return new Elesis(Form.Saber, upgraded);
-            }
-            else if (roll == 1)
-            {
-                return new Elesis(Form.Pyro, upgraded);
-            }
-            else
-            {
-                return new Elesis(Form.Dark, upgraded);
+            Elesis e = new Elesis(rng.random(1, 3), timesUpgraded);
+            if (upgraded) {
+                e.upgrade();
             }
         }
 
-        return new Elesis(currentForm, upgraded);
-    }
-
-    @Override
-    public Form onSave()
-    {
-        return currentForm;
-    }
-
-    @Override
-    public void onLoad(Form form)
-    {
-        ChangeForm(form == null ? Form.None : form);
+        return new Elesis(auxiliaryData.form, timesUpgraded);
     }
 
     @Override
@@ -169,17 +140,17 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     {
         super.triggerWhenCreated(startOfBattle);
 
-        if (currentForm == Form.Dark && startOfBattle)
+        if (auxiliaryData.form == FORM_DARK && startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
             GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL);
         }
-        else if (currentForm == Form.None)
+        else if (auxiliaryData.form == FORM_NONE)
         {
             final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            group.group.add(new Elesis(Form.Saber, upgraded));
-            group.group.add(new Elesis(Form.Pyro, upgraded));
-            group.group.add(new Elesis(Form.Dark, upgraded));
+            group.group.add(new Elesis(FORM_SABER, timesUpgraded));
+            group.group.add(new Elesis(FORM_PYRO, timesUpgraded));
+            group.group.add(new Elesis(FORM_DARK, timesUpgraded));
 
             GameActions.Bottom.SelectFromPile(name, 1, group)
             .SetOptions(false, false)
@@ -189,30 +160,29 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 {
                     Elesis card = (Elesis) cards.get(0);
 
-                    ChangeForm(card.currentForm);
+                    SetForm(card.auxiliaryData.form, timesUpgraded);
 
                     final AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(uuid);
                     if (inDeck != null)
                     {
-                        ((Elesis) inDeck).ChangeForm(currentForm);
+                        ((Elesis) inDeck).SetForm(auxiliaryData.form, timesUpgraded);
                     }
                 }
             });
         }
     }
 
-    protected void ChangeForm(Form form)
+    @Override
+    public int SetForm(Integer form, int timesUpgraded)
     {
-        if (this.currentForm == form)
-        {
-            return;
-        }
-
-        this.currentForm = form;
+        //if (this.auxiliaryData.form == form)
+        //{
+        //    return super.SetForm(form, timesUpgraded);
+        //}
 
         switch (form)
         {
-            case None:
+            case FORM_NONE:
             {
                 LoadImage(null);
 
@@ -226,7 +196,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 break;
             }
 
-            case Saber:
+            case FORM_SABER:
             {
                 LoadImage("_Saber");
 
@@ -245,7 +215,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 break;
             }
 
-            case Pyro:
+            case FORM_PYRO:
             {
                 LoadImage("_Pyro");
 
@@ -263,7 +233,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 break;
             }
 
-            case Dark:
+            case FORM_DARK:
             {
                 LoadImage("_Dark");
 
@@ -282,11 +252,12 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             }
         }
 
-        if (upgraded)
+        if (timesUpgraded > 0)
         {
             upgraded = false;
             upgrade();
         }
+        return super.SetForm(form, timesUpgraded);
     }
 
     protected void AddDamageBonus(int amount)

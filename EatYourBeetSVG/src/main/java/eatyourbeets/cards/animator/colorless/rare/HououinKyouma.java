@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -17,6 +17,7 @@ public class HououinKyouma extends AnimatorCard
     public static final EYBCardData DATA = Register(HououinKyouma.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
+            .SetMultiformData(2)
             .SetSeries(CardSeries.SteinsGate);
 
     public HououinKyouma()
@@ -34,8 +35,18 @@ public class HououinKyouma extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetDelayed(false);
+        if (auxiliaryData.form == 0) {
+            SetDelayed(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)

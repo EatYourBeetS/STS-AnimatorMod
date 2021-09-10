@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.AnimatorCard_Multiform;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Air;
@@ -12,7 +12,7 @@ import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Venti extends AnimatorCard_Multiform
+public class Venti extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetSeriesFromClassPackage();
 
@@ -21,7 +21,7 @@ public class Venti extends AnimatorCard_Multiform
         super(DATA);
 
         Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 1, 1);
         SetAffinity_Star(2, 0, 0);
 
         SetEthereal(true);

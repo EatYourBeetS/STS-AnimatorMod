@@ -14,6 +14,7 @@ public class AnimatorStrings
     public CharacterSelect CharSelect;
     public SeriesSelection SeriesSelection;
     public SeriesSelectionButtons SeriesSelectionButtons;
+    public SingleCardPopupButtons SingleCardPopupButtons;
     public Actions Actions;
     public Trophies Trophies;
 
@@ -28,6 +29,7 @@ public class AnimatorStrings
         Trophies = new Trophies();
         SeriesSelection = new SeriesSelection();
         SeriesSelectionButtons = new SeriesSelectionButtons();
+        SingleCardPopupButtons = new SingleCardPopupButtons();
     }
 
     public class Tips
@@ -168,6 +170,16 @@ public class AnimatorStrings
         {
             return JUtils.Format(Strings.TEXT[2], cards) ;
         }
+    }
+
+    public class SingleCardPopupButtons
+    {
+        private final UIStrings Strings = GetUIStrings("SingleCardPopupButtons");
+
+        public final String Variant = Strings.TEXT[0];
+        public final String ChangeVariant = Strings.TEXT[1];
+        public final String ChangeVariantTooltipPermanent = Strings.TEXT[2];
+        public final String ChangeVariantTooltipAlways = Strings.TEXT[3];
     }
 
     public class Actions

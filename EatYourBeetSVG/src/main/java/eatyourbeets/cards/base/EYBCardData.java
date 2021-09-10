@@ -35,6 +35,12 @@ public class EYBCardData
     public int BaseCost;
     public int MaxCopies;
 
+    public int MaxForms = 1;
+    public boolean CanToggleFromPopup = false;
+    public boolean CanToggleOnUpgrade = false;
+    public boolean CanToggleFromAlternateForm = false;
+    public boolean UnUpgradedCanToggleForms = false;
+
     public final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
     public AbstractCard.CardColor CardColor;
@@ -300,6 +306,21 @@ public class EYBCardData
         AttackType = EYBAttackType.None;
         CardTarget = target;
         BaseCost = cost;
+
+        return this;
+    }
+
+    public EYBCardData SetMultiformData(int maxForms) {
+        return SetMultiformData(maxForms,true,false,false,false);
+    }
+
+    public EYBCardData SetMultiformData(int maxForms, boolean canToggleFromPopup, boolean canToggleOnUpgrade, boolean canToggleFromAlternateForm, boolean unUpgradedCanToggleForms)
+    {
+        this.MaxForms = maxForms;
+        this.CanToggleFromPopup = canToggleFromPopup;
+        this.CanToggleOnUpgrade = canToggleOnUpgrade;
+        this.CanToggleFromAlternateForm = canToggleFromAlternateForm;
+        this.UnUpgradedCanToggleForms = unUpgradedCanToggleForms;
 
         return this;
     }

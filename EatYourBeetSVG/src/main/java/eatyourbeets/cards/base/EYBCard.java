@@ -1,8 +1,10 @@
 package eatyourbeets.cards.base;
 
+import basemod.abstracts.CustomSavable;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.google.gson.reflect.TypeToken;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.Tactician;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,14 +26,16 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
+import patches.cardStrings.CardStringPatches;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
 
-public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber
+public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, CustomSavable<EYBCardSaveData>
 {
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
@@ -58,6 +62,8 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected int upgrade_block;
     protected int upgrade_cost;
 
+    public EYBCardSaveData auxiliaryData = new EYBCardSaveData();
+
     public static EYBCardData GetStaticData(String cardID)
     {
         return staticCardData.get(cardID);
@@ -77,10 +83,19 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     protected EYBCard(EYBCardData cardData)
     {
-        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget(), 0, 0);
     }
 
-    protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
+    protected EYBCard(EYBCardData cardData, int form, int timesUpgraded)
+    {
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget(), form, timesUpgraded);
+    }
+
+    protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target) {
+        this(cardData,id,imagePath,cost,type,color,rarity,target,0, 0);
+    }
+
+    protected EYBCard(EYBCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target, int form, int timesUpgraded)
     {
         super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
@@ -90,12 +105,18 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         this.cardText = new EYBCardText(this);
         this.affinities = new EYBCardAffinities(this);
         initializeDescription();
+
+        SetForm(form, timesUpgraded);
     }
 
     @Override
     public AbstractCard makeCopy()
     {
-        return cardData.CreateNewInstance();
+        AbstractCard card = cardData.CreateNewInstance();
+        if (card instanceof EYBCard && auxiliaryData.form > 0) {
+            ((EYBCard) card).SetForm(auxiliaryData.form, timesUpgraded);
+        }
+        return card;
     }
 
     @Override
@@ -118,6 +139,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         copy.secondaryValue = secondaryValue;
         copy.baseSecondaryValue = baseSecondaryValue;
         copy.isSecondaryValueModified = isSecondaryValueModified;
+        copy.auxiliaryData = new EYBCardSaveData(auxiliaryData.form, auxiliaryData.additionalData);
 
         copy.tags.clear();
         copy.tags.addAll(tags);
@@ -157,6 +179,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     protected String GetRawDescription(Object... args)
     {
+        if (auxiliaryData.form > 0) {
+            String[] alternateDescriptions = CardStringPatches.ALTERNATE_DESCRIPTION.get(cardData.Strings);
+            if (alternateDescriptions != null && alternateDescriptions.length > auxiliaryData.form) {
+                return JUtils.Format(alternateDescriptions[auxiliaryData.form], args);
+            }
+        }
         return upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null
                 ? JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args)
                 : JUtils.Format(cardData.Strings.DESCRIPTION, args);
@@ -170,6 +198,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (upgrade == null || upgrade.uuid != this.uuid || (upgrade.timesUpgraded != (timesUpgraded + 1)))
         {
             upgrade = cardData.tempCard = (EYBCard) this.makeSameInstanceOf();
+            upgrade.SetForm(auxiliaryData.form, timesUpgraded);
             upgrade.isPreview = true;
             upgrade.upgrade();
             upgrade.displayUpgrades();
@@ -974,4 +1003,29 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     {
         return amount;
     }
+
+    @Override
+    public EYBCardSaveData onSave()
+    {
+        return auxiliaryData;
+    }
+
+    @Override
+    public void onLoad(EYBCardSaveData data)
+    {
+        if (data != null) {
+            SetForm(data.form, timesUpgraded);
+        }
+    }
+
+    @Override
+    public Type savedType() {
+        return new TypeToken<EYBCardSaveData>(){}.getType();
+    }
+
+    public int SetForm(Integer form, int timesUpgraded) {
+        this.auxiliaryData.form = (form == null) ? 0 : MathUtils.clamp(form,0,this.cardData.MaxForms - 1);
+        return this.auxiliaryData.form;
+    };
+
 }

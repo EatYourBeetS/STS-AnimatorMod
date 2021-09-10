@@ -31,7 +31,12 @@ public abstract class AnimatorCard extends EYBCard
 
     protected AnimatorCard(EYBCardData cardData)
     {
-        super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
+       this(cardData, 0, 0);
+    }
+
+    protected AnimatorCard(EYBCardData cardData, int form, int timesUpgraded)
+    {
+        super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget(), form, timesUpgraded);
 
         SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
         SetAttackTarget(cardData.CardTarget);
@@ -45,7 +50,12 @@ public abstract class AnimatorCard extends EYBCard
 
     protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(data, id, imagePath, cost, type, color, rarity, target);
+        super(data, id, imagePath, cost, type, color, rarity, target, 0, 0);
+    }
+
+    protected AnimatorCard(EYBCardData data, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target, int form, int timesUpgraded)
+    {
+        super(data, id, imagePath, cost, type, color, rarity, target, form, timesUpgraded);
     }
 
     public boolean HasSynergy()

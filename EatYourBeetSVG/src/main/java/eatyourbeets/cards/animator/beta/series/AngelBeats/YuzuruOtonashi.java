@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YuzuruOtonashi extends AnimatorCard //TODO
+public class YuzuruOtonashi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YuzuruOtonashi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
@@ -18,13 +18,18 @@ public class YuzuruOtonashi extends AnimatorCard //TODO
         super(DATA);
 
         Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
 
-        SetHaste(true);
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Light(1, 1, 0);
 
         SetProtagonist(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class YuzuruOtonashi extends AnimatorCard //TODO
                 }
                 else if (GameUtilities.IsHindrance(card))
                 {
-                    GameActions.Bottom.Draw(1);
+                    GameActions.Bottom.GainInspiration(1);
                 }
             }
         });

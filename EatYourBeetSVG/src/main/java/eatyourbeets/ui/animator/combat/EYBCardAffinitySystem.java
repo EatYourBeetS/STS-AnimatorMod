@@ -259,7 +259,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public float ModifyBlock(float block, EYBCard card)
     {
-        if (card.type != AbstractCard.CardType.ATTACK)
+        if (card.type != AbstractCard.CardType.ATTACK || card.cardData.BlockScalingAttack)
         {
             for (AbstractAffinityPower p : Powers)
             {

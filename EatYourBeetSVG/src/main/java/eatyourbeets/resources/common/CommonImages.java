@@ -54,6 +54,7 @@ public class CommonImages
         public final TextureCache Force                 = new TextureCache("images/eyb/cardui/core/Force.png");
         public final TextureCache Agility               = new TextureCache("images/eyb/cardui/core/Agility.png");
         public final TextureCache Willpower             = new TextureCache("images/eyb/cardui/core/Willpower.png");
+        public final TextureCache BlockScaling          = new TextureCache("images/eyb/cardui/core/BlockScaling.png");
     }
 
     public static class AffinityIcons

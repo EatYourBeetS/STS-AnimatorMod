@@ -71,7 +71,7 @@ public class AnimatorConfig
         //FadeCardsWithoutSynergy.AddToPanel(panel, misc.FadeCardsWithoutSynergy, 400, 700);
         CropCardImages.AddToPanel(panel, misc.UseCardHoveringAnimation, 400, 650);
         SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
-        EnableEventsForOtherCharacters.AddToPanel(panel, misc.SimplifyCardUI, 400, 550);
+        EnableEventsForOtherCharacters.AddToPanel(panel, misc.EnableEventsForOtherCharacters, 400, 550);
 
         if (GR.Animator.Data.BetaLoadouts.size() > 0)
         {

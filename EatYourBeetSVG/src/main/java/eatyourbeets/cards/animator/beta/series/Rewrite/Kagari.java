@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
@@ -37,28 +38,28 @@ public class Kagari extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Bottom.StackPower(new KagariPower(p, secondaryValue, secondaryValue, magicNumber));
+        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber, secondaryValue, secondaryValue));
     }
 
     public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber
     {
-        private final int secondaryAmount;
-        private final int tertiaryAmount;
-        public KagariPower(AbstractPlayer owner, int amount, int secondaryAmount, int tertiaryAmount)
+        private final int willpowerAmount;
+        private final int shacklesAmount;
+        public KagariPower(AbstractPlayer owner, int amount, int willpowerAmount, int shacklesAmount)
         {
             super(owner, Kagari.DATA);
 
-            this.amount = amount;
-            this.secondaryAmount = secondaryAmount;
-            this.tertiaryAmount = tertiaryAmount;
+            this.willpowerAmount = willpowerAmount;
+            this.shacklesAmount = shacklesAmount;
 
+            Initialize(amount);
             updateDescription();
         }
 
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, secondaryAmount, tertiaryAmount);
+            description = FormatDescription(0, amount, willpowerAmount, shacklesAmount);
         }
 
         @Override
@@ -70,10 +71,26 @@ public class Kagari extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onChannelOrb.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onChannelOrb.Unsubscribe(this);
+        }
+
+        @Override
         public void OnChannelOrb(AbstractOrb orb) {
-            if (Earth.ORB_ID.equals(orb.ID) && owner.isPlayer && amount > 0) {
-                GameActions.Bottom.GainWillpower(secondaryAmount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
-                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, tertiaryAmount);
+            if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
+                GameActions.Bottom.GainWillpower(willpowerAmount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, shacklesAmount);
                 this.amount -= 1;
                 updateDescription();
                 flash();

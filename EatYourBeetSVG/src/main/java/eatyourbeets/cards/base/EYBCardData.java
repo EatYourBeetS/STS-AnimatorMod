@@ -48,6 +48,7 @@ public class EYBCardData
     public EYBAttackType AttackType;
     public CardSeries Series;
     public EYBCard tempCard = null;
+    public boolean BlockScalingAttack;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
@@ -235,15 +236,20 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal);
+        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType)
     {
-        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal);
+        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
+    {
+        return SetAttack(cost, rarity, attackType, target, false);
+    }
+
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling)
     {
         SetRarity(rarity);
 
@@ -251,6 +257,7 @@ public class EYBCardData
         CardType = AbstractCard.CardType.ATTACK;
         AttackType = attackType;
         BaseCost = cost;
+        BlockScalingAttack = isBlockScaling;
 
         return this;
     }

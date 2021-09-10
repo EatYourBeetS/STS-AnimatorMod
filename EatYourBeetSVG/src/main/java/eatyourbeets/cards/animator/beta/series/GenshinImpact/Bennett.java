@@ -32,7 +32,7 @@ public class Bennett extends AnimatorCard {
             GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
         }
         if (!CheckAffinity(Affinity.Red)) {
-            GameActions.Bottom.TakeDamage(secondaryValue, AttackEffects.SMASH);
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SMASH);
         }
     }
 }

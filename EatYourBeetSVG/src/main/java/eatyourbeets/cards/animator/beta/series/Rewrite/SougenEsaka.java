@@ -1,18 +1,17 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL, true).SetSeriesFromClassPackage();
 
     public SougenEsaka()
     {
@@ -22,13 +21,8 @@ public class SougenEsaka extends AnimatorCard
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
 
+        SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Orange, 3);
-    }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Orange) * affinities.GetScaling(Affinity.Orange, true) * 0.5f));
     }
 
 
@@ -37,6 +31,11 @@ public class SougenEsaka extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
+
+        if (CheckAffinity(Affinity.Red)) {
+            GameUtilities.RetainPower(Affinity.Orange);
+        }
+
 
         if (CheckAffinity(Affinity.Orange))
         {

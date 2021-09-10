@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -17,7 +16,7 @@ public class JumpyDumpty extends AnimatorCard {
     public JumpyDumpty() {
         super(DATA);
 
-        Initialize(12, 0, 1, 6);
+        Initialize(12, 0, 1, 5);
         SetUpgrade(4, 0, 0, 0);
         SetAffinity_Red(1, 0, 2);
         SetAutoplay(true);
@@ -46,7 +45,7 @@ public class JumpyDumpty extends AnimatorCard {
                         if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
                             if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                                 GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-                                GameActions.Bottom.StackPower(new DelayedDamagePower(player, secondaryValue));
+                                GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.FIRE);
                             }
                         }
 

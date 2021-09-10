@@ -42,6 +42,7 @@ public class CardTooltips
     public EYBCardTooltip Piercing = FindByID("~Piercing");
     public EYBCardTooltip Ranged = FindByID("~Ranged");
     public EYBCardTooltip Damage = FindByID("~Damage");
+    public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
     public EYBCardTooltip Intellect = FindByID("Intellect");
     public EYBCardTooltip Force = FindByID("Force");
@@ -210,6 +211,7 @@ public class CardTooltips
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Health.SetIcon(icons.HP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
+        BlockScaling.SetIcon(icons.BlockScaling.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
         Affinity_Red.SetIcon(affinities.Red.Texture(), 8);

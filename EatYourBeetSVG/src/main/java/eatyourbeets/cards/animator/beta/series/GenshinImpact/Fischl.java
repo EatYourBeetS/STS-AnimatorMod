@@ -20,7 +20,7 @@ public class Fischl extends AnimatorCard {
         super(DATA);
 
         Initialize(2, 0, 1);
-        SetUpgrade(1, 0, 1);
+        SetUpgrade(2, 0, 0);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
@@ -32,7 +32,7 @@ public class Fischl extends AnimatorCard {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS);
         GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
-        GameActions.Bottom.GainCorruption(magicNumber);
+        GameActions.Bottom.GainCorruption(magicNumber, upgraded);
 
         if (isSynergizing && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);

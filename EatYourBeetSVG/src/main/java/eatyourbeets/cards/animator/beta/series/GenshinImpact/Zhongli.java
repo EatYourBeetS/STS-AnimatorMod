@@ -20,8 +20,8 @@ public class Zhongli extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
     }
 
@@ -75,7 +75,7 @@ public class Zhongli extends AnimatorCard
             Earth earthOrb = JUtils.SafeCast(orb, Earth.class);
 
             if (earthOrb != null) {
-                GameActions.Bottom.GainBlock(earthOrb.evokeAmount * earthOrb.projectilesCount / 2);
+                GameActions.Bottom.GainBlock(earthOrb.projectilesCount / 2);
             }
         }
     }

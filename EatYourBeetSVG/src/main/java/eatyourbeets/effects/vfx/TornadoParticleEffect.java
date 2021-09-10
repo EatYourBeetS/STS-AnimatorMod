@@ -48,7 +48,7 @@ public class TornadoParticleEffect extends EYBEffect
         this.color.a = this.alpha;
         this.rotation = Random(-200f, 200f);
         this.rotationSpeed = Random(500f, 800f);
-        this.duration = 0.6f;
+        this.duration = 0.75f;
         this.image = JUtils.Random(images).Texture();
 
         if (RandomBoolean())

@@ -7,6 +7,7 @@ import eatyourbeets.actions.animator.ElementalMasteryAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
@@ -77,6 +78,22 @@ public class ElementalMasteryPower extends AnimatorPower implements OnChannelOrb
         if (this.secondaryAmount <= 0) {
             GameActions.Bottom.RemovePower(owner, owner, this);
         }
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        CombatStats.onChannelOrb.Subscribe(this);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        CombatStats.onChannelOrb.Unsubscribe(this);
     }
 
     @Override

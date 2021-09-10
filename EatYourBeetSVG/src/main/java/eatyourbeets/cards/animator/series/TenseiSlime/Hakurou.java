@@ -1,13 +1,10 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
@@ -17,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 public class Hakurou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hakurou.class)
-            .SetAttack(2, CardRarity.COMMON)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 
@@ -33,13 +30,6 @@ public class Hakurou extends AnimatorCard
 
         SetAffinityRequirement(Affinity.Red, 4);
     }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        return super.ModifyBlock(enemy, amount + MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Green) * affinities.GetScaling(Affinity.Green, true) * 0.5f));
-    }
-
 
     @Override
     protected void OnUpgrade()

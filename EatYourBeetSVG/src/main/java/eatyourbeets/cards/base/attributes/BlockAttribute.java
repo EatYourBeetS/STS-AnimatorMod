@@ -9,7 +9,7 @@ public class BlockAttribute extends AbstractAttribute
     @Override
     public AbstractAttribute SetCard(EYBCard card)
     {
-        icon = ICONS.Block.Texture();
+        icon = card.cardData.BlockScalingAttack ? ICONS.BlockScaling.Texture() : ICONS.Block.Texture();
         iconTag = null;
         suffix = null;
         mainText = card.GetBlockString();

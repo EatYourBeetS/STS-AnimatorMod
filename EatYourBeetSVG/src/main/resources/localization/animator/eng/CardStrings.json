@@ -455,7 +455,7 @@
 		"animator:Kirby":
 		{
 			"DESCRIPTION": "Unique. || When Obtained: Remove up to 2 Basic or Common cards from your deck. Give this card their combined cost and effects.",
-			"EXTENDED_DESCRIPTION": ["Unique. || This card has the effects of {{0}} and {{1}}.", "Choose the first card to be played when playing this card.", "Choose the second card to be played when playing this card." ],
+			"EXTENDED_DESCRIPTION": ["Unique. || This card has the effects of {{0}} ** and {{1}}.", "Choose the first card to be played when playing this card.", "Choose the second card to be played when playing this card." ],
 			"NAME": "Kirby"
 		},
 		"animator:LaughingMan":
@@ -654,7 +654,7 @@
 		},
 		"animator:Ren":
 		{
-			"DESCRIPTION": "Channel [Dark] if you have no [Dark]. Otherwise, trigger a random Orb. Then, apply !M! [Poison] for each [Dark] Channeled. || <SLM>. If you have 3 [Dark]: Apply !S! [Blinded].",
+			"DESCRIPTION": "Channel [Dark] if you have no [Dark]. Otherwise, trigger a random Orb. Then, apply !M! [Poison] for each [Dark] Channeled. || <SLM>. 3 [Dark]: Apply !S! [Blinded].",
 			"NAME": "Ren"
 		},
 		"animator:ShidoItsuka":
@@ -704,7 +704,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: Take !S! damage.",
+        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || < !A! <R>: Take !S! [Delayed Damage].",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -842,8 +842,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives half of its damage as [Block] when Evoked. || Once per turn, pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
-		  	"EXTENDED_DESCRIPTION": ["Pay [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || Your [Earth] now give half of their damage as [Block] when #yEvoked."],
+			"DESCRIPTION": "[Earth] gives half of its projectile count as [Block] when Evoked. || Once per turn, pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
+		  	"EXTENDED_DESCRIPTION": ["Pay [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || [Earth] gives half of its projectile count as [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -917,7 +917,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "This card's [W] scaling also applies to its [Block]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
+			"DESCRIPTION": "!A! <R>: {~Retain} [W]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":
@@ -935,7 +935,7 @@
 	{
 		"animator:Curse_JunTormented":
 		{
-			"DESCRIPTION": "Unplayable. || At the end of turn: Gain 1 Weak and Frail. || When Discarded: Exhaust.",
+			"DESCRIPTION": "Unplayable. || At the end of turn: Gain 1 [Weak] and [Frail]. || When Discarded: Exhaust.",
 			"NAME": "Tormented Jun"
 		},
 		"animator:Curse_Rozen":
@@ -1395,7 +1395,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take ** !S! [Delayed Damage].",
+			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || < !A! <D>: Take ** !S! [Delayed Damage].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -1433,7 +1433,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! Strength. || Gain !S! [Vulnerable] and [C]. || Synergy: Channel [Dark].",
+			"DESCRIPTION": "Steal !M! [~Strength]. || Gain !S! [Vulnerable] and [C]. || Synergy: Channel [Dark].",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
@@ -2290,7 +2290,7 @@
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "Evoke your first [Frost] to ** gain !M! [F]. Otherwise: ** Channel 1 [Frost]. || !A! <B>: Apply !S! [Freezing].",
+			"DESCRIPTION": "Evoke your first [Frost] to ** gain !M! [F]. Otherwise: ** Channel 1 [Frost]. || !A! <B>: Gain !S! [Plated Armor].",
 			"NAME": "Cocytus"
 		},
 		"animator:Demiurge":
@@ -2423,7 +2423,7 @@
 		},
 		"animator:Hakurou":
 		{
-		    "DESCRIPTION": "This card's [A] scaling also applies to its [Block]. || <FS> or !A! <R>: ** Obtain {<G> Token}{+} || <SLM>. When Drawn: Gain [A].",
+		    "DESCRIPTION": "<FS> or !A! <R>: ** Obtain {<G> Token}{+} || <SLM>. When Drawn: Gain [A].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":

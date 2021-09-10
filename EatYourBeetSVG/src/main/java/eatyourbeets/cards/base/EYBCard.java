@@ -407,6 +407,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Ranged);
         }
+
+        if (cardData.BlockScalingAttack)
+        {
+            dynamicTooltips.add(GR.Tooltips.BlockScaling);
+        }
     }
 
     public AbstractAttribute GetPrimaryInfo()

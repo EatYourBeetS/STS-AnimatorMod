@@ -396,6 +396,12 @@
 		"NAMES": ["vigor"],
 		"PROPER_NAME": "Vigor"
 	},
+	"~Block Scaling":
+	{
+		"DESCRIPTION": "This #yAttack's scaling applies both to its damage and its #yBlock.",
+		"NAMES": ["~blockscaling, ~block scaling"],
+		"PROPER_NAME": "Dual Scaling"
+	},
 	"~Crystallize":
 	{
 		"DESCRIPTION": "A Status card that gives [Metallicize] at the cost of HP and [E].",

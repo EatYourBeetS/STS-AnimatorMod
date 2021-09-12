@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.basic;
 
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -43,12 +44,13 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         if (affinity == Affinity.Star)
         {
             Initialize(6, 0, 3);
+            SetUpgrade(3, 0);
         }
         else
         {
             Initialize(7, 0, 2);
+            SetUpgrade(2, 0);
         }
-        SetUpgrade(2, 0);
 
         SetAffinityRequirement(affinity, magicNumber);
 
@@ -56,13 +58,8 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-
-        if (upgraded)
-        {
-            SecondaryEffect();
-        }
     }
 }

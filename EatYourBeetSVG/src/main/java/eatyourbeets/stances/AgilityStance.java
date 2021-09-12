@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -48,9 +48,9 @@ public class AgilityStance extends EYBStance
 
         if (TryApplyStance(STANCE_ID))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(-STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(-STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(+STAT_GAIN_AMOUNT);
         }
     }
 
@@ -61,16 +61,16 @@ public class AgilityStance extends EYBStance
 
         if (TryApplyStance(null))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(+STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(+STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(-STAT_GAIN_AMOUNT);
         }
     }
 
     @Override
     public void onRefreshStance()
     {
-        GameUtilities.RetainPower(AFFINITY);
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override

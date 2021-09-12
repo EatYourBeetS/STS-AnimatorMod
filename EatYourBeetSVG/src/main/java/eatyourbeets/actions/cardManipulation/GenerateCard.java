@@ -12,10 +12,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDiscardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToDrawPileEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 public class GenerateCard extends EYBActionWithCallback<AbstractCard>
 {
@@ -25,7 +22,7 @@ public class GenerateCard extends EYBActionWithCallback<AbstractCard>
     protected boolean upgrade;
     protected boolean makeCopy;
     protected boolean cancelIfFull;
-    protected CardSelection destination;
+    protected ListSelection<AbstractCard> destination;
     protected AbstractCard actualCard;
 
     public GenerateCard(AbstractCard card, CardGroup group)
@@ -72,7 +69,7 @@ public class GenerateCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public GenerateCard SetDestination(CardSelection destination)
+    public GenerateCard SetDestination(ListSelection<AbstractCard> destination)
     {
         this.destination = destination;
 
@@ -197,7 +194,7 @@ public class GenerateCard extends EYBActionWithCallback<AbstractCard>
 
             if (destination != null && cardGroup.group.remove(actualCard))
             {
-                destination.AddCard(cardGroup.group, actualCard, 0);
+                destination.Add(cardGroup.group, actualCard, 0);
             }
         }
     }

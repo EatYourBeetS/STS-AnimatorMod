@@ -1,10 +1,12 @@
 package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -45,10 +47,34 @@ public class AnimatorRuntimeLoadout
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
         this.Cards = GetNonColorlessCards(loadout.Series);
-        this.AffinityStatistics = new EYBCardAffinityStatistics(Cards.values());
+        this.AffinityStatistics = new EYBCardAffinityStatistics(Cards.values(), false);
 
         this.promoted = false;
         this.card = null;
+    }
+
+    public CardGroup GetCardPool()
+    {
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        for (AbstractCard c : Cards.values())
+        {
+            final CardGroup pool = GameUtilities.GetCardPool(c.rarity);
+            if (pool != null)
+            {
+                c = pool.findCardById(c.cardID);
+
+                if (c != null)
+                {
+                    final AbstractCard copy = c.makeCopy();
+                    copy.isSeen = c.isSeen;
+                    group.group.add(copy);
+                }
+            }
+        }
+
+        group.sortByRarity(true);
+
+        return group;
     }
 
     public void Promote()

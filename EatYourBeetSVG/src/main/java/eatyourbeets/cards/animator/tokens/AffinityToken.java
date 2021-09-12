@@ -23,9 +23,9 @@ public abstract class AffinityToken extends AnimatorCard
 
     protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        final EYBCardData data = Register(type).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
-        data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.DESCRIPTION);
+        data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;
     }
 
@@ -74,17 +74,22 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 2, 2, 4);
+        Initialize(0, 5, 1, 4);
         SetUpgrade(0, 3, 0, 0);
         InitializeAffinity(affinity, 2, 0, 0);
 
         this.affinity = affinity;
         this.cropPortrait = false;
         this.portraitForeground = portraitImg;
-        this.portraitImg = new ColoredTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinity.GetAlternateColor(0.55f));
+        this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinity.GetAlternateColor(0.55f));
 
-        SetPurge(true);
+        SetExhaust(true);
         SetRetainOnce(true);
+    }
+
+    public static SelectFromPile SelectTokenAction(String name, int amount)
+    {
+        return SelectTokenAction(name, amount, cards.size());
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount, int size)
@@ -106,19 +111,20 @@ public abstract class AffinityToken extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         CombatStats.Affinities.BonusAffinities.Add(affinity, magicNumber);
 
         final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(this);
-        final int level = affinities.GetLevel(affinity, true);
+        final int level = affinities.GetLevel(affinity, false);
         for (Affinity a : Affinity.Basic())
         {
-            if (a != affinity && affinities.GetLevel(a, true) > level)
+            if (a != affinity && affinities.GetLevel(a, false) > level)
             {
-                GameActions.Bottom.GainEnergy(1);
+                GameActions.Bottom.StackAffinityPower(affinity, 1, true);
                 GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
+                return;
             }
         }
     }

@@ -11,7 +11,6 @@ import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -79,22 +78,13 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @Override
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
+        final Color temp = _renderColor.Get(this);
         RENDER_COLOR.a = this.transparency;
-        switch (type)
-        {
-            case ATTACK:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_ATTACK_UR.Texture(), x, y);
-                break;
-            case SKILL:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture(), x, y);
-                break;
-            case POWER:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_POWER_UR.Texture(), x, y);
-                break;
-            default:
-                super.renderCardBg(sb, x, y);
-                break;
-        }
+        _renderColor.Set(this, RENDER_COLOR);
+
+        super.renderCardBg(sb, x, y);
+
+        _renderColor.Set(this, temp);
     }
 
     @Override

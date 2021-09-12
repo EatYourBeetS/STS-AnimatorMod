@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -36,7 +37,7 @@ public class Sloth extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block).SetVFX(false, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY)

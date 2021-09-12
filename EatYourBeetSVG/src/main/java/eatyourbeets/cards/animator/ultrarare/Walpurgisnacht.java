@@ -32,7 +32,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (spellcasterPool.Size() == 0)
         {

@@ -59,7 +59,7 @@ public class SnowballEffect extends EYBEffect
 
         if (TickDuration(deltaTime))
         {
-            GameEffects.Queue.Add(new SnowballTriggerEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
+            GameEffects.Queue.Add(new SnowballImpactEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
             GameEffects.Queue.Add(new FrostOrbActivateEffect(x, y));
             Complete();
         }

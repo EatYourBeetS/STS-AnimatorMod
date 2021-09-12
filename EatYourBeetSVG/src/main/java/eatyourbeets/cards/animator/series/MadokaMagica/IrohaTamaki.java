@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -28,7 +29,7 @@ public class IrohaTamaki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
@@ -42,7 +43,7 @@ public class IrohaTamaki extends AnimatorCard
             }
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.Scry(magicNumber);
         }

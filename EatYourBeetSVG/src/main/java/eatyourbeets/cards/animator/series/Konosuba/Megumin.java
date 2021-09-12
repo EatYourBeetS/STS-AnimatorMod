@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
@@ -45,7 +42,7 @@ public class Megumin extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
         GameActions.Bottom.Wait(0.35f);
@@ -65,7 +62,7 @@ public class Megumin extends AnimatorCard
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (HasSynergy() && info.TryActivateLimited())
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
             .IncludeMasterDeck(true)

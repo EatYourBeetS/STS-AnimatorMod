@@ -3,10 +3,8 @@ package eatyourbeets.cards.animator.basic;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredTexture;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.AdvancedTexture;
 
 public abstract class ImprovedBasicCard extends AnimatorCard
 {
@@ -16,31 +14,13 @@ public abstract class ImprovedBasicCard extends AnimatorCard
     {
         super(data);
 
-        InitializeAffinity(affinity, 1, 0, 0);
+        InitializeAffinity(affinity, 1, affinity == Affinity.Star ? 0 : 1, 0);
 
         this.affinity = affinity;
         this.cropPortrait = false;
         this.portraitImg.color = affinity.GetAlternateColor(0.85f);
-        this.portraitForeground = new ColoredTexture(GR.GetTexture(foregroundTexturePath, true), null);
+        this.portraitForeground = new AdvancedTexture(GR.GetTexture(foregroundTexturePath, true), null);
 
         SetTag(GR.Enums.CardTags.IMPROVED_BASIC_CARD, true);
-    }
-
-    protected void SecondaryEffect()
-    {
-        if (affinity == Affinity.Star)
-        {
-            if (CheckAffinity(Affinity.General))
-            {
-                JUtils.FindMax(CombatStats.Affinities.Powers, p -> p.amount).RetainOnce();
-            }
-        }
-        else
-        {
-            if (CheckAffinity(affinity))
-            {
-                CombatStats.Affinities.GetPower(affinity).RetainOnce();
-            }
-        }
     }
 }

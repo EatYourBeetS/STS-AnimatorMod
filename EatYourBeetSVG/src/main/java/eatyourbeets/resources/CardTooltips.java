@@ -33,6 +33,9 @@ public class CardTooltips
     public EYBCardTooltip Health = FindByID("Health").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+    public EYBCardTooltip Strength = FindByID("Strength");
+    public EYBCardTooltip Dexterity = FindByID("Dexterity");
+    public EYBCardTooltip Focus = FindByID("Focus");
 
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
@@ -150,6 +153,7 @@ public class CardTooltips
         RegisterID("A-Star", Affinity_Star);
         RegisterID("A-Gen", Affinity_General);
 
+        RegisterID("HP", Health);
         RegisterID("Temp HP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
@@ -204,6 +208,9 @@ public class CardTooltips
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
+        LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));

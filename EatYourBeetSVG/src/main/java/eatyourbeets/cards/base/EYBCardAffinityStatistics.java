@@ -19,10 +19,10 @@ public class EYBCardAffinityStatistics implements Iterable<EYBCardAffinityStatis
 
     }
 
-    public EYBCardAffinityStatistics(Collection<AbstractCard> cards)
+    public EYBCardAffinityStatistics(Collection<AbstractCard> cards, boolean useStar)
     {
         AddCards(cards);
-        RefreshStatistics(false, true);
+        RefreshStatistics(false, useStar);
     }
 
     public ArrayList<EYBCardAffinities> GetAffinities()

@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,30 +22,37 @@ public class ZankiKiguchi extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 2);
-        SetUpgrade(3, 0, 0);
+        SetUpgrade(1, 0, 1);
 
-        SetAffinity_Red(0, 0, 1);
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Red(1);
+        SetAffinity_Green(0, 0, 1);
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.MoveCard(this, player.hand)
-        .ShowEffect(true, true);
-        SetPurge(true);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (!player.stance.ID.equals(NeutralStance.STANCE_ID) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) < magicNumber)
         {
-            player.stance.onEnterStance();
+            GameActions.Bottom.GainForce(1);
+        }
+
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) < magicNumber)
+        {
+            GameActions.Bottom.GainAgility(1);
+        }
+
+        if (info.CanActivateSemiLimited)
+        {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
+            .AddCallback(info, (info2, stance) ->
+            {
+                if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && info2.TryActivateSemiLimited())
+                {
+                    GameActions.Bottom.GainInspiration(1);
+                }
+            });
         }
     }
 }

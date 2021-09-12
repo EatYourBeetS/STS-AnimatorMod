@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -88,7 +89,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
@@ -108,7 +109,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             case Pyro:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
-                if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+                if (HasSynergy() && info.TryActivateSemiLimited())
                 {
                     GameActions.Bottom.Draw(1);
                 }
@@ -172,7 +173,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         if (currentForm == Form.Dark && startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL);
+            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL).CanKill(false);
         }
         else if (currentForm == Form.None)
         {

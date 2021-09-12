@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
@@ -15,6 +16,8 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
+import eatyourbeets.ui.hitboxes.RelativeHitbox;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
@@ -34,7 +37,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
+    protected final GUI_Image draggable_icon;
+    protected final GUI_Image info_icon;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
+    protected EYBCardTooltip tooltip;
     protected Vector2 savedPosition;
 
     protected AbstractCard currentSynergy = null;
@@ -53,6 +59,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
+
+        draggable_icon = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(40f), Scale(20f), false))
+        .SetColor(Colors.White(0.75f));
+
+        tooltip = new EYBCardTooltip(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityPanel);
+        info_icon = new GUI_Image(ImageMaster.INTENT_UNKNOWN, new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(100f), Scale(20f), false))
+        .SetColor(0.05f, 0.05f, 0.05f, 0.5f)
+        .SetForegroundTexture(ImageMaster.INTENT_UNKNOWN, Colors.White(0.75f), 0.9f);
 
         final Affinity[] types = Affinity.Basic();
         for (int i = 0; i < types.length; i++)
@@ -158,7 +172,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
     {
-        return affinity.level >= 2 && GetLastAffinityLevel(affinity.type) > 0 && CanActivateSynergyBonus(affinity.type);
+        return affinity != null && affinity.level >= 2 && GetLastAffinityLevel(affinity.type) > 0 && CanActivateSynergyBonus(affinity.type);
     }
 
     public boolean CanActivateSynergyBonus(Affinity affinity)
@@ -172,7 +186,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             if (CanActivateSynergyBonus(affinity))
             {
-                GetRow(affinity.type).ActivateSynergyBonus();
+                final EYBCardAffinityRow row = GetRow(affinity.type);
+                if (row != null)
+                {
+                    row.ActivateSynergyBonus(card);
+                }
             }
         }
     }
@@ -217,14 +235,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean HasDirectSynergy(AbstractCard c1, AbstractCard c2)
     {
-        return GetSynergies(c1, c2).GetLevel(Affinity.General) > 0;
+        return GetSynergies(c1, c2).GetLevel(Affinity.General, false) > 0;
     }
 
-    public EYBCardAffinities GetSynergies(AbstractCard c1, AbstractCard c2)
+    public EYBCardAffinities GetSynergies(AbstractCard current, AbstractCard previous)
     {
         final EYBCardAffinities synergies = new EYBCardAffinities(null);
-        final EYBCard a = JUtils.SafeCast(c1, EYBCard.class);
-        final EYBCard b = JUtils.SafeCast(c2, EYBCard.class);
+        final EYBCard a = JUtils.SafeCast(current, EYBCard.class);
+        final EYBCard b = JUtils.SafeCast(previous, EYBCard.class);
         if (a == null || b == null)
         {
             return synergies;
@@ -239,6 +257,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                 synergies.Add(affinity, lv_a);
             }
         }
+
+        synergies.SetStar(a.affinities.GetLevel(Affinity.Star));
 
         return synergies;
     }
@@ -366,16 +386,25 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         dragPanel_image.Update();
+        draggable_icon.Update();
+        info_icon.Update();
+
+        if (!draggingCard && info_icon.hb.hovered)
+        {
+            EYBCardTooltip.QueueTooltip(tooltip);
+        }
     }
 
     public void Render(SpriteBatch sb)
     {
-        if (player == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
+        if (player == null || player.hand == null || AbstractDungeon.overlayMenu.energyPanel.isHidden)
         {
             return;
         }
 
         dragPanel_image.Render(sb);
+        draggable_icon.Render(sb);
+        info_icon.Render(sb);
 
         for (EYBCardAffinityRow t : rows)
         {

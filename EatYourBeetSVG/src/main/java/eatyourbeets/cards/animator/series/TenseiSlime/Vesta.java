@@ -40,7 +40,7 @@ public class Vesta extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.RetainPower(Affinity.Blue);
 
@@ -88,7 +88,7 @@ public class Vesta extends AnimatorCard
         {
             super.atStartOfTurnPostDraw();
 
-            GameActions.Bottom.ReducePower(this, 1);
+            ReducePower(1);
         }
 
         @Override

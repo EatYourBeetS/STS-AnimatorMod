@@ -2,12 +2,12 @@
 {
 	"eyb:AgilityPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " If you reach #b{0} [A], gain #b{1} #yDexterity."],
+		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} #yDexterity."],
 		"NAME": "Agility"
 	},
 	"eyb:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " If you reach #b{0} [B], gain #b{1} #yVitality."],
+		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} #yVitality."],
 		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
@@ -22,12 +22,17 @@
 	},
 	"eyb:CorruptionPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " If you reach #b{0} [C], obtain {1}."],
+		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " At #b{0} [C]: Obtain {1}."],
 		"NAME": "Corruption"
+	},
+	"eyb:EnergizedPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],
+		"NAME": "Energized"
 	},
 	"eyb:ForcePower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " If you reach #b{0} [F], gain #b{1} #yStrength."],
+		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " At #b{0} [F]: Gain #b{1} #yStrength."],
 		"NAME": "Force"
 	},
 	"eyb:FreezingPower":
@@ -42,7 +47,7 @@
 	},
 	"eyb:IntellectPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " If you reach #b{0} [I], gain #b{1} #yFocus."],
+		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " At #b{0} [I]: Gain #b{1} #yFocus."],
 		"NAME": "Intellect"
 	},
 	"eyb:PoisonPlayerPower":

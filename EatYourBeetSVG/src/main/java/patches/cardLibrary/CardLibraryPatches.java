@@ -5,12 +5,17 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
+import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.cards.status.Wound;
+import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
-import eatyourbeets.cards.animator.status.Konosuba_Slimed;
+import eatyourbeets.cards.animator.status.Status_Burn;
+import eatyourbeets.cards.animator.status.Status_Slimed;
+import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
@@ -34,7 +39,10 @@ public class CardLibraryPatches
         switch (cardID)
         {
             case AscendersBane.ID: return Curse_AscendersBane.DATA;
-            case Slimed.ID: return Konosuba_Slimed.DATA;
+            case Miracle.ID: return eatyourbeets.cards.animator.special.Miracle.DATA;
+            case Slimed.ID: return Status_Slimed.DATA;
+            case Wound.ID: return Status_Wound.DATA;
+            case Burn.ID: return Status_Burn.DATA;
 
             default: return null;
         }

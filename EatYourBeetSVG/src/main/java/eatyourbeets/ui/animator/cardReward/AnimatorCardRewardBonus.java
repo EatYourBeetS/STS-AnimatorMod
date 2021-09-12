@@ -3,13 +3,14 @@ package eatyourbeets.ui.animator.cardReward;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.card.PermanentUpgradeEffect;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.relics.animator.CursedGlyph;
@@ -137,7 +138,7 @@ public class AnimatorCardRewardBonus extends GUIElement
         {
             return GetCursedRelicBundle(card);
         }
-        else if (card instanceof AnimatorCard)
+        else if (card instanceof AnimatorCard && !GR.Common.Dungeon.IsUnnamedReign())
         {
             for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
             {
@@ -145,13 +146,11 @@ public class AnimatorCardRewardBonus extends GUIElement
                 {
                     if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {
-                        if (series.bonus % 2 == 0)
+                        switch (series.bonus % 3)
                         {
-                            return GetGoldBundle(card, series.bonus >= 4 ? 24 : 12);
-                        }
-                        else
-                        {
-                            return GetMaxHPBundle(card, series.bonus >= 4 ? 2 : 1);
+                            case 0: return GetGoldBundle(card, series.bonus >= 4 ? 24 : 12);
+                            case 1: return GetMaxHPBundle(card, series.bonus >= 4 ? 2 : 1);
+                            case 2: return GetUpgradeBundle(card);
                         }
                     }
                 }
@@ -165,6 +164,7 @@ public class AnimatorCardRewardBonus extends GUIElement
     {
         return new CardRewardBundle(card, c -> GameEffects.Queue.ObtainRelic(new CursedGlyph()))
                 .SetIcon(CURSED_GLYPH.img, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.52f)
+                .SetTooltip(CURSED_GLYPH.name, CURSED_GLYPH.description)
                 .SetText(REWARDS.CursedRelic, Settings.RED_TEXT_COLOR, -AbstractCard.RAW_W * 0.10f, -AbstractCard.RAW_H * 0.54f);
     }
 
@@ -182,13 +182,20 @@ public class AnimatorCardRewardBonus extends GUIElement
                 .SetText(REWARDS.MaxHPBonus(maxHP), Color.WHITE, -AbstractCard.RAW_W * 0.165f, -AbstractCard.RAW_H * 0.54f);
     }
 
+    private CardRewardBundle GetUpgradeBundle(AbstractCard card)
+    {
+        return new CardRewardBundle(card, this::ReceiveUpgrade).SetAmount(1)
+                .SetIcon(ImageMaster.TP_ASCENSION, -AbstractCard.RAW_W * 0.45f, -AbstractCard.RAW_H * 0.545f)
+                .SetText(REWARDS.CommonUpgrade, Color.WHITE, -AbstractCard.RAW_W * 0.01f, -AbstractCard.RAW_H * 0.54f);
+    }
+
     private void ReceiveGold(CardRewardBundle bundle)
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
             if (series.Cards.containsKey(bundle.card.cardID))
             {
-                CardCrawlGame.sound.play("GOLD_GAIN");
+                SFX.Play(SFX.GOLD_GAIN);
                 AbstractDungeon.player.gainGold(bundle.amount);
                 series.bonus += 1;
 
@@ -210,6 +217,22 @@ public class AnimatorCardRewardBonus extends GUIElement
 
                 AbstractMissingPiece.RefreshDescription();
                 JUtils.LogInfo(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
+                return;
+            }
+        }
+    }
+
+    private void ReceiveUpgrade(CardRewardBundle bundle)
+    {
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
+        {
+            if (series.Cards.containsKey(bundle.card.cardID))
+            {
+                GameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
+                series.bonus += 1;
+
+                AbstractMissingPiece.RefreshDescription();
+                JUtils.LogInfo(this, "Obtained Common Upgrade Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
         }

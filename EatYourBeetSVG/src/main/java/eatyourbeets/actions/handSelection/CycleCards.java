@@ -38,8 +38,8 @@ public class CycleCards extends DiscardFromHand
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(GamblingChipAction.TEXT[1]);
+        return super.UpdateMessageInternal(GamblingChipAction.TEXT[1]);
     }
 }

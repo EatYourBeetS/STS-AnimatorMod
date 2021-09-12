@@ -6,10 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class ThrowingKnife extends AnimatorCard
     public static final int INDEX_VULNERABLE = 2;
     public static final int INDEX_POISON = 3;
 
-    private static ThrowingKnife preview;
+    protected Color color;
 
     public static List<ThrowingKnife> GetAllCards()
     {
@@ -48,6 +50,8 @@ public class ThrowingKnife extends AnimatorCard
     private ThrowingKnife(int index)
     {
         super(DATA);
+
+        this.portraitForeground = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ThrowingKnife.DATA.ID + "FG"), true), null);
 
         Initialize(2, 0, 1, 2);
         SetUpgrade(2, 0);
@@ -81,6 +85,8 @@ public class ThrowingKnife extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (m != null && misc == INDEX_WEAK)
         {
             GameUtilities.GetIntent(m).AddWeak();
@@ -88,7 +94,7 @@ public class ThrowingKnife extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (m == null || GameUtilities.IsDeadOrEscaped(m))
         {
@@ -110,20 +116,16 @@ public class ThrowingKnife extends AnimatorCard
             return 0;
         }
 
-        final Color color;
         if (INDEX_WEAK == misc)
         {
-            color = new Color(0.4f, 0.6f, 0.4f, 1f);
             GameActions.Top.ApplyWeak(player, m, magicNumber);
         }
         else if (INDEX_VULNERABLE == misc)
         {
-            color = new Color(0.8f, 0.2f, 0.2f, 1f);
             GameActions.Top.ApplyVulnerable(player, m, magicNumber);
         }
         else if (INDEX_POISON == misc)
         {
-            color = new Color(0.2f, 1.0f, 0.2f, 1f);
             GameActions.Top.ApplyPoison(player, m, secondaryValue);
         }
         else
@@ -138,5 +140,24 @@ public class ThrowingKnife extends AnimatorCard
     {
         this.misc = index;
         this.cardText.OverrideDescription(JUtils.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
+
+        if (INDEX_WEAK == misc)
+        {
+            this.color = new Color(0.4f, 0.6f, 0.4f, 1f);
+        }
+        else if (INDEX_VULNERABLE == misc)
+        {
+            this.color = new Color(0.8f, 0.2f, 0.2f, 1f);
+        }
+        else if (INDEX_POISON == misc)
+        {
+            this.color = new Color(0.2f, 1.0f, 0.2f, 1f);
+        }
+        else
+        {
+            this.color = Color.WHITE.cpy();
+        }
+
+        this.portraitForeground.color = color;// Colors.Lerp(color, Color.WHITE, 0.35f);
     }
 }

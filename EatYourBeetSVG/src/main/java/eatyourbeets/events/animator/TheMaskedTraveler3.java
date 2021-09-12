@@ -80,9 +80,9 @@ public class TheMaskedTraveler3 extends EYBEvent
 
         private void ObtainReward()
         {
-            AbstractRoom room = AbstractDungeon.getCurrRoom();
-            RewardItem rewardItem = new RewardItem(GR.Animator.CardColor);
-            RandomizedList<AbstractCard> cards = new RandomizedList<>(AbstractDungeon.rareCardPool.group);
+            final AbstractRoom room = AbstractDungeon.getCurrRoom();
+            final RewardItem rewardItem = new RewardItem(GR.Animator.CardColor);
+            final RandomizedList<AbstractCard> cards = new RandomizedList<>(AbstractDungeon.rareCardPool.group);
 
             room.rewards.clear();
             rewardItem.cards.clear();

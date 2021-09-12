@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.RimuruAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
@@ -27,6 +28,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
         Initialize(0, 0);
 
         SetAffinity_Star(2, 0, 0);
+        SetVolatile(true);
 
         this.copy = this;
     }
@@ -41,7 +43,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
 
     //@Formatter: Off
     @Override public final boolean canUpgrade() { return false; }
-    @Override public final void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) { }
+    @Override public final void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) { }
     @Override public final void upgrade() { }
     //@Formatter: On
 

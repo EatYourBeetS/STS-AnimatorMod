@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.DemonFormPower;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shizu;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.common.BurningPower;
@@ -32,7 +33,7 @@ public class Shizu_Ifrit extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final ScreenOnFireEffect effect = new ScreenOnFireEffect();
         effect.duration = effect.startingDuration = 1.5f; // Changed from 3f

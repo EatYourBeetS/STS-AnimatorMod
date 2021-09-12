@@ -5,21 +5,19 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 public class Lust extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lust.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     protected static boolean flipVfx;
@@ -29,30 +27,23 @@ public class Lust extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 3, 1);
+        Initialize(4, 0, 1, 3);
+        SetUpgrade(1, 0, 0);
 
         SetAffinity_Star(1, 1, 0);
         SetAffinity_Green(0, 0, 1);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        super.OnUpgrade();
-
-        SetRetainOnce(true);
-    }
-
-    @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(secondaryValue);
+        return magicNumber > 1 ? super.GetDamageInfo().AddMultiplier(magicNumber) : super.GetDamageInfo();
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return gainTempHP ? TempHPAttribute.Instance.SetCard(this, true) : null;
+        return gainTempHP ? TempHPAttribute.Instance.SetCard(this, false).SetText(secondaryValue, Colors.Cream(1f)) : null;
     }
 
     @Override
@@ -61,13 +52,13 @@ public class Lust extends AnimatorCard
         super.Refresh(enemy);
 
         this.gainTempHP = (enemy != null && enemy.hasPower(VulnerablePower.POWER_ID));
-        this.secondaryValue = 1 + JUtils.Count(player.hand.group, GameUtilities::IsHindrance);
+        this.magicNumber = (JUtils.Any(player.hand.group, GameUtilities::IsHindrance) ? 2 : 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < secondaryValue; i++)
+        for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
             .SetVFX(true, false)

@@ -33,10 +33,11 @@ public class PoisonPlayerPower extends CommonPower implements HealthBarRenderPow
 
     public void atStartOfTurn()
     {
-        this.flashWithoutSound();
-
-        GameActions.Bottom.LoseHP(source, owner, amount, AttackEffect.POISON).CanKill(!owner.isPlayer);
+        GameActions.Bottom.LoseHP(source, owner, amount, AttackEffect.POISON)
+        .SetSoundPitch(0.95f, 1.05f).CanKill(!owner.isPlayer);
         GameActions.Bottom.ReducePower(this, 1);
+
+        this.flashWithoutSound();
     }
 
     @Override

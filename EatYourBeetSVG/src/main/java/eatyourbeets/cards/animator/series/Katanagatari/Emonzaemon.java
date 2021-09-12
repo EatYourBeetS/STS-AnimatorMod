@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Emonzaemon_EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -21,7 +22,7 @@ public class Emonzaemon extends AnimatorCard
     public static final EYBCardData DATA = Register(Emonzaemon.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Emonzaemon_EntouJyuu(), false));
+            .PostInitialize(data -> data.AddPreview(new Emonzaemon_EntouJyuu(), true));
 
     public Emonzaemon()
     {
@@ -41,35 +42,46 @@ public class Emonzaemon extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
         GameActions.Bottom.WaitRealtime(0.25f);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
 
+        if (CheckSpecialCondition(true))
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Emonzaemon_EntouJyuu())
+            .SetDestination(CardSelection.Random)
+            .SetUpgrade(upgraded, false);
+        }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
         if (CombatStats.CanActivateLimited(cardID))
         {
-            ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-            int size = cardsPlayed.size();
-            if (size >= 3)
+            final ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+            final int size = cardsPlayed.size();
+            final int count = tryUse ? 3 : 2;
+            if (size >= count)
             {
-                boolean threeInARow = true;
-                for (int i = 1; i <= 3; i++)
+                boolean canActivate = true;
+                for (int i = 1; i <= count; i++)
                 {
                     if (cardsPlayed.get(size - i).type != CardType.ATTACK)
                     {
-                        threeInARow = false;
+                        canActivate = false;
                     }
                 }
 
-                if (threeInARow)
+                if (canActivate)
                 {
-                    CombatStats.TryActivateLimited(cardID);
-                    GameActions.Bottom.MakeCardInDrawPile(new Emonzaemon_EntouJyuu())
-                    .SetDestination(CardSelection.Bottom)
-                    .SetUpgrade(upgraded, false);
+                    return !tryUse || CombatStats.TryActivateLimited(cardID);
                 }
             }
         }
+
+        return false;
     }
 }

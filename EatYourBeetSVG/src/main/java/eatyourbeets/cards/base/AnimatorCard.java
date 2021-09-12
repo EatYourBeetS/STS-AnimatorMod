@@ -2,23 +2,31 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.ui.cards.DrawPileCardPreview;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RotatingList;
 
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
+
+    // Optional
     protected AnimatorCardCooldown cooldown;
+    protected DrawPileCardPreview drawPileCardPreview;
     protected Color borderIndicatorColor;
 
     public static final AnimatorImages IMAGES = GR.Animator.Images;
@@ -83,9 +91,21 @@ public abstract class AnimatorCard extends EYBCard
         this.series = series;
     }
 
-    public void SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
+    public DrawPileCardPreview SetDrawPileCardPreview(ActionT2<RotatingList<AbstractCard>, AbstractMonster> findCards)
     {
-        cooldown = new AnimatorCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
+        return this.drawPileCardPreview = new DrawPileCardPreview(findCards)
+        .RequireTarget(target == CardTarget.ENEMY || target == CardTarget.SELF_AND_ENEMY);
+    }
+
+    public DrawPileCardPreview SetDrawPileCardPreview(FuncT1<Boolean, AbstractCard> findCard)
+    {
+        return this.drawPileCardPreview = new DrawPileCardPreview(findCard)
+        .RequireTarget(target == CardTarget.ENEMY || target == CardTarget.SELF_AND_ENEMY);
+    }
+
+    public AnimatorCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
+    {
+        return this.cooldown = new AnimatorCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
     }
 
     @Override
@@ -124,6 +144,11 @@ public abstract class AnimatorCard extends EYBCard
 
         if (player != null && player.hand.contains(this))
         {
+            if (hb.justHovered)
+            {
+                triggerOnGlowCheck();
+            }
+            
             for (AbstractCard c : player.hand.group)
             {
                 if (c == this || WouldSynergize(c))
@@ -161,20 +186,43 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        if (drawPileCardPreview != null && drawPileCardPreview.enabled)
+        {
+            drawPileCardPreview.Update(this, m);
+        }
+    }
+
+    @Override
+    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
+    {
+        super.Render(sb, hovered, selected, library);
+
+        if (!library && drawPileCardPreview != null && drawPileCardPreview.enabled)
+        {
+            drawPileCardPreview.Render(sb);
+        }
+    }
+
+    @Override
     public final void use(AbstractPlayer p1, AbstractMonster m1)
     {
         JUtils.LogWarning(this, "AnimatorCard.use() should not be called");
-        boolean isSynergizing = CombatStats.Affinities.IsSynergizing(this);
-        OnUse(p1, m1, isSynergizing);
-        OnLateUse(p1, m1, isSynergizing);
+        final CardUseInfo info = new CardUseInfo(this);
+
+        OnUse(p1, m1, info);
+        OnLateUse(p1, m1, info);
     }
 
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }
 
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }
@@ -217,33 +265,33 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
-    protected ColoredTexture GetCardBorderIndicator()
+    protected AdvancedTexture GetCardBorderIndicator()
     {
-        return borderIndicatorColor == null ? null : new ColoredTexture(IMAGES.CARD_BORDER_INDICATOR.Texture(), borderIndicatorColor);
+        return borderIndicatorColor == null ? null : new AdvancedTexture(IMAGES.CARD_BORDER_INDICATOR.Texture(), borderIndicatorColor);
     }
 
     @Override
-    protected ColoredTexture GetCardBanner()
+    protected AdvancedTexture GetCardBanner()
     {
-        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
+        return new AdvancedTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
     }
 
     @Override
-    protected ColoredTexture GetPortraitFrame()
+    protected AdvancedTexture GetPortraitFrame()
     {
         switch (type)
         {
             case ATTACK:
-                return new ColoredTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
 
             case POWER:
-                return new ColoredTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
 
             case SKILL:
             case CURSE:
             case STATUS:
             default:
-                return new ColoredTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
         }
     }
 

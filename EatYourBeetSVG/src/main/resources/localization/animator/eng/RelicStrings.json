@@ -38,7 +38,7 @@
 	},
 	"animator:CrumblingOrb":
 	{
-		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
+		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform #b{0} out of #b{1} random cards in your deck."],
 		"FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
 		"NAME": "Crumbling Orb"
 	},
@@ -74,7 +74,7 @@
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yForce for each character with #yVulnerable."],
+		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [Force]."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
@@ -104,7 +104,7 @@
 	},
 	"animator:MantleOfTheStrategist":
 	{
-		"DESCRIPTIONS": ["The second card you play in your turn will #ySynergize."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [Inspiration]."],
 		"FLAVOR": "A robe made from cloth woven from the tracks of falling stars.",
 		"NAME": "Mantle of the Strategist"
 	},
@@ -114,11 +114,11 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
-	"animator:PurgingStone":
+	"animator:RollingCubes":
 	{
-		"DESCRIPTIONS": ["Reroll cards during #yNormal card rewards. Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
-		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
-		"NAME": "Purging Stone"
+		"DESCRIPTIONS": ["During #yNormal card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
+		"FLAVOR": "A pair of rolling cubes.",
+		"NAME": "Rolling Cubes"
 	},
 	"animator:RacePiece":
 	{
@@ -146,7 +146,7 @@
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain 2[E]. Once per turn, when you play a #yPower, gain #b1 [Metallicize]."],
+		"DESCRIPTIONS": ["At the start of each turn, gain 2 [E]. Once per turn, when you play a #yPower, gain #b1 [Metallicize]."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},
@@ -162,6 +162,12 @@
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
 	},
+	"animator:ModelSpaceship":
+	{
+		"DESCRIPTIONS": ["Upon pickup, lose #b{0} [Gold]. NL Draw #b1 additional card each turn. At the end of each turn, deal #b{1} damage to a random enemy for each #yAttack in hand."],
+		"FLAVOR": "What's your favorite thing about space? Mine is space.",
+		"NAME": "Model Spaceship"
+	},
 	"animator:VividPicture":
 	{
 		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card."],
@@ -170,7 +176,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

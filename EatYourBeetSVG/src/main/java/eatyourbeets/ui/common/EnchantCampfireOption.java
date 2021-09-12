@@ -96,6 +96,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
         room.campfireUI.somethingSelected = true;
 
         GameEffects.Queue.Callback(new SelectFromPile(relic.name, 1, relic.CreateUpgradeGroup())
+        .HideTopPanel(true)
         .CancellableFromPlayer(true)
         .AddCallback(c -> OnEffectSelected((Enchantment)c.get(0))), () -> room.campfireUI.reopen())
         .ShowBlackScreen(0.95f);

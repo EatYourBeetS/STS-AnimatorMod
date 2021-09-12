@@ -249,12 +249,12 @@ public class RenderHelpers
         DrawOnCardAuto(sb, card, img, offset, width, height, Color.WHITE, card.transparency, 1, 0);
     }
 
-    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, float drawX, float drawY, float width, float height)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, AdvancedTexture img, float drawX, float drawY, float width, float height)
     {
         DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, img.color.a * card.transparency, 1, 0);
     }
 
-    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, Vector2 offset, float width, float height)
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, AdvancedTexture img, Vector2 offset, float width, float height)
     {
         DrawOnCardAuto(sb, card, img.texture, offset, width, height, img.color, img.color.a * card.transparency, 1, 0);
     }
@@ -416,6 +416,8 @@ public class RenderHelpers
                 return card.GetMagicNumberString();
             case 'S':
                 return card.GetSecondaryValueString();
+            case 'K':
+                return card.GetSpecialVariableString();
             default:
                 return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }
@@ -781,5 +783,13 @@ public class RenderHelpers
         }
 
         return maxOffset;
+    }
+
+    public static TextureRegion GetCroppedRegion(Texture texture, int div)
+    {
+        final int w = texture.getWidth();
+        final int h = texture.getHeight();
+        final int half_div = div / 2;
+        return new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
     }
 }

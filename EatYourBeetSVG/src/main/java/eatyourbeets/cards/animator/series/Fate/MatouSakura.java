@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.actions.orbs.RemoveOrb;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
@@ -27,15 +24,15 @@ public class MatouSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 4);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 2, 2, 4);
+        SetUpgrade(0, 2, 1, 0);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(2, 0, 2);
         SetAffinity_Blue(1);
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light, 5);
+        SetAffinityRequirement(Affinity.Light, 4);
     }
 
     @Override
@@ -47,8 +44,9 @@ public class MatouSakura extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Callback(m, (enemy, __) ->
         {
            final AbstractOrb orb = GameUtilities.GetFirstOrb(Dark.ORB_ID);

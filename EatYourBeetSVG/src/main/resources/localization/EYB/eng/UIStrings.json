@@ -5,7 +5,9 @@
 		"TEXT":
 		[
 			"move to your draw pile.",
-			"buff."
+			"buff.",
+			"copy.",
+			"activate:"
 		]
 	},
 	"eyb:GridSelection":
@@ -14,10 +16,11 @@
 		[
 			"Discard up to {0} card(s).",
 			"Shuffle {0} card(s) into your Draw Pile.",
-			"Transform into a {0}.",
+			"Transform into {0}.",
 			"Choose {0} card(s).",
 			"Purge {0} card(s).",
-			"Scry (You draw from left to right)."
+			"Scry (You draw from left to right).",
+			"Fetch {0} card(s)."
 		]
 	},
 	"eyb:TheUnnamedReign":

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.animator.AzrielPower;
@@ -36,7 +37,7 @@ public class Azriel extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (!p.hasPower(PlayerFlightPower.POWER_ID))
         {

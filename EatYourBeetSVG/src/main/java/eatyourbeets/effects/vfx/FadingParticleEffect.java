@@ -39,7 +39,7 @@ public class FadingParticleEffect extends EYBEffect
 
     public FadingParticleEffect SetScale(float scale)
     {
-        this.projectile.scale = scale;
+        this.projectile.pos.scale = scale;
 
         return this;
     }

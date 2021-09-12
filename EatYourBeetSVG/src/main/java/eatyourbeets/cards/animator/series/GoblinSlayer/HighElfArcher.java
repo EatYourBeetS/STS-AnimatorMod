@@ -1,29 +1,20 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
 
 public class HighElfArcher extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HighElfArcher.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
-
-    private final ArrayList<AbstractCard> unplayableCards = new ArrayList<>();
 
     public HighElfArcher()
     {
@@ -39,27 +30,24 @@ public class HighElfArcher extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SFX(SFX.ANIMATOR_ARROW);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Green))
         {
             GameActions.Bottom.ApplyPoison(player, m, magicNumber);
         }
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Blue))
         {
             GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);
         }
 
-        GameActions.Bottom.Draw(1).AddCallback(cards ->
+        if (info.IsStarter)
         {
-            for (AbstractCard c : cards)
-            {
-                GameUtilities.SetUnplayableThisTurn(c);
-            }
-        });
+            GameActions.Bottom.Draw(1);
+        }
     }
 }

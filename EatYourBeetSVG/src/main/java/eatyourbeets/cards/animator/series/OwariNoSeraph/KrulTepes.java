@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -42,6 +42,8 @@ public class KrulTepes extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (m != null)
         {
             GameUtilities.GetIntent(m).AddWeak();
@@ -49,7 +51,7 @@ public class KrulTepes extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (m != null)
         {
@@ -57,7 +59,7 @@ public class KrulTepes extends AnimatorCard
             .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.SCARLET)).duration)
             .AddCallback(enemy ->
             {
-                if (GameUtilities.InEliteOrBossRoom() && GameUtilities.IsFatal(enemy, false) && CombatStats.TryActivateLimited(cardID))
+                if (GameUtilities.InEliteOrBossRoom() && GameUtilities.IsFatal(enemy, false) && info.TryActivateLimited())
                 {
                     ObtainReward();
                 }

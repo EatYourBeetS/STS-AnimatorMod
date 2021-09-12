@@ -1,11 +1,10 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -13,36 +12,41 @@ public class Togame extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Togame.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
 
     public Togame()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(1);
         SetAffinity_Dark(1);
+
+        SetExhaust(true);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.Draw(1);
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetOptions(true, true, true)
+        .SetOptions(false, false, false)
         .AddCallback(cards ->
         {
-            if (cards.size() > 0)
+            for (AbstractCard c : cards)
             {
-                GameActions.Bottom.Draw(1);
-
-                if (GameUtilities.IsHindrance(cards.get(0)) && CombatStats.TryActivateSemiLimited(cardID))
+                if (GameUtilities.IsHindrance(c) || !GameUtilities.IsPlayable(c))
                 {
-                    GameActions.Bottom.Motivate();
+                    GameActions.Bottom.GainEnergy(magicNumber);
+                    return;
                 }
             }
+
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
         });
     }
 }

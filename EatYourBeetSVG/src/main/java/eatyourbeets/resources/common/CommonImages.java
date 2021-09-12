@@ -142,5 +142,6 @@ public class CommonImages
         public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
         public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
         public final TextureCache Spear            = new TextureCache("images/animator/effects/Spear.png");
+        public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
     }
 }

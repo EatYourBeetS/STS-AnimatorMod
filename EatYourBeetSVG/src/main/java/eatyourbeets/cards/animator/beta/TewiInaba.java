@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
@@ -32,7 +29,7 @@ public class TewiInaba extends AnimatorCard implements Hidden // TODO:
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (p.orbs.size() > 0)
         {

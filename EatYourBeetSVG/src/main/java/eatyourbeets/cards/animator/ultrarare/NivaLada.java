@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.badlogic.gdx.math.MathUtils;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -65,7 +66,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         cooldown.ProgressCooldownAndTrigger(m);
     }

@@ -3,9 +3,8 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard
@@ -25,24 +24,33 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(2);
         SetAffinity_Dark(1);
 
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlur(magicNumber);
-        GameActions.Bottom.GainAgility(secondaryValue);
+        GameActions.Bottom.GainAgility(magicNumber);
 
-        if (isSynergizing)
+        int knives = 0;
+        if (AgilityStance.IsActive())
         {
-            GameActions.Bottom.CreateThrowingKnives(1);
+            knives += 1;
         }
+        if (CheckAffinity(Affinity.Dark))
+        {
+            knives += 1;
+        }
+
+        GameActions.Bottom.CreateThrowingKnives(knives);
     }
 }

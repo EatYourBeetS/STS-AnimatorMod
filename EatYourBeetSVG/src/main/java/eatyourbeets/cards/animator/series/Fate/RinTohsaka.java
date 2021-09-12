@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
@@ -16,7 +17,7 @@ public class RinTohsaka extends AnimatorCard
     public static final EYBCardData DATA = Register(RinTohsaka.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
-            .AddPreviews(OrbCore.GetAllCores(), false);
+            .AddPreviews(OrbCore.GetAllCores(), true);
 
     public RinTohsaka()
     {
@@ -30,7 +31,7 @@ public class RinTohsaka extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
@@ -42,7 +43,7 @@ public class RinTohsaka extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.MakeCardInHand(c);
+                    GameActions.Bottom.MakeCardInHand(c).SetUpgrade(upgraded, false);
                 }
             }));
         }

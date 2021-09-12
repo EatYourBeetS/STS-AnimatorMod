@@ -1,13 +1,19 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.common.DelayedDamagePower;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.ListSelection;
+
+import java.util.Comparator;
 
 public class Genos extends AnimatorCard
 {
@@ -19,7 +25,7 @@ public class Genos extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 3, 4);
+        Initialize(14, 0, 2, 2);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1);
@@ -27,14 +33,34 @@ public class Genos extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        if (!player.hasPower(ArtifactPower.POWER_ID))
+        {
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                intent.AddPlayerBurning();
+            }
+        }
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.ReduceDebuffs(player, secondaryValue)
+        .SetSelection(ListSelection.First(0), 1)
+        .Sort(Comparator.comparingInt(a -> -a.amount));
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
-        GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
-
-        if (isSynergizing)
-        {
-            GameActions.Bottom.ApplyBurning(p, m, magicNumber);
-        }
+        GameActions.Bottom.ApplyBurning(p, p, magicNumber);
+        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
     }
 }

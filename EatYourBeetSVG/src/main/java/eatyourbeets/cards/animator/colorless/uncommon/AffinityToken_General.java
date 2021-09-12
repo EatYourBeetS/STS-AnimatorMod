@@ -8,16 +8,18 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AffinityToken_General extends AffinityToken implements OnAddToDeckListener
 {
     public static final EYBCardData DATA = Register(AffinityToken_General.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .PostInitialize(data ->
             {
@@ -36,7 +38,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng);
         GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
@@ -54,8 +56,11 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     public boolean OnAddToDeck()
     {
         final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng);
+
         GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
+        .HideTopPanel(true)
         .SetOptions(false, false)
+        .CancellableFromPlayer(false)
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

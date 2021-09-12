@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.actions.basic.RemoveBlock;
 import eatyourbeets.cards.animator.series.Katanagatari.Shichika;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -23,9 +24,8 @@ public class Shichika_Kyotouryuu extends AnimatorCard
         super(DATA);
 
         Initialize(1, 0, 4);
-        SetUpgrade(1, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(2);
         SetAffinity_Green(2, 0, 1);
 
         SetEthereal(true);
@@ -35,7 +35,7 @@ public class Shichika_Kyotouryuu extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetEthereal(false);
+        SetRetainOnce(true);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class Shichika_Kyotouryuu extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Add(new RemoveBlock(m, p)).SetVFX(true, true);
 

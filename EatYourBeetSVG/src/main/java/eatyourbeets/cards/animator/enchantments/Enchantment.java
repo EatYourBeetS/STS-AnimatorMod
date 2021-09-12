@@ -11,7 +11,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
@@ -81,8 +81,8 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         this.borderColor = new Color(0.7f, 0.8f, 0.9f, 1f);
         this.cropPortrait = false;
         this.relic = new LivingPicture(this);
-        this.portraitForeground = new ColoredTexture(relic.img, null);
-        this.portraitForeground.scale = 2;
+        this.portraitForeground = new AdvancedTexture(relic.img, null);
+        this.portraitForeground.pos.scale = 2;
     }
 
     @Override
@@ -123,13 +123,13 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     }
 
     @Override
-    protected ColoredTexture GetCardBanner()
+    protected AdvancedTexture GetCardBanner()
     {
         return super.GetCardBanner().SetColor(borderColor);
     }
 
     @Override
-    protected ColoredTexture GetPortraitFrame()
+    protected AdvancedTexture GetPortraitFrame()
     {
         return super.GetPortraitFrame().SetColor(borderColor);
     }

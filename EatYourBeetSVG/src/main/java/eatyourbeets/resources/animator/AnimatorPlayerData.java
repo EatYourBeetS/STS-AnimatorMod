@@ -20,6 +20,7 @@ import java.util.regex.Pattern;
 
 public class AnimatorPlayerData
 {
+    public final int MajorVersion = 2;
     public final int MaxUnlockLevel = 8;
     public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>();
     public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>();
@@ -38,6 +39,12 @@ public class AnimatorPlayerData
     {
         DeserializeTrophies(GR.Animator.Config.Trophies.Get());
         DeserializeCustomLoadouts(GR.Animator.Config.CustomLoadouts.Get());
+
+        final Integer version = GR.Animator.Config.MajorVersion.Get(null);
+        if (version == null || version < MajorVersion)
+        {
+            UpdateMajorVersion(version);
+        }
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
@@ -196,6 +203,11 @@ public class AnimatorPlayerData
         GR.Animator.Config.CustomLoadouts.Set(SerializeCustomLoadouts(), flush);
     }
 
+    private void UpdateMajorVersion(Integer previousVersion)
+    {
+        GR.Animator.Config.MajorVersion.Set(MajorVersion, true);
+    }
+
     private void AddBaseLoadouts()
     {
         BaseLoadouts.clear();
@@ -211,7 +223,7 @@ public class AnimatorPlayerData
         //add.Invoke(new Loadout_Konosuba(), 0);
         add.Invoke(new Loadout_GATE(), 1);
         add.Invoke(new Loadout_Elsword(), 2);
-        //add.Invoke(new Loadout_Katanagatari(), 2);
+        add.Invoke(new Loadout_Katanagatari(), 2);
         add.Invoke(new Loadout_GoblinSlayer(), 3);
         //add.Invoke(new Loadout_NoGameNoLife(), 3);
         //add.Invoke(new Loadout_OwariNoSeraph(), 3);
@@ -219,7 +231,7 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_Overlord(), 4);
         add.Invoke(new Loadout_Fate(), 5);
         //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
-        //add.Invoke(new Loadout_OnePunchMan(), 6);
+        add.Invoke(new Loadout_OnePunchMan(), 6);
         add.Invoke(new Loadout_TenseiSlime(), 6);
         //add.Invoke(new Loadout_MadokaMagica(), 7);
         //add.Invoke(new Loadout_LogHorizon(), 7);
@@ -270,11 +282,9 @@ public class AnimatorPlayerData
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
-        add.Invoke(new Loadout_Katanagatari(), 2);
         add.Invoke(new Loadout_NoGameNoLife(), 3);
         add.Invoke(new Loadout_OwariNoSeraph(), 3);
         add.Invoke(new Loadout_HitsugiNoChaika(), 5);
-        add.Invoke(new Loadout_OnePunchMan(), 6);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);
     }

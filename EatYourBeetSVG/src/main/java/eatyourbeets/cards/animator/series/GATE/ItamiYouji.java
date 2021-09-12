@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -43,18 +43,19 @@ public class ItamiYouji extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, 2 + Math.min(10, AbstractDungeon.actionManager.cardsPlayedThisTurn.size()), true);
+        final int cardsPlayed = GameUtilities.GetTotalCardsPlayed(this, true);
+        GameUtilities.ModifyMagicNumber(this, baseMagicNumber + Math.min(10, cardsPlayed), true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(1.3f, 1.5f);
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

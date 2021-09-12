@@ -45,8 +45,8 @@ public class ExhaustFromHand extends SelectFromHand
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(ExhaustAction.TEXT[0]);
+        return super.UpdateMessageInternal(ExhaustAction.TEXT[0]);
     }
 }

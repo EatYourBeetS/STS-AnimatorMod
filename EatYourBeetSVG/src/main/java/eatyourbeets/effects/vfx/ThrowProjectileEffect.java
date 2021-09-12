@@ -8,13 +8,13 @@ import eatyourbeets.effects.Projectile;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
-import org.lwjgl.util.vector.Vector3f;
+import eatyourbeets.utilities.Position2D;
 
 import java.util.ArrayList;
 
 public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 {
-    protected final ArrayList<Vector3f> trailPositions = new ArrayList<>(); // z = scale
+    protected final ArrayList<Position2D> trailPositions = new ArrayList<>(); // z = scale
     protected boolean addTrailPosition;
     protected Projectile projectile;
     protected Hitbox target;
@@ -41,7 +41,7 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 
     public ThrowProjectileEffect SetTargetRotation(float degrees, float speed)
     {
-        this.projectile.SetTargetRotation(degrees).SetSpeed(null, null, speed);
+        this.projectile.SetTargetRotation(degrees, speed);
 
         return this;
     }
@@ -62,9 +62,10 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
         final float target_y = target.cY + (Random(-offset_y, offset_y) * target.height);
         projectile.SetTargetPosition(target_x, target_y);
 
-        final float speed_x = (Mathf.Abs(projectile.target_pos.x - projectile.current_pos.x) / duration);
-        final float speed_y = (Mathf.Abs(projectile.target_pos.y - projectile.current_pos.y) / duration);
-        projectile.SetSpeed(0f, 0f, null).SetAcceleration(speed_x * 2, speed_y * 2, null, duration);
+        final float speed_x = (Mathf.Abs(projectile.target_pos.x - projectile.pos.x) / duration);
+        final float speed_y = (Mathf.Abs(projectile.target_pos.y - projectile.pos.y) / duration);
+        projectile.SetSpeed(0f, 0f, null, null)
+                  .SetAcceleration(speed_x * 2, speed_y * 2, null, null, duration);
     }
 
     @Override
@@ -75,7 +76,7 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
             int i = 0;
             while (i < trailPositions.size())
             {
-                if ((trailPositions.get(i).z -= deltaTime * i) <= 0)
+                if ((trailPositions.get(i).scale -= deltaTime * i) <= 0)
                 {
                     trailPositions.remove(i);
                 }
@@ -87,21 +88,28 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 
             if (projectile.speed.x > (projectile.width * 2.5f) && (addTrailPosition ^= true))
             {
-                Vector3f pos = projectile.GetCurrentPosition(true);
-                pos.z = 0.75f;// scale
+                final Position2D pos = projectile.GetCurrentPosition(true);
+                pos.scale = 0.75f; // scale
                 trailPositions.add(0, pos);
             }
         }
 
-        projectile.Update(deltaTime);
         if (JUtils.ShowDebugInfo())
         {
-            JUtils.LogInfo(this, "D: " + deltaTime + ", S: " + projectile.speed + ", A: " + projectile.acceleration);
+            JUtils.LogInfo(this, "Delta: " + deltaTime + ", P.D: " + projectile.acceleration_duration + ", A.D:" + duration);
+            JUtils.LogInfo(this, "Speed: " + projectile.speed);
+            JUtils.LogInfo(this, "Accel: " + projectile.acceleration);
         }
 
-        if (TickDuration(deltaTime))
+        this.projectile.Update(deltaTime);
+
+        if (this.duration <= 0)
         {
             Complete(target);
+        }
+        else
+        {
+            this.duration = projectile.acceleration_duration;
         }
     }
 
@@ -110,9 +118,10 @@ public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
     {
         if (projectile != null)
         {
-            for (Vector3f trailPos : trailPositions)
+            for (Position2D trailPos : trailPositions)
             {
-                projectile.Render(sb, Colors.Copy(projectile.color, trailPos.z * 0.5f), trailPos.x, trailPos.y, projectile.scale * trailPos.z);
+                projectile.Render(sb, Colors.Copy(projectile.color, trailPos.scale * 0.5f),
+                        trailPos.x, trailPos.y, projectile.GetScale(true) * trailPos.scale);
             }
 
             projectile.Render(sb);

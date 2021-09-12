@@ -34,7 +34,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ChannelOrb(new Dark());
 

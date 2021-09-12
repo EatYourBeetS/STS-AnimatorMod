@@ -6,13 +6,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.AdvancedTexture;
 
 public class GUI_Image extends GUIElement
 {
     public Hitbox hb;
-    public ColoredTexture background;
-    public ColoredTexture foreground;
+    public AdvancedTexture background;
+    public AdvancedTexture foreground;
     public Texture texture;
     public Color color;
     public float scaleX = 1;
@@ -59,8 +59,9 @@ public class GUI_Image extends GUIElement
 
     public GUI_Image SetBackgroundTexture(Texture texture, Color color, float scale)
     {
-        this.background = new ColoredTexture(texture, color);
-        this.background.scale = scale;
+        this.background = new AdvancedTexture(texture);
+        this.background.pos.scale = scale;
+        this.background.SetColor(color);
 
         return this;
     }
@@ -74,8 +75,9 @@ public class GUI_Image extends GUIElement
 
     public GUI_Image SetForegroundTexture(Texture texture, Color color, float scale)
     {
-        this.foreground = new ColoredTexture(texture, color);
-        this.foreground.scale = scale;
+        this.foreground = new AdvancedTexture(texture);
+        this.foreground.pos.scale = scale;
+        this.foreground.SetColor(color);
 
         return this;
     }
@@ -178,10 +180,12 @@ public class GUI_Image extends GUIElement
     {
         if (background != null)
         {
-            final float w = width * background.scale;
-            final float h = height * background.scale;
+            final float w = width * background.pos.scale;
+            final float h = height * background.pos.scale;
+            final int s_w = background.texture.getWidth();
+            final int s_h = background.texture.getHeight();
             sb.setColor(background.color != null ? background.color : color);
-            sb.draw(background.texture, x + ((width-w)*0.5f), y + ((height-h)*0.5f), 0, 0, w, h, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+            sb.draw(background.texture, x + ((width-w)*0.5f), y + ((height-h)*0.5f), 0, 0, w, h, scaleX, scaleY, rotation, 0, 0, s_w, s_h, flipX, flipY);
         }
 
         sb.setColor(color);
@@ -189,10 +193,12 @@ public class GUI_Image extends GUIElement
 
         if (foreground != null)
         {
-            final float w = width * foreground.scale;
-            final float h = height * foreground.scale;
+            final float w = width * foreground.pos.scale;
+            final float h = height * foreground.pos.scale;
+            final int s_w = foreground.texture.getWidth();
+            final int s_h = foreground.texture.getHeight();
             sb.setColor(foreground.color != null ? foreground.color : color);
-            sb.draw(foreground.texture, x + ((width-w)*0.5f), y + ((height-h)*0.5f), 0, 0, w, h, scaleX, scaleY, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+            sb.draw(foreground.texture, x + ((width-w)*0.5f), y + ((height-h)*0.5f), 0, 0, w, h, scaleX, scaleY, rotation, 0, 0, s_w, s_h, flipX, flipY);
         }
     }
 
@@ -200,9 +206,11 @@ public class GUI_Image extends GUIElement
     {
         if (background != null)
         {
-            final float scale = background.scale * Settings.scale;
+            final float scale = background.pos.scale * Settings.scale;
+            final int s_w = background.texture.getWidth();
+            final int s_h = background.texture.getHeight();
             sb.setColor(background.color != null ? background.color : color);
-            sb.draw(background.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+            sb.draw(background.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, s_w, s_h, flipX, flipY);
         }
 
         sb.setColor(color);
@@ -210,9 +218,11 @@ public class GUI_Image extends GUIElement
 
         if (foreground != null)
         {
-            final float scale = foreground.scale * Settings.scale;
+            final float scale = foreground.pos.scale * Settings.scale;
+            final int s_w = foreground.texture.getWidth();
+            final int s_h = foreground.texture.getHeight();
             sb.setColor(foreground.color != null ? foreground.color : color);
-            sb.draw(foreground.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, srcWidth, srcHeight, flipX, flipY);
+            sb.draw(foreground.texture, x, y, width/2f, height/2f, width, height, scaleX * scale, scaleY * scale, rotation, 0, 0, s_w, s_h, flipX, flipY);
         }
     }
 }

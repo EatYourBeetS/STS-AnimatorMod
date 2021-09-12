@@ -38,9 +38,10 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 
         this.uuid = uuid;
         this.card = card;
+
         if (this.card != null)
         {
-            this.card.tags.add(GR.Enums.CardTags.PURGING);
+            GameUtilities.SetCardTag(this.card, GR.Enums.CardTags.PURGING, true);
         }
 
         Initialize(repeat);
@@ -102,6 +103,11 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
         if (amount > 0)
         {
             GameActions.Bottom.Add(new PurgeAnywhere(card, uuid, amount - 1).SetTargetPosition(targetPosition).ShowEffect(showEffect));
+        }
+
+        if (!purged)
+        {
+            Complete(purged);
         }
     }
 

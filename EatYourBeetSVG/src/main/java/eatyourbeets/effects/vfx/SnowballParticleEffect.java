@@ -6,28 +6,32 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.RandomizedList;
 
 public class SnowballParticleEffect extends EYBEffect
 {
-   protected static final float GRAVITY = 180f * Settings.scale;
-   protected static final int SIZE = 96;
+    private static final TextureCache[] images = {IMAGES.FrostSnow1, IMAGES.FrostSnow2, IMAGES.FrostSnow3, IMAGES.FrostSnow4};
+    private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
 
-   protected Texture img;
-   protected float floor;
-   protected float x;
-   protected float y;
-   protected float vX;
-   protected float vY;
-   protected float vR;
-   protected boolean flip;
+    protected static final float GRAVITY = 180f * Settings.scale;
+    protected static final int SIZE = 96;
+
+    protected Texture img;
+    protected float floor;
+    protected float x;
+    protected float y;
+    protected float vX;
+    protected float vY;
+    protected float vR;
+    protected boolean flip;
 
     public SnowballParticleEffect(float x, float y, Color color)
     {
         super(Random(0.5f, 1f));
 
-        this.img = ImageMaster.loadImage("images/orbs/animator/FrostSnow" + Random(1, 3) + ".png");
+        this.img = RandomElement(images, textures).Texture();
         this.x = x - (float) (SIZE / 2);
         this.y = y - (float) (SIZE / 2);
         this.rotation = Random(-10f, 10f);

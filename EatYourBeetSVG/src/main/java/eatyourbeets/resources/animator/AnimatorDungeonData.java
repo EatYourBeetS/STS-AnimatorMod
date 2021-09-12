@@ -187,6 +187,11 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     {
         FullLog("ON GAME START");
         InitializeCardPool(true);
+
+        if (AbstractDungeon.actNum == 1 && AbstractDungeon.floorNum == 0)
+        {
+            Ynitaph.TryRestoreFromPreviousRun();
+        }
     }
 
     public void InitializeCardPool(boolean startGame)

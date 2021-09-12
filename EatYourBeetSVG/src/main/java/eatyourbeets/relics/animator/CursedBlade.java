@@ -2,9 +2,9 @@ package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
@@ -38,7 +38,7 @@ public class CursedBlade extends AnimatorRelic
     {
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > player.currentBlock)
         {
-            GameActions.Bottom.MakeCardInHand(new Wound());
+            GameActions.Bottom.MakeCardInHand(new Status_Wound());
             flash();
         }
 

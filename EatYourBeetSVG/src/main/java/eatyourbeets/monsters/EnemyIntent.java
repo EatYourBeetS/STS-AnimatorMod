@@ -182,30 +182,35 @@ public class EnemyIntent
 
     public EnemyIntent AddWeak()
     {
-        return AddModifier(enemy, WeakPower.POWER_ID, 1);
+        return AddModifier(WeakPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddPlayerVulnerable()
     {
-        return AddModifier(enemy, VulnerablePower.POWER_ID, 1);
+        return AddModifier(VulnerablePower.POWER_ID, 1);
+    }
+
+    public EnemyIntent AddPlayerBurning()
+    {
+        return AddModifier(BurningPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddEnchantedArmor(int amount)
     {
-        return AddModifier(enemy, EnchantedArmorPower.POWER_ID, amount);
+        return AddModifier(EnchantedArmorPower.POWER_ID, amount);
     }
 
     public EnemyIntent AddStrength(int amount)
     {
-        return AddModifier(enemy, StrengthPower.POWER_ID, amount);
+        return AddModifier(StrengthPower.POWER_ID, amount);
     }
 
     public EnemyIntent AddFreezing()
     {
-        return AddModifier(enemy, FreezingPower.POWER_ID, 1);
+        return AddModifier(FreezingPower.POWER_ID, 1);
     }
 
-    public EnemyIntent AddModifier(AbstractMonster enemy, String powerID, int amount)
+    public EnemyIntent AddModifier(String powerID, int amount)
     {
         if (isAttacking)
         {

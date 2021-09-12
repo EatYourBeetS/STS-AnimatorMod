@@ -75,7 +75,6 @@ public abstract class EYBStance extends AbstractStance
         updateDescription();
     }
 
-
     @Override
     public void updateDescription()
     {

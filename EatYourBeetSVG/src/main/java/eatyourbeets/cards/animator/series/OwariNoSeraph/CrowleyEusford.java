@@ -32,13 +32,13 @@ public class CrowleyEusford extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.GainForce(1, true);
 
-        if (CombatStats.CardsExhaustedThisTurn() > 0)
+        if (CombatStats.CardsExhaustedThisTurn().size() > 0)
         {
             GameActions.Bottom.Motivate();
         }

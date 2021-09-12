@@ -20,6 +20,7 @@ public class EmiyaKiritsugu extends AnimatorCard
                 data.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
                 data.AddPreview(AffinityToken.GetCard(Affinity.Dark), false);
             });
+    public static final int CARD_CHOICE = 2;
 
     public EmiyaKiritsugu()
     {
@@ -38,13 +39,15 @@ public class EmiyaKiritsugu extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    protected void Refresh(AbstractMonster enemy)
     {
-        return super.cardPlayable(m) && JUtils.Count(player.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON) >= 2;
+        super.Refresh(enemy);
+
+        SetUnplayable(JUtils.Count(player.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON) < CARD_CHOICE);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final WeightedList<AbstractCard> uncommonCards = new WeightedList<>();
         for (AbstractCard c : p.drawPile.group)
@@ -55,7 +58,7 @@ public class EmiyaKiritsugu extends AnimatorCard
             }
         }
 
-        if (uncommonCards.Size() < 2)
+        if (uncommonCards.Size() < CARD_CHOICE)
         {
             return;
         }

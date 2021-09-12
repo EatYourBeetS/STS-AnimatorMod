@@ -27,10 +27,19 @@ public class LightningWispPower extends AnimatorPower
 
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true))
         {
-            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE);
-            GameActions.Bottom.VFX(VFX.Lightning(c.hb));
-            GameActions.Bottom.DealDamage(owner, c, amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-            .SetPiercing(true, true);
+            int damage = amount;
+            if (c.isPlayer && damage > c.currentHealth)
+            {
+                damage = c.currentHealth - 1;
+            }
+
+            if (damage > 0)
+            {
+                GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE);
+                GameActions.Bottom.VFX(VFX.Lightning(c.hb));
+                GameActions.Bottom.DealDamage(owner, c, damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+                .SetPiercing(true, true);
+            }
         }
     }
 }

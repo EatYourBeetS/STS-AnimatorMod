@@ -26,7 +26,7 @@
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost [A].",
+		"DESCRIPTION": "#g+2 [Dexterity], #r-1 [Strength] from [F], #r-1 [Focus] from [I] NL Upon entering: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -38,7 +38,7 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b4, #b8, #b12, and #b16 [B], gain [Vitality].",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain [Vitality].",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
@@ -78,17 +78,17 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
+	"Corruption":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 [Corruption], add #yCrystallize to your draw pile. At #b15 [Corruption], obtain #pSummoning #pRitual.",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
+	},
 	"Counter-Attack":
 	{
 		"DESCRIPTION": "If you fully block all enemy #yAttacks this turn (at least #b1^), gain #yVigor and apply #b1 [Vulnerable] to ALL enemies.",
 		"NAMES": ["counter-attack"],
 		"PROPER_NAME": "Counter-Attack"
-	},
-	"Corruption":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 #yCorruption, add #yCrystallize to your draw pile. At #b15 #yCorruption, obtain #pSummoning #pRitual.",
-		"NAMES": ["corruption"],
-		"PROPER_NAME": "Corruption"
 	},
 	"Cycle":
 	{
@@ -96,11 +96,23 @@
 		"NAMES": ["cycle"],
 		"PROPER_NAME": "Cycle"
 	},
+	"Delayed Damage":
+	{
+		"DESCRIPTION": "Take damage at the end of your turn.",
+		"NAMES": ["delayed damage"],
+		"PROPER_NAME": "Delayed Damage"
+	},
 	"Demon Form":
 	{
 		"DESCRIPTION": "Gain #yStrength at the start of each turn.",
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
+	},
+	"Energized":
+	{
+		"DESCRIPTION": "Gain [E] at the start of next turn.",
+		"NAMES": ["energized"],
+		"PROPER_NAME": "Energized"
 	},
 	"Envenom":
 	{
@@ -134,7 +146,7 @@
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost [F].",
+		"DESCRIPTION": "#g+2 [Strength], #r-1 [Focus] from [I], #r-1 [Dexterity] from [A] NL Upon entering: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -144,11 +156,11 @@
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
-	"Low-Cost":
+	"Health":
 	{
-		"DESCRIPTION": "Card which cost less than #b2 [E].",
-		"NAMES": ["low-cost", "low cost"],
-		"PROPER_NAME": "Low-Cost Card"
+		"DESCRIPTION": "-",
+		"NAMES": ["~hp", "health"],
+		"PROPER_NAME": "Health"
 	},
 	"High-Cost":
 	{
@@ -161,6 +173,12 @@
 		"DESCRIPTION": "A #yStatus or #yCurse card.",
 		"NAMES": ["hindrance", "hindrances"],
 		"PROPER_NAME": "Hindrance"
+	},
+	"Imitate":
+	{
+		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
+		"NAMES": ["imitate", "imitation"],
+		"PROPER_NAME": "Imitate"
 	},
 	"Inspiration":
 	{
@@ -176,7 +194,7 @@
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost [I].",
+		"DESCRIPTION": "#g+2 [Focus], #r-1 [Strength] from [F], #r-1 [Dexterity] from [A] NL Upon entering: #yBoost [I].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
@@ -191,6 +209,12 @@
 		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
+	},
+	"Low-Cost":
+	{
+		"DESCRIPTION": "Card which cost less than #b2 [E].",
+		"NAMES": ["low-cost", "low cost"],
+		"PROPER_NAME": "Low-Cost Card"
 	},
 	"Malleable":
 	{
@@ -233,6 +257,12 @@
 		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
 		"NAMES": ["rebound"],
 		"PROPER_NAME": "Rebound"
+	},
+	"Recover":
+	{
+		"DESCRIPTION": "Gain [HP] up to the amount you had at the end of your last turn.",
+		"NAMES": ["recover"],
+		"PROPER_NAME": "Recover"
 	},
 	"Semi-Limited":
 	{
@@ -282,17 +312,11 @@
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
 	},
-	"Delayed Damage":
+	"~Delayed":
 	{
-		"DESCRIPTION": "Take damage at the end of your turn.",
-		"NAMES": ["delayed damage"],
-		"PROPER_NAME": "Delayed Damage"
-	},
-	"Health":
-	{
-		"DESCRIPTION": "-",
-		"NAMES": ["~hp", "health"],
-		"PROPER_NAME": "Health"
+		"DESCRIPTION": "Whenever you shuffle your draw pile, place this card on the bottom.",
+		"NAMES": ["~delayed"],
+		"PROPER_NAME": "Delayed"
 	},
 	"~Elemental":
 	{
@@ -318,15 +342,9 @@
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
 	},
-	"~Delayed":
-	{
-		"DESCRIPTION": "Whenever you shuffle your draw pile, place this card on the bottom.",
-		"NAMES": ["~delayed"],
-		"PROPER_NAME": "Delayed"
-	},
 	"~Lock-On":
 	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #b25% from #yRanged attacks.",
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
 	},

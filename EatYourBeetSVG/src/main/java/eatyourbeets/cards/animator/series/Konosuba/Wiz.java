@@ -38,7 +38,7 @@ public class Wiz extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, true)
@@ -56,7 +56,7 @@ public class Wiz extends AnimatorCard
             });
         });
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        if (HasSynergy() && info.TryActivateLimited())
         {
             GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard)c).SetPurge(true));
         }

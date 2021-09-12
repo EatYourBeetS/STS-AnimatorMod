@@ -8,11 +8,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 
-public class ImprovedConstrictedPower extends ConstrictedPower implements CloneablePowerInterface, HealthBarRenderPower
+public class AnimatorConstrictedPower extends ConstrictedPower implements CloneablePowerInterface, HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.PURPLE.cpy();
 
-    public ImprovedConstrictedPower(AbstractCreature owner, AbstractCreature source, int amount)
+    public AnimatorConstrictedPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
         super(owner, source, amount);
     }
@@ -32,6 +32,6 @@ public class ImprovedConstrictedPower extends ConstrictedPower implements Clonea
     @Override
     public AbstractPower makeCopy()
     {
-        return new ImprovedConstrictedPower(owner, source, amount);
+        return new AnimatorConstrictedPower(owner, source, amount);
     }
 }

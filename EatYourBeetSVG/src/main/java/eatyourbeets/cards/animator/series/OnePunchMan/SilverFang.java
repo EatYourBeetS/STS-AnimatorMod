@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -16,35 +18,40 @@ public class SilverFang extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 1);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 7, 1);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(2);
         SetAffinity_Light(2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
     {
-        GameActions.Bottom.GainBlock(block);
+        SetRetainOnce(true);
+    }
 
-        if (AgilityStance.IsActive())
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c)
+    {
+        super.triggerOnOtherCardPlayed(c);
+
+        if (c.type == CardType.ATTACK)
         {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-            .SetFilter(c -> c instanceof EYBCard && c.type == CardType.ATTACK)
-            .AddCallback(cards ->
+            GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(card ->
             {
-                if (cards.size() > 0)
-                {
-                    EYBCard card = (EYBCard)cards.get(0);
-                    card.AddScaling(Affinity.Green, 1);
-                    card.flash();
-                }
+                BlockModifiers.For(card).Add(1);
+                card.applyPowers();
             });
         }
+    }
 
-        if (isSynergizing)
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainBlock(block);
+        BlockModifiers.For(this).Set(0);
+
+        if (info.IsSynergizing && info.TryActivateLimited())
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }

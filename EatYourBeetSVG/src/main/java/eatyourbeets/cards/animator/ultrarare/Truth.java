@@ -5,15 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
 
 public class Truth extends AnimatorCard_UltraRare
 {
@@ -29,7 +25,7 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 4, 3);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(2);
@@ -46,39 +42,26 @@ public class Truth extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = 1;
-
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.GainAgility(magicNumber);
         GameActions.Bottom.GainIntellect(magicNumber);
         GameActions.Bottom.GainEnergy(magicNumber);
 
-        int count = 0;
-        ArrayList<String> orbs = new ArrayList<>();
-        for (AbstractOrb orb : p.orbs)
-        {
-            if (!(orb instanceof EmptyOrbSlot) && !orbs.contains(orb.ID))
-            {
-                orbs.add(orb.ID);
-                count += 1;
-            }
-        }
-
-        if (count >= 3)
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.Add(new RemoveAllOrbsAction());
         }
         else
         {
-            AddWound(p);
+            ReplaceCard(p);
         }
     }
 
-    private void AddWound(AbstractPlayer p)
+    private void ReplaceCard(AbstractPlayer p)
     {
-        CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        final CardGroup temp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : p.masterDeck.group)
         {
             if (!c.cardID.equals(status.cardID) && !c.uuid.equals(uuid) && GameUtilities.CanRemoveFromDeck(c))
@@ -101,5 +84,11 @@ public class Truth extends AnimatorCard_UltraRare
                 }
             });
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetUniqueOrbsCount() >= secondaryValue;
     }
 }

@@ -11,10 +11,7 @@ import eatyourbeets.effects.utility.CombinedEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 public class VFX
 {
@@ -28,21 +25,6 @@ public class VFX
         return hb.cY + (variance == 0 ? 0 : (MathUtils.random(-variance, variance) * hb.height));
     }
 
-    public static CataclysmEffect Cataclysm()
-    {
-        return new CataclysmEffect();
-    }
-
-    public static MeteorFallEffect MeteorFall(Hitbox hb)
-    {
-        return new MeteorFallEffect(RandomX(hb, 0.2f), RandomY(hb, 0.2f));
-    }
-
-    public static boolean FlipHorizontally()
-    {
-        return AbstractDungeon.player.flipHorizontal || AbstractDungeon.getMonsters().shouldFlipVfx();
-    }
-
     public static BiteEffect2 Bite(Hitbox target)
     {
         return Bite(target, Color.WHITE);
@@ -53,14 +35,14 @@ public class VFX
         return new BiteEffect2(target.cX, target.cY - (40.0F * Settings.scale), color);
     }
 
+    public static CataclysmEffect Cataclysm()
+    {
+        return new CataclysmEffect();
+    }
+
     public static ClashEffect2 Clash(Hitbox target)
     {
         return new ClashEffect2(target.cX, target.cY);
-    }
-
-    public static CleaveEffect Cleave(boolean fromPlayer)
-    {
-        return new CleaveEffect(fromPlayer);
     }
 
     public static ClawEffect2 Claw(Hitbox target, Color color1, Color color2)
@@ -71,6 +53,16 @@ public class VFX
     public static ClawEffect2 Claw(float cX, float cY, Color color1, Color color2)
     {
         return new ClawEffect2(cX, cY, color1, color2);
+    }
+
+    public static CleaveEffect Cleave(boolean fromPlayer)
+    {
+        return new CleaveEffect(fromPlayer);
+    }
+
+    public static DaggerSprayEffect DaggerSpray()
+    {
+        return new DaggerSprayEffect(FlipHorizontally());
     }
 
     public static CombinedEffect Dark(Hitbox hb, int variance)
@@ -90,72 +82,6 @@ public class VFX
         return effect;
     }
 
-    public static MindblastEffect2 Mindblast(float dialogX, float dialogY)
-    {
-        return new MindblastEffect2(dialogX, dialogY, FlipHorizontally());
-    }
-
-    public static ShockWaveEffect ShockWave(Hitbox source, Color color)
-    {
-        return ShockWave(source, color, ShockWaveEffect.ShockWaveType.ADDITIVE);
-    }
-
-    public static ShockWaveEffect ShockWave(Hitbox source, Color color, ShockWaveEffect.ShockWaveType type)
-    {
-        return new ShockWaveEffect(source.cX, source.cY, color.cpy(), type);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
-    {
-        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
-    }
-
-    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
-    {
-        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
-    }
-
-    public static DaggerSprayEffect DaggerSpray()
-    {
-        return new DaggerSprayEffect(FlipHorizontally());
-    }
-
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source)
-    {
-        return new ExplosionSmallEffect(source.cX, source.cY);
-    }
-
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source, float variance)
-    {
-        return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
-    }
-
-    public static IronWaveEffect2 IronWave(Hitbox source, Hitbox target)
-    {
-        return IronWave(source.cX, source.cY, target.cX);
-    }
-
-    public static IronWaveEffect2 IronWave(float cX, float cY, float targetX)
-    {
-        return new IronWaveEffect2(cX, cY, targetX);
-    }
-
-    public static LaserBeamEffect2 Laser(Hitbox source, Color color)
-    {
-        return new LaserBeamEffect2(source.cX, source.cY).SetColor(color);
-    }
-
-    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)
-    {
-        return SmallLaser(source, target, color, 0.2f);
-    }
-
-    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color, float variance)
-    {
-        return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, variance), RandomY(target, variance))
-        .SetColors(color, Colors.Lerp(color, Color.BLACK, 0.3f));
-    }
-
     public static FallingIceEffect FallingIce(int frostCount)
     {
         return new FallingIceEffect(frostCount, FlipHorizontally());
@@ -169,6 +95,11 @@ public class VFX
     public static FlameBarrierEffect FlameBarrier(Hitbox source)
     {
         return new FlameBarrierEffect(source.cX, source.cY);
+    }
+
+    public static boolean FlipHorizontally()
+    {
+        return AbstractDungeon.player.flipHorizontal || AbstractDungeon.getMonsters().shouldFlipVfx();
     }
 
     public static GenericAnimationEffect Gunshot(Hitbox target, float spread)
@@ -186,6 +117,21 @@ public class VFX
         return new HemokinesisEffect2(target.cX, target.cY, source.cX, source.cY);
     }
 
+    public static IronWaveEffect2 IronWave(Hitbox source, Hitbox target)
+    {
+        return IronWave(source.cX, source.cY, target.cX);
+    }
+
+    public static IronWaveEffect2 IronWave(float cX, float cY, float targetX)
+    {
+        return new IronWaveEffect2(cX, cY, targetX);
+    }
+
+    public static LaserBeamEffect2 Laser(Hitbox source, Color color)
+    {
+        return new LaserBeamEffect2(source.cX, source.cY).SetColor(color);
+    }
+
     public static LightningEffect2 Lightning(Hitbox target)
     {
         return Lightning(target.cX, target.cY);
@@ -194,6 +140,16 @@ public class VFX
     public static LightningEffect2 Lightning(float cX, float cY)
     {
         return new LightningEffect2(cX, cY);
+    }
+
+    public static MeteorFallEffect MeteorFall(Hitbox hb)
+    {
+        return new MeteorFallEffect(RandomX(hb, 0.2f), RandomY(hb, 0.2f));
+    }
+
+    public static MindblastEffect2 Mindblast(float dialogX, float dialogY)
+    {
+        return new MindblastEffect2(dialogX, dialogY, FlipHorizontally());
     }
 
     public static GenericRenderEffect Pierce(AbstractCreature source, Hitbox target, float spread)
@@ -229,14 +185,75 @@ public class VFX
         return new ShieldEffect(cX, cY);
     }
 
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color)
+    {
+        return ShockWave(source, color, ShockWaveEffect.ShockWaveType.ADDITIVE);
+    }
+
+    public static ShockWaveEffect ShockWave(Hitbox source, Color color, ShockWaveEffect.ShockWaveType type)
+    {
+        return new ShockWaveEffect(source.cX, source.cY, color.cpy(), type);
+    }
+
     public static ShootingStarsEffect ShootingStars(Hitbox source, float spreadY)
     {
         return new ShootingStarsEffect(source.cX, source.cY).SetSpread(0, spreadY).FlipHorizontally(FlipHorizontally());
     }
 
+    public static ExplosionSmallEffect SmallExplosion(Hitbox source)
+    {
+        return new ExplosionSmallEffect(source.cX, source.cY);
+    }
+
+    public static ExplosionSmallEffect SmallExplosion(Hitbox source, float variance)
+    {
+        return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
+    }
+
+    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)
+    {
+        return SmallLaser(source, target, color, 0.2f);
+    }
+
+    public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color, float variance)
+    {
+        return new SmallLaserEffect2(source.cX, source.cY, RandomX(target, variance), RandomY(target, variance))
+        .SetColors(color, Colors.Lerp(color, Color.BLACK, 0.3f));
+    }
+
     public static SnowballEffect Snowball(Hitbox source, Hitbox target)
     {
-        return new SnowballEffect(source.cX, source.cY, target.cX, target.cY);
+        return new SnowballEffect(source.cX, source.cY, RandomX(target, 0.15f), RandomY(target, 0.15f));
+    }
+
+    public static SnowballImpactEffect SnowballImpact(Hitbox target, float spread)
+    {
+        return new SnowballImpactEffect(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static SnowballImpactEffect SnowballImpact(float cX, float cY)
+    {
+        return new SnowballImpactEffect(cX, cY);
+    }
+
+    public static StrongPunchEffect StrongPunch(Hitbox target)
+    {
+        return StrongPunch(target.cX, target.cY);
+    }
+
+    public static StrongPunchEffect StrongPunch(float x, float y)
+    {
+        return new StrongPunchEffect(x, y);
+    }
+
+    public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
+    {
+        return SweepingBeam(source.hb, source.flipHorizontal, Color.CYAN);
+    }
+
+    public static ColoredSweepingBeamEffect SweepingBeam(Hitbox source, boolean flipHorizontal, Color color)
+    {
+        return new ColoredSweepingBeamEffect(source.cX, source.cY, flipHorizontal, color);
     }
 
     public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)
@@ -252,12 +269,13 @@ public class VFX
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        return (ThrowProjectileEffect)new ThrowProjectileEffect(new Projectile(Earth.GetRandomTexture(), 128f, 128f)
-                .SetColor(Colors.Random(0.8f, 1f, true))
-                .SetPosition(source.cX, source.cY), target)
-                .SetTargetRotation(36000, 360f)
-                .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
-                .SetDuration(duration, true);
+        final Projectile projectile = new Projectile(Earth.GetRandomTexture(), 128f, 128f)
+        .SetColor(Colors.Random(0.8f, 1f, true))
+        .SetPosition(source.cX, source.cY);
+        return (ThrowProjectileEffect)new ThrowProjectileEffect(projectile, target)
+        .SetTargetRotation(36000, 360f)
+        .AddCallback(hb -> GameEffects.Queue.Add(RockBurst(hb, 1.3f)))
+        .SetDuration(duration, true);
     }
 
     public static VerticalImpactEffect2 VerticalImpact(Hitbox target)

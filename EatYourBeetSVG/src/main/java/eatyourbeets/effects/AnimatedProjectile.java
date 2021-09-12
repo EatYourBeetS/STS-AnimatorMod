@@ -79,7 +79,7 @@ public class AnimatedProjectile extends Projectile
             this.region = GetFrameRegion(frame);
         }
 
-        RenderHelpers.DrawCentered(sb, color, region, cX, cY, width, height, scale, GetCurrentRotation(true), flipX, flipY);
+        RenderHelpers.DrawCentered(sb, color, region, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
     }
 
     public TextureRegion GetFrameRegion(int frame)

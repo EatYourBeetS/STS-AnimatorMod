@@ -116,4 +116,9 @@ public class DraggableHitbox extends AdvancedHitbox
             dragStart = null;
         }
     }
+
+    public boolean IsDragging()
+    {
+        return dragStart != null;
+    }
 }

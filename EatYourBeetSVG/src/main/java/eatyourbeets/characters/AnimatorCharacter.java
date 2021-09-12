@@ -25,6 +25,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import patches.RelicLibraryPatches;
 
@@ -249,6 +250,8 @@ public class AnimatorCharacter extends CustomPlayer
         {
             TempHPField.tempHp.set(this, MAX_TEMP_HP);
         }
+
+        GameUtilities.RefreshHandLayout();
     }
 
     @Override

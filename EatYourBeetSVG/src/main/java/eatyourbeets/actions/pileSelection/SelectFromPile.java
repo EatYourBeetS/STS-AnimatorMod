@@ -15,6 +15,7 @@ import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.ListSelection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +28,8 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final CardGroup[] groups;
 
     protected GenericCondition<AbstractCard> filter;
-    protected CardSelection origin;
+    protected ListSelection<AbstractCard> origin;
+    protected boolean hideTopPanel;
     protected boolean canPlayerCancel;
     protected boolean anyNumber;
     protected boolean selected;
@@ -46,6 +48,13 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         this.message = GR.Common.Strings.GridSelection.ChooseCards_F1;
 
         Initialize(amount, sourceName);
+    }
+
+    public SelectFromPile HideTopPanel(boolean hideTopPanel)
+    {
+        this.hideTopPanel = hideTopPanel;
+
+        return this;
     }
 
     public SelectFromPile CancellableFromPlayer(boolean value)
@@ -81,7 +90,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         return this;
     }
 
-    public SelectFromPile SetOptions(CardSelection origin, boolean anyNumber)
+    public SelectFromPile SetOptions(ListSelection<AbstractCard> origin, boolean anyNumber)
     {
         this.origin = origin;
         this.anyNumber = anyNumber;
@@ -106,6 +115,11 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     @Override
     protected void FirstUpdate()
     {
+        if (hideTopPanel)
+        {
+            GameUtilities.SetTopPanelVisible(false);
+        }
+
         GridCardSelectScreenPatch.Clear();
 
         for (CardGroup group : groups)
@@ -166,7 +180,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             int max = Math.min(temp.size(), amount);
             for (int i = 0; i < max; i++)
             {
-                AbstractCard card = origin.GetCard(temp, i, remove);
+                final AbstractCard card = origin.Get(temp, i, remove);
                 if (card != null)
                 {
                     selectedCards.add(card);
@@ -181,7 +195,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             if (anyNumber)
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, CreateMessage());
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, UpdateMessage());
             }
             else
             {
@@ -196,7 +210,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     return;
                 }
 
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canPlayerCancel, false);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), UpdateMessage(), false, false, canPlayerCancel, false);
             }
         }
     }
@@ -239,5 +253,16 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             Complete();
         }
+    }
+
+    @Override
+    protected void Complete()
+    {
+        if (hideTopPanel)
+        {
+            GameUtilities.SetTopPanelVisible(true);
+        }
+
+        super.Complete();
     }
 }

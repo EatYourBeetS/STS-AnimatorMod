@@ -1,13 +1,10 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
@@ -38,15 +35,15 @@ public class Benimaru extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.Flash(this);
             GameActions.Bottom.ChannelOrb(new Fire());
+            GameActions.Bottom.Flash(this);
         }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
         .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, magicNumber))
         .SetRealtime(true);

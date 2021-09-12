@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,9 +26,10 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected boolean bypassThorns;
     protected boolean isFast;
 
-    protected Color vfxColor;
-    protected float pitchMin;
-    protected float pitchMax;
+    protected Color vfxColor = null;
+    protected Color enemyTint = null;
+    protected float pitchMin = 0.95f;
+    protected float pitchMax = 1.05f;
 
     public DealDamageToAll(AbstractCreature source, int[] amount, DamageInfo.DamageType damageType, AttackEffect attackEffect)
     {
@@ -41,8 +43,6 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         this.attackEffect = attackEffect;
         this.damageType = damageType;
         this.damage = amount;
-        this.pitchMin = 0.95f;
-        this.pitchMax = 1.05f;
 
         Initialize(source, null, amount[0]);
     }
@@ -65,6 +65,14 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     public DealDamageToAll SetVFXColor(Color color)
     {
         this.vfxColor = color.cpy();
+
+        return this;
+    }
+
+    public DealDamageToAll SetVFXColor(Color color, Color enemyTint)
+    {
+        this.vfxColor = color.cpy();
+        this.enemyTint = enemyTint.cpy();
 
         return this;
     }
@@ -93,13 +101,19 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected void FirstUpdate()
     {
         boolean mute = pitchMin == 0;
-
         int i = 0;
         for (AbstractMonster enemy : AbstractDungeon.getCurrRoom().monsters.monsters)
         {
             if (!GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameEffects.List.Attack(source, enemy, this.attackEffect, pitchMin, pitchMax, vfxColor);
+                if (mute)
+                {
+                    GameEffects.List.AttackWithoutSound(source, enemy, this.attackEffect, vfxColor, 0.15f);
+                }
+                else
+                {
+                    GameEffects.List.Attack(source, enemy, this.attackEffect, pitchMin, pitchMax, vfxColor, 0.15f);
+                }
 
                 if (onDamageEffect != null)
                 {
@@ -111,6 +125,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
             i += 1;
         }
+
+        AddDuration(AttackEffects.GetDamageDelay(attackEffect));
     }
 
     @Override
@@ -128,18 +144,9 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
             {
                 if (!GameUtilities.IsDeadOrEscaped(enemy))
                 {
-                    if (this.attackEffect == AttackEffect.POISON)
-                    {
-                        enemy.tint.color.set(Color.CHARTREUSE.cpy());
-                        enemy.tint.changeColor(Color.WHITE.cpy());
-                    }
-                    else if (this.attackEffect == AttackEffect.FIRE)
-                    {
-                        enemy.tint.color.set(Color.RED.cpy());
-                        enemy.tint.changeColor(Color.WHITE.cpy());
-                    }
-
-                    DamageHelper.DealDamage(enemy, new DamageInfo(this.source, this.damage[i], this.damageType), bypassBlock, bypassThorns);
+                    final DamageInfo info = new DamageInfo(this.source, this.damage[i], this.damageType);
+                    DamageHelper.ApplyTint(enemy, enemyTint, attackEffect);
+                    DamageHelper.DealDamage(enemy, info, bypassBlock, bypassThorns);
                     targets.add(enemy);
                 }
 

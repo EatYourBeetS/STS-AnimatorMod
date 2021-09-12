@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
 import eatyourbeets.cards.animator.series.GoblinSlayer.GoblinSlayer;
 import eatyourbeets.cards.base.AnimatorCard_Status;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +27,7 @@ public class GoblinChampion extends AnimatorCard_Status
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (this.dontTriggerOnUseCard)
         {

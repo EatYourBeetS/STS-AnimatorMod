@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -23,9 +24,10 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     protected boolean skipWait;
     protected boolean isOrb;
 
+    protected Color vfxColor = null;
+    protected Color enemyTint = null;
     protected float pitchMin = 0.95f;
     protected float pitchMax = 1.05f;
-    protected Color vfxColor = null;
 
     protected final DamageInfo info;
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
@@ -39,6 +41,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         this.card = other.card;
         this.isOrb = other.isOrb;
         this.vfxColor = other.vfxColor;
+        this.enemyTint = other.enemyTint;
         this.pitchMin = other.pitchMin;
         this.pitchMax = other.pitchMax;
         this.skipWait = other.skipWait;
@@ -91,6 +94,14 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
     public DealDamageToRandomEnemy SetVFXColor(Color color)
     {
         this.vfxColor = color.cpy();
+
+        return this;
+    }
+
+    public DealDamageToRandomEnemy SetVFXColor(Color color, Color enemyTint)
+    {
+        this.vfxColor = color.cpy();
+        this.enemyTint = enemyTint.cpy();
 
         return this;
     }
@@ -164,23 +175,13 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 
         if (!hasPlayedEffect && duration < 0.1f)
         {
+            AddDuration(AttackEffects.GetDamageDelay(attackEffect));
             GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor);
             hasPlayedEffect = true;
         }
 
         if (TickDuration(deltaTime))
         {
-            if (this.attackEffect == AttackEffect.POISON)
-            {
-                this.target.tint.color = Color.CHARTREUSE.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-            else if (this.attackEffect == AttackEffect.FIRE)
-            {
-                this.target.tint.color = Color.RED.cpy();
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-
             if (applyPowers)
             {
                 if (card != null)
@@ -199,6 +200,7 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
                 this.info.output = AbstractOrb.applyLockOn(target, this.info.output);
             }
 
+            DamageHelper.ApplyTint(target, enemyTint, attackEffect);
             DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())

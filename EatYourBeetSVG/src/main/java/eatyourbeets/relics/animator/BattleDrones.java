@@ -3,10 +3,10 @@ package eatyourbeets.relics.animator;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
+import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
@@ -55,8 +55,9 @@ public class BattleDrones extends AnimatorRelic implements OnSynergySubscriber
                 .SetDamageEffect(enemy ->
                 {
                     SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT);
-                    GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
-                    GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
+                    final Hitbox source = (player.relics.indexOf(this) / MAX_RELICS_PER_PAGE == relicPage) ? this.hb : player.hb;
+                    GameEffects.List.Add(VFX.SmallLaser(source, enemy.hb, Color.CYAN));
+                    GameEffects.List.BorderFlash(Color.SKY);
                     return 0f;
                 });
 

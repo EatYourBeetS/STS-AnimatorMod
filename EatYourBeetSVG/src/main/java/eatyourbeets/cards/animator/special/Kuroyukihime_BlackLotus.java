@@ -8,8 +8,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Kuroyukihime_BlackLotus extends AnimatorCard
@@ -23,14 +21,17 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 5, 2, 2);
+        Initialize(7, 5, 2);
+        SetUpgrade(2, 1, 0);
 
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Green(1, 1, 0);
+
+        SetAffinityRequirement(Affinity.General, 2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX(SFX.ATTACK_DEFECT_BEAM);
@@ -40,14 +41,15 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         GameActions.Bottom.RetainPower(Affinity.Red);
         GameActions.Bottom.RetainPower(Affinity.Green);
 
-        if (ForceStance.IsActive())
+        if (CheckAffinity(Affinity.General))
         {
-            GameActions.Bottom.GainMetallicize(magicNumber);
-        }
-
-        if (AgilityStance.IsActive())
-        {
-            GameActions.Bottom.GainBlur(secondaryValue);
+            GameActions.Bottom.Draw(magicNumber);
+            GameActions.Bottom.ModifyAllInstances(uuid)
+            .AddCallback(card ->
+            {
+                final Kuroyukihime_BlackLotus c = (Kuroyukihime_BlackLotus)card;
+                c.SetAffinityRequirement(Affinity.General, c.affinities.GetRequirement(Affinity.General) + 1);
+            });
         }
     }
 }

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.powers.animator.StolenGoldPower;
 import eatyourbeets.utilities.GameActions;
@@ -21,10 +22,12 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
-    protected Color vfxColor;
-    protected float pitchMin;
-    protected float pitchMax;
     protected int goldAmount;
+
+    protected Color vfxColor = null;
+    protected Color enemyTint = null;
+    protected float pitchMin = 0.95f;
+    protected float pitchMax = 1.05f;
 
     public DealDamage(AbstractCreature target, DamageInfo info)
     {
@@ -39,8 +42,6 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.skipWait = false;
         this.info = info;
         this.attackEffect = effect;
-        this.pitchMin = 0.95f;
-        this.pitchMax = 1.05f;
 
         Initialize(info.owner, target, info.output);
     }
@@ -63,6 +64,14 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     public DealDamage SetVFXColor(Color color)
     {
         this.vfxColor = color.cpy();
+
+        return this;
+    }
+
+    public DealDamage SetVFXColor(Color color, Color enemyTint)
+    {
+        this.vfxColor = color.cpy();
+        this.enemyTint = enemyTint.cpy();
 
         return this;
     }
@@ -131,23 +140,14 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (!hasPlayedEffect && duration <= 0.1f)
         {
+            AddDuration(AttackEffects.GetDamageDelay(attackEffect));
             GameEffects.List.Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor);
             hasPlayedEffect = true;
         }
 
         if (TickDuration(deltaTime))
         {
-            if (this.attackEffect == AttackEffect.POISON)
-            {
-                this.target.tint.color.set(Color.CHARTREUSE.cpy());
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-            else if (this.attackEffect == AttackEffect.FIRE)
-            {
-                this.target.tint.color.set(Color.RED.cpy());
-                this.target.tint.changeColor(Color.WHITE.cpy());
-            }
-
+            DamageHelper.ApplyTint(target, enemyTint, attackEffect);
             DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())

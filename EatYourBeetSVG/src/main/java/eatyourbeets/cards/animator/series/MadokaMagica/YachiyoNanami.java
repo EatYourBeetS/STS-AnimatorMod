@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.AnimatorPower;
@@ -39,11 +40,11 @@ public class YachiyoNanami extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new YachiyoNanamiPower(p, 1));
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             if (choices.TryInitialize(this))
             {

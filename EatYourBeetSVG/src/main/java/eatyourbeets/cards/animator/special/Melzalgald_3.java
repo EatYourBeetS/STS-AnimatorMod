@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,15 +17,13 @@ public class Melzalgald_3 extends MelzalgaldAlt
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
-        SetUpgrade(0, 0, 1);
-
         SetAffinity_Green(0, 0, 2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.RecoverHP(secondaryValue);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.GainAgility(magicNumber);
     }

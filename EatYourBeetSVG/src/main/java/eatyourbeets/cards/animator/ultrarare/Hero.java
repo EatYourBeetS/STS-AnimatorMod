@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.ultrarare;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,6 +15,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.Mathf;
 
 public class Hero extends AnimatorCard_UltraRare
 {
@@ -34,19 +37,24 @@ public class Hero extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
         .AddCallback(c ->
         {
-            if (GameUtilities.IsFatal(c, true) && CombatStats.TryActivateLimited(cardID))
+            if (GameUtilities.IsFatal(c, true) && info.TryActivateLimited())
             {
-                Random rng = new Random(Settings.seed + (AbstractDungeon.actNum * 17) + (AbstractDungeon.floorNum * 23));
-                if (rng.randomBoolean(0.4f))
+                final AbstractCard deckInstance = GameUtilities.GetMasterDeckInstance(uuid);
+                if (deckInstance == null)
                 {
-                    AbstractRelic.RelicTier tier;
+                    return;
+                }
 
-                    int roll = rng.random(0, 99);
+                final Random rng = new Random(Settings.seed + (AbstractDungeon.actNum * 17) + (AbstractDungeon.floorNum * 23));
+                if (rng.randomBoolean(0.4f + (Mathf.Pow(2, deckInstance.misc) * 0.025f)))
+                {
+                    final AbstractRelic.RelicTier tier;
+                    final int roll = rng.random(0, 99);
                     if (roll < 50)
                     {
                         tier = AbstractRelic.RelicTier.COMMON;
@@ -61,6 +69,11 @@ public class Hero extends AnimatorCard_UltraRare
                     }
 
                     AbstractDungeon.getCurrRoom().addRelicToRewards(tier);
+                    deckInstance.misc = 0;
+                }
+                else
+                {
+                    deckInstance.misc += 1;
                 }
             }
         });

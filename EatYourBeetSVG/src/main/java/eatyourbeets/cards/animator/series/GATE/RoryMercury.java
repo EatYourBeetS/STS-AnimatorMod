@@ -36,23 +36,17 @@ public class RoryMercury extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
 
         GameActions.Bottom.ModifyAllInstances(uuid)
-        .AddCallback(c ->
-        {
-            if (!c.hasTag(HASTE))
-            {
-                c.tags.add(HASTE);
-            }
-        });
+        .AddCallback(c -> GameUtilities.SetCardTag(c, HASTE, true));
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {
@@ -62,7 +56,7 @@ public class RoryMercury extends AnimatorCard
             }
         }
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (info.TryActivateSemiLimited())
         {
             GameActions.Bottom.GainInspiration(1);
         }

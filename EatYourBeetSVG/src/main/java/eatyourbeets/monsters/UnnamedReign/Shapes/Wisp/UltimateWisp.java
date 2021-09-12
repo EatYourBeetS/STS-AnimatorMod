@@ -64,7 +64,7 @@ public class UltimateWisp extends Wisp
     @Override
     public void takeTurn()
     {
-        if (GameUtilities.IsAttacking(intent) && ((getIntentDmg() == 0) || (getIntentDmg() < (getIntentBaseDmg() - 5))))
+        if (GameUtilities.IsAttacking(intent) && ((getIntentDmg() <= 0) || (getIntentDmg() < (getIntentBaseDmg() - 5))))
         {
             antiStrengthLossCounter += 1;
         }

@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.PinaCoLadaPower;
 import eatyourbeets.utilities.GameActions;
@@ -18,22 +21,34 @@ public class PinaCoLada extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
-        SetUpgrade(0, 6, 0);
+        Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 4);
 
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(2);
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    public AbstractAttribute GetSpecialInfo()
     {
-        return CombatStats.SynergiesThisTurn().size() > 0;
+        return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void Refresh(AbstractMonster enemy)
     {
-        GameActions.Bottom.GainBlock(block);
+        super.Refresh(enemy);
+
+        SetUnplayable(CombatStats.SynergiesThisTurn().isEmpty());
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        if (magicNumber > 0)
+        {
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
+        }
+
         GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
     }
 }

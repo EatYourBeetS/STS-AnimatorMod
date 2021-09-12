@@ -2,12 +2,10 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MareBelloFiore extends AnimatorCard
 {
@@ -19,16 +17,27 @@ public class MareBelloFiore extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 2);
+        Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 2, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(2);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
         SetAffinityRequirement(Affinity.Green, 2);
 
         SetExhaust(true);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        if (m != null && CheckAffinity(Affinity.Green))
+        {
+            GameUtilities.GetIntent(m).AddWeak();
+        }
     }
 
     @Override
@@ -40,7 +49,7 @@ public class MareBelloFiore extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (CheckAffinity(Affinity.Blue))
         {

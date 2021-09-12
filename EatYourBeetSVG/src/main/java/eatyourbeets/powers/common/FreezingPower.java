@@ -3,8 +3,9 @@ package eatyourbeets.powers.common;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class FreezingPower extends CommonPower
@@ -36,7 +37,7 @@ public class FreezingPower extends CommonPower
     @Override
     public void playApplyPowerSfx()
     {
-        SFX.Play(SFX.ORB_FROST_EVOKE, 0.45f, 0.55f);
+        GameEffects.List.Attack(source, owner, AttackEffects.ICE, 0.65f, 0.75f);
     }
 
     @Override

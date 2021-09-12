@@ -30,14 +30,14 @@ public class OrikoMikuni extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));
         choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
 
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))
+        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && info.TryActivateLimited())
         {
             choices.Select(3, m);
         }

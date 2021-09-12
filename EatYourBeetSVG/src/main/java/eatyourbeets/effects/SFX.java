@@ -19,14 +19,15 @@ public class SFX
         BaseMod.addAudio(ATTACK_SWORD, "audio/sound/STS_SFX_EnemyAtk_Sword_v1.ogg");
         BaseMod.addAudio(RELIC_ACTIVATION, "audio/sound/SOTE_SFX_RelicActivation_v1.ogg");
 
-        BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
-        BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
         BaseMod.addAudio(ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
         BaseMod.addAudio(ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
-        BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
+        BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
+        BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
+        BaseMod.addAudio(ANIMATOR_PUNCH, "audio/animator/sound/PUNCH.ogg");
         BaseMod.addAudio(ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
         BaseMod.addAudio(ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
+        BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
+        BaseMod.addAudio(ANIMATOR_ORB_EARTH_EVOKE, "audio/animator/sound/ORB_EARTH_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
 
         MainMusicPatches.SetFolderPath("audio/animator/music/");
@@ -39,6 +40,7 @@ public class SFX
     public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_SPEAR_1 = "ANIMATOR_SPEAR_1";
     public static final String ANIMATOR_SPEAR_2 = "ANIMATOR_SPEAR_2";
+    public static final String ANIMATOR_PUNCH = "ANIMATOR_PUNCH";
     public static final String ANIMATOR_KIRA_POWER = "ANIMATOR_KIRA_POWER";
     public static final String ANIMATOR_MEGUMIN_CHARGE = "ANIMATOR_MEGUMIN_CHARGE";
     public static final String ANIMATOR_ORB_EARTH_CHANNEL = "ANIMATOR_ORB_EARTH_CHANNEL";

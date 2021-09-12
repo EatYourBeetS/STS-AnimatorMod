@@ -113,8 +113,8 @@ public class AnimatorResources extends AbstractResources
         Color color = CardHelper.getColor(210, 147, 106);
         BaseMod.addColor(CardColor, color, color, color, color, color, color, color,
         Images.ATTACK_PNG, Images.SKILL_PNG, Images.POWER_PNG,
-        Images.ORB_A_PNG, Images.ATTACK_PNG, Images.SKILL_PNG,
-        Images.POWER_PNG, Images.ORB_B_PNG, Images.ORB_C_PNG);
+        Images.ORB_A_PNG, Images.ATTACK_PNG_L, Images.SKILL_PNG_L,
+        Images.POWER_PNG_L, Images.ORB_B_PNG, Images.ORB_C_PNG);
     }
 
     @Override

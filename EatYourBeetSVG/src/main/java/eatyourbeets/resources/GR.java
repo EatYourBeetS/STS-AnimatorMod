@@ -5,6 +5,7 @@ import basemod.ReflectionHacks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.google.gson.Gson;
@@ -52,6 +53,7 @@ public class GR
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
     public static CommonResources Common;
+    public static ShaderProgram GrayscaleShader;
     public static boolean IsLoaded;
 
     public static void Initialize()
@@ -74,6 +76,17 @@ public class GR
         resources.InitializeColor();
 
         BaseMod.subscribe(resources);
+    }
+
+    public static ShaderProgram GetGrayscaleShader() {
+        if (GrayscaleShader == null) {
+            FileHandle fShader = Gdx.files.internal("shaders/grayscaleFragment.glsl");
+            FileHandle vShader = Gdx.files.internal("shaders/grayscaleVertex.glsl");
+            String fShaderString = fShader.readString();
+            String vShaderString = vShader.readString();
+            GrayscaleShader = new ShaderProgram(vShaderString, fShaderString);
+        }
+        return GrayscaleShader;
     }
 
     public static CharacterStrings GetCharacterStrings(String characterID)

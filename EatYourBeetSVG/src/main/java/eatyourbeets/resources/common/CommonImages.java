@@ -21,8 +21,8 @@ public class CommonImages
     public final TextureCache Circle                      = new TextureCache("images/eyb/ui/topPanel/Circle.png");
     public final TextureCache Tag                         = new TextureCache("images/eyb/ui/topPanel/Tag.png");
     public final TextureCache Panel                       = new TextureCache("images/eyb/ui/topPanel/Panel.png");
-    public final TextureCache Panel_Skewed_Left           = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed_Left.png");
-    public final TextureCache Panel_Skewed_Right          = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed_Right.png");
+    public final TextureCache Panel_Skewed                = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed.png");
+    public final TextureCache Panel_Skewed_L              = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed_L.png");
     public final TextureCache Panel_Rounded               = new TextureCache("images/eyb/ui/topPanel/Panel_Rounded.png");
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/eyb/ui/topPanel/Panel_Rounded_Half_H.png");
     public final TextureCache Panel_Elliptical            = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical.png");

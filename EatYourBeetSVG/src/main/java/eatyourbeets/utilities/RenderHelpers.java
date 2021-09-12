@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.resources.CardTooltips;
@@ -227,11 +229,16 @@ public class RenderHelpers
 
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation)
     {
+        DrawOnCardCentered(sb, card, color, img, drawX, drawY, width, height, imgScale, imgRotation, false, false);
+    }
+
+    public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation, boolean flipX, boolean flipY)
+    {
         final float scale = card.drawScale * Settings.scale * imgScale;
 
         sb.setColor(color);
         sb.draw(img, drawX - (width / 2f), drawY - (height / 2f), width / 2f, height / 2f, width, height,
-                scale, scale, card.angle + imgRotation, 0, 0, img.getWidth(), img.getHeight(), false, false);
+                scale, scale, card.angle + imgRotation, 0, 0, img.getWidth(), img.getHeight(), flipX, flipY);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Color color, float drawX, float drawY, float width, float height)
@@ -252,6 +259,11 @@ public class RenderHelpers
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, float drawX, float drawY, float width, float height)
     {
         DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, img.color.a * card.transparency, 1, 0);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, float drawX, float drawY, float width, float height, float scale)
+    {
+        DrawOnCardAuto(sb, card, img.texture, new Vector2(drawX, drawY), width, height, img.color, img.color.a * card.transparency, scale, 0);
     }
 
     public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, ColoredTexture img, Vector2 offset, float width, float height)
@@ -286,6 +298,18 @@ public class RenderHelpers
         offset.scl(Settings.scale * card.drawScale);
 
         DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, imgScale, imgRotation);
+    }
+
+    public static void DrawOnCardAuto(SpriteBatch sb, AbstractCard card, Texture img, Vector2 offset, float width, float height, Color color, float alpha, float imgScale, float imgRotation, boolean flipX, boolean flipY)
+    {
+        if (card.angle != 0)
+        {
+            offset.rotate(card.angle);
+        }
+
+        offset.scl(Settings.scale * card.drawScale);
+
+        DrawOnCardCentered(sb, card, new Color(color.r, color.g, color.b, alpha), img, card.current_x + offset.x, card.current_y + offset.y, width, height, imgScale, imgRotation, flipX, flipY);
     }
 
     public static void DrawOnCard(SpriteBatch sb, AbstractCard card, Texture img, float drawX, float drawY, float size)
@@ -364,6 +388,21 @@ public class RenderHelpers
         sb.setColor(color);
         sb.draw(img, x, y, 0, 0, width, height, Settings.scale, Settings.scale, 0, 0, 0,
                 srcWidth, srcHeight, false, false);
+    }
+
+    public static boolean DrawGrayscale(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
+        ShaderProgram defaultShader = sb.getShader();
+        sb.setShader(GR.GetGrayscaleShader());
+        boolean result = drawFunc.Invoke();
+        sb.setShader(defaultShader);
+        return result;
+    }
+
+    public static boolean DrawTranslucent(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
+        sb.setBlendFunction(770,1);
+        boolean result = drawFunc.Invoke();
+        sb.setBlendFunction(770,771);
+        return result;
     }
 
     public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color)

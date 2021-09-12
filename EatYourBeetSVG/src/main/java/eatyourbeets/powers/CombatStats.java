@@ -67,6 +67,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterlifeSubscriber> onAfterlife = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAttackSubscriber> onAttack = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = RegisterEvent(new GameEvent<>());
@@ -85,6 +86,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnPurgeSubscriber> onPurge = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnRawDamageReceived> onRawDamageReceived = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnReloadPostDiscardSubscriber> onReloadPostDiscard = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnReloadPreDiscardSubscriber> onReloadPreDiscard = RegisterEvent(new GameEvent<>());
@@ -314,6 +316,22 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnCardMovedSubscriber s : onCardMoved.GetSubscribers())
         {
             s.OnCardMoved(card, source, destination);
+        }
+    }
+
+    public static void OnPurge(AbstractCard card, CardGroup source)
+    {
+        for (OnPurgeSubscriber s : onPurge.GetSubscribers())
+        {
+            s.OnPurge(card, source);
+        }
+    }
+
+    public static void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard)
+    {
+        for (OnAfterlifeSubscriber s : onAfterlife.GetSubscribers())
+        {
+            s.OnAfterlife(playedCard, fuelCard);
         }
     }
 

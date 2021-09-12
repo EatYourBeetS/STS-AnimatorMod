@@ -16,7 +16,7 @@ public class LisaMinci extends AnimatorCard {
     public LisaMinci() {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Blue(2, 0, 0);
     }
@@ -29,18 +29,31 @@ public class LisaMinci extends AnimatorCard {
                 .AddCallback(cards -> {
                     for (AbstractCard card : cards)
                     {
+                        boolean activateEffect1 = false;
+                        boolean activateEffect2 = false;
+                        boolean activateEffect3 = false;
                         switch (card.cost) {
                             case 0:
                             case -2:
-                                GameActions.Bottom.GainIntellect(1, upgraded);
+                                activateEffect1 = true;
                                 break;
                             case 1:
                             case -1:
-                                GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
+                                activateEffect2 = true;
                                 break;
                             default:
-                                GameActions.Bottom.ChannelOrb(new Lightning());
+                                activateEffect3 = true;
                                 break;
+                        }
+
+                        if (activateEffect1) {
+                            GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
+                        }
+                        if (activateEffect2) {
+                            GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
+                        }
+                        if (activateEffect3) {
+                            GameActions.Bottom.ChannelOrb(new Lightning());
                         }
                     }
                 });

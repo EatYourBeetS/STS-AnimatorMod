@@ -517,6 +517,12 @@ public final class GameActions
         return StackPower(new BalancePower(player, amount));
     }
 
+    public ApplyPower GainBalance(int amount, boolean temporary)
+    {
+        return StackPower(temporary ? new TemporaryBalancePower(player, amount) : new BalancePower(player, amount));
+    }
+
+
     public ApplyAffinityPower GainBlessing(int amount)
     {
         return GainBlessing(amount, false);

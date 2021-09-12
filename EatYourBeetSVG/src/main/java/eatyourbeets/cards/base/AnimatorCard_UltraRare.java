@@ -3,6 +3,7 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.ultrarare.Cthulhu;
@@ -19,7 +20,7 @@ import java.util.Map;
 public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hidden
 {
     private static final Map<String, AnimatorCard_UltraRare> cards = new HashMap<>();
-    private static final Color RENDER_COLOR = new Color(0.4f, 0.4f, 0.4f, 1);
+    private static final Color RENDER_COLOR = new Color(0.2f, 0.2f, 0.2f, 1);
 
     protected AnimatorCard_UltraRare(EYBCardData data)
     {
@@ -80,27 +81,11 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
         RENDER_COLOR.a = this.transparency;
-        switch (type)
-        {
-            case ATTACK:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_ATTACK_UR.Texture(), x, y);
-                break;
-            case SKILL:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture(), x, y);
-                break;
-            case POWER:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_POWER_UR.Texture(), x, y);
-                break;
-            default:
-                super.renderCardBg(sb, x, y);
-                break;
-        }
-    }
-
-    @Override
-    protected Texture GetEnergyOrb()
-    {
-        return IMAGES.CARD_ENERGY_ORB_ANIMATOR.Texture();
+        Texture card = GetCardBackground();
+        float popUpMultiplier = isPopup ? 0.5f : 1f;
+        RenderHelpers.DrawGrayscale(sb, () -> {
+            RenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), RENDER_COLOR, transparency, popUpMultiplier);
+            return true;});
     }
 
 //    @Override

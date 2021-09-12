@@ -10,6 +10,8 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
+import static com.megacrit.cardcrawl.cards.AbstractCard.CardTags.STARTER_STRIKE;
+
 public class SpikeSpiegel extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SpikeSpiegel.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.CowboyBebop)
@@ -38,7 +40,7 @@ public class SpikeSpiegel extends AnimatorCard
         RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c != null && c.tags.contains(CardTags.STRIKE))
+            if (c != null && (c.tags.contains(CardTags.STRIKE) || c.tags.contains(STARTER_STRIKE)))
             {
                 randomizedList.Add(c);
             }

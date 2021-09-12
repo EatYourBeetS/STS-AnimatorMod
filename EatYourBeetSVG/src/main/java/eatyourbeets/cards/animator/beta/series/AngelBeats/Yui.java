@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Yui extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Yui.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(Yui.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new GirlDeMo(), false));
 
     public Yui()
@@ -26,6 +26,7 @@ public class Yui extends AnimatorCard
         SetAffinity_Light(2, 0, 0);
         SetHarmonic(true);
         SetExhaust(true);
+        SetCostUpgrade(-1);
         AfterLifeMod.Add(this);
 
         SetAffinityRequirement(Affinity.General, 4);

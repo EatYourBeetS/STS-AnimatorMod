@@ -372,7 +372,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderBannerImage(SpriteBatch sb, float drawX, float drawY)
     {
-        if (!TryRenderCentered(sb, GetCardBanner()))
+        if (!TryRenderCentered(sb, GetCardBanner(), isPopup ? 0.5f : 1f))
         {
             SpireSuper.call(sb, drawX, drawY);
         }
@@ -381,7 +381,7 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortraitFrame(SpriteBatch sb, float x, float y)
     {
-        if (!TryRenderCentered(sb, GetPortraitFrame()))
+        if (!TryRenderCentered(sb, GetPortraitFrame(), isPopup ? 0.5f : 1f))
         {
             SpireSuper.call(sb, x, y);
         }
@@ -390,7 +390,9 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
-        if (!TryRenderCentered(sb, GetCardBackground()))
+        float popUpMultiplier = isPopup ? 0.5f : 1f;
+        boolean result = this.color == CardColor.COLORLESS ? RenderHelpers.DrawGrayscale(sb, () -> TryRenderCentered(sb, GetCardBackground(), popUpMultiplier)) : TryRenderCentered(sb, GetCardBackground(), popUpMultiplier);
+        if (!result)
         {
             SpireSuper.call(sb, x, y);
         }
@@ -607,7 +609,7 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
+    protected boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
     {
         if (texture != null)
         {
@@ -620,7 +622,20 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean TryRenderCentered(SpriteBatch sb, Texture texture)
+    protected boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture, float scale)
+    {
+        if (texture != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, 0, 0, texture.GetWidth(), texture.GetHeight(), scale);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    protected boolean TryRenderCentered(SpriteBatch sb, Texture texture)
     {
         if (texture != null)
         {
@@ -632,13 +647,39 @@ public abstract class EYBCardBase extends AbstractCard
         return false;
     }
 
-    private void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    protected boolean TryRenderCentered(SpriteBatch sb, Texture texture, float scale)
+    {
+        if (texture != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 0), texture.getWidth(), texture.getHeight(), _renderColor.Get(this), transparency, scale);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    protected boolean TryRender(SpriteBatch sb, Texture texture, float scale, Vector2 offset)
+    {
+        if (texture != null)
+        {
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, offset, texture.getWidth(), texture.getHeight(), _renderColor.Get(this), transparency, scale);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    protected void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY)
     {
         sb.setColor(color);
         sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2f, drawY + img.offsetY - (float) img.originalHeight / 2f, (float) img.originalWidth / 2f - img.offsetX, (float) img.originalHeight / 2f - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale, this.drawScale * Settings.scale, this.angle);
     }
 
-    private void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY, float scale)
+    protected void RenderAtlas(SpriteBatch sb, Color color, TextureAtlas.AtlasRegion img, float drawX, float drawY, float scale)
     {
         sb.setColor(color);
         sb.draw(img, drawX + img.offsetX - (float) img.originalWidth / 2f, drawY + img.offsetY - (float) img.originalHeight / 2f, (float) img.originalWidth / 2f - img.offsetX, (float) img.originalHeight / 2f - img.offsetY, (float) img.packedWidth, (float) img.packedHeight, this.drawScale * Settings.scale * scale, this.drawScale * Settings.scale * scale, this.angle);

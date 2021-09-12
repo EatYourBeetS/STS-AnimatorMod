@@ -6,8 +6,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -16,7 +16,7 @@ public class KotoriItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
     public static final int THRESHOLD = 12;
-    public static final int BURNING_ATTACK_BONUS = 20;
+    public static final int BURNING_ATTACK_BONUS = 10;
 
     public KotoriItsuka()
     {
@@ -52,9 +52,7 @@ public class KotoriItsuka extends AnimatorCard
             }
 
             if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
-                GameActions.Bottom.TriggerOrbPassive(player.orbs.size())
-                        .SetFilter(o -> Fire.ORB_ID.equals(o.ID))
-                        .SetSequential(true);
+                GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
             }
         });
     }

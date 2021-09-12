@@ -142,8 +142,8 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "Whenever your Exhaust pile changes in size: Gain !M! [Block]. || Once per turn, pay 3 [Block]: Obtain 1 of !S! Common {Afterlife} cards.",
-			"EXTENDED_DESCRIPTION": ["Whenever your Exhaust pile changes in size: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of 2 cards to your draw pile."],
+			"DESCRIPTION": "Whenever your Exhaust pile changes in size: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
+			"EXTENDED_DESCRIPTION": ["Whenever your Exhaust pile changes in size: Gain #b{0} [Block]. || Once per turn, pay [E]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
 			"NAME": "Chaa"
 		},
 		"animator:EriShiina":
@@ -179,7 +179,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] (!S! in {Afterlife}). || Add !S! {Dazed} to ** your draw pile.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** (!S! in {Afterlife}). || Add !S! {Dazed} to ** your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -598,12 +598,12 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <SLM>. Synergy: Trigger ALL your [Fire].",
+			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <SLM>. Synergy: Increase the damage bonus of [Burning] by 10% this combat.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Give up to !M! cards in your hand {~Delayed}. Gain [Energized] for each. || Cooldown !S!: Duplicate a random {~Delayed} card in your draw pile. It costs 1 less and has {Autoplay}.",
+			"DESCRIPTION": "Give up to !M! cards in your hand {~Delayed}. Gain [Energized] for each. || Cooldown !S!: Purge. Duplicate a {~Delayed} card in your draw pile. It costs 1 less and has {Autoplay}.",
 			"EXTENDED_DESCRIPTION": ["give Delayed."],
 			"NAME": "Kurumi Tokisaki"
 		},
@@ -670,7 +670,7 @@
 		},
 		"animator:YamaiSisters":
 		{
-			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. When you make a <L> or <R> {Synergy}: Move this card in your hand.",
+			"DESCRIPTION": "{Starter}: Add a copy of this card to your hand. || <SLM>. When you make a <L> or <R> {Synergy}: {Fetch} this card.",
 			"NAME": "Yamai Sisters"
 		},
 		"animator:YoshinoHimekawa":
@@ -694,7 +694,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "Gain !M! [Thorns]. Gain 1 more for every !S! [I]. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
+			"DESCRIPTION": "Gain !M! [Thorns]. Gain !S! more if [I] > 6. You cannot gain [Block] for 2 turns. || <LIM>. !A! <B>: ** Play {Sheer Cold}.",
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -719,7 +719,7 @@
 		},
 		"animator:Fischl":
 		{
-			"DESCRIPTION": "Gain !M! [C]. Randomly Channel [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+			"DESCRIPTION": "Gain|Boost !M! [C]. Randomly Channel [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
 			"NAME": "Fischl"
 		},
 		"animator:Ganyu":
@@ -770,7 +770,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M! cards. For each card, ** if its cost is: || 0 or None: Gain|Boost [I] ** 1 or X: Gain [E] next turn. ** 2 or more: Channel [Lightning]",
+			"DESCRIPTION": "{Scry} !M! cards. Activate these effects once ** if any Scried card's cost is: || 0 or None: Gain|Boost !S! [I] ** 1 or X: Gain !S! [Energized]. ** 2+: Channel [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Noelle":
@@ -842,8 +842,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives half of its projectile count as [Block] when Evoked. || Once per turn, pay [E]: {Channel} [Earth] ** and gain !M! [Plated Armor].",
-		  	"EXTENDED_DESCRIPTION": ["Pay [E] to channel #b1 [Earth] ** and gain {0} [Plated Armor]. || [Earth] gives half of its projectile count as [Block] when #yEvoked."],
+			"DESCRIPTION": "[Earth] gives !S! [Block] when Evoked. || Once per turn, pay 2 [E]: {Channel} [Earth] ** and gain !M! Temporary [Balance] next turn.",
+		  	"EXTENDED_DESCRIPTION": ["Pay 2 [E] to channel #b1 [Earth] ** and gain {0} #yTemporary [Balance] next turn. || [Earth] gives #b{1} [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},

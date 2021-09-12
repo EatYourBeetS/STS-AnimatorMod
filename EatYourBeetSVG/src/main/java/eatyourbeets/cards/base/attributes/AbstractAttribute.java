@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
@@ -18,8 +19,8 @@ import java.util.HashMap;
 
 public abstract class AbstractAttribute
 {
-    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> leftPanels = new HashMap<>();
-    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> rightPanels = new HashMap<>();
+    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> panels = new HashMap<>();
+    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> panelsLarge = new HashMap<>();
     protected final static CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     protected final static float DESC_OFFSET_X = (AbstractCard.IMG_WIDTH * 0.5f);
     protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
@@ -94,7 +95,7 @@ public abstract class AbstractAttribute
         final float b_w = 126f;
         final float b_h = 85f;
         final float y = -ch * 0.04f;
-        final ColoredTexture panel = GetPanelByRarity(card, leftAlign);
+        final ColoredTexture panel = GetPanelByRarity(card);
 
         BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
         largeFont.getData().setScale(card.isPopup ? 0.5f : 1);
@@ -117,7 +118,7 @@ public abstract class AbstractAttribute
 
         if (panel != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, panel, sign * cw * 0.33f, y, b_w, b_h);
+            RenderHelpers.DrawOnCardAuto(sb, card, panel.texture, new Vector2(sign * cw * 0.33f, y), b_w, b_h, panel.color, panel.color.a * card.transparency, 1, 0, leftAlign, false);
         }
 
         RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
@@ -139,19 +140,19 @@ public abstract class AbstractAttribute
         RenderHelpers.ResetFont(largeFont);
     }
 
-    protected ColoredTexture GetPanelByRarity(EYBCard card, boolean leftAlign)
+    protected ColoredTexture GetPanelByRarity(EYBCard card)
     {
         if (GR.Animator.Config.SimplifyCardUI.Get())
         {
             return null;
         }
 
-        HashMap<AbstractCard.CardRarity, ColoredTexture> map = leftAlign ? leftPanels : rightPanels;
+        HashMap<AbstractCard.CardRarity, ColoredTexture> map = card.isPopup ? panelsLarge : panels;
         ColoredTexture result = map.getOrDefault(card.rarity, null);
         if (result == null)
         {
-            result = new ColoredTexture((leftAlign ?
-            GR.Common.Images.Panel_Skewed_Left : GR.Common.Images.Panel_Skewed_Right).Texture(),
+            result = new ColoredTexture((card.isPopup ?
+            GR.Common.Images.Panel_Skewed_L: GR.Common.Images.Panel_Skewed).Texture(),
             Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
             map.put(card.rarity, result);
         }

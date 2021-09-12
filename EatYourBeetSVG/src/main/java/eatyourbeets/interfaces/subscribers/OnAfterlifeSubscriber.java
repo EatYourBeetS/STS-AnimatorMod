@@ -4,5 +4,5 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 
 public interface OnAfterlifeSubscriber
 {
-    void OnAfterlife(AbstractCard card);
+    void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard);
 }

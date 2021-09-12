@@ -67,7 +67,7 @@ public class KurumiTokisaki extends AnimatorCard
     {
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
         GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
-                .SetOptions(true,false)
+                .SetOptions(false,true)
                 .SetFilter(GameUtilities::CanPlayTwice)
                 .AddCallback(cards ->
                 {

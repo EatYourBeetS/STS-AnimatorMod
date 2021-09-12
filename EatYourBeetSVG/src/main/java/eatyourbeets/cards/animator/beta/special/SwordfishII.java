@@ -72,7 +72,7 @@ public class SwordfishII extends AnimatorCard
             ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
             for (AbstractCard abstractCard : cardsPlayed)
             {
-                if (abstractCard.tags.contains(CardTags.STRIKE))
+                if (abstractCard.tags.contains(CardTags.STRIKE) || abstractCard.tags.contains(CardTags.STARTER_STRIKE))
                 {
                     strikeCount += 1;
                 }

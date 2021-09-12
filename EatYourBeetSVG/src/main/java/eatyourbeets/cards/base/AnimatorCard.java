@@ -2,6 +2,10 @@ package eatyourbeets.cards.base;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -13,11 +17,13 @@ import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
+    private static final Color COLORLESS_ORB_COLOR = new Color(0.7f, 0.7f, 0.7f, 1);
     protected AnimatorCardCooldown cooldown;
     protected Color borderIndicatorColor;
 
@@ -204,22 +210,14 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected Texture GetCardBackground()
     {
-        if (color == GR.Animator.CardColor)
+        if (color == GR.Animator.CardColor || color == CardColor.COLORLESS)
         {
+
             switch (type)
             {
-                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK.Texture();
-                case POWER: return IMAGES.CARD_BACKGROUND_POWER.Texture();
-                default: return IMAGES.CARD_BACKGROUND_SKILL.Texture();
-            }
-        }
-        else if (color == CardColor.COLORLESS)
-        {
-            switch (type)
-            {
-                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK_UR.Texture();
-                case POWER: return IMAGES.CARD_BACKGROUND_POWER_UR.Texture();
-                default: return IMAGES.CARD_BACKGROUND_SKILL_UR.Texture();
+                case ATTACK: return isPopup ? IMAGES.CARD_BACKGROUND_ATTACK_L.Texture() : IMAGES.CARD_BACKGROUND_ATTACK.Texture();
+                case POWER: return isPopup ? IMAGES.CARD_BACKGROUND_POWER_L.Texture() : IMAGES.CARD_BACKGROUND_POWER.Texture();
+                default: return isPopup ? IMAGES.CARD_BACKGROUND_SKILL_L.Texture() : IMAGES.CARD_BACKGROUND_SKILL.Texture();
             }
         }
 
@@ -229,7 +227,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected Texture GetEnergyOrb()
     {
-        return (color == GR.Animator.CardColor ? IMAGES.CARD_ENERGY_ORB_ANIMATOR : IMAGES.CARD_ENERGY_ORB_COLORLESS).Texture();
+        return (isPopup ? IMAGES.CARD_ENERGY_ORB_ANIMATOR_L : IMAGES.CARD_ENERGY_ORB_ANIMATOR).Texture();
     }
 
     @Override
@@ -241,7 +239,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected ColoredTexture GetCardBanner()
     {
-        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
+        return new ColoredTexture((isPopup ? IMAGES.CARD_BANNER_GENERIC_L : IMAGES.CARD_BANNER_GENERIC).Texture(), GetRarityColor(false));
     }
 
     @Override
@@ -250,16 +248,16 @@ public abstract class AnimatorCard extends EYBCard
         switch (type)
         {
             case ATTACK:
-                return new ColoredTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
+                return new ColoredTexture(isPopup ? IMAGES.CARD_FRAME_ATTACK_L.Texture() : IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
 
             case POWER:
-                return new ColoredTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
+                return new ColoredTexture(isPopup ? IMAGES.CARD_FRAME_POWER_L.Texture() :IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
 
             case SKILL:
             case CURSE:
             case STATUS:
             default:
-                return new ColoredTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
+                return new ColoredTexture(isPopup ? IMAGES.CARD_FRAME_SKILL_L.Texture() : IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
         }
     }
 
@@ -267,5 +265,46 @@ public abstract class AnimatorCard extends EYBCard
     public ColoredString GetSecondaryValueString()
     {
         return cooldown != null ? cooldown.GetSecondaryValueString() : super.GetSecondaryValueString();
+    }
+
+    @SpireOverride
+    protected void renderCardBg(SpriteBatch sb, float x, float y)
+    {
+        Texture card = GetCardBackground();
+        float popUpMultiplier = isPopup ? 0.5f : 1f;
+        if (this.color == CardColor.COLORLESS) {
+            RenderHelpers.DrawGrayscale(sb, () -> {
+                RenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), COLORLESS_ORB_COLOR, transparency, popUpMultiplier);
+                return true;});
+        }
+        else {
+            RenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), _renderColor.Get(this), transparency, popUpMultiplier);
+        }
+    }
+
+    @SpireOverride
+    protected void renderEnergy(SpriteBatch sb)
+    {
+        if (this.cost > -2 && !_darken.Get(this) && !this.isLocked && this.isSeen)
+        {
+            Texture baseCard = GetCardBackground();
+            float popUpMultiplier = isPopup ? 0.5f : 1f;
+            Vector2 offset = new Vector2(-baseCard.getWidth() / (isPopup ? 7.7f : 3.85f), baseCard.getHeight() / (isPopup ? 5.3f : 2.64f));
+            Texture energyOrb = GetEnergyOrb();
+            if (this.color == CardColor.COLORLESS && !(this instanceof AnimatorCard_UltraRare)) {
+                RenderHelpers.DrawGrayscale(sb, () -> {RenderHelpers.DrawOnCardAuto(sb, this, energyOrb, offset, energyOrb.getWidth(), energyOrb.getHeight(), COLORLESS_ORB_COLOR, transparency, popUpMultiplier); return true;});
+            }
+            else {
+                RenderHelpers.DrawOnCardAuto(sb, this, energyOrb, offset, energyOrb.getWidth(), energyOrb.getHeight(), _renderColor.Get(this), transparency, popUpMultiplier);
+            }
+
+            ColoredString costString = GetCostString();
+            if (costString != null)
+            {
+                BitmapFont font = RenderHelpers.GetEnergyFont(this);
+                RenderHelpers.WriteOnCard(sb, this, font, costString.text, -132f, 192f, costString.color);
+                RenderHelpers.ResetFont(font);
+            }
+        }
     }
 }

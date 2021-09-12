@@ -19,13 +19,15 @@ import eatyourbeets.utilities.GameEffects;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+            .SetMaxCopies(3)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
     private static final int ATTACK_TIMES = 2;
+    private static final int THRESHOLD = 6;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(15, 0, 2, 3);
+        Initialize(15, 0, 2, 2);
         SetUpgrade(3, 0, 1, 0);
         SetAffinity_Blue(2, 0, 4);
         SetAffinity_Green(1, 0, 4);
@@ -50,7 +52,7 @@ public class AyakaKamisato extends AnimatorCard {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
                     .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.3f);
         }
-        GameActions.Bottom.GainThorns(magicNumber + (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) / secondaryValue));
+        GameActions.Bottom.GainThorns(magicNumber + (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) > THRESHOLD ? secondaryValue : 0));
         GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
 
         if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))

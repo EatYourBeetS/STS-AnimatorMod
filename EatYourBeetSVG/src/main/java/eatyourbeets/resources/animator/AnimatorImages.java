@@ -13,10 +13,12 @@ public class AnimatorImages
     public final String ATTACK_PNG = "images/animator/cardui/512/bg_attack_canvas.png";
     public final String SKILL_PNG = "images/animator/cardui/512/bg_skill_canvas.png";
     public final String POWER_PNG = "images/animator/cardui/512/bg_power_canvas.png";
+    public final String ATTACK_PNG_L = "images/animator/cardui/1024/bg_attack_canvas.png";
+    public final String SKILL_PNG_L = "images/animator/cardui/1024/bg_skill_canvas.png";
+    public final String POWER_PNG_L = "images/animator/cardui/1024/bg_power_canvas.png";
     public final String ORB_A_PNG = "images/animator/cardui/512/energy_orb_default_a.png";
     public final String ORB_B_PNG = "images/animator/cardui/512/energy_orb_default_b.png";
     public final String ORB_C_PNG = "images/animator/cardui/512/energy_orb_default_c.png";
-    public final String ORB_COLORLESS_A_PNG = "images/animator/cardui/512/energy_orb_colorless_a.png";
     public final String CHAR_BUTTON_PNG = "images/animator/ui/charselect/animator_button.png";
     public final String CHAR_PORTRAIT_JPG = "images/animator/ui/charselect/animator_portrait.jpg";
 
@@ -42,7 +44,7 @@ public class AnimatorImages
     public final String CORPSE_PNG = "images/animator/characters/corpse.png";
 
     public final TextureCache CARD_ENERGY_ORB_ANIMATOR    = new TextureCache(ORB_A_PNG);
-    public final TextureCache CARD_ENERGY_ORB_COLORLESS   = new TextureCache(ORB_COLORLESS_A_PNG);
+    public final TextureCache CARD_ENERGY_ORB_ANIMATOR_L  = new TextureCache(ORB_B_PNG);
     public final TextureCache CARD_BACKGROUND_ATTACK      = new TextureCache("images/animator/cardui/512/bg_attack_canvas.png");
     public final TextureCache CARD_BACKGROUND_ATTACK_UR   = new TextureCache("images/animator/cardui/512/bg_attack_ultrarare.png");
     public final TextureCache CARD_BACKGROUND_SKILL_UR    = new TextureCache("images/animator/cardui/512/bg_skill_ultrarare.png");
@@ -56,13 +58,20 @@ public class AnimatorImages
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL   = new TextureCache("images/animator/cardui/512/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL    = new TextureCache("images/animator/cardui/512/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL    = new TextureCache("images/animator/cardui/512/frame_power_special.png");
+    public final TextureCache CARD_BANNER_GENERIC_L       = new TextureCache("images/animator/cardui/1024/banner_generic.png");
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL_L = new TextureCache("images/animator/cardui/1024/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL_L  = new TextureCache("images/animator/cardui/1024/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL_L  = new TextureCache("images/animator/cardui/1024/frame_power_special.png");
+    public final TextureCache CARD_BACKGROUND_ATTACK_L    = new TextureCache("images/animator/cardui/1024/bg_attack_canvas.png");
+    public final TextureCache CARD_BACKGROUND_SKILL_L     = new TextureCache("images/animator/cardui/1024/bg_skill_canvas.png");
+    public final TextureCache CARD_BACKGROUND_POWER_L     = new TextureCache("images/animator/cardui/1024/bg_power_canvas.png");
 
     public final TextureCache CARD_FRAME_SKILL            = new TextureCache("images/animator/cardui/512/frame_skill.png");
     public final TextureCache CARD_FRAME_POWER            = new TextureCache("images/animator/cardui/512/frame_power.png");
     public final TextureCache CARD_FRAME_ATTACK           = new TextureCache("images/animator/cardui/512/frame_attack.png");
+    public final TextureCache CARD_FRAME_SKILL_L            = new TextureCache("images/animator/cardui/1024/frame_skill.png");
+    public final TextureCache CARD_FRAME_POWER_L            = new TextureCache("images/animator/cardui/1024/frame_power.png");
+    public final TextureCache CARD_FRAME_ATTACK_L           = new TextureCache("images/animator/cardui/1024/frame_attack.png");
 
     public final TextureCache BRONZE_TROPHY               = new TextureCache("images/animator/ui/rewards/Bronze.png");
     public final TextureCache SILVER_TROPHY               = new TextureCache("images/animator/ui/rewards/Silver.png");

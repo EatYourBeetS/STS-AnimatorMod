@@ -837,7 +837,7 @@
 		},
 		"animator:Yoimiya":
 		{
-			"DESCRIPTION": "Whenever this deals unblocked damage: Add a [T-Knife] to your hand. <LIM> If you have [Burning]: Play {Blazing Heat}.",
+			"DESCRIPTION": "<ST>: Increase number of hits by 1. || Obtain [T-Knife] for each unblocked hit. <LIM> If you have [Burning]: Play {Blazing Heat}.",
 			"NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
@@ -2463,7 +2463,7 @@
 		},
 		"animator:Shizu_Ifrit":
 		{
-			"DESCRIPTION": "Gain 2 [Demon Form]. || Increase the damage bonus of [Burning] by !M!% this combat. ** <LIM>. If [Burning]'s damage bonus is greater than 50%, play {Blazing Heat} instead.",
+			"DESCRIPTION": "Gain 2 [Demon Form]. || Increase the damage bonus of [Burning] by !M!% this combat. ** <LIM>. Cooldown !S!: Play {Blazing Heat}.",
 			"NAME": "Ifrit"
 		},
 		"animator:Shuna":

@@ -4,11 +4,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -21,6 +23,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
     public static final EYBCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
     private int turns;
+    private int attackTimes;
 
     public Megunee_Zombie()
     {
@@ -35,6 +38,20 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
         SetExhaust(true);
         SetAutoplay(true);
         SetMultiDamage(true);
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        attackTimes = EnergyPanel.getCurrentEnergy();
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(attackTimes);
     }
 
     @Override

@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
@@ -21,13 +22,12 @@ public class Shizu_Ifrit extends AnimatorCard
             .SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(Shizu.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));
-    public static final int THRESHOLD = 50;
 
     public Shizu_Ifrit()
     {
         super(DATA);
 
-        Initialize(0, 0, 40, 4);
+        Initialize(0, 0, 40, 2);
         SetUpgrade(0, 0, 10);
 
         SetAffinity_Red(2);
@@ -46,16 +46,14 @@ public class Shizu_Ifrit extends AnimatorCard
         effect.duration = effect.startingDuration = 1.5f; // Changed from 3f
         GameActions.Bottom.VFX(effect, 0.2f);
         GameActions.Bottom.StackPower(new DemonFormPower(p, 2));
+        GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(magicNumber));
 
 
-        if (BurningPower.PLAYER_ATTACK_BONUS > THRESHOLD && CombatStats.TryActivateLimited(cardID))
-        {
+        if (AbstractDungeon.actionManager.uniqueStancesThisCombat.size() >= secondaryValue && CombatStats.TryActivateLimited(cardID)) {
             AbstractCard c = new BlazingHeat();
             c.applyPowers();
             c.use(player, null);
         }
-        else {
-            GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(magicNumber));
-        }
+
     }
 }

@@ -35,6 +35,14 @@ public class HidekiHinata extends AnimatorCard
     }
 
     @Override
+    public void update()
+    {
+        super.update();
+
+        targetEffectPreview.Update();
+    }
+
+    @Override
     public AbstractAttribute GetDamageInfo()
     {
         if (showDamage)

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.vfx.megacritCopy.ScreenOnFireEffect2;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.animator.BlazingHeatPower;
 import eatyourbeets.utilities.GameActions;
@@ -26,5 +27,6 @@ public class BlazingHeat extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrbs(Fire::new, magicNumber);
         GameActions.Bottom.StackPower(new BlazingHeatPower(p, secondaryValue));
+        GameActions.Bottom.VFX(new ScreenOnFireEffect2());
     }
 }

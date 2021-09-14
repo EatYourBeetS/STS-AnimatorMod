@@ -46,9 +46,9 @@ public class YuriNakamura extends AnimatorCard
             GameActions.Bottom.Heal(Math.min(cards.size() * secondaryValue, GameActionManager.playerHpLastTurn - player.currentHealth));
         });
 
-        if (CheckAffinity(Affinity.Light) || isSynergizing) {
-            GameActions.Bottom.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
-            GameActions.Bottom.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
+        if (player.exhaustPile.size() > 0 && (CheckAffinity(Affinity.Light) || isSynergizing)) {
+            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
+            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
         }
     }
 }

@@ -26,13 +26,14 @@ public class Yusa extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
-        GameActions.Top.Scry(secondaryValue);
-        GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile).AddCallback(cards -> {
-            for (AbstractCard c : cards) {
-                if (GameUtilities.HasLightAffinity(c)) {
-                    GameActions.Bottom.GainBlessing(1);
+        GameActions.Bottom.Scry(secondaryValue).AddCallback(() -> {
+            GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.discardPile).AddCallback(cards -> {
+                for (AbstractCard c : cards) {
+                    if (GameUtilities.HasLightAffinity(c)) {
+                        GameActions.Bottom.GainBlessing(1);
+                    }
                 }
-            }
+            });
         });
     }
 }

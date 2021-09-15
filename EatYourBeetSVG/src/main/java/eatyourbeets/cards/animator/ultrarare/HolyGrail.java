@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.HolyGrailRelic;
@@ -53,7 +50,7 @@ public class HolyGrail extends AnimatorCard_UltraRare implements OnBattleEndSubs
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new OfferingEffect(), Settings.FAST_MODE ? 0.1f : 0.5f);
         GameActions.Bottom.Callback(() ->

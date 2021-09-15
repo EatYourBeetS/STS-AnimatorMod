@@ -80,6 +80,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @Override
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
+        final Color temp = _renderColor.Get(this);
         RENDER_COLOR.a = this.transparency;
         Texture card = GetCardBackground();
         float popUpMultiplier = isPopup ? 0.5f : 1f;

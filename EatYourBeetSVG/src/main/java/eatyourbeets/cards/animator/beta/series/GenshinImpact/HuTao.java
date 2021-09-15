@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -51,13 +52,13 @@ public class HuTao extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.GainTemporaryHP(secondaryValue);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromPile(name, magicNumber, p.drawPile, p.hand)
                 .SetOptions(false, true)

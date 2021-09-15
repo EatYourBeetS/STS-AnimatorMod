@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_Curse;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
@@ -54,7 +51,7 @@ public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscrib
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }

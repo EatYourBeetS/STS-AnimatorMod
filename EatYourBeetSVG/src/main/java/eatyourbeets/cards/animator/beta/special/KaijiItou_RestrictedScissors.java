@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -53,7 +50,7 @@ public class KaijiItou_RestrictedScissors extends AnimatorCard
         return true;
     }
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         GameActions.Bottom.StackPower(new KaijiItou_RestrictedScissorsPower(p, secondaryValue));

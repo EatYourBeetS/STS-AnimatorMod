@@ -4,9 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
@@ -42,6 +44,8 @@ public class Laby extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
             intent.AddEnchantedArmor(secondaryValue);
@@ -55,7 +59,7 @@ public class Laby extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, secondaryValue));
@@ -78,6 +82,7 @@ public class Laby extends AnimatorCard
 
             GameActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(), amount)
             .ShowEffect(false, true);
+            SFX.Play(SFX.POWER_CONSTRICTED);
             this.flashWithoutSound();
         }
     }

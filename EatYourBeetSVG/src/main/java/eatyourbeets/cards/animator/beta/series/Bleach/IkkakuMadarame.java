@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -32,7 +29,7 @@ public class IkkakuMadarame extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
         if (GameUtilities.GetPowerAmount(ZarakiKenpachi.DATA.ID + "Power") > 0) {

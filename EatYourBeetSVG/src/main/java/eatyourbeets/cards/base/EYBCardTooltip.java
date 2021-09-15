@@ -91,6 +91,34 @@ public class EYBCardTooltip
         return !_renderedTipsThisFrame.Get(null);
     }
 
+    public static void CanRenderTooltips(boolean canRender)
+    {
+        _renderedTipsThisFrame.Set(null, !canRender);
+
+        if (!canRender)
+        {
+            tooltips.clear();
+            _body.Set(null, null);
+            _header.Set(null, null);
+            _card.Set(null, null);
+            _keywords.Set(null, EMPTY_LIST);
+            _powerTips.Set(null, EMPTY_LIST);
+            card = null;
+            relic = null;
+        }
+    }
+
+    private static boolean TryRender()
+    {
+        final boolean canRender = CanRenderTooltips();
+        if (canRender)
+        {
+            CanRenderTooltips(false);
+        }
+
+        return canRender;
+    }
+
     public static void QueueTooltip(EYBCardTooltip tooltip)
     {
         float x = InputHelper.mX;
@@ -102,54 +130,51 @@ public class EYBCardTooltip
 
     public static void QueueTooltip(EYBCardTooltip tooltip, float x, float y)
     {
-        Reset();
-        tooltips.add(tooltip);
-        genericTipPos.x = x;
-        genericTipPos.y = y;
-        GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
+        if (TryRender())
+        {
+            tooltips.add(tooltip);
+            genericTipPos.x = x;
+            genericTipPos.y = y;
+            GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
+        }
     }
 
     public static void QueueTooltips(ArrayList<EYBCardTooltip> tips, float x, float y)
     {
-        Reset();
-        tooltips.addAll(tips);
-        genericTipPos.x = x;
-        genericTipPos.y = y;
-        GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
+        if (TryRender())
+        {
+            tooltips.addAll(tips);
+            genericTipPos.x = x;
+            genericTipPos.y = y;
+            GR.UI.AddPostRender(EYBCardTooltip::RenderGeneric);
+        }
     }
 
     public static void QueueTooltips(AbstractCreature source)
     {
-        Reset();
-        creature = source;
-        GR.UI.AddPostRender(EYBCardTooltip::RenderFromCreature);
+        if (TryRender())
+        {
+            creature = source;
+            GR.UI.AddPostRender(EYBCardTooltip::RenderFromCreature);
+        }
     }
 
     public static void QueueTooltips(EYBCard source)
     {
-        Reset();
-        card = source;
-        GR.UI.AddPostRender(EYBCardTooltip::RenderFromCard);
+        if (TryRender())
+        {
+            card = source;
+            GR.UI.AddPostRender(EYBCardTooltip::RenderFromCard);
+        }
     }
 
     public static void QueueTooltips(EYBRelic source)
     {
-        Reset();
-        relic = source;
-        GR.UI.AddPostRender(EYBCardTooltip::RenderFromRelic);
-    }
-
-    private static void Reset()
-    {
-        tooltips.clear();
-        _body.Set(null, null);
-        _header.Set(null, null);
-        _card.Set(null, null);
-        _keywords.Set(null, EMPTY_LIST);
-        _powerTips.Set(null, EMPTY_LIST);
-        _renderedTipsThisFrame.Set(null, true);
-        card = null;
-        relic = null;
+        if (TryRender())
+        {
+            relic = source;
+            GR.UI.AddPostRender(EYBCardTooltip::RenderFromRelic);
+        }
     }
 
     public static void RenderFromCard(SpriteBatch sb)
@@ -360,7 +385,7 @@ public class EYBCardTooltip
 
             if (tip.icon == null && p.img != null)
             {
-                tip.icon = new TextureRegion(p.img);
+                tip.SetIcon(p.img, 6);
             }
 
             tooltips.add(tip);
@@ -507,12 +532,16 @@ public class EYBCardTooltip
         return this;
     }
 
+    public EYBCardTooltip SetIcon(Texture texture)
+    {
+        this.icon = new TextureRegion(texture);
+
+        return this;
+    }
+
     public EYBCardTooltip SetIcon(Texture texture, int div)
     {
-        int w = texture.getWidth();
-        int h = texture.getHeight();
-        int half_div = div / 2;
-        this.icon = new TextureRegion(texture, w / div, h / div, w - (w / half_div), h - (h / half_div));
+        this.icon = RenderHelpers.GetCroppedRegion(texture, div);
 
         return this;
     }

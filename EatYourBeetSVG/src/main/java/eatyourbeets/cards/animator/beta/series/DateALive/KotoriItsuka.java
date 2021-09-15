@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -39,7 +40,7 @@ public class KotoriItsuka extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).AddCallback(m, (enemy, __) -> {
             if (GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
@@ -51,7 +52,7 @@ public class KotoriItsuka extends AnimatorCard
                 GameActions.Bottom.ApplyBurning(player, enemy, secondaryValue);
             }
 
-            if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
+            if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
                 GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
             }
         });

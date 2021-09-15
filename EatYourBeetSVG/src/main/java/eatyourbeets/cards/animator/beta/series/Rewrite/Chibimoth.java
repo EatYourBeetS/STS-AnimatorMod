@@ -27,7 +27,7 @@ public class Chibimoth extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

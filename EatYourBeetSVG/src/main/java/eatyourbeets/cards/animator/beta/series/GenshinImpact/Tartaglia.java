@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.curse.Curse_Delusion;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -40,7 +41,7 @@ public class Tartaglia extends AnimatorCard {
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT)
                 .AddCallback(m.currentBlock, (initialBlock, target) ->

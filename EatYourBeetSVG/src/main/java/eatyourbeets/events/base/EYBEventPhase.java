@@ -139,7 +139,7 @@ public abstract class EYBEventPhase<Event extends EYBEvent, Text extends EYBEven
         event.ChangePhase(newPhase);
     }
 
-    protected void Refresh()
+    public void Refresh()
     {
         ClearOptions();
         OnEnter();

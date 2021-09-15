@@ -70,9 +70,9 @@ public class PlayFromPile extends SelectFromPile
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(CardRewardScreen.TEXT[0]);
+        return super.UpdateMessageInternal(CardRewardScreen.TEXT[0]);
     }
 
     @Override

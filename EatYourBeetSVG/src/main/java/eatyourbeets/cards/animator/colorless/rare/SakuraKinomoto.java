@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
@@ -44,7 +41,7 @@ public class SakuraKinomoto extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 1.35f, 1.45f);
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
@@ -64,11 +61,11 @@ public class SakuraKinomoto extends AnimatorCard
                 }
 
                 GameActions.Top.SelectFromPile(name, 1, choices)
-                .SetMessage(GR.Common.Strings.HandSelection.Choose)
+                .SetMessage(GR.Common.Strings.GridSelection.ChooseOneCard)
                 .SetOptions(false, true)
                 .AddCallback(cards ->
                 {
-                    if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
+                    if (cards.size() > 0 && info.TryActivateLimited())
                     {
                         GameEffects.TopLevelList.ShowAndObtain(cards.get(0));
                     }

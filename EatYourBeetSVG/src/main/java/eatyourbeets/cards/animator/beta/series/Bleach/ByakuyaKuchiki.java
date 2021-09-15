@@ -29,7 +29,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.Callback(m, (enemy, __) -> {
             ChooseAction(enemy);
         });

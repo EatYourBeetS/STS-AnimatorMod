@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,8 +15,8 @@ public class LoseHP extends EYBAction
 {
     protected boolean ignoreTempHP = false;
     protected boolean canKill = true;
-    protected float pitchMin = 0;
-    protected float pitchMax = 0;
+    protected float pitchMin;
+    protected float pitchMax;
 
     public LoseHP(AbstractCreature target, AbstractCreature source, int amount)
     {
@@ -27,6 +28,7 @@ public class LoseHP extends EYBAction
         super(ActionType.DAMAGE, 0.33f);
 
         this.attackEffect = effect;
+        this.pitchMin = this.pitchMax = (attackEffect == AttackEffects.NONE) ? 0 : 1;
 
         Initialize(source, target, amount);
     }

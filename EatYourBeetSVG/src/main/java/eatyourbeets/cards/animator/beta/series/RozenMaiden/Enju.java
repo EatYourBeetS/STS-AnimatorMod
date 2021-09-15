@@ -7,6 +7,7 @@ import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.beta.special.Enju_Barasuishou;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -32,7 +33,7 @@ public class Enju extends AnimatorCard //TODO
 
     
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 

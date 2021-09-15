@@ -178,7 +178,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
     }
 
-    protected void RefreshInternal(boolean refreshPortrait)
+    public void RefreshInternal(boolean refreshPortrait)
     {
         _gold.Set(characterOption, loadout.GetGold());
         _hp.Set(characterOption, String.valueOf(loadout.GetHP()));

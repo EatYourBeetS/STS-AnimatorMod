@@ -42,11 +42,11 @@ public class EarthOrbEvokeAction extends EYBAction
         for (int i = 0; i < projectiles.size(); i++)
         {
             Projectile p = projectiles.get(i);
-            p.SetTargetScale(p.scale + 0.35f)
-            .SetSpeed(33f, 35f, 210f + (i * 30))
+            p.SetTargetScale(p.GetScale(false) + 0.35f, null)
+            .SetSpeed(33f, 35f, null, null)
             .SetTargetPosition(earth.cX + (earth.hb.width * 0.35f), earth.cY + (earth.hb.height * 3))
-            .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null)
-            .SetTargetRotation(p.target_pos.z + 36000);
+            .SetTargetOffset(w * Mathf.Cos(angle * i), h * Mathf.Sin(angle * i), null, null)
+            .SetTargetRotation(p.target_pos.rotation + 36000, 210f + (i * 30));
         }
         GameEffects.List.Add(effect = new RenderProjectilesEffect(projectiles, 999f, isRealtime));
     }

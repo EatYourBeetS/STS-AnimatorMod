@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.ElementalMasteryPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -26,7 +23,7 @@ public class Traveler_Wish extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));

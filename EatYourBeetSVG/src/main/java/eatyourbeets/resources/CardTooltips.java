@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
+import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
@@ -33,6 +34,9 @@ public class CardTooltips
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
+    public EYBCardTooltip Strength = FindByID("Strength");
+    public EYBCardTooltip Dexterity = FindByID("Dexterity");
+    public EYBCardTooltip Focus = FindByID("Focus");
 
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
@@ -113,9 +117,6 @@ public class CardTooltips
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
     public EYBCardTooltip Energized = FindByID("Energized");
     public EYBCardTooltip DemonForm = FindByID("Demon Form");
-    public EYBCardTooltip Strength = FindByID("~Strength");
-    public EYBCardTooltip Dexterity = FindByID("~Dexterity");
-    public EYBCardTooltip Focus = FindByID("~Focus");
     public EYBCardTooltip Crystallize = FindByID("~Crystallize");
 
     // No Description
@@ -179,6 +180,7 @@ public class CardTooltips
         RegisterID("A-Star", Affinity_Star);
         RegisterID("A-Gen", Affinity_General);
 
+        RegisterID("HP", Health);
         RegisterID("Temp HP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
@@ -245,6 +247,9 @@ public class CardTooltips
         LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
+        LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
@@ -293,7 +298,7 @@ public class CardTooltips
         }
         else
         {
-            tooltip.SetIcon(p.img, 6);
+            tooltip.SetIcon(p.img);
         }
 
         return tooltip;

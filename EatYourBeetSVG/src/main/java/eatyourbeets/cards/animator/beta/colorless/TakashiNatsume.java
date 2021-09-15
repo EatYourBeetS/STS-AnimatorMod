@@ -11,10 +11,7 @@ import eatyourbeets.cards.animator.beta.special.TakashiNatsume_Circle;
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.curse.Curse_Nutcracker;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class TakashiNatsume extends AnimatorCard
@@ -36,7 +33,7 @@ public class TakashiNatsume extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.hand, player.discardPile)
                 .SetOptions(false, true)

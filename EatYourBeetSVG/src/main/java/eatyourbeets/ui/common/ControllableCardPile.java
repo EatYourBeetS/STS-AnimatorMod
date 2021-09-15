@@ -165,7 +165,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(cardGrid.cards.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
     }
 
-    protected void RefreshCards()
+    public void RefreshCards()
     {
         cardGrid.Clear();
 

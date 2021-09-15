@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
@@ -32,7 +33,7 @@ public class ToukaNishikujou extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block).AddCallback(() ->
         {
@@ -42,7 +43,7 @@ public class ToukaNishikujou extends AnimatorCard
                 GameActions.Bottom.CreateThrowingKnives(throwingKnives);
             }
 
-            if (isSynergizing)
+            if (info.IsSynergizing)
             {
                 GameActions.Bottom.Cycle(name, 1)
                 .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));

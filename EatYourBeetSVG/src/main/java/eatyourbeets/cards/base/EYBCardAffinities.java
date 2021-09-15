@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.AdvancedTexture;
 
 import java.util.ArrayList;
 
 public class EYBCardAffinities
 {
-    private static final ColoredTexture upgradeCircle = new ColoredTexture(GR.Common.Images.Circle.Texture(), Settings.GREEN_RELIC_COLOR);
+    private static final AdvancedTexture upgradeCircle = new AdvancedTexture(GR.Common.Images.Circle.Texture(), Settings.GREEN_RELIC_COLOR);
 
     public final ArrayList<EYBCardAffinity> List = new ArrayList<>();
     public EYBCard Card;
@@ -299,7 +299,7 @@ public class EYBCardAffinities
         }
         else if (affinity == Affinity.General)
         {
-            return List.isEmpty() ? star : List.get(0).level; // Highest level among all affinities
+            return List.isEmpty() ? (useStarLevel ? star : 0) : List.get(0).level; // Highest level among all affinities
         }
         else
         {

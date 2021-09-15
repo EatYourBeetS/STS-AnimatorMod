@@ -32,6 +32,10 @@
 	{
 		"cropPortrait": false
 	},
+	"animator:Cthulhu_Madness":
+	{
+		"cropPortrait": false
+	},
 	"animator:Curse_Greed":
 	{
 		"cropPortrait": false
@@ -76,11 +80,11 @@
 	{
 		"cropPortrait": false
 	},
-	"animator:Kira":
+	"animator:King":
 	{
 		"cropPortrait": false
 	},
-	"animator:Konosuba_Slimed":
+	"animator:Kira":
 	{
 		"cropPortrait": false
 	},
@@ -117,6 +121,18 @@
 		"cropPortrait": false
 	},
 	"animator:NagisaMomoe_Charlotte":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Burn":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Slimed":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Wound":
 	{
 		"cropPortrait": false
 	},

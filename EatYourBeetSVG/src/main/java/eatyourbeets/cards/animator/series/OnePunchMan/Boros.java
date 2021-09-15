@@ -6,7 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +27,7 @@ public class Boros extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 4);
 
         SetAffinity_Red(2);
         SetAffinity_Green(1);
@@ -52,28 +54,36 @@ public class Boros extends AnimatorCard
     };
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new BorosPower(p, magicNumber));
     }
 
     public static class BorosPower extends AnimatorClickablePower
     {
+        protected boolean playPowersTwice;
+
         public BorosPower(AbstractCreature owner, int amount)
         {
             super(owner, Boros.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
-            triggerCondition.SetUses(-1, false, false);
+            this.maxAmount = 10;
+            this.triggerCondition.SetUses(1, true, false);
 
-            Initialize(amount, PowerType.BUFF, true);
+            Initialize(amount);
         }
 
         @Override
-        public void atStartOfTurn()
+        public String GetUpdatedDescription()
         {
-            super.atStartOfTurn();
+            return FormatDescription(0, amount, maxAmount);
+        }
 
-            ReducePower(1);
+        @Override
+        public void playApplyPowerSfx()
+        {
+            SFX.Play(SFX.ATTACK_MAGIC_SLOW_1, 0.65f, 0.75f, 0.85f);
+            SFX.Play(SFX.ORB_LIGHTNING_EVOKE, 0.45f, 0.5f, 1.05f);
         }
 
         @Override
@@ -81,18 +91,44 @@ public class Boros extends AnimatorCard
         {
             super.onUseCard(card, action);
 
-            if ((card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
+            if (playPowersTwice && (card.type == AbstractCard.CardType.POWER) && GameUtilities.CanPlayTwice(card))
             {
                 GameActions.Top.PlayCopy(card, JUtils.SafeCast(action.target, AbstractMonster.class));
-                this.flash();
+                this.flashWithoutSound();
             }
         }
 
         @Override
         public void OnUse(AbstractMonster m)
         {
-            GameActions.Bottom.GainForce(1, true);
-            stackPower(1);
+            for (AbstractCard c : player.hand.group)
+            {
+                if (c.type == CardType.POWER)
+                {
+                    GameActions.Bottom.SuperFlash(c);
+                }
+            }
+
+            playPowersTwice = true;
+
+            this.flash();
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            playPowersTwice = false;
+
+            GameActions.Bottom.RecoverHP(amount)
+            .AddCallback(amount ->
+            {
+                if (amount > 0)
+                {
+                    this.flashWithoutSound();
+                }
+            });
         }
     }
 }

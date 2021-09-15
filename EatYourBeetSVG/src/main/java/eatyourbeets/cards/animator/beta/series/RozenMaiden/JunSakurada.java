@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.animator.beta.curse.Curse_JunTormented;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
@@ -38,6 +39,7 @@ public class JunSakurada extends AnimatorCard
         SetExhaust(true);
 
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class JunSakurada extends AnimatorCard
     }
     
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 

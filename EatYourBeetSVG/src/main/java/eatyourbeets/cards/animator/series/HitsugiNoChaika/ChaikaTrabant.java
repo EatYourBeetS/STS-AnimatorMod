@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -34,6 +35,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         m.useFastShakeAnimation(0.5f);
 

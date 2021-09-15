@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +24,7 @@ public class Hinaichigo extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
         GameActions.Bottom.ApplyWeak(p, m, magicNumber);

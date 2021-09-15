@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.cards.blue.LockOn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnDamageOverrideSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -43,7 +40,7 @@ public class AsukaLangley extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.StackPower(new AsukaLangleyPower(p));

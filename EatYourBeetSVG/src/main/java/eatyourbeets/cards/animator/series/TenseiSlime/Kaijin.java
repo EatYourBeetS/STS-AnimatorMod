@@ -1,19 +1,18 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.card.PermanentUpgradeEffect;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
-import eatyourbeets.powers.animator.KaijinPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kaijin extends AnimatorCard implements OnAddToDeckListener
 {
@@ -34,11 +33,11 @@ public class Kaijin extends AnimatorCard implements OnAddToDeckListener
     @Override
     protected void OnUpgrade()
     {
-        SetRetainOnce(true);
+        SetInnate(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
     }
@@ -46,31 +45,51 @@ public class Kaijin extends AnimatorCard implements OnAddToDeckListener
     @Override
     public boolean OnAddToDeck()
     {
-        GameEffects.Queue.Callback(new WaitAction(0.05f), () ->
-        {
-            RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
-            for (AbstractCard c : player.masterDeck.group)
-            {
-                if (CardRarity.BASIC.equals(c.rarity) && c.canUpgrade())
-                {
-                    upgradableCards.Add(c);
-                }
-            }
-
-            if (upgradableCards.Size() > 0)
-            {
-                AbstractCard card = upgradableCards.Retrieve(AbstractDungeon.miscRng);
-                card.upgrade();
-                player.bottledCardUpgradeCheck(card);
-
-                final float x = Settings.WIDTH * 0.5f;
-                final float y = Settings.HEIGHT * 0.5f;
-
-                GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), x + AbstractCard.IMG_WIDTH * 0.5f + 20f * Settings.scale, y);
-                GameEffects.TopLevelList.Add(new UpgradeShineEffect(x, y));
-            }
-        });
+        GameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> CardRarity.BASIC.equals(c.rarity));
 
         return true;
+    }
+
+    public static class KaijinPower extends AnimatorPower
+    {
+        public static final String POWER_ID = CreateFullID(KaijinPower.class);
+
+        public KaijinPower(AbstractPlayer owner, int amount)
+        {
+            super(owner, Kaijin.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            if (isPlayer && !player.hand.isEmpty())
+            {
+                GameActions.Bottom.SelectFromHand(name, 1, false)
+                .SetOptions(true, true, true)
+                .SetMessage(RetainCardsAction.TEXT[0])
+                .SetFilter(c -> !c.isEthereal)
+                .AddCallback(cards ->
+                {
+                    if (cards.size() > 0)
+                    {
+                        final AbstractCard card = cards.get(0);
+                        if (card.baseBlock >= 0)
+                        {
+                            card.baseBlock += amount;
+                        }
+                        if (card.baseDamage >= 0)
+                        {
+                            card.baseDamage += amount;
+                        }
+
+                        GameUtilities.Retain(card);
+                    }
+                });
+            }
+        }
     }
 }

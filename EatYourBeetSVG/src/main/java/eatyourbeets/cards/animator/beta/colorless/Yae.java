@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.actions.orbs.RemoveOrb;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.Amplification_LightningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
@@ -39,7 +36,7 @@ public class Yae extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         boolean hasLightning = false;
         GameActions.Bottom.StackPower(new Amplification_LightningPower(p, magicNumber));

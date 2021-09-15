@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.PetalEffect;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -38,7 +39,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Add(new VFXAction(new CherryBlossomEffect(), 0.7F));
         GameActions.Bottom.ApplyPower(new DeathTouch(p));

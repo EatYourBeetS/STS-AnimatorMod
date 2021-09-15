@@ -157,7 +157,7 @@
 	},
 	"animator:GeassPower":
 	{
-		"DESCRIPTIONS": ["Will attack itself this turn."],
+		"DESCRIPTIONS": ["Will attack itself or be stunned once. This power can only affect the same character once."],
 		"NAME": "Geass"
 	},
 	"animator:GuildGirlPower":
@@ -212,7 +212,7 @@
 	},
 	"animator:KuragesOathPower":
 	{
-		"DESCRIPTIONS": ["[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Take #b{1} damage and channel [Water] with #b{0} extra [~Focus]."],
+		"DESCRIPTIONS": ["[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Take #b{1} damage and channel [Water] with #b{0} extra [Focus]."],
 		"NAME": "Kurage's Oath"
 	},
 	"animator:LightningCrystalPower":
@@ -397,7 +397,7 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength."],
+		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength. Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
 		"NAME": "Unnamed Doll"
 	},
 	"animator:VitalityPower":

@@ -27,7 +27,7 @@ public class SougenEsaka extends AnimatorCard
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);

@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.orbs.animator.Water;
@@ -31,6 +28,7 @@ public class BarbaraPegg extends AnimatorCard
 
 
         SetAffinityRequirement(Affinity.Blue, 2);
+        SetHarmonic(true);
         SetHealing(true);
         SetExhaust(true);
     }
@@ -42,7 +40,7 @@ public class BarbaraPegg extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainBlessing(1, upgraded);

@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.RenderHelpers;
 
 public abstract class EYBEffect extends AbstractGameEffect
@@ -171,6 +172,16 @@ public abstract class EYBEffect extends AbstractGameEffect
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         RenderHelpers.DrawCentered(sb, color, img, x, y, img.getWidth(), img.getHeight(), scale, rotation, flipX, flipY);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
+    protected static <T> T RandomElement(T[] source, RandomizedList<T> container)
+    {
+        if (container.Size() <= 1)
+        {
+            container.AddAll(source);
+        }
+
+        return container.RetrieveUnseeded(true);
     }
 
     protected static int Random(int min, int max)

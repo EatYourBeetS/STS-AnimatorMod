@@ -35,7 +35,7 @@ public class GarbageDoll extends AnimatorCard
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.exhaustPile)
                 .SetMessage(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], magicNumber))

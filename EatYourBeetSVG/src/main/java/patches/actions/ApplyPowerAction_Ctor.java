@@ -7,9 +7,12 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ConstrictedPower;
-import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
+import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.powers.replacement.AnimatorBlurPower;
+import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
+import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
+import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -25,10 +28,29 @@ public class ApplyPowerAction_Ctor
                                int stackAmount, boolean isFast, AbstractGameAction.AttackEffect effect)
     {
         AbstractPower power = powerToApply[0];
-        if (power instanceof ConstrictedPower && !(power instanceof ImprovedConstrictedPower))
+        if (power instanceof ConstrictedPower && !(power instanceof AnimatorConstrictedPower))
         {
-            powerToApply[0] = new ImprovedConstrictedPower(power.owner, ((ConstrictedPower)power).source, power.amount);
+            powerToApply[0] = new AnimatorConstrictedPower(power.owner, ((ConstrictedPower)power).source, power.amount);
             _powerToApply.Set(__instance, powerToApply[0]);
+        }
+
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
+        {
+            if (power instanceof BlurPower && !(power instanceof AnimatorBlurPower))
+            {
+                powerToApply[0] = new AnimatorBlurPower(power.owner, power.amount);
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
+            if (power instanceof PlatedArmorPower && !(power instanceof AnimatorPlatedArmorPower))
+            {
+                powerToApply[0] = new AnimatorPlatedArmorPower(power.owner, power.amount);
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
+            if (power instanceof MetallicizePower && !(power instanceof AnimatorMetallicizePower))
+            {
+                powerToApply[0] = new AnimatorMetallicizePower(power.owner, power.amount);
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
         }
     }
 

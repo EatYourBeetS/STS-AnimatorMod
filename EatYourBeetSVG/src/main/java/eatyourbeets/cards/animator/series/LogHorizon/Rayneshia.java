@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -34,7 +31,7 @@ public class Rayneshia extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
@@ -53,7 +50,7 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID))
+                if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);

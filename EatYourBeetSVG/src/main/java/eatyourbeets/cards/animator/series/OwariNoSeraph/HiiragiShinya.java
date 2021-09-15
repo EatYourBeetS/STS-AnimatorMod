@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -31,7 +32,7 @@ public class HiiragiShinya extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
@@ -48,7 +49,7 @@ public class HiiragiShinya extends AnimatorCard
             }
         });
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }

@@ -38,6 +38,17 @@ public class WeightedList<T>
         }
     }
 
+    public List<T> GetInnerList()
+    {
+        final ArrayList<T> result = new ArrayList<>();
+        for (Item item : items)
+        {
+            result.add(item.object);
+        }
+
+        return result;
+    }
+
     public int Size()
     {
         return items.size();

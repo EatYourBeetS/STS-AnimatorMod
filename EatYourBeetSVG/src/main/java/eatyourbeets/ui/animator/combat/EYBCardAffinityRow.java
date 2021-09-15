@@ -5,10 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinities;
-import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
@@ -72,10 +70,11 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy.SetActive(Power != null);
     }
 
-    public void ActivateSynergyBonus()
+    public void ActivateSynergyBonus(AbstractCard card)
     {
         AvailableActivations -= 1;
         GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount, false);
+        CombatStats.OnSynergyBonus(card, Type);
     }
 
     public void OnStartOfTurn()
@@ -108,7 +107,7 @@ public class EYBCardAffinityRow extends GUIElement
         {
             Level = handAffinities.GetLevel(Type, false) + handAffinities.GetDirectLevel(Affinity.General);
 
-            if (!draggingCard && image_background.hb.hovered)
+            if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
                 final EYBCardAffinity best = handAffinities.Get(Affinity.General);
                 final Affinity affinity = best == null ? null : best.type;
@@ -128,8 +127,8 @@ public class EYBCardAffinityRow extends GUIElement
 
             if (hoveredCard != null)
             {
-                EYBCardAffinity a = synergies != null ? synergies.Get(Type) : null;
-                if (a != null && System.CanActivateSynergyBonus(a))
+                final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
+                if (System.CanActivateSynergyBonus(a))
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_STRONG);
                 }
@@ -139,7 +138,7 @@ public class EYBCardAffinityRow extends GUIElement
                 }
             }
 
-            if (!draggingCard && image_background.hb.hovered)
+            if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
                 for (AbstractCard c : AbstractDungeon.player.hand.group)
                 {

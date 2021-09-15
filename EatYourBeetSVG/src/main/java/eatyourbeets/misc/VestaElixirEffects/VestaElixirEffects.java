@@ -89,7 +89,6 @@ public class VestaElixirEffects
 
             case 3:
             {
-                currentElixir.ApplyEffect(new VestaElixirEffect_Purge(11));
                 vesta.ResearchElixir(currentElixir);
             }
         }

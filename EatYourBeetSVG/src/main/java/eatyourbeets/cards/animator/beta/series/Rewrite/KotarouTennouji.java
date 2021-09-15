@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
@@ -35,10 +32,11 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
 
         SetUnique(true, true);
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 

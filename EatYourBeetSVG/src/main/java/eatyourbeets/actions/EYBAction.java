@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
@@ -124,26 +125,14 @@ public abstract class EYBAction extends AbstractGameAction
         this.name = name;
     }
 
-    protected String CreateMessageInternal(String defaultMessage)
+    protected String UpdateMessageInternal(String message)
     {
-        if (message == null)
-        {
-            message = defaultMessage;
-        }
-
-        if (name != null && !name.equals(""))
-        {
-            return JUtils.Format(message, amount) + " [" + name + "]";
-        }
-        else
-        {
-            return JUtils.Format(message, amount);
-        }
+        return JUtils.Format(message, amount) + (StringUtils.isNotEmpty(name) ? (" [" + name + "]") : "");
     }
 
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return CreateMessageInternal("");
+        return UpdateMessageInternal(message);
     }
 
     @Override

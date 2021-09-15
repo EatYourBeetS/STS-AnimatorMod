@@ -33,7 +33,7 @@ public class ArseneLupin extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.Reload(name, cards ->

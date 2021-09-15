@@ -36,12 +36,12 @@ public class KaijiItou extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.Draw(magicNumber);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         AbstractCard paper = new KaijiItou_RestrictedPaper();
         AbstractCard rock = new KaijiItou_RestrictedRock();
         AbstractCard scissors = new KaijiItou_RestrictedScissors();

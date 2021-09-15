@@ -47,7 +47,7 @@ public class MS06ZakuII extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
         GameActions.Bottom.StackPower(new MS06ZakuIIPower(p, this.magicNumber));

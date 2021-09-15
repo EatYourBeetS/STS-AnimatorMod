@@ -13,7 +13,7 @@ public class OrbCore_Plasma extends OrbCore
 
     public OrbCore_Plasma()
     {
-        super(DATA, 5);
+        super(DATA, 6);
 
         SetAffinity_Orange(2);
         SetAffinity_Green(2);

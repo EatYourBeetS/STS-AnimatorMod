@@ -4,14 +4,17 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NobleFencer extends AnimatorCard
 {
@@ -24,12 +27,24 @@ public class NobleFencer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2);
+        Initialize(0, 3);
 
-        SetAffinity_Green(2, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Green(2);
+        SetAffinity_Blue(2);
 
         SetExhaust(true);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        final AbstractOrb orb = GameUtilities.GetFirstOrb(Lightning.ORB_ID);
+        if (orb != null)
+        {
+            orb.showEvokeValue();
+        }
     }
 
     @Override
@@ -39,7 +54,7 @@ public class NobleFencer extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 

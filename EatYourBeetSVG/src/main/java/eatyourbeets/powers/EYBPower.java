@@ -34,6 +34,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 {
     protected static final FieldInfo<ArrayList<AbstractGameEffect>> _effect = JUtils.GetField("effect", AbstractPower.class);
     protected static final float ICON_SIZE = 32f;
+    protected static final float ICON_SIZE2 = 48f;
 
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected final ArrayList<AbstractGameEffect> effects;
@@ -236,14 +237,20 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
+        if (!enabled)
+        {
+            disabledColor.a = c.a;
+            c = disabledColor;
+        }
+
         if (this.powerIcon != null)
         {
-            RenderHelpers.DrawCentered(sb, enabled ? c : disabledColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 1, 0);
+            RenderHelpers.DrawCentered(sb, c, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 1, 0);
         }
         else
         {
-            sb.setColor(enabled ? c : disabledColor);
-            sb.draw(this.img, x - 12f, y - 12f, 16f, 16f, ICON_SIZE, ICON_SIZE, Settings.scale * 1.5f, Settings.scale * 1.5f, 0f, 0, 0, 32, 32, false, false);
+            float scale = ICON_SIZE2 / this.img.getWidth();
+            RenderHelpers.DrawCentered(sb, c, this.img, x, y, this.img.getWidth(), this.img.getHeight(), scale, 0);
         }
 
         for (AbstractGameEffect e : effects)

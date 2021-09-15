@@ -9,6 +9,7 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GenericCondition;
+import eatyourbeets.utilities.ListSelection;
 
 import java.util.ArrayList;
 
@@ -16,8 +17,8 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
 {
     protected ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected GenericCondition<AbstractCard> filter;
-    protected CardSelection destination;
-    protected CardSelection origin;
+    protected ListSelection<AbstractCard> destination;
+    protected ListSelection<AbstractCard> origin;
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
@@ -62,14 +63,14 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         return this;
     }
 
-    public MoveCards SetOrigin(CardSelection origin)
+    public MoveCards SetOrigin(ListSelection<AbstractCard> origin)
     {
         this.origin = (origin != null ? origin : CardSelection.Top);
 
         return this;
     }
 
-    public MoveCards SetDestination(CardSelection destination)
+    public MoveCards SetDestination(ListSelection<AbstractCard> destination)
     {
         this.destination = destination;
 
@@ -111,7 +112,7 @@ public class MoveCards extends EYBActionWithCallback<ArrayList<AbstractCard>>
         boolean remove = origin.mode.IsRandom();
         for (int i = 0; i < max; i++)
         {
-            AbstractCard card = origin.GetCard(temp, i, remove);
+            final AbstractCard card = origin.Get(temp, i, remove);
             if (card != null)
             {
                 MoveCard(card);

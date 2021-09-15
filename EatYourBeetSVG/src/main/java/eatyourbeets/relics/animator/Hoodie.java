@@ -2,9 +2,10 @@ package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
 
-public class Hoodie extends AnimatorRelic
+public class Hoodie extends AnimatorRelic implements Hidden
 {
     public static final String ID = CreateFullID(Hoodie.class);
     public static final int MAX_HP_BONUS = 3;

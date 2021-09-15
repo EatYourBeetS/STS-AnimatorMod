@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -36,7 +33,7 @@ public class YuriNakamura extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
@@ -46,7 +43,7 @@ public class YuriNakamura extends AnimatorCard
             GameActions.Bottom.Heal(Math.min(cards.size() * secondaryValue, GameActionManager.playerHpLastTurn - player.currentHealth));
         });
 
-        if (player.exhaustPile.size() > 0 && (CheckAffinity(Affinity.Light) || isSynergizing)) {
+        if (player.exhaustPile.size() > 0 && (CheckAffinity(Affinity.Light) || info.IsSynergizing)) {
             GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
             GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
         }

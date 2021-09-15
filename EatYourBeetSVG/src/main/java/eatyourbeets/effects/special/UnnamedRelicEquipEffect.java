@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
@@ -23,14 +25,14 @@ import java.util.ArrayList;
 
 public class UnnamedRelicEquipEffect extends AbstractGameEffect
 {
-    private final int goldBonus;
+    private final int baseGold;
+    private final int baseHP;
 
-    private int apparitionsCount = 0;
-
-    public UnnamedRelicEquipEffect(int goldBonus)
+    public UnnamedRelicEquipEffect()
     {
-        this.goldBonus = goldBonus;
         this.duration = 1f;
+        this.baseGold = CalculateGoldBonus();
+        this.baseHP = CalculateMaxHealth();
     }
 
     private void ReplaceCard(ArrayList<AbstractCard> replacement, String cardID)
@@ -45,10 +47,20 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         final AbstractPlayer p = AbstractDungeon.player;
         final ArrayList<AbstractCard> replacement = TheUnnamedReign.GetCardReplacements(p.masterDeck.group, true);
+        final int apparitionsCount = JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID));
 
-        apparitionsCount = JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID));
+        int hp = this.baseHP;
+        int goldBonus = this.baseGold;
 
-        int hp = CalculateMaxHealth();
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
+        {
+            if (series.promoted)
+            {
+                goldBonus += series.bonus * 7;
+                hp += series.bonus;
+            }
+        }
+
         if (hp < 999 && apparitionsCount > 1)
         {
             hp *= 1 - (0.1f * (apparitionsCount - 1));
@@ -98,7 +110,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     public static int CalculateMaxHealth()
     {
-        CharSelectInfo info = AbstractDungeon.player.getLoadout();
+        final CharSelectInfo info = AbstractDungeon.player.getLoadout();
+
         int hp = 100;
         if (info != null)
         {
@@ -127,10 +140,11 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     public static int CalculateGoldBonus()
     {
-        AbstractPlayer p = AbstractDungeon.player;
+        final AbstractPlayer player = AbstractDungeon.player;
+        final CharSelectInfo info = player.getLoadout();
 
-        int bonus = 60;
-        for (AbstractRelic r : p.relics)
+        int bonus = info.gold / 2;
+        for (AbstractRelic r : player.relics)
         {
             if (!(r instanceof OnEquipUnnamedReignRelicListener))
             {
@@ -140,10 +154,6 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                 }
                 else switch (r.tier)
                 {
-                    case STARTER:
-                        bonus += 0;
-                        break;
-
                     case COMMON:
                         bonus += 6;
                         break;
@@ -164,26 +174,22 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
                         bonus += 10;
                         break;
 
-                    case SPECIAL: default:
+                    case SPECIAL:
                         bonus += 25;
                         break;
                 }
             }
         }
 
-        for (AbstractCard c : p.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             bonus += Math.min(c.timesUpgraded, 20) * 5;
         }
 
-        for (AbstractPotion potion : p.potions)
+        for (AbstractPotion potion : player.potions)
         {
             switch (potion.rarity)
             {
-                case PLACEHOLDER:
-                    bonus += 0;
-                    break;
-
                 case COMMON:
                     bonus += 6;
                     break;
@@ -198,8 +204,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             }
         }
 
-        bonus += p.maxHealth / 2;
-        bonus += p.gold / 7;
+        bonus += player.currentHealth / 2;
+        bonus += player.gold / 7;
 
         return Math.min(999, bonus);
     }

@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.AnimatorPower;
@@ -37,7 +34,7 @@ public class LaughingMan extends AnimatorCard implements OnEndOfTurnSubscriber, 
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         CombatStats.onEndOfTurn.SubscribeOnce(this);
     }
@@ -47,7 +44,7 @@ public class LaughingMan extends AnimatorCard implements OnEndOfTurnSubscriber, 
         cardType = null;
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.hand)
                 .SetOptions(false, false)
-                .SetMessage(GR.Common.Strings.HandSelection.Choose)
+                .SetMessage(GR.Common.Strings.HandSelection.Obtain)
                 .AddCallback(cards ->
                 {
                     if (cards.size() > 0) {

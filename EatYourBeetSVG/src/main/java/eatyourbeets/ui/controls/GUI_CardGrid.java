@@ -288,7 +288,7 @@ public class GUI_CardGrid extends GUIElement
         scrollBar.Scroll(MathHelper.percentFromValueBetween(lowerScrollBound, upperScrollBound, scrollDelta), false);
     }
 
-    protected void RefreshDeckSize()
+    public void RefreshDeckSize()
     {
         deckSizeCache = cards.size();
         upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;

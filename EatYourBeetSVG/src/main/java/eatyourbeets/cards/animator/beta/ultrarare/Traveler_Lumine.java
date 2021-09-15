@@ -56,7 +56,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
         for (int i = 0; i < secondaryValue; i++) {
@@ -65,7 +65,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
         }
 
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (isSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
+        if (info.IsSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
         {
             GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
         }

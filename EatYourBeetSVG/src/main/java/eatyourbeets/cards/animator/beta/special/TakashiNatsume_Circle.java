@@ -134,7 +134,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int[] damageMatrix;
         switch(currentForm) {

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -35,7 +34,7 @@ public class Krusty extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);

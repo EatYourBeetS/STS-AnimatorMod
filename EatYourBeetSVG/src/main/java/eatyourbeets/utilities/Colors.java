@@ -9,6 +9,7 @@ public class Colors
     private static final Color BLACK = Color.BLACK.cpy();
     private static final Color WHITE = Color.WHITE.cpy();
     private static final Color CREAM = Settings.CREAM_COLOR.cpy();
+    private static final Color PURPLE = Settings.PURPLE_COLOR.cpy();
     private static final Color GREEN = Settings.GREEN_TEXT_COLOR.cpy();
     private static final Color BLUE = Settings.BLUE_TEXT_COLOR.cpy();
     private static final Color GOLD = Settings.GOLD_COLOR.cpy();
@@ -56,6 +57,12 @@ public class Colors
     {
         CREAM.a = a;
         return CREAM;
+    }
+
+    public static Color Purple(float a)
+    {
+        PURPLE.a = a;
+        return PURPLE;
     }
 
     public static Color Green(float a)

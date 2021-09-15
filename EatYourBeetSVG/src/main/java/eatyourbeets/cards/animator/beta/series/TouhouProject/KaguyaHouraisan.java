@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -41,14 +38,14 @@ public class KaguyaHouraisan extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i=0; i<magicNumber; i++)
         {
             GameActions.Bottom.DealDamageToAll(this, AttackEffects.POISON);
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             List<AbstractCard> cardsToPlay = new ArrayList<>();
 

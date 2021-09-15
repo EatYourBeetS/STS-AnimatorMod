@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.special.SayakaMiki_Oktavia;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -50,15 +47,14 @@ public class SayakaMiki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ChannelOrb(new Frost());
 
         GameUtilities.RetainPower(Affinity.Blue);
 
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (isSynergizing && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
+        if (info.IsSynergizing && info.GetPreviousCardID().equals(Curse_GriefSeed.DATA.ID))
         {
             GameActions.Bottom.MakeCardInDiscardPile(new SayakaMiki_Oktavia()).SetUpgrade(upgraded, false);
             GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());

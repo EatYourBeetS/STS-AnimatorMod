@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.utilities.GameActions;
@@ -21,7 +22,7 @@ public class CatoElAltestan extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 1);
+        SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Blue(2);
 
@@ -33,7 +34,7 @@ public class CatoElAltestan extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (CheckAffinity(Affinity.Blue))
         {

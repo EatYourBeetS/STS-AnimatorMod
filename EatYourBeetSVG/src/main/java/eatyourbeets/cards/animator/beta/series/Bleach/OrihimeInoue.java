@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Fire;
@@ -27,13 +28,13 @@ public class OrihimeInoue extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.StackPower(new OrihimeInouePower(p, magicNumber));
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }

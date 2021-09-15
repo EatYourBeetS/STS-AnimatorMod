@@ -12,7 +12,7 @@ public class Kuroyukihime extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.AccelWorld)
-            .PostInitialize(data -> data.AddPreview(new Kuroyukihime_BlackLotus(), false));
+            .PostInitialize(data -> data.AddPreview(new Kuroyukihime_BlackLotus(), true));
 
     public Kuroyukihime()
     {
@@ -27,7 +27,7 @@ public class Kuroyukihime extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, false)

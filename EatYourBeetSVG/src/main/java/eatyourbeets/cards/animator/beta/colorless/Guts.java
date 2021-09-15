@@ -33,7 +33,7 @@ public class Guts extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int forceGain = ExecuteAttack(m, damage);
         GameActions.Bottom.GainForce(forceGain);

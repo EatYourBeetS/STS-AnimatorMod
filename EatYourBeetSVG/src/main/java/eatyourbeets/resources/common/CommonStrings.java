@@ -33,9 +33,11 @@ public class CommonStrings
         public final UIStrings Strings = GetUIStrings("HandSelection");
         public final String MoveToDrawPile = Strings.TEXT[0];
         public final String GenericBuff = Strings.TEXT[1];
+        public final String Copy = Strings.TEXT[2];
+        public final String Activate = Strings.TEXT[3];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
-        public final String Choose = CardRewardScreen.TEXT[1];
+        public final String Obtain = CardRewardScreen.TEXT[1];
         public final String Retain = RetainCardsAction.TEXT[0];
     }
 
@@ -48,6 +50,7 @@ public class CommonStrings
         public final String ChooseCards_F1 = Strings.TEXT[3];
         public final String Purge_F1 = Strings.TEXT[4];
         public final String Scry = Strings.TEXT[5];
+        public final String Fetch_F1 = Strings.TEXT[6];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Cycle = GamblingChipAction.TEXT[1];
@@ -76,6 +79,11 @@ public class CommonStrings
         public final String Purge(int amount)
         {
             return JUtils.Format(Purge_F1, amount);
+        }
+
+        public final String Fetch(int amount)
+        {
+            return JUtils.Format(Fetch_F1, amount);
         }
     }
 

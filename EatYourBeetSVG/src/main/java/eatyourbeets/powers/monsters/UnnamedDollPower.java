@@ -1,5 +1,7 @@
 package eatyourbeets.powers.monsters;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
@@ -38,6 +40,22 @@ public class UnnamedDollPower extends AnimatorPower
                 GameActions.Bottom.VFX(new HemokinesisEffect2(owner.hb.cX, owner.hb.cY, c.hb.cX, c.hb.cY), 0.35f);
                 GameActions.Bottom.StackPower(null, new StrengthPower(c, STRENGTH));
             }
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        enabled = true;
+    }
+
+    public void onInflictDamage(DamageInfo info, int damageAmount, AbstractCreature target)
+    {
+        if (enabled && damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL)
+        {
+            GameActions.Bottom.MakeCardInDrawPile(new Pain());
+            flashWithoutSound();
+            enabled = false;
         }
     }
 }

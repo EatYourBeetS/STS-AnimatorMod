@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -22,7 +23,7 @@ public class Amber extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
@@ -33,7 +34,7 @@ public class Amber extends AnimatorCard {
             GameActions.Bottom.GainAgility(secondaryValue, false);
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
         }

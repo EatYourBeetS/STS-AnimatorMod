@@ -54,8 +54,8 @@ public class PurgeFromPile extends SelectFromPile
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(GR.Common.Strings.GridSelection.Purge(amount));
+        return super.UpdateMessageInternal(GR.Common.Strings.GridSelection.Purge(amount));
     }
 }

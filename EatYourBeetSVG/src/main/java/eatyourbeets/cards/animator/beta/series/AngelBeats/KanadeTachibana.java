@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -30,7 +27,7 @@ public class KanadeTachibana extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)
@@ -48,7 +45,7 @@ public class KanadeTachibana extends AnimatorCard
 
         GameActions.Bottom.GainBlessing(secondaryValue,true);
 
-        if (isSynergizing && !CombatStats.HasActivatedLimited(cardID))
+        if (info.IsSynergizing && !CombatStats.HasActivatedLimited(cardID))
         {
             GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
                     .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))

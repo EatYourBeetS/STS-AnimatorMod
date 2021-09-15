@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.actions.damage.DamageHelper;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
@@ -41,6 +42,8 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class ParseGenericCommand extends ConsoleCommand
 {
+    private AbstractMonster enemy;
+
     public ParseGenericCommand()
     {
         this.minExtraTokens = 1;
@@ -72,10 +75,18 @@ public class ParseGenericCommand extends ConsoleCommand
                         GameActions.Bottom.WaitRealtime(0.3f);
                         GameActions.Bottom.Callback(effect, (vfx, __) ->
                         {
-                            final AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-                            GameEffects.List.Attack(player, m, vfx, 1, 1);
-                            AttackEffects.ApplyDamageTint(vfx, m);
-                            m.useStaggerAnimation();
+                            enemy = GameUtilities.GetRandomEnemy(true);
+                            GameEffects.List.Attack(player, enemy, vfx, 1, 1);
+                            final float delay = AttackEffects.GetDamageDelay(vfx);
+                            if (delay > 0)
+                            {
+                                GameActions.Bottom.WaitRealtime(delay);
+                            }
+                            GameActions.Bottom.Callback(vfx, (vfx2, ___) ->
+                            {
+                                DamageHelper.ApplyTint(enemy, null, vfx2);
+                                enemy.useStaggerAnimation();
+                            });
                         });
                     }
                     catch (Exception ignored) { }

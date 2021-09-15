@@ -46,7 +46,7 @@ public class GinIchimaru extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
         for (int i = 0; i < magicNumber; i++)
@@ -66,7 +66,7 @@ public class GinIchimaru extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(() -> makeChoice(m, 1));
     }

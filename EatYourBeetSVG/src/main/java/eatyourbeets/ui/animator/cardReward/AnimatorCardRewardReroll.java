@@ -9,7 +9,7 @@ import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.card.HideCardEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.relics.animator.PurgingStone;
+import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,7 +22,7 @@ public class AnimatorCardRewardReroll extends GUIElement
 
     protected final ActionT1<AbstractCard> onCardReroll;
     protected final ActionT1<AbstractCard> onCardAdded;
-    protected PurgingStone purgingStone;
+    protected RollingCubes rollingCubes;
     protected boolean canReroll;
     protected RewardItem rewardItem;
 
@@ -38,8 +38,8 @@ public class AnimatorCardRewardReroll extends GUIElement
         rewardItem = rItem;
         isActive = false;
 
-        purgingStone = GameUtilities.GetRelic(PurgingStone.ID);
-        if (purgingStone != null && purgingStone.CanActivate(rItem))
+        rollingCubes = GameUtilities.GetRelic(RollingCubes.ID);
+        if (rollingCubes != null && rollingCubes.CanActivate(rItem))
         {
             isActive = true;
 
@@ -58,9 +58,9 @@ public class AnimatorCardRewardReroll extends GUIElement
 
     public void Reroll(RerollCardButton button)
     {
-        final AbstractCard removedCard = button.GetCard();
         final int cardIndex = button.GetIndex();
-        if (cardIndex > rewardItem.cards.size())
+        final AbstractCard removedCard = button.GetCard(false);
+        if (removedCard == null || cardIndex > rewardItem.cards.size())
         {
             return;
         }
@@ -70,7 +70,7 @@ public class AnimatorCardRewardReroll extends GUIElement
             GameEffects.TopLevelList.SpawnRelic(new SpiritPoop(), button.hb.cX, button.hb.cY);
         }
 
-        final AbstractCard replacement = purgingStone.Reroll(rewardItem);
+        final AbstractCard replacement = rollingCubes.Reroll(removedCard, rewardItem);
         if (replacement!= null)
         {
             SFX.Play(SFX.CARD_SELECT);
@@ -83,7 +83,8 @@ public class AnimatorCardRewardReroll extends GUIElement
             OnCardAdded(replacement);
         }
 
-        SetActive(purgingStone.CanReroll());
+        button.SetActive(false);
+        SetActive(rollingCubes.CanReroll());
     }
 
     @Override
@@ -91,7 +92,7 @@ public class AnimatorCardRewardReroll extends GUIElement
     {
         for (RerollCardButton banButton : buttons)
         {
-            banButton.Update();
+            banButton.TryUpdate();
         }
     }
 
@@ -100,7 +101,7 @@ public class AnimatorCardRewardReroll extends GUIElement
     {
         for (RerollCardButton banButton : buttons)
         {
-            banButton.Render(sb);
+            banButton.TryRender(sb);
         }
     }
 

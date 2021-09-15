@@ -86,7 +86,8 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.FIRE);
+        GameActions.Bottom.LoseHP(source, owner, GetPassiveDamage(), AttackEffects.FIRE)
+        .CanKill(owner == null || !owner.isPlayer);
         ReducePower(1);
     }
 

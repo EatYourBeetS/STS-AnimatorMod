@@ -77,10 +77,10 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             .SetPosition(cX, cY)
             .SetColor(Colors.Random(0.9f, 1f, false))
             .SetScale(0.05f)
-            .SetTargetScale(MathUtils.random(0.6f, 1f))
+            .SetTargetScale(MathUtils.random(0.6f, 1f), null)
             .SetFlip(projectiles.size() % 2 == 0, null)
-            .SetOffset(0f, 0f, MathUtils.random(0f, 360f))
-            .SetSpeed(2f, 2f, MathUtils.random(18f, 24f)));
+            .SetOffset(0f, 0f, MathUtils.random(0f, 360f), null)
+            .SetSpeed(2f, 2f, MathUtils.random(18f, 24f), null));
         }
     }
 
@@ -151,7 +151,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         final float delta = GR.UI.Delta();
         for (Projectile texture : projectiles)
         {
-            texture.SetPosition(cX, cY).SetTargetRotation(angle).Update(delta);
+            texture.SetPosition(cX, cY).SetTargetRotation(angle, null).Update(delta);
         }
 
         if (!evoked && (vfxTimer -= delta) <= 0)
@@ -160,7 +160,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
             final float h = hb.height * 0.5f;
             for (Projectile texture : projectiles)
             {
-                texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null);
+                texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null, null);
             }
             vfxTimer = 1.5f;
         }

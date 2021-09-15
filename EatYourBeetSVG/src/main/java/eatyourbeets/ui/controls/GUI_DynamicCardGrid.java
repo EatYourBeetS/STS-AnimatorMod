@@ -245,7 +245,7 @@ public class GUI_DynamicCardGrid extends GUIElement
         }
     }
 
-    protected void RefreshDeckSize()
+    public void RefreshDeckSize()
     {
         deckSizeCache = cards.size();
     }

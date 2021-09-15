@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -32,6 +33,8 @@ public class Cocytus extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         final AbstractOrb orb = GameUtilities.GetFirstOrb(Frost.ORB_ID);
         if (orb != null)
         {
@@ -40,7 +43,7 @@ public class Cocytus extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.EvokeOrb(1)

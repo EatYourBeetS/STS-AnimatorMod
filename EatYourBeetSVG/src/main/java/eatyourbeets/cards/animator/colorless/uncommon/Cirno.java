@@ -36,6 +36,8 @@ public class Cirno extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
             intent.AddFreezing();
@@ -51,7 +53,7 @@ public class Cirno extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(() ->
         {

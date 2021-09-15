@@ -1,8 +1,10 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
@@ -23,15 +25,16 @@ public class Elsword extends AnimatorCard
         SetUpgrade(3,  0, 0);
 
         SetAffinity_Red(2, 0, 2);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1);
 
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).SetVFXColor(Color.RED);
 
         if (m.hasPower(BurningPower.POWER_ID))
         {
@@ -44,7 +47,7 @@ public class Elsword extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Cycle(name, magicNumber);
     }

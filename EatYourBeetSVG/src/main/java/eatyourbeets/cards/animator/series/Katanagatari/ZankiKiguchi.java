@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
@@ -20,31 +21,34 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0);
-        SetUpgrade(1, 0);
+        Initialize(2, 0, 2);
+        SetUpgrade(1, 0, 1);
 
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        final int force = CombatStats.Affinities.GetPowerAmount(Affinity.Red);
-        final int agility = CombatStats.Affinities.GetPowerAmount(Affinity.Green);
-        if (force != agility)
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) < magicNumber)
         {
-            GameActions.Bottom.StackAffinityPower(force > agility ? Affinity.Green : Affinity.Red, 1, upgraded);
+            GameActions.Bottom.GainForce(1);
         }
 
-        if (CombatStats.CanActivateSemiLimited(cardID))
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) < magicNumber)
+        {
+            GameActions.Bottom.GainAgility(1);
+        }
+
+        if (info.CanActivateSemiLimited)
         {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
-            .AddCallback(stance ->
+            .AddCallback(info, (info2, stance) ->
             {
-                if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && CombatStats.TryActivateSemiLimited(cardID))
+                if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && info2.TryActivateSemiLimited())
                 {
                     GameActions.Bottom.GainInspiration(1);
                 }

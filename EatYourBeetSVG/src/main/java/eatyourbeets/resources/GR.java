@@ -464,7 +464,8 @@ public class GR
 
         public static class CardTags
         {
-            @SpireEnum public static AbstractCard.CardTags TEMPORARY;
+            @SpireEnum public static AbstractCard.CardTags MARKED;
+            @SpireEnum public static AbstractCard.CardTags VOLATILE;
             @SpireEnum public static AbstractCard.CardTags UNIQUE;
             @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
             @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
@@ -493,6 +494,7 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
             @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
             @SpireEnum public static AbstractGameAction.AttackEffect PUNCH;
+            @SpireEnum public static AbstractGameAction.AttackEffect CLAW;
             @SpireEnum public static AbstractGameAction.AttackEffect DARK;
             @SpireEnum public static AbstractGameAction.AttackEffect WATER;
         }

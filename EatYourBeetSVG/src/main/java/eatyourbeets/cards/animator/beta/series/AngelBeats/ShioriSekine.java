@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -35,7 +36,7 @@ public class ShioriSekine extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return CombatStats.CardsExhaustedThisTurn() > 0;
+        return CombatStats.CardsExhaustedThisTurn().size() > 0;
     }
 
     @Override
@@ -45,7 +46,7 @@ public class ShioriSekine extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.PlayFromPile(name, magicNumber, m, p.exhaustPile).SetOptions(true, false).SetFilter(AfterLifeMod::IsAdded).AddCallback(cards -> {
             for (AbstractCard c : cards) {

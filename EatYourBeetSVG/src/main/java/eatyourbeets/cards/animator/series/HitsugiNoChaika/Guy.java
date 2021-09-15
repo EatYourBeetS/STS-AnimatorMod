@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.CardSelection;
@@ -26,13 +27,13 @@ public class Guy extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, secondaryValue)
             .ShowEffect(true, true)

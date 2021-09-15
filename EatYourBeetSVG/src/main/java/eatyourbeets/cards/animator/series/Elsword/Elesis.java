@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.effects.AttackEffects;
@@ -80,7 +81,7 @@ public class Elesis extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
@@ -100,7 +101,7 @@ public class Elesis extends AnimatorCard
             case FORM_PYRO:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
-                if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+                if (HasSynergy() && info.TryActivateSemiLimited())
                 {
                     GameActions.Bottom.Draw(1);
                 }
@@ -143,7 +144,7 @@ public class Elesis extends AnimatorCard
         if (auxiliaryData.form == FORM_DARK && startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL);
+            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL).CanKill(false);
         }
         else if (auxiliaryData.form == FORM_NONE)
         {

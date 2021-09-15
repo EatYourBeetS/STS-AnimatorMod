@@ -31,7 +31,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }

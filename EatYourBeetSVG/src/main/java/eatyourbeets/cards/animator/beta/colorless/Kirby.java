@@ -132,15 +132,15 @@ public class Kirby extends AnimatorCard implements
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         if (played != null && (played.isEmpty() || (played.size() == 1 && played.get(0) == this))) {
             AbstractDungeon.actionManager.cardsPlayedThisTurn.clear();
         }
         for (AbstractCard card : inheritedCards) {
             if (card instanceof AnimatorCard) {
-                ((AnimatorCard) card).OnUse(p, m, isSynergizing);
-                ((AnimatorCard) card).OnLateUse(p, m, isSynergizing);
+                ((AnimatorCard) card).OnUse(p, m, info);
+                ((AnimatorCard) card).OnLateUse(p, m, info);
             } else {
                 card.use(p, m);
             }

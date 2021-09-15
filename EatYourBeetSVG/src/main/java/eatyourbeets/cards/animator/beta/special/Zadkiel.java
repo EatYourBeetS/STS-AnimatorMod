@@ -29,7 +29,7 @@ public class Zadkiel extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH)
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)

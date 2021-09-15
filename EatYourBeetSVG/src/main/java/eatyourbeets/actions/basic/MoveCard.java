@@ -15,6 +15,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.card.RenderCardEffect;
 import eatyourbeets.effects.card.UnfadeOutEffect;
 import eatyourbeets.interfaces.delegates.ActionT3;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
     public static float DEFAULT_CARD_X_RIGHT = (float) Settings.WIDTH * 0.65f;
     public static float DEFAULT_CARD_Y = (float) Settings.HEIGHT * 0.5f;
 
-    protected CardSelection destination;
+    protected ListSelection<AbstractCard> destination;
     protected CardGroup targetPile;
     protected CardGroup sourcePile;
     protected boolean showEffect;
@@ -56,7 +57,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
-    public MoveCard SetDestination(CardSelection destination)
+    public MoveCard SetDestination(ListSelection<AbstractCard> destination)
     {
         this.destination = destination;
 
@@ -210,7 +211,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         // Change card spot based on destination
         if (destination != null && targetPile.group.remove(card))
         {
-            destination.AddCard(targetPile.group, card, 0);
+            destination.Add(targetPile.group, card, 0);
         }
     }
 
@@ -307,6 +308,7 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
             card.triggerWhenDrawn();
             SFX.Play(SFX.CARD_OBTAIN);
             sourcePile.moveToHand(card, sourcePile);
+            CombatStats.OnAfterDraw(card);
         }
     }
 

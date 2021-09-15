@@ -31,7 +31,7 @@ public class JetBlack extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int amount = magicNumber;
         if (CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID)) {

@@ -1,13 +1,13 @@
 package eatyourbeets.powers.affinity;
 
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.common.VitalityPower;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.powers.PowerHelper;
 
 public class BlessingPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(BlessingPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Light;
+    public static final String SYMBOL = "B";
 
     public BlessingPower()
     {
@@ -15,8 +15,8 @@ public class BlessingPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int thresholdIndex)
+    protected PowerHelper GetThresholdBonusPower()
     {
-        GameActions.Bottom.StackPower(new VitalityPower(owner, 1));
+        return PowerHelper.Vitality;
     }
 }

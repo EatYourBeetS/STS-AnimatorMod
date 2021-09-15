@@ -32,13 +32,13 @@ public class Jibril extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.VIOLET), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrb(new Dark());
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.Add(new ShuffleOrbs(1));
             GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);

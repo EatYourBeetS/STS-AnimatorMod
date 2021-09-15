@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.AbstractScreen;
@@ -127,9 +128,20 @@ public class UIManager
         postRenderList.clear();
     }
 
+    public boolean IsDragging()
+    {
+        return isDragging;
+    }
+
     public boolean TryDragging()
     {
-        return !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+        final boolean drag = !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+        if (drag)
+        {
+            EYBCardTooltip.CanRenderTooltips(false);
+        }
+
+        return drag;
     }
 
     public boolean TryHover(Hitbox hitbox)
@@ -163,6 +175,11 @@ public class UIManager
     public float Time_Multi(float value)
     {
         return timer * value;
+    }
+
+    public float Time()
+    {
+        return timer;
     }
 
     public float Delta()

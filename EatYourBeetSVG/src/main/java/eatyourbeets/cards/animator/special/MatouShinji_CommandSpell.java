@@ -38,13 +38,15 @@ public class MatouShinji_CommandSpell extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    public void Refresh(AbstractMonster enemy)
     {
-        return super.cardPlayable(m) && player.maxOrbs > 0;
+        super.Refresh(enemy);
+
+        SetUnplayable(player.orbs.isEmpty());
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (upgraded)
         {

@@ -52,10 +52,9 @@ public class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public GenericAnimationEffect SetRotation(float startRotation, float targetRotation)
+    public GenericAnimationEffect SetRotation(float startRotation)
     {
         this.projectile.SetRotation(startRotation);
-        this.projectile.SetTargetRotation(targetRotation);
 
         return this;
     }
@@ -63,6 +62,13 @@ public class GenericAnimationEffect extends EYBEffect
     public GenericAnimationEffect SetScale(float scale)
     {
         this.projectile.SetScale(this.scale = scale);
+
+        return this;
+    }
+
+    public GenericAnimationEffect SetTargetRotation(float targetRotation, float rotationSpeed)
+    {
+        this.projectile.SetTargetRotation(targetRotation, rotationSpeed);
 
         return this;
     }

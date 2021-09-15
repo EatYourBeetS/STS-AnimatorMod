@@ -94,7 +94,7 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
             for (AbstractCard c : group.group)
             {
-                if (filter == null || filter.Check(card))
+                if (filter == null || filter.Check(c))
                 {
                     if (c.costForTurn > 0)
                     {

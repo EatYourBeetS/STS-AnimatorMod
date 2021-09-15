@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.EYBClickablePower;
@@ -40,7 +37,7 @@ public class MikuIzayoi extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.GainInspiration(secondaryValue);
@@ -48,7 +45,7 @@ public class MikuIzayoi extends AnimatorCard
             GameActions.Bottom.GainInspiration(secondaryValue);
         }
 
-        if (isSynergizing) {
+        if (info.IsSynergizing) {
             GameActions.Bottom.Motivate(secondaryValue);
         }
     }

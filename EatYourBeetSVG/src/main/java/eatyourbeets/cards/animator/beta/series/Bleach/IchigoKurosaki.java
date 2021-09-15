@@ -26,10 +26,11 @@ public class IchigoKurosaki extends AnimatorCard
         SetAffinity_Green(1, 1, 1);
 
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
 

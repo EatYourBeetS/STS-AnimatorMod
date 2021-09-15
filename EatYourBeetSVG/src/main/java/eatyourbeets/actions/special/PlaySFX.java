@@ -18,7 +18,7 @@ public class PlaySFX extends EYBActionWithCallback<PlaySFX>
 
     public PlaySFX(String key, float pitchMin, float pitchMax, float volume)
     {
-        super(ActionType.WAIT, 0.1f);
+        super(ActionType.WAIT, 0.05f);
 
         this.key = key;
         this.pitchMin = pitchMin;

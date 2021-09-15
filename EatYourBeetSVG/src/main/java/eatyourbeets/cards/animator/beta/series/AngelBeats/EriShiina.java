@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -46,7 +43,7 @@ public class EriShiina extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
@@ -57,7 +54,7 @@ public class EriShiina extends AnimatorCard
         }
 
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (isSynergizing && last != null && (last.cost <= 0 || last.costForTurn <= 0))
+        if (info.IsSynergizing && last != null && (last.cost <= 0 || last.costForTurn <= 0))
         {
             GameActions.Bottom.GainAgility(2,true);
         }

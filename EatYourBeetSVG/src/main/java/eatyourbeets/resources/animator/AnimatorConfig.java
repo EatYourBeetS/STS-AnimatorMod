@@ -7,11 +7,14 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.config.ConfigOption_Boolean;
+import eatyourbeets.ui.config.ConfigOption_Integer;
 import eatyourbeets.ui.config.ConfigOption_String;
 import eatyourbeets.ui.config.ConfigOption_Vector2;
 import eatyourbeets.utilities.JUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -27,6 +30,7 @@ public class AnimatorConfig
     private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
     private static final String AFFINITY_SYSTEM_POSITION =  "TheAnimator-AffinitySystemPosition";
+    private static final String VERSION =  "TheAnimator-Version";
 
     private SpireConfig config;
     private HashSet<String> tips = null;
@@ -39,15 +43,30 @@ public class AnimatorConfig
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
     public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
+    public ConfigOption_Integer MajorVersion = new ConfigOption_Integer(VERSION, null);
 
     public void Load(int slot)
     {
         try
         {
-            final String fileName = "TheAnimatorConfig" + (slot > 0 ? ("_" + slot) : "");
-            config = new SpireConfig("TheAnimator(Alt)", fileName);
+            final String fileName = "TheAnimatorConfig_" + slot;
+            if (slot == 0)
+            {
+                final File file = new File(SpireConfig.makeFilePath("TheAnimator", fileName));
+                if (!file.exists())
+                {
+                    final File previousFile = new File(SpireConfig.makeFilePath("TheAnimator", "TheAnimatorConfig"));
+                    if (previousFile.exists())
+                    {
+                        Files.copy(previousFile.toPath(), file.toPath());
+                    }
+                }
+            }
+
+            config = new SpireConfig("TheAnimator", fileName);
             JUtils.LogInfo(this, "Loaded: " + fileName);
 
+            MajorVersion.SetConfig(config);
             Trophies.SetConfig(config);
             LastSeed.SetConfig(config);
             CustomLoadouts.SetConfig(config);

@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator.enchantments;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.replacement.TemporaryRetainPower;

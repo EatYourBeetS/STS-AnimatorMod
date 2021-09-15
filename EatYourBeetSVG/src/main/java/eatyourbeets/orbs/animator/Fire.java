@@ -84,8 +84,8 @@ public class Fire extends AnimatorOrb {
                     .Edit(angle, (r, p) -> p
                             .SetFlip(MathUtils.randomBoolean(), false)
                             .SetScale(scale * MathUtils.random(0.09f, 0.64f))
-                            .SetSpeed(0f, MathUtils.random(80f, 120f), 0f)
-                            .SetAcceleration(0f, MathUtils.random(0f, 3f), null, null)
+                            .SetSpeed(0f, MathUtils.random(80f, 120f), 0f, null)
+                            .SetAcceleration(0f, MathUtils.random(0f, 3f), null, null, null)
                             .SetTargetPosition(hb.cX, hb.cY + RADIUS)).SetDuration(1f, false));
             this.vfxTimer = MathUtils.random(0.1f, 0.35f);
         }

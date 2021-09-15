@@ -10,8 +10,8 @@ import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.monsters.CursedStabsPower;
 import eatyourbeets.powers.monsters.UnnamedDollPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -40,9 +40,16 @@ public class TheUnnamed_Doll extends EYBMonster
         .SetUses(1);
 
         //Rotation:
-        moveset.Normal.Defend(16)
+        moveset.Normal.Defend(12)
         .SetBlockScaling(0.12f)
-        .SetBlockAoE(true);
+        .SetBlockAoE(true)
+        .SetOnUse((m, t) ->
+        {
+            if (!hasPower(PlayerFlightPower.POWER_ID))
+            {
+                GameActions.Bottom.StackPower(new PlayerFlightPower(this, 1));
+            }
+        });
 
         moveset.Normal.DefendBuff(9, PowerHelper.TemporaryThorns, 2)
         .SetPowerTarget(TargetHelper.Enemies(this))
@@ -77,7 +84,6 @@ public class TheUnnamed_Doll extends EYBMonster
     {
         super.init();
 
-        GameActions.Bottom.ApplyPower(this, this, new CursedStabsPower(this));
         GameActions.Bottom.ApplyPower(this, this, new UnnamedDollPower(this));
         GameActions.Bottom.GainBlock(this, 26 + (int)(GameUtilities.GetAscensionLevel() * 0.66f));
     }

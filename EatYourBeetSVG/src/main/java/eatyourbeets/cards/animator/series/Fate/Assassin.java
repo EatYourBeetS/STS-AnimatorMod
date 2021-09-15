@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -19,12 +20,10 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Assassin extends AnimatorCard
 {
-    private static int EFFECT = 0;
-
-    public static final int DEBUFFS_COUNT = 3;
     public static final EYBCardData DATA = Register(Assassin.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
+    public static final int DEBUFFS_COUNT = 3;
 
     public Assassin()
     {
@@ -80,19 +79,19 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(this::DamageEffect);
+        .SetDamageEffect(e -> DamageEffect(e, 0));
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(this::DamageEffect);
+        .SetDamageEffect(e -> DamageEffect(e, 1));
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(this::DamageEffect);
+        .SetDamageEffect(e -> DamageEffect(e, 2));
     }
 
-    private float DamageEffect(AbstractCreature e)
+    private float DamageEffect(AbstractCreature e, int index)
     {
         float x = e.hb.cX;
         float y = e.hb.cY - 60f * Settings.scale;
@@ -101,33 +100,27 @@ public class Assassin extends AnimatorCard
         float dy;
         float angle;
 
-        SFX.Play(SFX.ATTACK_IRON_1, 0.85f + (0.2f * EFFECT));
+        SFX.Play(SFX.ATTACK_SWORD, 0.85f + (0.2f * index));
 
-        if (EFFECT == 0)
+        if (index == 0)
         {
             dx = 500;
             dy = 200;
             angle = 290;
-
-            EFFECT = 1;
         }
-        else if (EFFECT == 1)
+        else if (index == 1)
         {
             dx = -500;
             dy = 200;
             angle = -290;
-
-            EFFECT = 2;
         }
         else
         {
             dx = -500;
             dy = -200;
-            angle = -230;
-
-            EFFECT = 0;
+            angle = 120;
         }
 
-        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy())).duration * 0.4f;
+        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET, Color.TEAL)).duration * 0.4f;
     }
 }

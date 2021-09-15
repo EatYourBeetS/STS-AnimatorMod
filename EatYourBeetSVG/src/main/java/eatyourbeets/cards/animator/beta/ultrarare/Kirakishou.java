@@ -2,20 +2,16 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RotatingList;
 
 import java.util.ArrayList;
 
@@ -26,8 +22,6 @@ public class Kirakishou extends AnimatorCard_UltraRare
     	. SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Normal)
     	. SetColor(CardColor.COLORLESS).SetSeries(CardSeries.RozenMaiden);
 
-    private final DrawPileCardPreview drawpilecardpreview =
-            new DrawPileCardPreview(Kirakishou::FindTopCard);
 
     public Kirakishou()
     {
@@ -38,22 +32,7 @@ public class Kirakishou extends AnimatorCard_UltraRare
         SetAffinity_Star(2);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
-    }
-
-    @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        super.calculateCardDamage(mo);
-
-        drawpilecardpreview.SetCurrentTarget(mo);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        drawpilecardpreview.Update();
+        SetDrawPileCardPreview(this::FindCards);
     }
 
     @Override
@@ -63,12 +42,12 @@ public class Kirakishou extends AnimatorCard_UltraRare
 
         if (!library)
         {
-            drawpilecardpreview.Render(sb);
+            this.drawPileCardPreview.Render(sb);
         }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyConstricted(p, m, magicNumber);
 
@@ -100,14 +79,12 @@ public class Kirakishou extends AnimatorCard_UltraRare
         });
     }
 
-    private static AbstractCard FindTopCard(AbstractMonster Target)
+    private void FindCards(RotatingList<AbstractCard> cards, AbstractMonster target)
     {
-        CardGroup drawPile = player.drawPile;
-
-        if (drawPile.size() == 0)
-            return null;
-        else
-            return drawPile.getTopCard();
+        cards.Clear();
+        if (player.drawPile.size() > 0) {
+            cards.Add(player.drawPile.getTopCard());
+        }
     }
 
     public static class KirakishouPower extends AnimatorPower

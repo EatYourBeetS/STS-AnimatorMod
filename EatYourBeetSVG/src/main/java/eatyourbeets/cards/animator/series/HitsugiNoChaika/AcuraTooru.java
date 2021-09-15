@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -34,6 +35,7 @@ public class AcuraTooru extends AnimatorCard
         SetAffinity_Red(1);
 
         SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
@@ -52,13 +54,13 @@ public class AcuraTooru extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.GainBlock(magicNumber);
             GameActions.Bottom.GainAgility(1);

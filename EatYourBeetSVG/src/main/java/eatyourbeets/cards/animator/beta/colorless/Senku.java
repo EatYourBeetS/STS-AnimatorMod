@@ -69,7 +69,7 @@ public class Senku extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         AbstractGameAction.AttackEffect attackEffect = this.transformed ? AttackEffects.SMALL_EXPLOSION : this.attackType.equals(EYBAttackType.Elemental) ? AttackEffects.PSYCHOKINESIS : AttackEffects.BLUNT_LIGHT;
         if (this.attackTarget.equals(EYBCardTarget.ALL)) {
@@ -104,7 +104,7 @@ public class Senku extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (secondaryValue > 0) {
             makeChoice();

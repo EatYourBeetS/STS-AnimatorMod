@@ -38,7 +38,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
 
         if (choices.TryInitialize(this)) {

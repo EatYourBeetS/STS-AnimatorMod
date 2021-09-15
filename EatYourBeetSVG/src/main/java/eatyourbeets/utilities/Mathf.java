@@ -1,10 +1,8 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
 
 public class Mathf
 {
@@ -191,34 +189,6 @@ public class Mathf
         current.x = MoveTowards(current.x, target.x, speed.x * progress * Settings.scale);
         current.y = MoveTowards(current.y, target.y, speed.y * progress * Settings.scale);
         current.z = MoveTowards(current.z, target.z, speed.z * progress); // rotation
-    }
-
-    public static void ApplyAcceleration(Vector3f speed, Vector4f acceleration, float delta, Interpolation interpolation)
-    {
-        if (acceleration.w == 0)
-        {
-            speed.x = Max(0, speed.x + (acceleration.x * delta));
-            speed.y = Max(0, speed.y + (acceleration.y * delta));
-            speed.z = Max(0, speed.z + (acceleration.z * delta));
-            return;
-        }
-
-        float m = Min(1, delta / acceleration.w);
-        if (interpolation != null)
-        {
-            m = interpolation.apply(m);
-        }
-
-        final float x = acceleration.x * m;
-        final float y = acceleration.y * m;
-        final float z = acceleration.z * m;
-        speed.x = Max(0, speed.x + x);
-        speed.y = Max(0, speed.y + y);
-        speed.z = Max(0, speed.z + z);
-        acceleration.x = Max(0, acceleration.x - x);
-        acceleration.y = Max(0, acceleration.y - y);
-        acceleration.z = Max(0, acceleration.z - z);
-        acceleration.w = Max(0, acceleration.w - delta);
     }
 
     public static float GetAngle(float aX, float aY, float bX, float bY)

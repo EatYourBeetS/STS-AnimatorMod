@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.CardSelection;
@@ -41,24 +42,15 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    public void Refresh(AbstractMonster enemy)
     {
-        final boolean playable = super.cardPlayable(m);
-        if (playable)
-        {
-            final int totalCards = player.drawPile.size() + player.discardPile.size() + player.hand.size();
-            if (totalCards < MINIMUM_CARDS)
-            {
-                cantUseMessage = cardData.Strings.EXTENDED_DESCRIPTION[0];
-                return false;
-            }
-        }
+        super.Refresh(enemy);
 
-        return playable && (player.drawPile.size() >= magicNumber);
+        SetUnplayable((player.drawPile.size() + player.discardPile.size() + player.hand.size()) < MINIMUM_CARDS);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (p.drawPile.size() >= magicNumber)
         {

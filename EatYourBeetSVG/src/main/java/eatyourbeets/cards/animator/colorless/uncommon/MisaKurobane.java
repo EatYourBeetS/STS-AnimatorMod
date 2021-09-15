@@ -31,14 +31,14 @@ public class MisaKurobane extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.Draw(magicNumber);
 
         if (CheckAffinity(Affinity.Light))
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new MisaKurobane_Yusarin());
+            GameActions.Bottom.MakeCardInDrawPile(new MisaKurobane_Yusarin());
         }
     }
 }

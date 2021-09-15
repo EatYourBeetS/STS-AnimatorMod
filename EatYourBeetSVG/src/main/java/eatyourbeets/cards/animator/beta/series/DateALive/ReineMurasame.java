@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
@@ -29,7 +30,7 @@ public class ReineMurasame extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
 
@@ -56,7 +57,7 @@ public class ReineMurasame extends AnimatorCard
             });
         }
 
-        if (isSynergizing && stacks > 0)
+        if (info.IsSynergizing && stacks > 0)
         {
             GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, stacks));
         }

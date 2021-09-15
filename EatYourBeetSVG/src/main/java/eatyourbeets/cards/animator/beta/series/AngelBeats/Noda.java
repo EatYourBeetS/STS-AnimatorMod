@@ -34,11 +34,11 @@ public class Noda extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) || isSynergizing)
+        if (CheckAffinity(Affinity.Red) || info.IsSynergizing)
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
             GameActions.Bottom.GainWillpower(secondaryValue, upgraded);

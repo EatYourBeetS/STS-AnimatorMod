@@ -14,6 +14,7 @@ public class CorruptionPower extends AbstractAffinityPower
     public static final String POWER_ID = CreateFullID(CorruptionPower.class);
     public static final String TOOLTIP_ID = "~Crystallize";
     public static final Affinity AFFINITY_TYPE = Affinity.Dark;
+    public static final String SYMBOL = "C";
 
     protected static final int[] THRESHOLDS = new int[]{ 3, 6, 9, 12, 15 };
 
@@ -29,9 +30,14 @@ public class CorruptionPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int thresholdIndex)
+    public void RefreshThresholdBonus(boolean thresholdReached, int addModifier)
     {
-        if (thresholdIndex == (GetThresholds().length - 1))
+        if (!thresholdReached)
+        {
+            return;
+        }
+
+        if (thresholdIndex >= GetThresholds().length)
         {
             GameActions.Bottom.MakeCardInHand(new SummoningRitual());
             AnimatorCard_UltraRare.MarkAsSeen(SummoningRitual.DATA.ID);

@@ -14,6 +14,7 @@ public class ClawEffect2 extends EYBEffect
     private float y;
     private Color color2;
     private boolean flipX;
+    private boolean playSFX;
 
     public ClawEffect2(float x, float y, Color color1, Color color2)
     {
@@ -21,6 +22,7 @@ public class ClawEffect2 extends EYBEffect
 
         this.x = x;
         this.y = y;
+        this.playSFX = true;
 
         SetColors(color1, color2);
     }
@@ -47,10 +49,20 @@ public class ClawEffect2 extends EYBEffect
         return this;
     }
 
+    public ClawEffect2 PlaySFX(boolean playSFX)
+    {
+        this.playSFX = playSFX;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
-        SFX.Play(RandomBoolean() ? SFX.ATTACK_DAGGER_5 : SFX.ATTACK_DAGGER_6, 0.7f / scale, 1f / scale);
+        if (playSFX)
+        {
+            SFX.Play(RandomBoolean() ? SFX.ATTACK_DAGGER_5 : SFX.ATTACK_DAGGER_6, 0.7f / scale, 1f / scale);
+        }
 
         float angle = Random(115f, 155f);
         float offset = 35 * scale * Settings.scale;

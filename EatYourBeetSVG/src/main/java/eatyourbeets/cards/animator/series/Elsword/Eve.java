@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -33,7 +34,7 @@ public class Eve extends AnimatorCard
                     data.AddPreview(d.CreateNewInstance(), false);
                 }
             });
-    private static final int POWER_ENERGY_COST = 2;
+    private static final int POWER_ENERGY_COST = 1;
 
     public Eve()
     {
@@ -66,7 +67,7 @@ public class Eve extends AnimatorCard
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
     }
@@ -77,8 +78,9 @@ public class Eve extends AnimatorCard
         {
             super(owner, Eve.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
-            this.amount = amount;
             this.triggerCondition.SetOneUsePerPower(true);
+
+            Initialize(amount);
         }
 
         @Override
@@ -86,18 +88,12 @@ public class Eve extends AnimatorCard
         {
             super.OnUse(m);
 
-            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, 3)
+            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1)
             .AddCallback(cards ->
             {
-                if (cards != null && cards.size() > 0)
+                for (AbstractCard c : cards)
                 {
-                    for (AbstractCard c : cards)
-                    {
-                        GameActions.Bottom.PlayCard(c, null);
-                        //c.applyPowers();
-                        //c.use(player, null);
-                        //CombatStats.Affinities.SetLastCardPlayed(c);
-                    }
+                    GameActions.Bottom.MakeCardInHand(c);
                 }
             }));
         }
@@ -109,7 +105,7 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
+                final int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
                 if (damage > 0)
                 {
                     //GameEffects.Queue.BorderFlash(Color.SKY);

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
@@ -37,6 +38,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
         Initialize(amount, sourceName);
 
+        this.message = GR.Common.Strings.HandSelection.Activate;
         this.isRandom = isRandom;
     }
 
@@ -154,7 +156,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             reAddCards = true;
         }
 
-        AbstractDungeon.handCardSelectScreen.open(CreateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
+        AbstractDungeon.handCardSelectScreen.open(UpdateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
     }
 
     @Override

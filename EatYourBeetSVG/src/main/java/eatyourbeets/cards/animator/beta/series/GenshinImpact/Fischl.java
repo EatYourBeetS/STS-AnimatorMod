@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.animator.beta.special.Oz;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
@@ -28,13 +29,13 @@ public class Fischl extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS);
         GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
         GameActions.Bottom.GainCorruption(magicNumber, upgraded);
 
-        if (isSynergizing && CombatStats.TryActivateLimited(cardID)) {
+        if (info.IsSynergizing && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);
         }
     }

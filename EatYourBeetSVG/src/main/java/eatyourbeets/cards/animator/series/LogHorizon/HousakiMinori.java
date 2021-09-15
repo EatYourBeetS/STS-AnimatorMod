@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
@@ -29,16 +30,16 @@ public class HousakiMinori extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         cooldown.ProgressCooldownAndTrigger(m);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
+        if (info.IsSynergizing && info.TryActivateSemiLimited())
         {
             ShuffleToTopOfDeck();
         }

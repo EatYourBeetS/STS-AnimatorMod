@@ -20,7 +20,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ModifyTag(player.drawPile, 1, AUTOPLAY, true);
     }

@@ -141,11 +141,11 @@ public class JUtils
         return res;
     }
 
-    public static <T> T Find(Iterable<T> list, FuncT1<Boolean, T> predicate)
+    public static <T> T Find(Iterable<T> list, Predicate<T> predicate)
     {
         for (T t : list)
         {
-            if (predicate.Invoke(t))
+            if (predicate.test(t))
             {
                 return t;
             }
@@ -199,6 +199,10 @@ public class JUtils
     // Simple string Formatting in which integers inside curly braces are replaced by args[i].
     public static String Format(String format, Object... args)
     {
+        if (StringUtils.isEmpty(format))
+        {
+            return "";
+        }
         if (args == null || args.length == 0)
         {
             return format;

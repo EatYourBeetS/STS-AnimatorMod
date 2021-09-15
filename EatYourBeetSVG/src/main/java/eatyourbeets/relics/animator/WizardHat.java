@@ -19,8 +19,9 @@ public class WizardHat extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WizardHat.class);
     public static final int INTELLECT_AMOUNT = 2;
-    public static final int DAMAGE_AMOUNT = 32;
-    public static final int ENERGY_COST = 4;
+    public static final int DAMAGE_BONUS_PER_TURN = 2;
+    public static final int DAMAGE_AMOUNT = 14;
+    public static final int ENERGY_COST = 3;
 
     public WizardHat()
     {
@@ -30,7 +31,7 @@ public class WizardHat extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, INTELLECT_AMOUNT) + " NL " + FormatDescription(1, ENERGY_COST, DAMAGE_AMOUNT);
+        return FormatDescription(0, INTELLECT_AMOUNT) + " NL " + FormatDescription(1, ENERGY_COST, DAMAGE_AMOUNT, DAMAGE_BONUS_PER_TURN);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class WizardHat extends AnimatorRelic
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(1, triggerCondition.requiredAmount, amount);
+            return FormatDescription(1, triggerCondition.requiredAmount, amount, DAMAGE_BONUS_PER_TURN);
         }
 
         @Override
@@ -80,8 +81,18 @@ public class WizardHat extends AnimatorRelic
                 GameActions.Bottom.VFX((new ExplosionSmallEffect(c.hb_x, c.hb_y)));
             }
 
-            int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
+            int[] multiDamage = DamageInfo.createDamageMatrix(amount, true);
             GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
+            GameActions.Bottom.WaitRealtime(0.35f);
+            RemovePower(GameActions.Last);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            stackPower(DAMAGE_BONUS_PER_TURN);
         }
     }
 }

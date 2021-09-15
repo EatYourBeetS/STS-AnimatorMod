@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
@@ -30,7 +30,7 @@ public class Scar extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(__ ->
@@ -41,7 +41,7 @@ public class Scar extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(true, true, false)
@@ -53,7 +53,7 @@ public class Scar extends AnimatorCard
             }
         });
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)

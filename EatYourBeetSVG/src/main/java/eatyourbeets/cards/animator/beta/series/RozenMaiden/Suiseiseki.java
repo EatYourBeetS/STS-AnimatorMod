@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -50,14 +51,14 @@ public class Suiseiseki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
         GameActions.Bottom.MakeCard(new Slimed(), player.hand);
 
-        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
+        if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             String stance = player.stance.ID;
 

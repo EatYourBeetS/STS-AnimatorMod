@@ -439,6 +439,7 @@ public class EYBSingleCardPopup extends GUIElement
 
     private void RenderArrow(SpriteBatch sb, Hitbox hb, CInputAction action, boolean flipX)
     {
+        sb.setColor(Color.WHITE);
         sb.draw(ImageMaster.POPUP_ARROW, hb.cX - 128f, hb.cY - 128f, 128f, 128f, 256f, 256f, Settings.scale, Settings.scale, 0f, 0, 0, 256, 256, flipX, false);
         if (Settings.isControllerMode)
         {

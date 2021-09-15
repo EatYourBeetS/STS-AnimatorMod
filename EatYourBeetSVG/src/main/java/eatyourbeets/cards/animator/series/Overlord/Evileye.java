@@ -21,11 +21,11 @@ public class Evileye extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 3, 2);
+        Initialize(0,0, 3);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Dark(1);
+        SetAffinity_Blue(1);
         SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Dark, 4);
 
@@ -39,11 +39,11 @@ public class Evileye extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Intellect, magicNumber, false));
-        choices.AddEffect(new GenericEffect_GainOrbSlots(secondaryValue));
+        choices.AddEffect(new GenericEffect_GainOrbSlots(magicNumber));
         choices.AddEffect(new GenericEffect_Draw(magicNumber));
         choices.Select(1, m);
 

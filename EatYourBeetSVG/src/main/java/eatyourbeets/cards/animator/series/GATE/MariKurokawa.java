@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -23,7 +24,7 @@ public class MariKurokawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 7, 9);
+        Initialize(0, 0, 8, 9);
         SetUpgrade(0, 0, 0, 2);
 
         SetAffinity_Green(1);
@@ -46,8 +47,13 @@ public class MariKurokawa extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (CalculateHeal() > 0)
+        {
+            GameActions.Bottom.Heal(heal);
+        }
+
         GameActions.Bottom.DiscardFromHand(name, 2, false)
         .SetOptions(false, true, false)
         .SetFilter(c -> c.type == CardType.ATTACK)
@@ -58,11 +64,6 @@ public class MariKurokawa extends AnimatorCard
                 GameActions.Bottom.GainBlock(secondaryValue);
             }
         });
-
-        if (CalculateHeal() > 0)
-        {
-            GameActions.Bottom.Heal(heal);
-        }
     }
 
     protected int CalculateHeal()

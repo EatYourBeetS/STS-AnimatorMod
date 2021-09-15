@@ -31,7 +31,7 @@ public class Ynitaph extends AnimatorRelic implements CustomSavable<Integer>, On
 
     public static void TryRestoreFromPreviousRun()
     {
-        if (!GameUtilities.IsNormalRun(true))
+        if ((player != null && player.hasRelic(Ynitaph.ID)) || !GameUtilities.IsNormalRun(true))
         {
             return;
         }

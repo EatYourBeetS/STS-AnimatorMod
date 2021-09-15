@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -17,7 +14,7 @@ public class Togame extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Orange), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
 
     public Togame()
     {
@@ -32,7 +29,7 @@ public class Togame extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
@@ -48,7 +45,7 @@ public class Togame extends AnimatorCard
                 }
             }
 
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCard(Affinity.Orange)).SetUpgrade(upgraded, false);
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Orange, upgraded);
         });
     }
 }

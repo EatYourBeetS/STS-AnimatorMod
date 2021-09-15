@@ -51,7 +51,8 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     }
 
     private final CardGroup cards;
-    private boolean draggingScreen = false;
+    private boolean draggingScreen;
+    private boolean showTopPanelOnComplete;
     private Color screenColor;
     private GUI_CardGrid grid;
 
@@ -75,6 +76,12 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         {
             Complete(cards);
             return;
+        }
+
+        if (GameUtilities.IsTopPanelVisible())
+        {
+            showTopPanelOnComplete = true;
+            GameUtilities.SetTopPanelVisible(false);
         }
 
         this.grid = new GUI_CardGrid()
@@ -136,6 +143,18 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
         simplifyCardUIToggle.Render(sb);
+    }
+
+    @Override
+    protected void Complete()
+    {
+        super.Complete();
+
+        if (showTopPanelOnComplete)
+        {
+            GameUtilities.SetTopPanelVisible(true);
+            showTopPanelOnComplete = false;
+        }
     }
 
     private static void ToggleViewUpgrades(boolean value)

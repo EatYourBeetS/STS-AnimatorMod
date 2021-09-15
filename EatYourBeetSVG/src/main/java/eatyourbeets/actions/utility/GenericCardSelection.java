@@ -7,6 +7,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GenericCondition;
+import eatyourbeets.utilities.ListSelection;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
 {
     protected ArrayList<AbstractCard> result = new ArrayList<>();
     protected GenericCondition<AbstractCard> filter;
-    protected CardSelection selection;
+    protected ListSelection<AbstractCard> selection;
     protected AbstractCard card;
     protected CardGroup group;
     protected boolean forceSelect;
@@ -46,7 +47,7 @@ public class GenericCardSelection extends EYBActionWithCallback<ArrayList<Abstra
         return this;
     }
 
-    public GenericCardSelection SetSelection(CardSelection selection)
+    public GenericCardSelection SetSelection(ListSelection<AbstractCard> selection)
     {
         this.selection = selection;
 

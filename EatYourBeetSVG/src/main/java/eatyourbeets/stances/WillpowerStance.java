@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.WillpowerPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -48,9 +48,9 @@ public class WillpowerStance extends EYBStance
 
         if (TryApplyStance(STANCE_ID))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Balance, +STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(-STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(-STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(+STAT_GAIN_AMOUNT);
         }
     }
 
@@ -61,9 +61,9 @@ public class WillpowerStance extends EYBStance
 
         if (TryApplyStance(null))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Balance, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(+STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(+STAT_LOSE_AMOUNT);
+            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(-STAT_GAIN_AMOUNT);
         }
     }
 

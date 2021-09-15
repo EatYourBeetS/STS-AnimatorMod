@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -38,7 +35,7 @@ public class MayuriKurotsuchi extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber)
                 .AddCallback(m, (enemy, cards) -> {
                     int poisonThreshold = 30;

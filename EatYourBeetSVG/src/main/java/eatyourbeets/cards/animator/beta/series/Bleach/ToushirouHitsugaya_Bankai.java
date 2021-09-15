@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.cards.animator.beta.status.Frostbite;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -54,7 +51,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
         for (int i = 0; i < ATTACK_TIMES; i++) {
@@ -74,7 +71,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         for (int i = 0; i < magicNumber; i++) {
             GameActions.Bottom.MakeCardInDrawPile(new Frostbite())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);

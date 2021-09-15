@@ -10,7 +10,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.AdvancedTexture;
 
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
@@ -197,7 +197,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetImage(ColoredTexture portraitImage, ColoredTexture portraitForeground)
+    public AnimatorCardBuilder SetImage(AdvancedTexture portraitImage, AdvancedTexture portraitForeground)
     {
         this.portraitImage = portraitImage;
         this.portraitForeground = portraitForeground;

@@ -17,15 +17,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.FocusPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.Calipers;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
@@ -56,6 +56,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static float PlayerFrailModifier;
     public static float PlayerVulnerableModifier;
     public static float PlayerWeakModifier;
+    public static int BlockRetained;
     public static boolean LoadingPlayerSave;
     public static AbstractRoom Room;
     public static UUID BattleID;
@@ -94,6 +95,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnSynergyBonusSubscriber> onSynergyBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnSynergySubscriber> onSynergy = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnTagChangedSubscriber> onTagChanged = RegisterEvent(new GameEvent<>());
@@ -110,13 +112,13 @@ public class CombatStats extends EYBPower implements InvisiblePower
     private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
     private static final ArrayList<AbstractOrb> orbsEvokedThisCombat = new ArrayList<>();
     private static final ArrayList<AbstractOrb> orbsEvokedThisTurn = new ArrayList<>();
+    private static final ArrayList<AbstractCard> cardsExhaustedThisTurn = new ArrayList<>();
     private static final ArrayList<AbstractCard> synergiesThisCombat = new ArrayList<>();
     private static final ArrayList<AbstractCard> synergiesThisTurn = new ArrayList<>();
     private static final ArrayList<UUID> unplayableCards = new ArrayList<>();
     private static GameActionManager.Phase currentPhase;
-    private static int turnCount = 0;
     private static int cardsDrawnThisTurn = 0;
-    private static int cardsExhaustedThisTurn = 0;
+    private static int turnCount = 0;
 
     private static HashMap<String, Integer> amountIncreasedOnOrbs = new HashMap<>();
     //@Formatter: Off
@@ -166,16 +168,18 @@ public class CombatStats extends EYBPower implements InvisiblePower
         PlayerFrailModifier = 0;
         PlayerVulnerableModifier = 0;
         PlayerWeakModifier = 0;
+        BlockRetained = 0;
         BattleID = null;
 
         turnCount = 0;
         cardsDrawnThisTurn = 0;
-        cardsExhaustedThisTurn = 0;
         orbsEvokedThisCombat.clear();
         orbsEvokedThisTurn.clear();
+        cardsExhaustedThisTurn.clear();
         synergiesThisCombat.clear();
         amountIncreasedOnOrbs.clear();
         synergiesThisTurn.clear();
+        unplayableCards.clear();
         currentPhase = null;
         combatData.clear();
         turnData.clear();
@@ -439,6 +443,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         synergiesThisCombat.add(card);
     }
 
+    public static void OnSynergyBonus(AbstractCard card, Affinity affinity)
+    {
+        for (OnSynergyBonusSubscriber s : onSynergyBonus.GetSubscribers())
+        {
+            s.OnSynergyBonus(card, affinity);
+        }
+    }
+
     public static void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
         if (c == null)
@@ -453,11 +465,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
             return;
         }
 
-        final boolean isSynergizing = Affinities.IsSynergizing(c);
+        final CardUseInfo info = new CardUseInfo(card);
 
-        card.OnUse(p, m, isSynergizing);
+        card.OnUse(p, m, info);
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             OnSynergy(c);
         }
@@ -468,9 +480,9 @@ public class CombatStats extends EYBPower implements InvisiblePower
         cachedActions.addAll(actions);
 
         actions.clear();
-        card.OnLateUse(p, m, isSynergizing);
+        card.OnLateUse(p, m, info);
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             Affinities.OnSynergy(card);
         }
@@ -618,7 +630,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         return defaultData;
     }
 
-    public static int CardsExhaustedThisTurn()
+    public static ArrayList<AbstractCard> CardsExhaustedThisTurn()
     {
         return cardsExhaustedThisTurn;
     }
@@ -796,7 +808,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             p.OnAfterCardExhausted(card);
         }
-        cardsExhaustedThisTurn += 1;
+        cardsExhaustedThisTurn.add(card);
     }
 
     @Override
@@ -861,7 +873,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         turnData.clear();
-        cardsExhaustedThisTurn = 0;
+        cardsExhaustedThisTurn.clear();
         cardsDrawnThisTurn = 0;
         synergiesThisTurn.clear();
         unplayableCards.clear();
@@ -923,6 +935,18 @@ public class CombatStats extends EYBPower implements InvisiblePower
                 s.OnStartOfTurn();
             }
         }
+
+        if (BlockRetained > 0)
+        {
+            if (!player.hasPower(BarricadePower.POWER_ID) && !player.hasPower(BlurPower.POWER_ID))
+            {
+                this.ID = BarricadePower.POWER_ID;
+            }
+            else
+            {
+                BlockRetained = 0;
+            }
+        }
     }
 
     @Override
@@ -935,6 +959,23 @@ public class CombatStats extends EYBPower implements InvisiblePower
             {
                 s.OnStartOfTurnPostDraw();
             }
+        }
+
+        if (BlockRetained > 0)
+        {
+            int temp = Math.max(0, player.currentBlock - BlockRetained);
+            if (temp > 0)
+            {
+                if (player.hasRelic(Calipers.ID))
+                {
+                    temp = Math.min(Calipers.BLOCK_LOSS, temp);
+                }
+
+                player.loseBlock(temp, true);
+            }
+
+            this.ID = POWER_ID;
+            BlockRetained = 0;
         }
     }
 }

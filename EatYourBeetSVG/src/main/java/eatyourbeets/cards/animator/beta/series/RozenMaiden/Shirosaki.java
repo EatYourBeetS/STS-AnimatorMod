@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.animator.beta.special.Shirosaki_Laplace;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
@@ -35,7 +36,7 @@ public class Shirosaki extends AnimatorCard //TODO
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Shirosaki_Laplace());

@@ -7,12 +7,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.status.*;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.status.Hans_Slimed;
-import eatyourbeets.cards.animator.status.Konosuba_Slimed;
 import eatyourbeets.cards.animator.status.Overheat;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -38,7 +34,7 @@ public class Ginko extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.hand)
                 .SetOptions(false, true)
@@ -53,7 +49,7 @@ public class Ginko extends AnimatorCard
     }
 
     private void TransformCard(AbstractCard c) {
-        if (c instanceof Slimed || c instanceof Konosuba_Slimed || c instanceof Hans_Slimed) {
+        if (c instanceof Slimed || c instanceof Hans_Slimed) {
             GameActions.Last.ReplaceCard(c.uuid, new Ginko_Slimed());
         }
         else if (c instanceof Wound) {

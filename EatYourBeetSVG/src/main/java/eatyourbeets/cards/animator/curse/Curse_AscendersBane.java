@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.curse;
 
+import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_Curse;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardSaveData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.listeners.OnRemovedFromDeckListener;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
@@ -54,11 +52,14 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.triggerOnExhaust();
-
-        if (auxiliaryData.form == UNNAMED_FORM && player.hand.contains(this))
+        if (!dontTriggerOnUseCard)
+        {
+            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.DARK)
+            .SetSoundPitch(1.3f, 1.4f);
+        }
+        else if (auxiliaryData.form == UNNAMED_FORM)
         {
             GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
             .SetOptions(CardSelection.Top, false)
@@ -67,27 +68,18 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
                 for (AbstractCard c : cards)
                 {
                     GameActions.Top.Purge(c).ShowEffect(true)
+                    .SetTargetPosition(new Vector2(Settings.WIDTH * 0.4f, Settings.HEIGHT * 0.5f))
                     .AddCallback(c, (card, purged) ->
                     {
                         if (purged && GameUtilities.IsHindrance(card))
                         {
                             GameActions.Top.MoveCard(this, player.drawPile)
-                            .ShowEffect(true, true)
-                            .SetDestination(CardSelection.Top);
+                                    .ShowEffect(true, true)
+                                    .SetDestination(CardSelection.Top);
                         }
                     });
                 }
             });
-        }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        if (!dontTriggerOnUseCard)
-        {
-            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.DARK)
-            .SetSoundPitch(1.3f, 1.4f);
         }
     }
 
@@ -115,5 +107,8 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
         cardText.OverrideDescription(DATA.Strings.EXTENDED_DESCRIPTION[0], true);
         bottomText = new ColoredString(JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1], ASCENSION_THRESHOLD), Settings.CREAM_COLOR);
         cost = costForTurn = 1;
+        playAtEndOfTurn = true;
+        SetEthereal(false);
+        SetExhaust(true);
     }
 }

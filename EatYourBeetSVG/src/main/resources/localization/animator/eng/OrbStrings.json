@@ -13,7 +13,7 @@
 		"NAME": "Earth",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
+			"#yPassive: At the end of turn, gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
 		]
 	},
 	"animator:Air":

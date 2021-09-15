@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
@@ -112,7 +113,7 @@ public abstract class OrbCore extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         ChannelOrb();
         GameActions.Bottom.ApplyPower(new OrbCorePower(p, this, secondaryValue));

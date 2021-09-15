@@ -1,14 +1,14 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -30,11 +30,11 @@ public class Souei extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (info.TryActivateSemiLimited())
         {
             GameActions.Bottom.Callback(() ->
             {

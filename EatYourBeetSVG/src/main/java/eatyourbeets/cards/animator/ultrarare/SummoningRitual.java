@@ -1,14 +1,15 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll_Player;
 import eatyourbeets.powers.AnimatorPower;
@@ -41,7 +42,7 @@ public class SummoningRitual extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyPower(new UnnamedDollPlayerPower(p, cardData));
     }

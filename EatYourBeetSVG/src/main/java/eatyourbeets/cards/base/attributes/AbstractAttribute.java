@@ -11,16 +11,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
 
 public abstract class AbstractAttribute
 {
-    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> panels = new HashMap<>();
-    protected final static HashMap<AbstractCard.CardRarity, ColoredTexture> panelsLarge = new HashMap<>();
+    protected final static HashMap<AbstractCard.CardRarity, AdvancedTexture> panels = new HashMap<>();
+    protected final static HashMap<AbstractCard.CardRarity, AdvancedTexture> panelsLarge = new HashMap<>();
     protected final static CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     protected final static float DESC_OFFSET_X = (AbstractCard.IMG_WIDTH * 0.5f);
     protected final static float DESC_OFFSET_Y = (AbstractCard.IMG_HEIGHT * 0.10f);
@@ -56,7 +56,7 @@ public abstract class AbstractAttribute
         return this;
     }
 
-    public AbstractAttribute SetText(String text, Color color)
+    public AbstractAttribute SetText(Object text, Color color)
     {
         this.mainText = new ColoredString(text, color);
 
@@ -95,7 +95,7 @@ public abstract class AbstractAttribute
         final float b_w = 126f;
         final float b_h = 85f;
         final float y = -ch * 0.04f;
-        final ColoredTexture panel = GetPanelByRarity(card);
+        final AdvancedTexture panel = GetPanelByRarity(card);
 
         BitmapFont largeFont = RenderHelpers.GetLargeAttributeFont(card);
         largeFont.getData().setScale(card.isPopup ? 0.5f : 1);
@@ -140,18 +140,18 @@ public abstract class AbstractAttribute
         RenderHelpers.ResetFont(largeFont);
     }
 
-    protected ColoredTexture GetPanelByRarity(EYBCard card)
+    protected AdvancedTexture GetPanelByRarity(EYBCard card)
     {
         if (GR.Animator.Config.SimplifyCardUI.Get())
         {
             return null;
         }
 
-        HashMap<AbstractCard.CardRarity, ColoredTexture> map = card.isPopup ? panelsLarge : panels;
-        ColoredTexture result = map.getOrDefault(card.rarity, null);
+        HashMap<AbstractCard.CardRarity, AdvancedTexture> map = card.isPopup ? panelsLarge : panels;
+        AdvancedTexture result = map.getOrDefault(card.rarity, null);
         if (result == null)
         {
-            result = new ColoredTexture((card.isPopup ?
+            result = new AdvancedTexture((card.isPopup ?
             GR.Common.Images.Panel_Skewed_L: GR.Common.Images.Panel_Skewed).Texture(),
             Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
             map.put(card.rarity, result);

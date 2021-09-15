@@ -54,6 +54,7 @@ import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.*;
@@ -64,7 +65,10 @@ import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.*;
-import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
+import eatyourbeets.powers.common.EnergizedPower;
+import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
+import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
+import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 
 import java.util.ArrayList;
@@ -204,7 +208,7 @@ public final class GameActions
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new ImprovedConstrictedPower(target, source, amount));
+        return StackPower(source, new AnimatorConstrictedPower(target, source, amount));
     }
 
     public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
@@ -497,6 +501,11 @@ public final class GameActions
         return VFX(new CardFlashVfx(card, Color.ORANGE.cpy()));
     }
 
+    public PlayVFX SuperFlash(AbstractCard card)
+    {
+        return VFX(new CardFlashVfx(card, Color.ORANGE.cpy(), true));
+    }
+
     public ApplyAffinityPower GainAgility(int amount)
     {
         return GainAgility(amount, false);
@@ -579,6 +588,11 @@ public final class GameActions
         return Add(new GainEnergyAction(amount));
     }
 
+    public ApplyPower GainEnergyNextTurn(int amount)
+    {
+        return StackPower(new EnergizedPower(player, amount));
+    }
+
     public ApplyPower GainFocus(int amount)
     {
         return StackPower(new FocusPower(player, amount));
@@ -621,7 +635,7 @@ public final class GameActions
 
     public ApplyPower GainMetallicize(int amount)
     {
-        return StackPower(new MetallicizePower(player, amount));
+        return StackPower(new AnimatorMetallicizePower(player, amount));
     }
 
     public IncreaseMaxOrbAction GainOrbSlots(int slots)
@@ -631,7 +645,7 @@ public final class GameActions
 
     public ApplyPower GainPlatedArmor(int amount)
     {
-        return StackPower(new PlatedArmorPower(player, amount));
+        return StackPower(new AnimatorPlatedArmorPower(player, amount));
     }
 
     public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain)
@@ -694,6 +708,11 @@ public final class GameActions
         return Add(new HealCreature(player, player, amount));
     }
 
+    public HealCreature RecoverHP(int amount)
+    {
+        return Add(new HealCreature(player, player, amount)).Recover(true);
+    }
+
     public HealCreature HealPlayerLimited(AbstractCard card, int amount)
     {
         return Add(new HealCreature(player, player, amount).SetCard(card));
@@ -752,6 +771,11 @@ public final class GameActions
     public GenerateCard MakeCardInHand(AbstractCard card)
     {
         return MakeCard(card, player.hand);
+    }
+
+    public GenerateCard ObtainAffinityToken(Affinity affinity, boolean upgraded)
+    {
+        return MakeCardInHand(AffinityToken.GetCard(affinity)).SetUpgrade(upgraded, false);
     }
 
     public ModifyAffinityLevel ModifyAffinityLevel(AbstractCard card, Affinity affinity, int amount, boolean relative)
@@ -944,6 +968,19 @@ public final class GameActions
         .SetIsReload(true)
         .SetOptions(true, true, true)
         .AddCallback(onReload));
+    }
+
+    public ModifyPowers RemoveDebuffs(AbstractCreature target, ListSelection<AbstractPower> selection, int count)
+    {
+        return Add(new ModifyPowers(target, target, 0, false))
+        .SetFilter(GameUtilities::IsDebuff)
+        .SetSelection(selection, count);
+    }
+
+    public ModifyPowers ReduceDebuffs(AbstractCreature target, int amount)
+    {
+        return Add(new ModifyPowers(target, target, -amount, true))
+        .SetFilter(GameUtilities::IsDebuff);
     }
 
     public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractPower power)

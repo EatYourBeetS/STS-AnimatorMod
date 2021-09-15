@@ -41,7 +41,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.ChannelOrb(new Chaos());
 
         GameActions.Last.Callback(() ->

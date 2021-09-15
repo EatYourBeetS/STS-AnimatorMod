@@ -34,14 +34,9 @@ public class MultiTurnEntanglePower extends EntanglePower implements CloneablePo
     }
 
     @Override
-    public void reducePower(int reduceAmount)
+    public void atEndOfTurn(boolean isPlayer)
     {
-        super.reducePower(reduceAmount);
-
-        if (amount <= 0)
-        {
-            GameActions.Bottom.RemovePower(owner, this);
-        }
+        GameActions.Bottom.ReducePower(this, 1);
     }
 
     @Override

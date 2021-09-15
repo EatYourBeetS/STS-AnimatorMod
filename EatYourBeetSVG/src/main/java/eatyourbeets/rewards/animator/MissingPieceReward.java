@@ -17,12 +17,11 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardAffinityStatistics;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
@@ -31,6 +30,7 @@ public class MissingPieceReward extends AnimatorReward
     public static final String ID = CreateFullID(MissingPieceReward.class);
 
     public final CardSeries series;
+    public final AnimatorRuntimeLoadout loadout;
     private boolean skip = false;
     private EYBCardAffinityStatistics statistics;
     private EYBCardTooltip tooltip;
@@ -56,11 +56,12 @@ public class MissingPieceReward extends AnimatorReward
 
         if (series == CardSeries.ANY)
         {
-            statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group);
+            statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group, false);
+            loadout = null;
             return;
         }
 
-        final AnimatorRuntimeLoadout loadout = GR.Animator.Dungeon.GetLoadout(series);
+        loadout = GR.Animator.Dungeon.GetLoadout(series);
         if (loadout != null)
         {
             statistics = loadout.AffinityStatistics;
@@ -80,14 +81,26 @@ public class MissingPieceReward extends AnimatorReward
 
                 if (statistics != null)
                 {
+                    //TODO: Localization
                     tooltip.description += " NL NL Possible Affinities:";
-                    StringBuilder builder = new StringBuilder();
+                    if (loadout != null)
+                    {
+                        tooltip.description += " NL ( " + GR.Animator.Strings.Rewards.RightClickPreview + " )";
+                    }
+
+                    final StringBuilder builder = new StringBuilder();
                     for (EYBCardAffinityStatistics.Group g : statistics)
                     {
                         builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Affinity.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
                     }
+
                     tooltip.description += builder.toString();
                 }
+            }
+
+            if (loadout != null && InputManager.RightClick.IsJustPressed())
+            {
+                GameEffects.TopLevelQueue.Add(new ShowCardPileEffect(loadout.GetCardPool()));
             }
 
             EYBCardTooltip.QueueTooltip(tooltip, 360 * Settings.scale, InputHelper.mY + 120 * Settings.scale);

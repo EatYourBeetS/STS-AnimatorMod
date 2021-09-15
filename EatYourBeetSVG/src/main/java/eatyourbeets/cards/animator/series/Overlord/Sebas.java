@@ -1,13 +1,8 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.stances.AgilityStance;
@@ -38,7 +33,7 @@ public class Sebas extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -49,13 +44,16 @@ public class Sebas extends AnimatorCard
             GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
         }
 
+        int energy = 0;
         if (AgilityStance.IsActive())
         {
-            GameActions.Bottom.GainEnergy(1);
+            energy += 1;
         }
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Dark))
         {
-            GameActions.Bottom.GainEnergy(1);
+            energy += 1;
         }
+
+        GameActions.Bottom.GainEnergy(energy);
     }
 }

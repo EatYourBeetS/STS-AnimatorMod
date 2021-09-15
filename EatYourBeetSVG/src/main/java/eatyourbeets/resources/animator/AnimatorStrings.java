@@ -7,7 +7,6 @@ import eatyourbeets.utilities.JUtils;
 
 public class AnimatorStrings
 {
-    public Tips Tips;
     public Rewards Rewards;
     public Misc Misc;
     public Series Series;
@@ -17,34 +16,20 @@ public class AnimatorStrings
     public SingleCardPopupButtons SingleCardPopupButtons;
     public Actions Actions;
     public Trophies Trophies;
+    public Tutorial Tutorial;
 
     public void Initialize()
     {
         Misc = new Misc();
-        Tips = new Tips();
         Rewards = new Rewards();
         Series = new Series();
         CharSelect = new CharacterSelect();
         Actions = new Actions();
         Trophies = new Trophies();
+        Tutorial = new Tutorial();
         SeriesSelection = new SeriesSelection();
         SeriesSelectionButtons = new SeriesSelectionButtons();
         SingleCardPopupButtons = new SingleCardPopupButtons();
-    }
-
-    public class Tips
-    {
-        private final UIStrings Strings = GetUIStrings("Tips");
-
-        public final String Content(int id)
-        {
-            return Strings.TEXT[(id * 2) + 1];
-        }
-
-        public final String Header(int id)
-        {
-            return Strings.TEXT[(id * 2)];
-        }
     }
 
     public class Rewards
@@ -55,18 +40,19 @@ public class AnimatorStrings
         public final String BonusRelic = Strings.TEXT[1];
         public final String CursedRelic = Strings.TEXT[2];
         public final String Reroll = Strings.TEXT[3];
-        public final String AuraEffects = Strings.TEXT[6];
-        public final String UpgradeCard = Strings.TEXT[7];
-        public final String UpgradeCardDescription = Strings.TEXT[8];
+        public final String MaxHPBonus_F1 = Strings.TEXT[4];
+        public final String GoldBonus_F1 = Strings.TEXT[5];
+        public final String CommonUpgrade = Strings.TEXT[6];
+        public final String RightClickPreview = Strings.TEXT[7];
 
         public final String MaxHPBonus(int amount)
         {
-            return JUtils.Format(Strings.TEXT[4], amount);
+            return JUtils.Format(MaxHPBonus_F1, amount);
         }
 
         public final String GoldBonus(int amount)
         {
-            return JUtils.Format(Strings.TEXT[5], amount);
+            return JUtils.Format(GoldBonus_F1, amount);
         }
     }
 
@@ -102,7 +88,25 @@ public class AnimatorStrings
         public final String RewardsDisabled = Strings.TEXT[13];
         public final String ConsoleDisabled = Strings.TEXT[14];
         public final String HealingWarning = Strings.TEXT[15];
-        public final String EnableEventsForOtherCharacters = Strings.TEXT[16];
+        public final String MaxStacks_F1 = Strings.TEXT[16];
+        public final String GainBlockAboveMaxStacks_F1 = Strings.TEXT[17];
+        public final String MaxBlock_F1 = Strings.TEXT[18];
+        public final String EnableEventsForOtherCharacters = Strings.TEXT[19];
+
+        public final String MaxStacks(int stacks)
+        {
+            return JUtils.Format(MaxStacks_F1, stacks);
+        }
+
+        public final String GainBlockAboveMaxStacks(int stacks)
+        {
+            return JUtils.Format(GainBlockAboveMaxStacks_F1, stacks);
+        }
+
+        public final String MaxBlock(int block)
+        {
+            return JUtils.Format(MaxBlock_F1, block);
+        }
     }
 
     public class CharacterSelect
@@ -448,6 +452,13 @@ public class AnimatorStrings
         public final String PlatinumHint = Strings.TEXT[10];
         public final String PlatinumDescription = Strings.TEXT[11];
         public final String Platinum = Strings.TEXT[12];
+    }
+
+    public class Tutorial
+    {
+        private final UIStrings Strings = GetUIStrings("Tutorial");
+
+        public final String AffinityPanel = Strings.TEXT[0];
     }
 
     private static UIStrings GetUIStrings(String id)

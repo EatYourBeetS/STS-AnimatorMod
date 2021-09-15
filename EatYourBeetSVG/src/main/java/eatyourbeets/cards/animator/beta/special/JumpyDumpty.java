@@ -24,7 +24,7 @@ public class JumpyDumpty extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         AbstractMonster priorityTarget;
         RandomizedList<AbstractMonster> priorityTargets = new RandomizedList<>();
         for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {

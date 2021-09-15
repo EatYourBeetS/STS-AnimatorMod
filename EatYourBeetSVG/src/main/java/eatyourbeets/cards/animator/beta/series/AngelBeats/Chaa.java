@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
 import eatyourbeets.interfaces.subscribers.OnCardMovedSubscriber;
@@ -55,7 +56,7 @@ public class Chaa extends AnimatorCard
 
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new ChaaPower(p, magicNumber, secondaryValue));
     }
@@ -116,7 +117,7 @@ public class Chaa extends AnimatorCard
             }
 
             GameActions.Bottom.SelectFromPile(name, 1, choices)
-                    .SetMessage(GR.Common.Strings.HandSelection.Choose)
+                    .SetMessage(GR.Common.Strings.HandSelection.Obtain)
                     .SetOptions(false, true)
                     .AddCallback(cards ->
                     {

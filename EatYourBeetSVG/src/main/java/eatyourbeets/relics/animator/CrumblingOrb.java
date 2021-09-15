@@ -6,18 +6,23 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 public class CrumblingOrb extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CrumblingOrb.class);
+    public static final int CHOOSE_AMOUNT = 2;
+    public static final int CHOOSE_SIZE = 4;
 
     public CrumblingOrb()
     {
         super(ID, RelicTier.BOSS, LandingSound.MAGICAL);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return FormatDescription(0, CHOOSE_AMOUNT, CHOOSE_SIZE);
     }
 
     @Override
@@ -46,27 +51,52 @@ public class CrumblingOrb extends AnimatorRelic
             return;
         }
 
-        boolean basic = true;
-        RandomizedList<AbstractCard> randomList = new RandomizedList<>();
-        for (AbstractCard card : player.masterDeck.group)
+        final WeightedList<AbstractCard> list1 = new WeightedList<>();
+        final WeightedList<AbstractCard> list2 = new WeightedList<>();
+        for (AbstractCard card : player.masterDeck.getPurgeableCards().group)
         {
+            boolean alreadyAdded = false;
+            for (AbstractCard c : list1.GetInnerList())
+            {
+                if (c.cardID.equals(card.cardID))
+                {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+
+            int weight = 1;
             if (!GameUtilities.IsHindrance(card))
             {
-                if (basic || card.rarity != AbstractCard.CardRarity.BASIC)
-                {
-                    randomList.Add(card);
-                    basic = false;
-                }
+                weight += 2;
+            }
+            if (card.rarity != AbstractCard.CardRarity.BASIC)
+            {
+                weight += 1;
+            }
+
+            if (alreadyAdded)
+            {
+                list2.Add(card, weight);
+            }
+            else
+            {
+                list1.Add(card, weight);
             }
         }
 
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        while (group.size() < 3 && randomList.Size() > 0)
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+        while (group.size() < CHOOSE_SIZE && list1.Size() > 0)
         {
-            group.addToBottom(randomList.Retrieve(rng, true));
+            group.group.add(list1.Retrieve(rng, true));
+        }
+        while (group.size() < CHOOSE_SIZE && list2.Size() > 0)
+        {
+            group.group.add(list2.Retrieve(rng, true));
         }
 
-        GameActions.Top.SelectFromPile(name, 2, group)
+        GameActions.Top.SelectFromPile(name, CHOOSE_AMOUNT, group)
         .SetOptions(false, false)
         .CancellableFromPlayer(false)
         .AddCallback(cards ->

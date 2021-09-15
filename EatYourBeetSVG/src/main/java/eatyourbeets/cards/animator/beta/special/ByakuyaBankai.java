@@ -42,7 +42,7 @@ public class ByakuyaBankai extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing) {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         int stacks = GameUtilities.UseXCostEnergy(this);
 
         for (int i = 0; i < stacks; i++) {

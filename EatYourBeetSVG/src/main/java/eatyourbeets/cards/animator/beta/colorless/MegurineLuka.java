@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,7 +25,7 @@ public class MegurineLuka extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
@@ -41,7 +38,7 @@ public class MegurineLuka extends AnimatorCard
                         GameActions.Bottom.ModifyTag(card,HARMONIC,true);
                     }
                 });
-        if (isSynergizing && last != null && last.cardID.equals(HatsuneMiku.DATA.ID) && CombatStats.TryActivateLimited(cardID)) {
+        if (info.IsSynergizing && last != null && last.cardID.equals(HatsuneMiku.DATA.ID) && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.ModifyTag(player.discardPile,999,HARMONIC,true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null);
         }
 

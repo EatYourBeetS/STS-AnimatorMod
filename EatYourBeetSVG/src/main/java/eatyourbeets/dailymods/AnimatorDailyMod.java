@@ -6,8 +6,10 @@ import com.megacrit.cardcrawl.localization.RunModStrings;
 
 public class AnimatorDailyMod extends AbstractDailyMod {
 
+    private static final String TESTIMAGE = "draft.png";
+
     public AnimatorDailyMod(String modID, boolean positive) {
-        super(modID, "", "", modID+".png", positive);
+        super(modID, "", "", TESTIMAGE, positive);
 
         String ID = modID;
         RunModStrings modStrings = CardCrawlGame.languagePack.getRunModString(ID);

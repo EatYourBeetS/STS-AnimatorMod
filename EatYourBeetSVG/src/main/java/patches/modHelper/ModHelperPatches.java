@@ -12,17 +12,13 @@ public class ModHelperPatches {
     @SpirePatch(clz = ModHelper.class, method = "initialize")
     public static class ModHelperPatches_Initialize
     {
-        private static MethodInfo.T1<String, AbstractDailyMod> addStarterMod;
-        private static MethodInfo.T1<String, AbstractDailyMod> addGenericMod;
-        private static MethodInfo.T1<String, AbstractDailyMod> addDifficultyMod;
+        private static MethodInfo.T1<String, AbstractDailyMod> addStarterMod = JUtils.GetMethod("addStarterMod", ModHelper.class, AbstractDailyMod.class);
+        private static MethodInfo.T1<String, AbstractDailyMod> addGenericMod = JUtils.GetMethod("addGenericMod", ModHelper.class, AbstractDailyMod.class);
+        private static MethodInfo.T1<String, AbstractDailyMod> addDifficultyMod = JUtils.GetMethod("addDifficultyMod", ModHelper.class, AbstractDailyMod.class);
 
         @SpirePostfixPatch
         public static void Insert(ModHelper __instance)
         {
-            addStarterMod = JUtils.GetMethod("addStarterMod", ModHelper.class, AbstractDailyMod.class);
-            addGenericMod = JUtils.GetMethod("addGenericMod", ModHelper.class, AbstractDailyMod.class);
-            addDifficultyMod = JUtils.GetMethod("addDifficultyMod", ModHelper.class, AbstractDailyMod.class);
-
             //Add mods here to get them to show up in the custom games screen
             addStarterMod.Invoke(__instance, new SeriesDeck());
         }

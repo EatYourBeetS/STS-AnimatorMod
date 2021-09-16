@@ -70,4 +70,17 @@ public class MethodInfo
             super(methodName, type, p1, p2);
         }
     }
+
+    public static class T3<Result, P1, P2, P3> extends MethodInfo
+    {
+        public Result Invoke(Object instance, P1 p1, P2 p2, P3 p3)
+        {
+            return (Result) super.InvokeInternal(instance, p1, p2, p3);
+        }
+
+        public T3(String methodName, Class<?> type, Class<P1> p1, Class<P2> p2, Class<P3> p3)
+        {
+            super(methodName, type, p1, p2, p3);
+        }
+    }
 }

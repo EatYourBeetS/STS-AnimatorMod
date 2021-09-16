@@ -9,7 +9,8 @@ import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.MethodInfo;
 
 public class ModHelperPatches {
-    @SpirePatch(clz = ModHelper.class, method = "initialize")
+
+    @SpirePatch(clz = ModHelper.class, method = SpirePatch.STATICINITIALIZER)
     public static class ModHelperPatches_Initialize
     {
         private static MethodInfo.T1<String, AbstractDailyMod> addStarterMod = JUtils.GetMethod("addStarterMod", ModHelper.class, AbstractDailyMod.class);
@@ -17,10 +18,10 @@ public class ModHelperPatches {
         private static MethodInfo.T1<String, AbstractDailyMod> addDifficultyMod = JUtils.GetMethod("addDifficultyMod", ModHelper.class, AbstractDailyMod.class);
 
         @SpirePostfixPatch
-        public static void Insert(ModHelper __instance)
+        public static void Postfix()
         {
             //Add mods here to get them to show up in the custom games screen
-            addStarterMod.Invoke(__instance, new SeriesDeck());
+            addStarterMod.Invoke(null, new SeriesDeck());
         }
     }
 }

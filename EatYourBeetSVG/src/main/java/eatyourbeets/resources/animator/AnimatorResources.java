@@ -105,6 +105,7 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(PotionStrings.class);
         LoadCustomStrings(MonsterStrings.class);
         LoadCustomStrings(BlightStrings.class);
+        LoadCustomStrings(RunModStrings.class);
     }
 
     @Override

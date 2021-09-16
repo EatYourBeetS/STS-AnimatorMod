@@ -29,6 +29,7 @@ public abstract class AbstractAttribute
     public static boolean leftAlign;
 
     public Texture icon;
+    public Texture largeIcon;
     public ColoredString mainText;
     public String iconTag;
     public String suffix;
@@ -45,6 +46,13 @@ public abstract class AbstractAttribute
     public AbstractAttribute SetIcon(Texture icon)
     {
         this.icon = icon;
+
+        return this;
+    }
+
+    public AbstractAttribute SetLargeIcon(Texture icon)
+    {
+        this.largeIcon = icon;
 
         return this;
     }
@@ -82,6 +90,7 @@ public abstract class AbstractAttribute
         this.suffix = null;
         this.iconTag = null;
         this.icon = null;
+        this.largeIcon = null;
         this.mainText = null;
 
         return this;
@@ -121,7 +130,7 @@ public abstract class AbstractAttribute
             RenderHelpers.DrawOnCardAuto(sb, card, panel.texture, new Vector2(sign * cw * 0.33f, y), b_w, b_h, panel.color, panel.color.a * card.transparency, 1, 0, leftAlign, false);
         }
 
-        RenderHelpers.DrawOnCardAuto(sb, card, icon, icon_x, y, 48, 48);
+        RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? largeIcon : icon, icon_x, y, 48, 48);
         RenderHelpers.WriteOnCard(sb, card, largeFont, mainText.text, text_x - (sign * text_width * 0.5f), y, mainText.color, true);
         
         if (suffix != null)

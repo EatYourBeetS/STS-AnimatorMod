@@ -10,6 +10,7 @@ public class BlockAttribute extends AbstractAttribute
     public AbstractAttribute SetCard(EYBCard card)
     {
         icon = card.cardData.BlockScalingAttack ? ICONS.BlockScaling.Texture() : ICONS.Block.Texture();
+        largeIcon = card.cardData.BlockScalingAttack ? ICONS.BlockScaling_L.Texture() : ICONS.Block_L.Texture();
         iconTag = null;
         suffix = null;
         mainText = card.GetBlockString();

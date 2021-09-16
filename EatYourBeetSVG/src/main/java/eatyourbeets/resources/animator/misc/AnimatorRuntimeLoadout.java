@@ -156,12 +156,12 @@ public class AnimatorRuntimeLoadout
     {
         Map<String, AbstractCard> cards = new HashMap<>();
 
-        if (series != null && series != CardSeries.ANY)
+        if (series != null && series != CardSeries.COLORLESS)
         {
             for (AbstractCard card : CardLibrary.getAllCards())
             {
                 AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
-                if (c != null && card.color == GR.Animator.CardColor && series.equals(c.series)
+                if (c != null && card.color == GR.Animator.CardColor && (series.equals(c.series) || series.equals(CardSeries.ANY))
                     && card.rarity != AbstractCard.CardRarity.SPECIAL
                     && card.rarity != AbstractCard.CardRarity.BASIC)
                 {

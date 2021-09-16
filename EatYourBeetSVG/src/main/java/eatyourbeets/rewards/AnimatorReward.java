@@ -65,7 +65,7 @@ public abstract class AnimatorReward extends CustomReward
     {
         final RewardContext context = new RewardContext(series);
         final WeightedList<AbstractCard> randomPool = new WeightedList<>();
-        if (series != null && series != CardSeries.ANY)
+        if (series != null && series != CardSeries.COLORLESS)
         {
             AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
             AddCards(AbstractDungeon.srcUncommonCardPool, randomPool, context);
@@ -103,13 +103,13 @@ public abstract class AnimatorReward extends CustomReward
         for (AbstractCard c : pool.group)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && (series.Equals(card.series) || CardSeries.ANY.equals(series)))
+            if (card != null)
             {
-                if (CardSeries.ANY.equals(series)) // colorless
+                if (CardSeries.COLORLESS.equals(series)) // colorless
                 {
                     cards.Add(card, card.rarity == AbstractCard.CardRarity.UNCOMMON ? 8 : 2);
                 }
-                else if (series.equals(card.series))
+                else if (series.Equals(card.series) || CardSeries.ANY.equals(series))
                 {
                     int weight = context.GetRarityWeight(card.rarity);
                     if (weight > 0)

@@ -9,6 +9,7 @@ public class HPAttribute extends AbstractAttribute
     public HPAttribute()
     {
         this.icon = ICONS.HP.Texture();
+        this.largeIcon = ICONS.HP_L.Texture();
     }
 
     @Override

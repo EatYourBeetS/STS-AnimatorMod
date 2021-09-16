@@ -19,6 +19,7 @@ import eatyourbeets.cards.base.EYBCardAffinityStatistics;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.*;
@@ -39,7 +40,11 @@ public class MissingPieceReward extends AnimatorReward
     {
         if (series.ID == CardSeries.ANY.ID)
         {
-            return "#yColorless";
+            return JUtils.ModifyString(GR.Animator.Strings.Series.RandomSeries, w -> "#y" + w);
+        }
+        else if (series.ID == CardSeries.COLORLESS.ID)
+        {
+            return JUtils.ModifyString(GR.Animator.Strings.Series.Colorless, w -> "#y" + w);
         }
         else
         {
@@ -54,10 +59,10 @@ public class MissingPieceReward extends AnimatorReward
         this.series = series;
         this.cards = GenerateCardReward(series);
 
-        if (series == CardSeries.ANY)
+        if (series == CardSeries.COLORLESS)
         {
             statistics = new EYBCardAffinityStatistics(AbstractDungeon.srcColorlessCardPool.group, false);
-            loadout = null;
+            loadout = new AnimatorRuntimeLoadout(new _FakeLoadout());
             return;
         }
 

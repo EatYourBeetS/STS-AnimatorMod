@@ -9,6 +9,7 @@ public class TempHPAttribute extends AbstractAttribute
     public TempHPAttribute()
     {
         this.icon = ICONS.TempHP.Texture();
+        this.largeIcon = ICONS.TempHP_L.Texture();
     }
 
     @Override

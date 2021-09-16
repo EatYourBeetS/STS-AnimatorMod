@@ -61,6 +61,8 @@ public class AnimatorStrings
         private final UIStrings Strings = GetUIStrings("Series");
 
         public final String Series = Strings.EXTRA_TEXT[0];
+        public final String RandomSeries = Strings.EXTRA_TEXT[1];
+        public final String Colorless = Strings.EXTRA_TEXT[2];
 
         public final String SeriesName(int seriesID)
         {

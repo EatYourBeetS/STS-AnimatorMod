@@ -255,6 +255,14 @@
 		]
 	},
 
+	"animator:SeriesUI":
+	{
+		"TEXT":
+		[
+			"Series"
+		]
+	},
+
    "animator:CardMods":
    {
 	"TEXT":

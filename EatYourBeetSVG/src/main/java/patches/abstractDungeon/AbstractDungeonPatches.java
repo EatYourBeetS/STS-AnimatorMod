@@ -1,21 +1,20 @@
 package patches.abstractDungeon;
 
 import basemod.BaseMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
+import eatyourbeets.dailymods.SeriesDeck;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterInfo;
@@ -25,6 +24,7 @@ import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
@@ -61,6 +61,27 @@ public class AbstractDungeonPatches
             }
 
             return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = AbstractDungeon.class, method = "initializeRelicList")
+    public static class AbstractDungeonPatches_InitializeRelicList
+    {
+        @SpireInsertPatch(locator = Locator.class)
+        public static void Prefix(AbstractDungeon __instance)
+        {
+            if (ModHelper.isModEnabled(SeriesDeck.ID)) {
+                AbstractDungeon.relicsToRemoveOnStart.add("Pandora's Box");
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception
+            {
+                Matcher matcher = new Matcher.MethodCallMatcher(ModHelper.class, "isModEnabled");
+                return new int[]{ LineFinder.findInOrder(ctBehavior, matcher)[0] - 1 };
+            }
         }
     }
 

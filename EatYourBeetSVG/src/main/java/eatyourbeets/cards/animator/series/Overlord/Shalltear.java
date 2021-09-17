@@ -8,6 +8,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -62,6 +63,9 @@ public class Shalltear extends AnimatorCard
             final int amount = Math.min(secondaryValue, power.amount);
             GameActions.Bottom.GainCorruption(amount);
             power.reducePower(amount);
+        }
+        else {
+            GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
         }
     }
 }

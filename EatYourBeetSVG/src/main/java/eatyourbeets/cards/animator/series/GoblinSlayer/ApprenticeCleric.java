@@ -59,7 +59,7 @@ public class ApprenticeCleric extends AnimatorCard
         }
 
         GameActions.Bottom.IncreaseScaling(p.hand, BaseMod.MAX_HAND_SIZE, Affinity.Light, 1)
-        .SetFilter(c -> (GameUtilities.HasRedAffinity(c) || GameUtilities.HasGreenAffinity(c)) && buffs.getOrDefault(c.uuid, 0) < magicNumber)
+        .SetFilter(c -> (GameUtilities.HasRedAffinity(c) || GameUtilities.HasOrangeAffinity(c) || GameUtilities.HasGreenAffinity(c)) && buffs.getOrDefault(c.uuid, 0) < magicNumber)
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

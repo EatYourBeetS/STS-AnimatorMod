@@ -7,6 +7,7 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 
 public class ChihayaOhtori extends AnimatorCard
@@ -22,7 +23,7 @@ public class ChihayaOhtori extends AnimatorCard
         Initialize(12, 0, 3, 3);
         SetUpgrade(0, 0, -2);
         SetAffinity_Green(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Orange(1, 0, 3);
     }
 
     @Override
@@ -31,14 +32,6 @@ public class ChihayaOhtori extends AnimatorCard
         super.atTurnStart();
 
         Refresh(null);
-    }
-
-    @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
-    {
-        super.triggerOnOtherCardPlayed(c);
-
-        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override
@@ -88,6 +81,11 @@ public class ChihayaOhtori extends AnimatorCard
     public void RefreshCost()
     {
         int orange = GetHandAffinity(Affinity.Orange, false);
-        CostModifiers.For(this).Set(-1*(orange / magicNumber));
+        if (WillpowerStance.IsActive()) {
+            CostModifiers.For(this).Set(-1);
+        }
+        else {
+            CostModifiers.For(this).Set(0);
+        }
     }
 }

@@ -18,15 +18,15 @@ public class Mayuri extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 4, 2, 1);
+        Initialize(7, 3, 2, 1);
         SetUpgrade(3, 1, 0);
-        SetAffinity_Light(1, 1, 1);
+        SetAffinity_Light(1, 1, 2);
     }
 
     @Override
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        return other.tags.contains(CardTags.STARTER_DEFEND);
+        return other.rarity.equals(CardRarity.BASIC);
     }
 
     @Override

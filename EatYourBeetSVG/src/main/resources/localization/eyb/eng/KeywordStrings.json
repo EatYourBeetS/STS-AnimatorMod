@@ -366,6 +366,12 @@
 	  "NAMES": ["rejuvenation"],
 	  "PROPER_NAME": "Rejuvenation"
 	},
+	"Replace":
+	{
+		"DESCRIPTION": "Exhaust a card and create another card in its place.",
+		"NAMES": ["replace"],
+		"PROPER_NAME": "Replace"
+	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",

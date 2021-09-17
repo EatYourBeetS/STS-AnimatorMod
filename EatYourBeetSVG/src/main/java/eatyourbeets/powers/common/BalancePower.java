@@ -8,7 +8,7 @@ import eatyourbeets.powers.CommonPower;
 public class BalancePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(BalancePower.class);
-    public static final float MULTIPLIER = 12.5f;
+    public static final float MULTIPLIER = 10f;
     private float percentage;
 
     public BalancePower(AbstractCreature owner, int amount)

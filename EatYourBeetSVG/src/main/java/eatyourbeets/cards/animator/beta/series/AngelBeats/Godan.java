@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
@@ -26,7 +25,8 @@ public class Godan extends AnimatorCard
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 1, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Godan extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Light) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

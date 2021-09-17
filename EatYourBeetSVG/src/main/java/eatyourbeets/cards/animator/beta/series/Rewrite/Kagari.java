@@ -90,7 +90,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
-                GameActions.Bottom.GainWillpower(willpowerAmount, player.stance.ID.equals(WillpowerStance.STANCE_ID));
+                GameActions.Bottom.GainWillpower(willpowerAmount + (player.stance.ID.equals(WillpowerStance.STANCE_ID) ? 1 : 0), player.stance.ID.equals(WillpowerStance.STANCE_ID));
                 GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, shacklesAmount);
                 this.amount -= 1;
                 updateDescription();

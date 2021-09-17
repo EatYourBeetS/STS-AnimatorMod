@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -11,13 +12,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL, true).SetSeriesFromClassPackage();
 
     public SougenEsaka()
     {
         super(DATA);
 
-        Initialize(2, 4, 1);
+        Initialize(2, 3, 1);
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
 
@@ -32,7 +33,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Red)) {
+        if (CheckAffinity(Affinity.Red) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
             GameUtilities.RetainPower(Affinity.Orange);
         }
 

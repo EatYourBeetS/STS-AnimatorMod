@@ -17,7 +17,7 @@ public class KotoriItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
     public static final int THRESHOLD = 12;
-    public static final int BURNING_ATTACK_BONUS = 10;
+    public static final int BURNING_ATTACK_BONUS = 15;
 
     public KotoriItsuka()
     {
@@ -27,6 +27,7 @@ public class KotoriItsuka extends AnimatorCard
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Blue(0, 0, 1);
     }
 
     @Override

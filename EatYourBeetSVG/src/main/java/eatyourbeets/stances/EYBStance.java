@@ -9,10 +9,14 @@ import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.stance.StanceAura;
+import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
@@ -26,6 +30,7 @@ public abstract class EYBStance extends AbstractStance
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
     protected final StanceStrings strings;
+    public final Affinity affinity;
 
     public static void Initialize()
     {
@@ -34,12 +39,16 @@ public abstract class EYBStance extends AbstractStance
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
         stances.put(WillpowerStance.STANCE_ID, WillpowerStance::new);
+        stances.put(BlessingStance.STANCE_ID, BlessingStance::new);
+        stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
 
         tooltips.clear();
         tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
         tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
         tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
         tooltips.put(WillpowerStance.STANCE_ID, GR.Tooltips.WillpowerStance);
+        tooltips.put(BlessingStance.STANCE_ID, GR.Tooltips.BlessingStance);
+        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
@@ -63,16 +72,17 @@ public abstract class EYBStance extends AbstractStance
         return new Color(MathUtils.random(r1, r2), MathUtils.random(g1, g2), MathUtils.random(b1, b2), 0);
     }
 
-    protected abstract void QueueParticle();
-    protected abstract void QueueAura();
+    protected abstract Color GetAuraColor();
+    protected abstract Color GetParticleColor();
     protected abstract Color GetMainColor();
 
-    protected EYBStance(String id, AbstractCreature owner)
+    protected EYBStance(String id, Affinity affinity, AbstractCreature owner)
     {
         this.ID = id;
         this.strings = GR.GetStanceString(id);
         this.name = strings.NAME;
         this.owner = owner;
+        this.affinity = affinity;
 
         updateDescription();
     }
@@ -117,6 +127,20 @@ public abstract class EYBStance extends AbstractStance
         CardCrawlGame.sound.play("STANCE_ENTER_CALM");
         sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
         GameEffects.Queue.Add(new BorderFlashEffect(GetMainColor(), true));
+
+        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
+
+        if (TryApplyStance(ID))
+        {
+            for (Affinity af : Affinity.Basic()) {
+                if (af.equals(affinity)) {
+                    CombatStats.Affinities.GetPower(af).Retain(-1, false);
+                }
+                else {
+                    CombatStats.Affinities.GetPower(af).SetEnabled(false);
+                }
+            }
+        }
     }
 
     @Override
@@ -125,11 +149,23 @@ public abstract class EYBStance extends AbstractStance
         super.onExitStance();
 
         this.stopIdleSfx();
+
+        if (TryApplyStance(null))
+        {
+            for (Affinity af : Affinity.Basic()) {
+                if (af.equals(this.affinity)) {
+                    CombatStats.Affinities.GetPower(af).Retain(0, false);
+                }
+                else {
+                    CombatStats.Affinities.GetPower(af).SetEnabled(true);
+                }
+            }
+        }
     }
 
     public void onRefreshStance()
     {
-
+        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
     }
 
     @Override
@@ -140,6 +176,16 @@ public abstract class EYBStance extends AbstractStance
             CardCrawlGame.sound.stop("STANCE_LOOP_CALM", sfxId);
             sfxId = -1L;
         }
+    }
+
+    protected void QueueParticle()
+    {
+        GameEffects.Queue.Add(new StanceParticleVertical(GetParticleColor()));
+    }
+
+    protected void QueueAura()
+    {
+        GameEffects.Queue.Add(new StanceAura(GetAuraColor()));
     }
 
     protected String FormatDescription(Object... args)

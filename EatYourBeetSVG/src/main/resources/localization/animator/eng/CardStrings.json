@@ -291,7 +291,7 @@
 		},
 		"animator:SosukeAizen":
 		{
-			"DESCRIPTION": "Gain {Phasing} X times. || Gain !M! [Counter-Attack]. [Counter-Attack] is not removed this combat.",
+			"DESCRIPTION": "Gain [Phasing] X times. || Gain !M! [Counter-Attack]. [Counter-Attack] is not removed this combat.",
 			"EXTENDED_DESCRIPTION": ["Whenever you take 0 attack damage this turn, deal #b{0} damage to the attacking enemy."],
 			"NAME": "Sosuke Aizen"
 		},
@@ -413,6 +413,11 @@
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns: Play ALL Defends twice."],
 			"NAME": "Jet Black"
 		},
+		"animator:KaedeAkamatsu":
+		{
+			"DESCRIPTION": "Reduce the cost of the bottom card of your draw pile by 1 this combat.",
+			"NAME": "Kaede Akamatsu"
+		},
 		"animator:KaijiItou":
 		{
 			"DESCRIPTION": "<DRW-M>. Add {Restricted Rock}, {Restricted Paper}, and {Restricted Scissors} to your discard pile. || !A! <W>: Move one of them to your hand.",
@@ -487,9 +492,15 @@
 		},
 		"animator:NaoTomori":
 		{
-			"DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain {Phasing}. || When Exhausted: Choose 1 of !M! cards to obtain.",
+			"DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain [Phasing]. || When Exhausted: Choose 1 of !M! cards to obtain.",
 			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
 			"NAME": "Nao Tomori"
+		},
+		"animator:PhoenixWright":
+		{
+			"DESCRIPTION": "Play a card from your draw pile that counters the enemy's intent. (Hover the enemy to check what type of card will be played)",
+			"EXTENDED_DESCRIPTION": ["Play the {Attack} in your draw pile with the highest total damage.", "Play the card in your draw pile with the highest [Block].", "Play a random {Power}.", "Play the bottom card of your draw pile."],
+			"NAME": "Phoenix Wright"
 		},
 		"animator:Pyra":
 		{
@@ -511,6 +522,11 @@
 		{
 			"DESCRIPTION": "Channel !M! [Frost]. [Frost] applies half of its [Focus] as [Freezing] to a random enemy when triggered and to ALL enemies when Evoked. || Increase the reduction bonus of [Freezing] by !S!% this combat.",
 			"NAME": "Sheer Cold"
+		},
+		"animator:ShuichiSaihara":
+		{
+			"DESCRIPTION": "Exhaust a card in your hand. {Fetch} a card from your discard pile with a matching cost. || <LIM>. If there are no possible picks, add {Kaede Akamatsu} to your discard pile.",
+			"NAME": "Shuichi Saihara"
 		},
 		"animator:Simon":
 		{
@@ -2348,7 +2364,7 @@
 		},
 		"animator:MareBelloFiore":
 		{
-			"DESCRIPTION": "!A! <B>: Gain !M! [Temp HP]. || !A! <G>: Apply !S! Weak. || Channel 1 [Earth] then ** trigger all [Earth].",
+			"DESCRIPTION": "Channel 1 [Earth], then ** trigger all [Earth]. || !A! <B>: Gain !M! [Temp HP]. || !A! <G>: Apply !S! Weak.",
 			"NAME": "Mare Bello Fiore"
 		},
 		"animator:CZDelta":
@@ -2522,38 +2538,60 @@
 	{
 		"animator:Enchantment1":
 		{
-			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Choose and ** Enter any Stance.",
+			"DESCRIPTION": "Once per turn, ** exit your Stance: ** Gain !M! of that Stance's {[A-Gen] Power}.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: **  Choose and Enter any Stance, ** if you are already in the ** chosen Stance: Gain {0} [Block].",
-				"Once per turn, pay !S! [E]: **  Choose and Enter any ** Stance, then Motivate ** the bottom card of ** your draw pile.",
-				"Once per turn, ** pay !S! [E] and take ** {0} damage: Choose and ** Enter any Stance."
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <FS>: Gain !M! [F]. Otherwise, enter <FS>.",
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <AS>: Gain !M! [A]. Otherwise, enter <AS>.",
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <IS>: Gain !M! [I]. Otherwise, enter <IS>.",
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <WS>: Gain !M! [W]. Otherwise, enter <WS>.",
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <BS>: Gain !M! [B]. Otherwise, enter <BS>.",
+				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <CS>: Gain !M! [C]. Otherwise, enter <CS>.",
+				"Once per turn, ** exit your Stance: ** Boost !M! of that Stance's {[A-Gen] Power}."
 			],
 			"NAME": "Stances"
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, ** pay !S! [E]: {~Retain} ** all {[A-Gen] Powers} you ** gained this turn.",
+			"DESCRIPTION": "Once per turn, pay !S! [E]: A random {Affinity} ** has +!M! this turn.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, ** pay !S! [E]: Gain {0} [F] ** and gain !M! [Plated Armor].",
-				"Once per turn, ** pay !S! [E]: Gain {0} [A] ** and Retain !M! card(s).",
-				"Once per turn, ** pay !S! [E]: Gain {0} [I] ** and gain !M! orb slot(s).",
-				"Once per turn, ** pay !S! [E]: Gain {0} [B] ** and gain !M! [Artifact].",
-				"Once per turn, ** pay !S! [E]: Gain {0} [C] and ** convert {1} HP to !M! [Temp HP]."
+				"Once per turn, pay !S! [E]: ** Have +!M! <R> this turn.",
+				"Once per turn, pay !S! [E]: ** Have +!M! <G> this turn.",
+				"Once per turn, pay !S! [E]: ** Have +!M! <B> this turn.",
+				"Once per turn, pay !S! [E]: ** Have +!M! <O> this turn.",
+				"Once per turn, pay !S! [E]: ** Have +!M! <L> this turn.",
+				"Once per turn, pay !S! [E]: ** Have +!M! <D> this turn.",
+				"Once per turn, pay !S! [E]: ** A random {Affinity} ** has +!M! this turn."
 			],
-			"NAME": "Powers"
+			"NAME": "Affinities"
 		},
 		"animator:Enchantment3":
 		{
-			"DESCRIPTION": "Once per turn, ** pay !S! [E]: Apply !M! [Vulnerable].",
+			"DESCRIPTION": "Once per turn, pay !S! [E]: Reduce your leftmost {Common Debuff} by !M!.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Poison].",
-				"Once per turn, ** pay !S! [E]: Apply ** !M! [Vulnerable] and {0} [Weak].",
-				"Once per turn, take ** {0} [Delayed Damage]: Apply !M! [Vulnerable]."
+				"Once per turn, pay !S! [E]: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy.",
+				"Once per turn, pay !S! [E]: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy.",
+				"Once per turn, pay !S! [E]: Remove your leftmost {Common Debuff}.",
+				"Once per turn, pay !S! [E]: Remove your rightmost {Common Debuff}.",
+				"Once per turn, pay !S! [E] and lose {0} [Block]: Reduce your highest debuff by !M!."
 			],
 			"NAME": "Debuffs"
+		},
+		"animator:Enchantment4":
+		{
+			"DESCRIPTION": "Once per turn, pay !S! [E]: {~Retain} all {[A-Gen] Powers} gained this turn.",
+			"EXTENDED_DESCRIPTION":
+			[
+				"Once per turn, pay !S! [E]: Gain !M! [F] ** and !M! Temp. [Strength].",
+				"Once per turn, pay !S! [E]: Gain !M! [A] ** and !M! Temp. [Dexterity].",
+				"Once per turn, pay !S! [E]: Gain !M! [I] ** and !M! Temp. [Focus].",
+				"Once per turn, pay !S! [E]: Gain !M! [W] ** and !M! Temp. [Balance].",
+				"Once per turn, pay !S! [E]: Gain !M! [B] ** and !M! Temp. [Vitality].",
+				"Once per turn, pay !S! [E]: Gain !M! [C] ** and !M! [Energized]."
+			],
+			"NAME": "Powers"
 		}
 	},
 

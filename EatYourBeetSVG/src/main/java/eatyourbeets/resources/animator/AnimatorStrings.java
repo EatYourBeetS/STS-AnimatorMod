@@ -44,6 +44,7 @@ public class AnimatorStrings
         public final String GoldBonus_F1 = Strings.TEXT[5];
         public final String CommonUpgrade = Strings.TEXT[6];
         public final String RightClickPreview = Strings.TEXT[7];
+        public final String Enchantment = Strings.TEXT[8];
 
         public final String MaxHPBonus(int amount)
         {

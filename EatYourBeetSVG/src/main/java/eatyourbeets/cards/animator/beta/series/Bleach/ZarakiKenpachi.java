@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LoseStrengthPower;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -43,10 +44,10 @@ public class ZarakiKenpachi extends AnimatorCard
 
             this.amount = amount;
 
-            CombatStats.Affinities.Force.Retain(-1, false);
-            CombatStats.Affinities.Agility.SetEnabled(false);
-            CombatStats.Affinities.Intellect.SetEnabled(false);
-            CombatStats.Affinities.Willpower.SetEnabled(false);
+            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(+amount);
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -66,10 +67,10 @@ public class ZarakiKenpachi extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.Affinities.Force.Retain(0, false);
-            CombatStats.Affinities.Agility.SetEnabled(true);
-            CombatStats.Affinities.Intellect.SetEnabled(true);
-            CombatStats.Affinities.Willpower.SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(-amount);
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

@@ -8,7 +8,7 @@ import eatyourbeets.powers.CommonPower;
 public class BalancePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(BalancePower.class);
-    public static final int MULTIPLIER = 10;
+    public static final float MULTIPLIER = 12.5f;
     private float percentage;
 
     public BalancePower(AbstractCreature owner, int amount)
@@ -24,7 +24,7 @@ public class BalancePower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount);
+        this.description = FormatDescription(0, this.percentage);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -57,6 +57,7 @@ public class BalancePower extends CommonPower
 
     public void UpdatePercentage()
     {
+        this.percentage = MULTIPLIER * this.amount / 100f;
         CombatStats.EnemyFrailModifier -= this.percentage;
         CombatStats.EnemyLockOnModifier -= this.percentage;
         CombatStats.EnemyVulnerableModifier -= this.percentage;
@@ -64,7 +65,6 @@ public class BalancePower extends CommonPower
         CombatStats.PlayerFrailModifier -= this.percentage;
         CombatStats.PlayerVulnerableModifier -= this.percentage;
         CombatStats.PlayerWeakModifier -= this.percentage;
-        this.percentage = MULTIPLIER * this.amount / 100f;
         CombatStats.EnemyFrailModifier += this.percentage;
         CombatStats.EnemyLockOnModifier += this.percentage;
         CombatStats.EnemyVulnerableModifier += this.percentage;

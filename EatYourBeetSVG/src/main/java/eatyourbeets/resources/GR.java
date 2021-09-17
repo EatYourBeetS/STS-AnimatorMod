@@ -458,7 +458,7 @@ public class GR
         public static class Rewards
         {
             @SpireEnum public static RewardItem.RewardType SYNERGY_CARDS;
-            @SpireEnum public static RewardItem.RewardType AURA_CARDS;
+            @SpireEnum public static RewardItem.RewardType ENCHANTMENT;
             @SpireEnum public static RewardItem.RewardType SPECIAL_GOLD;
         }
 

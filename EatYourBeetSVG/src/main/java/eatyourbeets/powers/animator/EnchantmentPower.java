@@ -19,7 +19,7 @@ public class EnchantmentPower extends AnimatorClickablePower
         super(owner, relic, PowerTriggerConditionType.Special, relic.enchantment.GetPowerCost(), relic.enchantment::CanUsePower, relic.enchantment::PayPowerCost);
 
         this.enchantment = relic.enchantment;
-        this.ID += "(" + enchantment.index + "-" + enchantment.upgradeIndex + ")";
+        this.ID += "(" + enchantment.index + "-" + enchantment.auxiliaryData.form + ")";
         this.triggerCondition.requiresTarget = enchantment.requiresTarget;
         this.triggerCondition.SetOneUsePerPower(true);
         this.hideAmount = true;
@@ -52,5 +52,11 @@ public class EnchantmentPower extends AnimatorClickablePower
         super.OnUse(m);
 
         this.enchantment.UsePower(m);
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        this.enchantment.AtEndOfTurnEffect(isPlayer);
     }
 }

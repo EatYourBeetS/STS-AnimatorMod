@@ -18,6 +18,7 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.StringUtils;
 
@@ -198,11 +199,20 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     {
         final WeightedList<CardSeries> list = new WeightedList<>();
         final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.GetCardsBySynergy(player.masterDeck.group);
+        final RandomizedList<CardSeries> promotedList = new RandomizedList<>();
 
         if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {
             GR.Animator.Dungeon.AddAllLoadouts();
         }
+
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts) {
+            if (series.promoted) {
+                promotedList.Add(series.Loadout.Series);
+            }
+        }
+        final CardSeries chosenSeries = GetActualCounter() == 0 ? promotedList.Retrieve(rng) : null;
+
 
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
@@ -211,7 +221,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                 CardSeries s = series.Loadout.Series;
 
                 int weight = 2;
-                if (series.promoted && GetActualCounter() == 0) {
+                if (s.equals(chosenSeries)) {
                     weight = 999;
                 }
                 else if (synergyListMap.containsKey(s))

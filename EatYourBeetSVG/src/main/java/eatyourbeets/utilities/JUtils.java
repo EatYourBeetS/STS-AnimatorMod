@@ -540,10 +540,10 @@ public class JUtils
         GetLogger(source).warn(Format(format, values));
     }
 
-    public static <T, N> ArrayList<N> Map(T[] array, FuncT1<N, T> predicate)
+    public static <T, N> ArrayList<N> Map(List<T> list, FuncT1<N, T> predicate)
     {
         final ArrayList<N> res = new ArrayList<>();
-        for (T t : array)
+        for (T t : list)
         {
             res.add(predicate.Invoke(t));
         }

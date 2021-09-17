@@ -227,7 +227,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
     }
 
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return null;
     }

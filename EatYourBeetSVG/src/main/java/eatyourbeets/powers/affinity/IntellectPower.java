@@ -15,7 +15,7 @@ public class IntellectPower extends AbstractAffinityPower
     }
 
     @Override
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return PowerHelper.Focus;
     }

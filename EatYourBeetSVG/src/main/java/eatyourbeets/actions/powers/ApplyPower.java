@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.common.BalancePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -237,7 +238,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             power.flash();
 
-            if (amount <= 0 && IsStrengthDexterityOrFocus(power))
+            if (amount <= 0 && CanGoNegative(power))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
                 target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
@@ -284,7 +285,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             powerToApply.flash();
 
-            if (amount <= 0 && IsStrengthDexterityOrFocus(powerToApply))
+            if (amount <= 0 && CanGoNegative(powerToApply))
             {
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX,
                 target.hb.cY + target.hb.height / 2f, powerToApply.name + TEXT[3]));
@@ -416,8 +417,8 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         return false;
     }
 
-    private static boolean IsStrengthDexterityOrFocus(AbstractPower power)
+    private static boolean CanGoNegative(AbstractPower power)
     {
-        return StrengthPower.POWER_ID.equals(power.ID) || DexterityPower.POWER_ID.equals(power.ID) || FocusPower.POWER_ID.equals(power.ID);
+        return StrengthPower.POWER_ID.equals(power.ID) || DexterityPower.POWER_ID.equals(power.ID) || FocusPower.POWER_ID.equals(power.ID) || BalancePower.POWER_ID.equals(power.ID);
     }
 }

@@ -6,15 +6,24 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.powers.animator.EnchantmentPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.rewards.animator.EnchantmentReward;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 
-public abstract class EnchantableRelic extends AnimatorRelic// implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
+import java.util.ArrayList;
+
+public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiveRewardsListener // implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
 {
+    public static final int MAX_CHOICES = 3;
+    public static final int MAX_UPGRADES_PER_PATH = 100;
     public Enchantment enchantment;
 
     public EnchantableRelic(String id, RelicTier tier, LandingSound sfx)
@@ -34,7 +43,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
 
     public Integer onSave()
     {
-        return (enchantment != null) ? (enchantment.index * 10 + enchantment.upgradeIndex) : 0;
+        return (enchantment != null) ? (enchantment.index * MAX_UPGRADES_PER_PATH + enchantment.auxiliaryData.form) : 0;
     }
 
     public void onLoad(Integer index)
@@ -43,7 +52,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
         {
             JUtils.LogInfo(this, "onLoad:" + index);
 
-            ApplyEnchantment(Enchantment.GetCard(index / 10, index % 10));
+            ApplyEnchantment(Enchantment.GetCard(index / MAX_UPGRADES_PER_PATH, index % MAX_UPGRADES_PER_PATH));
         }
     }
 
@@ -70,16 +79,21 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     public CardGroup CreateUpgradeGroup()
     {
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        final RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>();
+
         if (enchantment == null)
         {
-            for (Enchantment e : Enchantment.GetCards())
-            {
-                group.group.add(e.makeCopy());
-            }
+            possiblePicks.AddAll(JUtils.Map(Enchantment.GetCards(), EYBCard::makeCopy));
         }
         else if (enchantment.canUpgrade())
         {
-            group.group.addAll(enchantment.GetUpgrades());
+            for (AbstractCard e : enchantment.GetUpgrades()) {
+                possiblePicks.Add(e);
+            }
+        }
+
+        for (int i = 0; i < MAX_CHOICES; i++) {
+            group.group.add(possiblePicks.Retrieve(rng));
         }
 
         return group;
@@ -123,5 +137,12 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
         }
 
         return copy;
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards) {
+        if (GetEnchantmentLevel() < 2) {
+            EnchantmentReward.TryAddReward(this, rewards);
+        }
     }
 }

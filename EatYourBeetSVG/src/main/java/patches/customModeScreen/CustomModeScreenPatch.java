@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -12,7 +13,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
+import eatyourbeets.dailymods.AnimatorDailyMod;
+import eatyourbeets.dailymods.SeriesDeck;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -30,11 +34,16 @@ public class CustomModeScreenPatch {
 
     private static final FieldInfo<Float> _scrollY = JUtils.GetField("scrollY", CustomModeScreen.class);
     private static final FieldInfo<Hitbox> _seedHb = JUtils.GetField("seedHb", CustomModeScreen.class);
+    private static final FieldInfo<ArrayList<CustomMod>> _modList = JUtils.GetField("modList", CustomModeScreen.class);
     private static final MethodInfo.T0<Result> _playHoverSound = JUtils.GetMethod("playHoverSound", CustomModeScreen.class);
     private static final MethodInfo.T0<Result> _playClickStartSound = JUtils.GetMethod("playClickStartSound", CustomModeScreen.class);
 
     private static final BitmapFont seriesFont = FontHelper.charDescFont;
     private static final Random RNG = new Random();
+
+    private static boolean displaySeries = false;
+
+    private static ArrayList<AnimatorDailyMod> allAnimatorMods = new ArrayList<>();
 
     private static AnimatorLoadout startingLoadout = new _FakeLoadout();
 
@@ -89,6 +98,7 @@ public class CustomModeScreenPatch {
         @SpirePostfixPatch
         public static void Postfix(CustomModeScreen __instance)
         {
+            UpdateDisplaySeries(__instance);
             UpdateSeriesArrows(__instance);
         }
     }
@@ -105,7 +115,8 @@ public class CustomModeScreenPatch {
 
         private static void RenderSeries(CustomModeScreen __instance, SpriteBatch sb)
         {
-            if (seriesleftHb == null || seriesRightHb == null || seriesHb == null)
+
+            if (seriesleftHb == null || seriesRightHb == null || seriesHb == null || !displaySeries)
             {
                 return;
             }
@@ -142,6 +153,9 @@ public class CustomModeScreenPatch {
         seriesleftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         seriesRightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         seriesHb = new Hitbox(80.0F * Settings.scale, 80.0F * Settings.scale);
+
+        InitializeAllAnimatorMods();
+        UpdateDisplaySeries(__instance);
 
         InitializeSeriesLoadout();
         UpdateSeriesArrows(__instance);
@@ -198,9 +212,15 @@ public class CustomModeScreenPatch {
         }
     }
 
+    private static void InitializeAllAnimatorMods()
+    {
+        //Don't forget to add your AnimatorDailyMod animator mod here!
+        allAnimatorMods.add(new SeriesDeck());
+    }
+
     private static void UpdateSeriesArrows(CustomModeScreen __instance)
     {
-        if (seriesleftHb == null || seriesRightHb == null || seriesHb == null)
+        if (seriesleftHb == null || seriesRightHb == null || seriesHb == null || !displaySeries)
         {
             return;
         }
@@ -279,5 +299,38 @@ public class CustomModeScreenPatch {
         seriesHb.update();
 
         startingLoadout = GR.Animator.Data.SelectedLoadout;
+    }
+
+    private static void UpdateDisplaySeries(CustomModeScreen __instance)
+    {
+        if (CardCrawlGame.chosenCharacter != null && CardCrawlGame.chosenCharacter.equals(GR.Enums.Characters.THE_ANIMATOR))
+        {
+            for (CustomMod mod : _modList.Get(__instance))
+            {
+                if (mod.selected && IsModNoDisplaySeries(mod))
+                {
+                    displaySeries = false;
+                    return;
+                }
+            }
+
+            displaySeries = true;
+            return;
+        }
+
+        displaySeries = false;
+    }
+
+    private static boolean IsModNoDisplaySeries(CustomMod mod)
+    {
+        for (AnimatorDailyMod curMod : allAnimatorMods)
+        {
+            if (curMod.modID.equals(mod.ID))
+            {
+                return curMod.noDisplaySeries;
+            }
+        }
+
+        return false;
     }
 }

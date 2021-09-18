@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -32,7 +33,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Red)) {
+        if (CheckAffinity(Affinity.Red) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
             GameUtilities.RetainPower(Affinity.Orange);
         }
 

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -10,7 +11,9 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Ainz extends AnimatorCard
@@ -79,6 +82,14 @@ public class Ainz extends AnimatorCard
         }
 
         @Override
+        public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
+            super.onChangeStance(oldStance,newStance);
+            if (newStance.ID.equals(CorruptionStance.STANCE_ID)) {
+                EnablePowers();
+            }
+        }
+
+        @Override
         public void onInitialApplication()
         {
             super.onInitialApplication();
@@ -86,6 +97,10 @@ public class Ainz extends AnimatorCard
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.9f, 1.1f);
             GameActions.Bottom.BorderLongFlash(Color.valueOf("3d0066"));
             GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
+
+            if (CorruptionStance.IsActive()) {
+                EnablePowers();
+            }
         }
 
         @Override
@@ -95,7 +110,10 @@ public class Ainz extends AnimatorCard
 
             for (Affinity a : Affinity.Basic())
             {
-                if (a != Affinity.Light)
+                if (a == Affinity.Dark && CorruptionStance.IsActive()) {
+                    GameActions.Bottom.StackAffinityPower(a, amount + 1, true);
+                }
+                else if (a != Affinity.Light)
                 {
                     GameActions.Bottom.StackAffinityPower(a, amount, true);
                 }
@@ -108,6 +126,13 @@ public class Ainz extends AnimatorCard
         public void OnUse(AbstractMonster m)
         {
             GameActions.Bottom.ChannelOrbs(Chaos::new, Ainz.CHANNEL_AMOUNT);
+        }
+
+        private void EnablePowers() {
+            CombatStats.Affinities.GetPower(Affinity.Red).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Blue).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Orange).SetEnabled(true);
         }
     }
 }

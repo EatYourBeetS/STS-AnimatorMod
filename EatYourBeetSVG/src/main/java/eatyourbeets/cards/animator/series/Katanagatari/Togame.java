@@ -14,7 +14,7 @@ public class Togame extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Orange), true));
 
     public Togame()
     {
@@ -23,7 +23,8 @@ public class Togame extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Orange(1, 1, 0);
 
         SetExhaust(true);
     }

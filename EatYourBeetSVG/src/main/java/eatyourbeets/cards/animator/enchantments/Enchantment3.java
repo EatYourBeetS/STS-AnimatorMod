@@ -4,60 +4,55 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.ListSelection;
+
+import java.util.Comparator;
 
 public class Enchantment3 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment3.class);
     public static final int INDEX = 3;
-    public static final int UP1_POISON = 3;
-    public static final int UP2_WEAK = 1;
-    public static final int UP3_TAKE_DAMAGE = 4;
+    public static final int UP5_BLOCK = 3;
 
     public Enchantment3()
     {
         super(DATA, INDEX);
 
         Initialize(0, 0, 1, 1);
-
-        requiresTarget = true;
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (upgradeIndex == 2)
+        if (auxiliaryData.form == 3 || auxiliaryData.form == 4)
         {
-            upgradeMagicNumber(+1);
-            upgradeSecondaryValue(+1);
+            upgradeSecondaryValue(1);
         }
-        else if (upgradeIndex == 3)
+        else if (auxiliaryData.form == 5)
         {
-            upgradeSecondaryValue(-1);
+            upgradeMagicNumber(1);
         }
     }
 
     @Override
     public int GetMaxUpgradeIndex()
     {
-        return 3;
+        return 5;
     }
 
     @Override
     protected String GetRawDescription()
     {
-        switch (upgradeIndex)
-        {
-            case 1: return super.GetRawDescription(UP1_POISON);
-            case 2: return super.GetRawDescription(UP2_WEAK);
-            case 3: return super.GetRawDescription(UP3_TAKE_DAMAGE);
-            default: return super.GetRawDescription();
+        if (auxiliaryData.form == 5) {
+            return super.GetRawDescription(UP5_BLOCK);
         }
+        return super.GetRawDescription();
     }
 
     @Override
     public boolean CanUsePower(int cost)
     {
-        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetHP(player, true, true) > UP3_TAKE_DAMAGE));
+        return super.CanUsePower(cost) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
     }
 
     @Override
@@ -65,24 +60,37 @@ public class Enchantment3 extends Enchantment
     {
         super.PayPowerCost(cost);
 
-        if (upgradeIndex == 3)
+        if (auxiliaryData.form == 5)
         {
-            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, UP3_TAKE_DAMAGE);
+            GameActions.Bottom.LoseBlock(UP5_BLOCK);
         }
     }
 
     @Override
     public void UsePower(AbstractMonster m)
     {
-        GameActions.Bottom.ApplyVulnerable(player, m, magicNumber);
-
-        if (upgradeIndex == 1)
-        {
-            GameActions.Bottom.ApplyPoison(player, m, UP1_POISON);
-        }
-        else if (upgradeIndex == 2)
-        {
-            GameActions.Bottom.ApplyWeak(player, m, UP2_WEAK);
+        switch (auxiliaryData.form) {
+            case 0:
+                GameActions.Bottom.ReduceCommonDebuffs(player, magicNumber).SetSelection(ListSelection.First(0), 1);
+                return;
+            case 1:
+            case 2:
+                GameActions.Bottom.ReduceCommonDebuffs(player, magicNumber).SetSelection(auxiliaryData.form == 1 ? ListSelection.First(0) : ListSelection.Last(0), 1).AddCallback(po -> {
+                    if (po.size() > 0) {
+                        for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
+                            GameActions.Bottom.ApplyPower(player,mo,po.get(0));
+                        }
+                    }
+                });
+                return;
+            case 3:
+            case 4:
+                GameActions.Bottom.RemoveCommonDebuffs(player, auxiliaryData.form == 3 ? ListSelection.First(0) : ListSelection.Last(0), 1);
+                return;
+            case 5:
+                GameActions.Bottom.ReduceDebuffs(player, magicNumber)
+                        .SetSelection(ListSelection.First(0), 1)
+                        .Sort(Comparator.comparingInt(a -> -a.amount));
         }
     }
 }

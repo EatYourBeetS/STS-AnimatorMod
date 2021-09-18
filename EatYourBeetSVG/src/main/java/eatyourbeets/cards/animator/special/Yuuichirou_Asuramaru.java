@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou_Asuramaru extends AnimatorCard
@@ -18,7 +20,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 2, 5);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
@@ -36,12 +38,15 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new DemonFormPower(p, secondaryValue));
-        GameActions.Bottom.GainIntellect(magicNumber);
-        GameActions.Bottom.GainAgility(magicNumber);
-        GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.GainWillpower(magicNumber);
+        GameActions.Bottom.StackPower(new DemonFormPower(p, magicNumber));
+        GameActions.Bottom.GainForce(magicNumber,true);
+        GameActions.Bottom.GainIntellect(magicNumber,true);
+        GameActions.Bottom.GainCorruption(magicNumber,true);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
+
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Dark) >= secondaryValue) {
+            GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
+        }
     }
 }

@@ -41,7 +41,8 @@ public class MayuriKurotsuchi extends AnimatorCard {
                     int poisonThreshold = 30;
 
                     if (GameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID) >= poisonThreshold) {
-                        ApplyRandomCommonDebuff(enemy);
+                        GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
+                                .ShowEffect(false, true);
                     }
                 });
     }
@@ -52,29 +53,6 @@ public class MayuriKurotsuchi extends AnimatorCard {
 
         if (cardText != null) {
             tooltips.add(CommonDebuffs);
-        }
-    }
-
-    private void ApplyRandomCommonDebuff(AbstractMonster m) {
-        int random = GameUtilities.GetRNG().random(0, 3);
-
-        switch (random) {
-            case 0:
-                //Apply Weak
-                GameActions.Bottom.ApplyWeak(TargetHelper.Normal(m), secondaryValue);
-                break;
-            case 1:
-                //Apply Vulnerable
-                GameActions.Bottom.ApplyVulnerable(TargetHelper.Normal(m), secondaryValue);
-                break;
-            case 2:
-                //Apply Burning
-                GameActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
-                break;
-            default:
-                //Apply Shackles
-                GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
-                break;
         }
     }
 }

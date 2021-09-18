@@ -15,19 +15,23 @@ public class DamageAttribute extends AbstractAttribute
         {
             case Elemental:
                 icon = ICONS.Elemental.Texture();
+                largeIcon = ICONS.Elemental_L.Texture();
                 break;
 
             case Piercing:
                 icon = ICONS.Piercing.Texture();
+                largeIcon = ICONS.Piercing_L.Texture();
                 break;
 
             case Ranged:
                 icon = ICONS.Ranged.Texture();
+                largeIcon = ICONS.Ranged_L.Texture();
                 break;
 
             case Normal:
             default:
                 icon = ICONS.Damage.Texture();
+                largeIcon = ICONS.Damage_L.Texture();
                 break;
         }
 

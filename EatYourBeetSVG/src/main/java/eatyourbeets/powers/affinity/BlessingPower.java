@@ -15,7 +15,7 @@ public class BlessingPower extends AbstractAffinityPower
     }
 
     @Override
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return PowerHelper.Vitality;
     }

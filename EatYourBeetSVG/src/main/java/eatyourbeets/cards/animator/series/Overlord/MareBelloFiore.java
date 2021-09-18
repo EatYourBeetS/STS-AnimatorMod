@@ -3,9 +3,11 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class MareBelloFiore extends AnimatorCard
 {
@@ -17,7 +19,7 @@ public class MareBelloFiore extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 2);
+        Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(2);
@@ -31,34 +33,19 @@ public class MareBelloFiore extends AnimatorCard
     }
 
     @Override
-    public void OnDrag(AbstractMonster m)
+    public AbstractAttribute GetSpecialInfo()
     {
-        super.OnDrag(m);
-
-        if (m != null && CheckAffinity(Affinity.Green))
-        {
-            GameUtilities.GetIntent(m).AddWeak();
-        }
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        SetAttackTarget(CheckAffinity(Affinity.Green) ? EYBCardTarget.Normal : EYBCardTarget.None);
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Blue))
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+
+        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-        }
-        if (CheckAffinity(Affinity.Green))
-        {
-            GameActions.Bottom.ApplyWeak(p, m, secondaryValue);
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
         }
 
         GameActions.Bottom.ChannelOrb(new Earth());

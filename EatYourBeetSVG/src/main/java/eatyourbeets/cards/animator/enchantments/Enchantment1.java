@@ -2,24 +2,17 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
-import eatyourbeets.utilities.CardSelection;
+import eatyourbeets.stances.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Enchantment1 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment1.class);
     public static final int INDEX = 1;
-    public static final int UP1_GAIN_BLOCK = 6;
-    public static final int UP3_TAKE_DAMAGE = 3;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
     private static final float D_X = CardGroup.DRAW_PILE_X * 1.5f;
@@ -29,85 +22,75 @@ public class Enchantment1 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 0, 2);
-    }
-
-    @Override
-    protected String GetRawDescription()
-    {
-        return upgradeIndex == 1 ? super.GetRawDescription(UP1_GAIN_BLOCK)
-             : upgradeIndex == 3 ? super.GetRawDescription(UP3_TAKE_DAMAGE)
-             : super.GetRawDescription();
+        Initialize(0, 0, 1, 3);
     }
 
     @Override
     public int GetMaxUpgradeIndex()
     {
-        return 3;
+        return 7;
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (upgradeIndex == 1)
+        if (auxiliaryData.form < 7)
         {
-            upgradeMagicNumber(UP1_GAIN_BLOCK);
-        }
-        else if (upgradeIndex == 3)
-        {
-            upgradeSecondaryValue(-1);
-            upgradeMagicNumber(UP3_TAKE_DAMAGE);
+            upgradeMagicNumber(2);
         }
     }
 
     @Override
     public boolean CanUsePower(int cost)
     {
-        return super.CanUsePower(cost) && (upgradeIndex != 3 || (GameUtilities.GetHP(player, true, false) > magicNumber));
+        return !GameUtilities.InStance(NeutralStance.STANCE_ID) || (IsStanceSpecific() && super.CanUsePower(cost));
     }
 
     @Override
     public void PayPowerCost(int cost)
     {
-        super.PayPowerCost(cost);
-
-        if (upgradeIndex == 3)
-        {
-            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.NONE);
+        if (GameUtilities.InStance(NeutralStance.STANCE_ID) && IsStanceSpecific()) {
+            super.PayPowerCost(cost);
         }
     }
 
     @Override
     public void UsePower(AbstractMonster m)
     {
-        if (choices.TryInitialize(this))
-        {
-            choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-        }
-
-        choices.Select(1, null)
-        .AddCallback(player.stance.ID, (stance, cards) ->
-        {
-            if (upgradeIndex == 1 && cards.size() > 0 && cards.get(0).cardID.equals(stance))
-            {
-                GameActions.Bottom.GainBlock(magicNumber);
-            }
-        });
-
-        if (upgradeIndex == 2)
-        {
-            GameActions.Bottom.SelectFromPile(name, 1, player.drawPile)
-            .SetOptions(CardSelection.Bottom, false)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
+        GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
+                .AddCallback((stance) ->
                 {
-                    GameActions.Bottom.Motivate(cards.get(0), 1)
-                    .AddCallback(c -> GameEffects.List.ShowCardBriefly(c.makeStatEquivalentCopy(), D_X, D_Y));
-                }
-            });
+                    if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && stance instanceof EYBStance)
+                    {
+                        if (IsStanceSpecific() && !stance.ID.equals(GetStanceID())) {
+                            GameActions.Bottom.ChangeStance(GetStanceID());
+                        }
+                        else {
+                            GameActions.Bottom.StackAffinityPower(((EYBStance) stance).affinity, magicNumber, auxiliaryData.form == 7);
+                        }
+                    }
+                });
+    }
+
+    protected boolean IsStanceSpecific() {
+        return auxiliaryData.form > 0 && auxiliaryData.form < 7;
+    }
+
+    protected String GetStanceID() {
+        switch(auxiliaryData.form) {
+            case 1:
+                return ForceStance.STANCE_ID;
+            case 2:
+                return AgilityStance.STANCE_ID;
+            case 3:
+                return IntellectStance.STANCE_ID;
+            case 4:
+                return WillpowerStance.STANCE_ID;
+            case 5:
+                return BlessingStance.STANCE_ID;
+            case 6:
+                return CorruptionStance.STANCE_ID;
         }
+        return NeutralStance.STANCE_ID;
     }
 }

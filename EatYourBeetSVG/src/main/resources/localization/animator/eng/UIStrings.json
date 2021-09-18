@@ -73,11 +73,15 @@
 			"Dr. Stone",
 			"Kaiji",
 			"Trigun",
-			"Panty & Stocking with Garterbelt"
+			"Panty & Stocking with Garterbelt",
+			"Danganronpa",
+			"Phoenix Wright Ace Attorney"
 		],
 		"EXTRA_TEXT":
 		[
-			"Series"
+			"Series",
+			"Random Series",
+			"Colorless"
 		]
 	},
 
@@ -162,7 +166,8 @@
 			"+{0} Max HP",
 			"+{0} Gold",
 			"Common Upgrade",
-			"#pRight-Click to preview."
+			"#pRight-Click to preview.",
+			"Living Picture Upgrade"
 		]
 	},
 

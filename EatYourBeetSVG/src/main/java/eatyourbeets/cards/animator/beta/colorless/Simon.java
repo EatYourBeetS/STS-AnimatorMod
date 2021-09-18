@@ -24,6 +24,7 @@ public class Simon extends AnimatorCard
 
         SetExhaust(true);
         SetUnique(true,true);
+        SetProtagonist(true);
     }
 
     @Override

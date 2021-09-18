@@ -21,6 +21,7 @@ import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.EnchantableRelic;
+import eatyourbeets.relics.animator.ColorlessFragment;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.VividPicture;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
@@ -123,13 +124,17 @@ public class TheMaskedTraveler2 extends EYBEvent
         {
             for (AbstractRelic relic : player.relics)
             {
-                if (relic.tier == AbstractRelic.RelicTier.STARTER)
+                if (relic.tier == AbstractRelic.RelicTier.STARTER || relic instanceof ColorlessFragment)
                 {
                     event.startingRelicsCache.add(relic);
                 }
                 else if (relic instanceof VividPicture)
                 {
-                    event.startingRelicsCache.add(new LivingPicture(((VividPicture) relic).enchantment));
+                    event.startingRelicsCache.add(new VividPicture(((VividPicture) relic).enchantment));
+                }
+                else if (relic instanceof LivingPicture)
+                {
+                    event.startingRelicsCache.add(new LivingPicture(((LivingPicture) relic).enchantment));
                 }
             }
 

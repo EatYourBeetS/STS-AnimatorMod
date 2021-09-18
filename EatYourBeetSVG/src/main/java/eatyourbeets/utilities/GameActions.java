@@ -64,8 +64,8 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.common.EnergizedPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
 import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
 import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
@@ -970,11 +970,24 @@ public final class GameActions
         .AddCallback(onReload));
     }
 
+    public ModifyPowers RemoveCommonDebuffs(AbstractCreature target, ListSelection<AbstractPower> selection, int count)
+    {
+        return Add(new ModifyPowers(target, target, 0, false))
+                .SetFilter(GameUtilities::IsCommonDebuff)
+                .SetSelection(selection, count);
+    }
+
     public ModifyPowers RemoveDebuffs(AbstractCreature target, ListSelection<AbstractPower> selection, int count)
     {
         return Add(new ModifyPowers(target, target, 0, false))
         .SetFilter(GameUtilities::IsDebuff)
         .SetSelection(selection, count);
+    }
+
+    public ModifyPowers ReduceCommonDebuffs(AbstractCreature target, int amount)
+    {
+        return Add(new ModifyPowers(target, target, -amount, true))
+                .SetFilter(GameUtilities::IsCommonDebuff);
     }
 
     public ModifyPowers ReduceDebuffs(AbstractCreature target, int amount)

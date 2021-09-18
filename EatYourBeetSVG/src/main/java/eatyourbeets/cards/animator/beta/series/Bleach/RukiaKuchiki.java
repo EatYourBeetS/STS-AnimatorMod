@@ -20,7 +20,7 @@ public class RukiaKuchiki extends AnimatorCard
 
         Initialize(0, 2, 2, 0);
         SetUpgrade(0, 1, 0, 0);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(1, 1, 1);
         SetAffinity_Blue(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Green, 3);

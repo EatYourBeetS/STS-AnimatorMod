@@ -12,7 +12,8 @@ public class CardSeries
     private final static HashMap<Integer, CardSeries> mapIDs = new HashMap<>();
     private final static HashMap<String, CardSeries> mapNames = new HashMap<>();
 
-    public final static CardSeries ANY = Add(0, "ANY");
+    public final static CardSeries ANY = Add(-1, "ANY");
+    public final static CardSeries COLORLESS = Add(0, "COLORLESS");
     public final static CardSeries Elsword = Add(1, "Elsword");
     public final static CardSeries Kancolle = Add(2, "Kancolle");
     public final static CardSeries HitsugiNoChaika = Add(3, "HitsugiNoChaika");
@@ -82,6 +83,8 @@ public class CardSeries
     public final static CardSeries Kaiji = Add(67, "Kaiji");
     public final static CardSeries Trigun = Add(68, "Trigun");
     public final static CardSeries PantyStocking = Add(69, "PantyStocking");
+    public final static CardSeries Danganronpa = Add(70, "Danganronpa");
+    public final static CardSeries PhoenixWright = Add(71, "PhoenixWright");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;
@@ -116,7 +119,7 @@ public class CardSeries
         for (AbstractCard c : source)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && (series == null || series.Equals(card.series) || series.Equals(CardSeries.ANY)))
+            if (card != null && (series == null || series.Equals(card.series) || series.Equals(CardSeries.ANY) || (series.Equals(COLORLESS) && card.color.equals(AbstractCard.CardColor.COLORLESS))))
             {
                 destination.add(card);
             }

@@ -7,12 +7,16 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.BalancePower;
 import eatyourbeets.powers.common.BlindedPower;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -32,8 +36,6 @@ public class KanameTousen extends AnimatorCard {
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
-
-        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class KanameTousen extends AnimatorCard {
             }
         }
 
-        if (CheckAffinity(Affinity.Dark) && CombatStats.TryActivateLimited(cardID)) {
+        if (IntellectStance.IsActive() && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.StackPower(player, new KanameTousenPower(player, 2));
         }
     }

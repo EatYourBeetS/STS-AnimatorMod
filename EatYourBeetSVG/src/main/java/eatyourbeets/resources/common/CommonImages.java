@@ -55,6 +55,18 @@ public class CommonImages
         public final TextureCache Agility               = new TextureCache("images/eyb/cardui/core/Agility.png");
         public final TextureCache Willpower             = new TextureCache("images/eyb/cardui/core/Willpower.png");
         public final TextureCache BlockScaling          = new TextureCache("images/eyb/cardui/core/BlockScaling.png");
+        public final TextureCache Damage_L                = new TextureCache("images/eyb/cardui/core/1024/NormalDamage.png");
+        public final TextureCache Ranged_L                = new TextureCache("images/eyb/cardui/core/1024/RangedDamage.png");
+        public final TextureCache Piercing_L              = new TextureCache("images/eyb/cardui/core/1024/PiercingDamage.png");
+        public final TextureCache Block_L                 = new TextureCache("images/eyb/cardui/core/1024/Block.png");
+        public final TextureCache TempHP_L                = new TextureCache("images/eyb/cardui/core/1024/TempHP.png");
+        public final TextureCache HP_L                    = new TextureCache("images/eyb/cardui/core/1024/HP.png");
+        public final TextureCache Elemental_L             = new TextureCache("images/eyb/cardui/core/1024/ElementalDamage.png");
+        public final TextureCache Intellect_L             = new TextureCache("images/eyb/cardui/core/1024/Intellect.png");
+        public final TextureCache Force_L                 = new TextureCache("images/eyb/cardui/core/1024/Force.png");
+        public final TextureCache Agility_L               = new TextureCache("images/eyb/cardui/core/1024/Agility.png");
+        public final TextureCache Willpower_L             = new TextureCache("images/eyb/cardui/core/1024/Willpower.png");
+        public final TextureCache BlockScaling_L          = new TextureCache("images/eyb/cardui/core/1024/BlockScaling.png");
     }
 
     public static class AffinityIcons
@@ -69,7 +81,6 @@ public class CommonImages
         public final TextureCache Star                  = new TextureCache("images/eyb/cardui/affinities/Star.png", true);
         public final TextureCache Star_BG               = new TextureCache("images/eyb/cardui/affinities/Star_BG.png", true);
         public final TextureCache Star_FG               = new TextureCache("images/eyb/cardui/affinities/Star_FG.png", true);
-        public final TextureCache Neutral               = new TextureCache("images/eyb/cardui/affinities/Neutral.png", true);
         public final TextureCache Border                = new TextureCache("images/eyb/cardui/affinities/Border.png", false);
         public final TextureCache BorderFG              = new TextureCache("images/eyb/cardui/affinities/Border_FG.png", false);
         public final TextureCache BorderBG              = new TextureCache("images/eyb/cardui/affinities/Border_BG.png", true);

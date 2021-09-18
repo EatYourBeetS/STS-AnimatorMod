@@ -22,7 +22,6 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     private static final ArrayList<Enchantment> cards = new ArrayList<>();
 
     public int index;
-    public int upgradeIndex;
     public boolean requiresTarget;
     public EnchantableRelic relic;
 
@@ -40,6 +39,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
             cards.add(new Enchantment1());
             cards.add(new Enchantment2());
             cards.add(new Enchantment3());
+            cards.add(new Enchantment4());
 
             for (Enchantment a : cards)
             {
@@ -62,7 +62,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
                 Enchantment result = (Enchantment) e.makeCopy();
                 if (upgradeIndex > 0)
                 {
-                    result.upgradeIndex = upgradeIndex;
+                    result.auxiliaryData.form = upgradeIndex;
                     result.upgrade();
                 }
 
@@ -88,9 +88,9 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     @Override
     protected String GetRawDescription(Object... args)
     {
-        if (upgraded && upgradeIndex > 0)
+        if (upgraded && auxiliaryData.form > 0)
         {
-            return JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[upgradeIndex - 1], args);
+            return JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form - 1], args);
         }
         else
         {
@@ -116,6 +116,8 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     public abstract int GetMaxUpgradeIndex();
     public abstract void UsePower(AbstractMonster m);
 
+    public void AtEndOfTurnEffect(boolean isPlayer) {}
+
     @Override
     public EYBCardPreview GetCardPreview()
     {
@@ -137,7 +139,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        return GetCard(index, upgradeIndex);
+        return GetCard(index, auxiliaryData.form);
     }
 
     public ArrayList<Enchantment> GetUpgrades()

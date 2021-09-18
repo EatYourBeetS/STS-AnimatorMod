@@ -9,6 +9,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,9 +23,9 @@ public class IkkakuMadarame extends AnimatorCard {
     public IkkakuMadarame() {
         super(DATA);
 
-        Initialize(4, 0, 0, 3);
+        Initialize(4, 0, 0, 4);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(2, 0, 2);
         SetAffinity_Green(1, 0, 1);
     }
 
@@ -32,7 +33,7 @@ public class IkkakuMadarame extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
-        if (GameUtilities.GetPowerAmount(ZarakiKenpachi.DATA.ID + "Power") > 0) {
+        if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
             GameActions.Bottom.StackPower(new IkkakuMadaramePower(player, 1));
         }
 

@@ -568,9 +568,10 @@ public class GameUtilities
     {
         if (commonDebuffs.isEmpty())
         {
-            commonDebuffs.add(PowerHelper.Poison);
             commonDebuffs.add(PowerHelper.Weak);
             commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Frail);
+            commonDebuffs.add(PowerHelper.Poison);
             commonDebuffs.add(PowerHelper.Burning);
             commonDebuffs.add(PowerHelper.Shackles);
         }
@@ -1173,6 +1174,11 @@ public class GameUtilities
     public static boolean IsLowCost(AbstractCard card)
     {
         return card.costForTurn == 0 || card.costForTurn == 1;
+    }
+
+    public static boolean IsCommonDebuff(AbstractPower power)
+    {
+        return JUtils.Any(GameUtilities.GetCommonDebuffs(), ph -> ph.ID.equals(power.ID));
     }
 
     public static boolean IsDebuff(AbstractPower power)

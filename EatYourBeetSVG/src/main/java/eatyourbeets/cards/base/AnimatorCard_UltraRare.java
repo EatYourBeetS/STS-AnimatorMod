@@ -60,7 +60,7 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 
     public static EYBCardData GetCardData(AnimatorLoadout loadout)
     {
-        return loadout == null ? Cthulhu.DATA : loadout.GetUltraRare();
+        return loadout == null ? null : loadout.Series == null ? Cthulhu.DATA : loadout.GetUltraRare();
     }
 
     public static void MarkAsSeen(String cardID)

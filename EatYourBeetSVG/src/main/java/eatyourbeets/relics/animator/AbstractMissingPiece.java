@@ -18,6 +18,7 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.StringUtils;
 
@@ -32,6 +33,8 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     protected boolean showAffinities = false;
 
     protected abstract int GetRewardInterval();
+
+    protected abstract int GetRewardSeriesCount();
 
     public AbstractMissingPiece(String id, RelicTier tier, LandingSound sfx)
     {
@@ -120,7 +123,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
     public void OnReceiveRewards(ArrayList<RewardItem> rewards)
     {
-        if (counter > 0 && RewardsAllowed() && GetActualCounter() == 0)
+        if (RewardsAllowed())
         {
             this.flash();
             lastRoom = GameUtilities.GetCurrentRoom();
@@ -139,7 +142,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
             if (startingIndex >= 0)
             {
-                AddSynergyRewards(rewards, startingIndex);
+                AddSynergyRewards(rewards, startingIndex, GetActualCounter() == 0 ? 3 : 2);
             }
         }
     }
@@ -174,11 +177,12 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         return base + " NL  NL " + DESCRIPTIONS[1] + " NL " + joiner.toString();
     }
 
-    private void AddSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex)
+    private void AddSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex, int seriesChoices)
     {
         WeightedList<CardSeries> synergies = CreateWeightedList();
 
-        for (int i = 0; i < 3; i++)
+        rewards.add(startingIndex, new MissingPieceReward(CardSeries.ANY));
+        for (int i = 1; i <= seriesChoices; i++)
         {
             CardSeries series = synergies.Retrieve(AbstractDungeon.cardRng);
             if (series != null)
@@ -195,11 +199,20 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     {
         final WeightedList<CardSeries> list = new WeightedList<>();
         final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.GetCardsBySynergy(player.masterDeck.group);
+        final RandomizedList<CardSeries> promotedList = new RandomizedList<>();
 
         if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {
             GR.Animator.Dungeon.AddAllLoadouts();
         }
+
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts) {
+            if (series.promoted) {
+                promotedList.Add(series.Loadout.Series);
+            }
+        }
+        final CardSeries chosenSeries = GetActualCounter() == 0 ? promotedList.Retrieve(rng) : null;
+
 
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
@@ -207,16 +220,19 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
             {
                 CardSeries s = series.Loadout.Series;
 
-                int weight = series.promoted ? 5 : 2;
-                if (synergyListMap.containsKey(s))
+                int weight = 2;
+                if (s.equals(chosenSeries)) {
+                    weight = 999;
+                }
+                else if (synergyListMap.containsKey(s))
                 {
                     int size = synergyListMap.get(s).size();
                     if (size >= 2)
                     {
-                        weight += 12 + (size * 3);
-                        if (weight > 26)
+                        weight += 6 + (size * 3);
+                        if (weight > 20)
                         {
-                            weight = 26;
+                            weight = 20;
                         }
                     }
                 }
@@ -228,7 +244,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
         if (relicId.equals(ColorlessFragment.ID))
         {
-            list.Add(CardSeries.ANY, ColorlessFragment.COLORLESS_WEIGHT);
+            list.Add(CardSeries.COLORLESS, ColorlessFragment.COLORLESS_WEIGHT);
         }
 
         return list;

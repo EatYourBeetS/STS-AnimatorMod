@@ -32,7 +32,7 @@
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 [Dexterity], #r-1 [Strength] from [F], #r-1 [Focus] from [I] NL Upon entering: #yBoost [A].",
+		"DESCRIPTION": "Stance: [A] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -53,6 +53,12 @@
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain [Vitality].",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
+	},
+	"Blessing Stance":
+	{
+	  "DESCRIPTION": "Stance: [B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [B].",
+	  "NAMES": ["[b] stance", "blessing stance"],
+	  "PROPER_NAME": "Blessing Stance"
 	},
 	"Blinded":
 	{
@@ -86,7 +92,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Poison], [Weak], [Vulnerable], [Burning], [Shackles].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -107,6 +113,12 @@
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 [Corruption], add #yCrystallize to your draw pile. At #b15 [Corruption], obtain #pSummoning #pRitual.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
+	},
+	"Corruption Stance":
+	{
+	  "DESCRIPTION": "Stance: [C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [C].",
+	  "NAMES": ["[c] stance", "corruption stance"],
+	  "PROPER_NAME": "Corruption Stance"
 	},
 	"Counter-Attack":
 	{
@@ -200,7 +212,7 @@
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 [Strength], #r-1 [Focus] from [I], #r-1 [Dexterity] from [A] NL Upon entering: #yBoost [F].",
+		"DESCRIPTION": "Stance: [F] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -254,7 +266,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain [Focus].",
+		"DESCRIPTION": "Stance: [I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [I].",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
@@ -354,6 +366,12 @@
 	  "NAMES": ["rejuvenation"],
 	  "PROPER_NAME": "Rejuvenation"
 	},
+	"Replace":
+	{
+		"DESCRIPTION": "Exhaust a card and create another card in its place.",
+		"NAMES": ["replace"],
+		"PROPER_NAME": "Replace"
+	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
@@ -410,7 +428,7 @@
 	},
 	"Willpower Stance":
 	{
-	  "DESCRIPTION": "#g+2 [Balance], #r-1 [Strength] from [F], #r-1 [Dexterity] from [A] NL Upon entering: #yBoost [W].",
+	  "DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [W].",
 	  "NAMES": ["[w] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},

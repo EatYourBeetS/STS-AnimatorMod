@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class RenjiAbarai extends AnimatorCard
@@ -19,15 +20,16 @@ public class RenjiAbarai extends AnimatorCard
         Initialize(10, 0, 3);
         SetUpgrade(1, 0, -1);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green))
         {
             SetAttackType(EYBAttackType.Piercing);
         }
@@ -45,7 +47,7 @@ public class RenjiAbarai extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (!AgilityStance.IsActive()){
+        if (!AgilityStance.IsActive() || !ForceStance.IsActive()){
             GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
         }
     }

@@ -15,7 +15,7 @@ public class ForcePower extends AbstractAffinityPower
     }
 
     @Override
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return PowerHelper.Strength;
     }

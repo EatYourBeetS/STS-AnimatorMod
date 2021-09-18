@@ -1,6 +1,7 @@
 package patches.customModeScreen;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -8,14 +9,19 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.loadouts._FakeLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.MethodInfo;
+import org.apache.logging.log4j.util.Strings;
 
 import javax.xml.transform.Result;
+import java.util.ArrayList;
 
 
 public class CustomModeScreenPatch {
@@ -25,8 +31,19 @@ public class CustomModeScreenPatch {
     private static final MethodInfo.T0<Result> _playHoverSound = JUtils.GetMethod("playHoverSound", CustomModeScreen.class);
     private static final MethodInfo.T0<Result> _playClickStartSound = JUtils.GetMethod("playClickStartSound", CustomModeScreen.class);
 
-    public static Hitbox seriesleftHb = null;
-    public static Hitbox seriesRightHb = null;
+    private static final BitmapFont seriesFont = FontHelper.charDescFont;
+
+    protected static AnimatorLoadout startingLoadout = new _FakeLoadout();
+
+    protected static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();;
+    protected static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();;
+
+    protected static Hitbox seriesleftHb = null;
+    protected static Hitbox seriesRightHb = null;
+    protected static Hitbox seriesHb = null;
+
+    protected static String seriesLabel = Strings.EMPTY;
+
 
     @SpirePatch(clz = CustomModeScreen.class, method = "open")
     public static class CustomModeScreen_Open
@@ -35,7 +52,7 @@ public class CustomModeScreenPatch {
         public static void Postfix(CustomModeScreen __instance)
         {
             //Add all custom run mods here
-            InitializeSeriesArrows(__instance);
+            InitializeSeries(__instance);
         }
     }
 
@@ -85,7 +102,7 @@ public class CustomModeScreenPatch {
 
         private static void RenderSeries(CustomModeScreen __instance, SpriteBatch sb)
         {
-            if (seriesleftHb == null || seriesRightHb == null)
+            if (seriesleftHb == null || seriesRightHb == null || seriesHb == null)
             {
                 return;
             }
@@ -97,6 +114,13 @@ public class CustomModeScreenPatch {
             }
             sb.draw(ImageMaster.CF_LEFT_ARROW, seriesleftHb.cX - 24.0F * Settings.scale, seriesleftHb.cY - 24.0F * Settings.scale, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
 
+            if (startingLoadout != null)
+            {
+                seriesLabel = startingLoadout.Name;
+            }
+
+            FontHelper.renderFontCentered(sb, seriesFont, seriesLabel, seriesHb.cX, seriesHb.cY, Settings.BLUE_TEXT_COLOR);
+
             if (seriesRightHb.hovered || Settings.isControllerMode) {
                 sb.setColor(Color.WHITE);
             } else {
@@ -106,35 +130,81 @@ public class CustomModeScreenPatch {
 
             seriesleftHb.render(sb);
             seriesRightHb.render(sb);
+            seriesHb.render(sb);
         }
     }
 
-    public static void InitializeSeriesArrows(CustomModeScreen __instance)
+    private static void InitializeSeries(CustomModeScreen __instance)
     {
         seriesleftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         seriesRightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
+        seriesHb = new Hitbox(80.0F * Settings.scale, 80.0F * Settings.scale);
 
+        InitializeSeriesLoadout();
         UpdateSeriesArrows(__instance);
     }
 
-    public static void UpdateSeriesArrows(CustomModeScreen __instance)
+    private static void InitializeSeriesLoadout()
     {
-        if (seriesleftHb == null || seriesRightHb == null)
+        loadouts.clear();
+        availableLoadouts.clear();
+
+        final int unlockLevel = GR.Animator.GetUnlockLevel();
+        for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
+        {
+            loadouts.add(loadout);
+            if (unlockLevel >= loadout.UnlockLevel)
+            {
+                availableLoadouts.add(loadout);
+            }
+        }
+
+        if (GR.Animator.Config.DisplayBetaSeries.Get())
+        {
+            for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
+            {
+                if (loadout.GetPreset().Size() > 0)
+                {
+                    loadouts.add(loadout);
+                    if (unlockLevel >= loadout.UnlockLevel)
+                    {
+                        availableLoadouts.add(loadout);
+                    }
+                }
+            }
+        }
+
+        loadouts.sort((a, b) ->
+        {
+            final int diff = a.Name.compareTo(b.Name);
+            final int level = GR.Animator.GetUnlockLevel();
+            final int levelA = a.UnlockLevel - level;
+            final int levelB = b.UnlockLevel - level;
+            if (levelA > 0 || levelB > 0)
+            {
+                return diff + Integer.compare(levelA, levelB) * 1313;
+            }
+
+            return diff;
+        });
+
+        startingLoadout = GR.Animator.Data.SelectedLoadout;
+        if (startingLoadout.GetStartingDeck().isEmpty() || !loadouts.contains(startingLoadout))
+        {
+            startingLoadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
+        }
+    }
+
+    private static void UpdateSeriesArrows(CustomModeScreen __instance)
+    {
+        if (seriesleftHb == null || seriesRightHb == null || seriesHb == null)
         {
             return;
         }
 
         Hitbox seedHb = _seedHb.Get(__instance);
 
-        float seedRightWidth = seedHb.cX + seedHb.width + 2.5F;
-
-        seriesleftHb.move(seedRightWidth - 70.0F * 0.5F, seedHb.cY);
-        seriesRightHb.move(seedRightWidth + 70.0F * 1.5F, seedHb.cY);
-
-        seriesleftHb.update();
-        seriesRightHb.update();
-
-        if (seriesleftHb.justHovered || seriesRightHb.justHovered) {
+        if (seriesHb.justHovered || seriesleftHb.justHovered || seriesRightHb.justHovered) {
             _playHoverSound.Invoke(__instance);
         }
 
@@ -145,5 +215,48 @@ public class CustomModeScreenPatch {
             _playClickStartSound.Invoke(__instance);
             seriesRightHb.clickStarted = true;
          }
+
+        if (seriesleftHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
+            seriesleftHb.clicked = false;
+
+            int current = loadouts.indexOf(startingLoadout);
+            if (current == 0)
+            {
+                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() - 1);
+            }
+            else
+            {
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current - 1);
+            }
+        }
+        else if (seriesRightHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
+            seriesRightHb.clicked = false;
+
+            int current = loadouts.indexOf(startingLoadout);
+            if (current >= (loadouts.size() - 1))
+            {
+                GR.Animator.Data.SelectedLoadout = loadouts.get(0);
+            }
+            else
+            {
+                GR.Animator.Data.SelectedLoadout = loadouts.get(current + 1);
+            }
+
+        }
+
+        float seedRightWidth = seedHb.cX + seedHb.width + 2.5F;
+
+        seriesleftHb.move(seedRightWidth - 70.0F * 0.5F, seedHb.cY);
+        seriesHb.move(seedRightWidth + 70.0F * 1.5F, seedHb.cY);
+
+        seriesHb.width = FontHelper.getSmartWidth(seriesFont, seriesLabel, 9999f, 0f);
+
+        seriesRightHb.move(seedRightWidth + seriesHb.width + 2.5F + 70.0F * 1.5F, seedHb.cY);
+
+        seriesleftHb.update();
+        seriesRightHb.update();
+        seriesHb.update();
+
+        startingLoadout = GR.Animator.Data.SelectedLoadout;
     }
 }

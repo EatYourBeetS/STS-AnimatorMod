@@ -11,11 +11,13 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.MethodInfo;
 import org.apache.logging.log4j.util.Strings;
@@ -32,17 +34,18 @@ public class CustomModeScreenPatch {
     private static final MethodInfo.T0<Result> _playClickStartSound = JUtils.GetMethod("playClickStartSound", CustomModeScreen.class);
 
     private static final BitmapFont seriesFont = FontHelper.charDescFont;
+    private static final Random RNG = new Random();
 
-    protected static AnimatorLoadout startingLoadout = new _FakeLoadout();
+    private static AnimatorLoadout startingLoadout = new _FakeLoadout();
 
-    protected static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();;
-    protected static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();;
+    private static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();;
+    private static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();;
 
-    protected static Hitbox seriesleftHb = null;
-    protected static Hitbox seriesRightHb = null;
-    protected static Hitbox seriesHb = null;
+    private static Hitbox seriesleftHb = null;
+    private static Hitbox seriesRightHb = null;
+    private static Hitbox seriesHb = null;
 
-    protected static String seriesLabel = Strings.EMPTY;
+    private static String seriesLabel = Strings.EMPTY;
 
 
     @SpirePatch(clz = CustomModeScreen.class, method = "open")
@@ -119,7 +122,7 @@ public class CustomModeScreenPatch {
                 seriesLabel = startingLoadout.Name;
             }
 
-            FontHelper.renderFontCentered(sb, seriesFont, seriesLabel, seriesHb.cX, seriesHb.cY, Settings.BLUE_TEXT_COLOR);
+            FontHelper.renderFontLeft(sb, seriesFont, seriesLabel, seriesHb.cX, seriesHb.cY, Settings.BLUE_TEXT_COLOR);
 
             if (seriesRightHb.hovered || Settings.isControllerMode) {
                 sb.setColor(Color.WHITE);
@@ -214,9 +217,14 @@ public class CustomModeScreenPatch {
          } else if (seriesRightHb.hovered && InputHelper.justClickedLeft) {
             _playClickStartSound.Invoke(__instance);
             seriesRightHb.clickStarted = true;
-         }
+         } else if (seriesHb.hovered && InputHelper.justClickedLeft) {
+            _playClickStartSound.Invoke(__instance);
+            seriesHb.clickStarted = true;
+        }
 
         if (seriesleftHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
+            //Go to previous series
+
             seriesleftHb.clicked = false;
 
             int current = loadouts.indexOf(startingLoadout);
@@ -230,6 +238,8 @@ public class CustomModeScreenPatch {
             }
         }
         else if (seriesRightHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
+            //Go to next series
+
             seriesRightHb.clicked = false;
 
             int current = loadouts.indexOf(startingLoadout);
@@ -243,15 +253,26 @@ public class CustomModeScreenPatch {
             }
 
         }
+        else if (seriesHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
+            //Go to random series
+
+            seriesHb.clicked = false;
+
+            if (availableLoadouts.size() > 1) {
+                while (startingLoadout == GR.Animator.Data.SelectedLoadout) {
+                    GR.Animator.Data.SelectedLoadout = GameUtilities.GetRandomElement(availableLoadouts, RNG);
+                }
+            }
+        }
 
         float seedRightWidth = seedHb.cX + seedHb.width + 2.5F;
 
         seriesleftHb.move(seedRightWidth - 70.0F * 0.5F, seedHb.cY);
-        seriesHb.move(seedRightWidth + 70.0F * 1.5F, seedHb.cY);
+        seriesHb.move(seedRightWidth + 10.0F * 1.5F, seedHb.cY);
 
         seriesHb.width = FontHelper.getSmartWidth(seriesFont, seriesLabel, 9999f, 0f);
 
-        seriesRightHb.move(seedRightWidth + seriesHb.width + 2.5F + 70.0F * 1.5F, seedHb.cY);
+        seriesRightHb.move(seedRightWidth + seriesHb.width + 20.0F * 1.5F + 70.0F * 1.5F, seedHb.cY);
 
         seriesleftHb.update();
         seriesRightHb.update();

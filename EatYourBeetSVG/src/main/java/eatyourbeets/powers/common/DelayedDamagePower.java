@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;

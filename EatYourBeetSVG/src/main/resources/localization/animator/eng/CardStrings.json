@@ -92,6 +92,21 @@
 	},
 	"BETA":
 	{
+		"animator:EarthCure":
+		{
+			"DESCRIPTION": "Remove your rightmost !M! {Common Debuff}.",
+			"NAME": "Earth Cure"
+		},
+		"animator:EarthWall":
+		{
+			"DESCRIPTION": "Gain !M! [Plated Armor].",
+			"NAME": "Earth Wall"
+		},
+		"animator:Exhume":
+		{
+			"DESCRIPTION": "Draw !M! random card(s) from your discard pile.",
+			"NAME": "Exhume"
+		},
 		"animator:Haniwa":
 		{
 		  "DESCRIPTION": "Costs 1 less if you have another Haniwa in your hand.",
@@ -115,6 +130,11 @@
 			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random Common card that changes every combat instead of removing a card from your deck."],
 			"NAME": "? ? ?",
 			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded Common card."
+		},
+		"animator:Stockpile":
+		{
+			"DESCRIPTION": "Retain !M! cards.",
+			"NAME": "Stockpile"
 		}
 	},
 	"BETA:ANGELBEATS":
@@ -318,7 +338,7 @@
 		"animator:ZarakiKenpachi":
 		{
 			"DESCRIPTION": "Have 2 [Strength]. Reduce all threshold powers gained from other {Affinities} by 1. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
-			"EXTENDED_DESCRIPTION": ["Have #b{0} [Strength]. Gain #b{1} less [Dexterity] from [A], [Focus] from [I], and [Balance] from [W]. Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
+			"EXTENDED_DESCRIPTION": ["Have #b{0} [Strength]. Gain #b{1} less [Dexterity] from [A], [Focus] from [I], and [Endurance] from [W]. Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
 			"NAME": "Zaraki Kenpachi"
 		}
 	},
@@ -850,8 +870,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "[Earth] gives !S! [Block] when Evoked. || Once per turn, pay 2 [E]: {Channel} [Earth] and gain ** !M! Temporary [Balance] next turn.",
-		  	"EXTENDED_DESCRIPTION": ["Pay 2 [E] to channel #b1 [Earth] ** and gain {0} #yTemporary [Balance] next turn. || [Earth] gives #b{1} [Block] when #yEvoked."],
+			"DESCRIPTION": "[Earth] gives !S! [Block] when Evoked. || Once per turn, pay 2 [E]: {Channel} [Earth] and gain ** !M! Temporary [Endurance] next turn.",
+		  	"EXTENDED_DESCRIPTION": ["Pay 2 [E] to channel #b1 [Earth] ** and gain {0} #yTemporary [Endurance] next turn. || [Earth] gives #b{1} [Block] when #yEvoked."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -1527,8 +1547,8 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "At the start of each turn: ** Upgrade the <W> levels ** of a random card. || Once per turn, pay 2 [E]: ** Gain 1 [Vitality], or 2 if you ** are below 20% [HP].",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Vitality]. || At the start of each turn: Increase the <W> levels of #b{1} random card(s) to LV2."],
+			"DESCRIPTION": "At the start of each turn: ** Upgrade the <W> levels ** of a random card. || Once per turn, pay 2 [E]: ** Gain 1 [Empower], or 2 if you ** are below 20% [HP].",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Empower]. || At the start of each turn: Increase the <W> levels of #b{1} random card(s) to LV2."],
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -2590,9 +2610,9 @@
 				"Once per turn, pay !S! [E]: Gain !M! [F] ** and !M! Temp. [Strength].",
 				"Once per turn, pay !S! [E]: Gain !M! [A] ** and !M! Temp. [Dexterity].",
 				"Once per turn, pay !S! [E]: Gain !M! [I] ** and !M! Temp. [Focus].",
-				"Once per turn, pay !S! [E]: Gain !M! [W] ** and !M! Temp. [Balance].",
-				"Once per turn, pay !S! [E]: Gain !M! [B] ** and !M! Temp. [Vitality].",
-				"Once per turn, pay !S! [E]: Gain !M! [C] ** and !M! [Energized]."
+				"Once per turn, pay !S! [E]: Gain !M! [W] ** and !M! Temp. [Empower].",
+				"Once per turn, pay !S! [E]: Gain !M! [B] ** and !M! Temp. [Endurance].",
+				"Once per turn, pay !S! [E]: Gain !M! [C] ** and !M! Temp. [Pestilence]."
 			],
 			"NAME": "Powers"
 		}

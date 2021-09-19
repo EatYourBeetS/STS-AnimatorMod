@@ -7,8 +7,8 @@
 	},
 	"eyb:BalancePower":
 	{
-	  "DESCRIPTIONS": ["Reduce the effects of #yFrail, #yVulnerable, and #yWeak on you by #b{0}%. Increase the effects of #yFrail, #yLock-On, #yVulnerable, and #yWeak on the enemy by #b{0}%"],
-	  "NAME": "Balance"
+		"DESCRIPTIONS": ["At the start of turn, create #b{0} random Earth Cards in your hand."],
+		"NAME": "Endurance"
 	},
 	"eyb:BlindedPower":
 	{
@@ -17,7 +17,7 @@
 	},
 	"eyb:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Vitality]."],
+		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Empower]."],
 		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
@@ -100,14 +100,19 @@
 		"DESCRIPTIONS": ["Lose #b{0} #yBalance at the start of your next turn."],
 		"NAME": "Temporary Balance"
     },
+	"eyb:TemptationPower":
+	{
+		"DESCRIPTIONS": ["Increase the effects of Weak, Vulnerable, Frail, and Lock-On by by #b{0}%, and the amount of Burning, Poison, and Delayed Damage by #b{1} for ALL characters."],
+		"NAME": "Pestilence"
+	},
 	"eyb:VitalityPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
-		"NAME": "Vitality"
+		"DESCRIPTIONS": ["At the start of each turn, give a random Attack or Block-gaining card in your draw pile #b{0} Blessed Scaling."],
+		"NAME": "Empower"
 	},
 	"eyb:WillpowerPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Balance]."],
+		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
 		"NAME": "Willpower"
 	}
 }

@@ -37,6 +37,7 @@ public class PowerHelper
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, null, DexterityPower::new);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, null, FocusPower::new);
     public static final PowerHelper Balance = new PowerHelper(BalancePower.POWER_ID, null, BalancePower::new);
+    public static final PowerHelper Temptation = new PowerHelper(TemptationPower.POWER_ID, null, TemptationPower::new);
     public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
 
     public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, AnimatorPlatedArmorPower::new);

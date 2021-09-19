@@ -402,8 +402,8 @@
 	},
 	"animator:VitalityPower":
 	{
-		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b{0} #yTemporary #HP."],
-		"NAME": "Vitality"
+		"DESCRIPTIONS": ["At the start of each turn, give a random Attack or Block-gaining Skill in your draw pile #b{0} Blessed Scaling."],
+		"NAME": "Empower"
 	},
 	"animator:YukoShionjiPower":
 	{

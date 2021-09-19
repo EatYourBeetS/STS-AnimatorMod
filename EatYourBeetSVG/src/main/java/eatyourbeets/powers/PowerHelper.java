@@ -30,6 +30,7 @@ public class PowerHelper
     public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, GR.Tooltips.Weak, (o, s, a) -> new WeakPower(o, a, GameUtilities.IsMonster(s)));
     public static final PowerHelper Vulnerable = new PowerHelper(VulnerablePower.POWER_ID, GR.Tooltips.Vulnerable, (o, s, a) -> new VulnerablePower(o, a, GameUtilities.IsMonster(s)));
     public static final PowerHelper Frail = new PowerHelper(FrailPower.POWER_ID, GR.Tooltips.Frail, (o, s, a) -> new FrailPower(o, a, GameUtilities.IsMonster(s)));
+    public static final PowerHelper DelayedDamage = new PowerHelper(DelayedDamagePower.POWER_ID, GR.Tooltips.DelayedDamage, (o, s, a) -> new DelayedDamagePower(o, a, GR.Enums.AttackEffect.DARK));
 
     public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, null, (o, s, a) -> new RitualPower(o, a, GameUtilities.IsPlayer(o)));
 

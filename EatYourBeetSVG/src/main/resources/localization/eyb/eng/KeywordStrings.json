@@ -92,7 +92,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles], [Lock-On], [Delayed Damage].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -416,7 +416,7 @@
 	},
 	"Temptation":
 	{
-		"DESCRIPTION": "Increase the effects of Weak, Vulnerable, Frail, and Lock-On, and the amount of Burning, Poison, and Delayed Damage applied for ALL characters.",
+		"DESCRIPTION": "Increase the amount of {Common Debuffs} applied for ALL characters.",
 		"NAMES": ["pestilence"],
 		"PROPER_NAME": "Pestilence"
 	},

@@ -92,9 +92,14 @@
 	},
 	"BETA":
 	{
+		"animator:Dowsing":
+		{
+			"DESCRIPTION": "Scry !M! and draw a card.",
+			"NAME": "Dowsing"
+		},
 		"animator:EarthCure":
 		{
-			"DESCRIPTION": "Remove your rightmost !M! {Common Debuff}.",
+			"DESCRIPTION": "Remove your rightmost {Common Debuff}.",
 			"NAME": "Earth Cure"
 		},
 		"animator:EarthWall":
@@ -106,6 +111,11 @@
 		{
 			"DESCRIPTION": "Draw !M! random card(s) from your discard pile.",
 			"NAME": "Exhume"
+		},
+		"animator:EarthSpirits":
+		{
+			"DESCRIPTION": "Exhaust !M! random {Hindrances} in your hand and draw pile.  Add !M! Haniwa to your draw pile.",
+			"NAME": "Earth Spirits"
 		},
 		"animator:Haniwa":
 		{
@@ -135,6 +145,11 @@
 		{
 			"DESCRIPTION": "Retain !M! cards.",
 			"NAME": "Stockpile"
+		},
+		"animator:ThornyVines":
+		{
+			"DESCRIPTION": "Gain !M! {Temporary Thorns}.",
+			"NAME": "Thorny Vines"
 		}
 	},
 	"BETA:ANGELBEATS":

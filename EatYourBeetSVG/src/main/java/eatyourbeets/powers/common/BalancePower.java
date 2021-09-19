@@ -2,10 +2,7 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.animator.beta.special.EarthCure;
-import eatyourbeets.cards.animator.beta.special.EarthWall;
-import eatyourbeets.cards.animator.beta.special.Exhume;
-import eatyourbeets.cards.animator.beta.special.Stockpile;
+import eatyourbeets.cards.animator.beta.special.*;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CommonPower;
@@ -26,9 +23,12 @@ public class BalancePower extends CommonPower
         Initialize(amount);
 
         EarthCards.Add(new EarthWall());
+        EarthCards.Add(new EarthSpirits());
         EarthCards.Add(new EarthCure());
+        EarthCards.Add(new Dowsing());
         EarthCards.Add(new Exhume());
         EarthCards.Add(new Stockpile());
+        EarthCards.Add(new ThornyVines());
     }
 
     @Override
@@ -49,7 +49,9 @@ public class BalancePower extends CommonPower
             rng = new Random();
         }
 
-        AnimatorCard newCard = EarthCards.Retrieve(rng);
-        GameActions.Bottom.MakeCard(newCard.makeCopy(), player.hand);
+        for (int i=0; i<amount; i++) {
+            AnimatorCard newCard = EarthCards.Retrieve(rng);
+            GameActions.Bottom.MakeCard(newCard.makeCopy(), player.hand);
+        }
     }
 }

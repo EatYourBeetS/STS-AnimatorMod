@@ -8,23 +8,23 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class EarthWall extends AnimatorCard {
-    public static final EYBCardData DATA = Register(EarthWall.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+public class Dowsing extends AnimatorCard {
+    public static final EYBCardData DATA = Register(Dowsing.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
 
-    public EarthWall() {
+    public Dowsing() {
         super(DATA);
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);
         SetAffinity_Orange(1, 0, 0);
-
         SetExhaust(true);
         SetEthereal(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.GainPlatedArmor(magicNumber);
+        GameActions.Bottom.Scry(magicNumber);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override

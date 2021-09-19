@@ -14,7 +14,7 @@ public class Exhume extends AnimatorCard {
     public Exhume() {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 

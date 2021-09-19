@@ -97,12 +97,12 @@
 	},
 	"eyb:TemporaryBalancePower":
     {
-		"DESCRIPTIONS": ["Lose #b{0} #yBalance at the start of your next turn."],
-		"NAME": "Temporary Balance"
+		"DESCRIPTIONS": ["Lose #b{0} #Endurance at the start of your next turn."],
+		"NAME": "Temporary Endurance"
     },
 	"eyb:TemptationPower":
 	{
-		"DESCRIPTIONS": ["Increase the effects of Weak, Vulnerable, Frail, and Lock-On by by #b{0}%, and the amount of Burning, Poison, and Delayed Damage by #b{1} for ALL characters."],
+		"DESCRIPTIONS": ["Increase the amounts of Common Debuffs (Weak, Vulnerable, Frail, Poison, Burning, Shackles, Lock-On, Delayed Damage) applied by #b{0} for ALL characters."],
 		"NAME": "Pestilence"
 	},
 	"eyb:VitalityPower":

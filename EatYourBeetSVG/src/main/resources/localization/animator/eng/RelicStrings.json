@@ -218,7 +218,7 @@
 	},
 	"animator:SoulGem4":
 	{
-		"DESCRIPTIONS": ["Have #b3 #yBalance. #yStrength, #yDexterity, #yFocus, and #yBalance cannot fall below #b1. Destroy this relic if you play #b16 cards in a single turn or if you deal more than #b50 damage in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
+		"DESCRIPTIONS": ["Have #b3 #yEndurance. #yStrength, #yDexterity, #yFocus, and #yEndurance cannot fall below #b1. Destroy this relic if you play #b16 cards in a single turn or if you deal more than #b50 damage in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Orange Soul Gem"
 	},

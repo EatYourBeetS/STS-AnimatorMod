@@ -6,6 +6,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.ListSelection;
 
@@ -15,8 +17,8 @@ public class EarthCure extends AnimatorCard {
     public EarthCure() {
         super(DATA);
 
-        Initialize(0, 2, 1);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 4);
         SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
@@ -24,9 +26,15 @@ public class EarthCure extends AnimatorCard {
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.RemoveCommonDebuffs(p, ListSelection.Last(0), magicNumber);
+        GameActions.Bottom.GainTemporaryHP(block);
+        GameActions.Bottom.RemoveCommonDebuffs(p, ListSelection.Last(0), 1);
     }
 
     @Override

@@ -11,7 +11,7 @@ public class ThornyVines extends AnimatorCard {
     public ThornyVines() {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 2);
         SetAffinity_Orange(1, 0, 0);
         SetExhaust(true);

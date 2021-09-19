@@ -23,7 +23,7 @@ public class TemporaryBalancePower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.GainBalance(this.amount);
+        GameActions.Bottom.GainEndurance(this.amount);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class TemporaryBalancePower extends CommonPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Bottom.ReducePower(owner, owner, BalancePower.POWER_ID, this.amount);
+        GameActions.Bottom.ReducePower(owner, owner, EndurancePower.POWER_ID, this.amount);
         GameActions.Bottom.RemovePower(owner, owner, this);
     }
 

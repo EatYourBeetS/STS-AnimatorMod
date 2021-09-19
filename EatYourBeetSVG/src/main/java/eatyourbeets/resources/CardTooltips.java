@@ -79,7 +79,8 @@ public class CardTooltips
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
-    public EYBCardTooltip Vitality = FindByID("Vitality");
+    public EYBCardTooltip Empower = FindByID("Empower");
+    public EYBCardTooltip Pestilence = FindByID("Pestilence");
     public EYBCardTooltip Ritual = FindByID("Ritual");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
@@ -112,7 +113,7 @@ public class CardTooltips
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
     public EYBCardTooltip Harmonic = FindByID("Harmonic");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
-    public EYBCardTooltip Balance = FindByID("Balance");
+    public EYBCardTooltip Endurance = FindByID("Endurance");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
@@ -256,7 +257,8 @@ public class CardTooltips
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Empower, new EmpowerPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Pestilence, new PestilencePower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(TemporaryThorns, new EarthenThornsPower(FakeCharacter.Instance, 0));
@@ -272,7 +274,7 @@ public class CardTooltips
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Endurance, new EndurancePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
         LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));

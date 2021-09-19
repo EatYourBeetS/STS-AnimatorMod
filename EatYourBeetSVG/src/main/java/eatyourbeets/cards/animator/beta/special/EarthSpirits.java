@@ -15,8 +15,8 @@ public class EarthSpirits extends AnimatorCard {
     public EarthSpirits() {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetExhaust(true);
         SetEthereal(true);
@@ -26,12 +26,13 @@ public class EarthSpirits extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.ExhaustFromPile(name, magicNumber, player.drawPile, player.hand)
                 .SetOptions(true, true)
-                .SetFilter(c -> GameUtilities.IsHindrance(c));
-
-        for (int i=0; i<magicNumber; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new Haniwa());
-        }
+                .SetFilter(c -> GameUtilities.IsHindrance(c))
+                .AddCallback(cards -> {
+                    for (int i=0; i<cards.size(); i++)
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(new Haniwa());
+                    }
+                });
     }
 
     @Override

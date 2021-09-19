@@ -14,8 +14,8 @@ public class EarthWall extends AnimatorCard {
     public EarthWall() {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);

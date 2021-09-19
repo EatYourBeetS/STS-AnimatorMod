@@ -42,7 +42,7 @@
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},
-	"Balance":
+	"Endurance":
 	{
 	  "DESCRIPTION": "At the start of turn, create random Earth Cards in your hand.",
 	  "NAMES": ["endurance"],
@@ -414,13 +414,13 @@
 		"NAMES": ["temporary thorns", "temp. thorns"],
 		"PROPER_NAME": "Temporary Thorns"
 	},
-	"Temptation":
+	"Pestilence":
 	{
 		"DESCRIPTION": "Increase the amount of {Common Debuffs} applied for ALL characters.",
 		"NAMES": ["pestilence"],
 		"PROPER_NAME": "Pestilence"
 	},
-	"Vitality":
+	"Empower":
 	{
 		"DESCRIPTION": "At the start of each turn, give a random Attack or Block-gaining card in your draw pile Blessed Scaling.",
 		"NAMES": ["empower"],

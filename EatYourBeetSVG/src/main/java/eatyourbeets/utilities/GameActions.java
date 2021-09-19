@@ -521,14 +521,14 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
-    public ApplyPower GainBalance(int amount)
+    public ApplyPower GainEndurance(int amount)
     {
-        return StackPower(new BalancePower(player, amount));
+        return StackPower(new EndurancePower(player, amount));
     }
 
-    public ApplyPower GainBalance(int amount, boolean temporary)
+    public ApplyPower GainEndurance(int amount, boolean temporary)
     {
-        return StackPower(temporary ? new TemporaryBalancePower(player, amount) : new BalancePower(player, amount));
+        return StackPower(temporary ? new TemporaryBalancePower(player, amount) : new EndurancePower(player, amount));
     }
 
 
@@ -683,9 +683,9 @@ public final class GameActions
         return StackPower(new ThornsPower(player, amount));
     }
 
-    public ApplyPower GainVitality(int amount)
+    public ApplyPower GainEmpower(int amount)
     {
-        return StackPower(new VitalityPower(player, amount));
+        return StackPower(new EmpowerPower(player, amount));
     }
 
     public ApplyAffinityPower GainWillpower(int amount)

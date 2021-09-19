@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.common.EndurancePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,7 +16,7 @@ public class Stockpile extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 0, 2, 0);
-        SetUpgrade(0, 0, 2);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Orange(2, 0, 0);
 
         SetExhaust(true);
@@ -34,6 +35,9 @@ public class Stockpile extends AnimatorCard {
                     {
                         GameUtilities.Retain(card);
                     }
+
+                    EndurancePower.MakeEarthCard();
+
                 });
     }
 

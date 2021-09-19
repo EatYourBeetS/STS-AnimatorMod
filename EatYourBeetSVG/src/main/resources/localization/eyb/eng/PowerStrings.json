@@ -5,7 +5,7 @@
 		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} [Dexterity]."],
 		"NAME": "Agility"
 	},
-	"eyb:BalancePower":
+	"eyb:EndurancePower":
 	{
 		"DESCRIPTIONS": ["At the start of turn, create #b{0} random Earth Cards in your hand."],
 		"NAME": "Endurance"
@@ -95,17 +95,17 @@
 		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
 		"NAME": "Shackles"
 	},
-	"eyb:TemporaryBalancePower":
+	"eyb:TemporaryEndurancePower":
     {
 		"DESCRIPTIONS": ["Lose #b{0} #Endurance at the start of your next turn."],
 		"NAME": "Temporary Endurance"
     },
-	"eyb:TemptationPower":
+	"eyb:PestilencePower":
 	{
 		"DESCRIPTIONS": ["Increase the amounts of Common Debuffs (Weak, Vulnerable, Frail, Poison, Burning, Shackles, Lock-On, Delayed Damage) applied by #b{0} for ALL characters."],
 		"NAME": "Pestilence"
 	},
-	"eyb:VitalityPower":
+	"eyb:EmpowerPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, give a random Attack or Block-gaining card in your draw pile #b{0} Blessed Scaling."],
 		"NAME": "Empower"

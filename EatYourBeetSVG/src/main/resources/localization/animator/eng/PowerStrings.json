@@ -400,7 +400,7 @@
 		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength. Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
 		"NAME": "Unnamed Doll"
 	},
-	"animator:VitalityPower":
+	"animator:EmpowerPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, give a random Attack or Block-gaining Skill in your draw pile #b{0} Blessed Scaling."],
 		"NAME": "Empower"

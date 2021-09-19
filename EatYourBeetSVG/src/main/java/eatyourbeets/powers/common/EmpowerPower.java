@@ -11,11 +11,11 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
-public class VitalityPower extends CommonPower
+public class EmpowerPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(VitalityPower.class);
+    public static final String POWER_ID = CreateFullID(EmpowerPower.class);
 
-    public VitalityPower(AbstractCreature owner, int amount)
+    public EmpowerPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
@@ -39,7 +39,7 @@ public class VitalityPower extends CommonPower
             Random rng = EYBCard.rng;
             if (rng == null)
             {
-                JUtils.LogInfo(VitalityPower.class, "EYBCard.rng was null");
+                JUtils.LogInfo(EmpowerPower.class, "EYBCard.rng was null");
                 rng = new Random();
             }
 

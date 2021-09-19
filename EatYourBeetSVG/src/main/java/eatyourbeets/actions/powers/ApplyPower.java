@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
-import eatyourbeets.powers.common.BalancePower;
+import eatyourbeets.powers.common.EndurancePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -419,6 +419,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
     private static boolean CanGoNegative(AbstractPower power)
     {
-        return StrengthPower.POWER_ID.equals(power.ID) || DexterityPower.POWER_ID.equals(power.ID) || FocusPower.POWER_ID.equals(power.ID) || BalancePower.POWER_ID.equals(power.ID);
+        return StrengthPower.POWER_ID.equals(power.ID) || DexterityPower.POWER_ID.equals(power.ID) || FocusPower.POWER_ID.equals(power.ID) || EndurancePower.POWER_ID.equals(power.ID);
     }
 }

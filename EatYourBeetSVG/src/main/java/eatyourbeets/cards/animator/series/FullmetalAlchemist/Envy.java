@@ -89,7 +89,7 @@ public class Envy extends AnimatorCard
             super.OnUse(m);
 
             UpdateVitality();
-            GameActions.Bottom.GainVitality(vitality);
+            GameActions.Bottom.GainEmpower(vitality);
         }
 
         private void UpdateVitality()

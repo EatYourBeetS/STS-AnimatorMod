@@ -11,12 +11,12 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class TemptationPower extends CommonPower {
-    public static final String POWER_ID = CreateFullID(TemptationPower.class);
+public class PestilencePower extends CommonPower {
+    public static final String POWER_ID = CreateFullID(PestilencePower.class);
     public static final float MULTIPLIER = 10f;
     private float percentage;
 
-    public TemptationPower(AbstractCreature owner, int amount)
+    public PestilencePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 

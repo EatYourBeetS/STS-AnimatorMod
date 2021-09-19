@@ -101,7 +101,7 @@ public class Zhongli extends AnimatorCard
 
         @Override
         public void OnStartOfTurnPostDraw() {
-            GameActions.Bottom.GainBalance(gainAmount, true);
+            GameActions.Bottom.GainEndurance(gainAmount, true);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             gainAmount = 0;
         }

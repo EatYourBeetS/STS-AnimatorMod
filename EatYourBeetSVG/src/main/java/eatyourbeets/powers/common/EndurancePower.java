@@ -10,12 +10,12 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
-public class BalancePower extends CommonPower
+public class EndurancePower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(BalancePower.class);
-    public RandomizedList<AnimatorCard> EarthCards = new RandomizedList<>();
+    public static final String POWER_ID = CreateFullID(EndurancePower.class);
+    public static RandomizedList<AnimatorCard> EarthCards = new RandomizedList<>();
 
-    public BalancePower(AbstractCreature owner, int amount)
+    public EndurancePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         this.amount = amount;
@@ -45,13 +45,18 @@ public class BalancePower extends CommonPower
         Random rng = EYBCard.rng;
         if (rng == null)
         {
-            JUtils.LogInfo(BalancePower.class, "EYBCard.rng was null");
+            JUtils.LogInfo(EndurancePower.class, "EYBCard.rng was null");
             rng = new Random();
         }
 
         for (int i=0; i<amount; i++) {
-            AnimatorCard newCard = EarthCards.Retrieve(rng);
-            GameActions.Bottom.MakeCard(newCard.makeCopy(), player.hand);
+            MakeEarthCard();
         }
+    }
+
+    public static void MakeEarthCard()
+    {
+        AnimatorCard newCard = EarthCards.Retrieve(rng, false);
+        GameActions.Bottom.MakeCard(newCard.makeCopy(), player.hand);
     }
 }

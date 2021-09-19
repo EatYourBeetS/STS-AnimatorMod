@@ -18,6 +18,6 @@ public class CorruptionPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Temptation;
+        return PowerHelper.Pestilence;
     }
 }

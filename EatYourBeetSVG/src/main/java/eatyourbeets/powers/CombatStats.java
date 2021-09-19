@@ -30,8 +30,8 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
-import eatyourbeets.powers.common.BalancePower;
-import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.common.EmpowerPower;
+import eatyourbeets.powers.common.EndurancePower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
@@ -716,11 +716,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             power.priority = -2097;
         }
-        else if (BalancePower.POWER_ID.equals(power.ID))
+        else if (EndurancePower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }
-        else if (VitalityPower.POWER_ID.equals(power.ID))
+        else if (EmpowerPower.POWER_ID.equals(power.ID))
         {
             power.priority = -2096;
         }

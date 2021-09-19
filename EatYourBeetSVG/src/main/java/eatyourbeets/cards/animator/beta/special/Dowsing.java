@@ -9,13 +9,13 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
 public class Dowsing extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Dowsing.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Dowsing.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public Dowsing() {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetExhaust(true);
         SetEthereal(true);

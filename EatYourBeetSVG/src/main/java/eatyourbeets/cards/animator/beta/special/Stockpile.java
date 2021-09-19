@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Stockpile extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Stockpile.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Stockpile.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public Stockpile() {
         super(DATA);

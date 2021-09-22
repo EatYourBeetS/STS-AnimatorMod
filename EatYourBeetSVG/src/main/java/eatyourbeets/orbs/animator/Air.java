@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.actions.orbs.AirOrbEvokeAction;
 import eatyourbeets.actions.orbs.AirOrbPassiveAction;
 import eatyourbeets.effects.SFX;
@@ -21,6 +24,7 @@ public class Air extends AnimatorOrb
     public static final int EVOKE_BASE_HITS = 4;
     public static final int EVOKE_DAMAGE_PER_HIT = 2;
     public static final int MAX_EVOKE_EFFECTS = 3;
+    public static final int HAND_THRESHOLD = 5;
 
     public static TextureCache imgExt1 = IMAGES.AirLeft;
     public static TextureCache imgExt2 = IMAGES.AirRight;
@@ -32,7 +36,7 @@ public class Air extends AnimatorOrb
 
         this.hFlip1 = MathUtils.randomBoolean();
         this.baseEvokeAmount = this.evokeAmount = EVOKE_BASE_HITS;
-        this.basePassiveAmount = this.passiveAmount = 4;
+        this.basePassiveAmount = this.passiveAmount = 3;
 
         this.updateDescription();
         this.channelAnimTimer = 0.5f;
@@ -42,7 +46,7 @@ public class Air extends AnimatorOrb
     public void updateDescription()
     {
         this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount);
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, GetEvokeDamage(), this.evokeAmount);
     }
 
     @Override
@@ -96,6 +100,13 @@ public class Air extends AnimatorOrb
     }
 
     @Override
+    protected void renderText(SpriteBatch sb)
+    {
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.7f, 1f, 0.7f, this.c.a), this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, GetEvokeDamage() + "x" + this.evokeAmount, this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.2f, 0.9f, 0.2f, this.c.a), this.fontScale);
+    }
+
+    @Override
     public void playChannelSFX()
     {
         CardCrawlGame.sound.playAV(SFX.ATTACK_WHIRLWIND, 1.5f, 0.7f);
@@ -108,7 +119,7 @@ public class Air extends AnimatorOrb
     {
         super.Evoke();
 
-        GameActions.Top.Add(new AirOrbEvokeAction(EVOKE_DAMAGE_PER_HIT, this.evokeAmount));
+        GameActions.Top.Add(new AirOrbEvokeAction(GetEvokeDamage(), this.evokeAmount));
         if (CombatStats.TryActivateLimited(ID, MAX_EVOKE_EFFECTS))
         {
             GameActions.Bottom.Draw(1);
@@ -133,5 +144,12 @@ public class Air extends AnimatorOrb
     protected Color GetColor2()
     {
         return Color.CYAN;
+    }
+
+    private int GetEvokeDamage() {
+        if (AbstractDungeon.player == null) {
+            return EVOKE_DAMAGE_PER_HIT;
+        }
+        return EVOKE_DAMAGE_PER_HIT + AbstractDungeon.player.hand.size() / HAND_THRESHOLD;
     }
 }

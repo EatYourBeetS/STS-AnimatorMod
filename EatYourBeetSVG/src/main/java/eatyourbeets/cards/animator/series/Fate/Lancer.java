@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -46,8 +46,6 @@ public class Lancer extends AnimatorCard
 
     public static class LancerPower extends AnimatorPower
     {
-        private static final float modifier = Lancer.VULNERABLE_MODIFIER / 100f;
-
         public LancerPower(AbstractCreature owner, int amount)
         {
             super(owner, Lancer.DATA);
@@ -66,7 +64,7 @@ public class Lancer extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.EnemyVulnerableModifier += modifier;
+            AnimatorVulnerablePower.AddEnemyModifier(Lancer.VULNERABLE_MODIFIER);
         }
 
         @Override
@@ -74,7 +72,7 @@ public class Lancer extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.EnemyVulnerableModifier -= modifier;
+            AnimatorVulnerablePower.AddEnemyModifier(-Lancer.VULNERABLE_MODIFIER);
         }
 
         @Override

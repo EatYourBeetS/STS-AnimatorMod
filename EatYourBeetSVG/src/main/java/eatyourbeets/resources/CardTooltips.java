@@ -10,7 +10,10 @@ import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
-import eatyourbeets.powers.animator.*;
+import eatyourbeets.powers.animator.ElementalExposurePower;
+import eatyourbeets.powers.animator.ElementalMasteryPower;
+import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.animator.RejuvenationPower;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
 import eatyourbeets.resources.common.CommonImages;
@@ -34,6 +37,7 @@ public class CardTooltips
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
+    public EYBCardTooltip Damage = FindByID("~Damage").ShowText(false);
     public EYBCardTooltip Strength = FindByID("Strength");
     public EYBCardTooltip Dexterity = FindByID("Dexterity");
     public EYBCardTooltip Focus = FindByID("Focus");
@@ -45,7 +49,6 @@ public class CardTooltips
     public EYBCardTooltip Elemental = FindByID("~Elemental");
     public EYBCardTooltip Piercing = FindByID("~Piercing");
     public EYBCardTooltip Ranged = FindByID("~Ranged");
-    public EYBCardTooltip Damage = FindByID("~Damage");
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
     public EYBCardTooltip Intellect = FindByID("Intellect");
@@ -112,7 +115,9 @@ public class CardTooltips
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
     public EYBCardTooltip Harmonic = FindByID("Harmonic");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
-    public EYBCardTooltip Balance = FindByID("Balance");
+    public EYBCardTooltip Endurance = FindByID("Endurance");
+    public EYBCardTooltip Devotion = FindByID("Devotion");
+    public EYBCardTooltip Desecration = FindByID("Desecration");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
@@ -217,6 +222,7 @@ public class CardTooltips
         Health.SetIcon(icons.HP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         BlockScaling.SetIcon(icons.BlockScaling.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
+        Damage.SetIcon(icons.Damage.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
         Affinity_Red.SetIcon(affinities.Red.Texture(), 8);
@@ -259,7 +265,7 @@ public class CardTooltips
         LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
-        LoadFromPower(TemporaryThorns, new EarthenThornsPower(FakeCharacter.Instance, 0));
+        LoadFromPower(TemporaryThorns, new TemporaryThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
@@ -272,7 +278,9 @@ public class CardTooltips
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Balance, new BalancePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Endurance, new EndurancePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Devotion, new DevotionPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Desecration, new DesecrationPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
         LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));

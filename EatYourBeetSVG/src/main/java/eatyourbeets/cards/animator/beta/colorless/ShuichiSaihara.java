@@ -4,6 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.actions.common.MoveCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.beta.special.KaedeAkamatsu;
@@ -28,7 +29,6 @@ public class ShuichiSaihara extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override
@@ -43,7 +43,6 @@ public class ShuichiSaihara extends AnimatorCard
                     if (cards.size() > 0)
                     {
                         AbstractCard card = cards.get(0);
-                        card.exhaust = true;
                         GameActions.Bottom.Add(new RefreshHandLayout());
                         GameActions.Bottom.StackPower(new ShuichiSaiharaPower(p, card));
 
@@ -67,11 +66,17 @@ public class ShuichiSaihara extends AnimatorCard
         }
 
         @Override
+        public void atEndOfTurn(boolean isPlayer) {
+            super.atEndOfTurn(isPlayer);
+            GameActions.Bottom.Exhaust(card);
+        }
+
+        @Override
         public void onExhaust(AbstractCard card)
         {
             super.onExhaust(card);
 
-            if (card.uuid.equals(this.card.uuid)) {
+            if (card.uuid.equals(this.card.uuid) && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
 
                 CardRarity r;
                 switch (card.rarity) {
@@ -100,7 +105,7 @@ public class ShuichiSaihara extends AnimatorCard
                         .SetOptions(false, false)
                         .AddCallback(cards ->
                         {
-                            GameActions.Bottom.MakeCardInHand(cards.get(0));
+                            GameActions.Bottom.MakeCardInDrawPile(cards.get(0));
                             GameActions.Bottom.Add(new RefreshHandLayout());
                         });
                 flashWithoutSound();

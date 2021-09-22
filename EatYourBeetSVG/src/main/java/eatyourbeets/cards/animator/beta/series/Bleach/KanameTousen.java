@@ -14,8 +14,8 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.BalancePower;
 import eatyourbeets.powers.common.BlindedPower;
+import eatyourbeets.powers.common.EndurancePower;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -58,7 +58,7 @@ public class KanameTousen extends AnimatorCard {
 
     public static class KanameTousenPower extends AnimatorPower
     {
-        private static final String[] POWER_IDS = {StrengthPower.POWER_ID, DexterityPower.POWER_ID, FocusPower.POWER_ID, BalancePower.POWER_ID};
+        private static final String[] POWER_IDS = {StrengthPower.POWER_ID, DexterityPower.POWER_ID, FocusPower.POWER_ID, EndurancePower.POWER_ID};
         private final HashMap<String, Integer> counts = new HashMap<>();
 
         public KanameTousenPower(AbstractPlayer owner, int amount)

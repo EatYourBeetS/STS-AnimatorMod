@@ -8,41 +8,47 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameUtilities;
 
-public class AnimatorCardCooldown
+public class EYBCardCooldown
 {
+
+
     private final static Color COOLDOWN_INCOMPLETE_COLOR = Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f);
     private final ActionT1<AbstractMonster> onCooldownCompleted;
-    private final AnimatorCard card;
+    private final EYBCard card;
+    public final boolean canProgressOnManualDiscard;
+    public final boolean canProgressFromExhaustPile;
 
-    public AnimatorCardCooldown(AnimatorCard card, int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
+
+    public EYBCardCooldown(EYBCard card, int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted) {
+        this(card,baseCooldown,cooldownUpgrade,onCooldownCompleted,false,false);
+    }
+
+    public EYBCardCooldown(EYBCard card, int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile)
     {
-        if (card.baseSecondaryValue != 0 || card.secondaryValue != 0)
-        {
-            throw new RuntimeException("Do not modify secondaryValue if you are implementing AnimatorCardCooldown.");
-        }
-        
-        card.baseSecondaryValue = card.secondaryValue = baseCooldown;
-        card.upgrade_secondaryValue = cooldownUpgrade;
+        card.baseCooldownValue = card.cooldownValue = baseCooldown;
+        card.upgrade_cooldownValue = cooldownUpgrade;
         this.onCooldownCompleted = onCooldownCompleted;
+        this.canProgressOnManualDiscard = canProgressOnManualDiscard;
+        this.canProgressFromExhaustPile = canProgressFromExhaustPile;
         this.card = card;
     }
 
-    public ColoredString GetSecondaryValueString()
+    public ColoredString GetCooldownValueString()
     {
-        if (card.isSecondaryValueModified)
+        if (card.cooldownValue < card.baseCooldownValue)
         {
-            if (card.secondaryValue > 0)
+            if (card.cooldownValue > 0)
             {
-                return new ColoredString(card.secondaryValue, COOLDOWN_INCOMPLETE_COLOR);
+                return new ColoredString(card.cooldownValue, COOLDOWN_INCOMPLETE_COLOR);
             }
             else
             {
-                return new ColoredString(card.secondaryValue, Settings.GREEN_TEXT_COLOR);
+                return new ColoredString(card.cooldownValue, Settings.GREEN_TEXT_COLOR);
             }
         }
         else
         {
-            return new ColoredString(card.secondaryValue, Settings.CREAM_COLOR);
+            return new ColoredString(card.cooldownValue, Settings.CREAM_COLOR);
         }
     }
 
@@ -75,20 +81,20 @@ public class AnimatorCardCooldown
     {
         boolean activate;
         int newValue;
-        if (card.secondaryValue <= 0)
+        if (card.cooldownValue <= 0)
         {
             newValue = GetBase();
             activate = true;
         }
         else
         {
-            newValue = Math.max(0, card.secondaryValue - amount);
+            newValue = Math.max(0, card.cooldownValue - amount);
             activate = false;
         }
 
         for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card.uuid))
         {
-            GameUtilities.ModifySecondaryValue((EYBCard) c, newValue, true);
+            ((EYBCard) c).cooldownValue = newValue;
         }
 
         return activate;
@@ -96,11 +102,11 @@ public class AnimatorCardCooldown
 
     public int GetCurrent()
     {
-        return card.secondaryValue;
+        return card.cooldownValue;
     }
 
     public int GetBase()
     {
-        return card.baseSecondaryValue;
+        return card.baseCooldownValue;
     }
 }

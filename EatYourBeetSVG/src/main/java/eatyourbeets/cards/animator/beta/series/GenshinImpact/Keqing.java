@@ -2,13 +2,9 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -16,13 +12,15 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RandomizedList;
 
-public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber, OnApplyPowerSubscriber
+public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber
 {
     public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
@@ -30,10 +28,13 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         super(DATA);
 
-        Initialize(2, 0, 4, 4);
+        Initialize(2, 0, 0);
         SetUpgrade(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(2, 0, 2);
+
+
+        SetCooldown(4, 0, this::OnCooldownCompleted, false, true);
 
         SetExhaust(true);
     }
@@ -45,23 +46,11 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
-    public ColoredString GetSecondaryValueString()
+    public void triggerOnExhaust()
     {
-        if (this.isSecondaryValueModified)
-        {
-            if (this.secondaryValue > 0)
-            {
-                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f), this.transparency);
-            }
-            else
-            {
-                return new ColoredString(this.secondaryValue, Settings.GREEN_TEXT_COLOR, this.transparency);
-            }
-        }
-        else
-        {
-            return new ColoredString(this.secondaryValue, Settings.CREAM_COLOR, this.transparency);
-        }
+        super.triggerOnExhaust();
+
+        CombatStats.onEvokeOrb.Subscribe(this);
     }
 
     @Override
@@ -87,57 +76,22 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         ModifyCard(this);
         ModifyCard(card);
-
-        CombatStats.onEvokeOrb.Subscribe(this);
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
     public void OnEvokeOrb(AbstractOrb orb)
     {
-        if (Lightning.ORB_ID.equals(orb.ID))
+        if ((Lightning.ORB_ID.equals(orb.ID) || Air.ORB_ID.equals(orb.ID)) && player.exhaustPile.contains(this))
         {
-            this.reduceTurns();
-        }
-
-    }
-
-    @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-    {
-        if (power.ID.equals(BlurPower.POWER_ID) && target == player) {
-            this.reduceTurns();
+            cooldown.ProgressCooldownAndTrigger(null);
         }
     }
 
-    @Override
-    public void OnStartOfTurnPostDraw()
+    protected void OnCooldownCompleted(AbstractMonster m)
     {
-        this.reduceTurns();
-    }
-
-    private void reduceTurns()
-    {
-        if (player.exhaustPile.contains(this))
-        {
-            if (secondaryValue <= 1)
-            {
-                GameUtilities.ModifySecondaryValue(this, magicNumber, true);
-                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
-                        .ShowEffect(true, false);
-                CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-                CombatStats.onEvokeOrb.Unsubscribe(this);
-            }
-            else
-            {
-                GameUtilities.ModifySecondaryValue(this, secondaryValue - 1, true);
-            }
-        }
-        else
-        {
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            CombatStats.onEvokeOrb.Unsubscribe(this);
-        }
+        GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
+                .ShowEffect(true, false);
+        CombatStats.onEvokeOrb.Unsubscribe(this);
     }
 
     private void ModifyCard(AbstractCard card){

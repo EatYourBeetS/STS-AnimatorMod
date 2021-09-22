@@ -30,7 +30,7 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
-import eatyourbeets.powers.common.BalancePower;
+import eatyourbeets.powers.common.EndurancePower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
@@ -49,13 +49,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
-    public static float EnemyFrailModifier;
-    public static float EnemyLockOnModifier;
-    public static float EnemyVulnerableModifier;
-    public static float EnemyWeakModifier;
-    public static float PlayerFrailModifier;
-    public static float PlayerVulnerableModifier;
-    public static float PlayerWeakModifier;
     public static int BlockRetained;
     public static boolean LoadingPlayerSave;
     public static AbstractRoom Room;
@@ -92,6 +85,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnReloadPostDiscardSubscriber> onReloadPostDiscard = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnReloadPreDiscardSubscriber> onReloadPreDiscard = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnShuffleSubscriber> onShuffle = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnSpendEnergySubscriber> onSpendEnergy = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
@@ -161,13 +155,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         RefreshPlayer();
         JUtils.LogInfo(CombatStats.class, "Clearing Player Stats");
 
-        EnemyFrailModifier = 0;
-        EnemyLockOnModifier = 0;
-        EnemyVulnerableModifier = 0;
-        EnemyWeakModifier = 0;
-        PlayerFrailModifier = 0;
-        PlayerVulnerableModifier = 0;
-        PlayerWeakModifier = 0;
         BlockRetained = 0;
         BattleID = null;
 
@@ -329,6 +316,17 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             s.OnPurge(card, source);
         }
+    }
+
+    public static int OnSpendEnergy(int amount)
+    {
+        int energySpent = amount;
+        for (OnSpendEnergySubscriber s : onSpendEnergy.GetSubscribers())
+        {
+            energySpent = s.OnSpendEnergy(amount);
+        }
+
+        return energySpent;
     }
 
     public static void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard)
@@ -716,7 +714,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             power.priority = -2097;
         }
-        else if (BalancePower.POWER_ID.equals(power.ID))
+        else if (EndurancePower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }

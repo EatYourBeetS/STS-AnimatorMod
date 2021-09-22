@@ -20,7 +20,7 @@ public class GazelDwargon extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 1);
+        Initialize(0, 0, 4, 1);
         SetUpgrade(0, 0, 0, 2);
 
         SetAffinity_Red(1);

@@ -34,7 +34,7 @@ public class Eve extends AnimatorCard
                     data.AddPreview(d.CreateNewInstance(), false);
                 }
             });
-    private static final int POWER_ENERGY_COST = 1;
+    private static final int POWER_ENERGY_COST = 2;
 
     public Eve()
     {
@@ -93,7 +93,7 @@ public class Eve extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.MakeCardInHand(c);
+                    GameActions.Bottom.PlayCopy(c,m);
                 }
             }));
         }

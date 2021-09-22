@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,8 +21,8 @@ public class Venti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 1, 0);
         SetAffinity_Star(2, 0, 0);
 
         SetEthereal(true);
@@ -38,7 +38,7 @@ public class Venti extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                if (GameUtilities.IsHindrance(card) || card.type == CardType.POWER)
+                if (GameUtilities.IsHindrance(card) || card.type == CardType.ATTACK)
                 {
                     GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
                 }

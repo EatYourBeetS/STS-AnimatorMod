@@ -75,7 +75,8 @@
 			"Trigun",
 			"Panty & Stocking with Garterbelt",
 			"Danganronpa",
-			"Phoenix Wright Ace Attorney"
+			"Phoenix Wright Ace Attorney",
+			"Magi"
 		],
 		"EXTRA_TEXT":
 		[
@@ -205,7 +206,8 @@
 	  "Variant",
 	  "Switch Variant",
 	  "Permanently change this card's variant to the currently-displayed variant. NL #rThis #rcan #ronly #rbe #rdone #ronce.",
-	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes."
+	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes.",
+	  "If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops."
 	]
   },
 

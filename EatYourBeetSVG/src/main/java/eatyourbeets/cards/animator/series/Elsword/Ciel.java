@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -67,7 +66,7 @@ public class Ciel extends AnimatorCard
 
         if (CheckAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.StackPower(new LockOnPower(m, LOCK_ON));
+            GameActions.Bottom.ApplyLockOn(p,m,LOCK_ON);
         }
 
         if (CheckAffinity(Affinity.Green))

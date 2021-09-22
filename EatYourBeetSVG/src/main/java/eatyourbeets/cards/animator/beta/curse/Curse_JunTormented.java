@@ -2,8 +2,6 @@ package eatyourbeets.cards.animator.beta.curse;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
@@ -34,8 +32,8 @@ public class Curse_JunTormented extends AnimatorCard_Curse
     {
         if (this.dontTriggerOnUseCard)
         {
-            GameActions.Bottom.StackPower(new FrailPower(p, 1, true));
-            GameActions.Bottom.StackPower(new WeakPower(p, 1, true));
+            GameActions.Bottom.ApplyFrail(null, p, 1);
+            GameActions.Bottom.ApplyWeak(null, p, 1);
         }
     }
     @Override

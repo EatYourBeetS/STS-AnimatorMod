@@ -2,7 +2,6 @@ package eatyourbeets.blights.animator;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.FrailPower;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.cards.animator.status.TheHaunt;
 import eatyourbeets.utilities.GameActions;
@@ -55,7 +54,7 @@ public class Haunted extends AnimatorBlight
         }
         if (counter >= 30)
         {
-            GameActions.Bottom.StackPower(p, new FrailPower(p, 2, false));
+            GameActions.Bottom.ApplyFrail(p, p, 2);
         }
     }
 }

@@ -240,11 +240,7 @@ public abstract class AbstractAffinityPower extends CommonPower
             throw new RuntimeException(name + " must override either GetThresholdBonusPower or RefreshThresholdBonus.");
         }
 
-        final int current = Math.max(0, thresholdBonusAmount + thresholdBonusModifier);
-        if (current > 0)
-        {
-            GameUtilities.ApplyPowerInstantly(owner, powerHelper, -current);
-        }
+        int oldAmount = thresholdBonusAmount + thresholdBonusModifier;
 
         if (thresholdReached)
         {
@@ -256,7 +252,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final int newAmount = Math.max(0, thresholdBonusAmount + thresholdBonusModifier);
         if (newAmount > 0)
         {
-            GameActions.Top.StackPower(TargetHelper.Source(owner), powerHelper, newAmount)
+            GameActions.Top.StackPower(TargetHelper.Source(owner), powerHelper, newAmount - oldAmount)
             .ShowEffect(newAmount > thresholdBonusAmount, true);
         }
     }

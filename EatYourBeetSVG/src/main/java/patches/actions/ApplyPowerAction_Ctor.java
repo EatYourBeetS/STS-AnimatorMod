@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.powers.replacement.AnimatorBlurPower;
-import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
-import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
-import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
+import eatyourbeets.powers.replacement.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
@@ -36,6 +33,26 @@ public class ApplyPowerAction_Ctor
 
         if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
         {
+            if (power instanceof VulnerablePower && !(power instanceof AnimatorVulnerablePower))
+            {
+                powerToApply[0] = new AnimatorVulnerablePower(power.owner, power.amount, !GameUtilities.IsPlayer(source));
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
+            if (power instanceof WeakPower && !(power instanceof AnimatorWeakPower))
+            {
+                powerToApply[0] = new AnimatorWeakPower(power.owner, power.amount, !GameUtilities.IsPlayer(source));
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
+            if (power instanceof FrailPower && !(power instanceof AnimatorFrailPower))
+            {
+                powerToApply[0] = new AnimatorFrailPower(power.owner, power.amount, !GameUtilities.IsPlayer(source));
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
+            if (power instanceof LockOnPower && !(power instanceof AnimatorLockOnPower))
+            {
+                powerToApply[0] = new AnimatorLockOnPower(power.owner, power.amount);
+                _powerToApply.Set(__instance, powerToApply[0]);
+            }
             if (power instanceof BlurPower && !(power instanceof AnimatorBlurPower))
             {
                 powerToApply[0] = new AnimatorBlurPower(power.owner, power.amount);

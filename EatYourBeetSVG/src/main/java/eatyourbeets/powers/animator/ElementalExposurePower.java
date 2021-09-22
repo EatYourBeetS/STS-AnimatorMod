@@ -10,6 +10,7 @@ import eatyourbeets.utilities.GameActions;
 public class ElementalExposurePower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(ElementalExposurePower.class);
+    public static final int ELEMENTAL_MODIFIER = 25;
     public static final int DECAY_TURNS = 1;
     public int secondaryAmount;
 
@@ -30,7 +31,7 @@ public class ElementalExposurePower extends AnimatorPower
     {
         if (amount > 0)
         {
-            this.description = FormatDescription(0, amount, secondaryAmount);
+            this.description = FormatDescription(0, amount, ELEMENTAL_MODIFIER, secondaryAmount);
         }
     }
 

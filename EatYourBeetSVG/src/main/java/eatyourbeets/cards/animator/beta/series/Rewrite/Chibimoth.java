@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -20,7 +19,8 @@ public class Chibimoth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0,0,1,0);
         SetAffinity_Star(1, 1, 0);
         SetExhaust(true);
         SetRetain(true);
@@ -33,13 +33,13 @@ public class Chibimoth extends AnimatorCard
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(CreateChoice(text[0], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainAgility(1, upgraded);
-            GameActions.Bottom.GainBlur(secondaryValue);
+            GameActions.Bottom.GainAgility(magicNumber, false);
+            GameActions.Bottom.GainSupportDamage(secondaryValue);
         }));
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainWillpower(1, upgraded);
-            GameActions.Bottom.StackPower(new CounterAttackPower(player, magicNumber));
+            GameActions.Bottom.GainWillpower(magicNumber, false);
+            GameActions.Bottom.GainThorns(secondaryValue);
         }));
 
         GameActions.Bottom.SelectFromPile(name, 1, group)
@@ -68,6 +68,7 @@ public class Chibimoth extends AnimatorCard
         .SetImagePath(assetUrl)
         .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
         .SetCost(-2, 0)
+        .SetNumbers(0,0,magicNumber,secondaryValue)
         .SetOnUse(onSelect)
         .SetText(name, text, text).Build();
     }

@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.replacement.AnimatorLockOnPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -62,7 +63,7 @@ public class AbstractOrbPatches
         {
             if (GameUtilities.GetPowerAmount(target, LockOnPower.POWER_ID) >= 1)
             {
-                return CombatStats.EnemyLockOnModifier > 0 ? (int) (dmg * ((retVal / dmg) - CombatStats.EnemyLockOnModifier)) : retVal;
+                return AnimatorLockOnPower.ENEMY_MODIFIER > 0 ? (int) (dmg * ((retVal / dmg) + AnimatorLockOnPower.ENEMY_MODIFIER)) : retVal;
             }
             return retVal;
         }

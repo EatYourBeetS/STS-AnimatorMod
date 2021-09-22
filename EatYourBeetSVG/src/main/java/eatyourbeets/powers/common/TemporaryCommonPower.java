@@ -1,19 +1,25 @@
 package eatyourbeets.powers.common;
 
+import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class TemporaryBalancePower extends CommonPower
+public abstract class TemporaryCommonPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(TemporaryBalancePower.class);
-
-    public TemporaryBalancePower(AbstractCreature owner, int amount)
+    public TemporaryCommonPower(AbstractCreature owner, int amount, String powerID, String imageRegion)
     {
-        super(owner, POWER_ID);
+        super(owner, powerID);
 
         this.amount = amount;
         this.type = PowerType.BUFF;
+        final String imagePath = GR.GetPowerImage(EndurancePower.POWER_ID);
+        if (Gdx.files.internal(imagePath).exists())
+        {
+            this.img = GR.GetTexture(imagePath);
+        }
+        enabled = false;
 
         updateDescription();
     }
@@ -23,7 +29,7 @@ public class TemporaryBalancePower extends CommonPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.GainBalance(this.amount);
+        GameActions.Bottom.GainEndurance(this.amount);
     }
 
     @Override
@@ -31,7 +37,7 @@ public class TemporaryBalancePower extends CommonPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Bottom.ReducePower(owner, owner, BalancePower.POWER_ID, this.amount);
+        GameActions.Bottom.ReducePower(owner, owner, EndurancePower.POWER_ID, this.amount);
         GameActions.Bottom.RemovePower(owner, owner, this);
     }
 

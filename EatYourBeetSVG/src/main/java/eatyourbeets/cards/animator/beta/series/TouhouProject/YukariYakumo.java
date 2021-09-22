@@ -35,9 +35,9 @@ public class YukariYakumo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new WeakPower(player, magicNumber, false));
-        GameActions.Bottom.StackPower(new FrailPower(player, magicNumber, false));
-        GameActions.Bottom.StackPower(new VulnerablePower(player, magicNumber, false));
+        GameActions.Bottom.ApplyFrail(p, p, magicNumber);
+        GameActions.Bottom.ApplyVulnerable(p, p, magicNumber);
+        GameActions.Bottom.ApplyWeak(p, p, magicNumber);
         GameActions.Bottom.StackPower(new InvertPower(player, secondaryValue));
     }
 

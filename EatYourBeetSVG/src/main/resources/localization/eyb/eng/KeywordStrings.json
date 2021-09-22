@@ -32,7 +32,7 @@
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "Stance: [A] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [A].",
+		"DESCRIPTION": "Stance: [A] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -42,12 +42,6 @@
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},
-	"Balance":
-	{
-	  "DESCRIPTION": "Reduces the effects of Frail, Vulnerable, and Weak on you. Increases the effects of Frail, Vulernable, and Weak on the enemy.",
-	  "NAMES": ["balance"],
-	  "PROPER_NAME": "Balance"
-	},
 	"Blessing":
 	{
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain [Vitality].",
@@ -56,7 +50,7 @@
 	},
 	"Blessing Stance":
 	{
-	  "DESCRIPTION": "Stance: [B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [B].",
+	  "DESCRIPTION": "Stance: [B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B].",
 	  "NAMES": ["[b] stance", "blessing stance"],
 	  "PROPER_NAME": "Blessing Stance"
 	},
@@ -116,7 +110,7 @@
 	},
 	"Corruption Stance":
 	{
-	  "DESCRIPTION": "Stance: [C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [C].",
+	  "DESCRIPTION": "Stance: [C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C].",
 	  "NAMES": ["[c] stance", "corruption stance"],
 	  "PROPER_NAME": "Corruption Stance"
 	},
@@ -150,6 +144,18 @@
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
 	},
+	"Desecration":
+	{
+	  "DESCRIPTION": "Increases the effects of [Frail], [Vulnerable], [Weak], and [Lock-On] on the enemy. When any character gains [Delayed Damage], increase it by 1 per stack.",
+	  "NAMES": ["desecration"],
+	  "PROPER_NAME": "Desecration"
+	},
+	"Devotion":
+	{
+	  "DESCRIPTION": "Gains #yCharge as you expend [E]. Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 25% per stack.",
+	  "NAMES": ["devotion"],
+	  "PROPER_NAME": "Devotion"
+	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",
@@ -167,6 +173,12 @@
 		"DESCRIPTION": "Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
+	},
+	"Endurance":
+	{
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Retain up to 2 Block per stack each turn.",
+	  "NAMES": ["endurance"],
+	  "PROPER_NAME": "Endurance"
 	},
 	"Energized":
 	{
@@ -212,7 +224,7 @@
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "Stance: [F] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [F].",
+		"DESCRIPTION": "Stance: [F] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -266,13 +278,13 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Stance: [I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [I].",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain [Focus].",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 [Focus], #r-1 [Strength] from [F], #r-1 [Dexterity] from [A] NL Upon entering: #yBoost [I].",
+		"DESCRIPTION": "Stance: [I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
@@ -402,6 +414,12 @@
 		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPER_NAME": "Stun"
 	},
+	"Synergistic":
+	{
+		"DESCRIPTION": "A card that Synergizes with this card.",
+		"NAMES": ["synergistic"],
+		"PROPER_NAME": "Synergistic"
+	},
 	"Temporary HP":
     {
     	"DESCRIPTION": "Temporary HP lasts until end of combat.",
@@ -422,13 +440,13 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Balance].",
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Endurance].",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},
 	"Willpower Stance":
 	{
-	  "DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL Upon entering: #yBoost [W].",
+	  "DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
 	  "NAMES": ["[w] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},

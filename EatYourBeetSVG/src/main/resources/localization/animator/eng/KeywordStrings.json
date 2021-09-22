@@ -27,7 +27,7 @@
 	},
 	"Cooldown":
 	{
-		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
+		"DESCRIPTION": "Whenever you play this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
 		"NAMES": ["cooldown"],
 		"PROPER_NAME": "Cooldown"
 	},
@@ -75,7 +75,7 @@
 	},
 	"Ricochet":
 	{
-	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, move it to your draw pile.",
+	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, activate this effect instead.",
 	  "NAMES": ["ricochet"],
 	  "PROPER_NAME": "Ricochet"
 	},

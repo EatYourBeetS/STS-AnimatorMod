@@ -1,16 +1,16 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.common;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class EarthenThornsPower extends AnimatorPower
+public class TemporaryThornsPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(EarthenThornsPower.class);
+    public static final String POWER_ID = CreateFullID(TemporaryThornsPower.class);
 
-    public EarthenThornsPower(AbstractCreature owner, int amount)
+    public TemporaryThornsPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 

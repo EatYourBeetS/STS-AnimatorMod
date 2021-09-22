@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.animator.EarthenThornsPower;
+import eatyourbeets.powers.common.TemporaryThornsPower;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class DamageHelper
         ArrayList<AbstractPower> toReAdd = new ArrayList<>();
 
         AddIgnoredPower(toReAdd, target, ThornsPower.POWER_ID);
-        AddIgnoredPower(toReAdd, target, EarthenThornsPower.POWER_ID);
+        AddIgnoredPower(toReAdd, target, TemporaryThornsPower.POWER_ID);
         AddIgnoredPower(toReAdd, target, MalleablePower.POWER_ID);
         AddIgnoredPower(toReAdd, target, FlameBarrierPower.POWER_ID);
         AddIgnoredPower(toReAdd, target, CurlUpPower.POWER_ID);

@@ -6,8 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.series.Fate.MatouShinji;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,20 +19,14 @@ public class MatouShinji_CommandSpell extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
-        SetUpgrade(0, 0, 4);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(2);
 
         SetRetain(true);
         SetPurge(true);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
@@ -48,11 +40,6 @@ public class MatouShinji_CommandSpell extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-        }
-
         if (p.maxOrbs > 0)
         {
             GameActions.Bottom.Add(new DecreaseMaxOrbAction(1));
@@ -67,7 +54,7 @@ public class MatouShinji_CommandSpell extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.IncreaseScaling(c, Affinity.Star, c.costForTurn);
+                    GameActions.Bottom.IncreaseScaling(c, Affinity.Star, c.costForTurn + magicNumber);
                     GameActions.Bottom.Motivate(c, 1);
                 }
             });

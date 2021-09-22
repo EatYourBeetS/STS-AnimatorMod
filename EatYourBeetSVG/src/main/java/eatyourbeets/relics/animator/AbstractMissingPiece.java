@@ -227,13 +227,9 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                 else if (synergyListMap.containsKey(s))
                 {
                     int size = synergyListMap.get(s).size();
-                    if (size >= 2)
+                    if (size >= 2 && size <= 10)
                     {
-                        weight += 6 + (size * 3);
-                        if (weight > 20)
-                        {
-                            weight = 20;
-                        }
+                        weight += 9 - (size / 2);
                     }
                 }
 

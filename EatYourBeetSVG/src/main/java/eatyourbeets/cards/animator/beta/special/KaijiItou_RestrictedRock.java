@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.replacement.AnimatorWeakPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -57,7 +57,7 @@ public class KaijiItou_RestrictedRock extends AnimatorCard
 
     public static class KaijiItou_RestrictedRockPower extends AnimatorPower
     {
-        private static final float MODIFIER = 1f;
+        private static final int MODIFIER = 25;
 
         public KaijiItou_RestrictedRockPower(AbstractCreature owner, int amount)
         {
@@ -71,7 +71,7 @@ public class KaijiItou_RestrictedRock extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.EnemyWeakModifier += MODIFIER;
+            AnimatorWeakPower.AddEnemyModifier(MODIFIER);
         }
 
         @Override
@@ -79,7 +79,7 @@ public class KaijiItou_RestrictedRock extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.EnemyWeakModifier -= MODIFIER;
+            AnimatorWeakPower.AddEnemyModifier(-MODIFIER);
         }
 
         @Override

@@ -207,6 +207,8 @@
 	  "Switch Variant",
 	  "Permanently change this card's variant to the currently-displayed variant. NL #rThis #rcan #ronly #rbe #rdone #ronce.",
 	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes.",
+	  "Cur. Copies",
+	  "Max. Copies",
 	  "If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops."
 	]
   },

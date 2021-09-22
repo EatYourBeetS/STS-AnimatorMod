@@ -47,6 +47,9 @@ public class EYBSingleCardPopup extends GUIElement
     private final GUI_TextBox changeVariantNumber;
     private final GUI_Label changeVariantLabel;
     private final GUI_Label changeVariantDescription;
+    private final GUI_Label maxCopiesLabel;
+    private final GUI_Label maxCopiesCount;
+    private final GUI_Label maxCopiesDescription;
 
     private final Hitbox nextHb;
     private final Hitbox prevHb;
@@ -84,9 +87,9 @@ public class EYBSingleCardPopup extends GUIElement
         this.nextHb = new Hitbox(160f * Settings.scale, 160f * Settings.scale);
         this.cardHb = new Hitbox(550f * Settings.scale, 770f * Settings.scale);
         this.changeVariantHb = new Hitbox(200f * Settings.scale, 150f * Settings.scale);
-        this.changeVariantNextHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 2, changeVariantHb.height * 0.8f, false);
-        this.changeVariantPrevHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2, changeVariantHb.height * 0.8f, false);
-        this.changeVariantValueHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE, changeVariantHb.height * 0.8f, false);
+        this.changeVariantNextHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 3.5f, changeVariantHb.height * 0.8f, false);
+        this.changeVariantPrevHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 1.5f, changeVariantHb.height * 0.8f, false);
+        this.changeVariantValueHb = new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 2.5f, changeVariantHb.height * 0.8f, false);
         this.viewBetaArt = false;
         this.isActive = false;
         this.currentForm = 0;
@@ -130,14 +133,28 @@ public class EYBSingleCardPopup extends GUIElement
                 .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
 
         this.changeVariantLabel = new GUI_Label(EYBFontHelper.CardDescriptionFont_Large,
-                new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 - ICON_SIZE / 4, changeVariantHb.height * 2.3f, false))
+                new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 - ICON_SIZE * 2, changeVariantHb.height * 1.6f, false))
                 .SetAlignment(0.5f, 0.5f) // 0.1f
-                .SetText(buttonStrings.Variant);
+                .SetText(buttonStrings.Variant + ":");
 
         this.changeVariantDescription = new GUI_Label(EYBFontHelper.CardTooltipFont,
                 new RelativeHitbox(changeVariantHb, ScreenW(0.21f), ScreenH(0.07f), changeVariantHb.width / 2, -changeVariantHb.height * 0.6f, false))
-                .SetAlignment(0.85f, 0.1f, true)
+                .SetAlignment(0.9f, 0.1f, true)
                 .SetText(buttonStrings.ChangeVariantTooltipAlways);
+
+        this.maxCopiesLabel = new GUI_Label(EYBFontHelper.CardDescriptionFont_Large,
+                new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 - ICON_SIZE * 1.5f, changeVariantHb.height * 4.3f, false))
+                .SetAlignment(0.5f, 0.5f);
+
+        this.maxCopiesCount = new GUI_Label(EYBFontHelper.CardTitleFont_Large,
+                new RelativeHitbox(changeVariantHb, ICON_SIZE, ICON_SIZE, changeVariantHb.width / 2 + ICON_SIZE * 1.5f, changeVariantHb.height * 4.3f, false))
+                .SetColor(new Color(0.7f, 0.9f, 1f, 1f))
+                .SetAlignment(0.5f, 0.5f);
+
+        this.maxCopiesDescription = new GUI_Label(EYBFontHelper.CardTooltipFont,
+                new RelativeHitbox(changeVariantHb, ScreenW(0.21f), ScreenH(0.07f), changeVariantHb.width / 2, changeVariantHb.height * 3.4f, false))
+                .SetAlignment(0.9f, 0.1f, true)
+                .SetText(buttonStrings.MaxCopiesTooltip);
     }
 
     public void Open(EYBCard card, CardGroup group)
@@ -203,7 +220,7 @@ public class EYBSingleCardPopup extends GUIElement
             this.upgradeHb.move((float) Settings.WIDTH / 2f, 70f * Settings.scale);
         }
 
-        this.changeVariantHb.move((float) Settings.WIDTH / 2f  - 680f * Settings.scale, Settings.HEIGHT / 2f + 220 * Settings.scale);
+        this.changeVariantHb.move((float) Settings.WIDTH / 2f  - 700f * Settings.scale, Settings.HEIGHT / 2f + 170 * Settings.scale);
 
         viewChangeVariant = (baseCard != null && baseCard.cardData.CanToggleFromPopup);
         changeVariantDescription.SetText((baseCard != null && !baseCard.cardData.CanToggleFromAlternateForm) ? buttonStrings.ChangeVariantTooltipPermanent : buttonStrings.ChangeVariantTooltipAlways);
@@ -268,6 +285,11 @@ public class EYBSingleCardPopup extends GUIElement
         this.changeVariant.TryUpdate();
         this.changeVariantLabel.TryUpdate();
         this.changeVariantDescription.TryUpdate();
+        this.maxCopiesLabel.SetText((AbstractDungeon.player != null ? buttonStrings.CurrentCopies : buttonStrings.MaxCopies) + ":");
+        this.maxCopiesLabel.TryUpdate();
+        this.maxCopiesCount.SetText(GetCardCopiesText());
+        this.maxCopiesCount.TryUpdate();
+        this.maxCopiesDescription.TryUpdate();
     }
 
     @Override
@@ -332,6 +354,12 @@ public class EYBSingleCardPopup extends GUIElement
                 changeVariant.Render(sb);
                 changeVariantDescription.Render(sb);
             }
+        }
+
+        if (AbstractDungeon.player != null || card.cardData != null) {
+            maxCopiesLabel.Render(sb);
+            maxCopiesCount.Render(sb);
+            maxCopiesDescription.Render(sb);
         }
     }
 
@@ -476,6 +504,24 @@ public class EYBSingleCardPopup extends GUIElement
             upgradedCard.displayUpgrades();
         }
 
+    }
+
+    private String GetCardCopiesText() {
+        if (card == null) {
+            return "";
+        }
+        int currentCopies = (AbstractDungeon.player != null ? JUtils.Count(AbstractDungeon.player.masterDeck.group, c -> c.cardID.equals(card.cardID)) : -1);
+        int maxCopies = card.cardData != null ? card.cardData.MaxCopies : 0;
+
+        if (currentCopies >= 0 && maxCopies > 0) {
+            return currentCopies + "/" + maxCopies;
+        }
+        else if (currentCopies >= 0) {
+            return String.valueOf(currentCopies);
+        }
+        else {
+            return String.valueOf(maxCopies);
+        }
     }
 
 }

@@ -187,7 +187,9 @@ public class AnimatorStrings
         public final String ChangeVariant = Strings.TEXT[1];
         public final String ChangeVariantTooltipPermanent = Strings.TEXT[2];
         public final String ChangeVariantTooltipAlways = Strings.TEXT[3];
-        public final String MaxCopies = Strings.TEXT[4];
+        public final String CurrentCopies = Strings.TEXT[4];
+        public final String MaxCopies = Strings.TEXT[5];
+        public final String MaxCopiesTooltip = Strings.TEXT[6];
     }
 
     public class Actions

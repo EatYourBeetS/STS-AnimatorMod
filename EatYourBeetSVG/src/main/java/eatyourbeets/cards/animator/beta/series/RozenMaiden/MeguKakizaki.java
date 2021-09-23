@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.RepairPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -23,26 +24,23 @@ public class MeguKakizaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 6);
-        SetUpgrade(0, 3, 0);
-        SetAffinity_Orange(1, 0, 0);
+        Initialize(0, 5, 5, 4);
+        SetUpgrade(0, 3, 1, 2);
+        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
-        SetHealing(true);
+        SetEthereal(true);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
+    public void triggerOnExhaust()
     {
         GameActions.Bottom.Callback(() ->
         {
-            if (!DrawSuigintou(player.drawPile))
-                DrawSuigintou(player.discardPile);
+            if (CombatStats.TryActivateLimited(cardID)) {
+                if (!DrawSuigintou(player.drawPile))
+                    DrawSuigintou(player.discardPile);
+            }
         });
     }
 
@@ -56,15 +54,9 @@ public class MeguKakizaki extends AnimatorCard
                 {
                     GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
 
-                    if (upgraded) {
-                        GameActions.Top.MoveCard(c, group, player.hand)
-                                .ShowEffect(true, true)
-                                .AddCallback(GameUtilities::Retain);
-                    }
-                    else {
-                        GameActions.Top.MoveCard(c, group, player.hand)
-                                .ShowEffect(true, true);
-                    }
+                    GameActions.Top.MoveCard(c, group, player.hand)
+                            .ShowEffect(true, true)
+                            .AddCallback(GameUtilities::Retain);
                 }
 
                 return true;
@@ -79,19 +71,24 @@ public class MeguKakizaki extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
-        {
-            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.discardPile, p.hand)
-                    .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                    .SetFilter(c -> c.type == CardType.CURSE)
-                    .SetOptions(false, false)
-                    .AddCallback(() ->
-                    {
-                        CombatStats.TryActivateLimited(cardID);
-                        GameActions.Bottom.StackPower(new RepairPower(player, magicNumber));
-                        GameActions.Last.Exhaust(this);
-                    });
-        }
+        GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, magicNumber).AddCallback(po -> {
+            if (po != null) {
+                AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+                if (mo != null && po.amount > 0) {
+                    GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, po.amount, AttackEffects.BLUNT_HEAVY);
+                }
+            }
+        });
+
+        GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile, p.hand)
+                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+                .SetFilter(c -> c.type == CardType.CURSE)
+                .SetOptions(false, true)
+                .AddCallback(() ->
+                {
+                    CombatStats.TryActivateLimited(cardID);
+                    GameActions.Bottom.RecoverHP(secondaryValue);
+                });
     }
 }
 

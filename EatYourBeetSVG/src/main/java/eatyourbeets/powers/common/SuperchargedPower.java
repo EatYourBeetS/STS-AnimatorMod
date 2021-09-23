@@ -10,13 +10,13 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.ColoredString;
 
-public class DevotionPower extends CommonPower implements OnSpendEnergySubscriber
+public class SuperchargedPower extends CommonPower implements OnSpendEnergySubscriber
 {
-    public static final String POWER_ID = CreateFullID(DevotionPower.class);
+    public static final String POWER_ID = CreateFullID(SuperchargedPower.class);
     public static final int CHARGE_THRESHOLD = 8;
     protected int charge;
 
-    public DevotionPower(AbstractCreature owner, int amount)
+    public SuperchargedPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 

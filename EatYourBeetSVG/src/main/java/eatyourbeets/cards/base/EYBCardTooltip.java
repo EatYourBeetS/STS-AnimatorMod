@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.powers.EYBPower;
@@ -511,6 +512,10 @@ public class EYBCardTooltip
         this.iconMulti_H = h;
 
         return this;
+    }
+
+    public EYBCardTooltip SetIcon(AbstractRelic relic) {
+        return this.SetIcon((Texture)relic.img, 4);
     }
 
     public EYBCardTooltip SetIcon(TextureRegion region)

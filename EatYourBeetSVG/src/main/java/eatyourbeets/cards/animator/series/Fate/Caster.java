@@ -7,8 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Caster extends AnimatorCard
 {
@@ -64,10 +66,15 @@ public class Caster extends AnimatorCard
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
         GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
         GameActions.Bottom.GainCorruption(magicNumber);
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Endurance, -1);
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.ChannelOrb(new Dark());
+            GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(o -> {
+                if (o.size() > 0) {
+                    GameActions.Bottom.TriggerOrbPassive(o.get(0),1);
+                }
+            });
         }
     }
 }

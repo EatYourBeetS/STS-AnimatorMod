@@ -593,6 +593,11 @@ public final class GameActions
         return StackPower(new FocusPower(player, amount));
     }
 
+    public ApplyPower GainFocus(int amount, boolean temporary)
+    {
+        return StackPower(temporary ? new TemporaryFocusPower(player, amount) : new FocusPower(player, amount));
+    }
+
     public ApplyAffinityPower GainForce(int amount)
     {
         return GainForce(amount, false);

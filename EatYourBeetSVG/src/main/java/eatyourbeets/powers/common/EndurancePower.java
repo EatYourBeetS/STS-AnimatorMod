@@ -34,7 +34,7 @@ public class EndurancePower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, totalMultiplier, totalMultiplier2, amount * BLOCK_MULTIPLIER);
+        this.description = FormatDescription(amount >= 0 ? 0 : 1, totalMultiplier, totalMultiplier2, amount * BLOCK_MULTIPLIER);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;

@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.JumpyDumpty;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Klee extends AnimatorCard
@@ -23,8 +25,7 @@ public class Klee extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
 
         SetExhaust(true);
     }
@@ -37,8 +38,14 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
         GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Vulnerable, magicNumber);
 
-        int additionalCount = (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Light) ? 1 : 0);
-        for (int i = 0; i < secondaryValue + additionalCount; i++)
+        int cardCount = secondaryValue;
+        if (CheckAffinity(Affinity.Red)) {
+            cardCount += 1;
+        }
+        if (GameUtilities.GetOrbCount(Fire.ORB_ID) >= 3) {
+            cardCount += 1;
+        }
+        for (int i = 0; i < cardCount; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);
         }

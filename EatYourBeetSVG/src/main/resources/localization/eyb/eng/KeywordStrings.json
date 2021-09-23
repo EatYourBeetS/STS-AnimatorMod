@@ -150,12 +150,6 @@
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
-	"Devotion":
-	{
-	  "DESCRIPTION": "Gains #yCharge as you expend [E]. Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 25% per stack.",
-	  "NAMES": ["devotion"],
-	  "PROPER_NAME": "Devotion"
-	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",
@@ -414,11 +408,17 @@
 		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPER_NAME": "Stun"
 	},
-	"Synergistic":
+	"Supercharged":
+	{
+	  "DESCRIPTION": "Gains #yCharge as you expend [E]. Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 25% per stack (this effect can stack).",
+	  "NAMES": ["supercharged"],
+	  "PROPER_NAME": "Supercharged"
+	},
+	"Synergic":
 	{
 		"DESCRIPTION": "A card that Synergizes with this card.",
-		"NAMES": ["synergistic"],
-		"PROPER_NAME": "Synergistic"
+		"NAMES": ["synergic"],
+		"PROPER_NAME": "Synergic"
 	},
 	"Temporary HP":
     {

@@ -29,7 +29,7 @@ public class DolaSchwi extends AnimatorCard
 
         SetAffinity_Blue(1);
 
-        SetCooldown(2, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted, true, false);
     }
 
     @Override

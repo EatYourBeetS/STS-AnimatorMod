@@ -17,6 +17,7 @@ public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscrib
     public Curse_Rozen()
     {
         super(DATA, false);
+        SetAffinity_Dark(1);
 
         Initialize(0, 0);
     }

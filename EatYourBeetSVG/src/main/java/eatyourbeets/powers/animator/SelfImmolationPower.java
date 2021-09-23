@@ -59,7 +59,7 @@ public class SelfImmolationPower extends AnimatorPower
             if (GameUtilities.IsPlayer(owner)) {
                 AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
                 if (mo != null) {
-                    GameActions.Bottom.DealDamageAtEndOfTurn(owner, GameUtilities.GetRandomEnemy(true), amount, AttackEffects.CLAW);
+                    GameActions.Bottom.DealDamageAtEndOfTurn(owner, mo, amount, AttackEffects.CLAW);
                 }
             }
             else {

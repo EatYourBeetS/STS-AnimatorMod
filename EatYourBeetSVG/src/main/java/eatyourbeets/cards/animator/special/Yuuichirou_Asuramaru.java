@@ -20,7 +20,8 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 5);
+        Initialize(0, 0, 3, 5);
+        SetUpgrade(0,0,1,0);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
@@ -30,23 +31,17 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new DemonFormPower(p, magicNumber));
         GameActions.Bottom.GainForce(magicNumber,true);
+        GameActions.Bottom.GainAgility(magicNumber,true);
         GameActions.Bottom.GainIntellect(magicNumber,true);
-        GameActions.Bottom.GainCorruption(magicNumber,true);
+        GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
 
         if (CombatStats.Affinities.GetPowerAmount(Affinity.Dark) >= secondaryValue) {
-            GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
+            GameActions.Bottom.StackPower(new DemonFormPower(p, magicNumber));
         }
     }
 }

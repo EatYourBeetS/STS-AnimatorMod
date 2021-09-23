@@ -24,12 +24,14 @@ public class FeridBathory extends AnimatorCard
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2);
+
+        SetDelayed(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetDelayed(false);
     }
 
     @Override

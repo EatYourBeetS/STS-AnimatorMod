@@ -34,6 +34,7 @@ public class Shizu_Ifrit extends AnimatorCard
         SetRetainOnce(true);
 
         SetAffinityRequirement(Affinity.Red, 4);
+        SetCooldown(2, 0, this::OnCooldownCompleted, true, false);
     }
 
     @Override
@@ -51,6 +52,15 @@ public class Shizu_Ifrit extends AnimatorCard
             c.applyPowers();
             c.use(player, null);
         }
+    }
 
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+        if (CombatStats.TryActivateLimited(cardID)) {
+            AbstractCard c = new BlazingHeat();
+            c.applyPowers();
+            c.use(player, null);
+            GameActions.Last.Purge(this);
+        }
     }
 }

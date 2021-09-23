@@ -41,6 +41,7 @@ public class Kirby extends AnimatorCard implements
 
         SetAffinity_Star(2);
         SetObtainableInCombat(false);
+        SetVolatile(true);
         SetUnique(true, true);
         hasAttackOrSkill = false;
         previews.Clear();

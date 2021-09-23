@@ -3,22 +3,18 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.animator.SelfImmolationPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class Curse_Depression extends AnimatorCard_Curse
+public class Curse_Eclipse extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(Curse_Depression.class)
-            .SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.DateALive);
-    static
-    {
-        DATA.CardRarity = CardRarity.SPECIAL;
-    }
+    public static final EYBCardData DATA = Register(Curse_Eclipse.class)
+            .SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.Berserk);
 
-    public Curse_Depression()
+    public Curse_Eclipse()
     {
         super(DATA, true);
-        SetAffinity_Blue(1);
+        SetAffinity_Dark(2);
     }
 
     @Override
@@ -26,10 +22,7 @@ public class Curse_Depression extends AnimatorCard_Curse
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.DiscardFromHand(name, 1, true)
-        .ShowEffect(true, true)
-        .SetOptions(false, false, false)
-        .SetFilter(card -> !GameUtilities.IsHindrance(card));
+        GameActions.Bottom.StackPower(new SelfImmolationPower(player, 1));
 
         GameActions.Bottom.Flash(this);
     }

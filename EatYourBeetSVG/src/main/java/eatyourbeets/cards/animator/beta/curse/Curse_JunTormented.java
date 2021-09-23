@@ -17,6 +17,7 @@ public class Curse_JunTormented extends AnimatorCard_Curse
     public Curse_JunTormented()
     {
         super(DATA, true);
+        SetAffinity_Dark(1);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class PowerHelper
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, null, DexterityPower::new);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, null, FocusPower::new);
     public static final PowerHelper Endurance = new PowerHelper(EndurancePower.POWER_ID, null, EndurancePower::new);
-    public static final PowerHelper Devotion = new PowerHelper(DevotionPower.POWER_ID, null, DevotionPower::new);
+    public static final PowerHelper Supercharged = new PowerHelper(SuperchargedPower.POWER_ID, null, SuperchargedPower::new);
     public static final PowerHelper Desecration = new PowerHelper(DesecrationPower.POWER_ID, null, DesecrationPower::new);
 
     public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);

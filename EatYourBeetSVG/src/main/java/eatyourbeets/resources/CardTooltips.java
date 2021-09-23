@@ -116,7 +116,7 @@ public class CardTooltips
     public EYBCardTooltip Harmonic = FindByID("Harmonic");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip Endurance = FindByID("Endurance");
-    public EYBCardTooltip Devotion = FindByID("Devotion");
+    public EYBCardTooltip Supercharged = FindByID("Supercharged");
     public EYBCardTooltip Desecration = FindByID("Desecration");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
@@ -279,7 +279,7 @@ public class CardTooltips
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
         LoadFromPower(Endurance, new EndurancePower(FakeCharacter.Instance, 0));
-        LoadFromPower(Devotion, new DevotionPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Supercharged, new SuperchargedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Desecration, new DesecrationPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));

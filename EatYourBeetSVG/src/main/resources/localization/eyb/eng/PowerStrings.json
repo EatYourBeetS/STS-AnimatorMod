@@ -12,7 +12,7 @@
 	},
 	"eyb:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Devotion]."],
+		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Supercharged]."],
 		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
@@ -39,11 +39,6 @@
 	{
 	  "DESCRIPTIONS": ["Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{0}% and of [Frail] and [Weak] by #b{1}%. Whenever ANY character gains [Delayed Damage], increase it by #b{2}."],
 	  "NAME": "Desecration"
-	},
-	"eyb:DevotionPower":
-	{
-		"DESCRIPTIONS": ["When [E] is lost: Gains #yCharge equal to the amount of [E] lost. For every #b{0} #yCharge: When you play a card that deals damage or gives [Block], spend #b{1} #yCharge to increase its damage and [Block] by #b{2}% (This effect can stack)."],
-		"NAME": "Devotion"
 	},
 	"eyb:EndurancePower":
 	{
@@ -114,6 +109,11 @@
 	{
 		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
 		"NAME": "Shackles"
+	},
+	"eyb:SuperchargedPower":
+	{
+		"DESCRIPTIONS": ["When [E] is spent: Gains #yCharge equal to [E] spent. For every #b{0} #yCharge: When you play a card that deals damage or gives [Block], spend #b{1} #yCharge to increase its damage and [Block] by #b{2}% (This effect can stack)."],
+		"NAME": "Supercharged"
 	},
 	"eyb:SupportDamagePower":
 	{

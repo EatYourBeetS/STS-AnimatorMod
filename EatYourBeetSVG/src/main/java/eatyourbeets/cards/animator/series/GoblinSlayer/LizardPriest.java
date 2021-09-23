@@ -74,7 +74,7 @@ public class LizardPriest extends AnimatorCard
             GameActions.Bottom.SelectFromHand(name, amount, false)
             .SetOptions(true, true, true)
             .SetMessage(RetainCardsAction.TEXT[0])
-            .SetFilter(c -> GameUtilities.CanRetain(c) && GameUtilities.HasLightAffinity(c))
+            .SetFilter(c -> GameUtilities.CanRetain(c) && (GameUtilities.HasLightAffinity(c) || GameUtilities.HasOrangeAffinity(c)))
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)

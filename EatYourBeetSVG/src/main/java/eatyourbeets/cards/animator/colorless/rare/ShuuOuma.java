@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.colorless.rare;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -28,10 +25,12 @@ public class ShuuOuma extends AnimatorCard
         SetAffinity_Dark(1);
 
         SetExhaust(true);
+
+        SetDrawPileCardPreview(c -> c.type == CardType.POWER);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new ShuuOumaPower(player, 1));
 
@@ -43,7 +42,11 @@ public class ShuuOuma extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                GameActions.Bottom.TakeDamage(c.costForTurn * 2, AttackEffects.DARK);
+                final int damage = Math.max(0, c.costForTurn * 2);
+                if (damage > 0)
+                {
+                    GameActions.Bottom.DealDamageAtEndOfTurn(player, player, damage, AttackEffects.DARK);
+                }
             }
         });
     }

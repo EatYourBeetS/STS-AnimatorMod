@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -34,21 +35,21 @@ public class UneriGinkaku extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    protected void Refresh(AbstractMonster enemy)
     {
-        boolean playable = super.cardPlayable(m);
-        if (playable && !isInAutoplay)
+        super.Refresh(enemy);
+
+        boolean unplayable = false;
+        for (AbstractCard card : AbstractDungeon.actionManager.cardsPlayedThisTurn)
         {
-            for (AbstractCard card : AbstractDungeon.actionManager.cardsPlayedThisTurn)
+            if (card.type == CardType.ATTACK)
             {
-                if (card.type == CardType.ATTACK)
-                {
-                    return false;
-                }
+                unplayable = true;
+                break;
             }
         }
 
-        return playable;
+        SetUnplayable(unplayable);
     }
 
     @Override
@@ -61,7 +62,7 @@ public class UneriGinkaku extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(enemy ->

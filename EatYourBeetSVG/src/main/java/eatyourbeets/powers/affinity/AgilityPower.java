@@ -1,12 +1,13 @@
 package eatyourbeets.powers.affinity;
 
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.powers.PowerHelper;
 
 public class AgilityPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(AgilityPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Green;
+    public static final String SYMBOL = "A";
 
     public AgilityPower()
     {
@@ -14,8 +15,8 @@ public class AgilityPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int thresholdIndex)
+    protected PowerHelper GetThresholdBonusPower()
     {
-        GameActions.Top.GainDexterity(1);
+        return PowerHelper.Dexterity;
     }
 }

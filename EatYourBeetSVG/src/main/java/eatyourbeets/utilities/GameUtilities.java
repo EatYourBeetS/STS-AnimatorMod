@@ -91,6 +91,26 @@ public class GameUtilities
         }
     }
 
+    public static void ApplyPowerInstantly(TargetHelper targetHelper, AbstractPower power, int stacks)
+    {
+        for (AbstractCreature target : targetHelper.GetTargets())
+        {
+            final AbstractPower p = GetPower(target, power.ID);
+            if (p != null)
+            {
+                if ((p.amount += stacks) == 0)
+                {
+                    target.powers.remove(p);
+                }
+            }
+            else
+            {
+                target.addPower(power);
+                Collections.sort(target.powers);
+            }
+        }
+    }
+
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean CanApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply, AbstractGameAction action)
     {
@@ -132,7 +152,10 @@ public class GameUtilities
 
     public static boolean CanShowUpgrades(boolean isLibrary)
     {
-        return SingleCardViewPopup.isViewingUpgrade && (player == null || isLibrary || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
+        return SingleCardViewPopup.isViewingUpgrade && (player == null || isLibrary
+                || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD
+                || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD
+                || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
     }
 
     public static void ClearPostCombatActions()
@@ -273,6 +296,11 @@ public class GameUtilities
         return null;
     }
 
+    public static int GetHealthRecoverAmount(int amount)
+    {
+        return Math.min(amount, GameActionManager.playerHpLastTurn - player.currentHealth);
+    }
+
     public static boolean HasArtifact(AbstractCreature creature)
     {
         return creature.hasPower(ArtifactPower.POWER_ID) || creature.hasPower(TemporaryArtifactPower.POWER_ID);
@@ -301,6 +329,11 @@ public class GameUtilities
     public static boolean HasDarkAffinity(AbstractCard card)
     {
         return GetAffinityLevel(card, Affinity.Dark, true) > 0;
+    }
+
+    public static boolean HasMulticolorAffinity(AbstractCard card)
+    {
+        return GetAffinityLevel(card, Affinity.Star, true) > 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
@@ -632,6 +665,14 @@ public class GameUtilities
         return intents;
     }
 
+    public static int GetTotalCardsPlayed(AbstractCard ignoreLast, boolean currentTurn)
+    {
+        final ArrayList<AbstractCard> cards = currentTurn
+                ? AbstractDungeon.actionManager.cardsPlayedThisTurn
+                : AbstractDungeon.actionManager.cardsPlayedThisCombat;
+        return (cards.size() > 0 && (cards.get(cards.size() - 1) == ignoreLast)) ? (cards.size() - 1) : cards.size();
+    }
+
     public static AbstractCard GetLastCardPlayed(boolean currentTurn)
     {
         return GetLastCardPlayed(currentTurn, 0);
@@ -639,16 +680,9 @@ public class GameUtilities
 
     public static AbstractCard GetLastCardPlayed(boolean currentTurn, int offset)
     {
-        ArrayList<AbstractCard> cards;
-        if (currentTurn)
-        {
-            cards = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-        }
-        else
-        {
-            cards = AbstractDungeon.actionManager.cardsPlayedThisCombat;
-        }
-		
+        final ArrayList<AbstractCard> cards = currentTurn
+                ? AbstractDungeon.actionManager.cardsPlayedThisTurn
+                : AbstractDungeon.actionManager.cardsPlayedThisCombat;
         return cards.size() > offset ? cards.get(cards.size() - 1 - offset) : null;
     }
 
@@ -1107,6 +1141,11 @@ public class GameUtilities
         return card.costForTurn == 0 || card.costForTurn == 1;
     }
 
+    public static boolean IsDebuff(AbstractPower power)
+    {
+        return power != null && power.type == AbstractPower.PowerType.DEBUFF;
+    }
+
     public static boolean IsDeadOrEscaped(AbstractCreature target)
     {
         return target.isDeadOrEscaped() || target.currentHealth <= 0;
@@ -1140,12 +1179,12 @@ public class GameUtilities
                 return false;
             }
 
-            final String validSeed = GR.Animator.Config.LastSeed.Get();
-            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
-            {
-                JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (2)");
-                return false;
-            }
+//            final String validSeed = GR.Animator.Config.LastSeed.Get();
+//            if (StringUtils.isNotEmpty(validSeed) && !String.valueOf(Settings.seed).equals(validSeed))
+//            {
+//                JUtils.LogInfo(GameUtilities.class, "IsNormalRun: false (2)");
+//                return false;
+//            }
 
             for (AbstractCard c : player.masterDeck.group)
             {
@@ -1157,11 +1196,11 @@ public class GameUtilities
             }
         }
 
-        JUtils.LogInfo(GameUtilities.class, "IsNormalRun: SeedSet: {0}, SpecialSeed: {1}, DailyRun: {2}, IsDemo: {3}, Mods: {4}, Endless: {5}",
-                Settings.seedSet, Settings.specialSeed, Settings.isDailyRun, Settings.isDemo,
+        JUtils.LogInfo(GameUtilities.class, "IsNormalRun: SeedSet: {0}, SpecialSeed: {1}, DailyRun: {2}, IsTrial: {3} IsDemo: {4}, Mods: {5}, Endless: {6}",
+                Settings.seedSet, Settings.specialSeed, Settings.isDailyRun, Settings.isTrial, Settings.isDemo,
                 JUtils.JoinStrings("," ,ModHelper.getEnabledModIDs()), Settings.isEndless);
 
-        return !Settings.seedSet && JUtils.IsNullOrZero(Settings.specialSeed) && !Settings.isDailyRun
+        return !Settings.seedSet && JUtils.IsNullOrZero(Settings.specialSeed) && !Settings.isDailyRun && !Settings.isTrial
             && !Settings.isDemo && JUtils.IsNullOrEmpty(ModHelper.enabledMods) && !Settings.isEndless;
     }
 
@@ -1378,6 +1417,38 @@ public class GameUtilities
         for (AbstractAffinityPower p : CombatStats.Affinities.Powers)
         {
             p.RetainOnce();
+        }
+    }
+
+    public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
+    {
+        if (value)
+        {
+            if (!card.tags.contains(tag))
+            {
+                card.tags.add(tag);
+            }
+        }
+        else
+        {
+            card.tags.remove(tag);
+        }
+    }
+
+    public static boolean IsTopPanelVisible()
+    {
+        return AbstractDungeon.topPanel != null && !Settings.hideTopBar;
+    }
+
+    public static void SetTopPanelVisible(boolean visible)
+    {
+        Settings.hideTopBar = !visible;
+        Settings.hideRelics = !visible;
+
+        if (AbstractDungeon.topPanel != null)
+        {
+            AbstractDungeon.topPanel.unhoverHitboxes();
+            //AbstractDungeon.topPanel.potionUi.isHidden = !visible;
         }
     }
 

@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
@@ -26,19 +27,19 @@ public class Entoma extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0);
-        SetUpgrade(2, 0);
+        SetUpgrade(1, 0);
 
-        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Dark(1, 1, 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration)
-        .AddCallback(e -> GameActions.Bottom.ApplyPoison(player, e, damage).ShowEffect(false, true));
+        .AddCallback(e -> GameActions.Top.ApplyPoison(player, e, damage).ShowEffect(false, true));
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (info.TryActivateSemiLimited())
         {
             GameActions.Bottom.StackPower(new EntomaPower(p, 2));
         }
@@ -58,7 +59,7 @@ public class Entoma extends AnimatorCard
         {
             super.onApplyPower(power, target, source);
 
-            if (source == owner && PoisonPower.POWER_ID.equals(power.ID))
+            if (source == owner && PoisonPower.POWER_ID.equals(power.ID) && GameUtilities.CanApplyPower(source, target, power, null))
             {
                 GameActions.Bottom.GainTemporaryHP(1);
             }

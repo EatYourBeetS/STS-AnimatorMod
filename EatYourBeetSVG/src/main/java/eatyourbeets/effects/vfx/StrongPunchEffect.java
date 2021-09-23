@@ -13,28 +13,33 @@ public class StrongPunchEffect extends EYBEffect
 {
     public static final TextureCache image = IMAGES.Punch;
 
+    protected boolean triggered;
+    protected float baseScale;
+    protected float vfxTimer;
     protected float x;
     protected float y;
-    protected float rotationSpeed = 600f;
-    protected float vfxTimer = 1;
-    protected float baseScale;
-    protected boolean triggered = false;
 
-    public StrongPunchEffect(float x, float y, float baseScale)
+    public StrongPunchEffect(float x, float y)
     {
-        super(1f);
+        super(1f, true);
 
         this.x = x;
         this.y = y;
-        this.scale = this.baseScale = Math.max(baseScale,1);
-        this.rotation = 300f;
+        this.scale = this.baseScale = 1f;
         this.color = Color.WHITE.cpy();
+        this.vfxTimer = startingDuration;
+    }
+
+    public StrongPunchEffect SetScale(float scale)
+    {
+        this.baseScale = scale;
+
+        return this;
     }
 
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-
         if ((1f - duration) < 0.1f)
         {
             color.a = Interpolation.fade.apply(0.1f, 1f, (1f - duration) * 7f);
@@ -47,19 +52,21 @@ public class StrongPunchEffect extends EYBEffect
         vfxTimer -= deltaTime / duration;
         if (vfxTimer < 0f)
         {
-            if (!triggered) {
-                GameEffects.Queue.Add(VFX.Whack(x, y).SetColor(Color.SCARLET)).SetScale(2);
-                SFX.Play(SFX.ANIMATOR_PUNCH,0.7f,0.8f);
+            if (triggered)
+            {
+                x += Interpolation.sine.apply(-25f, 25f, duration * 50);
+                y += Interpolation.sine.apply(-25f, 25f, duration * 50);
+            }
+            else
+            {
+                GameEffects.Queue.Add(VFX.Whack(x, y).SetColor(Color.SCARLET)).SetScale(scale);
+                SFX.Play(SFX.ANIMATOR_PUNCH, 0.7f, 0.8f);
                 triggered = true;
             }
-            else {
-                x += Interpolation.sine.apply(-25f, 25f, this.duration * 50);
-                y += Interpolation.sine.apply(-25f, 25f, this.duration * 50);
-            }
         }
-        else {
-            this.rotation += rotationSpeed * deltaTime / duration;
-            this.scale = Interpolation.linear.apply(1, this.baseScale, duration);
+        else
+        {
+            this.scale = Interpolation.linear.apply(baseScale * 0.5f, baseScale, duration);
         }
 
         super.UpdateInternal(deltaTime);

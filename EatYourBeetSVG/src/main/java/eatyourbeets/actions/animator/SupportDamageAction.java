@@ -1,6 +1,5 @@
 package eatyourbeets.actions.animator;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.damage.DamageHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -80,17 +80,6 @@ public class SupportDamageAction extends EYBAction
 
         if (TickDuration(deltaTime))
         {
-            if (attackEffect == AttackEffect.POISON)
-            {
-                target.tint.color = Color.CHARTREUSE.cpy();
-                target.tint.changeColor(Color.WHITE.cpy());
-            }
-            else if (attackEffect == AttackEffect.FIRE)
-            {
-                target.tint.color = Color.RED.cpy();
-                target.tint.changeColor(Color.WHITE.cpy());
-            }
-
             info.type = DamageInfo.DamageType.NORMAL;
             info.applyPowers(info.owner, target);
             GameUtilities.UsePenNib();
@@ -105,7 +94,8 @@ public class SupportDamageAction extends EYBAction
             }
 
             info.owner = null;
-            target.damage(info);
+            DamageHelper.ApplyTint(target, null, attackEffect);
+            DamageHelper.DealDamage(target, info, false, true);
 
             if (AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead())
             {

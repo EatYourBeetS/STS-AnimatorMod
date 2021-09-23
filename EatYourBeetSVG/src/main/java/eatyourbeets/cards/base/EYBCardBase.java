@@ -30,7 +30,6 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride protected void updateGlow() { SpireSuper.call(); }
     @SpireOverride protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected) { SpireSuper.call(sb, hovered, selected); }
     @SpireOverride protected void renderTint(SpriteBatch sb) { SpireSuper.call(sb); }
-    @SpireOverride protected void renderMainBorder(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderDescription(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderJokePortrait(SpriteBatch sb) { renderPortrait(sb); }
     @SpireOverride private void renderDescriptionCN(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
@@ -82,8 +81,8 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
-    protected ColoredTexture portraitImg;
-    protected ColoredTexture portraitForeground;
+    protected AdvancedTexture portraitImg;
+    protected AdvancedTexture portraitForeground;
 
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
@@ -105,7 +104,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        portraitImg = new ColoredTexture(GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true), null);
+        portraitImg = new AdvancedTexture(GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true), null);
     }
 
     public boolean IsOnScreen()
@@ -271,6 +270,45 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SpireOverride
+    protected void renderMainBorder(SpriteBatch sb)
+    {
+        if (!this.isGlowing)
+        {
+            return;
+        }
+
+        final TextureAtlas.AtlasRegion img;
+        switch (this.type)
+        {
+            case ATTACK:
+                img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
+                break;
+
+            case POWER:
+                img = ImageMaster.CARD_POWER_BG_SILHOUETTE;
+                break;
+
+            default:
+                img = ImageMaster.CARD_SKILL_BG_SILHOUETTE;
+                break;
+        }
+
+        if (GameUtilities.InBattle(false))
+        {
+            sb.setColor(this.glowColor);
+        }
+        else
+        {
+            sb.setColor(GREEN_BORDER_GLOW_COLOR);
+        }
+
+        sb.setBlendFunction(770, 1);
+        sb.draw(img, this.current_x + img.offsetX - (img.originalWidth / 2f), this.current_y + img.offsetY - (img.originalWidth / 2f),
+                (img.originalWidth / 2f) - img.offsetX, (img.originalWidth / 2f) - img.offsetY, img.packedWidth, img.packedHeight,
+                this.drawScale * Settings.scale * 1.04f, this.drawScale * Settings.scale * 1.03f, this.angle);
+    }
+
+    @SpireOverride
     protected void renderImage(SpriteBatch sb, boolean hovered, boolean selected)
     {
         if (player != null)
@@ -307,15 +345,15 @@ public abstract class EYBCardBase extends AbstractCard
         }
 
         final boolean cropPortrait = canCropPortraits && (this.cropPortrait && GR.Animator.Config.CropCardImages.Get());
-        ColoredTexture image = GetPortraitImage();
+        AdvancedTexture image = GetPortraitImage();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, false, false);
+            RenderPortraitImage(sb, image.texture, image.color, image.GetScale(), cropPortrait, false, false);
         }
         image = GetPortraitForeground();
         if (image != null)
         {
-            RenderPortraitImage(sb, image.texture, image.color, image.scale, cropPortrait, image.scale != 1, true);
+            RenderPortraitImage(sb, image.texture, image.color, image.GetScale(), cropPortrait, image.GetScale() != 1, true);
         }
     }
 
@@ -361,7 +399,7 @@ public abstract class EYBCardBase extends AbstractCard
         }
         else if (isPopup)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width*2, render_height*2, color, transparency, scale * 0.5f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width * 2, render_height * 2, color, transparency, scale * 0.5f);
         }
         else
         {
@@ -436,27 +474,27 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
-    protected ColoredTexture GetPortraitImage()
+    protected AdvancedTexture GetPortraitImage()
     {
         return portraitImg;
     }
 
-    protected ColoredTexture GetPortraitForeground()
+    protected AdvancedTexture GetPortraitForeground()
     {
         return portraitForeground;
     }
 
-    protected ColoredTexture GetPortraitFrame()
+    protected AdvancedTexture GetPortraitFrame()
     {
         return null;
     }
 
-    protected ColoredTexture GetCardBanner()
+    protected AdvancedTexture GetCardBanner()
     {
         return null;
     }
 
-    protected ColoredTexture GetCardBorderIndicator()
+    protected AdvancedTexture GetCardBorderIndicator()
     {
         return null;
     }
@@ -473,7 +511,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected String GetTypeText()
     {
-        switch(this.type)
+        switch (this.type)
         {
             case ATTACK:
                 return TEXT[0];
@@ -535,6 +573,11 @@ public abstract class EYBCardBase extends AbstractCard
         {
             return new ColoredString(baseSecondaryValue, Settings.CREAM_COLOR);
         }
+    }
+
+    public ColoredString GetSpecialVariableString()
+    {
+        return new ColoredString(misc, misc > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
     }
 
     public Color GetRarityColor(boolean alt)
@@ -607,7 +650,7 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
+    private boolean TryRenderCentered(SpriteBatch sb, AdvancedTexture texture)
     {
         if (texture != null)
         {

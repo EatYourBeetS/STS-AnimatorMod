@@ -48,7 +48,7 @@ public class DolaRikuAction extends EYBAction
         ArrayList<AbstractCard> allCards = CardLibrary.getAllCards();
         for (AbstractCard temp : allCards)
         {
-            if (temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.TEMPORARY))
+            if (temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.VOLATILE))
             {
                 continue;
             }
@@ -107,7 +107,7 @@ public class DolaRikuAction extends EYBAction
             cardGroup.group.add(rinne);
         }
 
-        AbstractDungeon.gridSelectScreen.open(cardGroup, 1, CreateMessage(), false);
+        AbstractDungeon.gridSelectScreen.open(cardGroup, 1, UpdateMessage(), false);
     }
 
     @Override

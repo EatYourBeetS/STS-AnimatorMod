@@ -18,20 +18,18 @@ public class ReducePower extends EYBActionWithCallback<AbstractPower>
     {
         super(ActionType.REDUCE_POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
-        Initialize(target, source, amount);
-
         this.powerID = powerID;
-        this.actionType = ActionType.REDUCE_POWER;
+
+        Initialize(target, source, amount);
     }
 
     public ReducePower(AbstractCreature target, AbstractCreature source, AbstractPower power, int amount)
     {
         super(ActionType.REDUCE_POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
-        Initialize(target, source, amount);
-
         this.power = power;
-        this.actionType = ActionType.REDUCE_POWER;
+
+        Initialize(target, source, amount);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -43,7 +44,7 @@ public class Marielle extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final Map<CardType, List<AbstractCard>> map = JUtils.Group(p.drawPile.group, c -> c.type);
 
@@ -65,7 +66,7 @@ public class Marielle extends AnimatorCard
             i += 1;
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
             PurgeOnUseOnce();

@@ -38,7 +38,6 @@ public class CommonImages
     public final TextureCache Arrow_Right                 = new TextureCache("images/eyb/ui/topPanel/Arrow_Right.png");
     public final TextureCache Draggable                   = new TextureCache("images/eyb/ui/topPanel/Draggable.png");
     public final TextureCache FullSquare                  = new TextureCache("images/eyb/ui/topPanel/FullSquare.png");
-    public final TextureCache Info                        = new TextureCache("images/eyb/ui/topPanel/Info.png");
 
     public static class CardIcons
     {
@@ -152,11 +151,8 @@ public class CommonImages
         public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
         public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
         public final TextureCache Spear            = new TextureCache("images/animator/effects/Spear.png");
-        public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
-        public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
         public final TextureCache Water            = new TextureCache("images/animator/effects/Water.png");
-        public final TextureCache WaterDome        = new TextureCache("images/animator/effects/WaterDome.png");
     }
 }

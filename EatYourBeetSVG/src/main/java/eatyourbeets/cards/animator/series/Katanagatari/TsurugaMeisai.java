@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,22 +22,24 @@ public class TsurugaMeisai extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 4);
+        Initialize(0, 2, 6);
         SetUpgrade(0, 2, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
+        SetAffinity_Green(0, 0, 1);
 
         SetExhaust(true);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new NextTurnBlockPower(p, magicNumber));
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(true, true, true)
+        .SetMessage(GR.Common.Strings.HandSelection.Copy)
         .SetFilter(c -> GameUtilities.IsLowCost(c) && c.type == CardType.ATTACK)
         .AddCallback(cards ->
         {
@@ -44,9 +48,9 @@ public class TsurugaMeisai extends AnimatorCard
                 GameActions.Bottom.MakeCardInDrawPile(GameUtilities.Imitate(c))
                 .AddCallback(card ->
                 {
-                    if (upgraded && !card.tags.contains(HASTE))
+                    if (upgraded)
                     {
-                        card.tags.add(HASTE);
+                        GameUtilities.SetCardTag(card, HASTE, true);
                     }
                 });
             }

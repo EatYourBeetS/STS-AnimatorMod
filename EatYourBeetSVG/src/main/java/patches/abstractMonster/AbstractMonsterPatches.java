@@ -66,7 +66,11 @@ public class AbstractMonsterPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(AbstractMonster __instance, SpriteBatch sb)
         {
-            EYBCardTooltip.QueueTooltips(__instance);
+            if (__instance.reticleAlpha == 0)
+            {
+                EYBCardTooltip.QueueTooltips(__instance);
+            }
+
             return SpireReturn.Return();
         }
     }

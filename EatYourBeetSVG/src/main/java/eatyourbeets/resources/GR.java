@@ -174,8 +174,7 @@ public class GR
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
     {
-        //This should be set only for beta branches.  Do not merge this into master.
-        return false;//language == Settings.GameLanguage.RUS; // language == Settings.GameLanguage.ZHS || language == Settings.GameLanguage.ZHT;
+        return language == Settings.GameLanguage.RUS || language == Settings.GameLanguage.ZHS;// || language == Settings.GameLanguage.ZHT;
     }
 
     public static Texture GetTexture(String path)
@@ -451,7 +450,8 @@ public class GR
 
         public static class CardTags
         {
-            @SpireEnum public static AbstractCard.CardTags TEMPORARY;
+            @SpireEnum public static AbstractCard.CardTags MARKED;
+            @SpireEnum public static AbstractCard.CardTags VOLATILE;
             @SpireEnum public static AbstractCard.CardTags UNIQUE;
             @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
             @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
@@ -459,27 +459,22 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags PURGE;
             @SpireEnum public static AbstractCard.CardTags DELAYED;
             @SpireEnum public static AbstractCard.CardTags HASTE;
-            @SpireEnum public static AbstractCard.CardTags HASTE_INFINITE;
             @SpireEnum public static AbstractCard.CardTags PURGING;
             @SpireEnum public static AbstractCard.CardTags LOYAL;
             @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
             @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
-            @SpireEnum public static AbstractCard.CardTags HARMONIC;
         }
 
         public static class AttackEffect
         {
-            @SpireEnum public static AbstractGameAction.AttackEffect FIRE_EXPLOSION;
-            @SpireEnum public static AbstractGameAction.AttackEffect ICE;
-            @SpireEnum public static AbstractGameAction.AttackEffect DARKNESS;
-            @SpireEnum public static AbstractGameAction.AttackEffect PSYCHOKINESIS;
             @SpireEnum public static AbstractGameAction.AttackEffect GUNSHOT;
             @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
             @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
             @SpireEnum public static AbstractGameAction.AttackEffect PUNCH;
+            @SpireEnum public static AbstractGameAction.AttackEffect CLAW;
             @SpireEnum public static AbstractGameAction.AttackEffect DARK;
-            @SpireEnum public static AbstractGameAction.AttackEffect WATER;
+            @SpireEnum public static AbstractGameAction.AttackEffect ICE;
         }
     }
 }

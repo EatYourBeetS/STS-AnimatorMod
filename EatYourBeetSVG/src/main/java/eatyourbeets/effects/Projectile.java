@@ -4,36 +4,35 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
-import eatyourbeets.utilities.ColoredTexture;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.Position2D;
 import eatyourbeets.utilities.RenderHelpers;
-import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
 
-public class Projectile extends ColoredTexture
+public class Projectile extends AdvancedTexture
 {
     public boolean flipX;
     public boolean flipY;
     public float width;
     public float height;
-    public float target_scale = 1;
-    public float scale_growth_rate = 2f;
-    public Vector3f current_pos = new Vector3f();
-    public Vector3f target_pos = new Vector3f();
-    public Vector3f current_offset = new Vector3f();
-    public Vector3f target_offset = new Vector3f();
-    public Vector3f speed = new Vector3f(10f, 10f, 24f);
-    public Vector4f acceleration = new Vector4f(0f, 0f, 0f, 0f);
+
+    public Position2D target_pos = new Position2D();
+    public Position2D offset = new Position2D();
+    public Position2D target_offset = new Position2D();
+    public Position2D speed = new Position2D(10f, 10f, 24f, 2f);
+    public Position2D acceleration = new Position2D();
+    public float acceleration_duration = 0;
 
     public Projectile(Texture texture, float width, float height)
     {
         super(texture);
 
+        this.target_pos.Import(pos);
         this.width = width;
         this.height = height;
     }
 
-    public Projectile SetSpeedMulti(Float x, Float y, Float rotation)
+    public Projectile SetSpeedMulti(Float x, Float y, Float rotation, Float scale)
     {
         if (x != null)
         {
@@ -45,13 +44,17 @@ public class Projectile extends ColoredTexture
         }
         if (rotation != null)
         {
-            this.speed.z *= rotation;
+            this.speed.rotation *= rotation;
+        }
+        if (scale != null)
+        {
+            this.speed.scale *= scale;
         }
 
         return this;
     }
 
-    public Projectile SetAcceleration(Float x, Float y, Float rotation, Float duration)
+    public Projectile SetAcceleration(Float x, Float y, Float rotation, Float scale, Float duration)
     {
         if (x != null)
         {
@@ -63,17 +66,21 @@ public class Projectile extends ColoredTexture
         }
         if (rotation != null)
         {
-            this.acceleration.z = rotation;
+            this.acceleration.rotation = rotation;
+        }
+        if (scale != null)
+        {
+            this.acceleration.scale = scale;
         }
         if (duration != null)
         {
-            this.acceleration.w = duration;
+            this.acceleration_duration = duration;
         }
 
         return this;
     }
 
-    public Projectile SetSpeed(Float x, Float y, Float rotation)
+    public Projectile SetSpeed(Float x, Float y, Float rotation, Float scale)
     {
         if (x != null)
         {
@@ -85,7 +92,11 @@ public class Projectile extends ColoredTexture
         }
         if (rotation != null)
         {
-            this.speed.z = rotation;
+            this.speed.rotation = rotation;
+        }
+        if (scale != null)
+        {
+            this.speed.scale = scale;
         }
 
         return this;
@@ -95,11 +106,11 @@ public class Projectile extends ColoredTexture
     {
         if (cX != null)
         {
-            this.current_pos.x = this.target_pos.x = cX;
+            this.pos.x = this.target_pos.x = cX;
         }
         if (cY != null)
         {
-            this.current_pos.y = this.target_pos.y = cY;
+            this.pos.y = this.target_pos.y = cY;
         }
 
         return this;
@@ -121,59 +132,65 @@ public class Projectile extends ColoredTexture
 
     public Projectile SetScale(float scale)
     {
-        this.scale = this.target_scale = scale;
+        this.pos.scale = this.target_pos.scale = scale;
 
         return this;
     }
 
-    public Projectile SetTargetScale(float scale)
+    public Projectile SetTargetScale(float scale, Float speed)
     {
-        this.target_scale = scale;
+        this.target_pos.scale = scale;
 
-        return this;
-    }
-
-    public Projectile SetTargetScale(float scale, float growthRate)
-    {
-        this.target_scale = scale;
-        this.scale_growth_rate = growthRate;
+        if (speed != null)
+        {
+            this.speed.scale = speed;
+        }
 
         return this;
     }
 
     public Projectile SetRotation(float degrees)
     {
-        this.current_pos.z = this.target_pos.z = degrees;
+        this.pos.rotation = this.target_pos.rotation = degrees;
 
         return this;
     }
 
-    public Projectile SetTargetRotation(float degrees)
+    public Projectile SetTargetRotation(float degrees, Float speed)
     {
-        this.target_pos.z = degrees;
+        this.target_pos.rotation = degrees;
+
+        if (speed != null)
+        {
+            this.speed.rotation = speed;
+        }
 
         return this;
     }
 
-    public Projectile SetOffset(Float x, Float y, Float rotation)
+    public Projectile SetOffset(Float x, Float y, Float rotation, Float scale)
     {
         if (x != null)
         {
-            current_offset.x = target_offset.x = x;
+            offset.x = target_offset.x = x;
         }
         if (y != null)
         {
-            current_offset.y = target_offset.y = y;
+            offset.y = target_offset.y = y;
         }
         if (rotation != null)
         {
-            current_offset.z = target_offset.z = rotation;
+            offset.rotation = target_offset.rotation = rotation;
+        }
+        if (scale != null)
+        {
+            offset.scale = target_offset.scale = scale;
         }
 
         return this;
     }
 
-    public Projectile SetTargetOffset(Float x, Float y, Float rotation)
+    public Projectile SetTargetOffset(Float x, Float y, Float rotation, Float scale)
     {
         if (x != null)
         {
@@ -185,7 +202,11 @@ public class Projectile extends ColoredTexture
         }
         if (rotation != null)
         {
-            target_offset.z = rotation;
+            target_offset.rotation = rotation;
+        }
+        if (scale != null)
+        {
+            target_offset.scale = scale;
         }
 
         return this;
@@ -217,48 +238,49 @@ public class Projectile extends ColoredTexture
 
     public void Update(float delta)
     {
-        if (scale != target_scale)
-        {
-            scale = Mathf.MoveTowards(scale, target_scale, delta * scale_growth_rate);
-        }
-
-        Mathf.ApplyMovement(current_pos, target_pos, speed, delta);
-        Mathf.ApplyMovement(current_offset, target_offset, speed, delta);
-        Mathf.ApplyAcceleration(speed, acceleration, delta, Interpolation.linear);
+        pos.ApplyMovement(target_pos, speed, delta);
+        offset.ApplyMovement(target_offset, speed, delta);
+        speed.ApplyAcceleration(acceleration, acceleration_duration, delta, Interpolation.linear);
+        acceleration_duration = Mathf.Max(0, acceleration_duration - delta);
     }
 
     public void Render(SpriteBatch sb)
     {
-        Render(sb, color == null ? sb.getColor() : color, GetCurrentX(true), GetCurrentY(true), scale);
+        Render(sb, color == null ? sb.getColor() : color);
     }
 
     public void Render(SpriteBatch sb, Color color)
     {
-        Render(sb, color, GetCurrentX(true), GetCurrentY(true), scale);
+        Render(sb, color, GetX(true), GetY(true), GetScale(true));
     }
 
     public void Render(SpriteBatch sb, Color color, float cX, float cY, float scale)
     {
-        RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetCurrentRotation(true), flipX, flipY);
+        RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
     }
 
-    public Vector3f GetCurrentPosition(boolean addOffset)
+    public Position2D GetCurrentPosition(boolean addOffset)
     {
-        return new Vector3f(GetCurrentX(addOffset), GetCurrentY(addOffset), GetCurrentRotation(addOffset));
+        return new Position2D(GetX(addOffset), GetY(addOffset), GetRotation(addOffset), GetScale(addOffset));
     }
 
-    public float GetCurrentX(boolean addOffset)
+    public float GetX(boolean addOffset)
     {
-        return addOffset ? (current_pos.x + current_offset.x) : current_pos.x;
+        return addOffset ? (GetX() + offset.x) : GetX();
     }
 
-    public float GetCurrentY(boolean addOffset)
+    public float GetY(boolean addOffset)
     {
-        return addOffset ? (current_pos.y + current_offset.y) : current_pos.y;
+        return addOffset ? (GetY() + offset.y) : GetY();
     }
 
-    public float GetCurrentRotation(boolean addOffset)
+    public float GetRotation(boolean addOffset)
     {
-        return addOffset ? (current_pos.z + current_offset.z) : current_pos.z;
+        return addOffset ? (GetRotation() + offset.rotation) : GetRotation();
+    }
+
+    public float GetScale(boolean addOffset)
+    {
+        return addOffset ? (GetScale() + offset.scale) : GetScale();
     }
 }

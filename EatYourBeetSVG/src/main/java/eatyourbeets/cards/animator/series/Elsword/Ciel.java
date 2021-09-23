@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +28,7 @@ public class Ciel extends AnimatorCard
         SetUpgrade(0, 0, 2, 0);
 
         SetAffinity_Green(2, 0, 1);
-        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Dark(2);
 
         SetAffinityRequirement(Affinity.Green, 3);
         SetAffinityRequirement(Affinity.Blue, 2);
@@ -52,7 +53,7 @@ public class Ciel extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlock(block);

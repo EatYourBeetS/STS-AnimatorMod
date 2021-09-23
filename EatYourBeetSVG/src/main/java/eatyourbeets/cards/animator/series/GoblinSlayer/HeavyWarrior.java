@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
@@ -54,6 +55,8 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
         magicNumber = GetHandAffinity(Affinity.Red);
         isMagicNumberModified = magicNumber > 0;
         magicNumberString = super.GetMagicNumberString();
+
+        SetUnplayable(!JUtils.Any(player.hand.group, c -> c.uuid != uuid && c.costForTurn >= 2));
     }
 
     @Override
@@ -63,13 +66,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return super.cardPlayable(m) && JUtils.Any(player.hand.group, c -> c.uuid != uuid && c.costForTurn >= 2);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb).SetColor(Color.LIGHT_GRAY));
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY)

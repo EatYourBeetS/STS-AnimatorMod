@@ -2,18 +2,17 @@ package eatyourbeets.cards.animator.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.Konosuba.Megumin;
 import eatyourbeets.cards.base.AnimatorCard_Status;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 
-public class Konosuba_Slimed extends AnimatorCard_Status
+public class Status_Slimed extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(Konosuba_Slimed.class)
-            .SetStatus(1, CardRarity.COMMON, EYBCardTarget.None)
-            .SetSeries(Megumin.DATA.Series);
+    public static final EYBCardData DATA = Register(Status_Slimed.class)
+            .SetStatus(1, CardRarity.COMMON, EYBCardTarget.None);
 
-    public Konosuba_Slimed()
+    public Status_Slimed()
     {
         super(DATA, false);
 
@@ -23,7 +22,7 @@ public class Konosuba_Slimed extends AnimatorCard_Status
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }

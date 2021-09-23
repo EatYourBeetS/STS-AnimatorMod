@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PhilosopherStone;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.resources.GR;
@@ -32,14 +29,20 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 50);
-        SetUpgrade(0, 0, 0, -8);
+        Initialize(0, 0, 0, 46);
         SetCostUpgrade(-1);
 
         SetAffinity_Dark(2);
 
+        SetUnique(true, false);
         SetPurge(true, false);
         SetHealing(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override
@@ -66,13 +69,11 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
     @Override
     public boolean ShouldCancel()
     {
-        GR.Animator.Dungeon.Ban(cardData.ID);
-
-        return AbstractDungeon.actNum >= 4 || player == null || player.hasRelic(PhilosopherStone.ID);
+        return GR.Animator.Dungeon.BannedCards.contains(cardID) || AbstractDungeon.actNum >= 4 || player == null || player.hasRelic(PhilosopherStone.ID);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (!p.hasRelic(relic.relicId))
         {

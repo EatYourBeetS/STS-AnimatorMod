@@ -23,7 +23,7 @@ public class RerollCardButton extends GUI_Button
         this.container = container;
         this.hitbox = (AdvancedHitbox) hb;
         this.cardIndex = cardIndex;
-        this.card = GetCard();
+        this.card = GetCard(true);
 
         SetDimensions(AbstractCard.IMG_WIDTH * 0.85f, AbstractCard.IMG_HEIGHT * 0.175f);
         SetColor(new Color(0.8f, 0.2f, 0.2f, 1f));
@@ -35,12 +35,13 @@ public class RerollCardButton extends GUI_Button
     @Override
     public void Update()
     {
-        if ((card = GetCard()) != null)
+        if ((card = GetCard(false)) != null)
         {
             hitbox.target_cX = GetTargetCX(card);
             hitbox.target_cY = GetTargetCY(card);
-            SetInteractable(!card.hb.hovered);
         }
+
+        SetInteractable(card != null && !card.hb.hovered);
 
         super.Update();
     }
@@ -64,9 +65,15 @@ public class RerollCardButton extends GUI_Button
         return card.current_y + (AbstractCard.IMG_HEIGHT * 0.515f);
     }
 
-    public AbstractCard GetCard()
+    public AbstractCard GetCard(boolean includeColorless)
     {
-        return (cardIndex < container.rewardItem.cards.size()) ? container.rewardItem.cards.get(cardIndex) : null;
+        if (cardIndex < container.rewardItem.cards.size())
+        {
+            final AbstractCard card = container.rewardItem.cards.get(cardIndex);
+            return (!includeColorless && card.color == AbstractCard.CardColor.COLORLESS) ? null : card;
+        }
+
+        return null;
     }
 
     public int GetIndex()

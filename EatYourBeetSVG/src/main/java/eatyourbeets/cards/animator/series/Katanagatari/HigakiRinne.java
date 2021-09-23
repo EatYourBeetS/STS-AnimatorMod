@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.animator.status.Konosuba_Slimed;
+import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
@@ -60,7 +60,7 @@ public class HigakiRinne extends AnimatorCard
                 exhaustActions.Add(c -> GameActions.Bottom.SFX(HigakiRinneAction.GetRandomSFX(), 0.6f, 1.6f), 10);
                 exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(ThrowingKnife.GetRandomCard()), 5);
                 exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(c.makeStatEquivalentCopy()), 1);
-                exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(new Konosuba_Slimed()), 5);
+                exhaustActions.Add(c -> GameActions.Bottom.MakeCardInHand(new Status_Slimed()), 5);
             });
 
     public HigakiRinne()
@@ -120,7 +120,7 @@ public class HigakiRinne extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (this.type == CardType.POWER)
         {

@@ -39,14 +39,14 @@ public class RundelhausCode extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
         GameActions.Bottom.GainIntellect(1);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (!CombatStats.GetCombatData(cardID + "_buffs", false))
         {
@@ -57,7 +57,7 @@ public class RundelhausCode extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, magicNumber, true)
         .SetOptions(true, false, true)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && !buffs.contains(c) && (c.baseDamage > 0 || c.baseBlock > 0))
+        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && !buffs.contains(c) && (c.baseDamage >= 0 || c.baseBlock >= 0))
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)

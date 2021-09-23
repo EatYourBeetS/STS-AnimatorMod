@@ -30,7 +30,7 @@ public class Shiroe extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Cycle(name, magicNumber);
         GameActions.Bottom.StackPower(new ShiroePower(p, secondaryValue));

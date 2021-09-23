@@ -13,7 +13,7 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.animator.status.Konosuba_Slimed;
+import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
@@ -169,12 +169,12 @@ public class HigakiRinneAction extends EYBAction
     {
         switch (rng.random(5))
         {
-            case 0: GameActions.Bottom.GainPlatedArmor(1);
-            case 1: GameActions.Bottom.GainMetallicize(1);
-            case 2: GameActions.Bottom.GainInspiration(1);
-            case 3: GameActions.Bottom.GainBlur(1);
-            case 4: GameActions.Bottom.GainMalleable(2);
-            case 5: GameActions.Bottom.GainTemporaryThorns(9);
+            case 0: GameActions.Bottom.GainPlatedArmor(1); break;
+            case 1: GameActions.Bottom.GainMetallicize(1); break;
+            case 2: GameActions.Bottom.GainInspiration(1); break;
+            case 3: GameActions.Bottom.GainBlur(1); break;
+            case 4: GameActions.Bottom.GainMalleable(2); break;
+            case 5: GameActions.Bottom.GainTemporaryThorns(9); break;
         }
     }
 
@@ -182,12 +182,12 @@ public class HigakiRinneAction extends EYBAction
     {
         switch (rng.random(5))
         {
-            case 0: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Poison, 3);
-            case 1: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Weak, 1);
-            case 2: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Vulnerable, 1);
-            case 3: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 2);
-            case 4: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Burning, 3);
-            case 5: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Constricted, 2);
+            case 0: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Poison, 3); break;
+            case 1: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Weak, 1); break;
+            case 2: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Vulnerable, 1); break;
+            case 3: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 2); break;
+            case 4: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Burning, 3); break;
+            case 5: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Constricted, 2); break;
         }
     }
 
@@ -237,7 +237,7 @@ public class HigakiRinneAction extends EYBAction
 
     private void ObtainStatusCard()
     {
-        GameActions.Bottom.MakeCardInHand(new Konosuba_Slimed());
+        GameActions.Bottom.MakeCardInHand(new Status_Slimed());
     }
 
     private void ObtainHigakiRinne()

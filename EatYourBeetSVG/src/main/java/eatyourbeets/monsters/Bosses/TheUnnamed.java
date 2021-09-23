@@ -238,6 +238,7 @@ public class TheUnnamed extends EYBMonster
     public void OnDollDeath()
     {
         minionsCount -= 1;
+
         if (minionsCount <= 0)
         {
             StartPhase2();

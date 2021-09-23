@@ -17,7 +17,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -75,7 +74,7 @@ public class Patchouli extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         final RandomizedList<ActionT0> actions = new RandomizedList<>();
         for (int i = 0; i < magicNumber; i++)
@@ -92,7 +91,7 @@ public class Patchouli extends AnimatorCard
             GameActions.Bottom.WaitRealtime(0.2f);
         }
 
-        if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+        if (CheckAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
             GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
             .AddCallback(cards ->

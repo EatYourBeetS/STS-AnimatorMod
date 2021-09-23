@@ -11,6 +11,8 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
+import java.util.Collections;
+
 public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
 {
     public static final String POWER_ID = CreateFullID(GeassPower.class);
@@ -25,7 +27,22 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     @Override
     public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
-        return (power.type != PowerType.DEBUFF || owner != source || (owner.isPlayer == target.isPlayer));
+        return !enabled || (power.type != PowerType.DEBUFF || owner != source || (owner.isPlayer == target.isPlayer));
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        GameActions.Last.Callback(() ->
+        {
+           if (!owner.powers.contains(this))
+           {
+               owner.powers.add(this);
+               Collections.sort(owner.powers);
+           }
+        });
     }
 
     @Override
@@ -33,7 +50,7 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     {
         super.onInitialApplication();
 
-        AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
+        final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && !GameUtilities.IsAttacking(monster.intent))
         {
             if (!monster.hasPower(StunMonsterPower.POWER_ID))
@@ -41,7 +58,7 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
                 GameActions.Bottom.ApplyPower(owner, owner, new StunMonsterPower(monster));
             }
 
-            RemovePower();
+            SetEnabled(false);
         }
     }
 
@@ -50,6 +67,6 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     {
         super.atEndOfTurn(isPlayer);
 
-        RemovePower();
+        SetEnabled(false);
     }
 }

@@ -37,17 +37,16 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
-    public FadingParticleEffect SetRotation(float startRotation, float targetRotation)
+    public FadingParticleEffect SetRotation(float startRotation)
     {
         this.projectile.SetRotation(startRotation);
-        this.projectile.SetTargetRotation(targetRotation);
 
         return this;
     }
 
     public FadingParticleEffect SetScale(float scale)
     {
-        this.projectile.scale = scale;
+        this.projectile.pos.scale = scale;
 
         return this;
     }

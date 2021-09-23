@@ -1,17 +1,18 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import eatyourbeets.effects.AttackEffects;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.cards.animator.special.Cthulhu_Madness;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Cthulhu extends AnimatorCard_UltraRare
 {
@@ -19,7 +20,8 @@ public class Cthulhu extends AnimatorCard_UltraRare
     public static final EYBCardData DATA = Register(Cthulhu.class)
             .SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.CallOfCthulhu);
+            .SetSeries(CardSeries.CallOfCthulhu)
+            .PostInitialize(data -> data.AddPreview(new Cthulhu_Madness(), false));
 
     public Cthulhu()
     {
@@ -42,6 +44,12 @@ public class Cthulhu extends AnimatorCard_UltraRare
         ColoredString res = super.GetCostString();
         res.text = String.valueOf(COST);
         return res;
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return super.cardPlayable(m) && player.hand.contains(this);
     }
 
     @Override
@@ -71,20 +79,27 @@ public class Cthulhu extends AnimatorCard_UltraRare
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.MakeCardInHand(new Madness());
+        switch (MathUtils.random(2))
+        {
+            case 0: SFX.Play(SFX.VO_AWAKENEDONE_1, 0.5f, 0.75f); break;
+            case 1: SFX.Play(SFX.VO_AWAKENEDONE_2, 0.5f, 0.75f); break;
+            case 2: SFX.Play(SFX.VO_AWAKENEDONE_3, 0.5f, 0.75f); break;
+        }
+
+        GameActions.Bottom.MakeCardInHand(new Cthulhu_Madness());
         GameActions.Bottom.Flash(this);
     }
 
-    @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
+//    @Override
+//    protected void Refresh(AbstractMonster enemy)
+//    {
+//        super.Refresh(enemy);
+//
+//        GameUtilities.ModifyCostForCombat(this, COST, false);
+//    }
 
-        GameUtilities.ModifyCostForCombat(this, COST, false);
-    }
-
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (EnergyPanel.getCurrentEnergy() < COST)
         {

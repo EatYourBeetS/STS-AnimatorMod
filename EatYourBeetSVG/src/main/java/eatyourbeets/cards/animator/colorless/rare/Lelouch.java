@@ -5,14 +5,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.GeassPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
+
+import java.util.ArrayList;
 
 public class Lelouch extends AnimatorCard
 {
@@ -21,7 +18,6 @@ public class Lelouch extends AnimatorCard
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CodeGeass);
-    public static final PowerHelper GEASS = new PowerHelper(GeassPower.POWER_ID, null, (o, s, a) -> new GeassPower(o));
 
     public Lelouch()
     {
@@ -38,38 +34,50 @@ public class Lelouch extends AnimatorCard
     }
 
     @Override
-    public boolean cardPlayable(AbstractMonster m)
+    protected void Refresh(AbstractMonster enemy)
     {
-        if (super.cardPlayable(m))
-        {
-            int count = 0;
-            for (AbstractCard c : player.hand.group)
-            {
-                if (c.uuid != uuid)
-                {
-                    count += 1;
-                }
-            }
+        super.Refresh(enemy);
 
-            return count >= magicNumber;
+        int count = 0;
+        for (AbstractCard c : player.hand.group)
+        {
+            if (c.uuid != uuid)
+            {
+                count += 1;
+            }
         }
 
-        return false;
+        SetUnplayable(count < magicNumber);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ExhaustFromHand(name, magicNumber, true)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
-        .AddCallback(cards ->
+        .AddCallback(info, (info2, cards) ->
         {
             if (cards.size() >= magicNumber)
             {
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-                GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
-                GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), GEASS);
+                final ArrayList<AbstractMonster> enemies = new ArrayList<>();
+                for (AbstractMonster m2 : info2.Enemies)
+                {
+                    if (!m2.hasPower(GeassPower.POWER_ID))
+                    {
+                        enemies.add(m2);
+                    }
+                }
+
+                if (enemies.size() > 0)
+                {
+                    GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
+                    GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+                    for (AbstractMonster m2 : enemies)
+                    {
+                        GameActions.Bottom.ApplyPower(player, new GeassPower(m2));
+                    }
+                }
             }
         });
     }

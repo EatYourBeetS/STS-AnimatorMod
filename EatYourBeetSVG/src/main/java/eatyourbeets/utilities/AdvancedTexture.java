@@ -3,15 +3,15 @@ package eatyourbeets.utilities;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
-public class ColoredTexture
+public class AdvancedTexture
 {
     public Color color;
     public Texture texture;
-    public float scale;
+    public Position2D pos;
 
-    public ColoredTexture(Texture texture, Color color, float alpha)
+    public AdvancedTexture(Texture texture, Color color, float alpha)
     {
-        this.scale = 1;
+        this.pos = new Position2D(0, 0, 0, 1);
         this.texture = texture;
 
         if (color != null)
@@ -21,14 +21,34 @@ public class ColoredTexture
         }
     }
 
-    public ColoredTexture(Texture texture, Color color)
+    public AdvancedTexture(Texture texture, Color color)
     {
         this(texture, color, 1);
     }
 
-    public ColoredTexture(Texture texture)
+    public AdvancedTexture(Texture texture)
     {
         this(texture, Color.WHITE);
+    }
+
+    public float GetX()
+    {
+        return pos.x;
+    }
+
+    public float GetY()
+    {
+        return pos.y;
+    }
+
+    public float GetRotation()
+    {
+        return pos.rotation;
+    }
+
+    public float GetScale()
+    {
+        return pos.scale;
     }
 
     public int GetWidth()
@@ -41,17 +61,24 @@ public class ColoredTexture
         return texture.getHeight();
     }
 
-    public ColoredTexture SetColor(Color color)
+    public AdvancedTexture SetColor(Color color)
     {
-        this.color.r = color.r;
-        this.color.g = color.g;
-        this.color.b = color.b;
-        this.color.a = color.a;
+        if (color != null)
+        {
+            this.color.r = color.r;
+            this.color.g = color.g;
+            this.color.b = color.b;
+            this.color.a = color.a;
+        }
+        else
+        {
+            this.color = null;
+        }
 
         return this;
     }
 
-    public ColoredTexture SetColor(Float r, Float g, Float b, Float a)
+    public AdvancedTexture SetColor(Float r, Float g, Float b, Float a)
     {
         if (r != null)
         {

@@ -12,10 +12,9 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 
 public abstract class AbstractAffinityPower extends CommonPower
 {
@@ -32,7 +31,8 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
     protected int thresholdIndex;
-    protected abstract void OnThresholdReached(int thresholdIndex);
+    protected int thresholdBonusAmount;
+    protected int thresholdBonusModifier;
 
     public AbstractAffinityPower(Affinity affinity, String powerID)
     {
@@ -55,6 +55,8 @@ public abstract class AbstractAffinityPower extends CommonPower
         this.enabled = true;
         this.retainedTurns = 0;
         this.thresholdIndex = 0;
+        this.thresholdBonusAmount = 0;
+        this.thresholdBonusModifier = 0;
 
         Initialize(0, PowerType.BUFF, true);
     }
@@ -74,18 +76,20 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Stack(int amount, boolean retain)
     {
-        if (!enabled && amount > 0)
+        if (!enabled)
         {
             return;
         }
 
-        this.amountGainedThisTurn += amount;
-        this.amount += amount;
-        this.fontScale = 8f;
-
-        if (retain)
+        if (this.amount == maxAmount || retain)
         {
             RetainOnce();
+        }
+
+        if (amount > 0)
+        {
+            super.stackPower(amount, true);
+            this.amountGainedThisTurn += amount;
         }
 
         UpdateThreshold();
@@ -93,7 +97,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public Integer GetCurrentThreshold()
     {
-        int[] thresholds = GetThresholds();
+        final int[] thresholds = GetThresholds();
         return (thresholdIndex < thresholds.length) ? thresholds[thresholdIndex] : null;
     }
 
@@ -102,15 +106,20 @@ public abstract class AbstractAffinityPower extends CommonPower
         return DEFAULT_THRESHOLDS;
     }
 
+    public void AddThresholdBonusModifier(int amount)
+    {
+        RefreshThresholdBonus(false, amount);
+    }
+
     protected void UpdateThreshold()
     {
-        int[] thresholds = GetThresholds();
+        final int[] thresholds = GetThresholds();
         for (int i = thresholdIndex; i < thresholds.length; i++)
         {
             if (amount >= thresholds[i])
             {
-                OnThresholdReached(i);
                 thresholdIndex += 1;
+                RefreshThresholdBonus(true, 0);
             }
         }
 
@@ -209,6 +218,40 @@ public abstract class AbstractAffinityPower extends CommonPower
         if (hb.hovered)
         {
             EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
+        }
+    }
+
+    protected PowerHelper GetThresholdBonusPower()
+    {
+        return null;
+    }
+
+    protected void RefreshThresholdBonus(boolean thresholdReached, int addModifier)
+    {
+        final PowerHelper powerHelper = GetThresholdBonusPower();
+        if (powerHelper == null)
+        {
+            throw new RuntimeException(name + " must override either GetThresholdBonusPower or RefreshThresholdBonus.");
+        }
+
+        final int current = Math.max(0, thresholdBonusAmount + thresholdBonusModifier);
+        if (current > 0)
+        {
+            GameUtilities.ApplyPowerInstantly(owner, powerHelper, -current);
+        }
+
+        if (thresholdReached)
+        {
+            thresholdBonusAmount += 1;
+        }
+
+        thresholdBonusModifier += addModifier;
+
+        final int newAmount = Math.max(0, thresholdBonusAmount + thresholdBonusModifier);
+        if (newAmount > 0)
+        {
+            GameActions.Top.StackPower(TargetHelper.Source(owner), powerHelper, newAmount)
+            .ShowEffect(newAmount > thresholdBonusAmount, true);
         }
     }
 }

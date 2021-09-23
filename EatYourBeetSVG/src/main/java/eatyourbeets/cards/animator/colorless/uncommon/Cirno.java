@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -36,6 +36,8 @@ public class Cirno extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
             intent.AddFreezing();
@@ -51,7 +53,7 @@ public class Cirno extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(() ->
         {
@@ -68,7 +70,7 @@ public class Cirno extends AnimatorCard
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
         .SetVFX(true, false)
-        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(false, true));
+        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(true, true));
     }
 }
 

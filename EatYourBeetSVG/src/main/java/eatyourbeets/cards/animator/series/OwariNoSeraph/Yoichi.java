@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -26,19 +25,19 @@ public class Yoichi extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
         .AddCallback(power ->
         {
-            if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+            if (HasSynergy() && info.TryActivateSemiLimited())
             {
                 SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
                 if (supportDamage != null)

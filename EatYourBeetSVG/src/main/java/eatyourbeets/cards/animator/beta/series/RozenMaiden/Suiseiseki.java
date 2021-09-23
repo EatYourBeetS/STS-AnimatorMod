@@ -10,10 +10,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -48,7 +45,7 @@ public class Suiseiseki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 
@@ -132,7 +129,7 @@ public class Suiseiseki extends AnimatorCard
             ArrayList<AbstractCard> AllCard = CardLibrary.getAllCards();
             for (AbstractCard c : AllCard)
                 if (!c.hasTag(CardTags.HEALING))
-                    if (!c.hasTag(GR.Enums.CardTags.TEMPORARY))
+                    if (!c.hasTag(GR.Enums.CardTags.VOLATILE))
                         if (c.rarity == CardRarity.BASIC)
                             if (c.color == currentcolor || c.color == CardColor.COLORLESS)
                                 OptionSet.Add(c);

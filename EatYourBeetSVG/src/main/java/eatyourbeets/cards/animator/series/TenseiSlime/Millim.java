@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
@@ -46,7 +43,7 @@ public class Millim extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
@@ -59,9 +56,9 @@ public class Millim extends AnimatorCard
         {
             switch (rng.random(2))
             {
-                case 0: GameActions.Bottom.ChannelOrb(new Fire());
-                case 1: GameActions.Bottom.ChannelOrb(new Lightning());
-                case 2: GameActions.Bottom.ChannelOrb(new Dark());
+                case 0: GameActions.Bottom.ChannelOrb(new Fire()); break;
+                case 1: GameActions.Bottom.ChannelOrb(new Lightning()); break;
+                case 2: GameActions.Bottom.ChannelOrb(new Dark()); break;
             }
         }
     }

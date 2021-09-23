@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.Earth;
@@ -27,6 +28,8 @@ public class Kagari extends AnimatorCard
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
             intent.AddStrength(-magicNumber);
@@ -34,7 +37,7 @@ public class Kagari extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
         {

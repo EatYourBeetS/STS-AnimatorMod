@@ -6,8 +6,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.interfaces.subscribers.OnSynergyBonusSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -38,12 +39,12 @@ public class Biyorigo extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new BiyorigoPower(p, magicNumber));
     }
 
-    public static class BiyorigoPower extends AnimatorClickablePower implements OnSynergySubscriber
+    public static class BiyorigoPower extends AnimatorClickablePower implements OnSynergyBonusSubscriber
     {
         public static final int MAX_METALLICIZE = 4;
 
@@ -61,7 +62,7 @@ public class Biyorigo extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.onSynergy.Subscribe(this);
+            CombatStats.onSynergyBonus.Subscribe(this);
         }
 
         @Override
@@ -69,7 +70,7 @@ public class Biyorigo extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.onSynergy.Unsubscribe(this);
+            CombatStats.onSynergyBonus.Unsubscribe(this);
         }
 
         @Override
@@ -79,10 +80,9 @@ public class Biyorigo extends AnimatorCard
         }
 
         @Override
-        public void OnSynergy(AbstractCard card)
+        public void OnSynergyBonus(AbstractCard card, Affinity affinity)
         {
-            AbstractCard last = CombatStats.Affinities.GetLastCardPlayed();
-            if (last != null && CombatStats.Affinities.GetSynergies(card, last).GetLevel(Affinity.Red) > 1)
+            if (affinity == Affinity.Red)
             {
                 GameActions.Bottom.GainMetallicize(Math.min(MAX_METALLICIZE, amount));
                 this.flashWithoutSound();

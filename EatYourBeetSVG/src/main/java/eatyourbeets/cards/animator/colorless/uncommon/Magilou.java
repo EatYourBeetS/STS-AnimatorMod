@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.special.Magilou_Bienfu;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -49,7 +46,7 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
         {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
             .AddCallback(() -> GameActions.Top.MakeCardInHand(new Magilou_Bienfu()))
-            .SetDuration(0.15f, true);
+            .SetDuration(0.5f, true);
         }
         else
         {
@@ -58,7 +55,7 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber));
         GameActions.Bottom.Callback(new WaitRealtimeAction(0.3f), () -> GameActions.Bottom.Add(new EvokeOrbAction(1)));

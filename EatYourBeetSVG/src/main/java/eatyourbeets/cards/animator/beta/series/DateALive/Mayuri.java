@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.affinity.AgilityPower;
@@ -26,7 +27,7 @@ public class Mayuri extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
 
@@ -35,7 +36,7 @@ public class Mayuri extends AnimatorCard
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.Callback(cards -> {
                     for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
@@ -50,7 +51,7 @@ public class Mayuri extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
     }
 }

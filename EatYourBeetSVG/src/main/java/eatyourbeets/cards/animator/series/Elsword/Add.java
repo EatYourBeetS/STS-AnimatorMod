@@ -4,8 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.*;
@@ -41,16 +39,16 @@ public class Add extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EnergizedBluePower(p, 2));
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+        GameActions.Bottom.GainEnergyNextTurn(2);
+        GameActions.Bottom.DrawNextTurn(magicNumber);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (isSynergizing || CheckAffinity(Affinity.Dark))
+        if (info.IsSynergizing || CheckAffinity(Affinity.Dark))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);

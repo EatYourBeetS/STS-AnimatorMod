@@ -127,7 +127,7 @@
 	},
 	"animator:GeassPower":
 	{
-		"DESCRIPTIONS": ["Will attack itself this turn."],
+		"DESCRIPTIONS": ["Will attack itself or be stunned once. This power can only affect the same character once."],
 		"NAME": "Geass"
 	},
 	"animator:GuildGirlPower":
@@ -327,7 +327,7 @@
 	},
 	"animator:UnnamedDollPower":
 	{
-		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength."],
+		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength. Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
 		"NAME": "Unnamed Doll"
 	},
 	"animator:VitalityPower":

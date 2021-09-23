@@ -1,8 +1,8 @@
 package eatyourbeets.interfaces.subscribers;
 
-import eatyourbeets.utilities.CardSelection;
+import eatyourbeets.utilities.ListSelection;
 
 public interface OnAddedToDrawPileSubscriber
 {
-    void OnAddedToDrawPile(boolean visualOnly, CardSelection.Mode destination);
+    void OnAddedToDrawPile(boolean visualOnly, ListSelection.Mode destination);
 }

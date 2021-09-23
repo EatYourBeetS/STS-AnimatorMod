@@ -1,17 +1,17 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RotatingList;
 
 public class Illya extends AnimatorCard
 {
@@ -19,8 +19,6 @@ public class Illya extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Berserker(), false));
-
-    private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
 
     public Illya()
     {
@@ -30,33 +28,8 @@ public class Illya extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Star(1);
-    }
 
-    @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        super.calculateCardDamage(mo);
-
-        drawPileCardPreview.SetCurrentTarget(mo);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        drawPileCardPreview.Update();
-    }
-
-    @Override
-    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
-    {
-        super.Render(sb, hovered, selected, library);
-
-        if (!library)
-        {
-            drawPileCardPreview.Render(sb);
-        }
+        SetDrawPileCardPreview(this::FindCards);
     }
 
     @Override
@@ -80,9 +53,9 @@ public class Illya extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final AbstractCard card = FindBestCard(m);
+        final AbstractCard card = drawPileCardPreview.FindCard(m);
         if (card != null)
         {
             GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber);
@@ -111,13 +84,14 @@ public class Illya extends AnimatorCard
         return false;
     }
 
-    private static AbstractCard FindBestCard(AbstractMonster target)
+    private void FindCards(RotatingList<AbstractCard> cards, AbstractMonster target)
     {
+        cards.Clear();
         AbstractCard bestCard = null;
         int maxDamage = Integer.MIN_VALUE;
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c.type == CardType.ATTACK && c.cardPlayable(target) && !c.tags.contains(GR.Enums.CardTags.TEMPORARY))
+            if (c.type == CardType.ATTACK && GameUtilities.IsPlayable(c, target) && !c.tags.contains(GR.Enums.CardTags.VOLATILE))
             {
                 c.calculateCardDamage(target);
                 if (c.damage > maxDamage)
@@ -128,7 +102,6 @@ public class Illya extends AnimatorCard
                 c.resetAttributes();
             }
         }
-
-        return bestCard;
+        cards.Add(bestCard);
     }
 }

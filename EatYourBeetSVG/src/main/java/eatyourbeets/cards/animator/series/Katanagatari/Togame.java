@@ -30,7 +30,7 @@ public class Togame extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
@@ -46,7 +46,7 @@ public class Togame extends AnimatorCard
                 }
             }
 
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCard(Affinity.Dark)).SetUpgrade(upgraded, false);
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
         });
     }
 }

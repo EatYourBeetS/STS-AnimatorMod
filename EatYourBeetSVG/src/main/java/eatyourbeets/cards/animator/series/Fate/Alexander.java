@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -34,7 +34,7 @@ public class Alexander extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
@@ -42,7 +42,7 @@ public class Alexander extends AnimatorCard
 
         if (ForceStance.IsActive())
         {
-            GameActions.Bottom.GainPlatedArmor(1);
+            GameActions.Bottom.Draw(1);
         }
     }
 }

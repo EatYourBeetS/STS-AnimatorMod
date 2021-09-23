@@ -111,9 +111,9 @@ public class Water extends AnimatorOrb
             GameEffects.Queue.Add(new FadingParticleEffect(IMAGES.WaterBubble.Texture(), hb.cX, hb.cY)
                     .SetTranslucent(1f)
                     .Edit(angle, (r, p) -> p
-                            .SetScale(scale * MathUtils.random(0.08f, 0.32f)).SetTargetRotation(36000)
-                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 300f))
-                            .SetAcceleration(MathUtils.random(0f, 3f), MathUtils.random(0f, 3f), null, null)
+                            .SetScale(scale * MathUtils.random(0.08f, 0.32f)).SetTargetRotation(36000,360f)
+                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 300f), 360f)
+                            .SetAcceleration(MathUtils.random(0f, 3f), MathUtils.random(0f, 3f), null, null, null)
                             .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false));
             this.vfxTimer = MathUtils.random(0.2f, 0.5f);
         }

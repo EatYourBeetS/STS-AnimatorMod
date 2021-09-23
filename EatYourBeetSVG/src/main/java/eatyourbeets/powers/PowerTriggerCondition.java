@@ -130,6 +130,7 @@ public class PowerTriggerCondition
                 return result && AbstractDungeon.player.hand.size() >= requiredAmount;
 
             case TakeDamage:
+            case TakeDelayedDamage:
                 return result && GameUtilities.GetHP(AbstractDungeon.player, true, true) > requiredAmount;
 
             case LoseHP:
@@ -174,11 +175,18 @@ public class PowerTriggerCondition
             }
             case TakeDamage:
             {
+                GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
                 GameActions.Bottom.TakeDamage(requiredAmount, AttackEffects.NONE);
+                break;
+            }
+            case TakeDelayedDamage:
+            {
+                GameActions.Bottom.DealDamageAtEndOfTurn(power.owner, power.owner, requiredAmount);
                 break;
             }
             case LoseHP:
             {
+                GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
                 GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
                 break;
             }

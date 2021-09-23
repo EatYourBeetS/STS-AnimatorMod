@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.ListSelection;
 
 public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuffleSubscriber, OnAddedToDrawPileSubscriber
 {
@@ -34,7 +35,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
         GameActions.Bottom.SFX("ATTACK_FIRE");
@@ -57,7 +58,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     }
 
     @Override
-    public void OnAddedToDrawPile(boolean visualOnly, CardSelection.Mode destination)
+    public void OnAddedToDrawPile(boolean visualOnly, ListSelection.Mode destination)
     {
         OnShuffle(false);
     }

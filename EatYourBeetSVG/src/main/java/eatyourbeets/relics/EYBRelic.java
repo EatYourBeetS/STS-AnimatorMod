@@ -1,6 +1,7 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -8,14 +9,13 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -23,6 +23,8 @@ import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
 {
+    private static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
+
     public static AbstractPlayer player;
     public static Random rng;
 
@@ -49,7 +51,7 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
-    public void updateDescription(AbstractPlayer.PlayerClass c)
+    public final void updateDescription(AbstractPlayer.PlayerClass c)
     {
         this.description = getUpdatedDescription();
         this.mainTooltip.description = description;
@@ -75,6 +77,25 @@ public abstract class EYBRelic extends CustomRelic
         }
     }
 
+    @Override
+    public void renderCounter(SpriteBatch sb, boolean inTopPanel)
+    {
+        if (this.counter >= 0)
+        {
+            final String text = GetCounterString();
+            if (inTopPanel)
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                        _offsetX.Get(null) + this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+            else
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                        this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+        }
+    }
+
     protected String FormatDescription(int index, Object... args)
     {
         return JUtils.Format(DESCRIPTIONS[index], args);
@@ -83,6 +104,11 @@ public abstract class EYBRelic extends CustomRelic
     protected void DisplayAboveCreature(AbstractCreature creature)
     {
         GameActions.Top.Add(new RelicAboveCreatureAction(creature, this));
+    }
+
+    protected String GetCounterString()
+    {
+        return String.valueOf(counter);
     }
 
     public boolean IsEnabled()
@@ -128,6 +154,14 @@ public abstract class EYBRelic extends CustomRelic
         super.atPreBattle();
 
         ActivateBattleEffect();
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        DeactivateBattleEffect();
     }
 
     @Override

@@ -41,7 +41,7 @@ public class ManiwaKyouken extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
         {
@@ -66,7 +66,7 @@ public class ManiwaKyouken extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(() -> GameActions.Bottom.DiscardFromHand(name, EnergyPanel.getCurrentEnergy() * 2, false)
                                                             .SetOptions(false, false, false));

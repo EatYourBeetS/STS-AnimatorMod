@@ -127,7 +127,8 @@
 			"Reroll",
 			"+{0} Max HP",
 			"+{0} Gold",
-			"Aura Effects"
+			"Common Upgrade",
+			"#pRight-Click to preview."
 		]
 	},
 
@@ -192,7 +193,18 @@
 			"Simplify Card UI",
 			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file",
 			"The console is disabled while in this act.",
-			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time."
+			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time.",
+			"(Max #b{0} stacks)",
+			"(Above #b{0} stacks, gain [Block] instead)",
+			"(Max #b{0} [Block])"
+		]
+	},
+	
+	"animator:Tutorial":
+	{
+		"TEXT":
+		[
+			"The counter for each #yAffinity is equal to the number of cards in your hand with that #yAffinity. NL The [A-Gen] counter is equal to your highest #yAffinity counter. NL Once per turn, when a card with LV2 #yAffinity #ySynergizes, gain the power shown on the right."
 		]
 	},
        "animator:CardMods":

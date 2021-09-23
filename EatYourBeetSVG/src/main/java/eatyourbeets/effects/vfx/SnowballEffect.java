@@ -56,13 +56,13 @@ public class SnowballEffect extends EYBEffect
             GameEffects.Queue.Add(new LightFlareParticleEffect(x, y, secondaryColor));
             GameEffects.Queue.Add(new FrostOrbPassiveEffect(x, y));
             if (RandomBoolean(0.3f)) {
-                GameEffects.Queue.Add(new SnowballParticleEffect(this.x, this.y, color).SetScale(Random(0.05f,0.1f) * Settings.scale));
+                GameEffects.Queue.Add(new SnowballParticleEffect(this.x, this.y, color));
             }
         }
 
         if (TickDuration(deltaTime))
         {
-            GameEffects.Queue.Add(new SnowballTriggerEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
+            GameEffects.Queue.Add(new SnowballImpactEffect(x, y).SetColor(color)).SetRealtime(isRealtime);
             GameEffects.Queue.Add(new FrostOrbActivateEffect(x, y));
             Complete();
         }

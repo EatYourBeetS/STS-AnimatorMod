@@ -39,13 +39,13 @@ public class ShidoItsuka extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         InitializeSynergicCards();
 
@@ -103,7 +103,7 @@ public class ShidoItsuka extends AnimatorCard
                     }
                 });
 
-        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
+        if (info.IsSynergizing && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
         }

@@ -9,7 +9,10 @@ import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.powers.common.ShacklesPower;
-import eatyourbeets.powers.replacement.ImprovedConstrictedPower;
+import eatyourbeets.powers.common.VitalityPower;
+import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
+import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
+import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,7 +26,7 @@ public class PowerHelper
     public static final PowerHelper Poison = new PowerHelper(PoisonPower.POWER_ID, GR.Tooltips.Poison, PoisonPower::new);
     public static final PowerHelper Burning = new PowerHelper(BurningPower.POWER_ID, GR.Tooltips.Burning, BurningPower::new);
     public static final PowerHelper Freezing = new PowerHelper(FreezingPower.POWER_ID, GR.Tooltips.Freezing, FreezingPower::new);
-    public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, GR.Tooltips.Constricted, ImprovedConstrictedPower::new);
+    public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, GR.Tooltips.Constricted, AnimatorConstrictedPower::new);
     public static final PowerHelper LockOn = new PowerHelper(LockOnPower.POWER_ID, GR.Tooltips.LockOn, LockOnPower::new);
 
     public static final PowerHelper Weak = new PowerHelper(WeakPower.POWER_ID, GR.Tooltips.Weak, (o, s, a) -> new WeakPower(o, a, GameUtilities.IsMonster(s)));
@@ -35,9 +38,10 @@ public class PowerHelper
     public static final PowerHelper Strength = new PowerHelper(StrengthPower.POWER_ID, null, StrengthPower::new);
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, null, DexterityPower::new);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, null, FocusPower::new);
+    public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
 
-    public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, PlatedArmorPower::new);
-    public static final PowerHelper Metallicize = new PowerHelper(MetallicizePower.POWER_ID, GR.Tooltips.Metallicize, MetallicizePower::new);
+    public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, AnimatorPlatedArmorPower::new);
+    public static final PowerHelper Metallicize = new PowerHelper(MetallicizePower.POWER_ID, GR.Tooltips.Metallicize, AnimatorMetallicizePower::new);
     public static final PowerHelper Malleable = new PowerHelper(MalleablePower.POWER_ID, GR.Tooltips.Malleable, MalleablePower::new);
     public static final PowerHelper Regen = new PowerHelper(RegenPower.POWER_ID, null, RegenPower::new);
 

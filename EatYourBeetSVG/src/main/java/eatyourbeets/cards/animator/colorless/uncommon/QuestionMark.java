@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.QuestionMarkAction;
-import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
@@ -27,6 +27,8 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
         Initialize(0, 0);
 
         SetAffinity_Star(1, 1, 0);
+        SetVolatile(true);
+        SetUnplayable(true);
     }
 
     @Override
@@ -38,9 +40,9 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.MakeCardInHand(new HigakiRinne());
+
     }
 
     @Override
@@ -48,14 +50,14 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     {
         if (!player.hand.contains(copy))
         {
-            if (transformBack(player.drawPile) || transformBack(player.discardPile) || transformBack(player.exhaustPile))
+            if (TransformBack(player.drawPile) || TransformBack(player.discardPile) || TransformBack(player.exhaustPile))
             {
                 CombatStats.onStartOfTurn.Unsubscribe(this);
             }
         }
     }
 
-    private boolean transformBack(CardGroup group)
+    private boolean TransformBack(CardGroup group)
     {
         int index = group.group.indexOf(copy);
         if (index >= 0)

@@ -12,8 +12,8 @@ import com.megacrit.cardcrawl.vfx.combat.CardPoofEffect;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnAddedToDrawPileSubscriber;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.ListSelection;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -97,7 +97,7 @@ public class SoulPatches
         {
             if (card instanceof OnAddedToDrawPileSubscriber)
             {
-                ((OnAddedToDrawPileSubscriber) card).OnAddedToDrawPile(false, CardSelection.Mode.Bottom);
+                ((OnAddedToDrawPileSubscriber) card).OnAddedToDrawPile(false, ListSelection.Mode.First);
             }
         }
     }
@@ -110,7 +110,7 @@ public class SoulPatches
         {
             if (card instanceof OnAddedToDrawPileSubscriber)
             {
-                ((OnAddedToDrawPileSubscriber) card).OnAddedToDrawPile(visualOnly, randomSpot ? CardSelection.Mode.Random : CardSelection.Mode.Top);
+                ((OnAddedToDrawPileSubscriber) card).OnAddedToDrawPile(visualOnly, randomSpot ? ListSelection.Mode.Random : ListSelection.Mode.Last);
             }
         }
     }

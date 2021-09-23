@@ -124,12 +124,13 @@ public class UltimateCrystal extends Crystal
         }
         else
         {
+            this.powers.clear();
             for (AbstractPower p : original.powers)
             {
                 CloneablePowerInterface cloneablePower = JUtils.SafeCast(p, CloneablePowerInterface.class);
                 if (cloneablePower != null)
                 {
-                    AbstractPower power = cloneablePower.makeCopy();
+                    final AbstractPower power = cloneablePower.makeCopy();
                     if (power != null)
                     {
                         power.amount = p.amount;

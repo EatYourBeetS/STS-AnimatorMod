@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.green.Tactician;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -46,6 +47,7 @@ public abstract class EYBCard extends EYBCardBase
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
     protected boolean isMultiUpgrade;
+    protected boolean unplayable;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
     protected int upgrade_secondaryValue;
@@ -115,6 +117,8 @@ public abstract class EYBCard extends EYBCardBase
 
         copy.tags.clear();
         copy.tags.addAll(tags);
+        copy.originalName = originalName;
+        copy.name = name;
 
         return copy;
     }
@@ -277,7 +281,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean IsStarter()
     {
-        ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+        final ArrayList<AbstractCard> played = AbstractDungeon.actionManager.cardsPlayedThisTurn;
         return played == null || played.isEmpty() || (played.size() == 1 && played.get(0) == this);
     }
 
@@ -288,7 +292,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CanScale()
     {
-        return baseBlock > 0 || baseDamage > 0;
+        return baseBlock >= 0 || baseDamage >= 0;
     }
 
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
@@ -487,6 +491,16 @@ public abstract class EYBCard extends EYBCardBase
         SetHealing(!value);
     }
 
+    public void SetUnplayable(boolean unplayable)
+    {
+        this.unplayable = unplayable;
+    }
+
+    public void SetVolatile(boolean value)
+    {
+        SetTag(GR.Enums.CardTags.VOLATILE, value);
+    }
+
     public void SetHealing(boolean value)
     {
         SetTag(CardTags.HEALING, value);
@@ -580,11 +594,11 @@ public abstract class EYBCard extends EYBCardBase
 
             if (isMultiUpgrade)
             {
-                this.name = cardData.Strings.NAME + "+" + this.timesUpgraded;
+                this.name = originalName + "+" + this.timesUpgraded;
             }
             else
             {
-                this.name = cardData.Strings.NAME + "+";
+                this.name = originalName + "+";
             }
 
             initializeTitle();
@@ -749,7 +763,13 @@ public abstract class EYBCard extends EYBCardBase
     public boolean cardPlayable(AbstractMonster m)
     {
         cantUseMessage = UNPLAYABLE_MESSAGE;
-        return super.cardPlayable(m);
+        return !unplayable && super.cardPlayable(m);
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+        return !unplayable && super.canUse(p, m);
     }
 
     @Override
@@ -853,7 +873,7 @@ public abstract class EYBCard extends EYBCardBase
                     }
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {
-                        tempDamage *= 1.5f;
+                        tempDamage *= 1.25f;
                     }
                 }
             }

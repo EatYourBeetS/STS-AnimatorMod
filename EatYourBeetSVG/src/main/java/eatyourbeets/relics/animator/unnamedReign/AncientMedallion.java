@@ -214,6 +214,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (group.size() > 0)
         {
             awaitingInput = true;
+            GameUtilities.SetTopPanelVisible(false);
         }
         else
         {
@@ -235,12 +236,12 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
     private boolean UpdateSelection()
     {
-        AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
-        if (preview != null && !preview.tags.contains(GR.Enums.CardTags.TEMPORARY) && preview.canUpgrade())
+        final AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
+        if (preview != null && !preview.tags.contains(GR.Enums.CardTags.MARKED) && preview.canUpgrade())
         {
             preview.upgrade();
             preview.displayUpgrades();
-            preview.tags.add(GR.Enums.CardTags.TEMPORARY);
+            preview.tags.add(GR.Enums.CardTags.MARKED);
         }
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
@@ -257,6 +258,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
             player.bottledCardUpgradeCheck(c);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            GameUtilities.SetTopPanelVisible(true);
             awaitingInput = false;
 
             GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));

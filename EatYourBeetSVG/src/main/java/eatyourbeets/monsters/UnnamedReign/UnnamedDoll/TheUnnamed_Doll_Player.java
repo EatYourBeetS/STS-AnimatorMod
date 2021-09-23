@@ -3,6 +3,9 @@ package eatyourbeets.monsters.UnnamedReign.UnnamedDoll;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.FocusPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.vfx.BobEffect;
 import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 import eatyourbeets.actions.basic.GainBlock;
@@ -11,6 +14,7 @@ import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class TheUnnamed_Doll_Player extends EYBMonster
@@ -47,9 +51,26 @@ public class TheUnnamed_Doll_Player extends EYBMonster
         .SetIntent(Intent.BUFF)
         .SetOnUse((move, __) ->
         {
-            GameActions.Bottom.GainStrength(2);
-            GameActions.Bottom.GainDexterity(2);
-            GameActions.Bottom.GainFocus(2);
+            int alternativeBuff = 3;
+            if (GameUtilities.GetPowerAmount(StrengthPower.POWER_ID) < 8)
+            {
+                GameActions.Bottom.GainStrength(2);
+                alternativeBuff -= 1;
+            }
+            if (GameUtilities.GetPowerAmount(DexterityPower.POWER_ID) < 8)
+            {
+                GameActions.Bottom.GainDexterity(2);
+                alternativeBuff -= 1;
+            }
+            if (GameUtilities.GetPowerAmount(FocusPower.POWER_ID) < 8)
+            {
+                GameActions.Bottom.GainFocus(2);
+                alternativeBuff -= 1;
+            }
+            if (alternativeBuff > 0)
+            {
+                GameActions.Bottom.GainEnergyNextTurn(alternativeBuff);
+            }
         });
 
         moveset.Normal.Add(new EYBMove_Special())

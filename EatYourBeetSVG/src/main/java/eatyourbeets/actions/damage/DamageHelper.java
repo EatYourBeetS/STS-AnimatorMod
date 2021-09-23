@@ -1,5 +1,6 @@
 package eatyourbeets.actions.damage;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -12,10 +13,18 @@ import java.util.ArrayList;
 
 public class DamageHelper
 {
-    public static void DealDamage(AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect, boolean bypassBlock, boolean bypassThorns)
+    public static void ApplyTint(AbstractCreature target, Color overrideColor, AbstractGameAction.AttackEffect attackEffect)
     {
-        AttackEffects.ApplyDamageTint(effect, target);
+        final Color tint = overrideColor != null ? overrideColor : AttackEffects.GetDamageTint(attackEffect);
+        if (tint != null)
+        {
+            target.tint.color.set(tint.cpy());
+            target.tint.changeColor(Color.WHITE.cpy());
+        }
+    }
 
+    public static void DealDamage(AbstractCreature target, DamageInfo info, boolean bypassBlock, boolean bypassThorns)
+    {
         int previousBlock = 0;
         if (bypassBlock)
         {

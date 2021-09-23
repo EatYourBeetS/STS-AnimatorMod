@@ -128,12 +128,12 @@ public class EYBCardText
     {
         AbstractAttribute.leftAlign = true;
         AbstractAttribute temp;
-        if ((temp = GetInfo1()) != null)
+        if ((temp = card.GetPrimaryInfo()) != null)
         {
             temp.Render(sb, card);
             AbstractAttribute.leftAlign = false;
         }
-        if ((temp = GetInfo2()) != null)
+        if ((temp = card.GetSecondaryInfo()) != null)
         {
             temp.Render(sb, card);
             AbstractAttribute.leftAlign = false;
@@ -143,16 +143,6 @@ public class EYBCardText
             temp.Render(sb, card);
             AbstractAttribute.leftAlign = false;
         }
-    }
-
-    private AbstractAttribute GetInfo1()
-    {
-        return card.type == AbstractCard.CardType.ATTACK ? card.GetDamageInfo() : card.GetBlockInfo();
-    }
-
-    private AbstractAttribute GetInfo2()
-    {
-        return card.type == AbstractCard.CardType.ATTACK ? card.GetBlockInfo() : card.GetDamageInfo();
     }
 
     protected void RenderBadges(SpriteBatch sb, boolean inHand)

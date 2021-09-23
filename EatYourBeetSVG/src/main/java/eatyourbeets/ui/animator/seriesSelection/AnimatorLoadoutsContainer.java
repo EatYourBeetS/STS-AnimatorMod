@@ -49,11 +49,11 @@ public class AnimatorLoadoutsContainer
         allCards.clear();
 
         int promotedCount = 0;
-        RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
-        ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
+        final RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
+        final ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
         for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
         {
-            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
                 if (loadout == GR.Animator.Data.SelectedLoadout)
@@ -72,7 +72,7 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
         {
-            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
                 if (loadout == GR.Animator.Data.SelectedLoadout)
@@ -160,7 +160,7 @@ public class AnimatorLoadoutsContainer
             Settings.seedSet = true;
         }
 
-        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GameUtilities.IsNormalRun(false) && Settings.seed != null)
         {
             GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
         }
@@ -170,7 +170,7 @@ public class AnimatorLoadoutsContainer
 
     public ArrayList<AbstractCard> GetAllCardsInPool()
     {
-        ArrayList<AbstractCard> cards = new ArrayList<>();
+        final ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard card : selectedCards)
         {
             cards.addAll(Find(card).Cards.values());

@@ -1,12 +1,13 @@
 package eatyourbeets.powers.affinity;
 
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.powers.PowerHelper;
 
 public class IntellectPower extends AbstractAffinityPower
 {
     public static final String POWER_ID = CreateFullID(IntellectPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Blue;
+    public static final String SYMBOL = "I";
 
     public IntellectPower()
     {
@@ -14,8 +15,8 @@ public class IntellectPower extends AbstractAffinityPower
     }
 
     @Override
-    protected void OnThresholdReached(int thresholdIndex)
+    protected PowerHelper GetThresholdBonusPower()
     {
-        GameActions.Top.GainFocus(1);
+        return PowerHelper.Focus;
     }
 }

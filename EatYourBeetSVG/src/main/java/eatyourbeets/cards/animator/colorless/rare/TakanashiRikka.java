@@ -29,7 +29,7 @@ public class TakanashiRikka extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (AbstractCard c : p.hand.getAttacks().group)
         {

@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -29,7 +30,7 @@ public class HiiragiKureto extends AnimatorCard
 
         SetAffinity_Red(1, 1, 2);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetExhaust(true);
     }
@@ -74,21 +75,23 @@ public class HiiragiKureto extends AnimatorCard
         }
 
         @Override
-        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+        public void onUseCard(AbstractCard card, UseCardAction action)
         {
-            super.onAttack(info, damageAmount, target);
+            super.onUseCard(card, action);
 
-            if (GameUtilities.GetOrbCount(Lightning.ORB_ID) == 0) {
-                GameActions.Top.ChannelOrb(new Lightning());
+            if (card.type.equals(CardType.ATTACK)) {
+                if (GameUtilities.GetOrbCount(Lightning.ORB_ID) == 0) {
+                    GameActions.Top.ChannelOrb(new Lightning());
+                }
+                GameActions.Bottom.TriggerOrbPassive(player.orbs.size())
+                        .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
+                        .SetSequential(true);
+                this.amount -= 1;
+                if (this.amount <= 0) {
+                    RemovePower();
+                }
+                this.flash();
             }
-            GameActions.Bottom.TriggerOrbPassive(player.orbs.size())
-                    .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
-                    .SetSequential(true);
-            this.amount -= 1;
-            if (this.amount <= 0) {
-                RemovePower();
-            }
-            this.flash();
         }
     }
 }

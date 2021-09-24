@@ -37,6 +37,10 @@ public class PowerHelper
     public static final PowerHelper Supercharged = new PowerHelper(SuperchargedPower.POWER_ID, null, SuperchargedPower::new);
     public static final PowerHelper Desecration = new PowerHelper(DesecrationPower.POWER_ID, null, DesecrationPower::new);
 
+    public static final PowerHelper TemporaryFocus = new PowerHelper(TemporaryFocusPower.POWER_ID, null, TemporaryFocusPower::new);
+    public static final PowerHelper TemporaryEndurance = new PowerHelper(TemporaryEndurancePower.POWER_ID, null, TemporaryEndurancePower::new);
+    public static final PowerHelper TemporaryDesecration = new PowerHelper(TemporaryDesecrationPower.POWER_ID, null, TemporaryDesecrationPower::new);
+
     public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
     public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, AnimatorPlatedArmorPower::new);
     public static final PowerHelper Metallicize = new PowerHelper(MetallicizePower.POWER_ID, GR.Tooltips.Metallicize, AnimatorMetallicizePower::new);

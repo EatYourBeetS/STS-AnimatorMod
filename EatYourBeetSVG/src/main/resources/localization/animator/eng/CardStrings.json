@@ -248,7 +248,7 @@
 		},
 		"animator:IkkakuMadarame":
 		{
-			"DESCRIPTION": "[F] or [A] Stance: You may gain [F] and [A] this turn. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"DESCRIPTION": "<FS>: You may gain [A] this turn. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
 			"NAME": "Ikkaku Madarame"
 		},
@@ -281,7 +281,7 @@
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || !A! <G>: If you have no empty Orb Slots: Exhaust, then add {Rukia Bankai} to ** your draw pile.",
+			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || <IS> or !A! <G>. !S! Orbs: Exhaust, then add {Rukia Bankai} to ** your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
@@ -769,6 +769,11 @@
 		"animator:Kazuha":
 		{
 			"DESCRIPTION": "Take half your current HP as [Delayed Damage]. Next turn: Single-target attacks target ALL enemies. AOE attacks attack twice if there is only one enemy.",
+			"NAME": "Kazuha Kaedehara"
+		},
+		"animator:Kazuha2":
+		{
+			"DESCRIPTION": "Take damage equal to half of your current [HP]. For !M! turns: Take control of a non-Boss enemy.",
 			"NAME": "Kazuha Kaedehara"
 		},
 		"animator:Keqing":
@@ -2409,7 +2414,8 @@
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "Fetch !M! {Hindrance}(s) from your draw pile. || Synergy or when Discarded: Cycle a card.",
+			"DESCRIPTION": "Choose a card in your hand. Fetch a random card in your discard pile with that card's series. || Synergy or when Discarded: Cycle a card.",
+			"EXTENDED_DESCRIPTION": ["Fetch Cards with the same Series."],
 			"NAME": "Shiho Kimizugi"
 		},
 		"animator:KrulTepes":
@@ -2419,12 +2425,12 @@
 		},
 		"animator:KyLuc":
 		{
-			"DESCRIPTION": "Deal !M! more damage for each power on ANY character. || Exhaust an Uncommon card or Curse to apply !M! [Shackles][Vulnerable] to ALL enemies. Otherwise, take !S! [Delayed Damage].",
+			"DESCRIPTION": "Deal !S! more damage for ** every [Delayed Damage] you have. || When drawn: ALL characters ** take !S! [Delayed Damage].",
 			"NAME": "Ky Luc"
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [C] or [I] Stance: Give it {~Haste}. || Then, choose 1: Enter <CS>, or Enter <IS>.",
+			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [I] > 6: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
 			"NAME": "Lest Karr"
 		},
 		"animator:Mikaela":
@@ -2454,7 +2460,7 @@
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. || [F] or [A] Stance: You may gain [F] and [A] this turn. || When Exhausted: Add {Asuramaru} to ** your discard pile.",
+			"DESCRIPTION": "<DRW>. || <AS>: You may gain [F] this turn. || When Exhausted: Add {Asuramaru} to ** your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":

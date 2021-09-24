@@ -2,11 +2,10 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.beta.special.RukiaBankai;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
 public class RukiaKuchiki extends AnimatorCard
@@ -18,7 +17,7 @@ public class RukiaKuchiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 0);
+        Initialize(0, 2, 2, 3);
         SetUpgrade(0, 1, 0, 0);
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Blue(1, 0, 0);
@@ -36,21 +35,9 @@ public class RukiaKuchiki extends AnimatorCard
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Green) || IntellectStance.IsActive())
         {
-
-            boolean hasEmptyOrbs = false;
-
-            for (AbstractOrb orb : player.orbs)
-            {
-                if (orb instanceof EmptyOrbSlot)
-                {
-                    hasEmptyOrbs = true;
-                    break;
-                }
-            }
-
-            if (!hasEmptyOrbs)
+            if (player.filledOrbCount() >= secondaryValue)
             {
                 GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
                 GameActions.Bottom.Exhaust(this);

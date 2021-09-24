@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class KyLuc extends AnimatorCard
 {
@@ -25,39 +26,42 @@ public class KyLuc extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 7);
-        SetUpgrade(4, 0, 0, -1);
+        Initialize(3, 0, 3, 4);
+        SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 2);
         SetAffinity_Dark(2, 0, 2);
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        for (AbstractCreature c : GameUtilities.GetAllCharacters(true)) {
-            amount += c.powers.size() * magicNumber;
+        return super.ModifyDamage(enemy, amount + GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) * secondaryValue);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        for (AbstractCreature c: GameUtilities.GetAllCharacters(true)) {
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, c, secondaryValue, AttackEffects.SLASH_VERTICAL);
         }
-        return super.ModifyDamage(enemy, amount);
+
+        GameActions.Bottom.Flash(this);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
                 .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.RED, Color.LIGHT_GRAY, Color.RED, Color.RED).duration * 0.6f);
-        GameActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetOptions(true,true,true)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0 && (cards.get(0).type.equals(CardType.CURSE) || cards.get(0).rarity.equals(CardRarity.UNCOMMON)))
-            {
-                GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(),magicNumber);
-                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
-            }
-            else {
-                GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SLASH_VERTICAL);
-            }
-        });
     }
 }

@@ -10,7 +10,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,9 +41,8 @@ public class Yuuichirou extends AnimatorCard implements OnEndOfTurnSubscriber
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(1);
 
-        if ((ForceStance.IsActive() || AgilityStance.IsActive())) {
+        if (AgilityStance.IsActive()) {
             CombatStats.Affinities.Force.SetEnabled(true);
-            CombatStats.Affinities.Agility.SetEnabled(true);
             CombatStats.onEndOfTurn.Subscribe(this);
         }
     }
@@ -60,9 +58,6 @@ public class Yuuichirou extends AnimatorCard implements OnEndOfTurnSubscriber
     @Override
     public void OnEndOfTurn(boolean isPlayer) {
         CombatStats.onEndOfTurn.Unsubscribe(this);
-        if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            CombatStats.Affinities.Agility.SetEnabled(false);
-        }
         if (GameUtilities.InStance(AgilityStance.STANCE_ID)) {
             CombatStats.Affinities.Force.SetEnabled(false);
         }

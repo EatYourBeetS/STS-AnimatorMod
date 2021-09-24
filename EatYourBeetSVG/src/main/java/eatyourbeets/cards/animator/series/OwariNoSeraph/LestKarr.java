@@ -14,10 +14,10 @@ import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.stances.CorruptionStance;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -25,21 +25,22 @@ import eatyourbeets.utilities.RandomizedList;
 public class LestKarr extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LestKarr.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.Self)
             .SetSeries(CardSeries.OwariNoSeraph);
+    public static final int INTELLECT_THRESHOLD = 6;
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public LestKarr()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 4);
-        SetUpgrade(0,0,0,0);
+        Initialize(0, 0, 2, 4);
+        SetUpgrade(0,0,0,1);
         SetAffinity_Dark(2,0,0);
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Orange(1);
 
         SetEthereal(true);
-        SetCostUpgrade(-1);
     }
 
     @Override
@@ -70,21 +71,19 @@ public class LestKarr extends AnimatorCard
                 {
                     for (AbstractCard c : cards) {
                         GameActions.Bottom.MakeCardInDrawPile(c).AddCallback(ca -> {
-                            if (IntellectStance.IsActive() || CorruptionStance.IsActive()) {
+                            if (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) >= INTELLECT_THRESHOLD) {
                                 GameActions.Bottom.ModifyTag(ca,HASTE, true);
                             }
                         });
                         GameActions.Bottom.Add(new RefreshHandLayout());
                     }
 
-                    GameActions.Bottom.Callback(() -> {
-                        if (choices.TryInitialize(this))
-                        {
-                            choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                            choices.AddEffect(new GenericEffect_EnterStance(CorruptionStance.STANCE_ID));
-                        }
-                        choices.Select(1, m);
-                    });
+                    if (choices.TryInitialize(this))
+                    {
+                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
+                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryDesecration, GR.Tooltips.Desecration, magicNumber, true));
+                    }
+                    choices.Select(1, m);
                 });
     }
 }

@@ -1,5 +1,10 @@
 
 {
+	"eyb:AbstractTemporaryPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn."],
+		"NAME": "Temporary Power"
+    },
 	"eyb:AgilityPower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} [Dexterity]."],
@@ -120,6 +125,11 @@
 		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
 	},
+	"eyb:TemporaryDesecrationPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Desecration] at the start of your next turn."],
+		"NAME": "Temporary Desecration"
+    },
 	"eyb:TemporaryEndurancePower":
     {
 		"DESCRIPTIONS": ["Lose #b{0} [Endurance] at the start of your next turn."],

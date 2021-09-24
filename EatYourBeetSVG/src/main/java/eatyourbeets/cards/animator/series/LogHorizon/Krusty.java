@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Krusty extends AnimatorCard
@@ -19,12 +20,23 @@ public class Krusty extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(28, 0, 3, 3);
-        SetUpgrade(1, 0, 1, 1);
+        Initialize(28, 0, 3, 2);
+        SetUpgrade(1, 0, 1, 0);
 
         SetAutoplay(true);
 
         SetAffinity_Red(2, 0, 1);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.GainForce(secondaryValue);
+        }
     }
 
     @Override
@@ -41,7 +53,7 @@ public class Krusty extends AnimatorCard
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH);
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
-            ((EYBCard) c).AddScaling(Affinity.Red, secondaryValue);
+            ((EYBCard) c).AddScaling(Affinity.Red, magicNumber);
             c.flash();
         });
     }

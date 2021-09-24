@@ -24,7 +24,7 @@ public class MeguKakizaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 5, 4);
+        Initialize(0, 5, 3, 4);
         SetUpgrade(0, 3, 1, 2);
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);

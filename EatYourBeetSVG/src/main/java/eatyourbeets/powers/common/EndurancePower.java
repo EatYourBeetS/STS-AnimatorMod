@@ -6,7 +6,6 @@ import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.replacement.AnimatorFrailPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.powers.replacement.AnimatorWeakPower;
-import eatyourbeets.utilities.GameActions;
 
 public class EndurancePower extends CommonPower
 {
@@ -73,13 +72,7 @@ public class EndurancePower extends CommonPower
 
         if (isPlayer)
         {
-            if (amount >= 0) {
-                CombatStats.BlockRetained += amount * BLOCK_MULTIPLIER;
-            }
-            else {
-                GameActions.Bottom.LoseBlock(amount * BLOCK_MULTIPLIER);
-            }
-
+            CombatStats.BlockRetained = Math.max(0,CombatStats.BlockRetained + amount * BLOCK_MULTIPLIER);
         }
     }
 

@@ -248,7 +248,7 @@
 		},
 		"animator:IkkakuMadarame":
 		{
-			"DESCRIPTION": "<FS>: You may gain ** [A] this turn. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"DESCRIPTION": "[F] or [A] Stance: You may gain [F] and [A] this turn. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
 			"NAME": "Ikkaku Madarame"
 		},
@@ -317,8 +317,8 @@
 		},
 		"animator:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "Have 2 [Strength]. Reduce all threshold powers gained from other {Affinities} by 1. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
-			"EXTENDED_DESCRIPTION": ["Have #b{0} [Strength]. Gain #b{1} less [Dexterity] from [A], [Focus] from [I], and [Endurance] from [W]. Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
+			"DESCRIPTION": "Have 2 [Strength]. Reduce all threshold powers gained from non-[F] {<W> Powers} by 1. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
+			"EXTENDED_DESCRIPTION": ["Have #b{0} [Strength]. Reduce all threshold powers gained from non-[F] <W> #yPowers by #b{1}. Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
 			"NAME": "Zaraki Kenpachi"
 		}
 	},
@@ -903,7 +903,7 @@
 		},
 		"animator:LuciaKonohana":
 		{
-			"DESCRIPTION": "Apply X times !M! [Poison] and X [Weak]. || <LIM>. If X is higher ** than !S!: When the enemy ** dies, transfer its {Common} ** {Debuffs} to ALL enemies.",
+			"DESCRIPTION": "Apply !M!X [Poison] and X [Weak]. || <LIM>. If X is higher ** than !S!: When the enemy ** dies, transfer its {Common} ** {Debuffs} to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["When this creature dies, transfer its #yCommon #yDebuffs to ALL enemies.", "Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Lucia Konohana"
 		},
@@ -930,7 +930,7 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! random {Skills} ** to Enter <AS>. || If you reached 4 [A] this ** combat: Deal 8 damage to ** ALL enemies.",
+			"DESCRIPTION": "Not in <AS>: Discard !M! random {Skills} ** to Enter <AS>. || If your highest {Affinity} is <G>: Deal !D! {~Ranged} damage to ** ALL enemies.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
@@ -940,7 +940,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Add a [T-Knife] ** to your hand for ** every !M! [Block] you have. || On Synergy or Discard: ** Cycle a [T-Knife].",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. || If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [O] Scaling equal to <O>. || Synergy or Discard: ** Cycle !S! [T-Knife].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
@@ -960,11 +960,6 @@
 		{
 			"DESCRIPTION": "Unplayable. ** While in hand, put this on top of your draw pile whenever you Synergize.",
 			"NAME": "'Rozen'"
-		},
-		"animator:Defend_RozenMaiden":
-		{
-			"DESCRIPTION": "<LIM>. Upgrade next upgradable card created.",
-			"NAME": "Improved Defend"
 		},
 		"animator:Enju":
 		{
@@ -1038,11 +1033,6 @@
 			"DESCRIPTION": "Exhaust a card in your hand. If you Exhausted a Hindrance: Enter <WS>. || When Discarded, {Fetch} {Suiseiseki} from your Draw Pile.",
 			"NAME": "Souseiseki"
 		},
-		"animator:Strike_RozenMaiden":
-		{
-			"DESCRIPTION": "{~Unique}. || <slm>. Next turn: Add this to your hand.",
-			"NAME": "Improved Strike"
-		},
 		"animator:Suigintou":
 		{
 			"DESCRIPTION": "{~Unique}. || <CDN>: Channel 1 Fire and trigger it !M! times. || On Discard: Obtain a {Black Feather}.",
@@ -1055,7 +1045,7 @@
 		},
 		"animator:Suiseiseki":
 		{
-			"DESCRIPTION": "Add {Slimed} to your hand. || {Synergy}: Exit your Stance, then gain !S! of that Stance's affinity power.",
+			"DESCRIPTION": "Add {Slimed} to your draw pile. || {Synergy}: Exit your Stance to gain !S! of that Stance's {<W> Power}.",
 			"NAME": "Suiseiseki"
 		},
 		"animator:TomoeKashiwaba":
@@ -1082,11 +1072,6 @@
 		{
 			"DESCRIPTION": "Reveal the top card in your draw pile.  If it is 0 or 1 cost, play it.  Otherwise, draw it. || <LIM>. Starter: This card will not Exhaust.",
 			"NAME": "Clownpiece"
-		},
-		"animator:Defend_TouhouProject":
-		{
-			"DESCRIPTION": "Scry !M!.",
-			"NAME": "Improved Defend"
 		},
 		"animator:HiedaNoAkyuu":
 		{
@@ -1135,11 +1120,6 @@
 			"DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
 			"NAME": "Satori Komeiji"
-		},
-		"animator:Strike_TouhouProject":
-		{
-			"DESCRIPTION": "",
-			"NAME": "Improved Strike"
 		},
 		"animator:SuikaIbuki":
 		{
@@ -1337,7 +1317,7 @@
 		},
 		"animator:Curse_Eclipse":
 		{
-			"DESCRIPTION": "Unplayable. ** When drawn: When you gain [Block] this turn, you and a random enemy take that much [Delayed Damage].",
+			"DESCRIPTION": "Unplayable. ** When drawn: Take !M! [Delayed Damage]. When you gain [Block] this turn, you and a random enemy take that much [Delayed Damage].",
 			"NAME": "Eclipse"
 		},
 		"animator:Curse_Greed":
@@ -1547,7 +1527,7 @@
 		},
 		"animator:Father":
 		{
-			"DESCRIPTION": "Lose !S!% of your ** Max [HP] to Obtain ** {Philosopher's Stone}. || If you already have ** one: Gain !M! [Vitality].",
+			"DESCRIPTION": "Lose !S!% of your ** Max [HP]. If you have a ** {Philosopher's Stone}, upgrade it. Otherwise, Obtain {Philosopher's Stone}. || Remove this card from your deck and future card rewards.",
 			"NAME": "Father"
 		},
 		"animator:Gluttony":
@@ -1620,7 +1600,7 @@
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "!A! <B>: Apply !S! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Air] || Fetch 2 <B> cards and ** give them +1 [I] scaling.",
+			"DESCRIPTION": "Fetch 2 <B> cards and ** give them +1 [I] scaling. !A! <B>: Apply !S! [Freezing] || !A! <R>: Apply !S! [Burning] || !A! <G>: Channel 1 [Air]",
 			"NAME": "Cato El Altestan"
 		},
 		"animator:ItamiYouji":
@@ -1999,7 +1979,7 @@
 		},
 		"animator:Krusty":
 		{
-			"DESCRIPTION": "Increase this card [F] scaling by !M!.",
+			"DESCRIPTION": "Increase this card [F] scaling by !M!. || <SLM>. When Discarded: Gain !S! [F].",
 			"NAME": "Krusty"
 		},
 		"animator:Marielle":
@@ -2403,18 +2383,13 @@
 	{
 		"animator:CrowleyEusford":
 		{
-			"DESCRIPTION": "Boost [F] [A]. || If you Exhausted ** a card this turn: ** Motivate 1.",
+			"DESCRIPTION": "Boost [F] [A]. || If you Exhausted a card this turn: Motivate 1. || When Drawn: Gain !M! [Vigor] if any enemy has [Vulnerable].",
 			"NAME": "Crowley Eusford"
 		},
 		"animator:FeridBathory":
 		{
 			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
 			"NAME": "Ferid Bathory"
-		},
-		"animator:GoshiNorito":
-		{
-			"DESCRIPTION": "Gain additional [Block] ** equal to the total number ** of {Debuffs} on all enemies. || Apply 1 [Weak] to everyone. || <IS>: Obtain {<R> Token}.",
-			"NAME": "Goshi"
 		},
 		"animator:Guren":
 		{
@@ -2423,18 +2398,18 @@
 		},
 		"animator:HiiragiKureto":
 		{
-			"DESCRIPTION": "The first time you draw a ** {Hindrance} each turn: Cycle ** it and Channel 1 [Lightning]. || At the end of each turn, ** if you have less than ** !M! [F]: Take !S! damage.",
-			"EXTENDED_DESCRIPTION": ["Cycle the next #yHindrance you draw, then #yChannel 1 [Lightning]. ** At the end of each turn, if you have less than #b{0} [F]: Take #b{1} damage."],
+			"DESCRIPTION": "Exhaust a random card in hand for each unblocked hit. ** For each: The next Attack played triggers ALL [Lightning] ** (Channel [Lightning] first if you have none).",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} times you play an Attack: Channel [Lightning] if you have none, then trigger ALL [Lightning]."],
 			"NAME": "Kureto Hiiragi"
 		},
 		"animator:HiiragiShinya":
 		{
-			"DESCRIPTION": "Fetch a card from your ** discard pile and Retain it, ** it costs 1 more this turn. || On Synergy: Gain !M! [Support Damage].",
+			"DESCRIPTION": "Fetch a card from your ** discard pile and Retain it. ** It costs 1 more this turn. || Synergy or !A! <G>: Gain !M! [Support Damage].",
 			"NAME": "Shinya Hiiragi"
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "Retain [F]. || Draw 1 {Hindrance}. || When Discarded or ** Exhausted: Gain [F].",
+			"DESCRIPTION": "Fetch !M! {Hindrance}(s) from your draw pile. || Synergy or when Discarded: Cycle a card.",
 			"NAME": "Shiho Kimizugi"
 		},
 		"animator:KrulTepes":
@@ -2442,14 +2417,19 @@
 			"DESCRIPTION": "Apply !M! [Weak]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain a {Blood Vial}.",
 			"NAME": "Krul Tepes"
 		},
+		"animator:KyLuc":
+		{
+			"DESCRIPTION": "Deal !M! more damage for each power on ANY character. || Exhaust an Uncommon card or Curse to apply !M! [Shackles][Vulnerable] to ALL enemies. Otherwise, take !S! [Delayed Damage].",
+			"NAME": "Ky Luc"
+		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "<IS>: Obtain {<D> Token}{+}. ** Otherwise: Enter <IS>. || <slm>. When Drawn: ** Boost [I] [C] and add a {Burn} to ** your draw and discard pile.",
+			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [C] or [I] Stance: Give it {~Haste}. || Then, choose 1: Enter <CS>, or Enter <IS>.",
 			"NAME": "Lest Karr"
 		},
 		"animator:Mikaela":
 		{
-			"DESCRIPTION": "Exhaust a card in ** your discard pile. || If you Exhausted a ** Hindrance: Gain [F] [C].",
+			"DESCRIPTION": "Exhaust a card in ** your discard pile. || If you Exhausted a ** Hindrance: Gain !M! [F] and take !S! [Delayed Damage].",
 			"NAME": "Mikaela Hyakuya"
 		},
 		"animator:Mitsuba":
@@ -2464,7 +2444,7 @@
 		},
 		"animator:Shinoa":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] ** to ALL enemies. || On Synergy, or when ** Exhausted: Apply !M! ** [Weak] to ALL enemies.",
+			"DESCRIPTION": "Apply !M! [Vulnerable] ** to ALL enemies. || Synergy or when ** Exhausted: Apply !M! ** [Weak] to ALL enemies.",
 			"NAME": "Shinoa Hiiragi"
 		},
 		"animator:Yoichi":
@@ -2474,12 +2454,12 @@
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. || When Exhausted: ** Add {Asuramaru} to ** your discard pile.",
+			"DESCRIPTION": "<DRW>. || [F] or [A] Stance: You may gain [F] and [A] this turn. || When Exhausted: Add {Asuramaru} to ** your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Boost !M! [F] [A] [I]. Enter <CS>. ** Add !M! {Wounds} to ** your hand. || If [C] > !S!: Gain [Demon Form].",
+			"DESCRIPTION": "Boost !M! [F] [A] [I], then enter <CS>. ** Add !M! {Wounds} to ** your hand. || If [C] > !S!: Gain [Demon Form].",
 			"NAME": "Asuramaru"
 		}
 	},
@@ -2495,6 +2475,11 @@
 			"DESCRIPTION": "Gain X + !S! [Plated Armor]. Boost [W] if ** X is at least 2. || At the start of turn: ** Maintain up to !M!X [Block].",
 			"EXTENDED_DESCRIPTION": ["Maintain up to #b{0} #yBlock at the start of each turn."],
 			"NAME": "Gazel Dwargon"
+		},
+		"animator:Gabiru":
+		{
+			"DESCRIPTION": "This turn, when you apply a {Common Debuff} to an enemy: Increase its stacks by !M!. When Discarded: Apply !S! [Poison] to a random enemy.",
+			"NAME": "Gabiru"
 		},
 		"animator:Hakurou":
 		{

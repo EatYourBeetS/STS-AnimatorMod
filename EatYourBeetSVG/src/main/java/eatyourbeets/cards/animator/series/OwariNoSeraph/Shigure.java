@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
@@ -13,7 +14,8 @@ public class Shigure extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shigure.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 
     public Shigure()
     {

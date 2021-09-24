@@ -14,6 +14,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     public Curse_Eclipse()
     {
         super(DATA, true);
+        Initialize(0,0,1,1);
         SetAffinity_Dark(2);
     }
 
@@ -22,6 +23,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     {
         super.triggerWhenDrawn();
 
+        GameActions.Bottom.DealDamageAtEndOfTurn(player,player,magicNumber);
         GameActions.Bottom.StackPower(new SelfImmolationPower(player, 1));
 
         GameActions.Bottom.Flash(this);

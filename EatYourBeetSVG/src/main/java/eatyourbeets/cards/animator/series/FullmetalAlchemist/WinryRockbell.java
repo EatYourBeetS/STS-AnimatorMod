@@ -27,7 +27,7 @@ public class WinryRockbell extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, BLOCK_AMOUNT, UPGRADE_CARDS_AMOUNT);
-        SetUpgrade(0, 2);
+        SetUpgrade(0, 0);
 
         SetAffinity_Green(1);
         SetAffinity_Orange(1);
@@ -36,13 +36,13 @@ public class WinryRockbell extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
+        SetInnate(true);
         SetRetain(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
     }
 

@@ -42,7 +42,7 @@
 	},
 	"eyb:EndurancePower":
 	{
-	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Retain up to #b{2} [Block] each turn.", "Increase the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Lose #b{2} [Block] at the end of each turn."],
+	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Retain up to #b{2} [Block] each turn.", "Increase the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. If you would retain [Block] at the end of the turn, retain #b{2} less."],
 	  "NAME": "Endurance"
 	},
 	"eyb:EnergizedPower":

@@ -20,7 +20,7 @@ public class Yae extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(2);
@@ -39,13 +39,13 @@ public class Yae extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         boolean hasLightning = false;
-        GameActions.Bottom.StackPower(new Amplification_LightningPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new Amplification_LightningPower(p, 1));
         for (AbstractOrb orb : p.orbs)
         {
             if (!(orb instanceof EmptyOrbSlot) && orb.ID.equals(Lightning.ORB_ID))
             {
                 GameActions.Bottom.Add(new RemoveOrb(orb));
-                GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
+                GameActions.Bottom.GainIntellect(magicNumber, upgraded);
                 hasLightning = true;
                 break;
             }

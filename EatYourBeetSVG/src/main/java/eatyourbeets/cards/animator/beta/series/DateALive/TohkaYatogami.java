@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
@@ -22,9 +23,15 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 20);
+        Initialize(14, 0, 8, 1);
         SetAffinity_Red(2, 0, 0);
         SetAffinity_Orange(1, 1, 0);
+    }
+
+    @Override
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    {
+        return super.ModifyDamage(enemy, amount - CombatStats.SynergiesThisCombat().size() * secondaryValue);
     }
 
     @Override
@@ -43,12 +50,6 @@ public class TohkaYatogami extends AnimatorCard
             transformed = true;
             GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
         }
-    }
-
-    @Override
-    protected void UpdateDamage(float amount)
-    {
-        super.UpdateDamage(baseDamage);
     }
 
     @Override

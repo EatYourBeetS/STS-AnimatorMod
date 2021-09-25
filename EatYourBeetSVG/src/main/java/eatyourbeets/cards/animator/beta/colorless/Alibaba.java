@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Alibaba extends AnimatorCard
+public class Alibaba extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(Alibaba.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Magi);
 
@@ -18,10 +19,10 @@ public class Alibaba extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 2 , 2);
-        SetUpgrade(0, 0, 0 , 1);
+        SetUpgrade(0, 0, 0 , 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

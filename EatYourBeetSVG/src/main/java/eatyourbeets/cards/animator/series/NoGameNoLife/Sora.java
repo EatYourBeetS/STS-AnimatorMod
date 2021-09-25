@@ -9,6 +9,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Sora extends AnimatorCard
 {
+    //TODO: new effect
     public static final EYBCardData DATA = Register(Sora.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.ALL)
             .SetSeries(CardSeries.NoGameNoLife)

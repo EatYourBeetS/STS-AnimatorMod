@@ -587,12 +587,12 @@
 		},
 		"animator:Vash":
 		{
-			"DESCRIPTION": "Deal !M! more damage for every card discarded this turn. || Reload: Next turn, Cycle !S! card(s).",
+			"DESCRIPTION": "Reload: This gains !M! damage. || Choose a card type. If the bottom card of your deck is of that type: Fetch it. Otherwise, Purge it and this, then take [Self Damage] equal to half this card's Attack.",
 			"NAME": "Vash the Stampede"
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || Remove up to 3 [Lightning] to Gain|Boost !S! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
+			"DESCRIPTION": "Your [Lightning] has +1 [I] Scaling. || Remove up to 3 [Lightning] to Gain|Boost !M! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
 			"NAME": "Yae Sakura"
 		}
 	},
@@ -945,7 +945,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Obtain !M! [T-Knife]. || If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [O] Scaling equal to <O>. || Synergy or Discard: ** Cycle !S! [T-Knife].",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. || If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || Synergy or Discard: ** Cycle !S! [T-Knife].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
@@ -2200,8 +2200,8 @@
 		},
 		"animator:Sora":
 		{
-			"DESCRIPTION": "Choose 1 out of 3 ** random Effects !M! times. || Add {Shiro} from your ** draw pile to your hand.",
-			"EXTENDED_DESCRIPTION": ["Attack", "Defend", "Prepare"],
+			"DESCRIPTION": "Plan a move (Defend, Juke, Exchange). Obtain it next turn. || <CDN>: Exhaust, then Fetch {Shiro} from anywhere.",
+			"EXTENDED_DESCRIPTION": ["Defend", "Juke", "Exchange"],
 			"NAME": "Sora"
 		},
 		"animator:Tet":
@@ -2465,7 +2465,7 @@
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Boost !M! [F] [A] [I], then enter <CS>. ** Add !M! {Wounds} to ** your hand. || If [C] > !S!: Gain [Demon Form].",
+			"DESCRIPTION": "Boost !M! [F] [A] [I]. ** Obtain !M! {Wounds} and take !S! [Delayed Damage]. || If [C] > !S!: Gain [Demon Form].",
 			"NAME": "Asuramaru"
 		}
 	},

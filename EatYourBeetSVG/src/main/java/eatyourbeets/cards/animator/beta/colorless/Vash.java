@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 public class Vash extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Vash.class)
-            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Trigun);
     public static final int HITS = 3;
 
@@ -21,12 +21,14 @@ public class Vash extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 1);
-        SetUpgrade(1, 0, 1);
+        Initialize(1, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
         SetAffinity_Orange(1, 0, 1);
+
+        SetLoyal(true);
     }
 
     @Override

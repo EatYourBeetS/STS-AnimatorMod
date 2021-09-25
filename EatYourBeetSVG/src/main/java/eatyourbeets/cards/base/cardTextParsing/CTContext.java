@@ -197,4 +197,6 @@ public class CTContext
             card.tooltips.add(tooltip);
         }
     }
+
+    //TODO export text function
 }

@@ -35,8 +35,7 @@ public class KaedeAkamatsu extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new KaedeAkamatsuPower(p, magicNumber));
 
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (info.IsSynergizing && last != null && GameUtilities.GetAffinityLevel(last, Affinity.Light, true) > 0)
+        if (info.IsSynergizing && info.Synergies.GetLevel(Affinity.Light, true) > 1)
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
                     .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)

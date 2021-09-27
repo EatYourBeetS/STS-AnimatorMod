@@ -324,6 +324,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    public boolean CheckLastAffinityPlayed(Affinity affinity)
+    {
+        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
+    }
+
     public boolean CheckAffinity(Affinity affinity)
     {
         return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);

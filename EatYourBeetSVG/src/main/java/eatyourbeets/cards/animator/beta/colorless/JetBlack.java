@@ -21,31 +21,30 @@ public class JetBlack extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 1, 1);
+        Initialize(8, 1, 2);
         SetUpgrade(3, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = magicNumber;
-        if (CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID)) {
-            amount += 1;
-        }
+        boolean shouldRetain = CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.StackPower(new JetBlackPower(p, amount));
+        GameActions.Bottom.StackPower(new JetBlackPower(p, magicNumber, shouldRetain));
     }
 
     public static class JetBlackPower extends AnimatorPower
     {
-        public JetBlackPower(AbstractPlayer owner, int amount)
+        private boolean shouldRetain;
+        public JetBlackPower(AbstractPlayer owner, int amount, boolean shouldRetain)
         {
             super(owner, JetBlack.DATA);
+            this.shouldRetain = shouldRetain;
 
             Initialize(amount);
         }
@@ -53,7 +52,12 @@ public class JetBlack extends AnimatorCard
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
-            ReducePower(1);
+            if (shouldRetain) {
+                shouldRetain = false;
+            }
+            else {
+                RemovePower();
+            }
         }
 
         @Override
@@ -61,7 +65,8 @@ public class JetBlack extends AnimatorCard
         {
             super.onUseCard(card, action);
             if (card.hasTag(STARTER_DEFEND) && GameUtilities.CanPlayTwice(card)) {
-                GameActions.Top.PlayCopy(card, (AbstractMonster)((action.target == null) ? null : action.target));
+                GameActions.Top.Callback(() -> card.use(player, (AbstractMonster)((action.target == null) ? null : action.target)));
+                ReducePower(1);
             }
         }
     }

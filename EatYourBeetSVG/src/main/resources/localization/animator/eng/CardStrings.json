@@ -419,8 +419,8 @@
 		},
 		"animator:JetBlack":
 		{
-			"DESCRIPTION": "This turn: ALL Defends are played twice. || <LIM>. !A! <W>: Prolong this effect by 1 turn.",
-			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns: Play ALL Defends twice."],
+			"DESCRIPTION": "The next !M! Defends played this turn activate twice. || <LIM>. !A! <W>: Carry this effect over to the next turn.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Defend(s) played this turn activate twice."],
 			"NAME": "Jet Black"
 		},
 		"animator:KaedeAkamatsu":
@@ -592,7 +592,7 @@
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +1 [I] Scaling. || Remove up to 3 [Lightning] to Gain|Boost !M! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
+			"DESCRIPTION": "Your [Lightning] has +1 [I] Scaling. || Remove up to !M! [Lightning] to Gain|Boost !M! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
 			"NAME": "Yae Sakura"
 		}
 	},
@@ -638,7 +638,7 @@
 		},
 		"animator:Mayuri":
 		{
-		  "DESCRIPTION": "Synergizes with Basic cards. Retain a Defend in your hand. || <SLM>. Synergy. Increase the [Block] of ALL Defends in your hand by !M!.",
+		  "DESCRIPTION": "Synergizes with Basic cards. || Retain a Defend in your hand. ** <SLM>. Synergy with <B>: Also give it !M! [Block] this combat.",
 		  "NAME": "Mayuri"
 		},
 		"animator:MukuroHoshimiya":
@@ -1337,7 +1337,7 @@
 		},
 		"animator:Curse_Nutcracker":
 		{
-			"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP.",
+			"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP. || When Exhausted: ** Gain 1 [Inspiration].",
 			"NAME": "Nutcracker"
 		}
 	},
@@ -2167,7 +2167,7 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Channel [Lightning]. ** Apply !M! [~Lock-On]. || <CDN> : Deal ** !D! {~Ranged} damage. Cooldown also progresses on discard.",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. Attack ALL targets with [~Lock-On] in !S! turns. || <CDN>: Channel [Lightning]. Progress Cooldown when discarded.",
 			"NAME": "Schwi"
 		},
 		"animator:DolaStephanie":

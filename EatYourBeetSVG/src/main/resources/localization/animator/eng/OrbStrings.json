@@ -21,7 +21,7 @@
 		"NAME": "Air",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies for each card in hand + #b4 (max. #b9 times)."
+			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies #g{2} times."
 		]
 	},
 	"animator:Fire":

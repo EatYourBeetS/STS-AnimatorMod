@@ -466,6 +466,8 @@ public class RenderHelpers
                 return card.GetMagicNumberString();
             case 'S':
                 return card.GetSecondaryValueString();
+            case 'C':
+                return card.GetCooldownString();
             case 'K':
                 return card.GetSpecialVariableString();
             default:

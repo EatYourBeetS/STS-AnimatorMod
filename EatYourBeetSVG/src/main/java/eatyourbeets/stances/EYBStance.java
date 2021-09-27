@@ -128,8 +128,6 @@ public abstract class EYBStance extends AbstractStance
         sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
         GameEffects.Queue.Add(new BorderFlashEffect(GetMainColor(), true));
 
-        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
-
         if (TryApplyStance(ID))
         {
             for (Affinity af : Affinity.Basic()) {

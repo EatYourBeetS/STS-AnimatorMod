@@ -1,12 +1,12 @@
-package eatyourbeets.powers.animator;
+package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.animator.SupportDamageAction;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 
-public class SupportDamagePower extends AnimatorPower
+public class SupportDamagePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(SupportDamagePower.class);
 

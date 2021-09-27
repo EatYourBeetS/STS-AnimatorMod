@@ -20,7 +20,7 @@ public class Priestess extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(1);
@@ -50,8 +50,8 @@ public class Priestess extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.RetainPower(Affinity.Light);
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
+        GameActions.Bottom.GainBlessing(secondaryValue);
 
         if (info.IsSynergizing || CheckAffinity(Affinity.Light))
         {

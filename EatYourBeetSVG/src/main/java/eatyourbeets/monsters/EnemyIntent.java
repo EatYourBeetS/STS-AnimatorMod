@@ -17,6 +17,8 @@ import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.common.BlindedPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
+import eatyourbeets.powers.replacement.AnimatorWeakPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.FieldInfo;
@@ -32,12 +34,12 @@ public class EnemyIntent
     private static class TemporaryPowers
     {
         private static final ArrayList<AbstractPower> DEFAULT_PLAYER_POWERS = new ArrayList<>();
-        private static final VulnerablePower VULNERABLE = new VulnerablePower(null, 0, false);
+        private static final VulnerablePower VULNERABLE = new AnimatorVulnerablePower(null, 0, false);
         private static final EnchantedArmorPower ENCHANTED_ARMOR = new EnchantedArmorPower(null, 0, false);
         private static final BurningPower BURNING = new BurningPower(null, null, 0);
 
         private static final ArrayList<AbstractPower> DEFAULT_ENEMY_POWERS = new ArrayList<>();
-        private static final WeakPower WEAK = new WeakPower(null, 1, false);
+        private static final WeakPower WEAK = new AnimatorWeakPower(null, 1, false);
         private static final StrengthPower STRENGTH = new StrengthPower(null, 0);
         private static final FreezingPower FREEZING = new FreezingPower(null, null, 0);
         private static final BlindedPower BLINDED = new BlindedPower(null, null, 0);

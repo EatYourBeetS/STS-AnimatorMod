@@ -27,7 +27,7 @@ public class NobleFencer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3);
+        Initialize(0, 3, 3);
 
         SetAffinity_Green(2);
         SetAffinity_Blue(2);
@@ -65,48 +65,33 @@ public class NobleFencer extends AnimatorCard
         }
 
         GameActions.Bottom.EvokeOrb(1).SetFilter(Lightning.class::isInstance);
-        GameActions.Bottom.StackPower(new NobleFencerPower(p, 1));
+        GameActions.Bottom.StackPower(new NobleFencerPower(p, magicNumber));
     }
 
-    public class NobleFencerPower extends AnimatorPower implements OnSynergySubscriber
-    {
-        public NobleFencerPower(AbstractCreature owner, int amount)
-        {
+    public class NobleFencerPower extends AnimatorPower implements OnSynergySubscriber {
+        public NobleFencerPower(AbstractCreature owner, int amount) {
             super(owner, NobleFencer.DATA);
-
-            Initialize(amount);
+            this.Initialize(amount);
         }
 
-        @Override
-        public void onInitialApplication()
-        {
+        public void onInitialApplication() {
             super.onInitialApplication();
-
             CombatStats.onSynergy.Subscribe(this);
         }
 
-        @Override
-        public void onRemove()
-        {
+        public void onRemove() {
             super.onRemove();
-
             CombatStats.onSynergy.Unsubscribe(this);
         }
 
-        @Override
-        public void OnSynergy(AbstractCard card)
-        {
-            GameActions.Bottom.ChannelOrbs(Lightning::new, amount);
-
-            this.flash();
+        public void OnSynergy(AbstractCard card) {
+            GameActions.Bottom.ChannelOrb(new Lightning());
+            this.ReducePower(1);
         }
 
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
+        public void atEndOfTurn(boolean isPlayer) {
             super.atEndOfTurn(isPlayer);
-
-            RemovePower();
+            this.RemovePower();
         }
     }
 }

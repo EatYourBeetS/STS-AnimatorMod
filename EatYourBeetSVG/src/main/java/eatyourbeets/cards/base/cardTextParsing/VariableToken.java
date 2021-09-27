@@ -23,6 +23,7 @@ public class VariableToken extends CTToken
         validTokens.add('B');
         validTokens.add('S');
         validTokens.add('A');
+        validTokens.add('C');
         validTokens.add('K');
     }
 

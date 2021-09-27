@@ -35,7 +35,7 @@ public class Hakurou extends AnimatorCard
 
     @Override
     public AbstractAttribute GetBlockInfo() {
-        if (GameUtilities.InStance(NeutralStance.STANCE_ID)) {
+        if (GameUtilities.InBattle() && GameUtilities.InStance(NeutralStance.STANCE_ID)) {
             return null;
         }
         return super.GetBlockInfo().AddMultiplier(2);

@@ -85,6 +85,7 @@ public class CardSeries
     public final static CardSeries PantyStocking = Add(69, "PantyStocking");
     public final static CardSeries Danganronpa = Add(70, "Danganronpa");
     public final static CardSeries PhoenixWright = Add(71, "PhoenixWright");
+    public final static CardSeries Magi = Add(72, "Magi");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

@@ -2,6 +2,7 @@ package eatyourbeets.actions.player;
 
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.actions.EYBActionWithCallbackT2;
+import eatyourbeets.powers.CombatStats;
 
 public class SpendEnergy extends EYBActionWithCallbackT2<Integer, Integer>
 {
@@ -25,8 +26,9 @@ public class SpendEnergy extends EYBActionWithCallbackT2<Integer, Integer>
             energy = Math.min(energy, amount);
             if (CheckConditions(energy))
             {
-                player.loseEnergy(energy);
-                Complete(energy);
+                int finalEnergy = CombatStats.OnSpendEnergy(energy);
+                player.loseEnergy(finalEnergy);
+                Complete(finalEnergy);
                 return;
             }
         }

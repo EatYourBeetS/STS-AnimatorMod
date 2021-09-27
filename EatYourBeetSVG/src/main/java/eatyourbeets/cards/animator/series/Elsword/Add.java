@@ -48,13 +48,15 @@ public class Add extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing || CheckAffinity(Affinity.Dark))
-        {
-            GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
-            .AddCallback(this::OnCardChosen);
-        }
+        GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue).AddCallback(() -> {
+            if (info.IsSynergizing || CheckAffinity(Affinity.Dark))
+            {
+                GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
+                        .AddCallback(this::OnCardChosen);
+            }
+        });
 
-        GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue);
+
     }
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)

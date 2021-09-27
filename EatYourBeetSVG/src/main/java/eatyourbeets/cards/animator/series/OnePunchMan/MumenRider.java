@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
@@ -22,21 +21,15 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(DATA);
 
-        Initialize(2, 0, 4, 6);
-        SetUpgrade(1, 0, -1, -1);
+        Initialize(2, 0, 0, 0);
+        SetUpgrade(1, 0, 0, 0);
 
         SetAffinity_Red(1);
+        SetAffinity_Light(1);
+
+        SetCooldown(5, 1, this::OnCooldownCompleted, false, true);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        turns = rng.random(magicNumber, secondaryValue);
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
@@ -46,20 +39,9 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         GameActions.Bottom.Cycle(name, 1);
     }
 
-    @Override
-    public void OnStartOfTurnPostDraw()
+    protected void OnCooldownCompleted(AbstractMonster m)
     {
-        if (!player.exhaustPile.contains(this))
-        {
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            return;
-        }
-
-        if ((turns -= 1) <= 0)
-        {
-            GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
-                    .ShowEffect(true, true);
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-        }
+        GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
+                .ShowEffect(true, true);
     }
 }

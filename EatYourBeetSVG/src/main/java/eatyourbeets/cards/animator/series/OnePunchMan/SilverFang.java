@@ -52,7 +52,7 @@ public class SilverFang extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         BlockModifiers.For(this).Set(0);
 
-        if (info.IsSynergizing && info.TryActivateLimited())
+        if (info.IsSynergizing && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }

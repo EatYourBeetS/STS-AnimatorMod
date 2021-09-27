@@ -21,9 +21,12 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -34,9 +37,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static eatyourbeets.powers.animator.ElementalExposurePower.ELEMENTAL_MODIFIER;
+import static eatyourbeets.powers.replacement.AnimatorLockOnPower.GetAttackMultiplier;
 import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
 
-public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, CustomSavable<EYBCardSaveData>
+public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, OnStartOfTurnPostDrawSubscriber, CustomSavable<EYBCardSaveData>
 {
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
@@ -61,6 +66,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
     protected int upgrade_secondaryValue;
+    protected int upgrade_cooldownValue;
     protected int upgrade_block;
     protected int upgrade_cost;
 
@@ -292,6 +298,16 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             SetTag(HASTE,true);
         }
     }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        if (cooldown != null && cooldown.canProgressFromExhaustPile && player != null && player.exhaustPile.contains(this))
+        {
+            cooldown.ProgressCooldownAndTrigger(null);
+        }
+    }
+
 
     public void PurgeOnUseOnce()
     {
@@ -561,6 +577,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     {
         SetTag(HASTE_INFINITE, value);
         SetTag(HASTE, value);
+        if (value) {
+            CombatStats.onStartOfTurn.Subscribe(this);
+        }
+        else {
+            CombatStats.onStartOfTurn.Unsubscribe(this);
+        }
     }
 
     public void SetProtagonist(boolean value)
@@ -757,6 +779,16 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                 }
             }
 
+            if (upgrade_cooldownValue != 0)
+            {
+                if (baseCooldownValue < 0)
+                {
+                    baseCooldownValue = 0;
+                }
+
+                upgradeCooldownValue(upgrade_cooldownValue);
+            }
+
             if (upgrade_cost != 0)
             {
                 int previousCost = cost;
@@ -833,6 +865,21 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         this.upgrade_cost = value;
     }
 
+    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
+    {
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
+        return this.cooldown;
+    }
+
+    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile)
+    {
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted, canProgressOnManualDiscard, canProgressFromExhaustPile);
+        if (canProgressFromExhaustPile) {
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        }
+        return this.cooldown;
+    }
+
     public void OnDrag(AbstractMonster m)
     {
 
@@ -854,6 +901,16 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
         return !unplayable && super.canUse(p, m);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+        if (cooldown != null && cooldown.canProgressOnManualDiscard)
+        {
+            cooldown.ProgressCooldownAndTrigger(null);
+        }
     }
 
     @Override
@@ -944,6 +1001,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                 {
                     tempDamage *= 1.3f;
                 }
+                for (AbstractPower power : enemy.powers) {
+                    if (ElementalExposurePower.POWER_ID.equals(power.ID))
+                    {
+                        tempDamage *= (1 + (ELEMENTAL_MODIFIER / 100f));
+                    }
+                }
             }
             else if (attackType == EYBAttackType.Ranged)
             {
@@ -957,7 +1020,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                     }
                     else if (LockOnPower.POWER_ID.equals(power.ID))
                     {
-                        tempDamage *= 1.25f;
+                        tempDamage *= (1 + (GetAttackMultiplier() / 100f));
                     }
                 }
             }

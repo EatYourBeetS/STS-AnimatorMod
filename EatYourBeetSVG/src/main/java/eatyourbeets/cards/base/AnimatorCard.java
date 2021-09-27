@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.powers.CombatStats;
@@ -24,7 +23,6 @@ public abstract class AnimatorCard extends EYBCard
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
     private static final Color COLORLESS_ORB_COLOR = new Color(0.7f, 0.7f, 0.7f, 1);
-    protected AnimatorCardCooldown cooldown;
     protected DrawPileCardPreview drawPileCardPreview;
     protected Color borderIndicatorColor;
 
@@ -116,20 +114,6 @@ public abstract class AnimatorCard extends EYBCard
     {
         return this.drawPileCardPreview = new DrawPileCardPreview(findCard)
         .RequireTarget(target == CardTarget.ENEMY || target == CardTarget.SELF_AND_ENEMY);
-    }
-
-    public AnimatorCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
-    {
-        return this.cooldown = new AnimatorCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        if (cooldown != null)
-        {
-            cooldown.ProgressCooldownAndTrigger(null);
-        }
     }
 
     @Override
@@ -300,12 +284,6 @@ public abstract class AnimatorCard extends EYBCard
             default:
                 return new AdvancedTexture(isPopup ? IMAGES.CARD_FRAME_SKILL_L.Texture() : IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
         }
-    }
-
-    @Override
-    public ColoredString GetSecondaryValueString()
-    {
-        return cooldown != null ? cooldown.GetSecondaryValueString() : super.GetSecondaryValueString();
     }
 
     @SpireOverride

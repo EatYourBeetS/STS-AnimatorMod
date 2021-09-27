@@ -2,23 +2,20 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.Arrays;
 
 public class ShizuruNakatsu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(ShizuruNakatsu.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     private boolean canAttack;
 
@@ -26,11 +23,23 @@ public class ShizuruNakatsu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 1);
+        Initialize(6, 3, 2);
         SetUpgrade(0, 3, 0);
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Orange(0, 0, 1);
     }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (CheckAttackCondition())
+        {
+            return super.GetDamageInfo();
+        }
+
+        return null;
+    }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -46,19 +55,9 @@ public class ShizuruNakatsu extends AnimatorCard
                     .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
         }
 
-        AgilityPower agility = GameUtilities.GetPower(player, AgilityPower.class);
-        if (agility != null && GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) > 2)
+        if (CheckAttackCondition())
         {
-            canAttack = true;
-        }
-
-        if (canAttack)
-        {
-            GameActions.Bottom.SFX("ATTACK_HEAVY");
-            GameActions.Bottom.VFX(new DieDieDieEffect());
-
-            int[] damageMatrix = DamageInfo.createDamageMatrix(8, true);
-            GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AttackEffects.GUNSHOT);
+            GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
         }
     }
 
@@ -75,5 +74,10 @@ public class ShizuruNakatsu extends AnimatorCard
         }
 
         return count;
+    }
+
+    private boolean CheckAttackCondition() {
+        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetHandAffinity);
+        return (highestAffinity.equals(Affinity.Green));
     }
 }

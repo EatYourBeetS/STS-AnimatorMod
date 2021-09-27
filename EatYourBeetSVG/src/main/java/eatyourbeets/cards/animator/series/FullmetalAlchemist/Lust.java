@@ -69,7 +69,7 @@ public class Lust extends AnimatorCard
 
         if (gainTempHP)
         {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            GameActions.Bottom.GainTemporaryHP(secondaryValue);
         }
     }
 }

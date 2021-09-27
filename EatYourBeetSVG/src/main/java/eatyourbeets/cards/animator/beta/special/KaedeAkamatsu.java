@@ -26,7 +26,6 @@ public class KaedeAkamatsu extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
 
-        SetProtagonist(true);
         SetHarmonic(true);
     }
 
@@ -69,7 +68,7 @@ public class KaedeAkamatsu extends AnimatorCard
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle)
         {
-            if (!GameUtilities.IsHindrance(card) && card.cost > 0)
+            if (!GameUtilities.IsHindrance(card) && GameUtilities.IsHighCost(card))
             {
                 if (this.TryActivate())
                 {

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -44,7 +45,7 @@ public class HuTao extends AnimatorCard
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).SetVFXColor(Color.PURPLE);
     }
 
     @Override

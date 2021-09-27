@@ -25,11 +25,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public static int PLAYER_REDUCTION_BONUS = 0;
     private static UUID battleID;
 
-    public static float CalculateDamage(float damage, float percentage)
-    {
-        return Math.max(0, damage - Math.max(1f, damage * (percentage / 100f)));
-    }
-
     public static void AddPlayerReductionBonus(int multiplier)
     {
         if (CombatStats.BattleID != battleID)
@@ -43,6 +38,11 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
             PLAYER_REDUCTION_BONUS += multiplier;
             GameUtilities.UpdatePowerDescriptions();
         }
+    }
+
+    public static float CalculateDamage(float damage, float multiplier)
+    {
+        return Math.max(0, damage - Math.max(1f, damage * (multiplier / 100f)));
     }
 
     public FreezingPower(AbstractCreature owner, AbstractCreature source, int amount)
@@ -78,8 +78,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        float newDamage = calculateDamageGiven(damage, type);
-        return super.atDamageGive(newDamage, type);
+        return super.atDamageGive((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, GetMultiplier()) : damage, type);
     }
 
     @Override
@@ -92,11 +91,6 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     public Color getColor()
     {
         return healthBarColor;
-    }
-
-    public int calculateDamageGiven(float damage, DamageInfo.DamageType type)
-    {
-        return (int) ((type == DamageInfo.DamageType.NORMAL) ? CalculateDamage(damage, GetMultiplier()) : damage);
     }
 
     public int GetPassiveDamage()

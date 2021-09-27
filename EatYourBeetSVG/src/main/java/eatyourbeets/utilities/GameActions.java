@@ -63,13 +63,9 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
-import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
-import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
-import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
-import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
-import eatyourbeets.powers.replacement.TemporaryArtifactPower;
+import eatyourbeets.powers.replacement.*;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -218,7 +214,7 @@ public final class GameActions
 
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new FrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));
+        return StackPower(source, new AnimatorFrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyFrail(TargetHelper target, int amount)
@@ -248,7 +244,7 @@ public final class GameActions
 
     public ApplyPower ApplyLockOn(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new LockOnPower(target, amount));
+        return StackPower(source, new AnimatorLockOnPower(target, amount));
     }
 
     public ApplyPowerAuto ApplyLockOn(TargetHelper target, int amount)
@@ -284,7 +280,7 @@ public final class GameActions
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new VulnerablePower(target, amount, source == null || GameUtilities.IsMonster(source)));
+        return StackPower(source, new AnimatorVulnerablePower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyVulnerable(TargetHelper target, int amount)
@@ -294,7 +290,7 @@ public final class GameActions
 
     public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new WeakPower(target, amount, source == null || GameUtilities.IsMonster(source)));
+        return StackPower(source, new AnimatorWeakPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
@@ -521,17 +517,6 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
-    public ApplyPower GainBalance(int amount)
-    {
-        return StackPower(new BalancePower(player, amount));
-    }
-
-    public ApplyPower GainBalance(int amount, boolean temporary)
-    {
-        return StackPower(temporary ? new TemporaryBalancePower(player, amount) : new BalancePower(player, amount));
-    }
-
-
     public ApplyAffinityPower GainBlessing(int amount)
     {
         return GainBlessing(amount, false);
@@ -583,6 +568,16 @@ public final class GameActions
         return StackPower(new DexterityPower(player, amount));
     }
 
+    public ApplyPower GainEndurance(int amount)
+    {
+        return StackPower(new EndurancePower(player, amount));
+    }
+
+    public ApplyPower GainEndurance(int amount, boolean temporary)
+    {
+        return StackPower(temporary ? new TemporaryEndurancePower(player, amount) : new EndurancePower(player, amount));
+    }
+
     public GainEnergyAction GainEnergy(int amount)
     {
         return Add(new GainEnergyAction(amount));
@@ -596,6 +591,11 @@ public final class GameActions
     public ApplyPower GainFocus(int amount)
     {
         return StackPower(new FocusPower(player, amount));
+    }
+
+    public ApplyPower GainFocus(int amount, boolean temporary)
+    {
+        return StackPower(temporary ? new TemporaryFocusPower(player, amount) : new FocusPower(player, amount));
     }
 
     public ApplyAffinityPower GainForce(int amount)
@@ -663,6 +663,11 @@ public final class GameActions
         return StackPower(new StrengthPower(player, amount));
     }
 
+    public ApplyPower GainSupportDamage(int amount)
+    {
+        return StackPower(new SupportDamagePower(player, amount));
+    }
+
     public ApplyPower GainTemporaryArtifact(int amount)
     {
         return StackPower(new TemporaryArtifactPower(player, amount));
@@ -675,7 +680,7 @@ public final class GameActions
 
     public ApplyPower GainTemporaryThorns(int amount)
     {
-        return StackPower(new EarthenThornsPower(player, amount));
+        return StackPower(new TemporaryThornsPower(player, amount));
     }
 
     public ApplyPower GainThorns(int amount)

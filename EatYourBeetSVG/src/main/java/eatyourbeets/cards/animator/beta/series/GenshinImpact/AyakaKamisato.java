@@ -10,9 +10,11 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.animator.NegateBlockPower;
+import eatyourbeets.powers.animator.SelfImmolationPower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
@@ -24,10 +26,10 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(15, 0, 2, 2);
-        SetUpgrade(3, 0, 1, 0);
+        Initialize(15, 0, 3, 5);
+        SetUpgrade(3, 0, 0, 0);
         SetAffinity_Blue(2, 0, 4);
-        SetAffinity_Green(1, 0, 4);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Orange(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Blue, 4);
@@ -47,12 +49,11 @@ public class AyakaKamisato extends AnimatorCard {
         for (int i = 0; i < ATTACK_TIMES; i++)
         {
             GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.3f);
+                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.2f);
         }
-        GameActions.Bottom.GainThorns(magicNumber + (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) > THRESHOLD ? secondaryValue : 0));
-        GameActions.Bottom.StackPower(new NegateBlockPower(p, ATTACK_TIMES));
+        GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
 
-        if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+        if ((CheckAffinity(Affinity.Blue) || GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) >= secondaryValue) && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

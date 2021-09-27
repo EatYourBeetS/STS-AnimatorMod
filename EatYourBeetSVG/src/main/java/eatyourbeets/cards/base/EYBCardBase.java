@@ -78,9 +78,13 @@ public abstract class EYBCardBase extends AbstractCard
     public boolean isPreview = false;
     public boolean isSecondaryValueModified = false;
     public boolean upgradedSecondaryValue = false;
+    public boolean upgradedCooldownValue = false;
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
+    public int baseCooldownValue = 0;
+    public int cooldownValue = 0;
 
+    protected EYBCardCooldown cooldown;
     protected AdvancedTexture portraitImg;
     protected AdvancedTexture portraitForeground;
 
@@ -577,6 +581,11 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
+    public ColoredString GetCooldownString()
+    {
+        return cooldown != null ? cooldown.GetCooldownValueString() : null;
+    }
+
     public ColoredString GetSpecialVariableString()
     {
         return new ColoredString(misc, misc > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
@@ -637,6 +646,13 @@ public abstract class EYBCardBase extends AbstractCard
         this.baseSecondaryValue += amount;
         this.secondaryValue = this.baseSecondaryValue;
         this.upgradedSecondaryValue = true;
+    }
+
+    protected void upgradeCooldownValue(int amount)
+    {
+        this.baseCooldownValue += amount;
+        this.cooldownValue = Math.min(this.cooldownValue, this.baseCooldownValue);
+        this.upgradedCooldownValue = true;
     }
 
     protected void SetTag(CardTags tag, boolean enable)

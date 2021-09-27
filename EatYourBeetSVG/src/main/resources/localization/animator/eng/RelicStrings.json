@@ -200,25 +200,25 @@
 	},
 	"animator:SoulGem1":
 	{
-		"DESCRIPTIONS": ["Have #b3 #yStrength. #yStrength cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
+		"DESCRIPTIONS": ["#yStrength cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Red Soul Gem"
 	},
 	"animator:SoulGem2":
 	{
-		"DESCRIPTIONS": ["Have #b3 #yDexterity. #yDexterity cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b5 #ySkills played."],
+		"DESCRIPTIONS": ["#yDexterity cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b5 cards played that give #yBlock."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Green Soul Gem"
 	},
 	"animator:SoulGem3":
 	{
-		"DESCRIPTIONS": ["Have #b3 #yFocus. #yFocus cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
+		"DESCRIPTIONS": ["#yFocus cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Blue Soul Gem"
 	},
 	"animator:SoulGem4":
 	{
-		"DESCRIPTIONS": ["Have #b3 #yBalance. #yStrength, #yDexterity, #yFocus, and #yBalance cannot fall below #b1. Destroy this relic if you play #b16 cards in a single turn or if you deal more than #b50 damage in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
+		"DESCRIPTIONS": ["#yStrength, #yDexterity, #yFocus, and #yBalance cannot fall below #b2. Destroy this relic if you play #b16 cards in a single turn or if you deal more than #b50 damage in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Orange Soul Gem"
 	},

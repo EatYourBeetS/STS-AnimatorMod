@@ -75,7 +75,8 @@
 			"Trigun",
 			"Panty & Stocking with Garterbelt",
 			"Danganronpa",
-			"Phoenix Wright Ace Attorney"
+			"Phoenix Wright Ace Attorney",
+			"Magi"
 		],
 		"EXTRA_TEXT":
 		[
@@ -101,7 +102,7 @@
 			"Channel {0} {1}",
 			"Motivate {0}",
 			"Upgrade all cards NL in your hand",
-			"Gain !M! Intangible. NL Lose this Power",
+			"Have {0} {1} this turn",
 			"Remove all of NL your debuffs",
 			"Play the top card NL of your draw pile",
 			"Stun the enemy",
@@ -205,7 +206,10 @@
 	  "Variant",
 	  "Switch Variant",
 	  "Permanently change this card's variant to the currently-displayed variant. NL #rThis #rcan #ronly #rbe #rdone #ronce.",
-	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes."
+	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes.",
+	  "Cur. Copies",
+	  "Max. Copies",
+	  "If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops."
 	]
   },
 

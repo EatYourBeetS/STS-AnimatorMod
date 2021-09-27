@@ -1,14 +1,14 @@
 
 {
+	"eyb:AbstractTemporaryPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn."],
+		"NAME": "Temporary Power"
+    },
 	"eyb:AgilityPower":
 	{
 		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} [Dexterity]."],
 		"NAME": "Agility"
-	},
-	"eyb:BalancePower":
-	{
-	  "DESCRIPTIONS": ["Reduce the effects of #yFrail, #yVulnerable, and #yWeak on you by #b{0}%. Increase the effects of #yFrail, #yLock-On, #yVulnerable, and #yWeak on the enemy by #b{0}%"],
-	  "NAME": "Balance"
 	},
 	"eyb:BlindedPower":
 	{
@@ -17,7 +17,7 @@
 	},
 	"eyb:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Vitality]."],
+		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Supercharged]."],
 		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
@@ -32,8 +32,23 @@
 	},
 	"eyb:CorruptionPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " At #b{0} [C]: Obtain {1}."],
+		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " At #b{0} [C]: Gain #b{1} [Desecration]."],
 		"NAME": "Corruption"
+	},
+	"eyb:DelayedDamagePower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
+		"NAME": "Delayed Damage"
+	},
+	"eyb:DesecrationPower":
+	{
+	  "DESCRIPTIONS": ["Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{0}% and of [Frail] and [Weak] by #b{1}%. Whenever ANY character gains [Delayed Damage], increase it by #b{2}."],
+	  "NAME": "Desecration"
+	},
+	"eyb:EndurancePower":
+	{
+	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Retain up to #b{2} [Block] each turn.", "Increase the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. If you would retain [Block] at the end of the turn, retain #b{2} less."],
+	  "NAME": "Endurance"
 	},
 	"eyb:EnergizedPower":
 	{
@@ -55,6 +70,11 @@
 		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " At #b{0} [F]: Gain #b{1} [Strength]."],
 		"NAME": "Force"
 	},
+	"eyb:FrailPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0}% less #yBlock from cards for #b{1} {2}.","turn","turns"],
+		"NAME": "Frail"
+	},
 	"eyb:FreezingPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
@@ -75,6 +95,11 @@
 	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],
 	  "NAME": "Fire Element"
 	},
+	"eyb:LockonPower":
+	{
+		"DESCRIPTIONS": ["Receive #b{0}% more damage from Orbs and #b{1}% more damage from Ranged attacks for #b{2} {3}.","turn","turns"],
+		"NAME": "Lock-On"
+	},
 	"eyb:MarkedPower":
 	{
 		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
@@ -85,29 +110,59 @@
 		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
 		"NAME": "Poison"
 	},
-	"eyb:DelayedDamagePower":
-	{
-		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
-		"NAME": "Delayed Damage"
-	},
 	"eyb:ShacklesPower":
 	{
 		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
 		"NAME": "Shackles"
 	},
-	"eyb:TemporaryBalancePower":
+	"eyb:SuperchargedPower":
+	{
+		"DESCRIPTIONS": ["When [E] is spent: Gains #yCharge equal to [E] spent. For every #b{0} #yCharge: When you play a card that deals damage or gives [Block], spend #b{1} #yCharge to increase its damage and [Block] by #b{2}% (This effect can stack)."],
+		"NAME": "Supercharged"
+	},
+	"eyb:SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
+		"NAME": "Support Damage"
+	},
+	"eyb:TemporaryDesecrationPower":
     {
-		"DESCRIPTIONS": ["Lose #b{0} #yBalance at the start of your next turn."],
-		"NAME": "Temporary Balance"
+		"DESCRIPTIONS": ["Lose #b{0} [Desecration] at the start of your next turn."],
+		"NAME": "Temporary Desecration"
     },
+	"eyb:TemporaryEndurancePower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Endurance] at the start of your next turn."],
+		"NAME": "Temporary Endurance"
+    },
+	"eyb:TemporaryFocusPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Focus] at the start of your next turn."],
+		"NAME": "Temporary Focus"
+    },
+	"eyb:TemporaryThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],
+		"NAME": "Temporary Thorns"
+	},
 	"eyb:VitalityPower":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
 		"NAME": "Vitality"
 	},
+	"eyb:VulnerablePower":
+	{
+		"DESCRIPTIONS": ["Receive #b{0}% more damage from #yAttacks for #b{1} turn(s)."],
+		"NAME": "Vulnerable"
+	},
+	"eyb:WeakPower":
+	{
+		"DESCRIPTIONS": ["Attack deal #b{0}% less damage for #b{1} turn(s)."],
+		"NAME": "Weakened"
+	},
 	"eyb:WillpowerPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Balance]."],
+		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
 		"NAME": "Willpower"
 	}
 }

@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -36,7 +35,7 @@ public class Amber extends AnimatorCard {
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.StackPower(p, new LockOnPower(m, magicNumber));
+            GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
         }
     }
 }

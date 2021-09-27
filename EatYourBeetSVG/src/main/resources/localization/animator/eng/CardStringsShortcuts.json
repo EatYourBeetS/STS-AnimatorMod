@@ -1,12 +1,8 @@
 
 {
-	"<LIM>": "Limited",
+	"<LIM>": "{Limited}",
 	"<SLM>": "{Semi-Limited}",
 	"<slm>": "{Semi-Lim}",
-	
-	"<AGI>": "Agility",
-	"<FOR>": "Force",
-	"<INT>": "Intellect",
 
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
@@ -28,6 +24,9 @@
 	"<D>": "[A-Dark]",
 	"<S>": "[A-Star]",
 	"<W>": "[A-Gen]",
+
+	"<CDN>": "Cooldown !C!",
+	"<RCT>": "Ricochet !C!",
 	
 	" ** ": " NL ",
 	" || ": " NL  NL "

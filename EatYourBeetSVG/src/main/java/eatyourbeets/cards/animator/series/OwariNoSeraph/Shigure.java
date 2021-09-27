@@ -2,13 +2,10 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -17,23 +14,25 @@ public class Shigure extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shigure.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 
     public Shigure()
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 3);
+        Initialize(7, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
 
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 1, 1);
+        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override
     public void triggerOnExhaust()
     {
-        GameActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
     }
 
     @Override
@@ -41,7 +40,12 @@ public class Shigure extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration);
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        if (GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Green)) {
+            GameActions.Bottom.GainSupportDamage(magicNumber);
+        }
+        else {
+            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        }
     }
 
     @Override
@@ -49,7 +53,7 @@ public class Shigure extends AnimatorCard
     {
         if (AgilityStance.IsActive())
         {
-            GameActions.Bottom.Cycle(name, 1);
+            GameActions.Bottom.Cycle(name, secondaryValue);
         }
     }
 }

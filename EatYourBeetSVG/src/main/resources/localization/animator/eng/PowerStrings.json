@@ -22,7 +22,7 @@
 	},
 	"animator:BlazingHeatPower":
 	{
-	  "DESCRIPTIONS": ["#yFire applies #b{0} times its damage to ALL enemies when Evoked. Whenever #yBurning is applied to a target with #yFreezing, trigger #yFreezing twice, then remove 1 #yFreezing."],
+	  "DESCRIPTIONS": ["#yFire applies #b{0} times its damage to ALL enemies when Evoked. Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] twice, then remove 1 [Freezing]."],
 	  "NAME": "Blazing Heat"
 	},
 	"animator:BorosPower":
@@ -87,12 +87,12 @@
 	},
 	"animator:ElementalExposurePower":
 	{
-	  "DESCRIPTIONS": ["The effects of Burning and Freezing are amplified by #b{0}%. Removed in #b{1} turn(s)."],
+	  "DESCRIPTIONS": ["The effects and damage of [Burning] and [Freezing] are multiplied by #b{0}%. Receives #b{1}% more damage from Elemental attacks. Removed in #b{2} turn(s)."],
 	  "NAME": "Elemental Exposure"
 	},
 	"animator:ElementalMasteryPower":
 	{
-	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, inflict Elemental Exposure to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled or Evoked."],
+	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, apply [Elemental Exposure] to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled or Evoked."],
 	  "NAME": "Elemental Mastery"
 	},
 	"animator:EmiyaShirouPower":
@@ -235,11 +235,6 @@
 		"DESCRIPTIONS": ["Whenever you receive damage also receive #b{0} #yPoison."],
 		"NAME": "Mark of Poison"
 	},
-	"animator:NegateBlockPower":
-	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, you cannot gain Block from cards. Gain #yDelayed #yDamage whenever you obtain Block from other sources."],
-	  "NAME": "Negate Block"
-	},
 	"animator:NextTurnDexterityPower":
 	{
 		"DESCRIPTIONS": ["Next turn, gain #b{0} #yTemporary #yDexterity."],
@@ -314,6 +309,11 @@
 	{
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
 		"NAME": "Rory Mercury"
+	},
+	"animator:SelfImmolationPower":
+	{
+	  "DESCRIPTIONS": ["For the next #b", " turns, give #yDelayed #yDamage to ALL characters whenever you gain Block."],
+	  "NAME": "Self-Immolation"
 	},
 	"animator:SheerColdPower":
 	{

@@ -23,7 +23,7 @@ public class Elesis extends AnimatorCard
     public static final EYBCardData DATA = Register(Elesis.class)
             .SetAttack(-2, CardRarity.RARE)
             .SetSeriesFromClassPackage()
-            .SetMultiformData(4, true, false, true, true)
+            .SetMultiformData(4, false, false, false, true)
             .PostInitialize(data ->
             {
                 data.AddPreview(new Elesis(1, 0), true);

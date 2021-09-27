@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.common.CounterAttackPower;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -29,7 +29,7 @@ public class Sebas extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
@@ -45,11 +45,11 @@ public class Sebas extends AnimatorCard
         }
 
         int energy = 0;
-        if (AgilityStance.IsActive())
+        if (WillpowerStance.IsActive())
         {
             energy += 1;
         }
-        if (CheckAffinity(Affinity.Dark))
+        if (CheckAffinity(Affinity.Red))
         {
             energy += 1;
         }

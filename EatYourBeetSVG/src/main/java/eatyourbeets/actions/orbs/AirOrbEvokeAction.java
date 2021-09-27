@@ -12,14 +12,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class AirOrbEvokeAction extends EYBAction
 {
-    public static final int HAND_THRESHOLD = 5;
     private final int hits;
 
     public AirOrbEvokeAction(int damage, int hits)
     {
         super(ActionType.DAMAGE, Settings.ACTION_DUR_XFAST);
 
-        Initialize(damage + player.hand.size() / HAND_THRESHOLD);
+        Initialize(damage);
         this.hits = hits;
     }
 

@@ -5,9 +5,7 @@ import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.status.*;
-import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.cards.animator.status.Hans_Slimed;
-import eatyourbeets.cards.animator.status.Overheat;
+import eatyourbeets.cards.animator.status.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -49,16 +47,16 @@ public class Ginko extends AnimatorCard
     }
 
     private void TransformCard(AbstractCard c) {
-        if (c instanceof Slimed || c instanceof Hans_Slimed) {
+        if (c instanceof Slimed || c instanceof Status_Slimed || c instanceof Hans_Slimed) {
             GameActions.Last.ReplaceCard(c.uuid, new Ginko_Slimed());
         }
-        else if (c instanceof Wound) {
+        else if (c instanceof Wound || c instanceof Status_Wound) {
             GameActions.Last.ReplaceCard(c.uuid, new Ginko_Wound());
         }
         else if (c instanceof Dazed) {
             GameActions.Last.ReplaceCard(c.uuid, new Ginko_Dazed());
         }
-        else if (c instanceof Burn) {
+        else if (c instanceof Burn || c instanceof Status_Burn) {
             GameActions.Last.ReplaceCard(c.uuid, new SearingBurn());
         }
         else if (c instanceof VoidCard) {

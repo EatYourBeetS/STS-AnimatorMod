@@ -170,7 +170,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
         PlayerGainVulnerable2(ACTIONS.GainAmount(3, GR.Tooltips.Vulnerable, true), 3, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(null, p, 3)),
         PlayerGainWeak(ACTIONS.GainAmount(2, GR.Tooltips.Weak, true), 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 2)),
         PlayerGainWeak2(ACTIONS.GainAmount(3, GR.Tooltips.Weak, true), 3, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 3)),
-        PlayerLoseBalance(ACTIONS.LosePower(1, GR.Tooltips.Balance, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Balance, -1)),
+        PlayerLoseBalance(ACTIONS.LosePower(1, GR.Tooltips.Endurance, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Endurance, -1)),
         PlayerLoseDexterity(ACTIONS.LosePower(1, GR.Tooltips.Dexterity, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Dexterity, -1)),
         PlayerLoseFocus(ACTIONS.LosePower(1, GR.Tooltips.Focus, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Focus, -1)),
         PlayerLoseStrength(ACTIONS.LosePower(1, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Strength, -1)),

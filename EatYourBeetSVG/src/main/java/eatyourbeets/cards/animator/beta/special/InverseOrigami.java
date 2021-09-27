@@ -4,11 +4,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,8 +28,6 @@ public class InverseOrigami extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAutoplay(true);
-
-        SetAffinityRequirement(Affinity.Light,3);
     }
 
     @Override
@@ -36,11 +38,8 @@ public class InverseOrigami extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.StackPower(new InverseOrigamiPower(p, magicNumber));
-        if (CheckAffinity(Affinity.Light)) {
-            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-                    .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
-        }
-
+        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
     }
 
     public static class InverseOrigamiPower extends AnimatorClickablePower implements OnEvokeOrbSubscriber {
@@ -57,6 +56,18 @@ public class InverseOrigami extends AnimatorCard
                     });
 
             Initialize(amount);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            CombatStats.onEvokeOrb.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            CombatStats.onEvokeOrb.Unsubscribe(this);
         }
 
         @Override

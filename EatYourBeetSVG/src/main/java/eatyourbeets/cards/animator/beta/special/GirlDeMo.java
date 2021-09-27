@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,8 +20,8 @@ public class GirlDeMo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(2, 0, 0);
         SetHarmonic(true);
@@ -37,19 +38,22 @@ public class GirlDeMo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameUtilities.IncreaseSuperchargedCharge(magicNumber);
+
         ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
         pairs.add(new Pair<>(GameActions.Bottom::GainForce, CombatStats.Affinities.GetPowerAmount(Affinity.Red)));
         pairs.add(new Pair<>(GameActions.Bottom::GainAgility, CombatStats.Affinities.GetPowerAmount(Affinity.Green)));
         pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, CombatStats.Affinities.GetPowerAmount(Affinity.Blue)));
         pairs.add(new Pair<>(GameActions.Bottom::GainWillpower, CombatStats.Affinities.GetPowerAmount(Affinity.Orange)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainWillpower, CombatStats.Affinities.GetPowerAmount(Affinity.Light)));
         pairs.sort(Comparator.comparingInt(Pair::getValue));
 
-        int amount = pairs.get(3).getValue();
+        int amount = pairs.get(4).getValue();
         if (amount > 0)
         {
             pairs.get(3).getKey().Invoke(amount);
 
-            for (int i = 2; i >= 0; i--) {
+            for (int i = 3; i >= 0; i--) {
                 if (pairs.get(i).getValue().equals(amount))
                 {
                     pairs.get(i).getKey().Invoke(amount);

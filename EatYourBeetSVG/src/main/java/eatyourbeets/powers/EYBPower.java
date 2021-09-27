@@ -70,7 +70,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
             }
             if (this.img == null)
             {
-                GR.GetTexture(GR.Common.CreateID("UnknownPower"));
+                this.img = GR.GetTexture(GR.Common.CreateID("UnknownPower"));
             }
 
             this.ID = originalID;

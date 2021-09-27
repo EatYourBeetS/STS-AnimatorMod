@@ -12,25 +12,30 @@ import eatyourbeets.utilities.TargetHelper;
 public class GenericEffect_StackPower extends GenericEffect
 {
     protected final PowerHelper power;
+    protected final boolean temporary;
 
     public GenericEffect_StackPower(PowerHelper power, int amount)
     {
-        this.power = power;
-        this.tooltip = power.Tooltip;
-        this.amount = amount;
+        this(power,power.Tooltip,amount,false);
     }
 
     public GenericEffect_StackPower(PowerHelper power, EYBCardTooltip tooltip, int amount)
     {
+        this(power,tooltip,amount,false);
+    }
+
+    public GenericEffect_StackPower(PowerHelper power, EYBCardTooltip tooltip, int amount, boolean temporary)
+    {
         this.power = power;
         this.tooltip = tooltip;
         this.amount = amount;
+        this.temporary = temporary;
     }
 
     @Override
     public String GetText()
     {
-        return GR.Animator.Strings.Actions.GainAmount(amount, tooltip, true);
+        return temporary ? GR.Animator.Strings.Actions.GainTemporaryAmount(amount, tooltip, true) : GR.Animator.Strings.Actions.GainAmount(amount, tooltip, true);
     }
 
     @Override

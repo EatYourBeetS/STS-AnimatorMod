@@ -21,7 +21,7 @@ public class Mikaela extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 2);
+        Initialize(7, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
 
         SetAffinity_Red(1, 1, 1);
@@ -46,6 +46,7 @@ public class Mikaela extends AnimatorCard
             if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
             {
                 GameActions.Bottom.GainForce(secondaryValue);
+                GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SLASH_VERTICAL);
             }
         });
     }

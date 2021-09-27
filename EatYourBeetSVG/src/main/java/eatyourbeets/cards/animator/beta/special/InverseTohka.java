@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -36,7 +37,17 @@ public class InverseTohka extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainForce(secondaryValue);
+        GameActions.Bottom.SpendEnergy(1,false).AddCallback(() -> {
+            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
+                    .SetOptions(true, true)
+                    .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series.equals(this.series))
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard c : cards) {
+                            GameActions.Bottom.Motivate(c, 1);
+                        }
+                    });
+        });
     }
 
     @Override

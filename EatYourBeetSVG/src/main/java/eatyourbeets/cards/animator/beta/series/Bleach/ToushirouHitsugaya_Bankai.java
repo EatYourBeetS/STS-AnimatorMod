@@ -15,7 +15,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -32,12 +31,13 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
     public ToushirouHitsugaya_Bankai() {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(3, 0, 4, 3);
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(1, 0, 0);
-        SetCooldown(2,0,this::OnCooldownCompleted);
+
+        SetExhaust(true);
     }
 
     @Override
@@ -72,21 +72,16 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
+        GameActions.Bottom.ExhaustFromHand(name, magicNumber, true).SetFilter(c -> c.type == CardType.STATUS).AddCallback(cards -> {
+            if (cards.size() > secondaryValue && info.TryActivateLimited()) {
+                AbstractCard c = new SheerCold();
+                c.applyPowers();
+                c.use(player, null);
+            }
+        });
         for (int i = 0; i < magicNumber; i++) {
             GameActions.Bottom.MakeCardInDrawPile(new Frostbite())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
-        }
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Bottom.Exhaust(this);
-        GameActions.Bottom.ExhaustFromHand(name, 999, true).SetFilter(c -> c.type == CardType.STATUS);
-
-        if (CombatStats.TryActivateLimited(cardID)) {
-            AbstractCard c = new SheerCold();
-            c.applyPowers();
-            c.use(player, null);
         }
     }
 }

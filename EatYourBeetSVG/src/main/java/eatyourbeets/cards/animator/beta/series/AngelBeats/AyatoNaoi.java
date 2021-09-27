@@ -8,20 +8,21 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.BlindedPower;
+import eatyourbeets.powers.common.ShacklesPower;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class AyatoNaoi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AyatoNaoi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public AyatoNaoi()
     {
@@ -64,7 +65,11 @@ public class AyatoNaoi extends AnimatorCard
         //to the above effect's damage
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.ChannelOrb(new Dark());
+            GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(o -> {
+                if (o.size() > 0 && JUtils.Find(GameUtilities.GetEnemies(true), e -> GameUtilities.GetPowerAmount(e, BlindedPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(e, ShacklesPower.POWER_ID) > 0) != null) {
+                    GameActions.Bottom.TriggerOrbPassive(o.get(0), 1);
+                }
+            });
         }
     }
 }

@@ -31,8 +31,8 @@ import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
-import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.powers.common.PoisonPlayerPower;
+import eatyourbeets.powers.common.TemporaryThornsPower;
 import eatyourbeets.powers.monsters.TheUnnamedPower;
 import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
@@ -273,7 +273,7 @@ public class TheUnnamed extends EYBMonster
                 GameActions.Bottom.StackPower(new RegenPower(this, regen));
                 GameActions.Bottom.StackPower(new AngryPower(this, angry));
                 GameActions.Bottom.StackPower(new PlatedArmorPower(this, plated));
-                GameActions.Bottom.StackPower(new EarthenThornsPower(this, 6));
+                GameActions.Bottom.StackPower(new TemporaryThornsPower(this, 6));
             });
 
             moveTaunt.disabled = true;

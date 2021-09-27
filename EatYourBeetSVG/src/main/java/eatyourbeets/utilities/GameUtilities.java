@@ -53,6 +53,7 @@ import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.common.SuperchargedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
 import org.apache.commons.lang3.StringUtils;
@@ -1092,6 +1093,14 @@ public class GameUtilities
     public static void IncreaseDamage(AbstractCard card, int amount, boolean temporary)
     {
         ModifyDamage(card, card.baseDamage + amount, temporary);
+    }
+
+    public static void IncreaseSuperchargedCharge(int amount)
+    {
+        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
+        if (po != null) {
+            po.OnSpendEnergy(amount);
+        }
     }
 
     public static void IncreaseHandSizePermanently(float cX, float cY)

@@ -16,6 +16,6 @@ public class WillpowerPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Balance;
+        return PowerHelper.Endurance;
     }
 }

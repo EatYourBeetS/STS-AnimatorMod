@@ -28,6 +28,8 @@ public abstract class AbstractMysteryCard extends AnimatorCard
         if (isDummy) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
+
+        SetVolatile(true);
     }
 
     @Override

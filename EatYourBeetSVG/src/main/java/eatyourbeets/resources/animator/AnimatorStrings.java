@@ -197,6 +197,9 @@ public class AnimatorStrings
         public final String ChangeVariant = Strings.TEXT[1];
         public final String ChangeVariantTooltipPermanent = Strings.TEXT[2];
         public final String ChangeVariantTooltipAlways = Strings.TEXT[3];
+        public final String CurrentCopies = Strings.TEXT[4];
+        public final String MaxCopies = Strings.TEXT[5];
+        public final String MaxCopiesTooltip = Strings.TEXT[6];
     }
 
     public class Actions
@@ -263,9 +266,9 @@ public class AnimatorStrings
             return Get(11) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
-        public final String AinzIntangible(boolean addPeriod)
+        public final String GainTemporaryAmount(Object amount, Object buff, boolean addPeriod)
         {
-            return Get(12) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return Format(addPeriod, 12, amount, buff);
         }
 
         public final String RemoveALLDebuffs(boolean addPeriod)

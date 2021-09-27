@@ -56,7 +56,7 @@ public class Suiseiseki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        GameActions.Bottom.MakeCard(new Slimed(), player.hand);
+        GameActions.Bottom.MakeCard(new Slimed(), player.drawPile);
 
         if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {

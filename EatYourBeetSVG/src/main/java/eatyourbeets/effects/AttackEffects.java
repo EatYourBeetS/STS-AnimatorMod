@@ -40,8 +40,8 @@ public class AttackEffects
     public static final AttackEffect LIGHTNING = AttackEffect.LIGHTNING;
     // Custom:
 //   public static final AttackEffect FIRE_EXPLOSION = GR.Enums.AttackEffect.FIRE_EXPLOSION;
-//   public static final AttackEffect DARKNESS = GR.Enums.AttackEffect.DARKNESS;
-//   public static final AttackEffect PSYCHOKINESIS = GR.Enums.AttackEffect.PSYCHOKINESIS;
+    public static final AttackEffect DARKNESS = GR.Enums.AttackEffect.DARKNESS;
+    public static final AttackEffect PSYCHOKINESIS = GR.Enums.AttackEffect.PSYCHOKINESIS;
     public static final AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
     public static final AttackEffect GUNSHOT = GR.Enums.AttackEffect.GUNSHOT;
     public static final AttackEffect DAGGER = GR.Enums.AttackEffect.DAGGER;
@@ -159,10 +159,15 @@ public class AttackEffects
 //              .SetSFX(SFX.ANIMATOR_DARKNESS)
 //              .SetDamageTint(Color.VIOLET);
 
-//      Add(magic, PSYCHOKINESIS)
-//              .SetVFX(VFX::Psychokinesis)
-//              .SetSFX(SFX.ANIMATOR_PSI)
-//              .SetDamageTint(Color.PINK);
+      Add(magic, DARKNESS)
+              .SetVFX(VFX::Darkness)
+              .SetSFX(SFX.ANIMATOR_DARKNESS)
+              .SetDamageTint(Color.VIOLET);
+
+      Add(magic, PSYCHOKINESIS)
+              .SetVFX(VFX::Psychokinesis)
+              .SetSFX(SFX.ANIMATOR_PSI)
+              .SetDamageTint(Color.PINK);
 
         Add(other, SHIELD, ImageMaster.ATK_SHIELD)
                 .SetVFX(VFX::Shield)

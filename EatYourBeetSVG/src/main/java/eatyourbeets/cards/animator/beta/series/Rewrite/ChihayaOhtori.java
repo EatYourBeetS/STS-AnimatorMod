@@ -1,16 +1,14 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ChihayaOhtori extends AnimatorCard
 {
@@ -22,9 +20,10 @@ public class ChihayaOhtori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 6, 1);
+        Initialize(12, 0, 3, 3);
         SetUpgrade(0, 0, -2);
-        SetAffinity_Green(2, 0, 0);
+        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1, 0, 2);
     }
 
     @Override
@@ -33,14 +32,6 @@ public class ChihayaOhtori extends AnimatorCard
         super.atTurnStart();
 
         Refresh(null);
-    }
-
-    @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
-    {
-        super.triggerOnOtherCardPlayed(c);
-
-        GameActions.Bottom.Callback(this::RefreshCost);
     }
 
     @Override
@@ -54,7 +45,7 @@ public class ChihayaOhtori extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
 
         String[] text = DATA.Strings.EXTENDED_DESCRIPTION;
 
@@ -71,7 +62,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Green) > 0))
+        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Red) > 0))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)
@@ -84,12 +75,17 @@ public class ChihayaOhtori extends AnimatorCard
 
     private void Effect2(AbstractCard card, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Top.GainArtifact(secondaryValue);
+        GameActions.Top.GainTemporaryArtifact(secondaryValue);
     }
 
     public void RefreshCost()
     {
-        int force = GameUtilities.GetPowerAmount(AbstractDungeon.player, ForcePower.POWER_ID);
-        CostModifiers.For(this).Set(-1*(force / magicNumber));
+        int orange = GetHandAffinity(Affinity.Red, false);
+        if (AgilityStance.IsActive()) {
+            CostModifiers.For(this).Set(-1);
+        }
+        else {
+            CostModifiers.For(this).Set(0);
+        }
     }
 }

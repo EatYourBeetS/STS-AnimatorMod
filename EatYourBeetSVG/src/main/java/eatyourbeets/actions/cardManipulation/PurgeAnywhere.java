@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -134,6 +135,7 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
         for (AbstractCard c : toRemove)
         {
             group.removeCard(c);
+            CombatStats.OnPurge(card,group);
             this.purged = true;
 
             if (showEffect)

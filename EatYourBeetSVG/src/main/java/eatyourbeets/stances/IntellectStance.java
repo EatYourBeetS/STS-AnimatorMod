@@ -26,7 +26,7 @@ public class IntellectStance extends EYBStance
 
     public IntellectStance()
     {
-        super(STANCE_ID, AbstractDungeon.player);
+        super(STANCE_ID, AFFINITY, AbstractDungeon.player);
     }
 
     protected Color GetParticleColor()

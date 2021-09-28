@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class YoshinoHaruhiko extends AnimatorCard
 {
@@ -19,37 +18,38 @@ public class YoshinoHaruhiko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
-        SetUpgrade(2, 0, 0);
-        SetAffinity_Red(2, 0, 0);
+        Initialize(3, 0, 2);
+        SetUpgrade(0, 0, 1);
+        SetExhaust(true);
+        SetAffinity_Red(2, 0, 1);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (GameUtilities.InBattle() && !GameUtilities.InStance(ForceStance.STANCE_ID))
-        {
-            return null;
-        }
-
         return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (GameUtilities.InStance(ForceStance.STANCE_ID))
+        for (int i = 0; i < magicNumber; i++)
         {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            }
+            GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         }
 
-        if (!GameUtilities.InStance(ForceStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))
+        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+
+        if (IsStarter())
         {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard c : cards)
+                        {
+                            GameActions.Bottom.IncreaseScaling(c, Affinity.Red, 1);
+                        }
+                    });
         }
     }
 }

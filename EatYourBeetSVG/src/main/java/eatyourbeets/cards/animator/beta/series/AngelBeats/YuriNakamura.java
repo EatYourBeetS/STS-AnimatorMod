@@ -1,18 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class YuriNakamura extends AnimatorCard
 {
@@ -22,10 +17,13 @@ public class YuriNakamura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 8, 1, 0);
-        SetUpgrade(1, 2);
-        SetAffinity_Green(1, 0, 0);
+        Initialize(4, 8, 2, 5);
+        SetUpgrade(1, 2,0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Light(2, 0, 2);
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
@@ -37,25 +35,17 @@ public class YuriNakamura extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.GainBlock(block);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
-        {
-            GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
-            .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))
-            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
-                {
-                    AbstractCard card = cards.get(0);
-                    AfterLifeMod.Add(card);
-                    card.exhaust = false;
-                    AfterLifeMod.AfterlifeAddToControlPile(card);
-                }
-            });
+        GameActions.Bottom.ExhaustFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards -> {
+            GameActions.Bottom.Heal(Math.min(cards.size() * secondaryValue, GameActionManager.playerHpLastTurn - player.currentHealth));
+        });
+
+        if (player.exhaustPile.size() > 0 && (CheckAffinity(Affinity.Light) || info.IsSynergizing)) {
+            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
+            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
         }
     }
 }

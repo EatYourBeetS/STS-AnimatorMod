@@ -85,6 +85,23 @@ public class VFX
         return effect;
     }
 
+    public static GenericAnimationEffect Darkness(Hitbox target, float spread)
+    {
+        return Darkness(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static GenericAnimationEffect Darkness(float cX, float cY)
+    {
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Darkness.Texture(), cX, cY, 4, 5, 0.01f)
+                .SetColor(Color.WHITE)
+                .SetRotation(0f)
+                .SetScale(0f)
+                .SetTargetRotation(1800f,360f)
+                .SetTargetScale(1f,5f)
+                .SetMode(AnimatedProjectile.AnimationMode.Loop, 240)
+                .SetFading(30);
+    }
+
     public static FallingIceEffect FallingIce(int frostCount)
     {
         return new FallingIceEffect(frostCount, FlipHorizontally());
@@ -166,6 +183,16 @@ public class VFX
         final float rotation = Mathf.GetAngle(source.hb.cX, source.hb.cY, x, cY);
         JUtils.LogInfo(VFX.class, "Rotation:" + rotation);
         return new GenericRenderEffect(EYBEffect.IMAGES.Spear.Texture(), x, cY).SetRotation(rotation);
+    }
+
+    public static PsychokinesisEffect Psychokinesis(Hitbox target)
+    {
+        return Psychokinesis(target.cX, target.cY);
+    }
+
+    public static PsychokinesisEffect Psychokinesis(float cX, float cY)
+    {
+        return new PsychokinesisEffect(cX, cY);
     }
 
     public static RazorWindEffect RazorWind(Hitbox source, Hitbox target, float horizontalSpeed, float horizontalAcceleration)

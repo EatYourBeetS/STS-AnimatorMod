@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,12 +15,10 @@ import java.util.HashMap;
 
 public class Natsumi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Natsumi.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random).SetSeriesFromClassPackage();
-
-    static
-    {
-        DATA.AddPreview(new Curse_Depression(), true);
-    }
+    public static final EYBCardData DATA = Register(Natsumi.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_Depression(), false));
 
     private static HashMap<Integer, ArrayList<AbstractCard>> cardPool;
 
@@ -38,7 +36,7 @@ public class Natsumi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.FIRE)
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.FIRE)
         .SetOptions(true, false);
     }
 

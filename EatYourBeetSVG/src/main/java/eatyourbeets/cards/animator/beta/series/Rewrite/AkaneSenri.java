@@ -5,13 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.RandomizedList;
 
 public class AkaneSenri extends AnimatorCard
 {
@@ -21,71 +24,95 @@ public class AkaneSenri extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 1);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 3, 1);
+        SetUpgrade(0, 0, 1);
         SetEthereal(true);
         SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new AkaneSenriPower(p, secondaryValue));
-
-        RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
-        randomizedList.AddAll(player.drawPile.group);
-
-        for (int i=0; i<magicNumber; i++)
-        {
-            AbstractCard card = randomizedList.Retrieve(rng);
-
-            if (card instanceof EYBCard && !card.hasTag(HASTE))
-            {
-                ((EYBCard) card).SetHaste(true);
-            }
-            else
-            {
-                break;
-            }
-        }
+        GameActions.Bottom.StackPower(new AkaneSenriPower(p, secondaryValue, magicNumber));
+        GameActions.Bottom.ModifyTag(player.drawPile, magicNumber, HASTE, true);
     }
 
-    public static class AkaneSenriPower extends AnimatorPower
+    public static class AkaneSenriPower extends AnimatorClickablePower implements OnShuffleSubscriber
     {
-        public AkaneSenriPower(AbstractPlayer owner, int amount)
+        private static final int BLESSING_COST = 1;
+
+        public AkaneSenriPower(AbstractPlayer owner, int amount, int secondaryAmount)
         {
-            super(owner, AkaneSenri.DATA);
+            super(owner, AkaneSenri.DATA, PowerTriggerConditionType.Special, BLESSING_COST);
+            this.triggerCondition.SetCheckCondition((c) -> {
+                return CombatStats.Affinities.GetPowerAmount(Affinity.Light) >= BLESSING_COST;
+            })
+                    .SetPayCost(cost -> {
+                        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(Affinity.Light);
+                        if (power.amount > 0)
+                        {
+                            power.reducePower(BLESSING_COST);
+                        }
+                    });
 
-            this.amount = amount;
-
-            updateDescription();
+            Initialize(amount);
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void onCardDraw(AbstractCard card)
+        {
+            super.onCardDraw(card);
+
+            if (card.hasTag(HASTE)) {
+                GameActions.Bottom.GainAgility(1);
+                amount -= 1;
+            }
+
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            CombatStats.onShuffle.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            CombatStats.onShuffle.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
         {
             AbstractOrb darkOrb = new Dark();
             GameActions.Bottom.ChannelOrb(darkOrb);
+            GameActions.Bottom.TriggerOrbPassive(darkOrb,player.hand.size());
+        }
 
-            int triggerAmount = player.hand.size() / 2;
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
 
-            for (int i = 0; i < triggerAmount; i++)
-            {
-                for (int j = 0; j < amount; j++)
-                {
-                    darkOrb.onStartOfTurn();
-                    darkOrb.onEndOfTurn();
-                }
-            }
-            flash();
-
-            updateDescription();
+            ResetAmount();
         }
 
         @Override
-        public void updateDescription()
+        public String GetUpdatedDescription()
         {
-            description = FormatDescription(0, amount);
+            return FormatDescription(0, amount, BLESSING_COST);
+        }
+
+        @Override
+        public void OnShuffle(boolean triggerRelics) {
+            if (!owner.powers.contains(this))
+            {
+                CombatStats.onShuffle.Unsubscribe(this);
+                return;
+            }
+
+            GameActions.Bottom.ModifyTag(player.drawPile, amount, HASTE, true);
         }
     }
 }

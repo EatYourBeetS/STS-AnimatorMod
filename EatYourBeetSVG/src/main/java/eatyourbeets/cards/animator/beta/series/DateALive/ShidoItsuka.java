@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.OrbCore_Frost;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Blue;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -29,13 +31,9 @@ public class ShidoItsuka extends AnimatorCard
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 0);
 
+        SetHarmonic(true);
         SetExhaust(true);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return (other instanceof AnimatorCard && ((AnimatorCard) other).series.Equals(CardSeries.DateALive));
+        SetHarmonic(true);
     }
 
     @Override
@@ -90,16 +88,15 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        if (upgraded)
-                        {
+                        if (info.IsSynergizing) {
                             GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
                                     .SetDuration(Settings.ACTION_DUR_FASTER, true);
                         }
-                        else
-                        {
+                        else {
                             GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
                                     .SetDuration(Settings.ACTION_DUR_FASTER, true);
                         }
+
                     }
                 });
 
@@ -116,14 +113,20 @@ public class ShidoItsuka extends AnimatorCard
 
         for (AbstractCard c : CardLibrary.getAllCards())
         {
-            if (c instanceof AnimatorCard && !GameUtilities.IsHindrance(c)
+            // Certain special cards are allowed
+            if (c instanceof OrbCore_Frost || c instanceof AffinityToken_Blue) {
+                otherSynergicCards.add(c);
+            }
+
+            else if (c instanceof AnimatorCard && !GameUtilities.IsHindrance(c)
             && !c.hasTag(AbstractCard.CardTags.HEALING)
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)
             {
                 if (WouldSynergize(c))
                 {
-                    if (((AnimatorCard) c).series == CardSeries.DateALive)
+                    CardSeries series = ((AnimatorCard) c).series;
+                    if (series != null && series.Equals(CardSeries.DateALive))
                     {
                         dateALiveCards.add(c);
                     }

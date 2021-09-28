@@ -19,6 +19,7 @@ import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
@@ -28,14 +29,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static eatyourbeets.resources.GR.Enums.CardTags.AUTOPLAY;
-
 public abstract class EYBCard extends EYBCardBase
 {
     public static final Color MUTED_TEXT_COLOR = Colors.Lerp(Color.DARK_GRAY, Settings.CREAM_COLOR, 0.5f);
     public static final CardTags HASTE = GR.Enums.CardTags.HASTE;
     public static final CardTags PURGE = GR.Enums.CardTags.PURGE;
     public static final CardTags DELAYED = GR.Enums.CardTags.DELAYED;
+    public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
+    public static final CardTags LOYAL = GR.Enums.CardTags.LOYAL;
+    public static final CardTags HARMONIC = GR.Enums.CardTags.HARMONIC;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final EYBCardAffinities affinities;
@@ -297,6 +299,10 @@ public abstract class EYBCard extends EYBCardBase
 
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
     {
+        if (AfterLifeMod.IsAdded(this))
+        {
+            dynamicTooltips.add(GR.Tooltips.Afterlife);
+        }
         if (isInnate)
         {
             dynamicTooltips.add(GR.Tooltips.Innate);
@@ -332,6 +338,14 @@ public abstract class EYBCard extends EYBCardBase
         if (hasTag(AUTOPLAY))
         {
             dynamicTooltips.add(GR.Tooltips.Autoplay);
+        }
+        if (hasTag(LOYAL))
+        {
+            dynamicTooltips.add(GR.Tooltips.Loyal);
+        }
+        if (hasTag(HARMONIC))
+        {
+            dynamicTooltips.add(GR.Tooltips.Harmonic);
         }
         if (affinities.HasStar())
         {
@@ -484,6 +498,11 @@ public abstract class EYBCard extends EYBCardBase
     public void SetAutoplay(boolean value)
     {
         SetTag(AUTOPLAY, value);
+    }
+
+    public void SetHarmonic(boolean value)
+    {
+        SetTag(HARMONIC, value);
     }
 
     public void SetObtainableInCombat(boolean value)

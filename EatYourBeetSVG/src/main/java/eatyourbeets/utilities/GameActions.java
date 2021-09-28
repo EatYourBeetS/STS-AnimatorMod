@@ -63,8 +63,9 @@ import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.powers.common.EnergizedPower;
+import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.AnimatorConstrictedPower;
 import eatyourbeets.powers.replacement.AnimatorMetallicizePower;
 import eatyourbeets.powers.replacement.AnimatorPlatedArmorPower;
@@ -249,6 +250,12 @@ public final class GameActions
     {
         return Add(new ApplyPowerAuto(target, power, 1)).CanStack(false);
     }
+
+    public ApplyPowerAuto ApplyPower(TargetHelper target, PowerHelper power, int amount)
+    {
+        return Add(new ApplyPowerAuto(target, power, amount));
+    }
+
 
     public ApplyPower ApplyPower(AbstractCreature source, AbstractPower power)
     {
@@ -624,6 +631,11 @@ public final class GameActions
         return StackPower(new StrengthPower(player, amount));
     }
 
+    public ApplyPower GainSupportDamage(int amount)
+    {
+        return StackPower(new SupportDamagePower(player, amount));
+    }
+
     public ApplyPower GainTemporaryArtifact(int amount)
     {
         return StackPower(new TemporaryArtifactPower(player, amount));
@@ -759,6 +771,16 @@ public final class GameActions
         return Add(new ModifyAllInstances(uuid));
     }
 
+    public ModifyTag ModifyTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
+    {
+        return Add(new ModifyTag(card, tag, value));
+    }
+
+    public ModifyTag ModifyTag(CardGroup group, int cards, AbstractCard.CardTags tag, boolean value)
+    {
+        return Add(new ModifyTag(group, cards, tag, value));
+    }
+
     public MotivateAction Motivate()
     {
         return Add(new MotivateAction(1));
@@ -864,6 +886,11 @@ public final class GameActions
     public ReducePower ReducePower(AbstractCreature source, String powerID, int amount)
     {
         return Add(new ReducePower(source, source, powerID, amount));
+    }
+
+    public ReducePower ReducePower(AbstractCreature target, AbstractCreature source, String powerID, int amount)
+    {
+        return Add(new ReducePower(target, source, powerID, amount));
     }
 
     public ReducePower ReducePower(AbstractPower power, int amount)
@@ -1051,6 +1078,11 @@ public final class GameActions
     public TriggerOrbPassiveAbility TriggerOrbPassive(int times)
     {
         return Add(new TriggerOrbPassiveAbility(times));
+    }
+
+    public TriggerOrbPassiveAbility TriggerOrbPassive(int times, boolean random, boolean sequential)
+    {
+        return Add(new TriggerOrbPassiveAbility(times, random, sequential, null));
     }
 
     public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)

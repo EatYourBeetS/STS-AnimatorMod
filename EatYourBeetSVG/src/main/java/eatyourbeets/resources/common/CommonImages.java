@@ -82,6 +82,9 @@ public class CommonImages
         public final TextureCache RetainOnce              = new TextureCache("images/eyb/cardui/badges/RetainOnce.png");
         public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
         public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");
+        public final TextureCache Loyal                   = new TextureCache("images/eyb/cardui/badges/Loyal.png");
+        public final TextureCache Afterlife               = new TextureCache("images/eyb/cardui/badges/Afterlife.png");
+        public final TextureCache Harmonic                = new TextureCache("images/eyb/cardui/badges/Harmonic.png");
     }
 
     public static class Tooltips
@@ -151,6 +154,7 @@ public class CommonImages
         public final TextureCache AirSlice         = new TextureCache("images/animator/effects/AirSlice.png");
         public final TextureCache AirTrail         = new TextureCache("images/animator/effects/AirTrail.png");
         public final TextureCache Spear            = new TextureCache("images/animator/effects/Spear.png");
+        public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
         public final TextureCache Water            = new TextureCache("images/animator/effects/Water.png");

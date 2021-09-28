@@ -11,6 +11,7 @@ import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
+import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
@@ -65,6 +66,7 @@ public class CardTooltips
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Haste = FindByID("~Haste");
     public EYBCardTooltip Retain = FindByID("~Retain");
+    public EYBCardTooltip Loyal = FindByID("Loyal");
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
@@ -95,6 +97,9 @@ public class CardTooltips
     public EYBCardTooltip Aether = FindByID("Aether");
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
+    public EYBCardTooltip Harmonic = FindByID("Harmonic");
+    public EYBCardTooltip Afterlife = FindByID("Afterlife");
+    public EYBCardTooltip Energized = FindByID("Energized");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -175,6 +180,9 @@ public class CardTooltips
         Haste.SetIcon(badges.Haste.Texture(), 6);
         Purge.SetIcon(badges.Purge.Texture(), 6);
         Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
+        Loyal.SetIcon(badges.Loyal.Texture(), 6);
+        Harmonic.SetIcon(badges.Harmonic.Texture(), 6);
+        Afterlife.SetIcon(badges.Afterlife.Texture(), 6);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);
@@ -231,6 +239,7 @@ public class CardTooltips
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

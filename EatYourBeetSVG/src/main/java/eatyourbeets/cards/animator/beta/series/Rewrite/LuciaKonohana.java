@@ -3,12 +3,12 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -25,7 +25,7 @@ public class LuciaKonohana extends AnimatorCard
         Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
 
         SetExhaust(true);
     }
@@ -95,32 +95,10 @@ public class LuciaKonohana extends AnimatorCard
 
             for (AbstractPower debuff : corpse.powers)
             {
-                if (WeakPower.POWER_ID.equals(debuff.ID))
-                {
-                    powAmount = GameUtilities.GetPowerAmount(corpse, WeakPower.POWER_ID);
-                    GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), powAmount);
-                }
-                else if (VulnerablePower.POWER_ID.equals(debuff.ID))
-                {
-                    powAmount = GameUtilities.GetPowerAmount(corpse, VulnerablePower.POWER_ID);
-                    GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), powAmount);
-                }
-                else if (PoisonPower.POWER_ID.equals(debuff.ID))
-                {
-                    powAmount = GameUtilities.GetPowerAmount(corpse, PoisonPower.POWER_ID);
-                    GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), powAmount);
-                }
-                else if (BurningPower.POWER_ID.equals(debuff.ID))
-                {
-                    powAmount = GameUtilities.GetPowerAmount(corpse, BurningPower.POWER_ID);
-                    GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), powAmount);
-                }
-                else if (GainStrengthPower.POWER_ID.equals(debuff.ID))
-                {
-                    powAmount = GameUtilities.GetPowerAmount(corpse, GainStrengthPower.POWER_ID);
-                    for (AbstractCreature enemy : GameUtilities.GetEnemies(true))
-                    {
-                        GameActions.Bottom.ReduceStrength(enemy, powAmount, true);
+                for (PowerHelper commonDebuffHelper : GameUtilities.GetCommonDebuffs()) {
+                    if (commonDebuffHelper.ID.equals(debuff.ID)) {
+                        powAmount = GameUtilities.GetPowerAmount(corpse, debuff.ID);
+                        GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), commonDebuffHelper, powAmount);
                     }
                 }
             }

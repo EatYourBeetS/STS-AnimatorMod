@@ -162,6 +162,12 @@
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
+	"Harmonic":
+	{
+	  "DESCRIPTION": "Synergizes with other cards from the same series.",
+	  "NAMES": ["harmonic"],
+	  "PROPER_NAME": "Harmonic"
+	},
 	"Health":
 	{
 		"DESCRIPTION": "-",
@@ -221,6 +227,12 @@
 		"DESCRIPTION": "Card which cost less than #b2 [E].",
 		"NAMES": ["low-cost", "low cost"],
 		"PROPER_NAME": "Low-Cost Card"
+	},
+	"Loyal":
+	{
+		"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile instead.",
+		"NAMES": ["loyal"],
+		"PROPER_NAME": "Loyal"
 	},
 	"Malleable":
 	{

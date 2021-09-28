@@ -1,16 +1,17 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KurumiTokisaki extends AnimatorCard
 {
@@ -22,8 +23,8 @@ public class KurumiTokisaki extends AnimatorCard
 
         Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
-        SetAffinity_Green(2, 0, 0);
-        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(1, 1, 0);
 
         SetAutoplay(true);
         SetEthereal(true);
@@ -43,21 +44,39 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
 
+        GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+                .SetOptions(true, true, true)
+                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
+                .SetFilter(c -> !c.hasTag(DELAYED))
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards) {
+                        GameActions.Bottom.ModifyTag(card,DELAYED,true);
+                        GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
+                    }
+                });
         cooldown.ProgressCooldownAndTrigger(m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
         GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
-        GameActions.Bottom.Add(new SkipEnemiesTurnAction());
-
-        for (int i = 0; i < 3; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-        }
+        GameActions.Bottom.SelectFromPile(name, 1, player.drawPile, player.discardPile)
+                .SetOptions(false,true)
+                .SetFilter(GameUtilities::CanPlayTwice)
+                .AddCallback(cards ->
+                {
+                    final String key = cardID + uuid;
+                    for (AbstractCard card : cards) {
+                        GameActions.Bottom.MakeCardInDrawPile(card).SetUpgrade(card.upgraded,true).AddCallback(c -> {
+                            CostModifiers.For(card).Add(key, -1);
+                            GameActions.Bottom.ModifyTag(c,AUTOPLAY,true);
+                            //GameActions.Bottom.ModifyTag(c,PURGE,true);
+                        });
+                    }
+                });
+        GameActions.Bottom.Purge(this);
     }
 }

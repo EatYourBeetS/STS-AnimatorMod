@@ -1,33 +1,35 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class InverseTohka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeries(CardSeries.DateALive);
+    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeries(CardSeries.DateALive);
 
     public InverseTohka()
     {
         super(DATA);
 
-        Initialize(10, 0, 10);
+        Initialize(8, 0, 2, 1);
+        SetUpgrade(3, 0);
         SetAffinity_Red(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
+
+        SetAutoplay(true);
     }
 
     @Override
-    protected void OnUpgrade()
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        SetHaste(true);
+        return super.ModifyDamage(enemy, amount + CombatStats.SynergiesThisCombat().size() * magicNumber);
     }
 
     @Override
@@ -35,34 +37,23 @@ public class InverseTohka extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.SpendEnergy(1, false)
-        .AddCallback(() ->
-        {
-            if (GameUtilities.InStance(ForceStance.STANCE_ID))
-            {
-                player.stance.onEnterStance();
-            }
-            else
-            {
-                GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-            }
+        GameActions.Bottom.SpendEnergy(1,false).AddCallback(() -> {
+            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
+                    .SetOptions(true, true)
+                    .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series.equals(this.series))
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard c : cards) {
+                            GameActions.Bottom.Motivate(c, 1);
+                        }
+                    });
         });
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Reload(name, cards ->
-        {
-            for (AbstractCard card : cards)
-            {
-                GameActions.Top.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
-                .SetVFX(false, true);
-            }
-        })
-        .SetFilter(c -> c.costForTurn == 1);
-
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.HIGH));
     }
 }

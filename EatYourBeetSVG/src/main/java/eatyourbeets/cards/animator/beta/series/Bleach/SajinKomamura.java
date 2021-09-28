@@ -2,16 +2,16 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.EYBStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class SajinKomamura extends AnimatorCard
@@ -24,35 +24,28 @@ public class SajinKomamura extends AnimatorCard
 
         Initialize(0, 7, 2,1);
         SetUpgrade(0, 3, 0);
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Red(2, 0, 0);
         SetAffinity_Green(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainForce(magicNumber);
+        AbstractStance stance = player.stance;
+        if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && stance instanceof EYBStance) {
+            GameActions.Bottom.StackAffinityPower(((EYBStance) stance).affinity, magicNumber, false);
         }
-        else if (AgilityStance.IsActive())
-        {
-            GameActions.Bottom.GainAgility(magicNumber);
-        }
-        else if (IntellectStance.IsActive())
-        {
-            GameActions.Bottom.GainIntellect(magicNumber);
-        }
-        else
-        {
+        else if (GameUtilities.InStance(NeutralStance.STANCE_ID)) {
             EnterRandomStanceNotCurrent();
         }
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainMetallicize(secondaryValue);
+            GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }
     }
 

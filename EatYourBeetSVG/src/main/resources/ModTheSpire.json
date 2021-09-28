@@ -3,7 +3,7 @@
   "name": "The Animator",
   "author_list": ["EatYourBeetS"],
   "description": "Adds a new playable character, a new Act, 150+ cards, and 25+ relics.",
-  "version": "6.0.2",
+  "version": "6.1.0",
   "sts_version": "12-22-2020",
   "mts_version": "3.22.0",
   "dependencies": ["basemod", "stslib"],

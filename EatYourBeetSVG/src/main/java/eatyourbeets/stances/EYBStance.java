@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
@@ -26,6 +27,7 @@ public abstract class EYBStance extends AbstractStance
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
     protected final StanceStrings strings;
+    public final Affinity affinity;
 
     public static void Initialize()
     {
@@ -65,12 +67,13 @@ public abstract class EYBStance extends AbstractStance
     protected abstract void QueueAura();
     protected abstract Color GetMainColor();
 
-    protected EYBStance(String id, AbstractCreature owner)
+    protected EYBStance(String id, Affinity affinity, AbstractCreature owner)
     {
         this.ID = id;
         this.strings = GR.GetStanceString(id);
         this.name = strings.NAME;
         this.owner = owner;
+        this.affinity = affinity;
 
         updateDescription();
     }

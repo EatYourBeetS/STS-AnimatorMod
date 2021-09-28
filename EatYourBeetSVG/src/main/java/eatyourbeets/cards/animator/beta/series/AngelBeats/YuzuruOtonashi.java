@@ -12,17 +12,25 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class YuzuruOtonashi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuzuruOtonashi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(YuzuruOtonashi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public YuzuruOtonashi()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 0, 0);
 
+        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Green(1, 0, 0);
+
+        SetHarmonic(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
         SetHaste(true);
-        SetAffinity_Green(1, 1, 0);
     }
 
     @Override
@@ -36,7 +44,7 @@ public class YuzuruOtonashi extends AnimatorCard
             {
                 if (card.type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.GainForce(1, true);
+                    GameActions.Bottom.GainBlessing(1, true);
                 }
                 else if (card.type == CardType.SKILL)
                 {
@@ -44,7 +52,7 @@ public class YuzuruOtonashi extends AnimatorCard
                 }
                 else if (GameUtilities.IsHindrance(card))
                 {
-                    GameActions.Bottom.Draw(1);
+                    GameActions.Bottom.GainInspiration(1);
                 }
             }
         });

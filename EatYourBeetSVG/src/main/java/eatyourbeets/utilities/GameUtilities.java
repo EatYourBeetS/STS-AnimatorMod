@@ -59,6 +59,7 @@ import java.util.*;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+import static eatyourbeets.resources.GR.Enums.CardTags.*;
 
 public class GameUtilities
 {
@@ -627,6 +628,11 @@ public class GameUtilities
         }
 
         return monsters;
+    }
+
+    public static int GetGold()
+    {
+        return player != null ? player.gold : 0;
     }
 
     public static float GetHealthPercentage(AbstractCreature creature)
@@ -1285,6 +1291,43 @@ public class GameUtilities
 
         player.gameHandSize += amount;
         return amount;
+    }
+
+    public static void ModifyCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
+    {
+        EYBCard aCard = JUtils.SafeCast(card, EYBCard.class);
+        if (aCard != null) {
+            if (tag.equals(AUTOPLAY)) {
+                aCard.SetAutoplay(value);
+            }
+            else if (tag.equals(DELAYED)) {
+                aCard.SetDelayed(value);
+            }
+            else if (tag.equals(HARMONIC)) {
+                aCard.SetHarmonic(value);
+            }
+            else if (tag.equals(HASTE)) {
+                aCard.SetHaste(value);
+            }
+            else if (tag.equals(LOYAL)) {
+                aCard.SetLoyal(value);
+            }
+            else if (tag.equals(PURGE)) {
+                aCard.SetPurge(value);
+            }
+            else if (value) {
+                aCard.tags.add(tag);
+            }
+            else {
+                aCard.tags.remove(tag);
+            }
+        }
+        else if (value) {
+            card.tags.add(tag);
+        }
+        else {
+            card.tags.remove(tag);
+        }
     }
 
     public static void ModifyCostForCombat(AbstractCard card, int amount, boolean relative)

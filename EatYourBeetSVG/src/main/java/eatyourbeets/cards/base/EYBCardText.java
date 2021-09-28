@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
@@ -150,6 +151,10 @@ public class EYBCardText
         final float alpha = UpdateBadgeAlpha();
 
         int offset_y = 0;
+        if (AfterLifeMod.IsAdded(card))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
+        }
         if (card.hasTag(GR.Enums.CardTags.DELAYED))
         {
             offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), offset_y, alpha, null);
@@ -158,7 +163,14 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
         }
-
+        if (card.hasTag(GR.Enums.CardTags.HARMONIC))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Harmonic.Texture(), offset_y, alpha, null);
+        }
+        if (card.hasTag(GR.Enums.CardTags.LOYAL))
+        {
+            offset_y -= RenderBadge(sb, BADGES.Loyal.Texture(), offset_y, alpha, null);
+        }
         if (card.isEthereal)
         {
             offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);

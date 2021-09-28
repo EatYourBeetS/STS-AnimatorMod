@@ -7,10 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class NiaHonjou extends AnimatorCard
 {
@@ -22,6 +22,7 @@ public class NiaHonjou extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetAffinity_Light(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
@@ -41,10 +42,12 @@ public class NiaHonjou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Top.Scry(secondaryValue);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Top.GainBlessing(secondaryValue, upgraded);
+        }
     }
 
-    public static class NiaHonjouPower extends AnimatorPower
+    public static class NiaHonjouPower extends AnimatorPower implements OnSynergySubscriber
     {
         public NiaHonjouPower(AbstractPlayer owner, int amount)
         {
@@ -53,6 +56,22 @@ public class NiaHonjou extends AnimatorCard
             this.amount = amount;
 
             updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onSynergy.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergy.Unsubscribe(this);
         }
 
         @Override
@@ -80,13 +99,12 @@ public class NiaHonjou extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            int blockAmount = amount;
-            if (GameUtilities.InStance(AgilityStance.STANCE_ID))
-            {
-                blockAmount *= 2;
-            }
+            GameActions.Bottom.GainBlock(amount);
+        }
 
-            GameActions.Bottom.GainBlock(blockAmount);
+        @Override
+        public void OnSynergy(AbstractCard card) {
+            GameActions.Bottom.GainBlock(amount * 2);
         }
     }
 }

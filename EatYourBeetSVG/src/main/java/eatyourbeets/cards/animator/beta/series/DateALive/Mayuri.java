@@ -1,57 +1,64 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Mayuri extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Mayuri.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Mayuri.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Random).SetSeriesFromClassPackage();
 
     public Mayuri()
     {
         super(DATA);
 
-        Initialize(8, 0, 2);
-        SetUpgrade(0, 0, 1);
-        SetAffinity_Light(2, 0, 2);
+        Initialize(7, 3, 2, 1);
+        SetUpgrade(3, 1, 0);
+        SetAffinity_Light(1, 1, 2);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return other.rarity.equals(CardRarity.BASIC);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.LIGHTNING);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.GainBlock(block);
 
-        if (GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) <= magicNumber)
-        {
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
-        }
+        GameActions.Bottom.SelectFromHand(name, secondaryValue, false)
+                .SetOptions(true, true, true)
+                .SetMessage(RetainCardsAction.TEXT[0])
+                .SetFilter(c -> c.tags.contains(CardTags.STARTER_DEFEND))
+                .AddCallback(cards ->
+                {
+                    if (cards.size() > 0)
+                    {
+                        AbstractCard card = cards.get(0);
+                        GameUtilities.Retain(card);
+                    }
+                });
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Callback(cards -> {
                     for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
                     {
                         if (card.tags.contains(CardTags.STARTER_DEFEND))
                         {
-                            GameUtilities.Retain(card);
+                            card.baseBlock += magicNumber;
                         }
                     }
             });
         }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
     }
 }

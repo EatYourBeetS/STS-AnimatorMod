@@ -1,16 +1,19 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Kagari extends AnimatorCard
 {
@@ -20,62 +23,77 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, KagariPower.EARTH_ORBS);
-        SetUpgrade(0, 0, 3);
-        SetAffinity_Blue(2, 0, 0);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
+        SetAffinity_Blue(1, 1, 0);
     }
 
     @Override
-    public void OnDrag(AbstractMonster m)
+    protected void OnUpgrade()
     {
-        super.OnDrag(m);
-
-        for (EnemyIntent intent : GameUtilities.GetIntents())
-        {
-            intent.AddStrength(-magicNumber);
-        }
+        SetRetainOnce(true);
     }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-        {
-            GameActions.Bottom.ReduceStrength(enemy, magicNumber, true);
-        }
-
-        GameActions.Bottom.StackPower(new KagariPower(p, 1));
+        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber, secondaryValue, secondaryValue));
     }
 
-    public static class KagariPower extends AnimatorPower
+    public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber
     {
-        public static final int EARTH_ORBS = 2;
-
-        public KagariPower(AbstractPlayer owner, int amount)
+        private final int willpowerAmount;
+        private final int shacklesAmount;
+        public KagariPower(AbstractPlayer owner, int amount, int willpowerAmount, int shacklesAmount)
         {
             super(owner, Kagari.DATA);
 
-            this.amount = amount;
+            this.willpowerAmount = willpowerAmount;
+            this.shacklesAmount = shacklesAmount;
 
+            Initialize(amount);
             updateDescription();
         }
 
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, EARTH_ORBS);
+            description = FormatDescription(0, amount, willpowerAmount, shacklesAmount);
         }
 
         @Override
-        public void wasHPLost(DamageInfo info, int damageAmount)
+        public void atEndOfTurn(boolean isPlayer)
         {
-            super.wasHPLost(info, damageAmount);
+            super.atEndOfTurn(isPlayer);
 
-            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
-            {
+            ResetAmount();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onChannelOrb.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onChannelOrb.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnChannelOrb(AbstractOrb orb) {
+            if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
+                GameActions.Bottom.GainIntellect(willpowerAmount + (player.stance.ID.equals(IntellectStance.STANCE_ID) ? 1 : 0), player.stance.ID.equals(IntellectStance.STANCE_ID));
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, shacklesAmount);
+                this.amount -= 1;
+                updateDescription();
                 flash();
-                GameActions.Top.ReducePower(this, 1);
-                GameActions.Bottom.ChannelOrbs(Earth::new, EARTH_ORBS);
             }
         }
     }

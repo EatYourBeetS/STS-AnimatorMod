@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import eatyourbeets.cards.animator.colorless.rare.KotoriKanbe;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.GameActions;
@@ -13,18 +12,17 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Chibimoth extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
-    static
-    {
-        DATA.AddPreview(new KotoriKanbe(), false);
-    }
+    public static final EYBCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new KotoriKanbe(), false));
 
     public Chibimoth()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0,0,1,0);
         SetAffinity_Star(1, 1, 0);
+        SetLoyal(true);
         SetExhaust(true);
         SetRetain(true);
     }
@@ -36,13 +34,13 @@ public class Chibimoth extends AnimatorCard
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(CreateChoice(text[0], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainAgility(1, upgraded);
-            GameActions.Bottom.GainBlur(secondaryValue);
+            GameActions.Bottom.GainAgility(magicNumber, false);
+            GameActions.Bottom.GainSupportDamage(secondaryValue);
         }));
         group.addToBottom(CreateChoice(text[1], (c1, p1, m1) ->
         {
-            GameActions.Bottom.GainForce(1, upgraded);
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            GameActions.Bottom.GainForce(magicNumber, false);
+            GameActions.Bottom.GainThorns(secondaryValue);
         }));
 
         GameActions.Bottom.SelectFromPile(name, 1, group)
@@ -56,16 +54,13 @@ public class Chibimoth extends AnimatorCard
             }
         });
 
-        if (HasSynergy())
+        GameActions.Bottom.Callback(() ->
         {
-            GameActions.Bottom.Callback(() ->
+            if (!DrawKotoriKanbe(player.drawPile))
             {
-                if (!DrawKotoriKanbe(player.drawPile))
-                {
-                    DrawKotoriKanbe(player.discardPile);
-                }
-            });
-        }
+                DrawKotoriKanbe(player.discardPile);
+            }
+        });
     }
 
     private AnimatorCard_Dynamic CreateChoice(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onSelect)
@@ -74,6 +69,7 @@ public class Chibimoth extends AnimatorCard
         .SetImagePath(assetUrl)
         .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
         .SetCost(-2, 0)
+        .SetNumbers(0,0,magicNumber,secondaryValue)
         .SetOnUse(onSelect)
         .SetText(name, text, text).Build();
     }

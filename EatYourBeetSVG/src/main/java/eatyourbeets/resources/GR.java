@@ -463,10 +463,13 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags LOYAL;
             @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
             @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            @SpireEnum public static AbstractCard.CardTags HARMONIC;
         }
 
         public static class AttackEffect
         {
+            @SpireEnum public static AbstractGameAction.AttackEffect DARKNESS;
+            @SpireEnum public static AbstractGameAction.AttackEffect PSYCHOKINESIS;
             @SpireEnum public static AbstractGameAction.AttackEffect GUNSHOT;
             @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
             @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;

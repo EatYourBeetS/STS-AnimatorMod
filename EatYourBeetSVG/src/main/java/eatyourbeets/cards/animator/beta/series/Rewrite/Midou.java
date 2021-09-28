@@ -1,12 +1,16 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.orbs.EvokeOrb;
+import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Midou extends AnimatorCard
 {
@@ -23,31 +27,33 @@ public class Midou extends AnimatorCard
     }
 
     @Override
-    protected float GetInitialDamage()
+    public void triggerOnExhaust()
     {
-        float damage = super.GetInitialDamage();
-        damage += player.filledOrbCount();
-        return damage;
+        super.triggerOnExhaust();
+
+        if (CombatStats.TryActivateLimited(cardID)) {
+
+            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
+                    .SetOptions(true, true)
+                    .SetFilter(c -> c instanceof Burn)
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard card : cards)
+                        {
+                            GameEffects.Queue.ShowCardBriefly(card);
+                            GameActions.Last.ReplaceCard(card.uuid, new SearingBurn());
+                        }
+                    });
+        }
+
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
 
-        if (info.IsSynergizing)
-        {
-            boolean hasOrbToEvoke = (player.filledOrbCount() > 0);
-
-            GameActions.Bottom.EvokeOrb(1, EvokeOrb.Mode.Random);
-
-            if (hasOrbToEvoke)
-            {
-                for (int i = 0; i < magicNumber; i++)
-                {
-                    GameActions.Bottom.MakeCardInHand(new Burn());
-                }
-            }
-        }
+        GameActions.Bottom.ChannelOrb(new Fire());
+        GameActions.Bottom.MakeCardInHand(new Burn());
     }
 }

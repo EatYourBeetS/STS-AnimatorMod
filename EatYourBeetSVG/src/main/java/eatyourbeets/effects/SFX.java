@@ -40,6 +40,7 @@ public class SFX
     }
 
     public static final String ANIMATOR_ARROW = "ANIMATOR_ARROW";
+    public static final String ANIMATOR_DARKNESS = "ANIMATOR_DARKNESS";
     public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_SPEAR_1 = "ANIMATOR_SPEAR_1";
     public static final String ANIMATOR_SPEAR_2 = "ANIMATOR_SPEAR_2";

@@ -64,6 +64,27 @@ public class CardSeries
     public final static CardSeries GuiltyCrown = Add(49, "GuiltyCrown");
     public final static CardSeries GakkouGurashi = Add(50, "GakkouGurashi");
     public final static CardSeries GenshinImpact = Add(51, "GenshinImpact");
+    public final static CardSeries CowboyBebop = Add(52, "CowboyBebop");
+    public final static CardSeries GhostInTheShell = Add(53, "GhostInTheShell");
+    public final static CardSeries Clannad = Add(54, "Clannad");
+    public final static CardSeries GurrenLagann = Add(55, "GurrenLagann");
+    public final static CardSeries Gundam = Add(56, "Gundam");
+    public final static CardSeries Evangelion = Add(57, "Evangelion");
+    public final static CardSeries Lupin = Add(58, "Lupin");
+    public final static CardSeries Kirby = Add(59, "Kirby");
+    public final static CardSeries Xenoblade = Add(60, "Xenoblade");
+    public final static CardSeries HoukaiGakuen = Add(61, "HoukaiGakuen");
+    public final static CardSeries Mushishi = Add(62, "Mushishi");
+    public final static CardSeries NatsumeYuujinchou = Add(63, "NatsumeYuujinchou");
+    public final static CardSeries Hololive = Add(64, "Hololive");
+    public final static CardSeries Berserk = Add(65, "Berserk");
+    public final static CardSeries DrStone = Add(66, "DrStone");
+    public final static CardSeries Kaiji = Add(67, "Kaiji");
+    public final static CardSeries Trigun = Add(68, "Trigun");
+    public final static CardSeries PantyStocking = Add(69, "PantyStocking");
+    public final static CardSeries Danganronpa = Add(70, "Danganronpa");
+    public final static CardSeries PhoenixWright = Add(71, "PhoenixWright");
+    public final static CardSeries Magi = Add(72, "Magi");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

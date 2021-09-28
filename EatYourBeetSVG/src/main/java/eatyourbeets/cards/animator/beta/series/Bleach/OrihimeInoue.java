@@ -23,7 +23,7 @@ public class OrihimeInoue extends AnimatorCard
         Initialize(0, 5, 1, 2);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Green(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
     }
 
@@ -34,7 +34,7 @@ public class OrihimeInoue extends AnimatorCard
 
         GameActions.Bottom.StackPower(new OrihimeInouePower(p, magicNumber));
 
-        if (HasSynergy())
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }

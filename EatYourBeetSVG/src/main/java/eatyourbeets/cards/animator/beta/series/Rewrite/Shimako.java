@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
@@ -26,7 +26,7 @@ public class Shimako extends AnimatorCard
 
         Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(1, 0, 0);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class Shimako extends AnimatorCard
         }
         else if (curStance.equals(AgilityStance.STANCE_ID))
         {
-            orb = new Earth();
+            orb = new Frost();
         }
         else if (curStance.equals(IntellectStance.STANCE_ID))
         {

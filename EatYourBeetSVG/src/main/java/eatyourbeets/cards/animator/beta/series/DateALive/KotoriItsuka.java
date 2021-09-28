@@ -1,70 +1,60 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
-import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KotoriItsuka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.RARE, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final int THRESHOLD = 12;
+    public static final int BURNING_ATTACK_BONUS = 15;
 
     public KotoriItsuka()
     {
         super(DATA);
 
-        Initialize(6, 0, 5, 5);
-        SetUpgrade(0, 0, 0);
+        Initialize(8, 0, 4, 2);
+        SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(1, 0, 0);
-        SetExhaust(true);
+        SetAffinity_Blue(1, 0, 1);
     }
 
     @Override
-    protected void OnUpgrade()
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        SetHaste(true);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        if (enemy != null && GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
+        {
+            return super.ModifyDamage(enemy, amount * 2);
+        }
+        return super.ModifyDamage(enemy, amount);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).AddCallback(m, (enemy, __) -> {
+            if (GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
+            {
+                GameActions.Bottom.RemovePower(player, enemy, FreezingPower.POWER_ID);
+                GameActions.Bottom.ApplyVulnerable(player, enemy, secondaryValue);
+            }
+            else {
+                GameActions.Bottom.ApplyBurning(player, enemy, secondaryValue);
+            }
 
-        for (int i=0; i<magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        }
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return player.discardPile.size() > player.drawPile.size();
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        for (int i=0; i<secondaryValue; i++)
-        {
-            GameActions.Bottom.MakeCardInDrawPile(new Burn())
-            .SetDuration(Settings.ACTION_DUR_XFAST, true);
-        }
+            if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
+                GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
+            }
+        });
     }
 }

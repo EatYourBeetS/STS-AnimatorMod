@@ -5,11 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.powers.affinity.ForcePower;
-import eatyourbeets.powers.affinity.IntellectPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,10 +19,10 @@ public class GirlDeMo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 0);
-        SetAffinity_Green(1, 0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
         SetAffinity_Light(2, 0, 0);
+        SetHarmonic(true);
         SetExhaust(true);
         SetEthereal(true);
     }
@@ -39,25 +36,24 @@ public class GirlDeMo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+
         ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
-        pairs.add(new Pair<>(GameActions.Bottom::GainForce, GameUtilities.GetPowerAmount(ForcePower.POWER_ID)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainAgility, GameUtilities.GetPowerAmount(AgilityPower.POWER_ID)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, GameUtilities.GetPowerAmount(IntellectPower.POWER_ID)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainForce, CombatStats.Affinities.GetPowerAmount(Affinity.Red)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainAgility, CombatStats.Affinities.GetPowerAmount(Affinity.Green)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, CombatStats.Affinities.GetPowerAmount(Affinity.Blue)));
+        pairs.add(new Pair<>(GameActions.Bottom::GainBlessing, CombatStats.Affinities.GetPowerAmount(Affinity.Light)));
         pairs.sort(Comparator.comparingInt(Pair::getValue));
 
-        int amount = pairs.get(2).getValue();
+        int amount = pairs.get(3).getValue();
         if (amount > 0)
         {
             pairs.get(2).getKey().Invoke(amount);
 
-            if (pairs.get(1).getValue().equals(amount))
-            {
-                pairs.get(1).getKey().Invoke(amount);
-            }
-
-            if (pairs.get(0).getValue().equals(amount))
-            {
-                pairs.get(0).getKey().Invoke(amount);
+            for (int i = 2; i >= 0; i--) {
+                if (pairs.get(i).getValue().equals(amount))
+                {
+                    pairs.get(i).getKey().Invoke(amount);
+                }
             }
         }
     }

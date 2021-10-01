@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.helpers.ModHelper;
-import eatyourbeets.dailymods.SeriesDeck;
+import eatyourbeets.dailymods.AnimatorDailyMod;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.MethodInfo;
 
@@ -20,8 +20,10 @@ public class ModHelperPatches {
         @SpirePostfixPatch
         public static void Postfix()
         {
-            //Add mods here to get them to show up in the custom games screen
-            addStarterMod.Invoke(null, new SeriesDeck());
+            for (AnimatorDailyMod mod : AnimatorDailyMod.mods)
+            {
+                addStarterMod.Invoke(null, mod.clone());
+            }
         }
     }
 }

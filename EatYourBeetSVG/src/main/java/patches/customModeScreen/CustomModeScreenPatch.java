@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
 import eatyourbeets.dailymods.AnimatorDailyMod;
-import eatyourbeets.dailymods.SeriesDeck;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -62,7 +61,6 @@ public class CustomModeScreenPatch {
         @SpirePostfixPatch
         public static void Postfix(CustomModeScreen __instance)
         {
-            //Add all custom run mods here
             InitializeSeries(__instance);
         }
     }
@@ -227,8 +225,10 @@ public class CustomModeScreenPatch {
 
     private static void InitializeAllAnimatorMods()
     {
-        //Don't forget to add your AnimatorDailyMod animator mod here!
-        allAnimatorMods.add(new SeriesDeck());
+        for (AnimatorDailyMod mod : AnimatorDailyMod.mods)
+        {
+            allAnimatorMods.add(mod.clone());
+        }
     }
 
     private static void UpdateSeriesArrows(CustomModeScreen __instance)

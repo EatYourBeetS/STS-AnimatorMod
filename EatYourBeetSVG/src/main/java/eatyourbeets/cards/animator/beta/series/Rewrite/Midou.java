@@ -14,7 +14,9 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Midou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new SearingBurn(), false));
 
     public Midou()
     {

@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -48,7 +45,7 @@ public class Ren extends AnimatorCard
             GameActions.Bottom.ApplyPoison(TargetHelper.Normal(enemy), darkCount * magicNumber);
 
             if (darkCount >= THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {
-                GameActions.Bottom.ApplyBlinded(TargetHelper.Normal(enemy), secondaryValue);
+                GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
             }
         });
     }

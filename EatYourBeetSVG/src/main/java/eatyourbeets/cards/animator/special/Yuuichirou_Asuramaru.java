@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou_Asuramaru extends AnimatorCard
@@ -20,7 +19,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 5);
+        Initialize(0, 0, 4, 5);
         SetUpgrade(0,0,1,0);
 
         SetAffinity_Red(2);
@@ -36,7 +35,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
         GameActions.Bottom.GainForce(magicNumber,true);
         GameActions.Bottom.GainAgility(magicNumber,true);
         GameActions.Bottom.GainIntellect(magicNumber,true);
-        GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
+        GameActions.Bottom.DealDamageAtEndOfTurn(player,player,secondaryValue);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
 

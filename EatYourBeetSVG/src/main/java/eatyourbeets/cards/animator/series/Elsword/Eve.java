@@ -35,6 +35,7 @@ public class Eve extends AnimatorCard
                 }
             });
     private static final int POWER_ENERGY_COST = 2;
+    private static final int CHOICES = 3;
 
     public Eve()
     {
@@ -88,7 +89,7 @@ public class Eve extends AnimatorCard
         {
             super.OnUse(m);
 
-            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1)
+            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, CHOICES)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)

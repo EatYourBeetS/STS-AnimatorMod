@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class EYBCardSaveData
 {
+    // TODO add support for permanently modifying card stats
+    public int modifiedDamage;
+    public int modifiedBlock;
+    public int modifiedMagicNumber;
+    public int modifiedSecondaryValue;
     public int form;
     public ArrayList<String> additionalData = new ArrayList<>();
 

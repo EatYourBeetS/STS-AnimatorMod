@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class MasamiIwasawa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
     public MasamiIwasawa()
     {
@@ -24,6 +26,7 @@ public class MasamiIwasawa extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 0, 2);
 
+        SetEthereal(true);
         AfterLifeMod.Add(this);
     }
 
@@ -37,7 +40,7 @@ public class MasamiIwasawa extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.ApplyVulnerable(p, m, CombatStats.ControlPile.Contains(this) ? secondaryValue : magicNumber);
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), CombatStats.ControlPile.Contains(this) ? secondaryValue : magicNumber);
         }
     }
 }

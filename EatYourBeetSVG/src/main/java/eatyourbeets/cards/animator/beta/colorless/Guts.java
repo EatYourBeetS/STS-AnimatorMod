@@ -27,9 +27,9 @@ public class Guts extends AnimatorCard
         SetUpgrade(6, 0, -1, 1);
         SetExhaust(true);
 
-        SetAffinity_Red(2, 0, 4);
+        SetAffinity_Red(2, 0, 6);
         SetAffinity_Dark(2, 0, 0);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(1, 0, 0);
     }
 
     @Override

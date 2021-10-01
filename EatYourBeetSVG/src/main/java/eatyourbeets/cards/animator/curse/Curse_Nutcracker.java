@@ -22,6 +22,14 @@ public class Curse_Nutcracker extends AnimatorCard_Curse
         SetAffinity_Dark(1);
     }
 
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.GainInspiration(1);
+    }
+
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (dontTriggerOnUseCard)

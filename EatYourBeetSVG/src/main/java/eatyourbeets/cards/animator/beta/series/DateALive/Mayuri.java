@@ -45,20 +45,10 @@ public class Mayuri extends AnimatorCard
                     {
                         AbstractCard card = cards.get(0);
                         GameUtilities.Retain(card);
-                    }
-                });
-
-        if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.Callback(cards -> {
-                    for (AbstractCard card : GameUtilities.GetOtherCardsInHand(this))
-                    {
-                        if (card.tags.contains(CardTags.STARTER_DEFEND))
-                        {
+                        if (info.IsSynergizing && info.Synergies.GetLevel(Affinity.Blue, true) > 1 && CombatStats.TryActivateSemiLimited(cardID)) {
                             card.baseBlock += magicNumber;
                         }
                     }
-            });
-        }
+                });
     }
 }

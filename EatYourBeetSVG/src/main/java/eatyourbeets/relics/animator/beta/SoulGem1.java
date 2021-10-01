@@ -21,7 +21,7 @@ public class SoulGem1 extends AnimatorRelic implements OnApplyPowerSubscriber
 
     public SoulGem1()
     {
-        super(ID, RelicTier.RARE, LandingSound.CLINK);
+        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
     @Override

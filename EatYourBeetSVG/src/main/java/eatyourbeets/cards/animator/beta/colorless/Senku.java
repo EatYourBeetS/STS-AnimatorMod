@@ -42,7 +42,7 @@ public class Senku extends AnimatorCard
         Initialize(4, 0, 0, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Orange(2, 0, 1);
 
         SetProtagonist(true);
@@ -169,7 +169,7 @@ public class Senku extends AnimatorCard
         GainTempHP(null, 2, 2, 7),
         GainTempHP2(null, 2, 1, 8),
         GainTempHPPlus(PoisonPower.POWER_ID, 10, 1, 6),
-        IncreaseDamage(null, 7, 3, 10),
+        IncreaseDamage(null, 6, 3, 10),
         IncreaseDamage2(null, 4, 2, 9),
         IncreaseDamage3(null, 4, 1, 10),
         IncreaseBlock(null, 6, 3, 10),
@@ -228,8 +228,8 @@ public class Senku extends AnimatorCard
                         copy.debuffs.merge(powerID, 2, Integer::sum);
                     }
                     copy.SetExhaust(true);
-                    copy.cost += 1;
-                    copy.costForTurn += 1;
+                    copy.cost += 2;
+                    copy.costForTurn += 2;
                     copy.transformed = true;
                     break;
                 }
@@ -255,8 +255,8 @@ public class Senku extends AnimatorCard
                     copy.debuffs.merge(effect.powerID, effect.amount + copy.debuffs.getOrDefault(effect.powerID,effect.amount), Integer::sum);
                     copy.SetAttackType(EYBAttackType.Elemental);
                     copy.SetExhaust(true);
-                    copy.cost += 1;
-                    copy.costForTurn += 1;
+                    copy.cost += 2;
+                    copy.costForTurn += 2;
                     copy.transformed = true;
                     break;
                 }

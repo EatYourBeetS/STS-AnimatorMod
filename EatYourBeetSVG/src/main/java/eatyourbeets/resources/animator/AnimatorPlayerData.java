@@ -226,10 +226,10 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_Elsword(), 2);
         add.Invoke(new Loadout_Katanagatari(), 2);
         add.Invoke(new Loadout_GoblinSlayer(), 3);
-        //add.Invoke(new Loadout_NoGameNoLife(), 3);
         add.Invoke(new Loadout_OwariNoSeraph(), 3);
         add.Invoke(new Loadout_FullmetalAlchemist(), 4);
         add.Invoke(new Loadout_Overlord(), 4);
+        add.Invoke(new Loadout_NoGameNoLife(), 5);
         add.Invoke(new Loadout_Fate(), 5);
         //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_OnePunchMan(), 6);
@@ -284,7 +284,6 @@ public class AnimatorPlayerData
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
-        add.Invoke(new Loadout_NoGameNoLife(), 3);
         add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);

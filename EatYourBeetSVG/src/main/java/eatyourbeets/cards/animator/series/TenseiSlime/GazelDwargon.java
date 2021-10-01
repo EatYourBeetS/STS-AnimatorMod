@@ -10,7 +10,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class GazelDwargon extends AnimatorCard
+public class GazelDwargon extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(GazelDwargon.class)
             .SetPower(-1, CardRarity.UNCOMMON)

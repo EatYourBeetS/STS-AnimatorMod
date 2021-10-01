@@ -3,26 +3,27 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Souei extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souei.class)
-            .SetSkill(2, CardRarity.UNCOMMON)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     public Souei()
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
+        Initialize(2, 0, 6);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Green(2);
@@ -32,32 +33,22 @@ public class Souei extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-
-        if (info.TryActivateSemiLimited())
-        {
-            GameActions.Bottom.Callback(() ->
-            {
-                final int intangible = GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID);
-                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-                {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber).AddCallback(
+                m, (enemy, __) -> {
                     PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
                     if (poison != null)
                     {
                         GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AttackEffects.POISON))
-                        .AddCallback(intangible, (baseIntangible, action) ->
-                        {
-                            if (GameUtilities.IsFatal(action.target, true))
-                            {
-                                if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == baseIntangible)
+                                .AddCallback(poison, (basePoison, action) ->
                                 {
-                                    GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
-                                }
-                            }
-                        });
+                                    if (GameUtilities.IsFatal(action.target, true))
+                                    {
+                                        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), basePoison.amount);
+                                    }
+                                });
                     }
                 }
-            });
-        }
+        );
     }
 }

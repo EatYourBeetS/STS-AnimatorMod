@@ -33,33 +33,25 @@ public class KanadeTachibana extends AnimatorCard
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]).AddCallback(
                 cards -> {
-                    AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
-                    int lightLevel = GameUtilities.GetAffinityLevel(card, Affinity.Light, true);
-                    if (card != null && lightLevel < 2)
-                    {
-                        card.affinities.Set(Affinity.Light, lightLevel + 1);
-                        card.flash();
+                    boolean canGiveAfterlife = info.IsSynergizing && CombatStats.TryActivateLimited(cardID);
+
+                    for (AbstractCard c : cards) {
+                        AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+                        int lightLevel = GameUtilities.GetAffinityLevel(card, Affinity.Light, true);
+                        if (card != null && lightLevel < 2)
+                        {
+                            card.affinities.Set(Affinity.Light, lightLevel + 1);
+                            card.flash();
+                        }
+
+                        if (canGiveAfterlife) {
+                            AfterLifeMod.Add(card);
+                            AfterLifeMod.AfterlifeAddToControlPile(card);
+                        }
                     }
                 }
         );
 
         GameActions.Bottom.GainBlessing(secondaryValue,true);
-
-        if (info.IsSynergizing && !CombatStats.HasActivatedLimited(cardID))
-        {
-            GameActions.Bottom.SelectFromPile(name, magicNumber, p.exhaustPile)
-                    .SetFilter(c -> !GameUtilities.IsHindrance(c) && !AfterLifeMod.IsAdded(c))
-                    .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
-                    .AddCallback(cards ->
-                    {
-                        if (cards.size() > 0 && CombatStats.TryActivateLimited(cardID))
-                        {
-                            AbstractCard card = cards.get(0);
-                            AfterLifeMod.Add(card);
-                            card.exhaust = false;
-                            AfterLifeMod.AfterlifeAddToControlPile(card);
-                        }
-                    });
-        }
     }
 }

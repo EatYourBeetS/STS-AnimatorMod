@@ -25,12 +25,12 @@ public class HiiragiKureto extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 3);
+        Initialize(5, 0, 3);
         SetUpgrade(0, 0);
 
-        SetAffinity_Red(1, 1, 2);
+        SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);
     }

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.CreateRandomGoblins;
@@ -12,20 +11,19 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-import java.util.ArrayList;
-
 public class GoblinSlayer extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(GoblinSlayer.class)
             .SetAttack(1, CardRarity.RARE)
+            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
 
     public GoblinSlayer()
     {
         super(DATA);
 
-        Initialize(3, 4, 0, 3);
-        SetUpgrade(2, 3, 0, 0);
+        Initialize(4, 4, 3);
+        SetUpgrade(3, 3);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
@@ -59,6 +57,12 @@ public class GoblinSlayer extends AnimatorCard
     }
 
     @Override
+    protected float GetInitialDamage()
+    {
+        return super.GetInitialDamage() + (player.exhaustPile.size() * magicNumber);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
@@ -66,17 +70,10 @@ public class GoblinSlayer extends AnimatorCard
 
         GameActions.Bottom.MoveCards(p.hand, p.exhaustPile)
         .SetFilter(GameUtilities::IsHindrance)
-        .ShowEffect(true, true, 0.25f)
-        .AddCallback(this::IncreaseDamage);
+        .ShowEffect(true, true, 0.25f);
 
         GameActions.Bottom.MoveCards(p.discardPile, p.exhaustPile)
         .SetFilter(GameUtilities::IsHindrance)
-        .ShowEffect(true, true, 0.12f)
-        .AddCallback(this::IncreaseDamage);
-    }
-
-    protected void IncreaseDamage(ArrayList<AbstractCard> cards)
-    {
-        GameUtilities.IncreaseDamage(this, cards.size() * secondaryValue, false);
+        .ShowEffect(true, true, 0.12f);
     }
 }

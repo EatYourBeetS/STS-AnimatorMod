@@ -54,6 +54,7 @@ public class YuiTsuruno extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
         .ShowEffect(true, true)
+        .SetFilter(c -> !c.hasTag(DELAYED))
         .SetOrigin(CardSelection.Bottom);
     }
 }

@@ -125,7 +125,7 @@ public class CardTooltips
     public EYBCardTooltip Energized = FindByID("Energized");
     public EYBCardTooltip DemonForm = FindByID("Demon Form");
     public EYBCardTooltip Phasing = FindByID("Phasing");
-    public EYBCardTooltip Crystallize = FindByID("~Crystallize");
+    public EYBCardTooltip Impaired = FindByID("Impaired");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -287,6 +287,7 @@ public class CardTooltips
         LoadFromPower(DemonForm, new DemonFormPower(FakeCharacter.Instance, 0));
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Phasing, new PhasingPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Impaired, new ImpairedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));

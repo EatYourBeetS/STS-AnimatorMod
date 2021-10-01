@@ -29,8 +29,8 @@ public class Kamina extends AnimatorCard implements OnLoseHpSubscriber, OnStartO
     {
         super(DATA);
 
-        Initialize(41, 0, ATTACK_DELAY, 3);
-        SetUpgrade(15, 0, 0 , 0);
+        Initialize(50, 0, ATTACK_DELAY, 3);
+        SetUpgrade(10, 0, 0 , 0);
 
         SetAffinity_Red(2, 0, 6);
     }

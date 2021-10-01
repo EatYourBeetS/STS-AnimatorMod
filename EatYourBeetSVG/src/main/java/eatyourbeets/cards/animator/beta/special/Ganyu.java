@@ -23,8 +23,8 @@ public class Ganyu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(30, 0, 2, 5);
-        SetUpgrade(10, 0, 0);
+        Initialize(33, 0, 2, 5);
+        SetUpgrade(9, 0, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 

@@ -54,6 +54,7 @@ public class GR
     public static AnimatorResources Animator;
     public static CommonResources Common;
     public static ShaderProgram GrayscaleShader;
+    public static ShaderProgram SepiaShader;
     public static boolean IsLoaded;
 
     public static void Initialize()
@@ -81,12 +82,23 @@ public class GR
     public static ShaderProgram GetGrayscaleShader() {
         if (GrayscaleShader == null) {
             FileHandle fShader = Gdx.files.internal("shaders/grayscaleFragment.glsl");
-            FileHandle vShader = Gdx.files.internal("shaders/grayscaleVertex.glsl");
+            FileHandle vShader = Gdx.files.internal("shaders/coloringVertex.glsl");
             String fShaderString = fShader.readString();
             String vShaderString = vShader.readString();
             GrayscaleShader = new ShaderProgram(vShaderString, fShaderString);
         }
         return GrayscaleShader;
+    }
+
+    public static ShaderProgram GetSepiaShader() {
+        if (SepiaShader == null) {
+            FileHandle fShader = Gdx.files.internal("shaders/sepiaFragment.glsl");
+            FileHandle vShader = Gdx.files.internal("shaders/coloringVertex.glsl");
+            String fShaderString = fShader.readString();
+            String vShaderString = vShader.readString();
+            SepiaShader = new ShaderProgram(vShaderString, fShaderString);
+        }
+        return SepiaShader;
     }
 
     public static CharacterStrings GetCharacterStrings(String characterID)
@@ -476,6 +488,7 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
             @SpireEnum public static AbstractCard.CardTags ECHO;
             @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_INNATE;
             @SpireEnum public static AbstractCard.CardTags DELAYED;
             @SpireEnum public static AbstractCard.CardTags HASTE;
             @SpireEnum public static AbstractCard.CardTags HASTE_INFINITE;

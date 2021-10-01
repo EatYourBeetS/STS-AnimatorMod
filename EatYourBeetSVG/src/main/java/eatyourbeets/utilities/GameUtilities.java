@@ -34,10 +34,7 @@ import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.blights.animator.UpgradedHand;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinities;
-import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
@@ -161,6 +158,13 @@ public class GameUtilities
                 || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD
                 || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
     }
+
+    public static boolean CanTriggerSupercharged()
+    {
+        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
+        return po != null && po.enabled && po.charge >= SuperchargedPower.CHARGE_THRESHOLD;
+    }
+
 
     public static void ClearPostCombatActions()
     {
@@ -1304,6 +1308,13 @@ public class GameUtilities
         return player != null && player.chosenClass == playerClass;
     }
 
+    public static boolean IsSameSeries(AbstractCard card1, AbstractCard card2)
+    {
+        AnimatorCard c1 = JUtils.SafeCast(card1, AnimatorCard.class);
+        AnimatorCard c2 = JUtils.SafeCast(card2, AnimatorCard.class);
+        return c1 != null && c2 != null && c1.series != null && c1.series.equals(c2.series);
+    }
+
     public static boolean IsValidOrb(AbstractOrb orb)
     {
         return orb != null && !(orb instanceof EmptyOrbSlot);
@@ -1342,6 +1353,9 @@ public class GameUtilities
         if (aCard != null) {
             if (tag.equals(AUTOPLAY)) {
                 aCard.SetAutoplay(value);
+            }
+            else if (tag.equals(ANIMATOR_INNATE)) {
+                aCard.SetInnate(value);
             }
             else if (tag.equals(DELAYED)) {
                 aCard.SetDelayed(value);
@@ -1515,6 +1529,14 @@ public class GameUtilities
         }
     }
 
+    public static void RetainSupercharged(boolean retain)
+    {
+        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
+        if (po != null) {
+            po.enabled = !retain;
+        }
+    }
+
     public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
     {
         if (value)
@@ -1545,6 +1567,16 @@ public class GameUtilities
             AbstractDungeon.topPanel.unhoverHitboxes();
             //AbstractDungeon.topPanel.potionUi.isHidden = !visible;
         }
+    }
+
+    public static boolean SpendSuperchargedCharge(int amount)
+    {
+        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
+        if (po != null && po.charge >= amount) {
+            po.charge -= amount;
+            return true;
+        }
+        return false;
     }
 
     public static void TriggerWhenPlayed(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)

@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
@@ -51,8 +50,7 @@ public class MatouShinji extends AnimatorCard
             }
         });
 
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (info.IsSynergizing  && last != null && GameUtilities.IsHighCost(last) && info.TryActivateSemiLimited())
+        if (info.IsSynergizing  && info.PreviousCard != null && GameUtilities.IsHighCost(info.PreviousCard) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.DARK);
             GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell());

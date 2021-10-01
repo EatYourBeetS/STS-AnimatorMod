@@ -31,7 +31,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
         super.triggerOnExhaust();
 
         AffinityToken_Green token = new AffinityToken_Green();
-        GameActions.Bottom.GainAgility(1, true);
+        token.upgrade();
         GameActions.Bottom.PlayCard(token, null);
     }
 

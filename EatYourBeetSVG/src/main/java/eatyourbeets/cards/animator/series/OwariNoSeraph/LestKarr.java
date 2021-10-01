@@ -34,7 +34,7 @@ public class LestKarr extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 4);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0,0,0,1);
         SetAffinity_Dark(2,0,0);
         SetAffinity_Blue(1, 1, 0);

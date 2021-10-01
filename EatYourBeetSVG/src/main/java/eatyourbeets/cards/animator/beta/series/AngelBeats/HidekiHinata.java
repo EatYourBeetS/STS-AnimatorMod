@@ -16,7 +16,7 @@ public class HidekiHinata extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
     private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
-    private boolean showDamage = true;
+    private boolean showDamage = false;
 
     public HidekiHinata()
     {

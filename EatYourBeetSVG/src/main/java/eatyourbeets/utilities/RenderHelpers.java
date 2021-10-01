@@ -398,6 +398,14 @@ public class RenderHelpers
         return result;
     }
 
+    public static boolean DrawSepia(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
+        ShaderProgram defaultShader = sb.getShader();
+        sb.setShader(GR.GetSepiaShader());
+        boolean result = drawFunc.Invoke();
+        sb.setShader(defaultShader);
+        return result;
+    }
+
     public static boolean DrawTranslucent(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
         sb.setBlendFunction(770,1);
         boolean result = drawFunc.Invoke();

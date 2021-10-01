@@ -26,7 +26,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0,3);
+        Initialize(0, 0,3, 4);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(1);
@@ -60,7 +60,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
         {
             if (CombatStats.TryActivateSemiLimited(this.cardID))
             {
-                int amount = player.exhaustPile.size();
+                int amount = Math.min(secondaryValue, player.exhaustPile.size() / 3);
                 if (amount > 0)
                 {
                     GameActions.Bottom.StackPower(new SupportDamagePower(player, amount));

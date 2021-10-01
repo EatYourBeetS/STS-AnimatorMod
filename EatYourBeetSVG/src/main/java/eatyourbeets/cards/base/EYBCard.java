@@ -51,6 +51,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
     public static final CardTags LOYAL = GR.Enums.CardTags.LOYAL;
     public static final CardTags HARMONIC = GR.Enums.CardTags.HARMONIC;
+    public static final CardTags ANIMATOR_INNATE = GR.Enums.CardTags.ANIMATOR_INNATE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final EYBCardAffinities affinities;
@@ -324,6 +325,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    public boolean CheckLastAffinityPlayed(Affinity affinity)
+    {
+        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
+    }
+
     public boolean CheckAffinity(Affinity affinity)
     {
         return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
@@ -362,7 +368,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Afterlife);
         }
-        if (isInnate)
+        if (isInnate || hasTag(ANIMATOR_INNATE))
         {
             dynamicTooltips.add(GR.Tooltips.Innate);
         }
@@ -525,6 +531,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public void SetInnate(boolean value)
     {
         this.isInnate = value;
+        SetTag(ANIMATOR_INNATE, value);
+
+        if (value)
+        {
+            SetTag(DELAYED, false);
+        }
     }
 
     public void SetExhaust(boolean value)
@@ -560,6 +572,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (value)
         {
             SetInnate(false);
+            SetTag(ANIMATOR_INNATE, false);
         }
     }
 

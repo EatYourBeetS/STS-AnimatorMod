@@ -1,14 +1,10 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DolaStephanie extends AnimatorCard
 {
@@ -35,6 +31,14 @@ public class DolaStephanie extends AnimatorCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.GainRandomAffinityPower(1, false, Affinity.Light, Affinity.Blue);
+    }
+
+    @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
@@ -44,10 +48,9 @@ public class DolaStephanie extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                AbstractCard selected = cards.get(0);
                 GameActions.Top.FetchFromPile(name, 1, player.drawPile)
                 .SetOptions(false, false)
-                .SetFilter(selected, CombatStats.Affinities::WouldSynergize);
+                .SetFilter(cards.get(0), GameUtilities::IsSameSeries);
             }
         });
     }

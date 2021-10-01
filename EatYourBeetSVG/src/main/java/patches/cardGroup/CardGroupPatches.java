@@ -85,8 +85,9 @@ public class CardGroupPatches
 
     private static void _Shuffle(CardGroup group)
     {
-        int delayedIndex = 0;
         final ArrayList<AbstractCard> cards = group.group;
+        int delayedIndex = 0;
+        int innateIndex = cards.size() - 1;
         for (int i = 0; i < cards.size(); i++)
         {
             final AbstractCard c = cards.get(i);
@@ -101,6 +102,19 @@ public class CardGroupPatches
 
                 c.isInnate = false;
                 delayedIndex += 1;
+            }
+        }
+
+        for (int i = cards.size() - 1; i >= 0; i--)
+        {
+            final AbstractCard c = cards.get(i);
+            if (c.hasTag(GR.Enums.CardTags.ANIMATOR_INNATE)) {
+                if (i != innateIndex) {
+                    final AbstractCard temp = cards.get(innateIndex);
+                    cards.set(innateIndex, c);
+                    cards.set(i, temp);
+                }
+                innateIndex -= 1;
             }
         }
     }

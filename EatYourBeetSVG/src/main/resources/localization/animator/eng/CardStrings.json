@@ -22,7 +22,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-
 		"animator:Strike_Green":
 		{
 			"DESCRIPTION": "",
@@ -714,7 +713,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain|Boost [B]. || <LIM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
+			"DESCRIPTION": "Gain|Boost [B]. || <SLM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Bennett":
@@ -1415,8 +1414,9 @@
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Add 1 [T-Knife] to your hand. || <slm>. Synergy or ** Discard: Gain !S! [Blur].",
-			"NAME": "Rena"
+			"DESCRIPTION": "Obtain [T-Knife]. || <SLM>. Synergy or when Discarded: Gain !S! [Blur].",
+			"NAME": "Rena",
+			"ALTERNATE_DESCRIPTION": "Give your first [Air] +1 [Focus]. Otherwise, Channel [Air]. || <SLM>. Synergy or when Discarded: Gain !S! [Blur]."
 		}
 	},
 	"SERIES:FATE":
@@ -1897,10 +1897,10 @@
 	{
 		"animator:Aqua":
 		{
-			"DESCRIPTION": "Gain [B]. <DRW>. || Becomes useless for the ** rest of this combat.",
+			"DESCRIPTION": "<DRW>. || Becomes useless for the ** rest of this combat",
 			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "Boost [B]. <DRW>. || Becomes slightly less ** useless for the rest of ** this combat."
+			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less ** useless for the rest of ** this combat. || <LIM>. Synergy and !A! <B>: Channel 1 [Water]."
 		},
 		"animator:Chris":
 		{
@@ -1952,7 +1952,7 @@
 		},
 		"animator:Verdia":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Apply !S! [Vulnerable]. || When Discarded: ** Gain 1 [Plated Armor].",
+			"DESCRIPTION": "!A! <R>: This gains +1 [F] Scaling. ** !A! <D>: This gains +1 [C] Scaling. || When Exhausted: Give this card's Scaling to a {Same-Series} card in hand.",
 			"NAME": "Verdia"
 		},
 		"animator:Wiz":

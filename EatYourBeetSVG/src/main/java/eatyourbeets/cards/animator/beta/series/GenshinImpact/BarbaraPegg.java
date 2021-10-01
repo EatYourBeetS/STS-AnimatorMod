@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.orbs.animator.Water;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -45,7 +44,7 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainBlessing(1, upgraded);
         GameActions.Bottom.Heal(magicNumber);
-        if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsAttacking()) == null && CombatStats.TryActivateLimited(cardID)) {
+        if (CheckAffinity(Affinity.Blue) && JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsAttacking()) == null && info.TryActivateSemiLimited()) {
             Water waterOrb = new Water();
             GameActions.Bottom.ChannelOrb(waterOrb);
             GameActions.Bottom.TriggerOrbPassive(waterOrb, 1);

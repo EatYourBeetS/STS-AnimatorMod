@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Ramiris extends AnimatorCard implements OnAddToDeckListener
+public class Ramiris extends AnimatorCard implements OnAddToDeckListener //TODO
 {
     public static final EYBCardData DATA = Register(Ramiris.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.ALL)

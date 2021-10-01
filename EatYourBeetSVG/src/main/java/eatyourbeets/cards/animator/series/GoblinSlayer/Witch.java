@@ -1,38 +1,38 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Witch extends AnimatorCard
+public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Witch.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Spearman(), true));
+    public static final int MODIFIER = 25;
 
-    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Witch()
     {
         super(DATA);
 
-        Initialize(0, 11);
+        Initialize(0, 8, MODIFIER, 2);
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Blue, 4);
     }
 
     @Override
@@ -46,34 +46,58 @@ public class Witch extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (upgraded)
-        {
-            GameActions.Bottom.TriggerOrbPassive(p.orbs.size())
-            .SetFilter(o -> Dark.ORB_ID.equals(o.ID) || Fire.ORB_ID.equals(o.ID))
-            .SetSequential(true);
-        }
-
-        if (CheckAffinity(Affinity.Red))
-        {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
-        if (CheckAffinity(Affinity.Dark))
-        {
-            GameActions.Bottom.ChannelOrb(new Dark());
-        }
-
-        if (info.IsSynergizing && info.GetPreviousCardID().equals(Spearman.DATA.ID))
-        {
-            if (choices.TryInitialize(new Spearman()))
-            {
-                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                choices.Initialize(this);
-                choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
+        AbstractOrb orb = GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Red) ? new Dark() : new Fire();
+        GameActions.Bottom.ChannelOrb(orb).AddCallback(() -> {
+            if (upgraded) {
+                GameActions.Bottom.TriggerOrbPassive(p.orbs.size())
+                        .SetFilter(o -> Dark.ORB_ID.equals(o.ID) || Fire.ORB_ID.equals(o.ID))
+                        .SetSequential(true);
             }
+            else {
+                GameActions.Bottom.TriggerOrbPassive(orb, 1);
+            }
+        });
 
-            choices.Select(1, m);
+        if (CheckAffinity(Affinity.Blue) || (info.IsSynergizing && info.GetPreviousCardID().equals(Spearman.DATA.ID)))
+        {
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+
+        }
+    }
+
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        GameActions.Bottom.ApplyPower(new WitchPower(player, 1));
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+    }
+
+    public static class WitchPower extends AnimatorPower
+    {
+        public WitchPower(AbstractCreature owner, int amount)
+        {
+            super(owner, Witch.DATA);
+
+            Initialize(amount, PowerType.BUFF, false);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, amount * Witch.MODIFIER);
+        }
+
+        @Override
+        public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
+            return enabled && type == DamageInfo.DamageType.NORMAL && card instanceof EYBCard && ((EYBCard) card).attackType == EYBAttackType.Ranged ? damage * (1 + (amount * Witch.MODIFIER / 100f)) : damage;
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            RemovePower();
         }
     }
 }

@@ -22,6 +22,7 @@ public abstract class AbstractTemporaryPower extends CommonPower
         this.powerIcon = this.targetPower.region128;
         enabled = false;
         Initialize(amount, this.targetPower.type, true);
+        this.useTemporaryColoring = true;
 
         updateDescription();
     }

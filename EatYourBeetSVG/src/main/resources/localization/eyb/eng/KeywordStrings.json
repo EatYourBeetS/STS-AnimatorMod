@@ -170,7 +170,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Retain up to 2 Block per stack each turn.",
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], [Weak], and [Impaired] on you. Retain up to 2 Block per stack each turn.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},
@@ -257,6 +257,12 @@
 		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
 		"NAMES": ["imitate", "imitation"],
 		"PROPER_NAME": "Imitate"
+	},
+	"Impaired":
+	{
+	  "DESCRIPTION": "Reduces the effectiveness of your Orbs.",
+	  "NAMES": ["impaired"],
+	  "PROPER_NAME": "Impaired"
 	},
 	"Induce":
 	{
@@ -378,6 +384,12 @@
 		"NAMES": ["replace"],
 		"PROPER_NAME": "Replace"
 	},
+	"Same-Series":
+	{
+		"DESCRIPTION": "A card belonging to the same series as this one.",
+		"NAMES": ["same-series"],
+		"PROPER_NAME": "Same-series"
+	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
@@ -392,7 +404,7 @@
 	},
 	"Slow":
 	{
-		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
+		"DESCRIPTION": "For every card you have played this turn, take #b10% more damage from #yAttacks.",
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
 	},
@@ -512,7 +524,7 @@
 	},
 	"~Innate":
 	{
-		"DESCRIPTION": "Start each combat with this card in hand.",
+		"DESCRIPTION": "Start each combat with this card in hand. Whenever you shuffle your draw pile, place this card on the top.",
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
 	},

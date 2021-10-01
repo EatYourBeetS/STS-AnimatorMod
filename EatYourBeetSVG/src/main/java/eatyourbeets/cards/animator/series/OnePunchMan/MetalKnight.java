@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
@@ -10,7 +9,6 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,7 +22,8 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 3);
+        Initialize(13, 0, 9, 2);
+        SetUpgrade(3, 0, 2, 1);
 
         SetAffinity_Red(2);
         SetAffinity_Blue(2);
@@ -34,9 +33,12 @@ public class MetalKnight extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        SetInnate(true);
+        if (GameUtilities.CanTriggerSupercharged()) {
+            return super.ModifyDamage(enemy, amount + magicNumber);
+        }
+        return super.ModifyDamage(enemy, amount);
     }
 
     @Override
@@ -44,31 +46,9 @@ public class MetalKnight extends AnimatorCard
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.StackPower(new MetalKnightPower(p, 1));
-
-        if (magicNumber > 0)
-        {
-            GameActions.Bottom.GainMetallicize(magicNumber);
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
-        }
-    }
-
-    public static class MetalKnightPower extends AnimatorPower
-    {
-        public MetalKnightPower(AbstractCreature owner, int amount)
-        {
-            super(owner, MetalKnight.DATA);
-
-            Initialize(amount);
-        }
-
-        @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            GameActions.Bottom.ChannelOrbs(Plasma::new, amount);
-            RemovePower();
+        GameActions.Bottom.ChannelOrbs(Plasma::new, 1);
+        if (GameUtilities.CanTriggerSupercharged()) {
+            GameActions.Bottom.GainMetallicize(secondaryValue);
         }
     }
 }

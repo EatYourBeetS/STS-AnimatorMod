@@ -24,7 +24,7 @@ public class SwordMaiden extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 3);
+        Initialize(0, 0, 7, 2);
 
         SetAffinity_Orange(1);
         SetAffinity_Light(2);
@@ -63,6 +63,10 @@ public class SwordMaiden extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.RecoverHP(secondaryValue);
-        GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1);
+        GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1).AddCallback(debuffs -> {
+            if (debuffs.size() == 0) {
+                GameActions.Bottom.GainBlessing(2);
+            }
+        });
     }
 }

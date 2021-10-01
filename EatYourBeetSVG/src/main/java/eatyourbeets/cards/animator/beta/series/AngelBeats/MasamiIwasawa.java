@@ -24,6 +24,7 @@ public class MasamiIwasawa extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 0, 2);
 
+        SetEthereal(true);
         AfterLifeMod.Add(this);
     }
 

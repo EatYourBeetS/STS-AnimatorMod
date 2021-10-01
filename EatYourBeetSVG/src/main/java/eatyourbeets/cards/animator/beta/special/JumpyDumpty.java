@@ -16,7 +16,7 @@ public class JumpyDumpty extends AnimatorCard {
     public JumpyDumpty() {
         super(DATA);
 
-        Initialize(12, 0, 1, 5);
+        Initialize(12, 0, 1, 2);
         SetUpgrade(4, 0, 0, 0);
         SetAffinity_Red(1, 0, 2);
         SetAutoplay(true);
@@ -45,13 +45,13 @@ public class JumpyDumpty extends AnimatorCard {
                         if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
                             if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                                 GameActions.Bottom.MakeCardInDrawPile(this.makeStatEquivalentCopy());
-                                GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.FIRE);
+                                GameActions.Bottom.ApplyBurning(player, player, secondaryValue);
                             }
                         }
 
                     });
 
-            GameActions.Bottom.ApplyBurning(p, priorityTarget, magicNumber);
+            GameActions.Bottom.ApplyBurning(player, priorityTarget, magicNumber);
         }
 
     }

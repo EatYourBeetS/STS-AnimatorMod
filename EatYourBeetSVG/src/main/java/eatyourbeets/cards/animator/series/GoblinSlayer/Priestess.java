@@ -2,7 +2,12 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.monsters.EnemyIntent;
@@ -25,8 +30,6 @@ public class Priestess extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
-
-        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
@@ -53,12 +56,19 @@ public class Priestess extends AnimatorCard
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
         GameActions.Bottom.GainBlessing(secondaryValue);
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Light))
+        if (info.IsSynergizing)
         {
-            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
+            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand)
             .ShowEffect(true, true)
             .SetOptions(true, true)
-            .SetFilter(GameUtilities::IsHindrance);
+            .SetFilter(GameUtilities::IsHindrance).AddCallback(
+                    cards -> {
+                        if (cards.size() > 0) {
+                            GameActions.Bottom.ReducePower(player, FrailPower.POWER_ID,secondaryValue);
+                            GameActions.Bottom.ReducePower(player, VulnerablePower.POWER_ID,secondaryValue);
+                        }
+                    }
+            );
         }
     }
 }

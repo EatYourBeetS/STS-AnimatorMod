@@ -49,6 +49,7 @@ public class EYBCardData
     public CardSeries Series;
     public EYBCard tempCard = null;
     public boolean BlockScalingAttack;
+    public boolean CanTriggerSupercharge = true;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
@@ -236,20 +237,20 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false);
+        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false, true);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType)
     {
-        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false);
+        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, true);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
-        return SetAttack(cost, rarity, attackType, target, false);
+        return SetAttack(cost, rarity, attackType, target, false, true);
     }
 
-    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling)
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canTriggerSupercharge)
     {
         SetRarity(rarity);
 
@@ -258,6 +259,7 @@ public class EYBCardData
         AttackType = attackType;
         BaseCost = cost;
         BlockScalingAttack = isBlockScaling;
+        CanTriggerSupercharge = canTriggerSupercharge;
 
         return this;
     }

@@ -159,7 +159,7 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), offset_y, alpha, null);
         }
-        else if (card.isInnate)
+        else if (card.isInnate || card.hasTag(GR.Enums.CardTags.ANIMATOR_INNATE))
         {
             offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
         }

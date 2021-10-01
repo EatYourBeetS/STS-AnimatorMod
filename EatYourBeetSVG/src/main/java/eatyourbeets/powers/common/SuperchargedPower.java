@@ -5,16 +5,43 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.subscribers.OnSpendEnergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
+
+import java.util.UUID;
 
 public class SuperchargedPower extends CommonPower implements OnSpendEnergySubscriber
 {
     public static final String POWER_ID = CreateFullID(SuperchargedPower.class);
-    public static final int CHARGE_THRESHOLD = 8;
-    protected int charge;
+    public static final int BASE_CHARGE_THRESHOLD = 8;
+    public static int CHARGE_THRESHOLD = BASE_CHARGE_THRESHOLD;
+    public int charge;
+    private static UUID battleID;
+
+    public static void AddChargeThreshold(int increase)
+    {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            CHARGE_THRESHOLD = BASE_CHARGE_THRESHOLD;
+        }
+
+        if (increase > 0)
+        {
+            CHARGE_THRESHOLD += increase;
+
+            for (SuperchargedPower p : GameUtilities.<SuperchargedPower>GetPowers(TargetHelper.Enemies(), POWER_ID))
+            {
+                p.updateDescription();
+                p.flashWithoutSound();
+            }
+        }
+    }
 
     public SuperchargedPower(AbstractCreature owner, int amount)
     {
@@ -28,7 +55,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, CHARGE_THRESHOLD, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f);
+        this.description = FormatDescription(0, CHARGE_THRESHOLD, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f, !enabled ? powerStrings.DESCRIPTIONS[1] : null);
     }
 
     @Override
@@ -42,6 +69,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     {
         super.onInitialApplication();
 
+        AddChargeThreshold(0);
         CombatStats.onSpendEnergy.Subscribe(this);
     }
 
@@ -54,13 +82,20 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     }
 
     @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        super.atEndOfTurn(isPlayer);
+
+        enabled = true;
+    }
+
+    @Override
     public float modifyBlock(float blockAmount) {
-        return blockAmount * GetChargeMultiplier(this.charge);
+        return enabled ? blockAmount * GetChargeMultiplier(this.charge) : blockAmount;
     }
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        return type == DamageInfo.DamageType.NORMAL ? damage * GetChargeMultiplier(this.charge) : damage;
+        return enabled && type == DamageInfo.DamageType.NORMAL ? damage * GetChargeMultiplier(this.charge) : damage;
     }
 
     @Override
@@ -68,7 +103,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     {
         super.onUseCard(card, action);
 
-        if ((card.baseBlock > 0 || card.baseDamage > 0) && charge >= CHARGE_THRESHOLD)
+        if (enabled && (card.baseBlock > 0 || card.baseDamage > 0) && charge >= CHARGE_THRESHOLD && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
         {
             this.charge -= GetCurrentChargeCost();
             updateDescription();
@@ -83,7 +118,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     }
 
     private float GetChargeIncrease(int charge) {
-        return 0.25f * this.amount * Math.floorDiv(charge, CHARGE_THRESHOLD);
+        return 0.25f * this.amount * Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
     }
 
     private float GetChargeMultiplier(int charge) {

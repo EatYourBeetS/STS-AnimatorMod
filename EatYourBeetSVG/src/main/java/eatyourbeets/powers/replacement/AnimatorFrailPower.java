@@ -95,7 +95,7 @@ public class AnimatorFrailPower extends FrailPower implements CloneablePowerInte
         return new AnimatorFrailPower(owner, amount, justApplied);
     }
 
-    private int GetMultiplier()
+    public int GetMultiplier()
     {
         return (GameUtilities.IsPlayer(owner)) ? (BLOCK_MULTIPLIER + PLAYER_MODIFIER) : (BLOCK_MULTIPLIER + ENEMY_MODIFIER);
     }

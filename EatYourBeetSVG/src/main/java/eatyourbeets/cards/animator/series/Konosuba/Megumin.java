@@ -12,7 +12,7 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Megumin extends AnimatorCard
+public class Megumin extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Megumin.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)

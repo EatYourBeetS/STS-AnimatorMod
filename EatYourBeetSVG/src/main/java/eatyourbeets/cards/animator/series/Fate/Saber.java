@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Fate;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Saber_Excalibur;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -40,6 +41,7 @@ public class Saber extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainRandomAffinityPower(0,true, Affinity.Light,Affinity.Red);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
         cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 3 : 1, m);

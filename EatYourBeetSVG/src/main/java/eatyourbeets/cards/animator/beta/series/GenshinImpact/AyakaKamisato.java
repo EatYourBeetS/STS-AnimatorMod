@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
-            .SetMaxCopies(3)
+            .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
     private static final int ATTACK_TIMES = 2;
     private static final int THRESHOLD = 6;
@@ -34,6 +34,7 @@ public class AyakaKamisato extends AnimatorCard {
 
         SetAffinityRequirement(Affinity.Blue, 4);
 
+        SetEthereal(true);
         SetExhaust(true);
     }
 

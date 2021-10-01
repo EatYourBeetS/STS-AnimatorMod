@@ -1,27 +1,30 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Wrath extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Wrath.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
-            .SetMaxCopies(2)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Red), true));
+            .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
+            .SetSeriesFromClassPackage();
 
     public Wrath()
     {
         super(DATA);
 
-        Initialize(0, 12, 3);
+        Initialize(10, 12, 3,2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(2, 0, 3);
         SetAffinity_Orange(1, 0, 2);
         SetAffinity_Dark(1);
 
@@ -31,25 +34,48 @@ public class Wrath extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.StackPower(new WrathPower(p, secondaryValue));
+
     }
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public static class WrathPower extends AnimatorPower
     {
-        GameActions.Bottom.IncreaseScaling(player.hand, player.hand.size(), Affinity.Red, 1).SetFilter(c -> c.uuid != uuid);
-
-        if (CheckSpecialCondition(true))
+        public WrathPower(AbstractPlayer owner, int amount)
         {
-            GameActions.Bottom.WaitRealtime(0.3f);
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Red, upgraded));
-        }
-    }
+            super(owner, Wrath.DATA);
 
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return player.exhaustPile.size() >= 7;
+            this.amount = amount;
+
+            Initialize(amount, PowerType.BUFF, true);
+        }
+
+        @Override
+        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
+        {
+            super.onAttack(info, damageAmount, target);
+
+            if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
+            {
+                final int[] damage = DamageInfo.createDamageMatrix(CombatStats.Affinities.GetPowerAmount(Affinity.Red), true);
+                GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                this.flash();
+            }
+        }
+
+        @Override
+        public boolean canPlayCard(AbstractCard card) {
+            return card.type == CardType.ATTACK && card.cost > 0;
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            ReducePower(1);
+        }
     }
 }

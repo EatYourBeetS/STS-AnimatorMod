@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.ShaderHelper;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
@@ -391,8 +392,15 @@ public class RenderHelpers
     }
 
     public static boolean DrawGrayscale(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
+        ShaderHelper.setShader(sb, ShaderHelper.Shader.GRAYSCALE);
+        boolean result = drawFunc.Invoke();
+        ShaderHelper.setShader(sb, ShaderHelper.Shader.DEFAULT);
+        return result;
+    }
+
+    public static boolean DrawSepia(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
         ShaderProgram defaultShader = sb.getShader();
-        sb.setShader(GR.GetGrayscaleShader());
+        sb.setShader(GR.GetSepiaShader());
         boolean result = drawFunc.Invoke();
         sb.setShader(defaultShader);
         return result;

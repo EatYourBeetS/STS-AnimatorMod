@@ -21,7 +21,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(DolaSchwi.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     private int turns = 0;
@@ -30,12 +30,12 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(16, 0, 2, 2);
+        Initialize(16, 0, 1, 2);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);
 
-        SetCooldown(2, 0, this::OnCooldownCompleted, true, false);
+        SetCooldown(1, 0, this::OnCooldownCompleted, false, false);
     }
 
     @Override

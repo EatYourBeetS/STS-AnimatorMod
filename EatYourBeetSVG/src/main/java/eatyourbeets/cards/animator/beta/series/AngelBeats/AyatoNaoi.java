@@ -12,12 +12,9 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.BlindedPower;
-import eatyourbeets.powers.common.ShacklesPower;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class AyatoNaoi extends AnimatorCard
 {
@@ -40,8 +37,6 @@ public class AyatoNaoi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-
         if (CombatStats.ControlPile.Contains(this))
         {
             GameActions.Bottom.Callback(() ->
@@ -66,10 +61,14 @@ public class AyatoNaoi extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(o -> {
-                if (o.size() > 0 && JUtils.Find(GameUtilities.GetEnemies(true), e -> GameUtilities.GetPowerAmount(e, BlindedPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(e, ShacklesPower.POWER_ID) > 0) != null) {
+                if (o.size() > 0 && IntellectStance.IsActive()) {
                     GameActions.Bottom.TriggerOrbPassive(o.get(0), 1);
                 }
             });
+        }
+
+        if (!IntellectStance.IsActive()) {
+            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
     }
 }

@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
-import eatyourbeets.interfaces.subscribers.OnCardMovedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -61,7 +60,7 @@ public class Chaa extends AnimatorCard
         GameActions.Bottom.StackPower(new ChaaPower(p, magicNumber, secondaryValue));
     }
 
-    public static class ChaaPower extends AnimatorClickablePower implements OnAfterlifeSubscriber, OnCardMovedSubscriber, OnPurgeSubscriber
+    public static class ChaaPower extends AnimatorClickablePower implements OnAfterlifeSubscriber, OnPurgeSubscriber
     {
         public int secondaryValue;
 
@@ -80,7 +79,6 @@ public class Chaa extends AnimatorCard
             super.onInitialApplication();
 
             CombatStats.onAfterlife.Subscribe(this);
-            CombatStats.onCardMoved.Subscribe(this);
             CombatStats.onPurge.Subscribe(this);
         }
 
@@ -97,7 +95,6 @@ public class Chaa extends AnimatorCard
             super.onRemove();
 
             CombatStats.onAfterlife.Unsubscribe(this);
-            CombatStats.onCardMoved.Unsubscribe(this);
             CombatStats.onPurge.Subscribe(this);
         }
 
@@ -130,25 +127,10 @@ public class Chaa extends AnimatorCard
         }
 
         @Override
-        public void OnCardMoved(AbstractCard card, CardGroup source, CardGroup destination) {
-            if ((source == player.exhaustPile || destination == player.exhaustPile) && source != destination) {
-                GameActions.Bottom.GainBlock(amount);
-            }
-        }
-
-        @Override
         public void OnPurge(AbstractCard card, CardGroup source) {
             if (source == player.exhaustPile) {
                 GameActions.Bottom.GainBlock(amount);
             }
-        }
-
-        @Override
-        public void onExhaust(AbstractCard card)
-        {
-            super.onExhaust(card);
-
-            GameActions.Bottom.GainBlock(amount);
         }
 
         @Override

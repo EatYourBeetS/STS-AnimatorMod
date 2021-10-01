@@ -663,6 +663,11 @@ public final class GameActions
         return StackPower(new StrengthPower(player, amount));
     }
 
+    public ApplyPower GainSupercharged(int amount)
+    {
+        return StackPower(new SuperchargedPower(player, amount));
+    }
+
     public ApplyPower GainSupportDamage(int amount)
     {
         return StackPower(new SupportDamagePower(player, amount));

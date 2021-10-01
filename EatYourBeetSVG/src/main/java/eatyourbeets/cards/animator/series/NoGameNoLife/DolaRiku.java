@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.DolaRikuAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,12 +21,14 @@ public class DolaRiku extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Orange(1);
+
+        SetAffinityRequirement(Affinity.Orange, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        if (CheckAffinity(Affinity.Orange) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c), false);

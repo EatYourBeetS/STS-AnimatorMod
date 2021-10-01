@@ -47,6 +47,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public boolean hideAmount = false;
     public boolean canBeZero = false;
     public boolean enabled = true;
+    public boolean useTemporaryColoring = false;
     public int maxAmount = 9999;
     public int baseAmount = 0;
 
@@ -243,6 +244,25 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
             c = disabledColor;
         }
 
+        if (this.useTemporaryColoring) {
+            Color finalC = c;
+            RenderHelpers.DrawSepia(sb, () -> {
+                this.renderIconsImpl(sb,x,y, finalC);
+                return true;
+            });
+        }
+        else {
+            this.renderIconsImpl(sb,x,y, c);
+        }
+
+        for (AbstractGameEffect e : effects)
+        {
+            e.render(sb, x, y);
+        }
+    }
+
+    private void renderIconsImpl(SpriteBatch sb, float x, float y, Color c)
+    {
         if (this.powerIcon != null)
         {
             RenderHelpers.DrawCentered(sb, c, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 1, 0);
@@ -251,11 +271,6 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
         {
             float scale = ICON_SIZE2 / this.img.getWidth();
             RenderHelpers.DrawCentered(sb, c, this.img, x, y, this.img.getWidth(), this.img.getHeight(), scale, 0);
-        }
-
-        for (AbstractGameEffect e : effects)
-        {
-            e.render(sb, x, y);
         }
     }
 

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class KimizugiShiho extends AnimatorCard
 {
@@ -46,10 +47,9 @@ public class KimizugiShiho extends AnimatorCard
                 {
                     if (cards.size() > 0 && cards.get(0) instanceof AnimatorCard)
                     {
-                        AnimatorCard selected = (AnimatorCard) cards.get(0);
                         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
                                 .SetOptions(true, false)
-                                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null && selected.series.equals(((AnimatorCard) c).series));
+                                .SetFilter(cards.get(0), GameUtilities::IsSameSeries);
                     }
 
                     if (info.IsSynergizing) {

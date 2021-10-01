@@ -86,7 +86,7 @@ public class AnimatorWeakPower extends WeakPower implements CloneablePowerInterf
         return new AnimatorWeakPower(owner, amount, justApplied);
     }
 
-    private int GetMultiplier()
+    public int GetMultiplier()
     {
         return (GameUtilities.IsPlayer(owner)) ? (ATTACK_MULTIPLIER + PLAYER_MODIFIER) : (ATTACK_MULTIPLIER + ENEMY_MODIFIER);
     }

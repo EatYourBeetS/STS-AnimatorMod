@@ -88,7 +88,7 @@ public class AnimatorVulnerablePower extends VulnerablePower implements Cloneabl
         return new AnimatorVulnerablePower(owner, amount, justApplied);
     }
 
-    private int GetMultiplier()
+    public int GetMultiplier()
     {
         return (GameUtilities.IsPlayer(owner)) ? (ATTACK_MULTIPLIER + PLAYER_MODIFIER) : (ATTACK_MULTIPLIER + ENEMY_MODIFIER);
     }

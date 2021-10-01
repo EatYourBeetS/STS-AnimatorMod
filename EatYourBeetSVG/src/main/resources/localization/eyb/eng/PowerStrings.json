@@ -47,7 +47,7 @@
 	},
 	"eyb:EndurancePower":
 	{
-	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Retain up to #b{2} [Block] each turn.", "Increase the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. If you would retain [Block] at the end of the turn, retain #b{2} less."],
+	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Retain up to #b{2} [Block] each turn.", "Increase the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. If you would retain [Block] at the end of the turn, retain #b{2} less."],
 	  "NAME": "Endurance"
 	},
 	"eyb:EnergizedPower":
@@ -79,6 +79,11 @@
 	{
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
 		"NAME": "Freezing"
+	},
+	"eyb:ImpairedPower":
+	{
+		"DESCRIPTIONS": ["Orbs are #b{0}% less effective for #b{1} {2}.","turn","turns"],
+		"NAME": "Impaired"
 	},
 	"eyb:InspirationPower":
 	{
@@ -117,7 +122,7 @@
 	},
 	"eyb:SuperchargedPower":
 	{
-		"DESCRIPTIONS": ["When [E] is spent: Gains #yCharge equal to [E] spent. For every #b{0} #yCharge: When you play a card that deals damage or gives [Block], spend #b{1} #yCharge to increase its damage and [Block] by #b{2}% (This effect can stack)."],
+		"DESCRIPTIONS": ["When [E] is spent: Gains #yCharge equal to [E] spent. For every #b{0} #yCharge: When you play a card that deals damage or gives [Block], spend #b{1} #yCharge to increase its damage and [Block] by #b{2}% (This effect can stack).{3}","NL #yCharge is conserved this turn."],
 		"NAME": "Supercharged"
 	},
 	"eyb:SupportDamagePower":

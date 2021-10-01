@@ -82,6 +82,7 @@ public class EndurancePower extends CommonPower
         AnimatorVulnerablePower.AddPlayerModifier(this.totalMultiplier);
         AnimatorWeakPower.AddPlayerModifier(this.totalMultiplier2);
         AnimatorFrailPower.AddPlayerModifier(this.totalMultiplier2);
+        ImpairedPower.AddPlayerModifier(this.totalMultiplier);
 
         this.totalMultiplier = MULTIPLIER * this.amount;
         this.totalMultiplier2 = MULTIPLIER2 * this.amount;
@@ -89,5 +90,6 @@ public class EndurancePower extends CommonPower
         AnimatorVulnerablePower.AddPlayerModifier(-this.totalMultiplier);
         AnimatorWeakPower.AddPlayerModifier(-this.totalMultiplier2);
         AnimatorFrailPower.AddPlayerModifier(-this.totalMultiplier2);
+        ImpairedPower.AddPlayerModifier(-this.totalMultiplier);
     }
 }

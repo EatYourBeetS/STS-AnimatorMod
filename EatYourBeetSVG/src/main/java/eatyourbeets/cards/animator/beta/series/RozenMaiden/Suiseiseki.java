@@ -1,11 +1,9 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.cards.tempCards.Insight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,20 +17,19 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 
-public class Suiseiseki extends AnimatorCard
+public class Suiseiseki extends AnimatorCard // TODO
 {
-    private static final AbstractCard insight = new Insight();
-    private static final AbstractCard slimed = new Slimed();
-
     public static final EYBCardData DATA = Register(Suiseiseki.class)
-    		.SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    		.SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Status_Slimed(), false));
 
     public Suiseiseki()
     {
         super(DATA);
 
         Initialize(0, 6, 4, 3);
-        SetUpgrade(0, 1, 1);
+        SetUpgrade(0, 2, 1);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
@@ -56,7 +53,7 @@ public class Suiseiseki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        GameActions.Bottom.MakeCard(new Slimed(), player.drawPile);
+        GameActions.Bottom.MakeCard(new Status_Slimed(), player.drawPile);
 
         if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID))
         {

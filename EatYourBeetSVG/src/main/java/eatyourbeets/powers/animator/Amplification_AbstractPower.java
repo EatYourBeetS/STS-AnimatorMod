@@ -27,9 +27,17 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
         this.evokeMultiplier = evokeMultiplier;
 
         Initialize(scaling);
-        CombatStats.onOrbApplyFocus.Subscribe(this);
         refreshOrbs();
     }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        CombatStats.onOrbApplyFocus.Subscribe(this);
+    }
+
 
     @Override
     public void onRemove()

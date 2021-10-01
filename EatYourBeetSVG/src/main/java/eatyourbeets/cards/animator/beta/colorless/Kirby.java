@@ -355,7 +355,7 @@ public class Kirby extends AnimatorCard implements
 
         if (card.hasTag(DELAYED)) {
             SetDelayed(true);
-        } else if (card.isInnate) {
+        } else if (card.isInnate || card.hasTag(GR.Enums.CardTags.ANIMATOR_INNATE)) {
             SetInnate(true);
         }
         if (card.isEthereal) {

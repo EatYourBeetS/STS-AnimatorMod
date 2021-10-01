@@ -411,6 +411,11 @@ public class AnimatorStrings
             return Format(addPeriod, 42, amount);
         }
 
+        public final String Trigger(Object orb, Object amount, boolean addPeriod)
+        {
+            return Format(addPeriod, 43, orb, amount);
+        }
+
 
         private String Format(boolean addPeriod, int index, Object amount)
         {

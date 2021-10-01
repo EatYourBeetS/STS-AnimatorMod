@@ -32,13 +32,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return Spearman.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -53,12 +47,9 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
                         .SetFilter(o -> Dark.ORB_ID.equals(o.ID) || Fire.ORB_ID.equals(o.ID))
                         .SetSequential(true);
             }
-            else {
-                GameActions.Bottom.TriggerOrbPassive(orb, 1);
-            }
         });
 
-        if (CheckAffinity(Affinity.Blue) || (info.IsSynergizing && info.GetPreviousCardID().equals(Spearman.DATA.ID)))
+        if (CheckAffinity(Affinity.Blue))
         {
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
 

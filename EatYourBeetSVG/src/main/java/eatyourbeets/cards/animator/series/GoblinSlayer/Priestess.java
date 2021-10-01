@@ -58,7 +58,7 @@ public class Priestess extends AnimatorCard
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand)
+            GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)
             .SetOptions(true, true)
             .SetFilter(GameUtilities::IsHindrance).AddCallback(

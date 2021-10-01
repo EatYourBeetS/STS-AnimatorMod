@@ -23,7 +23,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 8, 1);
+        Initialize(14, 0, 6, 2);
         SetAffinity_Red(2, 0, 0);
         SetAffinity_Orange(1, 1, 0);
     }
@@ -45,7 +45,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super.update();
 
-        if (AbstractDungeon.player != null && !transformed && AbstractDungeon.player.exhaustPile.size() >= magicNumber)
+        if (AbstractDungeon.player != null && !transformed && CombatStats.SynergiesThisCombat().size() >= magicNumber)
         {
             transformed = true;
             GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);

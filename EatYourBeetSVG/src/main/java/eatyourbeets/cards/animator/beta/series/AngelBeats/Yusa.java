@@ -28,10 +28,13 @@ public class Yusa extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Top.Scry(secondaryValue).AddCallback(() -> {
-            GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile).AddCallback(cards -> {
+            GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile)
+                    .SetOptions(false,true)
+                    .AddCallback(cards -> {
                 for (AbstractCard c : cards) {
                     if (GameUtilities.HasLightAffinity(c)) {
                         GameActions.Bottom.GainBlessing(1);
+                        break;
                     }
                 }
             });

@@ -12,7 +12,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Defend"
 		},
-
 		"animator:Strike_Red":
 		{
 			"DESCRIPTION": "",
@@ -34,7 +33,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-
 		"animator:Strike_Blue":
 		{
 			"DESCRIPTION": "",
@@ -65,7 +63,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		
 		"animator:Strike_Dark":
 		{
 			"DESCRIPTION": "",
@@ -76,7 +73,6 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
@@ -168,7 +164,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** (!S! in {Afterlife}). || Add !S! {Dazed} to ** your draw pile.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** (!S! in {Afterlife}) to ALL enemies. || Add !S! {Dazed} to ** your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -199,7 +195,7 @@
 		},
 		"animator:Yusa":
 		{
-			"DESCRIPTION": "{Scry} !S!. || Exhaust !M! card(s) from your discard pile. Gain [B] for each <L> one.",
+			"DESCRIPTION": "{Scry} !S!. || Exhaust up to !M! card(s) from your discard pile. If any of them were <L>: Gain [B].",
 			"NAME": "Yusa"
 		},
 		"animator:YuzuruOtonashi":
@@ -1392,8 +1388,8 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 {<W> Token}.",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 [A-Gen] #yToken. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {<W> Token}.",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 of #b3 [A-Gen] #yTokens. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
@@ -1731,12 +1727,12 @@
 		},
 		"animator:Priestess":
 		{
-			"DESCRIPTION": "Gain [B]. Apply 1 [Weak] ** to ALL enemies. || Synergy: ** Exhaust a random ** Hindrance from your draw pile or hand to remove 1 [Frail] and [Weak].",
+			"DESCRIPTION": "Gain [B]. Apply 1 [Weak] ** to ALL enemies. || Synergy: Exhaust a random Hindrance anywhere to remove 1 [Frail] and [Weak].",
 			"NAME": "Priestess"
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A] [F]. || Add ** a {~Wound} to the top ** of your draw pile. ** !A! <R> and <G>: Add it to your hand instead.",
+			"DESCRIPTION": "Boost [A] [F]. || Add {~Wound} to the top of your draw pile. ** !A! <R> and <G>: Add it to your hand instead.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
@@ -1746,10 +1742,10 @@
 		},
 		"animator:Witch":
 		{
-			"DESCRIPTION": "<D> > <R>: Channel 1 [Dark] and trigger it. Otherwise, Channel 1 [Fire] and trigger it. || Synergy with {Spearman} or !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage.",
+			"DESCRIPTION": "<D> > <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage.",
 			"EXTENDED_DESCRIPTION": ["This turn, #yPiercing #yAttacks do #b{0}% more damage."],
 			"NAME": "Witch",
-			"UPGRADE_DESCRIPTION": "<D> > <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. Then, Trigger ALL [Fire] and [Dark]. || Synergy with {Spearman} or !A! <D>: Next turn: [~Piercing] Attacks do !M!% more damage."
+			"UPGRADE_DESCRIPTION": "<D> > <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. Then, Trigger ALL [Fire] and [Dark]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage."
 		}
 	},
 	"SERIES:HITSUGINOCHAIKA":
@@ -1913,7 +1909,8 @@
 		},
 		"animator:Darkness":
 		{
-			"DESCRIPTION": "This turn, if you take at least !M! unblocked damage: Gain !S! [F]. || Synergy: Lower this card's cost by 1 and its [Block] by !S!.",
+			"DESCRIPTION": "This turn, if you take at least 5 unblocked damage: Gain !M! [F]. || Synergy: Lower this card's cost by 1 and its [Block] by !S!.",
+			"EXTENDED_DESCRIPTION": ["This turn, if you take at least 5 unblocked damage: Gain #b{0} [F]."],
 			"NAME": "Darkness"
 		},
 		"animator:Darkness_Adrenaline":
@@ -2146,7 +2143,7 @@
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard the bottom card ** of your draw pile. || When Exhausted or ** Discarded: Channel 1 [Fire] ** and add a [Grief Seed] to your hand.",
+			"DESCRIPTION": "Discard the bottom-most non-{~Delayed} card in your draw pile. || When Exhausted or ** Discarded: Channel 1 [Fire] ** and add a [Grief Seed] to your hand.",
 			"NAME": "Yui Tsuruno"
 		}
 	},
@@ -2166,17 +2163,17 @@
 		"animator:DolaCouronne":
 		{
 			"DESCRIPTION": "Discard !M! card(s). Gain !S! additional [Block] for each <B> one. || <LIM>. When ** Exhausted: Gain 1 [Artifact].",
-			"NAME": "Couronne"
+			"NAME": "Couronne Dola"
 		},
 		"animator:DolaRiku":
 		{
 			"DESCRIPTION": "{Replace} a card in your hand ** with 1 of !M! cards ** of the same rarity. It costs 1 ** less this combat. || <SLM>. !A! <O>: ** Draw a {0-Cost} card.",
-			"NAME": "Riku"
+			"NAME": "Riku Dola"
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Apply !M! [~Lock-On]. In !S! turns: Attack ALL targets with [~Lock-On]. || <CDN>: Channel 1 [Lightning]. Cooldown progresses on Discard.",
-			"NAME": "Schwi"
+			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL targets with [~Lock-On]. || <CDN>: Increase this card's damage by !S! this combat.",
+			"NAME": "Schwi Dola"
 		},
 		"animator:DolaStephanie":
 		{
@@ -2186,9 +2183,10 @@
 		},
 		"animator:FielNirvalen":
 		{
-			"DESCRIPTION": "Choose and Boost ** !M! {Affinity Power(s)}. || Once per turn, when ** you shuffle your ** draw pile: Scry 2.",
-			"EXTENDED_DESCRIPTION": ["Once per turn, when you shuffle your draw pile: #yScry #b{0}."],
-			"NAME": "Fiel Nirvalen"
+			"DESCRIPTION": "On your first Synergy each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose !S! of 3 {<W> Tokens} to add to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["On your first #b{0} Synergies each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose #b{0} of 3 <W> #yTokens to add to your draw pile."],
+			"NAME": "Fiel Nirvalen",
+			"UPGRADE_DESCRIPTION": "On your first !M! Synergies each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose !S! of 3 {<W> Tokens} to add to your draw pile."
 		},
 		"animator:IzunaHatsuse":
 		{
@@ -2204,7 +2202,7 @@
 		},
 		"animator:Miko":
 		{
-			"DESCRIPTION": "Gain !M! [Supercharged] {Charge} whenever you Synergize or trigger [Plasma]. [Supercharged] {Charge} is now consumed in stacks of 16. || <LIM>. Gain 1 [Supercharged].",
+			"DESCRIPTION": "Gain !M! [Supercharged] {Charge} per stack of [Supercharged] whenever you Synergize or trigger [Plasma]. [Supercharged] {Charge} is now consumed in stacks of 16. || <LIM>. Gain 1 [Supercharged].",
 			"EXTENDED_DESCRIPTION": ["Gain #b{0} [Supercharged] #yCharge whenever you #ySynergize or trigger [Plasma]. [Supercharged] #yCharge is consumed in stacks of #b{1}."],
 			"NAME": "Miko"
 		},
@@ -2216,12 +2214,12 @@
 		},
 		"animator:Shiro":
 		{
-			"DESCRIPTION": "Scry !M!. For each card Scried: Trigger an orb in sequential order. || Spend 8 [Supercharged] {Charge}: Evoke your first Orb twice with ** +!S! [Focus].",
+			"DESCRIPTION": "Scry !M!. For each card Scried: Trigger a random Orb. || Spend 8 [Supercharged] {Charge}: Evoke your first Orb twice with ** +!S! [Focus].",
 			"NAME": "Shiro"
 		},
 		"animator:Sora":
 		{
-			"DESCRIPTION": "Next turn: Obtain 1 of 3 Strategies. || <LIM>. Synergy with {Shiro}: Gain !M! [Energized].",
+			"DESCRIPTION": "Choose 1 of 3 Strategies to Obtain next turn. || <LIM>. Synergy with {Shiro}: Gain !M! [Energized].",
 			"NAME": "Sora"
 		},
 		"animator:Sora_Strategy1":
@@ -2231,7 +2229,7 @@
 		},
 		"animator:Sora_Strategy2":
 		{
-			"DESCRIPTION": "Gain !M! Temp. [Artifact]. || When discarded: ** Exhaust.",
+			"DESCRIPTION": "Gain !M! Temp. [Artifact] and !S! [Blur]. || When discarded: ** Exhaust.",
 			"NAME": "Juke Strategy"
 		},
 		"animator:Sora_Strategy3":

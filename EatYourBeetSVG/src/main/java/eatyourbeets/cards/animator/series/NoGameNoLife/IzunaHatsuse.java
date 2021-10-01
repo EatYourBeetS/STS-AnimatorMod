@@ -28,7 +28,7 @@ public class IzunaHatsuse extends AnimatorCard
         super(DATA);
 
         Initialize(1, 0, 2, 1);
-        SetUpgrade(2, 1, 2);
+        SetUpgrade(2, 1, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
@@ -54,7 +54,7 @@ public class IzunaHatsuse extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return transformed ? super.GetDamageInfo().AddMultiplier(2) : null;
+        return super.GetDamageInfo().AddMultiplier(2);
     }
 
     @Override

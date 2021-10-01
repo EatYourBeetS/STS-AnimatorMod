@@ -170,7 +170,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], [Weak], and [Impaired] on you. Retain up to 2 Block per stack each turn.",
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Retain up to 2 Block per stack each turn.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},

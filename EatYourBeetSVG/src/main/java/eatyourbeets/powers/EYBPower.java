@@ -38,7 +38,7 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
 
     protected static final Color disabledColor = new Color(0.5f, 0.5f, 0.5f, 1);
     protected final ArrayList<AbstractGameEffect> effects;
-    protected final PowerStrings powerStrings;
+    protected PowerStrings powerStrings;
 
     public static AbstractPlayer player = null;
     public static Random rng = null;

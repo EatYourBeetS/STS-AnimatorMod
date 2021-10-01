@@ -39,29 +39,29 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
         GameActions.Bottom.Scry(magicNumber).AddCallback(
                 cards -> {
                     if (cards.size() > 0) {
-                        GameActions.Bottom.TriggerOrbPassive(cards.size(), false, true);
+                        GameActions.Bottom.TriggerOrbPassive(cards.size(), true, false);
+                    }
+
+                    if (GameUtilities.SpendSuperchargedCharge(CHARGE_COST)) {
+                        focusedOrb = null;
+                        for (AbstractOrb orb : player.orbs)
+                        {
+                            if (GameUtilities.IsValidOrb(orb))
+                            {
+                                focusedOrb = orb;
+                                break;
+                            }
+                        }
+                        if (focusedOrb != null) {
+                            CombatStats.onOrbApplyFocus.Subscribe(this);
+                            GameActions.Bottom.EvokeOrb(secondaryValue, focusedOrb).AddCallback(() -> {
+                                CombatStats.onOrbApplyFocus.Unsubscribe(this);
+                            });
+                        }
+
                     }
                 }
         );
-
-        if (GameUtilities.SpendSuperchargedCharge(CHARGE_COST)) {
-            focusedOrb = null;
-            for (AbstractOrb orb : player.orbs)
-            {
-                if (GameUtilities.IsValidOrb(orb))
-                {
-                    focusedOrb = orb;
-                    break;
-                }
-            }
-            if (focusedOrb != null) {
-                CombatStats.onOrbApplyFocus.Subscribe(this);
-                GameActions.Bottom.EvokeOrb(secondaryValue, focusedOrb).AddCallback(() -> {
-                    CombatStats.onOrbApplyFocus.Unsubscribe(this);
-                });
-            }
-
-        }
     }
 
     @Override

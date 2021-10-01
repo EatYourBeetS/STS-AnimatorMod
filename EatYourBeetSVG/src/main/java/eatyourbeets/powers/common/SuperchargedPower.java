@@ -55,7 +55,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, CHARGE_THRESHOLD, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f, !enabled ? powerStrings.DESCRIPTIONS[1] : null);
+        this.description = FormatDescription(0, amount, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f, !enabled ? powerStrings.DESCRIPTIONS[1] : null);
     }
 
     @Override
@@ -113,12 +113,16 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
 
     @Override
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        this.charge += card.cost;
-        this.updateDescription();
+        int increase = card.cost * this.amount;
+        if (increase > 0) {
+            this.charge += increase;
+            this.flash();
+            this.updateDescription();
+        }
     }
 
     private float GetChargeIncrease(int charge) {
-        return 0.25f * this.amount * Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
+        return 0.25f * Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
     }
 
     private float GetChargeMultiplier(int charge) {
@@ -129,8 +133,12 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
 
     @Override
     public int OnSpendEnergy(int spendAmount) {
-        this.charge += spendAmount;
-        this.updateDescription();
+        int increase = spendAmount * this.amount;
+        if (increase > 0) {
+            this.charge += increase;
+            this.flash();
+            this.updateDescription();
+        }
         return spendAmount;
     }
 }

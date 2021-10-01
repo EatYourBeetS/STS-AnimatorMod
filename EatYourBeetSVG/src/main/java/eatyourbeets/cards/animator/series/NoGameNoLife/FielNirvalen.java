@@ -1,91 +1,86 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.misc.GenericEffects.GenericEffect_GainOrBoost;
+import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class FielNirvalen extends AnimatorCard
 {
-    public static final int SCRY_AMOUNT = 2;
     public static final EYBCardData DATA = Register(FielNirvalen.class)
-            .SetPower(1, CardRarity.UNCOMMON)
-            .SetMaxCopies(3)
+            .SetPower(2, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-
-    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public FielNirvalen()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
     }
 
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, false).SetText(GetSecondaryValueString());
+    public void OnUpgrade() {
+        SetInnate(true);
+        SetRetainOnce(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(secondaryValue);
-        GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
-
-        if (choices.TryInitialize(this))
-        {
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Agility, 1, true));
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Intellect, 1, true));
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Force, 1, true));
-        }
-
-        choices.Select(magicNumber, m);
+        GameActions.Bottom.StackPower(new FielNirvalenPower(p, magicNumber, secondaryValue));
     }
 
-    public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber
+    public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber, OnSynergySubscriber
     {
-        public FielNirvalenPower(AbstractCreature owner, int amount)
+        private boolean canObtain = true;
+        private final int secondaryAmount;
+        public static int MAXIMUM_SECONDARY = 3;
+        public FielNirvalenPower(AbstractCreature owner, int amount, int secondaryAmount)
         {
             super(owner, FielNirvalen.DATA);
 
             this.amount = amount;
+            this.secondaryAmount = Math.min(MAXIMUM_SECONDARY, secondaryAmount);
 
+            Initialize(amount);
             updateDescription();
         }
 
         @Override
         public void onInitialApplication()
         {
+            CombatStats.onSynergy.Subscribe(this);
             CombatStats.onShuffle.Subscribe(this);
         }
 
         @Override
         public void onRemove()
         {
+            CombatStats.onSynergy.Unsubscribe(this);
             CombatStats.onShuffle.Unsubscribe(this);
         }
 
         @Override
         public void atStartOfTurn()
         {
-            enabled = true;
+            super.atStartOfTurn();
+
+            canObtain = true;
+            ResetAmount();
         }
 
         @Override
@@ -97,10 +92,17 @@ public class FielNirvalen extends AnimatorCard
                 return;
             }
 
-            if (enabled)
+            if (canObtain)
             {
-                GameActions.Bottom.Scry(amount);
-                enabled = false;
+                GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, secondaryAmount, MAXIMUM_SECONDARY)
+                        .AddCallback(cards ->
+                        {
+                            for (AbstractCard c : cards)
+                            {
+                                GameActions.Bottom.MakeCardInDrawPile(c);
+                            }
+                        }));
+                canObtain = false;
                 flash();
             }
         }
@@ -108,7 +110,18 @@ public class FielNirvalen extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount);
+            description = FormatDescription(0, amount, secondaryAmount);
+        }
+
+        @Override
+        public void OnSynergy(AbstractCard card) {
+            if (amount > 0)
+            {
+                GameActions.Bottom.Scry(1);
+                this.amount -= 1;
+                updateDescription();
+                flash();
+            }
         }
     }
 }

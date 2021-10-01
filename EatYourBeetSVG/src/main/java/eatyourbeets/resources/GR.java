@@ -53,6 +53,7 @@ public class GR
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
     public static CommonResources Common;
+    public static ShaderProgram GrayscaleShader;
     public static ShaderProgram SepiaShader;
     public static boolean IsLoaded;
 
@@ -78,10 +79,21 @@ public class GR
         BaseMod.subscribe(resources);
     }
 
+    public static ShaderProgram GetGrayscaleShader() {
+        if (GrayscaleShader == null) {
+            FileHandle fShader = Gdx.files.internal("shaders/grayscaleFragment.glsl");
+            FileHandle vShader = Gdx.files.internal("shaders/coloringVertex.glsl");
+            String fShaderString = fShader.readString();
+            String vShaderString = vShader.readString();
+            GrayscaleShader = new ShaderProgram(vShaderString, fShaderString);
+        }
+        return GrayscaleShader;
+    }
+
     public static ShaderProgram GetSepiaShader() {
         if (SepiaShader == null) {
             FileHandle fShader = Gdx.files.internal("shaders/sepiaFragment.glsl");
-            FileHandle vShader = Gdx.files.internal("shaders/sepiaVertex.glsl");
+            FileHandle vShader = Gdx.files.internal("shaders/coloringVertex.glsl");
             String fShaderString = fShader.readString();
             String vShaderString = vShader.readString();
             SepiaShader = new ShaderProgram(vShaderString, fShaderString);

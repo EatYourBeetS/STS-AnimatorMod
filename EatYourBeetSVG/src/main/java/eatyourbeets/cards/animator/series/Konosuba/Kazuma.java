@@ -1,49 +1,44 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kazuma extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kazuma.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetAttack(1, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
 
     public Kazuma()
     {
         super(DATA);
 
-        Initialize(0, 6, 2);
-        SetUpgrade(0, 2, 1);
+        Initialize(5, 2, 2, 1);
+        SetUpgrade(1, 1, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
-        SetAffinity_Orange(1);
 
         SetProtagonist(true);
         SetHarmonic(true);
     }
 
     @Override
-    protected float GetInitialBlock()
-    {
-        return super.GetInitialBlock() + (HasSynergy() ? magicNumber : 0);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
-    }
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.Cycle(name, 1);
+        this.baseDamage += magicNumber;
+
+        if (info.IsSynergizing && GameUtilities.IsSameSeries(this, info.PreviousCard)) {
+            info.PreviousCard.baseBlock += secondaryValue;
+        };
     }
 }

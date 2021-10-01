@@ -17,6 +17,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
@@ -30,7 +31,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(16, 0, 1, 2);
+        Initialize(12, 0, 1, 2);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);
@@ -41,6 +42,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.ChannelOrb(new Lightning());
         GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
 
         DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
@@ -53,28 +55,25 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (turns > 0)
-        {
-            turns -= 1;
-        }
-        else
+        turns -= 1;
+        if (turns <= 0)
         {
             applyPowers();
 
             GameEffects.Queue.ShowCardBriefly(this);
 
-
-            GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
-            GameActions.Bottom.BorderFlash(Color.SKY);
-            GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
-            for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
-                if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0) {
-                    this.calculateCardDamage(m);
-                    GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
+            if (GameUtilities.GetPowers(TargetHelper.Enemies(), LockOnPower.POWER_ID).size() > 0) {
+                GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
+                GameActions.Bottom.BorderFlash(Color.SKY);
+                GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
+                for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
+                    if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0) {
+                        this.calculateCardDamage(m);
+                        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
+                    }
                 }
+                GameUtilities.UsePenNib();
             }
-            GameUtilities.UsePenNib();
-
 
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
@@ -82,6 +81,6 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.ChannelOrb(new Lightning());
+        this.baseDamage += secondaryValue;
     }
 }

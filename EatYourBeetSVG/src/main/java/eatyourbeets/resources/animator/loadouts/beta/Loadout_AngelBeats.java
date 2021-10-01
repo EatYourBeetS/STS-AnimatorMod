@@ -19,9 +19,9 @@ public class Loadout_AngelBeats extends AnimatorLoadout
     {
         AddStarterCard(HidekiHinata.DATA, 4);
         AddStarterCard(MasamiIwasawa.DATA, 5);
-        AddStarterCard(Yusa.DATA, 4);
+        AddStarterCard(Yusa.DATA, 6);
         AddStarterCard(Noda.DATA, 5);
-        AddStarterCard(YuzuruOtonashi.DATA, 8);
+        AddStarterCard(YuzuruOtonashi.DATA, 6);
     }
 
     @Override

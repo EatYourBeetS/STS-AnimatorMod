@@ -69,7 +69,7 @@ public class Serara extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                ((EYBCard)c).SetScaling(Affinity.Orange, 2);
+                GameActions.Bottom.IncreaseScaling(c, Affinity.Orange, 2);
                 buffs.add(c);
                 c.flash();
             }

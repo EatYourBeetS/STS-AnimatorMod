@@ -1,7 +1,7 @@
 {
   "No Relics": {
     "NAME": "No Relics",
-    "DESCRIPTION": "You cannot add relics to your deck, except for Special and Boss Relics."
+    "DESCRIPTION": "Non-Event, non-Boss relics are replaced with Circlets."
   },
   "Series Deck": {
     "NAME": "Series Deck",

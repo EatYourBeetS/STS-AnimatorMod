@@ -1,12 +1,17 @@
 package eatyourbeets.relics;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.*;
+import eatyourbeets.dailymods.NoRelics;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+
+import java.util.ArrayList;
 
 public abstract class AnimatorRelic extends EYBRelic
 {
@@ -32,6 +37,28 @@ public abstract class AnimatorRelic extends EYBRelic
             data.RemoveRelic(CeramicFish.ID);
 
             data.AddRelic(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
+
+            if (ModHelper.isModEnabled(NoRelics.ID))
+            {
+                ArrayList<String> relics = new ArrayList<>();
+                relics.addAll(GameUtilities.GetRelicPool(RelicTier.COMMON));
+                relics.addAll(GameUtilities.GetRelicPool(RelicTier.UNCOMMON));
+                relics.addAll(GameUtilities.GetRelicPool(RelicTier.RARE));
+                relics.addAll(GameUtilities.GetRelicPool(RelicTier.SHOP));
+
+                for (String relic : relics)
+                {
+                    data.RemoveRelic(relic);
+                }
+
+                data.AddRelic(Circlet.ID, AbstractRelic.RelicTier.COMMON);
+                data.AddRelic(Circlet.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(Circlet.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(Circlet.ID, AbstractRelic.RelicTier.SHOP);
+
+                return;
+            }
+
             data.AddRelic(RunicCapacitor.ID, AbstractRelic.RelicTier.SHOP);
             data.AddRelic(TwistedFunnel.ID, AbstractRelic.RelicTier.SHOP);
             data.AddRelic(Brimstone.ID, AbstractRelic.RelicTier.SHOP);

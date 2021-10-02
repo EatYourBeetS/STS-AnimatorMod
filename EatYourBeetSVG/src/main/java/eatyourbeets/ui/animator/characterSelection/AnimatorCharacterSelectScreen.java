@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.GameUtilities;
@@ -53,11 +52,6 @@ public class AnimatorCharacterSelectScreen
     public static void Render(CharacterSelectScreen selectScreen, SpriteBatch sb)
     {
         // RenderOption is being called instead
-    }
-
-    public static void OpenLoadoutEditor(AnimatorLoadout loadout)
-    {
-        LoadoutRenderer.OpenLoadoutEditorForLoadout(loadout, selectedOption);
     }
 
     public static void RandomizeLoadout()

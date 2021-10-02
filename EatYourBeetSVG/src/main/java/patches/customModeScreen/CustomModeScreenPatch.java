@@ -114,7 +114,6 @@ public class CustomModeScreenPatch {
         @SpirePostfixPatch
         public static void Postfix(CustomModeScreen __instance, SpriteBatch sb)
         {
-            //Add all custom run mods here
             RenderSeries(__instance, sb);
         }
 

@@ -13,7 +13,13 @@ public class AnimatorDailyMod extends AbstractDailyMod {
 
     private static final String TESTIMAGE = "draft.png";
     public static final List<AnimatorDailyMod> mods = Arrays.asList(
+            //blue
             new SeriesDeck(),
+
+            //green
+            new AllRelicAnimatorRun(),
+
+            //red
             new NoRelics()
     );
     private ModColor color;

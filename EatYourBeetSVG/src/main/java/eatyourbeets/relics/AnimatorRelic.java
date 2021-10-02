@@ -3,6 +3,7 @@ package eatyourbeets.relics;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.*;
+import eatyourbeets.dailymods.AllRelicAnimatorRun;
 import eatyourbeets.dailymods.NoRelics;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.resources.GR;
@@ -28,15 +29,28 @@ public abstract class AnimatorRelic extends EYBRelic
         {
             final AnimatorDungeonData data = GR.Animator.Dungeon;
 
-            data.RemoveRelic(PenNib.ID);
-            data.RemoveRelic(Kunai.ID);
-            data.RemoveRelic(StrikeDummy.ID);
-            data.RemoveRelic(SneckoEye.ID);
-            data.RemoveRelic(SacredBark.ID);
-            data.RemoveRelic(RunicPyramid.ID);
-            data.RemoveRelic(CeramicFish.ID);
+            if (!ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
+                data.RemoveRelic(PenNib.ID);
+                data.RemoveRelic(Kunai.ID);
+                data.RemoveRelic(StrikeDummy.ID);
+                data.RemoveRelic(SneckoEye.ID);
+                data.RemoveRelic(SacredBark.ID);
+                data.RemoveRelic(RunicPyramid.ID);
+                data.RemoveRelic(CeramicFish.ID);
+            }
 
             data.AddRelic(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
+
+            if (ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
+                data.AddRelic(BlackBlood.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(RunicCube.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(WristBlade.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(HoveringKite.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(FrozenCore.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(Inserter.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(NuclearBattery.ID, AbstractRelic.RelicTier.BOSS);
+                data.AddRelic(HolyWater.ID, AbstractRelic.RelicTier.BOSS);
+            }
 
             if (ModHelper.isModEnabled(NoRelics.ID))
             {
@@ -70,6 +84,26 @@ public abstract class AnimatorRelic extends EYBRelic
             data.AddRelic(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
+
+            if (ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
+                data.AddRelic(BurningBlood.ID, AbstractRelic.RelicTier.SHOP);
+                data.AddRelic(RingOfTheSerpent.ID, AbstractRelic.RelicTier.SHOP);
+                data.AddRelic(CrackedCore.ID, AbstractRelic.RelicTier.SHOP);
+                data.AddRelic(PureWater.ID, AbstractRelic.RelicTier.SHOP);
+                data.AddRelic(SneckoSkull.ID, AbstractRelic.RelicTier.COMMON);
+                data.AddRelic(SelfFormingClay.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(NinjaScroll.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(GoldPlatedCables.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(SymbioticVirus.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(Duality.ID, AbstractRelic.RelicTier.UNCOMMON);
+                data.AddRelic(MagicFlower.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(TheSpecimen.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(Tingsha.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(ToughBandages.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(EmotionChip.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(GoldenEye.ID, AbstractRelic.RelicTier.RARE);
+                data.AddRelic(Melange.ID, AbstractRelic.RelicTier.SHOP);
+            }
 
             AbstractMissingPiece.RefreshDescription();
         }

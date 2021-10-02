@@ -41,7 +41,7 @@ public class Tartaglia extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
-                .AddCallback(m.currentBlock, (initialBlock, targets) ->
+                .AddCallback((targets) ->
                 {
                     for (AbstractCreature t : targets) {
                         if (GameUtilities.IsDeadOrEscaped(t) && CombatStats.TryActivateLimited(cardID))

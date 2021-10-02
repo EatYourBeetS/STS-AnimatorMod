@@ -26,13 +26,13 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.Cycle(name, secondaryValue)
-        .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));
+        GameActions.Bottom.Cycle(name, secondaryValue);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
                 if (GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Orange)) {

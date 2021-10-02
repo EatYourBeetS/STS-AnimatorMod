@@ -20,7 +20,7 @@ public class JeanGunnhildr extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 1, 2, 1);
+        Initialize(7, 1, 2, 1);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
@@ -60,7 +60,7 @@ public class JeanGunnhildr extends AnimatorCard
                             }
                         }
                         if (discarded > 0) {
-                            GameActions.Bottom.GainAgility(secondaryValue);
+                            GameActions.Bottom.GainAgility(discarded * secondaryValue);
                         }
                     }
                 });

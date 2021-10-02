@@ -17,9 +17,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Sora.class)
-            .SetSkill(1, CardRarity.RARE, EYBCardTarget.ALL)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetSeries(CardSeries.NoGameNoLife)
-            .PostInitialize(data -> data.AddPreview(new Shiro(), false).AddPreview(new Sora_Strategy1(), false).AddPreview(new Sora_Strategy2(), false).AddPreview(new Sora_Strategy3(), false));
+            .PostInitialize(data -> data
+                    .AddPreview(new Sora_Strategy1(), true)
+                    .AddPreview(new Sora_Strategy2(), true)
+                    .AddPreview(new Sora_Strategy3(), true)
+                    .AddPreview(new Shiro(), false));
     private AbstractCard plan;
 
     public Sora()
@@ -43,6 +47,12 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
         group.addToBottom(new Sora_Strategy2());
         group.addToBottom(new Sora_Strategy3());
 
+        if (upgraded) {
+            for (AbstractCard c : group.group) {
+                c.upgrade();
+            }
+        }
+
         GameActions.Bottom.SelectFromPile(name, 1, group)
                 .SetOptions(false, false)
                 .AddCallback(cards ->
@@ -64,7 +74,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
     public void OnStartOfTurnPostDraw()
     {
         if (plan != null) {
-            GameActions.Bottom.MakeCardInHand(plan);
+            GameActions.Bottom.MakeCardInHand(plan).SetUpgrade(upgraded, false);
             GameUtilities.RefreshHandLayout();
         }
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

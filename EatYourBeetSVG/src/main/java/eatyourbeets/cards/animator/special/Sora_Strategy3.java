@@ -21,7 +21,7 @@ public class Sora_Strategy3 extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 4);
-        SetUpgrade(0,0,1);
+        SetUpgrade(0,0,0);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
@@ -41,6 +41,9 @@ public class Sora_Strategy3 extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (upgraded) {
+            GameActions.Bottom.Draw(1);
+        }
         GameActions.Bottom.Cycle(name,magicNumber);
     }
 }

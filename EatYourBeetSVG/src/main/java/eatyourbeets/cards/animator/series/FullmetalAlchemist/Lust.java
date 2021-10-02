@@ -1,75 +1,44 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.effects.VFX;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Lust extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lust.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
-
-    protected static boolean flipVfx;
-    protected boolean gainTempHP = false;
 
     public Lust()
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 3);
-        SetUpgrade(1, 0, 0);
+        Initialize(0, 0, 5, 2);
 
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(1, 1, 0);
         SetAffinity_Orange(1, 1, 0);
-        SetAffinity_Green(0, 0, 1);
-    }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return magicNumber > 1 ? super.GetDamageInfo().AddMultiplier(magicNumber) : super.GetDamageInfo();
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return gainTempHP ? TempHPAttribute.Instance.SetCard(this, false).SetText(secondaryValue, Colors.Cream(1f)) : null;
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        this.gainTempHP = (enemy != null && enemy.hasPower(VulnerablePower.POWER_ID));
-        this.magicNumber = (JUtils.Any(player.hand.group, GameUtilities::IsHindrance) ? 2 : 1);
+        SetAffinityRequirement(Affinity.Dark, 4);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-            .SetVFX(true, false)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.WHITE, Color.VIOLET)
-                                      .FlipX(flipVfx ^= true).SetScale(0.7f)).duration);
+        GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber, AttackEffects.SLASH_VERTICAL);
+        if (upgraded) {
+            AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+            if (mo != null) {
+                GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, magicNumber, AttackEffects.SLASH_VERTICAL);
+            }
         }
-
-        if (gainTempHP)
-        {
-            GameActions.Bottom.GainTemporaryHP(secondaryValue);
-        }
+        int amount = CheckAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
+        GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), amount);
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), amount);
     }
 }

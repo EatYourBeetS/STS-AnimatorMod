@@ -23,6 +23,7 @@ public class Sora_Strategy1 extends AnimatorCard
         SetUpgrade(0,5,0);
 
         SetAffinity_Blue(1);
+        SetAffinity_Orange(1);
 
         SetEthereal(true);
         SetExhaust(true);

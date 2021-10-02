@@ -7,6 +7,7 @@ import eatyourbeets.cards.animator.special.Darkness_Adrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Darkness extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Darkness.class)
-            .SetSkill(2, CardRarity.COMMON)
+            .SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Darkness_Adrenaline(), false));
 
@@ -22,8 +23,8 @@ public class Darkness extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 13, 3, 5);
-        SetUpgrade(0, 1, 1, -1);
+        Initialize(0, 13, 2, 5);
+        SetUpgrade(0, 1, 0, -1);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
@@ -43,6 +44,7 @@ public class Darkness extends AnimatorCard
 
     public class DarknessPower extends AnimatorPower
     {
+        private int damageTaken;
 
         public DarknessPower(AbstractPlayer owner, int amount)
         {
@@ -56,12 +58,14 @@ public class Darkness extends AnimatorCard
         {
             super.wasHPLost(info, damageAmount);
 
-            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 5)
+            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
             {
-                GameActions.Bottom.GainForce(amount);
-                RemovePower();
-
-                this.flash();
+                damageTaken += damageAmount;
+                if (damageTaken >= 5) {
+                    GameActions.Bottom.GainForce(amount);
+                    RemovePower();
+                    this.flash();
+                }
             }
         }
 

@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -28,11 +25,12 @@ public class Rena extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 0, 1);
-        SetUpgrade(0, 3);
+        Initialize(0, 3, 2, 2);
+        SetUpgrade(0, 2, 1);
 
-        SetAffinity_Green(1);
-        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Green(1,1,0);
+
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -40,7 +38,7 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }
@@ -50,11 +48,18 @@ public class Rena extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.CreateThrowingKnives(1);
-
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.ChannelOrb(new Air());
-        }
+        GameActions.Bottom.EvokeOrb(1)
+                .SetFilter(o -> Air.ORB_ID.equals(o.ID))
+                .AddCallback(orbs ->
+                {
+                    if (orbs.size() > 0)
+                    {
+                        GameActions.Bottom.GainAgility(magicNumber);
+                    }
+                    else
+                    {
+                        GameActions.Bottom.ChannelOrb(new Air());
+                    }
+                });
     }
 }

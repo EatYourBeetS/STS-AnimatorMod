@@ -26,6 +26,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
             .SetSeriesFromClassPackage();
 
     private int turns = 0;
+    private int turnReduction = 0;
 
     public DolaSchwi()
     {
@@ -45,11 +46,11 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         GameActions.Bottom.ChannelOrb(new Lightning());
         GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
 
+        cooldown.ProgressCooldownAndTrigger(m);
         DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
         other.turns = secondaryValue;
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
-
-        cooldown.ProgressCooldownAndTrigger(m);
+        turnReduction = 0;
     }
 
     @Override
@@ -81,6 +82,6 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        this.baseDamage += secondaryValue;
+        turnReduction = -1;
     }
 }

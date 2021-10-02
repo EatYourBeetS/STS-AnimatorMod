@@ -1,17 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
 
 public class Souseiseki extends AnimatorCard
 {
@@ -23,8 +19,8 @@ public class Souseiseki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 3, 0, 0);
-        SetUpgrade(2, 0, 0, 0);
+        Initialize(8, 4, 0, 0);
+        SetUpgrade(2, 1, 0, 0);
         SetAffinity_Orange(2, 0, 1);
     }
 
@@ -52,12 +48,15 @@ public class Souseiseki extends AnimatorCard
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
                 .SetOptions(false, false, false)
-                .AddCallback(this::AfterExhaust);
-    }
+                .AddCallback(cards -> {
+                    if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
+                        GameActions.Bottom.Draw(1);
+                });
 
-    public void AfterExhaust(ArrayList<AbstractCard> cards)
-    {
-        if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
-            GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+        if (info.IsSynergizing) {
+            GameActions.Bottom.Draw(1)
+                    .ShuffleIfEmpty(false)
+                    .SetFilter(c -> Suiseiseki.DATA.ID.equals(c.cardID), false);
+        }
     }
 }

@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class MikuIzayoi extends AnimatorCard
@@ -45,7 +46,7 @@ public class MikuIzayoi extends AnimatorCard
             GameActions.Bottom.GainInspiration(secondaryValue);
         }
 
-        if (info.IsSynergizing) {
+        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard)) {
             GameActions.Bottom.Motivate(secondaryValue);
         }
     }

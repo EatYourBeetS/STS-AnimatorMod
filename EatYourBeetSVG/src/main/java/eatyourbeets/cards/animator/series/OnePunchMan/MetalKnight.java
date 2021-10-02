@@ -22,7 +22,7 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 9, 2);
+        Initialize(13, 3, 9, 2);
         SetUpgrade(3, 0, 2, 1);
 
         SetAffinity_Red(2);
@@ -46,6 +46,7 @@ public class MetalKnight extends AnimatorCard
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ChannelOrbs(Plasma::new, 1);
         if (GameUtilities.CanTriggerSupercharged()) {
             GameActions.Bottom.GainMetallicize(secondaryValue);

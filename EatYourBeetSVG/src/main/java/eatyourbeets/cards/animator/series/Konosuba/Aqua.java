@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
@@ -34,7 +35,10 @@ public class Aqua extends AnimatorCard
         SetAffinity_Light(2);
 
         SetHealing(true);
+        SetHarmonic(true);
         SetTransformed(transformed);
+
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
@@ -79,6 +83,9 @@ public class Aqua extends AnimatorCard
             GameActions.Bottom.GainBlessing(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
+            if (CheckAffinity(Affinity.Blue) && info.IsSynergizing && info.TryActivateLimited()) {
+                GameActions.Bottom.ChannelOrb(new Water());
+            }
             GameActions.Bottom.Callback(() -> SetTransformed(true));
         }
         else

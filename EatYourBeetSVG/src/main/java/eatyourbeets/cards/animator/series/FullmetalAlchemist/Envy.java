@@ -4,24 +4,25 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Envy extends AnimatorCard
+public class Envy extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Envy.class)
             .SetPower(2, CardRarity.RARE)
             .SetSeriesFromClassPackage();
-    public static final int TEMP_HP_ENERGY_COST = 2;
+    public static final int DAMAGE_COST = 5;
 
     public Envy()
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, DAMAGE_COST);
 
         SetAffinity_Star(1, 1, 0);
 
@@ -40,47 +41,48 @@ public class Envy extends AnimatorCard
         GameActions.Bottom.StackPower(new EnvyPower(p, 1));
     }
 
-    public static class EnvyPower extends AnimatorClickablePower
+    public static class EnvyPower extends AnimatorClickablePower implements OnSynergyCheckSubscriber
     {
         private int vitality;
 
         public EnvyPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Envy.DATA, PowerTriggerConditionType.Energy, Envy.TEMP_HP_ENERGY_COST);
+            super(owner, Envy.DATA, PowerTriggerConditionType.TakeDelayedDamage, Envy.DAMAGE_COST);
 
-            triggerCondition.SetUses(1, true, false);
+            triggerCondition.SetOneUsePerPower(true);
 
             Initialize(amount);
         }
 
         @Override
-        public void update(int slot)
-        {
-            super.update(slot);
-
-            if (GR.UI.Elapsed25())
-            {
-                UpdateVitality();
-            }
-        }
-
-        @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, vitality, amount);
+            return FormatDescription(0, amount, Envy.DAMAGE_COST, 1);
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void onInitialApplication()
         {
-            super.atStartOfTurnPostDraw();
+            super.onInitialApplication();
 
-            GameActions.Last.Callback(() ->
-            {
-                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
-                .SetFilter(EnvyPower::HasUpgradableAffinities);
-                flash();
-            });
+            CombatStats.onSynergyCheck.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergyCheck.Unsubscribe(this);
+        }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            ResetAmount();
+            updateDescription();
         }
 
         @Override
@@ -88,18 +90,12 @@ public class Envy extends AnimatorCard
         {
             super.OnUse(m);
 
-            UpdateVitality();
-            GameActions.Bottom.GainVitality(vitality);
-        }
-
-        private void UpdateVitality()
-        {
-            final int newValue = GameUtilities.GetHealthPercentage(player) < 0.2f ? 2 : 1;
-            if (newValue != vitality)
+            GameActions.Last.Callback(() ->
             {
-                vitality = newValue;
-                updateDescription();
-            }
+                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
+                        .SetFilter(EnvyPower::HasUpgradableAffinities);
+                flash();
+            });
         }
 
         private static boolean HasUpgradableAffinities(AbstractCard c)
@@ -122,6 +118,19 @@ public class Envy extends AnimatorCard
             }
 
             return false;
+        }
+
+        @Override
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        {
+            super.onPlayCard(card, m);
+            this.amount = Math.max(0, this.amount - 1);
+        }
+
+        @Override
+        public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
+        {
+            return amount > 0;
         }
     }
 }

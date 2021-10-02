@@ -37,7 +37,7 @@ public class Kazuma extends AnimatorCard
 
         this.baseDamage += magicNumber;
 
-        if (info.IsSynergizing && GameUtilities.IsSameSeries(this, info.PreviousCard)) {
+        if (info.IsSynergizing && GameUtilities.IsSameSeries(this, info.PreviousCard) && info.PreviousCard.baseBlock > 0) {
             info.PreviousCard.baseBlock += secondaryValue;
         };
     }

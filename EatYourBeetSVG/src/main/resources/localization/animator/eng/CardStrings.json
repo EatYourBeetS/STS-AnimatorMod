@@ -99,10 +99,10 @@
 		},
 		"animator:MysteryCard":
 		{
-			"DESCRIPTION": "At the start of combat: Transforms into a random {Low-Cost} Common card.",
-			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random {Low-Cost} Common card that changes every combat instead of removing a card from your deck."],
+			"DESCRIPTION": "At the start of combat: Transforms into a random 1- Cost Common card.",
+			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random 1- Cost Common card that changes every combat instead of removing a card from your deck."],
 			"NAME": "? ? ?",
-			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded {Low-Cost} Common card."
+			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded 1- Cost Common card."
 		},
 		"animator:MysteryCard2":
 		{
@@ -421,8 +421,8 @@
 		},
 		"animator:KaedeAkamatsu":
 		{
-			"DESCRIPTION": "Lower the cost of the next !M! {High-Cost} cards created this combat by 1. || Synergy with <L>: {Fetch} a {Synergic} card from your Exhaust pile.",
-			"EXTENDED_DESCRIPTION": ["Lower the cost of the next #b{0} #yHigh-Cost cards created this combat by 1."],
+			"DESCRIPTION": "Lower the cost of the next !M! 2+ Cost cards created this combat by 1. || Synergy with <L>: {Fetch} a {Synergic} card from your Exhaust pile.",
+			"EXTENDED_DESCRIPTION": ["Lower the cost of the next #b{0} cards with #b2+ Cost created this combat by 1."],
 			"NAME": "Kaede Akamatsu"
 		},
 		"animator:KaijiItou":
@@ -623,7 +623,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Gain !S! [Inspiration]. Gain double [Inspiration] if you have at least !M! interactable powers. || Synergy: {Motivate} !S!.",
+			"DESCRIPTION": "Gain !S! [Inspiration]. Gain double [Inspiration] if you have at least !M! interactable powers. || {Same-Series} Synergy: {Motivate} !S!.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -695,7 +695,7 @@
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "Take !S! [Delayed Damage]. || If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
+			"DESCRIPTION": "Take !S! [Delayed Damage]. || If Fatal: Evoke !M! orbs, then fill your orb slots with [Frost].",
 			"NAME": "Zadkiel"
 		}
 	},
@@ -753,7 +753,7 @@
 		},
 		"animator:JumpyDumpty":
 		{
-			"DESCRIPTION": "Apply !M! [Burning]. || If the enemy dies or ** loses its [Block]: Gain !S! [Burning] and add a copy of this card to your Draw Pile.",
+			"DESCRIPTION": "Apply !M! [Burning]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Burning] and add a copy of this card to your Draw Pile.",
 			"NAME": "Jumpy Dumpty"
 		},
 		"animator:KaeyaAlberich":
@@ -815,7 +815,7 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal !M! more damage for each stack of [Burning] on any character, then remove [Burning] from ALL characters. || <LIM>. If any enemy dies: Enter <FS> and add {Delusion} to your draw pile.",
+			"DESCRIPTION": "Deal !M! more damage for each stack of [Burning] on any character, then remove [Burning] from ALL characters. || <LIM>. If Fatal: Enter <FS> and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler_Aether":
@@ -1031,7 +1031,7 @@
 		},
 		"animator:Souseiseki":
 		{
-			"DESCRIPTION": "Exhaust a card in your hand. If it was a Hindrance: Enter <WS>. || When Discarded, {Fetch} {Suiseiseki} from your Draw Pile.",
+			"DESCRIPTION": "Exhaust a card in your hand. If it was a Hindrance: <DRW>. || Synergy or when Discarded: {Fetch} {Suiseiseki} from your Draw Pile.",
 			"NAME": "Souseiseki"
 		},
 		"animator:Suigintou":
@@ -1046,7 +1046,7 @@
 		},
 		"animator:Suiseiseki":
 		{
-			"DESCRIPTION": "Add {Slimed} to your draw pile. || {Synergy}: Exit your Stance to gain !S! of that Stance's Threshold Power this turn.",
+			"DESCRIPTION": "Add {Slimed} to your draw pile. || {Synergy} with {Souseiseki}: Play this card again.",
 			"NAME": "Suiseiseki"
 		},
 		"animator:TomoeKashiwaba":
@@ -1414,9 +1414,8 @@
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Obtain [T-Knife]. || <SLM>. Synergy or when Discarded: Gain !S! [Blur].",
-			"NAME": "Rena",
-			"ALTERNATE_DESCRIPTION": "Give your first [Air] +1 [Focus]. Otherwise, Channel [Air]. || <SLM>. Synergy or when Discarded: Gain !S! [Blur]."
+			"DESCRIPTION": "Evoke your last [Air] to Gain !M! [A]. Otherwise, Channel [Air]. || <slm>. !A! <G>. When Discarded: Gain !S! [Blur].",
+			"NAME": "Rena"
 		}
 	},
 	"SERIES:FATE":
@@ -1438,7 +1437,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
+			"DESCRIPTION": "Gain !M! [F]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -1499,7 +1498,7 @@
 		},
 		"animator:MatouShinji":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. Synergy with {High-Cost} cards: ** Take !S! [Delayed Damage], then Obtain {Command Spell}.",
+			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. Synergy with 2+ Cost cards: ** Take !S! [Delayed Damage], then Obtain {Command Spell}.",
 			"NAME": "Shinji Matou"
 		},
 		"animator:MatouShinji_CommandSpell":
@@ -1528,8 +1527,8 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "At the start of each turn: ** Upgrade the <W> levels ** of a random card. || Once per turn, pay 2 [E]: ** Gain 1 [Vitality], or 2 if you ** are below 20% [HP].",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Vitality]. || At the start of each turn: Increase the <W> levels of #b{1} random card(s) to LV2."],
+			"DESCRIPTION": "The first card played each turn #ySynergizes. || Once per turn, take !M! [Delayed Damage]: ** Upgrade the <W> levels ** of a random card.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} card(s) played this turn {Synergizes}. || Take #b{1} [Delayed Damage] Increase the <W> levels of a random card to LV2."],
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -1550,8 +1549,9 @@
 		},
 		"animator:Lust":
 		{
-			"DESCRIPTION": "Attack twice if you have ** a Hindrance in hand. || If the enemy has ** [Vulnerable]: Gain !S! [Temp HP].",
-			"NAME": "Lust"
+			"DESCRIPTION": "Take !M! [Delayed Damage]. Apply !S! [Frail] [Vulnerable] [Weak] to ALL enemies. ** !A! <D>. Apply 1 more of each debuff.",
+			"NAME": "Lust",
+			"UPGRADE_DESCRIPTION": "You and a random enemy take !M! [Delayed Damage]. Apply !S! [Frail] [Vulnerable] [Weak] to ALL enemies. ** !A! <D>. Apply 1 more of each debuff."
 		},
 		"animator:MaesHughes":
 		{
@@ -1566,7 +1566,7 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
@@ -1588,7 +1588,7 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play Attacks that cost 1 or more. When you do so: Deal Attack damage to ALL enemies equal to [F].",
+			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal Attack damage to ALL enemies equal to [F].",
 			"NAME": "Wrath"
 		}
 	},
@@ -1705,7 +1705,7 @@
 		},
 		"animator:HeavyWarrior":
 		{
-			"DESCRIPTION": "Unplayable unless you have ** another High-Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || X <R>: Gain !M! [F].",
+			"DESCRIPTION": "Unplayable unless you have ** another 2+ Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || X <R>: Gain !M! [F].",
 			"NAME": "Heavy Warrior"
 		},
 		"animator:HighElfArcher":
@@ -1841,7 +1841,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "If you have more than 6 [Force]: ** Gain [E] and Exhaust. ** Otherwise: Gain !M! [Force]. || Gain !S! additional [Block] for ** each High-Cost card.",
+			"DESCRIPTION": "If you have more than 6 [Force]: ** Gain [E] and Exhaust. ** Otherwise: Gain !M! [Force]. || Gain !S! additional [Block] for ** each 2+ Cost card.",
 			"NAME": "Konayuki"
 		},
 		"animator:ManiwaKyouken":
@@ -1878,9 +1878,9 @@
 		},
 		"animator:TsurugaMeisai":
 		{
-			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a Low-Cost ** {Attack} and add it ** to your draw pile.",
+			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 1- Cost ** {Attack} and add it ** to your draw pile.",
 			"NAME": "Meisai",
-			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a Low-Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
+			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 1- Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
 		},
 		"animator:UneriGinkaku":
 		{
@@ -1897,10 +1897,10 @@
 	{
 		"animator:Aqua":
 		{
-			"DESCRIPTION": "<DRW>. || Becomes useless for the ** rest of this combat",
+			"DESCRIPTION": "<DRW>. || Becomes useless this combat.",
 			"EXTENDED_DESCRIPTION": ["", "When Exhausted or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less ** useless for the rest of ** this combat. || <LIM>. Synergy and !A! <B>: Channel 1 [Water]."
+			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy and !A! <B>: Channel 1 [Water]."
 		},
 		"animator:Chris":
 		{
@@ -1909,7 +1909,7 @@
 		},
 		"animator:Darkness":
 		{
-			"DESCRIPTION": "This turn, if you take at least 5 unblocked damage: Gain !M! [F]. || Synergy: Lower this card's cost by 1 and its [Block] by !S!.",
+			"DESCRIPTION": "This turn, if you take at least 5 unblocked damage: ** Gain !M! [F]. || Synergy: Lower this card's cost by 1 and its [Block] by !S!.",
 			"EXTENDED_DESCRIPTION": ["This turn, if you take at least 5 unblocked damage: Gain #b{0} [F]."],
 			"NAME": "Darkness"
 		},
@@ -1919,9 +1919,14 @@
 			"NAME": "Adrenaline",
 			"UPGRADE_DESCRIPTION": "Gain [E] [E]. ** <DRW-M>."
 		},
+		"animator:Dust":
+		{
+			"DESCRIPTION": "!A! <R>. <ST>: Apply !S! [Vulnerable]. Draw !M! Basic or Common card(s).",
+			"NAME": "Dust"
+		},
 		"animator:Eris":
 		{
-			"DESCRIPTION": "<LIM>. If you would die ** while this card is in hand, ** draw or discard pile, prevent ** all damage and remove this ** card from your deck.",
+			"DESCRIPTION": "Gain <B>. <LIM>. If you would die ** while this card is in hand, ** draw or discard pile, prevent ** all damage and remove this ** card from your deck.",
 			"NAME": "Eris"
 		},
 		"animator:Hans":
@@ -1929,6 +1934,11 @@
 			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temp HP] for each ** enemy with [Poison].",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #y[Poison] to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #y[Poison]."],
 			"NAME": "Hans"
+		},
+		"animator:Iris":
+		{
+			"DESCRIPTION": "For !M! turn(s): [~Elemental] Attacks do 30% more damage. Other types of Attacks do 50% less damage.",
+			"NAME": "Iris"
 		},
 		"animator:Kazuma":
 		{
@@ -1953,7 +1963,8 @@
 		"animator:Verdia":
 		{
 			"DESCRIPTION": "!A! <R>: This gains +1 [F] Scaling. ** !A! <D>: This gains +1 [C] Scaling. || When Exhausted: Give this card's Scaling to a {Same-Series} card in hand.",
-			"NAME": "Verdia"
+			"NAME": "Verdia",
+			"UPGRADE_DESCRIPTION": "!A! <R>: This gains +1 [F] Scaling. ** !A! <D>: This gains +1 [C] Scaling. || When Exhausted: Give this card's Scaling to a {Same-Series} card anywhere."
 		},
 		"animator:Wiz":
 		{
@@ -2172,7 +2183,7 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL targets with [~Lock-On]. || <CDN>: Increase this card's damage by !S! this combat.",
+			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL targets with [~Lock-On]. || <CDN>: Takes 1 less turn to Attack.",
 			"NAME": "Schwi Dola"
 		},
 		"animator:DolaStephanie":
@@ -2220,7 +2231,8 @@
 		"animator:Sora":
 		{
 			"DESCRIPTION": "Choose 1 of 3 Strategies to Obtain next turn. || <LIM>. Synergy with {Shiro}: Gain !M! [Energized].",
-			"NAME": "Sora"
+			"NAME": "Sora",
+			"UPGRADE_DESCRIPTION": "Choose 1 of 3 Upgraded Strategies to ** Obtain next turn. || <LIM>. Synergy with {Shiro}: Gain !M! [Energized]."
 		},
 		"animator:Sora_Strategy1":
 		{
@@ -2229,13 +2241,14 @@
 		},
 		"animator:Sora_Strategy2":
 		{
-			"DESCRIPTION": "Gain !M! Temp. [Artifact] and !S! [Blur]. || When discarded: ** Exhaust.",
+			"DESCRIPTION": "Gain !M! Temp. [Artifact] ** and !S! [Blur]. || When discarded: ** Exhaust.",
 			"NAME": "Juke Strategy"
 		},
 		"animator:Sora_Strategy3":
 		{
 			"DESCRIPTION": "Cycle !M! cards. || When discarded: ** Exhaust.",
-			"NAME": "Exchange Strategy"
+			"NAME": "Exchange Strategy",
+			"UPGRADE_DESCRIPTION": "<DRW>. ** Cycle !M! cards. || When discarded: ** Exhaust."
 		},
 		"animator:Tet":
 		{
@@ -2397,7 +2410,7 @@
 		},
 		"animator:AuraBellaFiora":
 		{
-			"DESCRIPTION": "Starter: Gain !M! ** additional Block. || Motivate 1 {High-Cost} ** card. Discard 1 card.",
+			"DESCRIPTION": "Starter: Gain !M! ** additional Block. || Motivate 1 2+ Cost ** card. Discard 1 card.",
 			"NAME": "Aura Bella Fiora"
 		},
 		"animator:MareBelloFiore":
@@ -2426,6 +2439,7 @@
 		"animator:FeridBathory":
 		{
 			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Exhausted, a random enemy loses #b{0} HP and you gain #b{0} #yTemporary #yHP."],
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":
@@ -2452,12 +2466,12 @@
 		},
 		"animator:KrulTepes":
 		{
-			"DESCRIPTION": "Apply !M! [Weak]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain a {Blood Vial}.",
+			"DESCRIPTION": "Apply !M! [Weak]. If the enemy has [Vulnerable]: Gain !S! [Temp. HP]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain a {Blood Vial}.",
 			"NAME": "Krul Tepes"
 		},
 		"animator:KyLuc":
 		{
-			"DESCRIPTION": "Deal !S! more damage for ** every [Delayed Damage] you have. || When drawn: ALL characters ** take !S! [Delayed Damage].",
+			"DESCRIPTION": "Deal !M! more damage for ** every [Delayed Damage] you have. || When drawn: ALL characters ** take !S! [Delayed Damage].",
 			"NAME": "Ky Luc"
 		},
 		"animator:LestKarr":
@@ -2573,7 +2587,7 @@
 		},
 		"animator:Souei":
 		{
-			"DESCRIPTION": "Apply !M! [Poison], then trigger the target's [Poison]. If this kills the enemy: Transfer its [Poison] to ALL enemies.",
+			"DESCRIPTION": "Apply !M! [Poison], then trigger the target's [Poison]. ** If Fatal: Transfer its [Poison] to ALL enemies.",
 			"NAME": "Souei"
 		},
 		"animator:Vesta":
@@ -2863,7 +2877,7 @@
 		},
 		"animator:Hero":
 		{
-			"DESCRIPTION": "<DRW-M>. || <LIM>. If this card kills ** an enemy, 40% chance to ** obtain a {Relic} at the ** end of combat.",
+			"DESCRIPTION": "<DRW-M>. || <LIM>. If Fatal, 40% chance to ** obtain a {Relic} at the ** end of combat.",
 			"NAME": "'Hero'"
 		},
 		"animator:HiiragiTenri":
@@ -2898,7 +2912,7 @@
 		},
 		"animator:Rose":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Attack 1 additional time. || If this card kills an ** enemy, deal !S! damage ** to ALL enemies.",
+			"DESCRIPTION": "<DRW-M>. Reload: ** Attack 1 additional time. || If Fatal, deal !S! damage ** to ALL enemies.",
 			"NAME": "Rose"
 		},
 		"animator:SeriousSaitama":

@@ -33,7 +33,6 @@ public class FielNirvalen extends AnimatorCard
     }
 
     public void OnUpgrade() {
-        SetInnate(true);
         SetRetainOnce(true);
     }
 

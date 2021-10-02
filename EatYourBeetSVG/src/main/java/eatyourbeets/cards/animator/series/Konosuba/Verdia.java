@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
@@ -23,10 +24,10 @@ public class Verdia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 16, 2, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(1, 17, 1);
+        SetUpgrade(1, 3, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 3);
@@ -38,8 +39,10 @@ public class Verdia extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetOptions(false, false, false)
+        CardGroup[] groups = upgraded ? new CardGroup[]{player.hand, player.drawPile, player.discardPile} : new CardGroup[]{player.hand};
+
+        GameActions.Bottom.SelectFromPile(name, 1, groups)
+                .SetOptions(false, false)
                 .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
                 .SetFilter(c -> GameUtilities.IsSameSeries(this, c))
                 .AddCallback(cards ->

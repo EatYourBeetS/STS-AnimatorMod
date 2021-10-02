@@ -3,16 +3,20 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,20 +26,21 @@ import java.util.ArrayList;
 public class KrulTepes extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KrulTepes.class)
-            .SetAttack(2, CardRarity.UNCOMMON)
+            .SetAttack(2, CardRarity.RARE)
             .SetSeriesFromClassPackage();
 
     private static final AbstractRelic relicReward = new BloodVial();
+    protected boolean gainTempHP = false;
 
     public KrulTepes()
     {
         super(DATA);
 
-        Initialize(12, 0, 2);
+        Initialize(13, 0, 2, 3);
         SetUpgrade(4, 0, 0);
 
         SetAffinity_Red(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(2, 0, 2);
     }
 
     @Override
@@ -47,6 +52,20 @@ public class KrulTepes extends AnimatorCard
         {
             GameUtilities.GetIntent(m).AddWeak();
         }
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return gainTempHP ? TempHPAttribute.Instance.SetCard(this, false).SetText(secondaryValue, Colors.Cream(1f)) : null;
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        this.gainTempHP = (enemy != null && enemy.hasPower(VulnerablePower.POWER_ID));
     }
 
     @Override
@@ -64,7 +83,12 @@ public class KrulTepes extends AnimatorCard
                 }
             });
 
-            GameActions.Bottom.ApplyWeak(p, m, magicNumber);
+            GameActions.Bottom.ApplyWeak(p, m, secondaryValue);
+
+            if (gainTempHP)
+            {
+                GameActions.Bottom.GainTemporaryHP(secondaryValue);
+            }
         }
     }
 

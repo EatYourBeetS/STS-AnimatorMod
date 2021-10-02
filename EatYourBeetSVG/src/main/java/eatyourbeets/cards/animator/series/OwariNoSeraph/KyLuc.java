@@ -19,14 +19,14 @@ import eatyourbeets.utilities.GameUtilities;
 public class KyLuc extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KyLuc.class)
-            .SetAttack(2, CardRarity.RARE)
+            .SetAttack(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
 
     public KyLuc()
     {
         super(DATA);
 
-        Initialize(3, 0, 3, 4);
+        Initialize(4, 0, 3, 4);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 2);
@@ -42,7 +42,7 @@ public class KyLuc extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        return super.ModifyDamage(enemy, amount + GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) * secondaryValue);
+        return super.ModifyDamage(enemy, amount + GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) * magicNumber);
     }
 
     @Override

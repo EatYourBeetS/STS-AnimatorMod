@@ -9,20 +9,28 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.dailymods.SeriesDeck;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
+
+import java.util.ArrayList;
 
 public class AbstractPlayerPatches
 {
@@ -149,6 +157,42 @@ public class AbstractPlayerPatches
             }
 
             return SpireReturn.Return(false);
+        }
+    }
+
+    @SpirePatch(clz = AbstractPlayer.class, method = "initializeStarterDeck")
+    public static class AbstractPlayer_InitializeStarterDeck
+    {
+        @SpireInsertPatch(locator = Locator.class,
+                          localvars = {"addBaseCards"})
+        public static void Insert(AbstractPlayer __instance, @ByRef boolean[] addBaseCards)
+        {
+            if (ModHelper.isModEnabled(SeriesDeck.ID)) {
+                addBaseCards[0] = false;
+
+                ArrayList<AnimatorCard> cards = new ArrayList<>();
+
+                CardSeries series = GR.Animator.Data.SelectedLoadout.Series;
+                CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
+
+                for (AnimatorCard card : cards)
+                {
+                    if (card.rarity.equals(AbstractCard.CardRarity.COMMON) ||
+                            card.rarity.equals(AbstractCard.CardRarity.UNCOMMON) ||
+                            card.rarity.equals(AbstractCard.CardRarity.RARE))
+
+                    __instance.masterDeck.addToTop(card.makeCopy());
+                }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception
+            {
+                Matcher matcher = new Matcher.MethodCallMatcher(ModHelper.class, "isModEnabled");
+                return new int[]{ LineFinder.findInOrder(ctBehavior, matcher)[0] - 1 };
+            }
         }
     }
 

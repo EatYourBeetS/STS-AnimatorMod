@@ -10,6 +10,7 @@ public class AnimatorStrings
     public Rewards Rewards;
     public Misc Misc;
     public Series Series;
+    public SeriesUI SeriesUI;
     public CharacterSelect CharSelect;
     public SeriesSelection SeriesSelection;
     public SeriesSelectionButtons SeriesSelectionButtons;
@@ -23,6 +24,7 @@ public class AnimatorStrings
         Misc = new Misc();
         Rewards = new Rewards();
         Series = new Series();
+        SeriesUI = new SeriesUI();
         CharSelect = new CharacterSelect();
         Actions = new Actions();
         Trophies = new Trophies();
@@ -70,6 +72,14 @@ public class AnimatorStrings
             return Strings.TEXT.length > seriesID ? Strings.TEXT[seriesID] : null;
         }
     }
+
+    public class SeriesUI
+    {
+        private final UIStrings Strings = GetUIStrings("SeriesUI");
+
+        public final String SeriesUI = Strings.TEXT[0];
+    }
+
 
     public class Misc
     {

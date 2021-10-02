@@ -337,6 +337,11 @@ public class JUtils
         return new MethodInfo.T2<>(methodName, type, t1, t2);
     }
 
+    public static <T, T1, T2, T3> MethodInfo.T3<T, T1, T2, T3> GetMethod(String methodName, Class<?> type, Class<T1> t1, Class<T2> t2, Class<T3> t3) throws RuntimeException
+    {
+        return new MethodInfo.T3<>(methodName, type, t1, t2, t3);
+    }
+
     public static boolean IsNotEmpty(List list)
     {
         return list != null && list.size() > 0;

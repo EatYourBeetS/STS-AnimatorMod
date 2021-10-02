@@ -54,6 +54,11 @@ public class AnimatorCharacterSelectScreen
         // RenderOption is being called instead
     }
 
+    public static void RandomizeLoadout()
+    {
+        LoadoutRenderer.RandomizeLoadout();
+    }
+
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
     {
         final CharacterOption current = selectedOption;
@@ -142,4 +147,5 @@ public class AnimatorCharacterSelectScreen
             }
         }
     }
+
 }

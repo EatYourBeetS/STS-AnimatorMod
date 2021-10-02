@@ -105,7 +105,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         }
     }
 
-    private void RandomizeLoadout()
+    public void RandomizeLoadout()
     {
         if (availableLoadouts.size() > 1)
         {

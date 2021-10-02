@@ -146,6 +146,11 @@ public class GR
         return GetLanguagePack().getUIString(stringID);
     }
 
+    public static RunModStrings GetRunModStrings(String stringID)
+    {
+        return GetLanguagePack().getRunModString(stringID);
+    }
+
     public static OrbStrings GetOrbStrings(String orbID)
     {
         return GetLanguagePack().getOrbString(orbID);

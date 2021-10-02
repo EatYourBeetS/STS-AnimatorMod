@@ -748,7 +748,7 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "Discard up to !M! card(s). For each: Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail], or Gain [A] if no debuffs were removed.",
+			"DESCRIPTION": "Discard up to !M! card(s). For each: Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail]. || <SLM>. When Discarded, gain [A].",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
@@ -941,7 +941,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Obtain !M! [T-Knife]. ** If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || When Discarded: ** Cycle 1 card.",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. ** If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || When Discarded: ** Retain [W].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":

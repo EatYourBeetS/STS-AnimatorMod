@@ -5,12 +5,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.GameUtilities;
+import patches.CustomAnimatorCharacterOptions;
 import patches.unlockTracker.UnlockTrackerPatches;
 
 import java.awt.*;
@@ -55,9 +57,12 @@ public class AnimatorCharacterSelectScreen
         // RenderOption is being called instead
     }
 
-    public static void OpenLoadoutEditor(AnimatorLoadout loadout)
+    public static void OpenLoadoutEditor(AnimatorLoadout loadout, CustomAnimatorCharacterOptions options)
     {
-        LoadoutRenderer.OpenLoadoutEditorForLoadout(loadout, selectedOption);
+        LoadoutRenderer.OpenLoadoutEditorForLoadout(loadout, new CharacterOption(new AnimatorCharacter()));
+
+        options.setHp(loadout.GetHP());
+        options.setGold(loadout.GetGold());
     }
 
     public static void RandomizeLoadout()

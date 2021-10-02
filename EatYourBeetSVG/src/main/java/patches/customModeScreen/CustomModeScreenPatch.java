@@ -5,8 +5,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
@@ -15,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
+import com.megacrit.cardcrawl.trials.CustomTrial;
 import eatyourbeets.dailymods.AnimatorDailyMod;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
@@ -22,6 +26,7 @@ import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.animator.characterSelection.AnimatorCharacterSelectScreen;
 import eatyourbeets.utilities.*;
 import org.apache.logging.log4j.util.Strings;
+import patches.CustomAnimatorCharacterOptions;
 
 import javax.xml.transform.Result;
 import java.util.ArrayList;
@@ -44,8 +49,10 @@ public class CustomModeScreenPatch {
 
     private static AnimatorLoadout startingLoadout = new _FakeLoadout();
 
-    private static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();;
-    private static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();;
+    private static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();
+    private static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();
+
+    private static CustomAnimatorCharacterOptions option = new CustomAnimatorCharacterOptions();
 
     private static Hitbox loadoutHb = null;
     private static Hitbox seriesleftHb = null;
@@ -149,7 +156,7 @@ public class CustomModeScreenPatch {
                 sb.setColor(Color.LIGHT_GRAY);
             }
 
-            sb.draw(GR.Common.Images.SwapCards.Texture(), loadoutHb.x, loadoutHb.y, 0.0F, 0.0F, loadoutHb.width, loadoutHb.height, Settings.scale, Settings.scale, 0.0F, 0, 0, Math.round(loadoutHb.width), Math.round(loadoutHb.height), false, false);
+            sb.draw(GR.Common.Images.SwapCards.Texture(), loadoutHb.x, loadoutHb.y, 0.0F, 0.0F, loadoutHb.width, loadoutHb.height, 1, 1, 0.0F, 0, 0, Math.round(loadoutHb.width), Math.round(loadoutHb.height), false, false);
 
             seriesleftHb.render(sb);
             seriesRightHb.render(sb);
@@ -158,7 +165,19 @@ public class CustomModeScreenPatch {
         }
     }
 
-    private static void InitializeSeries(CustomModeScreen __instance)
+    @SpirePatch(clz = CustomModeScreen.class, method = "addNonDailyMods")
+    public static class CustomModeScreen_AddNonDailyMods {
+
+        @SpirePrefixPatch
+        public static void Prefix(CustomModeScreen __instance, CustomTrial trial, ArrayList<String> modIds) {
+            trial.setMaxHpOverride(option.getHp());
+            AbstractPlayer p = AbstractDungeon.player;
+
+            p.gold = option.getGold();
+        }
+    }
+
+        private static void InitializeSeries(CustomModeScreen __instance)
     {
         seriesleftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
         seriesRightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
@@ -317,7 +336,7 @@ public class CustomModeScreenPatch {
                 {
                 //Run loadout editor
                 
-                AnimatorCharacterSelectScreen.OpenLoadoutEditor(startingLoadout);
+                AnimatorCharacterSelectScreen.OpenLoadoutEditor(startingLoadout, option);
             }
         }
 

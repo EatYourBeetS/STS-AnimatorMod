@@ -3,8 +3,7 @@ package patches.customModeScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -20,6 +19,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.*;
+import javassist.CtBehavior;
 import org.apache.logging.log4j.util.Strings;
 
 import javax.xml.transform.Result;
@@ -68,11 +68,22 @@ public class CustomModeScreenPatch {
     {
         private static MethodInfo.T2<String, String, String> addDailyMod = JUtils.GetMethod("addDailyMod", CustomModeScreen.class, String.class, String.class);
 
-        @SpirePostfixPatch
-        public static void Postfix(CustomModeScreen __instance)
+        @SpireInsertPatch(locator = Locator.class)
+        public static void Insert(CustomModeScreen __instance)
         {
-            //Add all custom run mods here
-            addDailyMod.Invoke(__instance,"Series Deck", "b");
+            for (AnimatorDailyMod mod : AnimatorDailyMod.mods)
+            {
+                addDailyMod.Invoke(__instance,mod.name, mod.getColor());
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
+            {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(CustomModeScreen.class, "addMod");
+                return new int[]{LineFinder.findInOrder(ctMethodToPatch, finalMatcher)[0] - 1};
+            }
         }
     }
 
@@ -82,7 +93,6 @@ public class CustomModeScreenPatch {
         @SpirePostfixPatch
         public static void Postfix(CustomModeScreen __instance, SpriteBatch sb)
         {
-            //Add all custom run mods here
             FontHelper.renderSmartText(sb, FontHelper.panelNameFont, GR.Animator.Strings.SeriesUI.SeriesUI, seriesleftHb.cX - 24.0F, _scrollY.Get(__instance) - 460.0F * Settings.scale + 850.0F * Settings.scale, 9999.0F, 32.0F * Settings.scale, Settings.GOLD_COLOR);
         }
     }

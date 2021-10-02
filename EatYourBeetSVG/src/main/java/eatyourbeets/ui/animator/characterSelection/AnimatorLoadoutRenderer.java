@@ -89,7 +89,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public void OpenLoadoutEditorForLoadout(AnimatorLoadout loadout, CharacterOption characterOption)
     {
-        if (loadout != null)
+        if (loadout != null && characterOption != null)
         {
             GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
         }

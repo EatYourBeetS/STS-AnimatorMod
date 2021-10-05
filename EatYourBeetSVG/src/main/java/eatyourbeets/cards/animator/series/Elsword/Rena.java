@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
@@ -12,14 +11,7 @@ public class Rena extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rena.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data ->
-            {
-                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-                {
-                    data.AddPreview(knife, false);
-                }
-            });
+            .SetSeriesFromClassPackage();
 
     public Rena()
     {
@@ -29,6 +21,7 @@ public class Rena extends AnimatorCard
         SetUpgrade(0, 2, 1);
 
         SetAffinity_Green(1,1,0);
+        SetAffinity_Light(1,0,0);
 
         SetAffinityRequirement(Affinity.Green, 2);
     }

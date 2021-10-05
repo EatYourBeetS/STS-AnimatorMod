@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -24,8 +23,8 @@ public class Verdia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 17, 1);
-        SetUpgrade(1, 3, 0);
+        Initialize(1, 18, 1);
+        SetUpgrade(1, 0, 0);
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Dark(2, 0, 1);
@@ -43,8 +42,8 @@ public class Verdia extends AnimatorCard
 
         GameActions.Bottom.SelectFromPile(name, 1, groups)
                 .SetOptions(false, false)
-                .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-                .SetFilter(c -> GameUtilities.IsSameSeries(this, c))
+                .SetMessage(DATA.Strings.EXTENDED_DESCRIPTION[0])
+                .SetFilter(c -> GameUtilities.IsSameSeries(this, c) && (c.baseDamage >= 0 || c.baseBlock >= 0))
                 .AddCallback(cards ->
                 {
                     for (AbstractCard c : cards)

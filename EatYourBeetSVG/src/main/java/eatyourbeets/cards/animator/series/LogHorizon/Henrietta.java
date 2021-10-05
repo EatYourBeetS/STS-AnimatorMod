@@ -2,24 +2,21 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.Arrays;
 
 public class Henrietta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Henrietta.class)
-            .SetPower(2, CardRarity.UNCOMMON)
+            .SetPower(3, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
+    private static final int POWER_ENERGY_COST = 1;
 
     public Henrietta()
     {
@@ -29,35 +26,25 @@ public class Henrietta extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);
-
-        SetEthereal(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetEthereal(false);
+        SetInnate(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (!GameUtilities.InStance(NeutralStance.STANCE_ID))
-        {
-            GameActions.Bottom.GainEnergy(1);
-        }
-
-        GameActions.Bottom.StackPower(new HenriettaPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new HenriettaPower(p, magicNumber));
     }
 
-    public static class HenriettaPower extends AnimatorPower
+    public static class HenriettaPower extends AnimatorClickablePower
     {
-        private static final CardEffectChoice choices = new CardEffectChoice();
-        private static final Henrietta sourceCard = new Henrietta();
-
         public HenriettaPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Henrietta.DATA);
+            super(owner, Henrietta.DATA, PowerTriggerConditionType.Energy, Henrietta.POWER_ENERGY_COST);
 
             this.amount = amount;
 
@@ -65,29 +52,31 @@ public class Henrietta extends AnimatorCard
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void OnUse(AbstractMonster m)
         {
-            super.atEndOfTurn(isPlayer);
+            super.OnUse(m);
+            final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(null);
+            Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), affinities::GetLevel);
+            GameActions.Bottom.StackAffinityPower(highestAffinity, 2, false);
+        }
 
-            for (int i = 0; i < amount; i++)
-            {
-                GameActions.Bottom.SpendEnergy(1, false)
-                .AddCallback(() ->
-                {
-                    if (choices.TryInitialize(sourceCard))
-                    {
-                        choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                        choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                        choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-                        choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
-                    }
+        @Override
+        public void onInitialApplication() {
+            super.onInitialApplication();
 
-                    choices.Select(GameActions.Top, 1, null)
-                    .CancellableFromPlayer(true);
-                });
+            for (Affinity affinity: Affinity.Basic()) {
+                CombatStats.Affinities.AddMaxActivationsPerTurn(affinity, amount);
             }
+        }
 
-            flash();
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            for (Affinity affinity: Affinity.Basic()) {
+                CombatStats.Affinities.AddMaxActivationsPerTurn(affinity, -amount);
+            }
         }
     }
 }

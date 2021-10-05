@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -24,9 +21,16 @@ public class Akatsuki extends AnimatorCard
         super(DATA);
 
         Initialize(11, 0, 2, 4);
-        SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Green, 3);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetHaste(true);
     }
 
     @Override
@@ -45,19 +49,19 @@ public class Akatsuki extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateLimited(cardID))
         {
             for (int i = 0; i < magicNumber; i++)
             {
-                GameActions.Top.MakeCardInHand(this)
-                .SetUpgrade(false, true)
-                .AddCallback(card ->
-                {
-                    GameUtilities.ModifyCostForCombat(card, 0, false);
-                    GameUtilities.ModifyDamage(card, 0, false);
-                    card.purgeOnUse = true;
-                    card.isEthereal = true;
-                });
+                GameActions.Bottom.MakeCardInDrawPile(GameUtilities.Imitate(this))
+                        .AddCallback(card ->
+                        {
+                            card.isEthereal = true;
+                            if (upgraded)
+                            {
+                                GameUtilities.SetCardTag(card, HASTE, true);
+                            }
+                        });
             }
         }
     }
@@ -67,5 +71,9 @@ public class Akatsuki extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
         .SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
+
+        if (CheckAffinity(Affinity.Green)) {
+            GameActions.Bottom.CreateThrowingKnives(1);
+        }
     }
 }

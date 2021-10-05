@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class ModifyAffinityScaling extends GenericCardSelection
 {
@@ -55,12 +56,17 @@ public class ModifyAffinityScaling extends GenericCardSelection
     {
         super.SelectCard(card);
 
-        if (flashColor != null)
-        {
-            GameUtilities.Flash(card, flashColor, true);
+        EYBCard eCard = JUtils.SafeCast(card, EYBCard.class);
+        if (eCard == null) {
+            return;
         }
 
-        final EYBCardAffinities affinities = ((EYBCard) card).affinities;
+        if (flashColor != null)
+        {
+            GameUtilities.Flash(eCard, flashColor, true);
+        }
+
+        final EYBCardAffinities affinities = eCard.affinities;
         if (affinity == Affinity.General) // Modify all existing scaling
         {
             for (EYBCardAffinity a : affinities.List)

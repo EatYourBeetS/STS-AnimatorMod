@@ -25,8 +25,8 @@ public class FielNirvalen extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 1, 3);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -40,20 +40,22 @@ public class FielNirvalen extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(secondaryValue);
-        GameActions.Bottom.StackPower(new FielNirvalenPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.StackPower(new FielNirvalenPower(p, magicNumber, magicNumber, secondaryValue));
     }
 
     public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber, OnSynergySubscriber
     {
         private boolean canObtain = true;
         private final int secondaryAmount;
-        public static int MAXIMUM_SECONDARY = 3;
-        public FielNirvalenPower(AbstractCreature owner, int amount, int secondaryAmount)
+        private final int choices;
+
+        public FielNirvalenPower(AbstractCreature owner, int amount, int secondaryAmount, int choices)
         {
             super(owner, FielNirvalen.DATA);
 
             this.amount = amount;
-            this.secondaryAmount = Math.min(MAXIMUM_SECONDARY, secondaryAmount);
+            this.secondaryAmount = secondaryAmount;
+            this.choices = Math.min(AffinityToken.GetCards().size(), choices);
 
             Initialize(amount);
             updateDescription();
@@ -93,7 +95,7 @@ public class FielNirvalen extends AnimatorCard
 
             if (canObtain)
             {
-                GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, secondaryAmount, MAXIMUM_SECONDARY)
+                GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, secondaryAmount, choices)
                         .AddCallback(cards ->
                         {
                             for (AbstractCard c : cards)

@@ -5,13 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.utilities.*;
 
 public class MadokaKaname extends AnimatorCard
 {
@@ -38,6 +35,12 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return secondaryValue <= 0 ? null : HPAttribute.Instance.SetCard(this, false).SetText(new ColoredString(secondaryValue, Colors.Cream(1f)));
+    }
+
+    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -53,7 +56,7 @@ public class MadokaKaname extends AnimatorCard
     {
         super.triggerOnOtherCardPlayed(c);
 
-        if (player.hand.contains(this))
+        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
         {
             GameActions.Bottom.GainTemporaryHP(1);
             GameActions.Bottom.Flash(this);

@@ -188,6 +188,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return affinity.ID >= 0 && GetRow(affinity).AvailableActivations > 0;
     }
 
+    public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
+    {
+        final EYBCardAffinityRow row = GetRow(affinity);
+        row.MaxActivationsPerTurn = Math.max(0, row.MaxActivationsPerTurn + amount);
+        row.AvailableActivations = Math.max(0, row.AvailableActivations + amount);
+    }
+
     public void OnSynergy(AnimatorCard card)
     {
         for (EYBCardAffinity affinity : card.affinities.List)

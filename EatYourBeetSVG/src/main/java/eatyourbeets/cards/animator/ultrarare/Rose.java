@@ -32,9 +32,9 @@ public class Rose extends AnimatorCard_UltraRare
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.Reload(name, m, (enemy, cards) ->
         {
-            if (cards.size() > 0 && enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
+            if (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameActions.Bottom.Add(new RoseDamageAction(enemy, this, cards.size(), damage));
+                GameActions.Bottom.Add(new RoseDamageAction(enemy, this, cards.size() + 1, damage));
             }
         });
     }

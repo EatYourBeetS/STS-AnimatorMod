@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class RinTohsaka extends AnimatorCard
 {
@@ -34,7 +35,13 @@ public class RinTohsaka extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
+        if (JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsDebuffing()) != null) {
+            GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
+        }
+        else {
+            GameActions.Bottom.TriggerOrbPassive(secondaryValue,true,false);
+        }
+
 
         if (CheckSpecialCondition(true))
         {

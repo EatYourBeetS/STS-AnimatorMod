@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -14,9 +14,11 @@ import eatyourbeets.utilities.GameEffects;
 public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
-            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
             .SetMaxCopies(2)
             .SetSeries(CardSeries.Elsword);
+    public static final int ORB_LIMIT = 5;
+
 
     public Aisha()
     {
@@ -26,7 +28,6 @@ public class Aisha extends AnimatorCard
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Aisha extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return super.GetInitialDamage() + (player.filledOrbCount() * secondaryValue);
+        return super.GetInitialDamage() + (Math.min(ORB_LIMIT, player.filledOrbCount()) * secondaryValue);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Aisha extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS).SetVFX(true, false)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetVFX(true, false)
             .SetDamageEffect(enemy ->
             {
                 GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));
@@ -57,13 +58,15 @@ public class Aisha extends AnimatorCard
         if (IsStarter())
         {
             GameActions.Bottom.TriggerOrbPassive(1)
-            .SetFilter(o -> Dark.ORB_ID.equals(o.ID))
+            .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
             .AddCallback(orbs ->
             {
                 if (orbs.size() > 0)
                 {
                     GameActions.Bottom.GainIntellect(1, true);
-                    GameActions.Bottom.GainCorruption(1, true);
+                }
+                else {
+                    GameActions.Bottom.ChannelOrb(new Lightning());
                 }
             });
         }

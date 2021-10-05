@@ -24,6 +24,7 @@ public class Raven extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

@@ -150,6 +150,12 @@
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
+	"Diminish":
+	{
+		"DESCRIPTION": "Decrease the stat of a card for the rest of this combat.",
+		"NAMES": ["diminish", "diminished", "diminishing"],
+		"PROPER_NAME": "Diminish"
+	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",
@@ -179,6 +185,12 @@
 		"DESCRIPTION": "Gain [E] at the start of next turn.",
 		"NAMES": ["energized"],
 		"PROPER_NAME": "Energized"
+	},
+	"Enhance":
+	{
+		"DESCRIPTION": "Increase the stat of a card for the rest of this combat.",
+		"NAMES": ["enhance", "enhanced", "enhancement"],
+		"PROPER_NAME": "Enhance"
 	},
 	"Envenom":
 	{

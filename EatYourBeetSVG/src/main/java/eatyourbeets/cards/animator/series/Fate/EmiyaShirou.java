@@ -15,6 +15,8 @@ import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
 {
@@ -46,16 +48,18 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-
-        for (AbstractOrb o: player.orbs) {
-            if (o instanceof Fire) {
-                fireOrb = (Fire) o;
-                fireOrb.IncreaseBasePassiveAmount(magicNumber);
-                fireOrb.IncreaseBaseEvokeAmount(magicNumber);
-            }
-        }
-        CombatStats.onAttack.Subscribe(this);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+
+        fireOrb = JUtils.SafeCast(GameUtilities.GetFirstOrb(Fire.ORB_ID),Fire.class);
+        if (fireOrb != null) {
+            fireOrb.IncreaseBasePassiveAmount(magicNumber);
+            fireOrb.IncreaseBaseEvokeAmount(magicNumber);
+        }
+        else {
+            GameActions.Bottom.ChannelOrb(new Fire());
+        }
+
+        CombatStats.onAttack.Subscribe(this);
 
         if (info.IsSynergizing) {
             GameActions.Bottom.Add(new RandomCardUpgrade());

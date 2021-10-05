@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.Darkness_Adrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -16,8 +15,7 @@ public class Darkness extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Darkness.class)
             .SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Darkness_Adrenaline(), false));
+            .SetSeriesFromClassPackage();
 
     public Darkness()
     {
@@ -36,7 +34,7 @@ public class Darkness extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new DarknessPower(p, magicNumber));
 
-        if (info.IsSynergizing) {
+        if (info.IsSynergizing && this.costForTurn > 0) {
             GameUtilities.ModifyCostForCombat(this,-1,true);
             this.baseBlock -= secondaryValue;
         }

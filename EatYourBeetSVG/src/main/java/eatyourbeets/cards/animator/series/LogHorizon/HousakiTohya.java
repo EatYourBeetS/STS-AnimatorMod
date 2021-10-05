@@ -17,33 +17,41 @@ public class HousakiTohya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
+        Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(1);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        GameActions.Bottom.ApplyVulnerable(player, m, magicNumber);
+        if (IsStarter()) {
+            GameActions.Bottom.ApplyWeak(player, m, magicNumber);
+            GameActions.Bottom.ApplyVulnerable(player, m, magicNumber);
+        }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(1)
-        .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
-        .AddCallback(() ->
-        {
-            if (CheckAffinity(Affinity.General))
-            {
-                GameActions.Bottom.GainEnergy(1);
-            }
-        });
+        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Light)) {
+            GameActions.Bottom.Draw(1)
+                    .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
+                    .AddCallback((cards) ->
+                    {
+                        if (cards.size() > 0) {
+                            GameActions.Bottom.GainEnergy(1);
+                        }
+                        else {
+                            GameActions.Bottom.GainEnergyNextTurn(1);
+                        }
+                    });
+        }
     }
 }

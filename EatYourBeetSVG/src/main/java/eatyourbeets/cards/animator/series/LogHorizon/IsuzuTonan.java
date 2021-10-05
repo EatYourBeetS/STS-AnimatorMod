@@ -21,11 +21,19 @@ public class IsuzuTonan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Orange(1);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.Cycle(name, secondaryValue);
     }
 
     @Override

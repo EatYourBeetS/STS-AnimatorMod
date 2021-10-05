@@ -10,7 +10,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Chris extends AnimatorCard
+public class Chris extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Chris.class)
             .SetAttack(0, CardRarity.UNCOMMON)

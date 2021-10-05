@@ -30,12 +30,6 @@ public class Shigure extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)

@@ -11,7 +11,7 @@ import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Envy extends AnimatorCard //TODO
+public class Envy extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Envy.class)
             .SetPower(2, CardRarity.RARE)

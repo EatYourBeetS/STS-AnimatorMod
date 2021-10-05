@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -29,22 +26,25 @@ public class Marielle extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 4);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Orange(2);
+
+        SetAffinityRequirement(Affinity.General, 3);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return HasSynergy() ? TempHPAttribute.Instance.SetCard(this, true) : super.GetSpecialInfo();
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         final Map<CardType, List<AbstractCard>> map = JUtils.Group(p.drawPile.group, c -> c.type);
 
         int i = 0;
@@ -65,10 +65,10 @@ public class Marielle extends AnimatorCard
             i += 1;
         }
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing && CheckAffinity(Affinity.General))
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
-            PurgeOnUseOnce();
+            GameActions.Bottom.ObtainAffinityToken(GameUtilities.GetRandomElement(Affinity.Basic(), EYBCard.rng), upgraded);
         }
     }
 }

@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.cards.animator.beta.special.Traveler_Wish;
 import eatyourbeets.cards.animator.beta.ultrarare.Dainsleif;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -66,9 +66,11 @@ public class DainsleifAbyssPower extends AnimatorPower {
             this.amount -= COUNTDOWN_AMT;
             this.playApplyPowerSfx();
             CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
-            AbstractDungeon.effectsQueue.add(new BorderFlashEffect(Color.PURPLE, true));
+            GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
+            GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLUE, true));
             GameActions.Bottom.PlayFromPile(null, 1, null, player.drawPile, player.discardPile, player.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif);
             ChooseEffect();
+            GameActions.Bottom.Add(new PressEndTurnButtonAction());
         }
         this.updateDescription();
     }

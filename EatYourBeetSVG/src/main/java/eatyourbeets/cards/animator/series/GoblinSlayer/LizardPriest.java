@@ -5,44 +5,31 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.orbs.animator.Earth;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class LizardPriest extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LizardPriest.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final int TEMPORARY_THORNS = 2;
+    public static final int BLOCK_NEXT_TURN = 3;
+
 
     public LizardPriest()
     {
         super(DATA);
 
-        Initialize(0, 6, 0, 3);
+        Initialize(0, 4, BLOCK_NEXT_TURN, TEMPORARY_THORNS);
         SetUpgrade(0, 2, 0, 0);
 
         SetAffinity_Orange(1, 1, 1);
-        SetAffinity_Light(1, 1, 0);
-    }
-
-    @Override
-    protected float GetInitialBlock()
-    {
-        return super.GetInitialBlock() + (GameUtilities.HasOrb(Earth.ORB_ID) ? secondaryValue : 0);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.GainInspiration(1);
+        SetAffinity_Light(1, 0, 0);
     }
 
     @Override
@@ -50,11 +37,6 @@ public class LizardPriest extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new LizardPriestPower(p, 1));
-
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.GainInspiration(1);
-        }
     }
 
     public static class LizardPriestPower extends AnimatorPower
@@ -74,12 +56,26 @@ public class LizardPriest extends AnimatorCard
             GameActions.Bottom.SelectFromHand(name, amount, false)
             .SetOptions(true, true, true)
             .SetMessage(RetainCardsAction.TEXT[0])
-            .SetFilter(c -> GameUtilities.CanRetain(c) && (GameUtilities.HasLightAffinity(c) || GameUtilities.HasOrangeAffinity(c)))
+            .SetFilter(c -> GameUtilities.CanRetain(c) && c.type == CardType.ATTACK)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)
                 {
                     GameUtilities.Retain(c);
+                    EYBCard ec = JUtils.SafeCast(c, EYBCard.class);
+                    if (ec != null) {
+                        switch (ec.attackType) {
+                            case Elemental:
+                                GameActions.Bottom.GainInspiration(1);
+                                break;
+                            case Piercing:
+                                GameActions.Bottom.GainTemporaryThorns(TEMPORARY_THORNS);
+                                break;
+                            default:
+                                GameActions.Bottom.StackPower(new NextTurnBlockPower(player, BLOCK_NEXT_TURN));
+                                break;
+                        }
+                    }
                 }
             });
             RemovePower();

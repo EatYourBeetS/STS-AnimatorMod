@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -14,13 +13,14 @@ public class HousakiMinori extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HousakiMinori.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new HousakiTohya(), false));
 
     public HousakiMinori()
     {
         super(DATA);
 
-        Initialize(0, 6, 15);
+        Initialize(0, 6, 15, 2);
         SetUpgrade(0, 1, 0);
 
         SetAffinity_Blue(1);
@@ -33,36 +33,11 @@ public class HousakiMinori extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        cooldown.ProgressCooldownAndTrigger(m);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
-        {
-            ShuffleToTopOfDeck();
-        }
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateSemiLimited(cardID))
-        {
-            ShuffleToTopOfDeck();
-        }
+        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing && info.GetPreviousCardID().equals(HousakiTohya.DATA.ID) ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.StackPower(new EnchantedArmorPower(player, magicNumber));
-    }
-
-    private void ShuffleToTopOfDeck()
-    {
-        GameActions.Last.MoveCard(this, player.drawPile);
     }
 }

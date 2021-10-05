@@ -6,8 +6,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnBlock;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
 import eatyourbeets.misc.GenericEffects.GenericEffect_Scry;
-import eatyourbeets.stances.IntellectStance;
-import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
@@ -26,6 +24,8 @@ public class OrikoMikuni extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 1, 0);
+
+        SetAffinityRequirement(Affinity.Blue, 4);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class OrikoMikuni extends AnimatorCard
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));
         choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
 
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && info.TryActivateLimited())
+        if (CheckAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
             choices.Select(3, m);
         }

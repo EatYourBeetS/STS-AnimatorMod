@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Noah extends AnimatorCard
+public class Noah extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Noah.class)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Piercing)

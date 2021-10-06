@@ -17,10 +17,10 @@ public class Rena extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 2, 2);
+        Initialize(0, 1, 2, 2);
         SetUpgrade(0, 2, 1);
 
-        SetAffinity_Green(1,1,0);
+        SetAffinity_Green(1,2,0);
         SetAffinity_Light(1,0,0);
 
         SetAffinityRequirement(Affinity.Green, 2);

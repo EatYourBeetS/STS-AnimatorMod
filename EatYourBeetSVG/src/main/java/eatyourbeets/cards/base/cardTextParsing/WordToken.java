@@ -24,7 +24,7 @@ public class WordToken extends CTToken
         }
         else if (firstCharacter)
         {
-            return Character.isLetterOrDigit(character) || character == '~';
+            return Character.isLetterOrDigit(character) || ("~<>".indexOf(character) >= 0);
         }
         else
         {
@@ -169,7 +169,7 @@ public class WordToken extends CTToken
         if (modifier.equals("s")) // pluralize
         {
             // TODO: improve this logic
-            if (context.card.magicNumber == 0 || context.card.magicNumber > 1)
+            if (context.card.magicNumber != 1 && context.card.magicNumber != -1)
             {
                 coloredString.text += "s";
             }

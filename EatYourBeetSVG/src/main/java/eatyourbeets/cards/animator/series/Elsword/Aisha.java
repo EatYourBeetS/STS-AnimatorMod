@@ -24,8 +24,8 @@ public class Aisha extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 2, 2);
-        SetUpgrade(2, 0, 0, 0);
+        Initialize(1, 0, 2, 1);
+        SetUpgrade(1, 0, 0, 1);
 
         SetAffinity_Blue(2, 0, 1);
     }

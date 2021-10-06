@@ -34,7 +34,7 @@ public class Shigure extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration);
-        if (GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Green)) {
+        if (CheckPrimaryCondition(false)) {
             GameActions.Bottom.GainSupportDamage(magicNumber);
         }
         else {
@@ -49,5 +49,11 @@ public class Shigure extends AnimatorCard
         {
             GameActions.Bottom.Cycle(name, secondaryValue);
         }
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Green);
     }
 }

@@ -71,7 +71,7 @@ public class LestKarr extends AnimatorCard
                 {
                     for (AbstractCard c : cards) {
                         GameActions.Bottom.MakeCardInDrawPile(c).AddCallback(ca -> {
-                            if (CombatStats.Affinities.GetPowerAmount(Affinity.Blue) >= INTELLECT_THRESHOLD) {
+                            if (CheckPrimaryCondition(false)) {
                                 GameActions.Bottom.ModifyTag(ca,HASTE, true);
                             }
                         });
@@ -85,5 +85,11 @@ public class LestKarr extends AnimatorCard
                     }
                     choices.Select(1, m);
                 });
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Blue) >= INTELLECT_THRESHOLD;
     }
 }

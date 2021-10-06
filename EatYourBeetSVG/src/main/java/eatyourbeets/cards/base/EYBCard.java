@@ -325,6 +325,17 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         GameEffects.List.Add(new ExhaustCardEffect(this));
     }
 
+    // Condition text will be green if this passes
+    public boolean CheckPrimaryCondition(boolean tryUse) {
+        return false;
+    }
+
+    // Card will glow if this passes
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return false;
+    }
+
     public boolean CheckLastAffinityPlayed(Affinity affinity)
     {
         return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);

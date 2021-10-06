@@ -96,6 +96,7 @@ public class CTContext
             &&  (amount = SpecialToken.TryAdd(this))     == 0 // {code}
             &&  (amount = NewLineToken.TryAdd(this))     == 0 // NL
             &&  (amount = WhitespaceToken.TryAdd(this))  == 0 //
+            &&  (amount = ConditionToken.TryAdd(this))   == 0 // @code@
             &&  (amount = PunctuationToken.TryAdd(this)) == 0 // .,-.:; etc
             &&  (amount = WordToken.TryAdd(this))        == 0)// Letters/Digits
             {

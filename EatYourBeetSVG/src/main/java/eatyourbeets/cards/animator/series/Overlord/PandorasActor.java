@@ -6,8 +6,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class PandorasActor extends AnimatorCard
 {
@@ -29,6 +31,15 @@ public class PandorasActor extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(this));
+        }
     }
 
     @Override

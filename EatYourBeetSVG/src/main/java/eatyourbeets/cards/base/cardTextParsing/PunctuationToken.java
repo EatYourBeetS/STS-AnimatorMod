@@ -20,11 +20,11 @@ public class PunctuationToken extends CTToken
         }
         else if (firstCharacter)
         {
-            return !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
+            return !Character.isLetterOrDigit(character) && !Character.isWhitespace(character) && "<>".indexOf(character) == -1;
         }
         else
         {
-            return ("{[!#<_*>]}".indexOf(character) == -1) && !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
+            return ("{[!#<_*@>]}".indexOf(character) == -1) && !Character.isLetterOrDigit(character) && !Character.isWhitespace(character);
         }
     }
 

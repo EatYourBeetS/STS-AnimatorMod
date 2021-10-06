@@ -40,7 +40,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         GameActions.Bottom.GainBlock(block);
 
-        AbstractOrb orb = GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Red) ? new Dark() : new Fire();
+        AbstractOrb orb = CheckPrimaryCondition(false) ? new Dark() : new Fire();
         GameActions.Bottom.ChannelOrb(orb).AddCallback(() -> {
             if (upgraded) {
                 GameActions.Bottom.TriggerOrbPassive(p.orbs.size())
@@ -54,6 +54,12 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
 
         }
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Red);
     }
 
     @Override

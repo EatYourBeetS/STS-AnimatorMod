@@ -36,7 +36,8 @@ public class Ainz extends AnimatorCard
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
 
-        SetObtainableInCombat(false);
+        SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override

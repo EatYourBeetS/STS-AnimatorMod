@@ -126,8 +126,8 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "Whenever you Purge a card: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
-			"EXTENDED_DESCRIPTION": ["Whenever your Exhaust pile changes in size: Gain #b{0} [Block]. || Once per turn, pay [E]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
+			"DESCRIPTION": "Whenever you Purge a card from your Exhaust pile: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay [E]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
 			"NAME": "Chaa"
 		},
 		"animator:EriShiina":
@@ -723,7 +723,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || < !A! <R>: Take !S! [Delayed Damage].",
+        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: Take !S! [Delayed Damage].",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -946,7 +946,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Obtain !M! [T-Knife]. ** If <L> > <O>, give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || On Discard: Retain [W].",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. ** @If@ <L> @>@ <O>: Give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || On Discard: Retain [W].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
@@ -1409,7 +1409,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || < !A! <D>: Take !S! [Delayed Damage].",
+			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take !S! [Delayed Damage].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -1612,7 +1612,7 @@
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "Fetch 2 <B> cards and give them +1 [I] scaling. Then, Choose 1: !A! <B>: Apply !S! [Freezing] ** !A! <R>: Apply !S! [Burning] ** !A! <G>: Channel 1 [Air]",
+			"DESCRIPTION": "Fetch 2 <B> cards and give them +1 [I] scaling. Then, Choose 1: ** !A! <B>: Apply !S! [Freezing] to ALL enemies ** !A! <R>: Apply !S! [Burning] to ALL enemies ** !A! <G>: Channel 1 [Air]",
 			"NAME": "Cato El Altestan"
 		},
 		"animator:ItamiYouji":
@@ -1747,10 +1747,10 @@
 		},
 		"animator:Witch":
 		{
-			"DESCRIPTION": "<D> > <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage.",
+			"DESCRIPTION": "<D> @>@ <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage.",
 			"EXTENDED_DESCRIPTION": ["This turn, #yPiercing #yAttacks do #b{0}% more damage."],
 			"NAME": "Witch",
-			"UPGRADE_DESCRIPTION": "<D> > <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. Then, Trigger ALL [Fire] and [Dark]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage."
+			"UPGRADE_DESCRIPTION": "<D> @>@ <R>: Channel 1 [Dark]. Otherwise, Channel 1 [Fire]. Then, Trigger ALL [Fire] and [Dark]. || !A! <B>: Next turn: [~Piercing] Attacks do !M!% more damage."
 		}
 	},
 	"SERIES:HITSUGINOCHAIKA":
@@ -1942,7 +1942,7 @@
 		},
 		"animator:Iris":
 		{
-			"DESCRIPTION": "Exhaust an Attack. If it is a [~Damage] Attack: Imitate it twice. Otherwise, give a card [B] scaling equal to the Exhausted card's cost (min. 1, does not stack).",
+			"DESCRIPTION": "Exhaust an Attack. If it is a [~Damage] Attack: Imitate it twice. Otherwise, give a card [B] scaling equal to the Exhausted card's cost + 1 (max. !M!).",
 			"NAME": "Iris"
 		},
 		"animator:Kazuma":
@@ -2227,9 +2227,10 @@
 		},
 		"animator:NinaClive":
 		{
-			"DESCRIPTION": "Give {~Delayed} to cards your in hand or discard pile, up to <W>. For each: Give {~Innate} to a card in hand.",
+			"DESCRIPTION": "Give {~Delayed} to a card in hand or discard pile. If you do: Give {~Innate} to a card in hand.",
 			"EXTENDED_DESCRIPTION": ["Select card(s) to give Delayed","Select card(s) to give Innate"],
-			"NAME": "Nina Clive"
+			"NAME": "Nina Clive",
+			"UPGRADE_DESCRIPTION": "Give {~Delayed} to cards your in hand or discard pile, up to <W>. For each: Give {~Innate} to a card in hand."
 		},
 		"animator:Shiro":
 		{
@@ -2413,12 +2414,12 @@
 		},
 		"animator:PandorasActor":
 		{
-			"DESCRIPTION": "At the start ** of combat: ** Gain !M! [Block].",
+			"DESCRIPTION": "At the start ** of combat: ** Gain !M! [Block]. || <SLM>. On Exhuast: {Imitate} this.",
 			"NAME": "Pandora's Actor"
 		},
 		"animator:AuraBellaFiora":
 		{
-			"DESCRIPTION": "Starter: Gain !M! ** additional Block. || Motivate 1 2+ Cost ** card. Discard 1 card.",
+			"DESCRIPTION": "Starter: Gain +!S! Block. || Discard a card to Motivate a 2+ Cost ** card. || <LIM>. Synergy with {Mare Bello Fiore}: Next turn, <DRW-M>.",
 			"NAME": "Aura Bella Fiora"
 		},
 		"animator:MareBelloFiore":
@@ -2484,7 +2485,7 @@
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [I] > 6: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
+			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [I] @>@ 6: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
 			"NAME": "Lest Karr"
 		},
 		"animator:Mikaela":
@@ -2499,7 +2500,7 @@
 		},
 		"animator:Shigure":
 		{
-			"DESCRIPTION": "If <L> > <G>, Gain !M! [Support Damage]. Otherwise, Apply !M! [Poison]. || <AS>: Cycle !S! cards.",
+			"DESCRIPTION": "@If@ <L> @>@ <G>, Gain !M! [Support Damage]. Otherwise, Apply !M! [Poison]. || <AS>: Cycle !S! cards.",
 			"NAME": "Shigure Yukimi"
 		},
 		"animator:Shinoa":
@@ -2514,7 +2515,7 @@
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. || <AS>: You may gain [F] this turn. || On Exhaust: Add {Asuramaru} to ** your discard pile.",
+			"DESCRIPTION": "<DRW>. ** <AS>: You may gain [F] this turn. || On Exhaust: Add {Asuramaru} to ** your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":

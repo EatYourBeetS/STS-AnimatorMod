@@ -9,7 +9,7 @@ import eatyourbeets.utilities.GameActions;
 public class NinaClive extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NinaClive.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public NinaClive()
@@ -21,14 +21,13 @@ public class NinaClive extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
 
-        SetCostUpgrade(-1);
         SetExhaust(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromPile(name, GetHandAffinity(Affinity.General), player.hand, player.discardPile)
+        GameActions.Bottom.SelectFromPile(name, upgraded ? GetHandAffinity(Affinity.General,false) : 1, player.hand, player.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->

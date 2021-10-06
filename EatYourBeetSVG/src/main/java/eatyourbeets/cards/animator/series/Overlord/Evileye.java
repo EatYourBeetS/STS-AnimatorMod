@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class Evileye extends AnimatorCard
+public class Evileye extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Evileye.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)

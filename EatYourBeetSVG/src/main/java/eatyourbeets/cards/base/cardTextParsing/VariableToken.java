@@ -118,7 +118,7 @@ public class VariableToken extends CTToken
                         break;
                     }
                 }
-                else if (!(next instanceof WhitespaceToken) && !next.rawText.equals(","))
+                else if (!(next instanceof WhitespaceToken) && next != null && !next.rawText.equals(","))
                 {
                     break;
                 }

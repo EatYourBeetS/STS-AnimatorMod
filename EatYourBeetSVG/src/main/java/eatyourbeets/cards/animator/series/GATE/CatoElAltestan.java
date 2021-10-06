@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
+import eatyourbeets.misc.GenericEffects.GenericEffect_Apply;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.PowerHelper;
@@ -15,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class CatoElAltestan extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(CatoElAltestan.class)
-            .SetSkill(1, CardRarity.UNCOMMON)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -24,7 +24,7 @@ public class CatoElAltestan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(2);
@@ -55,11 +55,11 @@ public class CatoElAltestan extends AnimatorCard
         choices.Initialize(this, true);
         if (CheckAffinity(Affinity.Blue))
         {
-            choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PowerHelper.Freezing, secondaryValue));
+            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Freezing, secondaryValue));
         }
         if (CheckAffinity(Affinity.Red))
         {
-            choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PowerHelper.Burning, secondaryValue));
+            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Burning, secondaryValue));
         }
         if (CheckAffinity(Affinity.Green))
         {

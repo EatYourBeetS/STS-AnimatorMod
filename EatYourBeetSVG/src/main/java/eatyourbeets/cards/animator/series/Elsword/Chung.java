@@ -23,7 +23,7 @@ public class Chung extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 2, 11, 3);
+        Initialize(1, 2, 13, 3);
         SetUpgrade(0, 2, 2, 0);
 
         SetAffinity_Red(1);

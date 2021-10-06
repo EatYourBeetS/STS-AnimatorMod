@@ -93,11 +93,6 @@ public abstract class AnimatorCard extends EYBCard
         return CombatStats.Affinities.WouldSynergize(this, other);
     }
 
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return false;
-    }
-
     public void SetSeries(CardSeries series)
     {
         this.series = series;

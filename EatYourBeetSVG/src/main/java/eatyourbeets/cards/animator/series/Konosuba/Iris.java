@@ -8,8 +8,10 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Iris extends AnimatorCard
 {
@@ -17,13 +19,13 @@ public class Iris extends AnimatorCard
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final HashSet<AbstractCard> buffs = new HashSet<>();
+    private static HashMap<UUID, Integer> buffs;
 
     public Iris()
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 4);
 
         SetAffinity_Light(2);
 
@@ -39,10 +41,11 @@ public class Iris extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (!CombatStats.GetCombatData(cardID + "_buffs", false))
+        buffs = CombatStats.GetCombatData(cardID, null);
+        if (buffs == null)
         {
-            CombatStats.SetCombatData(cardID + "_buffs", true);
-            buffs.clear();
+            buffs = new HashMap<>();
+            CombatStats.SetCombatData(cardID, buffs);
         }
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
@@ -59,13 +62,14 @@ public class Iris extends AnimatorCard
                     GameActions.Bottom.SelectFromHand(name, 1, false)
                             .SetOptions(false, false, false)
                             .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-                            .SetFilter(c2 -> c2 instanceof EYBCard && !GameUtilities.IsHindrance(c2) && !buffs.contains(c2) && (c2.baseDamage >= 0 || c2.baseBlock >= 0))
+                            .SetFilter(c2 -> c2 instanceof EYBCard && !GameUtilities.IsHindrance(c2) && buffs.getOrDefault(c2.uuid, 0) < magicNumber && (c2.baseDamage >= 0 || c2.baseBlock >= 0))
                             .AddCallback(cards2 ->
                             {
                                 for (AbstractCard c2 : cards2)
                                 {
-                                    GameActions.Bottom.IncreaseScaling(c2, Affinity.Light, Math.max(1,c.costForTurn));
-                                    buffs.add(c2);
+                                    int amount = Math.min(magicNumber,c.costForTurn + 1);
+                                    GameActions.Bottom.IncreaseScaling(c2, Affinity.Light, amount);
+                                    JUtils.IncrementMapElement(buffs, c2.uuid, amount);
                                     c2.flash();
                                 }
                             });

@@ -24,7 +24,6 @@ public class MareBelloFiore extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Green(1);
-        SetAffinity_Orange(1);
 
         SetAffinityRequirement(Affinity.Blue, 2);
         SetAffinityRequirement(Affinity.Green, 2);

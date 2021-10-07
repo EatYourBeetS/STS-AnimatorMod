@@ -11,7 +11,7 @@ import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
-public class MakiseKurisu extends AnimatorCard
+public class MakiseKurisu extends AnimatorCard //TODO add custom Time Paradox statuses
 {
     public static final EYBCardData DATA = Register(MakiseKurisu.class)
             .SetSkill(3, CardRarity.RARE, EYBCardTarget.None)

@@ -20,7 +20,8 @@ public class FeridBathory extends AnimatorCard
     public static final EYBCardData DATA = Register(FeridBathory.class)
             .SetPower(2, CardRarity.RARE)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .SetMultiformData(2);
 
     public FeridBathory()
     {
@@ -38,8 +39,18 @@ public class FeridBathory extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetDelayed(false);
+        if (auxiliaryData.form == 0) {
+            SetDelayed(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

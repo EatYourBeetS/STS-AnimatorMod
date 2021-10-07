@@ -14,6 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class OrigamiTobiichi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage()
+            .SetMultiformData(2)
             .PostInitialize(data -> data.AddPreview(new InverseOrigami(), false));
 
     public OrigamiTobiichi()
@@ -27,9 +28,20 @@ public class OrigamiTobiichi extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade() {
-        SetInnate(true);
+    protected void OnUpgrade()
+    {
+        if (auxiliaryData.form == 0) {
+            SetInnate(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form == 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

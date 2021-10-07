@@ -3,10 +3,8 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -21,13 +19,15 @@ public class HomuraAkemi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 2, 3);
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(1);
 
         SetExhaust(true);
         SetEthereal(true);
+
+        SetAffinityRequirement(Affinity.General,5);
     }
 
     @Override
@@ -42,9 +42,13 @@ public class HomuraAkemi extends AnimatorCard
         GameActions.Bottom.PurgeFromPile(name,1,player.hand).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(
                 pc -> {
                     if (pc.size() > 0) {
-                        GameActions.Bottom.ApplyPower(new HomuraAkemiPower(player, this, secondaryValue));
+                        GameActions.Bottom.ApplyPower(new HomuraAkemiPower(player, this, magicNumber));
                     }
                 });
+
+        if (CheckAffinity(Affinity.General) && info.TryActivateLimited()) {
+            GameActions.Bottom.GainArtifact(secondaryValue);
+        }
     }
 
     public static class HomuraAkemiPower extends AnimatorPower
@@ -72,7 +76,10 @@ public class HomuraAkemi extends AnimatorCard
                 GameActions.Bottom.SelectFromPile(name, 1, player.masterDeck)
                         .SetFilter(c -> !c.cardID.equals(sourceCard.cardID) && GameUtilities.IsSameSeries(sourceCard,c))
                         .SetOptions(false, false)
-                        .AddCallback(cards -> GameActions.Bottom.MakeCardInDrawPile(cards.get(0)).AddCallback(GameUtilities::Retain));
+                        .AddCallback(cards -> GameActions.Bottom.MakeCardInDrawPile(cards.get(0)).AddCallback(ca -> {
+                            ca.purgeOnUse = true;
+                            CostModifiers.For(ca).Set(-99);
+                        }));
             }
         }
     }

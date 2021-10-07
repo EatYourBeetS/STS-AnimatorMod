@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -99,7 +98,7 @@ public class YachiyoNanami extends AnimatorCard
                 griefSeedsPlayed += amount;
             }
             if (griefSeedsPlayed >= GRIEF_REQUIREMENT) {
-                CombatStats.Affinities.BonusAffinities.Add(MathUtils.randomBoolean() ? Affinity.Light : Affinity.Blue, 1);
+                CombatStats.Affinities.BonusAffinities.Add(CombatStats.Affinities.GetHandAffinityLevel(Affinity.Blue, null) > CombatStats.Affinities.GetHandAffinityLevel(Affinity.Light, null) ? Affinity.Light : Affinity.Blue, 1);
                 griefSeedsPlayed -= GRIEF_REQUIREMENT;
             }
 

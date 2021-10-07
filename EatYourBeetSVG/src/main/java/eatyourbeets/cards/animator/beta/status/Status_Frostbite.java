@@ -9,11 +9,11 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Frostbite extends AnimatorCard_Status
+public class Status_Frostbite extends AnimatorCard_Status
 {
-    public static final EYBCardData DATA = Register(Frostbite.class).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Status_Frostbite.class).SetMultiformData(2).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
 
-    public Frostbite()
+    public Status_Frostbite()
     {
         super(DATA, true);
 
@@ -21,11 +21,19 @@ public class Frostbite extends AnimatorCard_Status
         SetUpgrade(0, 0, 1, 1);
     }
 
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        SetExhaust(form == 1);
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (this.dontTriggerOnUseCard)
+        if (auxiliaryData.form == 1) {
+            GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(),magicNumber);
+        }
+        else if (this.dontTriggerOnUseCard)
         {
             GameActions.Bottom.ApplyFreezing(null, player, magicNumber);
         }

@@ -11,7 +11,7 @@ import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber
+public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
 {
     public static final EYBCardData DATA = Register(Ranga.class)
             .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental)

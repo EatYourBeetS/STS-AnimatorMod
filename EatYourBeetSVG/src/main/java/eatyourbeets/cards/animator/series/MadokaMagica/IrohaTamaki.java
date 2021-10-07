@@ -18,17 +18,18 @@ public class IrohaTamaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 5, 2);
-        SetUpgrade(0, 2, 1);
+        Initialize(3, 5, 2, 1);
+        SetUpgrade(0, 2, 1 ,1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RetainPower(Affinity.Light);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
 
@@ -37,11 +38,13 @@ public class IrohaTamaki extends AnimatorCard
             AbstractCard topCard = p.drawPile.getTopCard();
             if (GameUtilities.IsHindrance(topCard))
             {
-                GameActions.Bottom.Exhaust(topCard);
+                GameActions.Bottom.Exhaust(topCard).AddCallback(() -> {
+                    GameActions.Bottom.StackAffinityPower(Affinity.Light, secondaryValue, true);
+                });
             }
         }
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing || CheckAffinity(Affinity.Light))
         {
             GameActions.Bottom.Scry(magicNumber);
         }

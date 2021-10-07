@@ -82,7 +82,7 @@
 	},
 	"eyb:ImpairedPower":
 	{
-		"DESCRIPTIONS": ["Orbs are #b{0}% less effective for #b{1} {2}.","turn","turns"],
+		"DESCRIPTIONS": ["Orbs are #b{0}% as effective for #b{1} {2}.","turn","turns"],
 		"NAME": "Impaired"
 	},
 	"eyb:InspirationPower":

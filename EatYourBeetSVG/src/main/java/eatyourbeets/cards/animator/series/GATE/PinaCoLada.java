@@ -21,6 +21,7 @@ public class PinaCoLada extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(PinaCoLada.class)
             .SetPower(3, CardRarity.RARE)
+            .SetMultiformData(2)
             .SetSeriesFromClassPackage();
 
     public PinaCoLada()
@@ -37,8 +38,18 @@ public class PinaCoLada extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        if (auxiliaryData.form == 0) {
+            SetInnate(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form == 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
 
     @Override

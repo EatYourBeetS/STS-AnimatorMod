@@ -30,7 +30,6 @@ import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
-import patches.cardStrings.CardStringPatches;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -190,12 +189,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     protected String GetRawDescription(Object... args)
     {
-        if (auxiliaryData.form > 0) {
-            String[] alternateDescriptions = CardStringPatches.ALTERNATE_DESCRIPTION.get(cardData.Strings);
-            if (alternateDescriptions != null && alternateDescriptions.length > auxiliaryData.form) {
-                return JUtils.Format(alternateDescriptions[auxiliaryData.form], args);
-            }
-        }
         return upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null
                 ? JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args)
                 : JUtils.Format(cardData.Strings.DESCRIPTION, args);
@@ -1136,6 +1129,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public int SetForm(Integer form, int timesUpgraded) {
         this.auxiliaryData.form = (form == null) ? 0 : MathUtils.clamp(form,0,this.cardData.MaxForms - 1);
+        this.cardText.ForceRefresh();
         return this.auxiliaryData.form;
     };
 

@@ -12,14 +12,14 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class HiiragiTenri extends AnimatorCard_UltraRare
+public class HiiragiMahiru extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(HiiragiTenri.class)
+    public static final EYBCardData DATA = Register(HiiragiMahiru.class)
             .SetSkill(4, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.OwariNoSeraph);
 
-    public HiiragiTenri()
+    public HiiragiMahiru()
     {
         super(DATA);
 

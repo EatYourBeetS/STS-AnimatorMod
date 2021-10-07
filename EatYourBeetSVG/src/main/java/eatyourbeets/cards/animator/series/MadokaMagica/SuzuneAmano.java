@@ -2,14 +2,13 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TargetHelper;
 
 public class SuzuneAmano extends AnimatorCard
 {
@@ -27,6 +26,8 @@ public class SuzuneAmano extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);
+
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class SuzuneAmano extends AnimatorCard
         {
             if (cards != null && cards.size() > 0)
             {
-                GameActions.Bottom.ApplyBurning(player, enemy, magicNumber);
+                GameActions.Bottom.ApplyBurning(CheckAffinity(Affinity.Blue) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
             }
         });
     }

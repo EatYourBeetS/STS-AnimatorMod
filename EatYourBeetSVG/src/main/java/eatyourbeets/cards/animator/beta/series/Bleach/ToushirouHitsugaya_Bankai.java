@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
-import eatyourbeets.cards.animator.beta.status.Frostbite;
+import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -22,7 +22,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ToushirouHitsugaya_Bankai.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
-                data.AddPreview(new Frostbite(), false);
+                data.AddPreview(new Status_Frostbite(), false);
                 data.AddPreview(new SheerCold(), false);
             });
 
@@ -80,7 +80,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
             }
         });
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.MakeCardInDrawPile(new Frostbite())
+            GameActions.Bottom.MakeCardInDrawPile(new Status_Frostbite())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
     }

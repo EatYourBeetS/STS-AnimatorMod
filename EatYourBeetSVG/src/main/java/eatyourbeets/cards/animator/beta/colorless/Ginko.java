@@ -1,14 +1,18 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.*;
+import com.megacrit.cardcrawl.cards.status.Burn;
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.status.*;
+import eatyourbeets.cards.animator.beta.status.Ginko_Dazed;
+import eatyourbeets.cards.animator.beta.status.Ginko_Wound;
+import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.animator.status.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Ginko extends AnimatorCard
 {
@@ -46,11 +50,10 @@ public class Ginko extends AnimatorCard
                 });
     }
 
+    //TODO Altered void status, use multiform for statuses
+
     private void TransformCard(AbstractCard c) {
-        if (c instanceof Slimed || c instanceof Status_Slimed || c instanceof Hans_Slimed) {
-            GameActions.Last.ReplaceCard(c.uuid, new Ginko_Slimed());
-        }
-        else if (c instanceof Wound || c instanceof Status_Wound) {
+        if (c instanceof Wound || c instanceof Status_Wound) {
             GameActions.Last.ReplaceCard(c.uuid, new Ginko_Wound());
         }
         else if (c instanceof Dazed) {
@@ -59,13 +62,8 @@ public class Ginko extends AnimatorCard
         else if (c instanceof Burn || c instanceof Status_Burn) {
             GameActions.Last.ReplaceCard(c.uuid, new SearingBurn());
         }
-        else if (c instanceof VoidCard) {
-            AbyssalVoid v = new AbyssalVoid();
-            GameUtilities.ModifyCostForCombat(v, 0, false);
-            GameActions.Last.ReplaceCard(c.uuid, v);
-        }
-        else if (c instanceof Frostbite) {
-            GameActions.Last.ReplaceCard(c.uuid, new Ginko_Frostbite());
+        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed) {
+            ((EYBCard) c).SetForm(1,c.timesUpgraded);
         }
         else if (c instanceof SearingBurn) {
             GameActions.Last.ReplaceCard(c.uuid, new Overheat());

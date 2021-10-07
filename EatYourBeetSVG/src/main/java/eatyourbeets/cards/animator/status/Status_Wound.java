@@ -23,11 +23,17 @@ public class Status_Wound extends AnimatorCard_Status
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        SetEthereal(form == 1);
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.RecoverHP(1);
+        GameActions.Bottom.RecoverHP(1 + auxiliaryData.form);
     }
 
     @Override

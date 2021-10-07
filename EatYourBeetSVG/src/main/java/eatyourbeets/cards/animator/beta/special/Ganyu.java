@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.vfx.combat.ClawEffect;
-import eatyourbeets.cards.animator.beta.status.Frostbite;
+import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -72,7 +72,7 @@ public class Ganyu extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Player(), magicNumber);
         for (int i = 0; i < secondaryValue; i++) {
-            GameActions.Bottom.MakeCardInDrawPile(new Frostbite())
+            GameActions.Bottom.MakeCardInDrawPile(new Status_Frostbite())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
     }

@@ -15,8 +15,8 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import eatyourbeets.actions.orbs.WaterOrbEvokeAction;
+import eatyourbeets.cards.animator.beta.curse.Curse_AbyssalVoid;
 import eatyourbeets.cards.animator.beta.special.Traveler_Wish;
-import eatyourbeets.cards.animator.beta.status.AbyssalVoid;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -33,7 +33,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> {
                 data.AddPreview(new Traveler_Wish(), false);
-                data.AddPreview(new AbyssalVoid(), false);
+                data.AddPreview(new Curse_AbyssalVoid(), false);
             });
     public static final int DEBUFFS_COUNT = 2;
 
@@ -61,7 +61,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
         GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
         for (int i = 0; i < secondaryValue; i++) {
             GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish());
-            GameActions.Bottom.MakeCardInDrawPile(new AbyssalVoid());
+            GameActions.Bottom.MakeCardInDrawPile(new Curse_AbyssalVoid());
         }
 
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);

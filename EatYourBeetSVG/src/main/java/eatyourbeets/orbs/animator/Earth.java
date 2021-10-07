@@ -84,6 +84,13 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         }
     }
 
+    public void RemoveProjectiles(int amount)
+    {
+        for (int i = 0; i < amount; i++) {
+            projectiles.remove(projectiles.size() - 1);
+        }
+    }
+
     @Override
     public void onChannel()
     {

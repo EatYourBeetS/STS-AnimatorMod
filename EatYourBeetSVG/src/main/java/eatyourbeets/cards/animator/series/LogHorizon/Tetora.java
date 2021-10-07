@@ -16,7 +16,7 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Tetora extends AnimatorCard
+public class Tetora extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Tetora.class)
             .SetPower(0, CardRarity.UNCOMMON)
@@ -30,7 +30,7 @@ public class Tetora extends AnimatorCard
         Initialize(0, 0, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
         SetAffinity_Orange(1);
 
         SetHarmonic(true);

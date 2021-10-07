@@ -25,6 +25,10 @@ public class EarthOrbPassiveAction extends EYBAction
             orb.projectiles.clear();
             orb.AddProjectiles(orb.projectilesCount + amount);
         }
+        else if (amount < 0)
+        {
+            orb.RemoveProjectiles(-amount);
+        }
         else
         {
             orb.AddProjectiles(amount);

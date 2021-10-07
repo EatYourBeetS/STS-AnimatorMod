@@ -41,10 +41,22 @@ public class MS06ZakuII extends AnimatorCard
         }
     }
 
-    public void OnUpgrade() {
-        SetInnate(true);
+    @Override
+    protected void OnUpgrade()
+    {
         SetRetainOnce(true);
+        if (auxiliaryData.form == 0) {
+            SetInnate(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form == 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

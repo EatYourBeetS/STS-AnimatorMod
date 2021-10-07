@@ -1,31 +1,36 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.common.ImpairedPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
-public class Evileye extends AnimatorCard //TODO
+public class Evileye extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Evileye.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final int IMPAIRED_MODIFIER = 100;
 
     public Evileye()
     {
         super(DATA);
 
-        Initialize(0,0, 1);
+        Initialize(0,0, 2, 3);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
 
         SetEthereal(true);
+        SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
@@ -37,19 +42,47 @@ public class Evileye extends AnimatorCard //TODO
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing && info.TryActivateLimited())
+        for (int i = 0; i < magicNumber; i++) {
+            GameActions.Bottom.EvokeOrb(2, JUtils.Random(player.orbs));
+        }
+        GameActions.Bottom.StackPower(new ImpairedPower(player, secondaryValue));
+
+        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+            GameActions.Bottom.StackPower(new ImpairedPower(p, 1));
+        }
+    }
+
+    public static class EvileyePower extends AnimatorPower
+    {
+        public EvileyePower(AbstractCreature owner, int amount)
         {
-            GameActions.Bottom.GainIntellect(2);
-            GameActions.Bottom.GainOrbSlots(1);
+            super(owner, Evileye.DATA);
+
+            Initialize(amount, PowerType.BUFF, true);
         }
 
-        GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.Reload(name, cards ->
+        @Override
+        public void onInitialApplication()
         {
-            if (player.filledOrbCount() > 0 && cards.size() > 0) {
-                GameActions.Bottom.TriggerOrbPassive(cards.size())
-                        .SetFilter(o -> !Plasma.ORB_ID.equals(o.ID));
-            }
-        });
+            super.onInitialApplication();
+
+            ImpairedPower.AddPlayerModifier(IMPAIRED_MODIFIER);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            ImpairedPower.AddPlayerModifier(-IMPAIRED_MODIFIER);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            ReducePower(1);
+        }
     }
 }

@@ -15,6 +15,7 @@ public class Henrietta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Henrietta.class)
             .SetPower(3, CardRarity.UNCOMMON)
+            .SetMultiformData(2)
             .SetSeriesFromClassPackage();
     private static final int POWER_ENERGY_COST = 1;
 
@@ -31,22 +32,35 @@ public class Henrietta extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        if (auxiliaryData.form == 0) {
+            SetInnate(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form == 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new HenriettaPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new HenriettaPower(p, magicNumber, secondaryValue));
     }
 
     public static class HenriettaPower extends AnimatorClickablePower
     {
-        public HenriettaPower(AbstractPlayer owner, int amount)
+        private int secondaryValue;
+
+        public HenriettaPower(AbstractPlayer owner, int amount, int secondaryValue)
         {
             super(owner, Henrietta.DATA, PowerTriggerConditionType.Energy, Henrietta.POWER_ENERGY_COST);
 
             this.amount = amount;
+            this.secondaryValue = secondaryValue;
 
             updateDescription();
         }
@@ -57,7 +71,7 @@ public class Henrietta extends AnimatorCard
             super.OnUse(m);
             final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(null);
             Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), affinities::GetLevel);
-            GameActions.Bottom.StackAffinityPower(highestAffinity, 2, false);
+            GameActions.Bottom.StackAffinityPower(highestAffinity, secondaryValue, false);
         }
 
         @Override
@@ -77,6 +91,12 @@ public class Henrietta extends AnimatorCard
             for (Affinity affinity: Affinity.Basic()) {
                 CombatStats.Affinities.AddMaxActivationsPerTurn(affinity, -amount);
             }
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, secondaryValue, amount);
         }
     }
 }

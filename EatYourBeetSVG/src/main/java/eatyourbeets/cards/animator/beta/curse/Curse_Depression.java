@@ -39,10 +39,4 @@ public class Curse_Depression extends AnimatorCard_Curse
     {
     }
 
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
-    }
-
 }

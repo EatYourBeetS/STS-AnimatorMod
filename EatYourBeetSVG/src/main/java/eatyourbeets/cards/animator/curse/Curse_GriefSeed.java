@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.curse;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -18,7 +19,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     {
         super(DATA, false);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2);
 
         SetAffinity_Dark(1);
     }
@@ -58,6 +59,13 @@ public class Curse_GriefSeed extends AnimatorCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-
+        GameActions.Bottom.SelectFromHand(name, 1, true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).cooldown != null && ((AnimatorCard) c).cooldown.cardConstructor != null).AddCallback(cards -> {
+            for (AbstractCard c : cards) {
+                if (c instanceof AnimatorCard) {
+                    ((AnimatorCard) c).cooldown.ProgressCooldown(-1);
+                    c.flash();
+                }
+            }
+        });
     }
 }

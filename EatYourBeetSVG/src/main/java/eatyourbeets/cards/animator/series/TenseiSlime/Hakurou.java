@@ -2,13 +2,14 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -34,14 +35,6 @@ public class Hakurou extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetBlockInfo() {
-        if (GameUtilities.InBattle() && GameUtilities.InStance(NeutralStance.STANCE_ID)) {
-            return null;
-        }
-        return super.GetBlockInfo().AddMultiplier(2);
-    }
-
-    @Override
     protected void OnUpgrade()
     {
         upgradedDamage = true;
@@ -58,8 +51,10 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.RetainPower(Affinity.Green);
-        GameActions.Bottom.Flash(this);
+        if (ForceStance.IsActive() || WillpowerStance.IsActive()) {
+            GameUtilities.MaintainPower(Affinity.Green);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -70,6 +65,10 @@ public class Hakurou extends AnimatorCard
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
+        for (int i = 0; i < magicNumber; i++)
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
 
         GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
         .RequireNeutralStance(true)
@@ -78,12 +77,6 @@ public class Hakurou extends AnimatorCard
             if (stance != null)
             {
                 GameActions.Bottom.Flash(this);
-            }
-            else {
-                for (int i = 0; i < magicNumber; i++)
-                {
-                    GameActions.Bottom.GainBlock(block);
-                }
             }
         });
 

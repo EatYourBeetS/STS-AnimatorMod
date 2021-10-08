@@ -16,16 +16,10 @@ public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscrib
 
     public Curse_Rozen()
     {
-        super(DATA, false);
+        super(DATA, true);
         SetAffinity_Dark(1);
 
         Initialize(0, 0);
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
     }
 
     @Override

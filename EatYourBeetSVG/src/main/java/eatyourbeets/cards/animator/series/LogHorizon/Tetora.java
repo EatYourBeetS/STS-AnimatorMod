@@ -10,24 +10,25 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class Tetora extends AnimatorCard //TODO
+public class Tetora extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Tetora.class)
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
+    private static final int POWER_CARD_COST = 2;
 
     public Tetora()
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 1, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
@@ -51,41 +52,25 @@ public class Tetora extends AnimatorCard //TODO
     }
 
     @Override
-    public ColoredString GetMagicNumberString()
-    {
-        if (isMagicNumberModified)
-        {
-            return new ColoredString(magicNumber, magicNumber >= secondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
-        }
-        else
-        {
-            return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR, transparency);
-        }
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        GameUtilities.ModifyMagicNumber(this, GetHandAffinity(Affinity.General), true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new TetoraPower(p, 1));
+        GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, secondaryValue));
     }
 
-    public static class TetoraPower extends AnimatorPower implements OnSynergySubscriber
+    public static class TetoraPower extends AnimatorClickablePower implements OnSynergySubscriber
     {
-        private int synergies;
+        private final int baseSecondaryValue;
+        private int secondaryValue;
+        private boolean active;
 
-        public TetoraPower(AbstractPlayer owner, int amount)
+        public TetoraPower(AbstractPlayer owner, int amount, int secondaryValue)
         {
-            super(owner, Tetora.DATA);
+            super(owner, Tetora.DATA, PowerTriggerConditionType.Discard, POWER_CARD_COST);
+
+            this.triggerCondition.SetUses(1,true, false);
 
             this.amount = amount;
+            this.baseSecondaryValue = this.secondaryValue = secondaryValue;
 
             updateDescription();
         }
@@ -107,32 +92,67 @@ public class Tetora extends AnimatorCard //TODO
         }
 
         @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+            for (Affinity affinity : Affinity.Basic()) {
+                CombatStats.Affinities.BonusAffinities.Add(affinity, 1);
+            }
+            active = true;
+
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer) {
+            super.atEndOfTurn(isPlayer);
+            if (active) {
+                active = false;
+                for (Affinity affinity : Affinity.Basic()) {
+                    CombatStats.Affinities.BonusAffinities.Add(affinity, -1);
+                }
+            }
+        }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+            if (active) {
+                active = false;
+                for (Affinity affinity : Affinity.Basic()) {
+                    CombatStats.Affinities.BonusAffinities.Add(affinity, -1);
+                }
+            }
+            secondaryValue = baseSecondaryValue;
+        }
+
+
+        @Override
         public void OnSynergy(AbstractCard card)
         {
-            synergies = (synergies + 1) % 3;
-
-            if (synergies == 0)
+            if (secondaryValue > 0)
             {
+                secondaryValue -= 1;
                 for (int i = 0; i < amount; i++)
                 {
                     GameActions.Bottom.GainRandomAffinityPower(1, false);
                 }
 
-                enabled = false;
                 flash();
             }
         }
 
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, amount);
-        }
 
         @Override
         protected ColoredString GetSecondaryAmount(Color c)
         {
-            return new ColoredString(synergies, Settings.BLUE_TEXT_COLOR);
+            return new ColoredString(secondaryValue, Settings.BLUE_TEXT_COLOR);
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, secondaryValue, amount, POWER_CARD_COST);
         }
     }
 }

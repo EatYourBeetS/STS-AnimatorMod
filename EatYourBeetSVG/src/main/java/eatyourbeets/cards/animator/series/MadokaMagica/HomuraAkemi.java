@@ -3,17 +3,22 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.curse.HomuraAkemi_Homulily;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HomuraAkemi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HomuraAkemi.class)
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new HomuraAkemi_Homulily(), true);
+            });
 
     public HomuraAkemi()
     {
@@ -27,7 +32,8 @@ public class HomuraAkemi extends AnimatorCard
         SetExhaust(true);
         SetEthereal(true);
 
-        SetAffinityRequirement(Affinity.General,5);
+        SetAffinityRequirement(Affinity.Light,4);
+        SetCooldown(0, 0, HomuraAkemi_Homulily::new);
     }
 
     @Override
@@ -46,9 +52,11 @@ public class HomuraAkemi extends AnimatorCard
                     }
                 });
 
-        if (CheckAffinity(Affinity.General) && info.TryActivateLimited()) {
+        if (CheckAffinity(Affinity.Light) && info.TryActivateLimited()) {
             GameActions.Bottom.GainArtifact(secondaryValue);
         }
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     public static class HomuraAkemiPower extends AnimatorPower
@@ -66,21 +74,25 @@ public class HomuraAkemi extends AnimatorCard
         }
 
         @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            GameActions.Bottom.SelectFromPile(name, 1, player.masterDeck)
+                    .SetFilter(c -> !c.cardID.equals(sourceCard.cardID))
+                    .SetOptions(false, false)
+                    .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(ca -> {
+                        ca.purgeOnUse = true;
+                        CostModifiers.For(ca).Set(-1);
+                    }));
+        }
+
+        @Override
         public void atStartOfTurnPostDraw()
         {
             super.atStartOfTurnPostDraw();
 
             GameActions.Bottom.ReducePower(this, 1);
-
-            if (amount == 0) {
-                GameActions.Bottom.SelectFromPile(name, 1, player.masterDeck)
-                        .SetFilter(c -> !c.cardID.equals(sourceCard.cardID) && GameUtilities.IsSameSeries(sourceCard,c))
-                        .SetOptions(false, false)
-                        .AddCallback(cards -> GameActions.Bottom.MakeCardInDrawPile(cards.get(0)).AddCallback(ca -> {
-                            ca.purgeOnUse = true;
-                            CostModifiers.For(ca).Set(-99);
-                        }));
-            }
         }
     }
 

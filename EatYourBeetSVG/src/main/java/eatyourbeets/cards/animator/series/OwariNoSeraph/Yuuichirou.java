@@ -3,17 +3,16 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yuuichirou_Asuramaru;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Yuuichirou extends AnimatorCard implements OnEndOfTurnSubscriber
+public class Yuuichirou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yuuichirou.class)
             .SetAttack(1, CardRarity.UNCOMMON)
@@ -42,8 +41,7 @@ public class Yuuichirou extends AnimatorCard implements OnEndOfTurnSubscriber
         GameActions.Bottom.Draw(1);
 
         if (AgilityStance.IsActive()) {
-            CombatStats.Affinities.Force.SetEnabled(true);
-            CombatStats.onEndOfTurn.Subscribe(this);
+            GameUtilities.MaintainPower(Affinity.Red);
         }
     }
 
@@ -53,13 +51,5 @@ public class Yuuichirou extends AnimatorCard implements OnEndOfTurnSubscriber
         super.triggerOnExhaust();
 
         GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
-    }
-
-    @Override
-    public void OnEndOfTurn(boolean isPlayer) {
-        CombatStats.onEndOfTurn.Unsubscribe(this);
-        if (GameUtilities.InStance(AgilityStance.STANCE_ID)) {
-            CombatStats.Affinities.Force.SetEnabled(false);
-        }
     }
 }

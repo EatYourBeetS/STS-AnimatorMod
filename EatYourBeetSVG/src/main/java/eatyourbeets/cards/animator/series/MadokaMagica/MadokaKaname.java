@@ -1,20 +1,24 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import eatyourbeets.cards.animator.curse.HomuraAkemi_Homulily;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.utilities.*;
 
-public class MadokaKaname extends AnimatorCard
+public class MadokaKaname extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new HomuraAkemi_Homulily(), true);
+            });
 
     private static final int HEAL_AMOUNT = 3;
 
@@ -29,9 +33,12 @@ public class MadokaKaname extends AnimatorCard
         SetAffinity_Light(2);
 
         SetHealing(true);
-        SetPurge(true);
+        SetExhaust(true);
         SetProtagonist(true);
         SetHarmonic(true);
+
+        SetAffinityRequirement(Affinity.Light, 4);
+        SetAffinityRequirement(Affinity.Dark, 4);
     }
 
     @Override
@@ -52,18 +59,6 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
-    {
-        super.triggerOnOtherCardPlayed(c);
-
-        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
-        {
-            GameActions.Bottom.GainTemporaryHP(1);
-            GameActions.Bottom.Flash(this);
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
@@ -74,12 +69,14 @@ public class MadokaKaname extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                for (int i = 0; i < cards.size(); i++)
-                {
-                    GameActions.Bottom.Heal(HEAL_AMOUNT);
+                GameActions.Bottom.HealPlayerLimited(this, HEAL_AMOUNT * cards.size());
+                if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+                    GameActions.Bottom.GainSupportDamage(HEAL_AMOUNT * cards.size());
                 }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }
         });
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 }

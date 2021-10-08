@@ -3,16 +3,20 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.animator.DainsleifAbyssPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class Dainsleif extends AnimatorCard_UltraRare {
+    public static EYBCardTooltip Phase;
+    public static PowerStrings PhaseStrings;
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedCardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-
     public static final EYBCardData DATA = Register(Dainsleif.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data ->
             {
@@ -25,6 +29,8 @@ public class Dainsleif extends AnimatorCard_UltraRare {
                     upgradedCardChoices.group.add(c);
 
                 }
+                PhaseStrings = GR.GetPowerStrings(DainsleifAbyssPower.POWER_ID);
+                Phase = new EYBCardTooltip(PhaseStrings.NAME, JUtils.Format(PhaseStrings.DESCRIPTIONS[0],DainsleifAbyssPower.COUNTDOWN_AMT));
             });
 
     public Dainsleif() {
@@ -37,6 +43,17 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         SetDelayed(true);
 
         SetAffinityRequirement(Affinity.General, 5);
+    }
+
+    @Override
+    public void initializeDescription()
+    {
+        super.initializeDescription();
+
+        if (cardText != null && Phase != null)
+        {
+            tooltips.add(Phase);
+        }
     }
 
 

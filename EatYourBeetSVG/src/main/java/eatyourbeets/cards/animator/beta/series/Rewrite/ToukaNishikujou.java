@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ToukaNishikujou extends AnimatorCard
 {
@@ -26,7 +27,7 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.RetainPower(Affinity.Orange);
+        GameUtilities.MaintainPower(Affinity.Orange);
     }
 
     @Override

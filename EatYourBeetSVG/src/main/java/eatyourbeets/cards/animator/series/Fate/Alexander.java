@@ -38,11 +38,12 @@ public class Alexander extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        GameUtilities.RetainPower(Affinity.Red);
-
         if (ForceStance.IsActive())
         {
             GameActions.Bottom.Draw(1);
+        }
+        else {
+            GameUtilities.MaintainPower(Affinity.Red);
         }
     }
 }

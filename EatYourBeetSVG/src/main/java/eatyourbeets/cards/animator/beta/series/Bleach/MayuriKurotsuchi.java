@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +15,6 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class MayuriKurotsuchi extends AnimatorCard {
     public static final EYBCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal).SetSeriesFromClassPackage();
-    public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[0], DATA.Strings.EXTENDED_DESCRIPTION[1]);
 
     public MayuriKurotsuchi() {
         super(DATA);
@@ -45,14 +47,5 @@ public class MayuriKurotsuchi extends AnimatorCard {
                                 .ShowEffect(false, true);
                     }
                 });
-    }
-
-    @Override
-    public void initializeDescription() {
-        super.initializeDescription();
-
-        if (cardText != null) {
-            tooltips.add(CommonDebuffs);
-        }
     }
 }

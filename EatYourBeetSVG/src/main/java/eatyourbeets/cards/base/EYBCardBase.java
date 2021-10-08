@@ -84,7 +84,7 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseCooldownValue = 0;
     public int cooldownValue = 0;
 
-    protected EYBCardCooldown cooldown;
+    public EYBCardCooldown cooldown;
     protected AdvancedTexture portraitImg;
     protected AdvancedTexture portraitForeground;
 

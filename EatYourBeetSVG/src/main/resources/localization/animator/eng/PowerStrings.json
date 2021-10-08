@@ -52,7 +52,7 @@
 	},
 	"animator:DainsleifAbyssPower":
 	{
-	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. Whenever this reaches #b{0} stacks, remove #b{0} stacks, end your turn, and choose 1 out of 3 random effects."],
+	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. Whenever this reaches #b{0} stacks, remove #b{0} stacks, end your turn, and choose 1 out of 3 random effects with positive and negative effects."],
 	  "NAME": "Phase of the Abyssal Moon"
 	},
 	"animator:DarkCrystalPower":

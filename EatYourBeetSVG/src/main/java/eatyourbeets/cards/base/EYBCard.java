@@ -22,6 +22,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -896,6 +897,13 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         }
         return this.cooldown;
     }
+
+    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor)
+    {
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, cardConstructor);
+        return this.cooldown;
+    }
+
 
     public void OnDrag(AbstractMonster m)
     {

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.animator.curse.MamiTomoe_Candeloro;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -19,7 +20,9 @@ public class MamiTomoe extends AnimatorCard
     public static final EYBCardData DATA = Register(MamiTomoe.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
+            .PostInitialize(data -> {
+                data.AddPreview(new MamiTomoe_Candeloro(), false);
+                data.AddPreview(new Curse_GriefSeed(), false);});
 
     public MamiTomoe()
     {
@@ -30,6 +33,7 @@ public class MamiTomoe extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
+        SetCooldown(1, 0, MamiTomoe_Candeloro::new);
     }
 
     @Override
@@ -83,5 +87,7 @@ public class MamiTomoe extends AnimatorCard
         }
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 }

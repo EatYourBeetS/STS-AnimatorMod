@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Walpurgisnacht extends AnimatorCard_UltraRare
+public class Walpurgisnacht extends AnimatorCard_UltraRare //TODO
 {
     public static final EYBCardData DATA = Register(Walpurgisnacht.class)
             .SetPower(3, CardRarity.SPECIAL)

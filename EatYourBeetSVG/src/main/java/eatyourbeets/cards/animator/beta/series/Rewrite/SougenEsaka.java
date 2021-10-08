@@ -34,7 +34,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         if (CheckAffinity(Affinity.Red) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameUtilities.RetainPower(Affinity.Orange);
+            GameUtilities.MaintainPower(Affinity.Orange);
         }
 
 

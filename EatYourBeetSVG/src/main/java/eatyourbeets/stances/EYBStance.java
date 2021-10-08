@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public abstract class EYBStance extends AbstractStance
 {
-    protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
+    protected static final HashMap<String, FuncT0<EYBStance>> stances = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
@@ -57,7 +57,7 @@ public abstract class EYBStance extends AbstractStance
         return tooltips.getOrDefault(stance, null);
     }
 
-    public static AbstractStance GetStanceFromName(String name)
+    public static EYBStance GetStanceFromName(String name)
     {
         return stances.containsKey(name) ? stances.get(name).Invoke() : null;
     }

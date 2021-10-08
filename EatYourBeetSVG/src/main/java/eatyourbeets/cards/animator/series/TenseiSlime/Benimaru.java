@@ -26,6 +26,8 @@ public class Benimaru extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
+
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Benimaru extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
-        .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, magicNumber))
+        .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, CheckAffinity(Affinity.Red) ? magicNumber + 1 : magicNumber))
         .SetRealtime(true);
     }
 }

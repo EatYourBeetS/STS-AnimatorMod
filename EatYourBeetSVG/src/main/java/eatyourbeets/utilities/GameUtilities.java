@@ -53,6 +53,7 @@ import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.common.SuperchargedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.stances.EYBStance;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -1084,6 +1085,11 @@ public class GameUtilities
         return CardCrawlGame.GameMode.GAMEPLAY.equals(CardCrawlGame.mode);
     }
 
+    public static boolean InStance(Affinity affinity)
+    {
+        return player != null && player.stance instanceof EYBStance && affinity.equals(((EYBStance) player.stance).affinity);
+    }
+
     public static boolean InStance(String stanceID)
     {
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
@@ -1508,6 +1514,17 @@ public class GameUtilities
         }
 
         return false;
+    }
+
+    public static AbstractAffinityPower MaintainPower(Affinity affinity)
+    {
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
+        if (power != null)
+        {
+            power.Maintain();
+        }
+
+        return power;
     }
 
     public static AbstractAffinityPower RetainPower(Affinity affinity)

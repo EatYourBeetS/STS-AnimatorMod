@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Lancer extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lancer.class)
-            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
     public static final int VULNERABLE_MODIFIER = 25;
 
@@ -35,7 +36,9 @@ public class Lancer extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f), Color.RED);
 
-        GameUtilities.RetainPower(Affinity.Green);
+        if (ForceStance.IsActive()) {
+            GameUtilities.MaintainPower(Affinity.Green);
+        }
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
         if (info.TryActivateSemiLimited())

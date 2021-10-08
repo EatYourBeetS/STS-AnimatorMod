@@ -79,6 +79,12 @@
 	  "NAMES": ["ricochet"],
 	  "PROPER_NAME": "Ricochet"
 	},
+	"Soul":
+	{
+	  "DESCRIPTION": "Whenever you play this card, reduce its #ySoul by #b1. If it is at #b0, #yExhaust it and add the specified card to your discard pile.",
+	  "NAMES": ["soul"],
+	  "PROPER_NAME": "Soul"
+	},
 	"Spellcaster":
 	{
 		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",

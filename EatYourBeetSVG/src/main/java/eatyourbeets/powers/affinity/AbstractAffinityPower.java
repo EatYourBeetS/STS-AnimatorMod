@@ -30,6 +30,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     public int amountGainedThisTurn;
     public int retainedTurns;
+    public boolean forceEnableThisTurn;
     public Hitbox hb;
 
     private static final StringBuilder builder = new StringBuilder();
@@ -67,6 +68,11 @@ public abstract class AbstractAffinityPower extends CommonPower
         Initialize(0, PowerType.BUFF, true);
     }
 
+    public void Maintain() {
+        RetainOnce();
+        this.forceEnableThisTurn = true;
+    }
+
     public void RetainOnce()
     {
         if (this.retainedTurns == 0)
@@ -82,7 +88,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public void Stack(int amount, boolean retain)
     {
-        if (!enabled)
+        if (!enabled && !forceEnableThisTurn)
         {
             return;
         }
@@ -157,6 +163,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         super.atStartOfTurn();
 
         this.amountGainedThisTurn = 0;
+        this.forceEnableThisTurn = false;
 
         if (this.retainedTurns == 0)
         {
@@ -194,7 +201,7 @@ public abstract class AbstractAffinityPower extends CommonPower
             amountColor = (amount > 0 ? Colors.Blue(1) : Colors.Cream(0.6f)).cpy();
         }
 
-        final Color imgColor = Colors.White((enabled && (retainedTurns + amount) > 0) ? 1 : 0.5f);
+        final Color imgColor = Colors.White(((enabled || forceEnableThisTurn) && (retainedTurns + amount) > 0) ? 1 : 0.5f);
         RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shimakaze extends AnimatorCard
 {
@@ -35,7 +36,7 @@ public class Shimakaze extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
-        GameActions.Bottom.RetainPower(Affinity.Green);
+        GameUtilities.MaintainPower(Affinity.Green);
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Dazed());
     }

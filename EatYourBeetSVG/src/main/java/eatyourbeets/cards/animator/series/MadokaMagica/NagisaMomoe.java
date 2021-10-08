@@ -1,11 +1,12 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.animator.special.NagisaMomoe_Charlotte;
+import eatyourbeets.cards.animator.curse.NagisaMomoe_Charlotte;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class NagisaMomoe extends AnimatorCard
 {
@@ -15,7 +16,6 @@ public class NagisaMomoe extends AnimatorCard
             .PostInitialize(data ->
             {
                 data.AddPreview(new NagisaMomoe_Charlotte(), true);
-                data.AddPreview(new Curse_GriefSeed(), false);
             });
 
     public NagisaMomoe()
@@ -24,18 +24,11 @@ public class NagisaMomoe extends AnimatorCard
 
         Initialize(0, 0, 3);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Star(1);
 
+        SetEthereal(true);
         SetExhaust(true);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.MakeCardInDiscardPile(new NagisaMomoe_Charlotte()).SetUpgrade(upgraded, false);
-        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+        SetCooldown(0, 0, NagisaMomoe_Charlotte::new);
     }
 
     @Override
@@ -44,6 +37,20 @@ public class NagisaMomoe extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Green, Affinity.Blue, Affinity.Light);
+        }
+
+        cooldown.ProgressCooldownAndTrigger(m);
+    }
+
+    @Override
+    public void triggerOnOtherCardPlayed(AbstractCard c)
+    {
+        super.triggerOnOtherCardPlayed(c);
+
+        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
+        {
+            GameActions.Bottom.GainTemporaryHP(1);
+            GameActions.Bottom.Flash(this);
         }
     }
 }

@@ -11,6 +11,7 @@ import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -43,8 +44,8 @@ public class Vesta extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RetainPower(Affinity.Blue);
-        GameActions.Bottom.RetainPower(Affinity.Orange);
+        GameUtilities.MaintainPower(Affinity.Blue);
+        GameUtilities.MaintainPower(Affinity.Orange);
 
         //TODO: This could all be done in VestaPower
         VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), CheckAffinity(Affinity.Blue));

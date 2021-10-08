@@ -38,7 +38,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
     private final static WeightedList<AbyssPositiveEffect> positiveEffectList = new WeightedList<>();
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
     private static final String NAME = Dainsleif.DATA.Strings.NAME;
-    private static final int COUNTDOWN_AMT = 24;
+    public static final int COUNTDOWN_AMT = 24;
     public static final String POWER_ID = CreateFullID(DainsleifAbyssPower.class);
     public static final int CHOICES = 3;
 

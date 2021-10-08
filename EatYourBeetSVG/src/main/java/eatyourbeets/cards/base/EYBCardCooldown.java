@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class EYBCardCooldown
@@ -15,8 +17,10 @@ public class EYBCardCooldown
     private final static Color COOLDOWN_INCOMPLETE_COLOR = Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f);
     private final ActionT1<AbstractMonster> onCooldownCompleted;
     private final EYBCard card;
+    public final FuncT0<EYBCard> cardConstructor;
     public final boolean canProgressOnManualDiscard;
     public final boolean canProgressFromExhaustPile;
+    public final boolean shouldReplaceCard;
 
 
     public EYBCardCooldown(EYBCard card, int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted) {
@@ -30,6 +34,24 @@ public class EYBCardCooldown
         this.onCooldownCompleted = onCooldownCompleted;
         this.canProgressOnManualDiscard = canProgressOnManualDiscard;
         this.canProgressFromExhaustPile = canProgressFromExhaustPile;
+        this.shouldReplaceCard = false;
+        this.cardConstructor = null;
+        this.card = card;
+    }
+
+    public EYBCardCooldown(EYBCard card, int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor) {
+        this(card,baseCooldown,cooldownUpgrade,cardConstructor,false,false, false);
+    }
+
+    public EYBCardCooldown(EYBCard card, int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile, boolean shouldReplaceCard)
+    {
+        card.baseCooldownValue = card.cooldownValue = baseCooldown;
+        card.upgrade_cooldownValue = cooldownUpgrade;
+        this.onCooldownCompleted = null;
+        this.canProgressOnManualDiscard = canProgressOnManualDiscard;
+        this.canProgressFromExhaustPile = canProgressFromExhaustPile;
+        this.shouldReplaceCard = shouldReplaceCard;
+        this.cardConstructor = cardConstructor;
         this.card = card;
     }
 
@@ -61,13 +83,24 @@ public class EYBCardCooldown
     {
         if (ProgressCooldown(progress))
         {
-            if (m == null || GameUtilities.IsDeadOrEscaped(m))
-            {
-                onCooldownCompleted.Invoke(GameUtilities.GetRandomEnemy(true));
+            if (onCooldownCompleted != null) {
+                if (m == null || GameUtilities.IsDeadOrEscaped(m))
+                {
+                    onCooldownCompleted.Invoke(GameUtilities.GetRandomEnemy(true));
+                }
+                else
+                {
+                    onCooldownCompleted.Invoke(m);
+                }
             }
-            else
-            {
-                onCooldownCompleted.Invoke(m);
+            else if (cardConstructor != null) {
+                if (shouldReplaceCard) {
+                    GameActions.Bottom.ReplaceCard(card.uuid, cardConstructor.Invoke());
+                }
+                else {
+                    GameActions.Bottom.MakeCardInDiscardPile(cardConstructor.Invoke());
+                    GameActions.Last.ModifyAllInstances(card.uuid).AddCallback(GameActions.Bottom::Exhaust);
+                }
             }
         }
     }

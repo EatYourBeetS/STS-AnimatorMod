@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.curse.KyokoSakura_Ophelia;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
@@ -13,7 +14,11 @@ public class KyokoSakura extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KyokoSakura.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Random)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new KyokoSakura_Ophelia(), true);
+            });
 
     public KyokoSakura()
     {
@@ -24,6 +29,7 @@ public class KyokoSakura extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Blue(1);
+        SetCooldown(3, 0, KyokoSakura_Ophelia::new);
     }
 
     @Override
@@ -48,5 +54,7 @@ public class KyokoSakura extends AnimatorCard
                 .SetDestination(CardSelection.Top);
             }
         });
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 }

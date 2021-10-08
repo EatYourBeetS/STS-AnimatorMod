@@ -34,10 +34,4 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     {
     }
 
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
-    }
-
 }

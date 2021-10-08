@@ -1,11 +1,13 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Enchantment4 extends Enchantment
@@ -54,7 +56,13 @@ public class Enchantment4 extends Enchantment
         currentAffinity = GetAffinity();
         if (currentAffinity != null) {
             final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber, true);
+            if (GameUtilities.InStance(NeutralStance.STANCE_ID) || GameUtilities.InStance(currentAffinity)) {
+                GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber, true);
+            }
+            else {
+                GameUtilities.MaintainPower(currentAffinity);
+            }
+
             if (p.GetThresholdBonusPower() == null) {
                 GameActions.Bottom.GainEnergyNextTurn(magicNumber);
             }

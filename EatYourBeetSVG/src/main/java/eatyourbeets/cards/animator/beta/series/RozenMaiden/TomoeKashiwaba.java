@@ -43,7 +43,7 @@ public class TomoeKashiwaba extends AnimatorCard
         }
         else
         {
-            GameUtilities.RetainPower(Affinity.Orange);
+            GameUtilities.MaintainPower(Affinity.Orange);
         }
     }
 

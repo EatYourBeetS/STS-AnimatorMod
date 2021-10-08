@@ -5,15 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.powers.affinity.ForcePower;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class IkkakuMadarame extends AnimatorCard  implements OnEndOfTurnSubscriber {
+public class IkkakuMadarame extends AnimatorCard{
     public static final EYBCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
                 data.AddPreview(new ZarakiKenpachi(), false);
@@ -34,8 +32,10 @@ public class IkkakuMadarame extends AnimatorCard  implements OnEndOfTurnSubscrib
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            CombatStats.onEndOfTurn.Subscribe(this);
-            CombatStats.Affinities.Agility.SetEnabled(true);
+            GameUtilities.MaintainPower(Affinity.Green);
+        }
+        else {
+            GameUtilities.MaintainPower(Affinity.Red);
         }
 
         GameActions.Bottom.Callback(card -> {
@@ -44,13 +44,5 @@ public class IkkakuMadarame extends AnimatorCard  implements OnEndOfTurnSubscrib
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
             }
         });
-    }
-
-    @Override
-    public void OnEndOfTurn(boolean isPlayer) {
-        CombatStats.onEndOfTurn.Unsubscribe(this);
-        if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            CombatStats.Affinities.Agility.SetEnabled(false);
-        }
     }
 }

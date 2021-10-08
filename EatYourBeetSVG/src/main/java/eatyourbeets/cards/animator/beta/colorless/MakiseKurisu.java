@@ -15,6 +15,7 @@ public class MakiseKurisu extends AnimatorCard //TODO add custom Time Paradox st
 {
     public static final EYBCardData DATA = Register(MakiseKurisu.class)
             .SetSkill(3, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.SteinsGate);
 
     public MakiseKurisu()

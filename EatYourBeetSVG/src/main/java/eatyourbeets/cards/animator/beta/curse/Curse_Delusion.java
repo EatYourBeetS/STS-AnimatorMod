@@ -22,7 +22,9 @@ public class Curse_Delusion extends AnimatorCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ModifyTag(player.drawPile, 1, AUTOPLAY, true);
+        if (this.dontTriggerOnUseCard) {
+            GameActions.Bottom.ModifyTag(player.drawPile, 1, AUTOPLAY, true);
+        }
     }
 
     @Override
@@ -33,12 +35,6 @@ public class Curse_Delusion extends AnimatorCard_Curse
         AffinityToken_Green token = new AffinityToken_Green();
         token.upgrade();
         GameActions.Bottom.PlayCard(token, null);
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
     }
 
 }

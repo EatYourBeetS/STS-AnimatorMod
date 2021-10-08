@@ -324,6 +324,12 @@
 		"NAMES": ["loyal"],
 		"PROPER_NAME": "Loyal"
 	},
+	"Maintain":
+	{
+		"DESCRIPTION": "This turn, prevent an #yAffinity #yPower from decreasing. If it was disabled due to a Stance, it can be gained this turn.",
+		"NAMES": ["maintain"],
+		"PROPER_NAME": "Maintain"
+	},
 	"Malleable":
 	{
 		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",

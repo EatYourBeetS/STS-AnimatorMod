@@ -37,10 +37,5 @@ public class Curse_JunTormented extends AnimatorCard_Curse
             GameActions.Bottom.ApplyWeak(null, p, 1);
         }
     }
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return false;
-    }
 
 }

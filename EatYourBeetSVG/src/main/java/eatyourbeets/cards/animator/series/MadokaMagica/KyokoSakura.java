@@ -28,8 +28,7 @@ public class KyokoSakura extends AnimatorCard
         SetUpgrade(2, 0, 1);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Blue(1);
-        SetCooldown(3, 0, KyokoSakura_Ophelia::new);
+        SetSoul(6, 0, KyokoSakura_Ophelia::new);
     }
 
     @Override

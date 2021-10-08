@@ -28,7 +28,7 @@ public class NagisaMomoe extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetCooldown(0, 0, NagisaMomoe_Charlotte::new);
+        SetSoul(1, 0, NagisaMomoe_Charlotte::new);
     }
 
     @Override

@@ -16,8 +16,9 @@ import eatyourbeets.utilities.GameActions;
 public class MadokaKaname_Krimheild extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(MadokaKaname_Krimheild.class)
-            .SetCurse(1, EYBCardTarget.None, false)
-            .SetSeries(SayakaMiki.DATA.Series);
+            .SetCurse(1, EYBCardTarget.None, true)
+            .SetSeries(SayakaMiki.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public MadokaKaname_Krimheild()
     {
@@ -71,9 +72,9 @@ public class MadokaKaname_Krimheild extends AnimatorCard_Curse
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void atStartOfTurn()
         {
-            super.atEndOfTurn(isPlayer);
+            super.atStartOfTurn();
             GameActions.Bottom.ReduceStrength(player,magicNumber,false);
             GameActions.Bottom.GainDexterity(-magicNumber);
             GameActions.Bottom.GainFocus(-magicNumber);

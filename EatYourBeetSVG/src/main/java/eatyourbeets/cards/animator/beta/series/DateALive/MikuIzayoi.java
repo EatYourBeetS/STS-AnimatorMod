@@ -42,12 +42,17 @@ public class MikuIzayoi extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.GainInspiration(secondaryValue);
-        if (JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= magicNumber) {
+        if (CheckSpecialCondition(true)) {
             GameActions.Bottom.GainInspiration(secondaryValue);
         }
 
         if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard)) {
             GameActions.Bottom.Motivate(secondaryValue);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= magicNumber;
     }
 }

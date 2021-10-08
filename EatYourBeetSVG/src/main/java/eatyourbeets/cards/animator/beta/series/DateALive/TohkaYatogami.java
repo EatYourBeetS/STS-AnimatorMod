@@ -45,7 +45,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super.update();
 
-        if (AbstractDungeon.player != null && !transformed && CombatStats.SynergiesThisCombat().size() >= magicNumber)
+        if (AbstractDungeon.player != null && !transformed && CheckSpecialCondition(true))
         {
             transformed = true;
             GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
@@ -56,5 +56,10 @@ public class TohkaYatogami extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return (CombatStats.SynergiesThisCombat().size() >= magicNumber);
     }
 }

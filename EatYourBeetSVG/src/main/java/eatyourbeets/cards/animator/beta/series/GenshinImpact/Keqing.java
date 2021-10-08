@@ -35,7 +35,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         SetAffinity_Dark(0, 0, 1);
 
 
-        SetCooldown(4, 0, this::OnCooldownCompleted, false, true);
+        SetRicochet(4, 0, this::OnCooldownCompleted);
 
         SetExhaust(true);
     }

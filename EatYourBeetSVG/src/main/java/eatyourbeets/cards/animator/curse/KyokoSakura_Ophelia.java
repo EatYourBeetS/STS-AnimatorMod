@@ -16,8 +16,9 @@ import eatyourbeets.utilities.GameActions;
 public class KyokoSakura_Ophelia extends AnimatorCard_Curse implements OnPurgeSubscriber
 {
     public static final EYBCardData DATA = Register(KyokoSakura_Ophelia.class)
-            .SetCurse(-2, EYBCardTarget.None, false)
-            .SetSeries(SayakaMiki.DATA.Series);
+            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSeries(SayakaMiki.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public KyokoSakura_Ophelia()
     {

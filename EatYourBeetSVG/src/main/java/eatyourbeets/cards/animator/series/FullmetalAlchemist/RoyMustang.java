@@ -38,7 +38,7 @@ public class RoyMustang extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, Math.max(1,BASE_BURNING - GameUtilities.GetEnemies(true).size()), true);
+        GameUtilities.ModifyMagicNumber(this, Math.max(1,BASE_BURNING - Math.max(0,GameUtilities.GetEnemies(true).size() - 1)), true);
     }
 
     @Override

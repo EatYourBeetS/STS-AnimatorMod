@@ -11,6 +11,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class MS06ZakuII extends AnimatorCard
 {
@@ -64,16 +65,14 @@ public class MS06ZakuII extends AnimatorCard
 
         GameActions.Bottom.StackPower(new MS06ZakuIIPower(p, this.magicNumber));
 
-        if (!player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General)) {
-            for (Affinity t : Affinity.Basic()) {
-                if (CombatStats.Affinities.GetPowerThreshold(t) > secondaryValue && CombatStats.TryActivateLimited(cardID)) {
-                    GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
-                    break;
-                }
-            }
+        if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
+            GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
         }
+    }
 
-
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return !player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General) && JUtils.Find(Affinity.Basic(), a -> CombatStats.Affinities.GetPowerThreshold((Affinity) a) > secondaryValue) != null;
     }
 
     public static class MS06ZakuIIPower extends AnimatorPower implements OnReloadPreDiscardSubscriber

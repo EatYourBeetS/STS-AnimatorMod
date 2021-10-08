@@ -583,7 +583,7 @@
         },
 		"animator:Ushio":
 		{
-			"DESCRIPTION": "Skip your next turn. On the following turn: <DRW-M> and gain !S! [E]. || <LIM>. If your exhuast pile is larger than the number of cards in play, add {Garbage Doll} to your discard pile.",
+			"DESCRIPTION": "Skip your next turn. On the following turn: <DRW-M> and gain !S! [E]. || <LIM>. If your exhuast pile is larger than your draw pile, add {Garbage Doll} to your discard pile.",
 			"NAME": "Ushio"
 		},
 		"animator:Vash":
@@ -633,13 +633,13 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "Gain !S! Magus Form. || Whenever you play a card: Increase the damage and block of ALL cards in its series by !M! until played.",
+			"DESCRIPTION": "Gain !S! Magus Form. || Whenever you play a card: Increase the damage and block of ALL {Same-Series} cards by !M! until played.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} Synergies this turn: Lose #b{1} HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge."],
 			"NAME": "Mio Takamiya"
 		},
 		"animator:Mayuri":
 		{
-		  "DESCRIPTION": "Synergizes with Basic cards. || Retain a Defend in your hand. ** <SLM>. Synergy with <B>: Also give it !M! [Block] this combat.",
+		  "DESCRIPTION": "Synergizes with Basic cards. || Retain a Defend in your hand. ** <SLM>. {Same-Series} Synergy: Also give it !M! [Block] this combat.",
 		  "NAME": "Mayuri"
 		},
 		"animator:MukuroHoshimiya":
@@ -733,7 +733,7 @@
 		},
 		"animator:Dainsleif":
 		{
-			"DESCRIPTION": "At the start of combat: Gain {Phase of the Abyssal Moon}. Play this card whenever it is triggered. || Channel !M! [Chaos]. Add 1 of 2 cards to your Draw pile. ** !A! <W>. Add both cards.",
+			"DESCRIPTION": "At the start of combat: Gain {Phase of the Abyssal Moon}. Play this card whenever it is triggered. || Channel !M! [Chaos]. Add either {Aether} or {Lumine} to your draw pile. ** !A! <W>. Add both.",
 			"NAME": "Dainsleif"
 		},
 		"animator:Fischl":
@@ -1333,7 +1333,7 @@
 		},
 		"animator:Curse_GriefSeed":
 		{
-			"DESCRIPTION": "Restore 1 {Soul} to a random {Soul} card. || In hand at the end of turn: Take !M! Damage. || On Exhaust: Remove a random {Debuff}.",
+			"DESCRIPTION": "Restore 1 {Soul} to a random {Soul} card twice. || In hand at the end of turn: Take !M! Damage. || On Purge: Remove a random {Debuff}.",
 			"NAME": "Grief Seed"
 		},
 		"animator:Curse_Nutcracker":
@@ -1571,7 +1571,7 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy past 1 ** (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
@@ -1768,7 +1768,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Obtain !S! [T-Knife]. || Synergy or Discard: ** Gain [A] and !M! [Block].",
+			"DESCRIPTION": "Obtain !S! [T-Knife]. || !A! <G> or Discard: ** Gain [A] and !M! [Block].",
 			"NAME": "Tooru Acura"
 		},
 		"animator:ChaikaBohdan":
@@ -1794,7 +1794,7 @@
 		},
 		"animator:Guy":
 		{
-			"DESCRIPTION": "<DRW-M>, then ** discard !M! card(s). || On Synergy: Discard ** the top 2 cards of ** your draw pile.",
+			"DESCRIPTION": "<DRW-M>, then ** discard !M! card(s). || Synergy: Discard ** the top 2 cards of ** your draw pile.",
 			"NAME": "Guy"
 		},
 		"animator:Layla":
@@ -1804,7 +1804,7 @@
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || On Discard: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || !A! <G> or Discard: Add ** 1 [T-Knife] to your hand.",
 			"NAME": "Viivi Holopainen"
 		}
 	},
@@ -1907,10 +1907,11 @@
 			"NAME": "Aqua",
 			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy and !A! <B>: Channel 1 [Water]."
 		},
-		"animator:Chris":
+		"animator:Cecily":
 		{
-			"DESCRIPTION": "{~Steal} !M! [Gold]. || On Discard: ** Draw a {0-Cost} card.",
-			"NAME": "Chris"
+			"DESCRIPTION": "Next turn, {Maintain} ALL <W> Powers. || X <W> : Cycle !M! card(s). ** <LIM>. Synergy. Afterwards, Motivate !S!.",
+			"EXTENDED_DESCRIPTION": ["Next turn, {Maintain} ALL <W> Powers."],
+			"NAME": "Cecily"
 		},
 		"animator:Darkness":
 		{
@@ -1931,8 +1932,13 @@
 		},
 		"animator:Eris":
 		{
-			"DESCRIPTION": "Gain|Boost [B]. || <LIM>. If you would die while this card is in play, prevent all damage and remove this card from your deck.",
+			"DESCRIPTION": "Gain|Boost [B]. || <LIM>. If you would die while this card is in play, prevent all damage and replace this card in your deck with {Chris}.",
 			"NAME": "Eris"
+		},
+		"animator:Eris_Chris":
+		{
+			"DESCRIPTION": "{~Steal} !M! [Gold]. || On Discard: ** Draw a {0-Cost} card.",
+			"NAME": "Chris"
 		},
 		"animator:Hans":
 		{
@@ -1947,13 +1953,18 @@
 		},
 		"animator:Kazuma":
 		{
-			"DESCRIPTION": "Gains +!M! damage. || Same-Series Synergy: The last card played gains +!S! [Block].",
+			"DESCRIPTION": "This gains +!M! damage. || Same-Series Synergy: The last card played gains +!S! [Block].",
 			"NAME": "Kazuma Satou"
+		},
+		"animator:Lean":
+		{
+			"DESCRIPTION": "Gain !M! [Support Damage] for every {Synergic} card in hand (!S!). || !A! <G> and/or !A! <B>: Channel a random {Common Orb}.",
+			"NAME": "Lean"
 		},
 		"animator:Megumin":
 		{
 			"DESCRIPTION": "{~Unique}. || In !S! turns: Attack with +!M! damage for each Synergy made since playing. ** <LIM>. If 5+ Synergies were made: Upgrade permanently.",
-			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), deal #b{1} [~Elemental] damage to ALL enemies. When you Synergize: Increase this damage by #b{2}."],
+			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), deal #b{1} [~Elemental] damage to ALL enemies. When you Synergize: Increase this damage by #b{2}.{3}", "NL If you make #b{0} more #ySynergies: Permanently upgrade this card."],
 			"NAME": "Megumin"
 		},
 		"animator:Mitsurugi":
@@ -1963,7 +1974,7 @@
 		},
 		"animator:Vanir":
 		{
-			"DESCRIPTION": "Loses -!M! damage. || On Exhaust: You may Transform a card in your draw pile into a new copy of this card.",
+			"DESCRIPTION": "This loses !M! damage. || On Exhaust: You may Transform a card in your draw pile into a new copy of this card.",
 			"NAME": "Vanir"
 		},
 		"animator:Verdia":
@@ -2094,7 +2105,7 @@
 	{
 		"animator:FeliciaMitsuki":
 		{
-			"DESCRIPTION": "<ST>: Cycle 1 card. || Deal +!M! damage for every Hindrance in hand. || !A! <R>: Exhaust a random Hindrance in hand to give this card +!S! damage this combat.",
+			"DESCRIPTION": "<ST>: Deal +!M! damage for every Hindrance in hand. || !A! <R>: Purge a Hindrance in your Exhaust pile to Gain !S! [W].",
 			"NAME": "Felicia Mitsuki"
 		},
 		"animator:HomuraAkemi":
@@ -2110,12 +2121,17 @@
 		},
 		"animator:IrohaTamaki":
 		{
-			"DESCRIPTION": "If the top card of your draw pile is a Hindrance: Exhaust it to Boost !S! [B]. || Synergy or !A! <L>: Scry !M!.",
+			"DESCRIPTION": "<SOUL>: {Giovanna} || If the top card of your draw pile is a Hindrance: Exhaust it to Boost !S! [B]. || Synergy or !A! <L>: Scry !M!.",
 			"NAME": "Iroha Tamaki"
+		},
+		"animator:IrohaTamaki_Giovanna":
+		{
+			"DESCRIPTION": "Take !S! damage. You and a random enemy gain !M! [Shackles]. Fetch {Iroha Tamaki} from your Exhaust Pile.",
+			"NAME": "Giovanna"
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "<SOUL>: {Ophelia} || <ST>: Gain [F] and Channel 1 [Fire]. || <DRW-M>. ** Put !M! card(s) on top ** of your draw pile.",
+			"DESCRIPTION": "<SOUL>: {Ophelia} || <ST>: Gain [F] and ** Channel 1 [Fire]. || <DRW-M>. Put !M! card(s) on top of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:KyokoSakura_Ophelia":
@@ -2130,33 +2146,34 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "<SOUL>: {Krimheild} || Exhaust !M! random {Curses} from anywhere. Heal 3 HP for each. ** <LIM> !A! <L> and <D>: Also gain 3 [Support Damage] for each.",
+			"DESCRIPTION": "<SOUL>: {Krimheild} || Purge !M! {Curses} in your Exhaust Pile. Heal 3 HP for each. ** <LIM>. !A! <L> and <D>: Also gain 3 [Support Damage] for each.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MadokaKaname_Krimheild":
 		{
-			"DESCRIPTION": "When created: Obtain [Grief Seed]. || This turn: Double the [Focus] of ALL Orbs. At the end of turn, lose !M! [Strength], [Dexterity] and [Focus].",
-			"EXTENDED_DESCRIPTION": ["This turn: Triple the [Focus] of ALL Orbs. At the end of turn, lose #b{0} [Strength], [Dexterity] and [Focus]."],
+			"DESCRIPTION": "When created: Obtain [Grief Seed]. || This turn: Triple the [Focus] of ALL Orbs. At the start of your next turn, lose !M! [Strength], [Dexterity] and [Focus].",
+			"EXTENDED_DESCRIPTION": ["This turn: Triple the [Focus] of ALL Orbs. At the start of your next turn, lose #b{0} [Strength], [Dexterity] and [Focus]."],
 			"NAME": "Krimheild Gretchen"
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "<SOUL>: {Candeloro}. || Attack 1 additional ** time for each card pile ** which contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] ** to your discard pile.",
+			"DESCRIPTION": "<SOUL>: {Candeloro}. || Attack 1 additional time for each card pile which contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] to your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:MamiTomoe_Candeloro":
 		{
-			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: Create !S! random Curses in hand. Fetch !S! card(s) from your discard pile.",
+			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: Create !M! random Curses in hand. Fetch !S! card(s) from your discard pile.",
 			"NAME": "Candeloro"
 		},
 		"animator:MifuyuAsuza":
 		{
-			"DESCRIPTION": "Add X [Grief Seed] to your Draw Pile. Gain X Orb Slots. || !A! <W>: Fill those Orb Slots with random {Common Orbs}.",
-			"NAME": "Mifuyu Asuza"
+			"DESCRIPTION": "Obtain X [Grief Seed]. Gain X Orb Slots. || !A! <W>: Fill those Orb Slots with random {Common Orbs}.",
+			"NAME": "Mifuyu Asuza",
+			"UPGRADE_DESCRIPTION": "Obtain X + !M! [Grief Seed]. Gain X + !M! Orb Slots. || !A! <W>: Fill those Orb Slots with random {Common Orbs}."
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "Randomly Gain|Boost ** [A], [I] or [B] !M! times. || While in hand: Gain 1 [Temp HP] when you play a LV2 <B> or <L> card.",
+			"DESCRIPTION": "<SOUL>: {Charlotte} || Randomly Gain|Boost [A], [I] or [B] !M! times. || While in hand: Gain 1 [Temp HP] when you play a LV2 <B> or <L> card.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:NagisaMomoe_Charlotte":
@@ -2172,7 +2189,7 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. || <LIM>. !A! <B>: ** Choose all effects.",
+			"DESCRIPTION": "Purge a card in your Exhaust pile to {Maintain} [I]. || Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. ** <LIM>. !A! <B>: Choose 3.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
@@ -2193,13 +2210,13 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "For every !S!th [Grief Seed] Exhausted or Played: If <B> > <L>, Have +1 <L>. Otherwise, have +1 <B>. || Once per turn, Discard 1 card: Gain !M! Block.",
+			"DESCRIPTION": "For every !S!th [Grief Seed] Exhausted or Purged: If <B> > <L>, Have +1 <L>. Otherwise, have +1 <B>. || Once per turn, Discard 1 card: Gain !M! Block.",
 			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Increase this Power's counter by #b{1} whenever you Exhaust or play a [Grief Seed] (Currently at #b{2}). When it hits #b{3}, reset it. Then, gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard the bottom-most non-{~Delayed} card in your draw pile. || On Exhaust or ** Discard: Channel 1 [Fire] ** and Obtain [Grief Seed].",
+			"DESCRIPTION": "Discard a random card in your draw pile. || On Exhaust or ** Discard: Channel 1 [Fire] ** and Obtain [Grief Seed].",
 			"NAME": "Yui Tsuruno"
 		}
 	},

@@ -13,8 +13,9 @@ import eatyourbeets.utilities.GameActions;
 public class HomuraAkemi_Homulily extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(HomuraAkemi_Homulily.class)
-            .SetCurse(-2, EYBCardTarget.None, false)
-            .SetSeries(SayakaMiki.DATA.Series);
+            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSeries(SayakaMiki.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public HomuraAkemi_Homulily()
     {

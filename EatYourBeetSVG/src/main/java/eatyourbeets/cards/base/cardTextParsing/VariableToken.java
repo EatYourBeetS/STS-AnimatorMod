@@ -76,7 +76,7 @@ public class VariableToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        if (coloredString.text == null || GR.UI.Elapsed25())
+        if (coloredString == null || coloredString.text == null || GR.UI.Elapsed25())
         {
             UpdateString(context);
         }

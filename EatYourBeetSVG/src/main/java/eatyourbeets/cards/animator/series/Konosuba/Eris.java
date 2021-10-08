@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import eatyourbeets.cards.animator.special.Eris_Chris;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -20,7 +21,9 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 {
     public static final EYBCardData DATA = Register(Eris.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .SetMaxCopies(2)
+            .PostInitialize(data -> data.AddPreview(new Eris_Chris(), false));
 
     public Eris()
     {
@@ -65,6 +68,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
             if (c != null && GameUtilities.CanRemoveFromDeck(c))
             {
                 player.masterDeck.removeCard(c);
+                GameEffects.TopLevelList.ShowAndObtain(new Eris_Chris());
             }
 
             for (AbstractCard card : GameUtilities.GetAllInBattleInstances(uuid))

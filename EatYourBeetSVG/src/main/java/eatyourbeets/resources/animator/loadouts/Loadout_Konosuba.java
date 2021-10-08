@@ -2,6 +2,7 @@ package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.curse.Curse_Greed;
 import eatyourbeets.cards.animator.series.Konosuba.*;
+import eatyourbeets.cards.animator.special.Eris_Chris;
 import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.animator.ultrarare.Chomusuke;
 import eatyourbeets.cards.base.CardSeries;
@@ -20,7 +21,7 @@ public class Loadout_Konosuba extends AnimatorLoadout
     {
         AddStarterCard(Aqua.DATA, 4);
         AddStarterCard(Kazuma.DATA, 5);
-        AddStarterCard(Chris.DATA, 5);
+        AddStarterCard(Eris_Chris.DATA, 5);
         AddStarterCard(Mitsurugi.DATA, 6);
         AddStarterCard(Vanir.DATA, 7);
         AddStarterCard(YunYun.DATA, 9);

@@ -6,6 +6,8 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnBlock;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
 import eatyourbeets.misc.GenericEffects.GenericEffect_Scry;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
@@ -31,6 +33,12 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetOptions(false,true).AddCallback(cards -> {
+            if (cards.size() > 0) {
+                GameUtilities.MaintainPower(Affinity.Blue);
+            }
+        });
+
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));

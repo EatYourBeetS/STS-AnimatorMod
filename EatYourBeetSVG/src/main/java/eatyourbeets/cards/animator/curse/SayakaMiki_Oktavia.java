@@ -17,8 +17,9 @@ import eatyourbeets.utilities.TargetHelper;
 public class SayakaMiki_Oktavia extends AnimatorCard_Curse implements OnPurgeSubscriber
 {
     public static final EYBCardData DATA = Register(SayakaMiki_Oktavia.class)
-            .SetCurse(-2, EYBCardTarget.None, false)
-            .SetSeries(SayakaMiki.DATA.Series);
+            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSeries(SayakaMiki.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public SayakaMiki_Oktavia()
     {

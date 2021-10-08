@@ -2,6 +2,7 @@ package eatyourbeets.utilities;
 
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
@@ -855,6 +856,19 @@ public class GameUtilities
     public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
     {
         return GetRandomElement(GetEnemies(aliveOnly), GetRNG());
+    }
+
+    public static AbstractOrb GetRandomCommonOrb() {
+        switch (MathUtils.random(0,3)) {
+            case 0:
+                return new Dark();
+            case 1:
+                return new Frost();
+            case 2:
+                return new Fire();
+            default:
+                return new Lightning();
+        }
     }
 
     public static AbstractOrb GetRandomOrb()

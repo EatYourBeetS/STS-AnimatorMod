@@ -2,10 +2,12 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -26,7 +28,7 @@ public class YachiyoNanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, GRIEF_REQUIREMENT);
+        Initialize(0, 0, 3, GRIEF_REQUIREMENT);
         SetEthereal(true);
 
         SetAffinity_Blue(2);
@@ -46,7 +48,7 @@ public class YachiyoNanami extends AnimatorCard
         GameActions.Bottom.StackPower(new YachiyoNanamiPower(p, 1, magicNumber));
     }
 
-    public static class YachiyoNanamiPower extends AnimatorClickablePower
+    public static class YachiyoNanamiPower extends AnimatorClickablePower implements OnPurgeSubscriber
     {
         private int griefSeedsPlayed = 0;
         private int secondaryAmount;
@@ -102,6 +104,11 @@ public class YachiyoNanami extends AnimatorCard
                 griefSeedsPlayed -= GRIEF_REQUIREMENT;
             }
 
+        }
+
+        @Override
+        public void OnPurge(AbstractCard card, CardGroup source) {
+            invokeGrief(card);
         }
     }
 }

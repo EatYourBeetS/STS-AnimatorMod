@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -36,6 +33,8 @@ public class AcuraTooru extends AnimatorCard
 
         SetProtagonist(true);
         SetHarmonic(true);
+
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -60,7 +59,7 @@ public class AcuraTooru extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (info.IsSynergizing)
+        if (CheckAffinity(Affinity.Green))
         {
             GameActions.Bottom.GainBlock(magicNumber);
             GameActions.Bottom.GainAgility(1);

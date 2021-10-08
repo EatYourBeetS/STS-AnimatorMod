@@ -32,7 +32,7 @@ public class ShizuruNakatsu extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (CheckAttackCondition())
+        if (CheckSpecialCondition(false))
         {
             return super.GetDamageInfo();
         }
@@ -55,7 +55,7 @@ public class ShizuruNakatsu extends AnimatorCard
                     .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
         }
 
-        if (CheckAttackCondition())
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
         }
@@ -76,7 +76,8 @@ public class ShizuruNakatsu extends AnimatorCard
         return count;
     }
 
-    private boolean CheckAttackCondition() {
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
         Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetHandAffinity);
         return (highestAffinity.equals(Affinity.Green));
     }

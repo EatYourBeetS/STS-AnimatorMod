@@ -19,8 +19,9 @@ import eatyourbeets.utilities.TargetHelper;
 public class NagisaMomoe_Charlotte extends AnimatorCard_Curse implements OnPurgeSubscriber
 {
     public static final EYBCardData DATA = Register(NagisaMomoe_Charlotte.class)
-            .SetCurse(-2, EYBCardTarget.None, false)
-            .SetSeries(NagisaMomoe.DATA.Series);
+            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSeries(NagisaMomoe.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public NagisaMomoe_Charlotte()
     {

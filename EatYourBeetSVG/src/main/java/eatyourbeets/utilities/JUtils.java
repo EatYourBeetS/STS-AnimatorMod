@@ -141,6 +141,19 @@ public class JUtils
         return res;
     }
 
+    public static <T> T Find(T[] array, Predicate<T> predicate)
+    {
+        for (T t : array)
+        {
+            if (predicate.test(t))
+            {
+                return t;
+            }
+        }
+
+        return null;
+    }
+
     public static <T> T Find(Iterable<T> list, Predicate<T> predicate)
     {
         for (T t : list)

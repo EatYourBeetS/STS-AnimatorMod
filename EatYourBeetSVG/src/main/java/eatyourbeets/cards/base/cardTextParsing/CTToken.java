@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.JUtils;
 
 public abstract class CTToken
 {
@@ -46,6 +47,10 @@ public abstract class CTToken
 
     protected void Render(SpriteBatch sb, CTContext context, ColoredString string)
     {
+        if (string == null) {
+            JUtils.LogWarning(this, "Text could not be rendered.");
+            return;
+        }
         Render(sb, context, string.text, string.color != null ? string.color : context.color);
     }
 

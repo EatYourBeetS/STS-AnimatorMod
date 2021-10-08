@@ -42,7 +42,7 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     {
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
 
-        if ((player.drawPile.findCardById(TomoyaOkazaki.DATA.ID) != null) && CombatStats.TryActivateLimited(cardID)) {
+        if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDiscardPile(new GarbageDoll()).SetUpgrade(upgraded, false);
         }
     }
@@ -57,5 +57,10 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         GameActions.Bottom.StackPower(new EnergizedPower(player, secondaryValue));
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return player.exhaustPile.size() > player.drawPile.size();
     }
 }

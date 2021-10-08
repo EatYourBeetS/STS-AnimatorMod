@@ -45,7 +45,7 @@ public class Mayuri extends AnimatorCard
                     {
                         AbstractCard card = cards.get(0);
                         GameUtilities.Retain(card);
-                        if (info.IsSynergizing && info.Synergies.GetLevel(Affinity.Blue, true) > 1 && CombatStats.TryActivateSemiLimited(cardID)) {
+                        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard) && CombatStats.TryActivateSemiLimited(cardID)) {
                             card.baseBlock += magicNumber;
                         }
                     }

@@ -30,7 +30,7 @@ public class Kirby extends AnimatorCard implements
         OnCostChangedSubscriber,
         OnTagChangedSubscriber,
         StartupCard {
-    public static final EYBCardData DATA = Register(Kirby.class).SetSkill(-2, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Kirby).SetMaxCopies(1);
+    public static final EYBCardData DATA = Register(Kirby.class).SetSkill(-2, CardRarity.RARE).SetColor(CardColor.COLORLESS).SetMaxCopies(1).SetSeries(CardSeries.Kirby).SetMaxCopies(1);
     public static final int COPIED_CARDS = 2;
     protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);

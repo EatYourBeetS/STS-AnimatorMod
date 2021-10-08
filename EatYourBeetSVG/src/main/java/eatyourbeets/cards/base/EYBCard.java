@@ -270,6 +270,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                     .SpendEnergy(true)
                     .AddCondition(AbstractCard::hasEnoughEnergy);
         }
+
+        if (cooldown != null && cooldown.canProgressOnDraw)
+        {
+            cooldown.ProgressCooldownAndTrigger(null);
+        }
     }
 
 
@@ -889,18 +894,24 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         return this.cooldown;
     }
 
-    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile)
+    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile, boolean canProgressOnDraw)
     {
-        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted, canProgressOnManualDiscard, canProgressFromExhaustPile);
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted, canProgressOnManualDiscard, canProgressFromExhaustPile, canProgressOnDraw);
         if (canProgressFromExhaustPile) {
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }
         return this.cooldown;
     }
 
-    public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor)
+    public EYBCardCooldown SetRicochet(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
     {
-        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, cardConstructor);
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted, false, true, false);
+        return this.cooldown;
+    }
+
+    public EYBCardCooldown SetSoul(int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor)
+    {
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, cardConstructor, false, false, true, false);
         return this.cooldown;
     }
 

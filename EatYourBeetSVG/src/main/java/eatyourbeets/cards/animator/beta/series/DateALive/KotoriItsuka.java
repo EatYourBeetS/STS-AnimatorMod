@@ -28,6 +28,8 @@ public class KotoriItsuka extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(0, 0, 1);
+
+        SetHarmonic(true);
     }
 
     @Override

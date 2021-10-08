@@ -27,7 +27,7 @@ public class YuiTsuruno extends AnimatorCard
         SetUpgrade(3, 0);
 
         SetAffinity_Orange(2);
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1);
     }
 
     @Override
@@ -54,7 +54,6 @@ public class YuiTsuruno extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
         .ShowEffect(true, true)
-        .SetFilter(c -> !c.hasTag(DELAYED))
-        .SetOrigin(CardSelection.Bottom);
+        .SetOrigin(CardSelection.Random);
     }
 }

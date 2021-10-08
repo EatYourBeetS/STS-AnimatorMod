@@ -56,9 +56,15 @@ public class CrowleyEusford extends AnimatorCard
         GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.GainForce(1, true);
 
-        if (CombatStats.CardsExhaustedThisTurn().size() > 0)
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.Motivate();
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return CombatStats.CardsExhaustedThisTurn().size() > 0;
     }
 }

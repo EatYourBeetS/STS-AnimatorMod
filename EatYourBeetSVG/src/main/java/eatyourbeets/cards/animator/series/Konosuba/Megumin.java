@@ -18,11 +18,12 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Megumin extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Megumin.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
     public static final int ATTACK_TURNS = 2;
     public static final int SYNERGY_REQUIREMENT = 5;
@@ -144,7 +145,7 @@ public class Megumin extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, turns, amount, secondaryAmount, SYNERGY_REQUIREMENT);
+            description = FormatDescription(0, turns, amount, secondaryAmount, synergies < SYNERGY_REQUIREMENT ? JUtils.Format(powerStrings.DESCRIPTIONS[1],SYNERGY_REQUIREMENT - synergies) : "");
         }
     }
 }

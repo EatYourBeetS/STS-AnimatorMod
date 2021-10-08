@@ -28,7 +28,7 @@ public class SayakaMiki extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
-        SetCooldown(2, 0, SayakaMiki_Oktavia::new);
+        SetSoul(4, 0, SayakaMiki_Oktavia::new);
     }
 
     @Override

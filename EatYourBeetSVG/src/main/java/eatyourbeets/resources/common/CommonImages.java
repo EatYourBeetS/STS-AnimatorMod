@@ -140,6 +140,7 @@ public class CommonImages
 
     public static class Orbs
     {
+        public final TextureCache AirCloud         = new TextureCache("images/animator/orbs/AirCloud.png");
         public final TextureCache AirLeft          = new TextureCache("images/animator/orbs/AirLeft.png");
         public final TextureCache AirRight         = new TextureCache("images/animator/orbs/AirRight.png");
         public final TextureCache Chaos1           = new TextureCache("images/animator/orbs/Chaos1.png");

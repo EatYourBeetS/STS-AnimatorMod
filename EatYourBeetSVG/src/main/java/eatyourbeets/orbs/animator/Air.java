@@ -12,10 +12,12 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.actions.orbs.AirOrbEvokeAction;
 import eatyourbeets.actions.orbs.AirOrbPassiveAction;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.vfx.FadingParticleEffect;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
 public class Air extends AnimatorOrb
@@ -25,7 +27,9 @@ public class Air extends AnimatorOrb
     public static final int EVOKE_DAMAGE_PER_HIT = 2;
     public static final int MAX_EVOKE_EFFECTS = 3;
     public static final int HAND_THRESHOLD = 5;
+    private static final float RADIUS = 220;
 
+    private float vfxTimer = 0.5F;
     public static TextureCache imgExt1 = IMAGES.AirLeft;
     public static TextureCache imgExt2 = IMAGES.AirRight;
     private final boolean hFlip1;
@@ -70,6 +74,19 @@ public class Air extends AnimatorOrb
     {
         super.updateAnimation();
         this.angle += Gdx.graphics.getDeltaTime() * 180f;
+
+        this.vfxTimer -= Gdx.graphics.getDeltaTime();
+        if (this.vfxTimer < 0.0F) {
+            GameEffects.List.Add(new FadingParticleEffect(IMAGES.AirCloud.Texture(), hb.cX, hb.cY)
+                    .SetColor(new Color(MathUtils.random(0.7f, 1f), 1, MathUtils.random(0.8f, 1f), 1))
+                    .SetTranslucent(1f)
+                    .Edit(angle, (r, p) -> p
+                            .SetScale(scale * MathUtils.random(0.1f, 0.32f)).SetTargetRotation(36000f,1440f)
+                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(700f, 1010f),0f)
+                            .SetAcceleration(MathUtils.random(1f, 5f), MathUtils.random(1f, 5f), null, null, null)
+                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(0.5f, false));
+            this.vfxTimer = MathUtils.random(0.2f, 0.5f);
+        }
     }
 
     @Override

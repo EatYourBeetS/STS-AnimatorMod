@@ -221,7 +221,7 @@ public class AnimatorPlayerData
             loadout.AddStarterCards();
         };
 
-        //add.Invoke(new Loadout_Konosuba(), 0);
+        add.Invoke(new Loadout_Konosuba(), 0);
         add.Invoke(new Loadout_GATE(), 1);
         add.Invoke(new Loadout_Elsword(), 2);
         add.Invoke(new Loadout_Katanagatari(), 2);
@@ -283,7 +283,6 @@ public class AnimatorPlayerData
             loadout.AddStarterCards();
         };
 
-        add.Invoke(new Loadout_Konosuba(), 0);
         add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);

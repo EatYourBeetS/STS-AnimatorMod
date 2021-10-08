@@ -24,11 +24,10 @@ public class Water extends AnimatorOrb
 {
     public static final String ORB_ID = CreateFullID(Water.class);
     public static final int HP_HEAL = 2;
-    private static final float RADIUS = 260;
+    private static final float RADIUS = 220;
 
-    private boolean hFlip1;
+    private final boolean hFlip1;
     private float vfxTimer = 0.5F;
-    private int animDirection = 1;
     public int turns;
     public boolean evoked;
 
@@ -44,7 +43,6 @@ public class Water extends AnimatorOrb
         this.updateDescription();
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
-        this.animDirection = 1;
     }
 
     @Override
@@ -115,7 +113,7 @@ public class Water extends AnimatorOrb
                     .SetTranslucent(1f)
                     .Edit(angle, (r, p) -> p
                             .SetScale(scale * MathUtils.random(0.08f, 0.32f)).SetTargetRotation(36000f,360f)
-                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 300f),0f)
+                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 360f),0f)
                             .SetAcceleration(MathUtils.random(0f, 3f), MathUtils.random(0f, 3f), null, null, null)
                             .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false));
             this.vfxTimer = MathUtils.random(0.2f, 0.5f);

@@ -17,8 +17,9 @@ import eatyourbeets.utilities.GameActions;
 public class MamiTomoe_Candeloro extends AnimatorCard_Curse implements OnPurgeSubscriber
 {
     public static final EYBCardData DATA = Register(MamiTomoe_Candeloro.class)
-            .SetCurse(-2, EYBCardTarget.None, false)
-            .SetSeries(SayakaMiki.DATA.Series);
+            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSeries(SayakaMiki.DATA.Series)
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public MamiTomoe_Candeloro()
     {

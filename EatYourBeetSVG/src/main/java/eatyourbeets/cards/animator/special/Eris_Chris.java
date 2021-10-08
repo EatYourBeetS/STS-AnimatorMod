@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.Konosuba;
+package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,13 +10,13 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Chris extends AnimatorCard //TODO
+public class Eris_Chris extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Chris.class)
-            .SetAttack(0, CardRarity.UNCOMMON)
+    public static final EYBCardData DATA = Register(Eris_Chris.class)
+            .SetAttack(0, CardRarity.SPECIAL)
             .SetSeries(CardSeries.Konosuba);
 
-    public Chris()
+    public Eris_Chris()
     {
         super(DATA);
 

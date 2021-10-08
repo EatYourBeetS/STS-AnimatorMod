@@ -26,7 +26,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
         SetAffinity_Red(1);
         SetAffinity_Light(1);
 
-        SetCooldown(4, 1, this::OnCooldownCompleted, false, true);
+        SetRicochet(4, 1, this::OnCooldownCompleted);
 
         SetExhaust(true);
     }

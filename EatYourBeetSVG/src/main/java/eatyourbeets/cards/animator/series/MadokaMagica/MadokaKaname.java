@@ -4,20 +4,20 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.cards.animator.curse.HomuraAkemi_Homulily;
+import eatyourbeets.cards.animator.curse.MadokaKaname_Krimheild;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.utilities.*;
 
-public class MadokaKaname extends AnimatorCard //TODO
+public class MadokaKaname extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MadokaKaname.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
-                data.AddPreview(new HomuraAkemi_Homulily(), true);
+                data.AddPreview(new MadokaKaname_Krimheild(), true);
             });
 
     private static final int HEAL_AMOUNT = 3;
@@ -37,8 +37,10 @@ public class MadokaKaname extends AnimatorCard //TODO
         SetProtagonist(true);
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.Light, 4);
-        SetAffinityRequirement(Affinity.Dark, 4);
+        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Dark, 3);
+
+        SetSoul(2, 0, MadokaKaname_Krimheild::new);
     }
 
     @Override
@@ -61,10 +63,10 @@ public class MadokaKaname extends AnimatorCard //TODO
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
+        GameActions.Bottom.PurgeFromPile(name, magicNumber, p.exhaustPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
-        .SetFilter(c -> c.type == CardType.CURSE)
+        .SetFilter(c -> CardType.CURSE.equals(c.type))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

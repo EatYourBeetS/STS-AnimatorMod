@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.curse.IrohaTamaki_Giovanna;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +13,8 @@ public class IrohaTamaki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IrohaTamaki.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new IrohaTamaki_Giovanna(), false));
 
     public IrohaTamaki()
     {
@@ -25,6 +27,8 @@ public class IrohaTamaki extends AnimatorCard
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Light, 3);
+
+        SetSoul(4, 0, IrohaTamaki_Giovanna::new);
     }
 
     @Override

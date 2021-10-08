@@ -30,22 +30,21 @@ public class HomuraAkemi extends AnimatorCard
         SetAffinity_Dark(1);
 
         SetExhaust(true);
-        SetEthereal(true);
 
         SetAffinityRequirement(Affinity.Light,4);
-        SetCooldown(0, 0, HomuraAkemi_Homulily::new);
+        SetSoul(1, 0, HomuraAkemi_Homulily::new);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetEthereal(false);
+        SetSoul(2, 0, HomuraAkemi_Homulily::new);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.PurgeFromPile(name,1,player.hand).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(
+        GameActions.Bottom.PurgeFromPile(name,1,player.hand).SetFilter(c -> CardType.CURSE.equals(c.type)).AddCallback(
                 pc -> {
                     if (pc.size() > 0) {
                         GameActions.Bottom.ApplyPower(new HomuraAkemiPower(player, this, magicNumber));

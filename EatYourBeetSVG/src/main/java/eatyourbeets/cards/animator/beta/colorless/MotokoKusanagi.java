@@ -24,7 +24,7 @@ public class MotokoKusanagi extends AnimatorCard
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
 
-        SetCooldown(BASE_RICOCHET, 0, this::OnCooldownCompleted, false, true);
+        SetRicochet(BASE_RICOCHET, 0, this::OnCooldownCompleted);
 
         SetExhaust(true);
     }

@@ -2,13 +2,12 @@ package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
-import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 public class Vash extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Vash.class)
-            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetAttack(3, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Trigun);
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -25,7 +24,7 @@ public class Vash extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 10, 1, 0);
+        Initialize(2, 11, 1, 0);
         SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Red(1);
@@ -43,7 +42,7 @@ public class Vash extends AnimatorCard
 
 
         GameActions.Bottom.Reload(name, cards -> {
-            GameActions.Bottom.StackPower(new VashPower(p, cards.size() * magicNumber));
+            baseDamage += cards.size() * magicNumber;
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_Vash(CardType.ATTACK, this, cards));
@@ -55,26 +54,6 @@ public class Vash extends AnimatorCard
             choices.Select(1, m);
         });
 
-    }
-
-    public static class VashPower extends AnimatorPower
-    {
-        public VashPower(AbstractCreature owner, int amount)
-        {
-            super(owner, Vash.DATA);
-
-            Initialize(amount);
-        }
-
-        @Override
-        public void onPlayCard(AbstractCard card, AbstractMonster m)
-        {
-            super.onPlayCard(card,m);
-            if (card.type.equals(CardType.ATTACK)) {
-                card.baseDamage += amount;
-                RemovePower();
-            }
-        }
     }
 
     protected static class GenericEffect_Vash extends GenericEffect
@@ -94,7 +73,7 @@ public class Vash extends AnimatorCard
         @Override
         public String GetText()
         {
-            return JUtils.Format("#y{0}", StringUtils.capitalize(cardType.toString()));
+            return JUtils.Format("{{0}}", StringUtils.capitalize(cardType.toString().toLowerCase()));
         }
 
         @Override
@@ -103,13 +82,23 @@ public class Vash extends AnimatorCard
             if (p.drawPile.size() > 0)
             {
                 AbstractCard topCard = p.drawPile.getTopCard();
+                GameEffects.List.ShowCardBriefly(topCard);
                 if (topCard.type.equals(cardType))
                 {
-                    GameActions.Bottom.PlayCard(topCard,m);
+                    if (topCard.baseDamage > 0) {
+                        topCard.baseDamage += source.damage;
+                    }
+                    if (topCard.baseBlock > 0) {
+                        topCard.baseBlock += source.damage;
+                    }
+                    //GameActions.Bottom.PlayCard(topCard,m);
                 }
                 else {
                     GameActions.Bottom.Exhaust(topCard);
                     GameActions.Bottom.Exhaust(source);
+                    for (AbstractCard ca : cards) {
+                        GameActions.Bottom.Exhaust(ca);
+                    }
                 }
             }
         }

@@ -82,7 +82,7 @@ public class ChlammyZell extends AnimatorCard
         @Override
         public String GetText()
         {
-            return JUtils.Format(ChlammyZell.DATA.Strings.EXTENDED_DESCRIPTION[0], StringUtils.capitalize(cardType.toString()));
+            return JUtils.Format(ChlammyZell.DATA.Strings.EXTENDED_DESCRIPTION[0], StringUtils.capitalize(cardType.toString().toLowerCase()));
         }
 
         @Override

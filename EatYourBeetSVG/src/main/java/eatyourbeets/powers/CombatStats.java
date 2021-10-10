@@ -428,12 +428,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         ClearStats();
     }
 
-    public static void OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown)
+    public static boolean OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown)
     {
+        boolean canProgress = true;
         for (OnCooldownTriggeredSubscriber s : onCooldownTriggered.GetSubscribers())
         {
-            s.OnCooldownTriggered(card, cooldown);
+            canProgress = canProgress & s.OnCooldownTriggered(card, cooldown);
         }
+        return canProgress;
     }
 
     public static void OnSynergy(AbstractCard card)

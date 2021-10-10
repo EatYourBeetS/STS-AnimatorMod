@@ -47,8 +47,8 @@ public class Albedo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EnchantedArmorPower(p, magicNumber));
-        GameActions.Bottom.GainTemporaryArtifact(1);
+        GameActions.Bottom.StackPower(new EnchantedArmorPower(p, secondaryValue));
+        GameActions.Bottom.GainArtifact(1);
         GameActions.Bottom.StackPower(new AlbedoPower(p, magicNumber));
     }
 
@@ -59,14 +59,14 @@ public class Albedo extends AnimatorCard
 
         public AlbedoPower(AbstractCreature owner, int amount)
         {
-            super(owner, Albedo.DATA, PowerTriggerConditionType.Exhaust, EXHAUST_AMOUNT);
+            super(owner, Albedo.DATA, PowerTriggerConditionType.Special, EXHAUST_AMOUNT);
 
             Initialize(amount);
             this.triggerCondition.SetCheckCondition((c) -> {
-                return JUtils.Count(AbstractDungeon.player.hand.group, card -> card.type == CardType.ATTACK) >= EXHAUST_AMOUNT;
+                return JUtils.Count(AbstractDungeon.player.hand.group, card -> card.type.equals(CardType.ATTACK)) >= EXHAUST_AMOUNT;
             })
                     .SetPayCost(cost -> {
-                        GameActions.Bottom.ExhaustFromHand(name, cost, false).SetOptions(false, false, false).SetFilter(card -> card.type == CardType.ATTACK);
+                        GameActions.Bottom.ExhaustFromHand(name, EXHAUST_AMOUNT, false).SetOptions(false, false, false).SetFilter(card -> card.type.equals(CardType.ATTACK));
                     });
             this.triggerCondition.SetOneUsePerPower(true);
             updateCount();
@@ -77,7 +77,7 @@ public class Albedo extends AnimatorCard
         {
             GameActions.Bottom.SelectFromHand(name,1,false).AddCallback(cards -> {
                 for (AbstractCard card: cards) {
-                    GameUtilities.ModifyDamage(card,CombatStats.Affinities.GetHandAffinityLevel(Affinity.Dark,null),false);
+                    GameUtilities.IncreaseDamage(card,CombatStats.Affinities.GetHandAffinityLevel(Affinity.Dark,null),false);
                 }
             });
         }
@@ -121,7 +121,7 @@ public class Albedo extends AnimatorCard
 
         protected void updateCount() {
             CombatStats.Affinities.BonusAffinities.Add(Affinity.Dark, -darkAmount);
-            darkAmount = Math.max(amount,GameUtilities.GetOrbCount(Dark.ORB_ID));
+            darkAmount = Math.min(amount,GameUtilities.GetOrbCount(Dark.ORB_ID));
             CombatStats.Affinities.BonusAffinities.Add(Affinity.Dark, darkAmount);
             updateDescription();
         }

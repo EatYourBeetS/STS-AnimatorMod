@@ -89,7 +89,7 @@ public class Azriel extends AnimatorCard_UltraRare
         @Override
         public String GetText()
         {
-            return JUtils.Format("#y{0}", StringUtils.capitalize(cardType.toString()));
+            return JUtils.Format("{{0}}", StringUtils.capitalize(cardType.toString().toLowerCase()));
         }
 
         @Override

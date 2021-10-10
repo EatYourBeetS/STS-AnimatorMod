@@ -1,19 +1,14 @@
 package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SoulGem2 extends AnimatorRelic implements OnApplyPowerSubscriber
+public class SoulGem2 extends AnimatorRelic
 {
     public static final String ID = CreateFullID(SoulGem2.class);
     public static final int POWER_AMOUNT = 3;
@@ -21,14 +16,13 @@ public class SoulGem2 extends AnimatorRelic implements OnApplyPowerSubscriber
 
     public SoulGem2()
     {
-        super(ID, RelicTier.RARE, LandingSound.CLINK);
+        super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
     @Override
     public void atBattleStart()
     {
         GameActions.Bottom.GainDexterity(POWER_AMOUNT);
-        CombatStats.onApplyPower.Subscribe(this);
         SetCounter(0);
     }
 
@@ -45,11 +39,12 @@ public class SoulGem2 extends AnimatorRelic implements OnApplyPowerSubscriber
     }
 
     @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        int oldAmount = GameUtilities.GetPowerAmount(target, DexterityPower.POWER_ID);
-        if (GameUtilities.IsPlayer(target) && oldAmount < POWER_AMOUNT) {
-            GameUtilities.ApplyPowerInstantly(player, PowerHelper.Dexterity, -oldAmount);
-            GameActions.Bottom.GainDexterity(POWER_AMOUNT);
+    public void atTurnStartPostDraw()
+    {
+        super.atTurnStartPostDraw();
+        int oldAmount = GameUtilities.GetPowerAmount(player, DexterityPower.POWER_ID);
+        if (oldAmount < POWER_AMOUNT) {
+            GameActions.Bottom.GainDexterity(POWER_AMOUNT - oldAmount);
         }
     }
 }

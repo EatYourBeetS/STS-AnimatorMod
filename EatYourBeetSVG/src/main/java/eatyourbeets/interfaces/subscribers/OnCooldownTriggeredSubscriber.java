@@ -5,5 +5,5 @@ import eatyourbeets.cards.base.EYBCardCooldown;
 
 public interface OnCooldownTriggeredSubscriber
 {
-    void OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown);
+    boolean OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown);
 }

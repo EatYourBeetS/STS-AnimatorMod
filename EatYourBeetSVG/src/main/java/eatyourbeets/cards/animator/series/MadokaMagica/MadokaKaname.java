@@ -20,7 +20,7 @@ public class MadokaKaname extends AnimatorCard
                 data.AddPreview(new MadokaKaname_Krimheild(), true);
             });
 
-    private static final int HEAL_AMOUNT = 3;
+    private static final int HEAL_AMOUNT = 4;
 
     public MadokaKaname()
     {

@@ -84,6 +84,12 @@
 		"NAMES": ["choked"],
 		"PROPER_NAME": "Choked"
 	},
+	"Common Buff":
+	{
+		"DESCRIPTION": "[Strength], [Dexterity], [Focus], [Endurance], [Thorns], [Plated Armor], [Metallicize], [Intangible], [Artifact], [Blur].",
+		"NAMES": ["common buff", "common buffs"],
+		"PROPER_NAME": "Common Buff"
+	},
 	"Common Debuff":
 	{
 		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",

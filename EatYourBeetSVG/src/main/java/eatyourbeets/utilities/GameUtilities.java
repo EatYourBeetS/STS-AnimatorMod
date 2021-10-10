@@ -750,11 +750,13 @@ public class GameUtilities
 
     public static <T> T GetPower(AbstractCreature owner, Class<T> powerType)
     {
-        for (AbstractPower power : owner.powers)
-        {
-            if (powerType.isInstance(power))
+        if (owner != null && owner.powers != null) {
+            for (AbstractPower power : owner.powers)
             {
-                return powerType.cast(power);
+                if (powerType.isInstance(power))
+                {
+                    return powerType.cast(power);
+                }
             }
         }
 

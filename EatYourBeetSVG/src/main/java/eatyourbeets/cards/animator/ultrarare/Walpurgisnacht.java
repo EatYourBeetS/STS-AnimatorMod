@@ -83,10 +83,11 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         }
 
         @Override
-        public void OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown) {
+        public boolean OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown) {
             if (cooldown.cardConstructor != null) {
                 GameActions.Bottom.GainTemporaryHP(amount);
             }
+            return true;
         }
     }
 }

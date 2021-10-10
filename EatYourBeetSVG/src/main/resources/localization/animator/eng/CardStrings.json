@@ -588,7 +588,7 @@
 		},
 		"animator:Vash":
 		{
-			"DESCRIPTION": "Reload: Gains {Autoplay} and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
+			"DESCRIPTION": "Reload: Gains {Autoplay} ** and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
 			"EXTENDED_DESCRIPTION": ["The next Attack played gains #b{0} damage."],
 			"NAME": "Vash the Stampede"
 		},
@@ -2104,6 +2104,11 @@
 
 	"SERIES:MADOKAMAGICA":
 	{
+		"animator:AlinaGray":
+		{
+			"DESCRIPTION": "Evoke your first Orb and Channel it back. Next turn: {Soul} is not consumed. <LIM>. If this effect prevents {Soul} from triggering: Steal the leftmost {Shared Buff} from the leftmost enemy.",
+			"NAME": "Alina Gray"
+		},
 		"animator:FeliciaMitsuki":
 		{
 			"DESCRIPTION": "<ST>: Deal +!M! damage for every Hindrance in hand. || !A! <R>: Purge a Hindrance in your Exhaust pile to Gain !S! [W].",
@@ -2147,7 +2152,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "<SOUL>: {Krimheild} || Purge !M! {Curses} in your Exhaust Pile. Heal 3 [HP] ** for each. ** <LIM>. !A! <L> and <D>: Also gain 3 [Support Damage] for each.",
+			"DESCRIPTION": "<SOUL>: {Krimheild} || Purge !M! {Curses} in your Exhaust Pile. Heal 4 [HP] ** for each. ** <LIM>. !A! <L> and <D>: Also gain 4 [Support Damage] for each.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MadokaKaname_Krimheild":
@@ -2430,8 +2435,8 @@
 		},
 		"animator:Albedo":
 		{
-			"DESCRIPTION": "Gain !S! [Enchanted Armor]. Your first !M! [Dark] Orbs give +1 <D>. || Once per turn, Purge an Attack: Increase an Attack's damage by <D>.",
-			"EXTENDED_DESCRIPTION": ["Your first #b{0} [Dark] Orbs give +1 <D> (You currently have #b{1} <D> from this Power). || Purge an Attack: Increase an Attack's damage by <D>."],
+			"DESCRIPTION": "Gain 1 [Artifact] and !S! [Enchanted Armor]. Your first !M! [Dark] Orbs give +1 <D>. || Once per turn, Exhaust an Attack: Increase an Attack's damage by <D>.",
+			"EXTENDED_DESCRIPTION": ["Your first #b{0} [Dark] Orbs give +1 <D> (You currently have #b{1} <D> from this Power). || Exhaust an Attack: Increase an Attack's damage by <D>."],
 			"NAME": "Albedo"
 		},
 		"animator:Cocytus":

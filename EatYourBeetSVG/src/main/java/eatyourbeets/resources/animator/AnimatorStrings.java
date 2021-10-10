@@ -479,7 +479,8 @@ public class AnimatorStrings
     {
         private final UIStrings Strings = GetUIStrings("Tutorial");
 
-        public final String AffinityPanel = Strings.TEXT[0];
+        public final String AffinityInfo = Strings.TEXT[0];
+        public final String AffinityTutorial1 = Strings.TEXT[1];
     }
 
     private static UIStrings GetUIStrings(String id)

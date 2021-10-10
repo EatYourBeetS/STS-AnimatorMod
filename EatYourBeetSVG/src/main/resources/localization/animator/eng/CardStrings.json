@@ -99,10 +99,10 @@
 		},
 		"animator:MysteryCard":
 		{
-			"DESCRIPTION": "At the start of combat: Transforms into a random 1- Cost Common card.",
-			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random 1- Cost Common card that changes every combat instead of removing a card from your deck."],
+			"DESCRIPTION": "At the start of combat: Transforms into a random 0 or 1 Cost Common card.",
+			"EXTENDED_DESCRIPTION": ["Select this to fill in this slot with a random 0 or 1 Cost Common card that changes every combat instead of removing a card from your deck."],
 			"NAME": "? ? ?",
-			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded 1- Cost Common card."
+			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded 0 or 1 Cost Common card."
 		},
 		"animator:MysteryCard2":
 		{
@@ -588,7 +588,8 @@
 		},
 		"animator:Vash":
 		{
-			"DESCRIPTION": "Reload: This gains !M! damage. || Choose a card type. If the bottom card of your deck is of that type: Fetch it. Otherwise, Purge it and this, then take [Self Damage] equal to half this card's Attack.",
+			"DESCRIPTION": "Reload: Gains {Autoplay} and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
+			"EXTENDED_DESCRIPTION": ["The next Attack played gains #b{0} damage."],
 			"NAME": "Vash the Stampede"
 		},
 		"animator:Yae":
@@ -920,7 +921,7 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "At the start of combat: Gain !M! [I]. || Choose 1: Add a {Miracle} to your hand, or Fill your hand with {Miracles} and take !S! [Delayed Damage].",
+			"DESCRIPTION": "While active, Stances give you !M! of their Threshold power. When you switch stances, enable and Boost a random <W> Power.",
 		 	"EXTENDED_DESCRIPTION": ["Add a Miracle to your hand.", "Add Miracles to your hand until your hand is full. Take {0} [Delayed Damage]."],
 			"NAME": "Sakura Kashima"
 		},
@@ -1382,7 +1383,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! HP."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. Transfer !M! [Delayed Damage] from you to the enemy. || When Drawn: Take !M! [Delayed Damage]."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -1571,7 +1572,7 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy past 1 ** (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** past 1 (min. 1). || !A! <R>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
@@ -1883,9 +1884,9 @@
 		},
 		"animator:TsurugaMeisai":
 		{
-			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 1- Cost ** {Attack} and add it ** to your draw pile.",
+			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 0 or 1 Cost ** {Attack} and add it ** to your draw pile.",
 			"NAME": "Meisai",
-			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 1- Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
+			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 0 or 1 Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
 		},
 		"animator:UneriGinkaku":
 		{
@@ -2095,7 +2096,7 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Requires ** !A! <W> to play. || On your first !M! Synergies each turn: ** Gain a random <W> power. || Once per turn, discard 2 cards: ALL Affinities have +1 this turn.",
+			"DESCRIPTION": "Requires !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, discard 2 cards: ALL Affinities have +2 this turn.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, discard #b{2} cards: ALL #yAffinities have +1 this turn."],
 			"NAME": "Tetra"
 		}
@@ -2110,7 +2111,7 @@
 		},
 		"animator:HomuraAkemi":
 		{
-			"DESCRIPTION": "<SOUL>: {Homulily} || Purge a Curse. If you do: In !M! turns, Obtain a card from your deck. It costs 1 less and has Purge. || <LIM>. !A! <L>: Gain !S! [Artifact].",
+			"DESCRIPTION": "<SOUL>: {Homulily} || To play this: Purge any Curse in play. In !M! turns, Obtain a card from your deck. It costs 1 less and has Purge. || <LIM>. !A! <L>: Gain !S! [Artifact].",
 			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), Obtain 1 of 2 #ySame-Series cards from your deck. it costs #b1 less and #yPurges on use."],
 			"NAME": "Homura Akemi"
 		},
@@ -2141,12 +2142,12 @@
 		},
 		"animator:Kyubey":
 		{
-			"DESCRIPTION": "Gain [E] [E]. ** <DRW-M>. || At the start of combat: ** Add 1 random Curse ** to your discard pile.",
+			"DESCRIPTION": "{Startup}: Obtain a random Curse. || Gain !S! [E]. <DRW-M>. ** Drain 1 {Soul} from random {Soul} cards in hand three times. If you could not: Purge.",
 			"NAME": "Kyubey"
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "<SOUL>: {Krimheild} || Purge !M! {Curses} in your Exhaust Pile. Heal 3 HP for each. ** <LIM>. !A! <L> and <D>: Also gain 3 [Support Damage] for each.",
+			"DESCRIPTION": "<SOUL>: {Krimheild} || Purge !M! {Curses} in your Exhaust Pile. Heal 3 [HP] ** for each. ** <LIM>. !A! <L> and <D>: Also gain 3 [Support Damage] for each.",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MadokaKaname_Krimheild":
@@ -2157,12 +2158,12 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "<SOUL>: {Candeloro}. || Attack 1 additional time for each card pile which contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] to your discard pile.",
+			"DESCRIPTION": "<SOUL>: {Candeloro}. || Attack 1 additional time for each card pile which ** contains a [Grief Seed]. || When Drawn: Add a [Grief Seed] to your discard pile.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:MamiTomoe_Candeloro":
 		{
-			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: Create !M! random Curses in hand. Fetch !S! card(s) from your discard pile.",
+			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: ** Obtain [Grief Seed]. || At the end of turn: Obtain !M! random Curses. Fetch !S! card(s) from your discard pile.",
 			"NAME": "Candeloro"
 		},
 		"animator:MifuyuAsuza":
@@ -2210,8 +2211,8 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "For every !S!th [Grief Seed] Exhausted or Purged: If <B> > <L>, Have +1 <L>. Otherwise, have +1 <B>. || Once per turn, Discard 1 card: Gain !M! Block.",
-			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Increase this Power's counter by #b{1} whenever you Exhaust or play a [Grief Seed] (Currently at #b{2}). When it hits #b{3}, reset it. Then, gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
+			"DESCRIPTION": "For every !S!th Curse Exhausted or Purged: If <B> > <L>, Have +1 <L>. Otherwise, have +1 <B>. || Once per turn, Discard 1 card: Gain !M! Block.",
+			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Increase this Power's counter by #b{1} whenever you Exhaust or Purge a Curse (Currently at #b{2}). When it hits #b{3}, reset it. Then, gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
@@ -2440,7 +2441,7 @@
 		},
 		"animator:CZDelta":
 		{
-			"DESCRIPTION": "Have !M! less [Dexterity] next turn. || <LIM>. If a card lowers an enemy to 10% HP or less, Fetch this card and give it Purge.",
+			"DESCRIPTION": "Next turn: Have !M! less [Dexterity] until the end of turn. || <LIM>. If a card lowers an enemy to 10% HP or less, Fetch this card and give it Purge.",
 			"NAME": "CZ Delta"
 		},
 		"animator:Demiurge":
@@ -2596,6 +2597,11 @@
 			"EXTENDED_DESCRIPTION": ["Maintain up to #b{0} #yBlock at the start of each turn."],
 			"NAME": "Gazel Dwargon"
 		},
+		"animator:Gabiru":
+		{
+			"DESCRIPTION": "<ST>. Motivate a card in your draw pile. || @If@ <G> @>@ <O>: Retain !M! <B> card(s). Otherwise, Retain !M! <O> card(s). || On Exhaust: Apply !S! [Poison] to ALL enemies.",
+			"NAME": "Gabiru"
+		},
 		"animator:Gobta":
 		{
 			"DESCRIPTION": "This turn, when you apply a {Common Debuff} to an enemy: Increase its stacks by !M!. || On Discard: Apply !S! [Poison] to a random enemy.",
@@ -2620,7 +2626,7 @@
 		},
 		"animator:Ramiris":
 		{
-			"DESCRIPTION": "Starter. Apply !M! [Weak] and ** !S! [Shackles] to ALL enemies. You ** can't {Attack} this turn. || When Obtained: Increase ** your max [HP] by 2.",
+			"DESCRIPTION": "<ST>. Apply !M! [Weak] and ** !S! [Shackles] to ALL enemies. Gain 10 [Shackles]. || {Startup}: Gain 2 [Temp HP].",
 			"NAME": "Ramiris"
 		},
 		"animator:Ranga":
@@ -2930,7 +2936,8 @@
 	{
 		"animator:Azriel":
 		{
-			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply ** a {Debuff}: Boost a ** random {<W> Power}.",
+			"DESCRIPTION": "Gain 1 Evolve. || At the start of each turn: Call a card type. If at least half of your hand is of that type, Motivate equal to their count. Otherwise, discard ALL cards not of that type.",
+			"EXTENDED_DESCRIPTION": ["At the start of each turn: Call a card type. If at least half of your hand is of that type, Motivate equal to their count. Otherwise, discard ALL cards not of that type."],
 			"NAME": "Azriel"
 		},
 		"animator:Chomusuke":
@@ -2950,12 +2957,12 @@
 		},
 		"animator:Giselle":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] ** to ALL enemies. || At the start of each ** combat: Channel !S! [Fire].",
+			"DESCRIPTION": "Gain Fire Breathing equal to <W>.",
 			"NAME": "Giselle"
 		},
 		"animator:Hero":
 		{
-			"DESCRIPTION": "<DRW-M>. || <LIM>. If Fatal, 40% chance to ** obtain a {Relic} at the ** end of combat.",
+			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal, 40% chance to ** obtain a {Relic} at the ** end of combat.",
 			"NAME": "'Hero'"
 		},
 		"animator:HiiragiMahiru":
@@ -2970,7 +2977,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Boost [B]. Purge a random ** Hindrance from anywhere. || At the start of combat: ** Gain !M! [Temp HP] and 1 [Artifact].",
+			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal: Heal double [HP].",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":
@@ -3018,18 +3025,19 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "Gain !M! [F], [A], [I] and [E]. || If you have at least !S! ** unique orbs: Remove all your ** orbs. Otherwise choose and ** replace 1 card in your deck ** with 1 {~Crystallize}.",
+			"DESCRIPTION": "Trade your buffs and debuffs with the enemy (ignoring unique buffs).",
 			"NAME": "Truth"
 		},
 		"animator:Veldora":
 		{
-			"DESCRIPTION": "Gain !S! [I]. Evoke ** ALL orbs !M! times. || When Drawn: Channel ** 2 random orbs.",
+			"DESCRIPTION": "Gain 2 Flight. || Whenever you apply a Debuff: Boost a random <W> Power. || When drawn, apply !S! of a random Common Debuff to a random enemy !M! times.",
+			"EXTENDED_DESCRIPTION": ["Whenever you apply a Debuff: Boost a random <W> Power."],
 			"NAME": "Veldora"
 		},
 		"animator:Walpurgisnacht":
 		{
-			"DESCRIPTION": "Add !M! random Spellcaster(s) ** to your hand. They cost 0 ** this turn. || At start of turn: Evoke your ** next orb for each Curse and ** Spellcaster in your hand.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, #yEvoke your next orb once for each #yCurse plus each #ySpellcaster in your hand."],
+			"DESCRIPTION": "Whenever {Soul} is lost: Gain !M! [Temp HP]. || Pay [E]: Transform a Curse in hand back to its {Soul} card form and give it +1 [C] Scaling.",
+			"EXTENDED_DESCRIPTION": ["Whenever #ySoul is lost: Gain #b{0} [Temp HP]. NL Pay [E]: Transform a Curse in hand back to its #ySoul card form and give it +1 [C] Scaling."],
 			"NAME": "Walpurgisnacht"
 		}
 	}

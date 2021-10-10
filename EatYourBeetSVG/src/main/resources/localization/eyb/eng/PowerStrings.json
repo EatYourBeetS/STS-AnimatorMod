@@ -2,7 +2,7 @@
 {
 	"eyb:AbstractTemporaryPower":
     {
-		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn."],
+		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn.","Gain #b{0} #b{1} at the start of your next turn."],
 		"NAME": "Temporary Power"
     },
 	"eyb:AgilityPower":
@@ -134,6 +134,11 @@
     {
 		"DESCRIPTIONS": ["Lose #b{0} [Desecration] at the start of your next turn."],
 		"NAME": "Temporary Desecration"
+    },
+	"eyb:TemporaryDexterityPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Dexterity] at the start of your next turn."],
+		"NAME": "Temporary Dexterity"
     },
 	"eyb:TemporaryEndurancePower":
     {

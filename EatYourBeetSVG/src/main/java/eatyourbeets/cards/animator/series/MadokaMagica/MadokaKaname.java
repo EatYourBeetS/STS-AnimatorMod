@@ -40,7 +40,7 @@ public class MadokaKaname extends AnimatorCard
         SetAffinityRequirement(Affinity.Light, 3);
         SetAffinityRequirement(Affinity.Dark, 3);
 
-        SetSoul(2, 0, MadokaKaname_Krimheild::new);
+        SetSoul(4, 0, MadokaKaname_Krimheild::new);
     }
 
     @Override

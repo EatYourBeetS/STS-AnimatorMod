@@ -102,6 +102,12 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
+	"Cooldown":
+	{
+		"DESCRIPTION": "Whenever you play this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
+		"NAMES": ["cooldown"],
+		"PROPER_NAME": "Cooldown"
+	},
 	"Corruption":
 	{
 		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 [Corruption], add #yCrystallize to your draw pile. At #b15 [Corruption], obtain #pSummoning #pRitual.",
@@ -431,6 +437,12 @@
 		"DESCRIPTION": "Activates if played at the start of turn.",
 		"NAMES": ["starter"],
 		"PROPER_NAME": "Starter"
+	},
+	"Startup":
+	{
+		"DESCRIPTION": "Play this effect at the start of combat.",
+		"NAMES": ["startup"],
+		"PROPER_NAME": "Startup"
 	},
 	"Stun":
 	{

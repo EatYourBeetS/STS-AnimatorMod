@@ -34,7 +34,7 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     @Override
     protected void OnUpgrade()
     {
-        magicNumberString.SetText("X + 1").SetColor(Colors.Cream(1));
+        SetHaste(true);
     }
 
     @Override
@@ -48,14 +48,14 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = upgraded ? GetHandAffinity(Affinity.General) + 1 : GetHandAffinity(Affinity.General);
+        magicNumber = GetHandAffinity(Affinity.General);
         magicNumberString = super.GetMagicNumberString();
     }
 
     @Override
     public void OnReset()
     {
-        magicNumberString.SetText(upgraded ? "X + 1" : "X").SetColor(Colors.Cream(1));
+        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
     }
 
     @Override

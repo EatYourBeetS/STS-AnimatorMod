@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -96,7 +95,7 @@ public class YachiyoNanami extends AnimatorCard
         }
 
         private void invokeGrief(AbstractCard card) {
-            if (Curse_GriefSeed.DATA.ID.equals(card.cardID)) {
+            if (card != null && card.type.equals(CardType.CURSE)) {
                 griefSeedsPlayed += amount;
             }
             if (griefSeedsPlayed >= GRIEF_REQUIREMENT) {

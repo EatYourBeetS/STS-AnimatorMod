@@ -1,22 +1,23 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.interfaces.subscribers.OnCooldownTriggeredSubscriber;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Walpurgisnacht extends AnimatorCard_UltraRare //TODO
+public class Walpurgisnacht extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(Walpurgisnacht.class)
             .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.MadokaMagica);
+    private static final int POWER_ENERGY_COST = 2;
 
     private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
 
@@ -34,61 +35,58 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare //TODO
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (spellcasterPool.Size() == 0)
-        {
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(Affinity.Blue) > 0));
-            spellcasterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(Affinity.Blue) > 0));
-        }
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            AnimatorCard spellcaster = spellcasterPool.Retrieve(rng, false);
-            if (spellcaster != null)
-            {
-                GameActions.Bottom.MakeCardInHand(spellcaster)
-                .SetUpgrade(false, true)
-                .AddCallback(c -> c.setCostForTurn(0));
-            }
-        }
-
-        GameActions.Bottom.ApplyPower(p, p, new WalpurgisnachtPower(p));
+        GameActions.Bottom.ApplyPower(p, p, new WalpurgisnachtPower(p, magicNumber));
     }
 
-    public static class WalpurgisnachtPower extends AnimatorPower
+    public static class WalpurgisnachtPower extends AnimatorClickablePower implements OnCooldownTriggeredSubscriber
     {
-        public WalpurgisnachtPower(AbstractPlayer owner)
+        public WalpurgisnachtPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Walpurgisnacht.DATA);
+            super(owner, Walpurgisnacht.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
-            this.amount = -1;
+            this.amount = amount;
 
             updateDescription();
         }
 
         @Override
-        public void updateDescription()
+        public void OnUse(AbstractMonster m)
         {
-            description = FormatDescription(0, amount);
+            GameActions.Bottom.SelectFromHand(name, 1, false).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(cards -> {
+                for (AbstractCard c : cards) {
+                    GameActions.Bottom.GainCorruption(2);
+                }
+            });
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void onInitialApplication()
         {
-            GameActions.Bottom.Callback(() ->
-            {
-                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || (c instanceof EYBCard && ((EYBCard)c).affinities.GetLevel(Affinity.Blue) > 0));
-                if (count > 0)
-                {
-                    for (int i = 1; i < count; i++)
-                    {
-                        GameActions.Bottom.Add(new AnimateOrbAction(1));
-                        GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
-                    }
+            super.onInitialApplication();
 
-                    GameActions.Bottom.Add(new AnimateOrbAction(1));
-                    GameActions.Bottom.Add(new EvokeOrbAction(1));
-                }
-            });
+            CombatStats.onCooldownTriggered.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onCooldownTriggered.Unsubscribe(this);
+        }
+
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount);
+        }
+
+        @Override
+        public void OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown) {
+            if (cooldown.cardConstructor != null) {
+                GameActions.Bottom.GainTemporaryHP(amount);
+            }
         }
     }
 }

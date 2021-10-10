@@ -25,12 +25,6 @@
 		"NAMES": ["chaos", "chaos+"],
 		"PROPER_NAME": "Chaos"
 	},
-	"Cooldown":
-	{
-		"DESCRIPTION": "Whenever you play this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
-		"NAMES": ["cooldown"],
-		"PROPER_NAME": "Cooldown"
-	},
 	"Earth":
 	{
 		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
@@ -81,7 +75,7 @@
 	},
 	"Soul":
 	{
-	  "DESCRIPTION": "Whenever you play or draw this card, reduce its #ySoul by #b1. If it is at #b0, #yExhaust it and add the specified card to your discard pile.",
+	  "DESCRIPTION": "When played or drawn, reduce #ySoul by #b1. If it is at #b0, #yExhaust this and add the specified card to your discard pile. #ySoul cannot be increased past its initial limit.",
 	  "NAMES": ["soul"],
 	  "PROPER_NAME": "Soul"
 	},

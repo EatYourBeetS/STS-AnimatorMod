@@ -2,7 +2,6 @@ package eatyourbeets.powers.affinity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -34,7 +33,8 @@ public abstract class AbstractAffinityPower extends CommonPower
     public Hitbox hb;
 
     private static final StringBuilder builder = new StringBuilder();
-    protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
+    protected static final int THRESHOLD_MULTIPLIER = 15;
+    protected static final int MAX_STAT_AMOUNT = 999;
     protected int thresholdIndex;
     protected int thresholdBonusAmount;
     protected int thresholdBonusModifier;
@@ -48,7 +48,8 @@ public abstract class AbstractAffinityPower extends CommonPower
         //TODO: Add tooltip to EYBPower base class
         EYBCardTooltip tooltip = new EYBCardTooltip(name, description);
         tooltip.subText = new ColoredString();
-        tooltip.icon = new TextureRegion(img);
+        //TODO: Add image to AbstractAFfinityPower
+        //tooltip.icon = new TextureRegion(img);
         tooltips.add(tooltip);
 
         FindTooltipsFromText(powerStrings.DESCRIPTIONS[1]);
@@ -109,13 +110,13 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     public Integer GetCurrentThreshold()
     {
-        final int[] thresholds = GetThresholds();
-        return (thresholdIndex < thresholds.length) ? thresholds[thresholdIndex] : null;
+        final int threshold = GetThresholdMultiplier();
+        return (amount < MAX_STAT_AMOUNT) ? thresholdIndex * threshold : null;
     }
 
-    public int[] GetThresholds()
+    public int GetThresholdMultiplier()
     {
-        return DEFAULT_THRESHOLDS;
+        return THRESHOLD_MULTIPLIER;
     }
 
     public void AddThresholdBonusModifier(int amount)
@@ -125,14 +126,12 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected void UpdateThreshold()
     {
-        final int[] thresholds = GetThresholds();
-        for (int i = thresholdIndex; i < thresholds.length; i++)
+        Integer threshold = GetCurrentThreshold();
+        while (threshold != null && threshold <= amount)
         {
-            if (amount >= thresholds[i])
-            {
                 thresholdIndex += 1;
                 RefreshThresholdBonus(true, 0);
-            }
+                threshold = GetCurrentThreshold();
         }
 
         updateDescription();
@@ -165,14 +164,8 @@ public abstract class AbstractAffinityPower extends CommonPower
         this.amountGainedThisTurn = 0;
         this.forceEnableThisTurn = false;
 
-        if (this.retainedTurns == 0)
-        {
-            if (amount > 0)
-            {
-                reducePower(1);
-            }
-        }
-        else if (this.retainedTurns > 0)
+        //Should not be used
+        if (this.retainedTurns > 0)
         {
             this.retainedTurns -= 1;
         }

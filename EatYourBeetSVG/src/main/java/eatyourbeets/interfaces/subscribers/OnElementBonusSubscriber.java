@@ -3,7 +3,7 @@ package eatyourbeets.interfaces.subscribers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.cards.base.Affinity;
 
-public interface OnSynergyBonusSubscriber
+public interface OnElementBonusSubscriber
 {
-    void OnSynergyBonus(AbstractCard card, Affinity affinity);
+    void OnElementBonus(AbstractCard card, Affinity affinity);
 }

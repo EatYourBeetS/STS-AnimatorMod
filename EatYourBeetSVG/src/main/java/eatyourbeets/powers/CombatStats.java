@@ -89,7 +89,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnSynergyBonusSubscriber> onSynergyBonus = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnElementBonusSubscriber> onElementBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnSynergySubscriber> onSynergy = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnTagChangedSubscriber> onTagChanged = RegisterEvent(new GameEvent<>());
@@ -441,11 +441,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         synergiesThisCombat.add(card);
     }
 
-    public static void OnSynergyBonus(AbstractCard card, Affinity affinity)
+    public static void OnElementBonus(AbstractCard card, Affinity affinity)
     {
-        for (OnSynergyBonusSubscriber s : onSynergyBonus.GetSubscribers())
+        for (OnElementBonusSubscriber s : onElementBonus.GetSubscribers())
         {
-            s.OnSynergyBonus(card, affinity);
+            s.OnElementBonus(card, affinity);
         }
     }
 
@@ -480,10 +480,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         actions.clear();
         card.OnLateUse(p, m, info);
 
-        if (info.IsSynergizing)
-        {
-            Affinities.OnSynergy(card);
-        }
+        Affinities.OnCardPlayed(card);
 
         if (actions.isEmpty())
         {
@@ -763,8 +760,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public void onPlayCard(AbstractCard card, AbstractMonster m)
     {
         super.onPlayCard(card, m);
-
-        CombatStats.Affinities.TrySynergize(card);
     }
 
     @Override

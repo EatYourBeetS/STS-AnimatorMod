@@ -156,55 +156,34 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
     }
 
-    public int GetLastAffinityLevel(Affinity affinity)
-    {
-        return lastCardPlayed == null ? 0 : lastCardPlayed.affinities.GetLevel(affinity);
-    }
-
     public AnimatorCard GetLastCardPlayed()
     {
         return lastCardPlayed;
     }
 
-    public boolean TrySynergize(AbstractCard card)
+    public boolean CanActivateElementalBonus(EYBCardAffinity element)
     {
-        if (WouldSynergize(card))
-        {
-            currentSynergy = card;
-            return true;
-        }
-
-        currentSynergy = null;
-        return false;
+        return element != null && CanActivateElementalBonus(element.type);
     }
 
-    public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
+    public boolean CanActivateElementalBonus(Affinity element)
     {
-        return affinity != null && affinity.level >= 2 && GetLastAffinityLevel(affinity.type) > 0 && CanActivateSynergyBonus(affinity.type);
-    }
-
-    public boolean CanActivateSynergyBonus(Affinity affinity)
-    {
-        return affinity.ID >= 0 && GetRow(affinity).AvailableActivations > 0;
+        return element.ID >= 0;
     }
 
     public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
     {
         final EYBCardAffinityRow row = GetRow(affinity);
-        row.MaxActivationsPerTurn = Math.max(0, row.MaxActivationsPerTurn + amount);
-        row.AvailableActivations = Math.max(0, row.AvailableActivations + amount);
     }
 
-    public void OnSynergy(AnimatorCard card)
+    public void OnCardPlayed(AnimatorCard card)
     {
         for (EYBCardAffinity affinity : card.affinities.List)
         {
-            if (CanActivateSynergyBonus(affinity))
-            {
+            if (CanActivateElementalBonus(affinity)) {
                 final EYBCardAffinityRow row = GetRow(affinity.type);
-                if (row != null)
-                {
-                    row.ActivateSynergyBonus(card);
+                if (row != null) {
+                    row.ActivateElementBonus(card, affinity.level);
                 }
             }
         }

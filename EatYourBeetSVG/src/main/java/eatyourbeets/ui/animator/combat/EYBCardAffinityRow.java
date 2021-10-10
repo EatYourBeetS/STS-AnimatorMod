@@ -28,8 +28,6 @@ public class EYBCardAffinityRow extends GUIElement
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
 
-    public int MaxActivationsPerTurn;
-    public int AvailableActivations;
     public int ActivationPowerAmount;
     public int Level;
 
@@ -70,17 +68,14 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy.SetActive(Power != null);
     }
 
-    public void ActivateSynergyBonus(AbstractCard card)
+    public void ActivateElementBonus(AbstractCard card, int amount)
     {
-        AvailableActivations -= 1;
-        GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount, false);
-        CombatStats.OnSynergyBonus(card, Type);
+        GameActions.Bottom.StackAffinityPower(Type, amount, false);
+        CombatStats.OnElementBonus(card, Type);
     }
 
     public void OnStartOfTurn()
     {
-        AvailableActivations = MaxActivationsPerTurn;
-
         if (Power != null)
         {
             Power.atStartOfTurn();
@@ -89,7 +84,6 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void Initialize()
     {
-        AvailableActivations = MaxActivationsPerTurn = 1;
         ActivationPowerAmount = 1;
 
         if (Power != null)
@@ -101,7 +95,7 @@ public class EYBCardAffinityRow extends GUIElement
     public void Update(EYBCardAffinities handAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
     {
         image_background.SetColor(COLOR_DEFAULT);
-        image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
+        image_synergy.color.a = 0.25f;
 
         if (Type == Affinity.General)
         {
@@ -128,7 +122,7 @@ public class EYBCardAffinityRow extends GUIElement
             if (hoveredCard != null)
             {
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
-                if (System.CanActivateSynergyBonus(a))
+                if (System.CanActivateElementalBonus(a))
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_STRONG);
                 }

@@ -134,7 +134,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["On your first #ySynergy each turn, draw #b1 card."],
+		"DESCRIPTIONS": ["DISABLED: On your first #ySynergy each turn, draw #b1 card."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},

@@ -200,19 +200,19 @@
 	},
 	"animator:SoulGem1":
 	{
-		"DESCRIPTIONS": ["#yStrength cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
+		"DESCRIPTIONS": ["At the start of turn, if #yStrength is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Red Soul Gem"
 	},
 	"animator:SoulGem2":
 	{
-		"DESCRIPTIONS": ["#yDexterity cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b5 cards played that give #yBlock."],
+		"DESCRIPTIONS": ["At the start of turn, if #yDexterity is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b5 cards played that give #yBlock."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Green Soul Gem"
 	},
 	"animator:SoulGem3":
 	{
-		"DESCRIPTIONS": ["#yFocus cannot fall below #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
+		"DESCRIPTIONS": ["#At the start of turn, if #yFocus is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
 		"FLAVOR": "Would you like to make a contract?",
 		"NAME": "Blue Soul Gem"
 	},

@@ -16,14 +16,14 @@ import eatyourbeets.utilities.TargetHelper;
 public class Souei extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souei.class)
-            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     public Souei()
     {
         super(DATA);
 
-        Initialize(2, 0, 6);
+        Initialize(1, 0, 6);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Green(2);

@@ -23,10 +23,7 @@ import com.megacrit.cardcrawl.relics.Calipers;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
@@ -71,6 +68,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnCardResetSubscriber> onCardReset = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCooldownTriggeredSubscriber> onCooldownTriggered = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCostChangedSubscriber> onCostChanged = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = RegisterEvent(new GameEvent<>());
@@ -428,6 +426,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
         onBattleStart.Clear();
         onBattleEnd.Clear();
         ClearStats();
+    }
+
+    public static boolean OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown)
+    {
+        boolean canProgress = true;
+        for (OnCooldownTriggeredSubscriber s : onCooldownTriggered.GetSubscribers())
+        {
+            canProgress = canProgress & s.OnCooldownTriggered(card, cooldown);
+        }
+        return canProgress;
     }
 
     public static void OnSynergy(AbstractCard card)

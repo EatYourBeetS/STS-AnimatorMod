@@ -1,18 +1,25 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.cards.base.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Veldora extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(Veldora.class)
-            .SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TenseiSlime);
 
@@ -20,14 +27,12 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
         SetAffinity_Blue(2);
-
-        showEvokeValue = true;
     }
 
     @Override
@@ -35,33 +40,43 @@ public class Veldora extends AnimatorCard_UltraRare
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.ChannelOrb(AbstractOrb.getRandomOrb(true));
-        GameActions.Bottom.ChannelRandomOrbs(1);
+        for (int i = 0; i < secondaryValue; i++) {
+            GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
+                    .ShowEffect(false, true);
+        }
+
         GameActions.Bottom.Flash(this);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainIntellect(secondaryValue);
-
-        int orbCount = p.filledOrbCount();
-        for (int i = 0; i < magicNumber - 1; i++)
+        if (!p.hasPower(PlayerFlightPower.POWER_ID))
         {
-            for (AbstractOrb orb : p.orbs)
-            {
-                if (!(orb instanceof EmptyOrbSlot))
-                {
-                    GameActions.Bottom.Callback(orb, (orb_, __) ->
-                    {
-                        ((AbstractOrb) orb_).triggerEvokeAnimation();
-                        ((AbstractOrb) orb_).onEvoke();
-                    });
-                }
-            }
+            GameActions.Bottom.StackPower(new PlayerFlightPower(p, 2));
         }
 
-        GameActions.Bottom.Add(new AnimateOrbAction(orbCount));
-        GameActions.Bottom.Add(new EvokeOrbAction(orbCount));
+        GameActions.Bottom.StackPower(new VeldoraPower(p, 1));
+    }
+
+    public class VeldoraPower extends AnimatorPower
+    {
+        public VeldoraPower(AbstractCreature owner, int amount)
+        {
+            super(owner, Veldora.DATA);
+
+            Initialize(amount);
+        }
+
+        public void onApplyPower(AbstractPower p, AbstractCreature target, AbstractCreature source)
+        {
+            super.onApplyPower(p, target, source);
+
+            if (p.type == PowerType.DEBUFF && !p.ID.equals(GainStrengthPower.POWER_ID) && source == owner && !target.hasPower(ArtifactPower.POWER_ID))
+            {
+                GameActions.Bottom.GainRandomAffinityPower(1, true);
+                this.flash();
+            }
+        }
     }
 }

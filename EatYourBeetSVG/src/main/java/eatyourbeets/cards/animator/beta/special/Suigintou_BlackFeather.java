@@ -39,7 +39,6 @@ public class Suigintou_BlackFeather extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Top.Purge(uuid);
 
         GameActions.Bottom.Callback(() ->
         {
@@ -47,6 +46,7 @@ public class Suigintou_BlackFeather extends AnimatorCard
             GameActions.Top.ReduceStrength(enemy, magicNumber, true);
             GameActions.Top.VFX(new ThrowDaggerEffect(enemy.hb.cX, enemy.hb.cY));
         });
+        GameActions.Last.Purge(uuid);
     }
 
     @Override

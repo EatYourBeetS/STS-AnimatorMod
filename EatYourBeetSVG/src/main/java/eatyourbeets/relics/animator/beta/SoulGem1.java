@@ -1,19 +1,14 @@
 package eatyourbeets.relics.animator.beta;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SoulGem1 extends AnimatorRelic implements OnApplyPowerSubscriber
+public class SoulGem1 extends AnimatorRelic
 {
     public static final String ID = CreateFullID(SoulGem1.class);
     public static final int POWER_AMOUNT = 3;
@@ -28,7 +23,6 @@ public class SoulGem1 extends AnimatorRelic implements OnApplyPowerSubscriber
     public void atBattleStart()
     {
         GameActions.Bottom.GainStrength(POWER_AMOUNT);
-        CombatStats.onApplyPower.Subscribe(this);
         SetCounter(0);
     }
 
@@ -45,11 +39,12 @@ public class SoulGem1 extends AnimatorRelic implements OnApplyPowerSubscriber
     }
 
     @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        int oldAmount = GameUtilities.GetPowerAmount(target, StrengthPower.POWER_ID);
-        if (GameUtilities.IsPlayer(target) && oldAmount < POWER_AMOUNT) {
-            GameUtilities.ApplyPowerInstantly(player, PowerHelper.Strength, -oldAmount);
-            GameActions.Bottom.GainStrength(POWER_AMOUNT);
+    public void atTurnStartPostDraw()
+    {
+        super.atTurnStartPostDraw();
+        int oldAmount = GameUtilities.GetPowerAmount(player, StrengthPower.POWER_ID);
+        if (oldAmount < POWER_AMOUNT) {
+            GameActions.Bottom.GainStrength(POWER_AMOUNT - oldAmount);
         }
     }
 }

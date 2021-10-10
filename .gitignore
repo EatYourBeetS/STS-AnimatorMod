@@ -2,7 +2,6 @@ target/
 temp/
 bin/
 .settings/
-src/main/resources/
 .idea/
 EatYourBeetSVG/.gitignore
 pom.xml.tag
@@ -21,5 +20,4 @@ STS-AnimatorMod.iml
 *.psd
 *.jar
 .classpath
-EatYourBeetSVG/src/main/java/eatyourbeets/cards/animator/colorless/rare/Kyubey.java
 pom.xml

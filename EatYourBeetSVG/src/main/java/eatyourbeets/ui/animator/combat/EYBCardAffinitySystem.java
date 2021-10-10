@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
@@ -14,6 +15,8 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Ftue;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
@@ -39,7 +42,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
     protected final GUI_Image draggable_icon;
-    protected final GUI_Image info_icon;
+    protected final GUI_Button info_icon;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
     protected EYBCardTooltip tooltip;
     protected Vector2 savedPosition;
@@ -65,10 +68,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         draggable_icon = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(40f), Scale(20f), false))
         .SetColor(Colors.White(0.75f));
 
-        tooltip = new EYBCardTooltip(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityPanel);
-        info_icon = new GUI_Image(ImageMaster.INTENT_UNKNOWN, new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(100f), Scale(20f), false))
-        .SetColor(0.05f, 0.05f, 0.05f, 0.5f)
-        .SetForegroundTexture(ImageMaster.INTENT_UNKNOWN, Colors.White(0.75f), 0.9f);
+        tooltip = new EYBCardTooltip(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityInfo);
+        info_icon = new GUI_Button(ImageMaster.INTENT_UNKNOWN, new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(100f), Scale(20f), false))
+                .SetOnClick(() ->
+                {AbstractDungeon.ftue = new GUI_Ftue(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityTutorial1,
+                        Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);})
+        ;
 
         final Affinity[] types = Affinity.Basic();
         for (int i = 0; i < types.length; i++)

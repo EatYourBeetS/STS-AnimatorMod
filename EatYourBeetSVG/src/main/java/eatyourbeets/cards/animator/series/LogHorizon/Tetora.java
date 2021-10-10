@@ -96,21 +96,10 @@ public class Tetora extends AnimatorCard
         {
             super.OnUse(m);
             for (Affinity affinity : Affinity.Basic()) {
-                CombatStats.Affinities.BonusAffinities.Add(affinity, 1);
+                CombatStats.Affinities.BonusAffinities.Add(affinity, 2);
             }
             active = true;
 
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer) {
-            super.atEndOfTurn(isPlayer);
-            if (active) {
-                active = false;
-                for (Affinity affinity : Affinity.Basic()) {
-                    CombatStats.Affinities.BonusAffinities.Add(affinity, -1);
-                }
-            }
         }
 
         @Override
@@ -120,7 +109,7 @@ public class Tetora extends AnimatorCard
             if (active) {
                 active = false;
                 for (Affinity affinity : Affinity.Basic()) {
-                    CombatStats.Affinities.BonusAffinities.Add(affinity, -1);
+                    CombatStats.Affinities.BonusAffinities.Add(affinity, -2);
                 }
             }
             secondaryValue = baseSecondaryValue;

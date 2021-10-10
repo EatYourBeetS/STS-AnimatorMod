@@ -76,6 +76,16 @@ public class EndurancePower extends CommonPower
         }
     }
 
+    @Override
+    protected void onAmountChanged(int previousAmount, int difference)
+    {
+        super.onAmountChanged(previousAmount, difference);
+
+        if (amount == 0) {
+            RemovePower();
+        }
+    }
+
     public void UpdatePercentage()
     {
         //Undo the previous changes made by this power

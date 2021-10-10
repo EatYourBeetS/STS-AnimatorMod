@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -84,7 +85,8 @@ public class EYBCardCooldown
 
     public void ProgressCooldownAndTrigger(int progress, AbstractMonster m)
     {
-        if (ProgressCooldown(progress))
+        boolean canProgress = CombatStats.OnCooldownTriggered(card, this);
+        if (canProgress && ProgressCooldown(progress))
         {
             if (onCooldownCompleted != null) {
                 if (m == null || GameUtilities.IsDeadOrEscaped(m))

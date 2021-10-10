@@ -25,7 +25,8 @@ public class Iris extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 3);
+        SetUpgrade(0,0,1);
 
         SetAffinity_Light(2);
 
@@ -35,7 +36,7 @@ public class Iris extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetRetainOnce(true);
     }
 
     @Override

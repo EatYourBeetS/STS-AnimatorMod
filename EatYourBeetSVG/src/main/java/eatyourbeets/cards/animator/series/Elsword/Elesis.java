@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Elesis extends AnimatorCard
+public class Elesis extends AnimatorCard //TODO different dark effect
 {
     public static final int FORM_NONE = 0;
     public static final int FORM_SABER = 1;

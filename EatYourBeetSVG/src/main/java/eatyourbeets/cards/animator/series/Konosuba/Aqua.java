@@ -84,7 +84,7 @@ public class Aqua extends AnimatorCard
             GameActions.Bottom.GainBlessing(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
-            if (CheckAffinity(Affinity.Blue) && info.IsSynergizing && info.TryActivateLimited()) {
+            if (upgraded && CheckAffinity(Affinity.Blue) && info.IsSynergizing && info.TryActivateLimited()) {
                 GameActions.Bottom.ChannelOrb(new Water());
             }
             GameActions.Bottom.Callback(() -> SetTransformed(true));

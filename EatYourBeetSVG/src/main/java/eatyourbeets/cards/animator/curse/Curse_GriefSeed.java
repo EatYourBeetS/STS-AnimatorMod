@@ -38,7 +38,7 @@ public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscr
 
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card.uuid.equals(this.uuid)) {
+        if (card != null && this.uuid.equals(card.uuid)) {
             GameActions.Bottom.WaitRealtime(0.3f);
             GameActions.Bottom.Callback(() ->
             {

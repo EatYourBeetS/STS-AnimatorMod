@@ -38,7 +38,7 @@ public class InverseTohka extends AnimatorCard
         GameActions.Bottom.SpendEnergy(1,false).AddCallback(() -> {
             GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
                     .SetOptions(true, true)
-                    .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series.equals(this.series))
+                    .SetFilter(c -> c instanceof AnimatorCard && this.series.equals(((AnimatorCard) c).series))
                     .AddCallback(cards ->
                     {
                         for (AbstractCard c : cards) {

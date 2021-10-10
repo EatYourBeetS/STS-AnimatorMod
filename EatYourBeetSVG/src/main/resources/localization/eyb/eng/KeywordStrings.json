@@ -84,6 +84,12 @@
 		"NAMES": ["choked"],
 		"PROPER_NAME": "Choked"
 	},
+	"Common Buff":
+	{
+		"DESCRIPTION": "[Strength], [Dexterity], [Focus], [Endurance], [Thorns], [Plated Armor], [Metallicize], [Intangible], [Artifact], [Blur].",
+		"NAMES": ["common buff", "common buffs"],
+		"PROPER_NAME": "Common Buff"
+	},
 	"Common Debuff":
 	{
 		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",
@@ -101,6 +107,12 @@
 		"DESCRIPTION": "Take damage at the end of each turn.",
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
+	},
+	"Cooldown":
+	{
+		"DESCRIPTION": "Whenever you play this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
+		"NAMES": ["cooldown"],
+		"PROPER_NAME": "Cooldown"
 	},
 	"Corruption":
 	{
@@ -431,6 +443,12 @@
 		"DESCRIPTION": "Activates if played at the start of turn.",
 		"NAMES": ["starter"],
 		"PROPER_NAME": "Starter"
+	},
+	"Startup":
+	{
+		"DESCRIPTION": "Play this effect at the start of combat.",
+		"NAMES": ["startup"],
+		"PROPER_NAME": "Startup"
 	},
 	"Stun":
 	{

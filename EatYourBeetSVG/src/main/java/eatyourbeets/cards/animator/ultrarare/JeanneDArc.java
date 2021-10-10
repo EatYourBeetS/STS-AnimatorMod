@@ -28,6 +28,8 @@ public class JeanneDArc extends AnimatorCard_UltraRare
 
         SetAffinity_Red(1);
         SetAffinity_Light(2, 0, 2);
+
+        SetLoyal(true);
     }
 
     @Override

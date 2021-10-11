@@ -22,7 +22,7 @@ public class Evileye extends AnimatorCard
 
         Initialize(0,0, 2, 3);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
 

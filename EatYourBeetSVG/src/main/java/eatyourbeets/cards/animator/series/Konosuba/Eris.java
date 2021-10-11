@@ -32,7 +32,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 3);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(2);
 
         SetExhaust(true);

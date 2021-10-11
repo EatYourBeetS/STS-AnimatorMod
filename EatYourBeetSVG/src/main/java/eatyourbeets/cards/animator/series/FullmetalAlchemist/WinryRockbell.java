@@ -29,8 +29,8 @@ public class WinryRockbell extends AnimatorCard
         Initialize(0, 0, BLOCK_AMOUNT, UPGRADE_CARDS_AMOUNT);
         SetUpgrade(0, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Air(1);
+        SetAffinity_Earth(1);
     }
 
     @Override

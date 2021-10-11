@@ -24,7 +24,7 @@ public class Suigintou extends AnimatorCard
 
         Initialize(4, 0, 3);
         SetUpgrade(2, 0, 1);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Dark(2, 0, 0);
         
         SetUnique(true, true);

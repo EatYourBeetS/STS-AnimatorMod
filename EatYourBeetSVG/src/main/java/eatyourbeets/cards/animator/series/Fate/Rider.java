@@ -22,8 +22,8 @@ public class Rider extends AnimatorCard
         Initialize(0, 6, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Air(1);
+        SetAffinity_Water(1);
         SetAffinity_Dark(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Air, 2);

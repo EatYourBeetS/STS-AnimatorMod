@@ -22,7 +22,7 @@ public class MatouShinji_CommandSpell extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Water(1, 1, 0);
         SetAffinity_Dark(2);
 
         SetRetain(true);

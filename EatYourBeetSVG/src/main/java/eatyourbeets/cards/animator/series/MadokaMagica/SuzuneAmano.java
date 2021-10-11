@@ -23,8 +23,8 @@ public class SuzuneAmano extends AnimatorCard
         Initialize(7, 0, 3, 6);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Fire(1);
+        SetAffinity_Water(2, 0, 1);
         SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Water, 3);

@@ -30,7 +30,7 @@ public class Zhongli extends AnimatorCard
 
         Initialize(0, 0, 2, 5);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Earth(2, 0, 0);
         SetDelayed(true);
     }
 

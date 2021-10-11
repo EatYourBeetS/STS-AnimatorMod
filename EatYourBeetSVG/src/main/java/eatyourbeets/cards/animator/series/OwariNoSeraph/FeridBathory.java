@@ -30,7 +30,7 @@ public class FeridBathory extends AnimatorCard
         Initialize(0,0, 2, FeridBathoryPower.FORCE_AMOUNT);
         SetUpgrade(0, 2, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
         SetAffinity_Dark(2);
 
         SetDelayed(true);

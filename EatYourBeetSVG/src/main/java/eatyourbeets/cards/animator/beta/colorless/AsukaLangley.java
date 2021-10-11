@@ -27,8 +27,8 @@ public class AsukaLangley extends AnimatorCard
         Initialize(13, 0, 1 );
         SetUpgrade(1, 0, 0 );
 
-        SetAffinity_Orange(1, 0, 2);
-        SetAffinity_Green(1);
+        SetAffinity_Earth(1, 0, 2);
+        SetAffinity_Air(1);
 
         SetExhaust(true);
     }

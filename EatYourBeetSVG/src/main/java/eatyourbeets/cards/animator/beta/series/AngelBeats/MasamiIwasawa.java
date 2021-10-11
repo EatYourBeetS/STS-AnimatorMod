@@ -23,7 +23,7 @@ public class MasamiIwasawa extends AnimatorCard
         Initialize(0, 11, 1, 2);
         SetUpgrade(0, 3, 0, 0);
 
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
         SetAffinity_Light(1, 0, 2);
 
         SetEthereal(true);

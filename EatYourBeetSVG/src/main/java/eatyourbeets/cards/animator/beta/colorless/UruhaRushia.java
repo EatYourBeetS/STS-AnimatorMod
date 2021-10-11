@@ -19,7 +19,7 @@ public class UruhaRushia extends AnimatorCard
         SetRetainOnce(true);
         SetExhaust(true);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
     }
 
     public void OnUpgrade() {

@@ -27,7 +27,7 @@ public class Giselle extends AnimatorCard_UltraRare
         Initialize(18, 0, 12, 1);
         SetUpgrade(0, 0, 6, 1);
 
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
         SetAffinity_Dark(2);
         SetAffinity_Star(0, 0, 2);
     }

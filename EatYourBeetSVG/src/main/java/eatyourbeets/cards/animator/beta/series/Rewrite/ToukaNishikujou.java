@@ -17,8 +17,8 @@ public class ToukaNishikujou extends AnimatorCard
 
         Initialize(0, 5, 1, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
     }
 

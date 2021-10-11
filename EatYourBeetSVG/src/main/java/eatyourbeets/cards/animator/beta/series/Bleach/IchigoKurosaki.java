@@ -22,8 +22,8 @@ public class IchigoKurosaki extends AnimatorCard
         Initialize(2, 0, 0, 5);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Fire(2, 0, 1);
+        SetAffinity_Air(1, 1, 1);
 
         SetProtagonist(true);
         SetHarmonic(true);

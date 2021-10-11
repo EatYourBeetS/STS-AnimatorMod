@@ -21,7 +21,7 @@ public class GoblinShaman extends AnimatorCard_Status
 
         Initialize(0, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Dark(1);
     }
 

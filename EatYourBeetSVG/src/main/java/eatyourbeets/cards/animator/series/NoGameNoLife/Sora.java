@@ -32,8 +32,8 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
 
         Initialize(0, 0, 2);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Water(1);
+        SetAffinity_Earth(2);
 
         SetProtagonist(true);
         SetHarmonic(true);

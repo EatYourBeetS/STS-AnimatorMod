@@ -33,7 +33,7 @@ public class Gargantua extends AnimatorCard
         Initialize(0, 10, 1);
         SetUpgrade(0, 3, 1);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Earth(2);
         SetAffinity_Dark(1);
 
         SetExhaust(true);

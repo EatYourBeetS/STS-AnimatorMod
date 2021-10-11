@@ -27,7 +27,7 @@ public class YaoHaDucy extends AnimatorCard
         Initialize(2, 0, 2, 1);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
     }
 
     @Override

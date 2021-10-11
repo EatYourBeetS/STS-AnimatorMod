@@ -32,8 +32,8 @@ public class Ainz extends AnimatorCard
         Initialize(0, 0);
         SetUpgrade(0, 6);
 
-        SetAffinity_Red(1);
-        SetAffinity_Blue(2);
+        SetAffinity_Fire(1);
+        SetAffinity_Water(2);
         SetAffinity_Dark(2);
 
         SetProtagonist(true);

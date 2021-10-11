@@ -35,7 +35,7 @@ public class Enju_Barasuishou extends AnimatorCard
 
         Initialize(6, 0, Hitcount);
         SetUpgrade(2, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         
         SetUnique(true, true);

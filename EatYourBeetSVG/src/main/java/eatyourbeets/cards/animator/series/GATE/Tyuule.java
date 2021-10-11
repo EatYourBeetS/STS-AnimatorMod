@@ -32,7 +32,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Dark(1, 1, 0);
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
         OnReset();
     }
 

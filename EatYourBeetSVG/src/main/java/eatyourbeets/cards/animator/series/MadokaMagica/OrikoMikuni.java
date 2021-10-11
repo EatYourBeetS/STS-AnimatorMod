@@ -24,7 +24,7 @@ public class OrikoMikuni extends AnimatorCard
         Initialize(0, 0, 3, 4);
         SetUpgrade(0, 0, 1, 2);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Water, 4);

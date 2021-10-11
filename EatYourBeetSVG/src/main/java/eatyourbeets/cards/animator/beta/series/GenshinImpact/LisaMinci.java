@@ -19,7 +19,7 @@ public class LisaMinci extends AnimatorCard {
 
         Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
     }
 
 

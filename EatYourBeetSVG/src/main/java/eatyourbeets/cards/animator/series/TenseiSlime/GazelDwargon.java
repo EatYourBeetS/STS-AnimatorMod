@@ -23,8 +23,8 @@ public class GazelDwargon extends AnimatorCard //TODO
         Initialize(0, 0, 4, 1);
         SetUpgrade(0, 0, 0, 2);
 
-        SetAffinity_Red(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Fire(1);
+        SetAffinity_Earth(2);
     }
 
     @Override

@@ -28,8 +28,8 @@ public class Vesta extends AnimatorCard
 
         Initialize(0, 0, 3);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Water(1);
+        SetAffinity_Earth(1, 1, 0);
 
         SetAffinityRequirement(Affinity.Water, 3);
         SetExhaust(true);

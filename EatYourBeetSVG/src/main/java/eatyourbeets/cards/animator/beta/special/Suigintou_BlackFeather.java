@@ -24,7 +24,7 @@ public class Suigintou_BlackFeather extends AnimatorCard
 
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Dark(2, 0, 0);
 
         SetPurge(true);

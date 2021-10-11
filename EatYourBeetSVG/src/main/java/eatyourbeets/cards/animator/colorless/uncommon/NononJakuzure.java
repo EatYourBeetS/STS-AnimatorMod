@@ -22,7 +22,7 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         Initialize(0, 0, 2, 1);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Earth(2);
         
         SetExhaust(true);
     }

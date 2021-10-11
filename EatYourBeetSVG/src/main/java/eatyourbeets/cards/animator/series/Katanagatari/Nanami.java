@@ -28,8 +28,8 @@ public class Nanami extends AnimatorCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Fire(2);
+        SetAffinity_Air(2);
         SetAffinity_Dark(2);
 
         SetAttackType(EYBAttackType.Normal);

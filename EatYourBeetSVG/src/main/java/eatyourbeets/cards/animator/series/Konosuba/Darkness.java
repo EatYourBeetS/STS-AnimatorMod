@@ -24,7 +24,7 @@ public class Darkness extends AnimatorCard
         Initialize(0, 13, 2, 5);
         SetUpgrade(0, 1, 0, -1);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
         SetAffinity_Light(1);
     }
 

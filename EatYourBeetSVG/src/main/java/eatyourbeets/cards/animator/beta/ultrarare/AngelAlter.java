@@ -17,8 +17,8 @@ public class AngelAlter extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(10, 0, 1, 0);
-        SetAffinity_Green(0, 0, 2);
-        SetAffinity_Red(0, 0, 2);
+        SetAffinity_Air(0, 0, 2);
+        SetAffinity_Fire(0, 0, 2);
         SetAffinity_Light(2, 0, 2);
 
         AfterLifeMod.Add(this);
@@ -27,8 +27,8 @@ public class AngelAlter extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetAffinity_Green(0, 0, 3);
-        SetAffinity_Red(0, 0, 3);
+        SetAffinity_Air(0, 0, 3);
+        SetAffinity_Fire(0, 0, 3);
         SetAffinity_Light(2, 0, 3);
     }
 

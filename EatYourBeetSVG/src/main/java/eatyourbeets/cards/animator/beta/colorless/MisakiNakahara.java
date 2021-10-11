@@ -25,7 +25,7 @@ public class MisakiNakahara extends AnimatorCard
         Initialize(0, 0, 2);
 
         SetAffinity_Light(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
 
         SetExhaust(true);
     }

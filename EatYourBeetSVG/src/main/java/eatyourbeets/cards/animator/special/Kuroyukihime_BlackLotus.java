@@ -25,8 +25,8 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         Initialize(7, 5, 2);
         SetUpgrade(2, 1, 0);
 
-        SetAffinity_Red(1, 1, 0);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Fire(1, 1, 0);
+        SetAffinity_Air(1, 1, 0);
 
         SetAffinityRequirement(Affinity.General, 2);
     }

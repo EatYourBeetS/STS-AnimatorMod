@@ -21,7 +21,7 @@ public class Overheat extends AnimatorCard_Status
 
         Initialize(0, 0, 3);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
     }
 
     @Override

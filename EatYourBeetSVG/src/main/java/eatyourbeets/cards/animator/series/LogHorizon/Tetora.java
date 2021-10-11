@@ -30,9 +30,9 @@ public class Tetora extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(2);
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
 
         SetHarmonic(true);
 

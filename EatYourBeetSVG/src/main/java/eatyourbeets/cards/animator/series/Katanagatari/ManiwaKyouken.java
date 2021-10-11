@@ -23,7 +23,7 @@ public class ManiwaKyouken extends AnimatorCard
         Initialize(0, 1, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
         SetAffinity_Dark(1, 0, 2);
     }
 

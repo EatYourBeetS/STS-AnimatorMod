@@ -23,7 +23,7 @@ public class GoblinSoldier extends AnimatorCard_Status
 
         Initialize(0, 0, 2);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
         SetAffinity_Dark(1);
     }
 

@@ -31,7 +31,7 @@ public class Jibril extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
 

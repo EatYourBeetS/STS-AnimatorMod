@@ -26,7 +26,7 @@ public class KaijiItou extends AnimatorCard
         Initialize(0, 0, 1, 0);
         SetExhaust(true);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Earth(2);
 
         SetAffinityRequirement(Affinity.General, 4);
     }

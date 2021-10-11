@@ -26,7 +26,7 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
         Initialize(0, 0, 3, 2);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
         SetAffinity_Light(1);
 
         SetProtagonist(true);

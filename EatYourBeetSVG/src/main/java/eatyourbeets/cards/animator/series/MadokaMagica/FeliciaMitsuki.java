@@ -26,8 +26,8 @@ public class FeliciaMitsuki extends AnimatorCard
         Initialize(8, 0, 2, 2);
         SetUpgrade(3, 0, 1, 0);
 
-        SetAffinity_Red(1,0,0);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Fire(1,0,0);
+        SetAffinity_Earth(1, 0, 2);
 
         SetAffinityRequirement(Affinity.Fire, 3);
     }

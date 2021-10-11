@@ -24,8 +24,8 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
 
         Initialize(2, 0 );
         SetUpgrade(1, 0 );
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
     }
 
     @Override

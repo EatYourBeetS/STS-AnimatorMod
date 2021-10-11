@@ -25,7 +25,7 @@ public class Zero extends AnimatorCard
 
         Initialize(0, 0, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1);
 
         SetDrawPileCardPreview(this::FindCards);

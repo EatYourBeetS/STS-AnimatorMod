@@ -23,7 +23,7 @@ public class Gillette extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
         SetAffinity_Light(1, 1, 0);
     }
 

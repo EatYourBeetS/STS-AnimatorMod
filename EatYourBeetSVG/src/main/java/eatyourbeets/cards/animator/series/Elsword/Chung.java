@@ -26,8 +26,8 @@ public class Chung extends AnimatorCard
         Initialize(1, 2, 13, 3);
         SetUpgrade(0, 2, 2, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Fire(1);
+        SetAffinity_Earth(1);
     }
 
     @Override

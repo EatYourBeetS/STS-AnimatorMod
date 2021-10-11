@@ -22,8 +22,8 @@ public class KaijiItou_RestrictedScissors extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(2,0,0);
-        SetAffinity_Red(1,0,0);
+        SetAffinity_Earth(2,0,0);
+        SetAffinity_Fire(1,0,0);
 
         SetExhaust(true);
     }

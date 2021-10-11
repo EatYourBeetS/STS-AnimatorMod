@@ -34,7 +34,7 @@ public class Assassin extends AnimatorCard
 
         SetRetain(true);
 
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
         SetAffinity_Dark(1);
     }
 

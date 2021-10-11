@@ -25,7 +25,7 @@ public class Krusty extends AnimatorCard
 
         SetAutoplay(true);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
     }
 
     @Override

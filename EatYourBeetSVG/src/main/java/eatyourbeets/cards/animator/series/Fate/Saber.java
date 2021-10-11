@@ -24,8 +24,8 @@ public class Saber extends AnimatorCard
         Initialize(9, 0, 0);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Fire(1, 0, 1);
+        SetAffinity_Air(1, 0, 1);
         SetAffinity_Light(2, 0, 1);
 
         SetCooldown(8, 0, this::OnCooldownCompleted);

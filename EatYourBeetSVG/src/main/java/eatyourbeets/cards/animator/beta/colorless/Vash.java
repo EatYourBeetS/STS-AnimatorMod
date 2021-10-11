@@ -27,9 +27,9 @@ public class Vash extends AnimatorCard
         Initialize(2, 11, 1, 0);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1);
+        SetAffinity_Earth(1, 0, 1);
 
         SetLoyal(true);
     }

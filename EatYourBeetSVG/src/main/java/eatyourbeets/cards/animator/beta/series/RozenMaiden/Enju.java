@@ -27,7 +27,7 @@ public class Enju extends AnimatorCard //TODO
 
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 1);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
     }
 

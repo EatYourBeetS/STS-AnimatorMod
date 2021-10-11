@@ -23,7 +23,7 @@ public class BarbaraPegg extends AnimatorCard
         Initialize(0, 0, 4);
         SetUpgrade(0, 0, 2);
         SetAffinity_Light(2);
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
 
 
         SetAffinityRequirement(Affinity.Water, 2);

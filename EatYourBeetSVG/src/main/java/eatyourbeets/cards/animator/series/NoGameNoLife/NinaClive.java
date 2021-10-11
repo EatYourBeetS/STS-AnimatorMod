@@ -18,8 +18,8 @@ public class NinaClive extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Air(1);
+        SetAffinity_Water(1);
 
         SetExhaust(true);
     }

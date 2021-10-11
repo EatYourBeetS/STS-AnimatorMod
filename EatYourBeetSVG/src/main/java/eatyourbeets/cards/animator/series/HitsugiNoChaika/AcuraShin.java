@@ -21,7 +21,7 @@ public class AcuraShin extends AnimatorCard
         Initialize(3,0,2);
         SetCostUpgrade(-1);
 
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Air(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
     }
 

@@ -28,8 +28,8 @@ public class HiiragiKureto extends AnimatorCard
         Initialize(5, 0, 3);
         SetUpgrade(0, 0);
 
-        SetAffinity_Red(1, 1, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Fire(1, 1, 1);
+        SetAffinity_Air(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);

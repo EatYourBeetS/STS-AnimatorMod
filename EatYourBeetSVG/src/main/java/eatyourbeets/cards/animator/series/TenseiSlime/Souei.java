@@ -26,7 +26,7 @@ public class Souei extends AnimatorCard
         Initialize(1, 0, 6);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Green(2);
+        SetAffinity_Air(2);
         SetAffinity_Dark(1);
     }
 

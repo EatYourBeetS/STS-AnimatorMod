@@ -29,8 +29,8 @@ public class Shichika extends AnimatorCard
         Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(2);
+        SetAffinity_Fire(2, 0, 1);
+        SetAffinity_Air(2);
 
         SetExhaust(true);
         SetProtagonist(true);

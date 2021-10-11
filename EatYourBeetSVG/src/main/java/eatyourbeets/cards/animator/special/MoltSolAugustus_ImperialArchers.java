@@ -28,8 +28,8 @@ public class MoltSolAugustus_ImperialArchers extends AnimatorCard
         Initialize(0, 2, 1, 2);
         SetUpgrade(0, 2, 1, 0);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
 
         SetExhaust(true);
     }

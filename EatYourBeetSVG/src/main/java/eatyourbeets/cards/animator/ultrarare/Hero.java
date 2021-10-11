@@ -30,8 +30,8 @@ public class Hero extends AnimatorCard_UltraRare
         Initialize(8, 0, 2);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1);
         SetAffinity_Light(2, 0, 2);
     }
 

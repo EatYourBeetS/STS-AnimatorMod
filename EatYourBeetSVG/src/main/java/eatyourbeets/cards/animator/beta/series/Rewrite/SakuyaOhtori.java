@@ -23,8 +23,8 @@ public class SakuyaOhtori extends AnimatorCard
 
         Initialize(0, 3, 2, 1);
         SetUpgrade(0, 2, 0);
-        SetAffinity_Green(2, 0, 1);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Air(2, 0, 1);
+        SetAffinity_Water(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
     }
 

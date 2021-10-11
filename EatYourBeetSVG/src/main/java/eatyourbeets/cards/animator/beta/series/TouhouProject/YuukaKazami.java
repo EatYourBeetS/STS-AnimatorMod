@@ -23,8 +23,8 @@ public class YuukaKazami extends AnimatorCard
 
         Initialize(9, 0, 2, 3);
         SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Water(2, 0, 0);
+        SetAffinity_Air(1, 0, 0);
     }
 
     @Override

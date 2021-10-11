@@ -33,8 +33,8 @@ public class CZDelta extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         Initialize(9, 0, 2);
         SetUpgrade(0, 0, -1);
 
-        SetAffinity_Green(1, 1, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Air(1, 1, 0);
+        SetAffinity_Earth(1, 0, 0);
 
     }
 

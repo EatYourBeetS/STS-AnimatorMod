@@ -22,7 +22,7 @@ public class KanadeTachibana extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Light(2, 0, 0);
     }
 

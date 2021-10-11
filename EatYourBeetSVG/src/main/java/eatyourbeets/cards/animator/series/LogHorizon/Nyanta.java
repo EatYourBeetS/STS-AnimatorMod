@@ -25,8 +25,8 @@ public class Nyanta extends AnimatorCard
 
         Initialize(2, 0, 3);
 
-        SetAffinity_Green(2, 0, 1);
-        SetAffinity_Orange(2);
+        SetAffinity_Air(2, 0, 1);
+        SetAffinity_Earth(2);
 
         SetRetain(true);
     }

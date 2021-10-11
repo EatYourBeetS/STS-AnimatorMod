@@ -20,8 +20,8 @@ public class HousakiTohya extends AnimatorCard
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1, 0, 1);
-        SetAffinity_Orange(1);
+        SetAffinity_Fire(1, 0, 1);
+        SetAffinity_Earth(1);
 
         SetAffinityRequirement(Affinity.Fire, 2);
         SetAffinityRequirement(Affinity.Light, 2);

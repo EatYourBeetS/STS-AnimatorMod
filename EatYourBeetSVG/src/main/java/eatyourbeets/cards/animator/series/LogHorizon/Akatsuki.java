@@ -22,7 +22,7 @@ public class Akatsuki extends AnimatorCard
 
         Initialize(11, 0, 2, 4);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Air(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Air, 3);
     }

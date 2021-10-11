@@ -25,8 +25,8 @@ public class Alibaba extends AnimatorCard implements Hidden
         Initialize(3, 0, 2 , 2);
         SetUpgrade(0, 0, 0 , 0);
 
-        SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Fire(1, 0, 1);
+        SetAffinity_Air(1, 0, 1);
     }
 
     @Override

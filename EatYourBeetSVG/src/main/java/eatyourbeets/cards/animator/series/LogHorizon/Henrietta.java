@@ -25,8 +25,8 @@ public class Henrietta extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Water(1);
+        SetAffinity_Earth(2);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Mitsuba extends AnimatorCard
         Initialize(7, 2, 2, 6);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
         SetAffinity_Light(1);
     }
 

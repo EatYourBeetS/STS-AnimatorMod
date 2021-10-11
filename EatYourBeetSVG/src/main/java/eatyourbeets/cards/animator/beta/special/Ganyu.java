@@ -25,8 +25,8 @@ public class Ganyu extends AnimatorCard
 
         Initialize(33, 0, 2, 5);
         SetUpgrade(9, 0, 0);
-        SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Water(2, 0, 1);
+        SetAffinity_Earth(1, 0, 0);
 
         SetEthereal(true);
         SetExhaust(true);

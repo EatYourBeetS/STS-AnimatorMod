@@ -23,7 +23,7 @@ public class Dust extends AnimatorCard
         Initialize(7, 0, 2, 1);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
 
         SetAffinityRequirement(Affinity.Fire, 2);
     }

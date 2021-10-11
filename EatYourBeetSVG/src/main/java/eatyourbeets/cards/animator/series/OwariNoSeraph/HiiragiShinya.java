@@ -23,8 +23,8 @@ public class HiiragiShinya extends AnimatorCard
         Initialize(0, 4, 2);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Earth(1, 1, 0);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Air,3);

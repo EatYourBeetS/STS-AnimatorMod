@@ -27,8 +27,8 @@ public class Yuuichirou extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Fire(2, 0, 1);
+        SetAffinity_Air(1, 1, 1);
 
         SetProtagonist(true);
         SetHarmonic(true);

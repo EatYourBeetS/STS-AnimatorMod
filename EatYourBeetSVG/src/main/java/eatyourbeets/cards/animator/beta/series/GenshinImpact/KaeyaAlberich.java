@@ -22,9 +22,9 @@ public class KaeyaAlberich extends AnimatorCard {
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
     }
 
 

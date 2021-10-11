@@ -18,7 +18,7 @@ public class Curse_Slumber extends AnimatorCard_Curse
 
         Initialize(0, 0, 2);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
     }
 
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

@@ -26,7 +26,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         SetCooldown(1, 0, this::OnCooldownCompleted);
 
         SetAffinity_Light(1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Alexander extends AnimatorCard
         Initialize(7, 0);
         SetUpgrade(2, 0);
 
-        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Fire(1, 1, 1);
         SetAffinity_Light(1);
     }
 

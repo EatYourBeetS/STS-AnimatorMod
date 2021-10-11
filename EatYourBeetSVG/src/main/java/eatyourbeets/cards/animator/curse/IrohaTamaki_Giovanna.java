@@ -29,7 +29,7 @@ public class IrohaTamaki_Giovanna extends AnimatorCard_Curse
         SetAutoplay(true);
         SetPurge(true);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Dark(1);
     }
 

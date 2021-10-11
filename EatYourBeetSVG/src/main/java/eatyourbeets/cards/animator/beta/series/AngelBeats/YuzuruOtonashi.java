@@ -21,7 +21,7 @@ public class YuzuruOtonashi extends AnimatorCard
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Earth(1, 1, 0);
         SetAffinity_Light(1, 1, 0);
 
         SetProtagonist(true);

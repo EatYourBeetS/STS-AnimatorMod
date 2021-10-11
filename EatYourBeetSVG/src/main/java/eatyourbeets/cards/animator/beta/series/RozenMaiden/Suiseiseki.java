@@ -25,8 +25,8 @@ public class Suiseiseki extends AnimatorCard
         Initialize(0, 6, 4, 3);
         SetUpgrade(0, 2, 1);
 
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Air(1, 0, 1);
+        SetAffinity_Earth(1, 0, 0);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Suiseiseki extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetAffinity_Orange(2, 0, 2);
+        SetAffinity_Earth(2, 0, 2);
     }
 
     @Override

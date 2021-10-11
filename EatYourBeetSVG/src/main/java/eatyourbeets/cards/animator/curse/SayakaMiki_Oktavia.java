@@ -28,7 +28,7 @@ public class SayakaMiki_Oktavia extends AnimatorCard_Curse implements OnPurgeSub
         Initialize(0, 0, 3, 0);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Dark(2);
     }
 

@@ -29,7 +29,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
         Initialize(0, 8, MODIFIER, 2);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Water(2, 0, 1);
         SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Water, 3);

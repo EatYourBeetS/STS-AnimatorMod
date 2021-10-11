@@ -27,8 +27,8 @@ public class Garou extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Fire(2);
+        SetAffinity_Air(2);
         SetAffinity_Dark(2);
 
         SetExhaust(true);

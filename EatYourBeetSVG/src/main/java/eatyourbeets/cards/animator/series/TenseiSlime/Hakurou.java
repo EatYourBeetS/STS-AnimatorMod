@@ -27,8 +27,8 @@ public class Hakurou extends AnimatorCard
         Initialize(1, 1, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Fire, 3);
         SetAffinityRequirement(Affinity.Earth, 3);

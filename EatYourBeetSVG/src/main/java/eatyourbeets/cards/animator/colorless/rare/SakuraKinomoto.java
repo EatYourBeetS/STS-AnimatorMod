@@ -29,7 +29,7 @@ public class SakuraKinomoto extends AnimatorCard
         Initialize(4, 0, 0, 3);
         SetUpgrade(2, 0, 0, 1);
 
-        SetAffinity_Blue(2, 0, 4);
+        SetAffinity_Water(2, 0, 4);
 
         SetExhaust(true);
     }

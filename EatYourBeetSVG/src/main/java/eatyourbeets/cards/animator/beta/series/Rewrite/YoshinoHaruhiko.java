@@ -21,7 +21,7 @@ public class YoshinoHaruhiko extends AnimatorCard
         Initialize(3, 0, 2);
         SetUpgrade(0, 0, 1);
         SetExhaust(true);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
     }
 
     @Override

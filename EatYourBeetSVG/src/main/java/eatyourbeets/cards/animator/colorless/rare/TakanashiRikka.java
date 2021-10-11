@@ -23,7 +23,7 @@ public class TakanashiRikka extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
 
         SetExhaust(true);
     }

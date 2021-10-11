@@ -33,7 +33,7 @@ public class EriShiina extends AnimatorCard
         Initialize(6, 0, 2, 1);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Air(2, 0, 2);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

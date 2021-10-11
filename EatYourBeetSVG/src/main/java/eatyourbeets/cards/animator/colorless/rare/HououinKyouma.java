@@ -23,7 +23,7 @@ public class HououinKyouma extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
 
         SetPurge(true);
         SetDelayed(true);

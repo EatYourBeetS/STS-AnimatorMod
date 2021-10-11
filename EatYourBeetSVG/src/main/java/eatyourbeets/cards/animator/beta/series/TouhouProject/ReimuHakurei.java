@@ -20,7 +20,7 @@ public class ReimuHakurei extends AnimatorCard
         Initialize(4, 0, 1, 2);
         SetUpgrade(1, 0, 0, 1);
         SetAffinity_Light(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
 
         SetProtagonist(true);
         SetHarmonic(true);

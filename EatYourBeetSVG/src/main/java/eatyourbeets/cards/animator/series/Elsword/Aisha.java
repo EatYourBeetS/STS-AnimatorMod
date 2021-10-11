@@ -27,7 +27,7 @@ public class Aisha extends AnimatorCard
         Initialize(1, 0, 2, 1);
         SetUpgrade(1, 0, 0, 1);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Water(2, 0, 1);
     }
 
     @Override

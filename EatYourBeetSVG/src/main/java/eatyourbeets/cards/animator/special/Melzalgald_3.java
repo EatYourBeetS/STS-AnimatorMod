@@ -17,7 +17,7 @@ public class Melzalgald_3 extends MelzalgaldAlt
     {
         super(DATA);
 
-        SetAffinity_Green(0, 0, 2);
+        SetAffinity_Air(0, 0, 2);
     }
 
     @Override

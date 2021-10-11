@@ -30,7 +30,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         Initialize(21, 0, 6, 2);
         SetUpgrade(7, 0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Water(2, 0, 2);
         SetAffinity_Light(2);
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);

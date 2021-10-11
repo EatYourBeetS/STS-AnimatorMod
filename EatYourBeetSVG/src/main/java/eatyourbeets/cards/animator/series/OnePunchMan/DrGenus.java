@@ -43,8 +43,8 @@ public class DrGenus extends AnimatorCard
 
         if ((this.effect = effect) == 0)
         {
-            SetAffinity_Blue(1);
-            SetAffinity_Orange(1);
+            SetAffinity_Water(1);
+            SetAffinity_Earth(1);
             SetAffinity_Dark(1);
 
             SetPurge(true);

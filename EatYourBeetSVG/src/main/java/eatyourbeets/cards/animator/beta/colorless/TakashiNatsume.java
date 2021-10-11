@@ -27,7 +27,7 @@ public class TakashiNatsume extends AnimatorCard
         SetUpgrade(0, 0, 0 );
 
         SetAffinity_Light(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
         SetExhaust(true);
         SetHealing(true);
     }

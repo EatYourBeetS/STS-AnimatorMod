@@ -21,8 +21,8 @@ public class Rose extends AnimatorCard_UltraRare
         Initialize(10, 0, 2, 40);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Red(2);
-        SetAffinity_Orange(1);
+        SetAffinity_Fire(2);
+        SetAffinity_Earth(1);
         SetAffinity_Light(1);
     }
 

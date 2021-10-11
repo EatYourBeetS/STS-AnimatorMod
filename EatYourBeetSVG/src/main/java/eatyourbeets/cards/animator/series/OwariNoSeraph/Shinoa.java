@@ -22,8 +22,8 @@ public class Shinoa extends AnimatorCard
         Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1);
     }
 
     @Override

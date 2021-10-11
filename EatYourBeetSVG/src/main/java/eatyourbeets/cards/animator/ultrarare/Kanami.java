@@ -27,8 +27,8 @@ public class Kanami extends AnimatorCard_UltraRare
         Initialize(20, 0, 2);
         SetUpgrade(7, 0, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(2, 0, 2);
         SetAffinity_Light(1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);

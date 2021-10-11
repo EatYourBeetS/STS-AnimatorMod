@@ -32,7 +32,7 @@ public class PinaCoLada extends AnimatorCard
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Light(1, 1, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Earth(2, 0, 0);
     }
 
     @Override

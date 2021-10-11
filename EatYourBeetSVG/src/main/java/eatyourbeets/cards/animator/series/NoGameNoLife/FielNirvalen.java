@@ -28,7 +28,7 @@ public class FielNirvalen extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1);
     }
 

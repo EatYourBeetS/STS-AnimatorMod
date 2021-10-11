@@ -31,7 +31,7 @@ public class MamiTomoe extends AnimatorCard
         Initialize(9, 0, 1, 1);
         SetUpgrade(2, 0, 0, 0);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
         SetAffinity_Light(2, 0, 2);
         SetSoul(3, 0, MamiTomoe_Candeloro::new);
     }

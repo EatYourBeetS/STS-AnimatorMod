@@ -27,7 +27,7 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
 
         SetExhaust(true);
     }

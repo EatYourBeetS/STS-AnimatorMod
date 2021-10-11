@@ -35,7 +35,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         Initialize(12, 0, 1, 2);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
     }

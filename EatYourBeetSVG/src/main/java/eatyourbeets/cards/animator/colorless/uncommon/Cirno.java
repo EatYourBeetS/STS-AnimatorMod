@@ -28,7 +28,7 @@ public class Cirno extends AnimatorCard
         Initialize(3, 0, 3, 2);
         SetUpgrade(1, 0, 1);
 
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Water(1, 0, 1);
 
         SetEthereal(true);
     }

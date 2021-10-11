@@ -27,8 +27,8 @@ public class Lancer extends AnimatorCard
         Initialize(6, 0, 1, VULNERABLE_MODIFIER);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Fire(2);
+        SetAffinity_Air(1, 0, 1);
     }
 
     @Override

@@ -22,8 +22,8 @@ public class KaijiItou_RestrictedRock extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(2,0,0);
-        SetAffinity_Green(1,0,0);
+        SetAffinity_Earth(2,0,0);
+        SetAffinity_Air(1,0,0);
 
         SetExhaust(true);
     }

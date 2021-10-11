@@ -22,7 +22,7 @@ public class Zadkiel extends AnimatorCard {
 
         Initialize(36, 0, 2, 9);
         SetUpgrade(15, 0, 0);
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);

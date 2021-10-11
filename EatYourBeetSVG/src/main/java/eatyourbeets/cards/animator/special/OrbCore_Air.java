@@ -15,7 +15,7 @@ public class OrbCore_Air extends OrbCore
     {
         super(DATA, 5);
 
-        SetAffinity_Green(2);
+        SetAffinity_Air(2);
     }
 
     public void ChannelOrb()

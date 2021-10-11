@@ -19,7 +19,7 @@ public class DolaStephanie extends AnimatorCard
         Initialize(0, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Earth(1, 1, 0);
 
         SetExhaust(true);
     }

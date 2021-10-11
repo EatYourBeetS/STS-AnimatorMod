@@ -24,7 +24,7 @@ public class Elsword extends AnimatorCard
         Initialize(13, 0, 2);
         SetUpgrade(3,  0, 0);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Fire(2, 0, 2);
         SetAffinity_Light(1);
 
         SetProtagonist(true);

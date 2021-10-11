@@ -27,7 +27,7 @@ public class AkaneSenri extends AnimatorCard
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 1);
         SetEthereal(true);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Light(1, 1, 0);
     }
 

@@ -27,7 +27,7 @@ public class KyokoSakura_Ophelia extends AnimatorCard_Curse implements OnPurgeSu
         Initialize(0, 0, 3, 0);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
         SetAffinity_Dark(2);
     }
 

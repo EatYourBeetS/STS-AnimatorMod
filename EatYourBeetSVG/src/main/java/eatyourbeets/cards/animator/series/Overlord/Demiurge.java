@@ -22,7 +22,7 @@ public class Demiurge extends AnimatorCard
         Initialize(0,0,7);
         SetUpgrade(0,0, -1);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
         SetAffinity_Dark(1);
     }
 

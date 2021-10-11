@@ -23,7 +23,7 @@ public class King extends AnimatorCard
         Initialize(0, 0, 6, 2);
         SetUpgrade(0, 0, -1, 0);
 
-        SetAffinity_Red(1);
+        SetAffinity_Fire(1);
     }
 
     @Override

@@ -25,8 +25,8 @@ public class Ciel extends AnimatorCard
         Initialize(0, 4, 6, 2);
         SetUpgrade(0, 1, 2, 0);
 
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Water(1, 0, 1);
         SetAffinity_Dark(2);
 
         SetAffinityRequirement(Affinity.Water, 4);

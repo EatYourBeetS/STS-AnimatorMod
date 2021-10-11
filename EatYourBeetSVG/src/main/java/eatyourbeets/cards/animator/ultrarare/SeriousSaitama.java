@@ -22,8 +22,8 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Fire(2);
+        SetAffinity_Air(2);
 
         SetPurge(true);
         SetDelayed(true);

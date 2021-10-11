@@ -21,7 +21,7 @@ public class SheerCold extends AnimatorCard
 
         Initialize(0, 0, 2, FREEZING_REDUCTION_BONUS);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
     }
 
     @Override

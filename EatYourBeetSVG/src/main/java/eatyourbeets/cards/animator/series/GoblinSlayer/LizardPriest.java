@@ -28,7 +28,7 @@ public class LizardPriest extends AnimatorCard
         Initialize(0, 4, BLOCK_NEXT_TURN, TEMPORARY_THORNS);
         SetUpgrade(0, 2, 0, 0);
 
-        SetAffinity_Orange(1, 1, 1);
+        SetAffinity_Earth(1, 1, 1);
         SetAffinity_Light(1, 0, 0);
     }
 

@@ -20,7 +20,7 @@ public class BlazingHeat extends AnimatorCard
 
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 1, 1);
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
     }
 
     @Override

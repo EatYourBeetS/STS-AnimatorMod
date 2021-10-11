@@ -30,8 +30,8 @@ public class AcuraAkari extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1, 1, 0);
     }
 
     @Override

@@ -30,9 +30,9 @@ public class YachiyoNanami extends AnimatorCard
         Initialize(0, 0, 3, GRIEF_REQUIREMENT);
         SetEthereal(true);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
         SetAffinity_Light(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
     }
 
     @Override

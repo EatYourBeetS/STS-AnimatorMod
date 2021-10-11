@@ -30,7 +30,7 @@ public class MatouShinji extends AnimatorCard
         Initialize(0, 3, 4, 5);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
         SetAffinity_Dark(1, 0, 1);
     }
 

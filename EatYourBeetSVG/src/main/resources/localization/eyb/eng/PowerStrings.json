@@ -5,20 +5,10 @@
 		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn.","Gain #b{0} #b{1} at the start of your next turn."],
 		"NAME": "Temporary Power"
     },
-	"eyb:AgilityPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} [Dexterity]."],
-		"NAME": "Agility"
-	},
 	"eyb:BlindedPower":
 	{
 	  "DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
 	  "NAME": "Blinded"
-	},
-	"eyb:BlessingPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Supercharged]."],
-		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
 	{
@@ -29,11 +19,6 @@
 	{
 		"DESCRIPTIONS": ["If you fully block all enemy #yAttacks, gain #b{0} #yVigor and apply #b{1} [Vulnerable] to ALL enemies."],
 		"NAME": "Counter-Attack"
-	},
-	"eyb:CorruptionPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " At #b{0} [C]: Gain #b{1} [Desecration]."],
-		"NAME": "Corruption"
 	},
 	"eyb:DelayedDamagePower":
 	{
@@ -65,11 +50,6 @@
 	  "DESCRIPTIONS": ["Immune to Burning. Freezing is twice as effective."],
 	  "NAME": "Fire Element"
 	},
-	"eyb:ForcePower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " At #b{0} [F]: Gain #b{1} [Strength]."],
-		"NAME": "Force"
-	},
 	"eyb:FrailPower":
 	{
 		"DESCRIPTIONS": ["Gain #b{0}% less #yBlock from cards for #b{1} {2}.","turn","turns"],
@@ -89,11 +69,6 @@
 	{
 		"DESCRIPTIONS": ["The next #b{0} time(s) you activate an interactable power, gain [E]."],
 		"NAME": "Inspiration"
-	},
-	"eyb:IntellectPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " At #b{0} [I]: Gain #b{1} [Focus]."],
-		"NAME": "Intellect"
 	},
 	"eyb:IceElementPower":
 	{
@@ -170,9 +145,64 @@
 		"DESCRIPTIONS": ["Attack deal #b{0}% less damage for #b{1} turn(s)."],
 		"NAME": "Weakened"
 	},
-	"eyb:WillpowerPower":
+	"eyb:FireLevelPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
-		"NAME": "Willpower"
+		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength]."],
+		"NAME": "Fire Level"
+	},
+	"eyb:AirLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [A]: Gain #b{1} [Dexterity]."],
+		"NAME": "Air Level"
+	},
+	"eyb:MindLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"NAME": "Mind Level"
+	},
+	"eyb:EarthLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]."],
+		"NAME": "Earth Level"
+	},
+	"eyb:LightLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [B]: Gain #b{1} [Supercharged]."],
+		"NAME": "Light Level"
+	},
+	"eyb:DarkLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Desecration]."],
+		"NAME": "Dark Level"
+	},
+	"eyb:WaterLevelPower":
+	{
+		"DESCRIPTIONS": [" At #b{0} [W]: Gain #b{1} [Focus]."],
+		"NAME": "Water Level"
+	},
+	"eyb:PoisonLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength]."],
+		"NAME": "Poison Level"
+	},
+	"eyb:SteelLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [A]: Gain #b{1} [Dexterity]."],
+		"NAME": "Steel Level"
+	},
+	"eyb:ThunderLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"NAME": "Thunder Level"
+	},
+	"eyb:NatureLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]."],
+		"NAME": "Nature Level"
+	},
+	"eyb:CyberLevelPower":
+	{
+		"DESCRIPTIONS": ["At #b{0} [B]: Gain #b{1} [Supercharged]."],
+		"NAME": "Cyber Level"
 	}
 }

@@ -26,7 +26,7 @@ public class TsurugaMeisai extends AnimatorCard
         SetUpgrade(0, 2, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Air(1, 0, 1);
 
         SetExhaust(true);
     }

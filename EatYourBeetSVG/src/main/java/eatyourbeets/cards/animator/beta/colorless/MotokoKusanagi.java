@@ -20,9 +20,9 @@ public class MotokoKusanagi extends AnimatorCard
 
         Initialize(3, 0, 2);
         SetUpgrade(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Earth(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
+        SetAffinity_Air(1, 0, 1);
 
         SetRicochet(BASE_RICOCHET, 0, this::OnCooldownCompleted);
 

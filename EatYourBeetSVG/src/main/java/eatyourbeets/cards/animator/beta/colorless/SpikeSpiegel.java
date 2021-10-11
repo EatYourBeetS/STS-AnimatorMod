@@ -24,9 +24,9 @@ public class SpikeSpiegel extends AnimatorCard
         Initialize(6, 0, 3, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(1, 0, 1);
+        SetAffinity_Earth(2, 0, 1);
 
         SetAffinityRequirement(Affinity.General, 3);
         SetProtagonist(true);

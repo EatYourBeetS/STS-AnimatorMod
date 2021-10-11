@@ -23,7 +23,7 @@ public class HousakiMinori extends AnimatorCard
         Initialize(0, 6, 15, 2);
         SetUpgrade(0, 1, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1, 1, 0);
 
         SetCooldown(4, -1, this::OnCooldownCompleted);

@@ -29,8 +29,8 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
 
         Initialize(28, 0);
 
-        SetAffinity_Red(2, 0, 8);
-        SetAffinity_Orange(1);
+        SetAffinity_Fire(2, 0, 8);
+        SetAffinity_Earth(1);
 
         SetExhaust(true);
     }

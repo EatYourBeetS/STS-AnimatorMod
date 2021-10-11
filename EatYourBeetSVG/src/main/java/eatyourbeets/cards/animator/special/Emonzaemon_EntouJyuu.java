@@ -30,8 +30,8 @@ public class Emonzaemon_EntouJyuu extends AnimatorCard
         Initialize(0, 0, 2, BONUS_DAMAGE);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1);
     }
 
     @Override

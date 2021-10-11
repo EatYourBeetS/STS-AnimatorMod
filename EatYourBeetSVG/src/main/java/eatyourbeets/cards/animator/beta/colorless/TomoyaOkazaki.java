@@ -22,7 +22,7 @@ public class TomoyaOkazaki extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
         SetProtagonist(true);
     }
 

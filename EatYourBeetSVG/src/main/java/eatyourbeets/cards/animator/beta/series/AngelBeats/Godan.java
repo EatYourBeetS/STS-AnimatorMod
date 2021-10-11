@@ -23,7 +23,7 @@ public class Godan extends AnimatorCard
         SetUpgrade(3, 0, 1);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-        SetAffinity_Red(1, 1, 2);
+        SetAffinity_Fire(1, 1, 2);
 
         SetAffinityRequirement(Affinity.Fire, 2);
         SetAffinityRequirement(Affinity.Light, 2);

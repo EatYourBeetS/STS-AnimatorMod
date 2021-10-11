@@ -30,8 +30,8 @@ public class IzunaHatsuse extends AnimatorCard
         Initialize(1, 0, 2, 1);
         SetUpgrade(1, 1, 1);
 
-        SetAffinity_Red(1);
-        SetAffinity_Green(1);
+        SetAffinity_Fire(1);
+        SetAffinity_Air(1);
     }
 
     @Override

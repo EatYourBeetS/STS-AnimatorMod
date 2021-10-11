@@ -24,8 +24,8 @@ public class TanyaDegurechaff extends AnimatorCard
         Initialize(7, 2, 2);
         SetUpgrade(2, 2, 0);
 
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Air(1, 0, 1);
+        SetAffinity_Earth(1, 0, 1);
 
         SetAffinityRequirement(Affinity.General, 3);
     }

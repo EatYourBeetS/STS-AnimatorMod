@@ -19,7 +19,7 @@ public class Hisako extends AnimatorCard implements Hidden
         super(DATA);
 
         Initialize(8, 0, 3, 2);
-        SetAffinity_Orange(2, 0, 2);
+        SetAffinity_Earth(2, 0, 2);
         SetAffinity_Light(1, 0, 0);
     }
 

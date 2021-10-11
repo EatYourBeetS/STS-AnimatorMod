@@ -21,8 +21,8 @@ public class Lean extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Green(1);
+        SetAffinity_Water(1);
+        SetAffinity_Air(1);
 
         SetAffinityRequirement(Affinity.Water, 3);
         SetAffinityRequirement(Affinity.Air, 3);

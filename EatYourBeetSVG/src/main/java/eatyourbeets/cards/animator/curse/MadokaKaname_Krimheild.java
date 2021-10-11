@@ -29,7 +29,7 @@ public class MadokaKaname_Krimheild extends AnimatorCard_Curse
         SetAutoplay(true);
         SetPurge(true);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
         SetAffinity_Dark(2);
     }
 

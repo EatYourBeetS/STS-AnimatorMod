@@ -23,7 +23,7 @@ public class Darkness_Adrenaline extends AnimatorCard
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
 
         SetExhaust(true);
     }

@@ -26,7 +26,7 @@ public class ForceImpulseGundam extends AnimatorCard
         Initialize(15, 0, 5 );
         SetUpgrade(3, 0, 1 );
 
-        SetAffinity_Red(2, 0, 4);
+        SetAffinity_Fire(2, 0, 4);
         SetAffinity_Light(1);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);

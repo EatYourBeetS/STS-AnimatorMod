@@ -15,7 +15,7 @@ public class OrbCore_Fire extends OrbCore
     {
         super(DATA, 4);
 
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
     }
 
     public void ChannelOrb()

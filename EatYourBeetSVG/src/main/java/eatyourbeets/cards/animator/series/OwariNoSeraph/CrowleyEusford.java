@@ -23,8 +23,8 @@ public class CrowleyEusford extends AnimatorCard
         Initialize(16, 0, 1);
         SetUpgrade(2, 0, 1);
 
-        SetAffinity_Red(2, 0, 2);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Fire(2, 0, 2);
+        SetAffinity_Air(2, 0, 1);
         SetAffinity_Dark(1);
     }
 

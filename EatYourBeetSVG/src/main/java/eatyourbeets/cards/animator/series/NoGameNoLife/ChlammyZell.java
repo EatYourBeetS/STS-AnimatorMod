@@ -27,8 +27,8 @@ public class ChlammyZell extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Blue(1, 1, 0);
-        SetAffinity_Orange(1);
+        SetAffinity_Water(1, 1, 0);
+        SetAffinity_Earth(1);
         SetAffinity_Dark(1);
 
         SetExhaust(true);

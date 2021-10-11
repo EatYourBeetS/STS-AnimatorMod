@@ -21,13 +21,13 @@ public class Souseiseki extends AnimatorCard
 
         Initialize(8, 4, 0, 0);
         SetUpgrade(2, 1, 0, 0);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Earth(2, 0, 1);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Earth(1, 0, 2);
     }
 
     @Override

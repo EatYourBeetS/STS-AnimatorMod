@@ -25,7 +25,7 @@ public class Canti extends AnimatorCard
 
         Initialize(2, 3);
 
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
         SetAffinity_Light(2);
     }
 

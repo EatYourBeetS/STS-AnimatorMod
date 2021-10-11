@@ -27,7 +27,7 @@ public class ShuichiSaihara extends AnimatorCard
         Initialize(0, 0, 0, 0);
         SetExhaust(true);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetProtagonist(true);
     }
 

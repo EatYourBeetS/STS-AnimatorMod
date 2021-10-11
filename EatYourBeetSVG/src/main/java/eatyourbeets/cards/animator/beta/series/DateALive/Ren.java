@@ -21,7 +21,7 @@ public class Ren extends AnimatorCard
 
         Initialize(0, 0, 3, 2);
         SetAffinity_Dark(2, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
         SetEthereal(true);
     }
 

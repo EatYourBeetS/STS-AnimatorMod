@@ -20,7 +20,7 @@ public class ShioriSekine extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
         SetEthereal(true);
         SetExhaust(true);

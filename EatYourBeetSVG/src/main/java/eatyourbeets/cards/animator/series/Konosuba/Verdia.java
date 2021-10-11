@@ -26,7 +26,7 @@ public class Verdia extends AnimatorCard
         Initialize(1, 18, 1);
         SetUpgrade(1, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Fire, 3);

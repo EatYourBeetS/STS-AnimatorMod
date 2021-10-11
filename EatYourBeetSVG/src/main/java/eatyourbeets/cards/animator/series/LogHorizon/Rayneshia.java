@@ -25,7 +25,7 @@ public class Rayneshia extends AnimatorCard
         Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Earth(2);
         SetAffinity_Light(1);
         SetAffinityRequirement(Affinity.General, 4);
     }

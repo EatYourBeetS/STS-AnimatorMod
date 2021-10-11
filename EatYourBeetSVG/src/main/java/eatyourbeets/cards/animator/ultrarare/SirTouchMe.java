@@ -25,7 +25,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
         Initialize(4, 4, 4, 3);
         SetUpgrade(2, 2, 2, 0);
         
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Fire(2, 0, 2);
         SetAffinity_Light(2, 0, 1);
     }
 

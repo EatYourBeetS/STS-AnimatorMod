@@ -205,8 +205,8 @@ public class Elesis extends AnimatorCard //TODO different dark effect
                 SetUpgrade(0, 0, 2);
 
                 affinities.Clear();
-                SetAffinity_Red(1, 0, 1);
-                SetAffinity_Green(1);
+                SetAffinity_Fire(1, 0, 1);
+                SetAffinity_Air(1);
                 SetAffinity_Light(2, 0, 3);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
@@ -224,8 +224,8 @@ public class Elesis extends AnimatorCard //TODO different dark effect
                 SetUpgrade(4, 0, 0);
 
                 affinities.Clear();
-                SetAffinity_Red(1);
-                SetAffinity_Green(2, 0, 1);
+                SetAffinity_Fire(1);
+                SetAffinity_Air(2, 0, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -242,7 +242,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
                 SetUpgrade(0, 0, -1);
 
                 affinities.Clear();
-                SetAffinity_Red(2, 0, 2);
+                SetAffinity_Fire(2, 0, 2);
                 SetAffinity_Dark(2, 0, 2);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);

@@ -20,7 +20,7 @@ public class Haniwa extends AnimatorCard
 
         Initialize(0, 6, 0);
         SetUpgrade(0, 3, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
     }
 
     @Override

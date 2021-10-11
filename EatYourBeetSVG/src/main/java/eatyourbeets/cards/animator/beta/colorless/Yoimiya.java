@@ -23,8 +23,8 @@ public class Yoimiya extends AnimatorCard
         Initialize(1, 0, 3 , 0);
         SetUpgrade(0, 0, 1 , 0);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(1, 0, 2);
 
         SetExhaust(true);
     }

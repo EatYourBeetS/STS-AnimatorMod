@@ -22,7 +22,7 @@ public class Noelle extends AnimatorCard
 
         Initialize(0, 5, 1);
         SetUpgrade(0, 2, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Earth(1, 1, 0);
         SetAffinity_Light(1, 0, 0);
     }
 

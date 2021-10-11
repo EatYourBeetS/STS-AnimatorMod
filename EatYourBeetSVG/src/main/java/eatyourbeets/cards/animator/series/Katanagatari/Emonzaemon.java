@@ -31,7 +31,7 @@ public class Emonzaemon extends AnimatorCard
         Initialize(4, 0);
         SetUpgrade(2, 0);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Air(2, 0, 1);
         SetAffinity_Dark(1);
     }
 

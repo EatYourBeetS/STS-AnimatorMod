@@ -22,7 +22,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
 
         Initialize(0, 0, 2, 80);
         SetUpgrade(0, 0, 0, -20);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
 
         SetExhaust(true);
     }

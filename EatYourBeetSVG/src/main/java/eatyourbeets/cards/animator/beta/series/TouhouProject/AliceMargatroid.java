@@ -24,7 +24,7 @@ public class AliceMargatroid extends AnimatorCard
 
         Initialize(0, 0, 1, 5);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
 
         SetEthereal(true);
     }

@@ -22,7 +22,7 @@ public class Naotsugu extends AnimatorCard
         Initialize(9, 0);
         SetUpgrade(3, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Fire, 4);

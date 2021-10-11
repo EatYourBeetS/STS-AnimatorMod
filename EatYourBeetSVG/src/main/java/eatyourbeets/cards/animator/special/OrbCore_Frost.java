@@ -15,7 +15,7 @@ public class OrbCore_Frost extends OrbCore
     {
         super(DATA, 4);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
     }
 
     public void ChannelOrb()

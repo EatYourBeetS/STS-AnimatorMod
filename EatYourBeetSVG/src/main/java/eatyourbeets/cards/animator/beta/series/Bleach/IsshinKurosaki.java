@@ -23,7 +23,7 @@ public class IsshinKurosaki extends AnimatorCard
 
         Initialize(0, 6, 1, 2);
         SetUpgrade(0, 3, 0);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Fire, 4);
     }

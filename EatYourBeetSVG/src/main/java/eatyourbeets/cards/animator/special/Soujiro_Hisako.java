@@ -22,7 +22,7 @@ public class Soujiro_Hisako extends AnimatorCard
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1);
 
         SetEthereal(true);

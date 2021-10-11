@@ -39,7 +39,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         Initialize(0, 0, 1);
         SetUpgrade(0, 0);
         SetAffinity_Dark(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
         SetDelayed(true);
 
         SetAffinityRequirement(Affinity.General, 5);

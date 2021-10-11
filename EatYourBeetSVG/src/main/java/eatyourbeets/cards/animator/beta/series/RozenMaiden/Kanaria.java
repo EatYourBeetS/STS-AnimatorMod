@@ -27,8 +27,8 @@ public class Kanaria extends AnimatorCard
 
         Initialize(0, 0);
         SetUpgrade(0, 0);
-        SetAffinity_Blue(1, 1, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Water(1, 1, 0);
+        SetAffinity_Air(1, 0, 0);
 
         SetCostUpgrade(-1);
     }

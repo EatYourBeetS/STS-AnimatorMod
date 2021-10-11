@@ -26,7 +26,7 @@ public class Shion extends AnimatorCard
         Initialize(15, 0, 2, 9);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1, 1, 2);
+        SetAffinity_Fire(1, 1, 2);
     }
 
     @Override

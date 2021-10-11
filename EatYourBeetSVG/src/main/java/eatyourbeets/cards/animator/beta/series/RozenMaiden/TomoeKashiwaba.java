@@ -24,8 +24,8 @@ public class TomoeKashiwaba extends AnimatorCard
 
         Initialize(8, 4, 0);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Air(1, 0, 1);
+        SetAffinity_Earth(1, 0, 0);
     }
 
     @Override

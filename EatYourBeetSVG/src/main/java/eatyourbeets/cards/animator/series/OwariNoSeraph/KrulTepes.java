@@ -39,7 +39,7 @@ public class KrulTepes extends AnimatorCard
         Initialize(13, 0, 2, 3);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Fire(2);
         SetAffinity_Dark(2, 0, 2);
     }
 

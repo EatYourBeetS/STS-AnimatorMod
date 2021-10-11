@@ -33,7 +33,7 @@ public class RundelhausCode extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Water(2, 0, 1);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.General, 3);

@@ -24,8 +24,8 @@ public class MakiseKurisu extends AnimatorCard //TODO add custom Time Paradox st
 
         Initialize(0, 0, 1, 3);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Orange(1);
+        SetAffinity_Water(2);
+        SetAffinity_Earth(1);
 
         SetExhaust(true);
         SetEthereal(true);

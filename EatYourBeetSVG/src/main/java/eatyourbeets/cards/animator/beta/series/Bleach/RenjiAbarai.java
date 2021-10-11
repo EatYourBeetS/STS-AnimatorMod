@@ -20,7 +20,7 @@ public class RenjiAbarai extends AnimatorCard
         Initialize(10, 0, 3);
         SetUpgrade(1, 0, -1);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Fire(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Fire, 2);
         SetAffinityRequirement(Affinity.Air, 2);

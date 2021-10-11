@@ -25,7 +25,7 @@ public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
 
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Earth(1, 0, 0);
 
         SetExhaust(true);
     }

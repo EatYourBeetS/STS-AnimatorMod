@@ -32,7 +32,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
 
         Initialize(0, 0, 0, 0);
         SetUpgrade(0, 0, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
         SetAffinity_Dark(2, 0, 0);
         SetCostUpgrade(-1);
         GraveField.grave.set(this, true);

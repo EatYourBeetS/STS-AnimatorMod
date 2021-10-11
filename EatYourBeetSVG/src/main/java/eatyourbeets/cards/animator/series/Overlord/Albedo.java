@@ -33,8 +33,8 @@ public class Albedo extends AnimatorCard
         Initialize(0, 0, 2, 18);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Dark(2, 0, 0);
     }
 

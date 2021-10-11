@@ -15,7 +15,7 @@ public class OrbCore_Earth extends OrbCore
     {
         super(DATA, 5);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Earth(2);
     }
 
     public void ChannelOrb()

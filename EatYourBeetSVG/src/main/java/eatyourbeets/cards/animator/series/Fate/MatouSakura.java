@@ -28,7 +28,7 @@ public class MatouSakura extends AnimatorCard
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Dark(2, 0, 2);
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
 
         SetExhaust(true);
 

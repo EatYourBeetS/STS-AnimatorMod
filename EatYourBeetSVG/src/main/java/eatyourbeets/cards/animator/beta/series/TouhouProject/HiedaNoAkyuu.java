@@ -20,7 +20,7 @@ public class HiedaNoAkyuu extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 5, 0);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Water(1, 1, 0);
 
         SetExhaust(true);
         SetCostUpgrade(-1);

@@ -27,7 +27,7 @@ public class RinTohsaka extends AnimatorCard
         Initialize(0, 5, 0, 1);
         SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Blue(1, 1, 1);
+        SetAffinity_Water(1, 1, 1);
         SetAffinity_Light(1);
     }
 

@@ -28,8 +28,8 @@ public class Shizu extends AnimatorCard
         Initialize(14, 0, 2, 3);
         SetUpgrade(2, 0);
 
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Red(1);
+        SetAffinity_Air(1, 0, 1);
+        SetAffinity_Fire(1);
         SetAffinity_Light(2);
     }
 

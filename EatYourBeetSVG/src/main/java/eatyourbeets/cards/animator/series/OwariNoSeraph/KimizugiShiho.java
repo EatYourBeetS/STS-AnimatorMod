@@ -19,9 +19,9 @@ public class KimizugiShiho extends AnimatorCard
         Initialize(0,2, 1,1);
         SetUpgrade(0,0, 0, 0);
 
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Water(1, 0, 0);
 
         SetCostUpgrade(-1);
     }

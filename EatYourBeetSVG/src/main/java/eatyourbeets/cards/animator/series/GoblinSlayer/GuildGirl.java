@@ -27,7 +27,7 @@ public class GuildGirl extends AnimatorCard
 
         Initialize(0, 0, GOLD_GAIN);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Earth(1);
     }
 
     @Override

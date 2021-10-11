@@ -21,8 +21,8 @@ public class ElricAlphonse extends AnimatorCard
         Initialize(0, 2, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Water(1);
+        SetAffinity_Earth(1);
         SetAffinity_Light(1);
 
         SetEthereal(true);

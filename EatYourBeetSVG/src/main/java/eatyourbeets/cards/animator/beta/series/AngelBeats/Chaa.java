@@ -32,9 +32,9 @@ public class Chaa extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Green(1, 0, 0);
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Air(1, 0, 0);
+        SetAffinity_Fire(1, 0, 0);
+        SetAffinity_Earth(2, 0, 0);
     }
 
     @Override

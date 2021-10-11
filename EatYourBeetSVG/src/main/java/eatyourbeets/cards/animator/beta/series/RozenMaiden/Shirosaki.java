@@ -23,7 +23,7 @@ public class Shirosaki extends AnimatorCard //TODO
 
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Water(1, 1, 0);
         SetAffinity_Dark(1, 0, 0);
         
         SetExhaust(true);

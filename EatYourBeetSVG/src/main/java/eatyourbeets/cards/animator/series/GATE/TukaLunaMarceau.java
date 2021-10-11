@@ -19,7 +19,7 @@ public class TukaLunaMarceau extends AnimatorCard
         Initialize(0, 3);
         SetUpgrade(0, 2);
 
-        SetAffinity_Green(1);
+        SetAffinity_Air(1);
 
         SetAffinityRequirement(Affinity.Light, 3);
         SetAffinityRequirement(Affinity.Air, 3);

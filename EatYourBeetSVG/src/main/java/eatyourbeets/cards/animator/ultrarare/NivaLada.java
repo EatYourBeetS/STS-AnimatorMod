@@ -33,7 +33,7 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         Initialize(0, 0, 300);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Water(2);
 
         SetCooldown(18, -2, this::OnCooldownCompleted);
     }

@@ -25,9 +25,9 @@ public class KotoriItsuka extends AnimatorCard
 
         Initialize(8, 0, 4, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Blue(0, 0, 1);
+        SetAffinity_Fire(2, 0, 1);
+        SetAffinity_Earth(1, 0, 0);
+        SetAffinity_Water(0, 0, 1);
 
         SetHarmonic(true);
     }

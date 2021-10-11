@@ -30,7 +30,7 @@ public class Ain extends AnimatorCard
         SetUpgrade(1, 0, 0, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Water(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Light, 3);
     }

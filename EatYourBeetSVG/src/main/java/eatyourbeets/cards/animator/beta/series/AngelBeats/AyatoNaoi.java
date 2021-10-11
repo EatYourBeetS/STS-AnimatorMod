@@ -28,7 +28,7 @@ public class AyatoNaoi extends AnimatorCard
         Initialize(0, 0, 2, 0);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Water(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetExhaust(true);
         AfterLifeMod.Add(this);

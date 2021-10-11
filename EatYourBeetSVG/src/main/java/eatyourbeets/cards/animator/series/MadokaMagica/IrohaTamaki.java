@@ -23,7 +23,7 @@ public class IrohaTamaki extends AnimatorCard
         Initialize(3, 5, 2, 1);
         SetUpgrade(0, 2, 1 ,1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Water(1);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Light, 3);

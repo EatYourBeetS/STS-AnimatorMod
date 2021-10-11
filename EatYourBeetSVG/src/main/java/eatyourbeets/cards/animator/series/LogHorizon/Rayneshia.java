@@ -53,7 +53,7 @@ public class Rayneshia extends AnimatorCard
                 if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                    final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);
+                    final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombatFromRarity(CardRarity.RARE);
 
                     while (choice.size() < 3 && pool.Size() > 0)
                     {

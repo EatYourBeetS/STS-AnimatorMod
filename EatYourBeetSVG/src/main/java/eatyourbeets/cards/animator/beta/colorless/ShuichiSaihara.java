@@ -90,7 +90,7 @@ public class ShuichiSaihara extends AnimatorCard
                     default:
                         r = CardRarity.COMMON;
                 }
-                final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(r);
+                final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombatFromRarity(r);
                 final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
                 while (choice.size() < 3 && pool.Size() > 0)

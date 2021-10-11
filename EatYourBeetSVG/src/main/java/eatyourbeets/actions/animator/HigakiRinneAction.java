@@ -228,7 +228,7 @@ public class HigakiRinneAction extends EYBAction
 
     private void ObtainRandomCard()
     {
-        RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombat(null);
+        RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombatFromRarity(null);
         if (cards.Size() > 0)
         {
             GameActions.Bottom.MakeCardInHand(cards.Retrieve(rng).makeCopy());

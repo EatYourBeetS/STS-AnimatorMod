@@ -46,7 +46,7 @@ public class LestKarr extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.CURSE);
+        final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombatFromRarity(CardRarity.CURSE);
         pool.Add(new Status_Frostbite());
         pool.Add(new SearingBurn());
         pool.Add(new Status_Burn());

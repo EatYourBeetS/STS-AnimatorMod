@@ -102,18 +102,18 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip("[F]", "FireLevel", new FireLevelPower());
-        AddPowerTooltip("[A]", "AirLevel", new AirLevelPower());
-        AddPowerTooltip("[M]", "MindLevel", new MindLevelPower());
-        AddPowerTooltip("[E]", "EarthLevel", new EarthLevelPower());
-        AddPowerTooltip("[L]", "LightLevel", new LightLevelPower());
-        AddPowerTooltip("[D]", "DarkLevel", new DarkLevelPower());
-        AddPowerTooltip("[W]", "WaterLevel", new WaterLevelPower());
-        AddPowerTooltip("[P]", "PoisonLevel", new PoisonLevelPower());
-        AddPowerTooltip("[S]", "SteelLevel", new SteelLevelPower());
-        AddPowerTooltip("[T]", "ThunderLevel", new ThunderLevelPower());
-        AddPowerTooltip("[N]", "NatureLevel", new NatureLevelPower());
-        AddPowerTooltip("[C]", "CyberLevel", new CyberLevelPower());
+        AddPowerTooltip("[F]", "FireLevelPower", new FireLevelPower());
+        AddPowerTooltip("[A]", "AirLevelPower", new AirLevelPower());
+        AddPowerTooltip("[M]", "MindLevelPower", new MindLevelPower());
+        AddPowerTooltip("[E]", "EarthLevelPower", new EarthLevelPower());
+        AddPowerTooltip("[L]", "LightLevelPower", new LightLevelPower());
+        AddPowerTooltip("[D]", "DarkLevelPower", new DarkLevelPower());
+        AddPowerTooltip("[W]", "WaterLevelPower", new WaterLevelPower());
+        AddPowerTooltip("[P]", "PoisonLevelPower", new PoisonLevelPower());
+        AddPowerTooltip("[S]", "SteelLevelPower", new SteelLevelPower());
+        AddPowerTooltip("[T]", "ThunderLevelPower", new ThunderLevelPower());
+        AddPowerTooltip("[N]", "NatureLevelPower", new NatureLevelPower());
+        AddPowerTooltip("[C]", "CyberLevelPower", new CyberLevelPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);

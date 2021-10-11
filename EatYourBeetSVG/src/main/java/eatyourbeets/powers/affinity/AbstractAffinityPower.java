@@ -111,7 +111,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     public Integer GetCurrentThreshold()
     {
         final int threshold = GetThresholdMultiplier();
-        return (amount < MAX_STAT_AMOUNT) ? thresholdIndex * threshold : null;
+        return (amount < MAX_STAT_AMOUNT) ? (thresholdIndex + 1) * threshold : null;
     }
 
     public int GetThresholdMultiplier()

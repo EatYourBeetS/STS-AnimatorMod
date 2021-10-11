@@ -25,7 +25,10 @@ public abstract class AffinityToken extends AnimatorCard
     {
         final EYBCardData data = Register(type).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
-        data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
+        data.Strings.NAME = "Affinity Token (Deprecated)";
+        data.Strings.DESCRIPTION = "This is being deprecated.";
+        data.Strings.UPGRADE_DESCRIPTION = "This is being deprecated.";
+        data.Strings.EXTENDED_DESCRIPTION = new String[]{"0","1","2"};
         return data;
     }
 

@@ -123,18 +123,18 @@ public class CardTooltips
     public EYBCardTooltip Impaired = FindByID("Impaired");
 
     //Affinity levels
-    public EYBCardTooltip FireLevel = FindByID("FireLevel");
-    public EYBCardTooltip AirLevel = FindByID("AirLevel");
-    public EYBCardTooltip MindLevel = FindByID("MindLevel");
-    public EYBCardTooltip EarthLevel = FindByID("EarthLevel");
-    public EYBCardTooltip LightLevel = FindByID("LightLevel");
-    public EYBCardTooltip DarkLevel = FindByID("DarkLevel");
-    public EYBCardTooltip WaterLevel = FindByID("WaterLevel");
-    public EYBCardTooltip PoisonLevel = FindByID("PoisonLevel");
-    public EYBCardTooltip SteelLevel = FindByID("SteelLevel");
-    public EYBCardTooltip ThunderLevel = FindByID("ThunderLevel");
-    public EYBCardTooltip NatureLevel = FindByID("NatureLevel");
-    public EYBCardTooltip CyberLevel = FindByID("CyberLevel");
+    public EYBCardTooltip FireLevel = FindByID("FireLevelPower");
+    public EYBCardTooltip AirLevel = FindByID("AirLevelPower");
+    public EYBCardTooltip MindLevel = FindByID("MindLevelPower");
+    public EYBCardTooltip EarthLevel = FindByID("EarthLevelPower");
+    public EYBCardTooltip LightLevel = FindByID("LightLevelPower");
+    public EYBCardTooltip DarkLevel = FindByID("DarkLevelPower");
+    public EYBCardTooltip WaterLevel = FindByID("WaterLevelPower");
+    public EYBCardTooltip PoisonLevel = FindByID("PoisonLevelPower");
+    public EYBCardTooltip SteelLevel = FindByID("SteelLevelPower");
+    public EYBCardTooltip ThunderLevel = FindByID("ThunderLevelPower");
+    public EYBCardTooltip NatureLevel = FindByID("NatureLevelPower");
+    public EYBCardTooltip CyberLevel = FindByID("CyberLevelPower");
 
     // No Description
     public EYBCardTooltip Affinity_Fire = new EYBCardTooltip("Fire Affinity", null).ShowText(false);
@@ -215,6 +215,19 @@ public class CardTooltips
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
+
+        RegisterID("FireLevelPower", FireLevel);
+        RegisterID("AirLevelPower", AirLevel);
+        RegisterID("MindLevelPower", MindLevel);
+        RegisterID("EarthLevelPower", EarthLevel);
+        RegisterID("LightLevelPower", LightLevel);
+        RegisterID("DarkLevelPower", DarkLevel);
+        RegisterID("WaterLevelPower", WaterLevel);
+        RegisterID("PoisonLevelPower", PoisonLevel);
+        RegisterID("SteelLevelPower", SteelLevel);
+        RegisterID("ThunderLevelPower", ThunderLevel);
+        RegisterID("NatureLevelPower", NatureLevel);
+        RegisterID("CyberLevelPower", CyberLevel);
     }
 
     public void InitializeIcons()

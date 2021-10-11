@@ -1847,7 +1847,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "7+ [Force]: ** Gain [EN] and Exhaust. ** Otherwise: Gain !M! [Force]. || Gain +!S! [Block] for ** each 2+ Cost card in hand.",
+			"DESCRIPTION": "7+ [F]: ** Gain [EN] and Exhaust. ** Otherwise: Gain !M! [F]. || Gain +!S! [Block] for ** each 2+ Cost card in hand.",
 			"NAME": "Konayuki"
 		},
 		"animator:ManiwaKyouken":
@@ -2751,16 +2751,18 @@
 
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain +!M! {0} for the ** rest of combat. Then, ** if any <Y> is higher ** than {0}: Boost [{1}].",
+			"DESCRIPTION": "This is being deprecated.",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
 		{
+			"DESCRIPTION": "This is being deprecated.",
 			"EXTENDED_DESCRIPTION": ["<F>", "F"],
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Green":
 		{
+			"DESCRIPTION": "This is being deprecated.",
 			"EXTENDED_DESCRIPTION": ["<A>", "A"],
 			"NAME": "Affinity Token"
 		},
@@ -2771,22 +2773,25 @@
 		},
 		"animator:AffinityToken_Orange":
 		{
+			"DESCRIPTION": "This is being deprecated.",
 			"EXTENDED_DESCRIPTION": ["<E>", "W"],
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Light":
 		{
+			"DESCRIPTION": "This is being deprecated.",
 			"EXTENDED_DESCRIPTION": ["<L>", "B"],
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Dark":
 		{
+			"DESCRIPTION": "This is being deprecated.",
 			"EXTENDED_DESCRIPTION": ["<D>", "C"],
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_General":
 		{
-			"DESCRIPTION": "When obtained: ** Turn this card ** into an {<Y> Token} ** of your choice.",
+			"DESCRIPTION": "This is being deprecated.",
 			"NAME": "Affinity Token"
 		},
 

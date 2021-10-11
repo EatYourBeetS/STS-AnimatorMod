@@ -110,7 +110,7 @@
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [Force]."],
+		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [F]."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},

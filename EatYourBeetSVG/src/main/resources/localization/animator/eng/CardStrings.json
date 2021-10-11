@@ -942,7 +942,7 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "!A! <R> or <FS>: {Maintain} [W]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
+			"DESCRIPTION": "<FS>: {Maintain} [W]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":
@@ -2703,16 +2703,16 @@
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [E]: A random {Affinity} ** has +!M! this turn.",
+			"DESCRIPTION": "Once per turn, pay !S! [E]: A random {Affinity} ** gains +!M!.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: ** Have +!M! <R> this turn.",
-				"Once per turn, pay !S! [E]: ** Have +!M! <G> this turn.",
-				"Once per turn, pay !S! [E]: ** Have +!M! <B> this turn.",
-				"Once per turn, pay !S! [E]: ** Have +!M! <O> this turn.",
-				"Once per turn, pay !S! [E]: ** Have +!M! <L> this turn.",
-				"Once per turn, pay !S! [E]: ** Have +!M! <D> this turn.",
-				"Once per turn, pay !S! [E]: ** A random {Affinity} ** has +!M! this turn."
+				"Once per turn, pay !S! [E]: ** Gain +!M! <R>.",
+				"Once per turn, pay !S! [E]: ** Gain +!M! <G>.",
+				"Once per turn, pay !S! [E]: ** Gain +!M! <B>.",
+				"Once per turn, pay !S! [E]: ** Gain +!M! <O>.",
+				"Once per turn, pay !S! [E]: ** Gain +!M! <L>.",
+				"Once per turn, pay !S! [E]: ** Gain +!M! <D>.",
+				"Once per turn, pay !S! [E]: ** A random {Affinity} ** gains +!M!."
 			],
 			"NAME": "Affinities"
 		},
@@ -2751,7 +2751,7 @@
 
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain +!M! {0} for the ** rest of combat. Then, ** if any <W> is higher ** than {0}: Boost [{1}].",
+			"DESCRIPTION": "Gain +!M! {0}. ** {Maintain} [{1}].",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
@@ -2789,10 +2789,9 @@
 			"DESCRIPTION": "When obtained: ** Turn this card ** into an {<W> Token} ** of your choice.",
 			"NAME": "Affinity Token"
 		},
-
 		"animator:GiftBox":
 		{
-			"DESCRIPTION": "Discard all cards. ** Add !M! random card(s) ** to your hand. || On Exhaust: Add ** !S! random cards ** to your draw pile.",
+			"DESCRIPTION": "Gain a random relic. Its Rarity depends on <W>: ** 3: Common ** 4: Uncommon ** 5: Rare",
 			"NAME": "Gift Box"
 		},
 		"animator:HinaKagiyama":

@@ -49,7 +49,7 @@ public class Add extends AnimatorCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue).AddCallback(() -> {
-            if (info.IsSynergizing || CheckAffinity(Affinity.Dark))
+            if (info.IsSynergizing || TrySpendAffinity(Affinity.Dark))
             {
                 GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
                         .AddCallback(this::OnCardChosen);

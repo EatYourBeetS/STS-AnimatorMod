@@ -29,7 +29,7 @@ public class Sebas extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Red, 6);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Sebas extends AnimatorCard
         {
             energy += 1;
         }
-        if (CheckAffinity(Affinity.Red))
+        if (TrySpendAffinity(Affinity.Red))
         {
             energy += 1;
         }

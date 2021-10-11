@@ -48,7 +48,7 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && CheckAffinity(Affinity.General);
+        return super.cardPlayable(m) && TrySpendAffinity(Affinity.General);
     }
 
     @Override

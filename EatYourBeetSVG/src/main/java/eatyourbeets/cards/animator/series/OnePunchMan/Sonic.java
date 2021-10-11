@@ -46,7 +46,7 @@ public class Sonic extends AnimatorCard
         {
             knives += 1;
         }
-        if (CheckAffinity(Affinity.Dark))
+        if (TrySpendAffinity(Affinity.Dark))
         {
             knives += 1;
         }

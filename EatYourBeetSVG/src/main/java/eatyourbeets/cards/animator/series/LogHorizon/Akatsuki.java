@@ -72,7 +72,7 @@ public class Akatsuki extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
         .SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
 
-        if (CheckAffinity(Affinity.Green)) {
+        if (TrySpendAffinity(Affinity.Green)) {
             GameActions.Bottom.CreateThrowingKnives(1);
         }
     }

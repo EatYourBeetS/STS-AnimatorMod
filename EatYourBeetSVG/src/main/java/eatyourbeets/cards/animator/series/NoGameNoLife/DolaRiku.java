@@ -28,7 +28,7 @@ public class DolaRiku extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Orange) && info.TryActivateSemiLimited())
+        if (TrySpendAffinity(Affinity.Orange) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c), false);

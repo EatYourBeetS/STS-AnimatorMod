@@ -34,7 +34,7 @@ public class Yui extends AnimatorCard
     {
         GameActions.Bottom.MakeCardInHand(AffinityToken.GetCard(Affinity.Light)).SetUpgrade(upgraded, false).AddCallback(
                 () -> {
-                    GameActions.Bottom.Motivate(CheckAffinity(Affinity.General) ? secondaryValue + magicNumber : secondaryValue);
+                    GameActions.Bottom.Motivate(TrySpendAffinity(Affinity.General) ? secondaryValue + magicNumber : secondaryValue);
                 }
         );
 

@@ -35,7 +35,7 @@ public class Kuroyukihime extends AnimatorCard
         {
             GameActions.Bottom.Exhaust(this);
             GameActions.Bottom.MakeCardInHand(new Kuroyukihime_BlackLotus())
-            .SetUpgrade(CheckAffinity(Affinity.General), false);
+            .SetUpgrade(TrySpendAffinity(Affinity.General), false);
         });
     }
 }

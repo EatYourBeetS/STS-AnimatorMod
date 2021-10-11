@@ -62,7 +62,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         GameActions.Bottom.ChannelOrb(new Chaos());
 
         GameActions.Last.Callback(() ->
-                GameActions.Bottom.SelectFromPile(name, CheckAffinity(Affinity.General) ? 2 : 1, upgraded ? upgradedCardChoices : cardChoices)
+                GameActions.Bottom.SelectFromPile(name, TrySpendAffinity(Affinity.General) ? 2 : 1, upgraded ? upgradedCardChoices : cardChoices)
                         .SetOptions(false, false)
                         .AddCallback(cards ->
                         {

@@ -64,7 +64,7 @@ public class ChlammyZell extends AnimatorCard
         }
         choices.Select(1, m);
 
-        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited())
+        if (TrySpendAffinity(Affinity.Blue) && TrySpendAffinity(Affinity.Dark) && info.TryActivateLimited())
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZell_Scheme());
         }

@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameUtilities;
 import patches.unlockTracker.UnlockTrackerPatches;
 
@@ -23,6 +25,7 @@ public class AnimatorCharacterSelectScreen
     protected static CharacterOption selectedOption;
     protected static GUI_Button DiscordButton;
     protected static GUI_Button SteamButton;
+    protected static GUI_Label UnofficialDisclaimer;
 
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
@@ -40,6 +43,12 @@ public class AnimatorCharacterSelectScreen
         .SetOnClick(() -> Browse(SteamButton));
 
         DiscordButton.SetActive(SteamButton.SetActive(Desktop.isDesktopSupported()).isActive);
+
+        UnofficialDisclaimer = new GUI_Label(EYBFontHelper.CardDescriptionFont_Normal,
+                new AdvancedHitbox(0, 0, Settings.WIDTH * 0.55f, size * 2f))
+                .SetPosition(Settings.WIDTH * 0.29f, Settings.HEIGHT * 0.93f)
+                .SetAlignment(0.95f, 0.05f, true) // 0.1f
+                .SetText(GR.Animator.Strings.Misc.UnofficialDisclaimer);
 
         UnlockTrackerPatches.Validate();
     }
@@ -95,6 +104,7 @@ public class AnimatorCharacterSelectScreen
         SpecialTrophiesRenderer.Render(sb);
         DiscordButton.TryRender(sb);
         SteamButton.TryRender(sb);
+        UnofficialDisclaimer.TryRender(sb);
     }
 
     public static void UpdateOption(CharacterOption instance)
@@ -104,6 +114,7 @@ public class AnimatorCharacterSelectScreen
         SpecialTrophiesRenderer.Update();
         DiscordButton.TryUpdate();
         SteamButton.TryUpdate();
+        UnofficialDisclaimer.TryUpdate();
 
         final float offsetX = 60 * Settings.scale;
         final float offsetY = 0;

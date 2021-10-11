@@ -58,7 +58,7 @@ public class Noah extends AnimatorCard //TODO
         GameActions.Bottom.GainCorruption(1, true);
         GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
 
-        if (!CheckAffinity(Affinity.Dark))
+        if (!TrySpendAffinity(Affinity.Dark))
         {
             GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
         }

@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
@@ -151,14 +154,7 @@ public class EYBCardAffinityRow extends GUIElement
             }
         }
 
-        if ((System.BonusAffinities.GetDirectLevel(Type) > 0))
-        {
-            text_affinity.SetText(Level).SetColor(Colors.Green(1));
-        }
-        else
-        {
-            text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
-        }
+        text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
 
         Update();
     }

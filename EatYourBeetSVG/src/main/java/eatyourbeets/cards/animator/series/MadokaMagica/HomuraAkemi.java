@@ -33,7 +33,7 @@ public class HomuraAkemi extends AnimatorCard
         SetDelayed(true);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light,4);
+        SetAffinityRequirement(Affinity.Light, 6);
         SetSoul(1, 0, HomuraAkemi_Homulily::new);
     }
 
@@ -53,7 +53,7 @@ public class HomuraAkemi extends AnimatorCard
                     }
                 });
 
-        if (CheckAffinity(Affinity.Light) && info.TryActivateLimited()) {
+        if (TrySpendAffinity(Affinity.Light) && info.TryActivateLimited()) {
             GameActions.Bottom.GainArtifact(secondaryValue);
         }
 

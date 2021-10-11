@@ -48,7 +48,7 @@ public class IrohaTamaki extends AnimatorCard
             }
         }
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Light))
+        if (info.IsSynergizing || TrySpendAffinity(Affinity.Light))
         {
             GameActions.Bottom.Scry(magicNumber);
         }

@@ -42,7 +42,7 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         GameUtilities.MaintainPower(Affinity.Red);
         GameUtilities.MaintainPower(Affinity.Green);
 
-        if (CheckAffinity(Affinity.General))
+        if (TrySpendAffinity(Affinity.General))
         {
             GameActions.Bottom.Draw(magicNumber);
             GameActions.Bottom.ModifyAllInstances(uuid)

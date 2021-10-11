@@ -61,7 +61,7 @@ public class Cocytus extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Red) && TrySpendAffinity(Affinity.Blue))
         {
             GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }

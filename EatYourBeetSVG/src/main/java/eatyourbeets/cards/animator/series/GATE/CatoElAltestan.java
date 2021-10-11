@@ -53,15 +53,15 @@ public class CatoElAltestan extends AnimatorCard
         });
 
         choices.Initialize(this, true);
-        if (CheckAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Blue))
         {
             choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Freezing, secondaryValue));
         }
-        if (CheckAffinity(Affinity.Red))
+        if (TrySpendAffinity(Affinity.Red))
         {
             choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Burning, secondaryValue));
         }
-        if (CheckAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green))
         {
             choices.AddEffect(new GenericEffect_ChannelOrb(new Air()));
         }

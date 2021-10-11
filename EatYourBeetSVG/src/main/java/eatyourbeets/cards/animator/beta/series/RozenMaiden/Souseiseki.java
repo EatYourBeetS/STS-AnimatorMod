@@ -2,9 +2,7 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -12,14 +10,14 @@ import eatyourbeets.utilities.GameUtilities;
 public class Souseiseki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souseiseki.class)
-    		.SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage()
+    		.SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true, true).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Suiseiseki(), false));
 
     public Souseiseki()
     {
         super(DATA);
 
-        Initialize(8, 4, 0, 0);
+        Initialize(7, 2, 0, 0);
         SetUpgrade(2, 1, 0, 0);
         SetAffinity_Orange(2, 0, 1);
     }
@@ -27,7 +25,7 @@ public class Souseiseki extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(2, 0, 1);
     }
 
     @Override

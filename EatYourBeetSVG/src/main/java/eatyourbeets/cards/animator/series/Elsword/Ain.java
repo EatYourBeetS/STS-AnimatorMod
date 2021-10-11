@@ -73,7 +73,7 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (CheckAffinity(Affinity.Light))
+        if (TrySpendAffinity(Affinity.Light))
         {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
         }

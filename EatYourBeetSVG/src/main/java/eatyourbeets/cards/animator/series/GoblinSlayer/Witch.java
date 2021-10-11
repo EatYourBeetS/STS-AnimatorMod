@@ -49,7 +49,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             }
         });
 
-        if (CheckAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Blue))
         {
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
 

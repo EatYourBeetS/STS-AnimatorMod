@@ -48,7 +48,7 @@ public class HiiragiShinya extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Green))
+        if (info.IsSynergizing || TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }

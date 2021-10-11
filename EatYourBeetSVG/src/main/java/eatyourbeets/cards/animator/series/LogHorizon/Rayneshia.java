@@ -50,7 +50,7 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
+                if (TrySpendAffinity(Affinity.General) && info.TryActivateLimited())
                 {
                     final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                     final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);

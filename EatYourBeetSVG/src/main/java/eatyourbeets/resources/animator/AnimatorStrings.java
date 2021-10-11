@@ -105,6 +105,8 @@ public class AnimatorStrings
         public final String GainBlockAboveMaxStacks_F1 = Strings.TEXT[17];
         public final String MaxBlock_F1 = Strings.TEXT[18];
         public final String EnableEventsForOtherCharacters = Strings.TEXT[19];
+        public final String EnableRelicsForOtherCharacters = Strings.TEXT[20];
+        public final String UnofficialDisclaimer = Strings.TEXT[21];
 
         public final String MaxStacks(int stacks)
         {

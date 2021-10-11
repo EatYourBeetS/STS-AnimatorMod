@@ -139,7 +139,7 @@ public class EYBCardAffinities
             if (star > 0)
             {
                 AddStar(star);
-                Add(star, star, star, star, star, star);
+                //Add(star, star, star, star, star, star);
             }
             else for (EYBCardAffinity item : other.List)
             {
@@ -152,6 +152,9 @@ public class EYBCardAffinities
 
     public EYBCardAffinities Add(EYBCardAffinities other)
     {
+        if (other.Star != null){
+            AddStar(other.Star.level);
+        }
         for (EYBCardAffinity item : other.List)
         {
             Add(item.type, item.level);

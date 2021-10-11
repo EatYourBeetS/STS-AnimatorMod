@@ -47,7 +47,7 @@ public class RoyMustang extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
 
-        if (CheckAffinity(Affinity.Red))
+        if (TrySpendAffinity(Affinity.Red))
         {
             GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
         }

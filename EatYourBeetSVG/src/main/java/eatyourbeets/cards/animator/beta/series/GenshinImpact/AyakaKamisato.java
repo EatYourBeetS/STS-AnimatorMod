@@ -32,7 +32,7 @@ public class AyakaKamisato extends AnimatorCard {
         SetAffinity_Green(1, 0, 2);
         SetAffinity_Orange(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Blue, 6);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -54,7 +54,7 @@ public class AyakaKamisato extends AnimatorCard {
         }
         GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
 
-        if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID))
+        if (CheckSpecialCondition(true) && TrySpendAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();
@@ -64,6 +64,6 @@ public class AyakaKamisato extends AnimatorCard {
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return (CheckAffinity(Affinity.Blue) || GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) >= secondaryValue);
+        return (CombatStats.CanActivateLimited(cardID) && CheckAffinity(Affinity.Blue) || GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) >= secondaryValue);
     }
 }

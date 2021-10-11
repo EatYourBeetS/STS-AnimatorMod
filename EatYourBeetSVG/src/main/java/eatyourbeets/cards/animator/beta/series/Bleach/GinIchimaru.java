@@ -54,12 +54,12 @@ public class GinIchimaru extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
-        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Red) || TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.Exhaust(this);
         }
 
-        if (CheckAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Blue))
         {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }

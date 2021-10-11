@@ -56,10 +56,10 @@ public class Lean extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.GainSupportDamage(secondaryValue);
-        if (CheckAffinity(Affinity.Blue)) {
+        if (TrySpendAffinity(Affinity.Blue)) {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
         }
-        if (CheckAffinity(Affinity.Green)) {
+        if (TrySpendAffinity(Affinity.Green)) {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
         }
     }

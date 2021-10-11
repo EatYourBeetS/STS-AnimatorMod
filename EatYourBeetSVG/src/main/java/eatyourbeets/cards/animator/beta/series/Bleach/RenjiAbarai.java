@@ -29,7 +29,7 @@ public class RenjiAbarai extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Red) && TrySpendAffinity(Affinity.Green))
         {
             SetAttackType(EYBAttackType.Piercing);
         }

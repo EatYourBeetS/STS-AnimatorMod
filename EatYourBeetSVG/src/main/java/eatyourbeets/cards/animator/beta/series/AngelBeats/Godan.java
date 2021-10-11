@@ -34,7 +34,7 @@ public class Godan extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Light) && info.TryActivateSemiLimited())
+        if (TrySpendAffinity(Affinity.Red) && TrySpendAffinity(Affinity.Light) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

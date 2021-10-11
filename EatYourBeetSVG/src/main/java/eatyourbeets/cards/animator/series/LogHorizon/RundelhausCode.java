@@ -69,7 +69,7 @@ public class RundelhausCode extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.General))
+        if (TrySpendAffinity(Affinity.General))
         {
             if (choices.TryInitialize(this))
             {

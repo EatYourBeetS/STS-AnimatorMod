@@ -80,7 +80,7 @@ public class Hakurou extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Orange))
+        if (TrySpendAffinity(Affinity.Red) || TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
         }

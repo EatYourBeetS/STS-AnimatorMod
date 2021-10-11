@@ -22,7 +22,6 @@ public class SougenEsaka extends AnimatorCard
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Orange, 3);
     }
 
@@ -33,12 +32,12 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Red) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
+        if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
             GameUtilities.MaintainPower(Affinity.Orange);
         }
 
 
-        if (CheckAffinity(Affinity.Orange))
+        if (TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
                     .ShowEffect(true, true)

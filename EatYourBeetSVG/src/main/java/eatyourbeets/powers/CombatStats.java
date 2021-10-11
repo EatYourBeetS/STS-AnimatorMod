@@ -91,6 +91,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnSynergySubscriber> onSynergy = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnTagChangedSubscriber> onTagChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnTrySpendAffinitySubscriber> onTrySpendAffinity = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = RegisterEvent(new GameEvent<>());
 
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
@@ -501,6 +502,20 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
         }
+
+        if (card.affinities != null) {
+            Affinities.AddAffinities(card.affinities);
+        }
+    }
+
+    public static int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar)
+    {
+        for (OnTrySpendAffinitySubscriber s : onTrySpendAffinity.GetSubscribers())
+        {
+            amount = s.OnTrySpendAffinity(affinity, amount, canUseStar);
+        }
+
+        return amount;
     }
 
     public static boolean OnTryUsingCard(AbstractCard card, AbstractPlayer p, AbstractMonster m, boolean canPlay)

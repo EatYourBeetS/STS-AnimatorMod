@@ -29,7 +29,7 @@ public class Ciel extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Blue, 6);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Ciel extends AnimatorCard
             c.flash();
         });
 
-        if (CheckAffinity(Affinity.Blue) || (info.IsSynergizing && info.GetPreviousCardID().equals(Lu.DATA.ID)))
+        if (TrySpendAffinity(Affinity.Blue) || (info.IsSynergizing && info.GetPreviousCardID().equals(Lu.DATA.ID)))
         {
             if (choices.TryInitialize(this))
             {

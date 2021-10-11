@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
@@ -23,7 +22,7 @@ public abstract class AffinityToken extends AnimatorCard
 
     protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        final EYBCardData data = Register(type).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
         data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;
@@ -75,8 +74,8 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 5, 1, 4);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 2, 3, 0);
+        SetUpgrade(0, 2, 0, 0);
         InitializeAffinity(affinity, 2, 0, 0);
 
         this.affinity = affinity;
@@ -86,6 +85,10 @@ public abstract class AffinityToken extends AnimatorCard
 
         SetExhaust(true);
         SetRetainOnce(true);
+    }
+
+    public void OnUpgrade() {
+        SetRetain(true);
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount)
@@ -115,18 +118,7 @@ public abstract class AffinityToken extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        CombatStats.Affinities.BonusAffinities.Add(affinity, magicNumber);
-
-        final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(this);
-        final int level = affinities.GetLevel(affinity, false);
-        for (Affinity a : Affinity.Basic())
-        {
-            if (a != affinity && affinities.GetLevel(a, false) > level)
-            {
-                GameActions.Bottom.StackAffinityPower(affinity, 1, true);
-                GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
-                return;
-            }
-        }
+        CombatStats.Affinities.AddAffinity(affinity,magicNumber);
+        GameUtilities.MaintainPower(affinity);
     }
 }

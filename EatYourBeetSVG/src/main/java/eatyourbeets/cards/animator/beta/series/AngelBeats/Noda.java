@@ -38,7 +38,7 @@ public class Noda extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) || info.IsSynergizing)
+        if (TrySpendAffinity(Affinity.Red) || info.IsSynergizing)
         {
             GameActions.Bottom.GainForce(secondaryValue, upgraded);
             GameActions.Bottom.GainWillpower(secondaryValue, upgraded);

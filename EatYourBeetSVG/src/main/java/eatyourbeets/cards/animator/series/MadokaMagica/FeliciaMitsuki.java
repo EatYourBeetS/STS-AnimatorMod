@@ -45,7 +45,7 @@ public class FeliciaMitsuki extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CheckAffinity(Affinity.Red)) {
+        if (TrySpendAffinity(Affinity.Red)) {
             GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetFilter(GameUtilities::IsHindrance).AddCallback(cards -> {
                 if (cards.size() > 0) {
                     GameActions.Bottom.GainWillpower(secondaryValue);

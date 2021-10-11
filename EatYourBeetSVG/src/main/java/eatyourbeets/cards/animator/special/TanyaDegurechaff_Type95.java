@@ -39,7 +39,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Light) && TrySpendAffinity(Affinity.Blue))
         {
             GameActions.Bottom.PlayCard(new OrbCore_Plasma(), m);
         }

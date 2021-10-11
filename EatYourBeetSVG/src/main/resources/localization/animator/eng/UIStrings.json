@@ -258,7 +258,7 @@
 			"(Max #b{0} [Block])",
 			"Enable certain events for non-Animator characters",
 			"Enable certain relics for non-Animator characters",
-			"You are playing an unofficial, standalone version of The Animator. Trophies will not be shared between these versions."
+			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions."
 
 		]
 	},
@@ -268,7 +268,7 @@
 		"TEXT":
 		[
 			"Click this to learn more about #yAffinities.",
-			"The counter for each #yAffinity is equal to the number of cards in your hand with that #yAffinity. NL The [A-Gen] counter is equal to your highest #yAffinity counter. NL Once per turn, when a card with LV2 #yAffinity #ySynergizes, gain the power shown on the right."
+			"Whenever you play a card, the counters of each #yAffinity on the card will increase by 1. Cards that have #yAffinity requirements for their effects will decrement these counters when they activate. NL Once per turn, when a card with LV2 #yAffinity #ySynergizes, gain the power shown on the right."
 		]
 	},
 

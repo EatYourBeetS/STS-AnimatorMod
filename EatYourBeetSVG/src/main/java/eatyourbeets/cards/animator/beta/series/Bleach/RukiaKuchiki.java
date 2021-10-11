@@ -35,7 +35,7 @@ public class RukiaKuchiki extends AnimatorCard
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
-        if (CheckAffinity(Affinity.Green) || IntellectStance.IsActive())
+        if (TrySpendAffinity(Affinity.Green) || IntellectStance.IsActive())
         {
             if (player.filledOrbCount() >= secondaryValue)
             {

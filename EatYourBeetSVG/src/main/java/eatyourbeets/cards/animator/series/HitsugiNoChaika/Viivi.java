@@ -71,7 +71,7 @@ public class Viivi extends AnimatorCard
             GameActions.Bottom.Draw(1);
         }
 
-        if (CheckAffinity(Affinity.Green)) {
+        if (TrySpendAffinity(Affinity.Green)) {
             GameActions.Bottom.CreateThrowingKnives(1);
         }
     }

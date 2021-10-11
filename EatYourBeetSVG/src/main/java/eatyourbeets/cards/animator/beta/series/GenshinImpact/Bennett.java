@@ -18,7 +18,7 @@ public class Bennett extends AnimatorCard {
         SetUpgrade(2, 0, 2);
         SetAffinity_Red(1, 0 ,0);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Red, 6);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Bennett extends AnimatorCard {
         if (GameUtilities.GetHealthPercentage(player) < 0.3f || info.IsSynergizing) {
             GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
         }
-        if (!CheckAffinity(Affinity.Red)) {
+        if (!TrySpendAffinity(Affinity.Red)) {
             GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SMASH);
         }
     }

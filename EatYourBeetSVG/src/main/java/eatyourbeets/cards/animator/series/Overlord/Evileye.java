@@ -47,7 +47,7 @@ public class Evileye extends AnimatorCard
         }
         GameActions.Bottom.StackPower(new ImpairedPower(player, secondaryValue));
 
-        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+        if (TrySpendAffinity(Affinity.Blue) && TrySpendAffinity(Affinity.Dark) && info.TryActivateLimited()) {
             GameActions.Bottom.StackPower(new ImpairedPower(p, 1));
         }
     }

@@ -51,7 +51,7 @@ public class KaijiItou extends AnimatorCard
         GameActions.Bottom.MakeCardInDiscardPile(scissors).SetUpgrade(upgraded, false);
 
         GameActions.Last.Callback(() -> {
-            if (CheckAffinity(Affinity.General)) {
+            if (TrySpendAffinity(Affinity.General)) {
                 GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
                         .SetFilter(c -> c.uuid.equals(paper.uuid) || c.uuid.equals(rock.uuid) || c.uuid.equals(scissors.uuid))
                         .SetOptions(false, true)

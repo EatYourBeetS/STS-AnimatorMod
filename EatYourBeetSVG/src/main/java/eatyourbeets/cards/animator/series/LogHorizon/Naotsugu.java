@@ -25,7 +25,7 @@ public class Naotsugu extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Red, 6);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Naotsugu extends AnimatorCard
             {
                 if (c.block > 0 && c.block < maxBlock)
                 {
-                    if (ForceStance.IsActive() || CheckAffinity(Affinity.Red))
+                    if (ForceStance.IsActive() || TrySpendAffinity(Affinity.Red))
                     {
                         GameActions.Top.PlayCard(c, player.hand, (AbstractMonster) e)
                         .SetDuration(Settings.ACTION_DUR_MED, true);

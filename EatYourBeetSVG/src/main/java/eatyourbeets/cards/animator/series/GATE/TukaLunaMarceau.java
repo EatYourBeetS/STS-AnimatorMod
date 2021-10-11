@@ -35,11 +35,11 @@ public class TukaLunaMarceau extends AnimatorCard
 
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Light))
+        if (TrySpendAffinity(Affinity.Light))
         {
             GameUtilities.MaintainPower(Affinity.Light);
         }
-        if (CheckAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green))
         {
             GameUtilities.MaintainPower(Affinity.Green);
         }

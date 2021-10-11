@@ -75,16 +75,51 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                         Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);})
         ;
 
-        final Affinity[] types = Affinity.Basic();
+        final Affinity[] types = Affinity.All();
         for (int i = 0; i < types.length; i++)
         {
             rows.add(new EYBCardAffinityRow(this, types[i], i));
         }
 
-        rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
+        //rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
     }
 
-    public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)
+    public EYBCardAffinity AddAffinity(Affinity affinity, int amount)
+    {
+        return BonusAffinities.Add(affinity, amount);
+    }
+
+    public EYBCardAffinities AddAffinities(EYBCardAffinities affinities)
+    {
+        return BonusAffinities.Add(affinities, 1);
+    }
+
+    public int GetAffinityLevel(Affinity affinity, boolean addStar) {
+        int base = BonusAffinities.GetLevel(affinity, false);
+        if (addStar) {
+            base += BonusAffinities.GetLevel(Affinity.Star, false);
+        }
+        return CombatStats.OnTrySpendAffinity(affinity, base, addStar);
+    }
+
+    public boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar)
+    {
+        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar);
+        int baseAmount = GetAffinityLevel(affinity, false);
+        int starAmount = canSpendStar ? GetAffinityLevel(Affinity.Star, false) : 0;
+        if (baseAmount + starAmount >= requiredAmount) {
+            int baseDecrement = Math.min(baseAmount, requiredAmount);
+            BonusAffinities.Add(affinity, -baseDecrement);
+            requiredAmount -= baseDecrement;
+            if (requiredAmount > 0 && starAmount >= requiredAmount) {
+                BonusAffinities.Add(Affinity.Star, -requiredAmount);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public EYBCardAffinities GetCardAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)
     {
         final EYBCardAffinities affinities = new EYBCardAffinities(null);
         for (AbstractCard c : cards)
@@ -101,7 +136,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinities GetHandAffinities(AbstractCard ignored)
     {
-        return player == null ? BonusAffinities : GetAffinities(player.hand.group, ignored).Add(BonusAffinities);
+        return player == null ? BonusAffinities : GetCardAffinities(player.hand.group, ignored).Add(BonusAffinities);
     }
 
     public int GetHandAffinityLevel(Affinity affinity, AbstractCard ignored)
@@ -393,11 +428,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
         }
 
-        final EYBCardAffinities handAffinities = GetHandAffinities(hoveredCard);
+        final EYBCardAffinities previewAffinities = new EYBCardAffinities(null);
+        previewAffinities.Add(BonusAffinities);
+        if (hoveredCard != null) {
+            previewAffinities.Add(hoveredCard.affinities, 1);
+        }
         final EYBCardAffinities synergies = GetSynergies(hoveredCard, lastCardPlayed);
         for (EYBCardAffinityRow row : rows)
         {
-            row.Update(handAffinities, hoveredCard, synergies, draggingCard);
+            row.Update(previewAffinities, hoveredCard, synergies, draggingCard);
         }
 
         for (int i = 0; i < Powers.size(); i++)

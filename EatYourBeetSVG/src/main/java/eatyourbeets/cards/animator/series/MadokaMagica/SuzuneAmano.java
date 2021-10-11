@@ -63,7 +63,7 @@ public class SuzuneAmano extends AnimatorCard
         {
             if (cards != null && cards.size() > 0)
             {
-                GameActions.Bottom.ApplyBurning(CheckAffinity(Affinity.Blue) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
+                GameActions.Bottom.ApplyBurning(TrySpendAffinity(Affinity.Blue) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
             }
         });
     }

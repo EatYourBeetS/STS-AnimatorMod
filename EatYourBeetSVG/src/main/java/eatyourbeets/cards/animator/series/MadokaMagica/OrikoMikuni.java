@@ -27,7 +27,7 @@ public class OrikoMikuni extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Blue, 6);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class OrikoMikuni extends AnimatorCard
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));
         choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
 
-        if (CheckAffinity(Affinity.Blue) && info.TryActivateLimited())
+        if (TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
             choices.Select(3, m);
         }

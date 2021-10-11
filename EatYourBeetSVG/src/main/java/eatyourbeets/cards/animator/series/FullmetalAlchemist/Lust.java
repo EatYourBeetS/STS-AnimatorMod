@@ -23,7 +23,7 @@ public class Lust extends AnimatorCard
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Orange(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.Dark, 4);
+        SetAffinityRequirement(Affinity.Dark, 6);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Lust extends AnimatorCard
                 GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, magicNumber, AttackEffects.SLASH_VERTICAL);
             }
         }
-        int amount = CheckAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
+        int amount = TrySpendAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
         GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), amount);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), amount);

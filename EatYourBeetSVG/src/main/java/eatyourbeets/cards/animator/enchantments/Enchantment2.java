@@ -16,7 +16,7 @@ public class Enchantment2 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 2, 1);
     }
 
     @Override
@@ -40,15 +40,7 @@ public class Enchantment2 extends Enchantment
         if (currentAffinity == null) {
             currentAffinity = GameUtilities.GetRandomElement(Affinity.Basic());
         }
-        CombatStats.Affinities.BonusAffinities.Add(currentAffinity, magicNumber);
-    }
-
-    @Override
-    public void AtEndOfTurnEffect(boolean isPlayer) {
-        if (currentAffinity != null) {
-            CombatStats.Affinities.BonusAffinities.Add(currentAffinity, -magicNumber);
-            currentAffinity = null;
-        }
+        CombatStats.Affinities.AddAffinity(currentAffinity, magicNumber);
     }
 
     public Affinity GetAffinity()

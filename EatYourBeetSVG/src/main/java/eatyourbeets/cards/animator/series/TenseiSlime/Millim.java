@@ -60,7 +60,7 @@ public class Millim extends AnimatorCard
 
 
 
-        if (CheckAffinity(Affinity.General))
+        if (TrySpendAffinity(Affinity.General))
         {
             for (int i = 0; i < magicNumber; i++)
             {

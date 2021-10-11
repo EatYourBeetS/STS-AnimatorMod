@@ -32,7 +32,7 @@ public class MatouSakura extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light, 4);
+        SetAffinityRequirement(Affinity.Light, 6);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MatouSakura extends AnimatorCard
            }
         });
 
-        if (CheckAffinity(Affinity.Light))
+        if (TrySpendAffinity(Affinity.Light))
         {
             GameActions.Bottom.GainBlessing(secondaryValue);
         }

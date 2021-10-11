@@ -72,7 +72,7 @@ public class MadokaKaname extends AnimatorCard
             if (cards.size() > 0)
             {
                 GameActions.Bottom.HealPlayerLimited(this, HEAL_AMOUNT * cards.size());
-                if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+                if (TrySpendAffinity(Affinity.Light) && TrySpendAffinity(Affinity.Dark) && info.TryActivateLimited()) {
                     GameActions.Bottom.GainSupportDamage(HEAL_AMOUNT * cards.size());
                 }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));

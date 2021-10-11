@@ -59,7 +59,7 @@ public class AcuraTooru extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (CheckAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.GainBlock(magicNumber);
             GameActions.Bottom.GainAgility(1);

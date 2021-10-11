@@ -18,7 +18,7 @@ import eatyourbeets.utilities.GameEffects;
 public class AffinityToken_General extends AffinityToken implements OnAddToDeckListener
 {
     public static final EYBCardData DATA = Register(AffinityToken_General.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .PostInitialize(data ->
             {

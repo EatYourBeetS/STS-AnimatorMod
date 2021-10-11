@@ -61,10 +61,10 @@ public class Verdia extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
-        if (CheckAffinity(Affinity.Red)) {
+        if (TrySpendAffinity(Affinity.Red)) {
             GameActions.Bottom.IncreaseScaling(this, Affinity.Red, 1);
         }
-        if (CheckAffinity(Affinity.Dark)) {
+        if (TrySpendAffinity(Affinity.Dark)) {
             GameActions.Bottom.IncreaseScaling(this, Affinity.Dark, 1);
         }
     }

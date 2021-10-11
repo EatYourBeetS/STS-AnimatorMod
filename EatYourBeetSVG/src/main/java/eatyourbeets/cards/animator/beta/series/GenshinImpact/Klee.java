@@ -25,7 +25,7 @@ public class Klee extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Red, 6);
 
         SetExhaust(true);
     }
@@ -39,7 +39,7 @@ public class Klee extends AnimatorCard
         GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Vulnerable, magicNumber);
 
         int cardCount = secondaryValue;
-        if (CheckAffinity(Affinity.Red)) {
+        if (TrySpendAffinity(Affinity.Red)) {
             cardCount += 1;
         }
         if (GameUtilities.GetOrbCount(Fire.ORB_ID) >= 3) {

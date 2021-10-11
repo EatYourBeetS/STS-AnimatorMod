@@ -54,6 +54,8 @@ public class CardTooltips
 
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
+    public EYBCardTooltip GuardStance = FindByID("Guard Stance");
+    public EYBCardTooltip OrbStance = FindByID("Orb Stance");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");

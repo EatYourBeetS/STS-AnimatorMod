@@ -35,6 +35,10 @@ public abstract class EYBStance extends AbstractStance
     public static void Initialize()
     {
         stances.clear();
+        stances.put(GuardStance.STANCE_ID, GuardStance::new);
+        stances.put(OrbStance.STANCE_ID, OrbStance::new);
+
+        //legacy
         stances.put(ForceStance.STANCE_ID, ForceStance::new);
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
@@ -43,6 +47,10 @@ public abstract class EYBStance extends AbstractStance
         stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
 
         tooltips.clear();
+        tooltips.put(GuardStance.STANCE_ID, GR.Tooltips.GuardStance);
+        tooltips.put(OrbStance.STANCE_ID, GR.Tooltips.OrbStance);
+
+        //legacy
         tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
         tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
         tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
@@ -75,6 +83,17 @@ public abstract class EYBStance extends AbstractStance
     protected abstract Color GetAuraColor();
     protected abstract Color GetParticleColor();
     protected abstract Color GetMainColor();
+
+    protected EYBStance(String id, AbstractCreature owner)
+    {
+        this.ID = id;
+        this.strings = GR.GetStanceString(id);
+        this.name = strings.NAME;
+        this.owner = owner;
+        this.affinity = null;
+
+        updateDescription();
+    }
 
     protected EYBStance(String id, Affinity affinity, AbstractCreature owner)
     {
@@ -128,6 +147,11 @@ public abstract class EYBStance extends AbstractStance
         sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
         GameEffects.Queue.Add(new BorderFlashEffect(GetMainColor(), true));
 
+        if (affinity == null)
+        {
+            return;
+        }
+
         if (TryApplyStance(ID))
         {
             for (Affinity af : Affinity.Basic()) {
@@ -148,6 +172,11 @@ public abstract class EYBStance extends AbstractStance
 
         this.stopIdleSfx();
 
+        if (affinity == null)
+        {
+            return;
+        }
+
         if (TryApplyStance(null))
         {
             for (Affinity af : Affinity.Basic()) {
@@ -163,6 +192,11 @@ public abstract class EYBStance extends AbstractStance
 
     public void onRefreshStance()
     {
+        if (affinity == null)
+        {
+            return;
+        }
+
         GameActions.Bottom.StackAffinityPower(affinity, 1, true);
     }
 

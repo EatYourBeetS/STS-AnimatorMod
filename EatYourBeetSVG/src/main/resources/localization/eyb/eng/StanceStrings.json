@@ -1,5 +1,21 @@
 
 {
+	"eyb:GuardStance":
+	{
+		"NAME": "Guard Stance",
+		"DESCRIPTION":
+		[
+			"Start of Turn: You gain 10 Block.  ALL enemies gain 15 Block."
+		]
+	},
+	"eyb:OrbStance":
+	{
+		"NAME": "Orb Stance",
+		"DESCRIPTION":
+		[
+			"+3 [Focus], -3 [Strength] and -3 [Dexterity] while in this stance."
+		]
+	},
 	"eyb:ForceStance":
 	{
 		"NAME": "Force Stance",

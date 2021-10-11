@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.card.PermanentUpgradeEffect;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.stances.OrbStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,6 +40,7 @@ public class Kaijin extends AnimatorCard implements OnAddToDeckListener
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.ChangeStance(OrbStance.STANCE_ID); //LZLZLZ test
         GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
     }
 

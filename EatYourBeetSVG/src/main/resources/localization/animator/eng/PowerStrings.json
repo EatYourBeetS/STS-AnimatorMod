@@ -265,6 +265,11 @@
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
 		"NAME": "Rory Mercury"
 	},
+	"animator:SelfImmolationPower":
+	{
+	  "DESCRIPTIONS": ["For the next #b", " turns, give #yDelayed #yDamage to ALL characters whenever you gain Block."],
+	  "NAME": "Self-Immolation"
+	},
 	"animator:ShikizakiKikiPower":
 	{
 		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b{0} #yAttack(s). Gain #yForce equal to their cost."],

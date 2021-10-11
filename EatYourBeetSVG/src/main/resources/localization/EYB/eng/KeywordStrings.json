@@ -330,6 +330,12 @@
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
 	},
+	"Vigor":
+	{
+		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
+		"NAMES": ["vigor"],
+		"PROPER_NAME": "Vigor"
+	},
 	"~Damage":
 	{
 		"DESCRIPTION": "-",

@@ -230,14 +230,19 @@ public class VFX
         return new ShootingStarsEffect(source.cX, source.cY).SetSpread(0, spreadY).FlipHorizontally(FlipHorizontally());
     }
 
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source)
+    public static ExplosionSmallEffect2 SmallExplosion(Hitbox source)
     {
-        return new ExplosionSmallEffect(source.cX, source.cY);
+        return SmallExplosion(source.cX, source.cY);
     }
 
-    public static ExplosionSmallEffect SmallExplosion(Hitbox source, float variance)
+    public static ExplosionSmallEffect2 SmallExplosion(float cX, float cY)
     {
-        return new ExplosionSmallEffect(RandomX(source, variance), RandomY(source, variance));
+        return new ExplosionSmallEffect2(cX, cY);
+    }
+
+    public static ExplosionSmallEffect2 SmallExplosion(Hitbox source, float variance)
+    {
+        return new ExplosionSmallEffect2(RandomX(source, variance), RandomY(source, variance));
     }
 
     public static SmallLaserEffect2 SmallLaser(Hitbox source, Hitbox target, Color color)

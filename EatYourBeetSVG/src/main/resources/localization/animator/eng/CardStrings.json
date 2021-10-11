@@ -341,6 +341,11 @@
 			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
 			"NAME": "Nao Tomori"
 		},
+		"animator:SearingBurn":
+		{
+			"DESCRIPTION": "On Exhaust: ** ALL characters take !M! damage and gain !S! [Burning].",
+			"NAME": "Searing Burn"
+		},
 		"animator:Senku":
 		{
 			"DESCRIPTION": "Invent an effect for this card (!S! left).",
@@ -467,6 +472,173 @@
 		{
 			"DESCRIPTION": "Take !S! [Delayed Damage]. || If this kills an enemy: Evoke !M! orbs, then fill your orb slots with [Frost].",
 			"NAME": "Zadkiel"
+		}
+	},
+	"BETA:GENSHINIMPACT":
+	{
+		"animator:Amber":
+		{
+			"DESCRIPTION": "<ST>: Gain [A] ** and Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
+			"NAME": "Amber"
+		},
+		"animator:AyakaKamisato":
+		{
+			"DESCRIPTION": "For !M! turns, when you gain [Block]: You and a random enemy take that much [Delayed Damage]. || <LIM>. !S! [Delayed Damage] or !A! <B>: ** Play {Frost Core}.",
+			"NAME": "Ayaka Kamisato"
+		},
+		"animator:BarbaraPegg":
+		{
+			"DESCRIPTION": "Gain|Boost [B]. || <SLM>. !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
+			"NAME": "Barbara Pegg"
+		},
+		"animator:Bennett":
+        {
+        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: ** Take !S! [Delayed Damage].",
+        	"NAME": "Bennett"
+        },
+		"animator:Curse_Delusion":
+		{
+			"DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || On Exhaust: Play {<G> Token}+.",
+			"NAME": "Delusion"
+		},
+		"animator:Dainsleif":
+		{
+			"DESCRIPTION": "At the start of combat: Gain {Phase of the Abyssal Moon}. Play this card whenever it is triggered. || Channel !M! [Chaos]. Add either {Aether} or {Lumine} to your draw pile. ** !A! <W>. Add both.",
+			"NAME": "Dainsleif"
+		},
+		"animator:Fischl":
+		{
+			"DESCRIPTION": "Gain|Boost !M! [C]. Randomly Channel [Lightning] or [Dark]. || <LIM>. Synergy: Add {Oz} to your Discard Pile.",
+			"NAME": "Fischl"
+		},
+		"animator:Ganyu":
+		{
+			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. On Exhaust, Channel !M! [Frost].",
+			"NAME": "Ganyu"
+		},
+		"animator:HuTao":
+		{
+			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. For each: Gain [E] and Obtain {Searing Burn}. || On Exhaust: Add !S! {Searing Burn} to your hand.",
+			"NAME": "Hu Tao"
+		},
+		"animator:JeanGunnhildr":
+		{
+			"DESCRIPTION": "Discard up to !M! card(s). For each: Remove 1 of your leftmost [Weak], [Vulnerable], or [Frail]. || <SLM>. On Discard, gain [A].",
+			"NAME": "Jean Gunnhildr"
+		},
+		"animator:JumpyDumpty":
+		{
+			"DESCRIPTION": "Apply !M! [Burning]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Burning] and add a copy of this card to your Draw Pile.",
+			"NAME": "Jumpy Dumpty"
+		},
+		"animator:KaeyaAlberich":
+		{
+			"DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies.",
+			"NAME": "Kaeya Alberich",
+			"UPGRADE_DESCRIPTION": "{Channel} 1 [Frost]. Trigger your first Orb and your first {Common Orb}. || <SLM>. Synergy: Apply !M! [Shackles] to ALL enemies."
+		},
+		"animator:Kazuha":
+		{
+			"DESCRIPTION": "Take half your current HP as [Delayed Damage]. Next turn: Single-target attacks target ALL enemies. AOE attacks attack twice if there is only one enemy.",
+			"NAME": "Kazuha Kaedehara"
+		},
+		"animator:Kazuha2":
+		{
+			"DESCRIPTION": "Take damage equal to half of your current [HP]. For !M! turns: Take control of a non-Boss enemy.",
+			"NAME": "Kazuha Kaedehara"
+		},
+		"animator:Keqing":
+		{
+			"DESCRIPTION": "Cooldown !S!: Moves to your draw pile. Progress Cooldown by 1 upon Evoking [Lightning] or [Aether]. || Motivate and give {~Haste} to this card and a random card in your discard pile.",
+			"NAME": "Keqing"
+		},
+		"animator:Klee":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** 3 [Fire] and/or !A! <R>: Add 1 more.",
+			"NAME": "Klee"
+		},
+		"animator:KokomiSangonomiya":
+		{
+			"DESCRIPTION": "[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water] with +!M! [Focus].",
+			"NAME": "Kokomi Sangonomiya"
+		},
+		"animator:LisaMinci":
+		{
+			"DESCRIPTION": "{Scry} !M! cards. Activate these effects once if any Scried ** card's cost is: || 0 or None: Gain|Boost !S! [I] ** 1 or X: Gain !S! [Energized]. ** 2+: Channel [Lightning]",
+			"NAME": "Lisa Minci"
+		},
+		"animator:Noelle":
+		{
+			"DESCRIPTION": "<ST>: Trigger your ** first [Earth]. Otherwise, ** Channel 1 [Earth]. || Synergy: Retain 1 ** <L> or <R> card.",
+			"NAME": "Noelle"
+		},
+		"animator:Oz":
+		{
+			"DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> or <D> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
+			"EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 #yBlue or LV.2 #yDark card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 #yBlue and LV.2 #yDark card(s)."],
+			"NAME": "Oz"
+		},
+		"animator:RaidenEi":
+		{
+			"DESCRIPTION": "Set your HP to [C] times !S!. You cannot no longer die from damage. || Die at the end of your !M!th turn (This effect cannot be prevented).",
+			"NAME": "Raiden Ei"
+		},
+		"animator:Sayu":
+		{
+			"DESCRIPTION": "At the start of your next !M! turns: Create !S! random cards in your hand. || Synergy: Imitate this and add it to your discard pile.",
+			"NAME": "Sayu"
+		},
+		"animator:Tartaglia":
+		{
+			"DESCRIPTION": "Deal !M! more damage for each stack of [Burning] on any character, then remove [Burning] from ALL characters. || <LIM>. If Fatal: Enter <FS> and add {Delusion} to your draw pile.",
+			"NAME": "Tartaglia"
+		},
+		"animator:Traveler_Aether":
+		{
+		    "DESCRIPTION": "Channel !S! [Aether]. Apply !M! [Burning] and [Freezing].",
+		    "NAME": "Aether"
+		},
+		"animator:Traveler_Lumine":
+        {
+        	"DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, Evoke (or Trigger if it is [Plasma]) the last !M! Orbs Evoked this combat. || Synergy with <D>: Gain [I] equal to <D> + !S!.",
+        	"NAME": "Lumine",
+        	"UPGRADE_DESCRIPTION": "Add !S! {Abyssal Void} and !S! {Wish} to your draw pile. Next turn, Evoke (or Trigger if it is [Plasma]) ALL Orbs Evoked this combat. || Synergy with <D>: Gain [I] equal to <D> + !S!."
+        },
+		"animator:Traveler_Wish":
+        {
+        	"DESCRIPTION": "Gain|Boost [B]. || At the end of your next 2 turns: Apply !M! [Elemental Exposure] to ALL enemies. Increase this amount by !S! whenever you {Channel} or {Evoke} an Orb.",
+        	"NAME": "Wish"
+        },
+		"animator:Venti":
+		{
+			"DESCRIPTION": "{Channel} 1 [Aether]. || Cycle !M! cards. For each one: Gain !S! [Support Damage] if it was a Attack or {Hindrance}. Otherwise, trigger your first [Aether].",
+			"NAME": "Venti"
+		},
+		"animator:Xiangling":
+		{
+			"DESCRIPTION": "Whenever this hits an enemy with [Burning] or [Vulnerable], shuffle Guoba into your draw pile. || {Synergy}: Gain !M! [Temp. HP]",
+			"NAME": "Venti"
+		},
+		"animator:Xiangling_Guoba":
+		{
+			"DESCRIPTION": "At the end of your next !M! turns: Apply !S! [Burning] to ALL enemies. Afterwards, increase the damage bonus of Burning by 5% this combat.",
+			"NAME": "Venti"
+		},
+		"animator:Xingqiu":
+		{
+			"DESCRIPTION": "Trigger all [Water]. Whenever you play an attack, deal !M! damage to its target. Double this damage if the target has [Burning].",
+			"NAME": "Xingqiu"
+		},
+		"animator:Yoimiya":
+		{
+			"DESCRIPTION": "<ST>: Increase number of hits by 1. || Obtain [T-Knife] for each unblocked hit. <LIM> If you have [Burning]: Play {Blazing Heat}.",
+			"NAME": "Yoimiya"
+		},
+		"animator:Zhongli":
+		{
+			"DESCRIPTION": "When you Evoke [Earth]: Gain !S! [Block]. || Once per turn, pay [E]: Trigger your first 3 [Earth].",
+		  	"EXTENDED_DESCRIPTION": ["Pay [E] to trigger your first #b3 [Earth] || When you #yEvoke [Earth]: Gain #b{0} [Block]."],
+			"NAME": "Zhongli"
 		}
 	},
 	"BETA:REWRITE":
@@ -980,6 +1152,11 @@
 		{
 			"DESCRIPTION": "Unplayable. ** When drawn: Add ** a Dazed to your ** draw pile.",
 			"NAME": "Dizziness"
+		},
+		"animator:Curse_Eclipse":
+		{
+			"DESCRIPTION": "Unplayable. ** When drawn: Take !M! [Delayed Damage]. When you gain [Block] this turn, you and a random enemy take that much [Delayed Damage].",
+			"NAME": "Eclipse"
 		},
 		"animator:Curse_Greed":
 		{

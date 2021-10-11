@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.base.EYBCardTooltip;
@@ -83,6 +84,7 @@ public class CardTooltips
     public EYBCardTooltip Thorns = FindByID("Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Malleable = FindByID("Malleable");
+    public EYBCardTooltip Vigor = FindByID("Vigor");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
     public EYBCardTooltip Blur = FindByID("Blur");
     public EYBCardTooltip Artifact = FindByID("Artifact");
@@ -232,6 +234,7 @@ public class CardTooltips
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Malleable, new MalleablePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Vigor, new VigorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));

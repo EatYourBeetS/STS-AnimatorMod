@@ -240,12 +240,17 @@ public class AnimatorCardSlot
 
         public EYBCard GetCard(boolean forceRefresh)
         {
-            if (card == null || forceRefresh)
+            if (data != null && (card == null || forceRefresh))
             {
-                card = (EYBCard) CardLibrary.getCard(data.ID).makeCopy();
-                if (data.IsNotSeen())
-                {
-                    card.isSeen = false;
+                try {
+                    card = (EYBCard) CardLibrary.getCard(data.ID).makeCopy();
+                    if (data.IsNotSeen())
+                    {
+                        card.isSeen = false;
+                    }
+                }
+                catch (NullPointerException e) {
+                    return null;
                 }
             }
 

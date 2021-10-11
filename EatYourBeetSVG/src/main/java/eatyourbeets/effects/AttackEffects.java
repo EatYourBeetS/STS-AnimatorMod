@@ -40,6 +40,7 @@ public class AttackEffects
     public static final AttackEffect LIGHTNING = AttackEffect.LIGHTNING;
     // Custom:
 //   public static final AttackEffect FIRE_EXPLOSION = GR.Enums.AttackEffect.FIRE_EXPLOSION;
+    public static final AttackEffect SMALL_EXPLOSION = GR.Enums.AttackEffect.SMALL_EXPLOSION;
     public static final AttackEffect DARKNESS = GR.Enums.AttackEffect.DARKNESS;
     public static final AttackEffect PSYCHOKINESIS = GR.Enums.AttackEffect.PSYCHOKINESIS;
     public static final AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
@@ -144,6 +145,11 @@ public class AttackEffects
 //              .SetVFX(VFX::FireBurst)
 //              .SetSFX(SFX.ATTACK_FLAME_BARRIER)
 //              .SetDamageTint(Color.SCARLET);
+
+        Add(magic, SMALL_EXPLOSION)
+                .SetVFX(VFX::SmallExplosion)
+                .SetSFX(SFX.ATTACK_FLAME_BARRIER)
+                .SetDamageTint(Color.SCARLET);
 
         Add(magic, POISON, ImageMaster.ATK_POISON)
                 .SetSFX(SFX.ATTACK_POISON, SFX.ATTACK_POISON2)

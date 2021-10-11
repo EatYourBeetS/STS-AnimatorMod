@@ -294,6 +294,7 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_RozenMaiden(), 7);
         add.Invoke(new Loadout_Bleach(), 7);
         add.Invoke(new Loadout_DateALive(), 7);
+        add.Invoke(new Loadout_GenshinImpact(), 7);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

@@ -104,16 +104,16 @@ public class CommonResources extends AbstractResources
 
         AddPowerTooltip("[F]", "FireLevel", new FireLevelPower());
         AddPowerTooltip("[A]", "AirLevel", new AirLevelPower());
-        AddPowerTooltip("[M]", "MindLevel", new EarthLevelPower());
+        AddPowerTooltip("[M]", "MindLevel", new MindLevelPower());
         AddPowerTooltip("[E]", "EarthLevel", new EarthLevelPower());
         AddPowerTooltip("[L]", "LightLevel", new LightLevelPower());
         AddPowerTooltip("[D]", "DarkLevel", new DarkLevelPower());
         AddPowerTooltip("[W]", "WaterLevel", new WaterLevelPower());
-        AddPowerTooltip("[P]", "PoisonLevel", new DarkLevelPower());
-        AddPowerTooltip("[S]", "SteelLevel", new WaterLevelPower());
-        AddPowerTooltip("[T]", "ThunderLevel", new WaterLevelPower());
-        AddPowerTooltip("[N]", "NatureLevel", new WaterLevelPower());
-        AddPowerTooltip("[C]", "CyberLevel", new WaterLevelPower());
+        AddPowerTooltip("[P]", "PoisonLevel", new PoisonLevelPower());
+        AddPowerTooltip("[S]", "SteelLevel", new SteelLevelPower());
+        AddPowerTooltip("[T]", "ThunderLevel", new ThunderLevelPower());
+        AddPowerTooltip("[N]", "NatureLevel", new NatureLevelPower());
+        AddPowerTooltip("[C]", "CyberLevel", new CyberLevelPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);

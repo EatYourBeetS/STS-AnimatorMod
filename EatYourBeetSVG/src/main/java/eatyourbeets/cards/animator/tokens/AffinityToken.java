@@ -46,12 +46,19 @@ public abstract class AffinityToken extends AnimatorCard
     {
         switch (affinity)
         {
-            case Fire: return AffinityToken_Red.DATA;
-            case Air: return AffinityToken_Green.DATA;
-            case Water: return AffinityToken_Blue.DATA;
-            case Earth: return AffinityToken_Orange.DATA;
+            //Will deprecate
+            case Fire: return AffinityToken_Fire.DATA;
+            case Air: return AffinityToken_Air.DATA;
+            case Mind: return AffinityToken_Water.DATA;
+            case Earth: return AffinityToken_Earth.DATA;
             case Light: return AffinityToken_Light.DATA;
             case Dark: return AffinityToken_Dark.DATA;
+            case Water: return AffinityToken_Water.DATA;
+            case Poison: return AffinityToken_Fire.DATA;
+            case Steel: return AffinityToken_Air.DATA;
+            case Thunder: return AffinityToken_Earth.DATA;
+            case Nature: return AffinityToken_Light.DATA;
+            case Cyber: return AffinityToken_Dark.DATA;
             //case Star: return AffinityToken_Star.DATA;
 
             default:

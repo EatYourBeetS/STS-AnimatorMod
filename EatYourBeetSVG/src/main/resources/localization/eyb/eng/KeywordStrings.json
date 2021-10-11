@@ -2,7 +2,7 @@
 {
 	"Affinity":
 	{
-		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Fire], [A-Air], [A-Mind], [A-Earth], [A-Light], [A-Dark]. NL [A-Water], [A-Poison], [A-Steel], [A-Thunder], [A-Nature], [A-Cyber]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity"
 	},
@@ -14,7 +14,7 @@
 	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C]",
+		"DESCRIPTION": "[A-Fire] -> [F], [A-Air] -> [A], [A-Mind] -> [M], [A-Earth] -> [E], [A-Light] -> [L], [A-Dark] -> [D], NL [A-Water] -> [W], [A-Poison] -> [P], [A-Steel] -> [S], [A-Thunder] -> [T], [A-Nature] -> [N], [A-Cyber] -> [C]",
 		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
@@ -44,14 +44,14 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain [Vitality].",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [L], gain [Vitality].",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
 	"Blessing Stance":
 	{
-	  "DESCRIPTION": "Stance: [B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B].",
-	  "NAMES": ["[b] stance", "blessing stance"],
+	  "DESCRIPTION": "Stance: [L] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [L].",
+	  "NAMES": ["[L] stance", "blessing stance"],
 	  "PROPER_NAME": "Blessing Stance"
 	},
 	"Blinded":
@@ -122,8 +122,8 @@
 	},
 	"Corruption Stance":
 	{
-	  "DESCRIPTION": "Stance: [C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C].",
-	  "NAMES": ["[c] stance", "corruption stance"],
+	  "DESCRIPTION": "Stance: [D] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [D].",
+	  "NAMES": ["[D] stance", "corruption stance"],
 	  "PROPER_NAME": "Corruption Stance"
 	},
 	"Counter-Attack":
@@ -302,14 +302,14 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain [Focus].",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Focus].",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "Stance: [I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
-		"NAMES": ["[i] stance", "intellect stance"],
+		"DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
+		"NAMES": ["[W] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
 	"Juggernaut":
@@ -488,14 +488,14 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Endurance].",
+	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [E], gain [Endurance].",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},
 	"Willpower Stance":
 	{
-	  "DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
-	  "NAMES": ["[w] stance", "willpower stance"],
+	  "DESCRIPTION": "Stance: [E] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [E].",
+	  "NAMES": ["[E] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},
 	"Vigor":

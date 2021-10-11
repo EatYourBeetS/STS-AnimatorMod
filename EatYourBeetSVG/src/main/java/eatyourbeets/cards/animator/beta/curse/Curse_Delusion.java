@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.animator.tokens.AffinityToken_Green;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Air;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
@@ -32,7 +32,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super.triggerOnExhaust();
 
-        AffinityToken_Green token = new AffinityToken_Green();
+        AffinityToken_Air token = new AffinityToken_Air();
         token.upgrade();
         GameActions.Bottom.PlayCard(token, null);
     }

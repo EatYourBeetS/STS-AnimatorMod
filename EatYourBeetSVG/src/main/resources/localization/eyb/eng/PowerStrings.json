@@ -157,7 +157,7 @@
 	},
 	"eyb:MindLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
 		"NAME": "Mind Level"
 	},
 	"eyb:EarthLevelPower":
@@ -167,12 +167,12 @@
 	},
 	"eyb:LightLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [B]: Gain #b{1} [Supercharged]."],
+		"DESCRIPTIONS": ["At #b{0} [L]: Gain #b{1} [Supercharged]."],
 		"NAME": "Light Level"
 	},
 	"eyb:DarkLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Desecration]."],
+		"DESCRIPTIONS": ["At #b{0} [D]: Gain #b{1} [Desecration]."],
 		"NAME": "Dark Level"
 	},
 	"eyb:WaterLevelPower":
@@ -182,27 +182,27 @@
 	},
 	"eyb:PoisonLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength]."],
+		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Strength]."],
 		"NAME": "Poison Level"
 	},
 	"eyb:SteelLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [A]: Gain #b{1} [Dexterity]."],
+		"DESCRIPTIONS": ["At #b{0} [S]: Gain #b{1} [Dexterity]."],
 		"NAME": "Steel Level"
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["At #b{0} [N]: Gain #b{1} [Endurance]."],
 		"NAME": "Nature Level"
 	},
 	"eyb:CyberLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [B]: Gain #b{1} [Supercharged]."],
+		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Supercharged]."],
 		"NAME": "Cyber Level"
 	}
 }

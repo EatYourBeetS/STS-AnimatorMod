@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.cards.animator.special.OrbCore_Frost;
-import eatyourbeets.cards.animator.tokens.AffinityToken_Blue;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Water;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -116,7 +116,7 @@ public class ShidoItsuka extends AnimatorCard
         for (AbstractCard c : CardLibrary.getAllCards())
         {
             // Certain special cards are allowed
-            if (c instanceof SheerCold || c instanceof OrbCore_Frost || c instanceof AffinityToken_Blue) {
+            if (c instanceof SheerCold || c instanceof OrbCore_Frost || c instanceof AffinityToken_Water) {
                 otherSynergicCards.add(c);
             }
 

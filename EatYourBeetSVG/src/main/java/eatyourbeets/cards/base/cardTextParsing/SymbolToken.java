@@ -19,13 +19,19 @@ public class SymbolToken extends CTToken
     {
 //        tokenCache.put("R", new SymbolToken("[R]"));
 //        tokenCache.put("G", new SymbolToken("[G]"));
-        tokenCache.put("E", new SymbolToken("[E]")); // Energy
-        tokenCache.put("F", new SymbolToken("[F]")); // Force
-        tokenCache.put("A", new SymbolToken("[A]")); // Agility
-        tokenCache.put("I", new SymbolToken("[I]")); // Intellect
-        tokenCache.put("W", new SymbolToken("[W]")); // Willpower
-        tokenCache.put("B", new SymbolToken("[B]")); // Blessing
-        tokenCache.put("C", new SymbolToken("[C]")); // Corruption
+        tokenCache.put("EN", new SymbolToken("[EN]")); // Energy
+        tokenCache.put("F", new SymbolToken("[F]")); // Fire
+        tokenCache.put("A", new SymbolToken("[A]")); // Air
+        tokenCache.put("M", new SymbolToken("[M]")); // Mind
+        tokenCache.put("E", new SymbolToken("[E]")); // Earth
+        tokenCache.put("L", new SymbolToken("[L]")); // Light
+        tokenCache.put("D", new SymbolToken("[D]")); // Dark
+        tokenCache.put("W", new SymbolToken("[W]")); // Water
+        tokenCache.put("P", new SymbolToken("[P]")); // Poison
+        tokenCache.put("S", new SymbolToken("[S]")); // Steel
+        tokenCache.put("T", new SymbolToken("[T]")); // Thunder
+        tokenCache.put("N", new SymbolToken("[N]")); // Nature
+        tokenCache.put("C", new SymbolToken("[C]")); // Cyber
     }
 
     private SymbolToken(String text)

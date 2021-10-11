@@ -27,7 +27,7 @@ public class CardTooltips
     protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
 
-    public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
+    public EYBCardTooltip Energy = FindByName("[EN]").ShowText(false);
     public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Channel = FindByID("Channel").ShowText(false);
@@ -194,12 +194,18 @@ public class CardTooltips
 
     public CardTooltips()
     {
-        RegisterID("A-Red", Affinity_Fire);
-        RegisterID("A-Green", Affinity_Air);
-        RegisterID("A-Blue", Affinity_Water);
-        RegisterID("A-Orange", Affinity_Earth);
+        RegisterID("A-Fire", Affinity_Fire);
+        RegisterID("A-Air", Affinity_Air);
+        RegisterID("A-Mind", Affinity_Mind);
+        RegisterID("A-Earth", Affinity_Earth);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
+        RegisterID("A-Water", Affinity_Water);
+        RegisterID("A-Poison", Affinity_Poison);
+        RegisterID("A-Steel", Affinity_Steel);
+        RegisterID("A-Thunder", Affinity_Thunder);
+        RegisterID("A-Nature", Affinity_Nature);
+        RegisterID("A-Cyber", Affinity_Cyber);
         RegisterID("A-Star", Affinity_Star);
         RegisterID("A-Gen", Affinity_General);
 
@@ -242,10 +248,16 @@ public class CardTooltips
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
         Affinity_Fire.SetIcon(affinities.Fire.Texture(), 8);
         Affinity_Air.SetIcon(affinities.Air.Texture(), 8);
-        Affinity_Water.SetIcon(affinities.Water.Texture(), 8);
+        Affinity_Mind.SetIcon(affinities.Mind.Texture(), 8);
         Affinity_Earth.SetIcon(affinities.Earth.Texture(), 8);
         Affinity_Light.SetIcon(affinities.Light.Texture(), 8);
         Affinity_Dark.SetIcon(affinities.Dark.Texture(), 8);
+        Affinity_Water.SetIcon(affinities.Water.Texture(), 8);
+        Affinity_Poison.SetIcon(affinities.Poison.Texture(), 8);
+        Affinity_Steel.SetIcon(affinities.Steel.Texture(), 8);
+        Affinity_Thunder.SetIcon(affinities.Thunder.Texture(), 8);
+        Affinity_Nature.SetIcon(affinities.Nature.Texture(), 8);
+        Affinity_Cyber.SetIcon(affinities.Cyber.Texture(), 8);
         Affinity_Star.SetIcon(affinities.Star.Texture(), 8);
         Affinity_General.SetIcon(affinities.General.Texture(), 8);
         Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;

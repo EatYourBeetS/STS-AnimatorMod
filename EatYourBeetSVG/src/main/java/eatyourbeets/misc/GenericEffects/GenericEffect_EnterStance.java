@@ -29,10 +29,16 @@ public class GenericEffect_EnterStance extends GenericEffect
         String text = tooltip.title
         .replace(GR.Tooltips.AirLevel.title, "[A]")
         .replace(GR.Tooltips.FireLevel.title, "[F]")
-        .replace(GR.Tooltips.WaterLevel.title, "[I]")
-        .replace(GR.Tooltips.EarthLevel.title, "[W]")
-        .replace(GR.Tooltips.LightLevel.title, "[B]")
-        .replace(GR.Tooltips.DarkLevel.title, "[C]");
+        .replace(GR.Tooltips.MindLevel.title, "[M]")
+        .replace(GR.Tooltips.EarthLevel.title, "[E]")
+        .replace(GR.Tooltips.LightLevel.title, "[L]")
+        .replace(GR.Tooltips.DarkLevel.title, "[D]")
+        .replace(GR.Tooltips.WaterLevel.title, "[W]")
+        .replace(GR.Tooltips.PoisonLevel.title, "[P]")
+        .replace(GR.Tooltips.SteelLevel.title, "[S]")
+        .replace(GR.Tooltips.ThunderLevel.title, "[T]")
+        .replace(GR.Tooltips.NatureLevel.title, "[N]")
+        .replace(GR.Tooltips.CyberLevel.title, "[C]");
 
         return GR.Animator.Strings.Actions.EnterStance("{" + text + "}", true);
     }

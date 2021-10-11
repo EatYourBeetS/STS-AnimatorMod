@@ -98,7 +98,7 @@
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [B]."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [D]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
@@ -284,7 +284,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [W].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

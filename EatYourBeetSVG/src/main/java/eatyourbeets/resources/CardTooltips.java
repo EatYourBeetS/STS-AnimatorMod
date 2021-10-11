@@ -215,19 +215,6 @@ public class CardTooltips
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
-
-        RegisterID("FireLevelPower", FireLevel);
-        RegisterID("AirLevelPower", AirLevel);
-        RegisterID("MindLevelPower", MindLevel);
-        RegisterID("EarthLevelPower", EarthLevel);
-        RegisterID("LightLevelPower", LightLevel);
-        RegisterID("DarkLevelPower", DarkLevel);
-        RegisterID("WaterLevelPower", WaterLevel);
-        RegisterID("PoisonLevelPower", PoisonLevel);
-        RegisterID("SteelLevelPower", SteelLevel);
-        RegisterID("ThunderLevelPower", ThunderLevel);
-        RegisterID("NatureLevelPower", NatureLevel);
-        RegisterID("CyberLevelPower", CyberLevel);
     }
 
     public void InitializeIcons()

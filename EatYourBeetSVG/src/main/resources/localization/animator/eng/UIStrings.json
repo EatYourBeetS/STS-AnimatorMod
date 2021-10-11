@@ -268,7 +268,7 @@
 		"TEXT":
 		[
 			"Click this to learn more about #yAffinities.",
-			"The counter for each #yAffinity is equal to the number of cards in your hand with that #yAffinity. NL The [A-Gen] counter is equal to your highest #yAffinity counter. NL Once per turn, when a card with LV2 #yAffinity #ySynergizes, gain the power shown on the right."
+			"Whenever you play a card with one or more #yAffinities, gain 1 of ALL #yAffinities displayed on top of the card. NL If the card is LV2 (i.e. the affinity icon is swirling) gain 2 of that #yAffinity."
 		]
 	},
 

@@ -271,7 +271,7 @@ public abstract class AbstractAffinityPower extends CommonPower
                     continue;
                 }
                 foundIcon = false;
-                EYBCardTooltip tooltip = CardTooltips.FindByID(JUtils.InvokeBuilder(builder));
+                EYBCardTooltip tooltip = CardTooltips.FindByName("["+JUtils.InvokeBuilder(builder)+"]");
                 if (tooltip != null) {
                     tooltips.add(tooltip);
                 }

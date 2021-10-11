@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnElementBonusSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAffinityBonusSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -55,7 +55,7 @@ public class Biyorigo extends AnimatorCard
         GameActions.Bottom.StackPower(new BiyorigoPower(p, magicNumber));
     }
 
-    public static class BiyorigoPower extends AnimatorClickablePower implements OnElementBonusSubscriber
+    public static class BiyorigoPower extends AnimatorClickablePower implements OnAffinityBonusSubscriber
     {
         public static final int MAX_METALLICIZE = 4;
 
@@ -73,7 +73,7 @@ public class Biyorigo extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.onElementBonus.Subscribe(this);
+            CombatStats.onAffinityBonus.Subscribe(this);
         }
 
         @Override
@@ -81,7 +81,7 @@ public class Biyorigo extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.onElementBonus.Unsubscribe(this);
+            CombatStats.onAffinityBonus.Unsubscribe(this);
         }
 
         @Override
@@ -91,7 +91,7 @@ public class Biyorigo extends AnimatorCard
         }
 
         @Override
-        public void OnElementBonus(AbstractCard card, Affinity affinity)
+        public void OnAffinityBonus(AbstractCard card, Affinity affinity)
         {
             if (affinity == Affinity.Fire)
             {

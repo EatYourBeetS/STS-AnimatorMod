@@ -761,16 +761,28 @@ public class RenderHelpers
                 return GR.Tooltips.FireLevel.icon;
             case "A":
                 return GR.Tooltips.AirLevel.icon;
-            case "I":
-                return GR.Tooltips.WaterLevel.icon;
-            case "O":
-                return GR.Tooltips.EarthLevel.icon;
-            case "B":
-                return GR.Tooltips.LightLevel.icon;
-            case "C":
-                return GR.Tooltips.DarkLevel.icon;
-
+            case "M":
+                return GR.Tooltips.MindLevel.icon;
             case "E":
+                return GR.Tooltips.EarthLevel.icon;
+            case "L":
+                return GR.Tooltips.LightLevel.icon;
+            case "D":
+                return GR.Tooltips.DarkLevel.icon;
+            case "W":
+                return GR.Tooltips.WaterLevel.icon;
+            case "P":
+                return GR.Tooltips.PoisonLevel.icon;
+            case "S":
+                return GR.Tooltips.SteelLevel.icon;
+            case "T":
+                return GR.Tooltips.ThunderLevel.icon;
+            case "N":
+                return GR.Tooltips.NatureLevel.icon;
+            case "C":
+                return GR.Tooltips.CyberLevel.icon;
+
+            case "EN":
                 return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;
             case "CARD":
                 return AbstractCard.orb_card;

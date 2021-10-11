@@ -32,12 +32,18 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 {
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
     public final EYBCardAffinities BonusAffinities = new EYBCardAffinities(null);
-    public final FireLevelPower Force;
-    public final AirLevelPower Agility;
-    public final WaterLevelPower Intellect;
-    public final EarthLevelPower Willpower;
-    public final LightLevelPower Blessing;
-    public final DarkLevelPower Corruption;
+    public final FireLevelPower Fire;
+    public final AirLevelPower Air;
+    public final MindLevelPower Mind;
+    public final EarthLevelPower Earth;
+    public final LightLevelPower Light;
+    public final DarkLevelPower Dark;
+    public final WaterLevelPower Water;
+    public final PoisonLevelPower Poison;
+    public final SteelLevelPower Steel;
+    public final ThunderLevelPower Thunder;
+    public final NatureLevelPower Nature;
+    public final CyberLevelPower Cyber;
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
@@ -52,12 +58,18 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinitySystem()
     {
-        Powers.add(Force = new FireLevelPower());
-        Powers.add(Agility = new AirLevelPower());
-        Powers.add(Intellect = new WaterLevelPower());
-        Powers.add(Willpower = new EarthLevelPower());
-        Powers.add(Blessing = new LightLevelPower());
-        Powers.add(Corruption = new DarkLevelPower());
+        Powers.add(Fire = new FireLevelPower());
+        Powers.add(Air = new AirLevelPower());
+        Powers.add(Mind = new MindLevelPower());
+        Powers.add(Earth = new EarthLevelPower());
+        Powers.add(Light = new LightLevelPower());
+        Powers.add(Dark = new DarkLevelPower());
+        Powers.add(Water = new WaterLevelPower());
+        Powers.add(Poison = new PoisonLevelPower());
+        Powers.add(Steel = new SteelLevelPower());
+        Powers.add(Thunder = new ThunderLevelPower());
+        Powers.add(Nature = new NatureLevelPower());
+        Powers.add(Cyber = new CyberLevelPower());
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));

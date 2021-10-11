@@ -471,73 +471,73 @@
 	"FireLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [F] multiple of 15, gain [Strength].",
-		"NAMES": ["fire level"],
+		"NAMES": ["fire level","[F]"],
 		"PROPER_NAME": "Force Level"
 	},
 	"AirLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [A] multiple of 15, gain [Dexterity].",
-		"NAMES": ["air level"],
+		"NAMES": ["air level","[A]"],
 		"PROPER_NAME": "Air Level"
 	},
 	"MindLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [M] multiple of 15, gain Knowledge. LZLZLZ update these texts",
-		"NAMES": ["mind level"],
+		"NAMES": ["mind level","[M]"],
 		"PROPER_NAME": "Mind Level"
 	},
 	"EarthLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [E] multiple of 15, gain [Endurance].",
-		"NAMES": ["earth level"],
+		"NAMES": ["earth level","[E]"],
 		"PROPER_NAME": "Earth Level"
 	},
 	"LightLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Vitality].",
-		"NAMES": ["light level"],
+		"NAMES": ["light level","[L]"],
 		"PROPER_NAME": "Light Level"
 	},
 	"DarkLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain Lunacy.",
-		"NAMES": ["dark level"],
+		"NAMES": ["dark level","[D]"],
 		"PROPER_NAME": "Dark Level"
 	},
 	"WaterLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [W] multiple of 15, gain [Focus].",
-		"NAMES": ["water level"],
+		"NAMES": ["water level","[W]"],
 		"PROPER_NAME": "Water Level"
 	},
 	"PoisonLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [P] multiple of 15, gain Pestilence.",
-		"NAMES": ["poison level"],
+		"NAMES": ["poison level","[P]"],
 		"PROPER_NAME": "Poison Level"
 	},
 	"SteelLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [S] multiple of 15, gain Innovation.",
-		"NAMES": ["steel level"],
+		"NAMES": ["steel level","[S]"],
 		"PROPER_NAME": "Steel Level"
 	},
 	"ThunderLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [T] multiple of 15, gain Hurricane.",
-		"NAMES": ["thunder level"],
+		"NAMES": ["thunder level","[T]"],
 		"PROPER_NAME": "Thunder Level"
 	},
 	"NatureLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [N] multiple of 15, gain Bounty.",
-		"NAMES": ["nature level"],
+		"NAMES": ["nature level","[N]"],
 		"PROPER_NAME": "Nature Level"
 	},
 	"CyberLevelPower":
 	{
 		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain Overclocked.",
-		"NAMES": ["cyber level"],
+		"NAMES": ["cyber level","[C]"],
 		"PROPER_NAME": "Cyber Level"
 	},
 	"~Block Scaling":

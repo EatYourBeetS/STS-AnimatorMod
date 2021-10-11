@@ -192,7 +192,7 @@
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Endurance]."],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":

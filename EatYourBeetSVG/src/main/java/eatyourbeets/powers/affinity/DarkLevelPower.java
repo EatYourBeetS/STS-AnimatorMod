@@ -17,6 +17,6 @@ public class DarkLevelPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Desecration;
+        return PowerHelper.Lunacy;
     }
 }

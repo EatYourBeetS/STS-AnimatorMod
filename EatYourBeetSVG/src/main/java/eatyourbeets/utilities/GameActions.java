@@ -579,8 +579,6 @@ public final class GameActions
     }
 
     //Affinity power levels
-
-    //TODO: LZLZLZ Update these to have the correct affinity powers
     public ApplyAffinityPower RaiseFireLevel(int amount)
     {
         return RaiseFireLevel(amount, false);

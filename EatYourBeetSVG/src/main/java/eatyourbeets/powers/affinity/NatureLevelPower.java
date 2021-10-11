@@ -17,6 +17,6 @@ public class NatureLevelPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Dexterity;
+        return PowerHelper.Bounty;
     }
 }

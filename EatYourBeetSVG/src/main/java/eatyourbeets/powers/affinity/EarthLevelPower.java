@@ -17,6 +17,6 @@ public class EarthLevelPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Endurance;
+        return PowerHelper.Resistance;
     }
 }

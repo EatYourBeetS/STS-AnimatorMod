@@ -30,9 +30,21 @@ public class PowerHelper
 
     public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, null, (o, s, a) -> new RitualPower(o, a, GameUtilities.IsPlayer(o)));
 
+    //Threshold powers
     public static final PowerHelper Strength = new PowerHelper(StrengthPower.POWER_ID, null, StrengthPower::new);
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, null, DexterityPower::new);
+    public static final PowerHelper Knowledge = new PowerHelper(KnowledgePower.POWER_ID, null, KnowledgePower::new);
+    public static final PowerHelper Resistance = new PowerHelper(ResistancePower.POWER_ID, null, ResistancePower::new);
+    public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
+    public static final PowerHelper Lunacy = new PowerHelper(LunacyPower.POWER_ID, null, LunacyPower::new);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, null, FocusPower::new);
+    public static final PowerHelper Pestilence = new PowerHelper(PestilencePower.POWER_ID, null, PestilencePower::new);
+    public static final PowerHelper Innovation = new PowerHelper(InnovationPower.POWER_ID, null, InnovationPower::new);
+    public static final PowerHelper Hurricane = new PowerHelper(HurricanePower.POWER_ID, null, HurricanePower::new);
+    public static final PowerHelper Bounty = new PowerHelper(BountyPower.POWER_ID, null, BountyPower::new);
+    public static final PowerHelper Overclock = new PowerHelper(OverclockPower.POWER_ID, null, OverclockPower::new);
+
+    //Unused old threshold powers
     public static final PowerHelper Endurance = new PowerHelper(EndurancePower.POWER_ID, null, EndurancePower::new);
     public static final PowerHelper Supercharged = new PowerHelper(SuperchargedPower.POWER_ID, null, SuperchargedPower::new);
     public static final PowerHelper Desecration = new PowerHelper(DesecrationPower.POWER_ID, null, DesecrationPower::new);
@@ -42,7 +54,6 @@ public class PowerHelper
     public static final PowerHelper TemporaryEndurance = new PowerHelper(TemporaryEndurancePower.POWER_ID, null, TemporaryEndurancePower::new);
     public static final PowerHelper TemporaryDesecration = new PowerHelper(TemporaryDesecrationPower.POWER_ID, null, TemporaryDesecrationPower::new);
 
-    public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
     public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, AnimatorPlatedArmorPower::new);
     public static final PowerHelper Metallicize = new PowerHelper(MetallicizePower.POWER_ID, GR.Tooltips.Metallicize, AnimatorMetallicizePower::new);
     public static final PowerHelper Malleable = new PowerHelper(MalleablePower.POWER_ID, GR.Tooltips.Malleable, MalleablePower::new);

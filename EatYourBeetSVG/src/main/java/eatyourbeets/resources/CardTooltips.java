@@ -77,7 +77,6 @@ public class CardTooltips
     public EYBCardTooltip PlatedArmor = FindByID("Plated Armor");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
-    public EYBCardTooltip Vitality = FindByID("Vitality");
     public EYBCardTooltip Ritual = FindByID("Ritual");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip Weak = FindByID("Weak");
@@ -135,6 +134,17 @@ public class CardTooltips
     public EYBCardTooltip ThunderLevel = FindByID("ThunderLevelPower");
     public EYBCardTooltip NatureLevel = FindByID("NatureLevelPower");
     public EYBCardTooltip CyberLevel = FindByID("CyberLevelPower");
+
+    //Threshold powers
+    public EYBCardTooltip Knowledge = FindByID("Knowledge");
+    public EYBCardTooltip Resistance = FindByID("Resistance");
+    public EYBCardTooltip Vitality = FindByID("Vitality");
+    public EYBCardTooltip Lunacy = FindByID("Lunacy");
+    public EYBCardTooltip Pestilence = FindByID("Pestilence");
+    public EYBCardTooltip Innovation = FindByID("Innovation");
+    public EYBCardTooltip Hurricane = FindByID("Hurricane");
+    public EYBCardTooltip Bounty = FindByID("Bounty");
+    public EYBCardTooltip Overclock = FindByID("Overclock");
 
     // No Description
     public EYBCardTooltip Affinity_Fire = new EYBCardTooltip("Fire Affinity", null).ShowText(false);
@@ -289,7 +299,6 @@ public class CardTooltips
         LoadFromPower(Metallicize, new MetallicizePower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(Thorns, new ThornsPower(FakeCharacter.Instance, 0));
         LoadFromPower(TemporaryThorns, new TemporaryThornsPower(FakeCharacter.Instance, 0));
@@ -318,6 +327,17 @@ public class CardTooltips
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
         LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
+
+        //Threshold powers
+        LoadFromPower(Knowledge, new KnowledgePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Resistance, new ResistancePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Lunacy, new LunacyPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Pestilence, new PestilencePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Innovation, new InnovationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Hurricane, new HurricanePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Bounty, new BountyPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Overclock, new OverclockPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

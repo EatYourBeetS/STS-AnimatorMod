@@ -17,6 +17,6 @@ public class LightLevelPower extends AbstractAffinityPower
     @Override
     public PowerHelper GetThresholdBonusPower()
     {
-        return PowerHelper.Supercharged;
+        return PowerHelper.Vitality;
     }
 }

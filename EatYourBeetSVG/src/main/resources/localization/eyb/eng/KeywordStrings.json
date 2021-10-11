@@ -482,13 +482,13 @@
 	},
 	"MindLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [M] multiple of 15, gain Knowledge. LZLZLZ update these texts",
+		"DESCRIPTION": "Upon reaching an [M] multiple of 15, gain [Knowledge].",
 		"NAMES": ["mind level","[M]"],
 		"PROPER_NAME": "Mind Level"
 	},
 	"EarthLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [E] multiple of 15, gain [Endurance].",
+		"DESCRIPTION": "Upon reaching an [E] multiple of 15, gain [Resistance].",
 		"NAMES": ["earth level","[E]"],
 		"PROPER_NAME": "Earth Level"
 	},
@@ -500,7 +500,7 @@
 	},
 	"DarkLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain Lunacy.",
+		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Lunacy].",
 		"NAMES": ["dark level","[D]"],
 		"PROPER_NAME": "Dark Level"
 	},
@@ -512,31 +512,31 @@
 	},
 	"PoisonLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [P] multiple of 15, gain Pestilence.",
+		"DESCRIPTION": "Upon reaching a [P] multiple of 15, gain [Pestilence].",
 		"NAMES": ["poison level","[P]"],
 		"PROPER_NAME": "Poison Level"
 	},
 	"SteelLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [S] multiple of 15, gain Innovation.",
+		"DESCRIPTION": "Upon reaching a [S] multiple of 15, gain [Innovation].",
 		"NAMES": ["steel level","[S]"],
 		"PROPER_NAME": "Steel Level"
 	},
 	"ThunderLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [T] multiple of 15, gain Hurricane.",
+		"DESCRIPTION": "Upon reaching a [T] multiple of 15, gain [Hurricane].",
 		"NAMES": ["thunder level","[T]"],
 		"PROPER_NAME": "Thunder Level"
 	},
 	"NatureLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [N] multiple of 15, gain Bounty.",
+		"DESCRIPTION": "Upon reaching a [N] multiple of 15, gain [Bounty].",
 		"NAMES": ["nature level","[N]"],
 		"PROPER_NAME": "Nature Level"
 	},
 	"CyberLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain Overclocked.",
+		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain [Overclocked].",
 		"NAMES": ["cyber level","[C]"],
 		"PROPER_NAME": "Cyber Level"
 	},

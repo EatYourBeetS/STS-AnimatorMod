@@ -202,22 +202,22 @@
 	},
 	"eyb:MindLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Endurance]. LZLZLZ Update these texts"],
+		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Knowledge]."],
 		"NAME": "Mind Level"
 	},
 	"eyb:EarthLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Resistance]."],
 		"NAME": "Earth Level"
 	},
 	"eyb:LightLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [L]: Gain #b{1} [Supercharged]."],
+		"DESCRIPTIONS": ["At #b{0} [L]: Gain #b{1} [Vitality]."],
 		"NAME": "Light Level"
 	},
 	"eyb:DarkLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [D]: Gain #b{1} [Desecration]."],
+		"DESCRIPTIONS": ["At #b{0} [D]: Gain #b{1} [Lunacy]."],
 		"NAME": "Dark Level"
 	},
 	"eyb:WaterLevelPower":
@@ -227,27 +227,27 @@
 	},
 	"eyb:PoisonLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Strength]."],
+		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Pestilence]."],
 		"NAME": "Poison Level"
 	},
 	"eyb:SteelLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [S]: Gain #b{1} [Dexterity]."],
+		"DESCRIPTIONS": ["At #b{0} [S]: Gain #b{1} [Innovation]."],
 		"NAME": "Steel Level"
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane]."],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [N]: Gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["At #b{0} [N]: Gain #b{1} [Bounty]."],
 		"NAME": "Nature Level"
 	},
 	"eyb:CyberLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Supercharged]."],
+		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Overcharge]."],
 		"NAME": "Cyber Level"
 	}
 }

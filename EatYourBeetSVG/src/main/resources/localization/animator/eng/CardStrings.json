@@ -2808,7 +2808,12 @@
 		},
 		"animator:Miracle":
 		{
-			"DESCRIPTION": "Boost [L]. || Gain !M! [EN].",
+			"DESCRIPTION": "<DRW-M>",
+			"NAME": "Miracle"
+		},
+		"animator:Miracle":
+		{
+			"DESCRIPTION": "Gain !M! [EN].",
 			"NAME": "Miracle"
 		},
 

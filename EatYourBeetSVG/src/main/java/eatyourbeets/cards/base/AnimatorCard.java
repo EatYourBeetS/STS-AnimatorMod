@@ -98,6 +98,11 @@ public abstract class AnimatorCard extends EYBCard
         this.series = series;
     }
 
+    public CardSeries GetSeries()
+    {
+        return this.series;
+    }
+
     public DrawPileCardPreview SetDrawPileCardPreview(ActionT2<RotatingList<AbstractCard>, AbstractMonster> findCards)
     {
         return this.drawPileCardPreview = new DrawPileCardPreview(findCards)

@@ -493,12 +493,17 @@ public class GameUtilities
         return result;
     }
 
-    public static RandomizedList<AbstractCard> GetCardPoolInCombat(AbstractCard.CardRarity rarity)
+    public static RandomizedList<AbstractCard> GetCardPoolInCombatFromRarity(AbstractCard.CardRarity rarity)
     {
-        return GetCardPoolInCombat(GetCardPool(rarity), null);
+        return GetCardPoolInCombatFromGroup(GetCardPool(rarity), null);
     }
 
-    public static RandomizedList<AbstractCard> GetCardPoolInCombat(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
+    public static RandomizedList<AbstractCard> GetCardPoolInCombatFromRarity(AbstractCard.CardRarity rarity, FuncT1<Boolean, AbstractCard> filter)
+    {
+        return GetCardPoolInCombatFromGroup(GetCardPool(rarity), filter);
+    }
+
+    public static RandomizedList<AbstractCard> GetCardPoolInCombatFromGroup(CardGroup group, FuncT1<Boolean, AbstractCard> filter)
     {
         final RandomizedList<AbstractCard> cards = new RandomizedList<>();
         if (group != null)
@@ -862,6 +867,19 @@ public class GameUtilities
 
     public static AbstractOrb GetRandomCommonOrb() {
         switch (MathUtils.random(0,3)) {
+            case 0:
+                return new Dark();
+            case 1:
+                return new Frost();
+            case 2:
+                return new Fire();
+            default:
+                return new Lightning();
+        }
+    }
+
+    public static AbstractOrb GetRandomCommonOrb(Random rng) {
+        switch (rng.random(0,3)) {
             case 0:
                 return new Dark();
             case 1:
@@ -1526,6 +1544,17 @@ public class GameUtilities
         if (CanRetain(card))
         {
             card.retain = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean GiveHaste(AbstractCard card)
+    {
+        if (!card.hasTag(GR.Enums.CardTags.HASTE))
+        {
+            GameActions.Top.ModifyTag(card, GR.Enums.CardTags.HASTE, true);
             return true;
         }
 

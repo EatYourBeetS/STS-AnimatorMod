@@ -200,12 +200,12 @@ public abstract class AbstractAffinityPower extends CommonPower
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, amount > 0 ? Colors.White(1) : amountColor);
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + 90 * scale, y, 1, amount > 0 ? Colors.White(1) : amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 55 * scale, y, fontScale, amountColor);
         }
         else
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 52 * scale, y, fontScale, amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 60 * scale, y, fontScale, amountColor);
         }
 
         for (AbstractGameEffect e : effects)

@@ -28,8 +28,8 @@ public class Iris extends AnimatorCard
         Initialize(0, 0, 3);
         SetUpgrade(0,0,1);
 
-        SetAffinity_Light(1);
-        SetAffinity_Thunder(1);
+        SetAffinity_Light();
+        SetAffinity_Thunder();
 
         SetExhaust(true);
     }

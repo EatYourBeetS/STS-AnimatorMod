@@ -145,6 +145,51 @@
 		"DESCRIPTIONS": ["Attack deal #b{0}% less damage for #b{1} turn(s)."],
 		"NAME": "Weakened"
 	},
+	"eyb:KnowledgePower":
+	{
+		"DESCRIPTIONS": ["Whenever you gain Knowledge: Add 1 #yInsight to your discard pile and 1 #yInsight to your hand."],
+		"NAME": "Knowledge"
+	},
+	"eyb:ResistancePower":
+	{
+		"DESCRIPTIONS": ["When attacked, gain #b{0} #ySupport #yDamage."],
+		"NAME": "Resistance"
+	},
+	"eyb:VitalityPower":
+	{
+		"DESCRIPTIONS": ["Whenever you gain Vitality: Add 2 #yMiracles with Haste to your draw pile."],
+		"NAME": "Vitality"
+	},
+	"eyb:LunacyPower":
+	{
+		"DESCRIPTIONS": ["Whenever you gain Lunacy: Add #b{0} random cards into your draw pile."],
+		"NAME": "Lunacy"
+	},
+	"eyb:PestilencePower":
+	{
+		"DESCRIPTIONS": ["Whenever you apply a #yCommon #yDebuff to an enemy, increase its stacks by #b{0}."],
+		"NAME": "Pestilence"
+	},
+	"eyb:InnovationPower":
+	{
+		"DESCRIPTIONS": ["Start of turn: Increase the damage and block of a random card in your hand by #b{0}% of its base damage and block.  Increase that card's cost by 1."],
+		"NAME": "Innovation"
+	},
+	"eyb:HurricanePower":
+	{
+		"DESCRIPTIONS": ["Start of turn: Channel 1 random #yCommon #yOrb.  Trigger it #b{0} times."],
+		"NAME": "Hurricane"
+	},
+	"eyb:BountyPower":
+	{
+		"DESCRIPTIONS": ["Start of turn: Draw #b{0} extra cards."],
+		"NAME": "Bounty"
+	},
+	"eyb:OverclockPower":
+	{
+		"DESCRIPTIONS": ["Start of turn: Gain #b{0} [EN]."],
+		"NAME": "Overclock"
+	},
 	"eyb:FireLevelPower":
 	{
 		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength]."],

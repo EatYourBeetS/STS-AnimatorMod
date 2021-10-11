@@ -21,7 +21,7 @@ public class Miracle extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Light(1);
+        SetAffinity_Light();
 
         SetPurge(true);
         SetRetain(true);

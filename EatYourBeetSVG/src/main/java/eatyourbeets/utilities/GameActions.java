@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
@@ -366,6 +367,12 @@ public final class GameActions
     public ChannelOrb ChannelRandomOrbs(int amount)
     {
         return Add(new ChannelOrb(GameUtilities::GetRandomOrb, amount));
+    }
+
+    public ChannelOrb ChannelRandomCommonOrb(Random rng)
+    {
+        AbstractOrb orb = GameUtilities.GetRandomCommonOrb(rng);
+        return Add(new ChannelOrb(orb));
     }
 
     public CreateThrowingKnives CreateThrowingKnives(int amount)

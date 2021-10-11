@@ -102,17 +102,23 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip("[F]", "Force", new FireLevelPower());
-        AddPowerTooltip("[A]", "Agility", new AirLevelPower());
-        AddPowerTooltip("[I]", "Intellect", new WaterLevelPower());
-        AddPowerTooltip("[W]", "Willpower", new EarthLevelPower());
-        AddPowerTooltip("[B]", "Blessing", new LightLevelPower());
-        AddPowerTooltip("[C]", "Corruption", new DarkLevelPower());
+        AddPowerTooltip("[F]", "FireLevel", new FireLevelPower());
+        AddPowerTooltip("[A]", "AirLevel", new AirLevelPower());
+        AddPowerTooltip("[M]", "MindLevel", new EarthLevelPower());
+        AddPowerTooltip("[E]", "EarthLevel", new EarthLevelPower());
+        AddPowerTooltip("[L]", "LightLevel", new LightLevelPower());
+        AddPowerTooltip("[D]", "DarkLevel", new DarkLevelPower());
+        AddPowerTooltip("[W]", "WaterLevel", new WaterLevelPower());
+        AddPowerTooltip("[P]", "PoisonLevel", new DarkLevelPower());
+        AddPowerTooltip("[S]", "SteelLevel", new WaterLevelPower());
+        AddPowerTooltip("[T]", "ThunderLevel", new WaterLevelPower());
+        AddPowerTooltip("[N]", "NatureLevel", new WaterLevelPower());
+        AddPowerTooltip("[C]", "CyberLevel", new WaterLevelPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
 //        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
-        AddEnergyTooltip("[E]", null); // TODO: generalize this
+        AddEnergyTooltip("[EN]", null); // TODO: generalize this
 
         for (Field field : GameDictionary.class.getDeclaredFields())
         {

@@ -449,7 +449,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         synergiesThisCombat.add(card);
     }
 
-    public static void OnElementBonus(AbstractCard card, Affinity affinity)
+    public static void OnAffinityBonus(AbstractCard card, Affinity affinity)
     {
         for (OnElementBonusSubscriber s : onElementBonus.GetSubscribers())
         {

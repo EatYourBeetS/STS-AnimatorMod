@@ -68,10 +68,10 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy.SetActive(Power != null);
     }
 
-    public void ActivateElementBonus(AbstractCard card, int amount)
+    public void ActivateAffinityBonus(AbstractCard card, int amount)
     {
         GameActions.Bottom.StackAffinityPower(Type, amount, false);
-        CombatStats.OnElementBonus(card, Type);
+        CombatStats.OnAffinityBonus(card, Type);
     }
 
     public void OnStartOfTurn()
@@ -122,7 +122,7 @@ public class EYBCardAffinityRow extends GUIElement
             if (hoveredCard != null)
             {
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
-                if (System.CanActivateElementalBonus(a))
+                if (System.CanActivateAffinityBonus(a))
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_STRONG);
                 }

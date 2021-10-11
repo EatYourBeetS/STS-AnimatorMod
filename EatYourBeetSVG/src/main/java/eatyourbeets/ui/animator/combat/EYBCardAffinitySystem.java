@@ -166,14 +166,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return lastCardPlayed;
     }
 
-    public boolean CanActivateElementalBonus(EYBCardAffinity element)
+    public boolean CanActivateAffinityBonus(EYBCardAffinity affinity)
     {
-        return element != null && CanActivateElementalBonus(element.type);
+        return affinity != null && CanActivateAffinityBonus(affinity.type);
     }
 
-    public boolean CanActivateElementalBonus(Affinity element)
+    public boolean CanActivateAffinityBonus(Affinity affinity)
     {
-        return element.ID >= 0;
+        return affinity.ID >= 0;
     }
 
     public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
@@ -185,10 +185,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     {
         for (EYBCardAffinity affinity : card.affinities.List)
         {
-            if (CanActivateElementalBonus(affinity)) {
+            if (CanActivateAffinityBonus(affinity)) {
                 final EYBCardAffinityRow row = GetRow(affinity.type);
                 if (row != null) {
-                    row.ActivateElementBonus(card, affinity.level);
+                    row.ActivateAffinityBonus(card, affinity.level);
                 }
             }
         }

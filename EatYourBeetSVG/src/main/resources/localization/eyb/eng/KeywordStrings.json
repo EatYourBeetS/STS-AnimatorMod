@@ -450,12 +450,6 @@
 		"NAMES": ["temporary thorns", "temp. thorns"],
 		"PROPER_NAME": "Temporary Thorns"
 	},
-	"Vitality":
-	{
-		"DESCRIPTION": "At the start of each turn, gain [Temporary HP].",
-		"NAMES": ["vitality"],
-		"PROPER_NAME": "Vitality"
-	},
 	"Willpower Stance":
 	{
 	  "DESCRIPTION": "Stance: [E] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [E].",
@@ -467,6 +461,60 @@
 		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
 		"NAMES": ["vigor"],
 		"PROPER_NAME": "Vigor"
+	},
+	"Knowledge":
+	{
+		"DESCRIPTIONS": ["Whenever you gain Knowledge: Add 1 #yInsight to your discard pile and 1 #yInsight to your hand."],
+		"NAMES": ["knowledge"],
+		"NAME": "Knowledge"
+	},
+	"Resistance":
+	{
+		"DESCRIPTIONS": ["Whenever you are attacked, gain #ySupport #yDamage."],
+		"NAMES": ["resistance"],
+		"NAME": "Resistance"
+	},
+	"Vitality":
+	{
+		"DESCRIPTION": "Whenever you gain Vitality: Add 2 #yMiracles with Haste to your draw pile.",
+		"NAMES": ["vitality"],
+		"PROPER_NAME": "Vitality"
+	},
+	"Lunacy":
+	{
+		"DESCRIPTIONS": ["Whenever you gain Lunacy: Add a number of random cards equal to twice your #yLunacy into your draw pile."],
+		"NAMES": ["lunacy"],
+		"NAME": "Lunacy"
+	},
+	"Pestilence":
+	{
+		"DESCRIPTIONS": ["Whenever you apply a #yCommon #yDebuff to an enemy, increase its stacks by an amount equal to twice your #yPestilence."],
+		"NAMES": ["pestilence"],
+		"NAME": "Pestilence"
+	},
+	"Innovation":
+	{
+		"DESCRIPTIONS": ["Start of turn: Increase the Damage and Block of a random card in your hand by a huge percentage of its base damage and block.  Increase that card's cost by 1."],
+		"NAMES": ["innovation"],
+		"NAME": "Innovation"
+	},
+	"Hurricane":
+	{
+		"DESCRIPTIONS": ["Start of turn: Channel 1 random #yCommon #yOrb.  Trigger it twice for each additional stack of #yHurricane."],
+		"NAMES": ["hurricane"],
+		"NAME": "Hurricane"
+	},
+	"Bounty":
+	{
+		"DESCRIPTIONS": ["Draw an additional card for each stack at the start of turn."],
+		"NAMES": ["bounty"],
+		"NAME": "Bounty"
+	},
+	"Overclock":
+	{
+		"DESCRIPTIONS": ["Gain an additional energy for each stack at the start of turn."],
+		"NAMES": ["overclock"],
+		"NAME": "Overclock"
 	},
 	"FireLevelPower":
 	{

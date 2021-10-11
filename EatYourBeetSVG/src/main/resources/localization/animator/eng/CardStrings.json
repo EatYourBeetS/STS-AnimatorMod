@@ -2806,7 +2806,7 @@
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you draw a curse this turn, draw #b{1} cards.", "Choose up to {0} card(s) to Purge."],
 			"NAME": "Hina Kagiyama"
 		},
-		"animator:Miracle":
+		"animator:Insight":
 		{
 			"DESCRIPTION": "<DRW-M>",
 			"NAME": "Miracle"

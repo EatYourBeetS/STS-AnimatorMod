@@ -130,11 +130,6 @@
 		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],
 		"NAME": "Temporary Thorns"
 	},
-	"eyb:VitalityPower":
-	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
-		"NAME": "Vitality"
-	},
 	"eyb:VulnerablePower":
 	{
 		"DESCRIPTIONS": ["Receive #b{0}% more damage from #yAttacks for #b{1} turn(s)."],

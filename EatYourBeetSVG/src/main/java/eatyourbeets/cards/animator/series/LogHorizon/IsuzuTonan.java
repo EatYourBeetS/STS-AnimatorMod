@@ -24,8 +24,8 @@ public class IsuzuTonan extends AnimatorCard
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Air(1);
-        SetAffinity_Earth(1);
+        SetAffinity_Light();
+        SetAffinity_Thunder();
     }
 
     @Override

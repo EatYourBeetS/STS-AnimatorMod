@@ -86,7 +86,7 @@ public class InnovationPower extends CommonPower
 
             AnimatorCard card = cardsInHand.Retrieve(rng);
 
-            float multiplier = (amount * BASE_PERCENT / 100);
+            float multiplier = ((amount * BASE_PERCENT) / 100f);
 
             if (card.baseDamage > 0) {
                 int damageToIncrease = (int) Math.floor(card.baseDamage * multiplier);

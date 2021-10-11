@@ -59,7 +59,7 @@ public class Gluttony extends AnimatorCard
             .SetOrigin(CardSelection.Top);
 
             GameActions.Bottom.Heal(secondaryValue);
-            GameActions.Bottom.GainForce(secondaryValue);
+            GameActions.Bottom.RaiseFireLevel(secondaryValue);
         }
     }
 }

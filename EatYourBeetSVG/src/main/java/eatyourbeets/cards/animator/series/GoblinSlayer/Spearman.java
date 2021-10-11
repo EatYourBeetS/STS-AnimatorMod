@@ -28,22 +28,22 @@ public class Spearman extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Air, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f);
-        GameActions.Bottom.GainAgility(1, true);
-        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.RaiseAirLevel(1, true);
+        GameActions.Bottom.RaiseFireLevel(1, true);
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Fire) && CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.MakeCardInHand(new Status_Wound());
         }

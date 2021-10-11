@@ -36,7 +36,7 @@ public class Wrath extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.RaiseFireLevel(magicNumber);
         GameActions.Bottom.StackPower(new WrathPower(p, secondaryValue));
 
     }
@@ -59,7 +59,7 @@ public class Wrath extends AnimatorCard
 
             if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
             {
-                final int[] damage = DamageInfo.createDamageMatrix(CombatStats.Affinities.GetPowerAmount(Affinity.Red), true);
+                final int[] damage = DamageInfo.createDamageMatrix(CombatStats.Affinities.GetPowerAmount(Affinity.Fire), true);
                 GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                 this.flash();
             }

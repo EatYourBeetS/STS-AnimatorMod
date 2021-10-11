@@ -32,7 +32,7 @@ public class Simon extends AnimatorCard
     {
         if (timesUpgraded % 5 == 0)
         {
-            this.AddScaling(Affinity.Red, 1);
+            this.AddScaling(Affinity.Fire, 1);
         }
 
         upgradedMagicNumber = true;
@@ -45,7 +45,7 @@ public class Simon extends AnimatorCard
             GameActions.Bottom.StackPower(new VigorPower(player, e.lastDamageTaken / 2));
         });
 
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= magicNumber && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Fire) >= magicNumber && CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
                     .IncludeMasterDeck(true)

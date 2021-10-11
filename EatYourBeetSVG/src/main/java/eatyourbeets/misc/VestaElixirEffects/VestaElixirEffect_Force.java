@@ -15,12 +15,12 @@ public class VestaElixirEffect_Force extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.FireLevel, true);
     }
 
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActions.Bottom.GainForce(amount);
+        GameActions.Bottom.RaiseFireLevel(amount);
     }
 }

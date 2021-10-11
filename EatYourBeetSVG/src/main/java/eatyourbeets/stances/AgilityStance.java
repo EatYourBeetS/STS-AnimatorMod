@@ -3,12 +3,12 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.affinity.AgilityPower;
+import eatyourbeets.powers.affinity.AirLevelPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AgilityStance extends EYBStance
 {
-    public static final Affinity AFFINITY = AgilityPower.AFFINITY_TYPE;
+    public static final Affinity AFFINITY = AirLevelPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
 
     public static boolean IsActive()

@@ -22,7 +22,7 @@ public class TukaLunaMarceau extends AnimatorCard
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Light, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
     }
 
     @Override
@@ -39,9 +39,9 @@ public class TukaLunaMarceau extends AnimatorCard
         {
             GameUtilities.MaintainPower(Affinity.Light);
         }
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Air))
         {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameUtilities.MaintainPower(Affinity.Air);
         }
     }
 }

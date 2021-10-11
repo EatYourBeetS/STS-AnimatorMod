@@ -43,7 +43,7 @@ public class NiaHonjou extends AnimatorCard
         super.triggerOnManualDiscard();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Top.GainBlessing(secondaryValue, upgraded);
+            GameActions.Top.RaiseLightLevel(secondaryValue, upgraded);
         }
     }
 

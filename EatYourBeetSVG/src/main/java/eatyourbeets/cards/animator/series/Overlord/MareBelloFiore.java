@@ -25,8 +25,8 @@ public class MareBelloFiore extends AnimatorCard
         SetAffinity_Blue(2);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Blue, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Water, 2);
+        SetAffinityRequirement(Affinity.Air, 2);
 
         SetExhaust(true);
     }
@@ -42,7 +42,7 @@ public class MareBelloFiore extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Water) && CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
         }

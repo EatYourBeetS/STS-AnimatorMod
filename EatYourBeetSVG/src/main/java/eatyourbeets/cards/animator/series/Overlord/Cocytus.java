@@ -27,8 +27,8 @@ public class Cocytus extends AnimatorCard
 
         SetAffinity_Red(2, 0, 3);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Water, 2);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Cocytus extends AnimatorCard
         {
             if (orbs.size() > 0)
             {
-                GameActions.Bottom.GainForce(magicNumber);
+                GameActions.Bottom.RaiseFireLevel(magicNumber);
             }
             else
             {
@@ -61,7 +61,7 @@ public class Cocytus extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Fire) && CheckAffinity(Affinity.Water))
         {
             GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }

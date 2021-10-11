@@ -62,7 +62,7 @@ public class ChihayaOhtori extends AnimatorCard
     {
         GameActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Orange) > 0))
+        .SetFilter(c -> (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(Affinity.Earth) > 0))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)
@@ -80,7 +80,7 @@ public class ChihayaOhtori extends AnimatorCard
 
     public void RefreshCost()
     {
-        int orange = GetHandAffinity(Affinity.Orange, false);
+        int orange = GetHandAffinity(Affinity.Earth, false);
         if (WillpowerStance.IsActive()) {
             CostModifiers.For(this).Set(-1);
         }

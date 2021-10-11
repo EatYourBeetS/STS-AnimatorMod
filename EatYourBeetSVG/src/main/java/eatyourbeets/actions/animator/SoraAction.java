@@ -118,18 +118,18 @@ public class SoraAction extends EYBAction
     {
         DamageRandomTwice(0, "", 5),
         DamageAll(0, "", 6),
-        GainForce(0, ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 2),
+        GainForce(0, ACTIONS.GainAmount(2, GR.Tooltips.FireLevel, true), 2),
         ApplyVulnerable(0, ACTIONS.ApplyToALL(2, GR.Tooltips.Vulnerable, true), 2),
 
         GainBlock(1, "", 7),
-        GainAgility(1, ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 2),
+        GainAgility(1, ACTIONS.GainAmount(2, GR.Tooltips.AirLevel, true), 2),
         ApplyWeak(1, ACTIONS.ApplyToALL(2, GR.Tooltips.Weak, true), 2),
         GainTemporaryHP(1, ACTIONS.GainAmount(5, "{" + GR.Tooltips.TempHP + "}", true), 5),
 
         UpgradeAll(2, ACTIONS.UpgradeALLCardsInHand(true), 0),
         Motivate(2, ACTIONS.Motivate(1, true), 1),
         CycleCards(2, ACTIONS.Cycle(3, true), 3),
-        GainIntellect(2, ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 2);
+        GainIntellect(2, ACTIONS.GainAmount(2, GR.Tooltips.WaterLevel, true), 2);
 
         private int group;
         private String cardDescription;
@@ -196,7 +196,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.GainIntellect(c.magicNumber);
+                        GameActions.Bottom.RaiseWaterLevel(c.magicNumber);
                     });
                 }
 
@@ -238,7 +238,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.GainAgility(c.magicNumber);
+                        GameActions.Bottom.RaiseAirLevel(c.magicNumber);
                     });
                 }
 
@@ -246,7 +246,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.GainForce(c.magicNumber);
+                        GameActions.Bottom.RaiseFireLevel(c.magicNumber);
                     });
                 }
 

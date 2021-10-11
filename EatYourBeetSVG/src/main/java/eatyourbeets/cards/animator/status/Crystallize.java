@@ -35,7 +35,7 @@ public class Crystallize extends AnimatorCard_Status
             GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(magicNumber);
             GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
-            GameActions.Bottom.GainCorruption(1, false);
+            GameActions.Bottom.RaiseDarkLevel(1, false);
         }
     }
 }

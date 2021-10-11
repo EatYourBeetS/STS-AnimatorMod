@@ -54,7 +54,7 @@ public class Priestess extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
-        GameActions.Bottom.GainBlessing(secondaryValue);
+        GameActions.Bottom.RaiseLightLevel(secondaryValue);
 
         if (info.IsSynergizing)
         {

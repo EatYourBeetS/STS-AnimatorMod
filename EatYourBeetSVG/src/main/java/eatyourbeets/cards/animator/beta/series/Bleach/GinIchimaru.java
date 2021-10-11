@@ -27,16 +27,16 @@ public class GinIchimaru extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Fire, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetAffinityRequirement(Affinity.Red, 4);
-        SetAffinityRequirement(Affinity.Green, 4);
+        SetAffinityRequirement(Affinity.Fire, 4);
+        SetAffinityRequirement(Affinity.Air, 4);
     }
 
     @Override
@@ -54,12 +54,12 @@ public class GinIchimaru extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
-        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Fire) || CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.Exhaust(this);
         }
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Water))
         {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
@@ -74,11 +74,11 @@ public class GinIchimaru extends AnimatorCard
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            if (GetHandAffinity(Affinity.Red) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Red), PlayerAttribute.Force));
+            if (GetHandAffinity(Affinity.Fire) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Fire), PlayerAttribute.Force));
             }
-            if (GetHandAffinity(Affinity.Green) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Green), PlayerAttribute.Agility));
+            if (GetHandAffinity(Affinity.Air) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Air), PlayerAttribute.Agility));
             }
         }
         choices.Select(selections, m);

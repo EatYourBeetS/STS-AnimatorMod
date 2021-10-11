@@ -33,7 +33,7 @@ public class MetalBat extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.RaiseFireLevel(1);
         GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false).IgnoreTempHP(true);
         GameActions.Bottom.Flash(this);
     }

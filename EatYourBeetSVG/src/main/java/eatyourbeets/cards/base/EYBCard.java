@@ -691,14 +691,14 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     }
 
     //@Formatter: Off
-    protected void SetAffinity_Red(int base) { InitializeAffinity(Affinity.Red, base, 0, 0); }
-    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Red, base, upgrade, scaling); }
-    protected void SetAffinity_Green(int base) { InitializeAffinity(Affinity.Green, base, 0, 0); }
-    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Green, base, upgrade, scaling); }
-    protected void SetAffinity_Blue(int base) { InitializeAffinity(Affinity.Blue, base, 0, 0); }
-    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Blue, base, upgrade, scaling); }
-    protected void SetAffinity_Orange(int base) { InitializeAffinity(Affinity.Orange, base, 0, 0); }
-    protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Orange, base, upgrade, scaling); }
+    protected void SetAffinity_Red(int base) { InitializeAffinity(Affinity.Fire, base, 0, 0); }
+    protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Fire, base, upgrade, scaling); }
+    protected void SetAffinity_Green(int base) { InitializeAffinity(Affinity.Air, base, 0, 0); }
+    protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Air, base, upgrade, scaling); }
+    protected void SetAffinity_Blue(int base) { InitializeAffinity(Affinity.Water, base, 0, 0); }
+    protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Water, base, upgrade, scaling); }
+    protected void SetAffinity_Orange(int base) { InitializeAffinity(Affinity.Earth, base, 0, 0); }
+    protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Earth, base, upgrade, scaling); }
     protected void SetAffinity_Light(int base) { InitializeAffinity(Affinity.Light, base, 0, 0); }
     protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Light, base, upgrade, scaling); }
     protected void SetAffinity_Dark(int base) { InitializeAffinity(Affinity.Dark, base, 0, 0); }

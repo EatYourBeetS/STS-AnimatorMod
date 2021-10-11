@@ -30,7 +30,7 @@ public class RoyMustang extends AnimatorCard
 
         SetEvokeOrbCount(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RoyMustang extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
 
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Fire))
         {
             GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
         }

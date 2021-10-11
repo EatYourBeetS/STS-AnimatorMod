@@ -32,7 +32,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             }
         });
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Water))
         {
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
 
@@ -59,7 +59,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Red);
+        return GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Fire);
     }
 
     @Override

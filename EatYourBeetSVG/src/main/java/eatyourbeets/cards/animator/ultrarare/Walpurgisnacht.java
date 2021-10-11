@@ -54,7 +54,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         {
             GameActions.Bottom.SelectFromHand(name, 1, false).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(cards -> {
                 for (AbstractCard c : cards) {
-                    GameActions.Bottom.GainCorruption(2);
+                    GameActions.Bottom.RaiseDarkLevel(2);
                 }
             });
         }

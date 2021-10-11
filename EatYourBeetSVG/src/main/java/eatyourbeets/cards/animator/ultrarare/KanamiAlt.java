@@ -67,8 +67,8 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
         {
             if (amount > 0)
             {
-                GameActions.Bottom.GainForce(1);
-                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.RaiseFireLevel(1);
+                GameActions.Bottom.RaiseAirLevel(1);
                 GameActions.Bottom.GainBlock(amount);
             }
         });

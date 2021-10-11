@@ -61,8 +61,8 @@ public class HidekiHinata extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         }
         else {
-            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
-            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
+            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Fire, Affinity.Air);
+            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Fire, Affinity.Air);
         }
 
         if (CombatStats.ControlPile.Contains(this)) {

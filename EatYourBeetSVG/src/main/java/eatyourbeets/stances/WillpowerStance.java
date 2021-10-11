@@ -3,12 +3,12 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.affinity.WillpowerPower;
+import eatyourbeets.powers.affinity.EarthLevelPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class WillpowerStance extends EYBStance
 {
-    public static final Affinity AFFINITY = WillpowerPower.AFFINITY_TYPE;
+    public static final Affinity AFFINITY = EarthLevelPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(WillpowerStance.class);
 
     public static boolean IsActive()

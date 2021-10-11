@@ -40,7 +40,7 @@ public class King extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (GameUtilities.SpendSuperchargedCharge(magicNumber)) {
-            GameActions.Bottom.GainForce(secondaryValue);
+            GameActions.Bottom.RaiseFireLevel(secondaryValue);
         }
     }
 }

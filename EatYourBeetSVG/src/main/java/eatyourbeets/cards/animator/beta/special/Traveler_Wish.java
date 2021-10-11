@@ -25,7 +25,7 @@ public class Traveler_Wish extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, upgraded);
+        GameActions.Bottom.RaiseLightLevel(1, upgraded);
         GameActions.Bottom.StackPower(new ElementalMasteryPower(p, magicNumber));
     }
 }

@@ -41,7 +41,7 @@ public class JeanGunnhildr extends AnimatorCard
     public void triggerOnManualDiscard()
     {
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainAgility(1, false);
+            GameActions.Bottom.RaiseAirLevel(1, false);
         }
     }
 
@@ -69,7 +69,7 @@ public class JeanGunnhildr extends AnimatorCard
                             }
                         }
                         if (discarded > 0) {
-                            GameActions.Bottom.GainAgility(discarded * secondaryValue);
+                            GameActions.Bottom.RaiseAirLevel(discarded * secondaryValue);
                         }
                     }
                 });

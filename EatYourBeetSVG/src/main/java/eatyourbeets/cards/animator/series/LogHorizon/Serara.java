@@ -59,8 +59,8 @@ public class Serara extends AnimatorCard
             buffs.clear();
         }
 
-        GameActions.Bottom.GainForce(1);
-        GameActions.Bottom.GainWillpower(1);
+        GameActions.Bottom.RaiseFireLevel(1);
+        GameActions.Bottom.RaiseEarthLevel(1);
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
@@ -69,7 +69,7 @@ public class Serara extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                GameActions.Bottom.IncreaseScaling(c, Affinity.Orange, 2);
+                GameActions.Bottom.IncreaseScaling(c, Affinity.Earth, 2);
                 buffs.add(c);
                 c.flash();
             }

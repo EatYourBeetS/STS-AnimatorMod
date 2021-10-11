@@ -29,7 +29,7 @@ public class Evileye extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
         SetAffinityRequirement(Affinity.Dark, 3);
     }
 
@@ -47,7 +47,7 @@ public class Evileye extends AnimatorCard
         }
         GameActions.Bottom.StackPower(new ImpairedPower(player, secondaryValue));
 
-        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+        if (CheckAffinity(Affinity.Water) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
             GameActions.Bottom.StackPower(new ImpairedPower(p, 1));
         }
     }

@@ -41,11 +41,11 @@ public class GirlDeMo extends AnimatorCard
         GameUtilities.IncreaseSuperchargedCharge(magicNumber);
 
         ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
-        pairs.add(new Pair<>(GameActions.Bottom::GainForce, CombatStats.Affinities.GetPowerAmount(Affinity.Red)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainAgility, CombatStats.Affinities.GetPowerAmount(Affinity.Green)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, CombatStats.Affinities.GetPowerAmount(Affinity.Blue)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainWillpower, CombatStats.Affinities.GetPowerAmount(Affinity.Orange)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainWillpower, CombatStats.Affinities.GetPowerAmount(Affinity.Light)));
+        pairs.add(new Pair<>(GameActions.Bottom::RaiseFireLevel, CombatStats.Affinities.GetPowerAmount(Affinity.Fire)));
+        pairs.add(new Pair<>(GameActions.Bottom::RaiseAirLevel, CombatStats.Affinities.GetPowerAmount(Affinity.Air)));
+        pairs.add(new Pair<>(GameActions.Bottom::RaiseWaterLevel, CombatStats.Affinities.GetPowerAmount(Affinity.Water)));
+        pairs.add(new Pair<>(GameActions.Bottom::RaiseEarthLevel, CombatStats.Affinities.GetPowerAmount(Affinity.Earth)));
+        pairs.add(new Pair<>(GameActions.Bottom::RaiseEarthLevel, CombatStats.Affinities.GetPowerAmount(Affinity.Light)));
         pairs.sort(Comparator.comparingInt(Pair::getValue));
 
         int amount = pairs.get(4).getValue();

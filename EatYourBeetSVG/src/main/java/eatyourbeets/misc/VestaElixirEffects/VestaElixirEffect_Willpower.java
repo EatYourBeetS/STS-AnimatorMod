@@ -15,12 +15,12 @@ public class VestaElixirEffect_Willpower extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Willpower, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.EarthLevel, true);
     }
 
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActions.Bottom.GainWillpower(amount);
+        GameActions.Bottom.RaiseEarthLevel(amount);
     }
 }

@@ -27,7 +27,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 3);
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Water))
         {
             GameActions.Bottom.PlayCard(new OrbCore_Plasma(), m);
         }

@@ -99,7 +99,7 @@ public class EmiyaKiritsugu extends AnimatorCard
                     {
                         GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Light, false));
                     }
-                    if (a.GetLevel(Affinity.Blue, true) > 0)
+                    if (a.GetLevel(Affinity.Water, true) > 0)
                     {
                         GameActions.Bottom.ApplyVulnerable(player, enemy, secondaryValue);
                     }

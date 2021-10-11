@@ -91,8 +91,8 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.GainForce(amount * 2);
-                    GameActions.Bottom.GainAgility(amount * 2);
+                    GameActions.Bottom.RaiseFireLevel(amount * 2);
+                    GameActions.Bottom.RaiseAirLevel(amount * 2);
                 });
                 AddDamageBonus(-bonusDamage);
                 break;

@@ -27,8 +27,8 @@ public class SajinKomamura extends AnimatorCard
         SetAffinity_Red(2, 0, 0);
         SetAffinity_Green(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Orange, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Earth, 2);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SajinKomamura extends AnimatorCard
             EnterRandomStanceNotCurrent();
         }
 
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Orange) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Fire) && CheckAffinity(Affinity.Earth) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainPlatedArmor(secondaryValue);
         }

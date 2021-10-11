@@ -27,7 +27,7 @@ public class Ara extends AnimatorCard
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Ara extends AnimatorCard
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.RaiseAirLevel(1);
         }
     }
 

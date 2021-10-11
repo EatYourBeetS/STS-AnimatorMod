@@ -61,7 +61,7 @@ public class Shalltear extends AnimatorCard
         if (power.amount > 0)
         {
             final int amount = Math.min(secondaryValue, power.amount);
-            GameActions.Bottom.GainCorruption(amount);
+            GameActions.Bottom.RaiseDarkLevel(amount);
             power.reducePower(amount);
         }
         else {

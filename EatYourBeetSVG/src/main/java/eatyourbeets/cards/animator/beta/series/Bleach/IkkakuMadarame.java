@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.affinity.AirLevelPower;
+import eatyourbeets.powers.affinity.FireLevelPower;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -32,14 +32,14 @@ public class IkkakuMadarame extends AnimatorCard{
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameUtilities.MaintainPower(Affinity.Air);
         }
         else {
-            GameUtilities.MaintainPower(Affinity.Red);
+            GameUtilities.MaintainPower(Affinity.Fire);
         }
 
         GameActions.Bottom.Callback(card -> {
-            if (GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID) > secondaryValue) {
+            if (GameUtilities.GetPowerAmount(player, FireLevelPower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(player, AirLevelPower.POWER_ID) > secondaryValue) {
                 GameActions.Bottom.MakeCardInDrawPile(new IkkakuBankai());
                 GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
             }

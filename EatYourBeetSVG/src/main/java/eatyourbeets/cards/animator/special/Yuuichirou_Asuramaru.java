@@ -32,9 +32,9 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainForce(magicNumber,true);
-        GameActions.Bottom.GainAgility(magicNumber,true);
-        GameActions.Bottom.GainIntellect(magicNumber,true);
+        GameActions.Bottom.RaiseFireLevel(magicNumber,true);
+        GameActions.Bottom.RaiseAirLevel(magicNumber,true);
+        GameActions.Bottom.RaiseWaterLevel(magicNumber,true);
         GameActions.Bottom.DealDamageAtEndOfTurn(player,player,secondaryValue);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
         GameActions.Bottom.MakeCardInHand(new Status_Wound());

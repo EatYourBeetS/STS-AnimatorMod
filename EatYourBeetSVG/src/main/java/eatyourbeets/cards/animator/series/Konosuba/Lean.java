@@ -24,8 +24,8 @@ public class Lean extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
 
         SetExhaust(true);
     }
@@ -56,10 +56,10 @@ public class Lean extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.GainSupportDamage(secondaryValue);
-        if (CheckAffinity(Affinity.Blue)) {
+        if (CheckAffinity(Affinity.Water)) {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
         }
-        if (CheckAffinity(Affinity.Green)) {
+        if (CheckAffinity(Affinity.Air)) {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
         }
     }

@@ -39,7 +39,7 @@ public class Aqua extends AnimatorCard
         SetHarmonic(true);
         SetTransformed(transformed);
 
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Water, 2);
     }
 
     @Override
@@ -81,10 +81,10 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
-            GameActions.Bottom.GainBlessing(1, upgraded);
+            GameActions.Bottom.RaiseLightLevel(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
-            if (upgraded && CheckAffinity(Affinity.Blue) && info.IsSynergizing && info.TryActivateLimited()) {
+            if (upgraded && CheckAffinity(Affinity.Water) && info.IsSynergizing && info.TryActivateLimited()) {
                 GameActions.Bottom.ChannelOrb(new Water());
             }
             GameActions.Bottom.Callback(() -> SetTransformed(true));

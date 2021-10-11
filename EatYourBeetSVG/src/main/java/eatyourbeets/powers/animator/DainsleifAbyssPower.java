@@ -206,9 +206,9 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
         NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(4, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
-        GainCorruption(ACTIONS.GainAmount(6, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
-        GainIntellect(ACTIONS.GainAmount(4, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
+        GainBlessing(ACTIONS.GainAmount(4, GR.Tooltips.LightLevel, true), 8, 2, (c, p, m) -> GameActions.Bottom.RaiseLightLevel(3, false)),
+        GainCorruption(ACTIONS.GainAmount(6, GR.Tooltips.DarkLevel, true), 7, 3, (c, p, m) -> GameActions.Bottom.RaiseDarkLevel(4, false)),
+        GainIntellect(ACTIONS.GainAmount(4, GR.Tooltips.WaterLevel, true), 8, 2, (c, p, m) -> GameActions.Bottom.RaiseWaterLevel(3, false)),
         ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 7, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());

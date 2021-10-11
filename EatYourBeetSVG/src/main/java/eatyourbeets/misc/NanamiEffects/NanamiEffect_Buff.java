@@ -11,13 +11,13 @@ public class NanamiEffect_Buff extends NanamiEffect
     @Override
     public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainForce(GetForce(nanami));
+        GameActions.Bottom.RaiseFireLevel(GetForce(nanami));
     }
 
     @Override
     public String GetDescription(Nanami nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.FireLevel, true);
     }
 
     private int GetForce(Nanami nanami)

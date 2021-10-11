@@ -70,7 +70,7 @@ public class Arpeggio extends AnimatorCard
         protected void onAmountChanged(int previousAmount, int difference)
         {
             intellectBonus = Math.min(MAX_BONUS, amount);
-            CombatStats.Affinities.GetRow(Affinity.Blue).ActivationPowerAmount += intellectBonus - Math.min(MAX_BONUS, previousAmount);
+            CombatStats.Affinities.GetRow(Affinity.Water).ActivationPowerAmount += intellectBonus - Math.min(MAX_BONUS, previousAmount);
 
             super.onAmountChanged(previousAmount, difference);
         }

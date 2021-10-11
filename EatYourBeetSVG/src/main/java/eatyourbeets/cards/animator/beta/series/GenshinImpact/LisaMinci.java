@@ -48,7 +48,7 @@ public class LisaMinci extends AnimatorCard {
                         }
 
                         if (activateEffect1) {
-                            GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
+                            GameActions.Bottom.RaiseWaterLevel(secondaryValue, upgraded);
                         }
                         if (activateEffect2) {
                             GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));

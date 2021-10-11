@@ -36,7 +36,7 @@ public class SayakaMiki extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Blue) + baseMagicNumber;
+        magicNumber = GetHandAffinity(Affinity.Water) + baseMagicNumber;
         isMagicNumberModified = magicNumber > baseMagicNumber;
     }
 
@@ -52,7 +52,7 @@ public class SayakaMiki extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ChannelOrb(new Frost());
 
-        GameActions.Bottom.StackAffinityPower(Affinity.Blue, 1, upgraded);
+        GameActions.Bottom.StackAffinityPower(Affinity.Water, 1, upgraded);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

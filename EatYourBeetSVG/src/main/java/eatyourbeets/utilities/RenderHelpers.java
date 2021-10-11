@@ -758,17 +758,17 @@ public class RenderHelpers
         switch (id)
         {
             case "F":
-                return GR.Tooltips.Force.icon;
+                return GR.Tooltips.FireLevel.icon;
             case "A":
-                return GR.Tooltips.Agility.icon;
+                return GR.Tooltips.AirLevel.icon;
             case "I":
-                return GR.Tooltips.Intellect.icon;
+                return GR.Tooltips.WaterLevel.icon;
             case "O":
-                return GR.Tooltips.Willpower.icon;
+                return GR.Tooltips.EarthLevel.icon;
             case "B":
-                return GR.Tooltips.Blessing.icon;
+                return GR.Tooltips.LightLevel.icon;
             case "C":
-                return GR.Tooltips.Corruption.icon;
+                return GR.Tooltips.DarkLevel.icon;
 
             case "E":
                 return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;

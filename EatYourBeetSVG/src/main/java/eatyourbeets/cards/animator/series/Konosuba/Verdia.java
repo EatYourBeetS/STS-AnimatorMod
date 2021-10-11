@@ -29,7 +29,7 @@ public class Verdia extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Fire, 3);
         SetAffinityRequirement(Affinity.Dark, 3);
     }
 
@@ -48,7 +48,7 @@ public class Verdia extends AnimatorCard
                 {
                     for (AbstractCard c : cards)
                     {
-                        GameActions.Bottom.IncreaseScaling(c, Affinity.Red, affinities.GetScaling(Affinity.Red,true));
+                        GameActions.Bottom.IncreaseScaling(c, Affinity.Fire, affinities.GetScaling(Affinity.Fire,true));
                         GameActions.Bottom.IncreaseScaling(c, Affinity.Dark, affinities.GetScaling(Affinity.Dark,true));
                         c.flash();
                     }
@@ -61,8 +61,8 @@ public class Verdia extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
-        if (CheckAffinity(Affinity.Red)) {
-            GameActions.Bottom.IncreaseScaling(this, Affinity.Red, 1);
+        if (CheckAffinity(Affinity.Fire)) {
+            GameActions.Bottom.IncreaseScaling(this, Affinity.Fire, 1);
         }
         if (CheckAffinity(Affinity.Dark)) {
             GameActions.Bottom.IncreaseScaling(this, Affinity.Dark, 1);

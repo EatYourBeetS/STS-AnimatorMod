@@ -30,7 +30,7 @@ public class Amber extends AnimatorCard {
         if (IsStarter())
         {
             GameActions.Bottom.ChannelOrb(new Fire());
-            GameActions.Bottom.GainAgility(secondaryValue, false);
+            GameActions.Bottom.RaiseAirLevel(secondaryValue, false);
         }
 
         if (info.IsSynergizing)

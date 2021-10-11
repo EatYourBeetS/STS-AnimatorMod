@@ -43,7 +43,7 @@ public class RundelhausCode extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
-        GameActions.Bottom.GainIntellect(1);
+        GameActions.Bottom.RaiseWaterLevel(1);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class RundelhausCode extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                ((EYBCard)c).AddScaling(Affinity.Blue, 2);
+                ((EYBCard)c).AddScaling(Affinity.Water, 2);
                 buffs.add(c);
                 c.flash();
             }

@@ -33,14 +33,14 @@ public class ZankiKiguchi extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) < magicNumber)
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Fire) < magicNumber)
         {
-            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.RaiseFireLevel(1);
         }
 
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) < magicNumber)
+        if (CombatStats.Affinities.GetPowerAmount(Affinity.Air) < magicNumber)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.RaiseAirLevel(1);
         }
 
         if (info.CanActivateSemiLimited)

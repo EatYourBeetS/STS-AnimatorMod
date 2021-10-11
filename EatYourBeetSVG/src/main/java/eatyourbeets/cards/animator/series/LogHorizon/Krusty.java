@@ -35,7 +35,7 @@ public class Krusty extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainForce(secondaryValue);
+            GameActions.Bottom.RaiseFireLevel(secondaryValue);
         }
     }
 
@@ -53,7 +53,7 @@ public class Krusty extends AnimatorCard
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.HIGH);
         GameActions.Bottom.ModifyAllInstances(uuid, c ->
         {
-            ((EYBCard) c).AddScaling(Affinity.Red, magicNumber);
+            ((EYBCard) c).AddScaling(Affinity.Fire, magicNumber);
             c.flash();
         });
     }

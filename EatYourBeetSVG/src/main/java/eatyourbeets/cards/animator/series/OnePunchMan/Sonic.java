@@ -39,7 +39,7 @@ public class Sonic extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlur(magicNumber);
-        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.RaiseAirLevel(magicNumber);
 
         int knives = 0;
         if (AgilityStance.IsActive())

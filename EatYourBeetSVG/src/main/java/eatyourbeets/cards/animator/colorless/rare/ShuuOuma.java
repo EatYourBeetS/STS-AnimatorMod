@@ -75,9 +75,9 @@ public class ShuuOuma extends AnimatorCard
 
             if (card.type.equals(CardType.POWER))
             {
-                GameActions.Bottom.GainCorruption(amount, true);
-                GameActions.Bottom.GainIntellect(amount, true);
-                GameActions.Bottom.GainForce(amount, true);
+                GameActions.Bottom.RaiseDarkLevel(amount, true);
+                GameActions.Bottom.RaiseWaterLevel(amount, true);
+                GameActions.Bottom.RaiseFireLevel(amount, true);
                 this.flashWithoutSound();
             }
         }

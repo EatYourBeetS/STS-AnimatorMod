@@ -7,8 +7,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.affinity.AirLevelPower;
+import eatyourbeets.powers.affinity.FireLevelPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -30,8 +30,8 @@ public class MayuriKurotsuchi extends AnimatorCard {
     public void Refresh(AbstractMonster enemy) {
         super.Refresh(enemy);
 
-        int force = GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
-        int agility = GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID);
+        int force = GameUtilities.GetPowerAmount(player, FireLevelPower.POWER_ID);
+        int agility = GameUtilities.GetPowerAmount(player, AirLevelPower.POWER_ID);
 
         GameUtilities.IncreaseMagicNumber(this, force + agility, true);
     }

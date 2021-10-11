@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.EYBCardData;
 public class AffinityToken_Green extends AffinityToken
 {
     public static final EYBCardData DATA = RegisterAffinityToken(AffinityToken_Green.class);
-    public static final Affinity AFFINITY_TYPE = Affinity.Green;
+    public static final Affinity AFFINITY_TYPE = Affinity.Air;
 
     public AffinityToken_Green()
     {

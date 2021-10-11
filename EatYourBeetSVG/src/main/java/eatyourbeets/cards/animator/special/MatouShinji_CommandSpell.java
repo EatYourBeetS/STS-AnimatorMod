@@ -48,7 +48,7 @@ public class MatouShinji_CommandSpell extends AnimatorCard
             .SetFilter(c ->
             {
                 final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-                return a != null && (a.GetLevel(Affinity.Red) > 0 || a.GetLevel(Affinity.Orange) > 0);
+                return a != null && (a.GetLevel(Affinity.Fire) > 0 || a.GetLevel(Affinity.Earth) > 0);
             })
             .AddCallback(cards ->
             {

@@ -30,7 +30,7 @@ public class Miracle extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, true);
+        GameActions.Bottom.RaiseLightLevel(1, true);
         GameActions.Bottom.GainEnergy(magicNumber);
     }
 }

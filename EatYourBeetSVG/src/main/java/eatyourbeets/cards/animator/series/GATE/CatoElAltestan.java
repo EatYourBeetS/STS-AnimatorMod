@@ -31,9 +31,9 @@ public class CatoElAltestan extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Blue, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Water, 2);
+        SetAffinityRequirement(Affinity.Air, 2);
     }
 
     @Override
@@ -48,20 +48,20 @@ public class CatoElAltestan extends AnimatorCard
         {
             for (AbstractCard c : cards)
             {
-                GameActions.Bottom.IncreaseScaling(c, Affinity.Blue, 1);
+                GameActions.Bottom.IncreaseScaling(c, Affinity.Water, 1);
             }
         });
 
         choices.Initialize(this, true);
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Water))
         {
             choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Freezing, secondaryValue));
         }
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Fire))
         {
             choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Burning, secondaryValue));
         }
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Air))
         {
             choices.AddEffect(new GenericEffect_ChannelOrb(new Air()));
         }

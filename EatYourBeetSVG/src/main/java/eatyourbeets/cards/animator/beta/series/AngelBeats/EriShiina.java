@@ -58,7 +58,7 @@ public class EriShiina extends AnimatorCard
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (info.IsSynergizing && last != null && (last.cost <= 0 || last.costForTurn <= 0))
         {
-            GameActions.Bottom.GainAgility(secondaryValue,true);
+            GameActions.Bottom.RaiseAirLevel(secondaryValue,true);
             GameActions.Bottom.GainBlur(1);
         }
     }

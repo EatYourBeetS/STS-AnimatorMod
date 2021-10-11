@@ -25,8 +25,8 @@ public class Kuribayashi extends AnimatorCard
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Green(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Fire, 3);
+        SetAffinityRequirement(Affinity.Air, 2);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Kuribayashi extends AnimatorCard
     {
         super.OnDrag(m);
 
-        if (m != null && CheckAffinity(Affinity.Red))
+        if (m != null && CheckAffinity(Affinity.Fire))
         {
             GameUtilities.GetIntent(m).AddStrength(-secondaryValue);
         }
@@ -51,14 +51,14 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
 
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         }
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Fire))
         {
             GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
         }

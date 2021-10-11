@@ -38,7 +38,7 @@ public class Alibaba extends AnimatorCard implements Hidden
     @Override
     protected void OnUpgrade()
     {
-        this.AddScaling(Affinity.Red, 1);
+        this.AddScaling(Affinity.Fire, 1);
     }
 
     @Override

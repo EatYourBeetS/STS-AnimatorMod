@@ -49,7 +49,7 @@ public class Patchouli extends AnimatorCard
 
         SetAffinity_Blue(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class Patchouli extends AnimatorCard
             GameActions.Bottom.WaitRealtime(0.2f);
         }
 
-        if (CheckAffinity(Affinity.Blue) && info.TryActivateLimited())
+        if (CheckAffinity(Affinity.Water) && info.TryActivateLimited())
         {
             GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
             .AddCallback(cards ->

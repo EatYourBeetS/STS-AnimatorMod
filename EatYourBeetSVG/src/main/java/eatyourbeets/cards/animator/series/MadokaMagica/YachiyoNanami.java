@@ -99,7 +99,7 @@ public class YachiyoNanami extends AnimatorCard
                 griefSeedsPlayed += amount;
             }
             if (griefSeedsPlayed >= GRIEF_REQUIREMENT) {
-                CombatStats.Affinities.BonusAffinities.Add(CombatStats.Affinities.GetHandAffinityLevel(Affinity.Blue, null) > CombatStats.Affinities.GetHandAffinityLevel(Affinity.Light, null) ? Affinity.Light : Affinity.Blue, 1);
+                CombatStats.Affinities.BonusAffinities.Add(CombatStats.Affinities.GetHandAffinityLevel(Affinity.Water, null) > CombatStats.Affinities.GetHandAffinityLevel(Affinity.Light, null) ? Affinity.Light : Affinity.Water, 1);
                 griefSeedsPlayed -= GRIEF_REQUIREMENT;
             }
 

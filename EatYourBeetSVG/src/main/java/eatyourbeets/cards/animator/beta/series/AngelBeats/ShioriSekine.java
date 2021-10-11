@@ -42,7 +42,7 @@ public class ShioriSekine extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.RaiseEarthLevel(1, upgraded);
     }
 
     @Override

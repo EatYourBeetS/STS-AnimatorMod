@@ -61,7 +61,7 @@ import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.DarkLevelPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
@@ -502,30 +502,13 @@ public final class GameActions
         return VFX(new CardFlashVfx(card, Color.ORANGE.cpy(), true));
     }
 
-    public ApplyAffinityPower GainAgility(int amount)
-    {
-        return GainAgility(amount, false);
-    }
-
-    public ApplyAffinityPower GainAgility(int amount, boolean retain)
-    {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, retain);
-    }
 
     public ApplyPower GainArtifact(int amount)
     {
         return StackPower(new ArtifactPower(player, amount));
     }
 
-    public ApplyAffinityPower GainBlessing(int amount)
-    {
-        return GainBlessing(amount, false);
-    }
 
-    public ApplyAffinityPower GainBlessing(int amount, boolean retain)
-    {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
-    }
 
     public GainBlock GainBlock(int amount)
     {
@@ -552,16 +535,6 @@ public final class GameActions
         return StackPower(new BlurPower(player, amount));
     }
 
-
-    public ApplyAffinityPower GainCorruption(int amount)
-    {
-        return GainCorruption(amount, false);
-    }
-
-    public ApplyAffinityPower GainCorruption(int amount, boolean retain)
-    {
-        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, retain);
-    }
 
     public ApplyPower GainDexterity(int amount)
     {
@@ -598,14 +571,129 @@ public final class GameActions
         return StackPower(temporary ? new TemporaryFocusPower(player, amount) : new FocusPower(player, amount));
     }
 
-    public ApplyAffinityPower GainForce(int amount)
+    //Affinity power levels
+
+    //TODO: LZLZLZ Update these to have the correct affinity powers
+    public ApplyAffinityPower RaiseFireLevel(int amount)
     {
-        return GainForce(amount, false);
+        return RaiseFireLevel(amount, false);
     }
 
-    public ApplyAffinityPower GainForce(int amount, boolean retain)
+    public ApplyAffinityPower RaiseFireLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(FireLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseAirLevel(int amount)
+    {
+        return RaiseAirLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseAirLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(AirLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseMindLevel(int amount)
+    {
+        return RaiseMindLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseMindLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+
+    public ApplyAffinityPower RaiseEarthLevel(int amount)
+    {
+        return RaiseEarthLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseEarthLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+
+    public ApplyAffinityPower RaiseLightLevel(int amount)
+    {
+        return RaiseLightLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseLightLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(LightLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseDarkLevel(int amount)
+    {
+        return RaiseDarkLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseDarkLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(DarkLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseWaterLevel(int amount)
+    {
+        return RaiseWaterLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseWaterLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(WaterLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaisePoisonLevel(int amount)
+    {
+        return RaisePoisonLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaisePoisonLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseSteelLevel(int amount)
+    {
+        return RaiseSteelLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseSteelLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseThunderLevel(int amount)
+    {
+        return RaiseThunderLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseThunderLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseNatureLevel(int amount)
+    {
+        return RaiseNatureLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseNatureLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public ApplyAffinityPower RaiseCyberLevel(int amount)
+    {
+        return RaiseCyberLevel(amount, false);
+    }
+
+    public ApplyAffinityPower RaiseCyberLevel(int amount, boolean retain)
+    {
+        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public GainGold GainGold(int amount)
@@ -616,16 +704,6 @@ public final class GameActions
     public ApplyPower GainInspiration(int amount)
     {
         return StackPower(new InspirationPower(player, amount));
-    }
-
-    public ApplyAffinityPower GainIntellect(int amount)
-    {
-        return GainIntellect(amount, false);
-    }
-
-    public ApplyAffinityPower GainIntellect(int amount, boolean retain)
-    {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainMalleable(int amount)
@@ -696,16 +774,6 @@ public final class GameActions
     public ApplyPower GainVitality(int amount)
     {
         return StackPower(new VitalityPower(player, amount));
-    }
-
-    public ApplyAffinityPower GainWillpower(int amount)
-    {
-        return GainWillpower(amount, false);
-    }
-
-    public ApplyAffinityPower GainWillpower(int amount, boolean retain)
-    {
-        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, retain);
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

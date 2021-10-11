@@ -3,13 +3,13 @@ package eatyourbeets.powers.affinity;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.powers.PowerHelper;
 
-public class AgilityPower extends AbstractAffinityPower
+public class ThunderLevelPower extends AbstractAffinityPower
 {
-    public static final String POWER_ID = CreateFullID(AgilityPower.class);
-    public static final Affinity AFFINITY_TYPE = Affinity.Green;
-    public static final String SYMBOL = "A";
+    public static final String POWER_ID = CreateFullID(ThunderLevelPower.class);
+    public static final Affinity AFFINITY_TYPE = Affinity.Thunder;
+    public static final String SYMBOL = "T";
 
-    public AgilityPower()
+    public ThunderLevelPower()
     {
         super(AFFINITY_TYPE, POWER_ID);
     }

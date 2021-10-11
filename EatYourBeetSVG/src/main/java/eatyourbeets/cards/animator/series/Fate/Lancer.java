@@ -37,7 +37,7 @@ public class Lancer extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f), Color.RED);
 
         if (ForceStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameUtilities.MaintainPower(Affinity.Air);
         }
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 

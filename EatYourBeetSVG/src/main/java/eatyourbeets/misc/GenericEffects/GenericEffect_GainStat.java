@@ -18,19 +18,19 @@ public class GenericEffect_GainStat extends GenericEffect
 
         if (attribute.equals(PlayerAttribute.Force))
         {
-            this.tooltip = GR.Tooltips.Force;
+            this.tooltip = GR.Tooltips.FireLevel;
         }
         else if (attribute.equals(PlayerAttribute.Agility))
         {
-            this.tooltip = GR.Tooltips.Agility;
+            this.tooltip = GR.Tooltips.AirLevel;
         }
         else if (attribute.equals(PlayerAttribute.Intellect))
         {
-            this.tooltip = GR.Tooltips.Intellect;
+            this.tooltip = GR.Tooltips.WaterLevel;
         }
         else
         {
-            this.tooltip = GR.Tooltips.Willpower;
+            this.tooltip = GR.Tooltips.EarthLevel;
         }
     }
 
@@ -45,19 +45,19 @@ public class GenericEffect_GainStat extends GenericEffect
     {
         if (attribute.equals(PlayerAttribute.Force))
         {
-            GameActions.Bottom.GainForce(amount);
+            GameActions.Bottom.RaiseFireLevel(amount);
         }
         else if (attribute.equals(PlayerAttribute.Agility))
         {
-            GameActions.Bottom.GainAgility(amount);
+            GameActions.Bottom.RaiseAirLevel(amount);
         }
         else if (attribute.equals(PlayerAttribute.Intellect))
         {
-            GameActions.Bottom.GainIntellect(amount);
+            GameActions.Bottom.RaiseWaterLevel(amount);
         }
         else
         {
-            GameActions.Bottom.GainWillpower(amount);
+            GameActions.Bottom.RaiseEarthLevel(amount);
         }
     }
 }

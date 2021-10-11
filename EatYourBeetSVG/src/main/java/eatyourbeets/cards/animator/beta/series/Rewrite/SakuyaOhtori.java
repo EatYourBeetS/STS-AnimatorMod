@@ -69,7 +69,7 @@ public class SakuyaOhtori extends AnimatorCard
             for (int i = 0; i < p.hand.size(); i++)
             {
                 AbstractCard card = p.hand.getNCardFromTop(i);
-                if (card != this && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(Affinity.Green) > 0 && GameUtilities.Retain(card))
+                if (card != this && card instanceof AnimatorCard && ((AnimatorCard) card).affinities.GetLevel(Affinity.Air) > 0 && GameUtilities.Retain(card))
                 {
                     card.flash();
                     return;

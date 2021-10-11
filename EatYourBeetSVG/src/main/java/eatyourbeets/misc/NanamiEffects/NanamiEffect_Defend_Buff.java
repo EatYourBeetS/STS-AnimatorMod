@@ -21,13 +21,13 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
             GameUtilities.UsePenNib();
         }
 
-        GameActions.Bottom.GainForce(GetForce(nanami));
+        GameActions.Bottom.RaiseFireLevel(GetForce(nanami));
     }
 
     @Override
     public String GetDescription(Nanami nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.FireLevel, true);
     }
 
     @Override

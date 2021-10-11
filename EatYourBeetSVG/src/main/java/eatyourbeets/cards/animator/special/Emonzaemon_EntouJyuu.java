@@ -37,7 +37,7 @@ public class Emonzaemon_EntouJyuu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.RaiseAirLevel(magicNumber);
         GameActions.Bottom.StackPower(new Emonzaemon_EntouJyuuPower(p, secondaryValue));
     }
 

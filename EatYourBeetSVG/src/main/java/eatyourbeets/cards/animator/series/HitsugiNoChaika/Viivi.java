@@ -33,7 +33,7 @@ public class Viivi extends AnimatorCard
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Light(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
     }
 
     @Override
@@ -67,11 +67,11 @@ public class Viivi extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.RaiseAirLevel(1);
             GameActions.Bottom.Draw(1);
         }
 
-        if (CheckAffinity(Affinity.Green)) {
+        if (CheckAffinity(Affinity.Air)) {
             GameActions.Bottom.CreateThrowingKnives(1);
         }
     }

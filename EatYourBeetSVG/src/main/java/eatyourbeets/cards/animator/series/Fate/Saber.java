@@ -41,7 +41,7 @@ public class Saber extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainRandomAffinityPower(0,true, Affinity.Light,Affinity.Red);
+        GameActions.Bottom.GainRandomAffinityPower(0,true, Affinity.Light,Affinity.Fire);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
         cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 3 : 1, m);

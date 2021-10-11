@@ -36,7 +36,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Green, Affinity.Blue, Affinity.Light);
+            GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Air, Affinity.Water, Affinity.Light);
         }
 
         cooldown.ProgressCooldownAndTrigger(m);
@@ -47,7 +47,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         super.triggerOnOtherCardPlayed(c);
 
-        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
+        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Water, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
         {
             GameActions.Bottom.GainTemporaryHP(1);
             GameActions.Bottom.Flash(this);

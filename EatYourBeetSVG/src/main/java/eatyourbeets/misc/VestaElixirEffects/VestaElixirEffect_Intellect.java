@@ -15,12 +15,12 @@ public class VestaElixirEffect_Intellect extends VestaElixirEffect
     @Override
     public String GetDescription()
     {
-        return ACTIONS.GainAmount(amount, GR.Tooltips.Intellect, true);
+        return ACTIONS.GainAmount(amount, GR.Tooltips.WaterLevel, true);
     }
 
     @Override
     public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
     {
-        GameActions.Bottom.GainIntellect(amount);
+        GameActions.Bottom.RaiseWaterLevel(amount);
     }
 }

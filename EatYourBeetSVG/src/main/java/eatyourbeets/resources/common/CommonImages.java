@@ -72,12 +72,18 @@ public class CommonImages
     public static class AffinityIcons
     {
         public final TextureCache General               = new TextureCache("images/eyb/cardui/affinities/General.png", true);
-        public final TextureCache Green                 = new TextureCache("images/eyb/cardui/affinities/Green.png", true);
-        public final TextureCache Red                   = new TextureCache("images/eyb/cardui/affinities/Red.png", true);
-        public final TextureCache Blue                  = new TextureCache("images/eyb/cardui/affinities/Blue.png", true);
-        public final TextureCache Orange                = new TextureCache("images/eyb/cardui/affinities/Orange.png", true);
+        public final TextureCache Air                   = new TextureCache("images/eyb/cardui/affinities/Air.png", true);
+        public final TextureCache Fire                  = new TextureCache("images/eyb/cardui/affinities/Fire.png", true);
+        public final TextureCache Earth                 = new TextureCache("images/eyb/cardui/affinities/Earth.png", true);
+        public final TextureCache Mind                 = new TextureCache("images/eyb/cardui/affinities/Mind.png", true);
         public final TextureCache Light                 = new TextureCache("images/eyb/cardui/affinities/Light.png", true);
         public final TextureCache Dark                  = new TextureCache("images/eyb/cardui/affinities/Dark.png", true);
+        public final TextureCache Water                 = new TextureCache("images/eyb/cardui/affinities/Water.png", true);
+        public final TextureCache Poison                 = new TextureCache("images/eyb/cardui/affinities/Poison.png", true);
+        public final TextureCache Steel                 = new TextureCache("images/eyb/cardui/affinities/Steel.png", true);
+        public final TextureCache Thunder                 = new TextureCache("images/eyb/cardui/affinities/Thunder.png", true);
+        public final TextureCache Nature                 = new TextureCache("images/eyb/cardui/affinities/Nature.png", true);
+        public final TextureCache Cyber                 = new TextureCache("images/eyb/cardui/affinities/Cyber.png", true);
         public final TextureCache Star                  = new TextureCache("images/eyb/cardui/affinities/Star.png", true);
         public final TextureCache Star_BG               = new TextureCache("images/eyb/cardui/affinities/Star_BG.png", true);
         public final TextureCache Star_FG               = new TextureCache("images/eyb/cardui/affinities/Star_FG.png", true);

@@ -35,7 +35,7 @@ public class Zero extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainIntellect(1, upgraded);
+        GameActions.Bottom.RaiseWaterLevel(1, upgraded);
         GameActions.Bottom.PlayFromPile(name, 1, m, p.drawPile)
         .SetOptions(true, false)
         .SetFilter(c -> c.type == CardType.SKILL);

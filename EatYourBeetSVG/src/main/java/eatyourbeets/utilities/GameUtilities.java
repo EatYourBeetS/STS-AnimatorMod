@@ -318,22 +318,22 @@ public class GameUtilities
 
     public static boolean HasRedAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Red, true) > 0;
+        return GetAffinityLevel(card, Affinity.Fire, true) > 0;
     }
 
     public static boolean HasGreenAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Green, true) > 0;
+        return GetAffinityLevel(card, Affinity.Air, true) > 0;
     }
 
     public static boolean HasBlueAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Blue, true) > 0;
+        return GetAffinityLevel(card, Affinity.Water, true) > 0;
     }
 
     public static boolean HasOrangeAffinity(AbstractCard card)
     {
-        return GetAffinityLevel(card, Affinity.Orange, true) > 0;
+        return GetAffinityLevel(card, Affinity.Earth, true) > 0;
     }
 
     public static boolean HasLightAffinity(AbstractCard card)

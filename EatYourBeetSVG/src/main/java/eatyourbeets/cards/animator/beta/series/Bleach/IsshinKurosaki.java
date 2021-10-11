@@ -25,7 +25,7 @@ public class IsshinKurosaki extends AnimatorCard
         SetUpgrade(0, 3, 0);
         SetAffinity_Red(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Fire, 4);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class IsshinKurosaki extends AnimatorCard
     {
         makeChoice(m);
 
-        if ((CheckAffinity(Affinity.Red) || ForceStance.IsActive()) && CombatStats.TryActivateLimited(cardID))
+        if ((CheckAffinity(Affinity.Fire) || ForceStance.IsActive()) && CombatStats.TryActivateLimited(cardID))
         {
             makeChoice(m);
         }

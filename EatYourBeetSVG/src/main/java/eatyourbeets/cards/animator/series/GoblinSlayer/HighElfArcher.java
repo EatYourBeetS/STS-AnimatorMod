@@ -25,7 +25,7 @@ public class HighElfArcher extends AnimatorCard
 
         SetAffinity_Green(1, 1, 1);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class HighElfArcher extends AnimatorCard
             GameActions.Bottom.Draw(1);
         }
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Green))
+        if (info.IsSynergizing || CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.ApplyPoison(player, m, magicNumber);
         }

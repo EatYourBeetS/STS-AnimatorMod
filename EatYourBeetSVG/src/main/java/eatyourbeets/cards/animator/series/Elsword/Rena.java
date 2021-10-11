@@ -23,7 +23,7 @@ public class Rena extends AnimatorCard
         SetAffinity_Green(1,2,0);
         SetAffinity_Light(1,0,0);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Air, 2);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (CheckAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Air) && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }
@@ -47,7 +47,7 @@ public class Rena extends AnimatorCard
                 {
                     if (orbs.size() > 0)
                     {
-                        GameActions.Bottom.GainAgility(magicNumber);
+                        GameActions.Bottom.RaiseAirLevel(magicNumber);
                     }
                     else
                     {

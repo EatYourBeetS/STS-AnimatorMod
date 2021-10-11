@@ -51,12 +51,7 @@ public class CardTooltips
     public EYBCardTooltip Ranged = FindByID("~Ranged");
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
-    public EYBCardTooltip Intellect = FindByID("Intellect");
-    public EYBCardTooltip Force = FindByID("Force");
-    public EYBCardTooltip Agility = FindByID("Agility");
-    public EYBCardTooltip Willpower = FindByID("Willpower");
-    public EYBCardTooltip Blessing = FindByID("Blessing");
-    public EYBCardTooltip Corruption = FindByID("Corruption");
+
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
@@ -127,13 +122,33 @@ public class CardTooltips
     public EYBCardTooltip Phasing = FindByID("Phasing");
     public EYBCardTooltip Impaired = FindByID("Impaired");
 
+    //Affinity levels
+    public EYBCardTooltip FireLevel = FindByID("FireLevel");
+    public EYBCardTooltip AirLevel = FindByID("AirLevel");
+    public EYBCardTooltip MindLevel = FindByID("MindLevel");
+    public EYBCardTooltip EarthLevel = FindByID("EarthLevel");
+    public EYBCardTooltip LightLevel = FindByID("LightLevel");
+    public EYBCardTooltip DarkLevel = FindByID("DarkLevel");
+    public EYBCardTooltip WaterLevel = FindByID("WaterLevel");
+    public EYBCardTooltip PoisonLevel = FindByID("PoisonLevel");
+    public EYBCardTooltip SteelLevel = FindByID("SteelLevel");
+    public EYBCardTooltip ThunderLevel = FindByID("ThunderLevel");
+    public EYBCardTooltip NatureLevel = FindByID("NatureLevel");
+    public EYBCardTooltip CyberLevel = FindByID("CyberLevel");
+
     // No Description
-    public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
-    public EYBCardTooltip Affinity_Green = new EYBCardTooltip("Green Affinity", null).ShowText(false);
-    public EYBCardTooltip Affinity_Blue = new EYBCardTooltip("Blue Affinity", null).ShowText(false);
-    public EYBCardTooltip Affinity_Orange = new EYBCardTooltip("Orange Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Fire = new EYBCardTooltip("Fire Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Air = new EYBCardTooltip("Air Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Mind = new EYBCardTooltip("Mind Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Earth = new EYBCardTooltip("Earth Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Water = new EYBCardTooltip("Water Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Poison = new EYBCardTooltip("Poison Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Steel = new EYBCardTooltip("Steel Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Thunder = new EYBCardTooltip("Thunder Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Nature = new EYBCardTooltip("Nature Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Cyber = new EYBCardTooltip("Cyber Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
@@ -179,10 +194,10 @@ public class CardTooltips
 
     public CardTooltips()
     {
-        RegisterID("A-Red", Affinity_Red);
-        RegisterID("A-Green", Affinity_Green);
-        RegisterID("A-Blue", Affinity_Blue);
-        RegisterID("A-Orange", Affinity_Orange);
+        RegisterID("A-Red", Affinity_Fire);
+        RegisterID("A-Green", Affinity_Air);
+        RegisterID("A-Blue", Affinity_Water);
+        RegisterID("A-Orange", Affinity_Earth);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
         RegisterID("A-Star", Affinity_Star);
@@ -225,10 +240,10 @@ public class CardTooltips
         Damage.SetIcon(icons.Damage.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
 
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
-        Affinity_Red.SetIcon(affinities.Red.Texture(), 8);
-        Affinity_Green.SetIcon(affinities.Green.Texture(), 8);
-        Affinity_Blue.SetIcon(affinities.Blue.Texture(), 8);
-        Affinity_Orange.SetIcon(affinities.Orange.Texture(), 8);
+        Affinity_Fire.SetIcon(affinities.Fire.Texture(), 8);
+        Affinity_Air.SetIcon(affinities.Air.Texture(), 8);
+        Affinity_Water.SetIcon(affinities.Water.Texture(), 8);
+        Affinity_Earth.SetIcon(affinities.Earth.Texture(), 8);
         Affinity_Light.SetIcon(affinities.Light.Texture(), 8);
         Affinity_Dark.SetIcon(affinities.Dark.Texture(), 8);
         Affinity_Star.SetIcon(affinities.Star.Texture(), 8);

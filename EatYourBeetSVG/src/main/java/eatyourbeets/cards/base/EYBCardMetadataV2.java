@@ -125,10 +125,10 @@ public class EYBCardMetadataV2
         {
             metadata.scaling = new int[]
             {
-                card.affinities.GetScaling(Affinity.Red, false),
-                card.affinities.GetScaling(Affinity.Green, false),
-                card.affinities.GetScaling(Affinity.Blue, false),
-                card.affinities.GetScaling(Affinity.Orange, false),
+                card.affinities.GetScaling(Affinity.Fire, false),
+                card.affinities.GetScaling(Affinity.Air, false),
+                card.affinities.GetScaling(Affinity.Water, false),
+                card.affinities.GetScaling(Affinity.Earth, false),
                 card.affinities.GetScaling(Affinity.Light, false),
                 card.affinities.GetScaling(Affinity.Dark, false)
             };

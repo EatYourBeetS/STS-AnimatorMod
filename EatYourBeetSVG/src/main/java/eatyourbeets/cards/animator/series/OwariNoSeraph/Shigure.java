@@ -15,7 +15,7 @@ public class Shigure extends AnimatorCard
     public static final EYBCardData DATA = Register(Shigure.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Air), true));
 
     public Shigure()
     {
@@ -54,6 +54,6 @@ public class Shigure extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Green);
+        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Air);
     }
 }

@@ -94,7 +94,7 @@ public class FeridBathory extends AnimatorCard
             if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && CombatStats.TryActivateLimited(FeridBathory.DATA.ID))
             {
                 GameEffects.Queue.ShowCardBriefly(new FeridBathory());
-                GameActions.Bottom.GainForce(FORCE_AMOUNT);
+                GameActions.Bottom.RaiseFireLevel(FORCE_AMOUNT);
             }
         }
     }

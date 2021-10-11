@@ -39,11 +39,11 @@ public class TomoeKashiwaba extends AnimatorCard
     {
         if (upgraded)
         {
-            GameActions.Bottom.GainWillpower(1);
+            GameActions.Bottom.RaiseEarthLevel(1);
         }
         else
         {
-            GameUtilities.MaintainPower(Affinity.Orange);
+            GameUtilities.MaintainPower(Affinity.Earth);
         }
     }
 

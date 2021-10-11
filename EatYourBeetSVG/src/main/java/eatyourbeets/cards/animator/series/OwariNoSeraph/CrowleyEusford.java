@@ -53,8 +53,8 @@ public class CrowleyEusford extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.GainAgility(1, true);
-        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.RaiseAirLevel(1, true);
+        GameActions.Bottom.RaiseFireLevel(1, true);
 
         if (CheckSpecialCondition(true))
         {

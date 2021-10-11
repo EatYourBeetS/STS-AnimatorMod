@@ -48,7 +48,7 @@ public class ManiwaKyouken extends AnimatorCard
             GameActions.Bottom.GainBlock(block).SetVFX(true, true);
         }
 
-        GameActions.Bottom.Draw(1 + CombatStats.Affinities.GetPowerAmount(Affinity.Green));
+        GameActions.Bottom.Draw(1 + CombatStats.Affinities.GetPowerAmount(Affinity.Air));
 
         if (CheckSpecialCondition(true))
         {

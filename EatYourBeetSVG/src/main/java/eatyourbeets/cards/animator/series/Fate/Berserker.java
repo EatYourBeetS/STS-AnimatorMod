@@ -28,7 +28,7 @@ public class Berserker extends AnimatorCard
 
         SetAffinity_Red(2, 0, 6);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
     }
 
     @Override
@@ -44,9 +44,9 @@ public class Berserker extends AnimatorCard
             }
         });
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
-        GameActions.Bottom.GainForce(2);
+        GameActions.Bottom.RaiseFireLevel(2);
 
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Fire))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

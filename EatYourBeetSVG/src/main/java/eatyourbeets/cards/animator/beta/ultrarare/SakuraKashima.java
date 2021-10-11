@@ -33,7 +33,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
 
         if (startOfBattle) {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainIntellect(magicNumber, false);
+            GameActions.Bottom.RaiseWaterLevel(magicNumber, false);
         }
     }
 

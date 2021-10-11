@@ -3,12 +3,12 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.DarkLevelPower;
 import eatyourbeets.utilities.GameUtilities;
 
 public class CorruptionStance extends EYBStance
 {
-    public static final Affinity AFFINITY = CorruptionPower.AFFINITY_TYPE;
+    public static final Affinity AFFINITY = DarkLevelPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(CorruptionStance.class);
 
     public static boolean IsActive()

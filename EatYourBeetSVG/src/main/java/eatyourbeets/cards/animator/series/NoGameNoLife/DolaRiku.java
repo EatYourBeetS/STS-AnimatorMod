@@ -22,13 +22,13 @@ public class DolaRiku extends AnimatorCard
 
         SetAffinity_Orange(1);
 
-        SetAffinityRequirement(Affinity.Orange, 3);
+        SetAffinityRequirement(Affinity.Earth, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Orange) && info.TryActivateSemiLimited())
+        if (CheckAffinity(Affinity.Earth) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.Draw(1)
             .SetFilter(c -> c.costForTurn == 0 && !GameUtilities.IsHindrance(c), false);

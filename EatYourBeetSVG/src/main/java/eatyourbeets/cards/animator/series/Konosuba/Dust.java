@@ -25,7 +25,7 @@ public class Dust extends AnimatorCard
 
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Dust extends AnimatorCard
         GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(1).SetFilter(c -> c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.COMMON), false);
 
-        if (IsStarter() && CheckAffinity(Affinity.Red)) {
+        if (IsStarter() && CheckAffinity(Affinity.Fire)) {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Normal(m), magicNumber);
         };
     }

@@ -22,8 +22,8 @@ public class SougenEsaka extends AnimatorCard
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Orange, 3);
+        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Earth, 3);
     }
 
 
@@ -33,18 +33,18 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainBlock(block);
 
-        if (CheckAffinity(Affinity.Red) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameUtilities.MaintainPower(Affinity.Orange);
+        if (CheckAffinity(Affinity.Fire) || GameUtilities.InStance(ForceStance.STANCE_ID)) {
+            GameUtilities.MaintainPower(Affinity.Earth);
         }
 
 
-        if (CheckAffinity(Affinity.Orange))
+        if (CheckAffinity(Affinity.Earth))
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
                     .ShowEffect(true, true)
                     .SetOrigin(CardSelection.Top).AddCallback(() -> {
                         GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
-                        GameActions.Bottom.GainWillpower(magicNumber);
+                        GameActions.Bottom.RaiseEarthLevel(magicNumber);
                     });
 
         }

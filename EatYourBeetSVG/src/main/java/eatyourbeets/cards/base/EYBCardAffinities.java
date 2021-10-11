@@ -89,20 +89,20 @@ public class EYBCardAffinities
 
     public void Add(int red, int green, int blue, int orange, int light, int dark)
     {
-        Add(Affinity.Red, red);
-        Add(Affinity.Green, green);
-        Add(Affinity.Blue, blue);
-        Add(Affinity.Orange, orange);
+        Add(Affinity.Fire, red);
+        Add(Affinity.Air, green);
+        Add(Affinity.Water, blue);
+        Add(Affinity.Earth, orange);
         Add(Affinity.Light, light);
         Add(Affinity.Dark, dark);
     }
 
     public void Set(int red, int green, int blue, int orange, int light, int dark)
     {
-        Set(Affinity.Red, red);
-        Set(Affinity.Green, green);
-        Set(Affinity.Blue, blue);
-        Set(Affinity.Orange, orange);
+        Set(Affinity.Fire, red);
+        Set(Affinity.Air, green);
+        Set(Affinity.Water, blue);
+        Set(Affinity.Earth, orange);
         Set(Affinity.Light, light);
         Set(Affinity.Dark, dark);
     }

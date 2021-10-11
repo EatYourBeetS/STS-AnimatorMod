@@ -52,6 +52,6 @@ public class KanadeTachibana extends AnimatorCard
                 }
         );
 
-        GameActions.Bottom.GainBlessing(secondaryValue,true);
+        GameActions.Bottom.RaiseLightLevel(secondaryValue,true);
     }
 }

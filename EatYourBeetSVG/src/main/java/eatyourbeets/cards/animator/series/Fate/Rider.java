@@ -26,8 +26,8 @@ public class Rider extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Green, 2);
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Air, 2);
+        SetAffinityRequirement(Affinity.Water, 2);
     }
 
     @Override
@@ -55,14 +55,14 @@ public class Rider extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
 
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Air))
         {
-            GameActions.Bottom.GainAgility(1, true);
+            GameActions.Bottom.RaiseAirLevel(1, true);
         }
 
-        if (CheckAffinity(Affinity.Blue))
+        if (CheckAffinity(Affinity.Water))
         {
-            GameActions.Bottom.GainIntellect(1, true);
+            GameActions.Bottom.RaiseWaterLevel(1, true);
         }
     }
 }

@@ -37,8 +37,8 @@ public class Shuna extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, upgraded);
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.RaiseLightLevel(1, upgraded);
+        GameActions.Bottom.RaiseEarthLevel(1, upgraded);
         GameActions.Bottom.Draw(magicNumber);
     }
 }

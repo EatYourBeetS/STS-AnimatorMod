@@ -43,7 +43,7 @@ public class Alexander extends AnimatorCard
             GameActions.Bottom.Draw(1);
         }
         else {
-            GameUtilities.MaintainPower(Affinity.Red);
+            GameUtilities.MaintainPower(Affinity.Fire);
         }
     }
 }

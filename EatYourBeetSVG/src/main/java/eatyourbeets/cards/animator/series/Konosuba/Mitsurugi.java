@@ -60,7 +60,7 @@ public class Mitsurugi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainForce(magicNumber, upgraded);
+        GameActions.Bottom.RaiseFireLevel(magicNumber, upgraded);
 
         if (GameUtilities.IsAttacking(m.intent))
         {

@@ -118,7 +118,7 @@ public class Saitama extends AnimatorCard
             {
                 // Draw !M! Cards. NL Gain !SV! Agility.
                 GameActions.Bottom.Draw(magicNumber);
-                GameActions.Bottom.GainAgility(secondaryValue);
+                GameActions.Bottom.RaiseAirLevel(secondaryValue);
 
                 break;
             }
@@ -134,7 +134,7 @@ public class Saitama extends AnimatorCard
             case 3:
             {
                 // Gain !M! Force. Gain !B! Block.
-                GameActions.Bottom.GainForce(magicNumber);
+                GameActions.Bottom.RaiseFireLevel(magicNumber);
                 GameActions.Bottom.GainBlock(block);
 
                 break;
@@ -251,8 +251,8 @@ public class Saitama extends AnimatorCard
 
                 Initialize(6, 0, 8, 0);
 
-                AddScaling(Affinity.Red, 3);
-                AddScaling(Affinity.Green, 1);
+                AddScaling(Affinity.Fire, 3);
+                AddScaling(Affinity.Air, 1);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
@@ -270,8 +270,8 @@ public class Saitama extends AnimatorCard
 
                 Initialize(999, 0, 0, 0);
 
-                SetScaling(Affinity.Red, 99);
-                SetScaling(Affinity.Green, 99);
+                SetScaling(Affinity.Fire, 99);
+                SetScaling(Affinity.Air, 99);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;

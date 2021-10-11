@@ -27,7 +27,7 @@ public class SuzuneAmano extends AnimatorCard
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Water, 3);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class SuzuneAmano extends AnimatorCard
         {
             if (cards != null && cards.size() > 0)
             {
-                GameActions.Bottom.ApplyBurning(CheckAffinity(Affinity.Blue) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
+                GameActions.Bottom.ApplyBurning(CheckAffinity(Affinity.Water) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
             }
         });
     }

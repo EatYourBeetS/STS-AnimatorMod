@@ -42,7 +42,7 @@ public class Konayuki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.RaiseFireLevel(magicNumber);
 
         if (CheckSpecialCondition(true))
         {
@@ -54,6 +54,6 @@ public class Konayuki extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Red) > 6;
+        return GameUtilities.GetPowerAmount(Affinity.Fire) > 6;
     }
 }

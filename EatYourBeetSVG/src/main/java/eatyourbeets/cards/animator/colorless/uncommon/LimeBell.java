@@ -38,6 +38,6 @@ public class LimeBell extends AnimatorCard
             }
         });
 
-        GameActions.Bottom.Reload(name, cards -> GameActions.Bottom.GainBlessing(cards.size() * secondaryValue));
+        GameActions.Bottom.Reload(name, cards -> GameActions.Bottom.RaiseLightLevel(cards.size() * secondaryValue));
     }
 }

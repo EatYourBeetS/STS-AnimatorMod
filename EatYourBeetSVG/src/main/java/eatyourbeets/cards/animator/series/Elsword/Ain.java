@@ -20,7 +20,7 @@ public class Ain extends AnimatorCard
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(CardSeries.Elsword)
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Water), true));
 
     public Ain()
     {
@@ -75,7 +75,7 @@ public class Ain extends AnimatorCard
 
         if (CheckAffinity(Affinity.Light))
         {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Water, upgraded));
         }
     }
 

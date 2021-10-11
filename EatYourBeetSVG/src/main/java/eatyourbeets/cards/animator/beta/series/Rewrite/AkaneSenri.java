@@ -65,7 +65,7 @@ public class AkaneSenri extends AnimatorCard
             super.onCardDraw(card);
 
             if (card.hasTag(HASTE)) {
-                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.RaiseAirLevel(1);
                 amount -= 1;
             }
 

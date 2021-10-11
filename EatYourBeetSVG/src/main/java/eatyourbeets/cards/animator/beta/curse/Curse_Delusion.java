@@ -11,7 +11,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(Curse_Delusion.class)
             .SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.GenshinImpact)
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));;
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Air), true));;
 
     public Curse_Delusion()
     {

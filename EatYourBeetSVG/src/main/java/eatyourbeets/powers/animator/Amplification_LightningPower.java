@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.Affinity;
 
 public class Amplification_LightningPower extends Amplification_AbstractPower
 {
-    public static final Affinity AFFINITY = Affinity.Blue;
+    public static final Affinity AFFINITY = Affinity.Water;
     public static final String POWER_ID = CreateFullID(Amplification_LightningPower.class);
     public static final String ORB_ID = Lightning.ORB_ID;
 

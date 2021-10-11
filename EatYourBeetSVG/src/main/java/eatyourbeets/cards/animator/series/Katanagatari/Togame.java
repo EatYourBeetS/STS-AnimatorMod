@@ -14,7 +14,7 @@ public class Togame extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Orange), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Earth), true));
 
     public Togame()
     {
@@ -46,7 +46,7 @@ public class Togame extends AnimatorCard
                 }
             }
 
-            GameActions.Bottom.ObtainAffinityToken(Affinity.Orange, upgraded);
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Earth, upgraded);
         });
     }
 }

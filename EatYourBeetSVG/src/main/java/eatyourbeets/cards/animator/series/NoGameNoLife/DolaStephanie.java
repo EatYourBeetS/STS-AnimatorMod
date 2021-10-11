@@ -35,7 +35,7 @@ public class DolaStephanie extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainRandomAffinityPower(1, false, Affinity.Light, Affinity.Blue);
+        GameActions.Bottom.GainRandomAffinityPower(1, false, Affinity.Light, Affinity.Water);
     }
 
     @Override

@@ -34,11 +34,11 @@ public class IchigoKurosaki extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
 
-        GameActions.Bottom.GainForce(1, true);
-        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.RaiseFireLevel(1, true);
+        GameActions.Bottom.RaiseAirLevel(1, true);
 
         GameActions.Bottom.Callback(() -> {
-            if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue)
+            if (CombatStats.Affinities.GetPowerAmount(Affinity.Fire) >= secondaryValue)
             {
                 GameActions.Bottom.Exhaust(this);
                 GameActions.Bottom.MakeCardInDrawPile(new IchigoKurosaki_Bankai());

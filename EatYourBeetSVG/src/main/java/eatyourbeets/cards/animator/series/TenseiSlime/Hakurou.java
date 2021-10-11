@@ -18,7 +18,7 @@ public class Hakurou extends AnimatorCard
     public static final EYBCardData DATA = Register(Hakurou.class)
             .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true, true)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Air), true));
 
     public Hakurou()
     {
@@ -30,8 +30,8 @@ public class Hakurou extends AnimatorCard
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Orange, 3);
+        SetAffinityRequirement(Affinity.Fire, 3);
+        SetAffinityRequirement(Affinity.Earth, 3);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Hakurou extends AnimatorCard
         super.triggerWhenDrawn();
 
         if (ForceStance.IsActive() || WillpowerStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameUtilities.MaintainPower(Affinity.Air);
             GameActions.Bottom.Flash(this);
         }
     }
@@ -80,9 +80,9 @@ public class Hakurou extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Orange))
+        if (CheckAffinity(Affinity.Fire) || CheckAffinity(Affinity.Earth))
         {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
+            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Air, upgraded));
         }
     }
 }

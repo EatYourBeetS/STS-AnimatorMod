@@ -21,7 +21,7 @@ public class Noda extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         AfterLifeMod.Add(this);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Fire, 3);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class Noda extends AnimatorCard
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.Exhaust(this);
-        GameActions.Bottom.GainForce(magicNumber, false);
+        GameActions.Bottom.RaiseFireLevel(magicNumber, false);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class Noda extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) || info.IsSynergizing)
+        if (CheckAffinity(Affinity.Fire) || info.IsSynergizing)
         {
-            GameActions.Bottom.GainForce(secondaryValue, upgraded);
-            GameActions.Bottom.GainWillpower(secondaryValue, upgraded);
+            GameActions.Bottom.RaiseFireLevel(secondaryValue, upgraded);
+            GameActions.Bottom.RaiseEarthLevel(secondaryValue, upgraded);
         }
     }
 }

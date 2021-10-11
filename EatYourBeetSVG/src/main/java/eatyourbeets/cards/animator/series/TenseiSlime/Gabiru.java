@@ -56,6 +56,6 @@ public class Gabiru extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Green) > GetHandAffinity(Affinity.Orange);
+        return GetHandAffinity(Affinity.Air) > GetHandAffinity(Affinity.Earth);
     }
 }

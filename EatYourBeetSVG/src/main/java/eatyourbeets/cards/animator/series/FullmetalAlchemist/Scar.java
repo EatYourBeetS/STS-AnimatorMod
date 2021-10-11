@@ -25,7 +25,7 @@ public class Scar extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Orange(2);
 
-        SetAffinityRequirement(Affinity.Orange, 4);
+        SetAffinityRequirement(Affinity.Earth, 4);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Scar extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Orange))
+        if (info.IsSynergizing || CheckAffinity(Affinity.Earth))
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)

@@ -61,7 +61,7 @@ public class Oz extends AnimatorCard
 
             super.onPlayCard(card, m);
 
-            if (this.spellcastersPlayed < this.amount && (GameUtilities.GetAffinityLevel(card, Affinity.Blue, false) > 1 || GameUtilities.GetAffinityLevel(card, Affinity.Dark, false) > 1)) {
+            if (this.spellcastersPlayed < this.amount && (GameUtilities.GetAffinityLevel(card, Affinity.Water, false) > 1 || GameUtilities.GetAffinityLevel(card, Affinity.Dark, false) > 1)) {
                 GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
                 this.spellcastersPlayed += 1;
                 updateDescription();

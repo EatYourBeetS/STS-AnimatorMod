@@ -38,7 +38,7 @@ public class GazelDwargon extends AnimatorCard //TODO
         }
 
         if (stacks > 1) {
-            GameActions.Bottom.GainWillpower(1, true);
+            GameActions.Bottom.RaiseEarthLevel(1, true);
         }
     }
 

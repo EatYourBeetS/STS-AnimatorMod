@@ -47,7 +47,7 @@ public class YoshinoHaruhiko extends AnimatorCard
                     {
                         for (AbstractCard c : cards)
                         {
-                            GameActions.Bottom.IncreaseScaling(c, Affinity.Red, 1);
+                            GameActions.Bottom.IncreaseScaling(c, Affinity.Fire, 1);
                         }
                     });
         }

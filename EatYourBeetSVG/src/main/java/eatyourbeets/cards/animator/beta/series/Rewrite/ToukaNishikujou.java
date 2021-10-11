@@ -27,7 +27,7 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameUtilities.MaintainPower(Affinity.Orange);
+        GameUtilities.MaintainPower(Affinity.Earth);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ToukaNishikujou extends AnimatorCard
                     GameActions.Bottom.IncreaseScaling(card, Affinity.Light, GetHandAffinity(Affinity.Light));
                 }
                 else {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, GetHandAffinity(Affinity.Orange));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Earth, GetHandAffinity(Affinity.Earth));
                 }
             }
 
@@ -55,6 +55,6 @@ public class ToukaNishikujou extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Orange);
+        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Earth);
     }
 }

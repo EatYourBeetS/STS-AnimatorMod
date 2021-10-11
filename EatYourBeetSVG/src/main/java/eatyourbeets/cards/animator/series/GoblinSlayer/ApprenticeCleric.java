@@ -37,7 +37,7 @@ public class ApprenticeCleric extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainBlessing(1);
+            GameActions.Bottom.RaiseLightLevel(1);
             GameActions.Bottom.Flash(this);
         }
     }
@@ -45,7 +45,7 @@ public class ApprenticeCleric extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, upgraded);
+        GameActions.Bottom.RaiseLightLevel(1, upgraded);
     }
 
     @Override

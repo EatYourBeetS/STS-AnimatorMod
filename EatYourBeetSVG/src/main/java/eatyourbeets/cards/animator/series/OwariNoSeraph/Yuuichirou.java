@@ -41,7 +41,7 @@ public class Yuuichirou extends AnimatorCard
         GameActions.Bottom.Draw(1);
 
         if (AgilityStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Red);
+            GameUtilities.MaintainPower(Affinity.Fire);
         }
     }
 

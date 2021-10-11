@@ -22,7 +22,7 @@ public class RukiaKuchiki extends AnimatorCard
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Blue(1, 0, 0);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class RukiaKuchiki extends AnimatorCard
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
-        if (CheckAffinity(Affinity.Green) || IntellectStance.IsActive())
+        if (CheckAffinity(Affinity.Air) || IntellectStance.IsActive())
         {
             if (player.filledOrbCount() >= secondaryValue)
             {

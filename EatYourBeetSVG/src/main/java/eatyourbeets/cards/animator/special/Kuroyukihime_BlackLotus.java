@@ -39,8 +39,8 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         GameActions.Bottom.VFX(VFX.SweepingBeam(p.hb, VFX.FlipHorizontally(), new Color(0.24f, 0, 0.4f, 1f)), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
 
-        GameUtilities.MaintainPower(Affinity.Red);
-        GameUtilities.MaintainPower(Affinity.Green);
+        GameUtilities.MaintainPower(Affinity.Fire);
+        GameUtilities.MaintainPower(Affinity.Air);
 
         if (CheckAffinity(Affinity.General))
         {

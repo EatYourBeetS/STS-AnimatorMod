@@ -33,9 +33,9 @@ public class GrowthPotion extends AbstractPotion
     @Override
     public void use(AbstractCreature target)
     {
-        GameActions.Bottom.GainForce(potency);
-        GameActions.Bottom.GainIntellect(potency);
-        GameActions.Bottom.GainAgility(potency);
+        GameActions.Bottom.RaiseFireLevel(potency);
+        GameActions.Bottom.RaiseWaterLevel(potency);
+        GameActions.Bottom.RaiseAirLevel(potency);
     }
 
     @Override

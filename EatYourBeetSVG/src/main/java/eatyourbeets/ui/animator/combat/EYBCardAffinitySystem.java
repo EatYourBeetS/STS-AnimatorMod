@@ -32,12 +32,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 {
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
     public final EYBCardAffinities BonusAffinities = new EYBCardAffinities(null);
-    public final ForcePower Force;
-    public final AgilityPower Agility;
-    public final IntellectPower Intellect;
-    public final WillpowerPower Willpower;
-    public final BlessingPower Blessing;
-    public final CorruptionPower Corruption;
+    public final FireLevelPower Force;
+    public final AirLevelPower Agility;
+    public final WaterLevelPower Intellect;
+    public final EarthLevelPower Willpower;
+    public final LightLevelPower Blessing;
+    public final DarkLevelPower Corruption;
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
@@ -52,12 +52,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinitySystem()
     {
-        Powers.add(Force = new ForcePower());
-        Powers.add(Agility = new AgilityPower());
-        Powers.add(Intellect = new IntellectPower());
-        Powers.add(Willpower = new WillpowerPower());
-        Powers.add(Blessing = new BlessingPower());
-        Powers.add(Corruption = new CorruptionPower());
+        Powers.add(Force = new FireLevelPower());
+        Powers.add(Agility = new AirLevelPower());
+        Powers.add(Intellect = new WaterLevelPower());
+        Powers.add(Willpower = new EarthLevelPower());
+        Powers.add(Blessing = new LightLevelPower());
+        Powers.add(Corruption = new DarkLevelPower());
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));

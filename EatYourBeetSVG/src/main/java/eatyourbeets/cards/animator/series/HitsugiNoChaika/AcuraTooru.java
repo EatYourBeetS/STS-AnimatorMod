@@ -34,7 +34,7 @@ public class AcuraTooru extends AnimatorCard
         SetProtagonist(true);
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Air, 3);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class AcuraTooru extends AnimatorCard
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.GainBlock(magicNumber);
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.RaiseAirLevel(1);
     }
 
     @Override
@@ -59,10 +59,10 @@ public class AcuraTooru extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (CheckAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Air))
         {
             GameActions.Bottom.GainBlock(magicNumber);
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.RaiseAirLevel(1);
         }
     }
 }

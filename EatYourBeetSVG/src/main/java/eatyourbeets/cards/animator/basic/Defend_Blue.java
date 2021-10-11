@@ -5,7 +5,7 @@ import eatyourbeets.cards.base.EYBCardData;
 
 public class Defend_Blue extends ImprovedDefend
 {
-    public static final Affinity AFFINITY_TYPE = Affinity.Blue;
+    public static final Affinity AFFINITY_TYPE = Affinity.Water;
     public static final EYBCardData DATA = Register(Defend_Blue.class);
 
     public Defend_Blue()

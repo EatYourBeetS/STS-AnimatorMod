@@ -25,7 +25,7 @@ public class Godan extends AnimatorCard
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 1, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
         SetAffinityRequirement(Affinity.Light, 2);
     }
 
@@ -34,7 +34,7 @@ public class Godan extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Light) && info.TryActivateSemiLimited())
+        if (CheckAffinity(Affinity.Fire) && CheckAffinity(Affinity.Light) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }
@@ -44,7 +44,7 @@ public class Godan extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.RaiseFireLevel(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
     }
 }

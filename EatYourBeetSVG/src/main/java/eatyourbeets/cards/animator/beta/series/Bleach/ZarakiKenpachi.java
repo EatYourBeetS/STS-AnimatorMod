@@ -44,10 +44,10 @@ public class ZarakiKenpachi extends AnimatorCard
 
             this.amount = amount;
 
-            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Earth).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Water).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Air).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Fire).AddThresholdBonusModifier(+amount);
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -67,10 +67,10 @@ public class ZarakiKenpachi extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(-amount);
+            CombatStats.Affinities.GetPower(Affinity.Earth).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Water).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Air).AddThresholdBonusModifier(+amount);
+            CombatStats.Affinities.GetPower(Affinity.Fire).AddThresholdBonusModifier(-amount);
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

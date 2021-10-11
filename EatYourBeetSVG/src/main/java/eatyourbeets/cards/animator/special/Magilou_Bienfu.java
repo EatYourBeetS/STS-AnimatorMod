@@ -37,7 +37,7 @@ public class Magilou_Bienfu extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        GameActions.Bottom.GainIntellect(1, true);
+        GameActions.Bottom.RaiseWaterLevel(1, true);
     }
 
     @Override

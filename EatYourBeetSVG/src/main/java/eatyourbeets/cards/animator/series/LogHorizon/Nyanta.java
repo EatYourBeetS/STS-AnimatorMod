@@ -57,8 +57,8 @@ public class Nyanta extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainAgility(1, upgraded);
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.RaiseAirLevel(1, upgraded);
+        GameActions.Bottom.RaiseEarthLevel(1, upgraded);
 
         for (int i = 0; i < magicNumber; i++)
         {

@@ -89,10 +89,10 @@ public class Enchantment4 extends Enchantment
     {
         switch (auxiliaryData.form)
         {
-            case 1: return Affinity.Red;
-            case 2: return Affinity.Green;
-            case 3: return Affinity.Blue;
-            case 4: return Affinity.Orange;
+            case 1: return Affinity.Fire;
+            case 2: return Affinity.Air;
+            case 3: return Affinity.Water;
+            case 4: return Affinity.Earth;
             case 5: return Affinity.Light;
             case 6: return Affinity.Dark;
             default: return null;

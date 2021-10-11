@@ -33,7 +33,7 @@ public class Yusa extends AnimatorCard
                     .AddCallback(cards -> {
                 for (AbstractCard c : cards) {
                     if (GameUtilities.HasLightAffinity(c)) {
-                        GameActions.Bottom.GainBlessing(1);
+                        GameActions.Bottom.RaiseLightLevel(1);
                         break;
                     }
                 }

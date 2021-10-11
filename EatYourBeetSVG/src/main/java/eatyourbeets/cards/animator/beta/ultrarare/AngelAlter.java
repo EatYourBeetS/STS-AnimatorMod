@@ -37,8 +37,8 @@ public class AngelAlter extends AnimatorCard_UltraRare
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        GameActions.Bottom.GainForce(magicNumber, true);
-        GameActions.Bottom.GainAgility(magicNumber, true);
+        GameActions.Bottom.RaiseFireLevel(magicNumber, true);
+        GameActions.Bottom.RaiseAirLevel(magicNumber, true);
 
         GameActions.Bottom.MakeCardInDrawPile(makeStatEquivalentCopy());
         GameActions.Bottom.MakeCardInDiscardPile(makeStatEquivalentCopy());

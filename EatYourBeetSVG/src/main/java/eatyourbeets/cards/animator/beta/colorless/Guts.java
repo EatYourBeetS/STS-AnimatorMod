@@ -36,7 +36,7 @@ public class Guts extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int forceGain = ExecuteAttack(m, damage);
-        GameActions.Bottom.GainForce(forceGain);
+        GameActions.Bottom.RaiseFireLevel(forceGain);
         GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
     }
 

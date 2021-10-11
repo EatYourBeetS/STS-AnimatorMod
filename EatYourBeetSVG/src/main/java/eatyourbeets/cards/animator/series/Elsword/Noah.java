@@ -55,7 +55,7 @@ public class Noah extends AnimatorCard //TODO
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
-        GameActions.Bottom.GainCorruption(1, true);
+        GameActions.Bottom.RaiseDarkLevel(1, true);
         GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
 
         if (!CheckAffinity(Affinity.Dark))

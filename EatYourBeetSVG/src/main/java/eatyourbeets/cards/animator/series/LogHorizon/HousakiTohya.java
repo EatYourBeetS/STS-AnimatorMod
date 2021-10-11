@@ -23,7 +23,7 @@ public class HousakiTohya extends AnimatorCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Fire, 2);
         SetAffinityRequirement(Affinity.Light, 2);
     }
 
@@ -40,7 +40,7 @@ public class HousakiTohya extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Red) || CheckAffinity(Affinity.Light)) {
+        if (CheckAffinity(Affinity.Fire) || CheckAffinity(Affinity.Light)) {
             GameActions.Bottom.Draw(1)
                     .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
                     .AddCallback((cards) ->

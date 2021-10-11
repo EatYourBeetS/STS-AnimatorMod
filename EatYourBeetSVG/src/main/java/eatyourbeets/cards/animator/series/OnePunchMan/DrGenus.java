@@ -50,7 +50,7 @@ public class DrGenus extends AnimatorCard
             SetPurge(true);
             SetEthereal(true);
 
-            SetAffinityRequirement(Affinity.Blue, 3);
+            SetAffinityRequirement(Affinity.Water, 3);
         }
         else
         {
@@ -81,7 +81,7 @@ public class DrGenus extends AnimatorCard
         {
            for (AbstractCard c : cards)
            {
-               if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+               if (CheckAffinity(Affinity.Water) && CombatStats.TryActivateLimited(cardID))
                {
                    GameActions.Bottom.StackPower(new DrGenusPower(player, c, secondaryValue));
                }

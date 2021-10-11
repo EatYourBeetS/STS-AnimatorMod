@@ -90,6 +90,6 @@ public class LestKarr extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return CombatStats.Affinities.GetPowerAmount(Affinity.Blue) >= INTELLECT_THRESHOLD;
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Water) >= INTELLECT_THRESHOLD;
     }
 }

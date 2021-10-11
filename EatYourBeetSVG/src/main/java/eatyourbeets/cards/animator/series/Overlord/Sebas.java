@@ -29,7 +29,7 @@ public class Sebas extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Fire, 4);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class Sebas extends AnimatorCard
         final int counter = JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking);
         if (counter > 0)
         {
-            GameActions.Bottom.GainForce(counter);
+            GameActions.Bottom.RaiseFireLevel(counter);
             GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
         }
 
@@ -49,7 +49,7 @@ public class Sebas extends AnimatorCard
         {
             energy += 1;
         }
-        if (CheckAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Fire))
         {
             energy += 1;
         }

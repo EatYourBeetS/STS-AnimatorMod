@@ -45,7 +45,7 @@ public class Yae extends AnimatorCard
             if (!(orb instanceof EmptyOrbSlot) && orb.ID.equals(Lightning.ORB_ID))
             {
                 GameActions.Bottom.Add(new RemoveOrb(orb));
-                GameActions.Bottom.GainIntellect(magicNumber, upgraded);
+                GameActions.Bottom.RaiseWaterLevel(magicNumber, upgraded);
                 if (++lightningCount >= magicNumber) {
                     break;
                 }

@@ -49,7 +49,7 @@ public class Yoimiya extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        this.AddScaling(Affinity.Red, 1);
+        this.AddScaling(Affinity.Fire, 1);
     }
 
     @Override

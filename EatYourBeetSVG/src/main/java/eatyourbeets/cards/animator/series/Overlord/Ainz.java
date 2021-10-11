@@ -130,10 +130,10 @@ public class Ainz extends AnimatorCard
         }
 
         private void EnablePowers() {
-            CombatStats.Affinities.GetPower(Affinity.Red).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Blue).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Orange).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Fire).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Water).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Air).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Earth).SetEnabled(true);
         }
     }
 }

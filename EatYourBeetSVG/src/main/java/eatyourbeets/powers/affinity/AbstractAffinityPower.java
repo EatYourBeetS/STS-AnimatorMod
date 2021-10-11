@@ -2,6 +2,7 @@ package eatyourbeets.powers.affinity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -48,11 +49,10 @@ public abstract class AbstractAffinityPower extends CommonPower
         //TODO: Add tooltip to EYBPower base class
         EYBCardTooltip tooltip = new EYBCardTooltip(name, description);
         tooltip.subText = new ColoredString();
-        //TODO: Add image to AbstractAFfinityPower
-        //tooltip.icon = new TextureRegion(img);
+        tooltip.icon = new TextureRegion(img);
         tooltips.add(tooltip);
 
-        FindTooltipsFromText(powerStrings.DESCRIPTIONS[1]);
+        FindTooltipsFromText(powerStrings.DESCRIPTIONS[0]);
 
         Initialize(null);
     }
@@ -150,7 +150,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            description += FormatDescription(1, threshold, 1);
+            description += FormatDescription(0, threshold, 1);
         }
 
         return description;

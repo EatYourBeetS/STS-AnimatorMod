@@ -6,11 +6,11 @@ import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class VitalityPower extends CommonPower
+public class PrayerPower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(VitalityPower.class);
+    public static final String POWER_ID = CreateFullID(PrayerPower.class);
 
-    public VitalityPower(AbstractCreature owner, int amount)
+    public PrayerPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 

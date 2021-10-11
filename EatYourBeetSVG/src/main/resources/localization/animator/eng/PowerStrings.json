@@ -400,10 +400,10 @@
 		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength. Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
 		"NAME": "Unnamed Doll"
 	},
-	"animator:VitalityPower":
+	"animator:PrayerPower":
 	{
 		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b{0} #yTemporary #HP."],
-		"NAME": "Vitality"
+		"NAME": "Prayer"
 	},
 	"animator:YukoShionjiPower":
 	{

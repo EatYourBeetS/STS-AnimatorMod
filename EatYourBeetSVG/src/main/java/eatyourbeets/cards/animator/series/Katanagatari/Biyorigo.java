@@ -27,8 +27,7 @@ public class Biyorigo extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
 
-        SetAffinity_Fire(2);
-        SetAffinity_Air(2);
+        SetAffinity_Steel(2);
 
         SetDelayed(true);
     }

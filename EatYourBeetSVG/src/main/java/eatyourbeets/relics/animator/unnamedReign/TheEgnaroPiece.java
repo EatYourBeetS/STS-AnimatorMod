@@ -6,7 +6,7 @@ import eatyourbeets.utilities.JUtils;
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class);
-    public static final int VITALITY_AMOUNT = 1;
+    public static final int Prayer_AMOUNT = 1;
     public static final int CARDS_STEP = 7;
 
     public TheEgnaroPiece()
@@ -17,7 +17,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JUtils.Format(DESCRIPTIONS[0], VITALITY_AMOUNT, CARDS_STEP);
+        return JUtils.Format(DESCRIPTIONS[0], Prayer_AMOUNT, CARDS_STEP);
     }
 
     @Override
@@ -31,10 +31,10 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     protected void ActivateBattleEffect()
     {
-        this.counter = 1 + Math.min(9, VITALITY_AMOUNT * player.masterDeck.size() / CARDS_STEP);
+        this.counter = 1 + Math.min(9, Prayer_AMOUNT * player.masterDeck.size() / CARDS_STEP);
         if (counter > 0)
         {
-            GameActions.Bottom.GainVitality(counter);
+            GameActions.Bottom.GainPrayer(counter);
             flash();
         }
     }

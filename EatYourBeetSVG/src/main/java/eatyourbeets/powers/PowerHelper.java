@@ -35,7 +35,7 @@ public class PowerHelper
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, null, DexterityPower::new);
     public static final PowerHelper Knowledge = new PowerHelper(KnowledgePower.POWER_ID, null, KnowledgePower::new);
     public static final PowerHelper Resistance = new PowerHelper(ResistancePower.POWER_ID, null, ResistancePower::new);
-    public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new);
+    public static final PowerHelper Prayer = new PowerHelper(PrayerPower.POWER_ID, null, PrayerPower::new);
     public static final PowerHelper Lunacy = new PowerHelper(LunacyPower.POWER_ID, null, LunacyPower::new);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, null, FocusPower::new);
     public static final PowerHelper Pestilence = new PowerHelper(PestilencePower.POWER_ID, null, PestilencePower::new);

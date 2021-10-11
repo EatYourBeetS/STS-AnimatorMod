@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
 public class InnovationPower extends CommonPower
@@ -29,7 +30,7 @@ public class InnovationPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount);
+        this.description = FormatDescription(0, amount * BASE_PERCENT);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -62,40 +63,42 @@ public class InnovationPower extends CommonPower
     {
         super.atStartOfTurnPostDraw();
 
-       if (player.hand.size() <= 0)
-       {
-           return;
-       }
+        GameActions.Last.Callback( () -> {
+            if (player.hand.size() <= 0)
+            {
+                return;
+            }
 
-        RandomizedList<AnimatorCard> cardsInHand = new RandomizedList<>();
+            RandomizedList<AnimatorCard> cardsInHand = new RandomizedList<>();
 
-       for (AbstractCard card : player.hand.group)
-       {
-           if (card instanceof AnimatorCard && CardHasAttackOrBlock(card))
-           {
-               cardsInHand.Add((AnimatorCard) card);
-           }
-       }
+            for (AbstractCard card : player.hand.group)
+            {
+                if (card instanceof AnimatorCard && CardHasAttackOrBlock(card))
+                {
+                    cardsInHand.Add((AnimatorCard) card);
+                }
+            }
 
-       if (cardsInHand.Size() <= 0)
-       {
-           return;
-       }
+            if (cardsInHand.Size() <= 0)
+            {
+                return;
+            }
 
-       AnimatorCard card = cardsInHand.Retrieve(rng);
+            AnimatorCard card = cardsInHand.Retrieve(rng);
 
-       float multiplier = (amount * BASE_PERCENT / 100);
+            float multiplier = (amount * BASE_PERCENT / 100);
 
-       if (card.baseDamage > 0) {
-           int damageToIncrease = (int) Math.floor(card.baseDamage * multiplier);
-           DamageModifiers.For(card).Add(damageToIncrease);
-       }
-        if (card.baseBlock > 0) {
-            int blockToIncrease = (int) Math.floor(card.baseBlock * multiplier);
-            BlockModifiers.For(card).Add(blockToIncrease);
-        }
+            if (card.baseDamage > 0) {
+                int damageToIncrease = (int) Math.floor(card.baseDamage * multiplier);
+                DamageModifiers.For(card).Add(damageToIncrease);
+            }
+            if (card.baseBlock > 0) {
+                int blockToIncrease = (int) Math.floor(card.baseBlock * multiplier);
+                BlockModifiers.For(card).Add(blockToIncrease);
+            }
 
-       CostModifiers.For(card).Add(1);
+            CostModifiers.For(card).Add(1);
+        });
     }
 
     private boolean CardHasAttackOrBlock(AbstractCard card)

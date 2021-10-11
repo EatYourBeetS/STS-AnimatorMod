@@ -776,9 +776,9 @@ public final class GameActions
         return StackPower(new ThornsPower(player, amount));
     }
 
-    public ApplyPower GainVitality(int amount)
+    public ApplyPower GainPrayer(int amount)
     {
-        return StackPower(new VitalityPower(player, amount));
+        return StackPower(new PrayerPower(player, amount));
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)

@@ -474,11 +474,11 @@
 		"NAMES": ["resistance"],
 		"NAME": "Resistance"
 	},
-	"Vitality":
+	"Prayer":
 	{
-		"DESCRIPTION": "Whenever you gain Vitality: Add 2 #yMiracles with Haste to your draw pile.",
-		"NAMES": ["vitality"],
-		"PROPER_NAME": "Vitality"
+		"DESCRIPTION": "Whenever you gain Prayer: Add 2 #yMiracles with Haste to your draw pile.",
+		"NAMES": ["prayer"],
+		"PROPER_NAME": "Prayer"
 	},
 	"Lunacy":
 	{
@@ -542,7 +542,7 @@
 	},
 	"LightLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Vitality].",
+		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Prayer].",
 		"NAMES": ["light level","[L]"],
 		"PROPER_NAME": "Light Level"
 	},
@@ -584,7 +584,7 @@
 	},
 	"CyberLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain [Overclocked].",
+		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain [Overclock].",
 		"NAMES": ["cyber level","[C]"],
 		"PROPER_NAME": "Cyber Level"
 	},

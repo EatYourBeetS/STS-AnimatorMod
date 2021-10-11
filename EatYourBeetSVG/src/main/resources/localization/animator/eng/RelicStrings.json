@@ -242,7 +242,7 @@
 	},
 	"animator:TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw #b1 card. NL At the start of combat, gain #b{0} [Vitality], #b+1 for every #b{1} cards in your deck (max #b10 [Vitality])."],
+		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw #b1 card. NL At the start of combat, gain #b{0} [Prayer], #b+1 for every #b{1} cards in your deck (max #b10 [Prayer])."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},

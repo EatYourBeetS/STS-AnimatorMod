@@ -335,7 +335,7 @@
 		"DESCRIPTIONS": ["接下來 #b", " 個回合， 每打出一張不以此角色為目標的牌， 得到 #b", " #y最大生命 。 NL NL ", "死亡時，所有角色獲得 #b", " #y力量 。"],
 		"NAME": "無名傀儡"
 	},
-	"animator:VitalityPower":
+	"animator:PrayerPower":
 	{
 		"DESCRIPTIONS": ["本回合每當你被攻擊時， 獲得 #b", " 點 #y臨時生命 。"],
 		"NAME": "生生不息"

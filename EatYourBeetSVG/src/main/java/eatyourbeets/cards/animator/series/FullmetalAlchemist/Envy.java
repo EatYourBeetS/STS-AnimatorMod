@@ -43,7 +43,7 @@ public class Envy extends AnimatorCard
 
     public static class EnvyPower extends AnimatorClickablePower implements OnSynergyCheckSubscriber
     {
-        private int vitality;
+        private int Prayer;
 
         public EnvyPower(AbstractPlayer owner, int amount)
         {

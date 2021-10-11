@@ -150,14 +150,14 @@
 		"DESCRIPTIONS": ["When attacked, gain #b{0} #ySupport #yDamage."],
 		"NAME": "Resistance"
 	},
-	"eyb:VitalityPower":
+	"eyb:PrayerPower":
 	{
-		"DESCRIPTIONS": ["Whenever you gain Vitality: Add 2 #yMiracles with Haste to your draw pile."],
-		"NAME": "Vitality"
+		"DESCRIPTIONS": ["Whenever you gain Prayer: Add 2 #yMiracles with Haste to your draw pile."],
+		"NAME": "Prayer"
 	},
 	"eyb:LunacyPower":
 	{
-		"DESCRIPTIONS": ["Whenever you gain Lunacy: Add #b{0} random cards into your draw pile."],
+		"DESCRIPTIONS": ["The next time you gain Lunacy: Add #b{0} random cards into your draw pile."],
 		"NAME": "Lunacy"
 	},
 	"eyb:PestilencePower":
@@ -187,62 +187,62 @@
 	},
 	"eyb:FireLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength]."],
+		"DESCRIPTIONS": ["At #b{0} [F]: Gain #b{1} [Strength] (increases your attack damage)."],
 		"NAME": "Fire Level"
 	},
 	"eyb:AirLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [A]: Gain #b{1} [Dexterity]."],
+		"DESCRIPTIONS": ["At #b{0} [A]: Gain #b{1} [Dexterity] (increases your block)."],
 		"NAME": "Air Level"
 	},
 	"eyb:MindLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Knowledge]."],
+		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Knowledge] (adds Insights- free card draw cards- into your draw pile)."],
 		"NAME": "Mind Level"
 	},
 	"eyb:EarthLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Resistance]."],
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Resistance]  (gains Support Damage whenever you are attacked)."],
 		"NAME": "Earth Level"
 	},
 	"eyb:LightLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [L]: Gain #b{1} [Vitality]."],
+		"DESCRIPTIONS": ["At #b{0} [L]: Gain #b{1} [Prayer] (adds Miracles- free energy cards- into your draw pile)."],
 		"NAME": "Light Level"
 	},
 	"eyb:DarkLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [D]: Gain #b{1} [Lunacy]."],
+		"DESCRIPTIONS": ["At #b{0} [D]: Gain #b{1} [Lunacy] (adds random cards into your draw pile)."],
 		"NAME": "Dark Level"
 	},
 	"eyb:WaterLevelPower":
 	{
-		"DESCRIPTIONS": [" At #b{0} [W]: Gain #b{1} [Focus]."],
+		"DESCRIPTIONS": ["At #b{0} [W]: Gain #b{1} [Focus] (increases your orb effectiveness)."],
 		"NAME": "Water Level"
 	},
 	"eyb:PoisonLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Pestilence]."],
+		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Pestilence] (increases the amounts your Common Debuffs apply)."],
 		"NAME": "Poison Level"
 	},
 	"eyb:SteelLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [S]: Gain #b{1} [Innovation]."],
+		"DESCRIPTIONS": ["At #b{0} [S]: Gain #b{1} [Innovation] (raises a card's damage and block drastically each turn, but raises its cost)."],
 		"NAME": "Steel Level"
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane]."],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane] (channels and triggers an orb each turn)."],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [N]: Gain #b{1} [Bounty]."],
+		"DESCRIPTIONS": ["At #b{0} [N]: Gain #b{1} [Bounty] (draw additional cards each turn)."],
 		"NAME": "Nature Level"
 	},
 	"eyb:CyberLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Overcharge]."],
+		"DESCRIPTIONS": ["At #b{0} [C]: Gain #b{1} [Overclock] (gain additional energy each turn)."],
 		"NAME": "Cyber Level"
 	}
 }

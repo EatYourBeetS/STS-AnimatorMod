@@ -145,15 +145,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected String GetUpdatedDescription()
     {
-        String description = powerStrings.DESCRIPTIONS[0];
-
-        final Integer threshold = GetCurrentThreshold();
-        if (threshold != null)
-        {
-            description += FormatDescription(0, threshold, 1);
-        }
-
-        return description;
+        return powerStrings.DESCRIPTIONS[0];
     }
 
     @Override

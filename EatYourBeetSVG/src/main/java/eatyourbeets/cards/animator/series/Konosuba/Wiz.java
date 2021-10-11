@@ -20,9 +20,8 @@ public class Wiz extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetAffinity_Water(2);
-        SetAffinity_Dark(1);
-        SetAffinity_Earth(1);
+        SetAffinity_Dark();
+        SetAffinity_Mind();
 
         SetPurge(true);
     }

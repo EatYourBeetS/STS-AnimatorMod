@@ -138,7 +138,7 @@ public class CardTooltips
     //Threshold powers
     public EYBCardTooltip Knowledge = FindByID("Knowledge");
     public EYBCardTooltip Resistance = FindByID("Resistance");
-    public EYBCardTooltip Vitality = FindByID("Vitality");
+    public EYBCardTooltip Prayer = FindByID("Prayer");
     public EYBCardTooltip Lunacy = FindByID("Lunacy");
     public EYBCardTooltip Pestilence = FindByID("Pestilence");
     public EYBCardTooltip Innovation = FindByID("Innovation");
@@ -331,7 +331,7 @@ public class CardTooltips
         //Threshold powers
         LoadFromPower(Knowledge, new KnowledgePower(FakeCharacter.Instance, 0));
         LoadFromPower(Resistance, new ResistancePower(FakeCharacter.Instance, 0));
-        LoadFromPower(Vitality, new VitalityPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Prayer, new PrayerPower(FakeCharacter.Instance, 0));
         LoadFromPower(Lunacy, new LunacyPower(FakeCharacter.Instance, 0));
         LoadFromPower(Pestilence, new PestilencePower(FakeCharacter.Instance, 0));
         LoadFromPower(Innovation, new InnovationPower(FakeCharacter.Instance, 0));

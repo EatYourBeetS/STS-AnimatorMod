@@ -78,8 +78,6 @@ public class PestilencePower extends CommonPower
             {
                 JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
             }
-
-            ReducePower(amountToApply);
         }
     }
 

@@ -357,7 +357,7 @@
 		],
 		"NAME": "无名傀儡"
 	},
-	"animator:VitalityPower":
+	"animator:PrayerPower":
 	{
 		"DESCRIPTIONS": ["本回合每当你被攻击时，获得 #b", " 点 #y临时生命 。"],
 		"NAME": "生生不息"

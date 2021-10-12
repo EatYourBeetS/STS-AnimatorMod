@@ -66,6 +66,7 @@ import static eatyourbeets.resources.GR.Enums.CardTags.*;
 public class GameUtilities
 {
     private static final HandLayoutRefresher handLayoutRefresher = new HandLayoutRefresher();
+    private static final ArrayList<PowerHelper> commonBuffs = new ArrayList<>();
     private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
@@ -569,6 +570,20 @@ public class GameUtilities
         result.add(AbstractDungeon.srcRareCardPool);
         result.add(AbstractDungeon.srcCurseCardPool);
         return result;
+    }
+
+    public static ArrayList<PowerHelper> GetCommonBuffs()
+    {
+        if (commonBuffs.isEmpty())
+        {
+            commonBuffs.add(PowerHelper.Strength);
+            commonBuffs.add(PowerHelper.Thorns);
+            commonBuffs.add(PowerHelper.PlatedArmor);
+            commonBuffs.add(PowerHelper.Metallicize);
+            commonBuffs.add(PowerHelper.Artifact);
+        }
+
+        return commonDebuffs;
     }
 
     public static ArrayList<PowerHelper> GetCommonDebuffs()
@@ -1209,6 +1224,11 @@ public class GameUtilities
     public static boolean IsLowCost(AbstractCard card)
     {
         return card.costForTurn == 0 || card.costForTurn == 1;
+    }
+
+    public static boolean IsCommonBuff(AbstractPower power)
+    {
+        return JUtils.Any(GameUtilities.GetCommonBuffs(), ph -> ph.ID.equals(power.ID));
     }
 
     public static boolean IsCommonDebuff(AbstractPower power)

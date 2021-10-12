@@ -30,8 +30,8 @@ public class Hakurou extends AnimatorCard
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Orange, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Orange, 4);
     }
 
     @Override
@@ -80,9 +80,8 @@ public class Hakurou extends AnimatorCard
             }
         });
 
-        if (TrySpendAffinity(Affinity.Red) || TrySpendAffinity(Affinity.Orange))
-        {
+        TryChooseSpendAffinity(new Affinity[]{Affinity.Red,Affinity.Orange}, () -> {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
-        }
+        });
     }
 }

@@ -50,20 +50,18 @@ public class KaijiItou extends AnimatorCard
         GameActions.Bottom.MakeCardInDiscardPile(rock).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInDiscardPile(scissors).SetUpgrade(upgraded, false);
 
-        GameActions.Last.Callback(() -> {
-            if (TrySpendAffinity(Affinity.General)) {
-                GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
-                        .SetFilter(c -> c.uuid.equals(paper.uuid) || c.uuid.equals(rock.uuid) || c.uuid.equals(scissors.uuid))
-                        .SetOptions(false, true)
-                        .AddCallback(cards ->
+        TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.FetchFromPile(name, 1, p.discardPile)
+                    .SetFilter(c -> c.uuid.equals(paper.uuid) || c.uuid.equals(rock.uuid) || c.uuid.equals(scissors.uuid))
+                    .SetOptions(false, true)
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
                         {
-                            if (cards.size() > 0)
-                            {
-                                AbstractCard card = cards.get(0);
-                                GameActions.Bottom.Add(new RefreshHandLayout());
-                            }
-                        });
-            }
+                            AbstractCard card = cards.get(0);
+                            GameActions.Bottom.Add(new RefreshHandLayout());
+                        }
+                    });
         });
     }
 }

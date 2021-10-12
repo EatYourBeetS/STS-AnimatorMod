@@ -26,7 +26,7 @@ public class MifuyuAsuza extends AnimatorCard
         SetAffinity_Light(1, 1, 0);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 6);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class MifuyuAsuza extends AnimatorCard
             GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
         }
 
-        if (TrySpendAffinity(Affinity.General)) {
+        TryChooseSpendAnyAffinity(() -> {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, stacks);
-        }
+        });
     }
 }

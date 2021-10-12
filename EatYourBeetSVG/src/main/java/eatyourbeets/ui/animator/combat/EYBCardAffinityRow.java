@@ -101,18 +101,19 @@ public class EYBCardAffinityRow extends GUIElement
         }
     }
 
-    public void Update(EYBCardAffinities handAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
+    public void Update(EYBCardAffinities previewAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
     {
         image_background.SetColor(COLOR_DEFAULT);
         image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
+        boolean isTriggering = false;
 
         if (Type == Affinity.General)
         {
-            Level = handAffinities.GetLevel(Type, false) + handAffinities.GetDirectLevel(Affinity.General);
+            Level = previewAffinities.GetLevel(Type, false) + previewAffinities.GetDirectLevel(Affinity.General);
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
-                final EYBCardAffinity best = handAffinities.Get(Affinity.General);
+                final EYBCardAffinity best = previewAffinities.Get(Affinity.General);
                 final Affinity affinity = best == null ? null : best.type;
                 for (AbstractCard c : AbstractDungeon.player.hand.group)
                 {
@@ -126,10 +127,11 @@ public class EYBCardAffinityRow extends GUIElement
         }
         else
         {
-            Level = handAffinities.GetLevel(Type, false);
-
             if (hoveredCard != null)
             {
+                if (hoveredCard.affinities.GetLevel(Type,false) > 0) {
+                    previewAffinities.Add(Type, 1);
+                }
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
                 if (System.CanActivateSynergyBonus(a))
                 {
@@ -139,7 +141,15 @@ public class EYBCardAffinityRow extends GUIElement
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_WEAK);
                 }
+
+
+                if (hoveredCard.affinities.GetRequirement(Type) > 0 && hoveredCard.CheckAffinity(Type)) {
+                    previewAffinities.Add(Type, -hoveredCard.affinities.GetRequirement(Type));
+                    isTriggering = true;
+                }
             }
+
+            Level = previewAffinities.GetLevel(Type, false);
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
@@ -154,7 +164,7 @@ public class EYBCardAffinityRow extends GUIElement
             }
         }
 
-        text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
+        text_affinity.SetText(Level).SetColor(isTriggering ? Colors.Green(1) : Colors.Cream(Level > 0 ? 1 : 0.6f));
 
         Update();
     }

@@ -40,7 +40,7 @@ public class HousakiTohya extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TrySpendAffinity(Affinity.Red) || TrySpendAffinity(Affinity.Light)) {
+        if (TrySpendAffinity(Affinity.Red, Affinity.Light)) {
             GameActions.Bottom.Draw(1)
                     .SetFilter(c -> HousakiMinori.DATA.ID.equals(c.cardID), false)
                     .AddCallback((cards) ->

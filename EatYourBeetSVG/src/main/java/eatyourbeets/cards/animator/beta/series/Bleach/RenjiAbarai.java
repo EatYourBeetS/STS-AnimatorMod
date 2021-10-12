@@ -22,14 +22,14 @@ public class RenjiAbarai extends AnimatorCard
 
         SetAffinity_Red(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (TrySpendAffinity(Affinity.Red) && TrySpendAffinity(Affinity.Green))
+        if (CheckAffinity(Affinity.Red) && CheckAffinity(Affinity.Green))
         {
             SetAttackType(EYBAttackType.Piercing);
         }

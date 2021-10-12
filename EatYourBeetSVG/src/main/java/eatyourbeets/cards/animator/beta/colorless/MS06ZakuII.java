@@ -28,7 +28,7 @@ public class MS06ZakuII extends AnimatorCard
 
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 7);
     }
 
     @Override
@@ -66,13 +66,15 @@ public class MS06ZakuII extends AnimatorCard
         GameActions.Bottom.StackPower(new MS06ZakuIIPower(p, this.magicNumber));
 
         if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
-            GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
+            TryChooseSpendAnyAffinity(() -> {
+                GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
+            });
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return !player.hasBlight(UpgradedHand.ID) && TrySpendAffinity(Affinity.General) && JUtils.Find(Affinity.Basic(), a -> CombatStats.Affinities.GetPowerThreshold((Affinity) a) > secondaryValue) != null;
+        return !player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General) && JUtils.Find(Affinity.Basic(), a -> CombatStats.Affinities.GetPowerThreshold((Affinity) a) > secondaryValue) != null;
     }
 
     public static class MS06ZakuIIPower extends AnimatorPower implements OnReloadPreDiscardSubscriber

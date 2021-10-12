@@ -4,13 +4,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.FtueTip;
+import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.misc.GenericEffects.GenericEffect_PayAffinity;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.resources.GR;
@@ -21,6 +26,7 @@ import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
@@ -70,6 +76,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         tooltip = new EYBCardTooltip(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityInfo);
         info_icon = new GUI_Button(ImageMaster.INTENT_UNKNOWN, new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(100f), Scale(20f), false))
+                .SetText("")
                 .SetOnClick(() ->
                 {AbstractDungeon.ftue = new GUI_Ftue(GR.Tooltips.Affinity_General.title, GR.Animator.Strings.Tutorial.AffinityTutorial1,
                         Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);})
@@ -430,9 +437,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         final EYBCardAffinities previewAffinities = new EYBCardAffinities(null);
         previewAffinities.Add(BonusAffinities);
-        if (hoveredCard != null) {
-            previewAffinities.Add(hoveredCard.affinities, 1);
-        }
         final EYBCardAffinities synergies = GetSynergies(hoveredCard, lastCardPlayed);
         for (EYBCardAffinityRow row : rows)
         {
@@ -469,5 +473,28 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             t.Render(sb);
         }
+    }
+
+    public EYBActionWithCallback<ArrayList<AbstractCard>> ChooseSpendAffinity(Affinity[] choices, EYBCardAffinities affinities, ActionT0 conditionalAction, boolean useGeneral) {
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+        for (Affinity affinity : choices) {
+            int req = affinities.GetRequirement(useGeneral ? Affinity.General : affinity);
+            if (GetAffinityLevel(affinity,true) >= req) {
+                GenericEffect_PayAffinity affinityCost = new GenericEffect_PayAffinity(affinity, req);
+                AnimatorCardBuilder builder = new AnimatorCardBuilder(AffinityToken.GetCard(affinity), affinityCost.GetText(), false).SetOnUse(affinityCost::Use);
+                group.addToTop(builder.Build());
+            }
+        }
+
+        return GameActions.Bottom.SelectFromPile("",1,group).AddCallback((cards) -> {
+            for (AbstractCard card : cards)
+            {
+                card.use(AbstractDungeon.player, null);
+            }
+            if (cards.size() > 0) {
+                conditionalAction.Invoke();
+            }
+        });
     }
 }

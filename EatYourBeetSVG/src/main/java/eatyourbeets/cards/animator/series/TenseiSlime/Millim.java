@@ -22,7 +22,7 @@ public class Millim extends AnimatorCard
 
         SetAffinity_Star(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 6);
         SetUnique(true, true);
     }
 
@@ -59,13 +59,11 @@ public class Millim extends AnimatorCard
                 .ShowEffect(false, true);
 
 
-
-        if (TrySpendAffinity(Affinity.General))
-        {
+        TryChooseSpendAnyAffinity(() -> {
             for (int i = 0; i < magicNumber; i++)
             {
                 GameActions.Bottom.GainRandomAffinityPower(1, false);
             }
-        }
+        });
     }
 }

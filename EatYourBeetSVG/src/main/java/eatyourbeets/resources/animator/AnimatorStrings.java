@@ -428,6 +428,10 @@ public class AnimatorStrings
             return Format(addPeriod, 43, orb, amount);
         }
 
+        public final String PayCost(Object amount, Object buff, boolean addPeriod)
+        {
+            return Format(addPeriod, 44, amount, buff);
+        }
 
         private String Format(boolean addPeriod, int index, Object amount)
         {

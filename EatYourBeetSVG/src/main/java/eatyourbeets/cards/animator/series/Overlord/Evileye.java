@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.ImpairedPower;
@@ -43,12 +44,16 @@ public class Evileye extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.EvokeOrb(2, JUtils.Random(player.orbs));
+            GameActions.Bottom.EvokeOrb(2, JUtils.Random(player.orbs)).AddCallback(orbs -> {
+                for (AbstractOrb o : orbs) {
+                    GameActions.Bottom.ChannelOrb(o);
+                }
+            });
         }
         GameActions.Bottom.StackPower(new ImpairedPower(player, secondaryValue));
 
-        if (TrySpendAffinity(Affinity.Blue) && TrySpendAffinity(Affinity.Dark) && info.TryActivateLimited()) {
-            GameActions.Bottom.StackPower(new ImpairedPower(p, 1));
+        if (info.CanActivateLimited && TrySpendAffinity(Affinity.Blue, Affinity.Dark) && info.TryActivateLimited()) {
+            GameActions.Bottom.StackPower(new EvileyePower(p, 1));
         }
     }
 

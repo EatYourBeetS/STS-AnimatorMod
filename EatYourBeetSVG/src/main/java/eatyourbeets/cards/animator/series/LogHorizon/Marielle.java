@@ -32,7 +32,7 @@ public class Marielle extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Orange(2);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.General, 5);
     }
 
     @Override
@@ -65,10 +65,12 @@ public class Marielle extends AnimatorCard
             i += 1;
         }
 
-        if (info.IsSynergizing && TrySpendAffinity(Affinity.General))
+        if (info.IsSynergizing)
         {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-            GameActions.Bottom.ObtainAffinityToken(GameUtilities.GetRandomElement(Affinity.Basic(), EYBCard.rng), upgraded);
+            TryChooseSpendAnyAffinity(() -> {
+                GameActions.Bottom.GainTemporaryHP(magicNumber);
+                GameActions.Bottom.ObtainAffinityToken(GameUtilities.GetRandomElement(Affinity.Basic(), EYBCard.rng), upgraded);
+            });
         }
     }
 }

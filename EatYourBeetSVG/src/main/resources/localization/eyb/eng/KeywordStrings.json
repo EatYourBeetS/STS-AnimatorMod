@@ -86,7 +86,7 @@
 	},
 	"Common Buff":
 	{
-		"DESCRIPTION": "[Strength], [Dexterity], [Focus], [Endurance], [Thorns], [Plated Armor], [Metallicize], [Intangible], [Artifact], [Blur].",
+		"DESCRIPTION": "[Strength], [Thorns], [Plated Armor], [Metallicize], [Intangible], [Artifact].",
 		"NAMES": ["common buff", "common buffs"],
 		"PROPER_NAME": "Common Buff"
 	},

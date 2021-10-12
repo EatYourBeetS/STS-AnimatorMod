@@ -17,7 +17,7 @@ public class EYBCardCooldown
 
     private final static Color COOLDOWN_INCOMPLETE_COLOR = Settings.GREEN_TEXT_COLOR.cpy().lerp(Settings.CREAM_COLOR, 0.5f);
     private final ActionT1<AbstractMonster> onCooldownCompleted;
-    private final EYBCard card;
+    public final EYBCard card;
     public final FuncT0<EYBCard> cardConstructor;
     public final boolean canProgressOnDraw;
     public final boolean canProgressOnManualDiscard;

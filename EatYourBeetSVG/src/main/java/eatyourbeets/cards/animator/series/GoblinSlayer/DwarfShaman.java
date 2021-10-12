@@ -36,9 +36,8 @@ public class DwarfShaman extends AnimatorCard
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true);
         GameActions.Bottom.ChannelOrb(new Earth());
 
-        if (TrySpendAffinity(Affinity.General))
-        {
+        TryChooseSpendAnyAffinity(() -> {
             GameActions.Bottom.UpgradeFromPile(p.drawPile, 1, false);
-        }
+        });
     }
 }

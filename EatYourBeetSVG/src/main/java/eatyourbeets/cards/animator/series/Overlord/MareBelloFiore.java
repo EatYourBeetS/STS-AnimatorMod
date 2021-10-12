@@ -42,7 +42,7 @@ public class MareBelloFiore extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (TrySpendAffinity(Affinity.Blue) && TrySpendAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Blue, Affinity.Green))
         {
             GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
         }

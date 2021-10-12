@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
@@ -16,7 +19,6 @@ import eatyourbeets.utilities.TargetHelper;
 public class LuciaKonohana extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LuciaKonohana.class).SetSkill(-1, CardRarity.UNCOMMON, EYBCardTarget.Normal).SetSeriesFromClassPackage();
-    public static final EYBCardTooltip CommonDebuffs = new EYBCardTooltip(DATA.Strings.EXTENDED_DESCRIPTION[1], DATA.Strings.EXTENDED_DESCRIPTION[2]);
 
     public LuciaKonohana()
     {
@@ -28,17 +30,6 @@ public class LuciaKonohana extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-
-        if (cardText != null)
-        {
-            tooltips.add(CommonDebuffs);
-        }
     }
 
     @Override

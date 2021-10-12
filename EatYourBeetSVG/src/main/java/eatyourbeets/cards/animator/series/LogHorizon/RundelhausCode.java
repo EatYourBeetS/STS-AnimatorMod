@@ -36,7 +36,7 @@ public class RundelhausCode extends AnimatorCard
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override
@@ -69,8 +69,7 @@ public class RundelhausCode extends AnimatorCard
             }
         });
 
-        if (TrySpendAffinity(Affinity.General))
-        {
+        TryChooseSpendAnyAffinity(() -> {
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_ChannelOrb(new Fire()));
@@ -81,6 +80,6 @@ public class RundelhausCode extends AnimatorCard
 
             choices.Select(GameActions.Bottom, 1, null)
             .CancellableFromPlayer(true);
-        }
+        });
     }
 }

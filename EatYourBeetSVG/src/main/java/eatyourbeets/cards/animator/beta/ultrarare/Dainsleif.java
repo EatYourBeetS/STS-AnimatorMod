@@ -42,7 +42,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         SetAffinity_Blue(2);
         SetDelayed(true);
 
-        SetAffinityRequirement(Affinity.General, 5);
+        SetAffinityRequirement(Affinity.General, 10);
     }
 
     @Override
@@ -61,22 +61,31 @@ public class Dainsleif extends AnimatorCard_UltraRare {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.ChannelOrb(new Chaos());
 
-        GameActions.Last.Callback(() ->
-                GameActions.Bottom.SelectFromPile(name, TrySpendAffinity(Affinity.General) ? 2 : 1, upgraded ? upgradedCardChoices : cardChoices)
-                        .SetOptions(false, false)
-                        .AddCallback(cards ->
-                        {
-                            for (AbstractCard c : cards) {
-                                GameActions.Bottom.MakeCardInDrawPile(c);
-                            }
-                        }));
+        if (CheckAffinity(Affinity.General)) {
+            TryChooseSpendAnyAffinity(() -> {
+                DoAction(2);
+            });
+        }
+        else {
+            DoAction(1);
+        }
     }
-
 
     @Override
     public void triggerWhenCreated(boolean startOfBattle) {
         super.triggerWhenCreated(startOfBattle);
 
         GameActions.Bottom.ApplyPower(player, player, new DainsleifAbyssPower(player));
+    }
+
+    private void DoAction(int choices) {
+        GameActions.Bottom.SelectFromPile(name, choices, upgraded ? upgradedCardChoices : cardChoices)
+                .SetOptions(false, false)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard c : cards) {
+                        GameActions.Bottom.MakeCardInDrawPile(c);
+                    }
+                });
     }
 }

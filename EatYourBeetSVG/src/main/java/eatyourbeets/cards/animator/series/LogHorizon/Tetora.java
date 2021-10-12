@@ -36,7 +36,7 @@ public class Tetora extends AnimatorCard
 
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 6);
     }
 
     @Override
@@ -48,13 +48,15 @@ public class Tetora extends AnimatorCard
     @Override
     public boolean cardPlayable(AbstractMonster m)
     {
-        return super.cardPlayable(m) && TrySpendAffinity(Affinity.General);
+        return super.cardPlayable(m) && CheckAffinity(Affinity.General);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, secondaryValue));
+        TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, secondaryValue));
+        });
     }
 
     public static class TetoraPower extends AnimatorClickablePower implements OnSynergySubscriber

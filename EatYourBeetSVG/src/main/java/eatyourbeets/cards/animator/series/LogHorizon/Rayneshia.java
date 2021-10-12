@@ -50,25 +50,25 @@ public class Rayneshia extends AnimatorCard
 
             GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
             {
-                if (TrySpendAffinity(Affinity.General) && info.TryActivateLimited())
+                if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
                 {
-                    final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                    final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);
+                    TryChooseSpendAnyAffinity(() -> {
+                        final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                        final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);
 
-                    while (choice.size() < 3 && pool.Size() > 0)
-                    {
-                        choice.addToTop(pool.Retrieve(rng).makeCopy());
-                    }
-
-                    GameActions.Bottom.SelectFromPile(name, 1, choice)
-                    .SetOptions(false, true)
-                    .AddCallback(cards ->
-                    {
-                        if (cards != null && cards.size() > 0)
-                        {
-                            GameActions.Bottom.MakeCardInHand(cards.get(0))
-                            .SetUpgrade(false, true);
+                        while (choice.size() < 3 && pool.Size() > 0) {
+                            choice.addToTop(pool.Retrieve(rng).makeCopy());
                         }
+
+                        GameActions.Bottom.SelectFromPile(name, 1, choice)
+                                .SetOptions(false, true)
+                                .AddCallback(cards ->
+                                {
+                                    if (cards != null && cards.size() > 0) {
+                                        GameActions.Bottom.MakeCardInHand(cards.get(0))
+                                                .SetUpgrade(false, true);
+                                    }
+                                });
                     });
                 }
             });

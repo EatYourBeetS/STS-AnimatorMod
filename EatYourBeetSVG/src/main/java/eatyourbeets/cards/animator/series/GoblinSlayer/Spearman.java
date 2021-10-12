@@ -43,7 +43,7 @@ public class Spearman extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (TrySpendAffinity(Affinity.Red) && TrySpendAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Red, Affinity.Green))
         {
             GameActions.Bottom.MakeCardInHand(new Status_Wound());
         }

@@ -27,15 +27,20 @@ public class JetBlack extends AnimatorCard
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 8);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        boolean shouldRetain = TrySpendAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID);
+        boolean shouldRetain = CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.StackPower(new JetBlackPower(p, magicNumber, shouldRetain));
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return CheckAffinity(Affinity.General) && CombatStats.CanActivateLimited(cardID);
     }
 
     public static class JetBlackPower extends AnimatorPower

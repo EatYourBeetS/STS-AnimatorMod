@@ -52,7 +52,7 @@ public class Ciel extends AnimatorCard
             c.flash();
         });
 
-        if (TrySpendAffinity(Affinity.Blue) || (info.IsSynergizing && info.GetPreviousCardID().equals(Lu.DATA.ID)))
+        if ((info.IsSynergizing && info.GetPreviousCardID().equals(Lu.DATA.ID)) || TrySpendAffinity(Affinity.Blue))
         {
             if (choices.TryInitialize(this))
             {

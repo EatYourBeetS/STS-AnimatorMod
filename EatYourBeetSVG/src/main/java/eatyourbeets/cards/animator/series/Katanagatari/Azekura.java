@@ -23,7 +23,7 @@ public class Azekura extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Azekura extends AnimatorCard
         GameActions.Bottom.GainPlatedArmor(magicNumber);
         GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
 
-        if (!TrySpendAffinity(Affinity.Red))
+        if (!CheckAffinity(Affinity.Red))
         {
             GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1));
         }

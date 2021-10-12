@@ -54,7 +54,7 @@ public class AyakaKamisato extends AnimatorCard {
         }
         GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
 
-        if (CheckSpecialCondition(true) && TrySpendAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.CanActivateLimited(cardID) && (GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) >= secondaryValue || TrySpendAffinity(Affinity.Blue)) && CombatStats.TryActivateLimited(cardID))
         {
             AbstractCard c = new SheerCold();
             c.applyPowers();

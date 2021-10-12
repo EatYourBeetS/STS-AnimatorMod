@@ -8,8 +8,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class OrbStance extends EYBStance
 {
     public static final String STANCE_ID = CreateFullID(OrbStance.class);
-    private static final int STAT_GAIN_AMOUNT = 3;
-    private static final int STAT_LOSE_AMOUNT = 3;
+    private static final int STAT_GAIN_AMOUNT = 4;
+    private static final int STAT_LOSE_AMOUNT = 1;
 
     public static boolean IsActive()
     {
@@ -53,6 +53,13 @@ public class OrbStance extends EYBStance
     }
 
     @Override
+    public void onEndOfTurn()
+    {
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+        GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
+    }
+
+    @Override
     public void onExitStance()
     {
         super.onExitStance();
@@ -60,8 +67,8 @@ public class OrbStance extends EYBStance
         if (TryApplyStance(null))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
+            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
         }
     }
 }

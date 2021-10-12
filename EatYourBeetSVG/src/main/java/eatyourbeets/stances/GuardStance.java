@@ -9,6 +9,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class GuardStance extends EYBStance
 {
+    private static final int BLOCK_GAIN_ENTER = 10;
     private static final int BLOCK_GAIN_PLAYER = 10;
     private static final int BLOCK_GAIN_ENEMY = 15;
 
@@ -40,6 +41,19 @@ public class GuardStance extends EYBStance
     protected Color GetMainColor()
     {
         return new Color(0.2f, 1f, 0.2f, 1f);
+    }
+
+    @Override
+    public void onEnterStance()
+    {
+        super.onEnterStance();
+
+        GameActions.Top.GainBlock(BLOCK_GAIN_ENTER);
+
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+        {
+            GameActions.Top.Add(new GainBlockAction(enemy, AbstractDungeon.player, BLOCK_GAIN_ENTER, true));
+        }
     }
 
     @Override

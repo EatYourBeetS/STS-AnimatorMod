@@ -5,7 +5,7 @@
 		"NAME": "Guard Stance",
 		"DESCRIPTION":
 		[
-			"Start of Turn: You gain 10 Block.  ALL enemies gain 15 Block."
+			"Upon entering this Stance: ALL characters gain 10 Block. NL Start of Turn: You gain 10 Block.  ALL enemies gain 15 Block."
 		]
 	},
 	"eyb:OrbStance":
@@ -13,7 +13,7 @@
 		"NAME": "Orb Stance",
 		"DESCRIPTION":
 		[
-			"+3 [Focus], -3 [Strength] and -3 [Dexterity] while in this stance."
+			"You have +4 [Focus] while in this Stance.  Upon entering this stance, Lose 1 [Strength] and 1 [Dexterity].  Lose 1 [Strength] and 1 [Dexterity] at end of turn or when you exit of this stance."
 		]
 	},
 	"eyb:ForceStance":

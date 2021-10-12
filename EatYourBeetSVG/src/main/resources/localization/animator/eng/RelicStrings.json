@@ -33,7 +33,13 @@
 	"animator:BountyMap":
 	{
 	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yElite room, a #yTreasure room, and a #yShop room, the next ? room you enter will trigger a special event.{0}"],
-	  "FLAVOR": "Wanted dead or alive.",
+	  "FLAVOR": "Hunt the Cocogoat. Wanted dead or alive.",
+	  "NAME": "Bounty Map"
+	},
+	"animator:BountyMap2":
+	{
+	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yShop room, a #yCampfire room, and a #yElite room, the next ? room you enter will trigger a special event.{0}"],
+	  "FLAVOR": "Hunt the Pyrotechnician. Wanted dead or alive.",
 	  "NAME": "Bounty Map"
 	},
 	"animator:Buoy":

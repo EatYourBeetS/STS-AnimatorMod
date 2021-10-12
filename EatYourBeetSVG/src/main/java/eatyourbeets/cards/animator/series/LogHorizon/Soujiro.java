@@ -41,7 +41,7 @@ public class Soujiro extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 4);
+        Initialize(14, 0, 1);
         SetUpgrade(2, 0, 1);
 
         SetAffinity_Green(2, 0, 2);

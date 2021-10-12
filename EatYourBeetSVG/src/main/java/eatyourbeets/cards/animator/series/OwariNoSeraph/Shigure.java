@@ -6,6 +6,7 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -54,6 +55,6 @@ public class Shigure extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Green);
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true);
     }
 }

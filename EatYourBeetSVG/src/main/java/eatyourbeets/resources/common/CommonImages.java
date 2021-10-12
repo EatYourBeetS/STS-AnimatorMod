@@ -136,6 +136,7 @@ public class CommonImages
         public final TextureCache PaimonsBargains  = new TextureCache("images/animator/events/PaimonsBargains.png");
         public final TextureCache Portal           = new TextureCache("images/animator/events/Portal.png");
         public final TextureCache Placeholder      = new TextureCache("images/animator/events/Placeholder.png");
+        public final TextureCache SecludedHarbor      = new TextureCache("images/animator/events/SecludedHarbor.png");
     }
 
     public static class Orbs

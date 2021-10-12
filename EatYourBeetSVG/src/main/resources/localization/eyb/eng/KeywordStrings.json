@@ -468,6 +468,12 @@
 		"NAMES": ["synergic"],
 		"PROPER_NAME": "Synergic"
 	},
+	"Teamwork":
+	{
+		"DESCRIPTION": "Teamwork is equal to the number of cards in hand that have the most common #yAffinity amongst your hand.",
+		"NAMES": ["teamwork"],
+		"PROPER_NAME": "Teamwork"
+	},
 	"Temporary HP":
     {
     	"DESCRIPTION": "Temporary HP lasts until end of combat.",

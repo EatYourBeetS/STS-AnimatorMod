@@ -36,12 +36,6 @@ public class Suiseiseki extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetAffinity_Orange(2, 0, 2);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);

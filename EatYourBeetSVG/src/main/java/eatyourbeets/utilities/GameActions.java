@@ -278,6 +278,11 @@ public final class GameActions
         return Add(new ApplyPower(source, target, power)).CanStack(false);
     }
 
+    public ApplyPowerAuto ApplyShackles(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Shackles, amount);
+    }
+
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new AnimatorVulnerablePower(target, amount, source == null || GameUtilities.IsMonster(source)));

@@ -7,6 +7,7 @@ import eatyourbeets.cards.animator.curse.SayakaMiki_Oktavia;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class SayakaMiki extends AnimatorCard
@@ -36,8 +37,10 @@ public class SayakaMiki extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Blue) + baseMagicNumber;
+        int aff = CombatStats.Affinities.GetAffinityLevel(Affinity.Blue, true);
+        magicNumber = aff + baseMagicNumber;
         isMagicNumberModified = magicNumber > baseMagicNumber;
+        SetAffinityRequirement(Affinity.Blue, aff);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class SayakaMiki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        TrySpendAffinity(Affinity.Blue);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ChannelOrb(new Frost());
 

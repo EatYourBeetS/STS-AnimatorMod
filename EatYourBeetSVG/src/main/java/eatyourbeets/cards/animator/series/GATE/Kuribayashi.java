@@ -5,9 +5,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Kuribayashi extends AnimatorCard
 {
@@ -60,7 +62,7 @@ public class Kuribayashi extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
+            GameActions.Bottom.StackPower(TargetHelper.Normal(m), PowerHelper.Shackles,secondaryValue);
         }
     }
 }

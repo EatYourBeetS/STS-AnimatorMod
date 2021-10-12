@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -56,6 +57,6 @@ public class Gabiru extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Green) > GetHandAffinity(Affinity.Orange);
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Orange, true);
     }
 }

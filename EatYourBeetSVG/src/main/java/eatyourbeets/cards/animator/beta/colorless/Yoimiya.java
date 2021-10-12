@@ -20,24 +20,13 @@ public class Yoimiya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 3 , 0);
-        SetUpgrade(0, 0, 1 , 0);
+        Initialize(2, 0, 3, 2);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        if (IsStarter())
-        {
-            GameUtilities.IncreaseMagicNumber(this, 1, true);
-        }
     }
 
     @Override
@@ -56,13 +45,18 @@ public class Yoimiya extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).AddCallback(e -> {
-                if (e.lastDamageTaken > 0) {
-                    GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).AddCallback(e -> {
+                if (IsStarter()) {
+                    if (e.lastDamageTaken > 0) {
+                        GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded);
+                    }
                 }
             });
         }
 
+        GameActions.Bottom.Callback(() -> {
+            GameActions.Bottom.Cycle(name,secondaryValue);
+        });
 
         if (GameUtilities.GetPowerAmount(player, BurningPower.POWER_ID) > 0 && CombatStats.TryActivateLimited(cardID))
         {

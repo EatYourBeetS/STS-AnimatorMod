@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,7 +9,6 @@ import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
 public class YachiyoNanami extends AnimatorCard
@@ -19,7 +17,6 @@ public class YachiyoNanami extends AnimatorCard
             .SetPower(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
     public static final int DISCARD_AMOUNT = 1;
-    public static final int GRIEF_REQUIREMENT = 4;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -27,7 +24,7 @@ public class YachiyoNanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, GRIEF_REQUIREMENT);
+        Initialize(0, 0, 3);
         SetEthereal(true);
 
         SetAffinity_Blue(2);
@@ -49,7 +46,6 @@ public class YachiyoNanami extends AnimatorCard
 
     public static class YachiyoNanamiPower extends AnimatorClickablePower implements OnPurgeSubscriber
     {
-        private int griefSeedsPlayed = 0;
         private int secondaryAmount;
 
         public YachiyoNanamiPower(AbstractPlayer owner, int amount, int secondaryAmount)
@@ -65,15 +61,8 @@ public class YachiyoNanami extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, secondaryAmount, amount, griefSeedsPlayed, GRIEF_REQUIREMENT);
+            return FormatDescription(0, secondaryAmount, amount);
         }
-
-        @Override
-        protected ColoredString GetSecondaryAmount(Color c)
-        {
-            return new ColoredString(griefSeedsPlayed, Color.WHITE, c.a);
-        }
-
         @Override
         public void OnUse(AbstractMonster m)
         {
@@ -96,13 +85,8 @@ public class YachiyoNanami extends AnimatorCard
 
         private void invokeGrief(AbstractCard card) {
             if (card != null && card.type.equals(CardType.CURSE)) {
-                griefSeedsPlayed += amount;
+                CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Light,true) ? Affinity.Light : Affinity.Blue, 1);
             }
-            if (griefSeedsPlayed >= GRIEF_REQUIREMENT) {
-                CombatStats.Affinities.BonusAffinities.Add(CombatStats.Affinities.GetHandAffinityLevel(Affinity.Blue, null) > CombatStats.Affinities.GetHandAffinityLevel(Affinity.Light, null) ? Affinity.Light : Affinity.Blue, 1);
-                griefSeedsPlayed -= GRIEF_REQUIREMENT;
-            }
-
         }
 
         @Override

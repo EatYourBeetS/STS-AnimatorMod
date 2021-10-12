@@ -114,6 +114,11 @@ public abstract class AnimatorRelic extends EYBRelic
         super(id, id, tier, sfx);
     }
 
+    public AnimatorRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
+    {
+        super(id, imageID, tier, sfx);
+    }
+
     @Override
     public boolean canSpawn()
     {

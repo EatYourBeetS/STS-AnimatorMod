@@ -6,9 +6,10 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
+import eatyourbeets.misc.GenericEffects.GenericEffect;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.PlayerAttribute;
 import eatyourbeets.utilities.TargetHelper;
 
 public class GinIchimaru extends AnimatorCard
@@ -21,22 +22,13 @@ public class GinIchimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
+        Initialize(3, 0, 2, 3);
         SetUpgrade(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
         SetAffinityRequirement(Affinity.Blue, 3);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetAffinityRequirement(Affinity.Red, 4);
-        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
@@ -54,7 +46,7 @@ public class GinIchimaru extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
-        if (TrySpendAffinity(Affinity.Red) || TrySpendAffinity(Affinity.Green))
+        if (CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true) >= secondaryValue || CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) >= secondaryValue)
         {
             GameActions.Bottom.Exhaust(this);
         }
@@ -74,13 +66,40 @@ public class GinIchimaru extends AnimatorCard
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            if (GetHandAffinity(Affinity.Red) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Red), PlayerAttribute.Force));
+            int amountRed = CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true);
+            int amountGreen = CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true);
+            if (amountRed > 0) {
+                choices.AddEffect(new GenericEffect_Gin(Affinity.Red, amountRed));
             }
-            if (GetHandAffinity(Affinity.Green) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Green), PlayerAttribute.Agility));
+            if (amountGreen > 0) {
+                choices.AddEffect(new GenericEffect_Gin(Affinity.Green, amountGreen));
             }
         }
         choices.Select(selections, m);
+    }
+
+    protected static class GenericEffect_Gin extends GenericEffect
+    {
+        protected final Affinity affinity;
+
+        public GenericEffect_Gin(Affinity affinity, int amount)
+        {
+            this.affinity = affinity;
+            this.amount = amount;
+        }
+
+        @Override
+        public String GetText()
+        {
+            return GR.Animator.Strings.Actions.PayCost(amount, affinity.GetTooltip(), true) + "NL" + GR.Animator.Strings.Actions.GainAmount(amount, affinity.equals(Affinity.Green) ? GR.Tooltips.Agility : GR.Tooltips.Force, true);
+        }
+
+        @Override
+        public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
+        {
+            if (CombatStats.Affinities.TrySpendAffinity(affinity,amount,true)) {
+                GameActions.Bottom.StackAffinityPower(affinity,amount,false);
+            }
+        }
     }
 }

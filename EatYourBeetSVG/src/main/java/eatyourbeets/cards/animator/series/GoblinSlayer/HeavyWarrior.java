@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +28,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     {
         super(DATA);
 
-        Initialize(28, 0);
+        Initialize(28, 0, 0, 4);
 
         SetAffinity_Red(2, 0, 8);
         SetAffinity_Orange(1);
@@ -52,9 +53,10 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Red);
+        magicNumber = Math.max(secondaryValue, CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true));
         isMagicNumberModified = magicNumber > 0;
         magicNumberString = super.GetMagicNumberString();
+        SetAffinityRequirement(Affinity.Red, magicNumber);
 
         SetUnplayable(!JUtils.Any(player.hand.group, c -> c.uuid != uuid && c.costForTurn >= 2));
     }
@@ -79,6 +81,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
 
         if (magicNumber > 0)
         {
+            TrySpendAffinity(Affinity.Red);
             GameActions.Bottom.GainForce(magicNumber);
         }
     }

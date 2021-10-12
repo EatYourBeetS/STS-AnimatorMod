@@ -59,7 +59,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Dark) > GetHandAffinity(Affinity.Red);
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true);
     }
 
     @Override

@@ -240,9 +240,11 @@
 
 		"\"Thank you. Buy more potions? Or take on bounties.\" NL NL The ~receptionist~ says, again with no emotion whatsoever.",
 
-		"\"Are you interested in bounties? If so, hunt a #yCocogoat for me. You will receive a great reward. Use this map to locate it.\"",
+		"\"Are you interested in bounties? If so, hunt a #yCocogoat or the #yPyrotechnician for me. You will receive a great reward. Use this map to locate it.\"",
 
 		"\"Please hunt a Cocogoat soon. Thank you.\"",
+
+		"You are handed a map that marks out the location of a secluded harbor as well as the description of the Pyrotechnician that you will need to arrest. NL NL The receptionist states \"Please hunt the Pyrotechnician soon. Thank you.\"",
 
 		"You decide that it is not wise to shop in such an ominous place as this and quickly take your leave before the ~receptionist~ can say anything else."
 	  ],
@@ -252,7 +254,8 @@
 		"[Inquire about Bounties]",
 		"[Buy] #gObtain #ga #gPotion. #rLose #r{0} #rGold.",
 		"[Locked] Not enough Gold.",
-		"[Accept Bounty] #gObtain #gBounty",
+		"[Hunt the Cocogoat] #gObtain #gBounty",
+		"[Hunt the Pyrotechnician] #gObtain #gBounty",
 		"[Refuse Bounty]"
 	  ]
 	},
@@ -286,5 +289,36 @@
 	  "[Locked] Requires an Uncommon relic.",
 	  "[Run]"
 	]
-  }
+  },
+    "animator:TheSecludedHarbor":
+    {
+  	"DESCRIPTIONS":
+  	[
+  	  "You finally come across the location given to you in the map you got from The Pharmacy. NL NL The harbor is bustling with pedestrians, making it difficult for you to find your target. NL NL Finally, you spot a person whose description matches that which was described on the bounty tending a fireworks stall. NL NL She is showing off a firecracker display to the delight of screaming children and doesn't really look like someone who would be doing anything shady.",
+
+  	  "You feel a tug on your pants. You quickly spin around to find the ~receptionist~ from the pharmacy next to you. NL NL The receptionist points at the figure in the distance and hands you a tazer and handcuffs, stating NL NL \"There is the #yPyrotechnician. Try to arrest her.\"",
+
+  	  "You suspend your doubts and heads towards the #yPyrotechnician to arrest her. NL NL As you approach her, she greets you warmly and asks you if you would like to browse her wares. You ignore her greeting and try to bring her down with the tazer. NL To your surprise, the girl deftly dodges your attack. The children run away screaming.",
+
+  	  "The #yPyrotechnician's friendliness is quickly replaced with anger as she prepares a barrage of explosive darts. NL NL You try to tackle her, but to your amazement, she leaps way out of your range while simultaneously preparing her attack. NL As she flies through the sky, she unleashes her explosive attack, peppering the sky with a majestic display of fireworks and throwing you to the ground. NL As she lands, you decide to take your chances and throw the taser at her. Luckily for you, it hits its mark and topples the girl, leaving her paralyzed.",
+
+  	  "You set up a trap and lay the Relic in it as bait for the #yPyrotechnician. NL NL Then, you hide in the nearest bush and wait for the goat to arrive. NL NL After a few minutes, you spot the #yPyrotechnician walking straight into the trap. NL NL The trap ~explodes~ as she steps on it, instantly knocking her out and setting off the fireworks she kept in her pocket.",
+
+  	  "You stride towards the fallen #yPyrotechnician and handcuff her. You look around to find the ~receptionist~, but she is nowhere to be found. Suddenly, your cell phone rings with a text message. The receptionist somehow found out your number without you ever telling her.",
+
+  	  "Your jaw gapes open as you read the text: \"Thank you for taking me to see such a wonderful display of fireworks. It was one of the most beautiful things I have ever seen. We should go watching fireworks again.\". If all she wanted was to watch the fireworks, you probably could have just asked the #yPyrotechnician to show some for you instead of trying to fight her... NL You don't have time to think though. You notice a mob of police officers running towards you, yelling at you that you are under arrest for assault. You quickly take your leave before they can catch up to you.",
+
+  	  "You rush back to the pharmacy to demand your due payment. NL NL Upon arrival, however, you find that the pharmacy has conveniently closed shop for good, leaving you with nothing but a knocked-out #yPyrotechnician in tow...",
+
+  	  "You muster all the cowardice you have and flee from the #yPyrotechnician as fast as you can. The receptionist stares at you as you flee in terror with no emotion whatsoever."
+  	],
+  	"NAME": "The Mysterious Peak",
+  	"OPTIONS":
+  	[
+  	  "[Fight the Pyrotechnician] #gObtain #gYoimiya. #rLose #r{0} #rHP.",
+  	  "[Set a Trap] #gObtain #gYoimiya. #rLose #r{0}.",
+  	  "[Locked] Requires an Uncommon relic.",
+  	  "[Run]"
+  	]
+    }
 }

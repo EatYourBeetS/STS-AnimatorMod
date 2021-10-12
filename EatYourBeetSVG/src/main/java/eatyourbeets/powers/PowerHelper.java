@@ -46,6 +46,7 @@ public class PowerHelper
     public static final PowerHelper PlatedArmor = new PowerHelper(PlatedArmorPower.POWER_ID, GR.Tooltips.PlatedArmor, AnimatorPlatedArmorPower::new);
     public static final PowerHelper Metallicize = new PowerHelper(MetallicizePower.POWER_ID, GR.Tooltips.Metallicize, AnimatorMetallicizePower::new);
     public static final PowerHelper Malleable = new PowerHelper(MalleablePower.POWER_ID, GR.Tooltips.Malleable, MalleablePower::new);
+    public static final PowerHelper Blur = new PowerHelper(AnimatorBlurPower.POWER_ID, null, AnimatorBlurPower::new);
     public static final PowerHelper Regen = new PowerHelper(RegenPower.POWER_ID, null, RegenPower::new);
     public static final PowerHelper SupportDamage = new PowerHelper(SupportDamagePower.POWER_ID, GR.Tooltips.SupportDamage, SupportDamagePower::new);
 

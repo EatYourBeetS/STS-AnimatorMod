@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
@@ -16,6 +17,7 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     public static final EYBCardData DATA = Register(Cecily.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final int LIMIT = 4;
 
     private ColoredString magicNumberString = new ColoredString("X", Colors.Cream(1));
 
@@ -48,8 +50,9 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.General);
+        magicNumber = Math.min(LIMIT,CombatStats.Affinities.GetAffinityLevel(Affinity.General, true));
         magicNumberString = super.GetMagicNumberString();
+        SetAffinityRequirement(Affinity.General, magicNumber);
     }
 
     @Override
@@ -59,13 +62,14 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.StackPower(new CecilyPower(p, 1));
-        GameActions.Bottom.Cycle(name,magicNumber).AddCallback(() -> {
-            if (info.IsSynergizing && info.TryActivateLimited()) {
-                GameActions.Bottom.Motivate(secondaryValue);
-            }
+        TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.Cycle(name, magicNumber).AddCallback(() -> {
+                if (info.IsSynergizing && info.TryActivateLimited()) {
+                    GameActions.Bottom.Motivate(secondaryValue);
+                }
+            });
         });
     }
 

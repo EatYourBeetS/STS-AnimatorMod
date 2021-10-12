@@ -8,6 +8,7 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.beta.BountyMap;
+import eatyourbeets.relics.animator.beta.BountyMap2;
 
 public class ThePharmacy extends EYBEvent
 {
@@ -45,7 +46,7 @@ public class ThePharmacy extends EYBEvent
     private static class Offering extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
     {
         private String merchantLine;
-        protected int price = 20;
+        protected static int price = 20;
 
 
         @Override
@@ -59,7 +60,7 @@ public class ThePharmacy extends EYBEvent
             AddText(merchantLine);
 
             boolean hasEnoughGold = (player.gold >= price);
-            boolean hasBounty = (player.hasRelic(BountyMap.ID));
+            boolean hasBounty = player.hasRelic(BountyMap.ID) || player.hasRelic(BountyMap2.ID);
 
             if (!hasBounty) {
                 AddOption(text.InquireBountyOption()).AddCallback(this::ProgressPhase);
@@ -101,6 +102,7 @@ public class ThePharmacy extends EYBEvent
         {
             AddText(text.Bounty());
             AddOption(text.AcceptBountyOption()).AddCallback(this::AcceptBounty);
+            AddOption(text.AcceptBountyOption2()).AddCallback(this::AcceptBounty2);
             AddOption(text.RefuseBountyOption()).AddCallback(() -> ChangePhase(Offering.class));
         }
 
@@ -111,9 +113,27 @@ public class ThePharmacy extends EYBEvent
             CardCrawlGame.metricData.addRelicObtainData(relic);
             ProgressPhase();
         }
+
+        private void AcceptBounty2()
+        {
+            BountyMap2 relic = new BountyMap2();
+            relic.instantObtain();
+            CardCrawlGame.metricData.addRelicObtainData(relic);
+            ProgressPhase();
+        }
     }
 
     private static class Accepted extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
+    {
+        @Override
+        protected void OnEnter()
+        {
+            AddText(text.Accepted());
+            AddOption(EYBEvent.COMMON_STRINGS.Continue()).AddCallback(() -> ChangePhase(Offering.class));
+        }
+    }
+
+    private static class Accepted2 extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
     {
         @Override
         protected void OnEnter()
@@ -150,6 +170,11 @@ public class ThePharmacy extends EYBEvent
             return GetDescription(4);
         }
 
+        public final String Accepted2()
+        {
+            return GetDescription(5);
+        }
+
         public final String InquireBountyOption()
         {
             return GetOption(0);
@@ -170,9 +195,14 @@ public class ThePharmacy extends EYBEvent
             return GetOption(3);
         }
 
-        public final String RefuseBountyOption()
+        public final String AcceptBountyOption2()
         {
             return GetOption(4);
+        }
+
+        public final String RefuseBountyOption()
+        {
+            return GetOption(5);
         }
     }
 }

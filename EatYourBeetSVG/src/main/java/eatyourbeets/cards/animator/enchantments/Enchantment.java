@@ -83,6 +83,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         this.relic = new LivingPicture(this);
         this.portraitForeground = new AdvancedTexture(relic.img, null);
         this.portraitForeground.pos.scale = 2;
+        this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true));
     }
 
     @Override

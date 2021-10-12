@@ -217,7 +217,7 @@
 		},
 		"animator:GinIchimaru":
         {
-        	"DESCRIPTION": "Choose 1: X <R>: Gain X [F], or X <G>: Gain X [A]. || Pay !A! <R> or <G>: Exhaust. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
+        	"DESCRIPTION": "Choose 1: Pay X <R>: Gain X [F], or Pay X <G>: Gain X [A]. ** Exhaust if <R> or <G> > !S!. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
 		"animator:KanameTousen":
@@ -862,7 +862,7 @@
 		},
 		"animator:Yoimiya":
 		{
-			"DESCRIPTION": "<ST>: Increase number of hits by 1. || Obtain [T-Knife] for each unblocked hit. <LIM> If you have [Burning]: Play {Blazing Heat}.",
+			"DESCRIPTION": "<ST>: Obtain [T-Knife] for each unblocked hit. || Cycle !S! card(s). || <LIM> If you have [Burning]: Play {Blazing Heat}.",
 			"NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
@@ -1671,7 +1671,7 @@
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || X <G>: Apply !M! [Poison].",
+			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || Pay X <G>: Apply !M! [Poison].",
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -1711,7 +1711,7 @@
 		},
 		"animator:HeavyWarrior":
 		{
-			"DESCRIPTION": "Unplayable unless you have ** another 2+ Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || X <R>: Gain !M! [F].",
+			"DESCRIPTION": "Unplayable unless you have ** another 2+ Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || Pay up to !S! <R>: Gain !M! [F].",
 			"NAME": "Heavy Warrior"
 		},
 		"animator:HighElfArcher":
@@ -1910,7 +1910,7 @@
 		},
 		"animator:Cecily":
 		{
-			"DESCRIPTION": "Next turn, {Maintain} ALL <W> Powers. || X <W> : Cycle !M! card(s). ** <LIM>. Synergy. Afterwards, Motivate !S!.",
+			"DESCRIPTION": "Next turn, {Maintain} ALL <W> Powers. || Pay up to 4 <W> : Cycle !M! card(s). ** <LIM>. Synergy. Afterwards, Motivate !S!.",
 			"EXTENDED_DESCRIPTION": ["Next turn, {Maintain} ALL <W> Powers."],
 			"NAME": "Cecily"
 		},
@@ -2201,7 +2201,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost [I]. Channel 1 [Frost]. || X <B>: Gain +X [Temp HP].",
+			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost [I]. Channel 1 [Frost]. || Pay X <B>: Gain +X [Temp HP].",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:SayakaMiki_Oktavia":
@@ -2217,8 +2217,8 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "For every !S!th Curse Exhausted or Purged: If <B> > <L>, Have +1 <L>. Otherwise, have +1 <B>. || Once per turn, Discard 1 card: Gain !M! Block.",
-			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Increase this Power's counter by #b{1} whenever you Exhaust or Purge a Curse (Currently at #b{2}). When it hits #b{3}, reset it. Then, gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
+			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: If <B> > <L>, Gain +1 <L>. Otherwise, Gain +1 <B>. || Once per turn, Discard 1 card: Gain !M! [Block].",
+			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
@@ -2290,7 +2290,7 @@
 			"DESCRIPTION": "Give {~Delayed} to a card in hand or discard pile. If you do: Give {~Innate} to a card in hand.",
 			"EXTENDED_DESCRIPTION": ["Select card(s) to give Delayed","Select card(s) to give Innate"],
 			"NAME": "Nina Clive",
-			"UPGRADE_DESCRIPTION": "X <W>: Give {~Delayed} to X cards in hand or discard pile. For each: Give {~Innate} to a card in hand."
+			"UPGRADE_DESCRIPTION": "Teamwork X: Give {~Delayed} to X cards in hand or discard pile. For each: Give {~Innate} to a card in hand."
 		},
 		"animator:Shiro":
 		{

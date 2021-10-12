@@ -8,13 +8,13 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JUtils;
 
-public class BountyMap extends AnimatorRelic
+public class BountyMap2 extends AnimatorRelic
 {
-    public static final String ID = CreateFullID(BountyMap.class);
+    public static final String ID = CreateFullID(BountyMap2.class);
 
-    public BountyMap()
+    public BountyMap2()
     {
-        super(ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
+        super(ID, BountyMap.ID, RelicTier.SPECIAL, LandingSound.MAGICAL);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class BountyMap extends AnimatorRelic
         Class<? extends AbstractRoom> room = this.GetCurrentRequiredRoom();
         if (CardCrawlGame.isInARun() && !room.equals(EventRoom.class)) {
             String name = room.equals(MonsterRoomElite.class) ? "Elite" : room.getSimpleName().split("Room")[0];
-            return JUtils.Format(DESCRIPTIONS[0], " NL Current Required Room: #b" + name);
+            return JUtils.Format(DESCRIPTIONS[0], "NL Current Required Room: #b" + name);
         } else {
             return JUtils.Format(DESCRIPTIONS[0], "");
         }
@@ -64,11 +64,11 @@ public class BountyMap extends AnimatorRelic
             case 0:
                 return MonsterRoom.class;
             case 1:
-                return MonsterRoomElite.class;
-            case 2:
-                return TreasureRoom.class;
-            case 3:
                 return ShopRoom.class;
+            case 2:
+                return RestRoom.class;
+            case 3:
+                return MonsterRoomElite.class;
             default:
                 return EventRoom.class;
         }

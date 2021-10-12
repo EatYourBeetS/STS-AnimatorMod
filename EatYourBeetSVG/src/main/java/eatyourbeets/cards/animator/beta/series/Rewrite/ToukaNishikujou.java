@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,10 +38,10 @@ public class ToukaNishikujou extends AnimatorCard
         GameActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
                 if (CheckPrimaryCondition(false)) {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, GetHandAffinity(Affinity.Light));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));
                 }
                 else {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, GetHandAffinity(Affinity.Orange));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, CombatStats.Affinities.GetAffinityLevel(Affinity.Orange, true));
                 }
             }
 
@@ -55,6 +56,6 @@ public class ToukaNishikujou extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Orange);
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Orange, true);
     }
 }

@@ -44,7 +44,7 @@ public class Evileye extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.EvokeOrb(2, JUtils.Random(player.orbs)).AddCallback(orbs -> {
+            GameActions.Bottom.EvokeOrb(magicNumber, JUtils.Random(player.orbs)).AddCallback(orbs -> {
                 for (AbstractOrb o : orbs) {
                     GameActions.Bottom.ChannelOrb(o);
                 }

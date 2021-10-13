@@ -26,13 +26,13 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain [Dexterity].",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [A] up to #b50.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "Stance: [A] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A].",
+		"DESCRIPTION": "Stance: [A] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A].",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
@@ -44,13 +44,13 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain [Vitality].",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Supercharged] for every #b10 [B] up to #b50.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
 	"Blessing Stance":
 	{
-	  "DESCRIPTION": "Stance: [B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B].",
+	  "DESCRIPTION": "Stance: [B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B].",
 	  "NAMES": ["[b] stance", "blessing stance"],
 	  "PROPER_NAME": "Blessing Stance"
 	},
@@ -68,7 +68,7 @@
 	},
 	"Boost":
 	{
-		"DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
+		"DESCRIPTION": "Gain the specified power, even if it was disabled due to a Stance.",
 		"NAMES": ["boost"],
 		"PROPER_NAME": "Boost"
 	},
@@ -116,13 +116,13 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching #b3, #b6, #b9 and #b12 [Corruption], add #yCrystallize to your draw pile. At #b15 [Corruption], obtain #pSummoning #pRitual.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Desecration] for every #b10 [C] up to #b50.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
 	"Corruption Stance":
 	{
-	  "DESCRIPTION": "Stance: [C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C].",
+	  "DESCRIPTION": "Stance: [C] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C].",
 	  "NAMES": ["[c] stance", "corruption stance"],
 	  "PROPER_NAME": "Corruption Stance"
 	},
@@ -236,13 +236,13 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain [Strength].",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Strength] for every #b10 [F] up to #b50.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "Stance: [F] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F].",
+		"DESCRIPTION": "Stance: [F] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F].",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
@@ -302,15 +302,21 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain [Focus].",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Focus] for every #b10 [I] up to #b50.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "Stance: [I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
+		"DESCRIPTION": "Stance: [I] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
+	},
+	"Interactable Power":
+	{
+		"DESCRIPTION": "Once played, you may activate this effect at any time by clicking on the icon of this power, provided that you can pay the required cost.",
+		"NAMES": ["interact", "interactable", "interactable power"],
+		"PROPER_NAME": "Interactable Power"
 	},
 	"Juggernaut":
 	{
@@ -338,7 +344,7 @@
 	},
 	"Maintain":
 	{
-		"DESCRIPTION": "This turn, prevent an #yAffinity #yPower from decreasing. If it was disabled due to a Stance, it can be gained this turn.",
+		"DESCRIPTION": "This turn, an #yAffinity #yPower that was disabled due to a Stance can be gained this turn.",
 		"NAMES": ["maintain"],
 		"PROPER_NAME": "Maintain"
 	},
@@ -494,13 +500,13 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [W], gain [Endurance].",
+	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [W] up to #b50.",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},
 	"Willpower Stance":
 	{
-	  "DESCRIPTION": "Stance: [W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
+	  "DESCRIPTION": "Stance: [W] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
 	  "NAMES": ["[w] stance", "willpower stance"],
 	  "PROPER_NAME": "Willpower Stance"
 	},

@@ -15,12 +15,15 @@ import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.*;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public abstract class AbstractAffinityPower extends CommonPower
 {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.##");
     //@Formatter: off
     @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
     @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
@@ -29,12 +32,12 @@ public abstract class AbstractAffinityPower extends CommonPower
     public final Affinity affinity;
     public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
     public int amountGainedThisTurn;
-    public int retainedTurns;
+    public int gainMultiplier;
     public boolean forceEnableThisTurn;
     public Hitbox hb;
 
     private static final StringBuilder builder = new StringBuilder();
-    protected static final int[] DEFAULT_THRESHOLDS = new int[]{3, 6, 9, 12};
+    protected static final int[] DEFAULT_THRESHOLDS = new int[]{10, 20, 30, 40, 50};
     protected int thresholdIndex;
     protected int thresholdBonusAmount;
     protected int thresholdBonusModifier;
@@ -60,7 +63,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         this.owner = owner;
         this.enabled = true;
-        this.retainedTurns = 0;
+        this.gainMultiplier = 1;
         this.thresholdIndex = 0;
         this.thresholdBonusAmount = 0;
         this.thresholdBonusModifier = 0;
@@ -69,35 +72,26 @@ public abstract class AbstractAffinityPower extends CommonPower
     }
 
     public void Maintain() {
-        RetainOnce();
         this.forceEnableThisTurn = true;
     }
 
-    public void RetainOnce()
-    {
-        if (this.retainedTurns == 0)
-        {
-            this.retainedTurns = 1;
-        }
+    public void SetGainMultiplier(int gainMultiplier) {
+        this.gainMultiplier = gainMultiplier;
     }
 
-    public void Retain(int turns, boolean relative)
-    {
-        this.retainedTurns = (relative ? (retainedTurns + turns) : turns);
-    }
-
-    public void Stack(int amount, boolean retain)
+    public void Stack(int amount, boolean maintain)
     {
         if (!enabled && !forceEnableThisTurn)
         {
             return;
         }
 
-        if (this.amount == maxAmount || retain)
+        if (maintain)
         {
-            RetainOnce();
+            this.forceEnableThisTurn = true;
         }
 
+        amount *= gainMultiplier;
         if (amount > 0)
         {
             super.stackPower(amount, true);
@@ -146,12 +140,12 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected String GetUpdatedDescription()
     {
-        String description = powerStrings.DESCRIPTIONS[0];
+        String description = FormatDescription(0, decimalFormat.format(amount / EYBCardAffinitySystem.SCALING_DIVISION));
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            description += FormatDescription(1, threshold, 1);
+            description += " NL " + FormatDescription(1, threshold, 1);
         }
 
         return description;
@@ -164,18 +158,6 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         this.amountGainedThisTurn = 0;
         this.forceEnableThisTurn = false;
-
-        if (this.retainedTurns == 0)
-        {
-            if (amount > 0)
-            {
-                reducePower(1);
-            }
-        }
-        else if (this.retainedTurns > 0)
-        {
-            this.retainedTurns -= 1;
-        }
     }
 
     public void Render(SpriteBatch sb)
@@ -189,7 +171,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cY = hb.cY;
 
         Color amountColor;
-        if (retainedTurns != 0)
+        if (gainMultiplier > 1)
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
             RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
@@ -198,16 +180,16 @@ public abstract class AbstractAffinityPower extends CommonPower
         else
         {
             RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
-            amountColor = (amount > 0 ? Colors.Blue(1) : Colors.Cream(0.6f)).cpy();
+            amountColor = (!enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount > 0 ? Colors.Blue(1) : Colors.White(1)).cpy();
         }
 
-        final Color imgColor = Colors.White(((enabled || forceEnableThisTurn) && (retainedTurns + amount) > 0) ? 1 : 0.5f);
+        final Color imgColor = Colors.White((enabled || forceEnableThisTurn) ? 1 : 0.5f);
         RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, amount > 0 ? Colors.White(1) : amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 70 : 75) * scale, y, 1, amountColor);
             FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 44 * scale, y, fontScale, amountColor);
         }
         else

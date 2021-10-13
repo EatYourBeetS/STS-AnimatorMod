@@ -4,10 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -22,7 +19,7 @@ import eatyourbeets.utilities.JUtils;
 public class Zhongli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 2;
+    private static final int POWER_ENERGY_COST = 5;
 
     public Zhongli()
     {
@@ -72,7 +69,7 @@ public class Zhongli extends AnimatorCard
 
         public ZhongliPower(AbstractPlayer owner, Zhongli zhongli, int amount, int secondaryValue)
         {
-            super(owner, Zhongli.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            super(owner, Zhongli.DATA, PowerTriggerConditionType.Affinity, POWER_ENERGY_COST, null, null, Affinity.Orange);
 
             this.amount = amount;
             this.zhongli = zhongli;

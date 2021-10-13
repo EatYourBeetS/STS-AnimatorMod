@@ -10,8 +10,8 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Elesis extends AnimatorCard //TODO different dark effect
@@ -54,7 +54,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
     {
         super.triggerWhenDrawn();
 
-        if (auxiliaryData.form == 1)
+        if (auxiliaryData.form == FORM_SABER)
         {
             GameActions.Bottom.ModifyAllInstances(uuid, c ->
             {
@@ -62,6 +62,9 @@ public class Elesis extends AnimatorCard //TODO different dark effect
                 c.applyPowers();
             });
             GameActions.Bottom.Flash(this);
+        }
+        else if (auxiliaryData.form == FORM_DARK) {
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SLASH_VERTICAL);
         }
     }
 
@@ -111,6 +114,14 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             case FORM_DARK:
             {
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, magicNumber).AddCallback(po -> {
+                    if (po != null) {
+                        AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+                        if (mo != null && po.amount > 0) {
+                            GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, po.amount, AttackEffects.CLAW);
+                        }
+                    }
+                });
                 break;
             }
         }
@@ -141,12 +152,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
     {
         super.triggerWhenCreated(startOfBattle);
 
-        if (auxiliaryData.form == FORM_DARK && startOfBattle)
-        {
-            GameEffects.List.ShowCopy(this);
-            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL).CanKill(false);
-        }
-        else if (auxiliaryData.form == FORM_NONE)
+        if (auxiliaryData.form == FORM_NONE)
         {
             final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             group.group.add(new Elesis(FORM_SABER, timesUpgraded));
@@ -238,8 +244,8 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             {
                 LoadImage("_Dark");
 
-                Initialize(9, 0, 3);
-                SetUpgrade(0, 0, -1);
+                Initialize(11, 0, 3, 3);
+                SetUpgrade(0, 0, 4);
 
                 affinities.Clear();
                 SetAffinity_Red(2, 0, 2);
@@ -247,7 +253,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 0;
+                this.cost = this.costForTurn = 1;
 
                 break;
             }

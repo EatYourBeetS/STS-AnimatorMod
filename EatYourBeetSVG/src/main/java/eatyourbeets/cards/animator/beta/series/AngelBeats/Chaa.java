@@ -23,7 +23,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Chaa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Chaa.class).SetPower(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 1;
+    private static final int POWER_ENERGY_COST = 3;
 
     public Chaa()
     {
@@ -66,7 +66,7 @@ public class Chaa extends AnimatorCard
 
         public ChaaPower(AbstractCreature owner, int amount, int secondaryValue)
         {
-            super(owner, Chaa.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            super(owner, Chaa.DATA, PowerTriggerConditionType.Affinity, POWER_ENERGY_COST);
             this.amount = amount;
             this.secondaryValue = secondaryValue;
             this.triggerCondition.SetOneUsePerPower(true);

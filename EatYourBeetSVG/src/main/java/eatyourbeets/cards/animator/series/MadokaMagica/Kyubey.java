@@ -30,6 +30,8 @@ public class Kyubey extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
+
+        SetEthereal(true);
     }
 
     @Override
@@ -53,7 +55,8 @@ public class Kyubey extends AnimatorCard
             });
         }
         if (soul.get() < secondaryValue) {
-            GameActions.Bottom.Purge(this);
+            GameActions.Bottom.Purge(this).ShowEffect(true);
+            GameActions.Bottom.Add(new CreateRandomCurses(1, player.hand));
         }
     }
 
@@ -65,7 +68,7 @@ public class Kyubey extends AnimatorCard
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.Add(new CreateRandomCurses(1, player.hand));
+            GameActions.Bottom.GainCorruption(1);
         }
     }
 }

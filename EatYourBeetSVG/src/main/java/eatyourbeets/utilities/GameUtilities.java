@@ -1563,22 +1563,11 @@ public class GameUtilities
         return power;
     }
 
-    public static AbstractAffinityPower RetainPower(Affinity affinity)
-    {
-        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
-        if (power != null)
-        {
-            power.RetainOnce();
-        }
-
-        return power;
-    }
-
-    public static void RetainAllPowers()
+    public static void MaintainAllPowers()
     {
         for (AbstractAffinityPower p : CombatStats.Affinities.Powers)
         {
-            p.RetainOnce();
+            p.Maintain();
         }
     }
 

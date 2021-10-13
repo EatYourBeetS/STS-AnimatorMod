@@ -26,7 +26,7 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0);
 
         SetCostUpgrade(-1);
@@ -38,7 +38,7 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.EvokeOrb(1).AddCallback(orbs -> {
+        GameActions.Bottom.EvokeOrb(secondaryValue).AddCallback(orbs -> {
             for (AbstractOrb o : orbs) {
                 GameActions.Bottom.ChannelOrb(o);
             }

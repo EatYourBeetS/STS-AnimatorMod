@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.special.SelectCreature;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.SFX;
@@ -70,7 +71,14 @@ public abstract class EYBClickablePower extends EYBPower
     {
         this(owner, cardData, null);
 
-        triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)
+    {
+        this(owner, cardData, null);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
 
     public String GetUpdatedDescription()

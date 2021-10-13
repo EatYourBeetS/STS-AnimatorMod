@@ -3,6 +3,7 @@ package eatyourbeets.powers;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -23,6 +24,7 @@ public class PowerTriggerCondition
 
     private static final ActionT1<Integer> EMPTY_ACTION = __ -> {};
     private static final FuncT1<Boolean, Integer> EMPTY_FUNCTION = __ -> true;
+    private Affinity[] affinities;
     private FuncT1<Boolean, Integer> checkCondition;
     private ActionT1<Integer> payCost;
     private boolean canUse;
@@ -37,7 +39,12 @@ public class PowerTriggerCondition
         this(power, PowerTriggerConditionType.Special, requiredAmount, checkCondition, payCost);
     }
 
-    private PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    {
+        this(power, type, requiredAmount, checkCondition, payCost, Affinity.Basic());
+    }
+
+    protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)
     {
         this.power = power;
         this.type = type;
@@ -45,6 +52,7 @@ public class PowerTriggerCondition
         this.baseUses = this.uses = 1;
         this.refreshEachTurn = true;
         this.stackAutomatically = false;
+        this.affinities = affinities;
 
         SetCheckCondition(checkCondition)
         .SetPayCost(payCost)
@@ -133,6 +141,9 @@ public class PowerTriggerCondition
             case TakeDelayedDamage:
                 return result && GameUtilities.GetHP(AbstractDungeon.player, true, true) > requiredAmount;
 
+            case Affinity:
+                return result && CombatStats.Affinities.CheckAffinityLevels(affinities, requiredAmount,true);
+
             case LoseHP:
                 return result && GameUtilities.GetHP(AbstractDungeon.player, true, false) > requiredAmount;
 
@@ -182,6 +193,11 @@ public class PowerTriggerCondition
             case TakeDelayedDamage:
             {
                 GameActions.Bottom.DealDamageAtEndOfTurn(power.owner, power.owner, requiredAmount);
+                break;
+            }
+            case Affinity:
+            {
+                CombatStats.Affinities.ChooseSpendAffinity(affinities, requiredAmount, () -> {}, false);
                 break;
             }
             case LoseHP:

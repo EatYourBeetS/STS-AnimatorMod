@@ -42,7 +42,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
     {
         public WalpurgisnachtPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Walpurgisnacht.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            super(owner, Walpurgisnacht.DATA, PowerTriggerConditionType.Affinity, POWER_ENERGY_COST);
 
             this.amount = amount;
 

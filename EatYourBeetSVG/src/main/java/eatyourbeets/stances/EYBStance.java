@@ -132,7 +132,7 @@ public abstract class EYBStance extends AbstractStance
         {
             for (Affinity af : Affinity.Basic()) {
                 if (af.equals(affinity)) {
-                    CombatStats.Affinities.GetPower(af).Retain(-1, false);
+                    CombatStats.Affinities.GetPower(af).SetGainMultiplier(2);
                 }
                 else {
                     CombatStats.Affinities.GetPower(af).SetEnabled(false);
@@ -152,7 +152,7 @@ public abstract class EYBStance extends AbstractStance
         {
             for (Affinity af : Affinity.Basic()) {
                 if (af.equals(this.affinity)) {
-                    CombatStats.Affinities.GetPower(af).Retain(0, false);
+                    CombatStats.Affinities.GetPower(af).SetGainMultiplier(1);
                 }
                 else {
                     CombatStats.Affinities.GetPower(af).SetEnabled(true);

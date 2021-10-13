@@ -142,7 +142,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
             if (startingIndex >= 0)
             {
-                AddSynergyRewards(rewards, startingIndex, GetActualCounter() == 0 ? 3 : 2);
+                AddSynergyRewards(rewards, startingIndex, GetActualCounter() == 0 ? 3 : 1);
             }
         }
     }

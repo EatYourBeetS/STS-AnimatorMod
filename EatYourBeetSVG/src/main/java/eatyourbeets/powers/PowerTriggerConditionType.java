@@ -8,6 +8,7 @@ public enum PowerTriggerConditionType
     LoseHP,
     TakeDamage,
     TakeDelayedDamage,
+    Affinity,
     Gold,
     None,
     Special;

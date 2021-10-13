@@ -17,18 +17,18 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
 {
     public AbstractAffinityPower power;
     public boolean showEffect;
-    public boolean retain;
+    public boolean maintain;
 
     public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount)
     {
         this(source, affinity, amount, false);
     }
 
-    public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount, boolean retain)
+    public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount, boolean maintain)
     {
         super(ActionType.POWER, Settings.ACTION_DUR_XFAST);
 
-        this.retain = retain;
+        this.maintain = maintain;
 
         if (affinity != null)
         {
@@ -50,7 +50,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
 
     public ApplyAffinityPower Retain(boolean retain)
     {
-        this.retain = retain;
+        this.maintain = retain;
 
         return this;
     }
@@ -67,9 +67,9 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     {
         if (amount == 0)
         {
-            if (retain)
+            if (maintain)
             {
-                power.RetainOnce();
+                power.Maintain();
             }
 
             Complete();
@@ -90,7 +90,7 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
             }
         }
 
-        power.Stack(amount, retain);
+        power.Stack(amount, maintain);
         power.flash();
 
         if (showEffect)

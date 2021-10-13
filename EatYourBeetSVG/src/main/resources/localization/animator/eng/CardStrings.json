@@ -126,8 +126,8 @@
 		},
 		"animator:Chaa":
 		{
-			"DESCRIPTION": "Whenever you Purge a card from your Exhaust pile: Gain !M! [Block]. || Once per turn, pay [E]: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
-			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay [E]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
+			"DESCRIPTION": "Whenever you Purge a card from your Exhaust pile: Gain !M! [Block]. || Once per turn, pay 3 <W>: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay 3 [A-Gen]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
 			"NAME": "Chaa"
 		},
 		"animator:EriShiina":
@@ -867,8 +867,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "When you Evoke [Earth]: Gain [Block] equal to [Endurance] + !S! (min. !S!). || Once per turn, pay 2 [E]: {Channel} [Earth], then choose whether to gain !M! Temp. [Endurance] this turn or next turn.",
-		  	"EXTENDED_DESCRIPTION": ["Pay 2 [E] to channel #b1 [Earth] ** and choose whether to gain {0} #yTemporary [Endurance] this turn or next turn. || When you #yEvoke [Earth]: Gain #b{1} [Block].", "Gain {0} {Temp.} [Endurance].", "Next turn: Gain {0} {Temp.} [Endurance]."],
+			"DESCRIPTION": "When you Evoke [Earth]: Gain [Block] equal to [Endurance] + !S! (min. !S!). || Once per turn, pay 5 <O>: {Channel} [Earth], then choose whether to gain !M! Temp. [Endurance] this turn or next turn.",
+		  	"EXTENDED_DESCRIPTION": ["Pay 5 [A-Orange] to channel #b1 [Earth] ** and choose whether to gain {0} #yTemporary [Endurance] this turn or next turn. || When you #yEvoke [Earth]: Gain #b{1} [Block].", "Gain {0} {Temp.} [Endurance].", "Next turn: Gain {0} {Temp.} [Endurance]."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -1383,7 +1383,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. Transfer !M! [Delayed Damage] from you to the enemy. || When Drawn: Take !M! [Delayed Damage]."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. Transfer !M! [Delayed Damage] from you to the enemy. || When Drawn: Take !S! [Delayed Damage]."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -2106,7 +2106,7 @@
 	{
 		"animator:AlinaGray":
 		{
-			"DESCRIPTION": "Evoke your first Orb and Channel it back. {Soul} is preserved this turn. || <LIM>. If you play or draw a {Soul} card with 0 {Soul}: Steal 2 of the leftmost {Shared Buff} from a random enemy.",
+			"DESCRIPTION": "Evoke your first Orb and Channel it back. For !M! turns: {Soul} is preserved. || <LIM>. If you play or draw a {Soul} card with 0 {Soul}: Steal 2 of the leftmost {Shared Buff} from a random enemy.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s): #ySoul is not consumed when drawing or playing #ySoul cards."],
 			"NAME": "Alina Gray"
 		},
@@ -2148,7 +2148,7 @@
 		},
 		"animator:Kyubey":
 		{
-			"DESCRIPTION": "{Startup}: Obtain a random Curse. || Gain !S! [E]. <DRW-M>. ** Drain 1 {Soul} from random {Soul} cards in hand three times. If you could not: Purge.",
+			"DESCRIPTION": "{Startup}: Gain [C]. || Gain !S! [E]. <DRW-M>. ** Drain 1 {Soul} from random {Soul} cards in hand three times. If you could not: Purge and Obtain a random Curse.",
 			"NAME": "Kyubey"
 		},
 		"animator:MadokaKaname":
@@ -3041,8 +3041,8 @@
 		},
 		"animator:Walpurgisnacht":
 		{
-			"DESCRIPTION": "Whenever {Soul} is lost: Gain !M! [Temp HP]. || Pay [E]: Transform a Curse in hand back to its {Soul} card form and give it +1 [C] Scaling.",
-			"EXTENDED_DESCRIPTION": ["Whenever #ySoul is lost: Gain #b{0} [Temp HP]. NL Pay [E]: Transform a Curse in hand back to its #ySoul card form and give it +1 [C] Scaling."],
+			"DESCRIPTION": "Whenever {Soul} is lost: Gain !M! [Temp HP]. || Once per turn, pay 5 <W>: Transform a Curse in hand back to its {Soul} card form and give it +1 [C] Scaling.",
+			"EXTENDED_DESCRIPTION": ["Whenever #ySoul is lost: Gain #b{0} [Temp HP]. NL Pay 5 [A-Gen]: Transform a Curse in hand back to its #ySoul card form and give it +1 [C] Scaling."],
 			"NAME": "Walpurgisnacht"
 		}
 	}

@@ -18,6 +18,7 @@ import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
+import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -223,7 +224,7 @@ public class EYBCardText
                 else
                 {
                     cs.SetColor(Colors.Cream(1));
-                    cs.text = "x" + scaling;
+                    cs.text = "x" + scaling + "/" + EYBCardAffinitySystem.SCALING_DIVISION;
                 }
 
                 offset_y += RenderScaling(sb, affinity.GetPowerIcon(), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
@@ -234,9 +235,9 @@ public class EYBCardText
     private float RenderScaling(SpriteBatch sb, TextureRegion texture, ColoredString scaling, float y, Color backgroundColor)
     {
         final float alpha = card.transparency;
-        final float offset_x = -AbstractCard.RAW_W * 0.4625f;
+        final float offset_x = -AbstractCard.RAW_W * 0.4695f;
         final float offset_y = AbstractCard.RAW_H * 0.08f;//+0.28f;
-        final BitmapFont font = EYBFontHelper.CardIconFont_Large;
+        final BitmapFont font = EYBFontHelper.CardIconFont_Small;
 
         RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, alpha * 0.4f, 1);
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 24, 24, Color.WHITE, alpha, 1);

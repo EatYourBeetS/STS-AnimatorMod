@@ -36,6 +36,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
+    public static final int SCALING_DIVISION = 4;
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
     public final EYBCardAffinities BonusAffinities = new EYBCardAffinities(null);
     public final ForcePower Force;
@@ -99,6 +100,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public EYBCardAffinities AddAffinities(EYBCardAffinities affinities)
     {
         return BonusAffinities.Add(affinities, 1);
+    }
+
+    public boolean CheckAffinityLevels(Affinity[] affinities, int amount, boolean addStar) {
+        for (Affinity affinity : affinities) {
+            if (GetAffinityLevel(affinity, addStar) >= amount) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int GetAffinityLevel(Affinity affinity, boolean addStar) {
@@ -377,7 +387,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
     {
-        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.5f);
+        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount / (float)SCALING_DIVISION);
     }
 
     // ====================== //
@@ -476,10 +486,18 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     }
 
     public EYBActionWithCallback<ArrayList<AbstractCard>> ChooseSpendAffinity(Affinity[] choices, EYBCardAffinities affinities, ActionT0 conditionalAction, boolean useGeneral) {
+        return ChooseSpendAffinity(choices, affinities, conditionalAction, useGeneral, 0);
+    }
+
+    public EYBActionWithCallback<ArrayList<AbstractCard>> ChooseSpendAffinity(Affinity[] choices, int cost, ActionT0 conditionalAction, boolean useGeneral) {
+        return ChooseSpendAffinity(choices, null, conditionalAction, useGeneral, cost);
+    }
+
+    private EYBActionWithCallback<ArrayList<AbstractCard>> ChooseSpendAffinity(Affinity[] choices, EYBCardAffinities affinities, ActionT0 conditionalAction, boolean useGeneral, int cost) {
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         for (Affinity affinity : choices) {
-            int req = affinities.GetRequirement(useGeneral ? Affinity.General : affinity);
+            int req = affinities == null ? cost : affinities.GetRequirement(useGeneral ? Affinity.General : affinity);
             if (GetAffinityLevel(affinity,true) >= req) {
                 GenericEffect_PayAffinity affinityCost = new GenericEffect_PayAffinity(affinity, req);
                 AnimatorCardBuilder builder = new AnimatorCardBuilder(AffinityToken.GetCard(affinity), affinityCost.GetText(), false).SetOnUse(affinityCost::Use);

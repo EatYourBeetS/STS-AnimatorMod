@@ -7,7 +7,7 @@
     },
 	"eyb:AgilityPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [A] at the start of each turn.", " At #b{0} [A]: Gain #b{1} [Dexterity]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [A] scaling.", "At #b{0} [A]: Gain #b{1} [Dexterity]."],
 		"NAME": "Agility"
 	},
 	"eyb:BlindedPower":
@@ -17,7 +17,7 @@
 	},
 	"eyb:BlessingPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [B] at the start of each turn.", " At #b{0} [B]: Gain #b{1} [Supercharged]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [B] scaling.", "At #b{0} [B]: Gain #b{1} [Supercharged]."],
 		"NAME": "Blessing"
 	},
 	"eyb:BurningPower":
@@ -32,7 +32,7 @@
 	},
 	"eyb:CorruptionPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [C] at the start of each turn.", " At #b{0} [C]: Gain #b{1} [Desecration]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [C] scaling.", "At #b{0} [C]: Gain #b{1} [Desecration]."],
 		"NAME": "Corruption"
 	},
 	"eyb:DelayedDamagePower":
@@ -67,7 +67,7 @@
 	},
 	"eyb:ForcePower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [F] at the start of each turn.", " At #b{0} [F]: Gain #b{1} [Strength]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [F] scaling.", "At #b{0} [F]: Gain #b{1} [Strength]."],
 		"NAME": "Force"
 	},
 	"eyb:FrailPower":
@@ -92,7 +92,7 @@
 	},
 	"eyb:IntellectPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [I] at the start of each turn.", " At #b{0} [I]: Gain #b{1} [Focus]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [I] scaling.", "At #b{0} [I]: Gain #b{1} [Focus]."],
 		"NAME": "Intellect"
 	},
 	"eyb:IceElementPower":
@@ -172,7 +172,7 @@
 	},
 	"eyb:WillpowerPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 [W] at the start of each turn.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [W] scaling.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
 		"NAME": "Willpower"
 	}
 }

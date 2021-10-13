@@ -47,7 +47,7 @@ public class Enchantment4 extends Enchantment
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(t);
                 if (p.amountGainedThisTurn > 0)
                 {
-                    p.RetainOnce();
+                    p.Maintain();
                 }
             }
             return;

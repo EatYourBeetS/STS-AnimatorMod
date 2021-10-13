@@ -22,8 +22,8 @@ public class Chris extends AnimatorCard implements OnAddToDeckListener
     {
         super(DATA);
 
-        Initialize(4, 0, 20, 8);
-        SetUpgrade(2, 0, 2, -3);
+        Initialize(4, 0, 10, 8);
+        SetUpgrade(2, 0, 0, -3);
 
         SetAffinity_Air();
 

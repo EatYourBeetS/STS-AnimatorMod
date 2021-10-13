@@ -70,7 +70,7 @@ public class Aqua extends AnimatorCard
 
         if (transformed)
         {
-            GameActions.Bottom.GainTemporaryHP(secondaryValue);
+            GameActions.Bottom.Draw(secondaryValue).SetFilter(GameUtilities::IsLowCost, false);
         }
     }
 

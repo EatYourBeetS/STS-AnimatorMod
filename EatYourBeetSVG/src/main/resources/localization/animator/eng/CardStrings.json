@@ -1910,7 +1910,7 @@
 		},
 		"animator:Chris":
 		{
-			"DESCRIPTION": "!S! [A]: {~Steal} !M! [Gold]. || When this card is added to your deck: Add Eris to your deck.",
+			"DESCRIPTION": "!A! [A]: {~Steal} !M! [Gold]. || When this card is added to your deck: Add Eris to your deck.",
 			"NAME": "Chris"
 		},
 		"animator:Cecily":

@@ -335,11 +335,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         return false;
     }
 
-    public boolean CheckLastAffinityPlayed(Affinity affinity)
-    {
-        return GetLevelAffinity(affinity) >= affinities.GetRequirement(affinity);
-    }
-
     public boolean CheckAffinity(Affinity affinity)
     {
         return GetLevelAffinity(affinity) >= affinities.GetRequirement(affinity);
@@ -484,7 +479,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             for (Affinity t : types)
             {
                 final int req = affinities.GetRequirement(t);
-                final int level = hand.GetLevel(t, false);
+                final int level = GameUtilities.GetAffinityAmount(t);
                 result.SetText(req);
 
                 if (requireAll)

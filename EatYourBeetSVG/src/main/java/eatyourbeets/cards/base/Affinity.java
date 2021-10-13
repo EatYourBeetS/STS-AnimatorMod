@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 
+import static eatyourbeets.resources.CardTooltips.FindByID;
+
 public enum Affinity implements Comparable<Affinity>
 {
     Fire(0, "Fire", GR.Common.Images.Affinities.Fire),
@@ -163,18 +165,18 @@ public enum Affinity implements Comparable<Affinity>
 
     public static Affinity FromTooltip(EYBCardTooltip tooltip)
     {   //@Formatter: Off
-        if (tooltip.Is(GR.Tooltips.Affinity_Fire)    ) { return Affinity.Fire;     }
-        if (tooltip.Is(GR.Tooltips.Affinity_Air)  ) { return Affinity.Air;   }
-        if (tooltip.Is(GR.Tooltips.Affinity_Mind)   ) { return Affinity.Mind;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Earth) ) { return Affinity.Earth;  }
-        if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return Affinity.Light;   }
-        if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return Affinity.Dark;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Water)   ) { return Affinity.Water;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Poison)   ) { return Affinity.Poison;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Steel)   ) { return Affinity.Steel;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Thunder)   ) { return Affinity.Thunder;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Nature)   ) { return Affinity.Nature;    }
-        if (tooltip.Is(GR.Tooltips.Affinity_Cyber)   ) { return Affinity.Cyber;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Fire) || tooltip.Is(FindByID("FireLevelPower"))    ) { return Affinity.Fire;     }
+        if (tooltip.Is(GR.Tooltips.Affinity_Air) || tooltip.Is(FindByID("AirLevelPower"))    ) { return Affinity.Air;   }
+        if (tooltip.Is(GR.Tooltips.Affinity_Mind) || tooltip.Is(FindByID("MindLevelPower"))   ) { return Affinity.Mind;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Earth) || tooltip.Is(FindByID("EarthLevelPower")) ) { return Affinity.Earth;  }
+        if (tooltip.Is(GR.Tooltips.Affinity_Light) || tooltip.Is(FindByID("LightLevelPower"))  ) { return Affinity.Light;   }
+        if (tooltip.Is(GR.Tooltips.Affinity_Dark) || tooltip.Is(FindByID("DarkLevelPower"))   ) { return Affinity.Dark;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Water) || tooltip.Is(FindByID("WaterLevelPower"))   ) { return Affinity.Water;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Poison) || tooltip.Is(FindByID("PoisonLevelPower"))   ) { return Affinity.Poison;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Steel) || tooltip.Is(FindByID("SteelLevelPower"))   ) { return Affinity.Steel;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Thunder) || tooltip.Is(FindByID("ThunderLevelPower"))   ) { return Affinity.Thunder;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Nature) || tooltip.Is(FindByID("NatureLevelPower"))   ) { return Affinity.Nature;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Cyber) || tooltip.Is(FindByID("CyberLevelPower"))   ) { return Affinity.Cyber;    }
         if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return Affinity.Star;    }
         if (tooltip.Is(GR.Tooltips.Affinity_General)) { return Affinity.General; }
         return null;

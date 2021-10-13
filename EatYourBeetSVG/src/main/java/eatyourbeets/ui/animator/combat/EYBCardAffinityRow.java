@@ -5,16 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
+import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
-import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -33,7 +33,6 @@ public class EYBCardAffinityRow extends GUIElement
 
     protected final GUI_Image image_background;
     protected final GUI_Image image_affinity;
-    protected final GUI_Label text_affinity;
     protected final GUI_Image image_synergy;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
@@ -51,16 +50,11 @@ public class EYBCardAffinityRow extends GUIElement
         }
 
         image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
-        new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
+        new RelativeHitbox(hb, 1, 1, 0, offset_y))
         .SetColor(COLOR_DEFAULT);
 
         image_affinity = new GUI_Image(affinity.GetIcon(),
         new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
-
-        text_affinity = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-        new RelativeHitbox(hb, 0.5f, 1f, 0.55f, offset_y))
-        .SetAlignment(0.5f, 0.5f)
-        .SetText("-");
 
         image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
         new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
@@ -145,15 +139,6 @@ public class EYBCardAffinityRow extends GUIElement
             }
         }
 
-        if ((System.BonusAffinities.GetDirectLevel(Type) > 0))
-        {
-            text_affinity.SetText(Level).SetColor(Colors.Green(1));
-        }
-        else
-        {
-            text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
-        }
-
         Update();
     }
 
@@ -162,7 +147,6 @@ public class EYBCardAffinityRow extends GUIElement
     {
         image_background.TryUpdate();
         image_affinity.TryUpdate();
-        text_affinity.TryUpdate();
         image_synergy.TryUpdate();
     }
 
@@ -171,7 +155,6 @@ public class EYBCardAffinityRow extends GUIElement
     {
         image_background.TryRender(sb);
         image_affinity.TryRender(sb);
-        text_affinity.TryRender(sb);
         image_synergy.TryRender(sb);
 
         if (Power != null)

@@ -93,8 +93,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             rows.add(new EYBCardAffinityRow(this, types[i], i));
         }
-
-        rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
     }
 
     public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)

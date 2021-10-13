@@ -14,7 +14,6 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.CardTooltips;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
@@ -25,6 +24,9 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
     @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
     //@Formatter: on
+
+    public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
+    public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
 
     public final Affinity affinity;
     public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
@@ -184,13 +186,13 @@ public abstract class AbstractAffinityPower extends CommonPower
         Color amountColor;
         if (retainedTurns != 0)
         {
-            RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
-            RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+            //RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
+            //RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
             amountColor = Colors.Green(1).cpy();
         }
         else
         {
-            RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
+            //RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
             amountColor = (amount > 0 ? Colors.Blue(1) : Colors.Cream(0.6f)).cpy();
         }
 

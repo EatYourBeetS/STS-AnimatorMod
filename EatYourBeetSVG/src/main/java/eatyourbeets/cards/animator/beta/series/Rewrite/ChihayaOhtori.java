@@ -80,7 +80,7 @@ public class ChihayaOhtori extends AnimatorCard
 
     public void RefreshCost()
     {
-        int orange = GetHandAffinity(Affinity.Earth, false);
+        int orange = GetLevelAffinity(Affinity.Earth);
         if (WillpowerStance.IsActive()) {
             CostModifiers.For(this).Set(-1);
         }

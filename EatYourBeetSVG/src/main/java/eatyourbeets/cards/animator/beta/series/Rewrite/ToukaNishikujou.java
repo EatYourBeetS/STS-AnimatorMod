@@ -37,10 +37,10 @@ public class ToukaNishikujou extends AnimatorCard
         GameActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
                 if (CheckPrimaryCondition(false)) {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, GetHandAffinity(Affinity.Light));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, GetLevelAffinity(Affinity.Light));
                 }
                 else {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Earth, GetHandAffinity(Affinity.Earth));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Earth, GetLevelAffinity(Affinity.Earth));
                 }
             }
 
@@ -55,6 +55,6 @@ public class ToukaNishikujou extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Earth);
+        return GetLevelAffinity(Affinity.Light) > GetLevelAffinity(Affinity.Earth);
     }
 }

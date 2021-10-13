@@ -30,7 +30,7 @@ public class TomoyaOkazaki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetHandAffinity);
+        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetLevelAffinity);
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile, player.drawPile)
                 .SetOptions(true, true)
                 .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(highestAffinity) > 0)

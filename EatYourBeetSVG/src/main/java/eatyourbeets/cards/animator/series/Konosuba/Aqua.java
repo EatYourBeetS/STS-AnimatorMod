@@ -8,8 +8,8 @@ import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
-import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aqua extends AnimatorCard
 {
@@ -29,14 +29,12 @@ public class Aqua extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Light(2);
-        SetAffinity_Water(1);
+        SetAffinity_Water();
 
         SetHealing(true);
-        SetHarmonic(true);
         SetTransformed(transformed);
 
         SetAffinityRequirement(Affinity.Water, 2);
@@ -59,9 +57,9 @@ public class Aqua extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (upgraded && transformed)
+        if (transformed)
         {
-            GameActions.Bottom.GainTemporaryHP(secondaryValue);
+            GameActions.Bottom.Draw(secondaryValue).SetFilter(GameUtilities::IsLowCost, false);
         }
     }
 
@@ -70,7 +68,7 @@ public class Aqua extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (upgraded && transformed)
+        if (transformed)
         {
             GameActions.Bottom.GainTemporaryHP(secondaryValue);
         }
@@ -81,12 +79,8 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
-            GameActions.Bottom.RaiseLightLevel(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
-            if (upgraded && CheckAffinity(Affinity.Water) && info.IsSynergizing && info.TryActivateLimited()) {
-                GameActions.Bottom.ChannelOrb(new Water());
-            }
             GameActions.Bottom.Callback(() -> SetTransformed(true));
         }
         else

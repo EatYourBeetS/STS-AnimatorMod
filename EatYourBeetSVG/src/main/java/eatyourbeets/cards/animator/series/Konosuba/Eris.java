@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-import eatyourbeets.cards.animator.special.Eris_Chris;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -20,10 +19,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 {
     public static final EYBCardData DATA = Register(Eris.class)
-            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
-            .SetSeriesFromClassPackage()
-            .SetMaxCopies(2)
-            .PostInitialize(data -> data.AddPreview(new Eris_Chris(), false));
+            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Eris()
     {
@@ -32,11 +29,17 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
         Initialize(0, 0, 3);
         SetUpgrade(0, 0, 3);
 
-        SetAffinity_Water(1);
-        SetAffinity_Light(2);
+        SetAffinity_Nature();
+        SetAffinity_Light();
 
         SetExhaust(true);
         SetHealing(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
@@ -68,7 +71,6 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
             if (c != null && GameUtilities.CanRemoveFromDeck(c))
             {
                 player.masterDeck.removeCard(c);
-                GameEffects.TopLevelList.ShowAndObtain(new Eris_Chris());
             }
 
             for (AbstractCard card : GameUtilities.GetAllInBattleInstances(uuid))
@@ -91,7 +93,6 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RaiseLightLevel(1,upgraded);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
     }
 

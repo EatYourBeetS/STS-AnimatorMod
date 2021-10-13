@@ -36,7 +36,7 @@ public class SayakaMiki extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Water) + baseMagicNumber;
+        magicNumber = GetLevelAffinity(Affinity.Water) + baseMagicNumber;
         isMagicNumberModified = magicNumber > baseMagicNumber;
     }
 

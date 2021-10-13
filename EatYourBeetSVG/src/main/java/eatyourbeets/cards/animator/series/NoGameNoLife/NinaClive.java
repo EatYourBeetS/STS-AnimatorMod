@@ -27,7 +27,7 @@ public class NinaClive extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromPile(name, upgraded ? GetHandAffinity(Affinity.General,false) : 1, player.hand, player.discardPile)
+        GameActions.Bottom.SelectFromPile(name, upgraded ? GetLevelAffinity(Affinity.General) : 1, player.hand, player.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->

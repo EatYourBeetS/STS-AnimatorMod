@@ -1903,15 +1903,19 @@
 	{
 		"animator:Aqua":
 		{
-			"DESCRIPTION": "<DRW>. || Becomes useless this combat.",
-			"EXTENDED_DESCRIPTION": ["", "On Exhaust or ** Discarded: Gain !S! [Temp HP]."],
+			"DESCRIPTION": "<DRW>. || Becomes mostly useless this combat.",
+			"EXTENDED_DESCRIPTION": ["On Exhaust or ** Discarded: Draw !S! Low-Cost card.", "On Exhaust or ** Discarded: Gain !S! Low-Cost cards."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy and !A! <W>: Channel 1 [Water]."
+			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat."
+		},
+		"animator:Chris":
+		{
+			"DESCRIPTION": "!S! [A]: {~Steal} !M! [Gold]. || When this card is added to your deck: Add Eris to your deck.",
+			"NAME": "Chris"
 		},
 		"animator:Cecily":
 		{
-			"DESCRIPTION": "Next turn, {Maintain} ALL <Y> Powers. || X <Y> : Cycle !M! card(s). ** <LIM>. Synergy. Afterwards, Motivate !S!.",
-			"EXTENDED_DESCRIPTION": ["Next turn, {Maintain} ALL <Y> Powers."],
+			"DESCRIPTION": "Discard ALL cards in your hand. || Draw a Low-Cost card from your draw pile for each card discarded.",
 			"NAME": "Cecily"
 		},
 		"animator:Darkness":
@@ -1933,13 +1937,8 @@
 		},
 		"animator:Eris":
 		{
-			"DESCRIPTION": "Gain|Boost [L]. || <LIM>. If you would die while this card is in play, prevent all damage and replace this card in your deck with {Chris}.",
+			"DESCRIPTION": "<LIM>. If you would die ** while this card is in hand, ** draw or discard pile, prevent ** all damage and remove this ** card from your deck.",
 			"NAME": "Eris"
-		},
-		"animator:Eris_Chris":
-		{
-			"DESCRIPTION": "{~Steal} !M! [Gold]. || On Discard: ** Draw a {0-Cost} card.",
-			"NAME": "Chris"
 		},
 		"animator:Hans":
 		{

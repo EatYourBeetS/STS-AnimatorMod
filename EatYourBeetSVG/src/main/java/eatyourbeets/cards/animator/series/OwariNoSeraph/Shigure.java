@@ -54,6 +54,6 @@ public class Shigure extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GetHandAffinity(Affinity.Light) > GetHandAffinity(Affinity.Air);
+        return GetLevelAffinity(Affinity.Light) > GetLevelAffinity(Affinity.Air);
     }
 }

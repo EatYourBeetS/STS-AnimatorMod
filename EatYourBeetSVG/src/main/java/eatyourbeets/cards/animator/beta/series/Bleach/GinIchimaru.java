@@ -74,11 +74,11 @@ public class GinIchimaru extends AnimatorCard
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            if (GetHandAffinity(Affinity.Fire) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Fire), PlayerAttribute.Force));
+            if (GetLevelAffinity(Affinity.Fire) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetLevelAffinity(Affinity.Fire), PlayerAttribute.Force));
             }
-            if (GetHandAffinity(Affinity.Air) > 0) {
-                choices.AddEffect(new GenericEffect_GainStat(GetHandAffinity(Affinity.Air), PlayerAttribute.Agility));
+            if (GetLevelAffinity(Affinity.Air) > 0) {
+                choices.AddEffect(new GenericEffect_GainStat(GetLevelAffinity(Affinity.Air), PlayerAttribute.Agility));
             }
         }
         choices.Select(selections, m);

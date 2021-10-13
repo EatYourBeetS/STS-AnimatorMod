@@ -54,7 +54,7 @@ public class Shiroe extends AnimatorCard
         {
             super.onAfterCardPlayed(card);
 
-            if (card instanceof EYBCard && ((EYBCard) card).GetHandAffinity(Affinity.General) >= MINIMUM_AFFINITY)
+            if (card instanceof EYBCard && ((EYBCard) card).GetLevelAffinity(Affinity.General) >= MINIMUM_AFFINITY)
             {
                 GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
             }

@@ -31,6 +31,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
+
     public final EYBCardAffinities BonusAffinities = new EYBCardAffinities(null);
     public final FireLevelPower Fire;
     public final AirLevelPower Air;

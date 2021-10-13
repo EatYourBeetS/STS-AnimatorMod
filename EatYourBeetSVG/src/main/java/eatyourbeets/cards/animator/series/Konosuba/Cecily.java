@@ -1,17 +1,17 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Cecily extends AnimatorCard implements OnCardResetListener
+public class Cecily extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Cecily.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -23,10 +23,10 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0,0,1);
+        Initialize(0, 0, 0, 0);
+        SetUpgrade(0,0,0);
 
-        SetAffinity_Light(1);
+        SetAffinity_Light();
 
         SetExhaust(true);
     }
@@ -34,59 +34,19 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
-    }
-
-    @Override
-    public ColoredString GetMagicNumberString()
-    {
-        return magicNumberString;
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        magicNumber = GetHandAffinity(Affinity.General);
-        magicNumberString = super.GetMagicNumberString();
-    }
-
-    @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
+        SetRetain(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new CecilyPower(p, 1));
-        GameActions.Bottom.Cycle(name,magicNumber).AddCallback(() -> {
-            if (info.IsSynergizing && info.TryActivateLimited()) {
-                GameActions.Bottom.Motivate(secondaryValue);
-            }
+        GameActions.Bottom.MoveCards(p.hand, p.discardPile)
+        .AddCallback( cards ->
+        {
+            int numCardsDraw = cards.size();
+
+            if (numCardsDraw > 0)
+                GameActions.Bottom.Draw(numCardsDraw).SetFilter(GameUtilities::IsLowCost, false);
         });
-    }
-
-    public static class CecilyPower extends AnimatorPower
-    {
-        public CecilyPower(AbstractCreature owner, int amount)
-        {
-            super(owner, Cecily.DATA);
-
-            Initialize(amount);
-        }
-
-        @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            for (Affinity affinity : Affinity.Basic()) {
-                GameUtilities.MaintainPower(affinity);
-            }
-            RemovePower();
-        }
     }
 }

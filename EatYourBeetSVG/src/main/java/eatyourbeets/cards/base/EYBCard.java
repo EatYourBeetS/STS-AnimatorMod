@@ -337,23 +337,17 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public boolean CheckLastAffinityPlayed(Affinity affinity)
     {
-        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
+        return GetLevelAffinity(affinity) >= affinities.GetRequirement(affinity);
     }
 
     public boolean CheckAffinity(Affinity affinity)
     {
-        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
+        return GetLevelAffinity(affinity) >= affinities.GetRequirement(affinity);
     }
 
-    public int GetHandAffinity(Affinity affinity)
+    public int GetLevelAffinity(Affinity affinity)
     {
-        return GetHandAffinity(affinity, true);
-    }
-
-    public int GetHandAffinity(Affinity affinity, boolean ignoreSelf)
-    {
-        EYBCardAffinities handAffinities = CombatStats.Affinities.GetHandAffinities(ignoreSelf ? this : null);
-        return handAffinities != null ? handAffinities.GetLevel(affinity, false) : 0;
+        return GameUtilities.GetAffinityAmount(affinity);
     }
 
     public boolean IsStarter()
@@ -685,6 +679,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         affinities.Get(affinity, true).scaling = amount;
     }
 
+    //Changed to count affinity level amounts
     protected void SetAffinityRequirement(Affinity affinity, int requirement)
     {
         affinities.SetRequirement(affinity, requirement);

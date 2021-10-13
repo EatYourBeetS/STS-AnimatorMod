@@ -281,10 +281,25 @@ public class GameUtilities
         return card instanceof EYBCard ? ((EYBCard) card).affinities : null;
     }
 
-    public static EYBCardAffinity GetAffinity(AbstractCard card, Affinity affinity)
+    public static AbstractAffinityPower GetAffinityPower(Affinity affinity)
     {
-        final EYBCardAffinities a = GetAffinities(card);
-        return a != null ? a.Get(affinity, false) : null;
+        return CombatStats.Affinities.GetPower(affinity);
+    }
+
+    public static boolean AffinityAmountReached(Affinity affinity, int amount)
+    {
+        return GetAffinityAmount(affinity) >= amount;
+    }
+
+    public static int GetAffinityAmount(Affinity affinity)
+    {
+        return GetAffinityAmount(affinity, false);
+    }
+
+    //Updated to get the affinity stat level instead of number of cards in your affinity.
+    public static int GetAffinityAmount(Affinity affinity, boolean useStarLevel)
+    {
+        return GetAffinityPower(affinity).amount;
     }
 
     public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel)
@@ -292,6 +307,8 @@ public class GameUtilities
         final EYBCardAffinities a = GetAffinities(card);
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
+
+
 
     public static AbstractOrb GetFirstOrb(String orbID)
     {

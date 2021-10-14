@@ -97,12 +97,19 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     }
 
     public boolean CheckAffinityLevels(Affinity[] affinities, int amount, boolean addStar) {
+        return CheckAffinityLevels(affinities, amount, addStar, false);
+    }
+
+    public boolean CheckAffinityLevels(Affinity[] affinities, int amount, boolean addStar, boolean requireAll) {
         for (Affinity affinity : affinities) {
             if (GetAffinityLevel(affinity, addStar) >= amount) {
                 return true;
             }
+            else if (requireAll) {
+                return false;
+            }
         }
-        return false;
+        return requireAll;
     }
 
     public int GetAffinityLevel(Affinity affinity, boolean addStar) {

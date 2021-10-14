@@ -50,7 +50,7 @@ public class WinryRockbell extends AnimatorCard
     {
         public WinryRockbellPower(AbstractCreature owner, int amount)
         {
-            super(owner, WinryRockbell.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, WinryRockbell.DATA, PowerTriggerConditionType.Affinity, 3);
 
             triggerCondition.SetUses(-1, false, false);
 

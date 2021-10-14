@@ -23,7 +23,7 @@ public class Ainz extends AnimatorCard
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
     public static final int CHANNEL_AMOUNT = 3;
-    public static final int POWER_ENERGY_COST = 3;
+    public static final int POWER_ENERGY_COST = 8;
 
     public Ainz()
     {
@@ -69,7 +69,7 @@ public class Ainz extends AnimatorCard
     {
         public AinzPower(AbstractPlayer owner, int amount)
         {
-            super(owner, Ainz.DATA, PowerTriggerConditionType.Energy, Ainz.POWER_ENERGY_COST);
+            super(owner, Ainz.DATA, PowerTriggerConditionType.Affinity, Ainz.POWER_ENERGY_COST, null, null, Affinity.Dark);
 
             triggerCondition.SetUses(-1, false, false);
 

@@ -20,12 +20,13 @@ public class Biyorigo extends AnimatorCard
             .SetPower(2, CardRarity.RARE)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
+    public static final int COST = 3;
 
     public Biyorigo()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2, COST);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
@@ -61,7 +62,7 @@ public class Biyorigo extends AnimatorCard
 
         public BiyorigoPower(AbstractCreature owner, int amount)
         {
-            super(owner, Biyorigo.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, Biyorigo.DATA, PowerTriggerConditionType.Affinity, COST);
 
             this.triggerCondition.SetOneUsePerPower(true);
 
@@ -87,7 +88,7 @@ public class Biyorigo extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.uses, amount, MAX_METALLICIZE);
+            return FormatDescription(0, COST, amount, MAX_METALLICIZE);
         }
 
         @Override

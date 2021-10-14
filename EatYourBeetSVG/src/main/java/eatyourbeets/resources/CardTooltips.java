@@ -101,6 +101,7 @@ public class CardTooltips
     public EYBCardTooltip Blur = FindByID("Blur");
     public EYBCardTooltip Artifact = FindByID("Artifact");
     public EYBCardTooltip Shackles = FindByID("Shackles");
+    public EYBCardTooltip Intangible = FindByID("Intangible");
     public EYBCardTooltip LockOn = FindByID("~Lock-On");
     public EYBCardTooltip Lightning = FindByID("Lightning");
     public EYBCardTooltip Plasma = FindByID("Plasma");
@@ -274,6 +275,7 @@ public class CardTooltips
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
+        LoadFromPower(Intangible, new IntangiblePlayerPower(FakeCharacter.Instance, 0));
         LoadFromPower(LockOn, new LockOnPower(FakeCharacter.Instance, 0));
         LoadFromPower(Inspiration, new InspirationPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
@@ -288,9 +290,6 @@ public class CardTooltips
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Phasing, new PhasingPower(FakeCharacter.Instance, 0));
         LoadFromPower(Impaired, new ImpairedPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

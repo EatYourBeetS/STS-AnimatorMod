@@ -57,6 +57,14 @@ public abstract class EYBStance extends AbstractStance
         return tooltips.getOrDefault(stance, null);
     }
 
+    public static AbstractStance GetRandomStance() {
+        FuncT0<EYBStance> constructor = JUtils.Random(stances.values());
+        if (constructor == null) {
+            return new NeutralStance();
+        }
+        return constructor.Invoke();
+    }
+
     public static EYBStance GetStanceFromName(String name)
     {
         return stances.containsKey(name) ? stances.get(name).Invoke() : null;

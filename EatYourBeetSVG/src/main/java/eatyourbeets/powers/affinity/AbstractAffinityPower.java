@@ -92,11 +92,8 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
 
         amount *= gainMultiplier;
-        if (amount > 0)
-        {
-            super.stackPower(amount, true);
-            this.amountGainedThisTurn += amount;
-        }
+        super.stackPower(amount, true);
+        this.amountGainedThisTurn += amount;
 
         UpdateThreshold();
     }

@@ -300,6 +300,12 @@
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
+	"Intangible":
+	{
+		"DESCRIPTION": "Set all incoming damage to 1.",
+		"NAMES": ["intangible"],
+		"PROPER_NAME": "Intangible"
+	},
 	"Intellect":
 	{
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Focus] for every #b10 [I] up to #b50.",

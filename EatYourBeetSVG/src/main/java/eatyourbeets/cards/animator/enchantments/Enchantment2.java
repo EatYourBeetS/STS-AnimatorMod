@@ -20,14 +20,6 @@ public class Enchantment2 extends Enchantment
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 7) {
-            upgradeMagicNumber(1);
-        }
-    }
-
-    @Override
     public int GetMaxUpgradeIndex()
     {
         return 7;
@@ -41,6 +33,10 @@ public class Enchantment2 extends Enchantment
             currentAffinity = GameUtilities.GetRandomElement(Affinity.Basic());
         }
         CombatStats.Affinities.AddAffinity(currentAffinity, magicNumber);
+
+        if (auxiliaryData.form == 7) {
+            CombatStats.Affinities.AddAffinity(GameUtilities.GetRandomElement(Affinity.Basic()), magicNumber);
+        }
     }
 
     public Affinity GetAffinity()

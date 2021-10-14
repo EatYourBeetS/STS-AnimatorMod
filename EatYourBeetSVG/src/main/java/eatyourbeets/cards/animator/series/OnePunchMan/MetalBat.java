@@ -2,57 +2,51 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
-public class MetalBat extends AnimatorCard
+public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
 {
     public static final EYBCardData DATA = Register(MetalBat.class)
-            .SetAttack(1, CardRarity.COMMON)
+            .SetAttack(0, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
 
     public MetalBat()
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 4);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(1, 0, 6, 1);
+        SetUpgrade(1, 0, 3, 0);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1);
 
-        SetObtainableInCombat(false);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.GainForce(1);
-        GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false).IgnoreTempHP(true);
-        GameActions.Bottom.Flash(this);
-    }
-
-    @Override
-    protected float GetInitialDamage()
-    {
-        int multiplier = (int)(10 * (1 - GameUtilities.GetHealthPercentage(player)));
-        if (player.currentHealth == 1)
-        {
-            multiplier += 1;
-        }
-
-        return super.GetInitialDamage() + (magicNumber * multiplier);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.GainForce(magicNumber);
+        CombatStats.onEndOfTurn.Subscribe(this);
+
+        if (TrySpendAffinity(Affinity.Red)) {
+            GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, secondaryValue);
+        }
+    }
+
+    @Override
+    public void OnEndOfTurn(boolean isPlayer) {
+        GameActions.Bottom.GainForce(-magicNumber);
+        CombatStats.onEndOfTurn.Unsubscribe(this);
     }
 }

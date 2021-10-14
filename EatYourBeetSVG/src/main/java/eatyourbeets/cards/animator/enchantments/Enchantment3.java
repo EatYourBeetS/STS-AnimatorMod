@@ -1,7 +1,9 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.ListSelection;
@@ -18,7 +20,7 @@ public class Enchantment3 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 5, 1);
     }
 
     @Override
@@ -52,13 +54,13 @@ public class Enchantment3 extends Enchantment
     @Override
     public boolean CanUsePower(int cost)
     {
-        return super.CanUsePower(cost) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
+        return CombatStats.Affinities.CheckAffinityLevels(Affinity.Basic(), cost, true) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
     }
 
     @Override
     public void PayPowerCost(int cost)
     {
-        super.PayPowerCost(cost);
+        GameActions.Bottom.TryChooseSpendAffinity(name, cost);
 
         if (auxiliaryData.form == 5)
         {

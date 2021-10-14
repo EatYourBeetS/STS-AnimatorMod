@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Enchantment4 extends Enchantment
@@ -32,6 +30,24 @@ public class Enchantment4 extends Enchantment
     }
 
     @Override
+    public boolean CanUsePower(int cost)
+    {
+        if (GetAffinity() == null) {
+            return CombatStats.Affinities.GetAffinityLevel(Affinity.General, true) >= cost;
+        }
+        return CombatStats.Affinities.GetAffinityLevel(GetAffinity(), true) >= cost;
+    }
+
+    @Override
+    public void PayPowerCost(int cost)
+    {
+        if (GetAffinity() == null) {
+            GameActions.Bottom.TryChooseSpendAffinity(name, cost);
+        }
+        CombatStats.Affinities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
+    }
+
+    @Override
     public int GetMaxUpgradeIndex()
     {
         return 6;
@@ -42,26 +58,14 @@ public class Enchantment4 extends Enchantment
     {
         if (!upgraded)
         {
-            for (Affinity t : Affinity.Basic())
-            {
-                final AbstractAffinityPower p = CombatStats.Affinities.GetPower(t);
-                if (p.amountGainedThisTurn > 0)
-                {
-                    p.Maintain();
-                }
-            }
+            GameActions.Bottom.GainRandomAffinityPower(magicNumber, true);
             return;
         }
 
         currentAffinity = GetAffinity();
         if (currentAffinity != null) {
             final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            if (GameUtilities.InStance(NeutralStance.STANCE_ID) || GameUtilities.InStance(currentAffinity)) {
-                GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber, true);
-            }
-            else {
-                GameUtilities.MaintainPower(currentAffinity);
-            }
+            GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber, true);
 
             if (p.GetThresholdBonusPower() == null) {
                 GameActions.Bottom.GainEnergyNextTurn(magicNumber);

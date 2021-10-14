@@ -150,6 +150,11 @@
 		"DESCRIPTIONS": ["Lose #b{0} [Focus] at the start of your next turn."],
 		"NAME": "Temporary Focus"
     },
+	"eyb:TemporaryStrengthPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Strength] at the start of your next turn."],
+		"NAME": "Temporary Strength"
+    },
 	"eyb:TemporaryThornsPower":
 	{
 		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],

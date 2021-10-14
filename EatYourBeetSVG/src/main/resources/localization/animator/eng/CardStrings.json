@@ -724,7 +724,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "Below 30% max HP or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: ** Take !S! [Delayed Damage].",
+        	"DESCRIPTION": "Below 30% Max [HP] or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: ** Take !S! [Delayed Damage].",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -744,7 +744,7 @@
 		},
 		"animator:Ganyu":
 		{
-			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. On Exhaust, Channel !M! [Frost].",
+			"DESCRIPTION": "Unplayable unless the enemy has [~Lock-On]. || Gain !M! [Vulnerable] and shuffle !S! {Frostbite} into your draw pile. || <SLM>. On Exhaust, Channel !M! [Frost].",
 			"NAME": "Ganyu"
 		},
 		"animator:HuTao":
@@ -862,7 +862,7 @@
 		},
 		"animator:Yoimiya":
 		{
-			"DESCRIPTION": "<ST>: Obtain [T-Knife] for each unblocked hit. || Cycle !S! card(s). || <LIM> If you have [Burning]: Play {Blazing Heat}.",
+			"DESCRIPTION": "Obtain [T-Knife] for each unblocked hit. || <ST>: Cycle a card afterwards. || <LIM> If you have [Burning]: Play {Blazing Heat}.",
 			"NAME": "Yoimiya"
 		},
 		"animator:Zhongli":
@@ -1588,8 +1588,8 @@
 		},
 		"animator:WinryRockbell":
 		{
-			"DESCRIPTION": "Once per turn, ** when you discard a ** card: Gain !M! [Block]. || Pay [E]: Upgrade ** !S! random cards.",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: Upgrade {0} random cards. || The next #b{1} time(s) you discard a card this turn, gain #b{2} #yBlock."],
+			"DESCRIPTION": "Once per turn, ** when you discard a ** card: Gain !M! [Block]. || Pay 3 <W>: Upgrade ** !S! random cards.",
+			"EXTENDED_DESCRIPTION": ["Pay 3 [A-Gen]: Upgrade {0} random cards. || The next #b{1} time(s) you discard a card this turn, gain #b{2} #yBlock."],
 			"NAME": "Winry Rockbell"
 		},
 		"animator:Wrath":
@@ -1818,8 +1818,8 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once per turn, pay [E]: ** Gain 1 {Temp.} [Artifact].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
+			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once per turn, pay !S! <G>: ** Gain 1 {Temp.} [Artifact].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Green] to gain #b1 #yTemporary [Artifact]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -2269,7 +2269,7 @@
 		},
 		"animator:IzunaHatsuse":
 		{
-			"DESCRIPTION": "Apply 1 [Weak]. || Below 30% max HP: Recover !S! [HP].",
+			"DESCRIPTION": "Apply 1 [Weak]. || Below 30% Max [HP]: Recover !S! [HP].",
 			"EXTENDED_DESCRIPTION": [""],
 			"NAME": "Izuna Hatsuse"
 		},
@@ -2389,7 +2389,7 @@
 		},
 		"animator:MetalBat":
 		{
-			"DESCRIPTION": "Deals !M! additional damage ** for every 10% missing [HP]. || When Drawn: Gain ** 1 [F] and lose !S! [HP] ** (This can't kill you).",
+			"DESCRIPTION": "Gain !M! [F]. At the end of your turn, lose !M! [F]. || Pay !A! <R>: Gain 1 Temp. [Strength].",
 			"NAME": "Metal Bat"
 		},
 		"animator:Garou":
@@ -2424,14 +2424,19 @@
 		{
 			"DESCRIPTION": "Channel 1 [Air]. ** Gain !M! {Temp.} [Focus]. || Synergy: Choose 1: Enter <IS>, ** or Enter <BS>.",
 			"NAME": "Tatsumaki"
+		},
+		"animator:Zombieman":
+		{
+			"DESCRIPTION": "Deals !M! additional damage ** for every 10% missing [HP]. || When Drawn: Gain ** 1 [F] and lose !S! [HP] ** (This can't kill you).",
+			"NAME": "Zombieman"
 		}
 	},
 	"SERIES:OVERLORD":
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: Boost all non-[B] {<W> Powers} (Boost 2 [C] in <CS>). Non-[B] {<W> Powers} may be gained in <CS>. || When Drawn: Motivate this. || Pay {0} [E]: Channel {1} [Chaos].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} to #yChannel #b{1} [Chaos]. || At the start of each turn, #yBoost all <W> #yPowers except [B] #b{2} time(s)."],
+			"DESCRIPTION": "At the start of turn: Boost all non-[B] {<W> Powers} (Boost 2 [C] in <CS>). Non-[B] {<W> Powers} may be gained in <CS>. || When Drawn: Motivate this. || Pay {0} <D>: Channel {1} [Chaos].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Dark] to #yChannel #b{1} [Chaos]. || At the start of each turn, #yBoost all <W> #yPowers except [B] #b{2} time(s)."],
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
@@ -2505,7 +2510,7 @@
 		},
 		"animator:Victim":
 		{
-			"DESCRIPTION": "The next time you receive unblocked damage: Gain !B! [Block]. This value is affected by block modifiers. || Next turn: Gain !M! Temp. [Malleable].",
+			"DESCRIPTION": "Retain a <D> card. The next time you receive unblocked damage: Gain !M! [Block]. || <LIM>. !A! <L> and Below !S!% Max [HP]: Purge and Gain 1 [Intangible].",
 			"NAME": "Victim"
 		}
 	},
@@ -2694,16 +2699,16 @@
 	{
 		"animator:Enchantment1":
 		{
-			"DESCRIPTION": "Once per turn, ** exit your Stance: ** Gain !M! of that Stance's {[A-Gen] Power}.",
+			"DESCRIPTION": "Once per turn, ** Pay !S! <W>: ** Enter a random stance.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, ** Pay !S! of any <W> except for <R>: ** In <FS>: Exit <FS> and gain !M! [F]. Otherwise, enter <FS>.",
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <AS>: Gain !M! [A]. Otherwise, enter <AS>.",
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <IS>: Gain !M! [I]. Otherwise, enter <IS>.",
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <WS>: Gain !M! [W]. Otherwise, enter <WS>.",
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <BS>: Gain !M! [B]. Otherwise, enter <BS>.",
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <CS>: Gain !M! [C]. Otherwise, enter <CS>.",
-				"Once per turn, ** exit your Stance: ** Boost !M! of that Stance's {[A-Gen] Power}."
+				"Once per turn, ** Pay !S! of any <W> except for <R>: ** <FS>: Exit <FS>, then gain !M! [F]. Otherwise, enter <FS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <G>: ** <AS>: Exit <AS>, then gain !M! [A]. Otherwise, enter <AS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <B>: ** <IS>: Exit <IS>, then gain !M! [I]. Otherwise, enter <IS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <O>: ** <WS>: Exit <WS>, then gain !M! [W]. Otherwise, enter <WS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <L>: ** <BS>: Exit <BS>, then gain !M! [B]. Otherwise, enter <BS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <D>: ** <CS>: Exit <CS>, then gain !M! [C]. Otherwise, enter <CS>.",
+				"Once per turn, ** Pay !S! <W>: ** Enter any stance."
 			],
 			"NAME": "Stances"
 		},
@@ -2712,41 +2717,41 @@
 			"DESCRIPTION": "Once per turn, pay !S! [E]: A random {Affinity} ** gains +!M!.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: ** Gain +!M! <R>.",
-				"Once per turn, pay !S! [E]: ** Gain +!M! <G>.",
-				"Once per turn, pay !S! [E]: ** Gain +!M! <B>.",
-				"Once per turn, pay !S! [E]: ** Gain +!M! <O>.",
-				"Once per turn, pay !S! [E]: ** Gain +!M! <L>.",
-				"Once per turn, pay !S! [E]: ** Gain +!M! <D>.",
-				"Once per turn, pay !S! [E]: ** A random {Affinity} ** gains +!M!."
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <R>.",
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <G>.",
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <B>.",
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <O>.",
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <L>.",
+				"Once per turn, Pay !S! [E]: ** Gain +!M! <D>.",
+				"Once per turn, Pay !S! [E]: ** Two random {Affinities} ** gain +!M!."
 			],
 			"NAME": "Affinities"
 		},
 		"animator:Enchantment3":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [E]: Reduce your leftmost {Common Debuff} by !M!.",
+			"DESCRIPTION": "Once per turn, Pay !S! <W>: Reduce your leftmost {Common Debuff} by !M!.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy.",
-				"Once per turn, pay !S! [E]: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy.",
-				"Once per turn, pay !S! [E]: Remove your leftmost {Common Debuff}.",
-				"Once per turn, pay !S! [E]: Remove your rightmost {Common Debuff}.",
-				"Once per turn, pay !S! [E] and lose {0} [Block]: Reduce your highest debuff by !M!.",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Artifact]."
+				"Once per turn, Pay !S! <W>: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy.",
+				"Once per turn, Pay !S! <W>: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy.",
+				"Once per turn, Pay !S! <W>: Remove your leftmost {Common Debuff}.",
+				"Once per turn, Pay !S! <W>: Remove your rightmost {Common Debuff}.",
+				"Once per turn, Pay !S! <W> and lose {0} [Block]: Reduce your highest debuff by !M!.",
+				"Once per turn, Pay !S! <W>: Gain !M! Temp. [Artifact]."
 			],
 			"NAME": "Debuffs"
 		},
 		"animator:Enchantment4":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [E]: Boost the {[A-Gen] Power} of your highest Affinity this turn.",
+			"DESCRIPTION": "Once per turn, Pay !S! <W>: Boost a random <W> Power.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Strength]. Not in <FS> or Neutral Stance: Boost [F]. Otherwise, Gain !M! [F].",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Dexterity]. Not in <AS> or Neutral Stance: Boost [A]. Otherwise, Gain !M! [A]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Focus]. Not in <IS> or Neutral Stance: Boost [I]. Otherwise, Gain !M! [I]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Endurance]. Not in <WS> or Neutral Stance: Boost [W]. Otherwise, Gain !M! [W]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Supercharged]. Not in <BS> or Neutral Stance: Boost [B]. Otherwise, Gain !M! [B]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Desecration]. Not in <CS> or Neutral Stance: Boost [C]. Otherwise, Gain !M! [C]"
+				"Once per turn, pay !S! <R>: Gain !M! Temp. [Strength] and Boost [F].",
+				"Once per turn, pay !S! <G>: Gain !M! Temp. [Dexterity] and Boost [A].",
+				"Once per turn, pay !S! <B>: Gain !M! Temp. [Focus] and Boost [I].",
+				"Once per turn, pay !S! <O>: Gain !M! Temp. [Endurance] and Boost [W].",
+				"Once per turn, pay !S! <L>: Gain !M! Temp. [Supercharged] and Boost [B].",
+				"Once per turn, pay !S! <D>: Gain !M! Temp. [Desecration] and Boost [C]."
 			],
 			"NAME": "Powers"
 		}

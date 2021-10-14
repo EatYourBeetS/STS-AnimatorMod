@@ -46,17 +46,17 @@ public class Yoimiya extends AnimatorCard
     {
         for (int i = 0; i < magicNumber; i++) {
             GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).AddCallback(e -> {
-                if (IsStarter()) {
-                    if (e.lastDamageTaken > 0) {
-                        GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
-                    }
+                if (e.lastDamageTaken > 0) {
+                    GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
                 }
             });
         }
 
-        GameActions.Bottom.Callback(() -> {
-            GameActions.Bottom.Cycle(name,secondaryValue);
-        });
+        if (IsStarter()) {
+            GameActions.Bottom.Callback(() -> {
+                GameActions.Bottom.Cycle(name,secondaryValue);
+            });
+        }
 
         if (GameUtilities.GetPowerAmount(player, BurningPower.POWER_ID) > 0 && CombatStats.TryActivateLimited(cardID))
         {

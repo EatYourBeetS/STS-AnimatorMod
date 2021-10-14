@@ -63,7 +63,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
     public boolean isMultiUpgrade;
-    protected boolean useXMagicNumber;
     protected boolean unplayable;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -704,10 +703,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public void SetScaling(Affinity affinity, int amount)
     {
         affinities.Get(affinity, true).scaling = amount;
-    }
-
-    public void SetUseXMagicNumber() {
-        this.useXMagicNumber = true;
     }
 
     protected void SetAffinityRequirement(Affinity affinity, int requirement)

@@ -4,14 +4,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Lancer extends AnimatorCard
 {
@@ -27,7 +29,7 @@ public class Lancer extends AnimatorCard
         Initialize(6, 0, 1, VULNERABLE_MODIFIER);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1, 0, 1);
     }
 
@@ -37,7 +39,7 @@ public class Lancer extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f), Color.RED);
 
         if (ForceStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameActions.Bottom.GainAgility(1, true);
         }
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 

@@ -37,8 +37,7 @@ public class BountyMap extends AnimatorRelic
             flash();
             if (roomType.equals(EventRoom.class)) {
                 SetEnabled(false);
-                EYBEvent newRoom = new TheMysteriousPeak();
-                newRoom.onEnterRoom();
+                EYBEvent.ForceEvent(TheMysteriousPeak::new);
             }
             else {
                 AddCounter(1);

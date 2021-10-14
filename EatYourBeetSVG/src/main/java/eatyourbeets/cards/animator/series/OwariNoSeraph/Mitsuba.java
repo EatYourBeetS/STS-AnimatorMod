@@ -23,6 +23,7 @@ public class Mitsuba extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
+        SetAffinity_Orange(0,0,1);
     }
 
     @Override

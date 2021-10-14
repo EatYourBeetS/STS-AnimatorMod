@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.rewards.RewardSave;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.relics.EnchantableRelic;
-import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.GameEffects;
@@ -26,7 +25,7 @@ public class EnchantmentReward extends AnimatorReward
 
     public EnchantmentReward(EnchantableRelic relic)
     {
-        super(LivingPicture.ID,GR.Animator.Strings.Rewards.Enchantment, GR.Enums.Rewards.ENCHANTMENT);
+        super(ID,GR.Animator.Strings.Rewards.Enchantment, GR.Enums.Rewards.ENCHANTMENT);
 
         this.relic = relic;
     }

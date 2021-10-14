@@ -12,7 +12,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Rayneshia extends AnimatorCard
+public class Rayneshia extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Rayneshia.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -52,7 +52,7 @@ public class Rayneshia extends AnimatorCard
             {
                 if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
                 {
-                    TryChooseSpendAnyAffinity(() -> {
+                    GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
                         final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                         final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);
 

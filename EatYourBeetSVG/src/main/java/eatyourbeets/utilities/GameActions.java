@@ -47,10 +47,7 @@ import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.*;
-import eatyourbeets.actions.special.DelayAllActions;
-import eatyourbeets.actions.special.PlaySFX;
-import eatyourbeets.actions.special.PlayVFX;
-import eatyourbeets.actions.special.SelectCreature;
+import eatyourbeets.actions.special.*;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -1164,6 +1161,26 @@ public final class GameActions
     public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)
     {
         return Add(new TriggerOrbPassiveAbility(orb, times));
+    }
+
+    public TryChooseSpendAffinity TryChooseSpendAffinity(EYBCard sourceCard)
+    {
+        return Add(new TryChooseSpendAffinity(sourceCard.name, -1).SetSourceAffinities(sourceCard.affinities));
+    }
+
+    public TryChooseSpendAffinity TryChooseSpendAffinity(EYBCard sourceCard, Affinity... affinities)
+    {
+        return Add(new TryChooseSpendAffinity(sourceCard.name, -1, affinities).SetSourceAffinities(sourceCard.affinities));
+    }
+
+    public TryChooseSpendAffinity TryChooseSpendAffinity(String sourceName, int cost)
+    {
+        return Add(new TryChooseSpendAffinity(sourceName, cost));
+    }
+
+    public TryChooseSpendAffinity TryChooseSpendAffinity(String sourceName, int cost, Affinity... affinities)
+    {
+        return Add(new TryChooseSpendAffinity(sourceName, cost, affinities));
     }
 
     public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)

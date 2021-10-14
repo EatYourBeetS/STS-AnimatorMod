@@ -24,6 +24,7 @@ public class SuikaIbuki extends AnimatorCard
         Initialize(7, 6, 1, 1);
         SetUpgrade(2, 1, 0, 0);
         SetAffinity_Red(1, 1, 1);
+        SetAffinity_Blue(0, 0, 1);
         SetEthereal(true);
     }
 

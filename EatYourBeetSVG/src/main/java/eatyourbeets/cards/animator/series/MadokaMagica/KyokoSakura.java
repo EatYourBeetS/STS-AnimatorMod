@@ -38,7 +38,7 @@ public class KyokoSakura extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.GainForce(1, true);
             GameActions.Bottom.ChannelOrb(new Fire());
         }
 

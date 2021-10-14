@@ -26,7 +26,7 @@ public class Noah extends AnimatorCard //TODO
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Dark(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Dark, 4);
     }

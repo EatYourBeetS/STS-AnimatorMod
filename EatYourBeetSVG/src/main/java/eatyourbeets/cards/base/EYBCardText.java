@@ -242,7 +242,7 @@ public class EYBCardText
         RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(), new Vector2(offset_x, offset_y + y), 24, 32, backgroundColor, alpha * 0.4f, 1);
         RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(offset_x, offset_y + y + 8), 24, 24, Color.WHITE, alpha, 1);
 
-        font.getData().setScale(0.6f * card.drawScale);
+        font.getData().setScale(0.9f * card.drawScale);
         RenderHelpers.WriteOnCard(sb, card, font, scaling.text, offset_x, offset_y + y - 6, scaling.color, true);
         RenderHelpers.ResetFont(font);
 

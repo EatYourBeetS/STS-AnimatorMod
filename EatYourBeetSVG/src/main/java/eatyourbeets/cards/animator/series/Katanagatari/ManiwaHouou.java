@@ -88,7 +88,7 @@ public class ManiwaHouou extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.WaitRealtime(0.35f);
             RemovePower(GameActions.Last);

@@ -1,17 +1,18 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
+import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
+public class Ranga extends AnimatorCard implements OnAttackSubscriber
 {
     public static final EYBCardData DATA = Register(Ranga.class)
             .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental)
@@ -22,12 +23,13 @@ public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
     {
         super(DATA);
 
-        Initialize(6, 0);
+        Initialize(4, 0, 2);
 
         SetAffinity_Green(2);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 
+        SetCooldown(3, 0, this::OnCooldownCompleted);
         SetExhaust(true);
     }
 
@@ -40,20 +42,8 @@ public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
     }
 
     @Override
-    public void OnEvokeOrb(AbstractOrb orb)
-    {
-        if ((orb.ID.equals(Lightning.ORB_ID) || orb.ID.equals(Dark.ORB_ID)) && player.exhaustPile.contains(this))
-        {
-            GameActions.Last.MoveCard(this, player.exhaustPile, player.hand)
-            .AddCallback(c -> ((Ranga)c).SetPurge(true, true));
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-
         if (upgraded)
         {
             GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
@@ -62,6 +52,8 @@ public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
         }
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     @Override
@@ -69,6 +61,19 @@ public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber //TODO
     {
         super.triggerWhenCreated(startOfBattle);
 
-        CombatStats.onEvokeOrb.Subscribe(this);
+        CombatStats.onAttack.Subscribe(this);
+    }
+
+    @Override
+    public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
+        if (player.exhaustPile.contains(this) && GameUtilities.IsPlayer(info.owner) && target instanceof AbstractMonster && target.hasPower(VulnerablePower.POWER_ID)) {
+            this.OnUse(player, (AbstractMonster) target, new CardUseInfo(this));
+        }
+    }
+
+    protected void OnCooldownCompleted(AbstractMonster m)
+    {
+        GameActions.Bottom.GainSupportDamage(magicNumber);
+        GameActions.Bottom.Purge(this).ShowEffect(true);
     }
 }

@@ -17,16 +17,15 @@ public class LisaMinci extends AnimatorCard {
     public LisaMinci() {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 3, 3, 2);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-
-        GameActions.Top.Scry(magicNumber)
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.Scry(magicNumber)
                 .AddCallback(cards -> {
                     for (AbstractCard card : cards)
                     {

@@ -26,7 +26,7 @@ public class KyLuc extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 3, 4);
+        Initialize(4, 0, 3, 3);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 2);

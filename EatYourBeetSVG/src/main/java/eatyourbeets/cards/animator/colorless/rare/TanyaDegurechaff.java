@@ -42,7 +42,7 @@ public class TanyaDegurechaff extends AnimatorCard
 
         if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
         {
-            TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
                 GameActions.Bottom.MakeCardInDrawPile(new TanyaDegurechaff_Type95());
             });
         }

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -11,10 +10,9 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 
-public class TomoeKashiwaba extends AnimatorCard
+public class TomoeKashiwaba extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(TomoeKashiwaba.class).SetAttack(1, CardRarity.COMMON).SetSeriesFromClassPackage();
 
@@ -22,7 +20,7 @@ public class TomoeKashiwaba extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 4, 0);
+        Initialize(8, 2, 0);
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
@@ -37,13 +35,8 @@ public class TomoeKashiwaba extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        if (upgraded)
-        {
-            GameActions.Bottom.GainWillpower(1);
-        }
-        else
-        {
-            GameUtilities.MaintainPower(Affinity.Orange);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.GainWillpower(1, upgraded);
         }
     }
 
@@ -55,7 +48,7 @@ public class TomoeKashiwaba extends AnimatorCard
         if (p.drawPile.size() > 0)
         {
             AbstractCard topCard = p.drawPile.getTopCard();
-            if (HasSynergy(topCard) && CombatStats.TryActivateSemiLimited(cardID))
+            if (HasSynergy(topCard))
             {
                 GameActions.Top.GainBlock(block);
                 GameActions.Top.Draw(topCard);

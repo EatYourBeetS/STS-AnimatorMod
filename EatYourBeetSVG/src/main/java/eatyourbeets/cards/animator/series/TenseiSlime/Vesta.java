@@ -44,8 +44,8 @@ public class Vesta extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameUtilities.MaintainPower(Affinity.Blue);
-        GameUtilities.MaintainPower(Affinity.Orange);
+        GameActions.Bottom.GainIntellect(1, true);
+        GameActions.Bottom.GainWillpower(1, true);
 
         //TODO: This could all be done in VestaPower
         VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), TrySpendAffinity(Affinity.Blue));

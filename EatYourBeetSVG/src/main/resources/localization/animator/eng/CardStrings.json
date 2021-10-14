@@ -243,7 +243,7 @@
 		},
 		"animator:IkkakuMadarame":
 		{
-			"DESCRIPTION": "<FS>: Maintain [A]. Otherwise, Maintain [F]. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"DESCRIPTION": "<FS>: Boost [A]. Otherwise, Boost [F]. || If [F] or [A] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["You may gain #yAgility this turn. This overrides other effects that prevent #yAgility gain."],
 			"NAME": "Ikkaku Madarame"
 		},
@@ -399,7 +399,7 @@
 		},
 		"animator:Guts":
 		{
-			"DESCRIPTION": "Gain [F]. Take !M! damage. || If the target dies, repeat this attack with !S! more damage on another enemy.",
+			"DESCRIPTION": "Gain|Boost [F]. Take !M! damage. || If the target dies, repeat this attack with !S! more damage on another enemy.",
 			"NAME": "Guts"
 		},
 		"animator:HatsuneMiku":
@@ -719,7 +719,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain|Boost [B]. || <SLM>. Pay !A! <B>. If ALL enemies intend to attack: Channel 1 [Water] and trigger it once.",
+			"DESCRIPTION": "Gain|Boost [B]. || <SLM>. If ALL enemies intend to attack, Pay !A! <B>: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Bennett":
@@ -942,12 +942,12 @@
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "<FS>: {Maintain} [W]. || Pay !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
+			"DESCRIPTION": "<FS>: Boost [W]. || Pay !A! <O>: Discard the top card of your Draw Pile to enter <WS> and gain [W].",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Obtain !M! [T-Knife]. ** @If@ <L> @>@ <O>: Give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || On Discard: {Maintain} [W].",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. ** @If@ <L> @>@ <O>: Give them [B] Scaling equal to <L>. Otherwise, give them [W] Scaling equal to <O>. || On Discard: Boost [W].",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
@@ -1057,9 +1057,8 @@
 		},
 		"animator:TomoeKashiwaba":
 		{
-			"DESCRIPTION": "<slm>. If the top card of your draw pile is {Synergic}: Draw it and gain !B! [Block]. || When Drawn: {Maintain} [W].",
-			"NAME": "Tomoe Kashiwaba",
-			"UPGRADE_DESCRIPTION": "<slm>. If the top card of your draw pile is {Synergic}: Draw it and gain !B! [Block]. || When Drawn: Gain [W]."
+			"DESCRIPTION": "If the top card of your draw pile is {Synergic}: Draw it and gain !B! [Block]. || <SLM>. When Drawn: Gain|Boost [W].",
+			"NAME": "Tomoe Kashiwaba"
 		}
 	},
 	"BETA:TOUHOUPROJECT":
@@ -1237,7 +1236,7 @@
 		},
 		"animator:Kuroyukihime_BlackLotus":
 		{
-			"DESCRIPTION": "{Maintain} [F] [A]. || Pay !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
+			"DESCRIPTION": "Boost [F] [A]. || Pay !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
 			"NAME": "Black Lotus"
 		},
 		"animator:LimeBell":
@@ -1289,7 +1288,7 @@
 		},
 		"animator:Shimakaze":
 		{
-			"DESCRIPTION": "{Maintain} [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
+			"DESCRIPTION": "Boost [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
 		"animator:Rorona":
@@ -1306,7 +1305,8 @@
 		"animator:Zero":
 		{
 			"DESCRIPTION": "Gain|Boost [I] || Play a random ** {Skill} from your ** draw pile.",
-			"NAME": "Zero"
+			"NAME": "Zero",
+			"UPGRADE_DESCRIPTION": "Gain|Boost [I]. <DRW>. || Play a random ** {Skill} from your ** draw pile."
 		}
 	},
 	"CURSE":
@@ -1367,7 +1367,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || Synergy: Gain [A].",
+			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || Synergy: Gain|Boost [A].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -1428,7 +1428,7 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "<FS>: <DRW>. Otherwise, {Maintain} [F]. || On Exhaust: ** Play this card.",
+			"DESCRIPTION": "<FS>: <DRW>. Otherwise, Boost [F]. || On Exhaust: ** Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
@@ -1473,7 +1473,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: {Maintain} [A]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: Boost [A]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -1489,7 +1489,7 @@
 		},
 		"animator:Saber":
 		{
-			"DESCRIPTION": "Randomly {Maintain} [F] or [B]. || <CDN>: Purge, then ** add {Excalibur} to your hand. || Synergy: Progress Cooldown by 3 instead of 1.",
+			"DESCRIPTION": "Gain !B! [Block] if ALL enemies intend to attack. || <CDN>: Purge, then ** add {Excalibur} to your hand. || Synergy: Progress Cooldown by 3 instead of 1.",
 			"NAME": "Saber"
 		},
 		"animator:Saber_Excalibur":
@@ -1602,8 +1602,8 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay [E]: Trigger your first 3 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [E] to trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
+			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay 3 <W>: Trigger your first 3 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1666,7 +1666,7 @@
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "Pay !A! <L>: {Maintain} [B]. || Pay !A! <G>: {Maintain} [A]. || If you have no [Block]: ** <DRW>.",
+			"DESCRIPTION": "Pay !A! <L>: Boost [B]. || Pay !A! <G>: Boost [A]. || If you have no [Block]: ** <DRW>.",
 			"NAME": "Tuka"
 		},
 		"animator:Tyuule":
@@ -1906,7 +1906,7 @@
 			"DESCRIPTION": "<DRW>. || Becomes useless this combat.",
 			"EXTENDED_DESCRIPTION": ["", "On Exhaust or ** Discarded: Gain !S! [Temp HP]."],
 			"NAME": "Aqua",
-			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy and Pay !A! <B>: Channel 1 [Water]."
+			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy. !A! <B>: Channel 1 [Water]."
 		},
 		"animator:Cecily":
 		{
@@ -1970,7 +1970,7 @@
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "Gain|Boost [F]. Can only ** deal damage if the ** enemy is attacking. || On Exhaust: ** Gain !S! [Block].",
+			"DESCRIPTION": "Gain !M! [F]. Can only ** deal damage if the ** enemy is attacking. || On Exhaust: ** Gain !S! [Block].",
 			"NAME": "Mitsurugi"
 		},
 		"animator:Vanir":
@@ -2007,8 +2007,8 @@
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "All {Affinity} Synergy bonuses can be triggered twice per turn. || Once per turn, Pay [E]: Gain !S! of the {<W> Power} of your highest Affinity.",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: Gain #b{0} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be triggered #b{1} additional time(s) per turn."],
+			"DESCRIPTION": "All {Affinity} Synergy bonuses can be triggered twice per turn. || Once per turn, Pay 4 <W>: Gain !S! of the {<W> Power} of your highest Affinity.",
+			"EXTENDED_DESCRIPTION": ["Pay 4 [A-Gen]: Gain #b{0} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be triggered #b{1} additional time(s) per turn."],
 			"NAME": "Henrietta"
 		},
 		"animator:IsuzuTonan":
@@ -2065,7 +2065,7 @@
 		},
 		"animator:Shiroe":
 		{
-			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: 3 <W>: Apply !S! [Constricted] to ALL enemies.",
+			"DESCRIPTION": "Cycle !M! cards. || All cards this turn have: Teamwork 3: Apply !S! [Constricted] to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["All cards have: <W> #b3: Apply #b{0} #yConstricted to ALL enemies."],
 			"NAME": "Shiroe"
 		},
@@ -2096,8 +2096,8 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Requires Pay !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, discard 2 cards: ALL Affinities have +2 this turn.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, discard #b{2} cards: ALL #yAffinities have +1 this turn."],
+			"DESCRIPTION": "Pay !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, pay 3 <W>: <DRW>, then put up to 1 card on top of your draw pile.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, pay #b{2} [A-Gen]: Draw a card, then place up to 1 card on top of your draw pile."],
 			"NAME": "Tetra"
 		}
 	},
@@ -2138,7 +2138,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "<SOUL>: {Ophelia} || <ST>: Gain [F] and ** Channel 1 [Fire]. || <DRW-M>. Put !M! card(s) on top of your draw pile.",
+			"DESCRIPTION": "<SOUL>: {Ophelia} || <ST>: Gain|Boost [F] and ** Channel 1 [Fire]. || <DRW-M>. Put !M! card(s) on top of your draw pile.",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:KyokoSakura_Ophelia":
@@ -2196,12 +2196,12 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "Purge a card in your Exhaust pile to {Maintain} [I]. || Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. ** <LIM>. Pay !A! <B>: Choose 3.",
+			"DESCRIPTION": "Purge a card in your Exhaust pile to Boost [I]. || Choose 1: Scry !M!, ** draw 1 card next turn, ** or gain !S! [Block] next turn. ** <LIM>. Pay !A! <B>: Choose 3.",
 			"NAME": "Oriko Mikuni"
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost [I]. Channel 1 [Frost]. || Pay X <B>: Gain +X [Temp HP].",
+			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost !M! [I]. Channel 1 [Frost]. || Pay X <B>: Gain +X [Temp HP].",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:SayakaMiki_Oktavia":
@@ -2217,8 +2217,8 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: If <B> > <L>, Gain +1 <L>. Otherwise, Gain +1 <B>. || Once per turn, Discard 1 card: Gain !M! [Block].",
-			"EXTENDED_DESCRIPTION": ["Discard a card to gain #b{0} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
+			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: If <B> > <L>, Gain +1 <L>. Otherwise, Gain +1 <B>. || Once per turn, Pay 4 <W>: Gain !M! [Block].",
+			"EXTENDED_DESCRIPTION": ["Pay 4 [A-Gen] to gain #b{0} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
@@ -2436,8 +2436,8 @@
 		},
 		"animator:Albedo":
 		{
-			"DESCRIPTION": "Gain 1 [Artifact] and !S! [Enchanted Armor]. Your first !M! [Dark] Orbs give +1 <D>. || Once per turn, Exhaust an Attack: Increase an Attack's damage by <D>.",
-			"EXTENDED_DESCRIPTION": ["Your first #b{0} [Dark] Orbs give +1 <D> (You currently have #b{1} <D> from this Power). || Exhaust an Attack: Increase an Attack's damage by <D>."],
+			"DESCRIPTION": "Gain 1 [Artifact] and !S! [Enchanted Armor]. When you Channel or Evoke [Dark]: Gain +1 <D>. || Once per turn, Exhaust an Attack and Pay X <D>: Increase an Attack's damage by X.",
+			"EXTENDED_DESCRIPTION": ["When you Channel or Evoke [Dark]: Gain +1 [A-Dark]. || Exhaust an Attack and Pay X [A-Dark]: Increase an Attack's damage by X."],
 			"NAME": "Albedo"
 		},
 		"animator:Cocytus":
@@ -2468,8 +2468,8 @@
 		},
 		"animator:Gargantua":
 		{
-			"DESCRIPTION": "Convert half of your first [Earth]'s projectiles into Temp. [Thorns]. || This turn: Your first [Earth] absorbs !M! hit(s). If it fully blocked a hit: nullify its debuffs.",
-			"EXTENDED_DESCRIPTION": ["Your first [Earth] absorbs #b{0} hit(s) this turn. If it fully blocks a hit: nullify its debuffs"],
+			"DESCRIPTION": "If you have no [Earth], Channel [Earth]. Otherwise: Your first [Earth] absorbs !M! hit(s) this turn. Gain 1 [Plated Armor] for each blocked hit.",
+			"EXTENDED_DESCRIPTION": ["Your first [Earth] absorbs #b{0} hit(s) this turn. Gain 1 [Plated Armor] for each blocked hit."],
 			"NAME": "Gargantua"
 		},
 		"animator:NarberalGamma":
@@ -2502,6 +2502,11 @@
 		{
 			"DESCRIPTION": "Steal !M! [HP] ** from ALL enemies. || Convert up to ** !S! [B] to [C]. If no [B] was converted: Enter <CS>.",
 			"NAME": "Shalltear"
+		},
+		"animator:Victim":
+		{
+			"DESCRIPTION": "The next time you receive unblocked damage: Gain !B! [Block]. This value is affected by block modifiers. || Next turn: Gain !M! Temp. [Malleable].",
+			"NAME": "Victim"
 		}
 	},
 	"SERIES:OWARINOSERAPH":
@@ -2581,7 +2586,7 @@
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. ** <AS>: {Maintain} [F]. || On Exhaust: Add {Asuramaru} to ** your discard pile.",
+			"DESCRIPTION": "<DRW>. ** <AS>: Boost [F]. || On Exhaust: Add {Asuramaru} to ** your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":
@@ -2616,7 +2621,7 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "Pay !A! <R> or <O>: Obtain {<G> Token}{+} || Neutral Stance: ** Enter <AS>. || When Drawn in <FS> or <WS>: {Maintain} [A].",
+			"DESCRIPTION": "Pay !A! <R> or <O>: Obtain {<G> Token}{+} || Neutral Stance: ** Enter <AS>. || When Drawn: {Maintain} [A].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":
@@ -2637,7 +2642,7 @@
 		},
 		"animator:Ranga":
 		{
-			"DESCRIPTION": "When you Evoke [Lightning] ** or [Dark]: Fetch this card ** from your Exhaust pile ** and give it Purge.",
+			"DESCRIPTION": "When you attack an enemy with [Vulnerable]: Play this card from your Exhaust pile. || <CDN>: Purge and gain !M! [Support Damage].",
 			"NAME": "Ranga"
 		},
 		"animator:Rimuru":
@@ -2673,7 +2678,7 @@
 		},
 		"animator:Vesta":
 		{
-			"DESCRIPTION": "{Maintain} [I] [W]. || Research an {Elixir} ** for the next !M! turns. || Pay !A! <B>: Upgrade it.",
+			"DESCRIPTION": "Boost [I] [W]. || Research an {Elixir} ** for the next !M! turns. || Pay !A! <B>: Upgrade it.",
 			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
 		},
@@ -2692,7 +2697,7 @@
 			"DESCRIPTION": "Once per turn, ** exit your Stance: ** Gain !M! of that Stance's {[A-Gen] Power}.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <FS>: Gain !M! [F]. Otherwise, enter <FS>.",
+				"Once per turn, ** Pay !S! of any <W> except for <R>: ** In <FS>: Exit <FS> and gain !M! [F]. Otherwise, enter <FS>.",
 				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <AS>: Gain !M! [A]. Otherwise, enter <AS>.",
 				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <IS>: Gain !M! [I]. Otherwise, enter <IS>.",
 				"Once per turn, ** exit your Stance or pay !S! [E]: ** In <WS>: Gain !M! [W]. Otherwise, enter <WS>.",
@@ -2733,15 +2738,15 @@
 		},
 		"animator:Enchantment4":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [E]: {Maintain} the {[A-Gen] Power} of your highest Affinity this turn.",
+			"DESCRIPTION": "Once per turn, pay !S! [E]: Boost the {[A-Gen] Power} of your highest Affinity this turn.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Strength]. Not in <FS> or Neutral Stance: {Maintain} [F]. Otherwise, Gain !M! [F].",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Dexterity]. Not in <AS> or Neutral Stance: {Maintain} [A]. Otherwise, Gain !M! [A]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Focus]. Not in <IS> or Neutral Stance: {Maintain} [I]. Otherwise, Gain !M! [I]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Endurance]. Not in <WS> or Neutral Stance: {Maintain} [W]. Otherwise, Gain !M! [W]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Supercharged]. Not in <BS> or Neutral Stance: {Maintain} [B]. Otherwise, Gain !M! [B]",
-				"Once per turn, pay !S! [E]: Gain !M! Temp. [Desecration]. Not in <CS> or Neutral Stance: {Maintain} [C]. Otherwise, Gain !M! [C]"
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Strength]. Not in <FS> or Neutral Stance: Boost [F]. Otherwise, Gain !M! [F].",
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Dexterity]. Not in <AS> or Neutral Stance: Boost [A]. Otherwise, Gain !M! [A]",
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Focus]. Not in <IS> or Neutral Stance: Boost [I]. Otherwise, Gain !M! [I]",
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Endurance]. Not in <WS> or Neutral Stance: Boost [W]. Otherwise, Gain !M! [W]",
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Supercharged]. Not in <BS> or Neutral Stance: Boost [B]. Otherwise, Gain !M! [B]",
+				"Once per turn, pay !S! [E]: Gain !M! Temp. [Desecration]. Not in <CS> or Neutral Stance: Boost [C]. Otherwise, Gain !M! [C]"
 			],
 			"NAME": "Powers"
 		}

@@ -50,7 +50,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.SelectFromHand(name, 1, false).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(cards -> {
                 for (AbstractCard c : cards) {

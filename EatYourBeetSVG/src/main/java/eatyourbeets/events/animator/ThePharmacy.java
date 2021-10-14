@@ -29,7 +29,8 @@ public class ThePharmacy extends EYBEvent
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());
         RegisterPhase(2, new Bounty());
-        RegisterPhase(3, new Offering());
+        RegisterPhase(3, new Accepted());
+        RegisterPhase(4, new Accepted2());
         ProgressPhase();
     }
 
@@ -119,7 +120,7 @@ public class ThePharmacy extends EYBEvent
             BountyMap2 relic = new BountyMap2();
             relic.instantObtain();
             CardCrawlGame.metricData.addRelicObtainData(relic);
-            ProgressPhase();
+            ChangePhase(Accepted2.class);
         }
     }
 

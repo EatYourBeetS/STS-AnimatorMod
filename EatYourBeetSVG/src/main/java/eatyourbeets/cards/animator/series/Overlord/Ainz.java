@@ -124,7 +124,7 @@ public class Ainz extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.ChannelOrbs(Chaos::new, Ainz.CHANNEL_AMOUNT);
         }

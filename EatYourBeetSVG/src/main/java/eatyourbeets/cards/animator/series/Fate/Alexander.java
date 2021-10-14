@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Alexander extends AnimatorCard
 {
@@ -21,7 +20,7 @@ public class Alexander extends AnimatorCard
         Initialize(7, 0);
         SetUpgrade(2, 0);
 
-        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Red(1, 1, 2);
         SetAffinity_Light(1);
     }
 
@@ -43,7 +42,7 @@ public class Alexander extends AnimatorCard
             GameActions.Bottom.Draw(1);
         }
         else {
-            GameUtilities.MaintainPower(Affinity.Red);
+            GameActions.Bottom.GainForce(1, true);
         }
     }
 }

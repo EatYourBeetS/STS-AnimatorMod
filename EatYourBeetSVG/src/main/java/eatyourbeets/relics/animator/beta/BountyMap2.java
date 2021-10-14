@@ -3,12 +3,12 @@ package eatyourbeets.relics.animator.beta;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.rooms.*;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.events.animator.TheMysteriousPeak;
+import eatyourbeets.events.animator.TheSecludedHarbor;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.JUtils;
 
-public class BountyMap2 extends AnimatorRelic
+public class BountyMap2 extends AnimatorRelic //TODO make abstract bounty class
 {
     public static final String ID = CreateFullID(BountyMap2.class);
 
@@ -37,8 +37,7 @@ public class BountyMap2 extends AnimatorRelic
             flash();
             if (roomType.equals(EventRoom.class)) {
                 SetEnabled(false);
-                EYBEvent newRoom = new TheMysteriousPeak();
-                newRoom.onEnterRoom();
+                EYBEvent.ForceEvent(TheSecludedHarbor::new);
             }
             else {
                 AddCounter(1);
@@ -59,7 +58,7 @@ public class BountyMap2 extends AnimatorRelic
         }
     }
 
-    private Class<? extends AbstractRoom> GetCurrentRequiredRoom() {
+    public Class<? extends AbstractRoom> GetCurrentRequiredRoom() {
         switch (counter) {
             case 0:
                 return MonsterRoom.class;

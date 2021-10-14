@@ -30,7 +30,7 @@ public class Albedo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 18);
+        Initialize(0, 0, 2, 12);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
@@ -59,7 +59,7 @@ public class Albedo extends AnimatorCard
 
         public AlbedoPower(AbstractCreature owner, int amount)
         {
-            super(owner, Albedo.DATA, PowerTriggerConditionType.Special, EXHAUST_AMOUNT);
+            super(owner, Albedo.DATA, PowerTriggerConditionType.Affinity, -1, null, null, Affinity.Dark);
 
             Initialize(amount);
             this.triggerCondition.SetCheckCondition((c) -> {
@@ -69,15 +69,14 @@ public class Albedo extends AnimatorCard
                         GameActions.Bottom.ExhaustFromHand(name, EXHAUST_AMOUNT, false).SetOptions(false, false, false).SetFilter(card -> card.type.equals(CardType.ATTACK));
                     });
             this.triggerCondition.SetOneUsePerPower(true);
-            updateCount();
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.SelectFromHand(name,1,false).AddCallback(cards -> {
                 for (AbstractCard card: cards) {
-                    GameUtilities.IncreaseDamage(card,CombatStats.Affinities.GetHandAffinityLevel(Affinity.Dark,null),false);
+                    GameUtilities.IncreaseDamage(card, cost,false);
                 }
             });
         }
@@ -88,42 +87,10 @@ public class Albedo extends AnimatorCard
             return FormatDescription(0, amount, darkAmount);
         }
 
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onChannelOrb.Subscribe(this);
-            updateCount();
-        }
-
-        @Override
-        public void stackPower(int stackAmount)
-        {
-            super.stackPower(stackAmount);
-            updateCount();
-        }
-
-        @Override
-        public void reducePower(int reduceAmount)
-        {
-            super.reducePower(reduceAmount);
-            updateCount();
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.Affinities.BonusAffinities.Add(Affinity.Dark, -darkAmount);
-        }
-
-        protected void updateCount() {
-            CombatStats.Affinities.BonusAffinities.Add(Affinity.Dark, -darkAmount);
-            darkAmount = Math.min(amount,GameUtilities.GetOrbCount(Dark.ORB_ID));
-            CombatStats.Affinities.BonusAffinities.Add(Affinity.Dark, darkAmount);
-            updateDescription();
+        protected void updateCount(AbstractOrb orb) {
+            if (Dark.ORB_ID.equals(orb.ID)) {
+                CombatStats.Affinities.AddAffinity(Affinity.Dark, amount);
+            }
         }
 
         @Override
@@ -131,12 +98,12 @@ public class Albedo extends AnimatorCard
 
             super.onEvokeOrb(orb);
 
-            updateCount();
+            updateCount(orb);
         }
 
         @Override
         public void OnChannelOrb(AbstractOrb orb) {
-            updateCount();
+            updateCount(orb);
         }
     }
 }

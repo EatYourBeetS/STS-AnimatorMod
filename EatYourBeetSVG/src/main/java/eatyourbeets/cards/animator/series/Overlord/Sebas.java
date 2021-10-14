@@ -25,7 +25,7 @@ public class Sebas extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(1, 0, 1);
 
         SetExhaust(true);
 

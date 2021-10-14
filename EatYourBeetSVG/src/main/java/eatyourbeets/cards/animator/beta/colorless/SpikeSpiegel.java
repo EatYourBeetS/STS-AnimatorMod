@@ -62,7 +62,7 @@ public class SpikeSpiegel extends AnimatorCard
 
         if (CheckAffinity(Affinity.General) && CombatStats.TryActivateLimited(cardID))
         {
-            TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
                 GameActions.Bottom.MakeCardInDrawPile(new SwordfishII()).SetUpgrade(upgraded, false);
             });
         }

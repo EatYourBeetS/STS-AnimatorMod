@@ -23,7 +23,7 @@ public class Suiseiseki extends AnimatorCard
         super(DATA);
 
         Initialize(0, 6, 4, 3);
-        SetUpgrade(0, 2, 1);
+        SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);

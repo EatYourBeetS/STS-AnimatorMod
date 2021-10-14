@@ -96,9 +96,9 @@ public class MoltSolAugustus extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
 
             GameActions.Bottom.MakeCardInDrawPile(new MoltSolAugustus_ImperialArchers())
             .Repeat(amount).SetDuration(0.1f, false);

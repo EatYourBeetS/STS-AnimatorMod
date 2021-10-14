@@ -21,6 +21,7 @@ public class ArseneLupin extends AnimatorCard
 
         SetAffinity_Orange(2, 0, 1);
         SetAffinity_Dark(1);
+        SetAffinity_Green(0,0,1);
 
         SetExhaust(true);
         SetHealing(true);

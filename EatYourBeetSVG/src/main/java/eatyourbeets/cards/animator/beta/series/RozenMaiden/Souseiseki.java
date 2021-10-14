@@ -19,7 +19,8 @@ public class Souseiseki extends AnimatorCard
 
         Initialize(7, 2, 0, 0);
         SetUpgrade(2, 1, 0, 0);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Green(0,0,1);
     }
 
     @Override

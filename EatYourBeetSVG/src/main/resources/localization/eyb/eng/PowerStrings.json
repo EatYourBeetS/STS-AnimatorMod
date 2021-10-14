@@ -172,7 +172,7 @@
 	},
 	"eyb:WillpowerPower":
 	{
-		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [W] scaling.", " If you reach #b{0} [W], gain #b{1} [Endurance]."],
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [W] scaling.", "At #b{0} [W], gain #b{1} [Endurance]."],
 		"NAME": "Willpower"
 	}
 }

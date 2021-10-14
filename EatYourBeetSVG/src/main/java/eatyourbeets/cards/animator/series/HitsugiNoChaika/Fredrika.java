@@ -50,7 +50,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         Initialize(9, 2, 2);
         SetUpgrade(2, 2, 0);
 
-        SetAffinity_Star(1, 0, 0);
+        SetAffinity_Star(1, 0, 1);
 
         SetAttackType(EYBAttackType.Normal);
     }

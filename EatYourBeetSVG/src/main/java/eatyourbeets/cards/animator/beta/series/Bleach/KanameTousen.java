@@ -33,8 +33,8 @@ public class KanameTousen extends AnimatorCard {
 
         Initialize(0, 5, 2, 1);
         SetUpgrade(0, 4, 0);
-        SetAffinity_Dark(1, 1, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1, 0, 0);
     }
 

@@ -24,6 +24,7 @@ public class Eris_Chris extends AnimatorCard
         SetUpgrade(2, 0, 2);
 
         SetAffinity_Green(1, 1, 1);
+        SetAffinity_Orange(0, 0, 1);
     }
 
     @Override

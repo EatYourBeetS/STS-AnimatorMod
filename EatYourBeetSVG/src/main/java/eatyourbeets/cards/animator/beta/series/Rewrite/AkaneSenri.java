@@ -84,7 +84,7 @@ public class AkaneSenri extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             AbstractOrb darkOrb = new Dark();
             GameActions.Bottom.ChannelOrb(darkOrb);

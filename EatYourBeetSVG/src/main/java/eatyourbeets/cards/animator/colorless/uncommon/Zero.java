@@ -36,6 +36,9 @@ public class Zero extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainIntellect(1, upgraded);
+        if (upgraded) {
+            GameActions.Bottom.Draw(1);
+        }
         GameActions.Bottom.PlayFromPile(name, 1, m, p.drawPile)
         .SetOptions(true, false)
         .SetFilter(c -> c.type == CardType.SKILL);

@@ -25,7 +25,7 @@ public class Mitsurugi extends AnimatorCard
         super(DATA);
 
         Initialize(8, 0, 1, 4);
-        SetUpgrade(2, 0, 0, 0);
+        SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 1);
     }
@@ -60,7 +60,7 @@ public class Mitsurugi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainForce(magicNumber, upgraded);
+        GameActions.Bottom.GainForce(magicNumber);
 
         if (GameUtilities.IsAttacking(m.intent))
         {

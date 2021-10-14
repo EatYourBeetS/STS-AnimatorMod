@@ -67,7 +67,7 @@ public class Marielle extends AnimatorCard
 
         if (info.IsSynergizing)
         {
-            TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
                 GameActions.Bottom.GainTemporaryHP(magicNumber);
                 GameActions.Bottom.ObtainAffinityToken(GameUtilities.GetRandomElement(Affinity.Basic(), EYBCard.rng), upgraded);
             });

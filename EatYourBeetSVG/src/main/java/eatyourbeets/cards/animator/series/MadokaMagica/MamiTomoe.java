@@ -33,13 +33,7 @@ public class MamiTomoe extends AnimatorCard
 
         SetAffinity_Orange(1);
         SetAffinity_Light(2, 0, 2);
-        SetSoul(3, 0, MamiTomoe_Candeloro::new);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetSoul(4, 0, MamiTomoe_Candeloro::new);
+        SetSoul(3, 1, MamiTomoe_Candeloro::new);
     }
 
     @Override

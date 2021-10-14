@@ -73,9 +73,9 @@ public class CerealBox extends AnimatorRelic
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
 
             if (this.relic.counter > 0)
             {

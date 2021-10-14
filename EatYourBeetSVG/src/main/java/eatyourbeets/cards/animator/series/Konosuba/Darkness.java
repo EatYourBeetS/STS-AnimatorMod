@@ -21,11 +21,11 @@ public class Darkness extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 13, 2, 5);
+        Initialize(0, 14, 2, 5);
         SetUpgrade(0, 1, 0, -1);
 
         SetAffinity_Red(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
     }
 
     @Override

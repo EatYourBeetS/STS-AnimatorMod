@@ -29,14 +29,14 @@ public class Guts extends AnimatorCard
 
         SetAffinity_Red(2, 0, 6);
         SetAffinity_Dark(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Orange(1, 0, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int forceGain = ExecuteAttack(m, damage);
-        GameActions.Bottom.GainForce(forceGain);
+        GameActions.Bottom.GainForce(forceGain, upgraded);
         GameActions.Top.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
     }
 

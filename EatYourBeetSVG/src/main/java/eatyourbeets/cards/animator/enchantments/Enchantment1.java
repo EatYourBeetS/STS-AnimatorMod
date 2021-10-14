@@ -9,7 +9,7 @@ import eatyourbeets.stances.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Enchantment1 extends Enchantment
+public class Enchantment1 extends Enchantment //TODO
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment1.class);
     public static final int INDEX = 1;

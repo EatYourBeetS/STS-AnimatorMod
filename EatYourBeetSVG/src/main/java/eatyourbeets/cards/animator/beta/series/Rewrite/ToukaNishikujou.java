@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ToukaNishikujou extends AnimatorCard
 {
@@ -16,9 +15,9 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 1, 1);
+        Initialize(0, 6, 1, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
     }
@@ -28,7 +27,7 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameUtilities.MaintainPower(Affinity.Orange);
+        GameActions.Bottom.GainWillpower(1, true);
     }
 
     @Override

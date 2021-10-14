@@ -23,7 +23,7 @@ public class Gabiru extends AnimatorCard
         Initialize(0, 4, 2, 2);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1);
     }
 

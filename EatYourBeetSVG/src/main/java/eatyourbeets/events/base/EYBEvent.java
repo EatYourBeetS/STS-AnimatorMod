@@ -5,15 +5,20 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.Exordium;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.events.city.Ghosts;
+import com.megacrit.cardcrawl.map.MapEdge;
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.events.animator.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
+import eatyourbeets.rooms.AnimatorCustomEventRoom;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class EYBEvent extends AbstractImageEvent
 {
@@ -47,6 +52,38 @@ public abstract class EYBEvent extends AbstractImageEvent
         }
 
         return null;
+    }
+
+    public static void ForceEvent(AnimatorCustomEventRoom.GetEvent roomConstructor) {
+        MapRoomNode node = new MapRoomNode(AbstractDungeon.currMapNode.x, AbstractDungeon.currMapNode.y);
+        node.room = new AnimatorCustomEventRoom(roomConstructor);
+        ArrayList<MapEdge> curEdges = AbstractDungeon.currMapNode.getEdges();
+        Iterator var8 = curEdges.iterator();
+
+        while(var8.hasNext()) {
+            MapEdge edge = (MapEdge)var8.next();
+            node.addEdge(edge);
+        }
+
+        RoomEventDialog.optionList.clear();
+        AbstractDungeon.player.releaseCard();
+        AbstractDungeon.overlayMenu.hideCombatPanels();
+        AbstractDungeon.previousScreen = null;
+        AbstractDungeon.dynamicBanner.hide();
+        AbstractDungeon.dungeonMapScreen.closeInstantly();
+        AbstractDungeon.closeCurrentScreen();
+        AbstractDungeon.topPanel.unhoverHitboxes();
+        AbstractDungeon.fadeIn();
+        AbstractDungeon.effectList.clear();
+        AbstractDungeon.topLevelEffects.clear();
+        AbstractDungeon.topLevelEffectsQueue.clear();
+        AbstractDungeon.effectsQueue.clear();
+        AbstractDungeon.dungeonMapScreen.dismissable = true;
+        AbstractDungeon.nextRoom = node;
+        AbstractDungeon.setCurrMapNode(node);
+        AbstractDungeon.getCurrRoom().onPlayerEntry();
+        AbstractDungeon.scene.nextRoom(node.room);
+        AbstractDungeon.rs = node.room.event instanceof AbstractImageEvent ? AbstractDungeon.RenderScene.EVENT : AbstractDungeon.RenderScene.NORMAL;
     }
 
     public static void UpdateEvents(boolean isAnimator)

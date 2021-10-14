@@ -21,6 +21,7 @@ public class SougenEsaka extends AnimatorCard
         Initialize(2, 3, 1);
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
+        SetAffinity_Red(0, 0, 1);
 
         SetAffinityRequirement(Affinity.Orange, 3);
     }
@@ -33,7 +34,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameUtilities.MaintainPower(Affinity.Orange);
+            GameActions.Bottom.GainWillpower(1, true);
         }
 
 

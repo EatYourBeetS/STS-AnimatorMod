@@ -22,7 +22,7 @@ public class Kazuma extends AnimatorCard
         Initialize(5, 2, 2, 1);
         SetUpgrade(1, 1, 1);
 
-        SetAffinity_Red(1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
 
         SetProtagonist(true);

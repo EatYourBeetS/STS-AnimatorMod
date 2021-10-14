@@ -25,7 +25,7 @@ public class ShunyaKengun extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 1, 1);
 
         SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Green, 2);

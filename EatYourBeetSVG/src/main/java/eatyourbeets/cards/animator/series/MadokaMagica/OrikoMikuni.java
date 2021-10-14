@@ -35,7 +35,7 @@ public class OrikoMikuni extends AnimatorCard
     {
         GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetOptions(false,true).AddCallback(cards -> {
             if (cards.size() > 0) {
-                GameUtilities.MaintainPower(Affinity.Blue);
+                GameActions.Bottom.GainIntellect(1, true);
             }
         });
 

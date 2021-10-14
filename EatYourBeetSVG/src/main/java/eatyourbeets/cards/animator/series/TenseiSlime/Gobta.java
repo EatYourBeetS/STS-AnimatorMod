@@ -31,7 +31,7 @@ public class Gobta extends AnimatorCard
         Initialize(5, 0, 2, 3);
         SetUpgrade(2, 0, 1);
 
-        SetAffinity_Red(1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
     }
 

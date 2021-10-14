@@ -17,12 +17,10 @@ import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
-import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.cards.base.attributes.DamageAttribute;
-import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
@@ -65,6 +63,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
     public boolean isMultiUpgrade;
+    protected boolean useXMagicNumber;
     protected boolean unplayable;
     protected int upgrade_damage;
     protected int upgrade_magicNumber;
@@ -345,16 +344,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public boolean CheckAffinity(Affinity affinity)
     {
         return CombatStats.Affinities.GetAffinityLevel(affinity, true) >= affinities.GetRequirement(affinity);
-    }
-
-    public EYBActionWithCallback<ArrayList<AbstractCard>> TryChooseSpendAffinity(Affinity[] choices, ActionT0 conditionalAction)
-    {
-        return CombatStats.Affinities.ChooseSpendAffinity(choices, affinities, conditionalAction, false);
-    }
-
-    public EYBActionWithCallback<ArrayList<AbstractCard>> TryChooseSpendAnyAffinity(ActionT0 conditionalAction)
-    {
-        return CombatStats.Affinities.ChooseSpendAffinity(Affinity.Basic(), affinities, conditionalAction, true);
     }
 
     public boolean TrySpendAffinity(Affinity affinity)
@@ -715,6 +704,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public void SetScaling(Affinity affinity, int amount)
     {
         affinities.Get(affinity, true).scaling = amount;
+    }
+
+    public void SetUseXMagicNumber() {
+        this.useXMagicNumber = true;
     }
 
     protected void SetAffinityRequirement(Affinity affinity, int requirement)

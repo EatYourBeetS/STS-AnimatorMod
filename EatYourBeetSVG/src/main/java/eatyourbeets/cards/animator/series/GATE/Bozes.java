@@ -24,7 +24,8 @@ public class Bozes extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Orange(0,0,1);
 
         SetExhaust(true);
     }

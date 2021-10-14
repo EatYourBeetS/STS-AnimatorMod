@@ -24,8 +24,8 @@ public class SayakaMiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 2, 1);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
@@ -56,7 +56,7 @@ public class SayakaMiki extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.ChannelOrb(new Frost());
 
-        GameActions.Bottom.StackAffinityPower(Affinity.Blue, 1, upgraded);
+        GameActions.Bottom.StackAffinityPower(Affinity.Blue, secondaryValue, upgraded);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

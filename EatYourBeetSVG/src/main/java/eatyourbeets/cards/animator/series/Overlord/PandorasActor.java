@@ -25,6 +25,7 @@ public class PandorasActor extends AnimatorCard
         SetUpgrade(0, 2, 2);
 
         SetAffinity_Star(1, 0, 0);
+        SetAffinity_Dark(0,0,1);
     }
 
     @Override

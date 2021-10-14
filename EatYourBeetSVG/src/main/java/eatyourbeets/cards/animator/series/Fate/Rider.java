@@ -22,7 +22,7 @@ public class Rider extends AnimatorCard
         Initialize(0, 6, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(1);
         SetAffinity_Dark(2, 0, 1);
 

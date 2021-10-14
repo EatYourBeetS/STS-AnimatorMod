@@ -21,11 +21,16 @@ public class Fischl extends AnimatorCard {
         super(DATA);
 
         Initialize(2, 0, 1);
-        SetUpgrade(2, 0, 0);
+        SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetExhaust(true);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetExhaust(false);
     }
 
     @Override

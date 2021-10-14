@@ -21,8 +21,8 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
-        SetUpgrade(1, 0, 1);
+        Initialize(2, 0, 4);
+        SetUpgrade(1, 0, 2);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);

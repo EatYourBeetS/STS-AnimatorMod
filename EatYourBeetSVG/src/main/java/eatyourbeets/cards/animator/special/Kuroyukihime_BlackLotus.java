@@ -9,7 +9,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Kuroyukihime_BlackLotus extends AnimatorCard
 {
@@ -39,10 +38,10 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         GameActions.Bottom.VFX(VFX.SweepingBeam(p.hb, VFX.FlipHorizontally(), new Color(0.24f, 0, 0.4f, 1f)), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
 
-        GameUtilities.MaintainPower(Affinity.Red);
-        GameUtilities.MaintainPower(Affinity.Green);
+        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.GainAgility(1, true);
 
-        TryChooseSpendAnyAffinity(() -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             GameActions.Bottom.Draw(magicNumber);
             GameActions.Bottom.ModifyAllInstances(uuid)
             .AddCallback(card ->

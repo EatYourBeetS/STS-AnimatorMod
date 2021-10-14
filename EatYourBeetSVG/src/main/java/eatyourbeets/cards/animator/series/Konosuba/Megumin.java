@@ -36,6 +36,7 @@ public class Megumin extends AnimatorCard
         SetUpgrade( 2, 0);
 
         SetAffinity_Blue(2, 0, 4);
+        SetAffinity_Red(0, 0, 1);
 
         SetExhaust(true);
         SetUnique(true, true);

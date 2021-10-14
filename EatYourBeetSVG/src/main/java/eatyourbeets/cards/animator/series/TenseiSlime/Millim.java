@@ -59,7 +59,7 @@ public class Millim extends AnimatorCard
                 .ShowEffect(false, true);
 
 
-        TryChooseSpendAnyAffinity(() -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             for (int i = 0; i < magicNumber; i++)
             {
                 GameActions.Bottom.GainRandomAffinityPower(1, false);

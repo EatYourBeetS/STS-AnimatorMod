@@ -44,7 +44,7 @@ public class Ara extends AnimatorCard
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainAgility(1, upgraded);
         }
     }
 

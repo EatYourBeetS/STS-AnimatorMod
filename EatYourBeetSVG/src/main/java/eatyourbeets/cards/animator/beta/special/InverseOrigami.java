@@ -77,7 +77,7 @@ public class InverseOrigami extends AnimatorCard
 
 
         @Override
-        public void OnUse(AbstractMonster m) {
+        public void OnUse(AbstractMonster m, int cost) {
             this.amount += REFRESH_TIMES;
             GameActions.Bottom.TriggerOrbPassive(baseAmount, true, false);
         }

@@ -21,21 +21,22 @@ public class IkkakuMadarame extends AnimatorCard{
     public IkkakuMadarame() {
         super(DATA);
 
-        Initialize(4, 0, 0, 4);
+        Initialize(6, 1, 0, 4);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1, 0, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.GainBlock(block);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameActions.Bottom.GainAgility(1, true);
         }
         else {
-            GameUtilities.MaintainPower(Affinity.Red);
+            GameActions.Bottom.GainForce(1, true);
         }
 
         GameActions.Bottom.Callback(card -> {

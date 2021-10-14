@@ -61,9 +61,9 @@ public class WizardHat extends AnimatorRelic
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
 
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
             GameActions.Bottom.Wait(0.35f);

@@ -18,8 +18,8 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 2, 6);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);

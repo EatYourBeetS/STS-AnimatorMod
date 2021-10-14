@@ -19,18 +19,19 @@ public class Naotsugu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0);
-        SetUpgrade(3, 0);
+        Initialize(9, 1);
+        SetUpgrade(3, 1);
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.Red, 6);
+        SetAffinityRequirement(Affinity.Red, 7);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
         .AddCallback(e ->
         {

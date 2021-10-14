@@ -3,20 +3,33 @@ package eatyourbeets.events.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.beta.colorless.Yoimiya;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
+import eatyourbeets.relics.animator.beta.BountyMap2;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
-public class TheSecludedHarbor extends EYBEvent
+public class TheSecludedHarbor extends EYBEvent // TODO make Abstract Bounty class
 {
     public static final EventStrings STRINGS = new EventStrings();
     public static final String ID = CreateFullID(TheSecludedHarbor.class);
+
+    public static TheSecludedHarbor TryCreate(Random rng)
+    {
+        BountyMap2 bmap = GameUtilities.GetRelic(BountyMap2.class);
+        if (bmap != null && bmap.GetCurrentRequiredRoom().equals(EventRoom.class) && bmap.IsEnabled()) {
+            return new TheSecludedHarbor();
+        }
+        return null;
+    }
 
     public TheSecludedHarbor()
     {
@@ -211,12 +224,12 @@ public class TheSecludedHarbor extends EYBEvent
 
         public final String Conclusion3()
         {
-            return GetDescription(6);
+            return GetDescription(7);
         }
 
         public final String Flee()
         {
-            return GetDescription(6);
+            return GetDescription(8);
         }
 
         public final String FightOption(int gold)

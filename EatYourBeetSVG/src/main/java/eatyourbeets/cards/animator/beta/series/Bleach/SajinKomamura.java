@@ -23,8 +23,8 @@ public class SajinKomamura extends AnimatorCard
         super(DATA);
 
         Initialize(0, 7, 2,1);
-        SetUpgrade(0, 3, 0);
-        SetAffinity_Red(2, 0, 0);
+        SetUpgrade(0, 4, 0);
+        SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 2);

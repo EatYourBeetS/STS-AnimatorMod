@@ -25,7 +25,7 @@ public class RoyMustang extends AnimatorCard
         SetUpgrade(4, 0, 0);
 
         SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(2, 0, 1);
         SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);

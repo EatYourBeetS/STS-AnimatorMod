@@ -34,13 +34,7 @@ public class HomuraAkemi extends AnimatorCard
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 6);
-        SetSoul(1, 0, HomuraAkemi_Homulily::new);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetSoul(2, 0, HomuraAkemi_Homulily::new);
+        SetSoul(1, 1, HomuraAkemi_Homulily::new);
     }
 
     @Override

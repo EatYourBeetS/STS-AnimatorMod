@@ -38,7 +38,7 @@ public class MifuyuAsuza extends AnimatorCard
             GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
         }
 
-        TryChooseSpendAnyAffinity(() -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, stacks);
         });
     }

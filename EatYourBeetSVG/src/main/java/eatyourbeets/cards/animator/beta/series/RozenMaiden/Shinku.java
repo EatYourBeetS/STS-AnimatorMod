@@ -21,26 +21,18 @@ public class Shinku extends AnimatorCard  //TODO
                 }
             });
 
-//    private int Index;
-
     public Shinku()
     {
         super(DATA);
 
         Initialize(3, 3, 2, 3);
         SetUpgrade(1, 1);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
         SetUnique(false, true);
     }
-/*
-    @Override
-    public void initializeDescription()
-    {
-        super.initializeDescription();
-    }
-*/
+
     @Override
     public boolean canUpgrade()
     {

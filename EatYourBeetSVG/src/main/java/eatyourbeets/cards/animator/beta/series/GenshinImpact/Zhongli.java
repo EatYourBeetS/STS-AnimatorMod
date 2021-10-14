@@ -80,7 +80,7 @@ public class Zhongli extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.ChannelOrb(new Earth());
 

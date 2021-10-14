@@ -34,6 +34,7 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 1, 0);
+        SetAffinity_Blue(0,0,1);
 
         SetProtagonist(true);
         SetHarmonic(true);

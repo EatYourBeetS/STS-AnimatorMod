@@ -17,7 +17,7 @@ public class Henrietta extends AnimatorCard
             .SetPower(3, CardRarity.UNCOMMON)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 1;
+    private static final int POWER_ENERGY_COST = 4;
 
     public Henrietta()
     {
@@ -57,7 +57,7 @@ public class Henrietta extends AnimatorCard
 
         public HenriettaPower(AbstractPlayer owner, int amount, int secondaryValue)
         {
-            super(owner, Henrietta.DATA, PowerTriggerConditionType.Energy, Henrietta.POWER_ENERGY_COST);
+            super(owner, Henrietta.DATA, PowerTriggerConditionType.Affinity, Henrietta.POWER_ENERGY_COST);
 
             this.amount = amount;
             this.secondaryValue = secondaryValue;
@@ -66,9 +66,9 @@ public class Henrietta extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
             final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(null);
             Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), affinities::GetLevel);
             GameActions.Bottom.StackAffinityPower(highestAffinity, secondaryValue, false);

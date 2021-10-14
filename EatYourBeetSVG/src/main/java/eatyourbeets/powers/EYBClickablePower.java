@@ -208,7 +208,7 @@ public abstract class EYBClickablePower extends EYBPower
         }
     }
 
-    public void OnUse(AbstractMonster m)
+    public void OnUse(AbstractMonster m, int cost)
     {
 
     }

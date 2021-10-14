@@ -13,6 +13,8 @@ import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
@@ -22,7 +24,7 @@ public class Tetora extends AnimatorCard
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_CARD_COST = 2;
+    private static final int POWER_CARD_COST = 3;
 
     public Tetora()
     {
@@ -30,9 +32,7 @@ public class Tetora extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Light(2);
-        SetAffinity_Orange(1);
+        SetAffinity_Star(1);
 
         SetHarmonic(true);
 
@@ -54,7 +54,7 @@ public class Tetora extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        TryChooseSpendAnyAffinity(() -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, secondaryValue));
         });
     }
@@ -67,7 +67,7 @@ public class Tetora extends AnimatorCard
 
         public TetoraPower(AbstractPlayer owner, int amount, int secondaryValue)
         {
-            super(owner, Tetora.DATA, PowerTriggerConditionType.Discard, POWER_CARD_COST);
+            super(owner, Tetora.DATA, PowerTriggerConditionType.Affinity, POWER_CARD_COST);
 
             this.triggerCondition.SetUses(1,true, false);
 
@@ -94,26 +94,28 @@ public class Tetora extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
-            for (Affinity affinity : Affinity.Basic()) {
-                CombatStats.Affinities.BonusAffinities.Add(affinity, 2);
-            }
-            active = true;
-
+            super.OnUse(m, cost);
+            GameActions.Bottom.Draw(1).AddCallback(() -> {
+                GameActions.Bottom.SelectFromHand(name, 1, false)
+                        .SetOptions(true,true,true)
+                        .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+                        .AddCallback(cards ->
+                        {
+                            for (int i = cards.size() - 1; i >= 0; i--)
+                            {
+                                GameActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile)
+                                        .SetDestination(CardSelection.Top);
+                            }
+                        });
+            });
         }
 
         @Override
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
-            if (active) {
-                active = false;
-                for (Affinity affinity : Affinity.Basic()) {
-                    CombatStats.Affinities.BonusAffinities.Add(affinity, -2);
-                }
-            }
             secondaryValue = baseSecondaryValue;
         }
 

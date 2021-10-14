@@ -66,7 +66,7 @@ public class MS06ZakuII extends AnimatorCard
         GameActions.Bottom.StackPower(new MS06ZakuIIPower(p, this.magicNumber));
 
         if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
-            TryChooseSpendAnyAffinity(() -> {
+            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
                 GameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
             });
         }

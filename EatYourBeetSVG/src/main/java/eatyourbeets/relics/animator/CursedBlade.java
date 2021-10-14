@@ -73,9 +73,9 @@ public class CursedBlade extends AnimatorRelic
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
 
             GameActions.Bottom.SFX(SFX.ATTACK_WHIRLWIND, 0.9f, 1.1f);
             GameActions.Bottom.VFX(VFX.Whirlwind(Color.RED, false));

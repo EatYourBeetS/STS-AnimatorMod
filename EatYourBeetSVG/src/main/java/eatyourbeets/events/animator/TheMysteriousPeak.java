@@ -211,12 +211,12 @@ public class TheMysteriousPeak extends EYBEvent
 
         public final String Conclusion3()
         {
-            return GetDescription(6);
+            return GetDescription(7);
         }
 
         public final String Flee()
         {
-            return GetDescription(6);
+            return GetDescription(8);
         }
 
         public final String FightOption(int gold)

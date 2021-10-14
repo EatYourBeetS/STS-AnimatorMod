@@ -99,7 +99,7 @@ public class Boros extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             for (AbstractCard c : player.hand.group)
             {

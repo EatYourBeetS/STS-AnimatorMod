@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
@@ -37,11 +36,11 @@ public class TukaLunaMarceau extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Light))
         {
-            GameUtilities.MaintainPower(Affinity.Light);
+            GameActions.Bottom.GainBlessing(1, true);
         }
         if (TrySpendAffinity(Affinity.Green))
         {
-            GameUtilities.MaintainPower(Affinity.Green);
+            GameActions.Bottom.GainAgility(1, true);
         }
     }
 }

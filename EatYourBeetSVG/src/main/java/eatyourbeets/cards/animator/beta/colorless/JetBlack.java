@@ -24,7 +24,7 @@ public class JetBlack extends AnimatorCard
         Initialize(8, 1, 2);
         SetUpgrade(3, 1, 0);
 
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(2, 0, 1);
 
         SetAffinityRequirement(Affinity.General, 8);

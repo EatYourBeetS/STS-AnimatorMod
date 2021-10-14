@@ -25,7 +25,7 @@ public class Garou extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);

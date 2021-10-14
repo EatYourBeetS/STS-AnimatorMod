@@ -23,6 +23,7 @@ public class NagisaMomoe extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Star(1);
 

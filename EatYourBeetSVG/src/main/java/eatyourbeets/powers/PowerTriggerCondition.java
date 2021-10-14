@@ -197,7 +197,7 @@ public class PowerTriggerCondition
             }
             case Affinity:
             {
-                CombatStats.Affinities.ChooseSpendAffinity(affinities, requiredAmount, () -> {}, false);
+                GameActions.Bottom.TryChooseSpendAffinity(power.name, requiredAmount, affinities);
                 break;
             }
             case LoseHP:
@@ -219,7 +219,7 @@ public class PowerTriggerCondition
             uses -= 1;
         }
 
-        power.OnUse(m);
+        power.OnUse(m, requiredAmount);
         power.flashWithoutSound();
         Refresh(false);
         power.updateDescription();

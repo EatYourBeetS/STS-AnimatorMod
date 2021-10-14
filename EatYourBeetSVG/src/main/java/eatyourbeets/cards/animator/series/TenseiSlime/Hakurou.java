@@ -8,8 +8,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -51,10 +49,8 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (ForceStance.IsActive() || WillpowerStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Green);
-            GameActions.Bottom.Flash(this);
-        }
+        GameUtilities.MaintainPower(Affinity.Green);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override
@@ -80,7 +76,7 @@ public class Hakurou extends AnimatorCard
             }
         });
 
-        TryChooseSpendAffinity(new Affinity[]{Affinity.Red,Affinity.Orange}, () -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() -> {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
         });
     }

@@ -3,10 +3,12 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Shimakaze extends AnimatorCard
 {
@@ -21,6 +23,7 @@ public class Shimakaze extends AnimatorCard
         Initialize(2, 2, 3);
         
         SetAffinity_Green(1);
+        SetAffinity_Star(0,0,1);
         SetExhaust(true);
     }
 
@@ -36,7 +39,7 @@ public class Shimakaze extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
-        GameUtilities.MaintainPower(Affinity.Green);
+        GameActions.Bottom.GainAgility(1, true);
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.MakeCardInDrawPile(new Dazed());
     }

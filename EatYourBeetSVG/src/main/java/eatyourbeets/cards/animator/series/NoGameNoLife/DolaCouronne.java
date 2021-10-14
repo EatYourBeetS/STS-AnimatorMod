@@ -25,7 +25,7 @@ public class DolaCouronne extends AnimatorCard
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Green(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(1, 0, 1);
     }
 
     @Override

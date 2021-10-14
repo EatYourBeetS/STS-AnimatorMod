@@ -64,7 +64,7 @@ public class Cecily extends AnimatorCard implements OnCardResetListener
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.StackPower(new CecilyPower(p, 1));
-        TryChooseSpendAnyAffinity(() -> {
+        GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             GameActions.Bottom.Cycle(name, magicNumber).AddCallback(() -> {
                 if (info.IsSynergizing && info.TryActivateLimited()) {
                     GameActions.Bottom.Motivate(secondaryValue);

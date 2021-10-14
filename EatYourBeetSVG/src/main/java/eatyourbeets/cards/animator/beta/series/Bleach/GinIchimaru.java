@@ -27,6 +27,7 @@ public class GinIchimaru extends AnimatorCard
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
+        SetAffinity_Blue(0,0,1);
 
         SetAffinityRequirement(Affinity.Blue, 3);
     }

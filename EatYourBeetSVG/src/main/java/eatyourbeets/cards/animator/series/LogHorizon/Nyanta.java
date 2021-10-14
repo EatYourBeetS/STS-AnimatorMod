@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Nyanta extends AnimatorCard
+public class Nyanta extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Nyanta.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing)
@@ -24,6 +24,7 @@ public class Nyanta extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 3);
+        SetUpgrade(1, 0, 0);
 
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Orange(2);
@@ -35,12 +36,6 @@ public class Nyanta extends AnimatorCard
     public AbstractAttribute GetDamageInfo()
     {
         return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
     }
 
     @Override

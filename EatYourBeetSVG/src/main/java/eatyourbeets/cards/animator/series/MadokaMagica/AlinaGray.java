@@ -19,7 +19,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(AlinaGray.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public AlinaGray()
@@ -29,10 +29,15 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0);
 
-        SetCostUpgrade(-1);
-
         SetAffinity_Green(1);
         SetAffinity_Blue(1, 1, 0);
+
+        SetExhaust(true);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetExhaust(false);
     }
 
     @Override

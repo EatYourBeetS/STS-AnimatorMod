@@ -30,7 +30,7 @@ public class Shizu extends AnimatorCard
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(2, 0, 1);
     }
 
     @Override

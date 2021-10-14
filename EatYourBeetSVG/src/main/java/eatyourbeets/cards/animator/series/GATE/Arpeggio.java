@@ -20,7 +20,7 @@ public class Arpeggio extends AnimatorCard
             .SetPower(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 1;
+    private static final int POWER_ENERGY_COST = 3;
     private static final int TRIGGER_LIMIT = 3;
 
     public Arpeggio()
@@ -53,7 +53,7 @@ public class Arpeggio extends AnimatorCard
 
         public ArpeggioPower(AbstractCreature owner, int amount)
         {
-            super(owner, Arpeggio.DATA, PowerTriggerConditionType.Energy, Arpeggio.POWER_ENERGY_COST);
+            super(owner, Arpeggio.DATA, PowerTriggerConditionType.Affinity, Arpeggio.POWER_ENERGY_COST);
 
             triggerCondition.SetUses(1, true, false);
 
@@ -76,9 +76,9 @@ public class Arpeggio extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.OnUse(m);
+            super.OnUse(m, cost);
             GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(TRIGGER_LIMIT, false, true, null).SetFilter(orb -> Earth.ORB_ID.equals(orb.ID)));
         }
     }

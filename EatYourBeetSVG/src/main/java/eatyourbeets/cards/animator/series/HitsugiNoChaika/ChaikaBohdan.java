@@ -29,6 +29,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
+        SetAffinity_Light(0,0,1);
     }
 
     @Override

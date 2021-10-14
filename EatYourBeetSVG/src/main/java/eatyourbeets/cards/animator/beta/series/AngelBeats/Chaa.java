@@ -99,7 +99,7 @@ public class Chaa extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 

@@ -48,7 +48,7 @@ public class Yoimiya extends AnimatorCard
             GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).AddCallback(e -> {
                 if (IsStarter()) {
                     if (e.lastDamageTaken > 0) {
-                        GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded);
+                        GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
                     }
                 }
             });

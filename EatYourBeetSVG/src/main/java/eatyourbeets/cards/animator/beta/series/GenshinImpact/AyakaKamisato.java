@@ -21,15 +21,14 @@ public class AyakaKamisato extends AnimatorCard {
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
     private static final int ATTACK_TIMES = 2;
-    private static final int THRESHOLD = 6;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(15, 0, 3, 5);
+        Initialize(16, 0, 3, 5);
         SetUpgrade(3, 0, 0, 0);
         SetAffinity_Blue(2, 0, 4);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Blue, 6);

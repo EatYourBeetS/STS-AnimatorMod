@@ -84,7 +84,7 @@ public class PinaCoLada extends AnimatorCard
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.StackPower(new DrawCardNextTurnPower(player, 1));
         }

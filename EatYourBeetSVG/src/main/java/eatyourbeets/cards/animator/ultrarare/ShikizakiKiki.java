@@ -89,7 +89,7 @@ public class ShikizakiKiki extends AnimatorCard_UltraRare
         }
 
         @Override
-        public void OnUse(AbstractMonster m)
+        public void OnUse(AbstractMonster m, int cost)
         {
             for (AbstractCard c : player.drawPile.group)
             {

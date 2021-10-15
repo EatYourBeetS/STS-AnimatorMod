@@ -345,9 +345,19 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         return CombatStats.Affinities.GetAffinityLevel(affinity, true) >= affinities.GetRequirement(affinity);
     }
 
+    public boolean CheckAffinity(Affinity affinity, int amount)
+    {
+        return CombatStats.Affinities.GetAffinityLevel(affinity, true) >= amount;
+    }
+
     public boolean TrySpendAffinity(Affinity affinity)
     {
         return CombatStats.Affinities.TrySpendAffinity(affinity, affinities.GetRequirement(affinity), true);
+    }
+
+    public boolean TrySpendAffinity(Affinity affinity, int amount)
+    {
+        return CombatStats.Affinities.TrySpendAffinity(affinity, amount, true);
     }
 
     public boolean TrySpendAffinity(Affinity... affinityList)
@@ -390,7 +400,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public boolean CanScale()
     {
-        return baseBlock >= 0 || baseDamage >= 0;
+        return baseBlock >= 0 || baseDamage >= 0 || cardData.CanScaleMagicNumber;
     }
 
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
@@ -1105,6 +1115,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         UpdateBlock(tempBlock);
         UpdateDamage(tempDamage);
+        UpdateMagicNumber(CombatStats.Affinities.ModifyMagicNumber(baseMagicNumber, this));
     }
 
     protected void UpdateBlock(float amount)
@@ -1125,6 +1136,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             damage = 0;
         }
         this.isDamageModified = (baseDamage != damage);
+    }
+
+    protected void UpdateMagicNumber(float amount)
+    {
+        magicNumber = MathUtils.floor(amount);
+        this.isMagicNumberModified = (baseMagicNumber != magicNumber);
     }
 
     protected float GetInitialBlock()
@@ -1171,5 +1188,4 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         this.cardText.ForceRefresh();
         return this.auxiliaryData.form;
     };
-
 }

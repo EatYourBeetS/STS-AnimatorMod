@@ -2,11 +2,13 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.replacement.PlayerCurlUpPower;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,8 +22,8 @@ public class Victim extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 32, 10);
-        SetUpgrade(0,0,0,10);
+        Initialize(0,0, 38, 4);
+        SetUpgrade(0,0,5,2);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);
@@ -29,12 +31,6 @@ public class Victim extends AnimatorCard
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 6);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
     }
 
     @Override
@@ -46,17 +42,46 @@ public class Victim extends AnimatorCard
                 .SetFilter(c -> !c.isEthereal && (GameUtilities.HasDarkAffinity(c)))
                 .AddCallback(cards ->
                 {
+                    AbstractCard card = null;
                     if (cards.size() > 0)
                     {
-                        AbstractCard card = cards.get(0);
+                        card = cards.get(0);
                         GameUtilities.Retain(card);
                     }
+                    GameActions.Bottom.StackPower(new VictimPower(p,card, magicNumber, secondaryValue));
                 });
-        GameActions.Bottom.StackPower(new PlayerCurlUpPower(player, magicNumber));
 
-        if (info.CanActivateLimited && GameUtilities.GetHealthPercentage(player) < secondaryValue * 0.01f && CheckAffinity(Affinity.Light) && info.TryActivateLimited()) {
-            GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, secondaryValue));
-            GameActions.Last.Purge(this);
+    }
+
+    public static class VictimPower extends AnimatorPower
+    {
+        private AbstractCard targetCard;
+        private int secondaryAmount;
+
+        public VictimPower(AbstractCreature owner, AbstractCard targetCard, int amount, int secondaryAmount)
+        {
+            super(owner, Victim.DATA);
+            this.targetCard = targetCard;
+            this.secondaryAmount = secondaryAmount;
+
+            Initialize(amount);
+        }
+
+        @Override
+        public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
+            if (damageAmount > 1 && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
+                if (player.currentHealth <= damageAmount && damageAmount <= this.amount && CombatStats.TryActivateLimited(Victim.DATA.ID)) {
+                    this.amount -= damageAmount;
+                    damageAmount = 0;
+                    if (targetCard != null && targetCard.baseBlock > 0) {
+                        GameUtilities.ModifyBlock(targetCard, secondaryAmount, false);
+                    }
+                }
+                this.flash();
+                GameActions.Bottom.GainBlock(this.owner,this.amount);
+                GameActions.Last.RemovePower(owner, owner, this);
+            }
+            return super.onAttackedToChangeDamage(info, damageAmount);
         }
     }
 }

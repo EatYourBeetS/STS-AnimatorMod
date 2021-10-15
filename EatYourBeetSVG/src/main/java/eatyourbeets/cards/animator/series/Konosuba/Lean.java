@@ -12,7 +12,7 @@ import eatyourbeets.utilities.JUtils;
 public class Lean extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lean.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None, true)
             .SetSeriesFromClassPackage();
 
     public Lean()
@@ -21,7 +21,7 @@ public class Lean extends AnimatorCard
 
         Initialize(0, 0, 2);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Blue, 3);

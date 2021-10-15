@@ -39,7 +39,7 @@ public class Yae extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int lightningCount = 0;
-        GameActions.Bottom.StackPower(new Amplification_LightningPower(p, 1));
+        GameActions.Bottom.StackPower(new Amplification_LightningPower(p, magicNumber));
         for (AbstractOrb orb : p.orbs)
         {
             if (!(orb instanceof EmptyOrbSlot) && orb.ID.equals(Lightning.ORB_ID))

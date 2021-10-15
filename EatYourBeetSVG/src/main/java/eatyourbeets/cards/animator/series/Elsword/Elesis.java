@@ -114,14 +114,13 @@ public class Elesis extends AnimatorCard
             case FORM_DARK:
             {
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
-                GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, magicNumber).AddCallback(po -> {
-                    if (po != null) {
-                        AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-                        if (mo != null && po.amount > 0) {
-                            GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, po.amount, AttackEffects.CLAW);
-                        }
-                    }
-                });
+                int toTransfer = Math.min(magicNumber, GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID));
+                GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, toTransfer);
+                AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+                if (mo != null && toTransfer > 0) {
+                    GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
+                }
+
                 break;
             }
         }
@@ -244,7 +243,7 @@ public class Elesis extends AnimatorCard
             {
                 LoadImage("_Dark");
 
-                Initialize(9, 0, 6, 6);
+                Initialize(8, 0, 9, 6);
                 SetUpgrade(2, 0, 4);
 
                 affinities.Clear();

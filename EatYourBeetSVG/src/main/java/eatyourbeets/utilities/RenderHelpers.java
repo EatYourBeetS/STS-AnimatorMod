@@ -478,6 +478,8 @@ public class RenderHelpers
                 return card.GetCooldownString();
             case 'K':
                 return card.GetSpecialVariableString();
+            case 'X':
+                return card.GetXString();
             default:
                 return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }

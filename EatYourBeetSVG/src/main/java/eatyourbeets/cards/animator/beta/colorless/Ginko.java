@@ -2,12 +2,8 @@ package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.status.Ginko_Dazed;
-import eatyourbeets.cards.animator.beta.status.Ginko_Wound;
 import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.animator.status.*;
@@ -50,23 +46,12 @@ public class Ginko extends AnimatorCard
                 });
     }
 
-    //TODO Altered void status, use multiform for statuses
-
     private void TransformCard(AbstractCard c) {
-        if (c instanceof Wound || c instanceof Status_Wound) {
-            GameActions.Last.ReplaceCard(c.uuid, new Ginko_Wound());
-        }
-        else if (c instanceof Dazed) {
-            GameActions.Last.ReplaceCard(c.uuid, new Ginko_Dazed());
-        }
-        else if (c instanceof Burn || c instanceof Status_Burn) {
+        if (c instanceof Burn || c instanceof Status_Burn) {
             GameActions.Last.ReplaceCard(c.uuid, new SearingBurn());
         }
-        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed) {
+        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed || c instanceof Status_Wound || c instanceof Status_Void || c instanceof SearingBurn) {
             ((EYBCard) c).SetForm(1,c.timesUpgraded);
-        }
-        else if (c instanceof SearingBurn) {
-            GameActions.Last.ReplaceCard(c.uuid, new Overheat());
         }
         else {
             GameActions.Last.ReplaceCard(c.uuid, new Crystallize());

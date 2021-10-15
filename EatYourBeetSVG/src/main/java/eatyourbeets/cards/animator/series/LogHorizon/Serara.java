@@ -18,7 +18,7 @@ import java.util.HashSet;
 public class Serara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Serara.class)
-            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None, true)
             .SetSeries(CardSeries.LogHorizon);
 
     private static final HashSet<AbstractCard> buffs = new HashSet<>();

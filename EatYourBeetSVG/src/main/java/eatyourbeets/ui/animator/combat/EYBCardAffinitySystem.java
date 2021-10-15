@@ -368,6 +368,19 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return damage;
     }
 
+    public float ModifyMagicNumber(float magicNumber, EYBCard card) {
+        if (card.cardData.CanScaleMagicNumber) {
+            for (AbstractAffinityPower p : Powers)
+            {
+                if (p.amount > 0)
+                {
+                    magicNumber = ApplyScaling(p, card, magicNumber);
+                }
+            }
+        }
+        return magicNumber;
+    }
+
     public float ApplyScaling(Affinity affinity, EYBCard card, float base)
     {
         if (affinity == Affinity.Star)

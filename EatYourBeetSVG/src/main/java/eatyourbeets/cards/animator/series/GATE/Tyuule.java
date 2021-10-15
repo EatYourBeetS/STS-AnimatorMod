@@ -7,23 +7,17 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Tyuule extends AnimatorCard implements OnCardResetListener
+public class Tyuule extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Tyuule.class)
             .SetSkill(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-
-    //TODO: Standard way to handle this
-    private ColoredString magicNumberString = new ColoredString();
 
     public Tyuule()
     {
@@ -34,48 +28,11 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
 
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Green(1);
-        OnReset();
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (magicNumberString.text.startsWith("X"))
-        {
-            OnReset();
-        }
-    }
-
-    @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X+"+secondaryValue).SetColor(Colors.Cream(1));
-    }
-
-    @Override
-    public void displayUpgrades()
-    {
-        super.displayUpgrades();
-
-        magicNumberString.SetColor(Colors.Green(1));
-    }
-
-    @Override
-    public ColoredString GetMagicNumberString()
-    {
-        return magicNumberString;
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        int aff = CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true);
-        magicNumber = aff + secondaryValue;
-        isMagicNumberModified = magicNumber > secondaryValue;
-        magicNumberString = super.GetMagicNumberString();
-        SetAffinityRequirement(Affinity.Green, aff);
+    public int GetXValue() {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true) + secondaryValue;
     }
 
     @Override
@@ -110,7 +67,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             }
         }
 
-        TrySpendAffinity(Affinity.Green);
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        GameActions.Bottom.ApplyPoison(p, m, GetXValue());
+        TrySpendAffinity(Affinity.Green, CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true));
     }
 }

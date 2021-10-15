@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SelfImmolationPower;
@@ -48,7 +48,7 @@ public class AyakaKamisato extends AnimatorCard {
 
         for (int i = 0; i < ATTACK_TIMES; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL)
                     .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.1f);
         }
         GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));

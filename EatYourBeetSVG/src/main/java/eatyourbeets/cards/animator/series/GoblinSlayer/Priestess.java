@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.monsters.EnemyIntent;
@@ -18,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Priestess extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Priestess.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL, true)
             .SetSeriesFromClassPackage();
 
     public Priestess()
@@ -41,6 +38,12 @@ public class Priestess extends AnimatorCard
         {
             intent.AddWeak();
         }
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        AddScaling(Affinity.Light,1);
     }
 
     @Override

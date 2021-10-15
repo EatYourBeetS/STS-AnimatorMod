@@ -73,7 +73,7 @@ public class Vash extends AnimatorCard
         @Override
         public String GetText()
         {
-            return JUtils.Format("{{0}}", StringUtils.capitalize(cardType.toString().toLowerCase()));
+            return JUtils.Format("{{0}} NL ({1} cards in draw pile)", StringUtils.capitalize(cardType.toString().toLowerCase()), JUtils.Count(player.drawPile.group, c -> c.type == cardType));
         }
 
         @Override

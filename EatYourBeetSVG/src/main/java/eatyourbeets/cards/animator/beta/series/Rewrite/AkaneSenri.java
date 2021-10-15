@@ -13,7 +13,6 @@ import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class AkaneSenri extends AnimatorCard
@@ -40,22 +39,11 @@ public class AkaneSenri extends AnimatorCard
 
     public static class AkaneSenriPower extends AnimatorClickablePower implements OnShuffleSubscriber
     {
-        private static final int BLESSING_COST = 1;
+        private static final int BLESSING_COST = 5;
 
         public AkaneSenriPower(AbstractPlayer owner, int amount, int secondaryAmount)
         {
-            super(owner, AkaneSenri.DATA, PowerTriggerConditionType.Special, BLESSING_COST);
-            this.triggerCondition.SetCheckCondition((c) -> {
-                return CombatStats.Affinities.GetPowerAmount(Affinity.Light) >= BLESSING_COST;
-            })
-                    .SetPayCost(cost -> {
-                        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(Affinity.Light);
-                        if (power.amount > 0)
-                        {
-                            power.reducePower(BLESSING_COST);
-                        }
-                    });
-
+            super(owner, AkaneSenri.DATA, PowerTriggerConditionType.Affinity, BLESSING_COST, null, null, Affinity.Light);
             Initialize(amount);
         }
 

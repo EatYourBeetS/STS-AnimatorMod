@@ -22,7 +22,7 @@ public class YasutoraSado extends AnimatorCard
 
         Initialize(7, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(2, 0, 2);
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }
 

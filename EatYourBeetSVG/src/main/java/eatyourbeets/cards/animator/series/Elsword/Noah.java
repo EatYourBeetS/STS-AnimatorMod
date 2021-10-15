@@ -4,31 +4,33 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
-public class Noah extends AnimatorCard //TODO
+public class Noah extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Noah.class)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Piercing)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
+    public static final int ATTACK_TIMES = 3;
 
     public Noah()
     {
         super(DATA);
 
-        Initialize(17, 0, 1, 7);
-        SetUpgrade(0, 0, 1);
+        Initialize(3, 0);
+        SetUpgrade(1, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Dark(2, 0, 2);
-
-        SetAffinityRequirement(Affinity.Dark, 4);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(2, 0, 1);
     }
 
     @Override
@@ -40,27 +42,61 @@ public class Noah extends AnimatorCard //TODO
     }
 
     @Override
+    protected float GetInitialDamage()
+    {
+        if (!CheckPrimaryCondition(false)) {
+            return super.GetInitialDamage() + GetXValue();
+        }
+        return super.GetInitialDamage();
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(ATTACK_TIMES);
+    }
+
+    @Override
     public void OnDrag(AbstractMonster m)
     {
         super.OnDrag(m);
 
-        if (m != null)
+        if (m != null && CheckPrimaryCondition(false))
         {
-            GameUtilities.GetIntent(m).AddBlinded();
+            GameUtilities.GetIntent(m).AddStrength(-CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));
         }
+    }
+
+    @Override
+    public int GetXValue() {
+        return CheckPrimaryCondition(false) ? CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) : CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
-        .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
-        GameActions.Bottom.GainCorruption(1, true);
-        GameActions.Bottom.ApplyBlinded(p, m, magicNumber);
-
-        if (!CheckAffinity(Affinity.Dark))
+        for (int i = 0; i < ATTACK_TIMES; i++)
         {
-            GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
+                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
         }
+        GameActions.Bottom.GainCorruption(1, true);
+
+        int amount = GetXValue();
+        if (CheckPrimaryCondition(true)) {
+            TrySpendAffinity(Affinity.Light, GetXValue());
+            GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
+
+        }
+        else {
+            TrySpendAffinity(Affinity.Dark, GetXValue());
+            GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+        }
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true);
     }
 }

@@ -21,7 +21,7 @@ import eatyourbeets.utilities.JUtils;
 public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
 {
     public static final EYBCardData DATA = Register(EmiyaShirou.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeriesFromClassPackage();
     private Fire fireOrb;
 
@@ -29,8 +29,8 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
-        SetUpgrade(3, 0, 1);
+        Initialize(7, 0, 2);
+        SetUpgrade(3, 0, 2);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 1, 0);

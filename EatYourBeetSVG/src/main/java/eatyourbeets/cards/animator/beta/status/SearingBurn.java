@@ -42,7 +42,9 @@ public class SearingBurn extends AnimatorCard_Status
 
     private void performAction() {
         int[] damageMatrix = DamageInfo.createDamageMatrix(magicNumber, true);
-        GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+        if (auxiliaryData.form == 0) {
+            GameActions.Bottom.DealDamage(null, player, magicNumber, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+        }
         GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
 
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true))

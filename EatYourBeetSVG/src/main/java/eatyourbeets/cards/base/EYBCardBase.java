@@ -641,6 +641,23 @@ public abstract class EYBCardBase extends AbstractCard
         return result;
     }
 
+    public ColoredString GetXString()
+    {
+        if (GameUtilities.InGame() && player != null) {
+            int value = GetXValue();
+            if (value >= 0)
+            {
+                return new ColoredString(value, Settings.GREEN_TEXT_COLOR);
+            }
+        }
+
+        return new ColoredString("X", Settings.CREAM_COLOR);
+    }
+
+    public int GetXValue() {
+        return -1;
+    }
+
     protected void upgradeSecondaryValue(int amount)
     {
         this.baseSecondaryValue += amount;

@@ -17,7 +17,7 @@ import eatyourbeets.utilities.ListSelection;
 public class SwordMaiden extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SwordMaiden.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None, true)
             .SetSeriesFromClassPackage();
 
     public SwordMaiden()
@@ -26,8 +26,8 @@ public class SwordMaiden extends AnimatorCard
 
         Initialize(0, 0, 7, 3);
 
-        SetAffinity_Red(1);
-        SetAffinity_Light(2);
+        SetAffinity_Orange(1);
+        SetAffinity_Light(2, 0, 1);
 
         SetExhaust(true);
     }

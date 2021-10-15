@@ -9,20 +9,15 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
+public class HeavyWarrior extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HeavyWarrior.class)
             .SetAttack(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
-
-    private ColoredString magicNumberString = new ColoredString("X", Colors.Cream(1));
 
     public HeavyWarrior()
     {
@@ -43,28 +38,16 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public ColoredString GetMagicNumberString()
-    {
-        return magicNumberString;
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
-
-        magicNumber = Math.max(secondaryValue, CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true));
-        isMagicNumberModified = magicNumber > 0;
-        magicNumberString = super.GetMagicNumberString();
-        SetAffinityRequirement(Affinity.Red, magicNumber);
 
         SetUnplayable(!JUtils.Any(player.hand.group, c -> c.uuid != uuid && c.costForTurn >= 2));
     }
 
     @Override
-    public void OnReset()
-    {
-        magicNumberString.SetText("X").SetColor(Colors.Cream(1));
+    public int GetXValue() {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true);
     }
 
     @Override
@@ -79,10 +62,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
             GameActions.Bottom.Motivate(1);
         }
 
-        if (magicNumber > 0)
-        {
-            TrySpendAffinity(Affinity.Red);
-            GameActions.Bottom.GainForce(magicNumber);
-        }
+        GameActions.Bottom.GainForce(GetXValue());
+        TrySpendAffinity(Affinity.Red, GetXValue());
     }
 }

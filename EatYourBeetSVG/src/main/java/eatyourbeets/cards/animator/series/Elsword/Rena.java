@@ -23,7 +23,7 @@ public class Rena extends AnimatorCard
         SetAffinity_Green(1,2,0);
         SetAffinity_Light(1,0,0);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Rena extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (TrySpendAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID) && TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.GainBlur(secondaryValue);
         }

@@ -8,6 +8,8 @@ import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 
+import static eatyourbeets.ui.animator.combat.EYBCardAffinitySystem.SCALING_DIVISION;
+
 public abstract class Amplification_AbstractPower extends AnimatorPower implements OnOrbApplyFocusSubscriber
 {
     public final String orbID;
@@ -72,7 +74,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     }
 
     private float GetScaledIncrease() {
-        return CombatStats.Affinities.GetPowerAmount(affinity) * amount * 0.5f;
+        return CombatStats.Affinities.GetPowerAmount(affinity) * amount / (float)SCALING_DIVISION;
     }
 
     private void refreshOrbs() {

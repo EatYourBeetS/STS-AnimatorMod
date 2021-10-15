@@ -71,14 +71,12 @@ public class MeguKakizaki extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, magicNumber).AddCallback(po -> {
-            if (po != null) {
-                AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-                if (mo != null && po.amount > 0) {
-                    GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, po.amount, AttackEffects.BLUNT_HEAVY);
-                }
-            }
-        });
+        int toTransfer = Math.min(magicNumber, GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID));
+        GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, toTransfer);
+        AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+        if (mo != null && toTransfer > 0) {
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
+        }
 
         GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile, p.hand)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

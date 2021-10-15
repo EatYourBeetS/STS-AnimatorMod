@@ -372,31 +372,6 @@
 			"DESCRIPTION": "Transform !M! Status cards in your hand into more beneficial variants.",
 			"NAME": "Ginko"
 		},
-		"animator:Ginko_Dazed":
-		{
-			"DESCRIPTION": "On Exhaust: Gain !M! [Block].",
-			"NAME": "Dazed"
-		},
-		"animator:Ginko_Frostbite":
-		{
-			"DESCRIPTION": "Apply !M! [Freezing] to ALL enemies.",
-			"NAME": "Frostbite"
-		},
-		"animator:Ginko_Slimed":
-		{
-			"DESCRIPTION": "Gain !M! [Energized].",
-			"NAME": "Slimed"
-		},
-		"animator:Ginko_Wound":
-		{
-			"DESCRIPTION": "Next turn, <DRW-M>.",
-			"NAME": "Wound"
-		},
-		"animator:Ginko_Void":
-		{
-			"DESCRIPTION": "Gain [E]. Gain !M! [Energized].",
-			"NAME": "Void"
-		},
 		"animator:Guts":
 		{
 			"DESCRIPTION": "Gain|Boost [F]. Take !M! damage. || If the target dies, repeat this attack with !S! more damage on another enemy.",
@@ -521,7 +496,8 @@
 		},
 		"animator:SearingBurn":
 		{
-			"DESCRIPTION": "On Exhaust: ** ALL characters take !M! damage and gain !S! [Burning].",
+			"DESCRIPTION": "Unplayable. || On Exhaust: ** ALL characters take !M! damage and gain !S! [Burning].",
+			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust: ** ALL enemies take !M! damage and gain !S! [Burning]."],
 			"NAME": "Searing Burn"
 		},
 		"animator:Senku":
@@ -594,7 +570,7 @@
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +1 [I] Scaling. || Remove up to !M! [Lightning] to Gain|Boost !M! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
+			"DESCRIPTION": "Your [Lightning] has +!M! [I] Scaling. || Remove up to !M! [Lightning] to Gain|Boost !M! [I] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
 			"NAME": "Yae Sakura"
 		}
 	},
@@ -876,8 +852,8 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Whenever you shuffle your deck: Give {~Haste} to !M! random cards. Once per turn: Gain [A] when {~Haste} triggers. || Once per turn, pay [B]: Channel [Dark]. Trigger it once for every card in hand.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [A] when {~Haste} triggers. Whenever you shuffle your deck: Give {~Haste} to #b{0} random cards. || Pay [B]: Channel 1 [Dark]. Trigger it once for every card in hand."],
+			"DESCRIPTION": "Whenever you shuffle your deck: Give {~Haste} to !M! random cards. Once per turn: Gain [A] when {~Haste} triggers. || Once per turn, pay 5 <L>: Channel [Dark]. Trigger it once for every card in hand.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [A] when {~Haste} triggers. Whenever you shuffle your deck: Give {~Haste} to #b{0} random cards. || Pay #b{1} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
@@ -1410,7 +1386,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Blinded]. || Less than !A! <D>: Take !S! [Delayed Damage].",
+			"DESCRIPTION": "Boost [C]. || @If@ <L> @>@ <D>, Pay X <L>: Apply !X! [Shackles] to ALL enemies. Otherwise: Pay X <D>: Deal +!X! damage per hit and take !X! [Delayed Damage].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -1473,7 +1449,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: Boost [A]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: Boost [A]. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -1671,7 +1647,7 @@
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || Pay X <G>: Apply !M! [Poison].",
+			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || Pay X <G>: Apply !X! [Poison].",
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
@@ -1711,7 +1687,7 @@
 		},
 		"animator:HeavyWarrior":
 		{
-			"DESCRIPTION": "Unplayable unless you have ** another 2+ Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || Pay up to !S! <R>: Gain !M! [F].",
+			"DESCRIPTION": "Unplayable unless you have ** another 2+ Cost card. || If the enemy is an Elite ** or Boss: Motivate 1. || Pay X <R>: Gain !X! [F].",
 			"NAME": "Heavy Warrior"
 		},
 		"animator:HighElfArcher":
@@ -2201,7 +2177,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost !M! [I]. Channel 1 [Frost]. || Pay X <B>: Gain +X [Temp HP].",
+			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain|Boost !M! [I]. Channel 1 [Frost]. || Pay X <B>: Gain +!X! [Temp HP].",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:SayakaMiki_Oktavia":
@@ -2468,7 +2444,7 @@
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "Evoke !M! random Orbs twice. Channel those Orbs back. Gain !S! [Impaired]. || <LIM>. Pay !A! <B> and <D>: Invert the effects of [Impaired] for 1 turn.",
+			"DESCRIPTION": "Channel [Earth]. || Transfer !M! stacks of your leftmost {Common Debuffs} to random enemies. ** Pay !A! <B> and <D>: Trigger your first [Earth] once for each.",
 			"NAME": "Evileye"
 		},
 		"animator:Gargantua":
@@ -2510,7 +2486,8 @@
 		},
 		"animator:Victim":
 		{
-			"DESCRIPTION": "Retain a <D> card. The next time you receive unblocked damage: Gain !M! [Block]. || <LIM>. !A! <L> and Below !S!% Max [HP]: Purge and Gain 1 [Intangible].",
+			"DESCRIPTION": "Retain a <D> card. The next time you take unblocked damage: Gain !M! [Block]. || <LIM>. If that damage would have killed you: Trigger this effect first. Give the Retained card +!S! [Block].",
+			"EXTENDED_DESCRIPTION": ["The next time you take unblocked damage: Gain #b{0} [Block]."],
 			"NAME": "Victim"
 		}
 	},
@@ -2918,6 +2895,12 @@
 			"EXTENDED_DESCRIPTION": [""],
 			"NAME": "Burn"
 		},
+		"animator:Status_Dazed":
+		{
+			"DESCRIPTION": "Unplayable.",
+			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust: ** Gain !M! [Block]."],
+			"NAME": "Dazed"
+		},
 		"animator:Status_Frostbite":
 		{
 			"DESCRIPTION": "At the end of your turn, Gain !M! [Freezing]. || On Exhaust: ** Apply !S! [Freezing] to ALL enemies.",
@@ -2935,6 +2918,12 @@
 			"DESCRIPTION": "Unplayable. || On Exhaust: ** Recover 1 HP.",
 			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust: ** Recover 2 HP."],
 			"NAME": "Wound"
+		},
+		"animator:Status_Void":
+		{
+			"DESCRIPTION": "Unplayable. || When drawn: Lose [E].",
+			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust: ** Gain [Energized]"],
+			"NAME": "Void"
 		},
 		"animator:Overheat":
 		{

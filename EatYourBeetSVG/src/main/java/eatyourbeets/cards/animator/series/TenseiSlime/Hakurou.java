@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Hakurou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hakurou.class)
-            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true, true)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 

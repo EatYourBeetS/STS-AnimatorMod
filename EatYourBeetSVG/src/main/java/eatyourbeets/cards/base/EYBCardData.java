@@ -49,6 +49,7 @@ public class EYBCardData
     public CardSeries Series;
     public EYBCard tempCard = null;
     public boolean BlockScalingAttack;
+    public boolean CanScaleMagicNumber = false;
     public boolean CanTriggerSupercharge = true;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
@@ -237,20 +238,25 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false, true);
+        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false, true, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType)
     {
-        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, true);
+        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, true, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
-        return SetAttack(cost, rarity, attackType, target, false, true);
+        return SetAttack(cost, rarity, attackType, target, false, true, false);
     }
 
-    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canTriggerSupercharge)
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling)
+    {
+        return SetAttack(cost, rarity, attackType, target, isBlockScaling, true, false);
+    }
+
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canTriggerSupercharge, boolean canScaleMagicNumber)
     {
         SetRarity(rarity);
 
@@ -259,6 +265,7 @@ public class EYBCardData
         AttackType = attackType;
         BaseCost = cost;
         BlockScalingAttack = isBlockScaling;
+        CanScaleMagicNumber = canScaleMagicNumber;
         CanTriggerSupercharge = canTriggerSupercharge;
 
         return this;
@@ -271,12 +278,19 @@ public class EYBCardData
 
     public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
+        return SetSkill(cost, rarity, target, false);
+    }
+
+
+    public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target, boolean canScaleMagicNumber)
+    {
         SetRarity(rarity);
 
         CardTarget = target;
         CardType = AbstractCard.CardType.SKILL;
         AttackType = EYBAttackType.None;
         BaseCost = cost;
+        CanScaleMagicNumber = canScaleMagicNumber;
 
         return this;
     }

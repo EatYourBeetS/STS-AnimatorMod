@@ -13,7 +13,7 @@ import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
-public abstract class AffinityToken extends AnimatorCard
+public abstract class AffinityToken extends AnimatorCard //TODO make into unplayable status cards that can take up the cost of one Affinity effect
 {
     public static final String ID = GR.Animator.CreateID(AffinityToken.class.getSimpleName());
 

@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -89,14 +90,8 @@ public class Eve extends AnimatorCard
         {
             super.OnUse(m, cost);
 
-            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, CHOICES)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.PlayCopy(c,m);
-                }
-            }));
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                    .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
         }
 
         @Override

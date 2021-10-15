@@ -32,13 +32,13 @@
 	},
 	"animator:BountyMap":
 	{
-	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yElite room, a #yTreasure room, and a #yShop room, the next ? room you enter will trigger a special event.{0}"],
+	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yElite room, a #yTreasure room, and a #yShop room, the next ? room you enter will trigger a special event.{0}"," NL Current Required Room: #b"],
 	  "FLAVOR": "Hunt the Cocogoat. Wanted dead or alive.",
 	  "NAME": "Bounty Map"
 	},
 	"animator:BountyMap2":
 	{
-	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yShop room, a #yCampfire room, and a #yElite room, the next ? room you enter will trigger a special event.{0}"],
+	  "DESCRIPTIONS": ["When you enter (in order) a #yMonster room, an #yShop room, a #yCampfire room, and a #yElite room, the next ? room you enter will trigger a special event.{0}"," NL Current Required Room: #b"],
 	  "FLAVOR": "Hunt the Pyrotechnician. Wanted dead or alive.",
 	  "NAME": "Bounty Map"
 	},
@@ -140,7 +140,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["On your first #ySynergy each turn, draw #b1 card."],
+		"DESCRIPTIONS": ["On your first #ySynergy each turn, draw #b1 card. NL Gains charges whenever you defeat a boss. NL When #pRight #pClicked outside of battle: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
@@ -278,7 +278,7 @@
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card."],
+		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss. NL When #pRight #pClicked outside of battle: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

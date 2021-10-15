@@ -52,6 +52,7 @@ public class AttackEffects
    public static final AttackEffect CLAW = GR.Enums.AttackEffect.CLAW;
    public static final AttackEffect DARK = GR.Enums.AttackEffect.DARK;
    public static final AttackEffect WATER = GR.Enums.AttackEffect.WATER;
+   public static final AttackEffect BITE = GR.Enums.AttackEffect.BITE;
 
     public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
     {
@@ -202,6 +203,10 @@ public class AttackEffects
        Add(melee, CLAW)
                .SetVFX((cx, cy) -> VFX.Claw(cx, cy, Color.VIOLET, Color.WHITE))
                .SetSFX(SFX.ATTACK_DAGGER_5, SFX.ATTACK_DAGGER_6);
+
+        Add(melee, BITE)
+                .SetVFX((cx, cy) -> VFX.Bite(cx, cy, Color.WHITE))
+                .SetSFX(SFX.EVENT_VAMP_BITE);
 
       Add(magic, DARK)
               .SetVFX(VFX::Dark)

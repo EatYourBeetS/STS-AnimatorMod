@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnTrySpendAffinitySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
-public abstract class AffinityToken extends AnimatorCard //TODO make into unplayable status cards that can take up the cost of one Affinity effect
+public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAffinitySubscriber
 {
     public static final String ID = GR.Animator.CreateID(AffinityToken.class.getSimpleName());
 
@@ -22,7 +23,7 @@ public abstract class AffinityToken extends AnimatorCard //TODO make into unplay
 
     protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        final EYBCardData data = Register(type).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetStatus(-2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
         data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;
@@ -74,8 +75,8 @@ public abstract class AffinityToken extends AnimatorCard //TODO make into unplay
     {
         super(cardData);
 
-        Initialize(0, 2, 3, 0);
-        SetUpgrade(0, 2, 0, 0);
+        Initialize(0, 0, 3, 0);
+        SetUpgrade(0, 0, 0, 0);
         InitializeAffinity(affinity, 2, 0, 0);
 
         this.affinity = affinity;
@@ -83,12 +84,13 @@ public abstract class AffinityToken extends AnimatorCard //TODO make into unplay
         this.portraitForeground = portraitImg;
         this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinity.GetAlternateColor(0.55f));
 
-        SetExhaust(true);
-        SetRetainOnce(true);
+        SetRetain(true);
+        SetHaste(true);
+        SetUnplayable(false);
     }
 
     public void OnUpgrade() {
-        SetRetain(true);
+        SetPermanentHaste(true);
     }
 
     public static SelectFromPile SelectTokenAction(String name, int amount)
@@ -117,8 +119,22 @@ public abstract class AffinityToken extends AnimatorCard //TODO make into unplay
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-        CombatStats.Affinities.AddAffinity(affinity,magicNumber);
-        GameUtilities.MaintainPower(affinity);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle) {
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onTrySpendAffinity.Subscribe(this);
+    }
+
+    @Override
+    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
+        if (isActuallySpending && affinity.equals(this.affinity) && player.hand.contains(this)) {
+            CombatStats.onTrySpendAffinity.Unsubscribe(this);
+            GameActions.Last.Purge(this);
+            return 0;
+        }
+        return amount;
     }
 }

@@ -117,12 +117,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         if (addStar) {
             base += BonusAffinities.GetLevel(Affinity.Star, false);
         }
-        return CombatStats.OnTrySpendAffinity(affinity, base, addStar);
+        return CombatStats.OnTrySpendAffinity(affinity, base, addStar, false);
     }
 
     public boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar)
     {
-        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar);
+        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar, true);
         int baseAmount = GetAffinityLevel(affinity, false);
         int starAmount = canSpendStar ? GetAffinityLevel(Affinity.Star, false) : 0;
         if (baseAmount + starAmount >= requiredAmount) {

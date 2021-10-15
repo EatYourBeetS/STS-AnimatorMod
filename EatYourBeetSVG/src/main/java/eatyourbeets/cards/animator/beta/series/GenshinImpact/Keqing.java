@@ -13,14 +13,13 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber, OnEvokeOrbSubscriber
+public class Keqing extends AnimatorCard implements OnEvokeOrbSubscriber
 {
     public static final EYBCardData DATA = Register(Keqing.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
 
@@ -91,7 +90,7 @@ public class Keqing extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
-                .ShowEffect(true, false);
+                .ShowEffect(true, true);
         CombatStats.onEvokeOrb.Unsubscribe(this);
     }
 

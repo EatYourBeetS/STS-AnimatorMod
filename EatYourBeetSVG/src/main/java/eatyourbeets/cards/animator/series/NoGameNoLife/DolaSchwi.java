@@ -32,7 +32,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(12, 0, 1, 2);
+        Initialize(12, 0, 2, 2);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1, 0, 3);

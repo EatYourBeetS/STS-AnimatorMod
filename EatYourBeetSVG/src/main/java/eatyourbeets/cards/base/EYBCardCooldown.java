@@ -133,6 +133,7 @@ public class EYBCardCooldown
         for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card.uuid))
         {
             ((EYBCard) c).cooldownValue = newValue;
+            ((EYBCard) c).Refresh(null);
         }
 
         return activate;

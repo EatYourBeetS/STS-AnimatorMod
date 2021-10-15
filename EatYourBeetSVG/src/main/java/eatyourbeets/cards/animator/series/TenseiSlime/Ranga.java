@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -67,7 +68,7 @@ public class Ranga extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (player.exhaustPile.contains(this) && GameUtilities.IsPlayer(info.owner) && target instanceof AbstractMonster && target.hasPower(VulnerablePower.POWER_ID)) {
-            this.OnUse(player, (AbstractMonster) target, new CardUseInfo(this));
+            GameActions.Bottom.MoveCard(this,player.drawPile).SetDestination(CardSelection.Top).ShowEffect(true, true);
         }
     }
 

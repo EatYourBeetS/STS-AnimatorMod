@@ -21,12 +21,13 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
     {
         super(DATA);
 
-        Initialize(0, 7, 4);
-        SetUpgrade(0, 2, 1);
-        SetCooldown(1, 0, this::OnCooldownCompleted);
+        Initialize(0, 7, 4, 10);
+        SetUpgrade(0, 2, 1, 3);
 
         SetAffinity_Light(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
+
+        SetSoul(2, 0, Megunee_Zombie::new);
     }
 
     @Override
@@ -42,11 +43,6 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
         cooldown.ProgressCooldownAndTrigger(m);
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
     }
 
     @Override
@@ -65,9 +61,7 @@ public class Megunee extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         {
             if (turns <= 0)
             {
-                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
-                        .ShowEffect(false, false);
-                GameActions.Last.ReplaceCard(uuid, new Megunee_Zombie()).SetUpgrade(upgraded);
+                GameActions.Bottom.RecoverHP(secondaryValue);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             }
             else

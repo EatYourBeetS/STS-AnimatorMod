@@ -35,7 +35,12 @@ public class VFX
 
     public static BiteEffect2 Bite(Hitbox target, Color color)
     {
-        return new BiteEffect2(target.cX, target.cY - (40.0F * Settings.scale), color);
+        return Bite(target.cX, target.cY - (40.0F * Settings.scale), color);
+    }
+
+    public static BiteEffect2 Bite(float cX, float cY, Color color)
+    {
+        return new BiteEffect2(cX, cY - (40.0F * Settings.scale), color);
     }
 
     public static CataclysmEffect Cataclysm()

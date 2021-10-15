@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,8 +19,11 @@ public class Noelle extends AnimatorCard
 
         Initialize(0, 5, 1);
         SetUpgrade(0, 2, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 1, 1);
         SetAffinity_Light(1, 0, 0);
+
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Orange, 3);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Noelle extends AnimatorCard
                     });
         }
 
-        if (info.IsSynergizing)
+        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() ->
         {
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)
@@ -58,6 +58,6 @@ public class Noelle extends AnimatorCard
                             GameUtilities.Retain(card);
                         }
                     });
-        }
+        });
     }
 }

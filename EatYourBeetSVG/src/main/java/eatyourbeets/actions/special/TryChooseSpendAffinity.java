@@ -59,6 +59,7 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
 
         this.affinities = affinities;
         this.canPlayerCancel = false;
+        this.cost = cost;
         this.message = GR.Common.Strings.GridSelection.ChooseCards_F1;
 
         Initialize(amount, sourceName);

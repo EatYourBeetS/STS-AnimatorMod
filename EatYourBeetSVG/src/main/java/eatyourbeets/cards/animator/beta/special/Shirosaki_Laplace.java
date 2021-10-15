@@ -13,7 +13,7 @@ import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Shirosaki_Laplace extends AnimatorCard
+public class Shirosaki_Laplace extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Shirosaki_Laplace.class)
     		.SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.RozenMaiden);

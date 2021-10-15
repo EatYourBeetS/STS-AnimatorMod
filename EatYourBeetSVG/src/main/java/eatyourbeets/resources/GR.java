@@ -515,6 +515,10 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect CLAW;
             @SpireEnum public static AbstractGameAction.AttackEffect DARK;
             @SpireEnum public static AbstractGameAction.AttackEffect WATER;
+            @SpireEnum public static AbstractGameAction.AttackEffect BITE;
+            @SpireEnum public static AbstractGameAction.AttackEffect CLASH;
+            @SpireEnum public static AbstractGameAction.AttackEffect SPARK;
+            @SpireEnum public static AbstractGameAction.AttackEffect BLEED;
         }
     }
 }

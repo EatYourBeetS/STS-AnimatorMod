@@ -50,9 +50,9 @@ public abstract class AbstractBountyMap extends AnimatorRelic
     public String getUpdatedDescription()
     {
         Class<? extends AbstractRoom> room = this.GetCurrentRequiredRoom();
-        if (CardCrawlGame.isInARun() && !room.equals(EventRoom.class)) {
+        if (CardCrawlGame.isInARun() && IsEnabled()) {
             String name = room.equals(MonsterRoomElite.class) ? "Elite" : room.getSimpleName().split("Room")[0];
-            return JUtils.Format(DESCRIPTIONS[0], " NL Current Required Room: #b" + name);
+            return JUtils.Format(DESCRIPTIONS[0], DESCRIPTIONS[1] + name);
         } else {
             return JUtils.Format(DESCRIPTIONS[0], "");
         }

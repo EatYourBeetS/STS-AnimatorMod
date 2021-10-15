@@ -4,23 +4,18 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.powers.animator.EnchantmentPower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.rewards.animator.EnchantmentReward;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
-import java.util.ArrayList;
-
-public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiveRewardsListener // implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
+public abstract class EnchantableRelic extends AnimatorRelic// implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
 {
     public static final int MAX_CHOICES = 3;
     public static final int MAX_UPGRADES_PER_PATH = 100;
@@ -140,9 +135,50 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     }
 
     @Override
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards) {
-        if (GetEnchantmentLevel() < 2) {
-            EnchantmentReward.TryAddReward(this, rewards);
+    public void onEquip()
+    {
+        super.onEquip();
+        SetCounter(0);
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (hb.hovered && !AbstractDungeon.isScreenUp && !GameUtilities.InBattle() && InputManager.RightClick.IsJustPressed())
+        {
+            stopPulse();
+            Use();
+        }
+    }
+
+    public void Use()
+    {
+        if (counter > 0 && GetEnchantmentLevel() < 2)
+        {
+            GameEffects.Queue.Callback(new SelectFromPile(name, 1, CreateUpgradeGroup())
+                    .HideTopPanel(true)
+                    .CancellableFromPlayer(true)
+                    .AddCallback(selection -> {
+                        if (selection.size() > 0) {
+                            Enchantment e = (Enchantment) selection.get(0);
+                            ApplyEnchantment(e);
+                            flash();
+                        }
+                    }));
+            AddCounter(-1);
+        }
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+        if (GameUtilities.InBossRoom() && GetEnchantmentLevel() < 2)
+        {
+            AddCounter(1);
+            flash();
         }
     }
 }

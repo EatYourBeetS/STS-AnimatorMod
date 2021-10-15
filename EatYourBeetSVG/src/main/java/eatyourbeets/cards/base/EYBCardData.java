@@ -51,6 +51,7 @@ public class EYBCardData
     public boolean BlockScalingAttack;
     public boolean CanScaleMagicNumber = false;
     public boolean CanTriggerSupercharge = true;
+    public boolean CanGrantAffinity = true;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
@@ -200,6 +201,18 @@ public class EYBCardData
     public EYBCardData SetMaxCopies(int maxCopies)
     {
         MaxCopies = maxCopies;
+
+        return this;
+    }
+
+    public EYBCardData SetCanGrantAffinity(boolean canGrant) {
+        this.CanGrantAffinity = canGrant;
+
+        return this;
+    }
+
+    public EYBCardData SetCanScaleMagicNumber(boolean canScale) {
+        this.CanScaleMagicNumber = canScale;
 
         return this;
     }

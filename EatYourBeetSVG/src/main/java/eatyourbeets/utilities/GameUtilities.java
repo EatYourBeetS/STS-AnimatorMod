@@ -1096,6 +1096,7 @@ public class GameUtilities
 
     public static boolean InBossRoom()
     {
+
         return GetCurrentRoom() instanceof MonsterRoomBoss;
     }
 

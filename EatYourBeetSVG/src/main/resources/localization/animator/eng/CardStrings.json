@@ -447,7 +447,7 @@
 		},
 		"animator:Megunee":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust this card. || On Exhaust: Put this card in your draw pile zombified after a random number of turns.",
+			"DESCRIPTION": "<SOUL>: {Zombie Megu-Nee}. || On Exhaust: After a random number of turns, Recover !S! [HP].",
 			"NAME": "Megu-nee"
 		},
 		"animator:Megunee_Zombie":
@@ -705,7 +705,7 @@
         },
 		"animator:Curse_Delusion":
 		{
-			"DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || On Exhaust: Play {<G> Token}+.",
+			"DESCRIPTION": "Unplayable. || At the end of your turn, give a random card in your ** Draw Pile {Autoplay}. || On Exhaust: Obtain {<G> Token}+.",
 			"NAME": "Delusion"
 		},
 		"animator:Dainsleif":
@@ -776,7 +776,7 @@
 		},
 		"animator:Noelle":
 		{
-			"DESCRIPTION": "<ST>: Trigger your ** first [Earth]. Otherwise, ** Channel 1 [Earth]. || Synergy: Retain 1 ** <O> or <R> card.",
+			"DESCRIPTION": "<ST>: Trigger your ** first [Earth]. Otherwise, ** Channel 1 [Earth]. || Pay !A! <R> or <O>: Retain 1 ** <R> or <O> card.",
 			"NAME": "Noelle"
 		},
 		"animator:Oz":
@@ -1002,12 +1002,12 @@
 		},
 		"animator:Shirosaki":
 		{
-			"DESCRIPTION": "Apply !M! [Blinded]. || Shuffle {Laplace no Ma} and a {Curse} to your draw pile. || On Synergy: The {Curse} is always {Injury}.",
+			"DESCRIPTION": "<SOUL>: {Laplace no Ma}. || Apply !M! [Blinded] to ALL enemies. || On Exhaust: Add a random {Curse} to your draw pile. ** If <D> > !S!: The {Curse} is always {Injury}.",
 			"NAME": "Shirosaki"
 		},
 		"animator:Shirosaki_Laplace":
 		{
-			"DESCRIPTION": "When played from {Afterlife}: Draw a card in your discard pile. Otherwise: Discard a {Curse} to Enter a random {Stance}, then Exhaust.",
+			"DESCRIPTION": "Fetch a random card from your discard pile. || The next {Soul} card played uses 2 {Soul} when played and has 50% more damage and [Block].",
 			"EXTENDED_DESCRIPTION": ["Discard a curse to enter a random Stance."],
 			"NAME": "Laplace no Ma"
 		},
@@ -1369,8 +1369,8 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {<W> Token}.",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 of #b3 [A-Gen] #yTokens. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {Orb Cores}.",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 of #b3 #y #yOrb #yCores. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
@@ -1599,8 +1599,8 @@
 		},
 		"animator:MariKurokawa":
 		{
-			"DESCRIPTION": "Recover !M! [HP]. || Discard 2 {Attacks} ** to gain !S! Block.",
-			"NAME": "Kurokawa"
+			"DESCRIPTION": "Recover !M! [HP]. || Discard 2 {Attacks} ** to gain !S! [Block].",
+			"NAME": "Mari Kurokawa"
 		},
 		"animator:ShunyaKengun":
 		{
@@ -1610,7 +1610,7 @@
 		"animator:Kuribayashi":
 		{
 			"DESCRIPTION": "Apply !M! [Vulnerable]. || Pay !A! <G>: Attack twice. || Pay !A! <R>: Apply !S! [Shackles].",
-			"NAME": "Kuribayashi"
+			"NAME": "Shino Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
 		{
@@ -1637,7 +1637,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "Give this card {~Haste}. || <SLM>. ** If all enemies have ** [Vulnerable]: Gain 1 [Inspiration].",
+			"DESCRIPTION": "Deal +!M! damage if you and/or the target have [Vulnerable]. || <LIM>. If Fatal: Exhaust this, gain [Vulnerable], and gain [Temp HP] equal to the damage dealt.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":
@@ -2228,7 +2228,7 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL targets with [~Lock-On]. || <CDN>: Takes 1 less turn to Attack.",
+			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL ** targets with [~Lock-On]. || <CDN>: Takes 1 less turn to Attack.",
 			"NAME": "Schwi Dola"
 		},
 		"animator:DolaStephanie":
@@ -2624,7 +2624,7 @@
 		},
 		"animator:Ranga":
 		{
-			"DESCRIPTION": "When you attack an enemy with [Vulnerable]: Play this card from your Exhaust pile. || <CDN>: Purge and gain !M! [Support Damage].",
+			"DESCRIPTION": "When you attack an enemy with [Vulnerable]: Move this card to the top of your draw pile. || <CDN>: Purge and gain !M! [Support Damage].",
 			"NAME": "Ranga"
 		},
 		"animator:Rimuru":
@@ -2739,7 +2739,7 @@
 
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain +!M! {0}. ** {Maintain} [{1}].",
+			"DESCRIPTION": "When in hand: If you would spend {0}, ** Purge this instead.",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
@@ -2852,7 +2852,7 @@
 		},
 		"animator:ThrowingKnife":
 		{
-			"DESCRIPTION": "{0} || On Discard: ** Play this card on a ** random enemy.",
+			"DESCRIPTION": "{0} || Does not give <A> when played. || On Discard: Play this on a random enemy.",
 			"EXTENDED_DESCRIPTION": ["Apply a Debuff.", "Apply !M! [Weak].", "Apply !M! [Vulnerable].", "Apply !S! [Poison]."],
 			"NAME": "Throwing-Knife"
 		}

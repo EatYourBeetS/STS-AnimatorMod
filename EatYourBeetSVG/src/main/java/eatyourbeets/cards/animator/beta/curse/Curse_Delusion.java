@@ -32,9 +32,10 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super.triggerOnExhaust();
 
+
         AffinityToken_Green token = new AffinityToken_Green();
         token.upgrade();
-        GameActions.Bottom.PlayCard(token, null);
+        GameActions.Bottom.MakeCardInHand(token);
     }
 
 }

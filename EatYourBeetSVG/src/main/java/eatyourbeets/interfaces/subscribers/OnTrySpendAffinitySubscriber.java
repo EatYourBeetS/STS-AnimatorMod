@@ -4,5 +4,5 @@ import eatyourbeets.cards.base.Affinity;
 
 public interface OnTrySpendAffinitySubscriber
 {
-    int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar);
+    int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending);
 }

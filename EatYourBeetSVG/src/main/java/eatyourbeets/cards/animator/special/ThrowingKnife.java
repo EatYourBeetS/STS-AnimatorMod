@@ -21,7 +21,8 @@ public class ThrowingKnife extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ThrowingKnife.class)
             .SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged)
-            .SetColor(CardColor.COLORLESS);
+            .SetColor(CardColor.COLORLESS)
+            .SetCanGrantAffinity(false);
     public static final int INDEX_WEAK = 1;
     public static final int INDEX_VULNERABLE = 2;
     public static final int INDEX_POISON = 3;

@@ -256,6 +256,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public void triggerWhenCreated(boolean startOfBattle)
     {
+        if (cooldown != null && cooldown.canProgressFromExhaustPile) {
+            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        }
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
@@ -927,9 +930,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public EYBCardCooldown SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted, boolean canProgressOnManualDiscard, boolean canProgressFromExhaustPile, boolean canProgressOnDraw)
     {
         this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted, canProgressOnManualDiscard, canProgressFromExhaustPile, canProgressOnDraw);
-        if (canProgressFromExhaustPile) {
-            CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        }
         return this.cooldown;
     }
 

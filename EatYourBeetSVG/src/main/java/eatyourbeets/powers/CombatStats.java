@@ -503,16 +503,19 @@ public class CombatStats extends EYBPower implements InvisiblePower
             GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
         }
 
-        if (card.affinities != null) {
+        if (card.affinities != null && card.cardData.CanGrantAffinity) {
             Affinities.AddAffinities(card.affinities);
+            if (card.affinities.GetLevel(Affinity.Star) > 0 && info.IsSynergizing && info.PreviousCard instanceof EYBCard && ((EYBCard) info.PreviousCard).affinities != null) {
+                Affinities.AddAffinities(((EYBCard) info.PreviousCard).affinities);
+            }
         }
     }
 
-    public static int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar)
+    public static int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending)
     {
         for (OnTrySpendAffinitySubscriber s : onTrySpendAffinity.GetSubscribers())
         {
-            amount = s.OnTrySpendAffinity(affinity, amount, canUseStar);
+            amount = s.OnTrySpendAffinity(affinity, amount, canUseStar, isActuallySpending);
         }
 
         return amount;

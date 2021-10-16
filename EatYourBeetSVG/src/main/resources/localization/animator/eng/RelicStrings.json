@@ -104,7 +104,7 @@
 	},
 	"animator:Headphones":
 	{
-		"DESCRIPTIONS": ["At the start of combat, give all cards in your hand #yHarmonic."],
+		"DESCRIPTIONS": ["At the start of combat, give all cards in your hand #yProtagonist."],
 		"FLAVOR": "Now you too can become a DIVA!",
 		"NAME": "Headphones"
 	},

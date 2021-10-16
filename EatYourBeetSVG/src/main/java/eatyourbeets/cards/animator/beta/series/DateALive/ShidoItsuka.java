@@ -32,10 +32,10 @@ public class ShidoItsuka extends AnimatorCard
         SetUpgrade(0, 0);
         SetAffinity_Water(1, 0, 0);
 
-        SetHarmonic(true);
+        SetProtagonist(true);
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

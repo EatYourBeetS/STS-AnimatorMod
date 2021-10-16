@@ -3,29 +3,31 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.Darkness_Adrenaline;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Darkness extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Darkness.class)
-            .SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self)
-            .SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Darkness.class).SetPower(1, CardRarity.UNCOMMON);
+    static
+    {
+        DATA.AddPreview(new Darkness_Adrenaline(), false);
+    }
 
     public Darkness()
     {
         super(DATA);
 
-        Initialize(0, 13, 2, 5);
-        SetUpgrade(0, 1, 0, -1);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Light(1);
+        SetAffinity_Earth();
+        SetAffinity_Steel();
     }
 
     @Override
@@ -33,22 +35,19 @@ public class Darkness extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new DarknessPower(p, magicNumber));
-
-        if (info.IsSynergizing && this.costForTurn > 0) {
-            GameUtilities.ModifyCostForCombat(this,-1,true);
-            this.baseBlock -= secondaryValue;
-        }
     }
 
-    public class DarknessPower extends AnimatorPower
+    public static class DarknessPower extends AnimatorPower
     {
-        private int damageTaken;
+        public static final String POWER_ID = CreateFullID(DarknessPower.class);
 
         public DarknessPower(AbstractPlayer owner, int amount)
         {
             super(owner, Darkness.DATA);
 
-            Initialize(amount);
+            this.amount = amount;
+
+            updateDescription();
         }
 
         @Override
@@ -58,22 +57,10 @@ public class Darkness extends AnimatorCard
 
             if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
             {
-                damageTaken += damageAmount;
-                if (damageTaken >= 5) {
-                    GameActions.Bottom.RaiseFireLevel(amount);
-                    RemovePower();
-                    this.flash();
-                }
+                flash();
+                GameActions.Top.ReducePower(this, 1);
+                GameActions.Bottom.MakeCardInDrawPile(new Darkness_Adrenaline()).Repeat(amount).SetDestination(CardSelection.Top);
             }
         }
-
-        @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-            RemovePower();
-        }
-
     }
-
 }

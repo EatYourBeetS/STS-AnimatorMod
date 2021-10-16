@@ -34,7 +34,7 @@ public class Shichika extends AnimatorCard
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

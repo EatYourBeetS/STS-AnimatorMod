@@ -26,7 +26,7 @@ public class KaedeAkamatsu extends AnimatorCard
         SetEthereal(true);
         SetExhaust(true);
 
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
 

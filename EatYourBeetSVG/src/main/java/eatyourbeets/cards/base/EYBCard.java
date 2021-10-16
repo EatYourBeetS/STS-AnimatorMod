@@ -39,7 +39,6 @@ import java.util.Map;
 
 import static eatyourbeets.powers.animator.ElementalExposurePower.ELEMENTAL_MODIFIER;
 import static eatyourbeets.powers.replacement.AnimatorLockOnPower.GetAttackMultiplier;
-import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
 
 public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, OnStartOfTurnPostDrawSubscriber, CustomSavable<EYBCardSaveData>
 {
@@ -50,7 +49,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public static final CardTags DELAYED = GR.Enums.CardTags.DELAYED;
     public static final CardTags AUTOPLAY = GR.Enums.CardTags.AUTOPLAY;
     public static final CardTags LOYAL = GR.Enums.CardTags.LOYAL;
-    public static final CardTags HARMONIC = GR.Enums.CardTags.HARMONIC;
+    public static final CardTags PROTAGONIST = GR.Enums.CardTags.PROTAGONIST;
     public static final CardTags ANIMATOR_INNATE = GR.Enums.CardTags.ANIMATOR_INNATE;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
@@ -411,9 +410,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Loyal);
         }
-        if (hasTag(HARMONIC))
+        if (hasTag(PROTAGONIST))
         {
-            dynamicTooltips.add(GR.Tooltips.Harmonic);
+            dynamicTooltips.add(GR.Tooltips.Protagonist);
         }
         if (affinities.HasStar())
         {
@@ -575,9 +574,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         }
     }
 
-    public void SetHarmonic(boolean value)
+    public void SetProtagonist(boolean value)
     {
-        SetTag(GR.Enums.CardTags.HARMONIC, value);
+        SetTag(PROTAGONIST, value);
     }
 
     public void SetHaste(boolean value)
@@ -595,11 +594,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         else {
             CombatStats.onStartOfTurn.Unsubscribe(this);
         }
-    }
-
-    public void SetProtagonist(boolean value)
-    {
-        SetTag(PROTAGONIST, value);
     }
 
     public void SetObtainableInCombat(boolean value)

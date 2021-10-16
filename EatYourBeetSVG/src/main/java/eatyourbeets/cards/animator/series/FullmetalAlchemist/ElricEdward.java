@@ -31,7 +31,7 @@ public class ElricEdward extends AnimatorCard
 
         SetEvokeOrbCount(1);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

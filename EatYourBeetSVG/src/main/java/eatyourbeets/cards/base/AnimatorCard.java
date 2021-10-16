@@ -75,11 +75,6 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean HasDirectSynergy(AbstractCard other)
     {
-        if (hasTag(HARMONIC)) {
-            if (GameUtilities.IsSameSeries(this,other)) {
-                return true;
-            }
-        }
         return CombatStats.Affinities.HasDirectSynergy(this, other);
     }
 

@@ -107,7 +107,7 @@ public class CommonImages
         public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");
         public final TextureCache Loyal                   = new TextureCache("images/eyb/cardui/badges/Loyal.png");
         public final TextureCache Afterlife               = new TextureCache("images/eyb/cardui/badges/Afterlife.png");
-        public final TextureCache Harmonic                = new TextureCache("images/eyb/cardui/badges/Harmonic.png");
+        public final TextureCache Protagonist = new TextureCache("images/eyb/cardui/badges/Protagonist.png");
     }
 
     public static class Tooltips

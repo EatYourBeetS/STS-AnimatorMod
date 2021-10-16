@@ -35,7 +35,7 @@ public class MadokaKaname extends AnimatorCard
         SetHealing(true);
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
 
         SetAffinityRequirement(Affinity.Light, 3);
         SetAffinityRequirement(Affinity.Dark, 3);

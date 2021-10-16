@@ -23,7 +23,7 @@ public class MikuIzayoi extends AnimatorCard
         Initialize(0, 0, 3, 1);
         SetAffinity_Light(1, 1, 0);
         SetEthereal(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class GoblinSlayer extends AnimatorCard
 
         SetRetain(true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

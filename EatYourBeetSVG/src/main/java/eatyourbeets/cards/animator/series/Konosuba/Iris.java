@@ -1,14 +1,16 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.FreeAttackPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -16,8 +18,7 @@ import java.util.UUID;
 public class Iris extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Iris.class)
-            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
-            .SetMaxCopies(2)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
     private static HashMap<UUID, Integer> buffs;
 
@@ -25,10 +26,10 @@ public class Iris extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0,0,1);
+        Initialize(9, 0, 2);
+        SetUpgrade(0,0,2);
 
-        SetAffinity_Light();
+        SetAffinity_Light(2);
         SetAffinity_Thunder();
 
         SetExhaust(true);
@@ -41,42 +42,27 @@ public class Iris extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        buffs = CombatStats.GetCombatData(cardID, null);
-        if (buffs == null)
-        {
-            buffs = new HashMap<>();
-            CombatStats.SetCombatData(cardID, buffs);
+        GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
+        GameActions.Bottom.BorderFlash(Color.YELLOW);
+        GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
+
+        boolean cardExhausted = false;
+
+        for (AbstractCard c : p.discardPile.group) {
+
+            if (GameUtilities.IsHindrance(c))
+            {
+                cardExhausted = true;
+                GameActions.Bottom.Exhaust(c, p.discardPile);
+            }
         }
 
-        GameActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetFilter(c -> c.type == CardType.ATTACK)
-        .SetOptions(false, false, false)
-        .AddCallback((cards) ->
-        { //
-            for (AbstractCard c : cards) {
-                if (c instanceof EYBCard && ((EYBCard) c).attackType.equals(EYBAttackType.Normal)) {
-                    GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
-                    GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
-                }
-                else {
-                    GameActions.Bottom.SelectFromHand(name, 1, false)
-                            .SetOptions(false, false, false)
-                            .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-                            .SetFilter(c2 -> c2 instanceof EYBCard && !GameUtilities.IsHindrance(c2) && buffs.getOrDefault(c2.uuid, 0) < magicNumber && (c2.baseDamage >= 0 || c2.baseBlock >= 0))
-                            .AddCallback(cards2 ->
-                            {
-                                for (AbstractCard c2 : cards2)
-                                {
-                                    int amount = Math.min(magicNumber,c.costForTurn + 1);
-                                    GameActions.Bottom.IncreaseScaling(c2, Affinity.Light, amount);
-                                    JUtils.IncrementMapElement(buffs, c2.uuid, amount);
-                                    c2.flash();
-                                }
-                            });
-                }
-            }
-        });
+        if (!cardExhausted)
+        {
+            GameActions.Bottom.StackPower(new FreeAttackPower(p, magicNumber));
+        }
     }
 }

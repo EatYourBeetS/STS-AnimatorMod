@@ -5,7 +5,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 
-import static eatyourbeets.cards.base.EYBCard.HARMONIC;
+import static eatyourbeets.cards.base.EYBCard.PROTAGONIST;
 
 public class Headphones extends AnimatorRelic
 {
@@ -35,7 +35,7 @@ public class Headphones extends AnimatorRelic
     @Override
     public void onCardDraw(AbstractCard drawnCard) {
         if (IsEnabled() && drawnCard instanceof AnimatorCard && ((AnimatorCard) drawnCard).series != null) {
-            GameActions.Bottom.ModifyTag(drawnCard,HARMONIC,true);
+            GameActions.Bottom.ModifyTag(drawnCard,PROTAGONIST,true);
             flash();
         }
     }

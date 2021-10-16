@@ -32,7 +32,7 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
 
         SetUnique(true, true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

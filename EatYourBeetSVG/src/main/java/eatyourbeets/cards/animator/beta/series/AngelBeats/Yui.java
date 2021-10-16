@@ -21,7 +21,7 @@ public class Yui extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetAffinity_Earth(1, 0, 0);
         SetAffinity_Light(2, 0, 0);
-        SetHarmonic(true);
+        SetProtagonist(true);
         SetExhaust(true);
         SetCostUpgrade(-1);
         AfterLifeMod.Add(this);

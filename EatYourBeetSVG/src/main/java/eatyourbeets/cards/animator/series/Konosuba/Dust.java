@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
@@ -8,7 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Dust extends AnimatorCard
 {
@@ -20,22 +18,19 @@ public class Dust extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 1);
-        SetUpgrade(3, 0, 0);
+        Initialize(9, 0, 1);
+        SetUpgrade(4, 0, 0);
 
-        SetAffinity_Fire(1);
+        SetAffinity_Fire();
 
-        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinityRequirement(Affinity.Fire, 6);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.Draw(1).SetFilter(c -> c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.COMMON), false);
-
-        if (IsStarter() && CheckAffinity(Affinity.Fire)) {
-            GameActions.Bottom.ApplyVulnerable(TargetHelper.Normal(m), magicNumber);
+        if (CheckAffinity(Affinity.Fire)) {
+            GameActions.Bottom.FetchFromPile(name, magicNumber, p.drawPile);
         };
     }
 }

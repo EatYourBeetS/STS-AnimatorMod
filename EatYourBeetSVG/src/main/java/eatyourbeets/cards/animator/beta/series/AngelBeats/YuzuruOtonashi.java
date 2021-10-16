@@ -25,7 +25,7 @@ public class YuzuruOtonashi extends AnimatorCard
         SetAffinity_Light(1, 1, 0);
 
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

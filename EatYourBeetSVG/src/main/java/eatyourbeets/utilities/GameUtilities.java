@@ -281,6 +281,12 @@ public class GameUtilities
         return card instanceof EYBCard ? ((EYBCard) card).affinities : null;
     }
 
+    public static boolean HasAffinity(AbstractCard card, Affinity affinity)
+    {
+        final EYBCardAffinities a = GameUtilities.GetAffinities(card);
+        return a != null && (a.GetLevel(affinity) > 0);
+    }
+
     public static AbstractAffinityPower GetAffinityPower(Affinity affinity)
     {
         return CombatStats.Affinities.GetPower(affinity);
@@ -1417,8 +1423,8 @@ public class GameUtilities
             else if (tag.equals(DELAYED)) {
                 aCard.SetDelayed(value);
             }
-            else if (tag.equals(HARMONIC)) {
-                aCard.SetHarmonic(value);
+            else if (tag.equals(PROTAGONIST)) {
+                aCard.SetProtagonist(value);
             }
             else if (tag.equals(HASTE)) {
                 aCard.SetHaste(value);
@@ -1430,7 +1436,7 @@ public class GameUtilities
                 aCard.SetLoyal(value);
             }
             else if (tag.equals(PROTAGONIST)) {
-                aCard.SetHarmonic(value);
+                aCard.SetProtagonist(value);
             }
             else if (tag.equals(PURGE)) {
                 aCard.SetPurge(value);

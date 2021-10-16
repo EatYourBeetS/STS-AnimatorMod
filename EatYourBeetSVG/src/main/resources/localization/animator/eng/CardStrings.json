@@ -482,8 +482,8 @@
 		},
 		"animator:MegurineLuka":
 		{
-			"DESCRIPTION": "Give up to !M! cards {Harmonic}. || <LIM>. {Synergy} with {Hatsune Miku}: Give {Harmonic} to ALL cards in your discard pile.",
-			"EXTENDED_DESCRIPTION": ["give Harmonic."],
+			"DESCRIPTION": "Give up to !M! cards {Protagonist}. || <LIM>. {Synergy} with {Hatsune Miku}: Give {Protagonist} to ALL cards in your discard pile.",
+			"EXTENDED_DESCRIPTION": ["give Protagonist."],
 			"NAME": "Megurine Luka"
 		},
 		"animator:MotokoKusanagi":
@@ -1920,8 +1920,8 @@
 		},
 		"animator:Darkness":
 		{
-			"DESCRIPTION": "This turn, if you take 5+ unblocked damage: ** Gain !M! [F]. || Synergy. If this card's cost is 1+: Lower it by 1, then this card loses !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["This turn, if you take at least 5 unblocked damage: Gain #b{0} [F]."],
+			"DESCRIPTION": "The next time you take damage: Add !M! {Adrenaline} to the top of your draw pile.",
+			"EXTENDED_DESCRIPTION": ["The next time you take ** damage: Add #b{0} {Adrenaline} to the top of your your draw pile."],
 			"NAME": "Darkness"
 		},
 		"animator:Darkness_Adrenaline":
@@ -1932,7 +1932,7 @@
 		},
 		"animator:Dust":
 		{
-			"DESCRIPTION": "<ST>. !A! <F>: ** Apply !M! [Vulnerable]. || Draw a Basic or ** Common card.",
+			"DESCRIPTION": "!A! [F]: Fetch !M! Low-Cost card(s) from your discard pile.",
 			"NAME": "Dust"
 		},
 		"animator:Eris":
@@ -1942,18 +1942,18 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "At the start of turn: ** Apply !M! [Poison] to ALL ** enemies, then gain ** !S! [Temp HP] for each ** enemy with [Poison].",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #y[Poison] to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #y[Poison]."],
+			"DESCRIPTION": "Start of Turn: Apply !M! [Poison] to ALL enemies. If you have a <P> card in hand: Gain !S! [Temp HP].",
+			"EXTENDED_DESCRIPTION": ["Start of turn: Apply #b{0} #y[Poison] to ALL enemies.  If you have a <P> card in hand: #b{1} #yTemporary #yHP."],
 			"NAME": "Hans"
 		},
 		"animator:Iris":
 		{
-			"DESCRIPTION": "Exhaust an Attack. If it is a [~Damage] Attack: Imitate it twice. Otherwise, give a card [L] scaling equal to the Exhausted card's cost + 1 (max. !M!).",
+			"DESCRIPTION": "Exhaust ALL Hindrances in your draw pile. || If no Hindrances were Exhausted: Your next !M! Attack(s) cost 0.",
 			"NAME": "Iris"
 		},
 		"animator:Kazuma":
 		{
-			"DESCRIPTION": "This gains +!M! damage. || Same-Series Synergy: The last card played gains +!S! [Block].",
+			"DESCRIPTION": "<ST>: Cycle !M! Low-Cost card(s) to enter <GS>.",
 			"NAME": "Kazuma Satou"
 		},
 		"animator:Lean":

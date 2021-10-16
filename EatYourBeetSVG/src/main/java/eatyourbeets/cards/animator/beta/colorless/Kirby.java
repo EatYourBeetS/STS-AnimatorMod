@@ -387,7 +387,7 @@ public class Kirby extends AnimatorCard implements
             SetAutoplay(true);
         }
 
-        if (card.hasTag(HARMONIC)) {
+        if (card.hasTag(PROTAGONIST)) {
             SetAutoplay(true);
         }
     }

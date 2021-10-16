@@ -26,7 +26,7 @@ public class IchigoKurosaki extends AnimatorCard
         SetAffinity_Air(1, 1, 1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

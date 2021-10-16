@@ -31,7 +31,7 @@ public class ItamiYouji extends AnimatorCard
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

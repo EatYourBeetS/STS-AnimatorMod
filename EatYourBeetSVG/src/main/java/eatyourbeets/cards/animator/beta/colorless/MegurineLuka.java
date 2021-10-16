@@ -18,7 +18,7 @@ public class MegurineLuka extends AnimatorCard
 
         Initialize(0, 0, 2, 0);
         SetCostUpgrade(-1);
-        SetHarmonic(true);
+        SetProtagonist(true);
         SetExhaust(true);
 
         SetAffinity_Water(1);
@@ -31,15 +31,15 @@ public class MegurineLuka extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                 .SetOptions(false, false, false)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null && !c.hasTag(HARMONIC))
+                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null && !c.hasTag(PROTAGONIST))
                 .AddCallback(cards ->
                 {
                     for (AbstractCard card : cards) {
-                        GameActions.Bottom.ModifyTag(card,HARMONIC,true);
+                        GameActions.Bottom.ModifyTag(card,PROTAGONIST,true);
                     }
                 });
         if (info.IsSynergizing && last != null && last.cardID.equals(HatsuneMiku.DATA.ID) && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.ModifyTag(player.discardPile,999,HARMONIC,true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null);
+            GameActions.Bottom.ModifyTag(player.discardPile,999,PROTAGONIST,true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null);
         }
 
     }

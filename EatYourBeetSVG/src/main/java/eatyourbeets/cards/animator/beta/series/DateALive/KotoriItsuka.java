@@ -29,7 +29,7 @@ public class KotoriItsuka extends AnimatorCard
         SetAffinity_Earth(1, 0, 0);
         SetAffinity_Water(0, 0, 1);
 
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

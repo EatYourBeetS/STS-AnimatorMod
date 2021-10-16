@@ -36,7 +36,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
         SetAffinity_Earth(2);
 
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

@@ -20,14 +20,13 @@ public class Kazuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 2, 2, 1);
-        SetUpgrade(1, 1, 1);
+        Initialize(6, 0, 1);
+        SetUpgrade(4, 0, 0);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Air(1);
+        SetAffinity_Air();
 
         SetProtagonist(true);
-        SetHarmonic(true);
+        SetProtagonist(true);
     }
 
     @Override

@@ -22,6 +22,7 @@ public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
     protected static final Color defaultThresholdGlowColor = new Color(1, 0.843f, 0, 0.25f);
+    protected static final Color darkGlowColor = new Color(0.15f, 0.08f, 0.23f, 0.25f);
     private static final Color COLORLESS_ORB_COLOR = new Color(0.7f, 0.7f, 0.7f, 1);
     protected DrawPileCardPreview drawPileCardPreview;
     protected Color borderIndicatorColor;
@@ -138,6 +139,11 @@ public abstract class AnimatorCard extends EYBCard
         if (curAffinity == Affinity.Star)
         {
             this.glowColor = defaultThresholdGlowColor;
+        }
+        else if (curAffinity == Affinity.Dark)
+        {
+            //Dark affinity has no border by default
+            this.glowColor = darkGlowColor;
         }
         else if (curAffinity != Affinity.General)
         {

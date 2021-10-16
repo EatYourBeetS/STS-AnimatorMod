@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Aqua extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aqua.class)
-            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Aqua(true), true));
 

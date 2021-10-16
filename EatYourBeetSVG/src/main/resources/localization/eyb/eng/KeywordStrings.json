@@ -368,7 +368,7 @@
 	},
 	"Protagonist":
 	{
-		"DESCRIPTION": "When you add this card to your deck: Add 1 of 5 Same-Series cards to your deck.  This is NOT optional.",
+		"DESCRIPTION": "When you add this card to your deck: Add 1 of 4 Non-Rare Same-Series cards to your deck.  This is NOT optional.",
 		"NAMES": ["protagonist"],
 		"PROPER_NAME": "Protagonist"
 	},

@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameEffects;
 public class Vanir extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Vanir.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeriesFromClassPackage();
 
     public Vanir()

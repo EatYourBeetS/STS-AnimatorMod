@@ -942,6 +942,21 @@ public class GameUtilities
         return GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
+    public static int GetCommonOrbCount()
+    {
+        int numCommonOrbs = 0;
+
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (IsCommonOrb(orb))
+            {
+                numCommonOrbs++;
+            }
+        }
+
+        return numCommonOrbs;
+    }
+
     public static AbstractOrb GetRandomCommonOrb() {
         switch (MathUtils.random(0,3)) {
             case 0:

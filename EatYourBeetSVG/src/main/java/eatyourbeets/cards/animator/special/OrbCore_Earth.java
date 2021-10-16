@@ -13,7 +13,7 @@ public class OrbCore_Earth extends OrbCore
 
     public OrbCore_Earth()
     {
-        super(DATA, 5);
+        super(DATA, Earth.ORB_ID);
 
         SetAffinity_Earth(2);
     }

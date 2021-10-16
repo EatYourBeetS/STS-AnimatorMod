@@ -124,10 +124,10 @@ public class CardRewardScreenPatches
                     {
                         return false;
                     }
-                    return GameUtilities.IsSameSeries(card, hoveredCard);
+                    return GameUtilities.IsSameSeries(card, hoveredCard) && !card.rarity.equals(AbstractCard.CardRarity.RARE);
                 });
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     if (cards.Size() > 0)
                     {

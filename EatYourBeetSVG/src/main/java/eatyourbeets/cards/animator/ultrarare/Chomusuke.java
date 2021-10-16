@@ -29,7 +29,7 @@ public class Chomusuke extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetAffinity_Star(2);
     }
 
     @Override

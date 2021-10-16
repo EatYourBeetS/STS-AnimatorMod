@@ -4,22 +4,27 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import eatyourbeets.cards.animator.special.OrbCore_Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Elesis extends AnimatorCard //TODO different dark effect
+public class Elesis extends AnimatorCard
 {
     public static final int FORM_NONE = 0;
     public static final int FORM_SABER = 1;
     public static final int FORM_PYRO = 2;
     public static final int FORM_DARK = 3;
+
+    public static final int NUM_HITS_PYRO = 3;
     public static final EYBCardData DATA = Register(Elesis.class)
             .SetAttack(-2, CardRarity.RARE)
             .SetSeriesFromClassPackage()
@@ -50,18 +55,35 @@ public class Elesis extends AnimatorCard //TODO different dark effect
     }
 
     @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        if (auxiliaryData.form == FORM_PYRO) {
+            return super.GetDamageInfo().AddMultiplier(magicNumber);
+        }
+        else
+        {
+            return super.GetDamageInfo();
+        }
+    }
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
 
-        if (auxiliaryData.form == 1)
+        if (auxiliaryData.form == FORM_DARK)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c ->
-            {
-                ((Elesis)c).AddDamageBonus(magicNumber);
-                c.applyPowers();
-            });
+            GameActions.Bottom.MakeCardInHand(new OrbCore_Dark());
             GameActions.Bottom.Flash(this);
+        }
+    }
+
+    @Override
+    public void triggerOnExhaust() {
+        super.triggerOnExhaust();
+
+        if (auxiliaryData.form == FORM_SABER) {
+            GameActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
         }
     }
 
@@ -70,11 +92,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
     {
         super.triggerOnManualDiscard();
 
-        if (auxiliaryData.form == FORM_SABER)
-        {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> ((Elesis)c).AddDamageBonus(magicNumber));
-        }
-        else if (auxiliaryData.form == FORM_PYRO && CombatStats.TryActivateSemiLimited(cardID))
+        if (auxiliaryData.form == FORM_PYRO && CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.Draw(1);
         }
@@ -83,34 +101,34 @@ public class Elesis extends AnimatorCard //TODO different dark effect
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-
         switch (auxiliaryData.form)
         {
             case FORM_SABER:
             {
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.RaiseFireLevel(amount * 2);
-                    GameActions.Bottom.RaiseAirLevel(amount * 2);
+                    GameActions.Bottom.RaiseLightLevel(amount * magicNumber);
+                    GameActions.Bottom.RaiseSteelLevel(amount * magicNumber);
                 });
-                AddDamageBonus(-bonusDamage);
                 break;
             }
 
             case FORM_PYRO:
             {
-                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
-                if (HasSynergy() && info.TryActivateSemiLimited())
+                for (int i=0; i<NUM_HITS_PYRO; i++)
                 {
-                    GameActions.Bottom.Draw(1);
+                    GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
                 }
+
+                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetCommonOrbCount() * magicNumber).SkipIfZero(true);
                 break;
             }
 
             case FORM_DARK:
             {
-                GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.DARK);
                 break;
             }
         }
@@ -188,7 +206,7 @@ public class Elesis extends AnimatorCard //TODO different dark effect
                 LoadImage(null);
 
                 affinities.Clear();
-                SetAffinity_Star(2);
+                SetAffinity_Light(2);
 
                 cardText.OverrideDescription(null, true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -201,13 +219,12 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             {
                 LoadImage("_Saber");
 
-                Initialize(3, 0, 5);
-                SetUpgrade(0, 0, 2);
+                Initialize(7, 0, 6, 5);
+                SetUpgrade(2, 0, 2);
 
                 affinities.Clear();
-                SetAffinity_Fire(1, 0, 1);
-                SetAffinity_Air(1);
-                SetAffinity_Light(2, 0, 3);
+                SetAffinity_Light();
+                SetAffinity_Steel();
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -220,16 +237,16 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             {
                 LoadImage("_Pyro");
 
-                Initialize(3, 0, 2);
-                SetUpgrade(4, 0, 0);
+                Initialize(4, 0, 3, 2);
+                SetUpgrade(1, 0, 0, 2);
 
                 affinities.Clear();
-                SetAffinity_Fire(1);
-                SetAffinity_Air(2, 0, 1);
+                SetAffinity_Light(2);
+                SetAffinity_Fire();
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
+                this.cost = this.costForTurn = 2;
 
                 break;
             }
@@ -238,12 +255,12 @@ public class Elesis extends AnimatorCard //TODO different dark effect
             {
                 LoadImage("_Dark");
 
-                Initialize(9, 0, 3);
+                Initialize(11, 0, 2);
                 SetUpgrade(0, 0, -1);
 
                 affinities.Clear();
-                SetAffinity_Fire(2, 0, 2);
-                SetAffinity_Dark(2, 0, 2);
+                SetAffinity_Light();
+                SetAffinity_Dark();
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

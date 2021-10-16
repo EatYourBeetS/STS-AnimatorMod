@@ -91,7 +91,7 @@ public class LunacyPower extends CommonPower
     private AnimatorCard ObtainSeriesCard()
     {
         CardSeries curSeries = GR.Animator.Data.SelectedLoadout.Series;
-        RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombatFromRarity(null, (card) -> {
+        RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool((card) -> {
             if (!(card instanceof AnimatorCard))
             {
                 return false;
@@ -110,7 +110,7 @@ public class LunacyPower extends CommonPower
     private AnimatorCard ObtainHindranceOrBasicCard()
     {
         CardSeries curSeries = GR.Animator.Data.SelectedLoadout.Series;
-        RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombatFromRarity(null, (card) -> {
+        RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool( (card) -> {
             if (!(card instanceof AnimatorCard))
             {
                 return false;
@@ -128,7 +128,7 @@ public class LunacyPower extends CommonPower
 
     private AnimatorCard ObtainRandomCard()
     {
-        RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombatFromRarity(null, (card) -> {
+        RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool( (card) -> {
             if (!(card instanceof AnimatorCard))
             {
                 return false;

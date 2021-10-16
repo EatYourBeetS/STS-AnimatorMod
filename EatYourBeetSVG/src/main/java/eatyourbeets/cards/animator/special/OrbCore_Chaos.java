@@ -13,7 +13,7 @@ public class OrbCore_Chaos extends OrbCore
 
     public OrbCore_Chaos()
     {
-        super(DATA, 3);
+        super(DATA, Chaos.ORB_ID);
 
         SetAffinity_Star(2);
     }

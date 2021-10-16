@@ -13,7 +13,7 @@ public class OrbCore_Plasma extends OrbCore
 
     public OrbCore_Plasma()
     {
-        super(DATA, 6);
+        super(DATA, Plasma.ORB_ID);
 
         SetAffinity_Earth(2);
         SetAffinity_Air(2);

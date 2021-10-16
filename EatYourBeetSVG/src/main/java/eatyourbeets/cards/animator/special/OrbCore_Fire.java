@@ -13,7 +13,7 @@ public class OrbCore_Fire extends OrbCore
 
     public OrbCore_Fire()
     {
-        super(DATA, 4);
+        super(DATA, Fire.ORB_ID);
 
         SetAffinity_Fire(2);
     }

@@ -13,7 +13,7 @@ public class OrbCore_Dark extends OrbCore
 
     public OrbCore_Dark()
     {
-        super(DATA, 3);
+        super(DATA, Dark.ORB_ID);
 
         SetAffinity_Dark(2);
     }

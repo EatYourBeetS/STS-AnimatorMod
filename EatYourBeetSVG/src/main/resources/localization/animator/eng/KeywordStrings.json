@@ -105,7 +105,7 @@
 	},
 	"~Orb Core":
 	{
-		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"DESCRIPTION": "Channel 1 Orb. NL  NL Trigger ALL Orbs of that type an additional time at the start of your turn.",
 		"NAMES": ["~orb core", "~orb cores"],
 		"PROPER_NAME": "Orb Core"
 	}

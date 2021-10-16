@@ -13,7 +13,7 @@ public class OrbCore_Water extends OrbCore
 
     public OrbCore_Water()
     {
-        super(DATA, 5);
+        super(DATA, Water.ORB_ID);
 
         SetAffinity_Water(2);
     }

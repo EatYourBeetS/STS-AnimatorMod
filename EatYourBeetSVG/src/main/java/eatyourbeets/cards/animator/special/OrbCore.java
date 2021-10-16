@@ -6,15 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -97,11 +96,13 @@ public abstract class OrbCore extends AnimatorCard
         }
     }
 
-    public OrbCore(EYBCardData data, int synergiesRequired)
+    protected final String orbID;
+
+    public OrbCore(EYBCardData data, String orbID)
     {
         super(data);
 
-        Initialize(0, 0, 0, synergiesRequired);
+        this.orbID = orbID;
 
         SetEvokeOrbCount(1);
     }
@@ -116,12 +117,12 @@ public abstract class OrbCore extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         ChannelOrb();
-        GameActions.Bottom.ApplyPower(new OrbCorePower(p, this, secondaryValue));
+        GameActions.Bottom.StackPower(new OrbCorePower(p, this, 1));
     }
 
     public abstract void ChannelOrb();
 
-    public static class OrbCorePower extends AnimatorPower implements OnSynergySubscriber
+    public static class OrbCorePower extends AnimatorPower
     {
         protected final OrbCore card;
 
@@ -130,7 +131,6 @@ public abstract class OrbCore extends AnimatorCard
             super(owner, card.cardData);
 
             this.card = card;
-            this.maxAmount = amount;
             this.canBeZero = true;
 
             Initialize(amount);
@@ -139,38 +139,22 @@ public abstract class OrbCore extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            this.description = FormatDescription(0, baseAmount, card.cardData.GetSharedData());
+            this.description = FormatDescription(0, (EYBCardTooltip) card.cardData.GetSharedData(), amount);
         }
-
         @Override
-        public void onInitialApplication()
+        public void atStartOfTurn()
         {
-            super.onInitialApplication();
+            super.atStartOfTurn();
 
-            amount = 0;
-            CombatStats.onSynergy.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onSynergy.Unsubscribe(this);
-        }
-
-        @Override
-        public void OnSynergy(AbstractCard card)
-        {
-            if ((amount + 1) < baseAmount)
+            for (AbstractOrb orb : player.orbs)
             {
-                stackPower(1, false);
-            }
-            else
-            {
-                reducePower(amount);
-                this.card.ChannelOrb();
-                this.flash();
+                if (orb.ID != null && orb.ID.equals(card.orbID))
+                {
+                    for (int i=0; i<amount; i++) {
+                        orb.onStartOfTurn();
+                        orb.onEndOfTurn();
+                    }
+                }
             }
         }
     }

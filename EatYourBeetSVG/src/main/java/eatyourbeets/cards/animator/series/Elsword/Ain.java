@@ -1,44 +1,29 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.OrbStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class Ain extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ain.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
-            .SetSeries(CardSeries.Elsword)
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Water), true));
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Ain()
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 3);
-        SetUpgrade(1, 0, 0, 0);
+        Initialize(3, 0, 3);
+        SetUpgrade(2, 0, 0);
 
-        SetAffinity_Light(1);
-        SetAffinity_Water(2, 0, 1);
-
-        SetAffinityRequirement(Affinity.Light, 3);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        upgradedDamage = true;
+        SetAffinity_Air();
+        SetAffinity_Water(2);
     }
 
     @Override
@@ -50,38 +35,20 @@ public class Ain extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        //GameActions.Bottom.VFX(new BlizzardEffect(magicNumber, AbstractDungeon.getMonsters().shouldFlipVfx()), 0.6f);
-        GameActions.Bottom.Callback(() ->
-        {
-            MonsterGroup monsters = AbstractDungeon.getMonsters();
-            int frostCount = monsters.monsters.size() + magicNumber + 5;
+        boolean hasEmptyOrbs = false;
 
-            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f - (float)frostCount / 200f);
-            for (int i = 0; i < frostCount; i++)
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (orb instanceof EmptyOrbSlot)
             {
-                GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
+                hasEmptyOrbs = true;
+                break;
             }
-        });
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).SetVFX(true, false);
         }
 
-        if (CheckSpecialCondition(true))
+        if (!hasEmptyOrbs)
         {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(OrbStance.STANCE_ID);
         }
-
-        if (CheckAffinity(Affinity.Light))
-        {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Water, upgraded));
-        }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return GameActionManager.totalDiscardedThisTurn > 0;
     }
 }

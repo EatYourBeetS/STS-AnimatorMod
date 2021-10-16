@@ -1352,17 +1352,17 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [EN] [EN]. || !A! <D> or Synergy: Exhaust a ** card anywhere ** to Obtain an {Orb Core}.",
+			"DESCRIPTION": "Add an {Orb Core} and !M! {Crystallize} to the top of your draw pile.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || !S! <L>: Obtain {<W> Token}{+}.",
+			"DESCRIPTION": "If you have no Empty Orb Slots: Enter <OS>.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "<ST>. Trigger your ** first [Lightning] to Boost [W]. Otherwise, Channel 1 [Lightning]. || Deal +!S! damage for each orb you have (max. 5 Orbs).",
+			"DESCRIPTION": "Draw !M! for each {Common Orb}, then discard !S!.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -1372,18 +1372,18 @@
 		},
 		"animator:Chung":
 		{
-			"DESCRIPTION": "Remove your first [Frost] to deal +!M! damage. Otherwise, gain +!S! [Block] and Exhaust. || On Exhaust: ** Channel 1 [Frost].",
+			"DESCRIPTION": "Decreases Block amount by !M! when played. || On Exhaust: Channel [Frost].",
 			"NAME": "Chung"
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Apply !S! [~Lock-On]. || Every copy of {Lu} gains +!M! damage. || Synergy with {Lu} or !A! <W>: Enter <IS> or <CS>.",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. || If you have {Lu} in your deck: Instead apply !S! [~Lock-On].",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [EN]: ** Gain twice that much [F] [A]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. Transfer !M! [Delayed Damage] from you to the enemy. || When Drawn: Take !M! [Delayed Damage]."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [EN]: Gain !M! [L] and [S] for each energy spent this way. || On Exhaust: Gain !S! {Vigor}.", "Apply !S! [Burning] to ALL enemies for each {Common Orb}. || <SLM>. On Discard: <DRW>.", "At the start of each combat: Lose !M! HP. || When Drawn: Add a Dark Core to your hand."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -2815,8 +2815,8 @@
 
 		"animator:OrbCore":
 		{
-			"DESCRIPTION": "Channel 1 [{0}]. || Every !S! Synergies: Channel 1 [{0}] ** (Does not stack).",
-			"EXTENDED_DESCRIPTION": ["Every #b{0} #ySynergies, #yChannel #b1 {1}."],
+			"DESCRIPTION": "Channel 1 [{0}]. || Start of Turn: Trigger ALL [{0}] an additional time.",
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Trigger ALL {0} #b{1} times."],
 			"NAME": "Orb Core"
 		},
 		"animator:OrbCore_Air":

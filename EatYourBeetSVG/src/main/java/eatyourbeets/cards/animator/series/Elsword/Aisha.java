@@ -3,49 +3,56 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
-            .SetMaxCopies(2)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
             .SetSeries(CardSeries.Elsword);
-    public static final int ORB_LIMIT = 5;
-
 
     public Aisha()
     {
         super(DATA);
 
-        Initialize(1, 0, 2, 1);
-        SetUpgrade(1, 0, 0, 1);
+        Initialize(4, 0, 2);
+        SetUpgrade(2, 0, 1);
 
-        SetAffinity_Water(2, 0, 1);
+        SetAffinity_Fire();
+        SetAffinity_Mind();
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        return super.GetDamageInfo().AddMultiplier(GameUtilities.GetCommonOrbCount());
     }
 
     @Override
-    protected float GetInitialDamage()
+    public void triggerOnExhaust() {
+        super.triggerOnExhaust();
+
+        GainFMForEachCommonOrb();
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
     {
-        return super.GetInitialDamage() + (Math.min(ORB_LIMIT, player.filledOrbCount()) * secondaryValue);
+        super.triggerOnManualDiscard();
+
+        GainFMForEachCommonOrb();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++)
+        for (int i = 0; i < GameUtilities.GetCommonOrbCount(); i++)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetVFX(true, false)
             .SetDamageEffect(enemy ->
@@ -54,21 +61,11 @@ public class Aisha extends AnimatorCard
                 return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f;
             });
         }
+    }
 
-        if (IsStarter())
-        {
-            GameActions.Bottom.TriggerOrbPassive(1)
-            .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
-            .AddCallback(orbs ->
-            {
-                if (orbs.size() > 0)
-                {
-                    GameActions.Bottom.RaiseWaterLevel(1, true);
-                }
-                else {
-                    GameActions.Bottom.ChannelOrb(new Lightning());
-                }
-            });
-        }
+    private void GainFMForEachCommonOrb()
+    {
+        GameActions.Bottom.RaiseFireLevel(magicNumber * GameUtilities.GetCommonOrbCount());
+        GameActions.Bottom.RaiseMindLevel(magicNumber * GameUtilities.GetCommonOrbCount());
     }
 }

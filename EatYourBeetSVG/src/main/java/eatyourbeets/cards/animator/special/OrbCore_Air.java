@@ -13,7 +13,7 @@ public class OrbCore_Air extends OrbCore
 
     public OrbCore_Air()
     {
-        super(DATA, 5);
+        super(DATA, Air.ORB_ID);
 
         SetAffinity_Air(2);
     }

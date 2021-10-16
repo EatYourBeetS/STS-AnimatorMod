@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -14,45 +11,38 @@ import eatyourbeets.utilities.GameUtilities;
 public class Ara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ara.class)
-            .SetAttack(1, CardRarity.COMMON)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     public Ara()
     {
         super(DATA);
 
-        Initialize(3, 0, 1, 2);
-        SetUpgrade(1, 0);
+        Initialize(2, 0, 3, 2);
+        SetUpgrade(0, 0, 0,-1);
 
-        SetAffinity_Air(1, 1, 1);
-        SetAffinity_Fire(1);
-
-        SetAffinityRequirement(Affinity.Fire, 2);
+        SetAffinity_Fire();
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(2);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
-
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.RaiseAirLevel(1);
+        for (int i=0; i<magicNumber; i++) {
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
         }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
+        GameActions.Bottom.Draw(GameUtilities.GetCommonOrbCount());
+        GameActions.Bottom.DiscardFromHand(name, secondaryValue, false)
         .SetOptions(false, false, false);
     }
 }

@@ -13,7 +13,7 @@ public class OrbCore_Lightning extends OrbCore
 
     public OrbCore_Lightning()
     {
-        super(DATA, 3);
+        super(DATA, Lightning.ORB_ID);
 
         SetAffinity_Light(2);
     }

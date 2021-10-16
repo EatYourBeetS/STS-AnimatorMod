@@ -13,7 +13,7 @@ public class OrbCore_Frost extends OrbCore
 
     public OrbCore_Frost()
     {
-        super(DATA, 4);
+        super(DATA, Frost.ORB_ID);
 
         SetAffinity_Water(2);
     }

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.special.OrbCore_Dark;
 
 public class OrbCore_DarkPower extends OrbCore_AbstractPower
 {
@@ -18,7 +17,7 @@ public class OrbCore_DarkPower extends OrbCore_AbstractPower
     {
         super(POWER_ID, owner, amount);
 
-        this.value = OrbCore_Dark.VALUE;
+       // this.value = OrbCore_Dark.VALUE;
 
         updateDescription();
     }

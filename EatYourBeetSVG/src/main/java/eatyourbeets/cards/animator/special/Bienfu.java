@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 
 public class Bienfu extends AnimatorCard
@@ -19,7 +18,6 @@ public class Bienfu extends AnimatorCard
         Initialize(0, 0);
 
         SetEthereal(true);
-        SetSynergy(Synergies.TalesOfBerseria);
     }
 
     @Override
@@ -31,19 +29,13 @@ public class Bienfu extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        GameActions.Bottom.GainIntellect(1, true);
+        //GameActions.Bottom.GainIntellect(1, true);
     }
 
     @Override
     public void triggerOnManualDiscard()
     {
         GameActions.Last.MoveCard(this, player.drawPile).ShowEffect(true, true);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-
     }
 
     @Override

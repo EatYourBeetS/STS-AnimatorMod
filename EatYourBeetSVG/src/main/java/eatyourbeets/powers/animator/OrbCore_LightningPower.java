@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.special.OrbCore_Lightning;
 
 import java.util.ArrayList;
 
@@ -22,7 +21,7 @@ public class OrbCore_LightningPower extends OrbCore_AbstractPower
     {
         super(POWER_ID, owner, amount);
 
-        this.value = OrbCore_Lightning.VALUE;
+       // this.value = OrbCore_Lightning.VALUE;
 
         updateDescription();
     }

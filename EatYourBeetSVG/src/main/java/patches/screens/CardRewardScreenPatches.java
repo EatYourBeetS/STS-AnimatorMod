@@ -119,7 +119,7 @@ public class CardRewardScreenPatches
             {
                 final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-                RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombatFromRarity(null, (card) -> {
+                RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool((card) -> {
                     if (!(card instanceof AnimatorCard))
                     {
                         return false;
@@ -127,7 +127,7 @@ public class CardRewardScreenPatches
                     return GameUtilities.IsSameSeries(card, hoveredCard);
                 });
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     if (cards.Size() > 0)
                     {
@@ -135,17 +135,10 @@ public class CardRewardScreenPatches
                     }
                 }
 
-                GameEffects.TopLevelQueue.SelectFromPile(hoveredCard.name, 1, choices)
-                .SetMessage(GR.Common.Strings.GridSelection.ChooseOneCard)
-                .SetOptions(false, true)
-                .AddCallback(chosenCards ->
+                if (choices.group.size() != 0)
                 {
-                    if (chosenCards.size() > 0)
-                    {
-                        GameEffects.TopLevelList.ShowAndObtain(chosenCards.get(0));
-                    }
-                })
-                .IsCancellable(false);
+                    GameEffects.TopLevelQueue.ObtainCardFromGroup(choices,1, false);
+                }
             }
         }
     }

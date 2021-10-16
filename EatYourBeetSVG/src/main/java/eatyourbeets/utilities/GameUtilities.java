@@ -543,6 +543,60 @@ public class GameUtilities
         return cards;
     }
 
+    public static RandomizedList<AbstractCard> GetRandomizedCardPool(FuncT1<Boolean, AbstractCard> filter)
+    {
+        RandomizedList<AbstractCard> cards = new RandomizedList();
+        cards.AddAll(GetCardPool(filter).group);
+        return cards;
+    }
+
+    public static CardGroup GetCardPool(FuncT1<Boolean, AbstractCard> filter)
+    {
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+        for (AbstractCard c : AbstractDungeon.colorlessCardPool.group)
+        {
+            if (filter == null || filter.Invoke(c))
+            {
+                group.group.add(c);
+            }
+        }
+
+        for (AbstractCard c : AbstractDungeon.curseCardPool.group)
+        {
+            if (filter == null || filter.Invoke(c))
+            {
+                group.group.add(c);
+            }
+        }
+
+        for (AbstractCard c : AbstractDungeon.commonCardPool.group)
+        {
+            if (filter == null || filter.Invoke(c))
+            {
+                group.group.add(c);
+            }
+        }
+
+        for (AbstractCard c : AbstractDungeon.uncommonCardPool.group)
+        {
+            if (filter == null || filter.Invoke(c))
+            {
+                group.group.add(c);
+            }
+        }
+
+        for (AbstractCard c : AbstractDungeon.rareCardPool.group)
+        {
+            if (filter == null || filter.Invoke(c))
+            {
+                group.group.add(c);
+            }
+        }
+
+        return group;
+    }
+
     public static CardGroup GetCardPool(AbstractCard.CardRarity rarity)
     {
         if (rarity == null)

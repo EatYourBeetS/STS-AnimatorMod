@@ -1,9 +1,10 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.ArtifactPower;
+import com.megacrit.cardcrawl.powers.GainStrengthPower;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActions;
 
 public class AzrielPower extends AnimatorPower
 {
@@ -25,7 +26,7 @@ public class AzrielPower extends AnimatorPower
         {
             this.flash();
 
-            GameActions.Bottom.GainRandomStat(1, true);
+            //GameActions.Bottom.GainRandomStat(1, true);
         }
     }
 }

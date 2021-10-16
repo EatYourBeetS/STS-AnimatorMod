@@ -2070,7 +2070,7 @@
 		},
 		"animator:Soujiro":
 		{
-			"DESCRIPTION": "X <Y>: Deal !M!X ** additional damage. || When drawn: Choose 1 of 4 ** cards to add to your hand, ** you can only choose the ** same card once.",
+			"DESCRIPTION": "X <Y>: Deal !M!X ** additional damage. || When drawn: Choose 1 of 5 ** cards to add to your hand, ** you can only choose the ** same card once.",
 			"NAME": "Soujiro"
 		},
 		"animator:Soujiro_Isami":

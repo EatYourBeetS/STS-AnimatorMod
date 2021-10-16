@@ -1,14 +1,8 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.cards.status.Wound;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.utilities.GameActions;
 
 public class Asuramaru extends AnimatorCard
 {
@@ -21,7 +15,6 @@ public class Asuramaru extends AnimatorCard
         Initialize(0, 0, 3, 2);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
@@ -30,7 +23,7 @@ public class Asuramaru extends AnimatorCard
         SetHaste(true);
     }
 
-    @Override
+   /* @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new DemonFormPower(p, secondaryValue));
@@ -39,5 +32,5 @@ public class Asuramaru extends AnimatorCard
         GameActions.Bottom.GainForce(magicNumber);
         GameActions.Bottom.MakeCardInHand(new Wound());
         GameActions.Bottom.MakeCardInHand(new Wound());
-    }
+    }*/
 }

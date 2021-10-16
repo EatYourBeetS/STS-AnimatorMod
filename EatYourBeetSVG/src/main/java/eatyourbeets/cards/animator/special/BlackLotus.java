@@ -1,12 +1,9 @@
 package eatyourbeets.cards.animator.special;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.vfx.ColoredSweepingBeamEffect;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 
 public class BlackLotus extends AnimatorCard
 {
@@ -18,11 +15,9 @@ public class BlackLotus extends AnimatorCard
 
         Initialize(7, 5, 1);
         SetUpgrade(0, 0, 1);
-
-        SetSynergy(Synergies.AccelWorld);
     }
 
-    @Override
+    /*@Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.GainBlock(block);
@@ -30,5 +25,5 @@ public class BlackLotus extends AnimatorCard
         GameActions.Bottom.VFX(new ColoredSweepingBeamEffect(p.hb.cX, p.hb.cY, p.flipHorizontal, Color.valueOf("3d0066")), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
         GameActions.Bottom.GainBlur(magicNumber);
-    }
+    }*/
 }

@@ -1,18 +1,7 @@
 package eatyourbeets.powers.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.cards.base.AnimatorCard;
 
 public class EvePower extends AnimatorPower
 {
@@ -28,7 +17,7 @@ public class EvePower extends AnimatorPower
         updateDescription();
     }
 
-    @Override
+    /*@Override
     public void onAfterCardPlayed(AbstractCard usedCard)
     {
         super.onAfterCardPlayed(usedCard);
@@ -48,5 +37,5 @@ public class EvePower extends AnimatorPower
             this.stackPower(EvePower.GROWTH_AMOUNT);
             this.updateDescription();
         }
-    }
+    }*/
 }

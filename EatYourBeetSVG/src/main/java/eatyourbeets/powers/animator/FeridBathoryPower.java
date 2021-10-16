@@ -1,11 +1,8 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.FeridBathory;
-import eatyourbeets.effects.vfx.HemokinesisEffect;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -32,8 +29,8 @@ public class FeridBathoryPower extends AnimatorPower
     {
         super.onExhaust(card);
 
-        GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(enemy -> GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));
+        /*GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.HP_LOSS, AbstractGameAction.AttackEffect.NONE)
+        .SetDamageEffect(enemy -> GameEffects.List.Add(new HemokinesisEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY)));*/
         GameActions.Bottom.GainTemporaryHP(amount);
     }
 
@@ -45,7 +42,7 @@ public class FeridBathoryPower extends AnimatorPower
         if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && CombatStats.TryActivateLimited(FeridBathory.DATA.ID))
         {
             GameEffects.Queue.ShowCardBriefly(new FeridBathory());
-            GameActions.Bottom.GainForce(FORCE_AMOUNT);
+            //GameActions.Bottom.GainForce(FORCE_AMOUNT);
         }
     }
 }

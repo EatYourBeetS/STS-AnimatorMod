@@ -43,9 +43,9 @@ public class AinzPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
+       // GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.1f);
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.valueOf("3d0066")));
-        GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
+       // GameActions.Bottom.SFX("ORB_DARK_EVOKE", 0.1f);
     }
 
     @Override
@@ -107,10 +107,10 @@ public class AinzPower extends AnimatorPower
         DrawCards(ACTIONS.Draw(2, true), 10, 2),
         GainThorns(ACTIONS.GainAmount(3, GR.Tooltips.Thorns, true), 10, 3),
         DamageAll("", 10, 12),
-        GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2),
-        GainEnergy(ACTIONS.GainAmount(2, GR.Tooltips.Energy, true), 8, 2),
-        GainAgility(ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 8, 2),
-        GainForce(ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 8, 2);
+        //GainIntellect(ACTIONS.GainAmount(2, GR.Tooltips.Intellect, true), 8, 2),
+        GainEnergy(ACTIONS.GainAmount(2, GR.Tooltips.Energy, true), 8, 2);
+        //GainAgility(ACTIONS.GainAmount(2, GR.Tooltips.Agility, true), 8, 2),
+        //GainForce(ACTIONS.GainAmount(2, GR.Tooltips.Force, true), 8, 2);
 
         private final String text;
         private final int weight;
@@ -143,7 +143,7 @@ public class AinzPower extends AnimatorPower
             {
                 builder.SetNumbers(number, 0, 0, 0);
                 builder.SetAttackType(EYBAttackType.Elemental, EYBCardTarget.ALL);
-                builder.SetScaling(3, 0, 0);
+                //builder.SetScaling(3, 0, 0);
                 builder.cardType = AbstractCard.CardType.ATTACK;
             }
             else
@@ -225,13 +225,13 @@ public class AinzPower extends AnimatorPower
                     });
                 }
 
-                case GainIntellect:
+              /*  case GainIntellect:
                 {
                     return effect.Generate((c, p, m) ->
                     {
                         GameActions.Bottom.GainIntellect(c.magicNumber);
                     });
-                }
+                }*/
 
                 case GainEnergy:
                 {
@@ -241,21 +241,21 @@ public class AinzPower extends AnimatorPower
                     });
                 }
 
-                case GainAgility:
+               /* case GainAgility:
                 {
                     return effect.Generate((c, p, m) ->
                     {
                         GameActions.Bottom.GainAgility(c.magicNumber);
                     });
-                }
+                }*/
 
-                case GainForce:
-                {
-                    return effect.Generate((c, p, m) ->
-                    {
-                        GameActions.Bottom.GainForce(c.magicNumber);
-                    });
-                }
+               // case GainForce:
+              //  {
+               //     return effect.Generate((c, p, m) ->
+               //     {
+                //        GameActions.Bottom.GainForce(c.magicNumber);
+               //     });
+              //  }
 
 //                case GainIntangibleLosePower:
 //                {

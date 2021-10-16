@@ -1,16 +1,9 @@
 package eatyourbeets.cards.animator.special;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 
 public class Excalibur extends AnimatorCard
 {
@@ -25,10 +18,9 @@ public class Excalibur extends AnimatorCard
 
         SetRetain(true);
         SetExhaust(true);
-        SetSynergy(Synergies.Fate);
     }
 
-    @Override
+    /*@Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
     {
         GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, 1));
@@ -40,5 +32,5 @@ public class Excalibur extends AnimatorCard
         }
 
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-    }
+    }*/
 }

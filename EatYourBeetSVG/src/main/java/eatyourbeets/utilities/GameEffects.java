@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -18,6 +19,7 @@ import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.effects.card.ObtainCardFromGroup;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
@@ -194,6 +196,16 @@ public final class GameEffects
     public RoomTintEffect RoomTint(Color color, float transparency)
     {
         return Add(new RoomTintEffect(color.cpy(), transparency));
+    }
+
+    public ObtainCardFromGroup ObtainCardFromGroup(CardGroup group, int numChoices)
+    {
+        return Add(new ObtainCardFromGroup(group, numChoices));
+    }
+
+    public ObtainCardFromGroup ObtainCardFromGroup(CardGroup group, int numChoices, boolean canCancel)
+    {
+        return Add(new ObtainCardFromGroup(group, numChoices, canCancel));
     }
 
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)

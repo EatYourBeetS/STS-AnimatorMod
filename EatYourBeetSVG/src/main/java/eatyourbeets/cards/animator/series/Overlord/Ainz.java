@@ -37,7 +37,6 @@ public class Ainz extends AnimatorCard
         SetAffinity_Dark(2);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

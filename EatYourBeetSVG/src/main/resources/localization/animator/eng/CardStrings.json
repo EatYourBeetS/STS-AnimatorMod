@@ -1942,8 +1942,8 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "Start of Turn: Apply !M! [Poison] to ALL enemies. If you have a <P> card in hand: Gain !S! [Temp HP].",
-			"EXTENDED_DESCRIPTION": ["Start of turn: Apply #b{0} #y[Poison] to ALL enemies.  If you have a <P> card in hand: #b{1} #yTemporary #yHP."],
+			"DESCRIPTION": "Start of Turn: Apply !M! [Poison] to ALL enemies. Gain !S! [Temp HP] for each <P> card in hand.",
+			"EXTENDED_DESCRIPTION": ["Start of turn: Apply #b{0} #y[Poison] to ALL enemies.  Gain #b{1] [Temp HP] for each <P> card in hand."],
 			"NAME": "Hans"
 		},
 		"animator:Iris":

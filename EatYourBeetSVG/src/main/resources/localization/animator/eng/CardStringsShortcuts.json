@@ -9,12 +9,11 @@
 	"<SPACE>": "    ",
 
 	"<ST>": "Starter",
-	"<FS>": "{[F] Stance}",
-	"<IS>": "{[W] Stance}",
-	"<AS>": "{[A] Stance}",
-	"<WS>": "{[E] Stance}",
-	"<BS>": "{[L] Stance}",
-	"<CS>": "{[D] Stance}",
+	"<WS>": "{Wrath Stance}",
+	"<CS>": "{Calm Stance}",
+	"<GS>": "{Guard Stance}",
+	"<OS>": "{Orb Stance}",
+	"<DS>": "{Divinity Stance}",
 
 	"<F>": "[A-Fire]",
 	"<A>": "[A-Air]",

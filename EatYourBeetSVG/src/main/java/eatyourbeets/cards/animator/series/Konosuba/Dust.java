@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Dust extends AnimatorCard
 {
@@ -30,7 +31,8 @@ public class Dust extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (CheckAffinity(Affinity.Fire)) {
-            GameActions.Bottom.FetchFromPile(name, magicNumber, p.drawPile);
+            GameActions.Bottom.FetchFromPile(name, magicNumber, p.discardPile)
+            .SetFilter(GameUtilities::IsLowCost);
         };
     }
 }

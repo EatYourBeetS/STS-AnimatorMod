@@ -31,7 +31,6 @@ public class Yuuichirou extends AnimatorCard
         SetAffinity_Air(1, 1, 1);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

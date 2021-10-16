@@ -28,7 +28,6 @@ public class Elsword extends AnimatorCard
         SetAffinity_Light(1);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

@@ -51,12 +51,13 @@ public class Iris extends AnimatorCard
 
         boolean cardExhausted = false;
 
-        for (AbstractCard c : p.discardPile.group) {
+        for (AbstractCard c : p.drawPile.group) {
 
             if (GameUtilities.IsHindrance(c))
             {
                 cardExhausted = true;
-                GameActions.Bottom.Exhaust(c, p.discardPile);
+                GameActions.Bottom.Exhaust(c)
+                .ShowEffect(true, true);
             }
         }
 

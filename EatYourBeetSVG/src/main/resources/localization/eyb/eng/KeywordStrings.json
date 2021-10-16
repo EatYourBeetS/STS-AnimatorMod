@@ -66,6 +66,12 @@
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
+	"Calm Stance":
+	{
+		"DESCRIPTION": "Upon exiting Calm Stance: Gain [E][E].",
+		"NAMES": ["calm stance"],
+		"PROPER_NAME": "Calm Stance"
+	},
 	"Choked":
 	{
 		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
@@ -150,6 +156,12 @@
 		"NAMES": ["diminish", "diminished", "diminishing"],
 		"PROPER_NAME": "Diminish"
 	},
+	"Divinity Stance":
+	{
+		"DESCRIPTION": "Upon entering Divinity Stance: Gain [E][E][E].  You attacks deal triple damage.  Start of Next Turn: Exit this Stance.",
+		"NAMES": ["divinity stance"],
+		"PROPER_NAME": "Divinity Stance"
+	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",
@@ -228,11 +240,11 @@
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
-	"Protagonist":
+	"Guard Stance":
 	{
-	  "DESCRIPTION": "When you add this card to your deck: Add 1 of 5 Same-Series cards to your deck.  This is NOT optional.",
-	  "NAMES": ["protagonist"],
-	  "PROPER_NAME": "Protagonist"
+		"DESCRIPTION": "Upon entering Guard Stance: ALL characters gain 10 Block.  You attacks deal triple damage.  Start of Next Turn: Exit this Stance.",
+		"NAMES": ["guard stance"],
+		"PROPER_NAME": "Guard Stance"
 	},
 	"Health":
 	{
@@ -342,11 +354,23 @@
 		"NAMES": ["phasing"],
 		"PROPER_NAME": "Phasing"
 	},
+	"Orb Stance":
+	{
+		"DESCRIPTION": "You have +4 [Focus] while in this Stance.  Start of Turn or Upon Entering or Exiting Orb Stance: Lose 1 [Strength] and 1 [Dexterity].",
+		"NAMES": ["orb stance"],
+		"PROPER_NAME": "Orb Stance"
+	},
 	"Plated Armor":
 	{
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
 		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
+	},
+	"Protagonist":
+	{
+		"DESCRIPTION": "When you add this card to your deck: Add 1 of 5 Same-Series cards to your deck.  This is NOT optional.",
+		"NAMES": ["protagonist"],
+		"PROPER_NAME": "Protagonist"
 	},
 	"Purge":
 	{
@@ -461,6 +485,12 @@
 		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
 		"NAMES": ["vigor"],
 		"PROPER_NAME": "Vigor"
+	},
+	"Wrath Stance":
+	{
+		"DESCRIPTION": "Deal and receive double Attack damage.",
+		"NAMES": ["wrath stance"],
+		"PROPER_NAME": "Wrath Stance"
 	},
 	"Knowledge":
 	{

@@ -28,7 +28,6 @@ public class Shiroe extends AnimatorCard
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

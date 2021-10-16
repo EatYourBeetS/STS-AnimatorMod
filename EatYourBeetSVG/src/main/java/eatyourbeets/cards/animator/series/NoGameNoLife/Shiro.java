@@ -30,7 +30,6 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
         SetAffinity_Light(1);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

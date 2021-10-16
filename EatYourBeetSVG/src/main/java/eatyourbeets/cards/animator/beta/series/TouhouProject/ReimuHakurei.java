@@ -23,7 +23,6 @@ public class ReimuHakurei extends AnimatorCard
         SetAffinity_Water(1, 0, 0);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

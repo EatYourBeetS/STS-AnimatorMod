@@ -21,7 +21,7 @@ import eatyourbeets.utilities.*;
 public abstract class AnimatorCard extends EYBCard
 {
     protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
-    protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
+    protected static final Color defaultThresholdGlowColor = new Color(1, 0.843f, 0, 0.25f);
     private static final Color COLORLESS_ORB_COLOR = new Color(0.7f, 0.7f, 0.7f, 1);
     protected DrawPileCardPreview drawPileCardPreview;
     protected Color borderIndicatorColor;
@@ -124,9 +124,24 @@ public abstract class AnimatorCard extends EYBCard
             this.borderIndicatorColor = glowColor;
         }
 
-        if (HasSynergy())
+        //Create glow based on affinity thresholds
+        Affinity curAffinity = Affinity.General;
+
+        for (Affinity affinity : Affinity.All())
         {
-            this.glowColor = synergyGlowColor;
+            if (affinities.GetRequirement(affinity) > 0 && CheckAffinity(affinity))
+            {
+                curAffinity = (curAffinity != Affinity.General) ? Affinity.Star : affinity;
+            }
+        }
+
+        if (curAffinity == Affinity.Star)
+        {
+            this.glowColor = defaultThresholdGlowColor;
+        }
+        else if (curAffinity != Affinity.General)
+        {
+            this.glowColor = curAffinity.GetAlternateColor();
         }
     }
 

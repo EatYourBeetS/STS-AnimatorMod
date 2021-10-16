@@ -35,7 +35,6 @@ public class ShidoItsuka extends AnimatorCard
         SetProtagonist(true);
         SetExhaust(true);
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

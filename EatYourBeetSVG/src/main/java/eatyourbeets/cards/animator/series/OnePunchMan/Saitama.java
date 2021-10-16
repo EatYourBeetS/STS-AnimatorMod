@@ -56,7 +56,6 @@ public class Saitama extends AnimatorCard
         SetEffect(stage);
 
         SetProtagonist(true);
-        SetProtagonist(true);
     }
 
     @Override

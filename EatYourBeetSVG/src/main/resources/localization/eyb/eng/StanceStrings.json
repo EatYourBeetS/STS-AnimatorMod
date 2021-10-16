@@ -13,7 +13,7 @@
 		"NAME": "Orb Stance",
 		"DESCRIPTION":
 		[
-			"You have +4 [Focus] while in this Stance.  Upon entering this stance, Lose 1 [Strength] and 1 [Dexterity].  Lose 1 [Strength] and 1 [Dexterity] at end of turn or when you exit of this stance."
+			"You have +4 [Focus] while in this Stance.  Start of Turn or Upon Entering or Exiting Orb Stance: Lose 1 [Strength] and 1 [Dexterity]."
 		]
 	},
 	"eyb:ForceStance":

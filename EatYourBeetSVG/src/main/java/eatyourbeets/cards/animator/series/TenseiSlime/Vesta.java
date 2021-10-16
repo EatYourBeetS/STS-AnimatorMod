@@ -11,7 +11,6 @@ import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
 import eatyourbeets.misc.VestaElixirEffects.VestaElixirEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,8 @@ public class Vesta extends AnimatorCard
         Initialize(0, 0, 3);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Silver(1);
 
         SetAffinityRequirement(Affinity.Blue, 3);
         SetExhaust(true);

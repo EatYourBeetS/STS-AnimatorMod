@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"[F] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F]"
+			"[F] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F]"
 		]
 	},
 	"eyb:AgilityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
 		[
-			"[A] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A]"
+			"[A] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A]"
 		]
 	},
 	"eyb:IntellectStance":
@@ -21,7 +21,7 @@
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"[I] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I]"
+			"[I] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I]"
 		]
 	},
 	"eyb:WillpowerStance":
@@ -29,7 +29,7 @@
 		"NAME": "Willpower Stance",
 		"DESCRIPTION":
 		[
-			"[W] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W]"
+			"[W] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W]"
 		]
 	},
 	"eyb:BlessingStance":
@@ -37,7 +37,7 @@
 		"NAME": "Blessing Stance",
 		"DESCRIPTION":
 		[
-			"[B] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B]"
+			"[B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B]"
 		]
 	},
 	"eyb:CorruptionStance":
@@ -45,7 +45,15 @@
 		"NAME": "Corruption Stance",
 		"DESCRIPTION":
 		[
-			"[C] is always #yRetained. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C]"
+			"[C] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C]"
 		]
-	}
+	},
+	"eyb:TechnicStance":
+    {
+    	"NAME": "Technic Stance",
+    	"DESCRIPTION":
+    	[
+    		"[T] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [T]"
+    	]
+    }
 }

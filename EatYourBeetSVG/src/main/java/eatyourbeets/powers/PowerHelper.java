@@ -36,6 +36,7 @@ public class PowerHelper
     public static final PowerHelper Endurance = new PowerHelper(EndurancePower.POWER_ID, null, EndurancePower::new);
     public static final PowerHelper Supercharged = new PowerHelper(SuperchargedPower.POWER_ID, null, SuperchargedPower::new);
     public static final PowerHelper Desecration = new PowerHelper(DesecrationPower.POWER_ID, null, DesecrationPower::new);
+    public static final PowerHelper Genesis = new PowerHelper(GenesisPower.POWER_ID, null, GenesisPower::new);
 
     public static final PowerHelper TemporaryStrength = new PowerHelper(TemporaryStrengthPower.POWER_ID, null, TemporaryStrengthPower::new);
     public static final PowerHelper TemporaryDexterity = new PowerHelper(TemporaryDexterityPower.POWER_ID, null, TemporaryDexterityPower::new);

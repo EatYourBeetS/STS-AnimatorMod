@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -12,10 +11,8 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class PinaCoLada extends AnimatorCard
 {
@@ -23,6 +20,7 @@ public class PinaCoLada extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
+    public static final int DISCARD_AMOUNT = 7;
 
     public PinaCoLada()
     {
@@ -60,18 +58,10 @@ public class PinaCoLada extends AnimatorCard
 
     public class PinaCoLadaPower extends AnimatorClickablePower
     {
-        private static final int DISCARD_AMOUNT = 3;
 
         public PinaCoLadaPower(AbstractCreature owner, int amount)
         {
-            super(owner, PinaCoLada.DATA, PowerTriggerConditionType.Special, DISCARD_AMOUNT);
-
-            this.triggerCondition.SetCheckCondition((c) -> {
-                return JUtils.Count(AbstractDungeon.player.hand.group, card -> !(card.hasTag(GR.Enums.CardTags.PURGE) || card.purgeOnUse)) >= DISCARD_AMOUNT;
-            })
-                    .SetPayCost(cost -> {
-                        GameActions.Bottom.DiscardFromHand(name, cost, false).SetOptions(false, false, false).SetFilter(card -> !(card.hasTag(GR.Enums.CardTags.PURGE) || card.purgeOnUse));
-                    });
+            super(owner, PinaCoLada.DATA, PowerTriggerConditionType.Affinity, DISCARD_AMOUNT);
 
             Initialize(amount);
         }

@@ -57,6 +57,7 @@ public class CardTooltips
     public EYBCardTooltip Willpower = FindByID("Willpower");
     public EYBCardTooltip Blessing = FindByID("Blessing");
     public EYBCardTooltip Corruption = FindByID("Corruption");
+    public EYBCardTooltip Technic = FindByID("Technic");
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
@@ -127,6 +128,7 @@ public class CardTooltips
     public EYBCardTooltip DemonForm = FindByID("Demon Form");
     public EYBCardTooltip Phasing = FindByID("Phasing");
     public EYBCardTooltip Impaired = FindByID("Impaired");
+    public EYBCardTooltip Genesis = FindByID("Genesis");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -135,6 +137,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Orange = new EYBCardTooltip("Orange Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_Light = new EYBCardTooltip("Light Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_Dark = new EYBCardTooltip("Dark Affinity", null).ShowText(false);
+    public EYBCardTooltip Affinity_Silver = new EYBCardTooltip("Silver Affinity", null).ShowText(false);
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
@@ -186,6 +189,7 @@ public class CardTooltips
         RegisterID("A-Orange", Affinity_Orange);
         RegisterID("A-Light", Affinity_Light);
         RegisterID("A-Dark", Affinity_Dark);
+        RegisterID("A-Silver", Affinity_Silver);
         RegisterID("A-Star", Affinity_Star);
         RegisterID("A-Gen", Affinity_General);
 
@@ -232,6 +236,7 @@ public class CardTooltips
         Affinity_Orange.SetIcon(affinities.Orange.Texture(), 8);
         Affinity_Light.SetIcon(affinities.Light.Texture(), 8);
         Affinity_Dark.SetIcon(affinities.Dark.Texture(), 8);
+        Affinity_Silver.SetIcon(affinities.Silver.Texture(), 8);
         Affinity_Star.SetIcon(affinities.Star.Texture(), 8);
         Affinity_General.SetIcon(affinities.General.Texture(), 8);
         Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;

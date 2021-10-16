@@ -3,6 +3,7 @@ package eatyourbeets.actions.orbs;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.utilities.GameActions;
 
 public class EarthOrbPassiveAction extends EYBAction
 {
@@ -38,6 +39,10 @@ public class EarthOrbPassiveAction extends EYBAction
         {
             SFX.Play(SFX.ANIMATOR_ORB_EARTH_CHANNEL, 0.8f, 1.2f, 0.6f);
             orb.projectilesCount = orb.projectiles.size();
+        }
+
+        if (amount > 0) {
+            GameActions.Bottom.GainTemporaryThorns(amount);
         }
 
         Complete();

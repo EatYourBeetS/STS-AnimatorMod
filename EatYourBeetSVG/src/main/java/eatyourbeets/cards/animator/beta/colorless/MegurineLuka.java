@@ -22,6 +22,7 @@ public class MegurineLuka extends AnimatorCard
         SetExhaust(true);
 
         SetAffinity_Blue(1);
+        SetAffinity_Silver(1);
     }
 
     @Override

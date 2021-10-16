@@ -9,9 +9,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class Shirosaki extends AnimatorCard //TODO
+public class Shirosaki extends AnimatorCard implements Hidden //TODO
 {
     public static final EYBCardData DATA = Register(Shirosaki.class)
     		.SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
@@ -27,6 +28,8 @@ public class Shirosaki extends AnimatorCard //TODO
         SetAffinity_Dark(1, 0, 0);
         
         SetExhaust(true);
+
+        SetSoul(2, 0, Shirosaki_Laplace::new);
     }
 
     @Override

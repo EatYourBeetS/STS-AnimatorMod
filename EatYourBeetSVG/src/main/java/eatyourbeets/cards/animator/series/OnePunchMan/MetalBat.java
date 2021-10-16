@@ -10,6 +10,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -18,6 +19,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     public static final EYBCardData DATA = Register(MetalBat.class)
             .SetAttack(0, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
+    protected int gainedForce;
 
     public MetalBat()
     {
@@ -37,6 +39,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
         GameActions.Bottom.GainForce(magicNumber);
+        gainedForce = ForceStance.IsActive() ? magicNumber * 2 : magicNumber;
         CombatStats.onEndOfTurn.Subscribe(this);
 
         if (TrySpendAffinity(Affinity.Red)) {
@@ -46,7 +49,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
 
     @Override
     public void OnEndOfTurn(boolean isPlayer) {
-        GameActions.Bottom.GainForce(-magicNumber);
+        GameActions.Bottom.GainForce(ForceStance.IsActive() && gainedForce == magicNumber ? -(magicNumber / 2) : -magicNumber);
         CombatStats.onEndOfTurn.Unsubscribe(this);
     }
 }

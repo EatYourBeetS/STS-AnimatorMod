@@ -2,7 +2,10 @@ package eatyourbeets.cards.animator.series.LogHorizon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -17,7 +20,7 @@ public class Henrietta extends AnimatorCard
             .SetPower(3, CardRarity.UNCOMMON)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 4;
+    private static final int POWER_COST = 6;
 
     public Henrietta()
     {
@@ -57,7 +60,7 @@ public class Henrietta extends AnimatorCard
 
         public HenriettaPower(AbstractPlayer owner, int amount, int secondaryValue)
         {
-            super(owner, Henrietta.DATA, PowerTriggerConditionType.Affinity, Henrietta.POWER_ENERGY_COST);
+            super(owner, Henrietta.DATA, PowerTriggerConditionType.Affinity, Henrietta.POWER_COST);
 
             this.amount = amount;
             this.secondaryValue = secondaryValue;
@@ -69,8 +72,7 @@ public class Henrietta extends AnimatorCard
         public void OnUse(AbstractMonster m, int cost)
         {
             super.OnUse(m, cost);
-            final EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(null);
-            Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), affinities::GetLevel);
+            Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), af -> CombatStats.Affinities.GetAffinityLevel(af, true));
             GameActions.Bottom.StackAffinityPower(highestAffinity, secondaryValue, false);
         }
 
@@ -96,7 +98,7 @@ public class Henrietta extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, secondaryValue, amount);
+            return FormatDescription(0, POWER_COST, secondaryValue, amount);
         }
     }
 }

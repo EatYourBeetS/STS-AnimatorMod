@@ -14,6 +14,7 @@ public enum Affinity implements Comparable<Affinity>
     Orange(3, "Orange", GR.Common.Images.Affinities.Orange),
     Light(4, "Light", GR.Common.Images.Affinities.Light),
     Dark(5, "Dark", GR.Common.Images.Affinities.Dark),
+    Silver(6, "Dark", GR.Common.Images.Affinities.Silver),
     Star(-1, "Star", GR.Common.Images.Affinities.Star),
     General(-2, "General", GR.Common.Images.Affinities.General);// Don't use directly
 
@@ -23,8 +24,8 @@ public enum Affinity implements Comparable<Affinity>
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
-    protected static final Affinity[] BASIC_TYPES = new Affinity[6];
-    protected static final Affinity[] ALL_TYPES = new Affinity[7];
+    protected static final Affinity[] BASIC_TYPES = new Affinity[7];
+    protected static final Affinity[] ALL_TYPES = new Affinity[8];
 
     static
     {
@@ -34,7 +35,8 @@ public enum Affinity implements Comparable<Affinity>
         ALL_TYPES[3] = BASIC_TYPES[3] = Orange;
         ALL_TYPES[4] = BASIC_TYPES[4] = Light;
         ALL_TYPES[5] = BASIC_TYPES[5] = Dark;
-        ALL_TYPES[6] = Star;
+        ALL_TYPES[6] = BASIC_TYPES[6] = Silver;
+        ALL_TYPES[7] = Star;
     }
 
     public static Affinity[] Basic()
@@ -94,6 +96,8 @@ public enum Affinity implements Comparable<Affinity>
 
             case Dark: return GR.Tooltips.Corruption.icon;
 
+            case Silver: return GR.Tooltips.Technic.icon;
+
             case Star: return GR.Tooltips.Affinity_Star.icon;
 
             default: return null;
@@ -121,7 +125,9 @@ public enum Affinity implements Comparable<Affinity>
 
             case Dark: return new Color(0.55f, 0.1f, 0.85f, 1);//0.7f, 0.55f, 0.7f, 1f);
 
-            case Star: default: return new Color(0.25f, 0.25f, 0.25f, 1f);
+            case Silver: return new Color(0.6f, 0.6f, 0.6f, 1f);
+
+            case Star: default: return new Color(0.95f, 0.95f, 0.95f, 1f);
         }
     }
 
@@ -133,6 +139,7 @@ public enum Affinity implements Comparable<Affinity>
         if (tooltip.Is(GR.Tooltips.Affinity_Orange) ) { return Affinity.Orange;  }
         if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return Affinity.Light;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return Affinity.Dark;    }
+        if (tooltip.Is(GR.Tooltips.Affinity_Silver) ) { return Affinity.Silver;  }
         if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return Affinity.Star;    }
         if (tooltip.Is(GR.Tooltips.Affinity_General)) { return Affinity.General; }
         return null;
@@ -148,6 +155,7 @@ public enum Affinity implements Comparable<Affinity>
             case Orange: return GR.Tooltips.Affinity_Orange;
             case Light: return GR.Tooltips.Affinity_Light;
             case Dark: return GR.Tooltips.Affinity_Dark;
+            case Silver: return GR.Tooltips.Affinity_Silver;
             case Star: return GR.Tooltips.Affinity_Star;
             case General: return GR.Tooltips.Affinity_General;
             default: throw new EnumConstantNotPresentException(Affinity.class, this.name());

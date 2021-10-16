@@ -24,6 +24,7 @@ public class Hibiki extends AnimatorCard
 
         SetAffinity_Star(0, 0, 1);
         SetAffinity_Green(1);
+        SetAffinity_Silver(1);
     }
 
     @Override

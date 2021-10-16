@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
@@ -31,6 +32,7 @@ import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
+import patches.screens.GridCardSelectScreenPatches;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -132,6 +134,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public AbstractCard makeStatEquivalentCopy()
     {
         EYBCard copy = (EYBCard) super.makeStatEquivalentCopy();
+        copy.SetForm(auxiliaryData.form, timesUpgraded);
 
         copy.retain = retain;
         copy.exhaust = exhaust;
@@ -213,6 +216,32 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         upgrade.current_y = this.current_y;
         upgrade.drawScale = this.drawScale;
         upgrade.render(sb, false);
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && hb.hovered && InputHelper.justClickedLeft) {
+            if (auxiliaryData.form == 1 && this.cardData.CanToggleOnUpgrade) {
+                GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(AbstractDungeon.gridSelectScreen, true);
+            } else {
+                GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(AbstractDungeon.gridSelectScreen, false);
+            }
+
+            if (this.cardData.CanToggleOnUpgrade) {
+                beginGlowing();
+                GridCardSelectScreenPatches.cardList.forEach((c) -> {
+                    if (c != this) {
+                        c.stopGlowing();
+                    }
+
+                });
+            }
+
+            GridCardSelectScreenPatches.BranchSelectFields.waitingForBranchUpgradeSelection.set(AbstractDungeon.gridSelectScreen, false);
+        }
     }
 
     @Override
@@ -736,6 +765,8 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Light, base, upgrade, scaling); }
     protected void SetAffinity_Dark(int base) { InitializeAffinity(Affinity.Dark, base, 0, 0); }
     protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Dark, base, upgrade, scaling); }
+    protected void SetAffinity_Silver(int base) { InitializeAffinity(Affinity.Silver, base, 0, 0); }
+    protected void SetAffinity_Silver(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Silver, base, upgrade, scaling); }
     protected void SetAffinity_Star(int base) { InitializeAffinity(Affinity.Star, base, 0, 0); }
     protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Star, base, upgrade, scaling); }
     protected void SetAffinity_General(int base) { InitializeAffinity(Affinity.General, base, 0, 0); }

@@ -26,7 +26,7 @@ public class BarbaraPegg extends AnimatorCard
         SetAffinity_Blue(1);
 
 
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Blue, 3);
         SetHarmonic(true);
         SetHealing(true);
         SetExhaust(true);

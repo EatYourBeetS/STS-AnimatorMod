@@ -100,10 +100,6 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         AddProjectiles(projectilesCount);
 
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        if (CombatStats.TryActivateLimited(ID, MAX_CHANNEL_EFFECTS))
-        {
-            GameActions.Bottom.GainThorns(THORNS_PER_CHANNEL);
-        }
     }
 
     @Override

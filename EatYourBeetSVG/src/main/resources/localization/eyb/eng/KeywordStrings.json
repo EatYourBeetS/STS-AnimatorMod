@@ -2,7 +2,7 @@
 {
 	"Affinity":
 	{
-		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark], [A-Silver]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity"
 	},
@@ -14,7 +14,7 @@
 	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C]",
+		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C], NL [A-Silver] -> [T]",
 		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
@@ -252,6 +252,12 @@
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
+	"Genesis":
+	{
+		"DESCRIPTION": "Gain additional [E] at the start of each turn.",
+		"NAMES": ["genesis"],
+		"PROPER_NAME": "Genesis"
+	},
 	"Harmonic":
 	{
 	  "DESCRIPTION": "Synergizes with other cards from the same series.",
@@ -296,7 +302,7 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "The next time you activate an interactable #yPower, gain 1 [E].",
+		"DESCRIPTION": "The next time you activate an interactable #yPower, activate its effect again.",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
@@ -485,6 +491,18 @@
 		"DESCRIPTION": "Teamwork is equal to the number of cards in hand that have the most common #yAffinity amongst your hand.",
 		"NAMES": ["teamwork"],
 		"PROPER_NAME": "Teamwork"
+	},
+	"Technics":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Genesis] for every #b25 [T] up to #b50.",
+		"NAMES": ["technic"],
+		"PROPER_NAME": "Technic"
+	},
+	"Technic Stance":
+	{
+		"DESCRIPTION": "Stance: [T] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [T].",
+		"NAMES": ["[t] stance", "technic stance"],
+		"PROPER_NAME": "Technic Stance"
 	},
 	"Temporary HP":
     {

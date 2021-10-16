@@ -16,7 +16,7 @@ public class YachiyoNanami extends AnimatorCard
     public static final EYBCardData DATA = Register(YachiyoNanami.class)
             .SetPower(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int DISCARD_AMOUNT = 4;
+    public static final int DISCARD_AMOUNT = 5;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -24,7 +24,7 @@ public class YachiyoNanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 4, DISCARD_AMOUNT);
         SetEthereal(true);
 
         SetAffinity_Blue(2);
@@ -61,7 +61,7 @@ public class YachiyoNanami extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, secondaryAmount, amount);
+            return FormatDescription(0, DISCARD_AMOUNT, secondaryAmount);
         }
         @Override
         public void OnUse(AbstractMonster m, int cost)

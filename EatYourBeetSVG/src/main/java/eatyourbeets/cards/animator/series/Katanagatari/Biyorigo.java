@@ -106,7 +106,7 @@ public class Biyorigo extends AnimatorCard
         {
             super.OnUse(m, cost);
 
-            GameActions.Bottom.GainTemporaryArtifact(1);
+            GameActions.Bottom.GainThorns(2);
         }
     }
 }

@@ -40,7 +40,7 @@ public abstract class AbstractTemporaryPower extends CommonPower
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void atStartOfTurn()
     {
         if (amount < 0) {
             GameActions.Top.StackPower(constructor.Invoke(owner, -amount));

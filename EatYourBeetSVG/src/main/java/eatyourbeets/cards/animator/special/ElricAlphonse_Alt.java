@@ -23,6 +23,7 @@ public class ElricAlphonse_Alt extends AnimatorCard
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Blue(1);
+        SetAffinity_Orange(1);
         SetAffinity_Red(1);
     }
 

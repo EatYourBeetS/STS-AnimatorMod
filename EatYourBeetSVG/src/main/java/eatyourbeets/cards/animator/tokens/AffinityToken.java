@@ -23,7 +23,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
 
     protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        final EYBCardData data = Register(type).SetStatus(-2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetSkill(-2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
         data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;
@@ -52,6 +52,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
             case Orange: return AffinityToken_Orange.DATA;
             case Light: return AffinityToken_Light.DATA;
             case Dark: return AffinityToken_Dark.DATA;
+            case Silver: return AffinityToken_Silver.DATA;
             //case Star: return AffinityToken_Star.DATA;
 
             default:

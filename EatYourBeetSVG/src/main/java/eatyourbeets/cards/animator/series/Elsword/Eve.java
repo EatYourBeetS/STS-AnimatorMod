@@ -46,7 +46,7 @@ public class Eve extends AnimatorCard
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Silver(2);
 
         SetDelayed(true);
     }

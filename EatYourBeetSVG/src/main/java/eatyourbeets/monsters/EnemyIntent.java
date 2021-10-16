@@ -17,6 +17,7 @@ import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.powers.common.BlindedPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.replacement.AnimatorFrailPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.powers.replacement.AnimatorWeakPower;
 import eatyourbeets.resources.GR;
@@ -43,6 +44,7 @@ public class EnemyIntent
         private static final StrengthPower STRENGTH = new StrengthPower(null, 0);
         private static final FreezingPower FREEZING = new FreezingPower(null, null, 0);
         private static final BlindedPower BLINDED = new BlindedPower(null, null, 0);
+        private static final FrailPower FRAIL = new AnimatorFrailPower(null, 0, false);
 
         private static final ArrayList<AbstractPower> PLAYER_POWERS = new ArrayList<>();
         private static final ArrayList<AbstractPower> ENEMY_POWERS = new ArrayList<>();
@@ -56,6 +58,7 @@ public class EnemyIntent
             DEFAULT_ENEMY_POWERS.add(STRENGTH);
             DEFAULT_ENEMY_POWERS.add(FREEZING);
             DEFAULT_ENEMY_POWERS.add(BLINDED);
+            DEFAULT_ENEMY_POWERS.add(FRAIL);
         }
 
         protected static void Load(AbstractPlayer player, AbstractMonster enemy, HashMap<String, Integer> modifiers)
@@ -196,6 +199,11 @@ public class EnemyIntent
         return isAttacking ? ((multi ? GetDamageMulti() : 1) * enemy.getIntentBaseDmg()) : 0;
     }
 
+    public int GetBlock()
+    {
+        return IsDefending() ? enemy.getIntentDmg() : 0;
+    }
+
     public int GetDamageMulti()
     {
         return isAttacking ? (move.isMultiDamage ? move.multiplier : 1) : 0;
@@ -224,6 +232,11 @@ public class EnemyIntent
     public EnemyIntent AddStrength(int amount)
     {
         return AddModifier(StrengthPower.POWER_ID, amount);
+    }
+
+    public EnemyIntent AddFrail()
+    {
+        return AddModifier(FrailPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddFreezing()

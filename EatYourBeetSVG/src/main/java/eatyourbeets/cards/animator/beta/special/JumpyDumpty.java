@@ -29,6 +29,7 @@ public class JumpyDumpty extends AnimatorCard {
         AbstractMonster priorityTarget;
         RandomizedList<AbstractMonster> priorityTargets = new RandomizedList<>();
         for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
+            this.Refresh(mo);
             if ((mo.currentBlock > 0 && mo.currentBlock <= damage) || mo.currentHealth <= damage) {
                 priorityTargets.Add(mo);
             }
@@ -39,6 +40,7 @@ public class JumpyDumpty extends AnimatorCard {
         }
 
         if (priorityTarget != null) {
+            this.Refresh(priorityTarget);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(priorityTarget.hb.cX, priorityTarget.hb.cY), 0.1F);
             GameActions.Bottom.DealDamage(this, priorityTarget, AttackEffects.NONE)
                     .AddCallback(priorityTarget.currentBlock, (initialBlock, target) ->

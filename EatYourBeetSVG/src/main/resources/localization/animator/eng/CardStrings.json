@@ -72,6 +72,16 @@
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
+		"animator:Strike_Silver":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Strike"
+		},
+		"animator:Defend_Silver":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Improved Defend"
+		},
 		"animator:Strike_Star":
 		{
 			"DESCRIPTION": "",
@@ -217,7 +227,7 @@
 		},
 		"animator:GinIchimaru":
         {
-        	"DESCRIPTION": "Choose 1: Pay X <R>: Gain X [F], or Pay X <G>: Gain X [A]. ** Exhaust if <R> or <G> > !S!. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
+        	"DESCRIPTION": "Choose 1: Pay X <R>: Gain X [F], or Pay X <G>: Gain X [A] (max. 6). ** Exhaust if <R> or <G> > !S!. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
 		"animator:KanameTousen":
@@ -468,7 +478,7 @@
 		},
 		"animator:MS06ZakuII":
 		{
-			"DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. Pay !A! <W>. If you reached !M! of any affinity power this combat, gain {Upgraded Hand}.",
+			"DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. If you reached !S! of any affinity power this combat, Pay !A! <W>: Gain {Upgraded Hand}.",
 			"EXTENDED_DESCRIPTION": ["Your next #b{0} Reload triggers this turn activate twice."],
 			"NAME": "MS-06 Zaku II"
 		},
@@ -700,7 +710,7 @@
 		},
 		"animator:Bennett":
         {
-        	"DESCRIPTION": "Below 30% Max [HP] or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: ** Take !S! [Delayed Damage].",
+        	"DESCRIPTION": "Below 25% Max [HP] and/or Synergy: Gain !M! [Vigor]. || Less than !A! <R>: ** Take !S! [Delayed Damage].",
         	"NAME": "Bennett"
         },
 		"animator:Curse_Delusion":
@@ -843,8 +853,8 @@
 		},
 		"animator:Zhongli":
 		{
-			"DESCRIPTION": "When you Evoke [Earth]: Gain [Block] equal to [Endurance] + !S! (min. !S!). || Once per turn, pay 5 <O>: {Channel} [Earth], then choose whether to gain !M! Temp. [Endurance] this turn or next turn.",
-		  	"EXTENDED_DESCRIPTION": ["Pay 5 [A-Orange] to channel #b1 [Earth] ** and choose whether to gain {0} #yTemporary [Endurance] this turn or next turn. || When you #yEvoke [Earth]: Gain #b{1} [Block].", "Gain {0} {Temp.} [Endurance].", "Next turn: Gain {0} {Temp.} [Endurance]."],
+			"DESCRIPTION": "When you Evoke [Earth]: Gain [Block] equal to [Endurance] + !S! (min. !S!). || Once per turn, pay {0} <O>: {Channel} [Earth], then choose whether to gain !M! Temp. [Endurance] this turn or next turn.",
+		  	"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Orange] to channel #b1 [Earth] ** and choose whether to gain #b{1} #yTemporary [Endurance] this turn or next turn. || When you #yEvoke [Earth]: Gain #b{2} [Block].", "Gain {0} {Temp.} [Endurance].", "Next turn: Gain {0} {Temp.} [Endurance]."],
 			"NAME": "Zhongli"
 		}
 	},
@@ -1050,6 +1060,11 @@
 			"DESCRIPTION": "Gain !S! [Blur]. Increase ** this card's [Block] by !M!. || When Drawn: If ** in Neutral Stance, ** enter <AS>.",
 			"NAME": "Aya Shameimaru"
 		},
+		"animator:Cirno":
+		{
+			"DESCRIPTION": "Apply !M! [Freezing] and !S! [Shackles] to ** ALL enemies. || On Exhaust, ** Channel 1 [Frost].",
+			"NAME": "Cirno"
+		},
 		"animator:Clownpiece":
 		{
 			"DESCRIPTION": "Reveal the top card in your draw pile.  If it is 0 or 1 cost, play it.  Otherwise, draw it. || <LIM>. Starter: This card will not Exhaust.",
@@ -1200,11 +1215,6 @@
 			"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage.",
 			"NAME": "Canti"
 		},
-		"animator:Cirno":
-		{
-			"DESCRIPTION": "Apply !M! [Freezing] and !S! [Shackles] to ** ALL enemies. || On Exhaust, ** Channel 1 [Frost].",
-			"NAME": "Cirno"
-		},
 		"animator:Kuroyukihime":
 		{
 			"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust. || !A! <W>: Upgrade it.",
@@ -1232,7 +1242,7 @@
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Give a card LV2 <S>. || <LIM>. On Discard: ** Create a random ** <S> card in your hand.",
+			"DESCRIPTION": "Give a card LV2 <A>. || <LIM>. On Discard: ** Create a random ** <A> card in your hand.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
@@ -1339,6 +1349,7 @@
 		"animator:Aisha":
 		{
 			"DESCRIPTION": "<ST>. Trigger your ** first [Lightning] to Boost [I]. Otherwise, Channel 1 [Lightning]. || Deal +!S! damage for each orb you have (max. 5 Orbs).",
+			"EXTENDED_DESCRIPTION": ["<ST>. Trigger your ** first [Dark] to Boost [C]. Otherwise, Channel 1 [Dark]. || Deal +!S! damage for each orb you have (max. 5 Orbs)."],
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
@@ -1409,7 +1420,8 @@
 		},
 		"animator:Archer":
 		{
-			"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || On Synergy: Apply ** 1 [Vulnerable] to ALL enemies.",
+			"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || Once per turn, Pay !S! <G>: Apply ** 1 [Vulnerable] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} damage to all enemies for each Debuff they have. || Pay #b{1} [A-Green] to Apply #b1 [Vulnerable] to ALL enemies."],
 			"NAME": "Archer"
 		},
 		"animator:Assassin":
@@ -1485,7 +1497,7 @@
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <O> card ** from your discard pile. ** Give it <S> scaling equal to its cost + !M! and Motivate it.",
+			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <O> card ** from your discard pile. ** Give it <A> scaling equal to its cost + !M! and Motivate it.",
 			"NAME": "Command Spell"
 		}
 	},
@@ -1631,8 +1643,8 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice. || Once per turn: Discard !M! non-{Purging} cards to <DRW> next turn.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Discard #b{1} non-#yPurging cards to draw 1 more card next turn. || Your next #b{0} #y0-Cost card(s) activate their effects twice."],
+			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice. || Once per turn, Pay !M! <W>: <DRW> next turn.",
+			"EXTENDED_DESCRIPTION": ["Once per turn, Pay #b{1} [A-Gen]: Draw 1 more card next turn. || Your next #b{0} #y0-Cost card(s) activate their effects twice."],
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
@@ -1789,13 +1801,13 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "Gain !M! [Plated Armor], then reduce ** this number by 1. || Less than !A! <R>: Draw 1 ** less card next turn.",
+			"DESCRIPTION": "Gain !M! [Plated Armor], then reduce ** this number by 1. || Pay !A! <R>: Gain !S! [Thorns]. Otherwise, Draw 1 less card next turn.",
 			"NAME": "Azekura"
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once per turn, pay !S! <G>: ** Gain 1 {Temp.} [Artifact].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Green] to gain #b1 #yTemporary [Artifact]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
+			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once per turn, pay !S! <G>: ** Gain 2 [Thorns].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Green] to gain #b2 [Thorns]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -1828,7 +1840,7 @@
 		},
 		"animator:ManiwaKyouken":
 		{
-			"DESCRIPTION": "Draw [A] + 1 cards. ** Discard cards equal ** to double your [E]. || 3 [C]: Exhaust, then ** give a card LV2 <S>.",
+			"DESCRIPTION": "Draw [A] + 1 cards. ** Discard cards equal ** to double your [E]. || 3 [C]: Exhaust, then ** give a card LV2 <A>.",
 			"NAME": "Maniwa Kyouken"
 		},
 		"animator:ManiwaHouou":
@@ -1983,8 +1995,8 @@
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "All {Affinity} Synergy bonuses can be triggered twice per turn. || Once per turn, Pay 4 <W>: Gain !S! of the {<W> Power} of your highest Affinity.",
-			"EXTENDED_DESCRIPTION": ["Pay 4 [A-Gen]: Gain #b{0} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be triggered #b{1} additional time(s) per turn."],
+			"DESCRIPTION": "All {Affinity} Synergy bonuses can be triggered twice per turn. || Once per turn, Pay 6 <W>: Gain !S! of the {<W> Power} of your highest Affinity.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen]: Gain #b{1} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be triggered #b{2} additional time(s) per turn."],
 			"NAME": "Henrietta"
 		},
 		"animator:IsuzuTonan":
@@ -2072,7 +2084,7 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Pay !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, pay 3 <W>: <DRW>, then put up to 1 card on top of your draw pile.",
+			"DESCRIPTION": "Pay !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, pay !S! <W>: <DRW>, then put up to 1 card on top of your draw pile.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, pay #b{2} [A-Gen]: Draw a card, then place up to 1 card on top of your draw pile."],
 			"NAME": "Tetra"
 		}
@@ -2193,8 +2205,8 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: If <B> > <L>, Gain +1 <L>. Otherwise, Gain +1 <B>. || Once per turn, Pay 4 <W>: Gain !M! [Block].",
-			"EXTENDED_DESCRIPTION": ["Pay 4 [A-Gen] to gain #b{0} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
+			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: If <B> > <L>, Gain +1 <L>. Otherwise, Gain +1 <B>. || Once per turn, Pay !S! <W>: Gain !M! [Block].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen] to gain #b{1} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain +1 [A-Light] if [A-Blue] > [A-Light] or +1 [A-Blue] otherwise."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
@@ -2317,7 +2329,7 @@
 				"After #b{0} turn(s), create a copy of {1}.",
 				"Double its damage ** and [Block] and increase ** its base cost by 1.",
 				"Give it {~Ethereal} and **  reduce its base cost ** by 1 (Minimum 1).",
-				"Give it LV1 <S> and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
+				"Give it LV1 <A> and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
 			],
 			"NAME": "Dr. Genus"
 		},
@@ -2398,7 +2410,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Air]. ** Gain !M! {Temp.} [Focus]. || Synergy: Choose 1: Enter <IS>, ** or Enter <BS>.",
+			"DESCRIPTION": "Channel 1 [Air]. ** Gain !M! {Temp.} [Focus]. || <ST>. Pay !A! <R> and <B>: Choose 1: Enter <IS>, ** or Enter <BS>.",
 			"NAME": "Tatsumaki"
 		},
 		"animator:Zombieman":
@@ -2770,6 +2782,11 @@
 		"animator:AffinityToken_Dark":
 		{
 			"EXTENDED_DESCRIPTION": ["<D>", "C"],
+			"NAME": "Affinity Token"
+		},
+		"animator:AffinityToken_Silver":
+		{
+			"EXTENDED_DESCRIPTION": ["<S>", "T"],
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_General":

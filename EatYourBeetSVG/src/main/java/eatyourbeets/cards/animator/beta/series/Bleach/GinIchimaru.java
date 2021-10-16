@@ -17,6 +17,7 @@ public class GinIchimaru extends AnimatorCard
     public static final EYBCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
+    public static final int MAX_AMOUNT = 5;
 
     public GinIchimaru()
     {
@@ -67,8 +68,8 @@ public class GinIchimaru extends AnimatorCard
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            int amountRed = CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true);
-            int amountGreen = CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true);
+            int amountRed = Math.min(MAX_AMOUNT, CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true));
+            int amountGreen = Math.min(MAX_AMOUNT, CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true));
             if (amountRed > 0) {
                 choices.AddEffect(new GenericEffect_Gin(Affinity.Red, amountRed));
             }

@@ -13,7 +13,7 @@
 		"NAME": "Earth",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
+			"#yPassive: At the end of turn, gain #g{0} Temp. [Thorns] and gain #g{0} projectiles ( Max #b{1} ). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL After #b{3} turns, #yEvoke this Orb."
 		]
 	},
 	"animator:Air":
@@ -21,7 +21,7 @@
 		"NAME": "Air",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies #g{2} times."
+			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies #g{2} times and #yCycle #b1 card."
 		]
 	},
 	"animator:Fire":

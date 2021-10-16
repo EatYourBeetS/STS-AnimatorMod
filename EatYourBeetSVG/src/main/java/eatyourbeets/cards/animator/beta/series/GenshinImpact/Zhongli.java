@@ -19,7 +19,7 @@ import eatyourbeets.utilities.JUtils;
 public class Zhongli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 5;
+    private static final int POWER_ENERGY_COST = 6;
 
     public Zhongli()
     {
@@ -51,6 +51,12 @@ public class Zhongli extends AnimatorCard
         }
         return super.SetForm(form, timesUpgraded);
     };
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(POWER_ENERGY_COST, POWER_ENERGY_COST);
+    }
 
 
     @Override
@@ -98,7 +104,7 @@ public class Zhongli extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, amount, GetBlockAmount());
+            return FormatDescription(0, POWER_ENERGY_COST, amount, GetBlockAmount());
         }
 
         @Override

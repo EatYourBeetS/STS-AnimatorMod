@@ -108,6 +108,7 @@ public class CommonResources extends AbstractResources
         AddPowerTooltip("[W]", "Willpower", new WillpowerPower());
         AddPowerTooltip("[B]", "Blessing", new BlessingPower());
         AddPowerTooltip("[C]", "Corruption", new CorruptionPower());
+        AddPowerTooltip("[T]", "Technic", new TechnicPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[B]", AbstractCard.orb_blue);

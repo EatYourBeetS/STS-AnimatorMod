@@ -22,7 +22,8 @@
   	"<O>": "[A-Orange]",
 	"<L>": "[A-Light]",
 	"<D>": "[A-Dark]",
-	"<S>": "[A-Star]",
+	"<S>": "[A-Silver]",
+	"<A>": "[A-Star]",
 	"<W>": "[A-Gen]",
 
 	"<CDN>": "Cooldown !C!",

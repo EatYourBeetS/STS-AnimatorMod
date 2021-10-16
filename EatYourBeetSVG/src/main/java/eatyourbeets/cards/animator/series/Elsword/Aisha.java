@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
@@ -15,7 +16,7 @@ public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
-            .SetMaxCopies(2)
+            .SetMultiformData(2, false, true, false, false)
             .SetSeries(CardSeries.Elsword);
     public static final int ORB_LIMIT = 5;
 
@@ -29,6 +30,14 @@ public class Aisha extends AnimatorCard
 
         SetAffinity_Blue(2, 0, 1);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public AbstractAttribute GetDamageInfo()
@@ -58,7 +67,7 @@ public class Aisha extends AnimatorCard
         if (IsStarter())
         {
             GameActions.Bottom.TriggerOrbPassive(1)
-            .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
+            .SetFilter(o -> o.ID.equals(auxiliaryData.form == 1 ? Dark.ORB_ID : Lightning.ORB_ID))
             .AddCallback(orbs ->
             {
                 if (orbs.size() > 0)
@@ -66,7 +75,7 @@ public class Aisha extends AnimatorCard
                     GameActions.Bottom.GainIntellect(1, true);
                 }
                 else {
-                    GameActions.Bottom.ChannelOrb(new Lightning());
+                    GameActions.Bottom.ChannelOrb(auxiliaryData.form == 1 ? new Dark() : new Lightning());
                 }
             });
         }

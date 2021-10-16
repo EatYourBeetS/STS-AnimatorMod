@@ -14,7 +14,7 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 
-public class Cthulhu extends AnimatorCard_UltraRare
+public class Cthulhu extends AnimatorCard_UltraRare //TODO make this play random colorless cards or offclass cards, increase by 1 whenever X happens, permanently transform cards in your deck to offclass cards
 {
     public static final int COST = 12;
     public static final EYBCardData DATA = Register(Cthulhu.class)

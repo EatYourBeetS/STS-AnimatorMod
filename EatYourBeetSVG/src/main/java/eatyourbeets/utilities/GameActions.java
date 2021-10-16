@@ -675,6 +675,16 @@ public final class GameActions
         return StackPower(new SupportDamagePower(player, amount));
     }
 
+    public ApplyAffinityPower GainTechnic(int amount)
+    {
+        return GainTechnic(amount, false);
+    }
+
+    public ApplyAffinityPower GainTechnic(int amount, boolean retain)
+    {
+        return StackAffinityPower(TechnicPower.AFFINITY_TYPE, amount, retain);
+    }
+
     public ApplyPower GainTemporaryArtifact(int amount)
     {
         return StackPower(new TemporaryArtifactPower(player, amount));

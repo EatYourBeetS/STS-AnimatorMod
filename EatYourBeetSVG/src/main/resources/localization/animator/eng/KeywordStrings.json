@@ -2,7 +2,7 @@
 {
 	"Air":
 	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies. Draw #b1 card the first #b3 times it is #yEvoked.",
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When Evoked: #yCycle #b1 card.",
 		"NAMES": ["aether", "aether+", "air", "air+"],
 		"PROPER_NAME": "Air"
 	},
@@ -27,7 +27,7 @@
 	},
 	"Earth":
 	{
-		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
+		"DESCRIPTION": "Orb: When #yTriggered, increase this orb's projectile count and gain Temp. [Thorns]. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},

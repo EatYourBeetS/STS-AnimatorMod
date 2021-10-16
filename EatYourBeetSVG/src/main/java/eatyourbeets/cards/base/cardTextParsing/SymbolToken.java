@@ -26,6 +26,7 @@ public class SymbolToken extends CTToken
         tokenCache.put("W", new SymbolToken("[W]")); // Willpower
         tokenCache.put("B", new SymbolToken("[B]")); // Blessing
         tokenCache.put("C", new SymbolToken("[C]")); // Corruption
+        tokenCache.put("T", new SymbolToken("[T]")); // Technic
     }
 
     private SymbolToken(String text)

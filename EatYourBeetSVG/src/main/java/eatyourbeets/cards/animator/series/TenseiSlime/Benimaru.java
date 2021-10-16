@@ -27,7 +27,7 @@ public class Benimaru extends AnimatorCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Blue(1);
 
-        SetAffinityRequirement(Affinity.Red, 6);
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override

@@ -27,6 +27,8 @@ public class Tatsumaki extends AnimatorCard
         SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -34,7 +36,7 @@ public class Tatsumaki extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrb(new Air());
         GameActions.Bottom.GainFocus(magicNumber, true);
-        if (info.IsSynergizing) {
+        if (IsStarter() && TrySpendAffinity(Affinity.Red, Affinity.Blue)) {
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));

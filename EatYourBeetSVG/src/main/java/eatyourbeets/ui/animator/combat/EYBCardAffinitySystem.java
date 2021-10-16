@@ -39,6 +39,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public final WillpowerPower Willpower;
     public final BlessingPower Blessing;
     public final CorruptionPower Corruption;
+    public final TechnicPower Technic;
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
@@ -59,6 +60,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         Powers.add(Willpower = new WillpowerPower());
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
+        Powers.add(Technic = new TechnicPower());
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));

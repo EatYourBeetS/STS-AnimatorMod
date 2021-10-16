@@ -21,8 +21,7 @@ public class TanyaDegurechaff_Type95 extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAffinity_Dark(1);
-        SetAffinity_Light(1);
+        SetAffinity_Silver(2);
 
         SetExhaust(true);
 

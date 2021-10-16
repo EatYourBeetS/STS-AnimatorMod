@@ -23,7 +23,7 @@ public class Ainz extends AnimatorCard
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
     public static final int CHANNEL_AMOUNT = 3;
-    public static final int POWER_ENERGY_COST = 8;
+    public static final int POWER_ENERGY_COST = 10;
 
     public Ainz()
     {

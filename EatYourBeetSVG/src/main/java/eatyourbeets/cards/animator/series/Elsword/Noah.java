@@ -83,14 +83,16 @@ public class Noah extends AnimatorCard
         GameActions.Bottom.GainCorruption(1, true);
 
         int amount = GetXValue();
-        if (CheckPrimaryCondition(true)) {
-            TrySpendAffinity(Affinity.Light, GetXValue());
-            GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
+        if (amount > 0) {
+            if (CheckPrimaryCondition(true)) {
+                TrySpendAffinity(Affinity.Light, GetXValue());
+                GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
 
-        }
-        else {
-            TrySpendAffinity(Affinity.Dark, GetXValue());
-            GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+            }
+            else {
+                TrySpendAffinity(Affinity.Dark, GetXValue());
+                GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+            }
         }
     }
 

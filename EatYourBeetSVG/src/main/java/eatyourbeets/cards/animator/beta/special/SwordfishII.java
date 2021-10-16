@@ -30,6 +30,7 @@ public class SwordfishII extends AnimatorCard
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Silver(1);
 
         SetAutoplay(true);
         SetExhaust(true);

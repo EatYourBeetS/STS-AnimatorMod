@@ -21,7 +21,8 @@ public class Crystallize extends AnimatorCard_Status
 
         Initialize(0, 0, 4, 3);
 
-        SetAffinity_Dark(1);
+        SetAffinity_Silver(1);
+        SetAffinity_Blue(1);
 
         SetExhaust(true);
     }
@@ -35,7 +36,7 @@ public class Crystallize extends AnimatorCard_Status
             GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
             GameActions.Bottom.GainMetallicize(magicNumber);
             GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.SLASH_VERTICAL);
-            GameActions.Bottom.GainCorruption(1, false);
+            GameActions.Bottom.GainTechnic(1, false);
         }
     }
 }

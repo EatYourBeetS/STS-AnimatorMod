@@ -29,6 +29,7 @@ public class GarbageDoll extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Silver(1);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }

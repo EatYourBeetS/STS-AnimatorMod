@@ -21,8 +21,8 @@ public class Elsword extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 2);
-        SetUpgrade(3,  0, 0);
+        Initialize(8, 5, 2);
+        SetUpgrade(2,  1, 0);
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1, 0, 1);
@@ -35,6 +35,7 @@ public class Elsword extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).SetVFXColor(Color.RED);
+        GameActions.Bottom.GainBlock(block);
 
         if (m.hasPower(BurningPower.POWER_ID))
         {

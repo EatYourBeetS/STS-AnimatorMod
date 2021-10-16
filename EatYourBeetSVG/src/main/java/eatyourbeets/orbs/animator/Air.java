@@ -137,10 +137,7 @@ public class Air extends AnimatorOrb
         super.Evoke();
 
         GameActions.Top.Add(new AirOrbEvokeAction(GetEvokeDamage(), this.evokeAmount));
-        if (CombatStats.TryActivateLimited(ID, MAX_EVOKE_EFFECTS))
-        {
-            GameActions.Bottom.Draw(1);
-        }
+        GameActions.Bottom.Cycle(name, 1);
     }
 
     @Override

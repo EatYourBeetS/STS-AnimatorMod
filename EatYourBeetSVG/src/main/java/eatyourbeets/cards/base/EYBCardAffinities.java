@@ -87,7 +87,7 @@ public class EYBCardAffinities
         Refresh();
     }
 
-    public void Add(int red, int green, int blue, int orange, int light, int dark)
+    public void Add(int red, int green, int blue, int orange, int light, int dark, int silver)
     {
         Add(Affinity.Red, red);
         Add(Affinity.Green, green);
@@ -95,9 +95,10 @@ public class EYBCardAffinities
         Add(Affinity.Orange, orange);
         Add(Affinity.Light, light);
         Add(Affinity.Dark, dark);
+        Add(Affinity.Silver, silver);
     }
 
-    public void Set(int red, int green, int blue, int orange, int light, int dark)
+    public void Set(int red, int green, int blue, int orange, int light, int dark, int silver)
     {
         Set(Affinity.Red, red);
         Set(Affinity.Green, green);
@@ -105,6 +106,7 @@ public class EYBCardAffinities
         Set(Affinity.Orange, orange);
         Set(Affinity.Light, light);
         Set(Affinity.Dark, dark);
+        Set(Affinity.Silver, silver);
     }
 
     public EYBCardAffinity AddStar(int level)

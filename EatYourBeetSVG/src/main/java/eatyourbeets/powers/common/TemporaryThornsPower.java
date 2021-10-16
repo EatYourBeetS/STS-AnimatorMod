@@ -1,40 +1,26 @@
 package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CommonPower;
+import com.megacrit.cardcrawl.powers.ThornsPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class TemporaryThornsPower extends CommonPower
+public class TemporaryThornsPower extends AbstractTemporaryPower
 {
     public static final String POWER_ID = CreateFullID(TemporaryThornsPower.class);
 
     public TemporaryThornsPower(AbstractCreature owner, int amount)
     {
-        super(owner, POWER_ID);
-
-        Initialize(amount);
+        super(owner, amount, POWER_ID, ThornsPower::new);
     }
 
     @Override
-    public int onAttacked(DamageInfo info, int damageAmount)
+    protected void onAmountChanged(int previousAmount, int difference)
     {
-        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner)
-        {
-            GameActions.Top.DealDamage(owner, info.owner, amount, DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL)
-            .SetVFX(true, false);
-            this.flash();
+        super.onAmountChanged(previousAmount, difference);
+
+        if (GameUtilities.GetPowerAmount(owner, ThornsPower.POWER_ID) == 0) {
+            GameActions.Bottom.RemovePower(owner, owner, ThornsPower.POWER_ID);
         }
-
-        return super.onAttacked(info, damageAmount);
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        RemovePower();
     }
 }

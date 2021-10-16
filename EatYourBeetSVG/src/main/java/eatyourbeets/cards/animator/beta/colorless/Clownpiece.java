@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.series.TouhouProject;
+package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -10,7 +10,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class Clownpiece extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Clownpiece.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Clownpiece.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     public Clownpiece()
     {

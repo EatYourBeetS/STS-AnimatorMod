@@ -14,7 +14,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Klee extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Klee.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new JumpyDumpty(), false));
+            .PostInitialize(data -> data.AddPreview(new JumpyDumpty(), true));
 
     public Klee()
     {

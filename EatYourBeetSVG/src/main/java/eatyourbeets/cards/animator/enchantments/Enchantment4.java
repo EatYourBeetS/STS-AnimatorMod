@@ -18,7 +18,7 @@ public class Enchantment4 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 4);
     }
 
     @Override

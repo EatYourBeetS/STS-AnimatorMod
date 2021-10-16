@@ -25,8 +25,8 @@ public class Godan extends AnimatorCard
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 1, 2);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override

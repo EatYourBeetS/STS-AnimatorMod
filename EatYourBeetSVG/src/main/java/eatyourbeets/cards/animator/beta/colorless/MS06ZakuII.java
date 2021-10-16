@@ -24,9 +24,10 @@ public class MS06ZakuII extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 12);
+        Initialize(0, 0, 3, 30);
 
         SetAffinity_Red(1);
+        SetAffinity_Silver(2);
 
         SetAffinityRequirement(Affinity.General, 7);
     }
@@ -74,7 +75,7 @@ public class MS06ZakuII extends AnimatorCard
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return !player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General) && JUtils.Find(Affinity.Basic(), a -> CombatStats.Affinities.GetPowerThreshold((Affinity) a) > secondaryValue) != null;
+        return !player.hasBlight(UpgradedHand.ID) && CheckAffinity(Affinity.General) && JUtils.Find(Affinity.Basic(), a -> CombatStats.Affinities.GetPowerAmount((Affinity) a) > secondaryValue) != null;
     }
 
     public static class MS06ZakuIIPower extends AnimatorPower implements OnReloadPreDiscardSubscriber

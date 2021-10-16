@@ -24,6 +24,7 @@ public class HatsuneMiku extends AnimatorCard
         SetHarmonic(true);
 
         SetAffinity_Light(2);
+        SetAffinity_Silver(1);
     }
 
     @Override

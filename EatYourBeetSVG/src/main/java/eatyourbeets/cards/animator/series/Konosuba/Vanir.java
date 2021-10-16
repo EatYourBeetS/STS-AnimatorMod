@@ -25,10 +25,11 @@ public class Vanir extends AnimatorCard
         super(DATA);
 
         Initialize(12, 0, 3);
-        SetUpgrade(1, 0, -1);
+        SetUpgrade(3, 0, -1);
 
-        SetAffinity_Water(0, 0, 1);
-        SetAffinity_Star(1, 1, 0);
+        SetAffinity_Dark();
+        SetAffinity_Earth();
+        SetAffinity_Mind();
     }
 
     @Override

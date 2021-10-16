@@ -24,10 +24,10 @@ public class Mitsurugi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 1, 4);
-        SetUpgrade(2, 0, 0, 0);
+        Initialize(8, 0);
+        SetUpgrade(3, 0);
 
-        SetAffinity_Fire(2, 0, 1);
+        SetAffinity_Fire();
     }
 
     @Override
@@ -50,18 +50,8 @@ public class Mitsurugi extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.GainBlock(secondaryValue);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RaiseFireLevel(magicNumber, upgraded);
-
         if (GameUtilities.IsAttacking(m.intent))
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);

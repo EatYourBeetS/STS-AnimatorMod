@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -12,55 +12,44 @@ import eatyourbeets.utilities.JUtils;
 public class Lean extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lean.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Lean()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 2, 15);
+        SetUpgrade(0,0,1);
 
-        SetAffinity_Water(1);
-        SetAffinity_Air(1);
-
-        SetAffinityRequirement(Affinity.Water, 3);
-        SetAffinityRequirement(Affinity.Air, 3);
+        SetAffinity_Fire();
+        SetAffinity_Air();
+        SetAffinity_Thunder();
 
         SetExhaust(true);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        secondaryValue = magicNumber * JUtils.Count(player.hand.group, this::WouldSynergize);
-        isSecondaryValueModified = secondaryValue > baseSecondaryValue;
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.GainSupportDamage(secondaryValue);
-        if (CheckAffinity(Affinity.Water)) {
-            GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
+        int supportDamageAmount = 0;
+
+        for (AbstractCard c : p.hand.group)
+        {
+            if (GameUtilities.HasAffinity(c, Affinity.Fire) || GameUtilities.HasAffinity(c, Affinity.Air) || GameUtilities.HasAffinity(c, Affinity.Thunder))
+            {
+                supportDamageAmount += magicNumber;
+            }
         }
-        if (CheckAffinity(Affinity.Air)) {
-            GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
-        }
+
+        GameActions.Bottom.StackPower(new SupportDamagePower(p, supportDamageAmount))
+        .AddCallback(power ->
+        {
+            SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
+            if (supportDamage != null && supportDamage.amount > secondaryValue)
+            {
+                GameActions.Bottom.ChannelRandomCommonOrb(rng);
+            }
+        });
     }
 }

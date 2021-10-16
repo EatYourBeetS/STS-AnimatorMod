@@ -23,10 +23,10 @@ public class YunYun extends AnimatorCard
         super(DATA);
 
         Initialize(8, 0);
-        SetUpgrade(4, 0);
+        SetUpgrade(3, 0);
 
-        SetAffinity_Water(2, 0, 1);
-        SetAffinity_Light(0, 0, 1);
+        SetAffinity_Water();
+        SetAffinity_Thunder();
     }
 
     @Override
@@ -68,8 +68,6 @@ public class YunYun extends AnimatorCard
         }
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
-
-        GameActions.Bottom.Cycle(name, costForTurn);
     }
 
     public void RefreshCost()

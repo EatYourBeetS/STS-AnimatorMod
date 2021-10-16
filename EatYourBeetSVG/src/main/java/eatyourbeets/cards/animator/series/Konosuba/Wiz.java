@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Wiz extends AnimatorCard
@@ -23,6 +22,9 @@ public class Wiz extends AnimatorCard
         SetAffinity_Dark();
         SetAffinity_Mind();
 
+        SetAffinityRequirement(Affinity.Dark, 20);
+        SetAffinityRequirement(Affinity.Mind, 20);
+
         SetPurge(true);
     }
 
@@ -31,10 +33,7 @@ public class Wiz extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        if (CombatStats.CanActivateLimited(cardID))
-        {
-            SetPurge(!(CombatStats.Affinities.WouldSynergize(this)));
-        }
+        SetPurge(CheckAffinity(Affinity.Dark) || CheckAffinity(Affinity.Mind));
     }
 
     @Override

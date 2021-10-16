@@ -1958,19 +1958,18 @@
 		},
 		"animator:Lean":
 		{
-			"DESCRIPTION": "Gain !M! [Support Damage] for every {Synergic} card in hand (!S!). || !A! <A> and/or !A! <W>: Channel a random {Common Orb}.",
+			"DESCRIPTION": "Gain !M! [Support Damage] for each <F>, <A>, or <T> card in hand. || !S! or more [Support Damage]: Channel a random {Common Orb}.",
 			"NAME": "Lean"
 		},
 		"animator:Megumin":
 		{
-			"DESCRIPTION": "{~Unique}. || In !S! turns: Attack with +!M! damage for each Synergy made since playing. ** <LIM>. If 5+ Synergies were made: Upgrade permanently.",
-			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), deal #b{1} [~Elemental] damage to ALL enemies. When you Synergize: Increase this damage by #b{2}.{3}", "NL If you make #b{0} more #ySynergies: Permanently upgrade this card."],
+			"DESCRIPTION": "{~Unique}. || Limited: Upgrade this card permanently.",
 			"NAME": "Megumin"
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "Gain|Boost [F]. Can only ** deal damage if the ** enemy is attacking. || On Exhaust: ** Gain !S! [Block].",
-			"NAME": "Mitsurugi"
+			"DESCRIPTION": "Can only deal damage if the enemy is attacking.",
+			"NAME": "Mitsurugi Kyouya"
 		},
 		"animator:Vanir":
 		{
@@ -1979,19 +1978,17 @@
 		},
 		"animator:Verdia":
 		{
-			"DESCRIPTION": "!A! <F>: This gains +1 [F] Scaling. ** !A! <D>: This gains +1 [D] Scaling. || On Exhaust: Give this card's Scaling to a {Same-Series} card in hand.",
-			"EXTENDED_DESCRIPTION": ["Select card to buff."],
-			"NAME": "Verdia",
-			"UPGRADE_DESCRIPTION": "!A! <F>: This gains +1 [F] Scaling. ** !A! <D>: This gains +1 [D] Scaling. || On Exhaust: Give this card's Scaling to a {Same-Series} card anywhere."
+			"DESCRIPTION": "Gain !M! additional Block for each Low-Cost card in your discard pile.",
+			"NAME": "Beldia"
 		},
 		"animator:Wiz":
 		{
-			"DESCRIPTION": "Exhaust 1 card. Choose a ** card in Exhaust pile and ** add a copy to your hand. || <LIM>. Synergy: This ** card will not Purge.",
+			"DESCRIPTION": "Exhaust a card. Choose a card in Exhaust pile and add a copy to your hand. || !A! [D] or [M]: This card will not Purge.",
 			"NAME": "Wiz"
 		},
 		"animator:YunYun":
 		{
-			"DESCRIPTION": "Costs 1 more for each ** other {Attack} in hand. || Cycle cards equal to [EN] spent. || <LIM>. When Drawn: ** {Channel} 1 [Lightning].",
+			"DESCRIPTION": "Costs 1 more for each other {Attack} in hand. || <LIM>. When Drawn: {Channel} 1 [Lightning].",
 			"NAME": "YunYun"
 		}
 	},
@@ -2956,7 +2953,7 @@
 		},
 		"animator:Chomusuke":
 		{
-			"DESCRIPTION": "<DRW>. || <SLM>. On Exhaust: ** Return this card to your hand and ** gain [EN] [EN]",
+			"DESCRIPTION": "Draw !M! card(s) and Gain [EN][EN].  Next turn: Draw !S! cards and Gain [EN]. || <SLM>. On Exhaust: Return this card to your hand and obtain a random Low-Cost Uncommon or Rare.",
 			"NAME": "Chomusuke"
 		},
 		"animator:Cthulhu":

@@ -24,7 +24,7 @@ public class Dust extends AnimatorCard
 
         SetAffinity_Fire();
 
-        SetAffinityRequirement(Affinity.Fire, 6);
+        SetAffinityRequirement(Affinity.Fire, 8);
     }
 
     @Override

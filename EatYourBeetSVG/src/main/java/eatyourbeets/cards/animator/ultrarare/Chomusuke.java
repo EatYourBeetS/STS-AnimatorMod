@@ -1,10 +1,13 @@
 package eatyourbeets.cards.animator.ultrarare;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Chomusuke extends AnimatorCard_UltraRare
 {
@@ -17,10 +20,10 @@ public class Chomusuke extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0,0,1,1);
 
-        SetAffinity_Light(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Star(1);
     }
 
     @Override
@@ -36,15 +39,27 @@ public class Chomusuke extends AnimatorCard_UltraRare
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainEnergy(2);
             GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
             .ShowEffect(true, true);
+
+            RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool((card) -> {
+                if (!(card instanceof AnimatorCard))
+                {
+                    return false;
+                }
+                return GameUtilities.IsLowCost(card) && (card.rarity == CardRarity.UNCOMMON || card.rarity == CardRarity.RARE);
+            });
+
+            GameActions.Bottom.MakeCardInHand(cards.Retrieve(rng).makeCopy());
         }
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(1);
+        GameActions.Bottom.Draw(magicNumber);
+        GameActions.Bottom.GainEnergy(2);
+        GameActions.Bottom.DrawNextTurn(secondaryValue);
+        GameActions.Bottom.GainEnergyNextTurn(1);
     }
 }

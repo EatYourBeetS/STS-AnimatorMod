@@ -246,6 +246,12 @@
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
+	"Full Hand":
+	{
+		"DESCRIPTION": "Five or more cards in hand.",
+		"NAMES": ["full hand"],
+		"PROPER_NAME": "Full Hand"
+	},
 	"Guard Stance":
 	{
 		"DESCRIPTION": "Upon entering Guard Stance: ALL characters gain 10 Block.  You attacks deal triple damage.  Start of Next Turn: Exit this Stance.",

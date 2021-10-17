@@ -42,6 +42,7 @@ public class CardTooltips
     public EYBCardTooltip Dexterity = FindByID("Dexterity");
     public EYBCardTooltip Focus = FindByID("Focus");
 
+    public EYBCardTooltip FullHand = FindByID("Full Hand");
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
     public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");

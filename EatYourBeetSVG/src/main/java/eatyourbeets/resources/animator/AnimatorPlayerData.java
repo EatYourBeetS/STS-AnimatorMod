@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
@@ -231,12 +232,11 @@ public class AnimatorPlayerData
         add.Invoke(new Loadout_Overlord(), 4);
         add.Invoke(new Loadout_NoGameNoLife(), 5);
         add.Invoke(new Loadout_Fate(), 5);
-        //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
+        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_OnePunchMan(), 6);
         add.Invoke(new Loadout_TenseiSlime(), 6);
         add.Invoke(new Loadout_MadokaMagica(), 7);
         add.Invoke(new Loadout_LogHorizon(), 7);
-        add.Invoke(new Loadout_GenshinImpact(), 7);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
@@ -269,6 +269,8 @@ public class AnimatorPlayerData
 
             BaseMod.addUnlockBundle(bundle, GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
         }
+
+        AddThemeAndSourceMaterial(BaseLoadouts);
     }
 
     private void AddBetaLoadouts()
@@ -283,13 +285,31 @@ public class AnimatorPlayerData
             loadout.AddStarterCards();
         };
 
-        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
         add.Invoke(new Loadout_Rewrite(), 7);
         add.Invoke(new Loadout_AngelBeats(), 7);
         add.Invoke(new Loadout_TouhouProject(), 7);
         add.Invoke(new Loadout_RozenMaiden(), 7);
         add.Invoke(new Loadout_Bleach(), 7);
         add.Invoke(new Loadout_DateALive(), 7);
+        add.Invoke(new Loadout_GenshinImpact(), 7);
+
+        AddThemeAndSourceMaterial(BetaLoadouts);
+    }
+
+    public void AddThemeAndSourceMaterial(ArrayList<AnimatorLoadout> loadouts)
+    {
+        Map<String, String[]> seriesDesc = GR.Animator.ProcessSeriesStringsJson(true);
+
+        for (AnimatorLoadout loadout : loadouts)
+        {
+            if (seriesDesc.containsKey(loadout.Name))
+            {
+                String[] seriesInfo = seriesDesc.get(loadout.Name);
+
+                loadout.Theme = seriesInfo[0];
+                loadout.SourceMaterial = seriesInfo[1];
+            }
+        }
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

@@ -416,6 +416,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected void UpdateStartingDeckText()
     {
         String text = "Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y");
+
         if (GR.Animator.Config.DisplayBetaSeries.Get() && GR.Animator.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";

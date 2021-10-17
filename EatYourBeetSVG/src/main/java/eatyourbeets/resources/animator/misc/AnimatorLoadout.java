@@ -120,6 +120,8 @@ public abstract class AnimatorLoadout
     public int ID;
     public int Preset;
     public String Name;
+    public String Theme;
+    public String SourceMaterial;
     public CardSeries Series;
     public boolean IsBeta;
 

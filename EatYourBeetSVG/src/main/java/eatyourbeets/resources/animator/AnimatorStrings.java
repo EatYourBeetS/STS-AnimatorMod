@@ -73,6 +73,24 @@ public class AnimatorStrings
         }
     }
 
+    public class SeriesNames
+    {
+        private final UIStrings Strings = GetUIStrings("SeriesDesc");
+
+        public final String Series = Strings.EXTRA_TEXT[0];
+        public final String RandomSeries = Strings.EXTRA_TEXT[1];
+        public final String Colorless = Strings.EXTRA_TEXT[2];
+    }
+
+    public class SeriesCredits
+    {
+        private final UIStrings Strings = GetUIStrings("SeriesDesc");
+
+        public final String Series = Strings.EXTRA_TEXT[0];
+        public final String RandomSeries = Strings.EXTRA_TEXT[1];
+        public final String Colorless = Strings.EXTRA_TEXT[2];
+    }
+
     public class SeriesUI
     {
         private final UIStrings Strings = GetUIStrings("SeriesUI");
@@ -156,6 +174,8 @@ public class AnimatorStrings
         public final String PickupBonusHeader = Strings.TEXT[4];
         public final String PickupBonusBody = Strings.TEXT[5];
         public final String RightClickToPreview = Strings.TEXT[6];
+        public final String ThemeHeader = Strings.TEXT[7];
+        public final String SourceMaterialHeader = Strings.TEXT[8];
 
         public final String ContainsNCards(int cardCount)
         {
@@ -164,12 +184,14 @@ public class AnimatorStrings
 
         public final String ContainsNCards_Promoted(int cardCount)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1];
+            return ContainsNCards(cardCount);
+            //return ContainsNCards(cardCount, theme, sourceMaterial) + " NL " + Strings.TEXT[1];
         }
 
         public final String ContainsNCards_Beta(int cardCount)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2];
+            return ContainsNCards(cardCount);
+            //return ContainsNCards(cardCount, theme, sourceMaterial) + " NL " + Strings.TEXT[2];
         }
     }
 

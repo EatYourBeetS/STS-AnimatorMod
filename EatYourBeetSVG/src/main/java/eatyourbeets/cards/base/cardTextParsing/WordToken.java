@@ -183,7 +183,7 @@ public class WordToken extends CTToken
             {
                 coloredString.color.a = 0.6f;
             }
-            else if (GR.Tooltips.FullHand.Is(tooltip) && (AbstractDungeon.player.hand.size() < 5))
+            else if (GR.Tooltips.FullHand.Is(tooltip) && (AbstractDungeon.player.hand.size() < 6))
             {
                 coloredString.color.a = 0.6f;
             }

@@ -248,7 +248,7 @@
 	},
 	"Full Hand":
 	{
-		"DESCRIPTION": "Five or more cards in hand.",
+		"DESCRIPTION": "Six or more cards in hand prior to playing this card.",
 		"NAMES": ["full hand"],
 		"PROPER_NAME": "Full Hand"
 	},

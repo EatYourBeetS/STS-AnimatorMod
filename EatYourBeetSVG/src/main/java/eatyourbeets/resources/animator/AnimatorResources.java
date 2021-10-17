@@ -83,7 +83,8 @@ public class AnimatorResources extends AbstractResources
         LoadCustomStrings(CharacterStrings.class);
 
         String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
-        LoadGroupedCardStrings(ProcessJson(json, true));
+        LoadGroupedCardStrings(ProcessCardStringsShortcutsJson(json, true));
+        ProcessSeriesStringsJson(true);
 
         if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
@@ -91,7 +92,7 @@ public class AnimatorResources extends AbstractResources
             if (file.exists())
             {
                 String json2 = file.readString(StandardCharsets.UTF_8.name());
-                LoadGroupedCardStrings(ProcessJson(json2, false));
+                LoadGroupedCardStrings(ProcessCardStringsShortcutsJson(json2, false));
             }
         }
 
@@ -187,7 +188,7 @@ public class AnimatorResources extends AbstractResources
         AnimatorImages.PreloadResources();
     }
 
-    public String ProcessJson(String originalString, boolean useFallback)
+    public String ProcessCardStringsShortcutsJson(String originalString, boolean useFallback)
     {
         final String path = "CardStringsShortcuts.json";
         final FileHandle file = useFallback ? GetFallbackFile(path) : GetFile(Settings.language, path);
@@ -205,5 +206,23 @@ public class AnimatorResources extends AbstractResources
         String[] replacement = items.values().toArray(new String[size]);
 
         return StringUtils.replaceEach(originalString, shortcuts, replacement);
+    }
+
+    public Map<String, String[]> ProcessSeriesStringsJson(boolean useFallback)
+    {
+        final String path = "SeriesStrings.json";
+        final FileHandle file = useFallback ? GetFallbackFile(path) : GetFile(Settings.language, path);
+
+        if (!file.exists())
+        {
+            return null;
+        }
+
+        String shortcutsJson = file.readString(String.valueOf(StandardCharsets.UTF_8));
+        return new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String[]>>(){}.getType());
+
+       /* int size = items.size();
+        String[] series = items.keySet().toArray(new String[size]);
+        AbstractMap<String, String[]> seriesDesc = (AbstractMap) items.values();*/
     }
 }

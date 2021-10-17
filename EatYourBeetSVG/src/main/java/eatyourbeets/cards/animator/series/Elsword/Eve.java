@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -36,20 +37,20 @@ public class Eve extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-        .AddCallback(orbCores ->
-        {
-            if (orbCores != null && orbCores.size() > 0)
-            {
-                for (AbstractCard c : orbCores)
-                {
-                    c.applyPowers();
-                    c.use(player, null);
-                }
-            }
-        }));
+        for (int i=0; i<magicNumber; i++) {
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                    .AddCallback(orbCores ->
+                    {
+                        if (orbCores != null && orbCores.size() > 0) {
+                            for (AbstractCard c : orbCores) {
+                                c.applyPowers();
+                                c.use(player, null);
+                            }
+                        }
+                    }));
+        }
 
-        GameActions.Bottom.StackPower(new EvePower(p, magicNumber, this));
+        GameActions.Bottom.StackPower(new EvePower(p, secondaryValue, this));
     }
 
     public static class EvePower extends AnimatorPower
@@ -70,7 +71,7 @@ public class Eve extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            GameActions.Bottom.DealDamageToRandomEnemy(eve, AbstractGameAction.AttackEffect.NONE)
+            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
             .SetDamageEffect(enemy ->
             {
                 CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");

@@ -1393,7 +1393,7 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "Play !M! {Orb Core}(s). || Whenever you play a card: Deal !S! damage to a random enemy.",
+			"DESCRIPTION": "Play !M! {Orb Core}. || Whenever you play a card: Deal !S! damage to a random enemy.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a card: Deal #b{0} damage to a random enemy."],
 			"NAME": "Eve"
 		},
@@ -1420,7 +1420,7 @@
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Obtain !M! {Throwing Knive}(s). || On Discard: Gain !S! {Blur}.",
+			"DESCRIPTION": "Obtain !M! {Throwing Knive}. || On Discard: Gain !S! {Blur}.",
 			"NAME": "Rena"
 		}
 	},
@@ -3008,7 +3008,7 @@
 		},
 		"animator:Rose":
 		{
-			"DESCRIPTION": "If you have 2 or more {Common Orb}s: <DRW-M>. Reload: Attack 1 additional time. || If Fatal: Evoke ALL orbs !S! times.",
+			"DESCRIPTION": "If you have 2 or more {Common Orbs}: <DRW-M>. || Reload: Attack 1 additional time. || If Fatal: Evoke ALL orbs !S! times.",
 			"NAME": "Rose"
 		},
 		"animator:SeriousSaitama":

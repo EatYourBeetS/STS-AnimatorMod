@@ -19,7 +19,7 @@ public class Raven extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 1);
+        Initialize(8, 0, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Earth();

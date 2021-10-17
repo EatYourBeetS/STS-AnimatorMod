@@ -1388,39 +1388,39 @@
 		},
 		"animator:Elsword":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). || If the enemy ** has [Burning]: Motivate 1. ** Otherwise: Channel 1 [Fire].",
+			"DESCRIPTION": "Channel !M! [Fire]. || <LIM>. When drawn: Enter <CS>.",
 			"NAME": "Elsword"
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal damage equal to <Y> to a random enemy !M! times. || Once per turn, pay 2 [EN]: ** Play 1 of 3 {<Y> Token}.",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [EN] to play #b1 of #b3 [A-Gen] #yTokens. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "Play !M! {Orb Core}(s). || Whenever you play a card: Deal !S! damage to a random enemy.",
+			"EXTENDED_DESCRIPTION": ["Whenever you play a card: Deal #b{0} damage to a random enemy."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
 		{
-			"DESCRIPTION": "Gain !S! [Enchanted Armor]. || At the start of each ** turn: Apply 1 [Constricted] to ** ALL characters.",
-			"EXTENDED_DESCRIPTION": ["At the start of each turn, apply #b{0} #yConstricted to ALL characters."],
+			"DESCRIPTION": "Gain !M! [Enchanted Armor].  || Start of Turn: Apply !S! [Constricted] to ALL characters.",
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Apply #b{0} #yConstricted to ALL characters."],
 			"NAME": "Laby"
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || <IS> or <CS>: Exit your stance to give every copy of {Ciel} +!M! [Block].",
+			"DESCRIPTION": "Channel 1 [Dark] and [Frost].",
 			"NAME": "Lu"
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [D]. Apply !M! [Blinded]. || Less than !A! <D>: Take !S! [Delayed Damage].",
+			"DESCRIPTION": "!A! [D]: Gain !M! {Double Tap}. || Gain !S! [D] for each <D> cards in exhaust.",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 2 [Vulnerable]. || Next turn: <DRW>.",
+			"DESCRIPTION": "If the enemy is attacking: Apply !M! [Weak]. Otherwise: Apply !M! [Vulnerable].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
 		{
-			"DESCRIPTION": "Evoke your last [Air] to Gain !M! [A]. Otherwise, Channel [Air]. || <slm>. !A! <A>. On Discard: Gain !S! [Blur].",
+			"DESCRIPTION": "Obtain !M! {Throwing Knive}(s). || On Discard: Gain !S! {Blur}.",
 			"NAME": "Rena"
 		}
 	},
@@ -3008,7 +3008,7 @@
 		},
 		"animator:Rose":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Attack 1 additional time. || If Fatal, deal !S! damage ** to ALL enemies.",
+			"DESCRIPTION": "If you have 2 or more {Common Orb}s: <DRW-M>. Reload: Attack 1 additional time. || If Fatal: Evoke ALL orbs !S! times.",
 			"NAME": "Rose"
 		},
 		"animator:SeriousSaitama":

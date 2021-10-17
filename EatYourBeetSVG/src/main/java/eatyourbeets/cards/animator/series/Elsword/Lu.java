@@ -1,85 +1,33 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.effects.VFX;
-import eatyourbeets.stances.CorruptionStance;
-import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Lu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lu.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing)
-            .SetMaxCopies(2)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Ciel(), false));
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Lu()
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(5, 0, 1);
+        SetUpgrade(4,0);
 
-        SetAffinity_Fire(1, 0, 1);
-        SetAffinity_Water(1, 0, 1);
-        SetAffinity_Dark(2);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetAttackTarget(EYBCardTarget.ALL);
-        SetMultiDamage(true);
-        upgradedDamage = true;
+        SetAffinity_Water(1);
+        SetAffinity_Dark(1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (isMultiDamage)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
-            .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE)));
-        }
-        else
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-            .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE)).duration);
-        }
-
-        if (damage >= 20)
-        {
-            GameActions.Bottom.Add(new ShakeScreenAction(0.8f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-        }
-
         GameActions.Bottom.ChannelOrb(new Frost());
         GameActions.Bottom.ChannelOrb(new Dark());
-
-        if (IntellectStance.IsActive() || CorruptionStance.IsActive()) {
-            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
-                    .AddCallback(info, (info2, stance) ->
-                    {
-                        if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID))
-                        {
-                            GameActions.Bottom.ModifyAllCopies(Ciel.DATA.ID)
-                                    .AddCallback(c ->
-                                    {
-                                        GameUtilities.IncreaseBlock(c, magicNumber, false);
-                                        c.flash();
-                                    });
-                        }
-                    });
-        }
     }
 }

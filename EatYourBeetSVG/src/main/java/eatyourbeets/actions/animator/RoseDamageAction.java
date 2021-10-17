@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.damage.DealDamage;
@@ -18,17 +19,19 @@ public class RoseDamageAction extends EYBAction
 {
     private final int damage;
     private final int times;
+    private final int evokeNumTimes;
     private final Rose rose;
 
     private AbstractGameAction action;
 
-    public RoseDamageAction(AbstractMonster enemy, Rose rose, int times, int damage)
+    public RoseDamageAction(AbstractMonster enemy, Rose rose, int times, int damage, int evokeNumTimes)
     {
         super(ActionType.DAMAGE, Settings.ACTION_DUR_FAST);
 
         this.damage = damage;
         this.rose = rose;
         this.times = times;
+        this.evokeNumTimes = evokeNumTimes;
 
         Initialize(player, enemy, damage);
     }
@@ -44,18 +47,14 @@ public class RoseDamageAction extends EYBAction
             {
                 if (GameUtilities.IsFatal(target, true))
                 {
-                    for (AbstractMonster m : GameUtilities.GetEnemies(true))
+                    for (AbstractOrb orb : player.orbs)
                     {
-                        Explosion(m.hb);
+                        GameActions.Bottom.EvokeOrb(evokeNumTimes);
                     }
-
-                    final int[] damage = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
-                    GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
-                    .SetVFX(true, false);
                 }
                 else if (times > 1)
                 {
-                    GameActions.Bottom.Add(new RoseDamageAction((AbstractMonster) target, rose, times - 1, damage));
+                    GameActions.Bottom.Add(new RoseDamageAction((AbstractMonster) target, rose, times - 1, damage, evokeNumTimes));
                 }
 
                 Complete();

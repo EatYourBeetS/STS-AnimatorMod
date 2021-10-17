@@ -1,22 +1,19 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
+import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.effects.SFX;
-import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -24,77 +21,48 @@ public class Eve extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Eve.class)
             .SetPower(3, CardRarity.RARE)
-            .SetMaxCopies(1)
-            .SetSeriesFromClassPackage()
-            .SetMultiformData(2)
-            .PostInitialize(data ->
-            {
-                for (EYBCardData d : AffinityToken.GetCards())
-                {
-                    data.AddPreview(d.CreateNewInstance(), false);
-                }
-            });
-    private static final int POWER_ENERGY_COST = 2;
-    private static final int CHOICES = 3;
+            .SetSeriesFromClassPackage();
 
     public Eve()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 1, 2 );
+        SetUpgrade(0,0,1, 1);
 
         SetAffinity_Cyber(2);
-
-        SetDelayed(true);
     }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
-    }
-
-    @Override
-    public int SetForm(Integer form, int timesUpgraded) {
-        if (timesUpgraded > 0) {
-            SetDelayed(form == 1);
-        }
-        return super.SetForm(form, timesUpgraded);
-    };
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
+        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+        .AddCallback(orbCores ->
+        {
+            if (orbCores != null && orbCores.size() > 0)
+            {
+                for (AbstractCard c : orbCores)
+                {
+                    c.applyPowers();
+                    c.use(player, null);
+                }
+            }
+        }));
+
+        GameActions.Bottom.StackPower(new EvePower(p, magicNumber, this));
     }
 
-    public static class EvePower extends AnimatorClickablePower
+    public static class EvePower extends AnimatorPower
     {
-        public EvePower(AbstractCreature owner, int amount)
-        {
-            super(owner, Eve.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+        AnimatorCard eve;
 
-            this.triggerCondition.SetOneUsePerPower(true);
+        public EvePower(AbstractCreature owner, int amount, AnimatorCard eve)
+        {
+            super(owner, Eve.DATA);
+
+            this.eve = eve;
 
             Initialize(amount);
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m)
-        {
-            super.OnUse(m);
-
-            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, CHOICES)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.PlayCopy(c,m);
-                }
-            }));
         }
 
         @Override
@@ -102,28 +70,14 @@ public class Eve extends AnimatorCard
         {
             super.onAfterCardPlayed(usedCard);
 
-            if (CombatStats.Affinities.IsSynergizing(usedCard))
+            GameActions.Bottom.DealDamageToRandomEnemy(eve, AbstractGameAction.AttackEffect.NONE)
+            .SetDamageEffect(enemy ->
             {
-                final int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
-                if (damage > 0)
-                {
-                    //GameEffects.Queue.BorderFlash(Color.SKY);
-                    for (int i = 0; i < amount; i++)
-                    {
-                        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-                        .SetOptions(true, false)
-                        .SetDamageEffect(enemy ->
-                        {
-                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
-                            GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
-                            return 0f;
-                        });
-                    }
-
-                    this.flash();
-                    this.updateDescription();
-                }
-            }
+                CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
+                GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, owner.hb.cX, owner.hb.cY));
+                GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
+                return 0.2f;
+            });
         }
     }
 }

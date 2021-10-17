@@ -18,23 +18,31 @@ public class Rose extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(10, 0, 2, 40);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(40, 0, 2, 10);
+        SetUpgrade(10, 0, 2, 0);
 
-        SetAffinity_Fire(2);
-        SetAffinity_Earth(1);
-        SetAffinity_Light(1);
+        SetAffinity_Star(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetAffinity_Star(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(magicNumber);
+        if (GameUtilities.GetCommonOrbCount() > 1)
+        {
+            GameActions.Bottom.Draw(magicNumber);
+        }
+
         GameActions.Bottom.Reload(name, m, (enemy, cards) ->
         {
             if (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
             {
-                GameActions.Bottom.Add(new RoseDamageAction(enemy, this, cards.size() + 1, damage));
+                GameActions.Bottom.Add(new RoseDamageAction(enemy, this, cards.size() + 1, damage, secondaryValue));
             }
         });
     }

@@ -2,20 +2,17 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.subscribers.OnRawDamageReceived;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
 
 import java.text.DecimalFormat;
 
-public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageReceived
+public class EnchantedArmorPower extends AnimatorPower
 {
     private static final DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 
     public final boolean reactive;
-    public int attacksReceived;
 
     public static float CalculatePercentage(int amount)
     {
@@ -34,25 +31,6 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
         this.reactive = reactive;
 
         Initialize(resistance);
-    }
-
-    @Override
-    public void onInitialApplication()
-    {
-        super.onInitialApplication();
-
-        if (!reactive)
-        {
-            CombatStats.onRawDamageReceived.Subscribe(this);
-        }
-    }
-
-    @Override
-    public void onRemove()
-    {
-        super.onRemove();
-
-        CombatStats.onRawDamageReceived.Unsubscribe(this);
     }
 
     @Override
@@ -88,17 +66,6 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
     }
 
     @Override
-    public int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage)
-    {
-        if (!reactive && target == owner && info.type == DamageInfo.DamageType.NORMAL)
-        {
-            attacksReceived += 1;
-        }
-
-        return damage;
-    }
-
-    @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
         if (reactive && info.type == DamageInfo.DamageType.NORMAL && info.owner != null)
@@ -107,18 +74,6 @@ public class EnchantedArmorPower extends AnimatorPower implements OnRawDamageRec
         }
 
         return super.onAttackedToChangeDamage(info, damageAmount);
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        if (!reactive && attacksReceived > 0)
-        {
-            ReducePower(Math.min(10, attacksReceived * 2));
-            attacksReceived = 0;
-        }
     }
 
     private String GetExampleDamage(int value)

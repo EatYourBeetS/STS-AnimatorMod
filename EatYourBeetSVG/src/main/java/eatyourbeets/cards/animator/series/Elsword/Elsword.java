@@ -3,12 +3,13 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Elsword extends AnimatorCard
@@ -21,13 +22,22 @@ public class Elsword extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 2);
-        SetUpgrade(3,  0, 0);
+        Initialize(11, 0, 1);
+        SetUpgrade(3,  0, 1);
 
-        SetAffinity_Fire(2, 0, 2);
-        SetAffinity_Light(1);
+        SetAffinity_Fire(2);
 
         SetProtagonist(true);
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        if (CombatStats.TryActivateLimited(this.cardID)) {
+            GameActions.Bottom.ChangeStance(CalmStance.STANCE_ID);
+        }
     }
 
     @Override
@@ -35,19 +45,6 @@ public class Elsword extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).SetVFXColor(Color.RED);
 
-        if (m.hasPower(BurningPower.POWER_ID))
-        {
-            GameActions.Bottom.Motivate();
-        }
-        else
-        {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.Cycle(name, magicNumber);
+        GameActions.Bottom.ChannelOrb(new Fire());
     }
 }

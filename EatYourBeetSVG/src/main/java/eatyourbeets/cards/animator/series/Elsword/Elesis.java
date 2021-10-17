@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.Elsword;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import eatyourbeets.cards.animator.special.OrbCore_Dark;
@@ -122,7 +123,9 @@ public class Elesis extends AnimatorCard
                     GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
                 }
 
-                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetCommonOrbCount() * magicNumber).SkipIfZero(true);
+                for (AbstractCreature monster : GameUtilities.GetEnemies(true)) {
+                    GameActions.Bottom.ApplyBurning(p, monster, GameUtilities.GetCommonOrbCount() * secondaryValue).SkipIfZero(true);
+                }
                 break;
             }
 

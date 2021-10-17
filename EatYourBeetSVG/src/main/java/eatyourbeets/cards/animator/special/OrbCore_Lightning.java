@@ -8,14 +8,14 @@ import eatyourbeets.utilities.GameActions;
 public class OrbCore_Lightning extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Lightning.class, GR.Tooltips.Lightning)
-            .SetPower(0, CardRarity.SPECIAL)
+            .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Lightning()
     {
         super(DATA, Lightning.ORB_ID);
 
-        SetAffinity_Light(2);
+        SetAffinity_Thunder(2);
     }
 
     public void ChannelOrb()

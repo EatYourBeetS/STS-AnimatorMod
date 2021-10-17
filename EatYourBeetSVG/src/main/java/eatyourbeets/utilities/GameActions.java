@@ -606,7 +606,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaiseMindLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(MindLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
 
@@ -658,7 +658,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaisePoisonLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(PoisonLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower RaiseSteelLevel(int amount)
@@ -668,7 +668,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaiseSteelLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(SteelLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower RaiseThunderLevel(int amount)
@@ -678,7 +678,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaiseThunderLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(ThunderLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower RaiseNatureLevel(int amount)
@@ -688,7 +688,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaiseNatureLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(NatureLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyAffinityPower RaiseCyberLevel(int amount)
@@ -698,7 +698,7 @@ public final class GameActions
 
     public ApplyAffinityPower RaiseCyberLevel(int amount, boolean retain)
     {
-        return StackAffinityPower(EarthLevelPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(CyberLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
     public GainGold GainGold(int amount)

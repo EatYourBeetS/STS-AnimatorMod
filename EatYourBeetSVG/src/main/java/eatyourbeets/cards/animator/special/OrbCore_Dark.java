@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 public class OrbCore_Dark extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Dark.class, GR.Tooltips.Dark)
-            .SetPower(0, CardRarity.SPECIAL)
+            .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Dark()

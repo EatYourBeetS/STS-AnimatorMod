@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
@@ -30,6 +31,8 @@ public class Dust extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+
         if (CheckAffinity(Affinity.Fire)) {
             GameActions.Bottom.FetchFromPile(name, magicNumber, p.discardPile)
             .SetFilter(GameUtilities::IsLowCost);

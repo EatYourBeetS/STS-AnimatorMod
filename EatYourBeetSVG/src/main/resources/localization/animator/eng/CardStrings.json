@@ -1362,12 +1362,12 @@
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "Draw !M! for each {Common Orb}, then discard !S!.",
+			"DESCRIPTION": "Attack once for each {Common Orb}. || On Discard or Exhaust: Gain !M! [F] and [M] for each {Common Orb}.",
 			"NAME": "Aisha"
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "<DRW> for every ** {Debuff} on the enemy. ** Discard 1 card. || Synergy: Gain [A].",
+			"DESCRIPTION": "Draw a card for each {Common Orb}, then discard !S!.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":

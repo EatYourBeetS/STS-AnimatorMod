@@ -8,7 +8,7 @@ import eatyourbeets.utilities.GameActions;
 public class OrbCore_Water extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Water.class, GR.Tooltips.Water)
-            .SetPower(2, CardRarity.SPECIAL)
+            .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Water()

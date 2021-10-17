@@ -258,8 +258,11 @@ public class Elesis extends AnimatorCard
             {
                 LoadImage("_Dark");
 
-                Initialize(11, 0, 2);
+                Initialize(18, 0, 2);
                 SetUpgrade(0, 0, -1);
+
+                SetInnate(true);
+                SetExhaust(true);
 
                 affinities.Clear();
                 SetAffinity_Light();

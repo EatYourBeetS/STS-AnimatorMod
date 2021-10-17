@@ -18,7 +18,7 @@ public class Rena extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 1, 2);
+        Initialize(0, 6, 1, 2);
         SetUpgrade(0, 3, 1, 0);
 
         SetAffinity_Nature(1);

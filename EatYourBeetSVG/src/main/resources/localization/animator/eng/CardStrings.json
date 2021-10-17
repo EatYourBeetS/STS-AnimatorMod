@@ -1410,7 +1410,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "!A! [D]: Gain !M! {Double Tap}. || Gain !S! [D] for each <D> cards in exhaust.",
+			"DESCRIPTION": "Gain !S! [D] for each <D> cards in exhaust. || !A! [D]: Gain !M! {Double Tap}.",
 			"NAME": "Noah"
 		},
 		"animator:Raven":

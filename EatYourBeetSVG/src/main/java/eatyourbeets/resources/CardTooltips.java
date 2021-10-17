@@ -92,6 +92,7 @@ public class CardTooltips
     public EYBCardTooltip TemporaryThorns = FindByID("Temporary Thorns");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Malleable = FindByID("Malleable");
+    public EYBCardTooltip DoubleTap = FindByID("Double Tap");
     public EYBCardTooltip Vigor = FindByID("Vigor");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
     public EYBCardTooltip Blur = FindByID("Blur");
@@ -308,6 +309,7 @@ public class CardTooltips
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Malleable, new MalleablePower(FakeCharacter.Instance, 0));
+        LoadFromPower(DoubleTap, new DoubleTapPower(FakeCharacter.Instance, 0));
         LoadFromPower(Vigor, new VigorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));

@@ -162,6 +162,12 @@
 		"NAMES": ["divinity stance"],
 		"PROPER_NAME": "Divinity Stance"
 	},
+	"Double Tap":
+	{
+		"DESCRIPTION": "Your next Attacks are played twice.",
+		"NAMES": ["double tap"],
+		"PROPER_NAME": "Double Tap"
+	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",

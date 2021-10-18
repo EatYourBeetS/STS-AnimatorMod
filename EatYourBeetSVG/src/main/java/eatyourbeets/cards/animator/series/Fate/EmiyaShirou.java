@@ -1,27 +1,18 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
-public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
+public class EmiyaShirou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(EmiyaShirou.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
     private Fire fireOrb;
 
@@ -29,11 +20,10 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
-        SetUpgrade(3, 0, 1);
+        Initialize(0, 5, 2);
+        SetUpgrade(0, 1, 1);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light();
 
         SetProtagonist(true);
     }
@@ -47,32 +37,27 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.GainBlock(block);
 
-        fireOrb = JUtils.SafeCast(GameUtilities.GetFirstOrb(Fire.ORB_ID),Fire.class);
-        if (fireOrb != null) {
-            fireOrb.IncreaseBasePassiveAmount(magicNumber);
-            fireOrb.IncreaseBaseEvokeAmount(magicNumber);
-        }
-        else {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
-
-        CombatStats.onAttack.Subscribe(this);
-
-        if (info.IsSynergizing) {
+        for (int i = 0; i < magicNumber; i++)
+        {
             GameActions.Bottom.Add(new RandomCardUpgrade());
         }
 
-    }
-
-    @Override
-    public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        for (AbstractOrb o: player.orbs) {
-            if (o == fireOrb) {
-                GameActions.Bottom.EvokeOrb(1, fireOrb);
+        boolean fullyUpgraded = true;
+        for (AbstractCard card : p.hand.group)
+        {
+            if (card != this && !card.upgraded && !GameUtilities.IsHindrance(card))
+            {
+                fullyUpgraded = false;
+                break;
             }
         }
-        CombatStats.onAttack.Unsubscribe(this);
+
+        if (fullyUpgraded)
+        {
+            GameActions.Bottom.FetchFromPile(name, 1, p.drawPile)
+                    .SetFilter(card -> GameUtilities.HasAffinity(card, Affinity.Light));
+        }
     }
 }

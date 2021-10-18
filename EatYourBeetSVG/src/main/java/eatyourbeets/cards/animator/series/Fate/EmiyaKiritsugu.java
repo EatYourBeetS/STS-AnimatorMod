@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -16,29 +15,18 @@ import eatyourbeets.utilities.WeightedList;
 public class EmiyaKiritsugu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(EmiyaKiritsugu.class)
-            .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data ->
-            {
-                data.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
-                data.AddPreview(AffinityToken.GetCard(Affinity.Dark), false);
-            });
-    public static final int CARD_CHOICE = 2;
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public EmiyaKiritsugu()
     {
         super(DATA);
 
-        Initialize(9, 7, 0, 2);
-        SetUpgrade(2, 2);
+        Initialize(10, 10, 2, 15);
+        SetUpgrade(0,0,0,15);
 
-        SetAffinity_Light(1, 1, 0);
-        SetAffinity_Dark(1, 1, 0);
-        SetAffinity_Air(0, 0, 3);
-        SetAffinity_Water(0, 0, 1);
-
-        SetExhaust(true);
-        SetRetainOnce(true);
+        SetAffinity_Light(2);
+        SetAffinity_Dark();
     }
 
     @Override
@@ -46,22 +34,22 @@ public class EmiyaKiritsugu extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetUnplayable(JUtils.Count(player.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON) < CARD_CHOICE);
+        SetUnplayable(JUtils.Count(player.drawPile.group, c -> GameUtilities.HasAffinity(c, Affinity.Light) || GameUtilities.HasAffinity(c, Affinity.Dark)) < magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final WeightedList<AbstractCard> uncommonCards = new WeightedList<>();
+        final WeightedList<AbstractCard> validCards = new WeightedList<>();
         for (AbstractCard c : p.drawPile.group)
         {
-            if (c.rarity == CardRarity.UNCOMMON)
+            if (GameUtilities.HasAffinity(c, Affinity.Light) || GameUtilities.HasAffinity(c, Affinity.Dark))
             {
-                uncommonCards.Add(c, (GameUtilities.IsHindrance(c) || (GameUtilities.GetAffinityLevel(c, Affinity.Star, true) > 0)) ? 1 : 10);
+                validCards.Add(c, (GameUtilities.IsHindrance(c) || (GameUtilities.GetAffinityLevel(c, Affinity.Star, true) > 0)) ? 1 : 10);
             }
         }
 
-        if (uncommonCards.Size() < CARD_CHOICE)
+        if (validCards.Size() < magicNumber)
         {
             return;
         }
@@ -72,13 +60,13 @@ public class EmiyaKiritsugu extends AnimatorCard
         .SetVFXColor(Color.GOLD);
 
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        final AbstractCard c1 = uncommonCards.Retrieve(rng, true);
+        final AbstractCard c1 = validCards.Retrieve(rng, true);
         AbstractCard c2;
         do
         {
-            c2 = uncommonCards.Retrieve(rng, true);
+            c2 = validCards.Retrieve(rng, true);
         }
-        while (c2.cardID.equals(c1.cardID) && uncommonCards.Size() > 0);
+        while (c2.cardID.equals(c1.cardID) && validCards.Size() > 0);
         group.group.add(c1);
         group.group.add(c2);
 
@@ -93,15 +81,11 @@ public class EmiyaKiritsugu extends AnimatorCard
                 {
                     if (a.GetLevel(Affinity.Light, true) > 0)
                     {
-                        GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Dark, false));
+                        GameActions.Bottom.RaiseDarkLevel(secondaryValue);
                     }
                     if (a.GetLevel(Affinity.Dark, true) > 0)
                     {
-                        GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Light, false));
-                    }
-                    if (a.GetLevel(Affinity.Water, true) > 0)
-                    {
-                        GameActions.Bottom.ApplyVulnerable(player, enemy, secondaryValue);
+                        GameActions.Bottom.RaiseLightLevel(secondaryValue);
                     }
                 }
             }

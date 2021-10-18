@@ -1428,38 +1428,38 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "<FS>: <DRW>. Otherwise, {Maintain} [F]. || On Exhaust: ** Play this card.",
+			"DESCRIPTION": "On Exhaust: Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
 		{
-			"DESCRIPTION": "At the end of turn: Deal !M! ** damage to every enemy for ** each {Debuff} they have. || On Synergy: Apply ** 1 [Vulnerable] to ALL enemies.",
+			"DESCRIPTION": "At the end of turn: Deal !M! damage to every enemy for each {Debuff} they have.",
 			"NAME": "Archer"
 		},
 		"animator:Assassin":
 		{
-			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** Cycle this card.",
+			"DESCRIPTION": "Can only be played if ALL cards in your hand have <L> or <D>. || If you play an {Attack}: Exhaust this card.",
 			"NAME": "Assassin"
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain !M! [F]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Block]. || !A! <F>: Enter <FS>.",
+			"DESCRIPTION": "You may exhaust a <F> or <D> card to enter <WS> and gain !M! Block.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! [Strength]. Gain !S! [Frail] and !M! [D]. Lose 1 [Endurance]. || Synergy: Channel 1 [Dark] and trigger it once.",
+			"DESCRIPTION": "Steal !M! Strength.  Gain !S! Frail.",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
 		{
-			"DESCRIPTION": "To play this card, Exhaust ** 1 of 2 {Uncommon} cards in ** your draw pile. If it is: ** <L> -> Obtain {<D> Token} ** <D> -> Obtain {<L> Token} ** <W> -> Apply !S! [Vulnerable]",
-			"NAME": "Emiya Kiritsugu"
+			"DESCRIPTION": "To play this card, Exhaust 1 of !M! <L> or <D> cards in your draw pile. || If it is: <L> -> Gain !S! [D] ** <D> -> Gain !S! [L].",
+			"NAME": "Kiritsugu Emiya"
 		},
 		"animator:EmiyaShirou":
 		{
-			"DESCRIPTION": "Give your first [Fire] +!M! [Focus] and Evoke it with your next Attack. Otherwise, Channel 1 [Fire]. || Synergy or Exhaust: Upgrade a card in hand.",
-			"NAME": "Emiya Shirou"
+			"DESCRIPTION": "Upgrade !M! cards in your hand. || If all cards are upgraded: Fetch a <L> card from your Draw pile.",
+			"NAME": "Shirou Emiya"
 		},
 		"animator:Gilgamesh":
 		{

@@ -39,12 +39,11 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 25);
+        Initialize(2, 0, 4, 40);
         SetUpgrade(1, 0);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Earth(2);
-        SetAffinity_Air(1);
+        SetAffinity_Light(2);
+        SetAffinity_Thunder();
 
         SetUnique(true, true);
         SetDelayed(true);

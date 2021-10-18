@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -21,21 +18,20 @@ import eatyourbeets.utilities.GameUtilities;
 public class Assassin extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Assassin.class)
-            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Piercing)
             .SetSeriesFromClassPackage();
-    public static final int DEBUFFS_COUNT = 3;
 
     public Assassin()
     {
         super(DATA);
 
-        Initialize(2, 0, DEBUFFS_COUNT);
-        SetUpgrade(2, 0);
+        Initialize(4, 0, 3);
+        SetUpgrade(1, 0);
 
         SetRetain(true);
 
-        SetAffinity_Air(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Poison();
+        SetAffinity_Dark();
     }
 
     @Override
@@ -43,8 +39,7 @@ public class Assassin extends AnimatorCard
     {
         if (c.type == CardType.ATTACK && player.hand.contains(this))
         {
-            GameActions.Bottom.MoveCard(this, player.hand, player.discardPile)
-            .AddCallback(() -> GameActions.Bottom.Draw(1));
+            GameActions.Bottom.Exhaust(this);
         }
     }
 
@@ -53,20 +48,15 @@ public class Assassin extends AnimatorCard
     {
         if (super.cardPlayable(m))
         {
-            if (m == null)
+            for (AbstractCard c : player.hand.group)
             {
-                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+                if (!GameUtilities.HasAffinity(c, Affinity.Light) && !(GameUtilities.HasAffinity(c, Affinity.Dark)))
                 {
-                    if (GameUtilities.GetDebuffsCount(enemy.powers) >= DEBUFFS_COUNT)
-                    {
-                        return true;
-                    }
+                    return false;
                 }
             }
-            else
-            {
-                return GameUtilities.GetDebuffsCount(m) >= DEBUFFS_COUNT;
-            }
+
+            return true;
         }
 
         return false;
@@ -75,20 +65,18 @@ public class Assassin extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(3);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 0));
-
+            .SetDamageEffect(e -> DamageEffect(e, 0));
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 1));
-
+                .SetDamageEffect(e -> DamageEffect(e, 1));
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 2));
+                .SetDamageEffect(e -> DamageEffect(e, 2));
     }
 
     private float DamageEffect(AbstractCreature e, int index)

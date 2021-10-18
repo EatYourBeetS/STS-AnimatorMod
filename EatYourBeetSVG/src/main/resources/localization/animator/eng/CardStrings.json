@@ -1443,7 +1443,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "You may exhaust a <F> or <D> card to enter <WS> and gain !M! Block.",
+			"DESCRIPTION": "You may exhaust a <F> or <D> card to enter <WS> and gain !M! [Block].",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -1458,7 +1458,7 @@
 		},
 		"animator:EmiyaShirou":
 		{
-			"DESCRIPTION": "Upgrade !M! cards in your hand. || If all cards are upgraded: Fetch a <L> card from your Draw pile.",
+			"DESCRIPTION": "Upgrade !M! cards in your hand. || If all cards are already upgraded: Instead fetch a <L> card from your Draw pile.",
 			"NAME": "Shirou Emiya"
 		},
 		"animator:Gilgamesh":

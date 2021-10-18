@@ -4,12 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.WrathStance;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Berserker extends AnimatorCard
 {
@@ -36,6 +38,7 @@ public class Berserker extends AnimatorCard
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)
+        .SetFilter(card -> GameUtilities.HasAffinity(card, Affinity.Fire) || GameUtilities.HasAffinity(card, Affinity.Dark))
         .SetOptions(true, true, true)
         .AddCallback(cards ->
         {

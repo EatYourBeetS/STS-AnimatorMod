@@ -32,9 +32,9 @@ public abstract class EYBClickablePower extends EYBPower
     private GameActionManager.Phase currentPhase;
     private Hitbox hb;
 
-    private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
+    private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic, String id)
     {
-        super(owner, cardData, relic, null);
+        super(owner, cardData, relic, id);
 
         priority = CombatStats.Instance.priority + 1;
         tooltip = new EYBCardTooltip(name, description);
@@ -47,28 +47,35 @@ public abstract class EYBClickablePower extends EYBPower
 
     public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount)
     {
-        this(owner, null, relic);
+        this(owner, null, relic, null);
 
         triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
-        this(owner, null, relic);
+        this(owner, null, relic, null);
 
         triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount)
     {
-        this(owner, cardData, null);
+        this(owner, cardData, null, null);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, String id, PowerTriggerConditionType type, int requiredAmount)
+    {
+        this(owner, null, null, id);
 
         triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
-        this(owner, cardData, null);
+        this(owner, cardData, null, null);
 
         triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
     }

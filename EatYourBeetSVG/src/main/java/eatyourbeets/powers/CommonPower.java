@@ -5,7 +5,7 @@ import eatyourbeets.resources.GR;
 
 public abstract class CommonPower extends EYBPower
 {
-    public static String CreateFullID(Class<? extends CommonPower> type)
+    public static String CreateFullID(Class<? extends EYBPower> type)
     {
         return GR.Common.CreateID(type.getSimpleName());
     }

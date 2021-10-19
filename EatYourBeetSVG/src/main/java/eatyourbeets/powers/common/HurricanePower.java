@@ -1,18 +1,23 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 
-public class HurricanePower extends CommonPower
+public class HurricanePower extends AnimatorClickablePower
 {
     public static final String POWER_ID = CreateFullID(HurricanePower.class);
     private static final int TRIGGER_MULTIPLIER = 2;
 
     public HurricanePower(AbstractCreature owner, int amount)
     {
-        super(owner, POWER_ID);
+        super(owner, POWER_ID, PowerTriggerConditionType.Energy, 1);
+
+        triggerCondition.SetUses(2, true, false);
+
         Initialize(amount);
     }
 
@@ -23,9 +28,8 @@ public class HurricanePower extends CommonPower
     }
 
     @Override
-    public void updateDescription()
+    public String GetUpdatedDescription()
     {
-        this.description = FormatDescription(0, (amount - 1) * TRIGGER_MULTIPLIER);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -33,6 +37,8 @@ public class HurricanePower extends CommonPower
         else {
             this.type = PowerType.DEBUFF;
         }
+
+        return this.description = FormatDescription(0, (amount - 1) * TRIGGER_MULTIPLIER);
     }
 
     @Override
@@ -54,11 +60,11 @@ public class HurricanePower extends CommonPower
     }
 
     @Override
-    public void atStartOfTurnPostDraw()
+    public void OnUse(AbstractMonster m)
     {
-        super.atStartOfTurnPostDraw();
+        super.OnUse(m);
 
-       GameActions.Bottom.ChannelRandomCommonOrb(rng).AddCallback(orbs -> {
+       GameActions.Bottom.ChannelRandomOrbs(1).AddCallback(orbs -> {
            if (orbs.size() > 0 && amount > 0)
            {
                AbstractOrb orb = orbs.get(0);

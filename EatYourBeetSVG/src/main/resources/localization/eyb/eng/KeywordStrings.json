@@ -542,7 +542,7 @@
 	},
 	"Hurricane":
 	{
-		"DESCRIPTIONS": ["Start of turn: Channel 1 random #yCommon #yOrb.  Trigger it twice for each additional stack of #yHurricane."],
+		"DESCRIPTIONS": ["1 [EN]: Channel 1 random #yOrb.  Trigger it twice for each additional stack of #yHurricane.  You may activate this twice per turn."],
 		"NAMES": ["hurricane"],
 		"NAME": "Hurricane"
 	},

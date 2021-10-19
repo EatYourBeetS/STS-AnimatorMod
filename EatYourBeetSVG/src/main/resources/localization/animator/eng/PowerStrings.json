@@ -205,6 +205,11 @@
 		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
 		"NAME": "Horned Bat (R)"
 	},
+	"animator:HurricanePower":
+	{
+		"DESCRIPTIONS": ["Start of turn: Channel 1 random #yCommon #yOrb.  Trigger it #b{0} times."],
+		"NAME": "Hurricane"
+	},
 	"animator:KaijinPower":
 	{
 		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and #yBlock by #b{0} this combat."],

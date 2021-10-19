@@ -3,6 +3,7 @@ package eatyourbeets.powers;
 import basemod.interfaces.CloneablePowerInterface;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
@@ -32,6 +33,11 @@ import java.util.StringJoiner;
 
 public abstract class EYBPower extends AbstractPower implements CloneablePowerInterface
 {
+    public static String CreateFullID(Class<? extends EYBPower> type)
+    {
+        return GR.Animator.CreateID(type.getSimpleName());
+    }
+
     protected static final FieldInfo<ArrayList<AbstractGameEffect>> _effect = JUtils.GetField("effect", AbstractPower.class);
     protected static final float ICON_SIZE = 32f;
     protected static final float ICON_SIZE2 = 48f;
@@ -71,10 +77,19 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
             }
             if (this.img == null)
             {
+                String imagePathEYB = imagePath.replace("animator","eyb");
+                this.img = GR.GetTexture(imagePathEYB);
+            }
+            if (this.img == null)
+            {
                 this.img = GR.GetTexture(GR.Common.CreateID("UnknownPower"));
             }
 
             this.ID = originalID;
+
+            if (this.img != null) {
+                this.powerIcon = GetPowerIcon();
+            }
             this.powerStrings = CardCrawlGame.languagePack.getPowerStrings(originalID);
         }
         else
@@ -113,6 +128,15 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
     public EYBPower(AbstractCreature owner, String id)
     {
         this(owner, null, null, id);
+    }
+
+    private TextureAtlas.AtlasRegion GetPowerIcon()
+    {
+        final Texture texture = img;
+        final int h = texture.getHeight();
+        final int w = texture.getWidth();
+        final int section = h / 2;
+        return new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), (h / 2) - (section / 2), section, section);
     }
 
     protected void Initialize(int amount)

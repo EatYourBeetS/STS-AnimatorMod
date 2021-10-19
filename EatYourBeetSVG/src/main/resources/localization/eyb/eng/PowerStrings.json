@@ -170,11 +170,6 @@
 		"DESCRIPTIONS": ["Start of turn: Increase the damage and block of a random card in your hand by #b{0}% of its base damage and block.  Increase that card's cost by 1."],
 		"NAME": "Innovation"
 	},
-	"eyb:HurricanePower":
-	{
-		"DESCRIPTIONS": ["Start of turn: Channel 1 random #yCommon #yOrb.  Trigger it #b{0} times."],
-		"NAME": "Hurricane"
-	},
 	"eyb:BountyPower":
 	{
 		"DESCRIPTIONS": ["Start of turn: Draw #b{0} extra cards."],
@@ -232,7 +227,7 @@
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane] (channels and triggers an orb each turn)."],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane] (activated power that channels and triggers an orb)."],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":

@@ -9,11 +9,12 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Saber extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saber.class)
-            .SetAttack(1, CardRarity.RARE)
+            .SetAttack(2, CardRarity.RARE)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Saber_Excalibur(), false));
 
@@ -21,14 +22,11 @@ public class Saber extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0);
+        Initialize(10, 10, 5);
         SetUpgrade(0, 0);
 
         SetAffinity_Light(2);
         SetAffinity_Steel();
-
-        SetAffinityRequirement(Affinity.Light, 15);
-        SetAffinityRequirement(Affinity.Steel, 15);
 
         SetCooldown(7, -2, this::OnCooldownCompleted);
         SetLoyal(true);
@@ -44,8 +42,14 @@ public class Saber extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.GainBlock(block);
 
-        cooldown.ProgressCooldownAndTrigger((CheckAffinity(Affinity.Light) || CheckAffinity(Affinity.Steel)) ? 3 : 1, m);
+        int amountProgress = 1;
+
+        amountProgress += (GameUtilities.GetAffinityAmount(Affinity.Light))/magicNumber;
+        amountProgress += (GameUtilities.GetAffinityAmount(Affinity.Steel))/magicNumber;
+
+        cooldown.ProgressCooldownAndTrigger(amountProgress, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

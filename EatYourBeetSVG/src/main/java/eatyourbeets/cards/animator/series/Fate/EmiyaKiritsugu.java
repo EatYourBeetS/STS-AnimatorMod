@@ -23,7 +23,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         super(DATA);
 
         Initialize(10, 10, 2, 15);
-        SetUpgrade(0,0,0,15);
+        SetUpgrade(0,0,0,10);
 
         SetAffinity_Light(2);
         SetAffinity_Dark();

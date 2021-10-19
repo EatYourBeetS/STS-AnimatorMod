@@ -20,10 +20,9 @@ public class MatouShinji_CommandSpell extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 0);
+        SetUpgrade(0, 0, 1);
 
-        SetAffinity_Water(1, 1, 0);
-        SetAffinity_Dark(2);
+        SetAffinity_Mind(2);
 
         SetRetain(true);
         SetPurge(true);
@@ -48,14 +47,13 @@ public class MatouShinji_CommandSpell extends AnimatorCard
             .SetFilter(c ->
             {
                 final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-                return a != null && (a.GetLevel(Affinity.Fire) > 0 || a.GetLevel(Affinity.Earth) > 0);
+                return a != null && (a.GetLevel(Affinity.Light) > 0 || a.GetLevel(Affinity.Dark) > 0);
             })
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.IncreaseScaling(c, Affinity.Star, c.costForTurn + magicNumber);
-                    GameActions.Bottom.Motivate(c, 1);
+                    GameActions.Bottom.Motivate(c, magicNumber);
                 }
             });
         }

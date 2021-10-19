@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,23 +18,10 @@ public class Rider extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 10, 3);
+        SetUpgrade(0, 3, 3);
 
-        SetAffinity_Air(1);
-        SetAffinity_Water(1);
-        SetAffinity_Dark(2, 0, 1);
-
-        SetAffinityRequirement(Affinity.Air, 2);
-        SetAffinityRequirement(Affinity.Water, 2);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        super.OnUpgrade();
-
-        SetRetainOnce(true);
+        SetAffinity_Air(2);
     }
 
     @Override
@@ -54,15 +40,5 @@ public class Rider extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ReduceStrength(m, magicNumber, true);
-
-        if (CheckAffinity(Affinity.Air))
-        {
-            GameActions.Bottom.RaiseAirLevel(1, true);
-        }
-
-        if (CheckAffinity(Affinity.Water))
-        {
-            GameActions.Bottom.RaiseWaterLevel(1, true);
-        }
     }
 }

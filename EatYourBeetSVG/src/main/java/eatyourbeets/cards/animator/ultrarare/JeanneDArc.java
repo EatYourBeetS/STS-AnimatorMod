@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import com.megacrit.cardcrawl.stances.CalmStance;
+import com.megacrit.cardcrawl.stances.DivinityStance;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class JeanneDArc extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(JeanneDArc.class)
-            .SetAttack(1, CardRarity.SPECIAL)
+            .SetAttack(2, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Fate);
 
@@ -23,11 +23,10 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(11, 0, 8);
-        SetUpgrade(2, 0, 0);
+        Initialize(20, 0, 2);
+        SetUpgrade(27, 0, 0);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Star(1);
 
         SetLoyal(true);
     }
@@ -35,18 +34,16 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetAffinity_Star(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.7f);
-        GameActions.Bottom.RaiseLightLevel(1, true);
-        GameActions.Bottom.PurgeFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
-        .ShowEffect(true, true)
-        .SetOptions(true, true)
-        .SetFilter(GameUtilities::IsHindrance);
+
+        GameActions.Bottom.ChangeStance(CalmStance.STANCE_ID);
+        GameActions.Bottom.ChangeStance(DivinityStance.STANCE_ID);
     }
 
     @Override
@@ -57,8 +54,15 @@ public class JeanneDArc extends AnimatorCard_UltraRare
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-            GameActions.Bottom.GainArtifact(1);
+            GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
+            .SetOptions(true, true)
+           .SetFilter(c -> GameUtilities.HasAffinity(c, Affinity.Light) || GameUtilities.HasAffinity(c, Affinity.Dark))
+            .AddCallback( cards -> {
+                for (AbstractCard card : cards)
+                {
+                    card.setCostForTurn(0);
+                }
+            });
         }
     }
 }

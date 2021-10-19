@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.TargetHelper;
 
 public class PestilencePower extends CommonPower
 {
@@ -56,6 +58,18 @@ public class PestilencePower extends CommonPower
     public void onRemove()
     {
         this.amount = 0;
+    }
+
+    @Override
+    protected void onAmountChanged(int previousAmount, int difference)
+    {
+        if (difference > 0)
+        {
+            GameActions.Bottom.StackPower(TargetHelper.Enemies(), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
+                    .ShowEffect(false, true);
+        }
+
+        super.onAmountChanged(previousAmount, difference);
     }
 
     @Override

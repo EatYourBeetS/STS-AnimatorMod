@@ -64,7 +64,7 @@ public class Nyanta extends AnimatorCard
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
             .SetVFX(true, false);
-            GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
+            GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffsForEnemies()), 1)
             .ShowEffect(false, true);
         }
     }

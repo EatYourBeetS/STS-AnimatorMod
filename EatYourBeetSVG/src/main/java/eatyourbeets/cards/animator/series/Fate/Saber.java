@@ -21,14 +21,16 @@ public class Saber extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0, 0);
-        SetUpgrade(2, 0, 0);
+        Initialize(10, 0);
+        SetUpgrade(0, 0);
 
-        SetAffinity_Fire(1, 0, 1);
-        SetAffinity_Air(1, 0, 1);
-        SetAffinity_Light(2, 0, 1);
+        SetAffinity_Light(2);
+        SetAffinity_Steel();
 
-        SetCooldown(8, 0, this::OnCooldownCompleted);
+        SetAffinityRequirement(Affinity.Light, 15);
+        SetAffinityRequirement(Affinity.Steel, 15);
+
+        SetCooldown(7, -2, this::OnCooldownCompleted);
         SetLoyal(true);
     }
 
@@ -41,10 +43,9 @@ public class Saber extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainRandomAffinityPower(0,true, Affinity.Light,Affinity.Fire);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 3 : 1, m);
+        cooldown.ProgressCooldownAndTrigger((CheckAffinity(Affinity.Light) || CheckAffinity(Affinity.Steel)) ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

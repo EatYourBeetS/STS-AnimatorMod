@@ -222,7 +222,7 @@
 	},
 	"eyb:PoisonLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Pestilence] (increases the amounts your Common Debuffs apply)."],
+		"DESCRIPTIONS": ["At #b{0} [P]: Gain #b{1} [Pestilence] (apply Common Debuffs and increases the amounts your Common Debuffs apply)."],
 		"NAME": "Poison Level"
 	},
 	"eyb:SteelLevelPower":

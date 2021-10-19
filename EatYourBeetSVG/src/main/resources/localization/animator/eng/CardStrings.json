@@ -1468,48 +1468,48 @@
 		},
 		"animator:Illya":
 		{
-			"DESCRIPTION": "Play the {Attack} with the ** highest damage from your ** draw pile. Take !M! [Delayed Damage]. || On Exhaust: Draw ** {Berserker} from any ** pile and Retain it.",
+			"DESCRIPTION": "Play the <L> or <D> Attack with the highest damage from your draw or discard pile.  Take !M! Delayed Damage.",
 			"NAME": "Illya"
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: {Maintain} [A]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || For 2 Turns: Increase the effect of [Vulnerable] on enemies by !S!%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || !A! <A>: Boost [A]. || !A! <W>: Boost [W].",
+			"DESCRIPTION": "Apply !M! [Shackles].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "If any enemy intends to debuff: Gain !S! {Temp}. [Artifact]. Otherwise, trigger !S! random Orbs. || <LIM>. If you have 3 ** different orb types: ** Obtain 1 {Orb Core}{+}.",
+			"DESCRIPTION": "Gain !M! {Temp}. [Artifact].",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":
 		{
-			"DESCRIPTION": "Randomly {Maintain} [F] or [L]. || <CDN>: Purge, then ** add {Excalibur} to your hand. || Synergy: Progress Cooldown by 3 instead of 1.",
+			"DESCRIPTION": "Cooldown 5 (3): Purge, then add Excalibur to your hand. || 15 [L] or [S]: Progress cooldown by 2.",
 			"NAME": "Saber"
 		},
 		"animator:Saber_Excalibur":
 		{
-			"DESCRIPTION": "Gain !M! [Enchanted Armor].",
+			"DESCRIPTION": "Enter <DS>.",
 			"NAME": "Excalibur"
 		},
 		"animator:MatouSakura":
 		{
-			"DESCRIPTION": "Remove 1 [Dark] to apply [Constricted] ** equal to half its damage. If ** you have no [Dark]: Channel 1 ** [Dark] and trigger it !M! times. || <LIM>. !A! <L>: Gain !S! [L].",
+			"DESCRIPTION": "Channel [Dark] and trigger it !M! times. || !A! [L]: Give ALL cards in your hand and draw pile <L>.",
 			"NAME": "Sakura Matou"
 		},
 		"animator:MatouShinji":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <slm>. Synergy with 2+ Cost cards: ** Take !S! [Delayed Damage], then Obtain {Command Spell}.",
+			"DESCRIPTION": "Apply !M! [Poison]. || <SLM>. On Discard or Exhaust: add a Command Spell to your hand.",
 			"NAME": "Shinji Matou"
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <F> or <E> card ** from your discard pile. ** Give it <X> scaling equal to its cost + !M! and Motivate it.",
+			"DESCRIPTION": "Lose 1 {Orb Slot}: Fetch a <L> or <D> card from your discard pile.  Motivate it !M! times.",
 			"NAME": "Command Spell"
 		}
 	},
@@ -1943,7 +1943,7 @@
 		"animator:Hans":
 		{
 			"DESCRIPTION": "Start of Turn: Apply !M! [Poison] to ALL enemies. Gain !S! [Temp HP] for each <P> card in hand.",
-			"EXTENDED_DESCRIPTION": ["Start of turn: Apply #b{0} #y[Poison] to ALL enemies.  Gain #b{1] [Temp HP] for each <P> card in hand."],
+			"EXTENDED_DESCRIPTION": ["Start of turn: Apply #b{0} #y[Poison] to ALL enemies.  Gain #b{1} [Temp HP] for each <P> card in hand."],
 			"NAME": "Hans"
 		},
 		"animator:Iris":
@@ -2988,7 +2988,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal: Heal double [HP].",
+			"DESCRIPTION": "Enter <CS>, then Enter <DS>.  || Start of Combat: Draw !M! random <L> or <D> cards.  They cost 0 this combat.",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":

@@ -2,6 +2,7 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.powers.CommonPower;
@@ -40,18 +41,6 @@ public class LunacyPower extends CommonPower
     }
 
     @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-    }
-
-    @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-    }
-
-    @Override
     public void onRemove()
     {
         this.amount = 0;
@@ -80,7 +69,7 @@ public class LunacyPower extends CommonPower
                 if (randomCard != null)
                 {
                     //Every 2 cards gets upgraded
-                    GameActions.Bottom.MakeCardInDrawPile(randomCard).SetUpgrade(i % 2 == 1, false);
+                    GameActions.Bottom.MakeCardInDrawPile(randomCard).SetUpgrade(i % 2 == 1, false).SetDuration(Settings.ACTION_DUR_XFAST, true);
                 }
             }
         }

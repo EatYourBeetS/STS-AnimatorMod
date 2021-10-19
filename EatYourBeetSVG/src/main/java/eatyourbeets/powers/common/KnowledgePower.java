@@ -1,6 +1,7 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.animator.special.Insight;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
@@ -35,18 +36,6 @@ public class KnowledgePower extends CommonPower
     }
 
     @Override
-    public void stackPower(int stackAmount)
-    {
-        super.stackPower(stackAmount);
-    }
-
-    @Override
-    public void reducePower(int reduceAmount)
-    {
-        super.reducePower(reduceAmount);
-    }
-
-    @Override
     public void onRemove()
     {
         this.amount = 0;
@@ -58,7 +47,7 @@ public class KnowledgePower extends CommonPower
         if (difference > 0)
         {
             GameActions.Bottom.MakeCardInHand(new Insight());
-            GameActions.Bottom.MakeCardInDiscardPile(new Insight());
+            GameActions.Bottom.MakeCardInDiscardPile(new Insight()).SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
 
         super.onAmountChanged(previousAmount, difference);

@@ -143,6 +143,25 @@ public class GameUtilities
         return canApply;
     }
 
+    public static void GainAffinity(AbstractCard card, Affinity affinity)
+    {
+        if (!(card instanceof AnimatorCard))
+        {
+            return;
+        }
+
+        AnimatorCard aCard = (AnimatorCard) card;
+
+        if (aCard.affinities.GetLevel(affinity) == 0)
+        {
+            aCard.affinities.Set(affinity, 1);
+        }
+        else if (aCard.affinities.GetLevel(affinity) == 1)
+        {
+            aCard.affinities.Set(affinity, 2);
+        }
+    }
+
     public static boolean CanPlayTwice(AbstractCard card)
     {
         return !card.isInAutoplay && (!card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE));
@@ -653,6 +672,37 @@ public class GameUtilities
         return result;
     }
 
+    public static ArrayList<PowerHelper> GetCommonDebuffsForAllies()
+    {
+        if (commonDebuffs.isEmpty())
+        {
+            commonDebuffs.add(PowerHelper.Weak);
+            commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Frail);
+            commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Shackles);
+        }
+
+        return commonDebuffs;
+    }
+
+    public static ArrayList<PowerHelper> GetCommonDebuffsForEnemies()
+    {
+        if (commonDebuffs.isEmpty())
+        {
+            commonDebuffs.add(PowerHelper.Weak);
+            commonDebuffs.add(PowerHelper.Vulnerable);
+            commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Blinded);
+            commonDebuffs.add(PowerHelper.Burning);
+            commonDebuffs.add(PowerHelper.Shackles);
+            commonDebuffs.add(PowerHelper.LockOn);
+            commonDebuffs.add(PowerHelper.Freezing);
+        }
+
+        return commonDebuffs;
+    }
+
     public static ArrayList<PowerHelper> GetCommonDebuffs()
     {
         if (commonDebuffs.isEmpty())
@@ -661,8 +711,11 @@ public class GameUtilities
             commonDebuffs.add(PowerHelper.Vulnerable);
             commonDebuffs.add(PowerHelper.Frail);
             commonDebuffs.add(PowerHelper.Poison);
+            commonDebuffs.add(PowerHelper.Blinded);
             commonDebuffs.add(PowerHelper.Burning);
             commonDebuffs.add(PowerHelper.Shackles);
+            commonDebuffs.add(PowerHelper.LockOn);
+            commonDebuffs.add(PowerHelper.Freezing);
         }
 
         return commonDebuffs;

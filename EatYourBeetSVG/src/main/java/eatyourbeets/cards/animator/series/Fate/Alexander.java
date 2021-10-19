@@ -20,7 +20,7 @@ public class Alexander extends AnimatorCard
         SetUpgrade(4, 0);
 
         SetAffinity_Earth();
-        SetAffinity_Light();
+        SetAffinity_Fire();
 
         SetEthereal(true);
     }

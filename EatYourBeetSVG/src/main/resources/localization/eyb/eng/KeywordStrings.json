@@ -86,7 +86,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Blinded], [Burning], [Shackles], [Lock-On], [Freezing].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -530,7 +530,7 @@
 	},
 	"Pestilence":
 	{
-		"DESCRIPTIONS": ["Whenever you apply a #yCommon #yDebuff to an enemy, increase its stacks by an amount equal to twice your #yPestilence."],
+		"DESCRIPTIONS": ["When you gain #yPestilence: Apply a random #yCommon #yDebuff to ALL enemies. Whenever you apply a #yCommon #yDebuff to an enemy, increase its stacks by an amount equal to twice your #yPestilence."],
 		"NAMES": ["pestilence"],
 		"NAME": "Pestilence"
 	},

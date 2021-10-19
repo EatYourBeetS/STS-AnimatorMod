@@ -1,6 +1,7 @@
 package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.animator.special.Miracle;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
@@ -37,8 +38,8 @@ public class PrayerPower extends CommonPower
     {
         if (difference > 0)
         {
-            GameActions.Bottom.MakeCardInDrawPile(new Miracle()).AddCallback(GameUtilities::GiveHaste);
-            GameActions.Bottom.MakeCardInDrawPile(new Miracle()).AddCallback(GameUtilities::GiveHaste);
+            GameActions.Bottom.MakeCardInDrawPile(new Miracle()).AddCallback(GameUtilities::GiveHaste).SetDuration(Settings.ACTION_DUR_XFAST, true);
+            GameActions.Bottom.MakeCardInDrawPile(new Miracle()).AddCallback(GameUtilities::GiveHaste).SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
 
         super.onAmountChanged(previousAmount, difference);

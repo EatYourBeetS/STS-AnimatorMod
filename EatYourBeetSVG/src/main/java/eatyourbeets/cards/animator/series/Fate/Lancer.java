@@ -25,7 +25,7 @@ public class Lancer extends AnimatorCard
         super(DATA);
 
         Initialize(6, 0, 1, 25);
-        SetUpgrade(0, 0, 0, 25);
+        SetUpgrade(3, 0, 1, 0);
 
         SetAffinity_Air();
     }
@@ -37,7 +37,7 @@ public class Lancer extends AnimatorCard
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
-        GameActions.Bottom.StackPower(new LancerPower(p, 2, secondaryValue));
+        GameActions.Bottom.StackPower(new LancerPower(p, 1, secondaryValue));
     }
 
     public static class LancerPower extends AnimatorPower
@@ -67,6 +67,12 @@ public class Lancer extends AnimatorCard
             super.onRemove();
 
             AnimatorVulnerablePower.AddEnemyModifier(vulnerableAmount);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, vulnerableAmount);
         }
 
         @Override

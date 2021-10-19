@@ -1489,7 +1489,7 @@
 		},
 		"animator:Saber":
 		{
-			"DESCRIPTION": "Cooldown 5 (3): Purge, then add Excalibur to your hand. || 15 [L] or [S]: Progress cooldown by 2.",
+			"DESCRIPTION": "<CDN>: Purge, then add Excalibur to your hand. || 15 [L] or [S]: Progress cooldown by 2.",
 			"NAME": "Saber"
 		},
 		"animator:Saber_Excalibur":

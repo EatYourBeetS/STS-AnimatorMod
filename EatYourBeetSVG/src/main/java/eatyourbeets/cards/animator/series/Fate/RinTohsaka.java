@@ -32,6 +32,6 @@ public class RinTohsaka extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
+        GameActions.Bottom.GainTemporaryArtifact(magicNumber);
     }
 }

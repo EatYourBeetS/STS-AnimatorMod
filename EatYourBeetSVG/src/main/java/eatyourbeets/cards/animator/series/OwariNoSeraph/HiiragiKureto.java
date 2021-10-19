@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -32,6 +31,8 @@ public class HiiragiKureto extends AnimatorCard
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
 
+        SetHitCount(3);
+
         SetExhaust(true);
     }
 
@@ -42,27 +43,19 @@ public class HiiragiKureto extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).AddCallback(e -> {
-                if (e.lastDamageTaken > 0) {
-                    GameActions.Bottom.ExhaustFromHand(name,1,true).AddCallback(
-                            cards -> {
-                                if (cards.size() > 0) {
-                                    GameActions.Bottom.StackPower(new HiiragiKuretoPower(player, 1));
-                                }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d.AddCallback(e -> {
+            if (e.lastDamageTaken > 0) {
+                GameActions.Bottom.ExhaustFromHand(name,1,true).AddCallback(
+                        cards -> {
+                            if (cards.size() > 0) {
+                                GameActions.Bottom.StackPower(new HiiragiKuretoPower(player, 1));
                             }
-                    );
-                }
-            });
-        }
+                        }
+                );
+            }
+        }));
     }
 
     public class HiiragiKuretoPower extends AnimatorPower

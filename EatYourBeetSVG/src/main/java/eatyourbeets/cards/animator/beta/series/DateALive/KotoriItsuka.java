@@ -45,7 +45,7 @@ public class KotoriItsuka extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).AddCallback(m, (enemy, __) -> {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d.AddCallback(m, (enemy, __) -> {
             if (GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
             {
                 GameActions.Bottom.ReducePower(player, enemy, FreezingPower.POWER_ID, magicNumber);
@@ -58,6 +58,6 @@ public class KotoriItsuka extends AnimatorCard
             if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
                 GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
             }
-        });
+        }));
     }
 }

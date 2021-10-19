@@ -24,7 +24,7 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 4);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(2);

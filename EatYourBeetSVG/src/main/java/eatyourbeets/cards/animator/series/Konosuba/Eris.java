@@ -29,8 +29,8 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 3);
+        Initialize(0, 0, 3, 3);
+        SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
@@ -91,7 +91,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1,upgraded);
+        GameActions.Bottom.GainBlessing(secondaryValue,true);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
     }
 

@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -26,26 +25,14 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
         SetUpgrade(1, 0 );
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
+        SetHitCount(1,1);
     }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        if (upgraded)
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-
-        return super.GetDamageInfo();
-    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        if (upgraded) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        }
 
         if (IsStarter())
         {

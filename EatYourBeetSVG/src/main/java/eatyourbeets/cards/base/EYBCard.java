@@ -42,6 +42,7 @@ import java.util.Map;
 import static eatyourbeets.powers.animator.ElementalExposurePower.ELEMENTAL_MODIFIER;
 import static eatyourbeets.powers.replacement.AnimatorLockOnPower.GetAttackMultiplier;
 import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
+import static eatyourbeets.resources.GR.Enums.CardTags.UNIQUE;
 
 public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, OnStartOfTurnPostDrawSubscriber, CustomSavable<EYBCardSaveData>
 {
@@ -70,6 +71,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     protected int upgrade_magicNumber;
     protected int upgrade_secondaryValue;
     protected int upgrade_cooldownValue;
+    protected int upgrade_hitCount;
     protected int upgrade_block;
     protected int upgrade_cost;
 
@@ -511,6 +513,18 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.BlockScaling);
         }
+        if (cardData.CanToggleFromPopup && upgraded || cardData.UnUpgradedCanToggleForms)
+        {
+            dynamicTooltips.add(GR.Tooltips.Multiform);
+        }
+        else if (hasTag(UNIQUE))
+        {
+            dynamicTooltips.add(GR.Tooltips.Unique);
+        }
+        else if (cardData.CanToggleOnUpgrade)
+        {
+            dynamicTooltips.add(GR.Tooltips.BranchUpgrade);
+        }
     }
 
     public AbstractAttribute GetPrimaryInfo()
@@ -525,7 +539,13 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public AbstractAttribute GetDamageInfo()
     {
-        return baseDamage >= 0 ? DamageAttribute.Instance.SetCard(this) : null;
+        if (this.baseDamage <= 0 || this.hitCount <= 0) {
+            return null;
+        }
+        if (this.hitCount <= 1) {
+            return DamageAttribute.Instance.SetCard(this);
+        }
+        return DamageAttribute.Instance.SetCard(this).AddMultiplier(hitCount);
     }
 
     public AbstractAttribute GetBlockInfo()
@@ -627,6 +647,17 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         this.showEvokeOrbCount = count;
     }
 
+    public void SetHitCount(int count)
+    {
+        this.baseHitCount = this.hitCount = count;
+    }
+
+    public void SetHitCount(int count, int upgrade)
+    {
+        this.baseHitCount = this.hitCount = count;
+        this.upgrade_hitCount = upgrade;
+    }
+
     public void SetLoyal(boolean value)
     {
         SetTag(GR.Enums.CardTags.LOYAL, value);
@@ -720,7 +751,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public void SetUnique(boolean value, boolean multiUpgrade)
     {
-        SetTag(GR.Enums.CardTags.UNIQUE, value);
+        SetTag(UNIQUE, value);
         isMultiUpgrade = multiUpgrade;
     }
 
@@ -876,6 +907,17 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                 upgradeCooldownValue(upgrade_cooldownValue);
             }
 
+            if (upgrade_hitCount != 0)
+            {
+                if (baseHitCount < 0)
+                {
+                    baseHitCount = 0;
+                }
+
+                upgradeHitCount(upgrade_hitCount);
+            }
+
+
             if (upgrade_cost != 0)
             {
                 int previousCost = cost;
@@ -909,6 +951,29 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         }
 
         affinities.displayUpgrades = true;
+    }
+
+    @Override
+    protected void upgradeName() {
+        ++this.timesUpgraded;
+        this.upgraded = true;
+        if (this.cardData.MaxForms > 1 && !this.cardData.CanToggleFromPopup) {
+            switch (this.auxiliaryData.form) {
+                case 2:
+                    this.name = this.name + "+γ";
+                    break;
+                case 1:
+                    this.name = this.name + "+β";
+                    break;
+                default:
+                    this.name = this.name + "+α";
+                    break;
+            }
+        }
+        else {
+            this.name = this.name + "+";
+        }
+        this.initializeTitle();
     }
 
     protected void Initialize(int damage, int block)

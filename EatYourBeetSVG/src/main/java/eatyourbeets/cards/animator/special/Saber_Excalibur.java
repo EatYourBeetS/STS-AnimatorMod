@@ -38,7 +38,7 @@ public class Saber_Excalibur extends AnimatorCard
         GameActions.Bottom.StackPower(new EnchantedArmorPower(p, magicNumber));
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.GOLD));
         GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.GOLD), 0.4f).SetRealtime(true);
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
-        .SetDamageEffect((c, __) -> GameEffects.List.Add(VFX.VerticalImpact(c.hb).SetColor(Color.GOLD)));
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d
+        .SetDamageEffect((c, __) -> GameEffects.List.Add(VFX.VerticalImpact(c.hb).SetColor(Color.GOLD))));
     }
 }

@@ -74,14 +74,14 @@ public class KrulTepes extends AnimatorCard
         if (m != null)
         {
             GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-            .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.SCARLET)).duration)
+                    .forEach(d -> d.SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.SCARLET)).duration)
             .AddCallback(enemy ->
             {
                 if (GameUtilities.InEliteOrBossRoom() && GameUtilities.IsFatal(enemy, false) && info.TryActivateLimited())
                 {
                     ObtainReward();
                 }
-            });
+            }));
 
             GameActions.Bottom.ApplyWeak(p, m, secondaryValue);
 

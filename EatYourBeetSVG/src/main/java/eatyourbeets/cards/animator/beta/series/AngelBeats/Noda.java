@@ -15,7 +15,7 @@ public class Noda extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 1, 1);
+        Initialize(12, 0, 2, 2);
         SetUpgrade(3, 0, 1, 0);
 
         SetAffinity_Red(1, 1, 1);

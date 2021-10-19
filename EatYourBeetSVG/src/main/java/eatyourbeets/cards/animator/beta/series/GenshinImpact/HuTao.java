@@ -46,7 +46,7 @@ public class HuTao extends AnimatorCard
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).SetVFXColor(Color.PURPLE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d.SetVFXColor(Color.PURPLE));
     }
 
     @Override

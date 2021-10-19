@@ -23,28 +23,28 @@ public class Berserker extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(19, 0, 2, 12);
+        Initialize(19, 0, 3, 12);
         SetUpgrade(5, 0, 0, 2);
 
         SetAffinity_Red(2, 0, 6);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(m.currentBlock, (initialBlock, target) ->
         {
             if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0))
             {
                 GameActions.Bottom.GainBlock(this.secondaryValue);
             }
-        });
+        }));
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
-        GameActions.Bottom.GainForce(2);
+        GameActions.Bottom.GainForce(magicNumber);
 
         if (TrySpendAffinity(Affinity.Red))
         {

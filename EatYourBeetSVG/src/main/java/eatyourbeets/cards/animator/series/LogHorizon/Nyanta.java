@@ -1,66 +1,70 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Green;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
-public class Nyanta extends AnimatorCard //TODO
+public class Nyanta extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Nyanta.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing)
+            .SetSkill(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
 
     public Nyanta()
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
-        SetUpgrade(1, 0, 0);
+        Initialize(0, 5, 2, 4);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Green(2, 0, 1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(2, 0, 1);
+
+        SetRetainOnce(true);
+
+        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Orange, 3);
+    }
+
+    @Override
+    public void OnUpgrade()
+    {
+        super.OnUpgrade();
 
         SetRetain(true);
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
+    public void triggerOnManualDiscard()
     {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
+        super.triggerOnManualDiscard();
 
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        if (player.stance != null && !NeutralStance.STANCE_ID.equals(player.stance.ID))
-        {
-            GameUtilities.IncreaseMagicNumber(this, 1, true);
-        }
+        GameActions.Bottom.GainTemporaryThorns(secondaryValue);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainAgility(1, upgraded);
-        GameActions.Bottom.GainWillpower(1, upgraded);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
-            .SetVFX(true, false);
-            GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
-            .ShowEffect(false, true);
-        }
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Orange,Affinity.Green).AddConditionalCallback((cards) -> {
+            for (AbstractCard c : cards) {
+                if (c.cardID.equals(AffinityToken_Green.DATA.ID)) {
+                    GameActions.Bottom.GainWillpower(magicNumber, upgraded);
+                    GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+                }
+                else {
+                    GameActions.Bottom.GainAgility(magicNumber, upgraded);
+                    GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+                }
+            }
+        });
     }
 }

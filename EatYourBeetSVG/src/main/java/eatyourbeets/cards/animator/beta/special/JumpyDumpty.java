@@ -42,8 +42,9 @@ public class JumpyDumpty extends AnimatorCard {
         if (priorityTarget != null) {
             this.Refresh(priorityTarget);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(priorityTarget.hb.cX, priorityTarget.hb.cY), 0.1F);
-            GameActions.Bottom.DealDamage(this, priorityTarget, AttackEffects.NONE)
-                    .AddCallback(priorityTarget.currentBlock, (initialBlock, target) ->
+            AbstractMonster finalPriorityTarget = priorityTarget;
+            GameActions.Bottom.DealDamage(this, priorityTarget, AttackEffects.NONE).forEach(d -> d
+                    .AddCallback(finalPriorityTarget.currentBlock, (initialBlock, target) ->
                     {
                         if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {
                             if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
@@ -52,7 +53,7 @@ public class JumpyDumpty extends AnimatorCard {
                             }
                         }
 
-                    });
+                    }));
 
             GameActions.Bottom.ApplyBurning(player, priorityTarget, magicNumber);
         }

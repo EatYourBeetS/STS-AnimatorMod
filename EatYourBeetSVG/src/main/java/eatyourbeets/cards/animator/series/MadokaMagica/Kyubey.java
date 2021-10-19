@@ -68,7 +68,7 @@ public class Kyubey extends AnimatorCard
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainCorruption(1);
+            GameActions.Bottom.GainCorruption(secondaryValue);
         }
     }
 }

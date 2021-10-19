@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class Saitama extends AnimatorCard
+public class Saitama extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Saitama.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
@@ -160,7 +160,7 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
                 GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH).SetPiercing(true, true);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH).forEach(d -> d.SetPiercing(true, true));
                 GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
 
                 GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));

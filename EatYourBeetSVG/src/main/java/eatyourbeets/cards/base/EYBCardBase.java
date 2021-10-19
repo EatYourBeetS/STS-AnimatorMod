@@ -77,12 +77,16 @@ public abstract class EYBCardBase extends AbstractCard
     public boolean isPopup = false;
     public boolean isPreview = false;
     public boolean isSecondaryValueModified = false;
+    public boolean isHitCountModified = false;
     public boolean upgradedSecondaryValue = false;
     public boolean upgradedCooldownValue = false;
+    public boolean upgradedHitCount = false;
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
     public int baseCooldownValue = 0;
     public int cooldownValue = 0;
+    public int hitCount = 1;
+    public int baseHitCount = 1;
 
     public EYBCardCooldown cooldown;
     protected AdvancedTexture portraitImg;
@@ -670,6 +674,13 @@ public abstract class EYBCardBase extends AbstractCard
         this.baseCooldownValue += amount;
         this.cooldownValue = Math.min(this.cooldownValue, this.baseCooldownValue);
         this.upgradedCooldownValue = true;
+    }
+
+    protected void upgradeHitCount(int amount)
+    {
+        this.baseHitCount += amount;
+        this.hitCount = Math.min(this.hitCount, this.baseHitCount);
+        this.upgradedHitCount = true;
     }
 
     protected void SetTag(CardTags tag, boolean enable)

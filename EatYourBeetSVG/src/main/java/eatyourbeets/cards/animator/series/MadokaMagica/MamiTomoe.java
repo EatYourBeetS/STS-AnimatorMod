@@ -11,9 +11,9 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MamiTomoe extends AnimatorCard
 {
@@ -65,13 +65,7 @@ public class MamiTomoe extends AnimatorCard
             count += 1;
         }
 
-        magicNumber = baseMagicNumber + count;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        GameUtilities.IncreaseHitCount(this, count, true);
     }
 
     @Override
@@ -79,12 +73,8 @@ public class MamiTomoe extends AnimatorCard
     {
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.SFX("ATTACK_FIRE");
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
-        }
+        GameActions.Bottom.SFX("ATTACK_FIRE");
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
 

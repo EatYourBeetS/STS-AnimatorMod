@@ -17,11 +17,13 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
     public void AddStarterCards()
     {
         AddStarterCard(Shigure.DATA, 5);
+        AddStarterCard(KimizugiShiho.DATA, 6);
+        AddStarterCard(Yoichi.DATA, 6);
         AddStarterCard(Mitsuba.DATA, 6);
         AddStarterCard(Shinoa.DATA, 7);
-        AddStarterCard(CrowleyEusford.DATA, 7);
+        AddStarterCard(CrowleyEusford.DATA, 8);
         AddStarterCard(Mikaela.DATA, 8);
-        AddStarterCard(Yuuichirou.DATA, 9);
+        AddStarterCard(Yuuichirou.DATA, 8);
     }
 
     @Override

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.colorless.rare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -25,23 +24,17 @@ public class Hibiki extends AnimatorCard
         SetAffinity_Star(0, 0, 1);
         SetAffinity_Green(1);
         SetAffinity_Silver(1);
+
+        SetHitCount(3);
     }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_LIGHT)
-            .SetOptions(true, false);
-        }
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
+                .SetOptions(true, false));
 
-        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseMagicNumber(c, secondaryValue, false));
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseHitCount((EYBCard) c, secondaryValue, false));
     }
 }

@@ -29,7 +29,7 @@ public class MS06ZakuII extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Silver(2);
 
-        SetAffinityRequirement(Affinity.General, 7);
+        SetAffinityRequirement(Affinity.General, 12);
     }
 
     @Override

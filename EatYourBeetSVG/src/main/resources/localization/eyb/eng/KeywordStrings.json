@@ -188,7 +188,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Retain up to 2 Block per stack each turn.",
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Reduce damage taken by 4% per stack.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},
@@ -302,7 +302,7 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "The next time you activate an interactable #yPower, activate its effect again.",
+		"DESCRIPTION": "The next time you activate an interactable #yPower, gain [E].",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
@@ -492,7 +492,7 @@
 		"NAMES": ["teamwork"],
 		"PROPER_NAME": "Teamwork"
 	},
-	"Technics":
+	"Technic":
 	{
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Genesis] for every #b25 [T] up to #b50.",
 		"NAMES": ["technic"],
@@ -545,6 +545,12 @@
 		"DESCRIPTION": "This #yAttack's scaling applies both to its damage and its #yBlock.",
 		"NAMES": ["~blockscaling, ~block scaling"],
 		"PROPER_NAME": "Dual Scaling"
+	},
+	"~Branch Upgrade":
+	{
+		"DESCRIPTION": "When you upgrade this card, you may choose #b1 of #b2 upgrade paths for this card.",
+		"NAMES": ["~branchupgrade, ~branch upgrade"],
+		"PROPER_NAME": "Branch Upgrade"
 	},
 	"~Crystallize":
 	{
@@ -605,6 +611,12 @@
 		"DESCRIPTION": "Receive #b50% more damage from Orbs and #b25% from #yRanged attacks.",
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
+	},
+	"~Multiform":
+	{
+		"DESCRIPTION": "You may change this card's form in the pop-up viewer from your master deck outside of combat.",
+		"NAMES": ["~multiform"],
+		"PROPER_NAME": "Multiform"
 	},
 	"~Piercing":
 	{

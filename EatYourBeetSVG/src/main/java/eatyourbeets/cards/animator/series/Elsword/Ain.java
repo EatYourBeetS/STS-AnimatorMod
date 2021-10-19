@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
@@ -33,18 +32,14 @@ public class Ain extends AnimatorCard
         SetAffinity_Blue(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Light, 3);
+
+        SetHitCount(3);
     }
 
     @Override
     protected void OnUpgrade()
     {
         upgradedDamage = true;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -63,10 +58,7 @@ public class Ain extends AnimatorCard
             }
         });
 
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).SetVFX(true, false);
-        }
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false));
 
         if (CheckSpecialCondition(true))
         {

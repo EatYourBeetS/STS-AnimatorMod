@@ -24,7 +24,7 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Light(2);
@@ -46,7 +46,7 @@ public class ApprenticeCleric extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, upgraded);
+        GameActions.Bottom.GainBlessing(secondaryValue, upgraded);
     }
 
     @Override

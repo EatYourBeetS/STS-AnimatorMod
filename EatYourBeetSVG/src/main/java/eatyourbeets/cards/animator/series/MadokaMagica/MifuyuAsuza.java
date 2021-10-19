@@ -26,7 +26,7 @@ public class MifuyuAsuza extends AnimatorCard
         SetAffinity_Light(1, 1, 0);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.General, 6);
+        SetAffinityRequirement(Affinity.General, 10);
     }
 
     @Override

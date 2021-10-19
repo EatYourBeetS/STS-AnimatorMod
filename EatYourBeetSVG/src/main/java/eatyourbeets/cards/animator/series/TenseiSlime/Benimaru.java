@@ -45,9 +45,9 @@ public class Benimaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
         .AddCallback(m, (enemy, __) -> GameActions.Top.ApplyBurning(player, enemy, TrySpendAffinity(Affinity.Red) ? magicNumber + 1 : magicNumber))
-        .SetRealtime(true);
+        .SetRealtime(true));
     }
 }

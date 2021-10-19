@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.orbs.animator.Air;
@@ -37,12 +36,7 @@ public class Keqing extends AnimatorCard implements OnEvokeOrbSubscriber
         SetRicochet(4, 0, this::OnCooldownCompleted);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(3);
+        SetHitCount(3);
     }
 
     @Override
@@ -56,9 +50,7 @@ public class Keqing extends AnimatorCard implements OnEvokeOrbSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration));
 
         AbstractCard card = null;
         RandomizedList<AbstractCard> possible = new RandomizedList<>();

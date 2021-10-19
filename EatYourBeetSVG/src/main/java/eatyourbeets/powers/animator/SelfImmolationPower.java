@@ -35,14 +35,14 @@ public class SelfImmolationPower extends AnimatorPower
     @Override
     public int onPlayerGainedBlock(float blockAmount)
     {
-        ApplyDebuff(MathUtils.floor(blockAmount));
+        ApplyDebuff(MathUtils.floor(blockAmount * 2));
         return super.onPlayerGainedBlock(blockAmount);
     }
 
     @Override
     public int onPlayerGainedBlock(int blockAmount)
     {
-        ApplyDebuff(blockAmount);
+        ApplyDebuff(blockAmount * 2);
         return super.onPlayerGainedBlock(blockAmount);
     }
 

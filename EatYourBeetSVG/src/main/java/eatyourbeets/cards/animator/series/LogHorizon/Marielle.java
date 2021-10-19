@@ -33,7 +33,7 @@ public class Marielle extends AnimatorCard
         SetAffinity_Orange(2);
         SetAffinity_Light(0,0,1);
 
-        SetAffinityRequirement(Affinity.General, 5);
+        SetAffinityRequirement(Affinity.General, 8);
     }
 
     @Override

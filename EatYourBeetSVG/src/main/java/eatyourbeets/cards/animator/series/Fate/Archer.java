@@ -21,7 +21,7 @@ public class Archer extends AnimatorCard
     public static final EYBCardData DATA = Register(Archer.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int COST = 4;
+    public static final int COST = 7;
 
     public Archer()
     {

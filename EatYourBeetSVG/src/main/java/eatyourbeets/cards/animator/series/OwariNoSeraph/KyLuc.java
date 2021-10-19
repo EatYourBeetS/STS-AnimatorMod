@@ -61,7 +61,7 @@ public class KyLuc extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
-                .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.RED, Color.LIGHT_GRAY, Color.RED, Color.RED).duration * 0.6f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d
+                .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.RED, Color.LIGHT_GRAY, Color.RED, Color.RED).duration * 0.6f));
     }
 }

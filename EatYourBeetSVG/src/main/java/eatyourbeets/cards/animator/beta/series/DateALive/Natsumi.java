@@ -36,8 +36,8 @@ public class Natsumi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.FIRE)
-        .SetOptions(true, false);
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.FIRE).forEach(d -> d
+        .SetOptions(true, false));
     }
 
     @Override

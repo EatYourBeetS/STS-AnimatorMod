@@ -391,16 +391,28 @@ public final class GameActions
         return Add(new DealDamage(target, new DamageInfo(source, amount, damageType), effect));
     }
 
-    public DealDamage DealDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamage> DealDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamage(target, new DamageInfo(player, card.damage, card.damageTypeForTurn), effect))
-        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
+        ArrayList<DealDamage> actions = new ArrayList<>();
+        for (int i = 0; i < card.hitCount; i++)
+        {
+            actions.add(Add(new DealDamage(target, new DamageInfo(player, card.damage, card.damageTypeForTurn), effect))
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+        }
+
+        return actions;
     }
 
-    public DealDamageToAll DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamageToAll> DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
-        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
+        ArrayList<DealDamageToAll> actions = new ArrayList<>();
+        for (int i = 0; i < card.hitCount; i++)
+        {
+            actions.add(Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+        }
+
+        return actions;
     }
 
     public DealDamageToAll DealDamageToAll(int[] damageMatrix, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -413,10 +425,15 @@ public final class GameActions
         return Add(new DealDamageToRandomEnemy(new DamageInfo(player, baseDamage, damageType), effect));
     }
 
-    public DealDamageToRandomEnemy DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamageToRandomEnemy> DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToRandomEnemy(card, effect))
-        .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
+        ArrayList<DealDamageToRandomEnemy> actions = new ArrayList<>();
+        for (int i = 0; i < card.hitCount; i++)
+        {
+            actions.add(Add(new DealDamageToRandomEnemy(card, effect))
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+        }
+        return actions;
     }
 
     public MoveCard Discard(AbstractCard card, CardGroup group)
@@ -509,9 +526,9 @@ public final class GameActions
         return GainAgility(amount, false);
     }
 
-    public ApplyAffinityPower GainAgility(int amount, boolean retain)
+    public ApplyAffinityPower GainAgility(int amount, boolean maintain)
     {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainArtifact(int amount)
@@ -524,9 +541,9 @@ public final class GameActions
         return GainBlessing(amount, false);
     }
 
-    public ApplyAffinityPower GainBlessing(int amount, boolean retain)
+    public ApplyAffinityPower GainBlessing(int amount, boolean maintain)
     {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public GainBlock GainBlock(int amount)
@@ -560,9 +577,9 @@ public final class GameActions
         return GainCorruption(amount, false);
     }
 
-    public ApplyAffinityPower GainCorruption(int amount, boolean retain)
+    public ApplyAffinityPower GainCorruption(int amount, boolean maintain)
     {
-        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainDexterity(int amount)
@@ -605,9 +622,9 @@ public final class GameActions
         return GainForce(amount, false);
     }
 
-    public ApplyAffinityPower GainForce(int amount, boolean retain)
+    public ApplyAffinityPower GainForce(int amount, boolean maintain)
     {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, maintain);
     }
 
     public GainGold GainGold(int amount)
@@ -625,9 +642,9 @@ public final class GameActions
         return GainIntellect(amount, false);
     }
 
-    public ApplyAffinityPower GainIntellect(int amount, boolean retain)
+    public ApplyAffinityPower GainIntellect(int amount, boolean maintain)
     {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainMalleable(int amount)
@@ -715,9 +732,9 @@ public final class GameActions
         return GainWillpower(amount, false);
     }
 
-    public ApplyAffinityPower GainWillpower(int amount, boolean retain)
+    public ApplyAffinityPower GainWillpower(int amount, boolean maintain)
     {
-        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, retain);
+        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)
@@ -1108,9 +1125,9 @@ public final class GameActions
         return Add(new SpendEnergy(amount, canSpendLess));
     }
 
-    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean maintain)
     {
-        return Add(new ApplyAffinityPower(player, affinity, amount, retain));
+        return Add(new ApplyAffinityPower(player, affinity, amount, maintain));
     }
 
     public ApplyPower StackPower(AbstractPower power)

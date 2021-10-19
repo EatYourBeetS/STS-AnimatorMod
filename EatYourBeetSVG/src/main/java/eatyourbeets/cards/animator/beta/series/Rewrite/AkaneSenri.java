@@ -39,7 +39,7 @@ public class AkaneSenri extends AnimatorCard
 
     public static class AkaneSenriPower extends AnimatorClickablePower implements OnShuffleSubscriber
     {
-        private static final int BLESSING_COST = 5;
+        private static final int BLESSING_COST = 7;
 
         public AkaneSenriPower(AbstractPlayer owner, int amount, int secondaryAmount)
         {

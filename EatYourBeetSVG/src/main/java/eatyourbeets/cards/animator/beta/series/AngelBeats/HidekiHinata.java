@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
@@ -22,7 +21,7 @@ public class HidekiHinata extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 0);
+        Initialize(7, 0, 1, 4);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
@@ -37,32 +36,20 @@ public class HidekiHinata extends AnimatorCard
         super.update();
 
         targetEffectPreview.Update();
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        if (showDamage)
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
+        if (showDamage) {
+            GameUtilities.IncreaseHitCount(this, 1, true);
         }
-
-        return super.GetDamageInfo();
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
 
-        if (GameUtilities.IsAttacking(m.intent))
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
-        }
-        else {
-            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
-            GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
+        if (! GameUtilities.IsAttacking(m.intent)) {
+            for (int i = 0; i < secondaryValue; i++) {
+                GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
+            }
         }
 
         if (CombatStats.ControlPile.Contains(this)) {

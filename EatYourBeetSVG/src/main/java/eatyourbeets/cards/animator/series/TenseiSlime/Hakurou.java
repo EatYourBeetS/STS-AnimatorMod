@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -30,18 +29,14 @@ public class Hakurou extends AnimatorCard
 
         SetAffinityRequirement(Affinity.Red, 4);
         SetAffinityRequirement(Affinity.Orange, 4);
+
+        SetHitCount(3,1);
     }
 
     @Override
     protected void OnUpgrade()
     {
         upgradedDamage = true;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -57,14 +52,8 @@ public class Hakurou extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
-        }
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.GainBlock(block);
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
         .RequireNeutralStance(true)

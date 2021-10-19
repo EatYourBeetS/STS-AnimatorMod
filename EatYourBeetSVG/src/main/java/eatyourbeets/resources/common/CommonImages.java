@@ -55,6 +55,9 @@ public class CommonImages
         public final TextureCache Agility               = new TextureCache("images/eyb/cardui/core/Agility.png");
         public final TextureCache Willpower             = new TextureCache("images/eyb/cardui/core/Willpower.png");
         public final TextureCache BlockScaling          = new TextureCache("images/eyb/cardui/core/BlockScaling.png");
+        public final TextureCache BranchUpgrade           = new TextureCache("images/eyb/cardui/core/BranchUpgrade.png");
+        public final TextureCache Unique                  = new TextureCache("images/eyb/cardui/core/Unique.png");
+        public final TextureCache Multiform               = new TextureCache("images/eyb/cardui/core/Multiform.png");
         public final TextureCache Damage_L                = new TextureCache("images/eyb/cardui/core/1024/NormalDamage.png");
         public final TextureCache Ranged_L                = new TextureCache("images/eyb/cardui/core/1024/RangedDamage.png");
         public final TextureCache Piercing_L              = new TextureCache("images/eyb/cardui/core/1024/PiercingDamage.png");
@@ -67,6 +70,9 @@ public class CommonImages
         public final TextureCache Agility_L               = new TextureCache("images/eyb/cardui/core/1024/Agility.png");
         public final TextureCache Willpower_L             = new TextureCache("images/eyb/cardui/core/1024/Willpower.png");
         public final TextureCache BlockScaling_L          = new TextureCache("images/eyb/cardui/core/1024/BlockScaling.png");
+        public final TextureCache BranchUpgrade_L         = new TextureCache("images/eyb/cardui/core/1024/BranchUpgrade.png");
+        public final TextureCache Unique_L                = new TextureCache("images/eyb/cardui/core/1024/Unique.png");
+        public final TextureCache Multiform_L             = new TextureCache("images/eyb/cardui/core/1024/Multiform.png");
     }
 
     public static class AffinityIcons

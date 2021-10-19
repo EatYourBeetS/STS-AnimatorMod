@@ -1,7 +1,7 @@
 package eatyourbeets.powers.common;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.replacement.AnimatorFrailPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
@@ -10,11 +10,16 @@ import eatyourbeets.powers.replacement.AnimatorWeakPower;
 public class EndurancePower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(EndurancePower.class);
-    public static final int MULTIPLIER = 10;
-    public static final int MULTIPLIER2 = 5;
-    public static final int BLOCK_MULTIPLIER = 2;
+    public static final int MULTIPLIER = 5;
+    public static final int MULTIPLIER2 = 3;
+    public static final int DEFENSE_MULTIPLIER = 4;
     private int totalMultiplier = 0;
     private int totalMultiplier2 = 0;
+
+    public static float CalculatePercentage(int amount)
+    {
+        return Math.max(0.1f, 1f - amount * DEFENSE_MULTIPLIER / 100f);
+    }
 
     public EndurancePower(AbstractCreature owner, int amount)
     {
@@ -33,7 +38,7 @@ public class EndurancePower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(amount >= 0 ? 0 : 1, totalMultiplier, totalMultiplier2, amount * BLOCK_MULTIPLIER);
+        this.description = FormatDescription(amount >= 0 ? 0 : 1, totalMultiplier, totalMultiplier2, amount * DEFENSE_MULTIPLIER);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -66,14 +71,14 @@ public class EndurancePower extends CommonPower
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        super.atEndOfTurn(isPlayer);
-
-        if (isPlayer)
+        if (type == DamageInfo.DamageType.NORMAL)
         {
-            CombatStats.BlockRetained = Math.max(0,CombatStats.BlockRetained + amount * BLOCK_MULTIPLIER);
+            damage *= CalculatePercentage(amount);
         }
+
+        return super.atDamageReceive(damage, type);
     }
 
     @Override

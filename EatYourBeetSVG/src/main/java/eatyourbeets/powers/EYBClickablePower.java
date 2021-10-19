@@ -133,7 +133,7 @@ public abstract class EYBClickablePower extends EYBPower
             currentPhase = phase;
         }
 
-        clickable = (currentPhase == GameActionManager.Phase.WAITING_ON_USER && !AbstractDungeon.actionManager.turnHasEnded) && triggerCondition.CanUse();
+        clickable = (currentPhase == GameActionManager.Phase.WAITING_ON_USER && GameUtilities.IsPlayerTurn()) && triggerCondition.CanUse();
         hb.update();
 
         if (hb.hovered)

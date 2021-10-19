@@ -11,12 +11,13 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Assassin extends AnimatorCard
 {
@@ -36,6 +37,8 @@ public class Assassin extends AnimatorCard
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(1);
+
+        SetHitCount(3);
     }
 
     @Override
@@ -73,22 +76,11 @@ public class Assassin extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(3);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 0));
-
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 1));
-
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(e -> DamageEffect(e, 2));
+        AtomicInteger i = new AtomicInteger();
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> {d.SetDamageEffect(e -> DamageEffect(e, i.get()));
+        i.getAndIncrement();});
     }
 
     private float DamageEffect(AbstractCreature e, int index)
@@ -102,13 +94,13 @@ public class Assassin extends AnimatorCard
 
         SFX.Play(SFX.ATTACK_SWORD, 0.85f + (0.2f * index));
 
-        if (index == 0)
+        if (index % 3 == 0)
         {
             dx = 500;
             dy = 200;
             angle = 290;
         }
-        else if (index == 1)
+        else if (index % 3 == 1)
         {
             dx = -500;
             dy = 200;

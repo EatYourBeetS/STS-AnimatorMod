@@ -35,9 +35,9 @@ public class Entoma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON).forEach(d -> d
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration)
-        .AddCallback(e -> GameActions.Top.ApplyPoison(player, e, damage).ShowEffect(false, true));
+        .AddCallback(e -> GameActions.Top.ApplyPoison(player, e, damage).ShowEffect(false, true)));
 
         if (info.TryActivateSemiLimited())
         {

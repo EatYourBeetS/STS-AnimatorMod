@@ -68,8 +68,8 @@ public class Enju_Barasuishou extends AnimatorCard
 
         for (int i = 0; i < magicNumber; i ++)
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT)
-                    .SetVFX(true, false);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT).forEach(d -> d
+                    .SetVFX(true, false));
         }
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)

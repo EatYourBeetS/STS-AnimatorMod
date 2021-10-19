@@ -129,6 +129,8 @@ public class CardTooltips
     public EYBCardTooltip Phasing = FindByID("Phasing");
     public EYBCardTooltip Impaired = FindByID("Impaired");
     public EYBCardTooltip Genesis = FindByID("Genesis");
+    public EYBCardTooltip Multiform = FindByID("~Multiform");
+    public EYBCardTooltip BranchUpgrade = FindByID("~Branch Upgrade");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -228,6 +230,9 @@ public class CardTooltips
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         BlockScaling.SetIcon(icons.BlockScaling.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         Damage.SetIcon(icons.Damage.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
+        BranchUpgrade.SetIcon(icons.BranchUpgrade.Texture(), 6);
+        Unique.SetIcon(icons.Unique.Texture(), 6);
+        Multiform.SetIcon(icons.Multiform.Texture(), 6);
 
         CommonImages.AffinityIcons affinities = GR.Common.Images.Affinities;
         Affinity_Red.SetIcon(affinities.Red.Texture(), 8);
@@ -295,6 +300,7 @@ public class CardTooltips
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Phasing, new PhasingPower(FakeCharacter.Instance, 0));
         LoadFromPower(Impaired, new ImpairedPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Genesis, new GenesisPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

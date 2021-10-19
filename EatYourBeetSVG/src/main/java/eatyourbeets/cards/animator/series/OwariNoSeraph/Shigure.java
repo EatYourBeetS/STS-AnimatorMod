@@ -33,8 +33,8 @@ public class Shigure extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+        .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration));
         if (CheckPrimaryCondition(false)) {
             GameActions.Bottom.GainSupportDamage(magicNumber);
         }

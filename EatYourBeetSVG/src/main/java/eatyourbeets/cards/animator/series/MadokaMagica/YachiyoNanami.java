@@ -16,7 +16,7 @@ public class YachiyoNanami extends AnimatorCard
     public static final EYBCardData DATA = Register(YachiyoNanami.class)
             .SetPower(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int DISCARD_AMOUNT = 5;
+    public static final int DISCARD_AMOUNT = 8;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 

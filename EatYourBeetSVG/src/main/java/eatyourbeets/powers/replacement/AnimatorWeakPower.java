@@ -3,7 +3,6 @@ package eatyourbeets.powers.replacement;
 import basemod.interfaces.CloneablePowerInterface;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.PaperCrane;
@@ -62,7 +61,7 @@ public class AnimatorWeakPower extends WeakPower implements CloneablePowerInterf
     public AnimatorWeakPower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner,amount,isSourceMonster);
-        if (AbstractDungeon.actionManager.turnHasEnded && isSourceMonster) {
+        if (!GameUtilities.IsPlayerTurn() && isSourceMonster) {
             this.justApplied = true;
         }
 

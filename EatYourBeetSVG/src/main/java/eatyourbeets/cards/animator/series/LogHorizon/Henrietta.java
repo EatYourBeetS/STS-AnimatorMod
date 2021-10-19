@@ -20,7 +20,7 @@ public class Henrietta extends AnimatorCard
             .SetPower(3, CardRarity.UNCOMMON)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_COST = 6;
+    private static final int POWER_COST = 9;
 
     public Henrietta()
     {

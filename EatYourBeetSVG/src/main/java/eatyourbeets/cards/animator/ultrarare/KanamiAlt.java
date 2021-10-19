@@ -62,7 +62,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.RED.cpy()));
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
         .AddCallback(block, (amount, __) ->
         {
             if (amount > 0)
@@ -71,6 +71,6 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
                 GameActions.Bottom.GainAgility(1);
                 GameActions.Bottom.GainBlock(amount);
             }
-        });
+        }));
     }
 }

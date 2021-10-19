@@ -67,9 +67,9 @@ public class EmiyaKiritsugu extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
         .SetSoundPitch(0.6f, 0.7f)
-        .SetVFXColor(Color.GOLD);
+        .SetVFXColor(Color.GOLD));
 
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         final AbstractCard c1 = uncommonCards.Retrieve(rng, true);

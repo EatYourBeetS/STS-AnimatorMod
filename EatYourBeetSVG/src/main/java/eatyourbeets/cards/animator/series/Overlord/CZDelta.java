@@ -41,14 +41,14 @@ public class CZDelta extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
                 .SetDamageEffect(c ->
                 {
                     SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f, 0.95f);
                     return GameEffects.List.Add(VFX.SmallLaser(player.hb, c.hb, VFX_COLOR, 0.1f)).duration * 0.7f;
                 })
                 .SetSoundPitch(1.5f, 1.55f)
-                .SetVFXColor(VFX_COLOR);
+                .SetVFXColor(VFX_COLOR));
 
         CombatStats.onStartOfTurnPostDraw.Subscribe((CZDelta) makeStatEquivalentCopy());
     }

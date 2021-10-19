@@ -33,7 +33,7 @@ public class Naotsugu extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
-        .AddCallback(e ->
+                .forEach(d -> d.AddCallback(e ->
         {
             AbstractCard best = null;
             int maxBlock = e.lastDamageTaken;
@@ -57,6 +57,6 @@ public class Naotsugu extends AnimatorCard
             {
                 GameActions.Top.PlayCard(best, player.hand, (AbstractMonster) e);
             }
-        });
+        }));
     }
 }

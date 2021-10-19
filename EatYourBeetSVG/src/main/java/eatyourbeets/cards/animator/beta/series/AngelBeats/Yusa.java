@@ -34,7 +34,6 @@ public class Yusa extends AnimatorCard
                 for (AbstractCard c : cards) {
                     if (GameUtilities.HasLightAffinity(c)) {
                         GameActions.Bottom.GainBlessing(1);
-                        break;
                     }
                 }
             });

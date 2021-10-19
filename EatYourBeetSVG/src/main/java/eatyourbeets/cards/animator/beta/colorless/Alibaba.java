@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
@@ -27,12 +26,8 @@ public class Alibaba extends AnimatorCard implements Hidden
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-    }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(secondaryValue);
+        SetHitCount(2);
     }
 
     @Override
@@ -44,18 +39,16 @@ public class Alibaba extends AnimatorCard implements Hidden
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < secondaryValue; i++) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).AddCallback(e -> {
-                if (e.lastDamageTaken > 0) {
-                    if (choices.TryInitialize(this))
-                    {
-                        choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Normal(e), PowerHelper.Burning, magicNumber));
-                        choices.AddEffect(new GenericEffect_TriggerOrb(new Earth()));
-                    }
-                    choices.Select(1, m);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).forEach(d -> d.AddCallback(e -> {
+            if (e.lastDamageTaken > 0) {
+                if (choices.TryInitialize(this))
+                {
+                    choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Normal(e), PowerHelper.Burning, magicNumber));
+                    choices.AddEffect(new GenericEffect_TriggerOrb(new Earth()));
                 }
-            });
-        }
+                choices.Select(1, m);
+            }
+        }));
     }
 
 }

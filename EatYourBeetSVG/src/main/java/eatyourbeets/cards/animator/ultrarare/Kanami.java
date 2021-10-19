@@ -39,7 +39,7 @@ public class Kanami extends AnimatorCard_UltraRare
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL)
-        .SetVFX(true, false)
+                .forEach(d -> d.SetVFX(true, false)
         .AddCallback(enemies ->
         {
             CardCrawlGame.sound.play("ATTACK_WHIRLWIND");
@@ -50,7 +50,7 @@ public class Kanami extends AnimatorCard_UltraRare
                 GameActions.Bottom.ApplyVulnerable(player, c, magicNumber)
                 .ShowEffect(false, true);
             }
-        });
+        }));
         GameActions.Last.MoveCard(this, p.drawPile)
         .ShowEffect(true, true)
         .SetDestination(CardSelection.Random)

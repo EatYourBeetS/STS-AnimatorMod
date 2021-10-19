@@ -137,7 +137,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected String GetUpdatedDescription()
     {
-        String description = FormatDescription(0, decimalFormat.format(amount / EYBCardAffinitySystem.SCALING_DIVISION));
+        String description = FormatDescription(0, decimalFormat.format(amount / (float)EYBCardAffinitySystem.SCALING_DIVISION));
 
         final Integer threshold = GetCurrentThreshold();
         if (threshold != null)

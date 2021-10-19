@@ -24,11 +24,11 @@ public class KyokoSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0, 1);
-        SetUpgrade(2, 0, 1);
+        Initialize(9, 0, 1, 2);
+        SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1, 0, 1);
-        SetSoul(6, 0, KyokoSakura_Ophelia::new);
+        SetSoul(5, 1, KyokoSakura_Ophelia::new);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class KyokoSakura extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainForce(1, true);
+            GameActions.Bottom.GainForce(secondaryValue, true);
             GameActions.Bottom.ChannelOrb(new Fire());
         }
 

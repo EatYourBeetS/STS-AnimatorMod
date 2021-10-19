@@ -38,7 +38,7 @@ public class Hero extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(c ->
         {
             if (GameUtilities.IsFatal(c, true) && info.TryActivateLimited())
@@ -75,7 +75,7 @@ public class Hero extends AnimatorCard_UltraRare
                     deckInstance.misc += 1;
                 }
             }
-        });
+        }));
         GameActions.Bottom.Draw(magicNumber);
     }
 }

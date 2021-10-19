@@ -3,10 +3,8 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -43,15 +41,20 @@ public class Kuribayashi extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
+    public void Refresh(AbstractMonster enemy)
     {
-        return AgilityStance.IsActive() ? super.GetDamageInfo().AddMultiplier(2) : super.GetDamageInfo();
+        super.Refresh(enemy);
+
+        if (CheckAffinity(Affinity.Green)) {
+            GameUtilities.IncreaseHitCount(this, 1, true);
+        }
     }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.6f, 0.8f));
 
         if (TrySpendAffinity(Affinity.Green))
         {

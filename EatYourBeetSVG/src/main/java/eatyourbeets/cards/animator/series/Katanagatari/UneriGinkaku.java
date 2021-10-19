@@ -64,7 +64,7 @@ public class UneriGinkaku extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
         .SetDamageEffect(enemy ->
         {
             float wait = GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,
@@ -73,6 +73,6 @@ public class UneriGinkaku extends AnimatorCard
             500f, 200f, 290f, 5f, Color.DARK_GRAY.cpy(), Color.BLACK.cpy())).duration;
             SFX.Play(SFX.ATTACK_REAPER);
             return wait * 0.65f;
-        });
+        }));
     }
 }

@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.DaggerSprayEffect;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Viivi extends AnimatorCard
 {
@@ -34,6 +33,8 @@ public class Viivi extends AnimatorCard
         SetAffinity_Light(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Green, 3);
+
+        SetHitCount(3,1);
     }
 
     @Override
@@ -42,11 +43,6 @@ public class Viivi extends AnimatorCard
         upgradedDamage = true;
     }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
 
     @Override
     public void triggerOnManualDiscard()
@@ -59,11 +55,8 @@ public class Viivi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0f);
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE);
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+                .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration));
 
         if (IsStarter())
         {

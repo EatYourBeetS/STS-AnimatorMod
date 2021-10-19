@@ -17,9 +17,10 @@ public class Loadout_RozenMaiden extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(Souseiseki.DATA, 4);
-        AddStarterCard(Suiseiseki.DATA, 5);
+        AddStarterCard(TomoeKashiwaba.DATA, 5);
         AddStarterCard(Hinaichigo.DATA, 5);
+        AddStarterCard(Suiseiseki.DATA, 7);
+        AddStarterCard(Souseiseki.DATA, 8);
         AddStarterCard(JunSakurada.DATA, 7);
     }
 

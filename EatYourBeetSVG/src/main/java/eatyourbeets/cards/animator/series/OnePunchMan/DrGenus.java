@@ -10,13 +10,14 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class DrGenus extends AnimatorCard
+public class DrGenus extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(DrGenus.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)

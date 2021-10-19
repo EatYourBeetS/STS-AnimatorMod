@@ -41,9 +41,9 @@ public class Simon extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH).AddCallback(e -> {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH).forEach(d -> d.AddCallback(e -> {
             GameActions.Bottom.StackPower(new VigorPower(player, e.lastDamageTaken / 2));
-        });
+        }));
 
         if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= magicNumber && CombatStats.TryActivateLimited(cardID))
         {

@@ -27,7 +27,7 @@ public class Serara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -59,8 +59,7 @@ public class Serara extends AnimatorCard
             buffs.clear();
         }
 
-        GameActions.Bottom.GainForce(1);
-        GameActions.Bottom.GainWillpower(1);
+        GameActions.Bottom.GainWillpower(secondaryValue);
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)

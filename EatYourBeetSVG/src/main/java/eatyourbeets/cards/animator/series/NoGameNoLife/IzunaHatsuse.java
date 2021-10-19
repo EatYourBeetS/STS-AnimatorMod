@@ -32,6 +32,8 @@ public class IzunaHatsuse extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
+
+        SetHitCount(2);
     }
 
     @Override
@@ -52,15 +54,8 @@ public class IzunaHatsuse extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(2);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.ApplyWeak(p, m, 1);
         if (upgraded)

@@ -45,11 +45,11 @@ public class Guts extends AnimatorCard
         AbstractMonster mo = m == null ? GameUtilities.GetRandomEnemy(true) : m;
         if (mo != null) {
             GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
-            GameActions.Bottom.TakeDamage(magicNumber, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
             GameActions.Bottom.VFX(VFX.VerticalImpact(mo.hb));
             GameActions.Bottom.DealDamageToRandomEnemy(inflictDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(target -> {
                 if (GameUtilities.IsDeadOrEscaped(target)) {
+                    GameActions.Bottom.TakeDamage(magicNumber, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                     forceStacks.addAndGet(ExecuteAttack(m, inflictDamage + secondaryValue));
                 }
             });

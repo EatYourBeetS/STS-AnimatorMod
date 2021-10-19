@@ -19,8 +19,8 @@ public class Demiurge extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0,7);
-        SetUpgrade(0,0, -1);
+        Initialize(0,0,7, 2);
+        SetUpgrade(0,0, -1, 1);
 
         SetAffinity_Orange(1);
         SetAffinity_Dark(1);
@@ -50,7 +50,7 @@ public class Demiurge extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.GainEnergy(1);
-        GameActions.Bottom.GainCorruption(1);
+        GameActions.Bottom.GainCorruption(secondaryValue);
         GameActions.Bottom.ModifyAllInstances(uuid)
         .AddCallback(c -> c.misc += magicNumber);
     }

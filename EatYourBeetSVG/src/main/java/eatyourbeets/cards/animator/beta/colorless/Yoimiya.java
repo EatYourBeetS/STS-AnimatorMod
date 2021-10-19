@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.BlazingHeat;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.BurningPower;
@@ -20,37 +19,31 @@ public class Yoimiya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(2, 0, 0, 2);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        SetHitCount(3, 1);
     }
 
     @Override
     protected void OnUpgrade()
     {
         this.AddScaling(Affinity.Red, 1);
+
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).AddCallback(e -> {
-                if (e.lastDamageTaken > 0) {
-                    GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
-                }
-            });
-        }
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
+            if (e.lastDamageTaken > 0) {
+                GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
+            }
+        }));
 
         if (IsStarter()) {
             GameActions.Bottom.Callback(() -> {

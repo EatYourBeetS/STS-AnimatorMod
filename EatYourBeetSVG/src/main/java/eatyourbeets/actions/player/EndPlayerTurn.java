@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class EndPlayerTurn extends EYBAction
 {
@@ -20,7 +21,7 @@ public class EndPlayerTurn extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (!AbstractDungeon.actionManager.turnHasEnded)
+        if (GameUtilities.IsPlayerTurn())
         {
             CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05f);
             GameEffects.Queue.Add(new BorderFlashEffect(Color.GOLD, true));

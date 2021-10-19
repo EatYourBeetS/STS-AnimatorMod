@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
@@ -20,17 +19,17 @@ public class Noah extends AnimatorCard
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Piercing)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    public static final int ATTACK_TIMES = 3;
 
     public Noah()
     {
         super(DATA);
 
-        Initialize(3, 0);
+        Initialize(3, 0, 2);
         SetUpgrade(1, 0);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(2, 0, 1);
+        SetHitCount(3);
     }
 
     @Override
@@ -44,16 +43,10 @@ public class Noah extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        if (!CheckPrimaryCondition(false)) {
+        if (!CheckPrimaryCondition(false) ^ auxiliaryData.form == 1) {
             return super.GetInitialDamage() + GetXValue();
         }
         return super.GetInitialDamage();
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(ATTACK_TIMES);
     }
 
     @Override
@@ -75,23 +68,31 @@ public class Noah extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < ATTACK_TIMES; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
-                    .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
-        }
-        GameActions.Bottom.GainCorruption(1, true);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d
+                .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f));
+        GameActions.Bottom.StackAffinityPower(auxiliaryData.form == 1 ? Affinity.Light : Affinity.Dark , magicNumber, true);
 
         int amount = GetXValue();
         if (amount > 0) {
             if (CheckPrimaryCondition(true)) {
                 TrySpendAffinity(Affinity.Light, GetXValue());
-                GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
+                if (auxiliaryData.form == 1) {
+                    GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
+                }
+                else {
+                    GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+                }
 
             }
             else {
                 TrySpendAffinity(Affinity.Dark, GetXValue());
-                GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+                if (auxiliaryData.form == 1) {
+                    GameActions.Bottom.StackPower(new DelayedDamagePower(p, amount));
+                }
+                else {
+                    GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), amount);
+                }
+
             }
         }
     }

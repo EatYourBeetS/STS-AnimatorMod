@@ -23,7 +23,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class Chaa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Chaa.class).SetPower(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 3;
+    private static final int POWER_ENERGY_COST = 7;
 
     public Chaa()
     {

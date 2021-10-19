@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,12 +12,10 @@ import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import com.megacrit.cardcrawl.vfx.combat.FireballEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
-import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -53,12 +52,6 @@ public class Patchouli extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -70,26 +63,49 @@ public class Patchouli extends AnimatorCard
             uniqueOrbs.add(orb.ID);
         }
 
-        GameUtilities.IncreaseMagicNumber(this, uniqueOrbs.size(), true);
+        GameUtilities.IncreaseHitCount(this, uniqueOrbs.size(), true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final RandomizedList<ActionT0> actions = new RandomizedList<>();
-        for (int i = 0; i < magicNumber; i++)
+        final RandomizedList<FuncT1<Float, AbstractCreature>> actions = new RandomizedList<>();
+        if (actions.Size() == 0)
         {
-            if (actions.Size() == 0)
+            actions.Add(e ->
             {
-                actions.Add(this::Air);
-                actions.Add(this::Fire);
-                actions.Add(this::Frost);
-                actions.Add(this::Lightning);
-            }
+                CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.2f);
+                GameEffects.Queue.Add(new LightningEffect(e.drawX, e.drawY));
+                return 0f;
+            });
+            actions.Add(e ->
+            {
+                MonsterGroup monsters = AbstractDungeon.getMonsters();
+                int frostCount = monsters.monsters.size() + 5;
 
-            actions.Retrieve(rng).Invoke();
-            GameActions.Bottom.WaitRealtime(0.2f);
+                CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f - (float) frostCount / 200f);
+                for (int f = 0; f < frostCount; f++)
+                {
+                    GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
+                }
+
+                return 0f;
+            });
+            actions.Add(__ ->
+            {
+                CardCrawlGame.sound.play("ATTACK_WHIRLWIND", 0.2f);
+                GameEffects.Queue.Add(new WhirlwindEffect());
+                return 0f;
+            });
+            actions.Add(e ->
+            {
+                CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
+                GameEffects.Queue.Add(new FireballEffect(player.hb.cX, player.hb.cY, e.hb.cX, e.hb.cY));
+                return 0f;
+            });
         }
+
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d.SetOptions(true, false).SetDamageEffect(actions.Retrieve(rng)));
 
         if (TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
@@ -102,57 +118,5 @@ public class Patchouli extends AnimatorCard
                 }
             }));
         }
-    }
-
-    private void Lightning()
-    {
-        CreateDamageAction().SetDamageEffect(e ->
-        {
-            CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.2f);
-            GameEffects.Queue.Add(new LightningEffect(e.drawX, e.drawY));
-            return 0f;
-        });
-    }
-
-    private void Frost()
-    {
-        CreateDamageAction().SetDamageEffect(e ->
-        {
-            MonsterGroup monsters = AbstractDungeon.getMonsters();
-            int frostCount = monsters.monsters.size() + 5;
-
-            CardCrawlGame.sound.playA("ORB_FROST_CHANNEL", -0.25f - (float) frostCount / 200f);
-            for (int f = 0; f < frostCount; f++)
-            {
-                GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
-            }
-
-            return 0f;
-        });
-    }
-
-    private void Air()
-    {
-        CreateDamageAction().SetDamageEffect(__ ->
-        {
-            CardCrawlGame.sound.play("ATTACK_WHIRLWIND", 0.2f);
-            GameEffects.Queue.Add(new WhirlwindEffect());
-            return 0f;
-        });
-    }
-
-    private void Fire()
-    {
-        CreateDamageAction().SetDamageEffect(e ->
-        {
-            CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
-            GameEffects.Queue.Add(new FireballEffect(player.hb.cX, player.hb.cY, e.hb.cX, e.hb.cY));
-            return 0f;
-        });
-    }
-
-    private DealDamageToRandomEnemy CreateDamageAction()
-    {
-        return GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).SetOptions(true, false);
     }
 }

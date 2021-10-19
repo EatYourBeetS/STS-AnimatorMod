@@ -26,7 +26,7 @@ public class Yui extends AnimatorCard
         SetCostUpgrade(-1);
         AfterLifeMod.Add(this);
 
-        SetAffinityRequirement(Affinity.General, 6);
+        SetAffinityRequirement(Affinity.General, 9);
     }
 
     @Override

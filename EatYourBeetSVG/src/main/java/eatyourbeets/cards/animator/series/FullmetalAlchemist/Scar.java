@@ -31,12 +31,12 @@ public class Scar extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
         .SetDamageEffect(__ ->
         {
             SFX.Play(SFX.ORB_DARK_EVOKE, 0.5f, 0.7f);
             return 0f;
-        });
+        }));
     }
 
     @Override

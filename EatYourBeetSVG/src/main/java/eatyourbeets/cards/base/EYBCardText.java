@@ -207,6 +207,17 @@ public class EYBCardText
             offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
         }
 
+        Vector2 iconOffset = new Vector2(-AbstractCard.RAW_W * 0.4695f, -AbstractCard.RAW_H * 0.45f);
+        if (card.hasTag(GR.Enums.CardTags.UNIQUE)) {
+            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
+        }
+        else if (card.cardData.CanToggleFromPopup && card.upgraded || card.cardData.UnUpgradedCanToggleForms) {
+            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
+        }
+        else if (card.cardData.CanToggleOnUpgrade) {
+            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
+        }
+
         offset_y = 0;
 
         final boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);

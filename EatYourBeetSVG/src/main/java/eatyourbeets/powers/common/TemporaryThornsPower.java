@@ -19,7 +19,7 @@ public class TemporaryThornsPower extends AbstractTemporaryPower
     {
         super.onAmountChanged(previousAmount, difference);
 
-        if (GameUtilities.GetPowerAmount(owner, ThornsPower.POWER_ID) == 0) {
+        if (GameUtilities.GetPowerAmount(owner, ThornsPower.POWER_ID) == previousAmount && previousAmount + difference == 0) {
             GameActions.Bottom.RemovePower(owner, owner, ThornsPower.POWER_ID);
         }
     }

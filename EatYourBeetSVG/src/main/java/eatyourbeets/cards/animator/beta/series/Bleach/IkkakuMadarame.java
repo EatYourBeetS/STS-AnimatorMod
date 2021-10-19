@@ -21,7 +21,7 @@ public class IkkakuMadarame extends AnimatorCard{
     public IkkakuMadarame() {
         super(DATA);
 
-        Initialize(6, 1, 0, 4);
+        Initialize(6, 1, 2, 16);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(1, 0, 1);
@@ -33,10 +33,10 @@ public class IkkakuMadarame extends AnimatorCard{
         GameActions.Bottom.GainBlock(block);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameActions.Bottom.GainAgility(1, true);
+            GameActions.Bottom.GainAgility(magicNumber, true);
         }
         else {
-            GameActions.Bottom.GainForce(1, true);
+            GameActions.Bottom.GainForce(magicNumber, true);
         }
 
         GameActions.Bottom.Callback(card -> {

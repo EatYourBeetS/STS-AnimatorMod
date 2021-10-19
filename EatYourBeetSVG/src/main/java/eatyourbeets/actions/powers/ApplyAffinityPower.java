@@ -48,9 +48,9 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
         Initialize(source, power.owner, amount);
     }
 
-    public ApplyAffinityPower Retain(boolean retain)
+    public ApplyAffinityPower Maintain(boolean maintain)
     {
-        this.maintain = retain;
+        this.maintain = maintain;
 
         return this;
     }
@@ -65,13 +65,12 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     @Override
     protected void FirstUpdate()
     {
+        if (maintain)
+        {
+            power.Maintain();
+        }
         if (amount == 0)
         {
-            if (maintain)
-            {
-                power.Maintain();
-            }
-
             Complete();
             return;
         }

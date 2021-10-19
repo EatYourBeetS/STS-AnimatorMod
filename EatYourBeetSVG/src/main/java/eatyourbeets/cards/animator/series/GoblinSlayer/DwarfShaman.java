@@ -25,15 +25,15 @@ public class DwarfShaman extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.General, 6);
         SetEvokeOrbCount(1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetVFX(true, false)
-        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true));
         GameActions.Bottom.ChannelOrb(new Earth());
 
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {

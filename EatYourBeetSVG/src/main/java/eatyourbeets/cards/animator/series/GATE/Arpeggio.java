@@ -20,7 +20,7 @@ public class Arpeggio extends AnimatorCard
             .SetPower(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 3;
+    private static final int POWER_ENERGY_COST = 6;
     private static final int TRIGGER_LIMIT = 3;
 
     public Arpeggio()

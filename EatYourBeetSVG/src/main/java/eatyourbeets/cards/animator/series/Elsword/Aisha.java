@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
@@ -29,6 +28,7 @@ public class Aisha extends AnimatorCard
         SetUpgrade(1, 0, 0, 1);
 
         SetAffinity_Blue(2, 0, 1);
+        SetHitCount(2);
     }
 
     @Override
@@ -40,12 +40,6 @@ public class Aisha extends AnimatorCard
     };
 
     @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
-
-    @Override
     protected float GetInitialDamage()
     {
         return super.GetInitialDamage() + (Math.min(ORB_LIMIT, player.filledOrbCount()) * secondaryValue);
@@ -54,15 +48,12 @@ public class Aisha extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetVFX(true, false)
-            .SetDamageEffect(enemy ->
-            {
-                GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));
-                return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f;
-            });
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
+                .SetDamageEffect(enemy ->
+                {
+                    GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));
+                    return GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.VIOLET)).duration * 0.1f;
+                }));
 
         if (IsStarter())
         {

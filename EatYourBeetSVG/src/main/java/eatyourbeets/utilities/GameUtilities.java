@@ -1168,6 +1168,11 @@ public class GameUtilities
         ModifySecondaryValue(card, card.baseSecondaryValue + amount, temporary);
     }
 
+    public static void IncreaseHitCount(EYBCard card, int amount, boolean temporary)
+    {
+        ModifyHitCount(card, card.baseHitCount + amount, temporary);
+    }
+
     public static boolean IsAttacking(AbstractMonster.Intent intent)
     {
         return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.ATTACK_BUFF ||
@@ -1351,6 +1356,11 @@ public class GameUtilities
         return player != null && player.chosenClass == playerClass;
     }
 
+    public static boolean IsPlayerTurn()
+    {
+        return !AbstractDungeon.actionManager.turnHasEnded;
+    }
+
     public static boolean IsSameSeries(AbstractCard card1, AbstractCard card2)
     {
         AnimatorCard c1 = JUtils.SafeCast(card1, AnimatorCard.class);
@@ -1493,6 +1503,16 @@ public class GameUtilities
             card.baseSecondaryValue = card.secondaryValue;
         }
         card.isSecondaryValueModified = (card.secondaryValue != card.baseSecondaryValue);
+    }
+
+    public static void ModifyHitCount(EYBCard card, int amount, boolean temporary)
+    {
+        card.hitCount = amount;
+        if (!temporary)
+        {
+            card.baseHitCount = card.hitCount;
+        }
+        card.isHitCountModified = (card.hitCount != card.baseHitCount);
     }
 
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)

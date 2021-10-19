@@ -18,8 +18,8 @@ public class Loadout_OnePunchMan extends AnimatorLoadout
     {
         AddStarterCard(SilverFang.DATA, 5);
         AddStarterCard(MetalBat.DATA, 5);
+        AddStarterCard(MumenRider.DATA, 5);
         AddStarterCard(Genos.DATA, 6);
-        AddStarterCard(MumenRider.DATA, 7);
         AddStarterCard(King.DATA, 7);
         AddStarterCard(Melzalgald.DATA, 12);
         AddStarterCard(Saitama.DATA, 16);

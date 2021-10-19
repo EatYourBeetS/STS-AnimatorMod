@@ -22,6 +22,7 @@ public class Loadout_GATE extends AnimatorLoadout
         AddStarterCard(ShunyaKengun.DATA, 7);
         AddStarterCard(RoryMercury.DATA, 8);
         AddStarterCard(Bozes.DATA, 11);
+        AddStarterCard(ItamiYouji.DATA, 25);
     }
 
     @Override

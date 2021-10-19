@@ -24,7 +24,7 @@ public class Tetora extends AnimatorCard
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_CARD_COST = 4;
+    private static final int POWER_CARD_COST = 7;
 
     public Tetora()
     {
@@ -36,7 +36,7 @@ public class Tetora extends AnimatorCard
 
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.General, 6);
+        SetAffinityRequirement(Affinity.General, 10);
     }
 
     @Override

@@ -43,8 +43,8 @@ public class Shizu extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new FlamingWeaponPower(p, 2));
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
-        .SetDamageEffect(c -> GameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 0.9f, 1.1f).duration);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d
+        .SetDamageEffect(c -> GameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 0.9f, 1.1f).duration));
 
         if (CheckSpecialCondition(true))
         {

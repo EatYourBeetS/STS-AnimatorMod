@@ -147,7 +147,8 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
             int req = sourceAffinities != null ? sourceAffinities.GetRequirement(useGeneral ? Affinity.General : affinity) : cost >= 0 ? cost : System.GetAffinityLevel(affinity, true);
             if (System.GetAffinityLevel(affinity,true) >= req) {
                 GenericEffect_PayAffinity affinityCost = new GenericEffect_PayAffinity(affinity, req);
-                AnimatorCardBuilder builder = new AnimatorCardBuilder(AffinityToken.GetCard(affinity), affinityCost.GetText(), false).SetOnUse(affinityCost::Use);
+                AffinityToken token = AffinityToken.GetCard(affinity);
+                AnimatorCardBuilder builder = new AnimatorCardBuilder(token, affinityCost.GetText(), false).SetOnUse(affinityCost::Use).SetID(token.cardID);
                 group.addToTop(builder.Build());
             }
         }

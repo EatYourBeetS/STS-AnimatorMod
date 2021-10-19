@@ -20,7 +20,7 @@ public class Biyorigo extends AnimatorCard
             .SetPower(2, CardRarity.RARE)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    public static final int COST = 3;
+    public static final int COST = 7;
 
     public Biyorigo()
     {

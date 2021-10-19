@@ -32,8 +32,8 @@ public class HighElfArcher extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SFX(SFX.ANIMATOR_ARROW);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
-        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f));
 
         if (info.IsStarter)
         {

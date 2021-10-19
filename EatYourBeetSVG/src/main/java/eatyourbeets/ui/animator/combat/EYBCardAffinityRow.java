@@ -129,7 +129,7 @@ public class EYBCardAffinityRow extends GUIElement
         {
             if (hoveredCard != null)
             {
-                if (hoveredCard.affinities.GetLevel(Type,false) > 0) {
+                if ((hoveredCard.affinities.GetLevel(Type,false) > 0 || (hoveredCard.affinities.GetLevel(Affinity.Star,false) > 0 && System.GetLastAffinityLevel(Type) > 0)) && hoveredCard.cardData.CanGrantAffinity) {
                     previewAffinities.Add(Type, 1);
                 }
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;

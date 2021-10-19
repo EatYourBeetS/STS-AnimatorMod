@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class UruhaRushia extends AnimatorCard
 {
@@ -35,28 +36,19 @@ public class UruhaRushia extends AnimatorCard
 
     public static class UruhaRushiaPower extends AnimatorPower
     {
-        private boolean isPlayerTurn;
         public UruhaRushiaPower(AbstractPlayer owner, int amount)
         {
             super(owner, UruhaRushia.DATA);
 
             this.amount = amount;
             this.priority = 99;
-            this.isPlayerTurn = true;
 
             updateDescription();
         }
 
         @Override
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-            isPlayerTurn = true;
-        }
-
-        @Override
         public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-            if (isPlayerTurn && damageAmount > 1 && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
+            if (GameUtilities.IsPlayerTurn() && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
                 return super.onAttackedToChangeDamage(info, 0);
             }
             return super.onAttackedToChangeDamage(info, damageAmount);
@@ -66,19 +58,10 @@ public class UruhaRushia extends AnimatorCard
         @Override
         public float atDamageFinalReceive(float damage, DamageInfo.DamageType type)
         {
-            if (isPlayerTurn && damage > 1f && type == DamageInfo.DamageType.NORMAL || type == DamageInfo.DamageType.THORNS) {
+            if (GameUtilities.IsPlayerTurn() && type == DamageInfo.DamageType.NORMAL || type == DamageInfo.DamageType.THORNS) {
                 return super.atDamageFinalReceive(0f, type);
             }
             return super.atDamageFinalReceive(damage, type);
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            super.atEndOfTurn(isPlayer);
-            if (isPlayer) {
-                isPlayerTurn = false;
-            }
         }
 
         @Override
@@ -86,8 +69,6 @@ public class UruhaRushia extends AnimatorCard
         {
             ReducePower(1);
         }
-
-
 
         @Override
         public void updateDescription()

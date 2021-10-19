@@ -47,7 +47,7 @@ public class KomachiOnozuka extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(enemy ->
         {
             AbstractRoom room = AbstractDungeon.getCurrRoom();
@@ -57,7 +57,7 @@ public class KomachiOnozuka extends AnimatorCard
             {
                 ObtainReward();
             }
-        });
+        }));
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
     }
 

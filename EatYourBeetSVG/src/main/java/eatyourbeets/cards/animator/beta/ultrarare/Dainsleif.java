@@ -42,7 +42,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         SetAffinity_Blue(2);
         SetDelayed(true);
 
-        SetAffinityRequirement(Affinity.General, 10);
+        SetAffinityRequirement(Affinity.General, 13);
     }
 
     @Override

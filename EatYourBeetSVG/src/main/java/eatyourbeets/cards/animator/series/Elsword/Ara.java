@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,24 +26,18 @@ public class Ara extends AnimatorCard
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(2);
+        SetAffinityRequirement(Affinity.Orange, 4);
+        SetHitCount(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetSoundPitch(1.1f, 1.3f));
 
-        if (info.IsSynergizing)
+        if (TrySpendAffinity(Affinity.Orange))
         {
-            GameActions.Bottom.GainAgility(1, upgraded);
+            GameActions.Bottom.GainAgility(magicNumber, upgraded);
         }
     }
 

@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
 import eatyourbeets.powers.CombatStats;
@@ -17,36 +16,29 @@ public class GinIchimaru extends AnimatorCard
     public static final EYBCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing, EYBCardTarget.Random).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
-    public static final int MAX_AMOUNT = 5;
+    public static final int MAX_AMOUNT = 10;
 
     public GinIchimaru()
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 3);
-        SetUpgrade(1, 0, 0);
+        Initialize(3, 0, 2, 7);
+        SetUpgrade(1, 0, 0, 1);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(2, 0, 2);
         SetAffinity_Blue(0,0,1);
 
         SetAffinityRequirement(Affinity.Blue, 3);
+        SetHitCount(2);
     }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
 
         if (CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true) >= secondaryValue || CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) >= secondaryValue)
         {

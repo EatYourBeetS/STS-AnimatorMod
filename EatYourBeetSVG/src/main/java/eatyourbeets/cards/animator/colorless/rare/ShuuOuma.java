@@ -19,7 +19,8 @@ public class ShuuOuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0,0,1,1);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
@@ -32,7 +33,7 @@ public class ShuuOuma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new ShuuOumaPower(player, 1));
+        GameActions.Bottom.StackPower(new ShuuOumaPower(player, secondaryValue));
 
         (upgraded ? GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile)
                   : GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile))

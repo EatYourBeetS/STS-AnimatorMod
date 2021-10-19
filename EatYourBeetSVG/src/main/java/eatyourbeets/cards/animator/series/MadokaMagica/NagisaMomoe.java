@@ -11,8 +11,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class NagisaMomoe extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NagisaMomoe.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
+            .SetMultiformData(2, false)
             .PostInitialize(data ->
             {
                 data.AddPreview(new NagisaMomoe_Charlotte(), true);
@@ -22,8 +23,8 @@ public class NagisaMomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 5, 1);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Star(1);
 
@@ -31,6 +32,19 @@ public class NagisaMomoe extends AnimatorCard
         SetExhaust(true);
         SetSoul(1, 0, NagisaMomoe_Charlotte::new);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            Initialize(0, 0, 3, 1);
+            SetUpgrade(0, 0, 0, 1);
+        }
+        else {
+            Initialize(0, 0, 3, 1);
+            SetUpgrade(0, 0, 1, 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -50,7 +64,7 @@ public class NagisaMomoe extends AnimatorCard
 
         if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
         {
-            GameActions.Bottom.GainTemporaryHP(1);
+            GameActions.Bottom.GainTemporaryHP(secondaryValue);
             GameActions.Bottom.Flash(this);
         }
     }

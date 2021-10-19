@@ -33,8 +33,8 @@ public class IkkakuBankai extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.DealDamageToAll(this, AttackEffects.SLASH_DIAGONAL)
-                        .SetVFX(false, true);
+                GameActions.Top.DealDamageToAll(this, AttackEffects.SLASH_DIAGONAL).forEach(d -> d
+                        .SetVFX(false, true));
             }
         });
     }

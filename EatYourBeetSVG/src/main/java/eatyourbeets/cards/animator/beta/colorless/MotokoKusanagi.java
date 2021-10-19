@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
@@ -27,12 +26,7 @@ public class MotokoKusanagi extends AnimatorCard
         SetRicochet(BASE_RICOCHET, 0, this::OnCooldownCompleted);
 
         SetExhaust(true);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        SetHitCount(2);
     }
 
     @Override
@@ -51,9 +45,7 @@ public class MotokoKusanagi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < magicNumber; i++) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
-        }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

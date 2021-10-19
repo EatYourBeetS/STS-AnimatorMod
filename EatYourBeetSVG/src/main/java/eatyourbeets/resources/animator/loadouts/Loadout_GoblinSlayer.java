@@ -18,10 +18,11 @@ public class Loadout_GoblinSlayer extends AnimatorLoadout
     {
         AddStarterCard(HighElfArcher.DATA, 5);
         AddStarterCard(DwarfShaman.DATA, 6);
-        AddStarterCard(LizardPriest.DATA, 7);
+        AddStarterCard(LizardPriest.DATA, 6);
         AddStarterCard(Priestess.DATA, 7);
         AddStarterCard(Spearman.DATA, 8);
-        AddStarterCard(Witch.DATA, 8);
+        AddStarterCard(Witch.DATA, 9);
+        AddStarterCard(GoblinSlayer.DATA, 25);
     }
 
     @Override

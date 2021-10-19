@@ -71,8 +71,8 @@ public class Kamina extends AnimatorCard implements OnLoseHpSubscriber, OnStartO
                 this.applyPowers();
                 this.calculateCardDamage(enemy);
 
-                GameActions.Bottom.DealDamage(this, enemy, AttackEffects.PUNCH).AddCallback(() ->
-                        GameActions.Bottom.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED)));
+                GameActions.Bottom.DealDamage(this, enemy, AttackEffects.PUNCH).forEach(d -> d.AddCallback(() ->
+                        GameActions.Bottom.Add(new ShakeScreenAction(0.3f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED))));
                 CombatStats.onLoseHp.Unsubscribe(this);
                 CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             }

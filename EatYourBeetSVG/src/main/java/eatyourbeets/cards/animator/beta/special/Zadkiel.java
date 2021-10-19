@@ -31,14 +31,14 @@ public class Zadkiel extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH)
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH).forEach(d -> d
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)
                 .AddCallback(enemy -> {
                     if (GameUtilities.IsFatal(enemy, true)) {
                         GameActions.Bottom.EvokeOrb(magicNumber).AddCallback(() ->
                                 GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));
                     }
-                });
+                }));
         GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
     }
 }

@@ -17,7 +17,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
             .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.MadokaMagica);
-    private static final int POWER_ENERGY_COST = 2;
+    private static final int POWER_ENERGY_COST = 7;
 
     private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
 

@@ -44,7 +44,7 @@ public class SakuraKinomoto extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 1.35f, 1.45f);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).forEach(d -> d
         .SetDamageEffect(e -> GameEffects.Queue.Add(VFX.SmallLaser(player.hb, e.hb, Color.PINK)).duration * 0.4f)
         .AddCallback(enemy ->
         {
@@ -73,6 +73,6 @@ public class SakuraKinomoto extends AnimatorCard
                 .IsCancellable(false);
                 GameActions.Top.WaitRealtime(0.5f);
             }
-        });
+        }));
     }
 }

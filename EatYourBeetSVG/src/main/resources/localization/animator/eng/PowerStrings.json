@@ -312,7 +312,7 @@
 	},
 	"animator:SelfImmolationPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, give #yDelayed #yDamage to ALL characters whenever you gain Block."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, when you gain [Block]: You and a random enemy take twice that much #yDelayed #yDamage."],
 	  "NAME": "Self-Immolation"
 	},
 	"animator:SheerColdPower":

@@ -7,7 +7,6 @@ import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnBlock;
 import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
 import eatyourbeets.misc.GenericEffects.GenericEffect_Scry;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
@@ -35,7 +34,7 @@ public class OrikoMikuni extends AnimatorCard
     {
         GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetOptions(false,true).AddCallback(cards -> {
             if (cards.size() > 0) {
-                GameActions.Bottom.GainIntellect(1, true);
+                GameActions.Bottom.GainIntellect(2, false);
             }
         });
 

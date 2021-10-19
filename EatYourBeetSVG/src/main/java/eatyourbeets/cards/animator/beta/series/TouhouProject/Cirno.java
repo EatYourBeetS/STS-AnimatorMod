@@ -67,12 +67,12 @@ public class Cirno extends AnimatorCard
             GameActions.Top.Wait(0.3f);
         });
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
         .SetVFX(true, false)
         .SetDamageEffect((c, __) -> {
             GameActions.Bottom.ReduceStrength(c, secondaryValue, true);
             GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(true, true);
-        });
+        }));
     }
 }
 

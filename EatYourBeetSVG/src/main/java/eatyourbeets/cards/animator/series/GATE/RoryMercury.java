@@ -46,7 +46,7 @@ public class RoryMercury extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).AddCallback((t) ->
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY).forEach(d -> d.AddCallback((t) ->
         {
             if (GameUtilities.IsDeadOrEscaped(t) && CombatStats.TryActivateLimited(cardID))
             {
@@ -54,7 +54,7 @@ public class RoryMercury extends AnimatorCard
                 GameActions.Bottom.GainTemporaryHP(t.lastDamageTaken);
                 GameActions.Bottom.Exhaust(this);
             }
-        });
+        }));
 
     }
 }

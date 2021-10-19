@@ -28,7 +28,7 @@ public class KaijiItou extends AnimatorCard
 
         SetAffinity_Orange(2);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.General, 8);
     }
 
     public void OnUpgrade() {

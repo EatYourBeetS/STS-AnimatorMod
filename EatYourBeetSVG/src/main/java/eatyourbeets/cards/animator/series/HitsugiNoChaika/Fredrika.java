@@ -13,7 +13,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
+public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber //TODO use multiform
 {
     private enum Form
     {
@@ -80,15 +80,10 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (currentForm == Form.Dominica)
+        if (currentForm == Form.Dominica || currentForm == Form.Dragoon)
         {
             return super.GetDamageInfo();
         }
-        else if (currentForm == Form.Dragoon)
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-
         return null;
     }
 
@@ -176,7 +171,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
             case Dragoon:
             {
                 GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.GainMetallicize(2);
                 break;
             }
@@ -212,6 +206,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
                 this.cost = 1;
+                SetHitCount(1);
 
                 break;
             }
@@ -224,6 +219,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
+                SetHitCount(1);
 
                 break;
             }
@@ -236,6 +232,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
+                SetHitCount(2);
 
                 break;
             }
@@ -248,6 +245,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
+                SetHitCount(1);
 
                 break;
             }

@@ -41,7 +41,7 @@ public class Tartaglia extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
                 .AddCallback((targets) ->
                 {
                     for (AbstractCreature t : targets) {
@@ -52,7 +52,7 @@ public class Tartaglia extends AnimatorCard {
                             break;
                         }
                     }
-                });
+                }));
 
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true)) {
             GameActions.Bottom.RemovePower(p, c, BurningPower.POWER_ID);

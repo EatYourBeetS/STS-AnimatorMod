@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class GameActionManagerPatches
         @SpirePostfixPatch
         public static void Postfix(boolean endOfTurn)
         {
-            if (!AbstractDungeon.actionManager.turnHasEnded && !endOfTurn)
+            if (GameUtilities.IsPlayerTurn() && !endOfTurn)
             {
                 CombatStats.OnManualDiscard();
             }

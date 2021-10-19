@@ -36,7 +36,7 @@ public class Shalltear extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE)
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d
         .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb)))
         .AddCallback(enemies ->
         {
@@ -55,7 +55,7 @@ public class Shalltear extends AnimatorCard
             {
                 GameActions.Bottom.HealPlayerLimited(this, healAmount);
             }
-        });
+        }));
 
         final AbstractAffinityPower power = CombatStats.Affinities.GetPower(Affinity.Light);
         if (power.amount > 0)

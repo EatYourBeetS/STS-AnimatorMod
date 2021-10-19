@@ -19,7 +19,7 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 0, 5);
+        Initialize(2, 0, 2, 20);
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 1);
@@ -34,8 +34,8 @@ public class IchigoKurosaki extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
 
-        GameActions.Bottom.GainForce(1, true);
-        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.GainForce(magicNumber, true);
+        GameActions.Bottom.GainAgility(magicNumber, true);
 
         GameActions.Bottom.Callback(() -> {
             if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue)

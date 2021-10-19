@@ -17,7 +17,7 @@ public class Alexander extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0);
+        Initialize(7, 0, 2);
         SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 1, 2);
@@ -36,13 +36,10 @@ public class Alexander extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
-
+        GameActions.Bottom.GainForce(magicNumber, true);
         if (ForceStance.IsActive())
         {
             GameActions.Bottom.Draw(1);
-        }
-        else {
-            GameActions.Bottom.GainForce(1, true);
         }
     }
 }

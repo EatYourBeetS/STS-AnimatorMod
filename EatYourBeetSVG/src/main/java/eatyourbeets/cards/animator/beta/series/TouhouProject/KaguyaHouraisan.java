@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
@@ -23,12 +22,8 @@ public class KaguyaHouraisan extends AnimatorCard
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(1, 0, 0);
-    }
 
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        SetHitCount(4,1);
     }
 
     @Override
@@ -40,10 +35,7 @@ public class KaguyaHouraisan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i=0; i<magicNumber; i++)
-        {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.POISON);
-        }
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.POISON);
 
         if (info.IsSynergizing)
         {

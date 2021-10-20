@@ -19,26 +19,22 @@ public class Pride extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Pride.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public Pride()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1);
+        SetUpgrade(0,0,1);
 
-        SetAffinity_Star(2);
+        SetAffinity_Fire();
+        SetAffinity_Dark();
+        SetAffinity_Steel();
 
         SetEvokeOrbCount(magicNumber);
-        SetEthereal(true);
+        SetHaste(true);
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
     }
 
     @Override
@@ -76,12 +72,6 @@ public class Pride extends AnimatorCard
                 if (damageAmount > 0)
                 {
                     damageAmount = AbsorbDamage(damageAmount, darkOrbs);
-                }
-
-                if (info.owner != null && info.owner.isPlayer != owner.isPlayer)
-                {
-                    GameActions.Bottom.ApplyConstricted(owner, info.owner, amount);
-                    flashWithoutSound();
                 }
             }
 

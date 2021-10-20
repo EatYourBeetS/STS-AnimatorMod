@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonse_Alt;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -18,28 +21,27 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, 3);
 
-        SetAffinity_Water(1);
-        SetAffinity_Earth(1);
-        SetAffinity_Light(1);
-
-        SetEthereal(true);
+        SetAffinity_Earth();
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
+    protected void OnUpgrade() {
+        super.OnUpgrade();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonse_Alt()).SetUpgrade(upgraded, true);
+        SetHaste(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.RaiseWaterLevel(GameUtilities.GetPowerAmount(Affinity.Water) < magicNumber ? 1 : 0, true);
+        GameActions.Bottom.RaiseEarthLevel(magicNumber);
+
+        if (GameUtilities.HasFullHand()) {
+            GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonse_Alt()).SetUpgrade(upgraded, true);
+            GameActions.Last.Exhaust(this);
+        }
     }
 }

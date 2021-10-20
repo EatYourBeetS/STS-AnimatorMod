@@ -15,8 +15,6 @@ public class PrayerPower extends CommonPower
     {
         super(owner, POWER_ID);
 
-        this.maxAmount = 12;
-
         Initialize(amount);
     }
 

@@ -15,6 +15,8 @@ public class LunacyPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(LunacyPower.class);
 
+    int maxAmount = 10;
+
     public LunacyPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
@@ -51,8 +53,10 @@ public class LunacyPower extends CommonPower
     {
         if (difference > 0)
         {
-            for (int i=0; i < amount*2; i++) {
-                AnimatorCard randomCard = null;
+            int numCardsToAdd = Math.min(maxAmount, amount * 2);
+
+            for (int i=0; i < numCardsToAdd; i++) {
+                AbstractCard randomCard = null;
 
                 if (i == 0) {
                     //Guaranteed card in same series as starting series
@@ -77,7 +81,7 @@ public class LunacyPower extends CommonPower
         super.onAmountChanged(previousAmount, difference);
     }
 
-    private AnimatorCard ObtainSeriesCard()
+    private AbstractCard ObtainSeriesCard()
     {
         CardSeries curSeries = GR.Animator.Data.SelectedLoadout.Series;
         RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool((card) -> {
@@ -90,32 +94,25 @@ public class LunacyPower extends CommonPower
 
         if (cards.Size() > 0)
         {
-            return (AnimatorCard)(cards.Retrieve(rng)).makeCopy();
+            return (cards.Retrieve(rng)).makeCopy();
         }
 
         return null;
     }
 
-    private AnimatorCard ObtainHindranceOrBasicCard()
+    private AbstractCard ObtainHindranceOrBasicCard()
     {
-        CardSeries curSeries = GR.Animator.Data.SelectedLoadout.Series;
-        RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool( (card) -> {
-            if (!(card instanceof AnimatorCard))
-            {
-                return false;
-            }
-            return (GameUtilities.IsHindrance(card)) || (card.rarity.equals(AbstractCard.CardRarity.BASIC));
-        });
+        RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool( (card) -> (GameUtilities.IsHindrance(card)) || (card.rarity.equals(AbstractCard.CardRarity.BASIC)));
 
         if (cards.Size() > 0)
         {
-            return (AnimatorCard)(cards.Retrieve(rng)).makeCopy();
+            return (cards.Retrieve(rng)).makeCopy();
         }
 
         return null;
     }
 
-    private AnimatorCard ObtainRandomCard()
+    private AbstractCard ObtainRandomCard()
     {
         RandomizedList<AbstractCard> cards = GameUtilities.GetRandomizedCardPool( (card) -> {
             if (!(card instanceof AnimatorCard))
@@ -127,7 +124,7 @@ public class LunacyPower extends CommonPower
 
         if (cards.Size() > 0)
         {
-            return (AnimatorCard)(cards.Retrieve(rng)).makeCopy();
+            return (cards.Retrieve(rng)).makeCopy();
         }
 
         return null;

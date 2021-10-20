@@ -1,55 +1,55 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Envy extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Envy.class)
-            .SetPower(2, CardRarity.RARE)
+            .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int DAMAGE_COST = 5;
 
     public Envy()
     {
         super(DATA);
 
-        Initialize(0, 0, DAMAGE_COST);
+        Initialize(0, 0, 1);
+        SetUpgrade(0,0,1);
 
-        SetAffinity_Star(1, 1, 0);
-
-        SetEthereal(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
+        SetAffinity_Poison();
+        SetAffinity_Dark();
+        SetAffinity_Nature();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EnvyPower(p, 1));
+        GameActions.Bottom.StackPower(new EnvyPower(p, 1, magicNumber));
     }
 
-    public static class EnvyPower extends AnimatorClickablePower implements OnSynergyCheckSubscriber
+    public static class EnvyPower extends AnimatorClickablePower
     {
         private int Prayer;
+        private int timesPerTurn;
 
-        public EnvyPower(AbstractPlayer owner, int amount)
+        public EnvyPower(AbstractPlayer owner, int amount, int timesPerTurn)
         {
-            super(owner, Envy.DATA, PowerTriggerConditionType.TakeDelayedDamage, Envy.DAMAGE_COST);
+            super(owner, Envy.DATA, PowerTriggerConditionType.Energy, 1);
 
-            triggerCondition.SetOneUsePerPower(true);
+            this.timesPerTurn = timesPerTurn;
+
+            if (timesPerTurn > 1)
+            {
+                triggerCondition.SetTwoUsesPerPower(true);
+            }
+            else {
+                triggerCondition.SetOneUsePerPower(true);
+            }
 
             Initialize(amount);
         }
@@ -57,23 +57,7 @@ public class Envy extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, amount, Envy.DAMAGE_COST, 1);
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onSynergyCheck.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onSynergyCheck.Unsubscribe(this);
+            return FormatDescription(0, 1, timesPerTurn);
         }
 
         @Override
@@ -90,47 +74,16 @@ public class Envy extends AnimatorCard
         {
             super.OnUse(m);
 
-            GameActions.Last.Callback(() ->
-            {
-                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
-                        .SetFilter(EnvyPower::HasUpgradableAffinities);
-                flash();
-            });
-        }
+            EYBCardAffinities affinities = CombatStats.Affinities.GetHandAffinities(null);
 
-        private static boolean HasUpgradableAffinities(AbstractCard c)
-        {
-            final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-            if (a != null)
+            for (Affinity a : Affinity.Basic())
             {
-                if (a.Star != null && a.Star.level == 1)
-                {
-                    return true;
-                }
+                int level = affinities.GetLevel(a, false);
 
-                for (EYBCardAffinity affinity : a.List)
-                {
-                    if (affinity.level == 1)
-                    {
-                        return true;
-                    }
+                if (level > 0) {
+                    GameActions.Bottom.StackAffinityPower(a, level, false);
                 }
             }
-
-            return false;
-        }
-
-        @Override
-        public void onPlayCard(AbstractCard card, AbstractMonster m)
-        {
-            super.onPlayCard(card, m);
-            this.amount = Math.max(0, this.amount - 1);
-        }
-
-        @Override
-        public boolean OnSynergyCheck(AbstractCard a, AbstractCard b)
-        {
-            return amount > 0;
         }
     }
 }

@@ -19,10 +19,10 @@ public class MaesHughes extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 6);
-        SetUpgrade(0, 0, -1);
+        SetUpgrade(0, 0, -2);
 
-        SetAffinity_Earth(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Earth();
+        SetAffinity_Light();
     }
 
     @Override

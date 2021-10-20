@@ -24,12 +24,14 @@ public class ElricEdward extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
-
-        SetAffinity_Water(1, 0, 0);
-        SetAffinity_Earth(1, 1, 1);
+        Initialize(5, 0);
+        SetUpgrade(4,0);
 
         SetEvokeOrbCount(1);
+
+        SetAffinity_Mind();
+        SetAffinity_Thunder();
+
         SetProtagonist(true);
     }
 
@@ -62,10 +64,7 @@ public class ElricEdward extends AnimatorCard
 
                     case CURSE:
                     case STATUS:
-                        if (upgraded)
-                        {
-                            GameActions.Bottom.ChannelOrb(new Fire());
-                        }
+                        GameActions.Bottom.ChannelOrb(new Fire());
                         return;
                 }
             }

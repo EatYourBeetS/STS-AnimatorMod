@@ -22,18 +22,18 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
 
     public static final EYBCardData DATA = Register(Father.class)
             .SetSkill(4, CardRarity.RARE, EYBCardTarget.None)
-            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
 
     public Father()
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 46);
+        Initialize(0, 0, 0, 40);
         SetCostUpgrade(-1);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Star(2);
 
+        SetRetain(true);
         SetUnique(true, false);
         SetPurge(true, false);
         SetHealing(true);

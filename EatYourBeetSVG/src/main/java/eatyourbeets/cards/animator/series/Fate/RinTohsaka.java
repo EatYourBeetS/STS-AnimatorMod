@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -13,8 +12,7 @@ public class RinTohsaka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RinTohsaka.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage()
-            .AddPreviews(OrbCore.GetAllCores(), true);
+            .SetSeriesFromClassPackage();
 
     public RinTohsaka()
     {

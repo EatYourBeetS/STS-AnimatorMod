@@ -25,6 +25,11 @@
 		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
 		"NAME": "Delayed Damage"
 	},
+	"eyb:DeenergizedPower":
+	{
+		"DESCRIPTIONS": ["Lose #b{0} #yEnergy next turn."],
+		"NAME": "Lose Energy Next Turn"
+	},
 	"eyb:DesecrationPower":
 	{
 	  "DESCRIPTIONS": ["Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{0}% and of [Frail] and [Weak] by #b{1}%. Whenever ANY character gains [Delayed Damage], increase it by #b{2}."],
@@ -192,12 +197,12 @@
 	},
 	"eyb:MindLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Knowledge] (adds Insights- free card draw cards- into your draw pile)."],
+		"DESCRIPTIONS": ["At #b{0} [M]: Gain #b{1} [Knowledge] (adds Insights- free card draw cards- into your draw pile and hand)."],
 		"NAME": "Mind Level"
 	},
 	"eyb:EarthLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Resistance]  (gains Support Damage whenever you are attacked)."],
+		"DESCRIPTIONS": ["At #b{0} [E]: Gain #b{1} [Resistance] (gains Support Damage whenever you are attacked)."],
 		"NAME": "Earth Level"
 	},
 	"eyb:LightLevelPower":
@@ -227,7 +232,7 @@
 	},
 	"eyb:ThunderLevelPower":
 	{
-		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane] (activated power that channels and triggers an orb)."],
+		"DESCRIPTIONS": ["At #b{0} [T]: Gain #b{1} [Hurricane] (clickable power that channels and triggers orbs)."],
 		"NAME": "Thunder Level"
 	},
 	"eyb:NatureLevelPower":

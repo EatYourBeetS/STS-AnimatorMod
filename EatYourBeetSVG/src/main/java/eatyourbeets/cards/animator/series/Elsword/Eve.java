@@ -31,6 +31,7 @@ public class Eve extends AnimatorCard
         Initialize(0, 0, 1, 2 );
         SetUpgrade(0,0,1, 1);
 
+        SetEvokeOrbCount(magicNumber);
         SetAffinity_Cyber(2);
     }
 

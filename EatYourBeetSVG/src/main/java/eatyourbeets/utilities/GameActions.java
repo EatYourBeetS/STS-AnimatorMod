@@ -1169,6 +1169,11 @@ public final class GameActions
         return Add(new SpendEnergy(amount, canSpendLess));
     }
 
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount)
+    {
+        return Add(new ApplyAffinityPower(player, affinity, amount, false));
+    }
+
     public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)
     {
         return Add(new ApplyAffinityPower(player, affinity, amount, retain));

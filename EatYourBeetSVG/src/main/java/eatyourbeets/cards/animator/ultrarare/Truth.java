@@ -14,6 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Truth extends AnimatorCard_UltraRare
 {
     private static final Crystallize status = new Crystallize();
+    private static final int multiplier = 4;
 
     public static final EYBCardData DATA = Register(Truth.class)
             .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
@@ -25,12 +26,10 @@ public class Truth extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 3);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 8);
+        SetCostUpgrade(-1);
 
-        SetAffinity_Water(2);
-        SetAffinity_Light(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Star(1);
 
         SetExhaust(true);
     }
@@ -38,16 +37,17 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetRetain(true);
+        SetAffinity_Star(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RaiseFireLevel(magicNumber);
-        GameActions.Bottom.RaiseAirLevel(magicNumber);
-        GameActions.Bottom.RaiseWaterLevel(magicNumber);
-        GameActions.Bottom.GainEnergy(magicNumber);
+        for (Affinity affinity : Affinity.Basic())
+        {
+            int amountToGain = GetLevelAffinity(affinity) * multiplier;
+            GameActions.Bottom.StackAffinityPower(affinity, amountToGain);
+        }
 
         if (CheckSpecialCondition(true))
         {
@@ -89,6 +89,6 @@ public class Truth extends AnimatorCard_UltraRare
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetUniqueOrbsCount() >= secondaryValue;
+        return player.hand.size() >= magicNumber;
     }
 }

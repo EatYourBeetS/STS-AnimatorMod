@@ -524,7 +524,7 @@
 	},
 	"Lunacy":
 	{
-		"DESCRIPTIONS": ["Whenever you gain Lunacy: Add a number of random cards equal to twice your #yLunacy into your draw pile."],
+		"DESCRIPTIONS": ["Whenever you gain Lunacy: Add a number of random cards equal to twice your #yLunacy into your draw pile (max 10)."],
 		"NAMES": ["lunacy"],
 		"NAME": "Lunacy"
 	},
@@ -560,73 +560,73 @@
 	},
 	"FireLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [F] multiple of 15, gain [Strength].",
+		"DESCRIPTION": "Upon reaching an [F] multiple of 15, gain [Strength] (increases your attack damage).",
 		"NAMES": ["fire level","[F]"],
 		"PROPER_NAME": "Force Level"
 	},
 	"AirLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [A] multiple of 15, gain [Dexterity].",
+		"DESCRIPTION": "Upon reaching an [A] multiple of 15, gain [Dexterity] (increases your block).",
 		"NAMES": ["air level","[A]"],
 		"PROPER_NAME": "Air Level"
 	},
 	"MindLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [M] multiple of 15, gain [Knowledge].",
+		"DESCRIPTION": "Upon reaching an [M] multiple of 15, gain [Knowledge] (adds Insights- free card draw cards- into your draw pile and hand).",
 		"NAMES": ["mind level","[M]"],
 		"PROPER_NAME": "Mind Level"
 	},
 	"EarthLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [E] multiple of 15, gain [Resistance].",
+		"DESCRIPTION": "Upon reaching an [E] multiple of 15, gain [Resistance] (gains Support Damage whenever you are attacked).",
 		"NAMES": ["earth level","[E]"],
 		"PROPER_NAME": "Earth Level"
 	},
 	"LightLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Prayer].",
+		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Prayer] (adds Miracles- free energy cards- into your draw pile).",
 		"NAMES": ["light level","[L]"],
 		"PROPER_NAME": "Light Level"
 	},
 	"DarkLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Lunacy].",
+		"DESCRIPTION": "Upon reaching an [L] multiple of 15, gain [Lunacy] (adds random cards into your draw pile).",
 		"NAMES": ["dark level","[D]"],
 		"PROPER_NAME": "Dark Level"
 	},
 	"WaterLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [W] multiple of 15, gain [Focus].",
+		"DESCRIPTION": "Upon reaching a [W] multiple of 15, gain [Focus] (increases your orb effectiveness).",
 		"NAMES": ["water level","[W]"],
 		"PROPER_NAME": "Water Level"
 	},
 	"PoisonLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [P] multiple of 15, gain [Pestilence].",
+		"DESCRIPTION": "Upon reaching a [P] multiple of 15, gain [Pestilence] (apply Common Debuffs and increases the amounts your Common Debuffs apply).",
 		"NAMES": ["poison level","[P]"],
 		"PROPER_NAME": "Poison Level"
 	},
 	"SteelLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [S] multiple of 15, gain [Innovation].",
+		"DESCRIPTION": "Upon reaching a [S] multiple of 15, gain [Innovation] (raises a card's damage and block drastically each turn, but raises its cost).",
 		"NAMES": ["steel level","[S]"],
 		"PROPER_NAME": "Steel Level"
 	},
 	"ThunderLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [T] multiple of 15, gain [Hurricane].",
+		"DESCRIPTION": "Upon reaching a [T] multiple of 15, gain [Hurricane] (clickable power that channels and triggers orbs).",
 		"NAMES": ["thunder level","[T]"],
 		"PROPER_NAME": "Thunder Level"
 	},
 	"NatureLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [N] multiple of 15, gain [Bounty].",
+		"DESCRIPTION": "Upon reaching a [N] multiple of 15, gain [Bounty] (draw additional cards each turn).",
 		"NAMES": ["nature level","[N]"],
 		"PROPER_NAME": "Nature Level"
 	},
 	"CyberLevelPower":
 	{
-		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain [Overclock].",
+		"DESCRIPTION": "Upon reaching a [C] multiple of 15, gain [Overclock] (gain additional energy each turn).",
 		"NAMES": ["cyber level","[C]"],
 		"PROPER_NAME": "Cyber Level"
 	},

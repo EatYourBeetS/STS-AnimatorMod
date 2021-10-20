@@ -1,31 +1,37 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Scar extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Scar.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Elemental)
             .SetSeriesFromClassPackage();
 
     public Scar()
     {
         super(DATA);
 
-        Initialize(14, 0, 0, 4);
-        SetUpgrade(4, 0);
+        Initialize(10, 0, 7);
+        SetUpgrade(0, 0, 3);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Earth(2);
+        SetAffinity_Poison(2);
 
-        SetAffinityRequirement(Affinity.Earth, 4);
+        SetAffinityRequirement(Affinity.Poison, 6);
+    }
+
+    @Override
+    public void triggerOnExhaust() {
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.ApplyPoison(TargetHelper.RandomEnemy(), magicNumber);
     }
 
     @Override
@@ -42,30 +48,23 @@ public class Scar extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetOptions(true, true, false)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                GameActions.Top.ChannelOrb(new Earth());
-            }
-        });
-
-        if (info.IsSynergizing || CheckAffinity(Affinity.Earth))
+        if (GameUtilities.HasFullHand())
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
-            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)
-            .SetOptions(false, true)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
+            .SetOptions(true, true)
+            .SetFilter(card -> {
+                if (upgraded)
                 {
-                    GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SMASH);
-                    GameActions.Top.MoveCard(c, player.exhaustPile, player.discardPile)
-                    .ShowEffect(true, true);
+                    return !GameUtilities.IsHindrance(card);
                 }
+
+                return true;
             });
+        }
+
+        if (CheckAffinity(Affinity.Poison))
+        {
+            GameActions.Bottom.ApplyPoison(TargetHelper.RandomEnemy(), magicNumber);
         }
     }
 }

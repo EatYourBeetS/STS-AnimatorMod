@@ -96,6 +96,11 @@ public class PowerTriggerCondition
         return SetUses(1, refreshEachTurn, true);
     }
 
+    public PowerTriggerCondition SetTwoUsesPerPower(boolean refreshEachTurn)
+    {
+        return SetUses(2, refreshEachTurn, true);
+    }
+
     public void Refresh(boolean startOfTurn)
     {
         if (startOfTurn && refreshEachTurn)

@@ -6,27 +6,31 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.WrathStance;
+import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
+import static eatyourbeets.utilities.GameUtilities.ModifyCostForCombat;
+
 public class Wrath extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Wrath.class)
-            .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
 
     public Wrath()
     {
         super(DATA);
 
-        Initialize(10, 12, 3,2);
-        SetUpgrade(0, 0, 1);
+        Initialize(5, 0, 2);
+        SetUpgrade(3, 0, 0);
 
-        SetAffinity_Fire(2, 0, 3);
-        SetAffinity_Earth(1, 0, 2);
-        SetAffinity_Dark(1);
+        SetAffinity_Fire();
+        SetAffinity_Air();
+        SetAffinity_Mind();
 
         SetExhaust(true);
     }
@@ -35,10 +39,22 @@ public class Wrath extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.RaiseFireLevel(magicNumber);
-        GameActions.Bottom.StackPower(new WrathPower(p, secondaryValue));
+        GameActions.Bottom.ChangeStance(WrathStance.STANCE_ID);
 
+        for (int i=0; i<magicNumber; i++)
+        {
+            GameActions.Bottom.MakeCardInHand(new Strike()).AddCallback(card -> {
+                if (card.cost >= 0)
+                {
+                    ModifyCostForCombat(card, 0, false);
+                }
+
+                if (upgraded)
+                {
+                    card.upgrade();
+                }
+            });
+        }
     }
 
     public static class WrathPower extends AnimatorPower

@@ -15,14 +15,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class Greed extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Greed.class)
-            .SetPower(2, CardRarity.RARE)
-            .SetMaxCopies(1)
+            .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage();
-    public static final int BLOCK = 7;
-    public static final int TEMP_HP = 6;
-    public static final int MALLEABLE = 5;
-    public static final int PLATED_ARMOR = 4;
-    public static final int METALLICIZE = 3;
+    public static final int BLOCK = 14;
+    public static final int TEMP_HP = 12;
+    public static final int MALLEABLE = 10;
+    public static final int PLATED_ARMOR = 8;
+    public static final int METALLICIZE = 6;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -30,12 +29,12 @@ public class Greed extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 200, 1);
-        SetUpgrade(0,0, -50);
+        Initialize(0,0, 3, 1);
+        SetUpgrade(0,0, -1);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Earth(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Steel(2);
+
+        SetRetain(true);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class Greed extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.IncreaseSecondaryValue(this, Math.floorDiv(player.gold, magicNumber), true);
+        GameUtilities.IncreaseSecondaryValue(this, Math.floorDiv(player.hand.size(), magicNumber), true);
     }
 
     @Override

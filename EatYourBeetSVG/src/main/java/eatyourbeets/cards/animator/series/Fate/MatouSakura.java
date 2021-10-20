@@ -25,6 +25,8 @@ public class MatouSakura extends AnimatorCard
         SetAffinity_Light();
         SetAffinity_Dark();
 
+        SetEvokeOrbCount(1);
+
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 20);

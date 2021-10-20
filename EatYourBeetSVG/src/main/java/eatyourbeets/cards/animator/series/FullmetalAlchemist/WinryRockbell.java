@@ -1,5 +1,7 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -7,52 +9,47 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class WinryRockbell extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(WinryRockbell.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int UPGRADE_CARDS_AMOUNT = 2;
-    public static final int BLOCK_AMOUNT = 4;
 
 
     public WinryRockbell()
     {
         super(DATA);
 
-        Initialize(0, 0, BLOCK_AMOUNT, UPGRADE_CARDS_AMOUNT);
-        SetUpgrade(0, 0);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetAffinity_Air(1);
-        SetAffinity_Earth(1);
+        SetAffinity_Steel();
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
         SetRetain(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new WinryRockbellPower(p, 1));
+        GameActions.Bottom.StackPower(new WinryRockbellPower(p, magicNumber));
     }
 
-    public static class WinryRockbellPower extends AnimatorClickablePower implements OnAfterCardDiscardedSubscriber
+    public static class WinryRockbellPower extends AnimatorClickablePower
     {
         public WinryRockbellPower(AbstractCreature owner, int amount)
         {
             super(owner, WinryRockbell.DATA, PowerTriggerConditionType.Energy, 1);
 
-            triggerCondition.SetUses(-1, false, false);
+            triggerCondition.SetUses(1, false, false);
 
             Initialize(amount);
         }
@@ -60,23 +57,7 @@ public class WinryRockbell extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, UPGRADE_CARDS_AMOUNT, amount, BLOCK_AMOUNT);
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onAfterCardDiscarded.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onAfterCardDiscarded.Unsubscribe(this);
+            return FormatDescription(0, amount);
         }
 
         @Override
@@ -84,27 +65,7 @@ public class WinryRockbell extends AnimatorCard
         {
             super.atStartOfTurn();
 
-            ResetAmount();
-        }
-
-        @Override
-        public void OnAfterCardDiscarded()
-        {
-            if (amount <= 0)
-            {
-                return;
-            }
-
-            GameActions.Bottom.GainBlock(BLOCK_AMOUNT);
-            reducePower(1);
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m)
-        {
-            super.OnUse(m);
-
-            GameActions.Bottom.UpgradeFromHand(name, UPGRADE_CARDS_AMOUNT, true)
+            GameActions.Bottom.UpgradeFromHand(name, amount, true)
             .AddCallback(cards ->
             {
                 if (cards.size() > 0)
@@ -112,6 +73,24 @@ public class WinryRockbell extends AnimatorCard
                     SFX.Play(SFX.CARD_UPGRADE, 1f, 1.1f);
                 }
             });
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            GameActions.Bottom.SelectFromHand(name, 1, false)
+                    .SetOptions(true, true, true)
+                    .SetMessage(RetainCardsAction.TEXT[0])
+                    .AddCallback(cards ->
+                    {
+                        if (cards.size() > 0)
+                        {
+                            AbstractCard card = cards.get(0);
+                            GameUtilities.Retain(card);
+                        }
+                    });
         }
     }
 }

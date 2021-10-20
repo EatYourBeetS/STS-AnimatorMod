@@ -1517,84 +1517,83 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "{Maintain} [W]. Less than ** !M! [W]: Gain [W]. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
+			"DESCRIPTION": "Gain !M! [E]. || {Full Hand}: Exhaust and add Armored Alphonse to your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
 		{
-			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
+			"DESCRIPTION": "!A! [E], [S], or [T]: Gain 1 {Orb Slot} for each threshold reached. || Channel !M! [Lightning].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:ElricEdward":
 		{
-			"DESCRIPTION": "Cycle 1 card. If it is a: || {Skill} -> Channel 1 [Frost]. ** {Attack} -> Channel 1 [Lightning]. ** {Power} -> Channel 1 [Earth].",
-			"UPGRADE_DESCRIPTION": "<DESCRIPTION> ** {Hindrance} -> Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle 1 card. If it is a: || {Skill} -> Channel 1 [Frost]. ** {Attack} -> Channel 1 [Lightning]. ** {Power} -> Channel 1 [Earth] ** {Hindrance} -> Channel 1 [Fire].",
 			"NAME": "Edward Elric"
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "The first card played each turn {Synergizes}. || Once per turn, take !M! [Delayed Damage]: ** Upgrade the <Y> levels ** of a random card.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} card(s) played this turn {Synergizes}. || Take #b{1} [Delayed Damage]: Increase the <Y> levels of a random card to LV2."],
+			"DESCRIPTION": "!M! time(s) per turn: Pay 1 [EN].  For each card in your hand, gain affinity stat levels equal to that card's affinities. ",
+			"EXTENDED_DESCRIPTION": ["Up to #b{1} times per turn: Pay #b{0} [EN].  For each card in your hand, gain affinity stat levels equal to that card's affinities. "],
 			"NAME": "Envy"
 		},
 		"animator:Father":
 		{
-			"DESCRIPTION": "Lose !S!% of your ** Max [HP]. If you have a ** {Philosopher's Stone}, upgrade it. Otherwise, Obtain {Philosopher's Stone}. || Remove this card from your deck and future card rewards.",
+			"DESCRIPTION": "Lose !S!% of your Max [HP]. If you have a {Philosopher's Stone}, upgrade it. Otherwise, Obtain {Philosopher's Stone}. || Remove this card from your deck and future card rewards.",
 			"NAME": "Father"
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile to gain ** !S! [F] and Heal !S! HP. || Unplayable if you have less ** than {0} total cards.",
+			"DESCRIPTION": "Exhaust 4 random cards to Gain !M! [E], Gain !S! [N], and enter <CS>. || Unplayable without {Full Hand}.",
 			"EXTENDED_DESCRIPTION": ["Not enough cards in play."],
 			"NAME": "Gluttony"
 		},
 		"animator:Greed":
 		{
-			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temp HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! [Gold] you have: Choose 1 additional effect.",
+			"DESCRIPTION": "Choose !S!: Gain {0} [Block], ** Gain {1} [Temp HP], Gain {2} [Malleable], ** Gain {3} [Plated Armor], or Gain {4} [Metallicize]. || For every !M! cards in hand you have: Choose 1 additional effect.",
 			"NAME": "Greed"
 		},
 		"animator:Lust":
 		{
-			"DESCRIPTION": "Take !M! [Delayed Damage]. Apply !S! [Frail] [Vulnerable] [Weak] to ALL enemies. ** !A! <D>. Apply 1 more of each debuff.",
-			"NAME": "Lust",
-			"UPGRADE_DESCRIPTION": "You and a random enemy take !M! [Delayed Damage]. Apply !S! [Frail] [Vulnerable] [Weak] to ALL enemies. ** !A! <D>. Apply 1 more of each debuff."
+			"DESCRIPTION": "{Full Hand}: Gain !M! Temp HP.",
+			"NAME": "Lust"
 		},
 		"animator:MaesHughes":
 		{
-			"DESCRIPTION": "<DRW> for every !M! ** cards in your draw pile. ** Motivate 1. || On Exhaust: Fetch {Roy ** Mustang} and Motivate it.",
+			"DESCRIPTION": "<DRW> for every !M! cards in your draw pile. Motivate 1. || On Exhaust: Fetch {Roy Mustang} and Motivate it.",
 			"NAME": "Maes Hughes"
 		},
 		"animator:Pride":
 		{
-			"DESCRIPTION": "Channel !M! [Dark]. || Until next turn: [Dark] absorbs ** all unblocked damage you ** would take, and it applies ** !S! [Constricted] to the attacker.",
-			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all unblock damage, and it applies #b{0} [Constricted] to the attacker."],
+			"DESCRIPTION": "Channel !M! [Dark]. || Until next turn: [Dark] absorbs all unblocked damage you would take.",
+			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all unblock damage."],
 			"NAME": "Pride"
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** past 1 (min. 1). || !A! <F>: Increase the ** damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Channel 1 [Fire] for each enemy. || {Full Hand}: Increase the damage bonus of [Burning] by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || Synergy or !A! <E>: Move a card ** from your Exhaust pile ** to your discard pile. If ** you do, take !S! [Delayed Damage].",
-			"EXTENDED_DESCRIPTION": ["Move a card to your discard pile, then take {0} damage."],
+			"DESCRIPTION": "Full Hand: Move a random card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
+			"UPGRADE_DESCRIPTION": "Full Hand: Move a random, non-Hindrance card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
 			"NAME": "Scar"
 		},
 		"animator:Sloth":
 		{
-			"DESCRIPTION": "Draw !M! less ** card(s) next turn. || On Exhaust: ** Gain !S! [Block].",
+			"DESCRIPTION": "Draw !M! less card and Lose !S! [EN] next turn.",
 			"NAME": "Sloth"
 		},
 		"animator:WinryRockbell":
 		{
-			"DESCRIPTION": "Once per turn, ** when you discard a ** card: Gain !M! [Block]. || Pay [EN]: Upgrade ** !S! random cards.",
-			"EXTENDED_DESCRIPTION": ["Pay [EN]: Upgrade {0} random cards. || The next #b{1} time(s) you discard a card this turn, gain #b{2} #yBlock."],
+			"DESCRIPTION": "Start of Turn: Upgrade !M! random unupgraded card(s) in your hand. || Once per turn: Pay 1 [EN] to retain a card in your hand.",
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Upgrade {0} random unupgraded card(s) in your hand. || Once per turn: Pay 1 [EN] to retain a card in your hand."],
 			"NAME": "Winry Rockbell"
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal Attack damage to ALL enemies equal to [F].",
+			"DESCRIPTION": "Enter <WS>. ||  Add !M! 0-Cost Strike to your hand.",
+			"UPGRADE_DESCRIPTION": "Enter <WS>. ||  Add !M! upgraded 0-Cost Strike to your hand.",
 			"NAME": "Wrath"
 		}
 	},
@@ -3036,7 +3035,7 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "Trade your buffs and debuffs with the enemy (ignoring unique buffs).",
+			"DESCRIPTION": "Quadruple ALL your affinity levels. || If you don't have !M! or more cards in hand prior to playing this card: Permanently replace a card in your deck with Crystallize.",
 			"NAME": "Truth"
 		},
 		"animator:Veldora":

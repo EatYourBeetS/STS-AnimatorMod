@@ -2,37 +2,32 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.CalmStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Gluttony extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
-    public static final int MINIMUM_CARDS = 16;
 
     public Gluttony()
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 5);
+        Initialize(0, 0, 20, 12);
+        SetUpgrade(0,0,3,3);
 
-        SetAffinity_Fire(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Earth();
+        SetAffinity_Nature();
 
-        SetHealing(true);
+        SetHaste(true);
         SetExhaust(true);
-    }
-
-    @Override
-    protected String GetRawDescription(Object... args)
-    {
-        return super.GetRawDescription(MINIMUM_CARDS);
     }
 
     @Override
@@ -46,20 +41,20 @@ public class Gluttony extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetUnplayable((player.drawPile.size() + player.discardPile.size() + player.hand.size()) < MINIMUM_CARDS);
+        SetUnplayable(!GameUtilities.HasFullHand());
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (p.drawPile.size() >= magicNumber)
+        if (GameUtilities.HasFullHand())
         {
-            GameActions.Bottom.MoveCards(p.drawPile, p.exhaustPile, magicNumber)
-            .ShowEffect(true, true)
-            .SetOrigin(CardSelection.Top);
+            GameActions.Bottom.ExhaustFromHand(name, 4, true)
+            .ShowEffect(true, true);
 
-            GameActions.Bottom.Heal(secondaryValue);
-            GameActions.Bottom.RaiseFireLevel(secondaryValue);
+            GameActions.Bottom.RaiseEarthLevel(magicNumber);
+            GameActions.Bottom.RaiseNatureLevel(magicNumber);
+            GameActions.Bottom.ChangeStance(CalmStance.STANCE_ID);
         }
     }
 }

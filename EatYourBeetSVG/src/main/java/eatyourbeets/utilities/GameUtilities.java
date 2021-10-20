@@ -324,7 +324,14 @@ public class GameUtilities
     //Updated to get the affinity stat level instead of number of cards in your affinity.
     public static int GetAffinityAmount(Affinity affinity, boolean useStarLevel)
     {
-        return GetAffinityPower(affinity).amount;
+        AbstractAffinityPower power = GetAffinityPower(affinity);
+
+        if (power == null)
+        {
+            return 0;
+        }
+
+        return power.amount;
     }
 
     public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel)
@@ -333,7 +340,10 @@ public class GameUtilities
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
-
+    public static boolean HasFullHand()
+    {
+        return player.hand.size() >= 6;
+    }
 
     public static AbstractOrb GetFirstOrb(String orbID)
     {

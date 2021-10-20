@@ -24,6 +24,8 @@ public class Lu extends AnimatorCard
         Initialize(5, 0, 1);
         SetUpgrade(4,0);
 
+        SetEvokeOrbCount(2);
+
         SetAffinity_Water(1);
         SetAffinity_Dark(1);
     }

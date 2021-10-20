@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -21,19 +22,10 @@ public class Sloth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(16, 13, 2, 9);
-        SetUpgrade(0, 0, -1, 0);
+        Initialize(14, 12, 1, 2);
+        SetUpgrade(4, 2, 0, 0);
 
-        SetAffinity_Fire(2, 0, 2);
-        SetAffinity_Dark(2);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.GainBlock(secondaryValue);
+        SetAffinity_Earth(2);
     }
 
     @Override
@@ -51,5 +43,7 @@ public class Sloth extends AnimatorCard
         {
             GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1, i > 0));
         }
+
+        GameActions.Bottom.StackPower(new DeenergizedPower(p, secondaryValue));
     }
 }

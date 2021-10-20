@@ -3,42 +3,43 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Lust extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Lust.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public Lust()
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 2);
+        Initialize(8, 0, 8);
+        SetUpgrade(2,0,2);
 
-        SetAffinity_Dark(1, 1, 0);
-        SetAffinity_Earth(1, 1, 0);
+        SetAffinity_Fire();
+        SetAffinity_Mind();
+    }
 
-        SetAffinityRequirement(Affinity.Dark, 4);
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return (GameUtilities.HasFullHand()) ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber, AttackEffects.SLASH_VERTICAL);
-        if (upgraded) {
-            AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-            if (mo != null) {
-                GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, magicNumber, AttackEffects.SLASH_VERTICAL);
-            }
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.CLAW);
+
+        if (GameUtilities.HasFullHand())
+        {
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
-        int amount = CheckAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
-        GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), amount);
-        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
-        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), amount);
     }
 }

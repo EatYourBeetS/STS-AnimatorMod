@@ -165,7 +165,7 @@ public abstract class AnimatorCard extends EYBCard
 
             for (AbstractCard c : player.hand.group)
             {
-                if (c == this || WouldSynergize(c))
+                if (c == this)
                 {
                     c.transparency = 1f;
                 }

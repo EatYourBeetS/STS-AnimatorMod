@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{0}% and of [Frail] and [Weak] by #b{1}%. Whenever ANY character gains [Delayed Damage], increase it by #b{2}."],
+	  "DESCRIPTIONS": ["When you apply a #yDebuff to ANY character: Gains #b{0} #yCharge. #yCharge is reduced by #b75% at the start of each turn. Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{1}% and of [Frail] and [Weak] by #b{2}%."],
 	  "NAME": "Desecration"
 	},
 	"eyb:EndurancePower":

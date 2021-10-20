@@ -2,42 +2,43 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.common.CounterAttackPower;
+import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.orbs.animator.Air;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class YuukaKazami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuukaKazami.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(YuukaKazami.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
     public YuukaKazami()
     {
         super(DATA);
 
-        Initialize(9, 0, 2, 3);
-        SetUpgrade(2, 0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Green(1, 0, 0);
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
+        Initialize(0, 8, 2, 3);
+        SetUpgrade(0, 3, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON);
+        GameActions.Bottom.GainBlock(block);
+        if (GameActionManager.turn % 2 == 0) {
+            GameActions.Bottom.ChannelOrb(new Air());
+        }
+        else {
+            GameActions.Bottom.ChannelOrb(new Lightning());
+        }
+    }
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) ? Affinity.Green : Affinity.Blue, 1);
     }
 
     @Override
@@ -45,13 +46,7 @@ public class YuukaKazami extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.StackPower(new CounterAttackPower(AbstractDungeon.player, secondaryValue));
-    }
-
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        return super.cardPlayable(m) && !isInAutoplay && (GameActionManager.turn % 2 == 0);
+        CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) ? Affinity.Green : Affinity.Blue, 1);
     }
 }
 

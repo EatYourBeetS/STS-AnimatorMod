@@ -439,6 +439,22 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
     {
+        // Only show these tooltips outside of combat
+        if (!GameUtilities.InBattle() || isPopup || (player != null && player.masterDeck.contains(this))) {
+            if (cardData.CanToggleFromPopup && upgraded || cardData.UnUpgradedCanToggleForms)
+            {
+                dynamicTooltips.add(GR.Tooltips.Multiform);
+            }
+            else if (hasTag(UNIQUE))
+            {
+                dynamicTooltips.add(GR.Tooltips.Unique);
+            }
+            else if (cardData.CanToggleOnUpgrade)
+            {
+                dynamicTooltips.add(GR.Tooltips.BranchUpgrade);
+            }
+        }
+
         if (AfterLifeMod.IsAdded(this))
         {
             dynamicTooltips.add(GR.Tooltips.Afterlife);
@@ -513,18 +529,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.BlockScaling);
         }
-        if (cardData.CanToggleFromPopup && upgraded || cardData.UnUpgradedCanToggleForms)
-        {
-            dynamicTooltips.add(GR.Tooltips.Multiform);
-        }
-        else if (hasTag(UNIQUE))
-        {
-            dynamicTooltips.add(GR.Tooltips.Unique);
-        }
-        else if (cardData.CanToggleOnUpgrade)
-        {
-            dynamicTooltips.add(GR.Tooltips.BranchUpgrade);
-        }
+
     }
 
     public AbstractAttribute GetPrimaryInfo()

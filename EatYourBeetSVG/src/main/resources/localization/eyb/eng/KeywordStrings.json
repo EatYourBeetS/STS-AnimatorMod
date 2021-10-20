@@ -158,7 +158,7 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Increases the effects of [Frail], [Vulnerable], [Weak], and [Lock-On] on the enemy. When any character gains [Delayed Damage], increase it by 1 per stack.",
+	  "DESCRIPTION": "Gains #yCharge as you apply debuffs to ANY character. NL For each #yCharge you have, increase the effect of [~Lock-On] and [Vulnerable] on the enemy by 6% and the effect of [Frail] and [Weak] by 2%. NL #yCharge decreases by 75% at the start of each turn.",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
@@ -476,7 +476,7 @@
 	},
 	"Supercharged":
 	{
-	  "DESCRIPTION": "Gains #yCharge as you expend [E]. Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 25% per stack (this effect can stack).",
+	  "DESCRIPTION": "Gains #yCharge as you expend [E]. NL Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 25% (this effect can stack).",
 	  "NAMES": ["supercharged"],
 	  "PROPER_NAME": "Supercharged"
 	},

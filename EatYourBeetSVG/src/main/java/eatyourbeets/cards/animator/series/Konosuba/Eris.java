@@ -23,7 +23,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .SetMaxCopies(2)
-            .PostInitialize(data -> data.AddPreview(new Eris_Chris(), false));
+            .PostInitialize(data -> data.AddPreview(new Eris_Chris(), true));
 
     public Eris()
     {
@@ -68,7 +68,11 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
             if (c != null && GameUtilities.CanRemoveFromDeck(c))
             {
                 player.masterDeck.removeCard(c);
-                GameEffects.TopLevelList.ShowAndObtain(new Eris_Chris());
+                Eris_Chris chris = new Eris_Chris();
+                if (upgraded) {
+                    chris.upgrade();
+                }
+                GameEffects.TopLevelList.ShowAndObtain(chris);
             }
 
             for (AbstractCard card : GameUtilities.GetAllInBattleInstances(uuid))

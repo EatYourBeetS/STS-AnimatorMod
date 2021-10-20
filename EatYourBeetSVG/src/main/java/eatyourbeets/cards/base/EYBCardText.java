@@ -19,10 +19,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.RenderHelpers;
+import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
 
 public class EYBCardText
@@ -207,20 +204,24 @@ public class EYBCardText
             offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
         }
 
-        Vector2 iconOffset = new Vector2(-AbstractCard.RAW_W * 0.4695f, -AbstractCard.RAW_H * 0.45f);
-        if (card.hasTag(GR.Enums.CardTags.UNIQUE)) {
-            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
-        }
-        else if (card.cardData.CanToggleFromPopup && card.upgraded || card.cardData.UnUpgradedCanToggleForms) {
-            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
-        }
-        else if (card.cardData.CanToggleOnUpgrade) {
-            RenderHelpers.DrawOnCardAuto(sb, card, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), iconOffset, 48, 48, Color.WHITE, 1, 1);
+        // Render card footers
+        if (!GameUtilities.InBattle() || card.isPopup || (player != null && player.masterDeck.contains(card))) {
+            offset_y = 0;
+            if (card.hasTag(GR.Enums.CardTags.UNIQUE)) {
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), offset_y, Color.BLACK, null);
+            }
+            else if (card.cardData.CanToggleFromPopup && card.upgraded || card.cardData.UnUpgradedCanToggleForms) {
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), offset_y, Color.BLACK, null);
+            }
+            else if (card.cardData.CanToggleOnUpgrade) {
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), offset_y, Color.BLACK, null);
+            }
         }
 
+        // Render card scaling
         offset_y = 0;
 
-        final boolean showActualScaling = inHand && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
+        final boolean showActualScaling = inHand && player != null && player.hoveredCard == card && (player.isDraggingCard || player.isHoveringDropZone || player.inSingleTargetMode);
         for (Affinity affinity : Affinity.All())
         {
             int scaling = card.affinities.GetScaling(affinity, false);
@@ -277,6 +278,27 @@ public class EYBCardText
         }
 
         return 38;
+    }
+
+    private float RenderFooter(SpriteBatch sb, Texture texture, float y, Color backgroundColor, String text)
+    {
+        final float offset_x = -AbstractCard.RAW_W * 0.4595f;
+        final float offset_y = y - AbstractCard.RAW_H * 0.46f;
+        final float alpha = card.transparency;
+
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(),  new Vector2(offset_x, offset_y), 40, 40, backgroundColor, alpha * 0.4f, 0.8f);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture,  new Vector2(offset_x, offset_y), 40, 40, Color.WHITE, alpha, 0.8f);
+
+        if (text != null)
+        {
+            final BitmapFont font = EYBFontHelper.CardIconFont_Large;
+
+            font.getData().setScale(0.5f * card.drawScale);
+            RenderHelpers.WriteOnCard(sb, card, font, text, offset_x, offset_y, Settings.CREAM_COLOR, true);
+            RenderHelpers.ResetFont(font);
+        }
+
+        return 38; // y offset
     }
 
     protected float UpdateBadgeAlpha()

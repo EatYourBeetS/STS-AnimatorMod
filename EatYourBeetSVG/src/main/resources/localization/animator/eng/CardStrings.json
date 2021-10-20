@@ -447,7 +447,7 @@
 		"animator:Kirby":
 		{
 			"DESCRIPTION": "When Obtained: Remove up to 2 Basic or Common cards from your deck. Give this card their combined cost and effects.",
-			"EXTENDED_DESCRIPTION": ["This card has the effects of {{0}} ** and {{1}}.", "Choose the first card to be played when playing this card.", "Choose the second card to be played when playing this card." ],
+			"EXTENDED_DESCRIPTION": ["This card has the effects of {{0}} ** and {{1}}. || When played: Gain the <W> of those cards.", "Choose the first card to be played when playing this card.", "Choose the second card to be played when playing this card." ],
 			"NAME": "Kirby"
 		},
 		"animator:LaughingMan":
@@ -536,7 +536,7 @@
 		},
 		"animator:Simon":
 		{
-			"DESCRIPTION": "{~Unique}. || Gain [Vigor] equal to half of unblocked damage dealt. || <LIM>. !M! [F]: Upgrade permanently.",
+			"DESCRIPTION": "Gain [Vigor] equal to half of unblocked damage dealt. || <LIM>. !M! [F]: Upgrade permanently.",
 			"NAME": "Simon"
 		},
 		"animator:SpikeSpiegel":
@@ -897,7 +897,7 @@
 		},
 		"animator:KotarouTennouji":
 		{
-			"DESCRIPTION": "{~Unique}. Enter any {Stance}. Exit your {Stance} next turn. || <LIM>. When you change {Stances} with is in hand: permanently Upgrade this card.",
+			"DESCRIPTION": "Enter any {Stance}. Exit your {Stance} next turn. || <LIM>. When you change {Stances} with is in hand: permanently Upgrade this card.",
 			"NAME": "Kotarou Tennouji"
 		},
 		"animator:KotoriKanbe":
@@ -974,7 +974,7 @@
 		},
 		"animator:Enju_Barasuishou":
 		{
-			"DESCRIPTION": "{~Unique}. Exhaust a card from your hand. || If it wasn't a Hindrance: Upgrade this.",
+			"DESCRIPTION": "Exhaust a card from your hand. || If it wasn't a Hindrance: Upgrade this.",
 			"NAME": "Barasuishou"
 		},
 		"animator:Hinaichigo":
@@ -984,7 +984,7 @@
 		},
 		"animator:JunSakurada":
 		{
-			"DESCRIPTION": "{~Unique}. Get {Tormented}. || Upgrade next !M! upgradable card created this combat. <LIM>. After that, upgrade permanently.",
+			"DESCRIPTION": "Get {Tormented}. || Upgrade next !M! upgradable card created this combat. <LIM>. After that, upgrade permanently.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} time(s) an upgradable card is created, upgrade it.", "For the next #b{0} time(s) an upgradable card is created, upgrade it, after that, Permanently Upgrade #yJun #ySakurada in your deck."],
 			"NAME": "Jun Sakurada"
 		},
@@ -1039,7 +1039,7 @@
 		},
 		"animator:Suigintou":
 		{
-			"DESCRIPTION": "{~Unique}. || <CDN>: Channel 1 Fire and trigger it !M! times. || On Discard: Obtain a {Black Feather}.",
+			"DESCRIPTION": "<CDN>: Channel 1 Fire and trigger it !M! times. || On Discard: Obtain a {Black Feather}.",
 			"NAME": "Suigintou"
 		},
 		"animator:Suigintou_BlackFeather":
@@ -1142,7 +1142,7 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "This card can only be played on even numbered turns. || On Discard: Gain !S! [Counter-Attack].",
+			"DESCRIPTION": "On even-numbered turns: Channel 1 [Air]. Otherwise, Channel 1 [Lightning]. || When drawn or discarded: If <B> > <G>, Gain +1 <G>. Otherwise, Gain +1 <B>.",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":
@@ -1467,7 +1467,7 @@
 		},
 		"animator:Gilgamesh":
 		{
-			"DESCRIPTION": "{~Unique}. Whenever you ** obtain a {Relic}, except ** by purchasing it: Gain ** !S! [Gold] and permanently ** Upgrade this card.",
+			"DESCRIPTION": "Whenever you ** obtain a {Relic}, except ** by purchasing it: Gain ** !S! [Gold] and permanently ** Upgrade this card.",
 			"NAME": "Gilgamesh"
 		},
 		"animator:Illya":
@@ -3020,7 +3020,7 @@
 		},
 		"animator:JeanneDArc":
 		{
-			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal: Heal double [HP].",
+			"DESCRIPTION": "Startup: Lose half of your current [HP] and play this. || You can only lose [HP] up to 20% of your Max [HP] each turn. (Stacking this power cuts the [HP] threshold by half).",
 			"NAME": "Jeanne D'Arc"
 		},
 		"animator:Kanami":

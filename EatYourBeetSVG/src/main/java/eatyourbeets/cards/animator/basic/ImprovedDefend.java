@@ -49,8 +49,6 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
             SetUpgrade(0, 2);
         }
 
-        SetAffinityRequirement(affinity, magicNumber);
-
         SetTag(CardTags.STARTER_DEFEND, true);
     }
 

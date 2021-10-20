@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.InvinciblePower;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class JeanneDArc extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(JeanneDArc.class)
-            .SetAttack(1, CardRarity.SPECIAL)
+            .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Fate);
 
@@ -23,30 +23,29 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(11, 0, 8);
-        SetUpgrade(2, 0, 0);
+        Initialize(0, 0, 8);
+        SetUpgrade(0, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Light(2, 0, 2);
+        SetCostUpgrade(-1);
 
         SetLoyal(true);
     }
 
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.7f));
-        GameActions.Bottom.GainBlessing(1, true);
-        GameActions.Bottom.PurgeFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
-        .ShowEffect(true, true)
-        .SetOptions(true, true)
-        .SetFilter(GameUtilities::IsHindrance);
+        int existingAmount = GameUtilities.GetPowerAmount(player, InvinciblePower.POWER_ID);
+        if (existingAmount > 0) {
+            GameActions.Bottom.RemovePower(player,player,InvinciblePower.POWER_ID);
+            GameActions.Last.ApplyPower(new InvinciblePower(player, existingAmount / 2));
+        }
+        else {
+            GameActions.Bottom.ApplyPower(new InvinciblePower(player, player.maxHealth / 5));
+        }
     }
 
     @Override
@@ -57,8 +56,8 @@ public class JeanneDArc extends AnimatorCard_UltraRare
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
-            GameActions.Bottom.GainArtifact(1);
+            GameActions.Bottom.LoseHP(player.currentHealth / 2, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Last.PlayCard(this, null);
         }
     }
 }

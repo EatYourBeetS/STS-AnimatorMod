@@ -142,6 +142,7 @@ public class Kirby extends AnimatorCard implements
             if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).OnUse(p, m, info);
                 ((AnimatorCard) card).OnLateUse(p, m, info);
+                CombatStats.Affinities.AddAffinities(((AnimatorCard) card).affinities);
             } else {
                 card.use(p, m);
             }

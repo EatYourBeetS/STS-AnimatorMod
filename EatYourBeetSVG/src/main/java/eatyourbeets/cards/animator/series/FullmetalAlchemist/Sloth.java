@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.common.DeenergizedPower;
-import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Sloth extends AnimatorCard
@@ -39,10 +39,7 @@ public class Sloth extends AnimatorCard
             return 0f;
         });
 
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1, i > 0));
-        }
+        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
 
         GameActions.Bottom.StackPower(new DeenergizedPower(p, secondaryValue));
     }

@@ -1581,7 +1581,7 @@
 		},
 		"animator:Sloth":
 		{
-			"DESCRIPTION": "Draw !M! less card and Lose !S! [EN] next turn.",
+			"DESCRIPTION": "Draw !M! card and lose !S! [EN] next turn.",
 			"NAME": "Sloth"
 		},
 		"animator:WinryRockbell":

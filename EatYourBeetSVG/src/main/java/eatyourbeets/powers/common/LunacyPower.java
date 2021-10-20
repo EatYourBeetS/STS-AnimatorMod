@@ -32,7 +32,7 @@ public class LunacyPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, (amount + 1)* 2);
+        this.description = FormatDescription(0, Math.min(maxAmount, (amount + 1)* 2));
         if (amount > 0)
         {
             this.type = PowerType.BUFF;

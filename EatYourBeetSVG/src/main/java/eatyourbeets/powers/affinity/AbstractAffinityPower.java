@@ -37,7 +37,7 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     private static final StringBuilder builder = new StringBuilder();
     protected static final int THRESHOLD_MULTIPLIER = 15;
-    protected static final int MAX_STAT_AMOUNT = 999;
+    protected static final int MAX_STAT_AMOUNT = 1000;
     protected int thresholdIndex;
     protected int thresholdBonusAmount;
     protected int thresholdBonusModifier;
@@ -47,6 +47,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         super(null, powerID);
 
         this.affinity = affinity;
+        this.maxAmount = 999;
 
         //TODO: Add tooltip to EYBPower base class
         EYBCardTooltip tooltip = new EYBCardTooltip(name, description);

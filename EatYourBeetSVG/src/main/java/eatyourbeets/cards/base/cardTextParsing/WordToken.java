@@ -8,6 +8,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class WordToken extends CTToken
@@ -183,7 +184,7 @@ public class WordToken extends CTToken
             {
                 coloredString.color.a = 0.6f;
             }
-            else if (GR.Tooltips.FullHand.Is(tooltip) && (AbstractDungeon.player.hand.size() < 6))
+            else if (GR.Tooltips.FullHand.Is(tooltip) && GameUtilities.InBattle() && (AbstractDungeon.player.hand.size() < 6))
             {
                 coloredString.color.a = 0.6f;
             }

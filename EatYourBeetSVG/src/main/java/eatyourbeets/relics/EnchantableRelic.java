@@ -11,10 +11,8 @@ import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
-import eatyourbeets.powers.animator.EnchantmentPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.animator.EnchantmentReward;
-import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -23,8 +21,9 @@ import java.util.ArrayList;
 public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiveRewardsListener // implements CustomSavable<Integer> NOTE: I do not implement this here because CustomSavable patch does not check abstract classes
 {
     public static final int MAX_CHOICES = 3;
-    public static final int MAX_UPGRADES_PER_PATH = 100;
-    public Enchantment enchantment;
+    public Enchantment enchantment1;
+    public Enchantment enchantment2;
+    public static final int MAX_OPTIONS = 9; //Update this whenever you add an enchantments
 
     public EnchantableRelic(String id, RelicTier tier, LandingSound sfx)
     {
@@ -43,7 +42,10 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
 
     public Integer onSave()
     {
-        return (enchantment != null) ? (enchantment.index * MAX_UPGRADES_PER_PATH + enchantment.auxiliaryData.form) : 0;
+        int enchantment1 = (this.enchantment1 != null) ? this.enchantment1.index : 0;
+        int enchantment2 = (this.enchantment2 != null) ? this.enchantment2.index : 0;
+
+        return  ((enchantment1 * MAX_OPTIONS) + enchantment2);
     }
 
     public void onLoad(Integer index)
@@ -52,7 +54,15 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
         {
             JUtils.LogInfo(this, "onLoad:" + index);
 
-            ApplyEnchantment(Enchantment.GetCard(index / MAX_UPGRADES_PER_PATH, index % MAX_UPGRADES_PER_PATH));
+            int card1Index = index / MAX_OPTIONS;
+            int card2Index = index % MAX_OPTIONS;
+
+            if (card1Index > 0) {
+                ApplyEnchantment(Enchantment.GetCard(card1Index));
+            }
+            if (card2Index > 0) {
+                ApplyEnchantment(Enchantment.GetCard(card2Index));
+            }
         }
     }
 
@@ -61,18 +71,31 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     {
         super.renderTip(sb);
 
-        if (enchantment != null)
+        if (enchantment1 != null)
         {
-            enchantment.drawScale = enchantment.targetDrawScale = 0.8f;
-            enchantment.current_x = enchantment.target_x = InputHelper.mX + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
-            enchantment.current_y = enchantment.target_y = InputHelper.mY - (AbstractCard.IMG_HEIGHT * 0.5f);
-            GR.UI.AddPostRender(enchantment::render);
+            enchantment1.drawScale = enchantment1.targetDrawScale = 0.8f;
+            enchantment1.current_x = enchantment1.target_x = InputHelper.mX + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
+            enchantment1.current_y = enchantment1.target_y = InputHelper.mY - (AbstractCard.IMG_HEIGHT * 0.5f);
+            GR.UI.AddPostRender(enchantment1::render);
+        }
+
+        if (enchantment2 != null)
+        {
+            enchantment2.drawScale = enchantment2.targetDrawScale = 0.8f;
+            enchantment2.current_x = enchantment2.target_x = InputHelper.mX + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
+            enchantment2.current_y = enchantment2.target_y = InputHelper.mY - (AbstractCard.IMG_HEIGHT * 0.5f);
+            GR.UI.AddPostRender(enchantment2::render);
         }
     }
 
     public void ApplyEnchantment(Enchantment enchantment)
     {
-        this.enchantment = enchantment;
+        if (enchantment.level == 1) {
+            this.enchantment1 = enchantment;
+        }
+        else if (enchantment.level == 2) {
+            this.enchantment2 = enchantment;
+        }
         RefreshTexture();
     }
 
@@ -81,15 +104,15 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         final RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>();
 
-        if (enchantment == null)
+        if (enchantment1 == null)
         {
-            possiblePicks.AddAll(JUtils.Map(Enchantment.GetCards(), EYBCard::makeCopy));
+            //Level 1
+            possiblePicks.AddAll(JUtils.Map(Enchantment.GetLv1Cards(), EYBCard::makeCopy));
         }
-        else if (enchantment.canUpgrade())
+        else
         {
-            for (AbstractCard e : enchantment.GetUpgrades()) {
-                possiblePicks.Add(e);
-            }
+            //Level 2
+            possiblePicks.AddAll(JUtils.Map(Enchantment.GetLv2Cards(), EYBCard::makeCopy));
         }
 
         for (int i = 0; i < MAX_CHOICES; i++) {
@@ -101,18 +124,18 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
 
     public int GetEnchantmentLevel()
     {
-        return enchantment == null ? 0 : enchantment.upgraded ? 2 : 1;
+        return enchantment1 == null ? 0 : enchantment2 == null ? enchantment1.level : enchantment2.level;
     }
 
     public void RefreshTexture()
     {
-        if (enchantment == null)
+        if (enchantment1 == null)
         {
             setTexture(GR.GetTexture(GR.GetRelicImage(relicId)));
         }
         else
         {
-            setTexture(GR.GetTexture(GR.GetRelicImage(relicId + "_" + enchantment.index)));
+            setTexture(GR.GetTexture(GR.GetRelicImage(relicId + "_" + enchantment1.index)));
         }
     }
 
@@ -121,9 +144,14 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     {
         super.atBattleStartPreDraw();
 
-        if (enchantment != null)
+        if (enchantment1 != null)
         {
-            GameActions.Bottom.ApplyPower(new EnchantmentPower(this, player, 1)).ShowEffect(false, true);
+            enchantment1.OnStartOfBattle();
+        }
+
+        if (enchantment2 != null)
+        {
+            enchantment2.OnStartOfBattle();
         }
     }
 
@@ -131,9 +159,13 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     public AbstractRelic makeCopy()
     {
         final EnchantableRelic copy = (EnchantableRelic) super.makeCopy();
-        if (enchantment != null)
+        if (enchantment1 != null)
         {
-            copy.ApplyEnchantment((Enchantment) enchantment.makeStatEquivalentCopy());
+            copy.ApplyEnchantment((Enchantment) enchantment1.makeStatEquivalentCopy());
+        }
+        if (enchantment2 != null)
+        {
+            copy.ApplyEnchantment((Enchantment) enchantment2.makeStatEquivalentCopy());
         }
 
         return copy;

@@ -258,7 +258,6 @@ public abstract class AnimatorLoadout
         {
             UnlockTracker.markRelicAsSeen(TheMissingPiece.ID);
         }
-        res.add(TheMissingPiece.ID);
 
         return res;
     }

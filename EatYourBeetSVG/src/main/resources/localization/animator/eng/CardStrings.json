@@ -2681,63 +2681,25 @@
 
 	"ENCHANTMENTS":
 	{
-		"animator:Enchantment1":
+		"animator:PrayerWheelEnchantment":
 		{
-			"DESCRIPTION": "Once per turn, ** exit your Stance: ** Gain !M! of that Stance's {[A-Gen] Power}.",
-			"EXTENDED_DESCRIPTION":
-			[
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <FS>: Gain !M! [F]. Otherwise, enter <FS>.",
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <AS>: Gain !M! [A]. Otherwise, enter <AS>.",
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <IS>: Gain !M! [W]. Otherwise, enter <IS>.",
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <WS>: Gain !M! [E]. Otherwise, enter <WS>.",
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <BS>: Gain !M! [L]. Otherwise, enter <BS>.",
-				"Once per turn, ** exit your Stance or pay !S! [EN]: ** In <CS>: Gain !M! [D]. Otherwise, enter <CS>.",
-				"Once per turn, ** exit your Stance: ** Boost !M! of that Stance's {[A-Gen] Power}."
-			],
-			"NAME": "Stances"
+			"DESCRIPTION": "Obtains Prayer Wheel: a relic that provides an additional reward after every Normal battle.",
+			"NAME": "Prayer Wheel"
 		},
-		"animator:Enchantment2":
+		"animator:MissingPieceEnchantment":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [EN]: A random {Affinity} ** has +!M! this turn.",
-			"EXTENDED_DESCRIPTION":
-			[
-				"Once per turn, pay !S! [EN]: ** Have +!M! <F> this turn.",
-				"Once per turn, pay !S! [EN]: ** Have +!M! <A> this turn.",
-				"Once per turn, pay !S! [EN]: ** Have +!M! <W> this turn.",
-				"Once per turn, pay !S! [EN]: ** Have +!M! <E> this turn.",
-				"Once per turn, pay !S! [EN]: ** Have +!M! <L> this turn.",
-				"Once per turn, pay !S! [EN]: ** Have +!M! <D> this turn.",
-				"Once per turn, pay !S! [EN]: ** A random {Affinity} ** has +!M! this turn."
-			],
-			"NAME": "Affinities"
+			"DESCRIPTION": "Obtains Missing Piece: a relic that allows you to choose 1 among 3 series to get a card reward from every 3 battles.",
+			"NAME": "Missing Piece"
 		},
-		"animator:Enchantment3":
+		"animator:MagicCoinEnchantment":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [EN]: Reduce your leftmost {Common Debuff} by !M!.",
-			"EXTENDED_DESCRIPTION":
-			[
-				"Once per turn, pay !S! [EN]: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy.",
-				"Once per turn, pay !S! [EN]: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy.",
-				"Once per turn, pay !S! [EN]: Remove your leftmost {Common Debuff}.",
-				"Once per turn, pay !S! [EN]: Remove your rightmost {Common Debuff}.",
-				"Once per turn, pay !S! [EN] and lose {0} [Block]: Reduce your highest debuff by !M!.",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Artifact]."
-			],
-			"NAME": "Debuffs"
+			"DESCRIPTION": "Upon pickup: Gain 250 gold.",
+			"NAME": "Magic Coin"
 		},
-		"animator:Enchantment4":
+		"animator:AstrolabeEnchantment":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [EN]: {Maintain} the {[A-Gen] Power} of your highest Affinity this turn.",
-			"EXTENDED_DESCRIPTION":
-			[
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Strength]. Not in <FS> or Neutral Stance: {Maintain} [F]. Otherwise, Gain !M! [F].",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Dexterity]. Not in <AS> or Neutral Stance: {Maintain} [A]. Otherwise, Gain !M! [A]",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Focus]. Not in <IS> or Neutral Stance: {Maintain} [W]. Otherwise, Gain !M! [W]",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Endurance]. Not in <WS> or Neutral Stance: {Maintain} [E]. Otherwise, Gain !M! [E]",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Supercharged]. Not in <BS> or Neutral Stance: {Maintain} [L]. Otherwise, Gain !M! [L]",
-				"Once per turn, pay !S! [EN]: Gain !M! Temp. [Desecration]. Not in <CS> or Neutral Stance: {Maintain} [D]. Otherwise, Gain !M! [D]"
-			],
-			"NAME": "Powers"
+			"DESCRIPTION": "Obtain Astrolabe: a relic that lets you choose 3 cards to transform and upgrade.  Obtain additional Astrolabes whenever you defeat an Elite in Act 2.",
+			"NAME": "Astrolabe Seeker"
 		}
 	},
 

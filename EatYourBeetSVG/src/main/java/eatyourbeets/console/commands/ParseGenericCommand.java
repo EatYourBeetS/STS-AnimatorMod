@@ -144,10 +144,9 @@ public class ParseGenericCommand extends ConsoleCommand
                     {
                         player.masterDeck.group.add(data.CreateNewInstance(upgrade));
                     }
-                    for (Enchantment card : Enchantment.GetCards())
+                    for (Enchantment card : Enchantment.GetAllCards())
                     {
                         player.masterDeck.group.add(card.makeCopy());
-                        player.masterDeck.group.addAll(card.GetUpgrades());
                     }
                     return;
                 }
@@ -228,7 +227,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     {
                         if (r instanceof EnchantableRelic)
                         {
-                            ((EnchantableRelic) r).ApplyEnchantment(Enchantment.GetCard(JUtils.ParseInt(tokens[2], 1), JUtils.ParseInt(tokens[3], 0)));
+                            ((EnchantableRelic) r).ApplyEnchantment(Enchantment.GetCard(JUtils.ParseInt(tokens[2], 1)));
 
                             if (GameUtilities.InBattle())
                             {
@@ -376,7 +375,7 @@ public class ParseGenericCommand extends ConsoleCommand
                     Map<String, Map<String, EYBCardMetadataV2>> data = new HashMap<>();
                     ExtractCardData(data, CardLibrary.cards.values());
                     ExtractCardData(data, AnimatorCard_UltraRare.GetCards().values());
-                    ExtractCardData(data, Enchantment.GetCards());
+                    ExtractCardData(data, Enchantment.GetAllCards());
 
                     String filePath = "C://temp//" + ((tokens.length > 2) ? tokens[2] : "Animator-CardMetadata") + ".json";
                     new Gson().toJson(data, new FileWriter(filePath));

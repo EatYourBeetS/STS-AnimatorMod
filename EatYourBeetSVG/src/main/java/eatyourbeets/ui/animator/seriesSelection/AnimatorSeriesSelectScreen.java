@@ -17,7 +17,6 @@ import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
@@ -33,8 +32,7 @@ import java.util.Collection;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
-    protected static final int MINIMUM_CARDS = 75;
-    protected static final int BONUS_RELIC_THRESHOLD = 100;
+    protected static final int MINIMUM_CARDS = 150;
     protected static final Random rng = new Random();
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
@@ -44,7 +42,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_Label startingDeck;
     public final GUI_Button deselectAll;
     public final GUI_Button selectRandomMinimum;
-    public final GUI_Button selectRandomForPurgingStone;
     public final GUI_Button selectAll;
     public final GUI_Button previewCards;
     public final GUI_Button confirm;
@@ -53,7 +50,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public final GUI_TextBox selectionInfo;
     public final GUI_TextBox selectionAmount;
     public final GUI_TextBox previewCardsInfo;
-    public final GUI_Relic bonusRelicImage;
 
     public AnimatorSeriesSelectScreen()
     {
@@ -95,11 +91,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnClick(() -> SelectRandom(MINIMUM_CARDS))
         .SetColor(Color.SKY);
 
-        selectRandomForPurgingStone = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectRandom(BONUS_RELIC_THRESHOLD))
-        .SetOnClick(() -> SelectRandom(BONUS_RELIC_THRESHOLD))
-        .SetColor(Color.SKY);
-
         selectAll = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectAll)
         .SetOnClick(this::SelectAll)
@@ -109,10 +100,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
         .SetAlignment(0.5f, 0.5f)
         .SetFont(FontHelper.charDescFont, 1); //FontHelper.textAboveEnemyFont);
-
-        final float selectionAmountSize = selectionAmount.hb.height;
-        bonusRelicImage = new GUI_Relic(new RollingCubes(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.2f),
-        selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
 
         selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 2.5f))
         .SetText(textboxStrings.PurgingStoneRequirement)
@@ -144,7 +131,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             upgradeToggle.isActive = false;
             toggleBeta.isActive = false;
-            bonusRelicImage.isActive = false;
             upgradeToggle.Toggle(false);
             UpdateStartingDeckText();
             GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
@@ -164,7 +150,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         startingDeck.TryRender(sb);
         deselectAll.Render(sb);
         selectRandomMinimum.Render(sb);
-        selectRandomForPurgingStone.Render(sb);
         selectAll.Render(sb);
         previewCards.Render(sb);
         confirm.Render(sb);
@@ -172,8 +157,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         selectionInfo.Render(sb);
         selectionAmount.Render(sb);
         previewCardsInfo.Render(sb);
-
-        bonusRelicImage.TryRender(sb);
 
         if (previewCardsEffect != null)
         {
@@ -208,12 +191,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries.Get()).TryUpdate();
 
-        bonusRelicImage.TryUpdate();
-
         startingDeck.TryUpdate();
         deselectAll.Update();
         selectRandomMinimum.Update();
-        selectRandomForPurgingStone.Update();
         selectAll.Update();
         previewCards.Update();
         confirm.Update();
@@ -367,12 +347,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void Proceed()
     {
-        //TODO: Check card pool
-        if (bonusRelicImage.isActive)
-        {
-            GameEffects.TopLevelQueue.SpawnRelic(new RollingCubes(), bonusRelicImage.hb.cX, bonusRelicImage.hb.cY);
-        }
-
         SingleCardViewPopup.isViewingUpgrade = false;
         cardGrid.Clear();
         container.CommitChanges();
@@ -399,7 +373,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         }
 
         selectionAmount.SetText(totalCards + " cards selected.");
-        bonusRelicImage.SetActive(totalCards >= BONUS_RELIC_THRESHOLD);
 
         if (totalCards >= MINIMUM_CARDS)
         {

@@ -61,7 +61,7 @@ public class VividPicture extends EnchantableRelic implements OnSynergySubscribe
             LivingPicture relic = JUtils.SafeCast(relics.get(i), LivingPicture.class);
             if (relic != null)
             {
-                ApplyEnchantment(relic.enchantment);
+                ApplyEnchantment(relic.enchantment1);
                 instantObtain(player, i, true);
                 return;
             }

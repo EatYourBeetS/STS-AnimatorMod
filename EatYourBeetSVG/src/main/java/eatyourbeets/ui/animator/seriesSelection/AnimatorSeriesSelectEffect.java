@@ -133,7 +133,6 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
         screen.selectAll.SetInteractable(value);
         screen.deselectAll.SetInteractable(value);
         screen.selectRandomMinimum.SetInteractable(value);
-        screen.selectRandomForPurgingStone.SetInteractable(value);
         screen.toggleBeta.SetInteractable(value);
     }
 }

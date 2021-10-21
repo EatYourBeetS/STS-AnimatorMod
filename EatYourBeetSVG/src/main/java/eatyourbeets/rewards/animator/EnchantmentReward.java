@@ -69,6 +69,7 @@ public class EnchantmentReward extends AnimatorReward
                     if (selection.size() > 0) {
                         Enchantment e = (Enchantment) selection.get(0);
                         relic.ApplyEnchantment(e);
+                        e.OnObtain();
                         relic.flash();
                     }
                 }));

@@ -130,11 +130,11 @@ public class TheMaskedTraveler2 extends EYBEvent
                 }
                 else if (relic instanceof VividPicture)
                 {
-                    event.startingRelicsCache.add(new VividPicture(((VividPicture) relic).enchantment));
+                    event.startingRelicsCache.add(new VividPicture(((VividPicture) relic).enchantment1));
                 }
                 else if (relic instanceof LivingPicture)
                 {
-                    event.startingRelicsCache.add(new LivingPicture(((LivingPicture) relic).enchantment));
+                    event.startingRelicsCache.add(new LivingPicture(((LivingPicture) relic).enchantment1));
                 }
             }
 
@@ -230,7 +230,7 @@ public class TheMaskedTraveler2 extends EYBEvent
                 if (relic instanceof EnchantableRelic)
                 {
                     EnchantableRelic r = ((EnchantableRelic) relic);
-                    r.ApplyEnchantment(r.GetEnchantmentLevel() >= 2 ? (Enchantment) r.enchantment.makeCopy() : null);
+                    r.ApplyEnchantment(r.GetEnchantmentLevel() >= 2 ? (Enchantment) r.enchantment1.makeCopy() : null);
                 }
 
                 float START_X = 64f * Settings.scale;

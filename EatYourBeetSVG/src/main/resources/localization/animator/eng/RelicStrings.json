@@ -134,7 +134,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["DISABLED: On your first #ySynergy each turn, draw #b1 card."],
+		"DESCRIPTIONS": ["Choose 1 of 3 upgrades after defeating the Act 1 and Act 2 bosses."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},

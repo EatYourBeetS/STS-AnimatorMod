@@ -2,7 +2,7 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,7 +19,11 @@ import java.util.ArrayList;
 public abstract class Enchantment extends AnimatorCard implements Hidden
 {
     public static final String ID = GR.Animator.CreateID(Enchantment.class.getSimpleName());
-    private static final ArrayList<Enchantment> cards = new ArrayList<>();
+    private static final ArrayList<Enchantment> allCards = new ArrayList<>();
+    private static final ArrayList<Enchantment> lv1Cards = new ArrayList<>();
+    private static final ArrayList<Enchantment> lv2Cards = new ArrayList<>();
+
+    public int level;
 
     public int index;
     public boolean requiresTarget;
@@ -32,39 +36,51 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         return Register(type).SetPower(-2, CardRarity.SPECIAL).SetImagePath(GR.GetCardImage(ID));
     }
 
-    public static ArrayList<Enchantment> GetCards()
+    //Overridable methods
+    public abstract void OnObtain();
+    public abstract void OnStartOfBattle();
+
+    public static ArrayList<Enchantment> GetAllCards()
     {
-        if (cards.isEmpty())
-        {
-            cards.add(new Enchantment1());
-            cards.add(new Enchantment2());
-            cards.add(new Enchantment3());
-            cards.add(new Enchantment4());
+        GetLv1Cards();
+        GetLv2Cards();
 
-            for (Enchantment a : cards)
-            {
-                for (Enchantment b : Enchantment.GetCard(a.index, 0).GetUpgrades())
-                {
-                    a.cardData.AddPreview(b, true);
-                }
-            }
-        }
-
-        return cards;
+        return allCards;
     }
 
-    public static Enchantment GetCard(int index, int upgradeIndex)
+    public static ArrayList<Enchantment> GetLv1Cards()
     {
-        for (Enchantment e : GetCards())
+        if (lv1Cards.isEmpty())
+        {
+            lv1Cards.add(new PrayerWheelEnchantment());
+            lv1Cards.add(new MissingPieceEnchantment());
+            lv1Cards.add(new MagicCoinEnchantment());
+            lv1Cards.add(new AstrolabeEnchantment());
+
+            allCards.addAll(lv1Cards);
+        }
+
+        return lv1Cards;
+    }
+
+    public static ArrayList<Enchantment> GetLv2Cards()
+    {
+        if (lv2Cards.isEmpty())
+        {
+
+            allCards.addAll(lv2Cards);
+        }
+
+        return lv2Cards;
+    }
+
+    public static Enchantment GetCard(int index)
+    {
+        for (Enchantment e : GetAllCards())
         {
             if (e.index == index)
             {
                 Enchantment result = (Enchantment) e.makeCopy();
-                if (upgradeIndex > 0)
-                {
-                    result.auxiliaryData.form = upgradeIndex;
-                    result.upgrade();
-                }
 
                 return result;
             }
@@ -73,15 +89,29 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         throw new IndexOutOfBoundsException("Enchantment not found at index: " + index);
     }
 
-    protected Enchantment(EYBCardData cardData, int index)
+    protected Enchantment(EYBCardData cardData, int level, int index)
     {
         super(cardData);
 
         this.index = index;
+        this.level = level;
         this.borderColor = new Color(0.7f, 0.8f, 0.9f, 1f);
         this.cropPortrait = false;
         this.relic = new LivingPicture(this);
         this.portraitForeground = new AdvancedTexture(relic.img, null);
+        this.portraitForeground.pos.scale = 2;
+    }
+
+    protected Enchantment(EYBCardData cardData, int level, int index, AbstractRelic relicForImg)
+    {
+        super(cardData);
+
+        this.index = index;
+        this.level = level;
+        this.borderColor = new Color(0.7f, 0.8f, 0.9f, 1f);
+        this.cropPortrait = false;
+        this.relic = new LivingPicture(this);
+        this.portraitForeground = new AdvancedTexture(relicForImg.img, null);
         this.portraitForeground.pos.scale = 2;
     }
 
@@ -113,9 +143,6 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         EnergyPanel.useEnergy(cost);
     }
 
-    public abstract int GetMaxUpgradeIndex();
-    public abstract void UsePower(AbstractMonster m);
-
     public void AtEndOfTurnEffect(boolean isPlayer) {}
 
     @Override
@@ -139,17 +166,6 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        return GetCard(index, auxiliaryData.form);
-    }
-
-    public ArrayList<Enchantment> GetUpgrades()
-    {
-        final ArrayList<Enchantment> result = new ArrayList<>();
-        for (int i = 1; i <= GetMaxUpgradeIndex(); i++)
-        {
-            result.add(GetCard(index, i));
-        }
-
-        return result;
+        return GetCard(index);
     }
 }

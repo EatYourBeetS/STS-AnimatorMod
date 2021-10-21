@@ -1,7 +1,6 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -16,9 +15,9 @@ public class EnchantmentPower extends AnimatorClickablePower
 
     public EnchantmentPower(EnchantableRelic relic, AbstractCreature owner, int amount)
     {
-        super(owner, relic, PowerTriggerConditionType.Special, relic.enchantment.GetPowerCost(), relic.enchantment::CanUsePower, relic.enchantment::PayPowerCost);
+        super(owner, relic, PowerTriggerConditionType.Special, relic.enchantment1.GetPowerCost(), relic.enchantment1::CanUsePower, relic.enchantment1::PayPowerCost);
 
-        this.enchantment = relic.enchantment;
+        this.enchantment = relic.enchantment1;
         this.ID += "(" + enchantment.index + "-" + enchantment.auxiliaryData.form + ")";
         this.triggerCondition.requiresTarget = enchantment.requiresTarget;
         this.triggerCondition.SetOneUsePerPower(true);
@@ -44,14 +43,6 @@ public class EnchantmentPower extends AnimatorClickablePower
         }
 
         return enchantmentDescription;
-    }
-
-    @Override
-    public void OnUse(AbstractMonster m)
-    {
-        super.OnUse(m);
-
-        this.enchantment.UsePower(m);
     }
 
     @Override

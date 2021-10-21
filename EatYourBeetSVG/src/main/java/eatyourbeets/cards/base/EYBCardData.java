@@ -351,7 +351,7 @@ public class EYBCardData
     }
 
     public EYBCardData SetMultiformData(int maxForms, boolean canToggleFromPopup) {
-        return SetMultiformData(maxForms,canToggleFromPopup,false,canToggleFromPopup,false);
+        return SetMultiformData(maxForms,canToggleFromPopup,!canToggleFromPopup,canToggleFromPopup,false);
     }
 
     public EYBCardData SetMultiformData(int maxForms, boolean canToggleFromPopup, boolean canToggleOnUpgrade, boolean canToggleFromAlternateForm, boolean unUpgradedCanToggleForms)

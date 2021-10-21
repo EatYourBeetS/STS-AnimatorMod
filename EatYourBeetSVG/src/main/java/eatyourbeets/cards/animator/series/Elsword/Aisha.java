@@ -15,7 +15,7 @@ public class Aisha extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Aisha.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
-            .SetMultiformData(2, false, true, false, false)
+            .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword);
     public static final int ORB_LIMIT = 5;
 
@@ -35,6 +35,9 @@ public class Aisha extends AnimatorCard
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+        }
+        else {
+            this.cardText.OverrideDescription(null, true);
         }
         return super.SetForm(form, timesUpgraded);
     };

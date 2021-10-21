@@ -54,9 +54,9 @@ public class Millim extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
         GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
-                .ShowEffect(false, true);
+                .ShowEffect(true, true);
         GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
-                .ShowEffect(false, true);
+                .ShowEffect(true, true);
 
 
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {

@@ -84,6 +84,7 @@ public abstract class AnimatorRelic extends EYBRelic
             data.AddRelic(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
+            data.AddRelic(TinyHouse.ID, AbstractRelic.RelicTier.COMMON);
 
             if (ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
                 data.AddRelic(BurningBlood.ID, AbstractRelic.RelicTier.SHOP);

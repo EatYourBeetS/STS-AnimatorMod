@@ -18,6 +18,7 @@ public class Ain extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword)
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
 
@@ -31,10 +32,29 @@ public class Ain extends AnimatorCard
         SetAffinity_Light(1);
         SetAffinity_Blue(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Light, 4);
 
         SetHitCount(3);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+            SetAffinity_Dark(1);
+            SetAffinity_Light(0);
+            SetAffinityRequirement(Affinity.Dark, 4);
+            SetAffinityRequirement(Affinity.Light, 0);
+        }
+        else {
+            this.cardText.OverrideDescription(null, true);
+            SetAffinity_Dark(0);
+            SetAffinity_Light(1);
+            SetAffinityRequirement(Affinity.Dark, 0);
+            SetAffinityRequirement(Affinity.Light, 4);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     protected void OnUpgrade()
@@ -65,7 +85,7 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
 
-        if (TrySpendAffinity(Affinity.Light))
+        if ((auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Dark)) || (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Light)))
         {
             GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
         }

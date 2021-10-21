@@ -37,6 +37,9 @@ public class ForceImpulseGundam extends AnimatorCard
         if (form == 1) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
+        else {
+            this.cardText.OverrideDescription(null, true);
+        }
         return super.SetForm(form, timesUpgraded);
     };
 

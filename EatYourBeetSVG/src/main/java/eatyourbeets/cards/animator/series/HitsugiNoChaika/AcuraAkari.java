@@ -28,7 +28,7 @@ public class AcuraAkari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 1, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 1, 0);
@@ -37,11 +37,11 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, 2, false)
+        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded));
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

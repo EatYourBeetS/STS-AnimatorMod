@@ -29,6 +29,7 @@ import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -73,7 +74,8 @@ public class EYBSingleCardPopup extends GUIElement
     private AbstractCard prevCard;
     private AbstractCard nextCard;
     private boolean viewBetaArt;
-    private boolean viewChangeVariant;
+    private boolean viewVariants;
+    private boolean viewChangeVariants;
     private float fadeTimer;
     private Color fadeColor;
     private int currentForm;
@@ -222,7 +224,7 @@ public class EYBSingleCardPopup extends GUIElement
 
         this.changeVariantHb.move((float) Settings.WIDTH / 2f  - 700f * Settings.scale, Settings.HEIGHT / 2f + 170 * Settings.scale);
 
-        viewChangeVariant = (baseCard != null && baseCard.cardData.CanToggleFromPopup);
+        viewChangeVariants = baseCard != null && baseCard.cardData != null && baseCard.cardData.CanToggleFromPopup && (baseCard.upgraded || baseCard.cardData.UnUpgradedCanToggleForms) && (baseCard.auxiliaryData.form == 0 || baseCard.cardData.CanToggleFromAlternateForm) && GameUtilities.InGame();
         changeVariantDescription.SetText((baseCard != null && !baseCard.cardData.CanToggleFromAlternateForm) ? buttonStrings.ChangeVariantTooltipPermanent : buttonStrings.ChangeVariantTooltipAlways);
     }
 
@@ -290,6 +292,8 @@ public class EYBSingleCardPopup extends GUIElement
         this.maxCopiesCount.SetText(GetCardCopiesText());
         this.maxCopiesCount.TryUpdate();
         this.maxCopiesDescription.TryUpdate();
+
+        this.viewVariants = viewChangeVariants || baseCard != null && baseCard.cardData != null && (SingleCardViewPopup.isViewingUpgrade || baseCard.cardData.UnUpgradedCanToggleForms) && baseCard.cardData.MaxForms > 1;
     }
 
     @Override
@@ -336,7 +340,7 @@ public class EYBSingleCardPopup extends GUIElement
             }
         }
 
-        if (viewChangeVariant && baseCard != null && (baseCard.auxiliaryData.form == 0 || baseCard.cardData.CanToggleFromAlternateForm) && (baseCard.upgraded || SingleCardViewPopup.isViewingUpgrade || baseCard.cardData.UnUpgradedCanToggleForms)) {
+        if (viewVariants) {
             changeVariant.SetInteractable(baseCard.auxiliaryData.form != currentForm);
             changeVariantHb.render(sb);
             changeVariantValueHb.render(sb);
@@ -350,7 +354,7 @@ public class EYBSingleCardPopup extends GUIElement
                 changeVariantNextHb.render(sb);
                 changeVariantNext.Render(sb);
             }
-            if (baseCard.upgraded || baseCard.cardData.UnUpgradedCanToggleForms) {
+            if (viewChangeVariants) {
                 changeVariant.Render(sb);
                 changeVariantDescription.Render(sb);
             }
@@ -431,7 +435,7 @@ public class EYBSingleCardPopup extends GUIElement
 
         if (InputHelper.justClickedLeft)
         {
-            if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered) && (!this.viewChangeVariant || (!this.changeVariantHb.hovered && !this.changeVariantNextHb.hovered && !this.changeVariantPrevHb.hovered && !this.changeVariantValueHb.hovered)))
+            if (!this.cardHb.hovered && !this.upgradeHb.hovered && (this.betaArtHb == null || !this.betaArtHb.hovered) && (!this.viewVariants || (!this.changeVariantHb.hovered && !this.changeVariantNextHb.hovered && !this.changeVariantPrevHb.hovered && !this.changeVariantValueHb.hovered)))
             {
                 JUtils.LogInfo(this, "Closing");
                 Close();

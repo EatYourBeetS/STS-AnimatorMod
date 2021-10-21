@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When you apply a #yDebuff to ANY character: Gains #b{0} #yCharge. #yCharge is reduced by #b75% at the start of each turn. Increase the effects of [~Lock-On] and [Vulnerable] on the enemy by #b{1}% and of [Frail] and [Weak] by #b{2}%."],
+	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply a random #yCommon #yDebuff #b{2} times (This effect can stack).{3}","NL #yCharge is conserved this turn."],
 	  "NAME": "Desecration"
 	},
 	"eyb:EndurancePower":

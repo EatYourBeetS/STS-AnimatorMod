@@ -1,34 +1,55 @@
 package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.GainStrengthPower;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.subscribers.OnTrySpendAffinitySubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.replacement.AnimatorFrailPower;
-import eatyourbeets.powers.replacement.AnimatorLockOnPower;
-import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
-import eatyourbeets.powers.replacement.AnimatorWeakPower;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.UUID;
 
-public class DesecrationPower extends CommonPower
+public class DesecrationPower extends CommonPower implements OnTrySpendAffinitySubscriber
 {
     public static final String POWER_ID = CreateFullID(DesecrationPower.class);
-    public static final int MULTIPLIER = 6;
-    public static final int MULTIPLIER2 = 2;
+    public static final int BASE_CHARGE_THRESHOLD = 6;
+    public static int CHARGE_THRESHOLD = BASE_CHARGE_THRESHOLD;
     private static UUID battleID;
     public int charge;
-    private int totalMultiplier;
-    private int totalMultiplier2;
 
+    public static void AddChargeThreshold(int increase)
+    {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            CHARGE_THRESHOLD = BASE_CHARGE_THRESHOLD;
+        }
+
+        if (increase > 0)
+        {
+            CHARGE_THRESHOLD += increase;
+
+            for (DesecrationPower p : GameUtilities.<DesecrationPower>GetPowers(TargetHelper.Enemies(), POWER_ID))
+            {
+                p.updateDescription();
+                p.flashWithoutSound();
+            }
+        }
+    }
 
     public DesecrationPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-        this.charge = 0;
 
         Initialize(amount);
     }
@@ -37,27 +58,26 @@ public class DesecrationPower extends CommonPower
     public void onInitialApplication()
     {
         super.onInitialApplication();
-
-        UpdatePercentage();
+        CombatStats.onTrySpendAffinity.Subscribe(this);
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount, GetLargeMultiplier(this.charge), GetSmallMultiplier(this.charge));
+        this.description = FormatDescription(0, amount, GetCurrentChargeCost(), GetDebuffCount(Math.max(charge,CHARGE_THRESHOLD)), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
     }
 
     @Override
     protected ColoredString GetSecondaryAmount(Color c)
     {
-        return new ColoredString(charge, Color.WHITE, c.a);
+        return new ColoredString(charge, charge >= CHARGE_THRESHOLD ? Color.YELLOW : Color.WHITE, c.a);
     }
 
     @Override
     public void onRemove()
     {
-        this.charge = 0;
-        UpdatePercentage();
+        super.onRemove();
+        CombatStats.onTrySpendAffinity.Unsubscribe(this);
     }
 
     @Override
@@ -65,13 +85,24 @@ public class DesecrationPower extends CommonPower
     {
         super.onApplyPower(power, target, source);
 
-        if (power.type == PowerType.DEBUFF && !power.ID.equals(GainStrengthPower.POWER_ID) &&
-                source == this.owner && !target.hasPower(ArtifactPower.POWER_ID))
+        if (power.type == PowerType.DEBUFF && power.owner == this.owner && !power.owner.hasPower(ArtifactPower.POWER_ID))
         {
-            this.charge += amount;
-            UpdatePercentage();
-            this.flash();
+            GameActions.Last.Callback(() -> {
+                this.charge += power.amount * amount;
+                this.flash();
+            });
         }
+    }
+
+    @Override
+    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
+        if (isActuallySpending) {
+            GameActions.Last.Callback(() -> {
+                this.charge += this.amount * amount;
+                this.flash();
+            });
+        }
+        return amount;
     }
 
     @Override
@@ -81,38 +112,21 @@ public class DesecrationPower extends CommonPower
     }
 
     @Override
-    public void atStartOfTurnPostDraw()
-    {
-        super.atStartOfTurnPostDraw();
-
-        this.charge /= 4;
-        UpdatePercentage();
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        if (enabled && charge >= CHARGE_THRESHOLD && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge) && action.target instanceof AbstractMonster && !GameUtilities.IsDeadOrEscaped(action.target)) {
+            for (int i = 0; i < GetDebuffCount(charge); i++) {
+                GameActions.Bottom.StackPower(TargetHelper.Normal(action.target), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
+                        .ShowEffect(true, true);
+            }
+            this.charge -= GetCurrentChargeCost();
+            updateDescription();
+            flash();
+        }
     }
 
-    private int GetLargeMultiplier(int charge) {
-        return MULTIPLIER * charge;
-    }
+    private int GetCurrentChargeCost() {return Math.max(CHARGE_THRESHOLD, Math.floorDiv(charge, CHARGE_THRESHOLD) * CHARGE_THRESHOLD);}
 
-    private int GetSmallMultiplier(int charge) {
-        return MULTIPLIER2 * charge;
-    }
-
-    public void UpdatePercentage()
-    {
-        //Undo the previous changes made by this power
-        AnimatorLockOnPower.AddEnemyModifier(-this.totalMultiplier);
-        AnimatorVulnerablePower.AddEnemyModifier(-this.totalMultiplier);
-        AnimatorWeakPower.AddEnemyModifier(-this.totalMultiplier2);
-        AnimatorFrailPower.AddEnemyModifier(-this.totalMultiplier2);
-
-        this.totalMultiplier = GetLargeMultiplier(this.charge);
-        this.totalMultiplier2 = GetSmallMultiplier(this.charge);
-
-        AnimatorLockOnPower.AddEnemyModifier(this.totalMultiplier);
-        AnimatorVulnerablePower.AddEnemyModifier(this.totalMultiplier);
-        AnimatorWeakPower.AddEnemyModifier(this.totalMultiplier2);
-        AnimatorFrailPower.AddEnemyModifier(this.totalMultiplier2);
-
-        this.updateDescription();
+    private int GetDebuffCount(int charge) {
+        return Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
     }
 }

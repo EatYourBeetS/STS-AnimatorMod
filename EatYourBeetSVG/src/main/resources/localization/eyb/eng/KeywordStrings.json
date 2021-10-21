@@ -158,7 +158,7 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gains #yCharge as you apply debuffs to ANY character. NL For each #yCharge you have, increase the effect of [~Lock-On] and [Vulnerable] on the enemy by 6% and the effect of [Frail] and [Weak] by 2%. NL #yCharge decreases by 75% at the start of each turn.",
+	  "DESCRIPTION": "Gains #yCharge as you expend [A-Gen] or gain debuffs. NL When you play a card targeting an enemy, Consume 6 #yCharge to apply a random #yCommon #yDebuff to the target, ignoring [Artifact] (this effect can stack).",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},

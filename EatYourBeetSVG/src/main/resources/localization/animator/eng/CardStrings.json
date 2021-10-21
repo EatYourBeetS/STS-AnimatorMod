@@ -1114,7 +1114,7 @@
 		},
 		"animator:ReimuHakurei":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. ** Apply !M! [Weak]. || Starter: Scry !S!.",
+			"DESCRIPTION": "Starter: Scry !S! || Apply !M! [Vulnerable] and [Weak].",
 			"NAME": "Reimu Hakurei"
 		},
 		"animator:SanaeKochiya":
@@ -1142,7 +1142,7 @@
 		},
 		"animator:YuukaKazami":
 		{
-			"DESCRIPTION": "On even-numbered turns: Channel 1 [Air]. Otherwise, Channel 1 [Lightning]. || When drawn or discarded: If <B> > <G>, Gain +1 <G>. Otherwise, Gain +1 <B>.",
+			"DESCRIPTION": "On even-numbered turns: Channel 1 [Air]. Otherwise, Channel 1 [Lightning]. || When drawn or discarded: Gain +1 of your lowest <W>.",
 			"NAME": "Yuuka Kazami"
 		},
 		"animator:YuyukoSaigyouji":
@@ -1355,7 +1355,7 @@
 		"animator:Ain":
 		{
 			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || Pay !S! <L>: Obtain {<B> Token}{+}.",
-			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <IS>. || Pay !S! <D>: Obtain {<C> Token}{+}."],
+			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <IS>. || Pay !S! <D>: Obtain {<B> Token}{+}."],
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -1397,6 +1397,11 @@
 			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {Orb Cores}.",
 			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 of #b3 #y #yOrb #yCores. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s).", "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Add {Battle Drones} to your draw and discard piles.", "Pay 2 [E] to add #yBattle #yDrones to your draw and discard piles. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
 			"NAME": "Eve"
+		},
+		"animator:Eve_Drone":
+		{
+			"DESCRIPTION": "Cooldown 1: Exhaust.",
+			"NAME": "Battle Drone"
 		},
 		"animator:Laby":
 		{
@@ -1762,9 +1767,9 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard 2 cards ** to obtain !M! [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom.",
+			"DESCRIPTION": "Discard a random card to obtain [T-Knife]. || <SLM>. Synergy: Gain ** !S! {Temp}. Envenom.",
 			"NAME": "Akari Acura",
-			"UPGRADE_DESCRIPTION": "Discard 2 cards to ** obtain !M! Upgraded [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom."
+			"UPGRADE_DESCRIPTION": "Discard a card obtain [T-Knife]. || <SLM>. Synergy: Gain ** !S! {Temp}. Envenom."
 		},
 		"animator:AcuraShin":
 		{
@@ -2033,7 +2038,7 @@
 		},
 		"animator:HousakiMinori":
 		{
-			"DESCRIPTION": "<CDN>: Gain !M! [Enchanted Armor]. || Synergy with {Tohya Housaki}: Progress Cooldown by !S!.",
+			"DESCRIPTION": "<CDN>: Gain !M! [Artifact]. || Synergy with {Tohya Housaki}: Progress Cooldown by !S!.",
 			"NAME": "Minori Housaki"
 		},
 		"animator:HousakiTohya":
@@ -2048,7 +2053,7 @@
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Pay !A! <G> or <O>: ** <G>: Boost !M! [W] and enter <AS>. ** <O>: Boost !M! [A] and enter <WS>. || On Discard: Gain !S! Temp. [Thorns].",
+			"DESCRIPTION": "Pay !A! <G> or <O>: ** <G>: Gain|Boost !M! [W] and enter <AS>. ** <O>: Gain|Boost !M! [A] and enter <WS>. || On Discard: Gain !S! Temp. [Thorns].",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
@@ -2184,18 +2189,13 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "<SOUL>: {Charlotte} || Randomly Gain|Boost [A], [I] or [B] !M! times. || While in hand: Gain 1 [Temp HP] when you play a LV2 <B> or <L> card.",
+			"DESCRIPTION": "<SOUL>: {Charlotte} || Randomly Gain|Boost [A], [I] or [B] !M! times. || While in hand: Gain !S! [Temp HP] when you play a LV2 <B> or <L> card.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:NagisaMomoe_Charlotte":
 		{
 			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: ALL characters gain !M! [Vulnerable] and take !S! [Delayed Damage].",
-			"NAME": "Charlotte"
-		},
-		"animator:NagisaMomoe_Charlotte2":
-		{
-			"DESCRIPTION": "Unplayable unless you ** played a [Grief Seed] this turn. || Apply !M! [Vulnerable] to ** ALL characters.",
-			"EXTENDED_DESCRIPTION": ["I have not played a Grief Seed this turn."],
+			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: ALL characters Recover !M! [HP]."],
 			"NAME": "Charlotte"
 		},
 		"animator:OrikoMikuni":

@@ -18,6 +18,7 @@ public class Noah extends AnimatorCard
     public static final EYBCardData DATA = Register(Noah.class)
             .SetAttack(1, CardRarity.RARE, EYBAttackType.Piercing)
             .SetMaxCopies(2)
+            .SetMultiformData(2,false)
             .SetSeriesFromClassPackage();
 
     public Noah()
@@ -39,6 +40,23 @@ public class Noah extends AnimatorCard
 
         SetHaste(true);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            SetAffinity_Light(2, 0, 1);
+            SetAffinity_Dark(1);
+            LoadImage("_Light");
+            this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+        }
+        else {
+            SetAffinity_Light(1);
+            SetAffinity_Dark(2, 0, 1);
+            LoadImage(null);
+            this.cardText.OverrideDescription(null, true);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     protected float GetInitialDamage()

@@ -46,16 +46,13 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     public SuperchargedPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-
-        this.charge = 0;
-
         Initialize(amount);
     }
 
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f, !enabled ? powerStrings.DESCRIPTIONS[1] : null);
+        this.description = FormatDescription(0, amount, GetCurrentChargeCost(), GetChargeIncrease(Math.max(charge,CHARGE_THRESHOLD)) * 100f, !enabled ? powerStrings.DESCRIPTIONS[1] : "");
     }
 
     @Override

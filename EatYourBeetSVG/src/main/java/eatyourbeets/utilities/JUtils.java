@@ -175,6 +175,23 @@ public class JUtils
         }
     }
 
+    public static <T, N extends Comparable<N>> T FindMax(T[] list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        T result = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) > 0)
+            {
+                best = prop;
+                result = t;
+            }
+        }
+
+        return result;
+    }
+
     public static <T, N extends Comparable<N>> T FindMax(Iterable<T> list, FuncT1<N, T> getProperty)
     {
         N best = null;
@@ -183,6 +200,23 @@ public class JUtils
         {
             N prop = getProperty.Invoke(t);
             if (best == null || prop.compareTo(best) > 0)
+            {
+                best = prop;
+                result = t;
+            }
+        }
+
+        return result;
+    }
+
+    public static <T, N extends Comparable<N>> T FindMin(T[] list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        T result = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) < 0)
             {
                 best = prop;
                 result = t;

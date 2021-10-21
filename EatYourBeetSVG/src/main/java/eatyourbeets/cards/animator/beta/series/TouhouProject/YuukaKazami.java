@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class YuukaKazami extends AnimatorCard
 {
@@ -38,7 +39,8 @@ public class YuukaKazami extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) ? Affinity.Green : Affinity.Blue, 1);
+        Affinity lowest = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+        CombatStats.Affinities.AddAffinity(lowest, 1);
     }
 
     @Override
@@ -46,7 +48,8 @@ public class YuukaKazami extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) ? Affinity.Green : Affinity.Blue, 1);
+        Affinity lowest = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+        CombatStats.Affinities.AddAffinity(lowest, 1);
     }
 }
 

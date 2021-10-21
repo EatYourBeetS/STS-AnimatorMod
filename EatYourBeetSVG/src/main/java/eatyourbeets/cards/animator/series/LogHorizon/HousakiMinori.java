@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HousakiMinori extends AnimatorCard
@@ -20,7 +19,7 @@ public class HousakiMinori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 15, 2);
+        Initialize(0, 6, 1, 2);
         SetUpgrade(0, 1, 0);
 
         SetAffinity_Blue(1);
@@ -38,6 +37,6 @@ public class HousakiMinori extends AnimatorCard
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        GameActions.Bottom.StackPower(new EnchantedArmorPower(player, magicNumber));
+        GameActions.Bottom.GainArtifact(magicNumber);
     }
 }

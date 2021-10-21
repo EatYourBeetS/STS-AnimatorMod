@@ -14,6 +14,7 @@ public class Ara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ara.class)
             .SetAttack(1, CardRarity.COMMON)
+            .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
 
     public Ara()
@@ -31,11 +32,30 @@ public class Ara extends AnimatorCard
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+            SetAffinityRequirement(Affinity.Green, 4);
+            SetAffinityRequirement(Affinity.Orange, 0);
+        }
+        else {
+            this.cardText.OverrideDescription(null, true);
+            SetAffinityRequirement(Affinity.Green, 0);
+            SetAffinityRequirement(Affinity.Orange, 4);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetSoundPitch(1.1f, 1.3f));
 
-        if (TrySpendAffinity(Affinity.Orange))
+        if (auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.GainWillpower(magicNumber, upgraded);
+        }
+        else if (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.GainAgility(magicNumber, upgraded);
         }

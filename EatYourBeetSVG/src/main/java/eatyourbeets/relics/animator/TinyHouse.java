@@ -3,14 +3,17 @@ package eatyourbeets.relics.animator;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.ObtainPotionEffect;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RandomizedList;
 
 public class TinyHouse extends AnimatorRelic {
     public static final String ID = CreateFullID(TinyHouse.class);
-    private static final int MAX_CARDS = 5;
+    private static final int MAX_CARDS = 1;
 
     private boolean addingCards;
     private int index;
@@ -22,7 +25,9 @@ public class TinyHouse extends AnimatorRelic {
 
     @Override
     public void onEquip() {
-
+        GameEffects.TopLevelQueue.Add(new ObtainPotionEffect(PotionHelper.getRandomPotion(rng)));
+        player.gainGold(50);
+        player.increaseMaxHp(5, true);
         addingCards = true;
     }
 
@@ -35,9 +40,25 @@ public class TinyHouse extends AnimatorRelic {
         {
             if (index >= MAX_CARDS)
             {
-                //Ending card add cycle
+                //Ending card add cycle and upgrading random card
                 addingCards = false;
                 awaitingInput = false;
+
+                RandomizedList<AbstractCard> upgradableCards = new RandomizedList<>();
+                for (AbstractCard c : player.masterDeck.group)
+                {
+                    if (c.canUpgrade()) {
+                        upgradableCards.Add(c);
+                    }
+                }
+
+                if (upgradableCards.Size() > 0)
+                {
+                    AbstractCard card = upgradableCards.Retrieve(rng);
+                    card.upgrade();
+                    GameEffects.TopLevelQueue.ShowCardBriefly(card.makeStatEquivalentCopy());
+                }
+
                 return;
             }
             else if (awaitingInput && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {

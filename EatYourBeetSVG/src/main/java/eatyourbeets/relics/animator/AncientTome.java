@@ -60,7 +60,7 @@ public class AncientTome extends AnimatorRelic
 
         if (awaitingInput)
         {
-            if (!AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+            if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
                 AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0).makeCopy();
 
                 if (c != null) {

@@ -52,10 +52,16 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     {
         if (lv1Cards.isEmpty())
         {
-            lv1Cards.add(new PrayerWheelEnchantment());
+            lv1Cards.add(new DreamCatcherEnchantment());
             lv1Cards.add(new MissingPieceEnchantment());
             lv1Cards.add(new MagicCoinEnchantment());
             lv1Cards.add(new AstrolabeEnchantment());
+            lv1Cards.add(new TinyHouseEnchantment());
+            lv1Cards.add(new QuestionMarkEnchantment());
+            lv1Cards.add(new PandorasBoxEnchantment());
+            lv1Cards.add(new PeacePipeEnchantment());
+            lv1Cards.add(new SingingBowlEnchantment());
+            lv1Cards.add(new LeesWaffleEnchantment());
 
             allCards.addAll(lv1Cards);
         }
@@ -67,7 +73,16 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     {
         if (lv2Cards.isEmpty())
         {
-
+            lv2Cards.add(new PrayerWheelEnchantment());
+            lv2Cards.add(new RacePieceEnchantment());
+            lv2Cards.add(new StarCompassEnchantment());
+            lv2Cards.add(new AngelWingsEnchantment());
+            lv2Cards.add(new AncientTomeEnchantment());
+            lv2Cards.add(new RollingCubesEnchantment());
+            lv2Cards.add(new EmptyCageEnchantment());
+            lv2Cards.add(new OrreryEnchantment());
+            lv2Cards.add(new DollysMirrorEnchantment());
+            lv2Cards.add(new UnnamedGiftEnchantment());
             allCards.addAll(lv2Cards);
         }
 

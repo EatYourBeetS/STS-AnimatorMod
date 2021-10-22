@@ -37,7 +37,7 @@ public class ShinigamisFerryPatch
                 }
             }
 
-            if (AbstractDungeon.player.hasRelic(AngelWings.ID))
+            if (AbstractDungeon.player.hasRelic(AngelWings.ID) && AbstractDungeon.actNum == 3)
             {
                 for (MapEdge edge : __instance.getEdges())
                 {

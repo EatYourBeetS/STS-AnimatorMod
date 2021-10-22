@@ -248,7 +248,7 @@
 	},
 	"animator:StarCompass":
 	{
-		"DESCRIPTIONS": ["Whenever you enter a ? room, you may remove a card from your deck."],
+		"DESCRIPTIONS": ["Whenever you enter an Event, Campfire, or Treasure room, you may remove a card from your deck."],
 		"FLAVOR": "No matter how much you shake it, the needle is always pointing down.",
 		"NAME": "Star Compass"
 	},

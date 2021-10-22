@@ -1,6 +1,8 @@
 package eatyourbeets.cards.animator.enchantments;
 
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.relics.animator.RacePiece;
 import eatyourbeets.utilities.GameEffects;
@@ -28,7 +30,9 @@ public class RacePieceEnchantment extends Enchantment
     @Override
     public void OnStartOfBattle()
     {
-        if (AbstractDungeon.actNum == 3 && GameUtilities.InEliteRoom()) {
+        final Random rng = new Random(Settings.seed + (AbstractDungeon.actNum * 17) + (AbstractDungeon.floorNum * 23));
+
+        if (AbstractDungeon.actNum == 3 && !GameUtilities.InBossRoom() && (GameUtilities.InEliteRoom() || rng.randomBoolean(0.2f))) {
             GameUtilities.GetCurrentRoom(true).addRelicToRewards(new RacePiece());
         }
     }

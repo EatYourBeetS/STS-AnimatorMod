@@ -28,6 +28,7 @@ public class AncientTome extends AnimatorRelic
         for(int i = 0; i < 20; ++i) {
             AbstractCard cardToAdd = GR.Common.Dungeon.GetRandomRewardCard(choices.group, true, true);
             cardToAdd.upgrade();
+            choices.addToRandomSpot(cardToAdd);
         }
 
         if (choices.size() > 0)

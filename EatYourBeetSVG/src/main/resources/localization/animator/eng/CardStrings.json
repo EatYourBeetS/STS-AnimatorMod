@@ -1575,8 +1575,8 @@
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Full Hand: Move a random card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
-			"UPGRADE_DESCRIPTION": "Full Hand: Move a random, non-Hindrance card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
+			"DESCRIPTION": "{Full Hand}: Move a random card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
+			"UPGRADE_DESCRIPTION": "{Full Hand}: Move a random, non-Hindrance card from your exhaust pile to your draw pile. || On Exhaust or !A! [P]: Apply !M! [Poison] to a random enemy.",
 			"NAME": "Scar"
 		},
 		"animator:Sloth":
@@ -2708,8 +2708,8 @@
 		},
 		"animator:QuestionMarkEnchantment":
 		{
-			"DESCRIPTION": "Obtain Question Mark: a relic that grants you an additional card option in card rewards.",
-			"NAME": "Question Mark"
+			"DESCRIPTION": "Obtain Question Card: a relic that grants you an additional card option in card rewards.",
+			"NAME": "Question Card"
 		},
 		"animator:PandorasBoxEnchantment":
 		{
@@ -2738,12 +2738,12 @@
 		},
 		"animator:RacePieceEnchantment":
 		{
-			"DESCRIPTION": "Obtains Race Piece: a relic that allows you to transform three cards in your deck to cards of the same series. ** Obtain additional Race Pieces whenever you defeat an Elite in Act 3.",
+			"DESCRIPTION": "Obtains Race Piece: a relic that allows you to transform three cards in your deck to cards of the same series. ** Obtain additional Race Pieces whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Race Seeker"
 		},
 		"animator:StarCompassEnchantment":
 		{
-			"DESCRIPTION": "Obtains Star Compass: a relic that allows you to remove cards from your deck in ? rooms.",
+			"DESCRIPTION": "Obtains Star Compass: a relic that allows you to remove cards from your deck in Event, Campfire, or Treasure rooms.",
 			"NAME": "Star Compass"
 		},
 		"animator:AngelWingsEnchantment":
@@ -2753,7 +2753,7 @@
 		},
 		"animator:AncientTomeEnchantment":
 		{
-			"DESCRIPTION": "Obtains Ancient Tome: a relic that allows you to choose 1 of 20 cards to add to your deck. ** Obtain additional Ancient Tomes whenever you defeat an Elite in Act 3.",
+			"DESCRIPTION": "Obtains Ancient Tome: a relic that allows you to choose 1 of 20 cards to add to your deck. ** Obtain additional Ancient Tomes whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Tome Seeker"
 		},
 		"animator:RollingCubesEnchantment":
@@ -2763,23 +2763,23 @@
 		},
 		"animator:EmptyCageEnchantment":
 		{
-			"DESCRIPTION": "Obtains Empty Cage: a relic that allows you to remove two cards from your deck. ** Obtain additional Empty Cages whenever you defeat an Elite in Act 3.",
+			"DESCRIPTION": "Obtains Empty Cage: a relic that allows you to remove two cards from your deck. ** Obtain additional Empty Cages whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Cage Seeker"
 		},
 		"animator:OrreryEnchantment":
 		{
-			"DESCRIPTION": "Obtains Orrery: a relic that allows you to add five cards to your deck. ** Obtain additional Orreries whenever you defeat an Elite in Act 3.",
+			"DESCRIPTION": "Obtains Orreries (a relic that allows you to add five cards to your deck) whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Orrery Seeker"
 		},
 		"animator:DollysMirrorEnchantment":
 		{
-			"DESCRIPTION": "Obtains Dolly's Mirror: a relic that allows you to duplicate a card in your deck. ** Obtain additional Dolly's Mirrors whenever you defeat an Elite in Act 3.",
+			"DESCRIPTION": "Obtains Dolly's Mirror: a relic that allows you to duplicate a card in your deck. ** Obtain additional Dolly's Mirrors whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Mirror Seeker"
 		},
 		"animator:UnnamedGiftEnchantment":
 		{
 			"DESCRIPTION": "Obtains Unnamed Gift: a relic that halves your max HP and allows you to add 1 of 2 Ultra Rare cards to your deck.",
-			"NAME": "UnnamedGift"
+			"NAME": "Unnamed Gift"
 		}
 	},
 

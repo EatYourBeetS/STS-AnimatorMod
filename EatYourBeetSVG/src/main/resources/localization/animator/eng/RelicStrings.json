@@ -168,6 +168,12 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
+	"animator:Orrery":
+	{
+		"DESCRIPTIONS": ["Choose and add 5 cards to your deck."],
+		"FLAVOR": "\"Once you understand the universe...\" - Zoroth",
+		"NAME": "Orrery"
+	},
 	"animator:RollingCubes":
 	{
 		"DESCRIPTIONS": ["During card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter any #yNormal enemy rooms. Store up to #b{1} uses."],
@@ -281,6 +287,12 @@
 		"DESCRIPTIONS": ["At the start of each turn, draw #b{0} cards. NL Whenever you play a card, deal #b{1} damage to ALL enemies and gain #b{2} #yBlock."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
+	},
+	"animator:TinyHouse":
+	{
+		"DESCRIPTIONS": ["Obtain 1 potion. Gain 50 Gold. Raise your Max HP by 5. Obtain 1 card. Upgrade 1 Random card."],
+		"FLAVOR": "\"A near perfect implementation of miniaturization. My finest work to date, but still not adequate.\" - The Architect",
+		"NAME": "Tiny House"
 	},
 	"animator:UnnamedGift":
 	{

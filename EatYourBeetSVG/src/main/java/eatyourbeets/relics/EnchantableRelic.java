@@ -58,10 +58,10 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
             int card2Index = index % MAX_OPTIONS;
 
             if (card1Index > 0) {
-                ApplyEnchantment(Enchantment.GetCard(card1Index));
+                ApplyEnchantment(Enchantment.GetCard(1, card1Index));
             }
             if (card2Index > 0) {
-                ApplyEnchantment(Enchantment.GetCard(card2Index));
+                ApplyEnchantment(Enchantment.GetCard(2, card2Index));
             }
         }
     }
@@ -82,7 +82,7 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
         if (enchantment2 != null)
         {
             enchantment2.drawScale = enchantment2.targetDrawScale = 0.8f;
-            enchantment2.current_x = enchantment2.target_x = InputHelper.mX + ((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? (AbstractCard.IMG_WIDTH * -0.5f) : (AbstractCard.IMG_WIDTH * 0.5f)) + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
+            enchantment2.current_x = enchantment2.target_x = InputHelper.mX + ((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? (AbstractCard.IMG_WIDTH * -0.5f) - 0.5f : (AbstractCard.IMG_WIDTH * 0.5f) + 0.5f) + (((InputHelper.mX > (Settings.WIDTH * 0.5f)) ? -1.505f : 1.505f) * EYBCardTooltip.BOX_W);
             enchantment2.current_y = enchantment2.target_y = InputHelper.mY - (AbstractCard.IMG_HEIGHT * 0.5f);
             GR.UI.AddPostRender(enchantment2::render);
         }

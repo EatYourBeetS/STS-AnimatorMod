@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.relics.TinyHouse;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.relics.animator.TinyHouse;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class TinyHouseEnchantment extends Enchantment
     @Override
     public void OnObtain()
     {
-        GameEffects.TopLevelList.ObtainRelic(new TinyHouse());
+        GameEffects.TopLevelQueue.ObtainRelic(new TinyHouse());
     }
 
     @Override

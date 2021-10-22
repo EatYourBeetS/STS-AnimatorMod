@@ -89,11 +89,11 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         return lv2Cards;
     }
 
-    public static Enchantment GetCard(int index)
+    public static Enchantment GetCard(int level, int index)
     {
         for (Enchantment e : GetAllCards())
         {
-            if (e.index == index)
+            if (e.level == level && e.index == index)
             {
                 Enchantment result = (Enchantment) e.makeCopy();
 
@@ -181,6 +181,6 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
-        return GetCard(index);
+        return GetCard(level, index);
     }
 }

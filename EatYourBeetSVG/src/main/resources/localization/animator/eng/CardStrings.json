@@ -2768,7 +2768,7 @@
 		},
 		"animator:OrreryEnchantment":
 		{
-			"DESCRIPTION": "Obtains Orreries (a relic that allows you to add five cards to your deck) whenever you defeat an Elite or occasional Normal enemies in Act 3.",
+			"DESCRIPTION": "Obtains Orrery: a relic that allows you to add five cards to your deck. ** Obtain additional Orreries whenever you defeat an Elite or occasional Normal enemies in Act 3.",
 			"NAME": "Orrery Seeker"
 		},
 		"animator:DollysMirrorEnchantment":
@@ -2779,7 +2779,7 @@
 		"animator:UnnamedGiftEnchantment":
 		{
 			"DESCRIPTION": "Obtains Unnamed Gift: a relic that halves your max HP and allows you to add 1 of 2 Ultra Rare cards to your deck.",
-			"NAME": "Unnamed Gift"
+			"NAME": "Unnamed  Gift"
 		}
 	},
 

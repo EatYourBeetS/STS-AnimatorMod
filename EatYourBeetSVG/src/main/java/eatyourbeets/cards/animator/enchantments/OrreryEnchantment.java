@@ -3,8 +3,9 @@ package eatyourbeets.cards.animator.enchantments;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.relics.Orrery;
+import eatyourbeets.relics.animator.Orrery;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class OrreryEnchantment extends Enchantment
@@ -23,7 +24,7 @@ public class OrreryEnchantment extends Enchantment
     @Override
     public void OnObtain()
     {
-
+        GameEffects.TopLevelQueue.ObtainRelic(new Orrery());
     }
 
     @Override

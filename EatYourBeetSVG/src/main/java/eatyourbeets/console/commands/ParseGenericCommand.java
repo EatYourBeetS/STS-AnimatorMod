@@ -221,13 +221,13 @@ public class ParseGenericCommand extends ConsoleCommand
                     return;
                 }
 
-                if (tokens[1].equals("apply-enchantment") && tokens.length > 3)
+                if (tokens[1].equals("apply-enchantment") && tokens.length > 4)
                 {
                     for (AbstractRelic r : player.relics)
                     {
                         if (r instanceof EnchantableRelic)
                         {
-                            ((EnchantableRelic) r).ApplyEnchantment(Enchantment.GetCard(JUtils.ParseInt(tokens[2], 1)));
+                            ((EnchantableRelic) r).ApplyEnchantment(Enchantment.GetCard(JUtils.ParseInt(tokens[2], 1), JUtils.ParseInt(tokens[3], 1)));
 
                             if (GameUtilities.InBattle())
                             {

@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
@@ -22,8 +21,8 @@ public class RollingCubes extends AnimatorRelic
     private static final CardGroup tempGroup2 = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
     public static final String ID = CreateFullID(RollingCubes.class);
-    public static final int MAX_STORED_USES = 3;
-    public static final int USES_PER_ELITE = 2;
+    public static final int MAX_STORED_USES = 40;
+    public static final int USES_PER_ENEMY = 8;
 
     public RollingCubes()
     {
@@ -33,7 +32,7 @@ public class RollingCubes extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, USES_PER_ELITE, MAX_STORED_USES);
+        return FormatDescription(0, USES_PER_ENEMY, MAX_STORED_USES);
     }
 
     @Override
@@ -49,16 +48,16 @@ public class RollingCubes extends AnimatorRelic
     {
         super.onEnterRoom(room);
 
-        if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
+        if (room instanceof MonsterRoom)
         {
-            SetCounter(Math.min(MAX_STORED_USES, counter + USES_PER_ELITE));
+            SetCounter(Math.min(MAX_STORED_USES, counter + USES_PER_ENEMY));
             flash();
         }
     }
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        return CanReroll() && !GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem);
+        return CanReroll() && !GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD;
     }
 
     public boolean CanReroll()

@@ -1,11 +1,16 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorClickablePower;
@@ -13,7 +18,9 @@ import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class WizardHat extends AnimatorRelic
 {
@@ -95,4 +102,5 @@ public class WizardHat extends AnimatorRelic
             stackPower(DAMAGE_BONUS_PER_TURN);
         }
     }
+
 }

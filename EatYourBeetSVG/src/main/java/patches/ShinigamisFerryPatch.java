@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.WingBoots;
+import eatyourbeets.relics.animator.AngelWings;
 import eatyourbeets.relics.animator.beta.ShinigamisFerry;
 
 public class ShinigamisFerryPatch
@@ -32,6 +33,17 @@ public class ShinigamisFerryPatch
                         {
                             return true;
                         }
+                    }
+                }
+            }
+
+            if (AbstractDungeon.player.hasRelic(AngelWings.ID))
+            {
+                for (MapEdge edge : __instance.getEdges())
+                {
+                    if (node.y == edge.dstY)
+                    {
+                        return true;
                     }
                 }
             }
@@ -68,6 +80,10 @@ public class ShinigamisFerryPatch
                         }
                         return;
                     }
+                }
+                if (AbstractDungeon.player.hasRelic(AngelWings.ID) && AbstractDungeon.actNum == 3)
+                {
+                    return;
                 }
                 if (ModHelper.isModEnabled("Flight"))
                 {

@@ -15,9 +15,8 @@ public class AnimatorDailyMod extends AbstractDailyMod {
     public static final List<AnimatorDailyMod> mods = Arrays.asList(
             //blue
             new SeriesDeck(),
-
+            
             //green
-            new AllRelicAnimatorRun(),
 
             //red
             new NoRelics()

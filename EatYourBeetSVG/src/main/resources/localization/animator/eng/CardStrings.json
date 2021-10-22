@@ -2681,10 +2681,10 @@
 
 	"ENCHANTMENTS":
 	{
-		"animator:PrayerWheelEnchantment":
+		"animator:DreamCatcherEnchantment":
 		{
-			"DESCRIPTION": "Obtains Prayer Wheel: a relic that provides an additional reward after every Normal battle.",
-			"NAME": "Prayer Wheel"
+			"DESCRIPTION": "Obtains Dream Catcher: a relic that allows you to add a card to your deck whenever you rest.",
+			"NAME": "Dream Catcher"
 		},
 		"animator:MissingPieceEnchantment":
 		{
@@ -2693,13 +2693,93 @@
 		},
 		"animator:MagicCoinEnchantment":
 		{
-			"DESCRIPTION": "Upon pickup: Gain 250 gold.",
+			"DESCRIPTION": "Upon pickup: Gain 350 gold.",
 			"NAME": "Magic Coin"
 		},
 		"animator:AstrolabeEnchantment":
 		{
-			"DESCRIPTION": "Obtain Astrolabe: a relic that lets you choose 3 cards to transform and upgrade.  Obtain additional Astrolabes whenever you defeat an Elite in Act 2.",
+			"DESCRIPTION": "Obtain Astrolabe: a relic that lets you choose 3 cards to transform and upgrade. ** Obtain additional Astrolabes whenever you defeat an Elite in Act 2.",
 			"NAME": "Astrolabe Seeker"
+		},
+		"animator:TinyHouseEnchantment":
+		{
+			"DESCRIPTION": "Obtain Tiny House: a relic that grants you a potion, 50 gold, 5 max HP, a card, and a random upgrade. ** Obtain additional Tiny Houses whenever you defeat an Elite in Act 2.",
+			"NAME": "House Seeker"
+		},
+		"animator:QuestionMarkEnchantment":
+		{
+			"DESCRIPTION": "Obtain Question Mark: a relic that grants you an additional card option in card rewards.",
+			"NAME": "Question Mark"
+		},
+		"animator:PandorasBoxEnchantment":
+		{
+			"DESCRIPTION": "Obtain Pandora's Box: a relic that transforms your Strikes and Defends.",
+			"NAME": "Pandora's Box"
+		},
+		"animator:PeacePipeEnchantment":
+		{
+			"DESCRIPTION": "Obtain Peace Pipe: a relic that provides an option to remove cards in rest sites.",
+			"NAME": "Peace Pipe"
+		},
+		"animator:SingingBowlEnchantment":
+		{
+			"DESCRIPTION": "Obtain Singing Bowl: a relic that provides an option to get Max HP instead of a card reward.",
+			"NAME": "Singing Bowl"
+		},
+		"animator:LeesWaffleEnchantment":
+		{
+			"DESCRIPTION": "Obtain Lee's Waffle: a relic that heals all your HP and raises your max HP. ** Obtain additional Lee's Waffles whenever you defeat an Elite in Act 2.",
+			"NAME": "Waffle Seeker"
+		},
+		"animator:PrayerWheelEnchantment":
+		{
+			"DESCRIPTION": "Obtains Prayer Wheel: a relic that provides an additional reward after every Normal battle.",
+			"NAME": "Prayer Wheel"
+		},
+		"animator:RacePieceEnchantment":
+		{
+			"DESCRIPTION": "Obtains Race Piece: a relic that allows you to transform three cards in your deck to cards of the same series. ** Obtain additional Race Pieces whenever you defeat an Elite in Act 3.",
+			"NAME": "Race Seeker"
+		},
+		"animator:StarCompassEnchantment":
+		{
+			"DESCRIPTION": "Obtains Star Compass: a relic that allows you to remove cards from your deck in ? rooms.",
+			"NAME": "Star Compass"
+		},
+		"animator:AngelWingsEnchantment":
+		{
+			"DESCRIPTION": "Obtains Angel Wings: a relic that allows you to ignore paths in Act 3.",
+			"NAME": "Angel Wings"
+		},
+		"animator:AncientTomeEnchantment":
+		{
+			"DESCRIPTION": "Obtains Ancient Tome: a relic that allows you to choose 1 of 20 cards to add to your deck. ** Obtain additional Ancient Tomes whenever you defeat an Elite in Act 3.",
+			"NAME": "Tome Seeker"
+		},
+		"animator:RollingCubesEnchantment":
+		{
+			"DESCRIPTION": "Obtains Rolling Cubes: a relic that allows you to reroll cards from card rewards.",
+			"NAME": "Rolling Cubes"
+		},
+		"animator:EmptyCageEnchantment":
+		{
+			"DESCRIPTION": "Obtains Empty Cage: a relic that allows you to remove two cards from your deck. ** Obtain additional Empty Cages whenever you defeat an Elite in Act 3.",
+			"NAME": "Cage Seeker"
+		},
+		"animator:OrreryEnchantment":
+		{
+			"DESCRIPTION": "Obtains Orrery: a relic that allows you to add five cards to your deck. ** Obtain additional Orreries whenever you defeat an Elite in Act 3.",
+			"NAME": "Orrery Seeker"
+		},
+		"animator:DollysMirrorEnchantment":
+		{
+			"DESCRIPTION": "Obtains Dolly's Mirror: a relic that allows you to duplicate a card in your deck. ** Obtain additional Dolly's Mirrors whenever you defeat an Elite in Act 3.",
+			"NAME": "Mirror Seeker"
+		},
+		"animator:UnnamedGiftEnchantment":
+		{
+			"DESCRIPTION": "Obtains Unnamed Gift: a relic that halves your max HP and allows you to add 1 of 2 Ultra Rare cards to your deck.",
+			"NAME": "UnnamedGift"
 		}
 	},
 

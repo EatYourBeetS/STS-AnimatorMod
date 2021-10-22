@@ -23,7 +23,7 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     public static final int MAX_CHOICES = 3;
     public Enchantment enchantment1;
     public Enchantment enchantment2;
-    public static final int MAX_OPTIONS = 9; //Update this whenever you add an enchantments
+    public static final int MAX_OPTIONS = 100;
 
     public EnchantableRelic(String id, RelicTier tier, LandingSound sfx)
     {

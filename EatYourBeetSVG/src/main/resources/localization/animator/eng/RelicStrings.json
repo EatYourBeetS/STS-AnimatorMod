@@ -6,6 +6,12 @@
 		"FLAVOR": "You can control the flames with the snap of a finger.",
 		"NAME": "Alchemist Glove"
 	},
+	"animator:AngelWings":
+	{
+		"DESCRIPTIONS": ["You may ignore paths when choosing the next room to travel to in Act 3."],
+		"FLAVOR": "Plumes as light as dust and as bright as the sun.",
+		"NAME": "Angel Wings"
+	},
 	"animator:AscensionStone":
 	{
 	  "DESCRIPTIONS": ["Alternate upgrades are now available for certain cards."],
@@ -17,6 +23,12 @@
 		"DESCRIPTIONS": ["Upon pickup, #yUpgrade 2 random cards and a card of your choice, the chosen card is upgraded twice. At the start of combat, heal #b{0} HP. ", "Healing {0} less HP (Ascension 18+)."],
 		"FLAVOR": "...",
 		"NAME": "Ancient Medallion"
+	},
+	"animator:AncientTome":
+	{
+		"DESCRIPTIONS": ["Upon Pickup, Add 1 of 20 upgraded cards to your deck."],
+		"FLAVOR": "What secrets shall this tome hold?",
+		"NAME": "Ancient Tome"
 	},
 	"animator:BattleDrones":
 	{
@@ -158,7 +170,7 @@
 	},
 	"animator:RollingCubes":
 	{
-		"DESCRIPTIONS": ["During #yNormal card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
+		"DESCRIPTIONS": ["During card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter any #yNormal enemy rooms. Store up to #b{1} uses."],
 		"FLAVOR": "A pair of rolling cubes.",
 		"NAME": "Rolling Cubes"
 	},
@@ -234,6 +246,12 @@
 		"FLAVOR": "Well, what do you know. It's actually pretty pleasant!",
 		"NAME": "5-Star Spirit Poop"
 	},
+	"animator:StarCompass":
+	{
+		"DESCRIPTIONS": ["Whenever you enter a ? room, you may remove a card from your deck."],
+		"FLAVOR": "No matter how much you shake it, the needle is always pointing down.",
+		"NAME": "Star Compass"
+	},
 	"animator:StraightShooter":
 	{
 	  "DESCRIPTIONS": ["Whenever you shuffle your deck, add an upgraded #yJumpy #yDumpty to your Draw Pile."],
@@ -263,6 +281,12 @@
 		"DESCRIPTIONS": ["At the start of each turn, draw #b{0} cards. NL Whenever you play a card, deal #b{1} damage to ALL enemies and gain #b{2} #yBlock."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
+	},
+	"animator:UnnamedGift":
+	{
+		"DESCRIPTIONS": ["Lose half your max HP to add 1 of 2 Ultra Rares to your deck."],
+		"FLAVOR": "It emanates a faint sound beckoning you deeper into the Spire.",
+		"NAME": "Unnamed Gift"
 	},
 	"animator:ModelSpaceship":
 	{

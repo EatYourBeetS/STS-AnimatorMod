@@ -15,7 +15,7 @@ public class MagicCoinEnchantment extends Enchantment {
 
     @Override
     public void OnObtain() {
-        player.gainGold(250);
+        player.gainGold(350);
     }
 
     @Override

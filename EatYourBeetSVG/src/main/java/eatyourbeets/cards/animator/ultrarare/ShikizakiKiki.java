@@ -17,7 +17,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Mathf;
 
-public class ShikizakiKiki extends AnimatorCard_UltraRare
+public class ShikizakiKiki extends AnimatorCard_UltraRare //TODO: Whenever you play an attack, Cycle 1 card. Once per turn, discard your hand and draw that many cards
 {
     public static final EYBCardData DATA = Register(ShikizakiKiki.class)
             .SetPower(2, CardRarity.SPECIAL)

@@ -10,6 +10,7 @@ public class NinaClive extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(NinaClive.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
 
     public NinaClive()
@@ -23,6 +24,19 @@ public class NinaClive extends AnimatorCard
 
         SetExhaust(true);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            this.cardText.OverrideDescription(cardData.Strings.DESCRIPTION, true);
+            SetExhaust(false);
+        }
+        else {
+            this.cardText.OverrideDescription(null, true);
+            SetExhaust(true);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

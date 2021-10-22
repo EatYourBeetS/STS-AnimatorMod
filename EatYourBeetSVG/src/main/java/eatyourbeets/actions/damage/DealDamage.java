@@ -29,6 +29,24 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected float pitchMin = 0.95f;
     protected float pitchMax = 1.05f;
 
+    protected DealDamage(AbstractCreature target, DealDamage other)
+    {
+        this(other.target, other.info, other.attackEffect);
+
+        Import(other);
+
+        this.card = other.card;
+        this.vfxColor = other.vfxColor;
+        this.enemyTint = other.enemyTint;
+        this.pitchMin = other.pitchMin;
+        this.pitchMax = other.pitchMax;
+        this.skipWait = other.skipWait;
+        this.bypassBlock = other.bypassBlock;
+        this.bypassThorns = other.bypassThorns;
+        this.onDamageEffect = other.onDamageEffect;
+        this.hasPlayedEffect = other.hasPlayedEffect;
+    }
+
     public DealDamage(AbstractCreature target, DamageInfo info)
     {
         this(target, info, AttackEffect.NONE);
@@ -43,7 +61,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.info = info;
         this.attackEffect = effect;
 
-        Initialize(info.owner, target, info.output);
+        Initialize(info.owner, GameUtilities.IsDeadOrEscaped(target) ? GameUtilities.GetRandomEnemy(true) : target, info.output);
     }
 
     public DealDamage SetDamageEffect(FuncT1<Float, AbstractCreature> onDamageEffect)
@@ -106,7 +124,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected boolean shouldCancelAction()
     {
-        return super.shouldCancelAction() || (this.info.owner != null && (this.info.owner.isDying || this.info.owner.halfDead));
+        return this.target == null || (this.source != null && this.source.isDying) || (this.info.owner != null && (this.info.owner.isDying || this.info.owner.halfDead));
     }
 
     @Override
@@ -114,6 +132,17 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     {
         if (this.info.type != DamageInfo.DamageType.THORNS && this.shouldCancelAction())
         {
+            Complete();
+            return;
+        }
+
+        if (GameUtilities.IsDeadOrEscaped(target))
+        {
+            if (GameUtilities.GetEnemies(true).size() > 0)
+            {
+                GameActions.Top.Add(new DealDamage(GameUtilities.GetRandomEnemy(true), this));
+            }
+
             Complete();
             return;
         }

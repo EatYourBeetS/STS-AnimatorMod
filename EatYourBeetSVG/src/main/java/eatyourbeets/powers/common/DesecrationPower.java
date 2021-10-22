@@ -116,7 +116,7 @@ public class DesecrationPower extends CommonPower implements OnTrySpendAffinityS
         if (enabled && charge >= CHARGE_THRESHOLD && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge) && action.target instanceof AbstractMonster && !GameUtilities.IsDeadOrEscaped(action.target)) {
             for (int i = 0; i < GetDebuffCount(charge); i++) {
                 GameActions.Bottom.StackPower(TargetHelper.Normal(action.target), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
-                        .ShowEffect(true, true);
+                        .ShowEffect(true, true).IgnoreArtifact(true);
             }
             this.charge -= GetCurrentChargeCost();
             updateDescription();

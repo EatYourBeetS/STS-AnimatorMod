@@ -60,30 +60,27 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
     @Override
     public boolean OnAddToDeck()
     {
-        final boolean add = (!GameUtilities.HasRelic(PhilosopherStone.ID) && !GR.Animator.Dungeon.BannedCards.contains(cardID));
+        final boolean add = !GR.Animator.Dungeon.BannedCards.contains(cardID);
         GR.Animator.Dungeon.Ban(cardData.ID);
-        AbstractDungeon.bossRelicPool.remove(relic.relicId);
+        //AbstractDungeon.bossRelicPool.remove(relic.relicId);
         return add;
     }
 
     @Override
     public boolean ShouldCancel()
     {
-        return GR.Animator.Dungeon.BannedCards.contains(cardID) || AbstractDungeon.actNum >= 4 || player == null || player.hasRelic(PhilosopherStone.ID);
+        return GR.Animator.Dungeon.BannedCards.contains(cardID) || AbstractDungeon.actNum >= 4 || player == null;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (!p.hasRelic(relic.relicId))
-        {
-            p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
-            GameActions.Bottom.VFX(new OfferingEffect(), 0.5f);
-            GameActions.Bottom.Callback(() -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
-            AbstractDungeon.bossRelicPool.remove(relic.relicId);
+        p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
+        GameActions.Bottom.VFX(new OfferingEffect(), 0.5f);
+        GameActions.Bottom.Callback(() -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
+        //AbstractDungeon.bossRelicPool.remove(relic.relicId);
 
-            p.energy.energy += 1;
-        }
+        p.energy.energy += 1;
 
         //noinspection StatementWithEmptyBody
         while (p.masterDeck.removeCard(cardID));

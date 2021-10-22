@@ -56,7 +56,7 @@ public class QuestionMarkAction extends EYBAction
         Complete();
     }
 
-    private static AnimatorCard GetRandomCard()
+    public static AnimatorCard GetRandomCard()
     {
         if (cardPool == null)
         {

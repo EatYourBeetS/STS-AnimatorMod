@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
@@ -22,8 +23,8 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(18, 0, 12, 1);
-        SetUpgrade(0, 0, 6, 1);
+        Initialize(0, 0, 4);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2);
@@ -42,6 +43,13 @@ public class Giselle extends AnimatorCard_UltraRare
                     }
                 }
         );
+    }
+
+    @Override
+    public void triggerOnEndOfTurnForPlayingCard()
+    {
+        super.triggerOnEndOfTurnForPlayingCard();
+        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override

@@ -16,6 +16,10 @@ public class EYBCardMetadataV2
     protected int[] scaling;
     @SerializedName("Affinity")
     protected int[] affinity;
+    @SerializedName("Type")
+    protected String type;
+    @SerializedName("Rarity")
+    protected String rarity;
     @SerializedName("StaticPortrait")
     protected Boolean staticPortrait;
 
@@ -39,6 +43,8 @@ public class EYBCardMetadataV2
 
             switch (stats.length)
             {
+                case 1:
+                    break;
                 case 2:
                     card.Initialize(stats[1], 0);
                     break;
@@ -51,7 +57,7 @@ public class EYBCardMetadataV2
                     card.Initialize(stats[1], stats[2], stats[3]);
                     break;
 
-                case 5:
+                default:
                     card.Initialize(stats[1], stats[2], stats[3], stats[4]);
                     break;
             }
@@ -63,6 +69,8 @@ public class EYBCardMetadataV2
 
             switch (upgrade.length)
             {
+                case 1:
+                    break;
                 case 2:
                     card.SetUpgrade(upgrade[1], 0);
                     break;
@@ -75,7 +83,7 @@ public class EYBCardMetadataV2
                     card.SetUpgrade(upgrade[1], upgrade[2], upgrade[3]);
                     break;
 
-                case 5:
+                default:
                     card.SetUpgrade(upgrade[1], upgrade[2], upgrade[3], upgrade[4]);
                     break;
             }
@@ -118,8 +126,8 @@ public class EYBCardMetadataV2
         }
 
         EYBCardMetadataV2 metadata = new EYBCardMetadataV2();
-        metadata.stats = new int[] {card.cost, Math.max(0, card.baseDamage), Math.max(0, card.baseBlock), card.baseMagicNumber, card.baseSecondaryValue};
-        metadata.upgrade = new int[] {card.upgrade_cost, card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue};
+        metadata.stats = new int[] {card.cost, Math.max(0, card.baseDamage), Math.max(0, card.baseBlock), card.baseMagicNumber, card.baseSecondaryValue, card.hitCount};
+        metadata.upgrade = new int[] {card.upgrade_cost, card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue, card.upgrade_hitCount};
 
         if (card.affinities.List.size() > 0 || card.affinities.HasStar())
         {
@@ -130,7 +138,8 @@ public class EYBCardMetadataV2
                 card.affinities.GetScaling(Affinity.Blue, false),
                 card.affinities.GetScaling(Affinity.Orange, false),
                 card.affinities.GetScaling(Affinity.Light, false),
-                card.affinities.GetScaling(Affinity.Dark, false)
+                card.affinities.GetScaling(Affinity.Dark, false),
+                card.affinities.GetScaling(Affinity.Silver, false)
             };
         }
 
@@ -139,7 +148,7 @@ public class EYBCardMetadataV2
             metadata.series = card.series.Name;
         }
 
-        metadata.affinity = new int[] {0, 0, 0, 0, 0 };
+        metadata.affinity = new int[] {0, 0, 0, 0, 0, 0, 0};
         for (EYBCardAffinity a : card.affinities.List)
         {
             if (a.type.ID >= 0)
@@ -147,6 +156,9 @@ public class EYBCardMetadataV2
                 metadata.affinity[a.type.ID] = a.level;
             }
         }
+
+        metadata.type = card.type.toString();
+        metadata.rarity = card.rarity.toString();
 
         if (!card.cropPortrait)
         {

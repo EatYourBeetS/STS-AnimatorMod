@@ -227,7 +227,7 @@
 		},
 		"animator:GinIchimaru":
         {
-        	"DESCRIPTION": "Choose 1: Pay X <R>: Gain X [F], or Pay X <G>: Gain X [A] (max. 10). ** Exhaust if <R> or <G> > !S!. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
+        	"DESCRIPTION": "Choose 1: Pay X <R>: Gain X [F], ** or Pay X <G>: Gain X [A]. ** Exhaust if <R> or <G> > !S!. || Pay !A! <B>: Apply !M! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
 		"animator:KanameTousen":
@@ -365,12 +365,6 @@
 			"DESCRIPTION": "Lose !S!X HP. Boost !M! [C].",
 			"NAME": "Abyssal Void"
     	},
-		"animator:DestinyGundam":
-		{
-			"DESCRIPTION": "Upgrade a card and give it !M! damage and !S! [Block]. If it does not deal damage or give [Block]: Give it ",
-			"EXTENDED_DESCRIPTION": ["Reload: Increase this card's damage by !M! until played. Skills and Statuses trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust."],
-			"NAME": "Destiny Gundam"
-		},
 		"animator:ForceImpulseGundam":
 		{
 			"DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust.",
@@ -498,6 +492,25 @@
 			"DESCRIPTION": "Transform a {Power} or {Status} in your hand into a {Normality} to gain [Phasing]. || On Exhaust: Choose 1 of !M! cards to obtain.",
 			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
 			"NAME": "Nao Tomori"
+		},
+		"animator:Nirvash":
+		{
+			"DESCRIPTION": "Apply 1 of 3 upgrades to an Animator card in hand or discard pile. || <LIM>. Pay !A! <S>: Make this upgrade permanent. Remove this card from your deck.",
+			"EXTENDED_DESCRIPTION":
+			[
+				"After #b{0} turn(s), create a copy of {1}.",
+				"Double its hit count and [Block] and increase its base cost by 1.",
+				"Give it {~Ethereal} and reduce its base cost by 1. If it already had {~Ethereal}, give it Exhaust.",
+				"Give it {~Innate}, replace its affinities with Lv2 <S> and replace its Scalings with +6 [T] Scaling."
+			],
+			"NAME": "Nirvash Type theEND",
+			"UPGRADE_DESCRIPTION": "Apply 1 of 3 upgrades to any Animator card in play. || <LIM>. Pay !A! <S>: Make this upgrade permanent. Remove this card from your deck."
+		},
+		"animator:Nirvash2":
+		{
+			"DESCRIPTION": "Set a card's cost to a random value between 1 and 3. ",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Nirvash2"
 		},
 		"animator:PhoenixWright":
 		{
@@ -631,8 +644,8 @@
 		},
 		"animator:MioTakamiya":
 		{
-			"DESCRIPTION": "Gain !S! Magus Form. || Whenever you play a card: Increase the damage and block of ALL {Same-Series} cards by !M! until played.",
-			"EXTENDED_DESCRIPTION": ["For the next #b{0} Synergies this turn: Lose #b{1} HP and add a random upgraded card that Synergizes with this card to your draw pile. It costs 0 and has Autoplay and Purge."],
+			"DESCRIPTION": "At the start of each turn: Gain 2 [Focus] and lose 1 [Strength] and [Dexterity]. || Whenever you play a card: ALL {Same-Series} cards in play gain +!M! damage and [Block].",
+			"EXTENDED_DESCRIPTION": ["At the start of each turn: Gain #b2 [Focus] and lose #b1 [Strength] and #b1 [Dexterity]. || Whenever you play a card: ALL #ySame-Series cards in play gain +#b{0} #yDamage and [Block]."],
 			"NAME": "Mio Takamiya"
 		},
 		"animator:Mayuri":
@@ -1394,14 +1407,15 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Play 1 of 3 {Orb Cores}.",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to play #b1 of #b3 #y #yOrb #yCores. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s).", "When you Synergize: Deal damage equal to <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: ** Add {Battle Drones} to your draw and discard piles.", "Pay 2 [E] to add #yBattle #yDrones to your draw and discard piles. || Whenever a card #ySynergizes, deal damage equal to [A-Gen] to a random enemy #b{0} time(s)."],
-			"NAME": "Eve"
+			"DESCRIPTION": "When you Synergize: Deal damage equal to your highest <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: {0}.",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E]: {1}. || Whenever a card #ySynergizes, deal damage equal to your lowest [A-Gen] to a random enemy #b{0} time(s).", "Play 1 of 3 {Orb Cores}", "Add {Battle Drones} to your hand and draw piles", "Play #b1 of #b3 #y #yOrb #yCores", "Add #yBattle #yDrones to your hand and draw piles", "Choose 1 of 2 effects"],
+			"NAME": "Eve",
+			"UPGRADE_DESCRIPTION": "Gain 1 {Orb Slot}. When you Synergize: Deal damage equal to your highest <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: {0}."
 		},
 		"animator:Eve_Drone":
 		{
-			"DESCRIPTION": "Cooldown 1: Exhaust.",
-			"NAME": "Battle Drone"
+			"DESCRIPTION": "Returns to your hand and becomes Unplayable for the turn. || In hand at end of turn: Gain !M! [Support Damage] and progress {Cooldown}. || <CDN>: Exhaust.",
+			"NAME": "Battle Drones"
 		},
 		"animator:Laby":
 		{
@@ -1548,7 +1562,7 @@
 		},
 		"animator:Father":
 		{
-			"DESCRIPTION": "Lose !S!% of your ** Max [HP]. If you have a ** {Philosopher's Stone}, upgrade it. Otherwise, Obtain {Philosopher's Stone}. || Remove this card from your deck and future card rewards.",
+			"DESCRIPTION": "Lose !S!% of your ** Max [HP] to Obtain {Philosopher's Stone}. || Remove this card from your deck and future card rewards.",
 			"NAME": "Father"
 		},
 		"animator:Gluttony":
@@ -2404,7 +2418,7 @@
 		},
 		"animator:MumenRider":
 		{
-			"DESCRIPTION": "Cycle a card. [Supercharged] {Charge} is conserved this turn. || <RCT>: {Fetch} this card.",
+			"DESCRIPTION": "Cycle a card. [Supercharged] {Charge} and [Desecration] {Charge} is conserved this turn. || <RCT>: {Fetch} this card.",
 			"NAME": "Mumen Rider"
 		},
 		"animator:Saitama":
@@ -2607,7 +2621,7 @@
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Boost !M! [F] [A] [I]. ** Obtain !M! {Wounds} and take !S! [Delayed Damage]. || If [C] > !S!: Gain [Demon Form].",
+			"DESCRIPTION": "Gain 1 [Desecration]. || For every !S! <D>: Boost !M! [F] [A] [I] and Obtain {Burn}+.",
 			"NAME": "Asuramaru"
 		}
 	},
@@ -2835,53 +2849,62 @@
 
 		"animator:OrbCore":
 		{
-			"DESCRIPTION": "Channel 1 [{0}]. || Every !S! Synergies: Channel 1 [{0}] ** (Does not stack).",
-			"EXTENDED_DESCRIPTION": ["Every #b{0} #ySynergies, #yChannel #b1 {1}."],
+			"DESCRIPTION": "Channel 1 [{0}]. [{0}] {1}. || Once per turn, Pay !S! [{2}]: Channel 1 [{0}].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} {1}: #yChannel #b1 {2}. || {2} {3}."],
 			"NAME": "Orb Core"
 		},
 		"animator:OrbCore_Air":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [A] Scaling"],
 			"NAME": "Air Core"
 		},
 		"animator:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "creates a random 0-Cost card with {Purge} in your hand at the start of each turn",
+			"EXTENDED_DESCRIPTION": ["creates a random 0-Cost card with #yPurge in your hand at the start of each turn"],
 			"NAME": "Chaos Core"
 		},
 		"animator:OrbCore_Dark":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [C] Scaling"],
 			"NAME": "Dark Core"
 		},
 		"animator:OrbCore_Earth":
 		{
-		  "DESCRIPTION": "DESCRIPTION.",
-		  "NAME": "Earth Core"
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [W] Scaling"],
+			"NAME": "Earth Core"
 		},
 		"animator:OrbCore_Fire":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [F] Scaling"],
 			"NAME": "Fire Core"
 		},
 		"animator:OrbCore_Frost":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [I] Scaling"],
 			"NAME": "Frost Core"
 		},
 		"animator:OrbCore_Lightning":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [B] Scaling"],
 			"NAME": "Lightning Core"
 		},
 		"animator:OrbCore_Plasma":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "gives !M! additional [E]",
+			"EXTENDED_DESCRIPTION": ["gives #b{0} additional [E]"],
 			"NAME": "Plasma Core"
 		},
 		"animator:OrbCore_Water":
 		{
-			"DESCRIPTION": "DESCRIPTION",
+			"DESCRIPTION": "has +!M! [{0}] Scaling",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [I] Scaling"],
 			"NAME": "Water Core"
 		},
 		"animator:Respite":
@@ -3000,7 +3023,7 @@
 		},
 		"animator:Giselle":
 		{
-			"DESCRIPTION": "Spend your highest <W>: Gain that much {Fire Breathing}. || Startup: Play {Fire Core}.",
+			"DESCRIPTION": "Spend your highest <W>: Gain that much {Fire Breathing}. || In hand at end of turn: Apply !M! [Burning] to ALL enemies. || Startup: Play {Fire Core}.",
 			"NAME": "Giselle"
 		},
 		"animator:Hero":

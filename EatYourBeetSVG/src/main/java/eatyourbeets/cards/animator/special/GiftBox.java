@@ -1,13 +1,10 @@
 package eatyourbeets.cards.animator.special;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -47,15 +44,9 @@ public class GiftBox extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, BaseMod.MAX_HAND_SIZE, false)
-        .SetOptions(false, false, true);
-
-        final ArrayList<AbstractCard> cards = GameUtilities.GetAvailableCards();
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.MakeCardInHand(GameUtilities.GetRandomElement(cards))
-            .SetUpgrade(false, true)
-            .SetDuration(0.01f, true);
+        //TODO: Make this into an actual card and not something for testing
+        for (Affinity af : Affinity.Basic()) {
+            CombatStats.Affinities.AddAffinity(af, 99);
         }
     }
 }

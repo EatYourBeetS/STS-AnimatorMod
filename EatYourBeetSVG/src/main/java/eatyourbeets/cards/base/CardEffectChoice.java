@@ -100,4 +100,8 @@ public class CardEffectChoice
             }
         });
     }
+
+    public int Size() {
+        return effects.size();
+    }
 }

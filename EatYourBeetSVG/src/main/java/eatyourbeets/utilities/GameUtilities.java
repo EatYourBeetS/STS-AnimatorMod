@@ -1407,6 +1407,12 @@ public class GameUtilities
             if (tag.equals(AUTOPLAY)) {
                 aCard.SetAutoplay(value);
             }
+            else if (tag.equals(ANIMATOR_ETHEREAL)) {
+                aCard.SetEthereal(value);
+            }
+            else if (tag.equals(ANIMATOR_EXHAUST)) {
+                aCard.SetExhaust(value);
+            }
             else if (tag.equals(ANIMATOR_INNATE)) {
                 aCard.SetInnate(value);
             }

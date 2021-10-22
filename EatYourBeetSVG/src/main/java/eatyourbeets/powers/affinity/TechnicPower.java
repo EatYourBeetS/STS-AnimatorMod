@@ -23,6 +23,6 @@ public class TechnicPower extends AbstractAffinityPower
     @Override
     public int[] GetThresholds()
     {
-        return new int[]{25, 50};
+        return new int[]{20, 40, 60};
     }
 }

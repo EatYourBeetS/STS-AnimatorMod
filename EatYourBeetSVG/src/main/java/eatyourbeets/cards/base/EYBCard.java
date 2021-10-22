@@ -153,7 +153,14 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         copy.secondaryValue = secondaryValue;
         copy.baseSecondaryValue = baseSecondaryValue;
         copy.isSecondaryValueModified = isSecondaryValueModified;
-        copy.auxiliaryData = new EYBCardSaveData(auxiliaryData.form, auxiliaryData.additionalData);
+
+        copy.hitCount = hitCount;
+        copy.baseHitCount = baseHitCount;
+        copy.isHitCountModified = isHitCountModified;
+
+        copy.cooldownValue = cooldownValue;
+        copy.baseCooldownValue = baseCooldownValue;
+        copy.auxiliaryData = new EYBCardSaveData(auxiliaryData);
 
         copy.tags.clear();
         copy.tags.addAll(tags);
@@ -507,10 +514,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Harmonic);
         }
-        if (affinities.HasStar())
-        {
-            dynamicTooltips.add(GR.Tooltips.Affinity_Star);
-        }
+        //if (affinities.HasStar())
+        //{
+        //    dynamicTooltips.add(GR.Tooltips.Affinity_Star);
+        //}
 
         if (attackType == EYBAttackType.Elemental)
         {
@@ -1276,6 +1283,39 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     {
         if (data != null) {
             SetForm(data.form, timesUpgraded);
+            if (data.modifiedDamage != 0) {
+                GameUtilities.ModifyDamage(this, baseDamage + data.modifiedDamage, false);
+            }
+            if (data.modifiedBlock != 0) {
+                GameUtilities.ModifyBlock(this, baseBlock + data.modifiedBlock, false);
+            }
+            if (data.modifiedMagicNumber != 0) {
+                GameUtilities.ModifyMagicNumber(this, baseMagicNumber + data.modifiedMagicNumber, false);
+            }
+            if (data.modifiedSecondaryValue != 0) {
+                GameUtilities.ModifySecondaryValue(this, baseSecondaryValue + data.modifiedSecondaryValue, false);
+            }
+            if (data.modifiedHitCount != 0) {
+                GameUtilities.ModifyHitCount(this, baseHitCount + data.modifiedHitCount, false);
+            }
+            if (cost >= 0 && data.modifiedCost != 0) {
+                GameUtilities.ModifyCostForCombat(this, data.modifiedCost, true);
+            }
+            if (data.modifiedAffinities != null) {
+                for (Affinity affinity : Affinity.Basic()) {
+                    affinities.Add(affinity, data.modifiedAffinities[affinity.ID]);
+                }
+            }
+            if (data.modifiedScaling != null) {
+                for (Affinity affinity : Affinity.Basic()) {
+                    affinities.Add(affinity, data.modifiedScaling[affinity.ID]);
+                }
+            }
+            if (data.modifiedTags != null) {
+                for (CardTags tag : data.modifiedTags) {
+                    GameUtilities.ModifyCardTag(this, tag, true);
+                }
+            }
         }
     }
 

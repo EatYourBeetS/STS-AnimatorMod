@@ -36,12 +36,12 @@ public class NagisaMomoe extends AnimatorCard
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
-            Initialize(0, 0, 3, 1);
+            Initialize(0, 0, 5, 1);
             SetUpgrade(0, 0, 0, 1);
         }
         else {
-            Initialize(0, 0, 3, 1);
-            SetUpgrade(0, 0, 1, 0);
+            Initialize(0, 0, 5, 1);
+            SetUpgrade(0, 0, 2, 0);
         }
         return super.SetForm(form, timesUpgraded);
     };

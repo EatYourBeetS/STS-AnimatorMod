@@ -1,25 +1,25 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Lightning extends OrbCore
 {
-    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Lightning.class, GR.Tooltips.Lightning)
+    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Lightning.class, GR.Tooltips.Lightning, GR.Tooltips.Blessing, GR.Tooltips.Affinity_Light)
             .SetPower(0, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Lightning()
     {
-        super(DATA, 3);
+        super(DATA, 2, 4);
 
         SetAffinity_Light(2);
     }
 
-    public void ChannelOrb()
-    {
-        GameActions.Bottom.ChannelOrb(new Lightning());
+    @Override
+    public Class<? extends AbstractOrb> GetOrb() {
+        return Lightning.class;
     }
 }

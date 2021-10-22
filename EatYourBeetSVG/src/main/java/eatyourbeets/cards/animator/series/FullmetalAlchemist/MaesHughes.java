@@ -22,7 +22,7 @@ public class MaesHughes extends AnimatorCard
         SetUpgrade(0, 0, -1);
 
         SetAffinity_Orange(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1);
     }
 
     @Override

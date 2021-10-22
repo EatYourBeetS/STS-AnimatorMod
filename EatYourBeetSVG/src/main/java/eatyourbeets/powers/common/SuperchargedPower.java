@@ -119,7 +119,7 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
     }
 
     private float GetChargeIncrease(int charge) {
-        return 0.25f * Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
+        return 0.5f * Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
     }
 
     private float GetChargeMultiplier(int charge) {

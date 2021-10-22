@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply a random #yCommon #yDebuff #b{2} times (This effect can stack).{3}","NL #yCharge is conserved this turn."],
+	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply a random #yCommon #yDebuff #b{2} time(s).{3}","NL #yCharge is conserved this turn."],
 	  "NAME": "Desecration"
 	},
 	"eyb:EndurancePower":

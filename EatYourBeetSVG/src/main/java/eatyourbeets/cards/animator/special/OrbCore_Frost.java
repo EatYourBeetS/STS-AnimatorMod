@@ -1,25 +1,25 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Frost extends OrbCore
 {
-    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Frost.class, GR.Tooltips.Frost)
-            .SetPower(1, CardRarity.SPECIAL)
+    public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Frost.class, GR.Tooltips.Frost, GR.Tooltips.Intellect, GR.Tooltips.Affinity_Blue)
+            .SetPower(0, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Frost()
     {
-        super(DATA, 4);
+        super(DATA, 1, 5);
 
         SetAffinity_Blue(2);
     }
 
-    public void ChannelOrb()
-    {
-        GameActions.Bottom.ChannelOrb(new Frost());
+    @Override
+    public Class<? extends AbstractOrb> GetOrb() {
+        return Frost.class;
     }
 }

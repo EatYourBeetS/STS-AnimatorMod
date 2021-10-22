@@ -86,6 +86,8 @@ public class CardSeries
     public final static CardSeries Danganronpa = Add(70, "Danganronpa");
     public final static CardSeries PhoenixWright = Add(71, "PhoenixWright");
     public final static CardSeries Magi = Add(72, "Magi");
+    public final static CardSeries Monster = Add(73, "Monster");
+    public final static CardSeries EurekaSeven = Add(74, "EurekaSeven");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

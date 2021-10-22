@@ -6,12 +6,9 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.Eve_Drone;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
@@ -20,6 +17,10 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
+
+import java.util.HashSet;
+import java.util.UUID;
 
 public class Eve extends AnimatorCard
 {
@@ -27,14 +28,15 @@ public class Eve extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
-            .SetMultiformData(2)
+            .SetMultiformData(2, false)
             .PostInitialize(data ->
             {
-                for (EYBCardData d : AffinityToken.GetCards())
+                for (OrbCore core : OrbCore.GetAllCores())
                 {
-                    data.AddPreview(d.CreateNewInstance(), false);
+                    data.AddPreview(core, false);
                 }
             });
+    public static final EYBCardPreview DRONE_PREVIEW = new EYBCardPreview(new Eve_Drone(), false);
     private static final int POWER_ENERGY_COST = 2;
     private static final int CHOICES = 3;
 
@@ -42,43 +44,65 @@ public class Eve extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2, 0);
+        SetUpgrade(0,0,0,1);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
         SetAffinity_Silver(2);
 
         SetDelayed(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
+        SetRetainOnce(true);
     }
 
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
-        if (timesUpgraded > 0) {
-            SetDelayed(form == 1);
+        if (form == 1) {
+            LoadImage("_Light");
+        }
+        else {
+            LoadImage(null);
         }
         return super.SetForm(form, timesUpgraded);
     };
 
+    @Override
+    public String GetRawDescription()
+    {
+        return GetRawDescription(auxiliaryData.form == 1 ? cardData.Strings.EXTENDED_DESCRIPTION[2] : cardData.Strings.EXTENDED_DESCRIPTION[1]);
+    }
+
+    @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        return auxiliaryData.form == 1 ? DRONE_PREVIEW : super.GetCardPreview();
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
+        if (secondaryValue > 0)
+        {
+            GameActions.Bottom.GainOrbSlots(secondaryValue);
+        }
+        GameActions.Bottom.StackPower(new EvePower(p, magicNumber, auxiliaryData.form));
     }
 
     public static class EvePower extends AnimatorClickablePower
     {
-        public EvePower(AbstractCreature owner, int amount)
+        private static final CardEffectChoice choices = new CardEffectChoice();
+        private static final HashSet<Integer> availableChoices = new HashSet<>();
+        private static UUID battleID;
+
+        public EvePower(AbstractCreature owner, int amount, int option)
         {
             super(owner, Eve.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            if (CombatStats.BattleID != battleID)
+            {
+                battleID = CombatStats.BattleID;
+                availableChoices.clear();
+            }
+            availableChoices.add(option);
 
             this.triggerCondition.SetOneUsePerPower(true);
 
@@ -90,8 +114,20 @@ public class Eve extends AnimatorCard
         {
             super.OnUse(m, cost);
 
-            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-                    .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
+            choices.Initialize(new Eve(), true);
+            if (availableChoices.contains(1)) {
+                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],amount), (c, p, mo) -> {
+                    GameActions.Bottom.MakeCardInDrawPile(new Eve_Drone());
+                    GameActions.Bottom.MakeCardInHand(new Eve_Drone());
+                });
+            }
+            if (availableChoices.contains(0)) {
+                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1],amount), (c, p, mo) -> {
+                    GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                        .AddCallback(ca -> {if (ca.size() > 0) {GameActions.Bottom.PlayCard(ca.get(0), m);}}));
+                });
+            }
+            choices.Select(1,null);
         }
 
         @Override
@@ -101,7 +137,8 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                final int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
+                Affinity highestAffinity = JUtils.FindMax(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+                final int damage = CombatStats.Affinities.GetAffinityLevel(highestAffinity,true);
                 if (damage > 0)
                 {
                     //GameEffects.Queue.BorderFlash(Color.SKY);
@@ -121,6 +158,12 @@ public class Eve extends AnimatorCard
                     this.updateDescription();
                 }
             }
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, availableChoices.size() > 1 ? DATA.Strings.EXTENDED_DESCRIPTION[5] : availableChoices.contains(1) ? DATA.Strings.EXTENDED_DESCRIPTION[4] : DATA.Strings.EXTENDED_DESCRIPTION[3]);
         }
     }
 }

@@ -498,6 +498,8 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
             @SpireEnum public static AbstractCard.CardTags HARMONIC;
             @SpireEnum public static AbstractCard.CardTags PROTAGONIST;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_ETHEREAL;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_EXHAUST;
         }
 
         public static class AttackEffect

@@ -57,7 +57,13 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
     {
         super(type);
 
-        this.affinities = affinities;
+        // Paying with the General affinity means that you can pay with any affinity
+        if (JUtils.Find(affinities, af -> af == Affinity.General) != null) {
+            this.affinities = Affinity.Basic();
+        }
+        else {
+            this.affinities = affinities;
+        }
         this.canPlayerCancel = false;
         this.cost = cost;
         this.message = GR.Common.Strings.GridSelection.ChooseCards_F1;

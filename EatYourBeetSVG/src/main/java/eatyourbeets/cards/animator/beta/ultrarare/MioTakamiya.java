@@ -5,15 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.ArrayList;
-
-public class MioTakamiya extends AnimatorCard_UltraRare //TODO
+public class MioTakamiya extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(MioTakamiya.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.DateALive)
             .PostInitialize(data -> data.AddPreview(new ShidoItsuka(), false));
@@ -22,7 +19,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare //TODO
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2);
         SetAffinity_Light(2, 0, 0);
         SetEthereal(true);
     }
@@ -40,50 +37,21 @@ public class MioTakamiya extends AnimatorCard_UltraRare //TODO
 
     public static class MioTakamiyaPower extends AnimatorPower
     {
-        private static ArrayList<AbstractCard> cardPool;
-        public static final int HP_LOSS = 4;
-
-        private static void InitializePool() {
-            if (cardPool == null)
-            {
-                cardPool = new ArrayList<>();
-                MioTakamiya fake = new MioTakamiya();
-
-                for (AbstractCard c : GameUtilities.GetAvailableCards())
-                {
-                    if (c.rarity == CardRarity.COMMON || c.rarity == CardRarity.UNCOMMON || c.rarity == CardRarity.RARE)
-                    {
-                        if (c instanceof AnimatorCard
-                                && fake.WouldSynergize(c))
-                        {
-                            cardPool.add(c);
-                        }
-                    }
-                }
-            }
-        }
-
         public MioTakamiyaPower(AbstractPlayer owner, int amount)
         {
             super(owner, MioTakamiya.DATA);
 
             this.amount = amount;
 
-            InitializePool();
             Initialize(amount);
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, amount, HP_LOSS);
         }
 
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
-
-            ResetAmount();
+            GameActions.Bottom.GainFocus(2);
+            GameActions.Bottom.GainStrength(-1);
+            GameActions.Bottom.GainDexterity(-1);
         }
 
         @Override
@@ -93,20 +61,32 @@ public class MioTakamiya extends AnimatorCard_UltraRare //TODO
 
             if (this.amount > 0) {
                 final AnimatorCard card = JUtils.SafeCast(usedCard, AnimatorCard.class);
-                if (card != null && card.HasSynergy())
+                if (card != null && card.series != null)
                 {
-                    GameActions.Bottom.LoseHP(HP_LOSS, AttackEffects.SLASH_VERTICAL);
-
-                    AnimatorCard newCard = (AnimatorCard) GameUtilities.GetRandomElement(cardPool).makeCopy();
-                    GameUtilities.ModifyCostForCombat(newCard, 0, false);
-                    newCard.SetAutoplay(true);
-                    newCard.SetPurge(true);
-
-                    GameActions.Bottom.MakeCardInDrawPile(newCard)
-                            .SetUpgrade(true, true);
-                    this.amount -= 1;
+                    for (AbstractCard c : player.drawPile.group) {
+                        IncreaseSameSeriescard(card, c);
+                    }
+                    for (AbstractCard c : player.discardPile.group) {
+                        IncreaseSameSeriescard(card, c);
+                    }
+                    for (AbstractCard c : player.hand.group) {
+                        IncreaseSameSeriescard(card, c);
+                    }
                     updateDescription();
                     flash();
+                }
+            }
+        }
+
+        private void IncreaseSameSeriescard(AnimatorCard playedCard, AbstractCard incoming) {
+            if (GameUtilities.IsSameSeries(playedCard, incoming)) {
+                if (incoming.baseBlock > 0)
+                {
+                    GameUtilities.IncreaseBlock(incoming, amount, false);
+                }
+                if (incoming.baseDamage > 0)
+                {
+                    GameUtilities.IncreaseDamage(incoming, amount, false);
                 }
             }
         }

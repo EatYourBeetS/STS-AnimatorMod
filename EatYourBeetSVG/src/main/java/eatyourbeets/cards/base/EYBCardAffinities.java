@@ -176,7 +176,7 @@ public class EYBCardAffinities
         {
             if (a.type == affinity)
             {
-                a.level += level;
+                a.level = Math.max(0, a.level + level);
                 Refresh();
                 return a;
             }
@@ -190,6 +190,9 @@ public class EYBCardAffinities
 
     public EYBCardAffinity Set(Affinity affinity, int level)
     {
+        if (level < 0) {
+            level = 0;
+        }
         if (affinity == Affinity.Star)
         {
             SetStar(level);
@@ -212,6 +215,18 @@ public class EYBCardAffinities
         List.add(result);
         Refresh();
         return result;
+    }
+
+    public EYBCardAffinity AddScaling(Affinity affinity, int level) {
+        EYBCardAffinity a = Get(affinity);
+        a.scaling = Math.max(0,a.scaling + level);
+        return a;
+    }
+
+    public EYBCardAffinity SetScaling(Affinity affinity, int level) {
+        EYBCardAffinity a = Get(affinity);
+        a.scaling = Math.max(0,level);
+        return a;
     }
 
     public EYBCardAffinity Get(Affinity affinity)

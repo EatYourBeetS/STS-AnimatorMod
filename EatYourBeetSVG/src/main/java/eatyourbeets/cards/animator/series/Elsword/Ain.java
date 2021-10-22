@@ -41,6 +41,8 @@ public class Ain extends AnimatorCard
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+            LoadImage("_Dark");
+            affinities.Clear();
             SetAffinity_Dark(1);
             SetAffinity_Light(0);
             SetAffinityRequirement(Affinity.Dark, 4);
@@ -48,6 +50,7 @@ public class Ain extends AnimatorCard
         }
         else {
             this.cardText.OverrideDescription(null, true);
+            affinities.Clear();
             SetAffinity_Dark(0);
             SetAffinity_Light(1);
             SetAffinityRequirement(Affinity.Dark, 0);

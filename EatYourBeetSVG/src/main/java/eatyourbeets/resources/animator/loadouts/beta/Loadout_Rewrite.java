@@ -18,10 +18,12 @@ public class Loadout_Rewrite extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(YoshinoHaruhiko.DATA, 4);
-        AddStarterCard(ShizuruNakatsu.DATA, 4);
+        AddGenericStarters();
+
+        AddStarterCard(ShizuruNakatsu.DATA, 5);
         AddStarterCard(Shimako.DATA, 5);
         AddStarterCard(SougenEsaka.DATA, 6);
+        AddStarterCard(YoshinoHaruhiko.DATA, 7);
         AddStarterCard(ChihayaOhtori.DATA, 8);
     }
 

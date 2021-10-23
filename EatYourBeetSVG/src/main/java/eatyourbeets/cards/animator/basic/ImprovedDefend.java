@@ -16,12 +16,12 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
     {
         if (list.isEmpty())
         {
-            list.add(Defend_Red.DATA);
-            list.add(Defend_Green.DATA);
-            list.add(Defend_Blue.DATA);
-            list.add(Defend_Orange.DATA);
-            list.add(Defend_Light.DATA);
-            list.add(Defend_Dark.DATA);
+            list.add(Defend_Fire_Steel.DATA);
+            list.add(Defend_Air_Water.DATA);
+            list.add(Defend_Light_Thunder.DATA);
+            list.add(Defend_Earth_Poison.DATA);
+            list.add(Defend_Dark_Cyber.DATA);
+            list.add(Defend_Mind_Nature.DATA);
             list.add(Defend_Star.DATA);
         }
 
@@ -34,22 +34,18 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
                 .SetImagePath(GR.GetCardImage(Defend.DATA.ID + "Alt1"));
     }
 
-    public ImprovedDefend(EYBCardData data, Affinity affinity)
+    protected static EYBCardData RegisterSpecial(Class<? extends AnimatorCard> type)
     {
-        super(data, affinity, GR.GetCardImage(Defend.DATA.ID + "Alt2"));
+        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+                .SetImagePath(GR.GetCardImage(Defend.DATA.ID + "Alt1"));
+    }
 
-        if (affinity == Affinity.Star)
-        {
-            Initialize(0, 5, 3);
-            SetUpgrade(0, 3);
-        }
-        else
-        {
-            Initialize(0, 6, 2);
-            SetUpgrade(0, 2);
-        }
+    public ImprovedDefend(EYBCardData data, Affinity affinity1, Affinity affinity2)
+    {
+        super(data, affinity1, affinity2, GR.GetCardImage(Defend.DATA.ID + "Alt2"));
 
-        SetAffinityRequirement(affinity, magicNumber);
+        Initialize(0, 6);
+        SetUpgrade(0, 3);
 
         SetTag(CardTags.STARTER_DEFEND, true);
     }

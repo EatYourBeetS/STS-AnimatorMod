@@ -16,6 +16,8 @@ public class Loadout_TenseiSlime extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
+        AddGenericStarters();
+
         AddStarterCard(Benimaru.DATA, 5);
         AddStarterCard(Shuna.DATA, 5);
         AddStarterCard(Shion.DATA, 6);

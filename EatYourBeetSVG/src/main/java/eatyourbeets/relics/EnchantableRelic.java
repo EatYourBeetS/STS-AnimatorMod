@@ -8,13 +8,12 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.animator.enchantments.Enchantment;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
 import eatyourbeets.rewards.animator.EnchantmentReward;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 
@@ -102,17 +101,17 @@ public abstract class EnchantableRelic extends AnimatorRelic implements OnReceiv
     public CardGroup CreateUpgradeGroup()
     {
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        final RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>();
+        final WeightedList<Enchantment> possiblePicks;
 
         if (enchantment1 == null)
         {
             //Level 1
-            possiblePicks.AddAll(JUtils.Map(Enchantment.GetLv1Cards(), EYBCard::makeCopy));
+            possiblePicks = Enchantment.GetLv1Cards();
         }
         else
         {
             //Level 2
-            possiblePicks.AddAll(JUtils.Map(Enchantment.GetLv2Cards(), EYBCard::makeCopy));
+            possiblePicks = Enchantment.GetLv2Cards();
         }
 
         for (int i = 0; i < MAX_CHOICES; i++) {

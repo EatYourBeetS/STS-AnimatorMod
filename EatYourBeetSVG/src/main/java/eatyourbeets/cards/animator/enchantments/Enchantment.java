@@ -13,6 +13,7 @@ import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,8 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
 {
     public static final String ID = GR.Animator.CreateID(Enchantment.class.getSimpleName());
     private static final ArrayList<Enchantment> allCards = new ArrayList<>();
-    private static final ArrayList<Enchantment> lv1Cards = new ArrayList<>();
-    private static final ArrayList<Enchantment> lv2Cards = new ArrayList<>();
+    private static final WeightedList<Enchantment> lv1Cards = new WeightedList<>();
+    private static final WeightedList<Enchantment> lv2Cards = new WeightedList<>();
 
     public int level;
 
@@ -48,42 +49,42 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         return allCards;
     }
 
-    public static ArrayList<Enchantment> GetLv1Cards()
+    public static WeightedList<Enchantment> GetLv1Cards()
     {
-        if (lv1Cards.isEmpty())
+        if (lv1Cards.Size() == 0)
         {
-            lv1Cards.add(new DreamCatcherEnchantment());
-            lv1Cards.add(new MissingPieceEnchantment());
-            lv1Cards.add(new MagicCoinEnchantment());
-            lv1Cards.add(new AstrolabeEnchantment());
-            lv1Cards.add(new TinyHouseEnchantment());
-            lv1Cards.add(new QuestionMarkEnchantment());
-            lv1Cards.add(new PandorasBoxEnchantment());
-            lv1Cards.add(new PeacePipeEnchantment());
-            lv1Cards.add(new SingingBowlEnchantment());
-            lv1Cards.add(new LeesWaffleEnchantment());
+            lv1Cards.Add(new DreamCatcherEnchantment(), 12);
+            lv1Cards.Add(new MissingPieceEnchantment(), 20);
+            lv1Cards.Add(new MagicCoinEnchantment(), 7);
+            lv1Cards.Add(new AstrolabeEnchantment(), 15);
+            lv1Cards.Add(new TinyHouseEnchantment(), 8);
+            lv1Cards.Add(new QuestionMarkEnchantment(), 12);
+            lv1Cards.Add(new PandorasBoxEnchantment(), 8);
+            lv1Cards.Add(new PeacePipeEnchantment(), 10);
+            lv1Cards.Add(new SingingBowlEnchantment(), 5);
+            lv1Cards.Add(new LeesWaffleEnchantment(), 3);
 
-            allCards.addAll(lv1Cards);
+            allCards.addAll(lv1Cards.GetInnerList());
         }
 
         return lv1Cards;
     }
 
-    public static ArrayList<Enchantment> GetLv2Cards()
+    public static WeightedList<Enchantment> GetLv2Cards()
     {
-        if (lv2Cards.isEmpty())
+        if (lv2Cards.Size() == 0)
         {
-            lv2Cards.add(new PrayerWheelEnchantment());
-            lv2Cards.add(new RacePieceEnchantment());
-            lv2Cards.add(new StarCompassEnchantment());
-            lv2Cards.add(new AngelWingsEnchantment());
-            lv2Cards.add(new AncientTomeEnchantment());
-            lv2Cards.add(new RollingCubesEnchantment());
-            lv2Cards.add(new EmptyCageEnchantment());
-            lv2Cards.add(new OrreryEnchantment());
-            lv2Cards.add(new DollysMirrorEnchantment());
-            lv2Cards.add(new UnnamedGiftEnchantment());
-            allCards.addAll(lv2Cards);
+            lv2Cards.Add(new PrayerWheelEnchantment(), 15);
+            lv2Cards.Add(new RacePieceEnchantment(), 10);
+            lv2Cards.Add(new StarCompassEnchantment(), 12);
+            lv2Cards.Add(new AngelWingsEnchantment(), 5);
+            lv2Cards.Add(new AncientTomeEnchantment(), 9);
+            lv2Cards.Add(new RollingCubesEnchantment(), 20);
+            lv2Cards.Add(new EmptyCageEnchantment(), 10);
+            lv2Cards.Add(new OrreryEnchantment(), 8);
+            lv2Cards.Add(new DollysMirrorEnchantment(), 10);
+            lv2Cards.Add(new UnnamedGiftEnchantment(), 1);
+            allCards.addAll(lv2Cards.GetInnerList());
         }
 
         return lv2Cards;

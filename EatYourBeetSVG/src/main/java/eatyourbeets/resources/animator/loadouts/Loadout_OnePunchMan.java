@@ -16,6 +16,8 @@ public class Loadout_OnePunchMan extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
+        AddGenericStarters();
+
         AddStarterCard(SilverFang.DATA, 5);
         AddStarterCard(MetalBat.DATA, 5);
         AddStarterCard(Genos.DATA, 6);

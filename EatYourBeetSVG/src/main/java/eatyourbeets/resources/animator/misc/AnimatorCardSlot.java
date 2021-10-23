@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.misc;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
@@ -171,9 +172,20 @@ public class AnimatorCardSlot
 
     public void AddItems(ArrayList<EYBCardData> items, int estimatedValue)
     {
+        this.AddItems(items, estimatedValue, estimatedValue);
+    }
+
+    public void AddItems(ArrayList<EYBCardData> items, int estimatedValue, int estimatedSpecialValue)
+    {
         for (EYBCardData data : items)
         {
-            Cards.Add(new Item(data, estimatedValue));
+            if (data.CardRarity == AbstractCard.CardRarity.SPECIAL)
+            {
+                Cards.Add(new Item(data, estimatedSpecialValue));
+            }
+            else {
+                Cards.Add(new Item(data, estimatedValue));
+            }
         }
     }
 

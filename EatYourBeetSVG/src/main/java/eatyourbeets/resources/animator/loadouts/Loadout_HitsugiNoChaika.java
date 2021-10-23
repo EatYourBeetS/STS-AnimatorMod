@@ -16,7 +16,9 @@ public class Loadout_HitsugiNoChaika extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(Gillette.DATA, 4);
+        AddGenericStarters();
+
+        AddStarterCard(Gillette.DATA, 5);
         AddStarterCard(ChaikaBohdan.DATA, 5);
         AddStarterCard(AcuraTooru.DATA, 5);
         AddStarterCard(Layla.DATA, 6);

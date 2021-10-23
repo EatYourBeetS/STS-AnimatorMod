@@ -16,7 +16,9 @@ public class Loadout_Fate extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(Assassin.DATA, 4);
+        AddGenericStarters();
+
+        AddStarterCard(Assassin.DATA, 5);
         AddStarterCard(RinTohsaka.DATA, 5);
         AddStarterCard(Alexander.DATA, 6);
         AddStarterCard(Lancer.DATA, 7);

@@ -12,76 +12,74 @@
 			"DESCRIPTION": "",
 			"NAME": "Defend"
 		},
-		"animator:Strike_Red":
+		"animator:Strike_Fire_Thunder":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Defend_Red":
+		"animator:Defend_Fire_Steel":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Strike_Green":
+		"animator:Strike_Air_Steel":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Defend_Green":
+		"animator:Defend_Air_Water":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Strike_Blue":
+		"animator:Strike_Earth_Nature":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Defend_Blue":
+		"animator:Defend_Earth_Poison":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Strike_Orange":
+		"animator:Strike_Mind_Cyber":
 		{
 		  "DESCRIPTION": "",
 		  "NAME": "Improved Strike"
 		},
-		"animator:Defend_Orange":
+		"animator:Defend_Mind_Nature":
 		{
 		  "DESCRIPTION": "",
 		  "NAME": "Improved Defend"
 		},
-		"animator:Strike_Light":
+		"animator:Strike_Light_Water":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Defend_Light":
+		"animator:Defend_Light_Thunder":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
-		"animator:Strike_Dark":
+		"animator:Strike_Dark_Poison":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Strike"
 		},
-		"animator:Defend_Dark":
+		"animator:Defend_Dark_Cyber":
 		{
 			"DESCRIPTION": "",
 			"NAME": "Improved Defend"
 		},
 		"animator:Strike_Star":
 		{
-			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "",
+			"DESCRIPTION": "Turns into a random Improved Strike upon game start.",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Star":
 		{
-			"DESCRIPTION": "",
-			"UPGRADE_DESCRIPTION": "",
+			"DESCRIPTION": "Turns into a random Improved Defend upon game start.",
 			"NAME": "Improved Defend"
 		}
 	},
@@ -2904,6 +2902,16 @@
 		{
 			"DESCRIPTION": "DESCRIPTION",
 			"NAME": "Water Core"
+		},
+		"animator:RandomAttack":
+		{
+			"DESCRIPTION": "Turns into a random starter Attack in the starting series upon game start.",
+			"NAME": "Random Attack"
+		},
+		"animator:RandomSkill":
+		{
+			"DESCRIPTION": "Turns into a random starter Skill in the starting series upon game start.",
+			"NAME": "Random Skill"
 		},
 		"animator:Respite":
 		{

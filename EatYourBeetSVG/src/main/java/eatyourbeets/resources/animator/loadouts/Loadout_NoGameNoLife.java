@@ -16,8 +16,10 @@ public class Loadout_NoGameNoLife extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(DolaCouronne.DATA, 4);
-        AddStarterCard(DolaSchwi.DATA, 4);
+        AddGenericStarters();
+
+        AddStarterCard(DolaCouronne.DATA, 5);
+        AddStarterCard(DolaSchwi.DATA, 6);
         AddStarterCard(IzunaHatsuse.DATA, 6);
         AddStarterCard(ChlammyZell.DATA, 7);
     }

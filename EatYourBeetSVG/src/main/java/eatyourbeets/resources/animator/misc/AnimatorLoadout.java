@@ -9,6 +9,8 @@ import eatyourbeets.cards.animator.basic.Defend;
 import eatyourbeets.cards.animator.basic.ImprovedDefend;
 import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.basic.Strike;
+import eatyourbeets.cards.animator.special.RandomAttack;
+import eatyourbeets.cards.animator.special.RandomSkill;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.relics.animator.LivingPicture;
@@ -56,7 +58,7 @@ public abstract class AnimatorLoadout
             }
 
             CardsCount.Set(0, false);
-            TotalValue.Set(MAX_VALUE, false);
+            TotalValue.Set(BASE_VALUE, false);
             AllCardsSeen = true;
             final EYBCardAffinities affinities = new EYBCardAffinities(null);
             for (AnimatorCardSlot slot : data)
@@ -97,11 +99,12 @@ public abstract class AnimatorLoadout
         }
     }
 
-    public static final int GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED = 7;
-    public static final int BRONZE_REQUIRED_PRESET_SLOT_2 = 7;
-    public static final int BRONZE_REQUIRED_PRESET_SLOT_3 = 14;
+    public static final int GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED = 0;
+    public static final int BRONZE_REQUIRED_PRESET_SLOT_2 = 0;
+    public static final int BRONZE_REQUIRED_PRESET_SLOT_3 = 0;
     public static final int MAX_PRESETS = 3;
-    public static final int MAX_VALUE = 30;
+    public static final int BASE_VALUE = 24;
+    public static final int MAX_VALUE = 20;
     public static final int MIN_CARDS = 10;
     public static final int BASE_GOLD = 99;
     public static final int BASE_HP = 70;
@@ -153,10 +156,10 @@ public abstract class AnimatorLoadout
     {
         data.HP = BASE_HP;
         data.Gold = BASE_GOLD;
-        data.AddCardSlot(1, 6).AddItem(Strike.DATA, -2);
-        data.AddCardSlot(1, 6).AddItem(Defend.DATA, -2);
-        data.AddCardSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 0);
-        data.AddCardSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 0);
+        data.AddCardSlot(1, 8).AddItem(Strike.DATA, -2);
+        data.AddCardSlot(1, 8).AddItem(Defend.DATA, -2);
+        data.AddCardSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 2, 1);
+        data.AddCardSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 2, 1);
 
         final AnimatorCardSlot s1 = data.AddCardSlot(0, 1);
         final AnimatorCardSlot s2 = data.AddCardSlot(0, 1);
@@ -390,5 +393,26 @@ public abstract class AnimatorLoadout
     protected void AddStarterCard(EYBCardData data, Integer value)
     {
         starterCards.add(new TupleT2<>(data, value));
+    }
+
+    protected void AddGenericStarters()
+    {
+        RandomAttack randomAttack = new RandomAttack();
+        RandomSkill randomSkill = new RandomSkill();
+
+        starterCards.add(new TupleT2<>(randomAttack.DATA, 4));
+        starterCards.add(new TupleT2<>(randomSkill.DATA, 2));
+    }
+
+    public ArrayList<AbstractCard> GetStarterCards()
+    {
+        ArrayList<AbstractCard> starters = new ArrayList<>();
+
+        for (TupleT2<EYBCardData, Integer> starterTuple : starterCards)
+        {
+            starters.add(starterTuple.V1.CreateNewInstance());
+        }
+
+        return starters;
     }
 }

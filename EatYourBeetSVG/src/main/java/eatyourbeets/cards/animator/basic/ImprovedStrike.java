@@ -20,12 +20,12 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     {
         if (list.isEmpty())
         {
-            list.add(Strike_Red.DATA);
-            list.add(Strike_Green.DATA);
-            list.add(Strike_Blue.DATA);
-            list.add(Strike_Orange.DATA);
-            list.add(Strike_Light.DATA);
-            list.add(Strike_Dark.DATA);
+            list.add(Strike_Fire_Thunder.DATA);
+            list.add(Strike_Air_Steel.DATA);
+            list.add(Strike_Light_Water.DATA);
+            list.add(Strike_Dark_Poison.DATA);
+            list.add(Strike_Earth_Nature.DATA);
+            list.add(Strike_Mind_Cyber.DATA);
             list.add(Strike_Star.DATA);
         }
 
@@ -38,22 +38,18 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
                 .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
     }
 
-    public ImprovedStrike(EYBCardData data, Affinity affinity)
+    protected static EYBCardData RegisterSpecial(Class<? extends AnimatorCard> type)
     {
-        super(data, affinity, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
+        return AnimatorCard.Register(type).SetColor(CardColor.COLORLESS).SetAttack(1, CardRarity.SPECIAL)
+                .SetImagePath(GR.GetCardImage(Strike.DATA.ID + "Alt1"));
+    }
 
-        if (affinity == Affinity.Star)
-        {
-            Initialize(6, 0, 3);
-            SetUpgrade(3, 0);
-        }
-        else
-        {
-            Initialize(7, 0, 2);
-            SetUpgrade(2, 0);
-        }
+    public ImprovedStrike(EYBCardData data, Affinity affinity1, Affinity affinity2)
+    {
+        super(data, affinity1, affinity2, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
 
-        SetAffinityRequirement(affinity, magicNumber);
+        Initialize(7, 0);
+        SetUpgrade(3, 0);
 
         SetTag(CardTags.STARTER_STRIKE, true);
     }

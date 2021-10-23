@@ -16,6 +16,8 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
+        AddGenericStarters();
+
         AddStarterCard(Shigure.DATA, 5);
         AddStarterCard(Mitsuba.DATA, 6);
         AddStarterCard(Shinoa.DATA, 7);

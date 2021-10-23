@@ -5,11 +5,11 @@ import eatyourbeets.cards.base.EYBCardData;
 
 public class Strike_Star extends ImprovedStrike
 {
-    public static final Affinity AFFINITY_TYPE = Affinity.Star;
-    public static final EYBCardData DATA = Register(Strike_Star.class);
+    public static final Affinity AFFINITY_TYPE1 = Affinity.Star;
+    public static final EYBCardData DATA = RegisterSpecial(Strike_Star.class);
 
     public Strike_Star()
     {
-        super(DATA, AFFINITY_TYPE);
+        super(DATA, AFFINITY_TYPE1, null);
     }
 }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,8 +14,16 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.cards.animator.basic.Defend_Star;
+import eatyourbeets.cards.animator.basic.ImprovedDefend;
+import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.animator.basic.Strike_Star;
+import eatyourbeets.cards.animator.special.RandomAttack;
+import eatyourbeets.cards.animator.special.RandomSkill;
 import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
+import eatyourbeets.cards.base.EYBCardBase;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.card.ShowCardPileEffect;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.resources.GR;
@@ -28,6 +37,7 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
@@ -350,6 +360,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         SingleCardViewPopup.isViewingUpgrade = false;
         cardGrid.Clear();
         container.CommitChanges();
+
+        //Where generic starting cards are transformed
+        TransformGenericStartingCards();
+
         AbstractDungeon.closeCurrentScreen();
     }
 
@@ -383,6 +397,115 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             confirm.SetInteractable(false);
             selectionAmount.SetFontColor(Color.GRAY);
+        }
+    }
+
+    protected void TransformGenericStartingCards()
+    {
+        AbstractPlayer player = AbstractDungeon.player;
+
+        ArrayList<AbstractCard> masterDeck = player.masterDeck.group;
+
+        int size = masterDeck.size();
+
+        for (int i=0; i<size; i++) {
+
+            AbstractCard card = masterDeck.get(i);
+
+            if (card.cardID.equals(Strike_Star.DATA.ID))
+            {
+                RandomizedList<EYBCardData> improved = new RandomizedList<>();
+                improved.AddAll(ImprovedStrike.GetCards());
+
+                if (improved.Size() > 0) {
+                    AbstractCard newCard = improved.Retrieve(EYBCardBase.rng).CreateNewInstance(false);
+
+                    if (newCard != null) {
+                        GameEffects.TopLevelList.ShowAndObtain(newCard);
+                    }
+                }
+
+                player.masterDeck.removeCard(card.cardID);
+                size = masterDeck.size();
+                i--;
+
+                continue;
+            }
+            else if (card.cardID.equals(Defend_Star.DATA.ID))
+            {
+                RandomizedList<EYBCardData> improved = new RandomizedList<>();
+                improved.AddAll(ImprovedDefend.GetCards());
+
+                if (improved.Size() > 0) {
+                    AbstractCard newCard = improved.Retrieve(EYBCardBase.rng).CreateNewInstance(false);
+
+                    if (newCard != null) {
+                        GameEffects.TopLevelList.ShowAndObtain(newCard);
+                    }
+                }
+
+                player.masterDeck.removeCard(card.cardID);
+                size = masterDeck.size();
+                i--;
+
+                continue;
+            }
+
+            else if (card.cardID.equals(RandomAttack.DATA.ID))
+            {
+                RandomizedList<AbstractCard> starterAttacks = new RandomizedList<>();
+                ArrayList<AbstractCard> starterCards = GR.Animator.Data.SelectedLoadout.GetStarterCards();
+
+                for (AbstractCard starter : starterCards)
+                {
+                    if (starter.type == AbstractCard.CardType.ATTACK)
+                    {
+                        starterAttacks.Add(starter.makeCopy());
+                    }
+                }
+
+                if (starterAttacks.Size() > 0) {
+                    AbstractCard newCard = starterAttacks.Retrieve(EYBCardBase.rng);
+
+                    if (newCard != null) {
+                        GameEffects.TopLevelList.ShowAndObtain(newCard);
+                    }
+                }
+
+                player.masterDeck.removeCard(card.cardID);
+                size = masterDeck.size();
+                i--;
+
+                continue;
+            }
+
+            else if (card.cardID.equals(RandomSkill.DATA.ID))
+            {
+                RandomizedList<AbstractCard> starterSkills = new RandomizedList<>();
+                ArrayList<AbstractCard> starterCards = GR.Animator.Data.SelectedLoadout.GetStarterCards();
+
+                for (AbstractCard starter : starterCards)
+                {
+                    if (starter.type == AbstractCard.CardType.SKILL)
+                    {
+                        starterSkills.Add(starter.makeCopy());
+                    }
+                }
+
+                if (starterSkills.Size() > 0) {
+                    AbstractCard newCard = starterSkills.Retrieve(EYBCardBase.rng);
+
+                    if (newCard != null) {
+                        GameEffects.TopLevelList.ShowAndObtain(newCard);
+                    }
+                }
+
+                player.masterDeck.removeCard(card.cardID);
+                size = masterDeck.size();
+
+                continue;
+            }
+
         }
     }
 

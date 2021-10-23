@@ -1927,6 +1927,12 @@
 			"NAME": "Adrenaline",
 			"UPGRADE_DESCRIPTION": "Gain [EN] [EN]. ** <DRW-M>."
 		},
+		"animator:Destroyer":
+		{
+			"DESCRIPTION": "Pay !M! [EN]: Choose an Attack or Skill in your hand. || If it is an Attack: Give it damage equal to your [D]. ** If it is a Skill: Gain Support Damage equal to your [C].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [EN]: Choose an Attack or Skill in your hand.  If it is an Attack: Give it damage equal to your [D]. If it is a Skill: Gain Support Damage equal to your [C].", "Choose an Attack or Skill in your hand."],
+			"NAME": "Destroyer"
+		},
 		"animator:Dust":
 		{
 			"DESCRIPTION": "!A! [F]: Fetch !M! Low-Cost card(s) from your discard pile.",

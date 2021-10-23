@@ -379,14 +379,14 @@ public abstract class AnimatorLoadout
         data.Preset = preset;
         data.HP = BASE_HP;
         data.Gold = BASE_GOLD;
-        data.GetCardSlot(0).Select(0, 4).GetData().MarkSeen();
-        data.GetCardSlot(1).Select(0, 4).GetData().MarkSeen();
-        data.GetCardSlot(2).Select(null);
+        data.GetCardSlot(0).Select(0, 3).GetData().MarkSeen();
+        data.GetCardSlot(1).Select(0, 3).GetData().MarkSeen();
+        data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
         JUtils.ForEach(ImprovedStrike.GetCards(), EYBCardData::MarkSeen);
-        data.GetCardSlot(3).Select(null);
+        data.GetCardSlot(3).Select(0, 1).GetData().MarkSeen();
         JUtils.ForEach(ImprovedDefend.GetCards(), EYBCardData::MarkSeen);
         data.GetCardSlot(4).Select(0, 1).GetData().MarkSeen();
-        data.GetCardSlot(5).Select(1, 1).GetData().MarkSeen();
+        data.GetCardSlot(5).Select(0, 1).GetData().MarkSeen();
         return data;
     }
 

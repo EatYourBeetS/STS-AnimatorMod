@@ -16,13 +16,13 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
     {
         if (list.isEmpty())
         {
+            list.add(Defend_Star.DATA);
             list.add(Defend_Fire_Steel.DATA);
             list.add(Defend_Air_Water.DATA);
             list.add(Defend_Light_Thunder.DATA);
             list.add(Defend_Earth_Poison.DATA);
             list.add(Defend_Dark_Cyber.DATA);
             list.add(Defend_Mind_Nature.DATA);
-            list.add(Defend_Star.DATA);
         }
 
         return list;

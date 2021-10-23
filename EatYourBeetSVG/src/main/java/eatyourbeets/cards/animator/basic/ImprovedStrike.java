@@ -20,13 +20,13 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     {
         if (list.isEmpty())
         {
+            list.add(Strike_Star.DATA);
             list.add(Strike_Fire_Thunder.DATA);
             list.add(Strike_Air_Steel.DATA);
             list.add(Strike_Light_Water.DATA);
             list.add(Strike_Dark_Poison.DATA);
             list.add(Strike_Earth_Nature.DATA);
             list.add(Strike_Mind_Cyber.DATA);
-            list.add(Strike_Star.DATA);
         }
 
         return list;

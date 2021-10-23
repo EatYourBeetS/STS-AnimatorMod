@@ -142,7 +142,7 @@ public abstract class AnimatorCard extends EYBCard
         }
         else if (curAffinity == Affinity.Dark)
         {
-            //Dark affinity has no border by default
+            //Dark affinity has no border if we use the standard color
             this.glowColor = darkGlowColor;
         }
         else if (curAffinity != Affinity.General)

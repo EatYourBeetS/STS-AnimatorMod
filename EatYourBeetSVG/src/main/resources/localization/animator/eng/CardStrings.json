@@ -1775,7 +1775,7 @@
 		"animator:ArthurGaz":
 		{
 			"DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random {Chaika Clone}.  It costs 1 less this combat.",
-			"EXTENDED_DESCRIPTION": ["First #b{0} times each turn you discard from your hand: Obtain a random #yChaika #yClone.  It costs 1 less this combat.","First #b{0} times each turn you discard from your hand: Obtain a random upgraded #yChaika #yClone.  It costs 1 less this combat."],
+			"EXTENDED_DESCRIPTION": ["Next #b{0} times this turn you discard from your hand: Obtain a random #yChaika #yClone.  It costs 1 less this combat.","Next #b{0} times this turn you discard from your hand: Obtain a random upgraded #yChaika #yClone.  It costs 1 less this combat."],
 			"NAME": "Arthur Gaz",
 			"UPGRADE_DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random upgraded {Chaika Clone}.  It costs 1 less this combat."
 		},

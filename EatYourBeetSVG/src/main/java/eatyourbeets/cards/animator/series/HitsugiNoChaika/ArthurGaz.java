@@ -105,13 +105,21 @@ public class ArthurGaz extends AnimatorCard {
 
         @Override
         public void updateDescription() {
+
+            int amountActivationsLeft = amount - GameActionManager.totalDiscardedThisTurn;
+
+            if (amountActivationsLeft < 0)
+            {
+                amountActivationsLeft = 0;
+            }
+
             if (upgraded)
             {
-                description = FormatDescription(1, amount);
+                description = FormatDescription(1, amountActivationsLeft);
             }
             else
             {
-                description = FormatDescription(0, amount);
+                description = FormatDescription(0, amountActivationsLeft);
             }
         }
     }

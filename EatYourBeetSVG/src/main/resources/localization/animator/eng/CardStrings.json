@@ -1774,10 +1774,10 @@
 		},
 		"animator:ArthurGaz":
 		{
-			"DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random {Chaika Clone}.",
-			"EXTENDED_DESCRIPTION": ["First #b{0} times each turn you discard from your hand: Obtain a random #yChaika #yClone.","First #b{0} times each turn you discard from your hand: Obtain a random upgraded #yChaika #yClone."],
+			"DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random {Chaika Clone}.  It costs 1 less this combat.",
+			"EXTENDED_DESCRIPTION": ["First #b{0} times each turn you discard from your hand: Obtain a random #yChaika #yClone.  It costs 1 less this combat.","First #b{0} times each turn you discard from your hand: Obtain a random upgraded #yChaika #yClone.  It costs 1 less this combat."],
 			"NAME": "Arthur Gaz",
-			"UPGRADE_DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random upgraded {Chaika Clone}."
+			"UPGRADE_DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random upgraded {Chaika Clone}.  It costs 1 less this combat."
 		},
 		"animator:ChaikaBohdan":
 		{
@@ -1823,7 +1823,7 @@
 		},
 		"animator:MattheusCallaway":
 		{
-			"DESCRIPTION": "<SLM>. Choose a Common Skill in your hand.  Next turn: Obtain a copy of that Skill. || On Discard: Gain !M! Temp. Artifact.",
+			"DESCRIPTION": "<ST>. Choose a Common or Basic Skill in your hand.  Next turn: Obtain a copy of that Skill. || On Discard: Gain !M! Temp. Artifact.",
 			"NAME": "Mattheus Callaway"
 		},
 		"animator:NikolaiAutotor":

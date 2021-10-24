@@ -97,6 +97,7 @@ public class ArthurGaz extends AnimatorCard {
 
                 if (newCard != null)
                 {
+                    newCard.modifyCostForCombat(-1);
                     GameActions.Bottom.MakeCardInHand(newCard);
                 }
             }

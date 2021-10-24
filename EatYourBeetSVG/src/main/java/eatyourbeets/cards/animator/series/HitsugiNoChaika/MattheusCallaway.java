@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.NextTurnCardCopyPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,7 +16,7 @@ public class MattheusCallaway extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 4, 2);
-        SetUpgrade(0, 3, 0);
+        SetUpgrade(0, 4, 0);
 
         SetAffinity_Earth();
         SetAffinity_Mind();
@@ -35,9 +34,9 @@ public class MattheusCallaway extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         GameActions.Bottom.GainBlock(block);
 
-        if (CombatStats.TryActivateSemiLimited(cardID)) {
+        if (IsStarter()) {
             GameActions.Bottom.SelectFromHand(name, 1, false)
-                    .SetFilter(card -> card.type == CardType.SKILL && card.rarity == CardRarity.COMMON)
+                    .SetFilter(card -> card.type == CardType.SKILL && (card.rarity == CardRarity.COMMON || card.rarity == CardRarity.BASIC))
                     .AddCallback(cards -> {
                         if (cards.size() > 0) {
                             GameActions.Bottom.ApplyPower(new NextTurnCardCopyPower(player, cards.get(0)));

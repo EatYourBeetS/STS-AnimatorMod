@@ -30,7 +30,7 @@ public class NikolaiAutotor extends AnimatorCard {
         {
             if (cards.size() > 0)
             {
-                int energy = Math.max(this.costForTurn, cards.size());
+                int energy = Math.min(this.costForTurn, cards.size());
                 GameActions.Bottom.GainEnergy(energy);
             }
         }).SetFilter(card -> !GameUtilities.IsHindrance(card));

@@ -33,12 +33,6 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);

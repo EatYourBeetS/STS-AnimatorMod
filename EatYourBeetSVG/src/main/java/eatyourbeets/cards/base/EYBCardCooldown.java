@@ -117,12 +117,24 @@ public class EYBCardCooldown
 
     public boolean ProgressCooldown(int amount)
     {
+        return ProgressCooldown(amount, true);
+    }
+
+    public boolean ProgressCooldown(int amount, boolean reset)
+    {
         boolean activate;
         int newValue;
         if (card.cooldownValue <= 0)
         {
-            newValue = GetBase();
-            activate = true;
+            if (reset) {
+                newValue = GetBase();
+                activate = true;
+            }
+            else
+            {
+                newValue = 0;
+                activate = false;
+            }
         }
         else
         {

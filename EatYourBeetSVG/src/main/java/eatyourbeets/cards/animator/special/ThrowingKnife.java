@@ -56,7 +56,7 @@ public class ThrowingKnife extends AnimatorCard
         Initialize(2, 0, 1, 2);
         SetUpgrade(2, 0);
 
-        SetAffinity_Air(1);
+        SetAffinity_Poison(1);
 
         SetPurge(true);
         ChangeIndex(index);

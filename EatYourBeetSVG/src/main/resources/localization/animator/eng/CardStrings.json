@@ -1781,12 +1781,13 @@
 		},
 		"animator:ChaikaBohdan":
 		{
-			"DESCRIPTION": "Whenever you hit an ** enemy while this is in ** your hand: Gain !S! ** damage until played.",
+			"DESCRIPTION": "Whenever you hit an ** enemy while this is in ** your hand: Gain !M! ** damage until played.",
 			"NAME": "Chaika Bohdan"
 		},
 		"animator:ChaikaKamaz":
 		{
-			"DESCRIPTION": "Start of Turn: Discard a card and move up to !M! card(s) from your discard pile to the top of your draw pile. || On Discard: Add !S! [T-Knives] with Haste to your draw pile.",
+			"DESCRIPTION": "Start of Turn: Discard a card and move up to !M! cards from your discard pile to the top of your draw pile. || On Discard: Add !S! [T-Knife] with Haste to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Discard a card and move up to #b{0} card(s) from your discard pile to the top of your draw pile."],
 			"NAME": "Chaika Kamaz"
 		},
 		"animator:ChaikaTrabant":
@@ -1825,7 +1826,7 @@
 			"DESCRIPTION": "<SLM>. Choose a Common Skill in your hand.  Next turn: Obtain a copy of that Skill. || On Discard: Gain !M! Temp. Artifact.",
 			"NAME": "Mattheus Callaway"
 		},
-		"animator:NikolayAutotor":
+		"animator:NikolaiAutotor":
 		{
 			"DESCRIPTION": "Discard any number of non-Hindrances: Recover [EN] for each card you discard.",
 			"NAME": "Nikolay Autotor"
@@ -3093,7 +3094,7 @@
 		},
 		"animator:NivaLada":
 		{
-			"DESCRIPTION": "Cooldown !S!: Deal !M! Damage to ALL enemies. || Whenever you Discard a card while this is in your hand: Reduce this card's cooldown by 3 and add [T-Knife] to your hand.",
+			"DESCRIPTION": "Cooldown !C!: Deal !M! Damage to ALL enemies. || Whenever you Discard a card while this is in your hand: Reduce this card's cooldown by 2 and add [T-Knife] to your hand.",
 			"NAME": "Niva Lada"
 		},
 		"animator:Rose":

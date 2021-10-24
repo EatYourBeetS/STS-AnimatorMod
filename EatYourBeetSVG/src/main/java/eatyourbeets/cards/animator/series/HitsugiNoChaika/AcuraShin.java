@@ -34,7 +34,6 @@ public class AcuraShin extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Air, 6);
         SetAffinityRequirement(Affinity.Poison, 6);
     }
 
@@ -51,7 +50,7 @@ public class AcuraShin extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.StackPower(new PoisonAffinityPower(p, secondaryValue));
 
-        if (CheckAffinity(Affinity.Air) || CheckAffinity(Affinity.Poison))
+        if (CheckAffinity(Affinity.Poison))
         {
             GameActions.Bottom.CreateThrowingKnives(1);
         }

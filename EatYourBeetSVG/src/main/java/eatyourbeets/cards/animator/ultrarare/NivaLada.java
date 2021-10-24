@@ -31,9 +31,15 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardDisca
         Initialize(0, 0, 400);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Water(2);
+        SetAffinity_Star(1);
 
         SetCooldown(18, -4, this::OnCooldownCompleted);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetAffinity_Star(2);
     }
 
     @Override
@@ -49,13 +55,8 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardDisca
     {
         if (player.hand.contains(this))
         {
-            for (int i=0; i<3; i++) {
-                if (this.secondaryValue > 0) {
-                    cooldown.ProgressCooldown();
-                }
-
-                GameActions.Bottom.CreateThrowingKnives(1);
-            }
+            cooldown.ProgressCooldown(2, false);
+            GameActions.Bottom.CreateThrowingKnives(1);
         }
     }
 

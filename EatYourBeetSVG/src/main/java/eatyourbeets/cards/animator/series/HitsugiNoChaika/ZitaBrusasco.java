@@ -4,15 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class ZitaBrusasco extends AnimatorCard {
-    public static final EYBCardData DATA = Register(ZitaBrusasco.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(ZitaBrusasco.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public ZitaBrusasco() {
         super(DATA);
@@ -32,9 +29,19 @@ public class ZitaBrusasco extends AnimatorCard {
 
         boolean canPlay = false;
 
+        if (player == null)
+        {
+            return;
+        }
+
+        if (player.orbs == null)
+        {
+            return;
+        }
+
         for (AbstractOrb orb : player.orbs)
         {
-            if (!orb.ID.equals(EmptyOrbSlot.ORB_ID))
+            if (orb != null && orb.ID != null && !orb.ID.equals(EmptyOrbSlot.ORB_ID))
             {
                 canPlay = true;
                 break;

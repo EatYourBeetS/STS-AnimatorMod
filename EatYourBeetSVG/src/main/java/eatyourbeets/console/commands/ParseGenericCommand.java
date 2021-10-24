@@ -406,48 +406,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("get-cards") && tokens.length > 2)
                 {
-                    if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
-                    {
-                        DevConsole.log("You need to be in game to use this command.");
-                        return;
-                    }
-
-                    final String name = tokens[2].replace("_", " ");
-                    final ArrayList<AnimatorCard> cards = new ArrayList<>();
-                    if (name.equals("colorless"))
-                    {
-                        cards.addAll(CardSeries.GetColorlessCards());
-                    }
-                    else
-                    {
-                        final CardSeries series = CardSeries.GetByName(name, false);
-                        if (series != null)
-                        {
-                            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
-                        }
-                    }
-
-                    if (cards.size() > 0)
-                    {
-                        Settings.seedSet = true;
-                        player.masterDeck.clear();
-                        cards.sort(new CardRarityComparator());
-
-                        for (AnimatorCard card : cards)
-                        {
-                            AbstractCard temp = card.makeCopy();
-                            player.masterDeck.group.add(temp);
-                            if (temp.canUpgrade())
-                            {
-                                temp = card.makeCopy();
-                                temp.upgrade();
-                                player.masterDeck.group.add(temp);
-                            }
-                        }
-                    }
-
-                    DevConsole.log("Found " + cards.size() + " cards.");
-                    return;
+                    GetAllCards(tokens[2]);
                 }
 
                 if (tokens[1].equals("show-upgrades"))
@@ -545,6 +504,52 @@ public class ParseGenericCommand extends ConsoleCommand
         }
 
         Testing.SetValues(values);
+    }
+
+    private void GetAllCards(String seriesName)
+    {
+        if (!GameUtilities.InGame() || player == null || player.masterDeck == null)
+        {
+            DevConsole.log("You need to be in game to use this command.");
+            return;
+        }
+
+        final String name = seriesName.replace("_", " ");
+        final ArrayList<AnimatorCard> cards = new ArrayList<>();
+        if (name.equals("colorless"))
+        {
+            cards.addAll(CardSeries.GetColorlessCards());
+        }
+        else
+        {
+            final CardSeries series = CardSeries.GetByName(name, false);
+            if (series != null)
+            {
+                CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
+            }
+        }
+
+        if (cards.size() > 0)
+        {
+            Settings.seedSet = true;
+            player.masterDeck.clear();
+            cards.sort(new CardRarityComparator());
+
+            for (AnimatorCard card : cards)
+            {
+                AbstractCard temp = card.makeCopy();
+                player.masterDeck.group.add(temp);
+                if (temp.canUpgrade())
+                {
+                    temp = card.makeCopy();
+                    temp.upgrade();
+                    player.masterDeck.group.add(temp);
+                }
+            }
+        }
+
+        DevConsole.log("Found " + cards.size() + " cards.");
+        return;
     }
 
     private void ExtractCardData(Map<String, Map<String, EYBCardMetadataV2>> data, Collection cards)

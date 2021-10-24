@@ -84,7 +84,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
             for (PowerHelper commonDebuff : GameUtilities.GetCommonDebuffs())
             {
-                GameActions.Bottom.ApplyPower(enemy, commonDebuff.Create(player, player, magicNumber));
+                GameActions.Bottom.ApplyPower(player, commonDebuff.Create(enemy, player, magicNumber));
             }
         });
     }

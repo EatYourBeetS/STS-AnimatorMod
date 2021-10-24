@@ -30,7 +30,9 @@ public class ChaikaKamaz extends AnimatorCard {
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.MakeCardInDrawPile(ThrowingKnife.GetRandomCard()).AddCallback(GameUtilities::GiveHaste).SetDuration(Settings.ACTION_DUR_XFAST, true);
+        for (int i=0; i<secondaryValue; i++) {
+            GameActions.Bottom.MakeCardInDrawPile(ThrowingKnife.GetRandomCard()).AddCallback(GameUtilities::GiveHaste).SetDuration(Settings.ACTION_DUR_XFAST, true);
+        }
     }
 
     @Override

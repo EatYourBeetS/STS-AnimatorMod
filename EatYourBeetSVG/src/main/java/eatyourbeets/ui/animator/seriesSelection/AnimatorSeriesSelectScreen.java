@@ -414,8 +414,12 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
             if (card.cardID.equals(Strike_Star.DATA.ID))
             {
+                ArrayList<EYBCardData> improvedWithStar = new ArrayList<>();
+                improvedWithStar.addAll(ImprovedStrike.GetCards());
+                improvedWithStar.remove(0);
+
                 RandomizedList<EYBCardData> improved = new RandomizedList<>();
-                improved.AddAll(ImprovedStrike.GetCards());
+                improved.AddAll(improvedWithStar);
 
                 if (improved.Size() > 0) {
                     AbstractCard newCard = improved.Retrieve(EYBCardBase.rng).CreateNewInstance(false);
@@ -433,8 +437,12 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             }
             else if (card.cardID.equals(Defend_Star.DATA.ID))
             {
+                ArrayList<EYBCardData> improvedWithStar = new ArrayList<>();
+                improvedWithStar.addAll(ImprovedDefend.GetCards());
+                improvedWithStar.remove(0);
+
                 RandomizedList<EYBCardData> improved = new RandomizedList<>();
-                improved.AddAll(ImprovedDefend.GetCards());
+                improved.AddAll(improvedWithStar);
 
                 if (improved.Size() > 0) {
                     AbstractCard newCard = improved.Retrieve(EYBCardBase.rng).CreateNewInstance(false);
@@ -458,7 +466,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
                 for (AbstractCard starter : starterCards)
                 {
-                    if (starter.type == AbstractCard.CardType.ATTACK)
+                    if (starter.type == AbstractCard.CardType.ATTACK && starter.rarity != AbstractCard.CardRarity.SPECIAL)
                     {
                         starterAttacks.Add(starter.makeCopy());
                     }
@@ -486,7 +494,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
                 for (AbstractCard starter : starterCards)
                 {
-                    if (starter.type == AbstractCard.CardType.SKILL)
+                    if (starter.type == AbstractCard.CardType.SKILL && starter.rarity != AbstractCard.CardRarity.SPECIAL)
                     {
                         starterSkills.Add(starter.makeCopy());
                     }

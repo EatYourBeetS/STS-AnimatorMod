@@ -44,7 +44,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
     {
         super(data, affinity1, affinity2, GR.GetCardImage(Defend.DATA.ID + "Alt2"));
 
-        Initialize(0, 6);
+        Initialize(0, 7);
         SetUpgrade(0, 3);
 
         SetTag(CardTags.STARTER_DEFEND, true);

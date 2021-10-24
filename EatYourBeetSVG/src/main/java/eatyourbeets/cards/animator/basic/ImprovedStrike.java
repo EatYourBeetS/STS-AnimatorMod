@@ -48,7 +48,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
     {
         super(data, affinity1, affinity2, GR.GetCardImage(Strike.DATA.ID + "Alt2"));
 
-        Initialize(7, 0);
+        Initialize(8, 0);
         SetUpgrade(3, 0);
 
         SetTag(CardTags.STARTER_STRIKE, true);

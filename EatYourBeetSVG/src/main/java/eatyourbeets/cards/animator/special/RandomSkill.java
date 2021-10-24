@@ -5,7 +5,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 
 public class RandomSkill extends AnimatorCard {
-    public static final EYBCardData DATA = Register(RandomSkill.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(RandomSkill.class).SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None);
 
     public RandomSkill() {
         super(DATA);

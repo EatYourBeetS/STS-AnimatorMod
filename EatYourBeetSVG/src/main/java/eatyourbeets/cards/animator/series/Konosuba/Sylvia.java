@@ -5,11 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.utilities.GameActions;
 
 public class Sylvia extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Sylvia.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal).SetColor(CardColor.COLORLESS)
+    public static final EYBCardData DATA = Register(Sylvia.class).SetAttack(1, CardRarity.RARE, EYBAttackType.Normal).SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Konosuba);
 
     public Sylvia() {
@@ -17,6 +18,8 @@ public class Sylvia extends AnimatorCard {
 
         Initialize(1, 1, 0);
         SetUpgrade(0, 0, 0);
+
+        SetAffinity_Earth();
     }
 
     @Override
@@ -38,15 +41,16 @@ public class Sylvia extends AnimatorCard {
 
                 if (block > 0)
                 {
-                    DamageModifiers.For(this).Add(block);
+                    BlockModifiers.For(this).Add(block);
                 }
+
+                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.GainBlock(block);
             }
         });
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.GainBlock(block);
     }
 }

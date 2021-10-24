@@ -202,12 +202,23 @@ public abstract class AnimatorLoadout
         return GetPreset(Preset);
     }
 
+    public AnimatorLoadoutData SetPresetToDefault()
+    {
+        return GetPreset(Preset, true);
+    }
+
     public AnimatorLoadoutData GetPreset(int preset)
     {
-        final AnimatorLoadoutData data = Presets[preset];
-        if (data != null)
-        {
-            return data;
+        return GetPreset(preset, false);
+    }
+
+    public AnimatorLoadoutData GetPreset(int preset, boolean reset)
+    {
+        if (!reset) {
+            final AnimatorLoadoutData data = Presets[preset];
+            if (data != null) {
+                return data;
+            }
         }
 
         return Presets[preset] = GetDefaultData(preset);
@@ -386,7 +397,7 @@ public abstract class AnimatorLoadout
         data.GetCardSlot(3).Select(0, 1).GetData().MarkSeen();
         JUtils.ForEach(ImprovedDefend.GetCards(), EYBCardData::MarkSeen);
         data.GetCardSlot(4).Select(0, 1).GetData().MarkSeen();
-        data.GetCardSlot(5).Select(0, 1).GetData().MarkSeen();
+        data.GetCardSlot(5).Select(1, 1).GetData().MarkSeen();
         return data;
     }
 

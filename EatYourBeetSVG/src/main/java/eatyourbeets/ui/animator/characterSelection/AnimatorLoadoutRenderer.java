@@ -29,6 +29,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
     protected static final Random RNG = new Random();
 
+    protected static final int ResetLoadoutMax = 2;
+
     protected final ArrayList<AnimatorLoadout> availableLoadouts;
     protected final ArrayList<AnimatorLoadout> loadouts;
 
@@ -40,9 +42,16 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     protected GUI_Button RandomizeButton;
     protected GUI_Button LoadoutEditorButton;
+    protected GUI_Button ResetButton;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected AnimatorLoadout loadout;
+
+    //2 - default
+    //1 - first confirmation
+    //0 - second confirmation
+    private int ResetLoadoutCount = ResetLoadoutMax;
+    private int ResetAllLoadoutCount = ResetLoadoutMax;
 
     protected float textScale;
     protected ColoredString subtitle;
@@ -77,14 +86,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
         RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(70)).SetText("")
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(160), POS_Y - Scale(70)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
 
         LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(70)).SetText("")
         .SetTooltip(charSelectStrings.DeckEditor, charSelectStrings.DeckEditorInfo)
         .SetOnRightClick(this::ChangePreset)
         .SetOnClick(this::OpenLoadoutEditor);
+
+        ResetButton = new GUI_Button(GR.Common.Images.Reset.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+            .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
+            .SetTooltip(charSelectStrings.Reset, charSelectStrings.ResetInfo)
+            .SetOnRightClick(this::ResetAllLoadoutCountdown)
+            .SetOnClick(this::ResetLoadoutCountdown);
     }
 
     private void OpenLoadoutEditor()
@@ -105,8 +120,136 @@ public class AnimatorLoadoutRenderer extends GUIElement
         }
     }
 
+    private void ResetLoadoutCountdown()
+    {
+        if (RefreshResetAllLoadoutCount())
+        {
+            return;
+        }
+
+        switch (ResetLoadoutCount)
+        {
+            case 2:
+                ResetLoadoutCount--;
+                subtitle.SetText(GR.Animator.Strings.CharSelect.ResetCurrentLoadoutConfirm).SetColor(Settings.RED_TEXT_COLOR);
+                LoadoutEditorButton.SetInteractable(false);
+                selectScreen.confirmButton.isDisabled = true;
+                break;
+            case 1:
+                ResetLoadoutCount--;
+                subtitle.SetText(GR.Animator.Strings.CharSelect.FinalConfirm).SetColor(Settings.RED_TEXT_COLOR);
+                LoadoutEditorButton.SetInteractable(false);
+                selectScreen.confirmButton.isDisabled = true;
+                break;
+            default:
+                ResetLoadoutCount = ResetLoadoutMax;
+                //Case 0 - reset!
+                ResetLoadout();
+                break;
+        }
+    }
+
+    private void ResetAllLoadoutCountdown()
+    {
+        if (RefreshResetSingleLoadoutCount())
+        {
+            return;
+        }
+
+        switch (ResetAllLoadoutCount)
+        {
+            case 2:
+                ResetAllLoadoutCount--;
+                subtitle.SetText(GR.Animator.Strings.CharSelect.ResetAllLoadoutsConfirm).SetColor(Settings.RED_TEXT_COLOR);
+                LoadoutEditorButton.SetInteractable(false);
+                selectScreen.confirmButton.isDisabled = true;
+                break;
+            case 1:
+                ResetAllLoadoutCount--;
+                subtitle.SetText(GR.Animator.Strings.CharSelect.FinalConfirm).SetColor(Settings.RED_TEXT_COLOR);
+                LoadoutEditorButton.SetInteractable(false);
+                selectScreen.confirmButton.isDisabled = true;
+                break;
+            default:
+                //Case 0 - reset!
+
+                ResetAllLoadoutCount = ResetLoadoutMax;
+                ResetAllLoadout();
+                break;
+        }
+    }
+
+    private boolean RefreshResetLoadoutCountIfResetNotClicked()
+    {
+        if (ResetButton.hb.justHovered || ResetButton.hb.hovered)
+        {
+            return false;
+        }
+
+        if (RefreshResetSingleLoadoutCount())
+        {
+            return true;
+        }
+
+        if (RefreshResetAllLoadoutCount())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean RefreshResetSingleLoadoutCount()
+    {
+        if (ResetLoadoutCount < ResetLoadoutMax)
+        {
+            ResetLoadoutCount = ResetLoadoutMax;
+            Refresh(selectScreen, characterOption);
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean RefreshResetAllLoadoutCount()
+    {
+        if (ResetAllLoadoutCount < ResetLoadoutMax)
+        {
+            ResetAllLoadoutCount = ResetLoadoutMax;
+            Refresh(selectScreen, characterOption);
+            return true;
+        }
+
+        return false;
+    }
+
+    private void ResetLoadout()
+    {
+        this.loadout.SetPresetToDefault();
+        GR.Animator.Data.SaveLoadouts(true);
+        Refresh(selectScreen, characterOption);
+    }
+
+    private void ResetAllLoadout()
+    {
+        if (availableLoadouts.size() > 1)
+        {
+            for (AnimatorLoadout curLoadout : availableLoadouts)
+            {
+                curLoadout.SetPresetToDefault();
+            }
+        }
+        GR.Animator.Data.SaveLoadouts(true);
+        Refresh(selectScreen, characterOption);
+    }
+
     public void RandomizeLoadout()
     {
+        if (RefreshResetLoadoutCountIfResetNotClicked())
+        {
+            return;
+        }
+
         if (availableLoadouts.size() > 1)
         {
             while (loadout == GR.Animator.Data.SelectedLoadout)
@@ -216,9 +359,20 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsLeftHb.update();
         RandomizeButton.TryUpdate();
         LoadoutEditorButton.TryUpdate();
+        ResetButton.TryUpdate();
+
+        if (InputHelper.justClickedRight && RefreshResetLoadoutCountIfResetNotClicked())
+        {
+            return;
+        }
 
         if (InputHelper.justClickedLeft)
         {
+            if (RefreshResetLoadoutCountIfResetNotClicked())
+            {
+                return;
+            }
+
             if (startingCardsLabelHb.hovered)
             {
                 startingCardsLabelHb.clickStarted = true;
@@ -293,5 +447,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         RandomizeButton.TryRender(sb);
         LoadoutEditorButton.TryRender(sb);
+        ResetButton.TryRender(sb);
     }
 }

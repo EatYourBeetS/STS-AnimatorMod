@@ -555,6 +555,11 @@
 			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || On Discard or Played, Motivate 1.",
 			"NAME": "Swordfish II"
 		},
+		"animator:Sylvia":
+		{
+			"DESCRIPTION": "Exhaust a card in your draw pile to deal damage and gain [Block] || Increase this card's damage and [Block] by the amount on the card exhausted.",
+			"NAME": "Sylvia"
+		},
 		"animator:TakashiNatsume":
 		{
 			"DESCRIPTION": "Exhaust a Curse from your hand or discard pile. Create a card with its effect.",
@@ -1929,8 +1934,8 @@
 		},
 		"animator:Destroyer":
 		{
-			"DESCRIPTION": "Pay !M! [EN]: Choose an Attack or Skill in your hand. || If it is an Attack: Give it damage equal to your [D]. ** If it is a Skill: Gain Support Damage equal to your [C].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [EN]: Choose an Attack or Skill in your hand.  If it is an Attack: Give it damage equal to your [D]. If it is a Skill: Gain Support Damage equal to your [C].", "Choose an Attack or Skill in your hand."],
+			"DESCRIPTION": "Once per turn: Pay 1 [EN]: Choose an Attack or Skill in your hand. || If it is an Attack: Give it damage equal to your [D]. || If it is a Skill: Gain [Support Damage] equal to your [C].",
+			"EXTENDED_DESCRIPTION": ["Pay 1 [EN]: Choose an #yAttack or #ySkill in your hand.  If it is an #yAttack: Give it damage equal to #b{0} times your [D]. If it is a #ySkill: Gain #ySupport #yDamage equal to #b{0} times your [C].", "Choose an Attack or Skill in your hand."],
 			"NAME": "Destroyer"
 		},
 		"animator:Dust":

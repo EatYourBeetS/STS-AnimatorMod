@@ -149,6 +149,11 @@ public class AnimatorStrings
         public final String InvalidLoadout = Strings.TEXT[3];
         public final String DeckEditor = Strings.TEXT[5];
         public final String DeckEditorInfo = Strings.TEXT[6];
+        public final String Reset = Strings.TEXT[8];
+        public final String ResetInfo = Strings.TEXT[9];
+        public final String ResetCurrentLoadoutConfirm = Strings.TEXT[10];
+        public final String ResetAllLoadoutsConfirm = Strings.TEXT[11];
+        public final String FinalConfirm = Strings.TEXT[12];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {

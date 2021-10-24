@@ -14,19 +14,22 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Destroyer extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Destroyer.class).SetPower(1, CardRarity.COMMON).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Destroyer.class).SetPower(3, CardRarity.RARE).SetSeriesFromClassPackage();
 
 
     public Destroyer() {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 0);
         SetUpgrade(0, 0, 0);
+
+        SetAffinity_Dark(2);
+        SetAffinity_Cyber(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.StackPower(new DestroyerPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new DestroyerPower(p, 1));
     }
 
     @Override
@@ -59,12 +62,12 @@ public class Destroyer extends AnimatorCard {
                {
                    if (card.type == CardType.ATTACK)
                    {
-                       int darkAmount = GameUtilities.GetAffinityAmount(Affinity.Dark);
+                       int darkAmount = GameUtilities.GetAffinityAmount(Affinity.Dark) * amount;
                        DamageModifiers.For(card).Add(darkAmount);
                    }
                    else
                    {
-                       int cyberAmount = GameUtilities.GetAffinityAmount(Affinity.Cyber);
+                       int cyberAmount = GameUtilities.GetAffinityAmount(Affinity.Cyber) * amount;
                        GameActions.Bottom.GainSupportDamage(cyberAmount);
                    }
                }

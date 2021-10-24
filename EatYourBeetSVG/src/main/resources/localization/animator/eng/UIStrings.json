@@ -231,7 +231,12 @@
 			"Unlocks at Ascension {0}",
 			"Starting Deck Editor",
 			"#pLeft-Click to open the editor. NL #pRight-Click to change preset.",
-			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock"
+			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock",
+			"Reset",
+			"#pLeft-Click to reset the current loadout. NL #p Right-Click to reset ALL loadouts.",
+			"This will RESET your current loadout. Are you sure? (Left click on Reset button to continue, click anywhere else to cancel).",
+			"This will RESET ALL loadouts. Are you sure? (Right click on Reset button to continue, click anywhere else to cancel).",
+			"Are you really sure?"
 		]
 	},
 	

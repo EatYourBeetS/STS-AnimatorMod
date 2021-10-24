@@ -31,6 +31,7 @@ public class CommonImages
     public final TextureCache Steam                       = new TextureCache("images/eyb/ui/topPanel/Steam.png");
     public final TextureCache Randomize                   = new TextureCache("images/eyb/ui/topPanel/Randomize.png");
     public final TextureCache SwapCards                   = new TextureCache("images/eyb/ui/topPanel/SwapCards.png");
+    public final TextureCache Reset                       = new TextureCache("images/eyb/ui/topPanel/Reset.png");
     public final TextureCache SquaredButton               = new TextureCache("images/eyb/ui/topPanel/SquaredButton.png");
     public final TextureCache SquaredButton_EmptyCenter   = new TextureCache("images/eyb/ui/topPanel/SquaredButton_EmptyCenter.png");
     public final TextureCache HexagonalButton             = new TextureCache("images/eyb/ui/topPanel/HexagonalButton.png");

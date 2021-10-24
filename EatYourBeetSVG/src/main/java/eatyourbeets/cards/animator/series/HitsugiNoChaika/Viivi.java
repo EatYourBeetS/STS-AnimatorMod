@@ -27,13 +27,10 @@ public class Viivi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 3);
+        Initialize(4, 0, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Air(2, 0, 1);
-        SetAffinity_Light(1, 0, 0);
-
-        SetAffinityRequirement(Affinity.Air, 3);
+        SetAffinity_Air();
     }
 
     @Override
@@ -49,14 +46,6 @@ public class Viivi extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.CreateThrowingKnives(1);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
@@ -65,14 +54,7 @@ public class Viivi extends AnimatorCard
             GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE);
         }
 
-        if (IsStarter())
-        {
-            GameActions.Bottom.RaiseAirLevel(1);
-            GameActions.Bottom.Draw(1);
-        }
-
-        if (CheckAffinity(Affinity.Air)) {
-            GameActions.Bottom.CreateThrowingKnives(1);
-        }
+        GameActions.Bottom.CreateThrowingKnives(1);
+        GameActions.Bottom.GainSupportDamage(secondaryValue);
     }
 }

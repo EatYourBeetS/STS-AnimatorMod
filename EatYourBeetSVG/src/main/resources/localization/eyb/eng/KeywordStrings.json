@@ -72,6 +72,12 @@
 		"NAMES": ["calm stance"],
 		"PROPER_NAME": "Calm Stance"
 	},
+	"Chaika Clone":
+	{
+		"DESCRIPTION": "Chaika Bohdan, Chaika Kamaz, Chaika Trabant, Frederika, Layla, Viivi Holopainen.",
+		"NAMES": ["chaika clone"],
+		"PROPER_NAME": "Chaika Clone"
+	},
 	"Choked":
 	{
 		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",

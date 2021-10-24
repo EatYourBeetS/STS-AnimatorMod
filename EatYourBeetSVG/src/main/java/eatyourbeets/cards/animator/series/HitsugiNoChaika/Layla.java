@@ -23,19 +23,12 @@ public class Layla extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(6, 0, 4);
+        SetUpgrade(0, 0, 2);
 
-        SetAffinity_Air(1);
-        SetAffinity_Dark(1, 0, 2);
+        SetAffinity_Water();
+        SetAffinity_Poison(2);
     }
-
-    @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        return super.ModifyDamage(enemy, amount + (GameUtilities.GetDebuffsCount(enemy) * secondaryValue));
-    }
-
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {

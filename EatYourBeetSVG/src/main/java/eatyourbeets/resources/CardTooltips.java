@@ -52,6 +52,7 @@ public class CardTooltips
     public EYBCardTooltip Ranged = FindByID("~Ranged");
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
+    public EYBCardTooltip ChaikaClone = FindByID("Chaika Clone");
 
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");

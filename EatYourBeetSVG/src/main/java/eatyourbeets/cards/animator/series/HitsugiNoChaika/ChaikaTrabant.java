@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -27,11 +28,12 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super(DATA);
 
-        Initialize(21, 0, 6, 2);
-        SetUpgrade(7, 0, 0, 0);
+        Initialize(10, 0, 1, 10);
+        SetUpgrade(0, 0, 1, 4);
 
-        SetAffinity_Water(2, 0, 2);
-        SetAffinity_Light(2);
+        SetAffinity_Fire();
+        SetAffinity_Light();
+        SetAffinity_Mind();
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
         SetProtagonist(true);
@@ -42,7 +44,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(magicNumber, false),
+        GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(secondaryValue, false),
         damageTypeForTurn, AttackEffects.FIRE).SetPiercing(true, false);
     }
 
@@ -79,8 +81,11 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
             this.calculateCardDamage(enemy);
 
             GameActions.Bottom.DealDamage(this, enemy, AttackEffects.FIRE);
-            GameActions.Bottom.ApplyWeak(player, enemy, 1);
-            GameActions.Bottom.ApplyVulnerable(player, enemy, 1);
+
+            for (PowerHelper commonDebuff : GameUtilities.GetCommonDebuffs())
+            {
+                GameActions.Bottom.ApplyPower(enemy, commonDebuff.Create(player, player, magicNumber));
+            }
         });
     }
 }

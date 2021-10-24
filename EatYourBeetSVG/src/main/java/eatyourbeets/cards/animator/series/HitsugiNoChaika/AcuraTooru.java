@@ -1,9 +1,13 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -12,12 +16,12 @@ public class AcuraTooru extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AcuraTooru.class)
             .SetAttack(2, CardRarity.UNCOMMON)
-            .SetSeries(CardSeries.HitsugiNoChaika)
+            .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
                 for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
                 {
-                    data.AddPreview(knife, false);
+                    data.AddPreview(knife, true);
                 }
             });
 
@@ -25,21 +29,21 @@ public class AcuraTooru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(3, 0, 4, 6);
+        SetUpgrade(0, 0, 1, 1);
 
-        SetAffinity_Air(1);
-        SetAffinity_Fire(1);
+        SetAffinity_Air(2);
+        SetAffinity_Mind(1);
 
         SetProtagonist(true);
 
-        SetAffinityRequirement(Affinity.Air, 3);
+        SetAffinityRequirement(Affinity.Mind, 5);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(2);
+        return super.GetDamageInfo().AddMultiplier(magicNumber);
     }
 
     @Override
@@ -47,21 +51,27 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainBlock(magicNumber);
-        GameActions.Bottom.RaiseAirLevel(1);
+        GameActions.Bottom.RaiseAirLevel(secondaryValue);
+        GameActions.Bottom.CreateThrowingKnives(2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.CreateThrowingKnives(secondaryValue);
+        for (int i=0; i<magicNumber; i++) {
+            AbstractGameAction.AttackEffect effect = AttackEffects.SLASH_DIAGONAL;
 
-        if (CheckAffinity(Affinity.Air))
+            if (i % 2 == 0)
+            {
+                effect = AttackEffects.SLASH_VERTICAL;
+            }
+
+            GameActions.Bottom.DealDamage(this, m, effect);
+        }
+
+        if (CheckAffinity(Affinity.Mind))
         {
-            GameActions.Bottom.GainBlock(magicNumber);
-            GameActions.Bottom.RaiseAirLevel(1);
+            GameActions.Bottom.GainBlur(1);
         }
     }
 }

@@ -90,6 +90,11 @@
 		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
 		"NAME": "Marked"
 	},
+	"eyb:NextTurnCardCopyPower":
+	{
+		"DESCRIPTIONS": ["Next turn, obtain a copy of #y{0}."],
+		"NAME": "Copy Card Next Turn"
+	},
 	"eyb:PoisonPlayerPower":
 	{
 		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],

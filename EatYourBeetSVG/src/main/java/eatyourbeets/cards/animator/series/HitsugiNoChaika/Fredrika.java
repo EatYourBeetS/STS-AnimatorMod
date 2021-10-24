@@ -47,10 +47,10 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(9, 2, 2);
-        SetUpgrade(2, 2, 0);
+        Initialize(9, 11, 0);
+        SetUpgrade(2, 4, 0);
 
-        SetAffinity_Star(1, 0, 0);
+        SetAffinity_Mind(2);
 
         SetAttackType(EYBAttackType.Normal);
     }
@@ -104,17 +104,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
     }
 
     @Override
-    protected float GetInitialBlock()
-    {
-        if (currentForm == Form.Default)
-        {
-            return super.GetInitialBlock() + GameUtilities.GetEnemies(true).size() * magicNumber;
-        }
-
-        return super.GetInitialBlock();
-    }
-
-    @Override
     public void OnEndOfTurn(boolean isPlayer)
     {
         this.ChangeForm(Form.Default);
@@ -161,7 +150,9 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
 
             case Cat:
             {
-                GameActions.Bottom.GainBlock(block);
+                GameActions.Bottom.FetchFromPile(name, 1, p.drawPile)
+                        .SetOptions(false, true)
+                        .SetFilter(GameUtilities::IsZeroCost);
                 break;
             }
 
@@ -177,7 +168,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
             {
                 GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-                GameActions.Bottom.GainMetallicize(2);
+                GameActions.Bottom.GainMetallicize(3);
                 break;
             }
         }
@@ -212,6 +203,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.SKILL;
                 this.target = CardTarget.SELF;
                 this.cost = 1;
+                SetAffinity_Mind(2);
 
                 break;
             }
@@ -224,6 +216,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.SKILL;
                 this.target = CardTarget.NONE;
                 this.cost = 0;
+                SetAffinity_Water();
 
                 break;
             }
@@ -236,6 +229,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
+                SetAffinity_Fire(2);
 
                 break;
             }
@@ -248,6 +242,8 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.type = CardType.ATTACK;
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
+
+                SetAffinity_Air();
 
                 break;
             }

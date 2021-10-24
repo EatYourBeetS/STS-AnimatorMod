@@ -24,11 +24,12 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 2);
-        SetUpgrade(1, 0);
+        Initialize(3, 0, 1);
+        SetUpgrade(2, 0, 1);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Air(1);
+        SetAffinity_Fire();
+
+        SetRetain(true);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
         {
             if (info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsMonster(target))
             {
-                DamageModifiers.For(this).Add(secondaryValue);
+                DamageModifiers.For(this).Add(magicNumber);
                 this.flash();
             }
         }

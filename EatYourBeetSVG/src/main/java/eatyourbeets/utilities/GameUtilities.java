@@ -1379,6 +1379,11 @@ public class GameUtilities
         return card.costForTurn >= 2;
     }
 
+    public static boolean IsZeroCost(AbstractCard card)
+    {
+        return card.costForTurn == 0;
+    }
+
     public static boolean IsLowCost(AbstractCard card)
     {
         return card.costForTurn == 0 || card.costForTurn == 1;

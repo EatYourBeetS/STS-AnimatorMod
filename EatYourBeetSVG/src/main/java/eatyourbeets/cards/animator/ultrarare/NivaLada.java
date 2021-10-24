@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -14,12 +13,11 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.vfx.megacritCopy.LaserBeamEffect2;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
-import eatyourbeets.interfaces.subscribers.OnAfterCardExhaustedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhaustedSubscriber, OnAfterCardDiscardedSubscriber
+public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardDiscardedSubscriber
 {
     public static final EYBCardData DATA = Register(NivaLada.class)
             .SetSkill(0, CardRarity.SPECIAL)
@@ -30,12 +28,12 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
     {
         super(DATA);
 
-        Initialize(0, 0, 300);
+        Initialize(0, 0, 400);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Water(2);
 
-        SetCooldown(18, -2, this::OnCooldownCompleted);
+        SetCooldown(18, -4, this::OnCooldownCompleted);
     }
 
     @Override
@@ -44,24 +42,20 @@ public class NivaLada extends AnimatorCard_UltraRare implements OnAfterCardExhau
         super.triggerWhenCreated(startOfBattle);
 
         CombatStats.onAfterCardDiscarded.Subscribe(this);
-        CombatStats.onAfterCardExhausted.Subscribe(this);
-    }
-
-    @Override
-    public void OnAfterCardExhausted(AbstractCard card)
-    {
-        if (this.secondaryValue > 0)
-        {
-            cooldown.ProgressCooldown();
-        }
     }
 
     @Override
     public void OnAfterCardDiscarded()
     {
-        if (this.secondaryValue > 0)
+        if (player.hand.contains(this))
         {
-            cooldown.ProgressCooldown();
+            for (int i=0; i<3; i++) {
+                if (this.secondaryValue > 0) {
+                    cooldown.ProgressCooldown();
+                }
+
+                GameActions.Bottom.CreateThrowingKnives(1);
+            }
         }
     }
 

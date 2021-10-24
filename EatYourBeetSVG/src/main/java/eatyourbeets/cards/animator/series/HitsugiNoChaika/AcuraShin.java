@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -12,17 +13,29 @@ public class AcuraShin extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AcuraShin.class)
             .SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing)
-            .SetSeries(CardSeries.HitsugiNoChaika);
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, true);
+                }
+            });
 
     public AcuraShin()
     {
         super(DATA);
 
-        Initialize(3,0,2);
-        SetCostUpgrade(-1);
+        Initialize(5,0,2, 3);
+        SetUpgrade(0,0,0,2);
 
-        SetAffinity_Air(1, 0, 1);
-        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Air(1);
+        SetAffinity_Poison(2);
+
+        SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Air, 6);
+        SetAffinityRequirement(Affinity.Poison, 6);
     }
 
     @Override
@@ -34,9 +47,13 @@ public class AcuraShin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        GameActions.Bottom.StackPower(new PoisonAffinityPower(p, 1));
+        GameActions.Bottom.StackPower(new PoisonAffinityPower(p, secondaryValue));
+
+        if (CheckAffinity(Affinity.Air) || CheckAffinity(Affinity.Poison))
+        {
+            GameActions.Bottom.CreateThrowingKnives(1);
+        }
     }
 }

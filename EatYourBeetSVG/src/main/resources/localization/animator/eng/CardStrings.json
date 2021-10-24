@@ -1604,8 +1604,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <W> Synergy bonus grants 1 additional [W]. || !S! times per turn, Pay [EN]: Trigger your first 3 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [EN] to trigger your first #b{1} [Earth]. || Your <W> Synergy bonus grants #b{2} additional [W] (max #b{3}^)."],
+			"DESCRIPTION": "Gain !M! Orb Slot(s). || !A! [E]: Channel 1 [Earth] and Gain !S! [E].",
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -1760,55 +1759,86 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard 2 cards ** to obtain !M! [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom.",
-			"NAME": "Akari Acura",
-			"UPGRADE_DESCRIPTION": "Discard 2 cards to ** obtain !M! Upgraded [T-Knife]. || Synergy: Gain ** !S! {Temp}. Envenom."
+			"DESCRIPTION": "Discard 2 cards to obtain !M! [T-Knife]. || !A! [A] or [P]: Gain !S! Temp. {Envenom}.",
+			"NAME": "Akari Acura"
 		},
 		"animator:AcuraShin":
 		{
-			"DESCRIPTION": "Apply !M! [Poison]. || Whenever you apply ** [Poison] this combat: ** Apply 1 more [Poison].",
+			"DESCRIPTION": "Whenever you apply [Poison] this combat: Apply !S! more [Poison]. || !A! [P]: Obtain [T-Knife].",
 			"NAME": "Shin Acura"
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Obtain !S! [T-Knife]. || !A! <A> or Discard: ** Gain [A] and !M! [Block].",
+			"DESCRIPTION": "!A! [M]: Gain [Blur]. || On Discard: Gain !S! [A] and 2 [T-Knife].",
 			"NAME": "Tooru Acura"
+		},
+		"animator:ArthurGaz":
+		{
+			"DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random {Chaika Clone}.",
+			"EXTENDED_DESCRIPTION": ["First #b{0} times each turn you discard from your hand: Obtain a random #yChaika #yClone.","First #b{0} times each turn you discard from your hand: Obtain a random upgraded #yChaika #yClone."],
+			"NAME": "Arthur Gaz",
+			"UPGRADE_DESCRIPTION": "First !M! times each turn you discard from your hand: Obtain a random upgraded {Chaika Clone}."
 		},
 		"animator:ChaikaBohdan":
 		{
 			"DESCRIPTION": "Whenever you hit an ** enemy while this is in ** your hand: Gain !S! ** damage until played.",
 			"NAME": "Chaika Bohdan"
 		},
+		"animator:ChaikaKamaz":
+		{
+			"DESCRIPTION": "Start of Turn: Discard a card and move up to !M! card(s) from your discard pile to the top of your draw pile. || On Discard: Add !S! [T-Knives] with Haste to your draw pile.",
+			"NAME": "Chaika Kamaz"
+		},
 		"animator:ChaikaTrabant":
 		{
-			"DESCRIPTION": "Played at the start of ** your next turn. ** Apply 1 [Weak] and [Vulnerable]. || On Discard: Deal !M! ** damage to ALL enemies.",
+			"DESCRIPTION": "Played at the start of your next turn. Apply !M! of each {Common Debuff}. || On Discard: Deal !S! damage to ALL enemies.",
 			"NAME": "Chaika Trabant"
+		},
+		"animator:ClaudiaDodge":
+		{
+			"DESCRIPTION": "Channel !S! {Common Orb}. <DRW-M>. || Unplayable unless you discarded a card this turn.",
+			"NAME": "Claudia Dodge"
 		},
 		"animator:Fredrika":
 		{
-			"DESCRIPTION": "Gain !M! additional ** [Block] for each enemy. || On Discard: Returns ** to your hand and changes ** Form until end of turn.",
-			"EXTENDED_DESCRIPTION": ["", "Gain 2 [Metallicize].", "Apply 1 [Weak]. ** Apply 1 [Vulnerable]."],
+			"DESCRIPTION": "On Discard: Returns ** to your hand and changes ** Form until end of turn.",
+			"EXTENDED_DESCRIPTION": ["Fetch a 0-Cost card from your draw pile.", "Gain 3 [Metallicize].", "Apply 1 [Weak]. ** Apply 1 [Vulnerable]."],
 			"NAME": "Fredrika"
 		},
 		"animator:Gillette":
 		{
-			"DESCRIPTION": "Gain [Energized]. || On Discard: ** Apply 1 [Weak] to ** ALL enemies.",
+			"DESCRIPTION": "Gain [Energized].",
 			"NAME": "Alberic Gillette"
 		},
 		"animator:Guy":
 		{
-			"DESCRIPTION": "<DRW-M>, then ** discard !M! card(s). || Synergy: Discard ** the top 2 cards of ** your draw pile.",
+			"DESCRIPTION": "<DRW-M>, then discard !M! card(s).",
 			"NAME": "Guy"
 		},
 		"animator:Layla":
 		{
-			"DESCRIPTION": "Reload: Apply !M! [Poison] ** to a random enemy. || This card deals !S! ** more damage for each ** {Debuff} on the enemy.",
+			"DESCRIPTION": "Reload: Apply !M! [Poison] to a random enemy.",
 			"NAME": "Layla"
+		},
+		"animator:MattheusCallaway":
+		{
+			"DESCRIPTION": "<SLM>. Choose a Common Skill in your hand.  Next turn: Obtain a copy of that Skill. || On Discard: Gain !M! Temp. Artifact.",
+			"NAME": "Mattheus Callaway"
+		},
+		"animator:NikolayAutotor":
+		{
+			"DESCRIPTION": "Discard any number of non-Hindrances: Recover [EN] for each card you discard.",
+			"NAME": "Nikolay Autotor"
 		},
 		"animator:Viivi":
 		{
-			"DESCRIPTION": "<ST>. Gain [A] ** and <DRW>. || !A! <A> or Discard: Add ** 1 [T-Knife] to your hand.",
+			"DESCRIPTION": "Obtain [T-Knife] and Gain !S! [Support Damage].",
 			"NAME": "Viivi Holopainen"
+		},
+		"animator:ZitaBrusasco":
+		{
+			"DESCRIPTION": "To play this: Evoke your next Orb.",
+			"NAME": "Zita Brusasco"
 		}
 	},
 	"SERIES:KATANAGATARI":
@@ -3063,7 +3093,7 @@
 		},
 		"animator:NivaLada":
 		{
-			"DESCRIPTION": "<CDN>: ** Deal 300 damage. || Whenever you Exhaust or discard a card, reduce this card's Cooldown by 1.",
+			"DESCRIPTION": "Cooldown !S!: Deal !M! Damage to ALL enemies. || Whenever you Discard a card while this is in your hand: Reduce this card's cooldown by 3 and add [T-Knife] to your hand.",
 			"NAME": "Niva Lada"
 		},
 		"animator:Rose":

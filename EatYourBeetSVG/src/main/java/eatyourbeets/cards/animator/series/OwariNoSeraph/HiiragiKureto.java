@@ -21,8 +21,8 @@ public class HiiragiKureto extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2);
-        SetUpgrade(4, 0);
+        Initialize(4, 0, 2);
+        SetUpgrade(3, 0);
 
         SetAffinity_Thunder();
     }

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import eatyourbeets.cards.animator.special.OrbCore_Dark;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -84,7 +83,7 @@ public class Elesis extends AnimatorCard
         super.triggerOnExhaust();
 
         if (auxiliaryData.form == FORM_SABER) {
-            GameActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
+            GameActions.Bottom.GainVigor(secondaryValue);
         }
     }
 

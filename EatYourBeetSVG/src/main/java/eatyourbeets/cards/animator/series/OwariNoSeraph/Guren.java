@@ -1,24 +1,18 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
-public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
+public class Guren extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Guren.class)
             .SetSkill(3, CardRarity.RARE)
-            .SetMaxCopies(2)
-            .SetSeries(CardSeries.OwariNoSeraph);
+            .SetSeriesFromClassPackage();
 
     private boolean alreadyPlayed = false;
 
@@ -26,11 +20,11 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0,3, 4);
+        Initialize(0, 0,3);
+        SetUpgrade(0,0,1);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Earth(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
+        SetAffinity_Dark(2);
 
         SetExhaust(true);
     }
@@ -48,32 +42,5 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
         {
             GameActions.Bottom.Add(new GurenAction(m));
         }
-
-        alreadyPlayed = true;
-        CombatStats.onPhaseChanged.Subscribe(this);
-    }
-
-    @Override
-    public void OnPhaseChanged(GameActionManager.Phase phase)
-    {
-        if (phase == GameActionManager.Phase.WAITING_ON_USER)
-        {
-            if (CombatStats.TryActivateSemiLimited(this.cardID))
-            {
-                int amount = Math.min(secondaryValue, player.exhaustPile.size() / 3);
-                if (amount > 0)
-                {
-                    GameActions.Bottom.StackPower(new SupportDamagePower(player, amount));
-                }
-            }
-
-            alreadyPlayed = false;
-            CombatStats.onPhaseChanged.Unsubscribe(this);
-        }
-    }
-
-    public boolean CanAutoPlay(GurenAction gurenAction)
-    {
-        return !alreadyPlayed;
     }
 }

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.DivinityStance;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,51 +20,34 @@ public class FeridBathory extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(FeridBathory.class)
             .SetPower(2, CardRarity.RARE)
-            .SetMaxCopies(2)
-            .SetSeriesFromClassPackage()
-            .SetMultiformData(2);
+            .SetSeriesFromClassPackage();
+
+    public static final int EXHAUST_PILE_THRESHOLD = 20;
 
     public FeridBathory()
     {
         super(DATA);
 
-        Initialize(0,0, 2, FeridBathoryPower.FORCE_AMOUNT);
-        SetUpgrade(0, 2, 0);
+        Initialize(0,0, 3);
+        SetUpgrade(0, 0, 3);
 
-        SetAffinity_Fire(2);
         SetAffinity_Dark(2);
-
-        SetDelayed(true);
+        SetAffinity_Mind();
     }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
-    }
-
-    @Override
-    public int SetForm(Integer form, int timesUpgraded) {
-        if (timesUpgraded > 0) {
-            SetDelayed(form == 1);
-        }
-        return super.SetForm(form, timesUpgraded);
-    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
+        if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ChangeStance(DivinityStance.STANCE_ID);
+        }
+
         GameActions.Bottom.StackPower(new FeridBathoryPower(p, magicNumber));
     }
 
     public class FeridBathoryPower extends AnimatorPower
     {
-        public static final int EXHAUST_PILE_THRESHOLD = 20;
-        public static final int FORCE_AMOUNT = 10;
-
         public FeridBathoryPower(AbstractCreature owner, int amount)
         {
             super(owner, FeridBathory.DATA);
@@ -84,18 +68,6 @@ public class FeridBathory extends AnimatorCard
                     });
             GameActions.Bottom.GainTemporaryHP(amount);
             flashWithoutSound();
-        }
-
-        @Override
-        public void atStartOfTurnPostDraw()
-        {
-            super.atStartOfTurnPostDraw();
-
-            if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && CombatStats.TryActivateLimited(FeridBathory.DATA.ID))
-            {
-                GameEffects.Queue.ShowCardBriefly(new FeridBathory());
-                GameActions.Bottom.RaiseFireLevel(FORCE_AMOUNT);
-            }
         }
     }
 }

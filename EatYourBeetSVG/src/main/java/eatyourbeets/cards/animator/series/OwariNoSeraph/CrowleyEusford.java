@@ -2,11 +2,13 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.watcher.VigorPower;
+import com.megacrit.cardcrawl.powers.DexterityPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.stances.CalmStance;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -16,55 +18,42 @@ public class CrowleyEusford extends AnimatorCard
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Random)
             .SetSeriesFromClassPackage();
 
+    private static final CardEffectChoice choices = new CardEffectChoice();
+
     public CrowleyEusford()
     {
         super(DATA);
 
-        Initialize(16, 0, 1);
-        SetUpgrade(2, 0, 1);
+        Initialize(13, 0, 4);
+        SetUpgrade(4, 0, 2);
 
-        SetAffinity_Fire(2, 0, 2);
-        SetAffinity_Air(2, 0, 1);
-        SetAffinity_Dark(1);
+        SetAffinity_Fire(2);
+        SetAffinity_Air();
     }
 
     @Override
-    protected void OnUpgrade()
+    public void triggerOnExhaust()
     {
-        SetHaste(true);
-    }
+        super.triggerOnExhaust();
 
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
+        int vigorToGain = magicNumber;
 
-        for (AbstractMonster mo: GameUtilities.GetEnemies(true)) {
-            if (GameUtilities.GetPowerAmount(mo, VulnerablePower.POWER_ID) > 0) {
-                GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
-                break;
-            }
-        }
+        vigorToGain += GameUtilities.GetPowerAmount(StrengthPower.POWER_ID);
+        vigorToGain += GameUtilities.GetPowerAmount(DexterityPower.POWER_ID);
 
-        GameActions.Bottom.Flash(this);
+        GameActions.Bottom.GainVigor(vigorToGain);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.RaiseAirLevel(1, true);
-        GameActions.Bottom.RaiseFireLevel(1, true);
 
-        if (CheckSpecialCondition(true))
+        if (choices.TryInitialize(this))
         {
-            GameActions.Bottom.Motivate();
+            choices.AddEffect(new GenericEffect_EnterStance(WrathStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(CalmStance.STANCE_ID));
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return CombatStats.CardsExhaustedThisTurn().size() > 0;
+        choices.Select(1, m);
     }
 }

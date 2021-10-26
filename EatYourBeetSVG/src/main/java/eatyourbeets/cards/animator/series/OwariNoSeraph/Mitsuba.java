@@ -18,11 +18,11 @@ public class Mitsuba extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 2, 2, 6);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(6, 8);
+        SetUpgrade(2, 2);
 
         SetAffinity_Fire(1);
-        SetAffinity_Light(1);
+        SetAffinity_Air(1);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class Mitsuba extends AnimatorCard
     {
         if (enemy != null && enemy.currentHealth > player.currentHealth)
         {
-            return super.ModifyBlock(enemy, amount + secondaryValue);
+            return super.ModifyBlock(enemy, amount);
         }
 
-        return super.ModifyBlock(enemy, amount);
+        return super.ModifyBlock(enemy, 0);
     }
 
     @Override

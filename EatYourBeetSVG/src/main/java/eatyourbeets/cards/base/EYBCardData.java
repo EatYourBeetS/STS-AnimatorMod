@@ -218,9 +218,9 @@ public class EYBCardData
         {
             switch (rarity)
             {
-                case COMMON: return SetMaxCopies(5);
-                case UNCOMMON: return SetMaxCopies(4);
-                case RARE: return SetMaxCopies(3);
+                case COMMON: return SetMaxCopies(9);
+                case UNCOMMON: return SetMaxCopies(9);
+                case RARE: return SetMaxCopies(9);
                 default: return SetMaxCopies(0);
             }
         }

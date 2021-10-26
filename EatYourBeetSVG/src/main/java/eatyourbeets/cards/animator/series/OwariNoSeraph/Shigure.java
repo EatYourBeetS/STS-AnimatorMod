@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -21,12 +20,10 @@ public class Shigure extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 2);
-        SetUpgrade(2, 0, 1, 0);
+        Initialize(7, 0, 3);
+        SetUpgrade(1, 0, 3);
 
-        SetAffinity_Air(1, 1, 1);
-        SetAffinity_Earth(1, 0, 1);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Poison();
     }
 
     @Override
@@ -34,26 +31,6 @@ public class Shigure extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration);
-        if (CheckPrimaryCondition(false)) {
-            GameActions.Bottom.GainSupportDamage(magicNumber);
-        }
-        else {
-            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        if (AgilityStance.IsActive())
-        {
-            GameActions.Bottom.Cycle(name, secondaryValue);
-        }
-    }
-
-    @Override
-    public boolean CheckPrimaryCondition(boolean tryUse)
-    {
-        return GetLevelAffinity(Affinity.Light) > GetLevelAffinity(Affinity.Air);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
     }
 }

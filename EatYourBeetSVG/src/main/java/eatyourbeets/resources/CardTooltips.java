@@ -53,6 +53,7 @@ public class CardTooltips
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
     public EYBCardTooltip ChaikaClone = FindByID("Chaika Clone");
+    public EYBCardTooltip FormPower = FindByID("Form Power");
 
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");

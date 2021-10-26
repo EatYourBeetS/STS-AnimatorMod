@@ -3,35 +3,28 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class KimizugiShiho extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KimizugiShiho.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
-            .SetSeries(CardSeries.OwariNoSeraph);
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .AddPreview(new KimizugiMirai(), false);
 
     public KimizugiShiho()
     {
         super(DATA);
 
-        Initialize(0,2, 1,1);
-        SetUpgrade(0,0, 0, 0);
+        Initialize(0,6, 5);
+        SetUpgrade(0,1, 2);
 
-        SetAffinity_Fire(1, 0, 0);
-        SetAffinity_Air(1, 0, 0);
-        SetAffinity_Water(1, 0, 0);
+        SetAffinity_Earth();
+        SetAffinity_Mind();
 
-        SetCostUpgrade(-1);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.Cycle(name, secondaryValue);
+        SetAffinityRequirement(Affinity.Air, 20);
+        SetAffinityRequirement(Affinity.Mind, 20);
     }
 
     @Override
@@ -39,22 +32,17 @@ public class KimizugiShiho extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetOptions(true, false, false)
-                .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).series != null)
-                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .AddCallback(cards ->
-                {
-                    if (cards.size() > 0 && cards.get(0) instanceof AnimatorCard)
-                    {
-                        GameActions.Top.FetchFromPile(name, 1, player.discardPile)
-                                .SetOptions(true, false)
-                                .SetFilter(cards.get(0), GameUtilities::IsSameSeries);
-                    }
+        GameActions.Bottom.RaiseAirLevel(magicNumber);
+        GameActions.Bottom.RaiseEarthLevel(magicNumber);
 
-                    if (info.IsSynergizing) {
-                        GameActions.Bottom.Cycle(name, secondaryValue);
-                    }
-                });
+        GameActions.Last.Callback(() -> {
+           if (CheckAffinity(Affinity.Air) || CheckAffinity(Affinity.Mind))
+           {
+               if (CombatStats.TryActivateLimited(cardID))
+               {
+                   GameActions.Bottom.MakeCardInDiscardPile(new KimizugiMirai());
+               }
+           }
+        });
     }
 }

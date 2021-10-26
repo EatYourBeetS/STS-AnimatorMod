@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -62,7 +63,6 @@ import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.DarkLevelPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
@@ -775,6 +775,12 @@ public final class GameActions
     {
         return StackPower(new ThornsPower(player, amount));
     }
+
+    public ApplyPower GainVigor(int amount)
+    {
+        return StackPower(new VigorPower(player, amount));
+    }
+
 
     public ApplyPower GainPrayer(int amount)
     {

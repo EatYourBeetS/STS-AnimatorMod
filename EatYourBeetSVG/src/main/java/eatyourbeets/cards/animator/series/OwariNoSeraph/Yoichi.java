@@ -3,9 +3,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class Yoichi extends AnimatorCard
 {
@@ -17,33 +15,20 @@ public class Yoichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 2);
-        SetUpgrade(0,2, 0);
+        Initialize(0,0, 3);
+        SetUpgrade(0,0, 3);
 
-        SetAffinity_Air(1, 1, 0);
+        SetExhaust(true);
+
+        SetAffinity_Air();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.DiscardFromHand(name, 1, false);
-        GameActions.Bottom.StackPower(new SupportDamagePower(p, 1))
-        .AddCallback(power ->
-        {
-            if (info.IsSynergizing && info.TryActivateSemiLimited())
-            {
-                SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
-                if (supportDamage != null)
-                {
-                    supportDamage.atEndOfTurn(true);
-                }
-            }
+        GameActions.Bottom.DiscardFromHand(name, 1, false)
+        .AddCallback(cards -> {
+            GameActions.Bottom.GainSupportDamage(magicNumber);
         });
     }
 }

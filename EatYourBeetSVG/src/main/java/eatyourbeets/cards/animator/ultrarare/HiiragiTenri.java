@@ -7,34 +7,33 @@ import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class HiiragiMahiru extends AnimatorCard_UltraRare
+public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(HiiragiMahiru.class)
+    public static final EYBCardData DATA = Register(HiiragiTenri.class)
             .SetSkill(4, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.OwariNoSeraph);
 
-    public HiiragiMahiru()
+    public HiiragiTenri()
     {
         super(DATA);
 
-        Initialize(0, 0, 20);
-        SetUpgrade(0, 0, 10);
+        Initialize(0, 0, 0);
+        SetUpgrade(0, 0, 0);
+        SetCostUpgrade(-1);
 
-        SetAffinity_Light(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Star(1);
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
+    protected void OnUpgrade()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        SetAffinity_Star(2);
     }
+
 
     @Override
     public void triggerOnExhaust()
@@ -50,8 +49,6 @@ public class HiiragiMahiru extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
-
         for (AbstractCard c : p.discardPile.group)
         {
             GameActions.Bottom.PlayCard(c, p.discardPile, m).SetExhaust(true);

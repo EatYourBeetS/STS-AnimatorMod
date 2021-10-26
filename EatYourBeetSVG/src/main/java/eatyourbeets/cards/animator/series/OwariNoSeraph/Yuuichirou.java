@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -27,8 +26,8 @@ public class Yuuichirou extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(3, 0);
 
-        SetAffinity_Fire(2, 0, 1);
-        SetAffinity_Air(1, 1, 1);
+        SetAffinity_Fire(1);
+        SetAffinity_Light(1);
 
         SetProtagonist(true);
     }
@@ -37,11 +36,10 @@ public class Yuuichirou extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.Draw(1);
-
-        if (AgilityStance.IsActive()) {
-            GameUtilities.MaintainPower(Affinity.Fire);
-        }
+        GameActions.Bottom.Draw(1)
+                .SetFilter(card -> {
+            return card.type == CardType.ATTACK && (GameUtilities.HasAffinity(card, Affinity.Fire) || GameUtilities.HasAffinity(card, Affinity.Light));
+        }, false);
     }
 
     @Override
@@ -49,6 +47,6 @@ public class Yuuichirou extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInDrawPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
     }
 }

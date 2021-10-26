@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Mikaela extends AnimatorCard
 {
@@ -21,11 +20,13 @@ public class Mikaela extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 2);
-        SetUpgrade(2, 0, 1, 0);
+        Initialize(6, 0, 2);
+        SetUpgrade(2, 0, 2);
 
-        SetAffinity_Fire(1, 1, 1);
+        SetAffinity_Fire(1);
         SetAffinity_Dark(1);
+
+        SetProtagonist(true);
     }
 
     @Override
@@ -40,14 +41,6 @@ public class Mikaela extends AnimatorCard
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
-        .SetOptions(false, false)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
-            {
-                GameActions.Bottom.RaiseFireLevel(secondaryValue);
-                GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SLASH_VERTICAL);
-            }
-        });
+        .SetOptions(false, false);
     }
 }

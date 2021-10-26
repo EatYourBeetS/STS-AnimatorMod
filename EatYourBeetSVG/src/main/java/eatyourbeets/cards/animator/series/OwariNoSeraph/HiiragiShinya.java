@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.SupportDamagePower;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,14 +22,10 @@ public class HiiragiShinya extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 2);
-        SetUpgrade(0, 3, 0);
+        Initialize(0, 5);
+        SetUpgrade(0, 4);
 
-        SetAffinity_Air(1, 0, 0);
-        SetAffinity_Earth(1, 1, 0);
-        SetAffinity_Light(1);
-
-        SetAffinityRequirement(Affinity.Air,3);
+        SetAffinity_Air();
     }
 
     @Override
@@ -47,10 +45,5 @@ public class HiiragiShinya extends AnimatorCard
                 GameActions.Bottom.Add(new RefreshHandLayout());
             }
         });
-
-        if (info.IsSynergizing || CheckAffinity(Affinity.Air))
-        {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
-        }
     }
 }

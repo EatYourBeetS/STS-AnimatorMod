@@ -1,10 +1,9 @@
 package eatyourbeets.actions.animator;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.cardManipulation.PlayCard;
-import eatyourbeets.cards.animator.series.OwariNoSeraph.Guren;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,18 +41,13 @@ public class GurenAction extends PlayCard
     {
         boolean canUse = super.CanUse();
 
-        if (card.type == AbstractCard.CardType.ATTACK)
+        if (!GameUtilities.HasAffinity(card, Affinity.Light) && !GameUtilities.HasAffinity(card, Affinity.Dark))
         {
             SetExhaust(true);
         }
-        else if (GameUtilities.IsHindrance(card))
+
+        if (GameUtilities.IsHindrance(card))
         {
-            SetExhaust(true);
-            canUse = false;
-        }
-        else if (card instanceof Guren && !((Guren)card).CanAutoPlay(this))
-        {
-            SetExhaust(false);
             canUse = false;
         }
 

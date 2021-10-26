@@ -1279,6 +1279,11 @@
 			"DESCRIPTION": "Choose and add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
 			"NAME": "Misaki Nakahara"
 		},
+		"animator:GoshiNorito":
+		{
+			"DESCRIPTION": "Randomly deal !M! damage to a random enemy or Gain !M! [Block] once for each card in your exhaust pile.",
+			"NAME": "Norito Goshi"
+		},
 		"animator:NononJakuzure":
 		{
 			"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Synergize ** while this is in your hand: ** Increase this card's ** Motivate by 1.",
@@ -1948,7 +1953,7 @@
 		},
 		"animator:Cecily":
 		{
-			"DESCRIPTION": "Discard ALL cards in your hand. || Draw a Low-Cost card from your draw pile for each card discarded.",
+			"DESCRIPTION": "Discard ALL cards in your hand. || Draw a {Low-Cost} card from your draw pile for each card discarded.",
 			"NAME": "Cecily"
 		},
 		"animator:Darkness":
@@ -2542,85 +2547,94 @@
 	{
 		"animator:CrowleyEusford":
 		{
-			"DESCRIPTION": "Boost [F] [A]. || If you Exhausted a card this turn: Motivate 1. || When Drawn: Gain !M! [Vigor] if any enemy has [Vulnerable].",
+			"DESCRIPTION": "Enter <WS> or <GS>. || On Exhaust: Gain [Vigor] equal to !M! plus your [Strength] plus your [Dexterity].",
 			"NAME": "Crowley Eusford"
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
-			"EXTENDED_DESCRIPTION": ["Whenever a card is Exhausted, a random enemy loses #b{0} HP and you gain #b{0} #yTemporary #yHP."],
+			"DESCRIPTION": "Whenever you Exhaust a card: Steal !M! [Temp HP] from a enemy. || <LIM>. If you have 20+ cards in Exhaust Pile: Enter <DS>.",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Exhausted: Steal #b{0} HP from a random enemy."],
 			"NAME": "Ferid Bathory"
 		},
 		"animator:Guren":
 		{
-			"DESCRIPTION": "Play the top !M! cards of ** your draw pile. Exhaust ** every Hindrance and ** {Attack} among them. || <SLM>. Gain 1 [Support Damage] for ** every !M! cards in Exhaust pile. (Max. !S!)",
+			"DESCRIPTION": "Play the top !M! cards of your draw pile. Exhaust every non-<L>, non-<D> card among them.",
 			"NAME": "Guren Ichinose"
 		},
 		"animator:HiiragiKureto":
 		{
-			"DESCRIPTION": "Exhaust a random card in hand for each unblocked hit. ** For each: The next Attack played triggers ALL [Lightning] ** (Channel [Lightning] first if you have none).",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you play an Attack: Channel [Lightning] if you have none, then trigger ALL [Lightning]."],
+			"DESCRIPTION": "Attack an extra time for each [Lightning]. || <LIM>. When Drawn: Exhaust another random card in hand and Channel !M! [Lightning].",
 			"NAME": "Kureto Hiiragi"
 		},
 		"animator:HiiragiShinya":
 		{
-			"DESCRIPTION": "Fetch a card from your ** discard pile and Retain it. ** It costs 1 more this turn. || Synergy or !A! <A>: Gain !M! [Support Damage].",
+			"DESCRIPTION": "Fetch a card from your discard pile and Retain it.  It costs 1 more this turn.",
 			"NAME": "Shinya Hiiragi"
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "Choose a card in your hand. Fetch a random card in your discard pile with that card's series. || Synergy or On Discard: Cycle a card.",
-			"EXTENDED_DESCRIPTION": ["Fetch Cards with the same Series."],
-			"NAME": "Shiho Kimizugi"
+			"DESCRIPTION": "Gain !M! [A] and [M].  || <LIM>. !A! [A] or [M]: Add {Mirai Kimizuki} to your discard pile.",
+			"NAME": "Shihou Kimizuki"
+		},
+		"animator:KimizugiMirai":
+		{
+			"DESCRIPTION": "If this is in your Exhaust pile: Your Attacks deal double damage.",
+			"NAME": "Mirai Kimizuki"
 		},
 		"animator:KrulTepes":
 		{
-			"DESCRIPTION": "Apply !M! [Weak]. If the enemy has [Vulnerable]: Gain !S! [Temp HP]. || <LIM>. If this card ** kills an Elite or Boss: ** Obtain a {Blood Vial}.",
+			"DESCRIPTION": "Apply !M! [Blinded]. || <LIM>. If this card kills a Normal Enemy, obtain a {Blood Vial}.",
 			"NAME": "Krul Tepes"
 		},
 		"animator:KyLuc":
 		{
-			"DESCRIPTION": "Deal !M! more damage for ** every [Delayed Damage] you have. || When drawn: ALL characters ** take !S! [Delayed Damage].",
+			"DESCRIPTION": "Deal additional damage equal to your [Delayed Damage]. || When drawn: Apply !M! [Delayed Damage] to ALL characters.",
 			"NAME": "Ky Luc"
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [W] @>@ 6: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
+			"DESCRIPTION": "Next turn: Have !M! less [Dexterity] until end of turn.",
 			"NAME": "Lest Karr"
+		},
+		"animator:HiiragiMahiru":
+		{
+			"DESCRIPTION": "Choose 1 of !M! {Form Powers} to gain.",
+			"EXTENDED_DESCRIPTION": ["Choose a Form Power to play."],
+			"NAME": "Mahiru Hiiragi"
 		},
 		"animator:Mikaela":
 		{
-			"DESCRIPTION": "Exhaust a card in ** your discard pile. || If you Exhausted a ** Hindrance: Gain !M! [F] and take !S! [Delayed Damage].",
+			"DESCRIPTION": "Exhaust a card in your discard pile.",
 			"NAME": "Mikaela Hyakuya"
 		},
 		"animator:Mitsuba":
 		{
-			"DESCRIPTION": "If the enemy has more ** [HP] than you, gain ** !S! additional [Block]. || On Exhaust: ** <DRW-M>.",
+			"DESCRIPTION": "Only gain [Block] if the enemy has more [HP] than you.",
 			"NAME": "Mitsuba Sanguu"
 		},
 		"animator:Shigure":
 		{
-			"DESCRIPTION": "@If@ <L> @>@ <A>, Gain !M! [Support Damage]. Otherwise, Apply !M! [Poison]. || <AS>: Cycle !S! cards.",
+			"DESCRIPTION": "Apply !M! [Poison].",
 			"NAME": "Shigure Yukimi"
 		},
 		"animator:Shinoa":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable] ** to ALL enemies. || Synergy or on ** Exhaust: Apply !M! ** [Weak] to ALL enemies.",
+			"DESCRIPTION": "Apply !M! [Vulnerable] to ALL enemies. || On Exhaust: Apply !M! [Vulnerable] to ALL enemies.",
 			"NAME": "Shinoa Hiiragi"
 		},
 		"animator:Yoichi":
 		{
-			"DESCRIPTION": "Discard 1 card. ** Gain 1 [Support Damage]. || <slm>. Synergy: ** Activate your [Support Damage].",
+			"DESCRIPTION": "Discard 1 card to gain !M! [Support Damage].",
 			"NAME": "Yoichi Saotome"
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. ** <AS>: {Maintain} [F]. || On Exhaust: Add {Asuramaru} to ** your discard pile.",
+			"DESCRIPTION": "Draw a <F> or <L> Attack. || On Exhaust: Add {Asuramaru} to your draw pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Boost !M! [F] [A] [W]. ** Obtain !M! {Wounds} and take !S! [Delayed Damage]. || If [D] > !S!: Gain [Demon Form].",
+			"DESCRIPTION": "Gain 1 [Strength] at the end of each turn.",
 			"NAME": "Asuramaru"
 		}
 	},
@@ -2888,6 +2902,26 @@
 			"DESCRIPTION": "<DRW-M>",
 			"NAME": "Insight"
 		},
+		"animator:HiiragiMahiru_Demon":
+		{
+			"DESCRIPTION": "Start of Turn: Gain !M! [Strength].",
+			"NAME": "Demon Form"
+		},
+		"animator:HiiragiMahiru_Deva":
+		{
+			"DESCRIPTION": "Start of Turn: Gain [EN].  Increase this gain by 1.",
+			"NAME": "Deva Form"
+		},
+		"animator:HiiragiMahiru_Echo":
+		{
+			"DESCRIPTION": "The first !M! card(s) you play each turn are played twice.",
+			"NAME": "Echo Form"
+		},
+		"animator:HiiragiMahiru_Wraith":
+		{
+			"DESCRIPTION": "Gain !M! Intangible.  End of Turn: Lose [Dexterity].",
+			"NAME": "Wraith Form"
+		},
 		"animator:Miracle":
 		{
 			"DESCRIPTION": "Gain !M! [EN].",
@@ -3067,10 +3101,10 @@
 			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal, 40% chance to ** obtain a {Relic} at the ** end of combat.",
 			"NAME": "'Hero'"
 		},
-		"animator:HiiragiMahiru":
+		"animator:HiiragiTenri":
 		{
 			"DESCRIPTION": "Play and Exhaust ALL cards ** in your discard pile. || <LIM>. On Exhaust: ** Shuffle your Exhaust pile ** into your draw pile.",
-			"NAME": "Mahiru Hiiragi"
+			"NAME": "Tenri Hiiragi"
 		},
 		"animator:HolyGrail":
 		{

@@ -2598,7 +2598,7 @@
 		},
 		"animator:HiiragiMahiru":
 		{
-			"DESCRIPTION": "Choose 1 of !M! {Form Powers} to gain.",
+			"DESCRIPTION": "Choose 1 of !M! Form Powers to gain.",
 			"EXTENDED_DESCRIPTION": ["Choose a Form Power to play."],
 			"NAME": "Mahiru Hiiragi"
 		},

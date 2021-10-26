@@ -70,6 +70,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCooldownTriggeredSubscriber> onCooldownTriggered = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCostChangedSubscriber> onCostChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnDamageGiveSubscriber> onDamageGive = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnDamageFinalGiveSubscriber> onDamageFinalGive = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
@@ -257,6 +259,26 @@ public class CombatStats extends EYBPower implements InvisiblePower
         for (OnRawDamageReceived s : onRawDamageReceived.GetSubscribers())
         {
             damage = s.OnRawDamageReceived(target, info, damage);
+        }
+
+        return damage;
+    }
+
+    public static float OnDamageGive(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
+    {
+        for (OnDamageGiveSubscriber s : onDamageGive.GetSubscribers())
+        {
+            damage = s.OnDamageGive(target, type, damage, card);
+        }
+
+        return damage;
+    }
+
+    public static float OnDamageFinalGive(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
+    {
+        for (OnDamageFinalGiveSubscriber s : onDamageFinalGive.GetSubscribers())
+        {
+            damage = s.OnDamageFinalGive(target, type, damage, card);
         }
 
         return damage;

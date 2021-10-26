@@ -1028,6 +1028,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
         }
 
+        tempDamage = CombatStats.OnDamageGive(enemy, damageTypeForTurn, tempDamage, this);
         tempBlock = ModifyBlock(enemy, tempBlock);
 
         for (AbstractPower p : player.powers)
@@ -1090,6 +1091,8 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             }
             tempDamage = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, tempDamage, this);
         }
+
+        tempDamage = CombatStats.OnDamageFinalGive(enemy, damageTypeForTurn, tempDamage, this);
 
         UpdateBlock(tempBlock);
         UpdateDamage(tempDamage);

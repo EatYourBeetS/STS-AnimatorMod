@@ -10,10 +10,11 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.subscribers.OnDamageOverrideSubscriber;
+import eatyourbeets.interfaces.subscribers.OnDamageFinalGiveSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class KimizugiMirai extends AnimatorCard implements OnDamageOverrideSubscriber {
+public class KimizugiMirai extends AnimatorCard implements OnDamageFinalGiveSubscriber {
     public static final EYBCardData DATA = Register(KimizugiMirai.class)
             .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
@@ -27,10 +28,19 @@ public class KimizugiMirai extends AnimatorCard implements OnDamageOverrideSubsc
 
         SetAffinity_Fire(2);
         SetAffinity_Light(2);
+
+        SetExhaust(true);
     }
 
     @Override
-    public float OnDamageOverride(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
+    public void triggerOnExhaust() {
+        super.triggerOnExhaust();
+
+        CombatStats.onDamageFinalGive.Subscribe(this);
+    }
+
+    @Override
+    public float OnDamageFinalGive(AbstractCreature target, DamageInfo.DamageType type, float damage, AbstractCard card)
     {
         if (player.exhaustPile.contains(this))
         {

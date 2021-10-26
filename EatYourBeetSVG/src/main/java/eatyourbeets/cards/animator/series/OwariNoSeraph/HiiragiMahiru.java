@@ -54,7 +54,13 @@ public class HiiragiMahiru extends AnimatorCard {
         CardGroup selection = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         for (int i=0; i<magicNumber; i++) {
-            selection.addToBottom(formPowers.Retrieve(rng));
+            AbstractCard form = formPowers.Retrieve(rng).makeCopy();
+
+            if (upgraded) {
+                form.upgrade();
+            }
+
+            selection.addToBottom(form);
         }
 
         GameActions.Bottom.SelectFromPile(name, 1, selection)

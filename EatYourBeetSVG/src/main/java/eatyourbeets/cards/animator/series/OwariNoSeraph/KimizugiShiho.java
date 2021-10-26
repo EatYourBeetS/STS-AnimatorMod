@@ -23,7 +23,7 @@ public class KimizugiShiho extends AnimatorCard
         SetAffinity_Earth();
         SetAffinity_Mind();
 
-        SetAffinityRequirement(Affinity.Air, 20);
+        SetAffinityRequirement(Affinity.Earth, 20);
         SetAffinityRequirement(Affinity.Mind, 20);
     }
 
@@ -32,11 +32,11 @@ public class KimizugiShiho extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.RaiseAirLevel(magicNumber);
+        GameActions.Bottom.RaiseMindLevel(magicNumber);
         GameActions.Bottom.RaiseEarthLevel(magicNumber);
 
         GameActions.Last.Callback(() -> {
-           if (CheckAffinity(Affinity.Air) || CheckAffinity(Affinity.Mind))
+           if (CheckAffinity(Affinity.Earth) || CheckAffinity(Affinity.Mind))
            {
                if (CombatStats.TryActivateLimited(cardID))
                {

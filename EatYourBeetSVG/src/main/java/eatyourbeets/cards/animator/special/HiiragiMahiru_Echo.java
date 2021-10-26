@@ -4,12 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EchoPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 
-public class HiiragiMahiru_Echo extends AnimatorCard {
-    public static final EYBCardData DATA = Register(HiiragiMahiru_Echo.class).SetPower(4, CardRarity.SPECIAL).SetSeriesFromClassPackage();
+public class HiiragiMahiru_Echo extends AnimatorCard implements Hidden {
+    public static final EYBCardData DATA = Register(HiiragiMahiru_Echo.class).SetPower(4, CardRarity.SPECIAL).SetSeries(CardSeries.OwariNoSeraph);
 
     public HiiragiMahiru_Echo() {
         super(DATA);

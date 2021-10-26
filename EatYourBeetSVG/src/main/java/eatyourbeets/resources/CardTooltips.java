@@ -53,12 +53,14 @@ public class CardTooltips
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Purge = FindByID("Purge");
     public EYBCardTooltip ChaikaClone = FindByID("Chaika Clone");
-    public EYBCardTooltip FormPower = FindByID("Form Power");
 
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip GuardStance = FindByID("Guard Stance");
     public EYBCardTooltip OrbStance = FindByID("Orb Stance");
+    public EYBCardTooltip WrathStance = FindByID("Wrath Stance");
+    public EYBCardTooltip CalmStance = FindByID("Calm Stance");
+    public EYBCardTooltip DivinityStance = FindByID("Divinity Stance");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");

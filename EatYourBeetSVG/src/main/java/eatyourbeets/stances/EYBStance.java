@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
-import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.stances.NeutralStance;
+import com.megacrit.cardcrawl.stances.*;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
@@ -38,25 +37,14 @@ public abstract class EYBStance extends AbstractStance
         stances.put(GuardStance.STANCE_ID, GuardStance::new);
         stances.put(OrbStance.STANCE_ID, OrbStance::new);
 
-        //legacy
-        stances.put(ForceStance.STANCE_ID, ForceStance::new);
-        stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
-        stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
-        stances.put(WillpowerStance.STANCE_ID, WillpowerStance::new);
-        stances.put(BlessingStance.STANCE_ID, BlessingStance::new);
-        stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
-
         tooltips.clear();
         tooltips.put(GuardStance.STANCE_ID, GR.Tooltips.GuardStance);
         tooltips.put(OrbStance.STANCE_ID, GR.Tooltips.OrbStance);
 
         //legacy
-        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
-        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
-        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
-        tooltips.put(WillpowerStance.STANCE_ID, GR.Tooltips.WillpowerStance);
-        tooltips.put(BlessingStance.STANCE_ID, GR.Tooltips.BlessingStance);
-        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
+        tooltips.put(WrathStance.STANCE_ID, GR.Tooltips.WrathStance);
+        tooltips.put(CalmStance.STANCE_ID, GR.Tooltips.CalmStance);
+        tooltips.put(DivinityStance.STANCE_ID, GR.Tooltips.DivinityStance);
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 

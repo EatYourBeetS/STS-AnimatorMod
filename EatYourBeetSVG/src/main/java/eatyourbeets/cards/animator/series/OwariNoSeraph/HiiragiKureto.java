@@ -34,7 +34,8 @@ public class HiiragiKureto extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ExhaustFromHand(name, 1, true);
+            GameActions.Bottom.ExhaustFromHand(name, 1, true)
+            .SetFilter(card -> card != this);
             GameActions.Bottom.ChannelOrbs(Lightning::new, magicNumber);
         }
     }

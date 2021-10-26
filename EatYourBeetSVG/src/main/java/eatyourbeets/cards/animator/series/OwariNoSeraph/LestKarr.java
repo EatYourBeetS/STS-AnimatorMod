@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.Overlord.CZDelta;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -35,7 +34,7 @@ public class LestKarr extends AnimatorCard implements OnStartOfTurnPostDrawSubsc
     {
         GameActions.Bottom.DealDamageToAll(this, GR.Enums.AttackEffect.SPEAR);
 
-        CombatStats.onStartOfTurnPostDraw.Subscribe((CZDelta) makeStatEquivalentCopy());
+        CombatStats.onStartOfTurnPostDraw.Subscribe((LestKarr) makeStatEquivalentCopy());
     }
 
     @Override

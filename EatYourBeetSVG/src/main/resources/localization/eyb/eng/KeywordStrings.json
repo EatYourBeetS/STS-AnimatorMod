@@ -260,7 +260,7 @@
 	},
 	"Guard Stance":
 	{
-		"DESCRIPTION": "Upon entering Guard Stance: ALL characters gain 10 Block. || Start of Turn: ALL characters gain 15 Block.",
+		"DESCRIPTION": "Upon entering Guard Stance: ALL characters gain 10 Block. || Start of Turn: ALL characters gain 10 Block.",
 		"NAMES": ["guard stance"],
 		"PROPER_NAME": "Guard Stance"
 	},

@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
+import eatyourbeets.stances.GuardStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -52,7 +52,7 @@ public class CrowleyEusford extends AnimatorCard
         if (choices.TryInitialize(this))
         {
             choices.AddEffect(new GenericEffect_EnterStance(WrathStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(CalmStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(GuardStance.STANCE_ID));
         }
         choices.Select(1, m);
     }

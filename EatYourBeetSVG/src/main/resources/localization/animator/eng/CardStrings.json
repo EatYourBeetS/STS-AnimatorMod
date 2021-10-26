@@ -2573,7 +2573,7 @@
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "Gain !M! [A] and [M].  || <LIM>. !A! [A] or [M]: Add {Mirai Kimizuki} to your discard pile.",
+			"DESCRIPTION": "Gain !M! [E] and [M].  || <LIM>. !A! [E] or [M]: Add {Mirai Kimizuki} to your discard pile.",
 			"NAME": "Shihou Kimizuki"
 		},
 		"animator:KimizugiMirai":
@@ -2899,7 +2899,7 @@
 		},
 		"animator:Insight":
 		{
-			"DESCRIPTION": "<DRW-M>",
+			"DESCRIPTION": "<DRW-M>.",
 			"NAME": "Insight"
 		},
 		"animator:HiiragiMahiru_Demon":

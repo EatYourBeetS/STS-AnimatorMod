@@ -1,14 +1,11 @@
-package eatyourbeets.cards.animator.series.OwariNoSeraph;
+package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.HiiragiMahiru_Demon;
-import eatyourbeets.cards.animator.special.HiiragiMahiru_Deva;
-import eatyourbeets.cards.animator.special.HiiragiMahiru_Echo;
-import eatyourbeets.cards.animator.special.HiiragiMahiru_Wraith;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
@@ -26,7 +23,8 @@ public class HiiragiMahiru extends AnimatorCard {
 
     public static final EYBCardData DATA = Register(HiiragiMahiru.class)
             .SetPower(4, CardRarity.RARE)
-            .SetSeriesFromClassPackage()
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OwariNoSeraph)
             .PostInitialize(data ->
             {
                 data.AddPreviews(Arrays.asList(forms), false);

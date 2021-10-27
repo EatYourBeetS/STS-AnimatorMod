@@ -40,7 +40,6 @@ public class Kaijin extends AnimatorCard implements OnAddToDeckListener
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ChangeStance(OrbStance.STANCE_ID); //LZLZLZ test
         GameActions.Bottom.StackPower(new KaijinPower(p, magicNumber));
     }
 

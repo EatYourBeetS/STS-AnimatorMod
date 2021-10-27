@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
-import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaKamaz;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
@@ -56,7 +55,7 @@ public class Giselle extends AnimatorCard_UltraRare
 
     public static class GisellePower extends AnimatorPower implements OnAfterCardPlayedSubscriber {
         public GisellePower(AbstractPlayer owner, int amount) {
-            super(owner, ChaikaKamaz.DATA);
+            super(owner, Giselle.DATA);
 
             this.amount = amount;
 

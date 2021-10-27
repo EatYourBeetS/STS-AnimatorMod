@@ -94,7 +94,7 @@ public class VariableToken extends CTToken
             final ArrayList<Affinity> types = new ArrayList<>();
             while (true)
             {
-                final CTToken next = line.Get(line.tokenIndex + (i++));
+                final CTToken next = line.Get(context, line.tokenIndex + (i++));
                 if (next instanceof SymbolToken)
                 {
                     Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);

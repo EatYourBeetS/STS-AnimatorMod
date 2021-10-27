@@ -7,6 +7,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class ResistancePower extends CommonPower
 {
+    public static final int MULTIPLIER = 4;
     public static final String POWER_ID = CreateFullID(ResistancePower.class);
 
     public ResistancePower(AbstractCreature owner, int amount)
@@ -24,7 +25,7 @@ public class ResistancePower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount);
+        this.description = FormatDescription(0, amount * MULTIPLIER);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -57,7 +58,7 @@ public class ResistancePower extends CommonPower
     {
         if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.type != DamageInfo.DamageType.HP_LOSS && info.owner != this.owner)
         {
-            GameActions.Top.GainSupportDamage(amount);
+            GameActions.Top.GainSupportDamage(amount * MULTIPLIER);
             this.flash();
         }
 

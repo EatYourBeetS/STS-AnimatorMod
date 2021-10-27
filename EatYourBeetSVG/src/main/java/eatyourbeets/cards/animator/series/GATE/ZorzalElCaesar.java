@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -16,11 +17,17 @@ public class ZorzalElCaesar extends AnimatorCard {
     public ZorzalElCaesar() {
         super(DATA);
 
-        Initialize(5, 0, 8, 2);
-        SetUpgrade(0, 0, 2, 1);
+        Initialize(5, 0, 5, 2);
+        SetUpgrade(0, 0, 3, 1);
 
         SetAffinity_Earth(2);
         SetAffinity_Poison(2);
+    }
+
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return super.GetDamageInfo().AddMultiplier(GameUtilities.GetXCostEnergy(this));
     }
 
     @Override
@@ -33,7 +40,9 @@ public class ZorzalElCaesar extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        for (int i=0; i< GameUtilities.GetXCostEnergy(this); i++) {
+        int stacks = GameUtilities.UseXCostEnergy(this);
+
+        for (int i=0; i<stacks; i++) {
             GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
                     .AddCallback(enemy -> {
                         for (AbstractPower power : enemy.powers)

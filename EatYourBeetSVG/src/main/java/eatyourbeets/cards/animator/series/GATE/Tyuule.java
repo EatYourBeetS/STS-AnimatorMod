@@ -6,13 +6,15 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Tyuule extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Tyuule.class)
-            .SetSkill(1, CardRarity.COMMON)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Tyuule()
@@ -28,8 +30,9 @@ public class Tyuule extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber)
-        .AddCallback(power -> {
+        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), magicNumber);
+
+        GameActions.Last.Callback(power -> {
             for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
             {
                 for (AbstractPower debuff : enemy.powers)

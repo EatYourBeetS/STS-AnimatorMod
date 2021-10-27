@@ -346,7 +346,7 @@ public class GameUtilities
 
     public static boolean HasFullHand()
     {
-        return player.hand.size() >= 6;
+        return player != null && player.hand != null && player.hand.size() >= 6;
     }
 
     public static AbstractOrb GetFirstOrb(String orbID)
@@ -1030,6 +1030,11 @@ public class GameUtilities
 
     public static int GetCommonOrbCount()
     {
+        if (player == null || player.orbs == null)
+        {
+            return 0;
+        }
+
         int numCommonOrbs = 0;
 
         for (AbstractOrb orb : player.orbs)
@@ -1178,9 +1183,14 @@ public class GameUtilities
 
     public static int GetXCostEnergy(AbstractCard card)
     {
+        if (!GameUtilities.InBattle())
+        {
+            return 3;
+        }
+
         int amount = EnergyPanel.getCurrentEnergy();
 
-        if (card.energyOnUse != -1)
+        if (card.energyOnUse > 0)
         {
             amount = card.energyOnUse;
         }

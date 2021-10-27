@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.stances.CalmStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.stances.WrathStance;
@@ -13,7 +12,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.GuardStance;
-import eatyourbeets.stances.OrbStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -69,10 +67,6 @@ public class Kuribayashi extends AnimatorCard
         {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
             GameActions.Bottom.GainSupportDamage(secondaryValue);
-        }
-        else if (GameUtilities.InStance(OrbStance.STANCE_ID))
-        {
-            GameActions.Bottom.ChannelOrb(new Plasma());
         }
     }
 }

@@ -15,25 +15,19 @@ import eatyourbeets.utilities.GameUtilities;
 public class MariKurokawa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MariKurokawa.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public MariKurokawa()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Light();
+        SetAffinity_Light(2);
 
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetRetain(true);
     }
 
     @Override
@@ -41,7 +35,7 @@ public class MariKurokawa extends AnimatorCard
     {
         int tempHP = magicNumber * GameUtilities.GetBuffsCount(player);
 
-        return tempHP > 0 ? TempHPAttribute.Instance.SetCard(this, false).SetText(magicNumber, Colors.Cream(1)) : null;
+        return tempHP > 0 ? TempHPAttribute.Instance.SetCard(this, false).SetText(tempHP, Colors.Cream(1)) : null;
     }
 
     @Override

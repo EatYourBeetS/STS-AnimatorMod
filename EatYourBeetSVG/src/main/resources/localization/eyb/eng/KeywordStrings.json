@@ -92,7 +92,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Blinded], [Burning], [Shackles], [Lock-On], [Freezing].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Blinded], [Burning], [Shackles], [~Lock-On], [Freezing].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -530,7 +530,7 @@
 	},
 	"Resistance":
 	{
-		"DESCRIPTIONS": ["Whenever you are attacked, gain #ySupport #yDamage."],
+		"DESCRIPTIONS": ["Whenever you are attacked, gain #ySupport #yDamage equal to 4 times the amount."],
 		"NAMES": ["resistance"],
 		"NAME": "Resistance"
 	},

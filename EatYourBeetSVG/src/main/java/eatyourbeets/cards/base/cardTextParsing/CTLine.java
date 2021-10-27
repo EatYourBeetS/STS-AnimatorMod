@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -54,9 +55,16 @@ public class CTLine
         }
     }
 
-    public CTToken Get(int index)
+    public CTToken Get(CTContext context, int index)
     {
-        return (index >= tokens.size()) ? null : tokens.get(index);
+        try {
+            return (index >= tokens.size()) ? null : tokens.get(index);
+        }
+        catch (Exception e)
+        {
+            JUtils.LogError(this, "ERROR: Cannot parse token at index "+index+" for card "+context.card.name);
+            throw e;
+        }
     }
 
     public float CalculateHeight(BitmapFont font)

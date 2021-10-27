@@ -26,6 +26,7 @@ public class Gluttony extends AnimatorCard
         SetAffinity_Earth();
         SetAffinity_Nature();
 
+        SetDelayed(true);
         SetHaste(true);
         SetExhaust(true);
     }

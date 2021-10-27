@@ -19,7 +19,7 @@ public class YaoHaDucy extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0);
+        Initialize(1, 0);
         SetUpgrade(3, 0);
 
         SetAffinity_Dark();

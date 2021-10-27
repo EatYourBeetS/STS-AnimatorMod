@@ -1639,7 +1639,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "<WS>: Apply !M! [Shackles]. ** <GS>: Attack two additional times. ** <CS>: Exit your stance. Gain !S! [Support Damage] ** <OS>: Channel [Plasma].",
+			"DESCRIPTION": "<WS>: Apply !M! [Shackles]. || <GS>: Attack two additional times. || <CS>: Exit your Stance. Gain !S! [Support Damage].",
 			"NAME": "Shino Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
@@ -1650,7 +1650,7 @@
 		"animator:MoltSolAugustus":
 		{
 			"DESCRIPTION": "Draw 1 less card each turn. || Start of turn: Add an {Imperial Archers} to your hand.",
-			"EXTENDED_DESCRIPTION": ["Start of Turn: Add #b{0} #yImperial #yArchers to your hand. || Draw #b{1} less card(s) each turn."],
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Add #b{0} #yImperial #yArchers to your hand. || Draw #b{1} less card(s) each turn.","Start of Turn: Add #b{0} upgraded #yImperial #yArchers to your hand. || Draw #b{1} less card(s) each turn."],
 			"NAME": "Molt Sol Augustus",
 			"UPGRADE_DESCRIPTION": "Draw 1 less card each turn. || At start of turn: Add an upgraded {Imperial Archers} to your hand."
 		},
@@ -1661,12 +1661,12 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "The first {0-Cost} card you play each turn is played twice."
+			"DESCRIPTION": "The first {0-Cost} card you play each turn is played twice.",
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "!M! [Support Damage]: Gain [Counter-Attack] equal to the damage dealt. || On Discard with !A! [F], [E], or [P]: Gain !S! [Panache] for each threshold reached.",
+			"DESCRIPTION": "!M! [Support Damage]: Gain [Counter-Attack] equal to the damage dealt. || On Discard with !A! [F] [E] or [P]: Gain !S! [Panache] for each threshold reached.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":

@@ -61,7 +61,7 @@ public class ArthurGaz extends AnimatorCard {
             super(owner, ArthurGaz.DATA);
 
             this.amount = amount;
-            this.upgraded = true;
+            this.upgraded = upgraded;
 
             updateDescription();
         }

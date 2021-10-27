@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.GATE;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -16,7 +17,7 @@ public class MoltSolAugustus extends AnimatorCard
     public static final EYBCardData DATA = Register(MoltSolAugustus.class)
             .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), false));
+            .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), true));
 
     public MoltSolAugustus()
     {
@@ -32,24 +33,26 @@ public class MoltSolAugustus extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, 1, upgraded));
     }
 
     public static class MoltSolAugustusPower extends AnimatorPower
     {
         public static final int DRAW_REDUCTION = 1;
+        boolean upgraded;
 
-        public MoltSolAugustusPower(AbstractCreature owner, int amount)
+        public MoltSolAugustusPower(AbstractCreature owner, int amount, boolean upgraded)
         {
             super(owner, MoltSolAugustus.DATA);
 
+            this.upgraded = upgraded;
             Initialize(amount);
         }
 
         @Override
         public void updateDescription()
         {
-            this.description = FormatDescription(0, amount, DRAW_REDUCTION);
+            this.description = FormatDescription(upgraded ? 1 : 0, amount, DRAW_REDUCTION);
         }
 
         @Override
@@ -73,7 +76,13 @@ public class MoltSolAugustus extends AnimatorCard
         {
             super.atStartOfTurn();
 
-            GameActions.Bottom.MakeCardInHand(new MoltSolAugustus_ImperialArchers())
+            AbstractCard archer = new MoltSolAugustus_ImperialArchers();
+            if (upgraded)
+            {
+                archer.upgrade();
+            }
+
+            GameActions.Bottom.MakeCardInHand(archer)
             .Repeat(amount).SetDuration(0.1f, false);
         }
     }

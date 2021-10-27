@@ -27,6 +27,8 @@ public class TukaLunaMarceau extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
+
         if (p.currentBlock <= 0)
         {
             GameActions.Bottom.Draw(1);

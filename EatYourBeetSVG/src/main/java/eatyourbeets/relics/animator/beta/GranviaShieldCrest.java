@@ -22,6 +22,15 @@ public class GranviaShieldCrest extends AnimatorRelic implements OnLoseHpSubscri
         super(ID, RelicTier.SPECIAL, LandingSound.CLINK);
     }
 
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+        if (tips.size() > 0)
+        {
+            tips.get(0).description = GetFullDescription();
+        }
+    }
 
     @Override
     public void atBattleStart()

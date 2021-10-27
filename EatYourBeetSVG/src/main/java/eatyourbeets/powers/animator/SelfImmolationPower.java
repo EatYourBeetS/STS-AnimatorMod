@@ -2,7 +2,6 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
@@ -29,7 +28,7 @@ public class SelfImmolationPower extends AnimatorPower
 
     @Override
     public void onGainedBlock(float blockAmount) {
-        ApplyDebuff(MathUtils.floor(blockAmount));
+        ApplyDebuff(MathUtils.floor(blockAmount * 2));
     }
 
     @Override
@@ -55,15 +54,8 @@ public class SelfImmolationPower extends AnimatorPower
 
     private void ApplyDebuff(int amount) {
         if (amount > 0) {
-            GameActions.Bottom.DealDamageAtEndOfTurn(owner, owner, amount, AttackEffects.CLAW);
-            if (GameUtilities.IsPlayer(owner)) {
-                AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-                if (mo != null) {
-                    GameActions.Bottom.DealDamageAtEndOfTurn(owner, mo, amount, AttackEffects.CLAW);
-                }
-            }
-            else {
-                GameActions.Bottom.DealDamageAtEndOfTurn(owner, player, amount, AttackEffects.CLAW);
+            for (AbstractCreature cr : GameUtilities.GetAllCharacters(true)) {
+                GameActions.Bottom.DealDamageAtEndOfTurn(owner, cr, amount, AttackEffects.CLAW);
             }
         }
     }

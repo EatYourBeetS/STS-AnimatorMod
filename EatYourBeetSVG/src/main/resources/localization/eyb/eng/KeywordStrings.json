@@ -158,7 +158,7 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gains #yCharge as you expend [A-Gen] or gain debuffs. NL When you play a card targeting an enemy, Consume 6 #yCharge to apply a random #yCommon #yDebuff to the target, ignoring [Artifact] (this effect can stack).",
+	  "DESCRIPTION": "Gains #yCharge as you expend [A-Gen] or gain debuffs. NL When you play a card targeting an enemy, Consume 6 #yCharge to apply [Tainted] to the target, ignoring [Artifact] (this effect can stack).",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
@@ -216,6 +216,12 @@
 	  "NAMES": ["eternal"],
 	  "PROPER_NAME": "Eternal"
 	},
+	"Exchange":
+	{
+		"DESCRIPTION": "Fetch cards from a pile, then move the same number of cards from your hand to the top of that pile.",
+		"NAMES": ["exchange"],
+		"PROPER_NAME": "Exchange"
+	},
 	"Fetch":
 	{
 		"DESCRIPTION": "Choose a card and move it to your hand.",
@@ -248,7 +254,7 @@
 	},
 	"Freezing":
 	{
-		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (min. #b1 less damage). This multiplier can be increased up to #b40% by card effects. NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (min. #b1 less damage). This multiplier can be increased up to #b50% by card effects. NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
@@ -426,17 +432,17 @@
 	  "NAMES": ["rejuvenation"],
 	  "PROPER_NAME": "Rejuvenation"
 	},
-	"Replace":
-	{
-		"DESCRIPTION": "Exhaust a card and create another card in its place.",
-		"NAMES": ["replace"],
-		"PROPER_NAME": "Replace"
-	},
 	"Same-Series":
 	{
 		"DESCRIPTION": "A card belonging to the same series as this one.",
 		"NAMES": ["same-series"],
 		"PROPER_NAME": "Same-series"
+	},
+	"Self-Immolation":
+	{
+	  "DESCRIPTION": "When you gain [Block] from any source, ALL characters take twice that much [Delayed Damage].",
+	  "NAMES": ["self-immolation"],
+	  "PROPER_NAME": "Self-Immolation"
 	},
 	"Semi-Limited":
 	{
@@ -485,6 +491,12 @@
 		"DESCRIPTION": "A card that Synergizes with this card.",
 		"NAMES": ["synergic"],
 		"PROPER_NAME": "Synergic"
+	},
+	"Tainted":
+	{
+		"DESCRIPTION": "Take additional damage from attacks and Orbs. Deal 1 less damage with attacks. Reduced by half each turn.",
+		"NAMES": ["tainted"],
+		"PROPER_NAME": "Tainted"
 	},
 	"Teamwork":
 	{

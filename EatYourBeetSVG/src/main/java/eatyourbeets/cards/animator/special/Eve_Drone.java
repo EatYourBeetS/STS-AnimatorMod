@@ -18,20 +18,45 @@ public class Eve_Drone extends AnimatorCard
             .SetAttack(0, CardRarity.SPECIAL, EYBAttackType.Ranged)
             .SetSeries(Eve.DATA.Series);
 
-    public Eve_Drone()
+    public Eve_Drone() {
+        this(0);
+    }
+
+    public Eve_Drone(int form)
     {
         super(DATA);
 
-        Initialize(4, 0, 1, 0);
+        Initialize(3, 0, 1, 0);
         SetAffinity_Silver(2, 0, 0);
         SetRetain(true);
         SetCooldown(4, 2, this::OnCooldownCompleted);
+        SetForm(form, timesUpgraded);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (form == 1) {
+            LoadImage("1");
+            Initialize(0, 2, 1, 0);
+            SetUpgrade(1,1);
+        }
+        else {
+            LoadImage(null);
+            Initialize(3, 0, 1, 0);
+            SetUpgrade(1,1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.SetVFXColor(Color.CYAN));
+        if (damage > 0) {
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.SetVFXColor(Color.CYAN));
+        }
+        if (block > 0) {
+            GameActions.Bottom.GainBlock(block);
+        }
         GameActions.Last.MoveCard(this,player.hand).AddCallback(() -> {
             GameUtilities.SetUnplayableThisTurn(this);
             cooldown.ProgressCooldownAndTrigger(null);

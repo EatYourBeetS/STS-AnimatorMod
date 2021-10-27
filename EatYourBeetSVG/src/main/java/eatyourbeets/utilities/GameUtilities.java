@@ -51,6 +51,7 @@ import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.common.DesecrationPower;
 import eatyourbeets.powers.common.SuperchargedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
@@ -1597,6 +1598,15 @@ public class GameUtilities
             p.Maintain();
         }
     }
+
+    public static void RetainDesecration(boolean retain)
+    {
+        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
+        if (po != null) {
+            po.enabled = !retain;
+        }
+    }
+
 
     public static void RetainSupercharged(boolean retain)
     {

@@ -6,9 +6,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Shichika_Kyotouryuu;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -16,7 +18,6 @@ public class Shichika extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shichika.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Shichika_Kyotouryuu(), true));
 
@@ -32,9 +33,20 @@ public class Shichika extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(2);
 
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
+
         SetExhaust(true);
         SetProtagonist(true);
         SetHarmonic(true);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        SetExhaust(CombatStats.HasActivatedLimited(cardID) || !CheckAffinity(Affinity.Red) || !CheckAffinity(Affinity.Green));
     }
 
     @Override
@@ -45,6 +57,12 @@ public class Shichika extends AnimatorCard
         choices.AddEffect(new GenericEffect_Force(this));
         choices.AddEffect(new GenericEffect_Agility(this));
         choices.Select(1, m);
+
+        if (info.CanActivateLimited && TrySpendAffinity(Affinity.Red, Affinity.Green) && info.TryActivateLimited()) {
+            GameActions.Last.MoveCard(this, p.drawPile)
+                    .ShowEffect(true, true)
+                    .SetDestination(CardSelection.Random);
+        }
     }
 
     protected static class GenericEffect_Force extends GenericEffect

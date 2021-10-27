@@ -9,7 +9,7 @@ public class VestaElixirEffect_Willpower extends VestaElixirEffect
 {
     public VestaElixirEffect_Willpower(boolean upgraded)
     {
-        super(upgraded ? 4 : 3);
+        super(upgraded ? 8 : 6);
     }
 
     @Override

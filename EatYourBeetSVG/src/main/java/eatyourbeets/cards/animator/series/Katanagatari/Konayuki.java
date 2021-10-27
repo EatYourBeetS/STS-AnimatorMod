@@ -12,6 +12,7 @@ public class Konayuki extends AnimatorCard
     public static final EYBCardData DATA = Register(Konayuki.class)
             .SetSkill(2, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
+    public static final int THRESHOLD = 20;
 
     public Konayuki()
     {
@@ -54,6 +55,6 @@ public class Konayuki extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Red) > 6;
+        return GameUtilities.GetPowerAmount(Affinity.Red) >= THRESHOLD;
     }
 }

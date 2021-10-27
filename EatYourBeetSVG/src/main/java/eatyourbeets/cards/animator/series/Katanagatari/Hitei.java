@@ -31,6 +31,7 @@ public class Hitei extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Orange(2);
+        SetAffinity_Dark(1);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class Hitei extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, CARD_DRAW, EXHAUST_SELECTION_SIZE);
+            return FormatDescription(0, triggerCondition.requiredAmount, CARD_DRAW, EXHAUST_SELECTION_SIZE, amount);
         }
 
         @Override
@@ -67,20 +68,17 @@ public class Hitei extends AnimatorCard
         {
             super.atStartOfTurnPostDraw();
 
-            for (int i = 0; i < amount; i++)
+            GameActions.Bottom.Callback(() ->
             {
-                GameActions.Bottom.Callback(() ->
+                if (player.drawPile.size() < EXHAUST_SELECTION_SIZE)
                 {
-                    if (player.drawPile.size() < EXHAUST_SELECTION_SIZE)
-                    {
-                        GameActions.Top.Callback(new EmptyDeckShuffleAction(), this::ExhaustCards);
-                    }
-                    else
-                    {
-                        ExhaustCards();
-                    }
-                });
-            }
+                    GameActions.Top.Callback(new EmptyDeckShuffleAction(), this::ExhaustCards);
+                }
+                else
+                {
+                    ExhaustCards();
+                }
+            });
 
             this.flash();
         }
@@ -97,7 +95,11 @@ public class Hitei extends AnimatorCard
             if (group.size() >= EXHAUST_SELECTION_SIZE)
             {
                 GameActions.Top.ExhaustFromPile(name, 1, group)
-                .SetOptions(false, false);
+                .SetOptions(false, true).AddCallback(cards -> {
+                    if (cards.size() > 0) {
+                        GameActions.Bottom.GainTemporaryHP(cards.size() * amount);
+                    }
+                });
             }
         }
     }

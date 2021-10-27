@@ -187,7 +187,7 @@ public class HigakiRinne extends AnimatorCard
         }
         else if (type == CardType.POWER)
         {
-            LoadImage("Power");
+            LoadImage("Attack");
             this.type = CardType.POWER;
             this.target = CardTarget.SELF;
         }

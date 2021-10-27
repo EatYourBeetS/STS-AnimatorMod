@@ -47,7 +47,7 @@ public class TheMysteriousPeak extends EYBEvent
     private static class Hunt extends EYBEventPhase<TheMysteriousPeak, TheMysteriousPeak.EventStrings>
     {
         private final AbstractCard obtainedCard = new Ganyu();
-        private final int HP_LOSS = 40;
+        private final int HP_LOSS = player.currentHealth / 2;
 
         @Override
         protected void OnEnter()

@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Clownpiece extends AnimatorCard
+public class Clownpiece extends AnimatorCard //TODO Provoke the enemy
 {
     public static final EYBCardData DATA = Register(Clownpiece.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
@@ -67,6 +67,9 @@ public class Clownpiece extends AnimatorCard
                 else
                 {
                     GameActions.Top.Draw(1);
+                    //for (AbstractMonster mp : GameUtilities.GetEnemies(true)) {
+                        //mp.setMove();
+                    //}
                 }
             }
         });

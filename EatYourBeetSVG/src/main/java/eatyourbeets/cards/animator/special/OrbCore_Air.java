@@ -8,7 +8,7 @@ import eatyourbeets.resources.GR;
 public class OrbCore_Air extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Air.class, GR.Tooltips.Air, GR.Tooltips.Agility, GR.Tooltips.Affinity_Green)
-            .SetPower(1, CardRarity.SPECIAL)
+            .SetPower(2, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Air()

@@ -21,7 +21,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     private static final Color healthBarColor = new Color(0.372F, 0.5F, 1.0F, 1.0F);
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
     public static final int REDUCTION_MULTIPLIER = 10;
-    public static final int MAX_REDUCTION_MULTIPLIER = 40;
+    public static final int MAX_REDUCTION_MULTIPLIER = 50;
     public static int PLAYER_REDUCTION_BONUS = 0;
     private static UUID battleID;
 

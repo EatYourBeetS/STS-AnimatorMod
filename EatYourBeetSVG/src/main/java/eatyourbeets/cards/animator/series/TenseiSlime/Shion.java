@@ -2,16 +2,14 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
-import eatyourbeets.powers.replacement.AnimatorWeakPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
@@ -32,18 +30,23 @@ public class Shion extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        BurningPower enemyBurning = GameUtilities.GetPower(enemy, BurningPower.class);
-        AnimatorVulnerablePower enemyVulnerable = GameUtilities.GetPower(enemy, AnimatorVulnerablePower.class);
-        AnimatorWeakPower playerWeak = GameUtilities.GetPower(player, AnimatorWeakPower.class);
-        if (enemyBurning != null) {
-            amount = BurningPower.CalculateDamage(amount, enemyBurning.GetMultiplier());
+        for (AbstractPower p : player.powers)
+        {
+            amount = p.atDamageGive(amount, damageTypeForTurn, this);
         }
-        if (enemyVulnerable != null) {
-            amount = AnimatorVulnerablePower.CalculateDamage(amount, enemyVulnerable.GetMultiplier());
+        for (AbstractPower p : enemy.powers)
+        {
+            amount = p.atDamageReceive(amount, damageTypeForTurn, this);
         }
-        if (playerWeak != null) {
-            amount = AnimatorWeakPower.CalculateDamage(amount, playerWeak.GetMultiplier());
+        for (AbstractPower p : player.powers)
+        {
+            amount = p.atDamageFinalGive(amount, damageTypeForTurn, this);
         }
+        for (AbstractPower p : enemy.powers)
+        {
+            amount = p.atDamageFinalReceive(amount, damageTypeForTurn, this);
+        }
+        amount = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, amount, this);
         return super.ModifyDamage(enemy, amount);
     }
 

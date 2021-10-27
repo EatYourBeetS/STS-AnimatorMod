@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -16,8 +17,8 @@ public class JumpyDumpty extends AnimatorCard {
     public JumpyDumpty() {
         super(DATA);
 
-        Initialize(12, 0, 1, 2);
-        SetUpgrade(4, 0, 0, 0);
+        Initialize(9, 0, 1, 3);
+        SetUpgrade(3, 0, 0, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Light(0,0,2);
         SetAutoplay(true);
@@ -55,8 +56,8 @@ public class JumpyDumpty extends AnimatorCard {
 
                     }));
 
-            GameActions.Bottom.ApplyBurning(player, priorityTarget, magicNumber);
         }
 
+        GameActions.Bottom.ChannelOrb(new Fire());
     }
 }

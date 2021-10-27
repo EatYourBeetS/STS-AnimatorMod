@@ -69,7 +69,7 @@ public class Chibimoth extends AnimatorCard
         .SetImagePath(assetUrl)
         .SetProperties(CardType.SKILL, rarity, CardTarget.NONE)
         .SetCost(-2, 0)
-        .SetNumbers(0,0,magicNumber,secondaryValue)
+        .SetNumbers(0,0,magicNumber,secondaryValue, 1)
         .SetOnUse(onSelect)
         .SetText(name, text, text).Build();
     }

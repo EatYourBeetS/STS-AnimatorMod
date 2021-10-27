@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -22,14 +19,15 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 3, 9, 2);
-        SetUpgrade(3, 0, 2, 1);
+        Initialize(13, 6, 9, 2);
+        SetUpgrade(3, 0, 3, 0);
 
-        SetAffinity_Red(2, 0, 0);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Silver(2, 0, 1);
         SetAffinity_Dark(1);
         SetAffinity_Blue(0,0,1);
 
+        SetAffinityRequirement(Affinity.Silver, 2);
         SetEvokeOrbCount(1);
     }
 
@@ -48,8 +46,10 @@ public class MetalKnight extends AnimatorCard
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.ChannelOrbs(Plasma::new, 1);
-        if (GameUtilities.CanTriggerSupercharged()) {
+        if (TrySpendAffinity(Affinity.Silver)) {
+            GameActions.Bottom.ChannelOrbs(Plasma::new, 1);
+        }
+        if (info.TryActivateLimited()) {
             GameActions.Bottom.GainMetallicize(secondaryValue);
         }
     }

@@ -1,18 +1,18 @@
-package eatyourbeets.misc.NanamiEffects;
+package eatyourbeets.misc.CounterIntentEffects;
 
-import eatyourbeets.effects.AttackEffects;
+import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.resources.GR;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 import eatyourbeets.utilities.GameUtilities;
 
-public class NanamiEffect_Defend_Debuff extends NanamiEffect
+public class CounterIntentEffect_Escape extends CounterIntentEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         int damage = GetDamage(nanami);
         if (damage > 0)
@@ -21,17 +21,17 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
             GameUtilities.UsePenNib();
         }
 
-        GameActions.Bottom.ApplyVulnerable(p, m, GetVulnerable(nanami));
+        GameActions.Bottom.ApplyPower(p, new StunMonsterPower(m, 1));
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
-        return ACTIONS.Apply(GetVulnerable(nanami), GR.Tooltips.Vulnerable, true);
+        return ACTIONS.Stun(true);
     }
 
     @Override
-    public int GetDamage(Nanami nanami)
+    public int GetDamage(EYBCard nanami)
     {
         if (nanami.energyOnUse > 0)
         {
@@ -41,10 +41,5 @@ public class NanamiEffect_Defend_Debuff extends NanamiEffect
         {
             return 0;
         }
-    }
-
-    private int GetVulnerable(Nanami nanami)
-    {
-        return nanami.energyOnUse + 1;
     }
 }

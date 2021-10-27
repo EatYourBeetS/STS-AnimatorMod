@@ -1,6 +1,5 @@
 package eatyourbeets.actions.animator;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -13,6 +12,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.AnimatorCardBuilder;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
@@ -284,23 +284,23 @@ public class SoraAction extends EYBAction
 
             if (this == GainBlock)
             {
-                builder.SetNumbers(0, number, 0, 0);
+                builder.SetNumbers(0, number, 0, 0, 1);
             }
             else if (this == DamageAll)
             {
                 builder.cardType = AbstractCard.CardType.ATTACK;
                 builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.ALL);
-                builder.SetNumbers(number, 0, 0, 0);
+                builder.SetNumbers(number, 0, 0, 0, 1);
             }
             else if (this == DamageRandomTwice)
             {
                 builder.cardType = AbstractCard.CardType.ATTACK;
                 builder.SetAttackType(EYBAttackType.Normal, EYBCardTarget.Random, 2);
-                builder.SetNumbers(number, 0, 2, 0);
+                builder.SetNumbers(number, 0, 2, 0, 1);
             }
             else
             {
-                builder.SetNumbers(0, 0, number, number);
+                builder.SetNumbers(0, 0, number, number, 1);
             }
 
             return builder;

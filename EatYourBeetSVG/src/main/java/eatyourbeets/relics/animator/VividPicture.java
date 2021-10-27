@@ -63,6 +63,7 @@ public class VividPicture extends EnchantableRelic implements OnSynergySubscribe
             {
                 ApplyEnchantment(relic.enchantment);
                 instantObtain(player, i, true);
+                setCounter(relic.counter);
                 return;
             }
         }

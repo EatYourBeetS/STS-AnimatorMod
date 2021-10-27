@@ -15,7 +15,7 @@ import eatyourbeets.stances.WillpowerStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Kagari extends AnimatorCard
+public class Kagari extends AnimatorCard //TODO add secondary effect
 {
     public static final EYBCardData DATA = Register(Kagari.class).SetPower(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
 

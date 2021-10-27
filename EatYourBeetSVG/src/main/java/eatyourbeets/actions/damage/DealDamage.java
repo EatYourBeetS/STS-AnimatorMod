@@ -61,7 +61,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.info = info;
         this.attackEffect = effect;
 
-        Initialize(info.owner, GameUtilities.IsDeadOrEscaped(target) ? GameUtilities.GetRandomEnemy(true) : target, info.output);
+        Initialize(info.owner, target == null || GameUtilities.IsDeadOrEscaped(target) ? GameUtilities.GetRandomEnemy(true) : target, info.output);
     }
 
     public DealDamage SetDamageEffect(FuncT1<Float, AbstractCreature> onDamageEffect)

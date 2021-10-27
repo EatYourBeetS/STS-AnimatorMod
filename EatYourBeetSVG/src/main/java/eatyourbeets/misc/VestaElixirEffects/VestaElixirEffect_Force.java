@@ -9,7 +9,7 @@ public class VestaElixirEffect_Force extends VestaElixirEffect
 {
     public VestaElixirEffect_Force(boolean upgraded)
     {
-        super(upgraded ? 4 : 3);
+        super(upgraded ? 8 : 6);
     }
 
     @Override

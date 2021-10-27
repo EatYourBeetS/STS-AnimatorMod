@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -10,8 +9,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.DelayedDamagePower;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
@@ -33,18 +30,9 @@ public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.Draw(magicNumber);
-
-        GameActions.Bottom.SelectFromHand(name, 1, false)
-                .SetOptions(false, false, false)
-                .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard card : cards) {
-                        GameActions.Bottom.MoveCard(card, player.hand, player.drawPile)
-                                .SetDestination(CardSelection.Top);
-                    }
-                });
+        GameActions.Bottom.FetchFromPile(name, magicNumber, player.discardPile).SetOptions(true,true);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+                .SetOptions(false, false, false);
 
         CombatStats.onEndOfTurn.SubscribeOnce(this);
     }

@@ -27,7 +27,7 @@ public class IzunaHatsuse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 0, 2, 1);
+        Initialize(1, 0, 3, 1);
         SetUpgrade(1, 1, 1);
 
         SetAffinity_Red(1);
@@ -63,7 +63,7 @@ public class IzunaHatsuse extends AnimatorCard
             GameActions.Bottom.GainBlock(block);
         }
 
-        if (GameUtilities.GetHealthPercentage(player) < 0.3f) {
+        if (GameUtilities.GetHealthPercentage(player) < 0.2f) {
             GameActions.Bottom.RecoverHP(magicNumber);
         }
     }

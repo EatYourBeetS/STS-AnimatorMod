@@ -31,7 +31,7 @@ public class PuriPuriPrisoner extends AnimatorCard
 
         SetAffinity_Red(2);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class PuriPuriPrisoner extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.StackPower(new PuriPuriPrisonerPower(p, 1));
-        if (TrySpendAffinity(Affinity.Green)) {
+        if (TrySpendAffinity(Affinity.Red)) {
             GameActions.Bottom.StackPower(new CounterAttackPower(p, magicNumber));
         }
     }
@@ -66,7 +66,7 @@ public class PuriPuriPrisoner extends AnimatorCard
             super.onAfterCardPlayed(card);
             if (card.type == CardType.ATTACK) {
                 if (!GameUtilities.HasGreenAffinity(card)) {
-                    GameActions.Bottom.GainBlock(MathUtils.ceil(card.damage * 0.75f));
+                    GameActions.Bottom.GainBlock(MathUtils.ceil(card.damage * 0.5f));
                 }
                 GameActions.Bottom.Exhaust(card);
                 this.RemovePower();

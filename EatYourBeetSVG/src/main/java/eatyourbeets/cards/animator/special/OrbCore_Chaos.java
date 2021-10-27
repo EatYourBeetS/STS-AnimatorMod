@@ -9,7 +9,7 @@ import eatyourbeets.resources.GR;
 public class OrbCore_Chaos extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Chaos.class, GR.Tooltips.Chaos, GR.Tooltips.Affinity_Star, GR.Tooltips.Affinity_General)
-            .SetPower(2, CardRarity.SPECIAL)
+            .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Chaos()

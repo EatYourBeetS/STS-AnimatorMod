@@ -15,6 +15,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
+//TODO If you already have one, gain 1 Genesis and give ALL enemies 1 Strength
 public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddingToCardRewardListener
 {
     private static final AbstractRelic relic = new PhilosopherStone();

@@ -91,6 +91,10 @@ public class TakashiNatsume extends AnimatorCard
         else if (c instanceof Shame) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Shame);
         }
+        //TODO slumber inverts impaired
+        //TODO eclipse recovers HP
+        //TODO destroyer damages only enemies
+        //TODO witches restore magical girl form
 
         GameActions.Bottom.MakeCardInHand(circle);
     }

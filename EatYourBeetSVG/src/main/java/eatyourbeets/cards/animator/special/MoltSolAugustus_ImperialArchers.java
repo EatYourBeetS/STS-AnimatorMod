@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.series.GATE.MoltSolAugustus;
+import eatyourbeets.cards.animator.series.GATE.ZorzalElCaesar;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -19,7 +19,7 @@ public class MoltSolAugustus_ImperialArchers extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MoltSolAugustus_ImperialArchers.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
-            .SetSeries(MoltSolAugustus.DATA.Series);
+            .SetSeries(ZorzalElCaesar.DATA.Series);
 
     public MoltSolAugustus_ImperialArchers()
     {

@@ -20,7 +20,7 @@ public class Enchantment3 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 5, 1);
+        Initialize(0, 0, 1, 5);
     }
 
     @Override

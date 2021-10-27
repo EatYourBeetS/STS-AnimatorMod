@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Lust extends AnimatorCard
@@ -18,11 +17,18 @@ public class Lust extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 2);
+        Initialize(0, 0, 5, 2);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Dark(1, 1, 0);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
 
+        SetAffinityRequirement(Affinity.Dark, 5);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetRetainOnce(true);
         SetAffinityRequirement(Affinity.Dark, 4);
     }
 
@@ -30,12 +36,6 @@ public class Lust extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber, AttackEffects.SLASH_VERTICAL);
-        if (upgraded) {
-            AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-            if (mo != null) {
-                GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, magicNumber, AttackEffects.SLASH_VERTICAL);
-            }
-        }
         int amount = TrySpendAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
         GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), amount);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);

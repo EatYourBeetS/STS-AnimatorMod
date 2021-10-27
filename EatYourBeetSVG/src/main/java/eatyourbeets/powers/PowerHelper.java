@@ -57,6 +57,8 @@ public class PowerHelper
     public static final PowerHelper TemporaryThorns = new PowerHelper(TemporaryThornsPower.POWER_ID, null, TemporaryThornsPower::new);
     public static final PowerHelper Shackles = new PowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new);
 
+    public static final PowerHelper Tainted = new PowerHelper(TaintedPower.POWER_ID, GR.Tooltips.Tainted, TaintedPower::new);
+
     public final String ID;
     public EYBCardTooltip Tooltip;
 

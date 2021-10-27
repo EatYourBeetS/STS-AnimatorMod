@@ -2,9 +2,8 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
@@ -50,14 +49,21 @@ public class BlazingHeatPower extends AnimatorPower
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public void atStartOfTurn()
     {
-        super.onApplyPower(power, target, source);
+        this.flashWithoutSound();
 
-        if (BurningPower.POWER_ID.equals(power.ID) && GameUtilities.GetPowerAmount(target,FreezingPower.POWER_ID) > 0 && GameUtilities.IsPlayer(source)) {
-            GameActions.Bottom.DealDamage(null, target, ((FreezingPower) target.getPower(FreezingPower.POWER_ID)).GetPassiveDamage() * 2, DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION).AddCallback(target, (enemy, __) -> {
-                GameActions.Bottom.ReducePower(enemy,player,FreezingPower.POWER_ID,1);
-            });
+        for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
+            BurningPower bp = GameUtilities.GetPower(m, BurningPower.class);
+            FreezingPower fp = GameUtilities.GetPower(m, FreezingPower.class);
+            if (bp != null) {
+                GameActions.Bottom.LoseHP(source, m, bp.GetPassiveDamage(), AttackEffects.FIRE)
+                        .CanKill(owner == null || !owner.isPlayer);
+            }
+            if (fp != null) {
+                GameActions.Bottom.LoseHP(source, m, fp.GetPassiveDamage(), AttackEffects.FIRE)
+                        .CanKill(owner == null || !owner.isPlayer);
+            }
         }
     }
 }

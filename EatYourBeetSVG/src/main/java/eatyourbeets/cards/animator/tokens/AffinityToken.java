@@ -23,7 +23,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
 
     protected static EYBCardData RegisterAffinityToken(Class<? extends AnimatorCard> type)
     {
-        final EYBCardData data = Register(type).SetSkill(-2, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final EYBCardData data = Register(type).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
         data.Strings.DESCRIPTION = JUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;
@@ -76,7 +76,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     {
         super(cardData);
 
-        Initialize(0, 0, 3, 0);
+        Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
         InitializeAffinity(affinity, 2, 0, 0);
 
@@ -87,7 +87,6 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
 
         SetRetain(true);
         SetHaste(true);
-        SetUnplayable(false);
     }
 
     public void OnUpgrade() {
@@ -120,6 +119,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        CombatStats.Affinities.AddAffinity(this.affinity, magicNumber);
     }
 
     @Override

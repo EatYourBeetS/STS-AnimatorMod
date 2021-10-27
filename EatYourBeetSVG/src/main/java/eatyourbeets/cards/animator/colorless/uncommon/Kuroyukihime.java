@@ -22,6 +22,7 @@ public class Kuroyukihime extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Light(1);
+        SetAffinity_Silver(1);
 
         SetAffinityRequirement(Affinity.General, 8);
     }

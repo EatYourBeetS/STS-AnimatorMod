@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.interfaces.subscribers.OnTrySpendAffinitySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -81,11 +82,18 @@ public class DesecrationPower extends CommonPower implements OnTrySpendAffinityS
     }
 
     @Override
+    public void atEndOfTurn(boolean isPlayer) {
+        super.atEndOfTurn(isPlayer);
+
+        enabled = true;
+    }
+
+    @Override
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
     {
         super.onApplyPower(power, target, source);
 
-        if (power.type == PowerType.DEBUFF && power.owner == this.owner && !power.owner.hasPower(ArtifactPower.POWER_ID))
+        if (enabled && power.type == PowerType.DEBUFF && power.owner == this.owner && !power.owner.hasPower(ArtifactPower.POWER_ID))
         {
             GameActions.Last.Callback(() -> {
                 this.charge += power.amount * amount;
@@ -114,10 +122,8 @@ public class DesecrationPower extends CommonPower implements OnTrySpendAffinityS
     @Override
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if (enabled && charge >= CHARGE_THRESHOLD && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge) && action.target instanceof AbstractMonster && !GameUtilities.IsDeadOrEscaped(action.target)) {
-            for (int i = 0; i < GetDebuffCount(charge); i++) {
-                GameActions.Bottom.StackPower(TargetHelper.Normal(action.target), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), 1)
-                        .ShowEffect(true, true).IgnoreArtifact(true);
-            }
+            GameActions.Bottom.StackPower(TargetHelper.Normal(action.target), PowerHelper.Tainted, GetDebuffCount(charge))
+                    .ShowEffect(true, true).IgnoreArtifact(true);
             this.charge -= GetCurrentChargeCost();
             updateDescription();
             flash();

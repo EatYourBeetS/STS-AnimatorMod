@@ -5,17 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Emonzaemon_EntouJyuu;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
-
 public class Emonzaemon extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Emonzaemon.class)
@@ -47,6 +43,14 @@ public class Emonzaemon extends AnimatorCard
             .SetDestination(CardSelection.Random)
             .SetUpgrade(upgraded, false);
         }
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        CombatStats.Affinities.AddAffinity(Affinity.Green, 1);
     }
 
     @Override

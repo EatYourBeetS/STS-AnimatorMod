@@ -30,6 +30,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);
         SetUpgrade(builder.damageUpgrade, builder.blockUpgrade, builder.magicNumberUpgrade, builder.secondaryValueUpgrade);
         SetCostUpgrade(builder.costUpgrade);
+        SetHitCount(builder.hitCount,builder.hitCountUpgrade);
 
         this.attributeMultiplier = builder.attributeMultiplier;
         this.affinities.Initialize(builder.affinities);

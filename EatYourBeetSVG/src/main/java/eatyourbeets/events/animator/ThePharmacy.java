@@ -17,7 +17,7 @@ public class ThePharmacy extends EYBEvent
 
     public static ThePharmacy TryCreate(Random rng)
     {
-        if (!AbstractDungeon.player.hasRelic(BountyMap.ID) && rng.randomBoolean(0.15f)) {
+        if (!AbstractDungeon.player.hasRelic(BountyMap.ID) && AbstractDungeon.floorNum > 5 && AbstractDungeon.floorNum < 45 && rng.randomBoolean(0.12f)) {
             return new ThePharmacy();
         }
         return null;

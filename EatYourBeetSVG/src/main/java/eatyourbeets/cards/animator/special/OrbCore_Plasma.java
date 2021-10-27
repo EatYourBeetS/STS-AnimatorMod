@@ -8,7 +8,7 @@ import eatyourbeets.resources.GR;
 public class OrbCore_Plasma extends OrbCore
 {
     public static final EYBCardData DATA = RegisterOrbCore(OrbCore_Plasma.class, GR.Tooltips.Plasma, GR.Tooltips.Technic, GR.Tooltips.Affinity_Silver)
-            .SetPower(2, CardRarity.SPECIAL)
+            .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
     public OrbCore_Plasma()

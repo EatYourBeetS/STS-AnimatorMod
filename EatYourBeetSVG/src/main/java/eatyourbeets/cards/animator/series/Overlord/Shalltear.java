@@ -22,7 +22,7 @@ public class Shalltear extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 6);
+        Initialize(2, 0, 2, 12);
         SetUpgrade(1, 0, 1);
 
         SetAffinity_Red(1);

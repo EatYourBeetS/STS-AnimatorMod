@@ -29,7 +29,7 @@ public class Chaa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 1, 7);
         SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Green(1, 0, 0);

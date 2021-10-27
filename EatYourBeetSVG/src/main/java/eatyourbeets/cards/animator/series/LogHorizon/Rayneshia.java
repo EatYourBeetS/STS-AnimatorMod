@@ -4,15 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
-public class Rayneshia extends AnimatorCard //TODO
+public class Rayneshia extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Rayneshia.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -23,11 +20,17 @@ public class Rayneshia extends AnimatorCard //TODO
         super(DATA);
 
         Initialize(0, 0, 2, 4);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Orange(2);
         SetAffinity_Light(1);
-        SetAffinityRequirement(Affinity.General, 8);
+        SetAffinityRequirement(Affinity.General, 5);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetHaste(true);
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override
@@ -40,38 +43,24 @@ public class Rayneshia extends AnimatorCard //TODO
         {
             for (AbstractCard c : selected)
             {
-                GameActions.Top.MoveCard(c, player.hand, player.drawPile);
+                GameActions.Top.MoveCard(c, player.hand, player.drawPile).SetDestination(CardSelection.Top);
             }
 
-            if (CombatStats.HasActivatedLimited(cardID))
-            {
-                return;
-            }
-
-            GameActions.Bottom.Callback(new RefreshHandLayout(), () ->
-            {
-                if (CheckAffinity(Affinity.General) && info.TryActivateLimited())
-                {
-                    GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-                        final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-                        final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.RARE);
-
-                        while (choice.size() < 3 && pool.Size() > 0) {
-                            choice.addToTop(pool.Retrieve(rng).makeCopy());
+            if (IsStarter()) {
+                GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
+                    CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                    for (AbstractCard c : selected)
+                    {
+                        cardGroup.addToBottom(c);
+                    }
+                    GameActions.Bottom.SelectFromPile(name, 1, cardGroup).AddCallback(cards -> {
+                        if (cards.size() > 0) {
+                            GameActions.Bottom.Motivate(cards.get(0),1);
                         }
-
-                        GameActions.Bottom.SelectFromPile(name, 1, choice)
-                                .SetOptions(false, true)
-                                .AddCallback(cards ->
-                                {
-                                    if (cards != null && cards.size() > 0) {
-                                        GameActions.Bottom.MakeCardInHand(cards.get(0))
-                                                .SetUpgrade(false, true);
-                                    }
-                                });
                     });
-                }
-            });
+
+                });
+            }
         });
     }
 }

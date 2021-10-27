@@ -29,7 +29,7 @@ public class Genos extends AnimatorCard
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
     }
 
     @Override

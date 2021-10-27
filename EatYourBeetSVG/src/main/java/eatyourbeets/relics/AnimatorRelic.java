@@ -107,6 +107,7 @@ public abstract class AnimatorRelic extends EYBRelic
             }
 
             AbstractMissingPiece.RefreshDescription();
+            EnchantableRelic.RefreshDescription();
         }
     }
 

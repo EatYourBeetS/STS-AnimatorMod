@@ -20,7 +20,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Spearman(), true));
-    public static final int MODIFIER = 25;
+    public static final int MODIFIER = 30;
 
 
     public Witch()
@@ -86,7 +86,7 @@ public class Witch extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
 
         @Override
         public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-            return enabled && type == DamageInfo.DamageType.NORMAL && card instanceof EYBCard && ((EYBCard) card).attackType == EYBAttackType.Ranged ? damage * (1 + (amount * Witch.MODIFIER / 100f)) : damage;
+            return enabled && type == DamageInfo.DamageType.NORMAL && card instanceof EYBCard && ((EYBCard) card).attackType == EYBAttackType.Piercing ? damage * (1 + (amount * Witch.MODIFIER / 100f)) : damage;
         }
 
         @Override

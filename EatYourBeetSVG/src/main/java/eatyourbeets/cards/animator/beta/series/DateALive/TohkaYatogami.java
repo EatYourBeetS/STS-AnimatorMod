@@ -14,7 +14,9 @@ import eatyourbeets.utilities.GameActions;
 
 public class TohkaYatogami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(TohkaYatogami.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal)
+            .SetSeriesFromClassPackage()
+            .SetMultiformData(2, false)
             .PostInitialize(data -> data.AddPreview(new InverseTohka(), false));
 
     private boolean transformed;
@@ -37,8 +39,28 @@ public class TohkaYatogami extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        if (auxiliaryData.form == 0) {
+            SetHaste(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            if (form == 1) {
+                SetHaste(false);
+                Initialize(14, 0, 6, 2);
+                SetUpgrade(0,0,0, -1);
+            }
+            else {
+                SetHaste(true);
+                Initialize(14, 0, 6, 2);
+                SetUpgrade(0,0,0);
+            }
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
 
     @Override
     public void update()

@@ -3,17 +3,14 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.replacement.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AcuraAkari.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(3)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
@@ -32,6 +29,8 @@ public class AcuraAkari extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 1, 0);
+
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class AcuraAkari extends AnimatorCard
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded));
 
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        if (info.IsSynergizing && TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

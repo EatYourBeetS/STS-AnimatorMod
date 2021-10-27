@@ -13,7 +13,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-
+//TODO Choose 1: Gain +M damage and Red, or Gain +M Block and Green
 public class ByakuyaKuchiki extends AnimatorCard {
     public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ByakuyaBankai(), false));
@@ -60,9 +60,9 @@ public class ByakuyaKuchiki extends AnimatorCard {
 
         if (type.equals(CardType.ATTACK)) {
             builder.SetAttackType(EYBAttackType.Piercing, EYBCardTarget.Normal);
-            builder.SetNumbers(damage, 0, 0, 0);
+            builder.SetNumbers(damage, 0, 0, 0, 1);
         } else {
-            builder.SetNumbers(0, block, 0, 0);
+            builder.SetNumbers(0, block, 0, 0, 1);
         }
 
         return builder;

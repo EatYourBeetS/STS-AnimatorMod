@@ -21,6 +21,18 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     public static final int MAX_UPGRADES_PER_PATH = 100;
     public Enchantment enchantment;
 
+    public static void RefreshDescription()
+    {
+        EnchantableRelic enchantable = GameUtilities.GetRelic(EnchantableRelic.class);
+        if (enchantable != null)
+        {
+            if (enchantable.tips.size() > 0)
+            {
+                enchantable.tips.get(0).description = enchantable.GetFullDescription();
+            }
+        }
+    }
+
     public EnchantableRelic(String id, RelicTier tier, LandingSound sfx)
     {
         this(id, tier, sfx, null);
@@ -138,6 +150,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     public void onEquip()
     {
         super.onEquip();
+        RefreshDescription();
         SetCounter(0);
     }
 
@@ -146,7 +159,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     {
         super.update();
 
-        if (hb.hovered && !AbstractDungeon.isScreenUp && !GameUtilities.InBattle() && InputManager.RightClick.IsJustPressed())
+        if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
         {
             stopPulse();
             Use();
@@ -180,5 +193,10 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
             AddCounter(1);
             flash();
         }
+    }
+
+    public String GetFullDescription()
+    {
+        return FormatDescription(0) + " NL  NL " + DESCRIPTIONS[1];
     }
 }

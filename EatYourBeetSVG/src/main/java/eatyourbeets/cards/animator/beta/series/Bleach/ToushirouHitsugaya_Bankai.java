@@ -34,7 +34,6 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Blue(2, 0, 2);
-        SetAffinity_Red(1, 0, 0);
 
         SetExhaust(true);
         SetHitCount(5);

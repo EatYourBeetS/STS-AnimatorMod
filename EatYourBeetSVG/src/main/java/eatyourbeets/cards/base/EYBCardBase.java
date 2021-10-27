@@ -679,7 +679,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected void upgradeHitCount(int amount)
     {
         this.baseHitCount += amount;
-        this.hitCount = Math.min(this.hitCount, this.baseHitCount);
+        this.hitCount = this.baseHitCount;
         this.upgradedHitCount = true;
     }
 

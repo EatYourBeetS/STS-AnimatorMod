@@ -66,6 +66,22 @@ public class WeightedList<T>
         items.add(new Item(object, weight));
     }
 
+    public void AddAll(T[] list, int weight)
+    {
+        for (T object : list) {
+            totalWeight += weight;
+            items.add(new Item(object, weight));
+        }
+    }
+
+    public void AddAll(Iterable<T> list, int weight)
+    {
+        for (T object : list) {
+            totalWeight += weight;
+            items.add(new Item(object, weight));
+        }
+    }
+
     public T Retrieve(Random rng)
     {
         return Retrieve(rng, true);

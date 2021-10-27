@@ -1,26 +1,26 @@
-package eatyourbeets.misc.NanamiEffects;
+package eatyourbeets.misc.CounterIntentEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
-public class NanamiEffect_Sleep extends NanamiEffect
+public class CounterIntentEffect_Sleep extends CounterIntentEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.ApplyPoison(p, m, GetPoison(nanami));
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
         return ACTIONS.Apply(GetPoison(nanami), GR.Tooltips.Poison, true);
     }
 
-    private int GetPoison(Nanami nanami)
+    private int GetPoison(EYBCard nanami)
     {
         return 3 * (nanami.energyOnUse + (nanami.upgraded ? 2 : 1));
     }

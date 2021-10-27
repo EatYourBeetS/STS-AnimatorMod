@@ -24,7 +24,7 @@ public class RinTohsaka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 0, 1);
+        Initialize(0, 3, 0, 2);
         SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Blue(1, 1, 1);
@@ -34,13 +34,13 @@ public class RinTohsaka extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
         if (JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsDebuffing()) != null) {
             GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
         }
         else {
             GameActions.Bottom.TriggerOrbPassive(secondaryValue,true,false);
         }
+        GameActions.Bottom.GainBlock(block);
 
 
         if (CheckSpecialCondition(true))

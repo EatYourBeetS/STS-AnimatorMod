@@ -1,34 +1,34 @@
-package eatyourbeets.misc.NanamiEffects;
+package eatyourbeets.misc.CounterIntentEffects;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 
-public class NanamiEffect_Attack_Defend extends NanamiEffect
+public class CounterIntentEffect_Attack_Defend extends CounterIntentEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.GainBlock(GetBlock(nanami));
         GameActions.Bottom.DealDamage(p, m, GetDamage(nanami), nanami.damageTypeForTurn, AttackEffects.NONE);
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
         return "";
     }
 
     @Override
-    public int GetBlock(Nanami nanami)
+    public int GetBlock(EYBCard nanami)
     {
         return ModifyBlock((nanami.energyOnUse + 1) * nanami.baseBlock, nanami);
     }
 
     @Override
-    public int GetDamage(Nanami nanami)
+    public int GetDamage(EYBCard nanami)
     {
         return ModifyDamage((nanami.energyOnUse + 1) * nanami.baseDamage, nanami);
     }

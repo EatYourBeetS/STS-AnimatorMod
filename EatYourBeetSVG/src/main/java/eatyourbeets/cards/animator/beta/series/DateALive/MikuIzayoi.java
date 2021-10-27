@@ -12,7 +12,10 @@ import eatyourbeets.utilities.JUtils;
 
 public class MikuIzayoi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MikuIzayoi.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None, true).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(MikuIzayoi.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None, true)
+            .SetMultiformData(2, false)
+            .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -33,9 +36,28 @@ public class MikuIzayoi extends AnimatorCard
     }
 
     @Override
-    public void OnUpgrade() {
-        SetEthereal(false);
+    protected void OnUpgrade()
+    {
+        if (auxiliaryData.form == 0) {
+            SetEthereal(false);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            if (form == 1) {
+                SetEthereal(true);
+                Initialize(0, 0, 3, 1);
+                SetUpgrade(0,0,2,0);
+            }
+            else {
+                SetEthereal(false);
+                Initialize(0, 0, 3, 1);
+            }
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

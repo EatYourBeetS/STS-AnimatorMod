@@ -18,7 +18,7 @@ public class CowGirl extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
 
         SetAffinity_Orange(1);
 

@@ -24,8 +24,8 @@ public class MeguKakizaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 3, 4);
-        SetUpgrade(0, 3, 1, 2);
+        Initialize(0, 5, 5, 4);
+        SetUpgrade(0, 1, 5, 2);
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
@@ -69,14 +69,14 @@ public class MeguKakizaki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
-
-        int toTransfer = Math.min(magicNumber, GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID));
-        GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, toTransfer);
-        AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
-        if (mo != null && toTransfer > 0) {
-            GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
-        }
+        GameActions.Bottom.GainBlock(block).AddCallback(() -> {
+            int toTransfer = Math.min(magicNumber, GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID));
+            GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, toTransfer);
+            AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
+            if (mo != null && toTransfer > 0) {
+                GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
+            }
+        });
 
         GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile, p.hand)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

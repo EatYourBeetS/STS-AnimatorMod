@@ -27,8 +27,7 @@ public class SajinKomamura extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
-        SetAffinityRequirement(Affinity.Orange, 2);
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override

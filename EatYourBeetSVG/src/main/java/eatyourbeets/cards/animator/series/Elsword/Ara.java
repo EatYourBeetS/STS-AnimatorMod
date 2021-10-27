@@ -21,7 +21,7 @@ public class Ara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1, 2);
+        Initialize(3, 0, 3, 2);
         SetUpgrade(1, 0);
 
         SetAffinity_Green(1, 1, 1);
@@ -64,8 +64,10 @@ public class Ara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false);
+        if (info.TryActivateSemiLimited()) {
+            GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
+            GameActions.Bottom.DiscardFromHand(name, 1, false)
+                    .SetOptions(false, false, false);
+        }
     }
 }

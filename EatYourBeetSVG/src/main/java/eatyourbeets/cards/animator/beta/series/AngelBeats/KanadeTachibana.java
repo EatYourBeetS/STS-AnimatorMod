@@ -18,7 +18,7 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
         SetExhaust(true);
@@ -29,7 +29,8 @@ public class KanadeTachibana extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Top.FetchFromPile(name, magicNumber, p.discardPile)
+        GameActions.Bottom.GainBlessing(secondaryValue,true);
+        GameActions.Bottom.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]).AddCallback(
                 cards -> {
@@ -46,12 +47,9 @@ public class KanadeTachibana extends AnimatorCard
 
                         if (canGiveAfterlife) {
                             AfterLifeMod.Add(card);
-                            AfterLifeMod.AfterlifeAddToControlPile(card);
                         }
                     }
                 }
         );
-
-        GameActions.Bottom.GainBlessing(secondaryValue,true);
     }
 }

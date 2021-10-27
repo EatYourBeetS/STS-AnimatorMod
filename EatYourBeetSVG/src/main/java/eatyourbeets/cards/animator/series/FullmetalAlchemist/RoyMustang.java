@@ -30,7 +30,7 @@ public class RoyMustang extends AnimatorCard
 
         SetEvokeOrbCount(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Red, 5);
     }
 
     @Override

@@ -15,11 +15,13 @@ import eatyourbeets.utilities.AdvancedTexture;
 public class AnimatorCardBuilder extends DynamicCardBuilder
 {
     public int secondaryValue;
+    public int hitCount;
     public int costUpgrade;
     public int damageUpgrade;
     public int blockUpgrade;
     public int magicNumberUpgrade;
     public int secondaryValueUpgrade;
+    public int hitCountUpgrade;
 
     public ActionT1<AnimatorCard> constructor;
     public ActionT1<AnimatorCard> onUpgrade;
@@ -52,8 +54,8 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         if (copyNumbers)
         {
-            SetNumbers(card.damage, card.block, card.magicNumber, card.secondaryValue);
-            SetUpgrades(card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue);
+            SetNumbers(card.damage, card.block, card.magicNumber, card.secondaryValue, card.hitCount);
+            SetUpgrades(card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue, card.upgrade_hitCount);
             SetCost(card.cost, card.upgrade_cost);
             affinities.Initialize(card.affinities);
         }
@@ -124,22 +126,24 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public AnimatorCardBuilder SetNumbers(int damage, int block, int magicNumber, int secondaryValue)
+    public AnimatorCardBuilder SetNumbers(int damage, int block, int magicNumber, int secondaryValue, int hitCount)
     {
         this.damageUpgrade = this.damage = damage;
         this.blockUpgrade = this.block = block;
         this.magicNumberUpgrade = this.magicNumber = magicNumber;
         this.secondaryValueUpgrade = this.secondaryValue = secondaryValue;
+        this.hitCountUpgrade = this.hitCount = hitCount;
 
         return this;
     }
 
-    public AnimatorCardBuilder SetUpgrades(int damage, int block, int magicNumber, int secondaryValue)
+    public AnimatorCardBuilder SetUpgrades(int damage, int block, int magicNumber, int secondaryValue, int hitCount)
     {
         this.damageUpgrade = damage;
         this.blockUpgrade = block;
         this.magicNumberUpgrade = magicNumber;
         this.secondaryValueUpgrade = secondaryValue;
+        this.hitCountUpgrade = hitCount;
 
         return this;
     }

@@ -71,9 +71,9 @@ public class ByakuyaBankai extends AnimatorCard {
 
         if (type.equals(CardType.ATTACK)) {
             builder.SetAttackType(EYBAttackType.Ranged, EYBCardTarget.ALL);
-            builder.SetNumbers(damage, 0, 0, 0);
+            builder.SetNumbers(damage, 0, 0, 0, 1);
         } else {
-            builder.SetNumbers(0, block, 0, 0);
+            builder.SetNumbers(0, block, 0, 0, 1);
         }
 
         return builder;

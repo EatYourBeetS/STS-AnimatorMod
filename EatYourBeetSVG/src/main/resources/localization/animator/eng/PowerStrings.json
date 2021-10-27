@@ -22,7 +22,7 @@
 	},
 	"animator:BlazingHeatPower":
 	{
-	  "DESCRIPTIONS": ["#yFire applies #b{0} times its damage to ALL enemies when Evoked. Whenever [Burning] is applied to a target with [Freezing], trigger [Freezing] twice, then remove 1 [Freezing]."],
+	  "DESCRIPTIONS": ["#yFire applies #b{0} times its damage to ALL enemies when Evoked. At the start of your turn: #yTrigger [Burning] and [Freezing] on ALL enemies."],
 	  "NAME": "Blazing Heat"
 	},
 	"animator:BorosPower":
@@ -312,12 +312,12 @@
 	},
 	"animator:SelfImmolationPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, when you gain [Block]: You and a random enemy take twice that much #yDelayed #yDamage."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, when you gain [Block]: ALL characters take twice that much #yDelayed #yDamage."],
 	  "NAME": "Self-Immolation"
 	},
 	"animator:SheerColdPower":
 	{
-	  "DESCRIPTIONS": ["Frost applies #b{0} #yFreezing once to a random enemy when Triggered and twice to all enemies when Evoked."],
+	  "DESCRIPTIONS": ["Frost applies #b{0} [Freezing] once to a random enemy when Triggered and twice to all enemies when Evoked."],
 	  "NAME": "Sheer Cold"
 	},
 	"animator:ShikizakiKikiPower":

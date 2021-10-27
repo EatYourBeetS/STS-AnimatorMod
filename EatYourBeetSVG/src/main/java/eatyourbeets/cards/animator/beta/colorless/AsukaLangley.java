@@ -18,7 +18,10 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class AsukaLangley extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AsukaLangley.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Evangelion);
+    public static final EYBCardData DATA = Register(AsukaLangley.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Evangelion)
+            .SetMultiformData(2, false);
 
     public AsukaLangley()
     {
@@ -37,8 +40,28 @@ public class AsukaLangley extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        if (auxiliaryData.form == 0) {
+            SetHaste(true);
+        }
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            if (form == 1) {
+                SetHaste(false);
+                Initialize(13, 0, 1 );
+                SetUpgrade(1, 0, 0 );
+                AddScaling(Affinity.Orange, 2);
+            }
+            else {
+                SetHaste(true);
+                Initialize(13, 0, 1 );
+                SetUpgrade(1, 0, 0 );
+            }
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

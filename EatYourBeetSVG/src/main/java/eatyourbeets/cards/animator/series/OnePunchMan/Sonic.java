@@ -24,7 +24,7 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(2);
@@ -39,7 +39,7 @@ public class Sonic extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlur(magicNumber);
-        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainAgility(secondaryValue);
 
         int knives = 0;
         if (AgilityStance.IsActive())

@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply a random #yCommon #yDebuff #b{2} time(s).{3}","NL #yCharge is conserved this turn."],
+	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply #b{2} [Tainted].{3}","NL #yCharge is conserved this turn."],
 	  "NAME": "Desecration"
 	},
 	"eyb:EndurancePower":
@@ -115,6 +115,11 @@
 		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
 		"NAME": "Marked"
 	},
+	"eyb:PhasingPower":
+	{
+		"DESCRIPTIONS": ["You have a #b{0}% chance to dodge each attack.", " This chance starts decaying in #b{0} turn(s).", " Reduce this chance by #b{0}% each turn."],
+		"NAME": "Phasing"
+	},
 	"eyb:PoisonPlayerPower":
 	{
 		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
@@ -134,6 +139,11 @@
 	{
 		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
+	},
+	"eyb:TaintedPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} additional damage from #yAttacks. Take #b{1}% more damage from #yOrbs. Deal #b{2} less damage with #yAttacks."],
+		"NAME": "Tainted"
 	},
 	"eyb:TechnicPower":
 	{

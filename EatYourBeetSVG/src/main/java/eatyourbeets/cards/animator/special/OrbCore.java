@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -20,10 +19,7 @@ import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
@@ -34,7 +30,7 @@ public abstract class OrbCore extends AnimatorCard
 {
     public static final String ID = GR.Animator.CreateID(OrbCore.class.getSimpleName());
 
-    private static final ArrayList<OrbCore> cores = new ArrayList<>();
+    private static final WeightedList<OrbCore> cores = new WeightedList<>();
     private static final RandomizedList<OrbCore> cores0 = new RandomizedList<>();
     private static final RandomizedList<OrbCore> cores1 = new RandomizedList<>();
     private static final RandomizedList<OrbCore> cores2 = new RandomizedList<>();
@@ -63,7 +59,7 @@ public abstract class OrbCore extends AnimatorCard
 
         if (anyCost)
         {
-            RandomizedList<AbstractCard> temp = new RandomizedList<>(cores);
+            WeightedList<OrbCore> temp = new WeightedList<>(cores);
             group.group.add(temp.Retrieve(rng, true).makeCopy());
             group.group.add(temp.Retrieve(rng, true).makeCopy());
             group.group.add(temp.Retrieve(rng, true).makeCopy());
@@ -82,26 +78,26 @@ public abstract class OrbCore extends AnimatorCard
     {
         InitializeCores();
 
-        return new ArrayList<>(cores);
+        return new ArrayList<>(cores.GetInnerList());
     }
 
     private static void InitializeCores()
     {
-        if (cores.size() == 0)
+        if (cores.Size() == 0)
         {
             cores0.Add(new OrbCore_Fire());
             cores0.Add(new OrbCore_Lightning());
-            cores1.Add(new OrbCore_Dark());
-            cores1.Add(new OrbCore_Frost());
+            cores0.Add(new OrbCore_Dark());
+            cores0.Add(new OrbCore_Frost());
+            cores1.Add(new OrbCore_Air());
+            cores1.Add(new OrbCore_Earth());
             cores2.Add(new OrbCore_Plasma());
             cores2.Add(new OrbCore_Chaos());
-            cores2.Add(new OrbCore_Air());
-            cores2.Add(new OrbCore_Earth());
             cores2.Add(new OrbCore_Water());
 
-            cores.addAll(cores0.GetInnerList());
-            cores.addAll(cores1.GetInnerList());
-            cores.addAll(cores2.GetInnerList());
+            cores.AddAll(cores0.GetInnerList(),8);
+            cores.AddAll(cores1.GetInnerList(), 5);
+            cores.AddAll(cores2.GetInnerList(), 2);
         }
     }
 

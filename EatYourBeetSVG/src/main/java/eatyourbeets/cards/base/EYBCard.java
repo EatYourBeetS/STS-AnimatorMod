@@ -921,12 +921,16 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
             if (upgrade_hitCount != 0)
             {
-                if (baseHitCount < 0)
+                if (isHitCountModified)
                 {
-                    baseHitCount = 0;
+                    int temp = hitCount;
+                    upgradeHitCount(upgrade_hitCount);
+                    hitCount = Math.max(0, temp + upgrade_hitCount);
                 }
-
-                upgradeHitCount(upgrade_hitCount);
+                else
+                {
+                    upgradeHitCount(upgrade_hitCount);
+                }
             }
 
 

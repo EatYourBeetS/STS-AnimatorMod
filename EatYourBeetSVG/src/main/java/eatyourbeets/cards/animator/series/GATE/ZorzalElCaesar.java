@@ -1,28 +1,29 @@
 package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.MoltSolAugustus_ImperialArchers;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
-public class MoltSolAugustus extends AnimatorCard
+public class ZorzalElCaesar extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MoltSolAugustus.class)
+    public static final EYBCardData DATA = Register(ZorzalElCaesar.class)
             .SetPower(3, CardRarity.RARE)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), false));
+            .SetSeriesFromClassPackage();
     private static final int ENERGY_COST = 1;
 
-    public MoltSolAugustus()
+    public ZorzalElCaesar()
     {
         super(DATA);
 
@@ -38,16 +39,16 @@ public class MoltSolAugustus extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new ZorzalElCaesarPower(p, secondaryValue));
     }
 
-    public static class MoltSolAugustusPower extends AnimatorClickablePower
+    public static class ZorzalElCaesarPower extends AnimatorClickablePower
     {
         public static final int DRAW_REDUCTION = 1;
 
-        public MoltSolAugustusPower(AbstractCreature owner, int amount)
+        public ZorzalElCaesarPower(AbstractCreature owner, int amount)
         {
-            super(owner, MoltSolAugustus.DATA, PowerTriggerConditionType.Energy, MoltSolAugustus.ENERGY_COST);
+            super(owner, ZorzalElCaesar.DATA, PowerTriggerConditionType.Energy, ZorzalElCaesar.ENERGY_COST);
 
             triggerCondition.SetUses(1, true, false);
 
@@ -100,8 +101,23 @@ public class MoltSolAugustus extends AnimatorCard
         {
             super.OnUse(m, cost);
 
-            GameActions.Bottom.MakeCardInDrawPile(new MoltSolAugustus_ImperialArchers())
-            .Repeat(amount).SetDuration(0.1f, false);
+            final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.UNCOMMON);
+            final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+
+            while (choice.size() < 3 && pool.Size() > 0)
+            {
+                AbstractCard temp = pool.Retrieve(rng);
+                if (temp.cost == 0 && !(temp.cardID.equals(ZorzalElCaesar.DATA.ID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.VOLATILE))) {
+                    choice.addToTop(temp.makeCopy());
+                }
+            }
+
+            GameActions.Bottom.SelectFromPile(name, 1, choice)
+                    .SetOptions(false, false)
+                    .AddCallback(cards ->
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(cards.get(0));
+                    });
         }
     }
 }

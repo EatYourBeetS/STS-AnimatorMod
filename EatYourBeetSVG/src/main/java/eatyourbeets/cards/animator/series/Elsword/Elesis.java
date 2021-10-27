@@ -193,7 +193,7 @@ public class Elesis extends AnimatorCard
                 LoadImage(null);
 
                 affinities.Clear();
-                SetAffinity_Star(2);
+                SetAffinity_Red(1);
 
                 cardText.OverrideDescription(null, true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

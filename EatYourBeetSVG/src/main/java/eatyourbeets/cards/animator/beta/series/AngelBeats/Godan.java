@@ -19,7 +19,7 @@ public class Godan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2);
+        Initialize(7, 0, 3);
         SetUpgrade(3, 0, 1);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);

@@ -53,6 +53,7 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainArtifact(1);
         GameActions.Bottom.StackPower(new BiyorigoPower(p, magicNumber));
     }
 
@@ -62,7 +63,7 @@ public class Biyorigo extends AnimatorCard
 
         public BiyorigoPower(AbstractCreature owner, int amount)
         {
-            super(owner, Biyorigo.DATA, PowerTriggerConditionType.Affinity, COST);
+            super(owner, Biyorigo.DATA, PowerTriggerConditionType.Affinity, COST, null, null, Affinity.Green);
 
             this.triggerCondition.SetOneUsePerPower(true);
 

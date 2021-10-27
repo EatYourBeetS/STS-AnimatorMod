@@ -1,18 +1,18 @@
-package eatyourbeets.misc.NanamiEffects;
+package eatyourbeets.misc.CounterIntentEffects;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.cards.animator.series.Katanagatari.Nanami;
 import eatyourbeets.utilities.GameUtilities;
 
-public class NanamiEffect_Defend_Buff extends NanamiEffect
+public class CounterIntentEffect_Defend_Buff extends CounterIntentEffect
 {
     @Override
-    public void EnqueueActions(Nanami nanami, AbstractPlayer p, AbstractMonster m)
+    public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         int damage = GetDamage(nanami);
         if (damage > 0)
@@ -25,13 +25,13 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
     }
 
     @Override
-    public String GetDescription(Nanami nanami)
+    public String GetDescription(EYBCard nanami)
     {
         return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
     }
 
     @Override
-    public int GetDamage(Nanami nanami)
+    public int GetDamage(EYBCard nanami)
     {
         if (nanami.energyOnUse > 0)
         {
@@ -43,7 +43,7 @@ public class NanamiEffect_Defend_Buff extends NanamiEffect
         }
     }
 
-    private int GetForce(Nanami nanami)
+    private int GetForce(EYBCard nanami)
     {
         return nanami.energyOnUse + 1;
     }

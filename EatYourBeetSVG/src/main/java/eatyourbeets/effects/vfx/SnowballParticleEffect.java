@@ -26,6 +26,7 @@ public class SnowballParticleEffect extends EYBEffect
     protected float vY;
     protected float vR;
     protected boolean flip;
+    protected boolean enableFloor = true;
 
     public SnowballParticleEffect(float x, float y, Color color)
     {
@@ -67,6 +68,19 @@ public class SnowballParticleEffect extends EYBEffect
         return this;
     }
 
+    public SnowballParticleEffect SetSpeed(float vX, float vY)
+    {
+        this.vX = vX;
+        this.vY = vY;
+        return this;
+    }
+
+    public SnowballParticleEffect DisableFloor()
+    {
+        enableFloor = false;
+        return this;
+    }
+
     @Override
     protected void UpdateInternal(float deltaTime)
     {
@@ -79,7 +93,7 @@ public class SnowballParticleEffect extends EYBEffect
             scale -= deltaTime * 2f;
         }
 
-        if (y < floor)
+        if (enableFloor && y < floor)
         {
             vY = -vY * 0.75f;
             y = floor + 0.1f;

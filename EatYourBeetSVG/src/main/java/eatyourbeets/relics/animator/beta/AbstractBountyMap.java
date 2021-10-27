@@ -27,6 +27,14 @@ public abstract class AbstractBountyMap extends AnimatorRelic
     }
 
     @Override
+    public void update() {
+        super.update();
+        if (counter < 0) {
+            SetEnabled(false);
+        }
+    }
+
+    @Override
     public void justEnteredRoom(AbstractRoom room)
     {
         super.justEnteredRoom(room);
@@ -36,13 +44,14 @@ public abstract class AbstractBountyMap extends AnimatorRelic
         if (room.getClass().equals(roomType) && this.IsEnabled()) {
             flash();
             if (roomType.equals(EventRoom.class)) {
+                SetCounter(-1);
                 SetEnabled(false);
                 EYBEvent.ForceEvent(GetEventConstructor());
             }
             else {
                 AddCounter(1);
-                fixDescription();
             }
+            fixDescription();
         }
     }
 
@@ -50,7 +59,7 @@ public abstract class AbstractBountyMap extends AnimatorRelic
     public String getUpdatedDescription()
     {
         Class<? extends AbstractRoom> room = this.GetCurrentRequiredRoom();
-        if (CardCrawlGame.isInARun() && IsEnabled()) {
+        if (CardCrawlGame.isInARun() && counter >= 0) {
             String name = room.equals(MonsterRoomElite.class) ? "Elite" : room.getSimpleName().split("Room")[0];
             return JUtils.Format(DESCRIPTIONS[0], DESCRIPTIONS[1] + name);
         } else {

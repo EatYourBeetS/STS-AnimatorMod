@@ -2,10 +2,12 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.special.Eve_Drone;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.*;
@@ -19,7 +21,6 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.HashSet;
 import java.util.UUID;
 
 public class Eve extends AnimatorCard
@@ -31,12 +32,13 @@ public class Eve extends AnimatorCard
             .SetMultiformData(2, false)
             .PostInitialize(data ->
             {
+                data.AddPreview(new Eve_Drone(0), false);
                 for (OrbCore core : OrbCore.GetAllCores())
                 {
                     data.AddPreview(core, false);
                 }
             });
-    public static final EYBCardPreview DRONE_PREVIEW = new EYBCardPreview(new Eve_Drone(), false);
+    public static final EYBCardPreview DRONE_PREVIEW_ALT = new EYBCardPreview(new Eve_Drone(1), false);
     private static final int POWER_ENERGY_COST = 2;
     private static final int CHOICES = 3;
 
@@ -44,8 +46,8 @@ public class Eve extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 0);
-        SetUpgrade(0,0,0,1);
+        Initialize(0, 0, 3, 0);
+        SetUpgrade(0,0,1,1);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
@@ -67,20 +69,16 @@ public class Eve extends AnimatorCard
     };
 
     @Override
-    public String GetRawDescription()
-    {
-        return GetRawDescription(auxiliaryData.form == 1 ? cardData.Strings.EXTENDED_DESCRIPTION[2] : cardData.Strings.EXTENDED_DESCRIPTION[1]);
-    }
-
-    @Override
     public EYBCardPreview GetCardPreview()
     {
-        return auxiliaryData.form == 1 ? DRONE_PREVIEW : super.GetCardPreview();
+        return auxiliaryData.form == 1 && cardData.previews.GetIndex() == 0 ? DRONE_PREVIEW_ALT : super.GetCardPreview();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                .AddCallback(c -> {if (c.size() > 0) {GameActions.Bottom.PlayCard(c.get(0), m);}}));
         if (secondaryValue > 0)
         {
             GameActions.Bottom.GainOrbSlots(secondaryValue);
@@ -90,8 +88,7 @@ public class Eve extends AnimatorCard
 
     public static class EvePower extends AnimatorClickablePower
     {
-        private static final CardEffectChoice choices = new CardEffectChoice();
-        private static final HashSet<Integer> availableChoices = new HashSet<>();
+        private static int[] availableChoices = new int[] {0, 0};
         private static UUID battleID;
 
         public EvePower(AbstractCreature owner, int amount, int option)
@@ -100,9 +97,9 @@ public class Eve extends AnimatorCard
             if (CombatStats.BattleID != battleID)
             {
                 battleID = CombatStats.BattleID;
-                availableChoices.clear();
+                availableChoices = new int[] {0, 0};
             }
-            availableChoices.add(option);
+            availableChoices[option] = 1;
 
             this.triggerCondition.SetOneUsePerPower(true);
 
@@ -114,20 +111,22 @@ public class Eve extends AnimatorCard
         {
             super.OnUse(m, cost);
 
-            choices.Initialize(new Eve(), true);
-            if (availableChoices.contains(1)) {
-                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],amount), (c, p, mo) -> {
-                    GameActions.Bottom.MakeCardInDrawPile(new Eve_Drone());
-                    GameActions.Bottom.MakeCardInHand(new Eve_Drone());
-                });
+            final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            if (availableChoices[0] == 1) {
+                choice.addToTop(new Eve_Drone(0));
             }
-            if (availableChoices.contains(0)) {
-                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1],amount), (c, p, mo) -> {
-                    GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
-                        .AddCallback(ca -> {if (ca.size() > 0) {GameActions.Bottom.PlayCard(ca.get(0), m);}}));
-                });
+            if (availableChoices[1] == 1) {
+                choice.addToTop(new Eve_Drone(1));
             }
-            choices.Select(1,null);
+
+            GameActions.Bottom.SelectFromPile(name, 1, choice)
+                    .SetOptions(false, false)
+                    .AddCallback(cards ->
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(cards.get(0));
+                        GameActions.Bottom.MakeCardInHand(cards.get(0));
+                        GameActions.Bottom.Add(new RefreshHandLayout());
+                    });
         }
 
         @Override
@@ -137,8 +136,8 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                Affinity highestAffinity = JUtils.FindMax(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
-                final int damage = CombatStats.Affinities.GetAffinityLevel(highestAffinity,true);
+                Affinity lowestAffinity = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+                final int damage = CombatStats.Affinities.GetAffinityLevel(lowestAffinity,true);
                 if (damage > 0)
                 {
                     //GameEffects.Queue.BorderFlash(Color.SKY);
@@ -163,7 +162,7 @@ public class Eve extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, amount, availableChoices.size() > 1 ? DATA.Strings.EXTENDED_DESCRIPTION[5] : availableChoices.contains(1) ? DATA.Strings.EXTENDED_DESCRIPTION[4] : DATA.Strings.EXTENDED_DESCRIPTION[3]);
+            return FormatDescription(0, availableChoices[0] == 1 && availableChoices[1] == 1 ? DATA.Strings.EXTENDED_DESCRIPTION[1] : "");
         }
     }
 }

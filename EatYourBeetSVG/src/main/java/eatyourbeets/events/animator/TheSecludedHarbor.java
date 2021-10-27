@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.animator.beta.colorless.Yoimiya;
 import eatyourbeets.events.base.EYBEvent;
-import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.beta.BountyMap2;
@@ -60,7 +59,8 @@ public class TheSecludedHarbor extends EYBEvent // TODO make Abstract Bounty cla
     private static class Hunt extends EYBEventPhase<TheSecludedHarbor, TheSecludedHarbor.EventStrings>
     {
         private final AbstractCard obtainedCard = new Yoimiya();
-        private final int HP_LOSS = 40;
+        private final int HP_LOSS = player.currentHealth / 2;
+        private AbstractRelic relicToLose;
 
         @Override
         protected void OnEnter()
@@ -74,8 +74,8 @@ public class TheSecludedHarbor extends EYBEvent // TODO make Abstract Bounty cla
                     relics.Add(r);
                 }
             }
-            AbstractRelic relic = relics.Retrieve(RNG);
-            if (relic == null) {
+            relicToLose = relics.Retrieve(RNG);
+            if (relicToLose == null) {
                 for (AbstractRelic r : player.relics)
                 {
                     if (r.tier == AbstractRelic.RelicTier.RARE)
@@ -83,14 +83,14 @@ public class TheSecludedHarbor extends EYBEvent // TODO make Abstract Bounty cla
                         relics.Add(r);
                     }
                 }
-                relic = relics.Retrieve(RNG);
+                relicToLose = relics.Retrieve(RNG);
             }
 
             AddText(text.Hunt());
             AddOption(text.FightOption(HP_LOSS), obtainedCard).AddCallback(this::LoseHealth);
-            if (relic != null)
+            if (relicToLose != null)
             {
-                AddOption(text.TrapOption(relic.name), relic).AddCallback(this::LoseRelic);
+                AddOption(text.TrapOption(relicToLose.name)).AddCallback(this::LoseRelic);
             }
             else
             {
@@ -107,9 +107,9 @@ public class TheSecludedHarbor extends EYBEvent // TODO make Abstract Bounty cla
             ChangePhase(Fight1.class);
         }
 
-        private void LoseRelic(EYBEventOption option)
+        private void LoseRelic()
         {
-            player.relics.remove(option.relic);
+            player.relics.remove(relicToLose);
             GameEffects.List.Add(new ShowCardAndObtainEffect(obtainedCard, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
             ChangePhase(Trap.class);
         }

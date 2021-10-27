@@ -50,7 +50,7 @@ public class Ginko extends AnimatorCard
         if (c instanceof Burn || c instanceof Status_Burn) {
             GameActions.Last.ReplaceCard(c.uuid, new SearingBurn());
         }
-        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed || c instanceof Status_Wound || c instanceof Status_Void || c instanceof SearingBurn) {
+        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed || c instanceof Status_Wound || c instanceof Status_Void || c instanceof Status_Dazed || c instanceof SearingBurn) {
             ((EYBCard) c).SetForm(1,c.timesUpgraded);
         }
         else {

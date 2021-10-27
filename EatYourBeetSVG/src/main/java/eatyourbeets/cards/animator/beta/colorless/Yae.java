@@ -12,6 +12,7 @@ import eatyourbeets.powers.animator.Amplification_LightningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
+//TODO Seal the enemy
 public class Yae extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yae.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.HoukaiGakuen);

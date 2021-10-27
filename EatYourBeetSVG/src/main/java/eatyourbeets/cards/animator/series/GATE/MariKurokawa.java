@@ -1,73 +1,59 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.HPAttribute;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class MariKurokawa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MariKurokawa.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
-            .SetMaxCopies(2)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public MariKurokawa()
     {
         super(DATA);
 
-        Initialize(0, 0, 8, 9);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(5, 0, 2, 3);
+        SetUpgrade(3, 0, 0);
 
-        SetAffinity_Green(1);
-        SetAffinity_Orange(1, 1, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Orange(1, 1, 1);
+
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
+
+        SetDrawPileCardPreview(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c));
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
+    public void triggerWhenDrawn()
     {
-        return heal <= 0 ? null : HPAttribute.Instance.SetCard(this, false).SetText(new ColoredString(heal, Colors.Cream(1f)));
-    }
+        super.triggerWhenDrawn();
 
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        CalculateHeal();
+        GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 1).IgnoreArtifact(true);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CalculateHeal() > 0)
-        {
-            GameActions.Bottom.Heal(heal);
-        }
-
-        GameActions.Bottom.DiscardFromHand(name, 2, false)
-        .SetOptions(false, true, false)
-        .SetFilter(c -> c.type == CardType.ATTACK)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.9f, 1f));
+        GameActions.Bottom.Draw(1)
+        .SetFilter(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c), false)
         .AddCallback(cards ->
         {
-            if (cards.size() >= 2)
+            for (AbstractCard c : cards)
             {
-                GameActions.Bottom.GainBlock(secondaryValue);
+                GameUtilities.Retain(c);
             }
         });
-    }
-
-    protected int CalculateHeal()
-    {
-        return heal = Math.min(magicNumber, GameActionManager.playerHpLastTurn - player.currentHealth);
     }
 }

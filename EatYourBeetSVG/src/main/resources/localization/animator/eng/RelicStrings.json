@@ -140,7 +140,7 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["On your first #ySynergy each turn, draw #b1 card. NL Gains charges whenever you defeat a boss. NL When #pRight #pClicked outside of battle: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["On your first #ySynergy each turn, draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
@@ -278,7 +278,7 @@
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss. NL When #pRight #pClicked outside of battle: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

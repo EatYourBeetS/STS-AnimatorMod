@@ -9,7 +9,7 @@ public class VestaElixirEffect_Intellect extends VestaElixirEffect
 {
     public VestaElixirEffect_Intellect(boolean upgraded)
     {
-        super(upgraded ? 4 : 3);
+        super(upgraded ? 8 : 6);
     }
 
     @Override

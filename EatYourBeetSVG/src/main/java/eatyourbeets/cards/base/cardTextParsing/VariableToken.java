@@ -89,13 +89,13 @@ public class VariableToken extends CTToken
     {
         if (variableID == 'A')
         {
-            int i = 1;
             boolean requireAll = true;
             final CTLine line = context.lines.get(context.lineIndex);
             final ArrayList<Affinity> types = new ArrayList<>();
-            while (true)
+            int i = line.tokenIndex + 1;
+            while (i < line.tokens.size())
             {
-                final CTToken next = line.Get(line.tokenIndex + (i++));
+                final CTToken next = line.Get((i++));
                 if (next instanceof SymbolToken)
                 {
                     Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);
@@ -119,7 +119,7 @@ public class VariableToken extends CTToken
                         break;
                     }
                 }
-                else if (!(next instanceof WhitespaceToken) && next != null && !next.rawText.equals(","))
+                else if (!(next instanceof WhitespaceToken) && next != null)
                 {
                     break;
                 }

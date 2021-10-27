@@ -12,7 +12,7 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 
-public class OrihimeInoue extends AnimatorCard
+public class OrihimeInoue extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 

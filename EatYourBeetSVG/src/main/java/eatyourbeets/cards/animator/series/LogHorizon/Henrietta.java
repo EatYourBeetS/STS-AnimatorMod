@@ -26,7 +26,7 @@ public class Henrietta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 3);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);

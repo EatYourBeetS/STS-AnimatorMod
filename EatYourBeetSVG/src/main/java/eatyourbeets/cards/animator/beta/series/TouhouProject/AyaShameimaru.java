@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
-public class AyaShameimaru extends AnimatorCard
+public class AyaShameimaru extends AnimatorCard //TODO: Power: Your Air increases the Focus of the surrounding Orbs by 2. When you Evoke Air, randomly gain +1 Green or Blue
 {
     public static final EYBCardData DATA = Register(AyaShameimaru.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 

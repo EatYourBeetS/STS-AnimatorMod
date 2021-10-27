@@ -1,17 +1,20 @@
 package eatyourbeets.cards.animator.ultrarare;
 
 import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.stances.WrathStance;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
+import eatyourbeets.cards.animator.series.HitsugiNoChaika.ChaikaKamaz;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Giselle extends AnimatorCard_UltraRare
 {
@@ -24,12 +27,11 @@ public class Giselle extends AnimatorCard_UltraRare
     {
         super(DATA);
 
-        Initialize(18, 0, 12, 1);
-        SetUpgrade(0, 0, 6, 1);
+        Initialize(18, 0, 10);
+        SetUpgrade(0, 0, 10);
 
-        SetAffinity_Fire(2);
-        SetAffinity_Dark(2);
-        SetAffinity_Star(0, 0, 2);
+        SetAffinity_Star(2);
+        SetHaste(true);
     }
 
     @Override
@@ -39,18 +41,63 @@ public class Giselle extends AnimatorCard_UltraRare
         GameActions.Bottom.VFX(new FlameBarrierEffect(m.hb.cX, m.hb.cY), 0.5f);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
-        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
+
+        GameActions.Bottom.ChangeStance(WrathStance.STANCE_ID);
+        GameActions.Bottom.StackPower(new GisellePower(p, 1));
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
+    public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
 
-        if (startOfBattle)
+        GameActions.Bottom.RaiseFireLevel(magicNumber);
+        GameActions.Bottom.RaiseEarthLevel(magicNumber);
+    }
+
+    public static class GisellePower extends AnimatorPower implements OnAfterCardPlayedSubscriber {
+        public GisellePower(AbstractPlayer owner, int amount) {
+            super(owner, ChaikaKamaz.DATA);
+
+            this.amount = amount;
+
+            updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
         {
-            GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.ChannelOrbs(Fire::new, secondaryValue);
+            super.onInitialApplication();
+
+            CombatStats.onAfterCardPlayed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAfterCardPlayed.Unsubscribe(this);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            RemovePower();
+
+            super.atEndOfTurn(isPlayer);
+        }
+
+        @Override
+        public void OnAfterCardPlayed(AbstractCard card) {
+            if (card.type == CardType.ATTACK && card.damage > 0)
+            {
+                GameActions.Top.GainSupportDamage(card.damage);
+            }
+        }
+
+        @Override
+        public void updateDescription() {
+            description = FormatDescription(0, amount);
         }
     }
 }

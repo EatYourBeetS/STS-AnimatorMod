@@ -3,12 +3,10 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class LeleiLaLalena extends AnimatorCard
 {
@@ -20,53 +18,27 @@ public class LeleiLaLalena extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0,0,1);
 
-        SetAffinity_Water(1);
-        SetAffinity_Earth(1);
+        SetAffinity_Earth();
 
-        SetEvokeOrbCount(1);
+        SetEvokeOrbCount(magicNumber);
     }
 
     @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        super.OnDrag(m);
+    public void triggerOnManualDiscard() {
+        super.triggerOnManualDiscard();
 
-        if (m != null && HasSynergy())
-        {
-            GameUtilities.GetIntent(m).AddWeak();
-        }
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        target = HasSynergy() ? CardTarget.SELF_AND_ENEMY : CardTarget.SELF;
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing)
-        {
-            if (m == null)
-            {
-                m = GameUtilities.GetRandomEnemy(true);
-            }
-
-            GameActions.Bottom.ApplyWeak(p, m, 1);
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
-        .ShowEffect(!upgraded, !upgraded)
-        .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
+        GameActions.Bottom.Cycle(name, 1)
+            .SetOptions(false, false, false)
+            .SetFilter(card -> GameUtilities.HasAffinity(card, Affinity.Earth))
+            .AddCallback(() -> GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
     }
 }

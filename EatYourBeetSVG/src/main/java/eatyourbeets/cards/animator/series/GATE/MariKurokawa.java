@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -8,66 +7,46 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.HPAttribute;
-import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MariKurokawa extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MariKurokawa.class)
             .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
-            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public MariKurokawa()
     {
         super(DATA);
 
-        Initialize(0, 0, 8, 9);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 2);
 
-        SetAffinity_Air(1);
-        SetAffinity_Earth(1, 1, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light();
+
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return heal <= 0 ? null : HPAttribute.Instance.SetCard(this, false).SetText(new ColoredString(heal, Colors.Cream(1f)));
-    }
+        int tempHP = magicNumber * GameUtilities.GetBuffsCount(player);
 
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        CalculateHeal();
+        return tempHP > 0 ? TempHPAttribute.Instance.SetCard(this, false).SetText(magicNumber, Colors.Cream(1)) : null;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CalculateHeal() > 0)
-        {
-            GameActions.Bottom.Heal(heal);
-        }
-
-        GameActions.Bottom.DiscardFromHand(name, 2, false)
-        .SetOptions(false, true, false)
-        .SetFilter(c -> c.type == CardType.ATTACK)
-        .AddCallback(cards ->
-        {
-            if (cards.size() >= 2)
-            {
-                GameActions.Bottom.GainBlock(secondaryValue);
-            }
-        });
-    }
-
-    protected int CalculateHeal()
-    {
-        return heal = Math.min(magicNumber, GameActionManager.playerHpLastTurn - player.currentHealth);
+        GameActions.Bottom.GainTemporaryHP(magicNumber * GameUtilities.GetBuffsCount(player));
     }
 }

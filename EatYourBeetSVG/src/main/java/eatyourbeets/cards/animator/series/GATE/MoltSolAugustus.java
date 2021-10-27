@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.MoltSolAugustus_ImperialArchers;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -20,19 +17,16 @@ public class MoltSolAugustus extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), false));
-    private static final int ENERGY_COST = 1;
 
     public MoltSolAugustus()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0);
+        SetUpgrade(0, 0);
 
-        SetAffinity_Fire(1);
-        SetAffinity_Earth(1);
-
-        SetDelayed(true);
+        SetAffinity_Light(2);
+        SetAffinity_Earth(2);
     }
 
     @Override
@@ -41,23 +35,21 @@ public class MoltSolAugustus extends AnimatorCard
         GameActions.Bottom.StackPower(new MoltSolAugustusPower(p, secondaryValue));
     }
 
-    public static class MoltSolAugustusPower extends AnimatorClickablePower
+    public static class MoltSolAugustusPower extends AnimatorPower
     {
         public static final int DRAW_REDUCTION = 1;
 
         public MoltSolAugustusPower(AbstractCreature owner, int amount)
         {
-            super(owner, MoltSolAugustus.DATA, PowerTriggerConditionType.Energy, MoltSolAugustus.ENERGY_COST);
-
-            triggerCondition.SetUses(1, true, false);
+            super(owner, MoltSolAugustus.DATA);
 
             Initialize(amount);
         }
 
         @Override
-        public String GetUpdatedDescription()
+        public void updateDescription()
         {
-            return FormatDescription(0, amount, DRAW_REDUCTION);
+            this.description = FormatDescription(0, amount, DRAW_REDUCTION);
         }
 
         @Override
@@ -77,30 +69,11 @@ public class MoltSolAugustus extends AnimatorCard
         }
 
         @Override
-        public void atEndOfTurn(boolean isPlayer)
+        public void atStartOfTurn()
         {
-            super.atEndOfTurn(isPlayer);
+            super.atStartOfTurn();
 
-            GameActions.Bottom.SelectFromPile(name, Integer.MAX_VALUE, player.exhaustPile, player.drawPile, player.discardPile, player.hand)
-            .SetOptions(false, false)
-            .SetFilter(GameUtilities::HasRedAffinity)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    ((EYBCard)c).SetHaste(true);
-                }
-            });
-
-            flashWithoutSound();
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m)
-        {
-            super.OnUse(m);
-
-            GameActions.Bottom.MakeCardInDrawPile(new MoltSolAugustus_ImperialArchers())
+            GameActions.Bottom.MakeCardInHand(new MoltSolAugustus_ImperialArchers())
             .Repeat(amount).SetDuration(0.1f, false);
         }
     }

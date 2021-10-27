@@ -32,7 +32,7 @@
 	},
 	"animator:BozesPower":
 	{
-		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b{0} #ySupport #yDamage."],
+		"DESCRIPTIONS": ["Whenever you play a card, gain #b{0} #ySupport #yDamage."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator:ChlammyZellPower":

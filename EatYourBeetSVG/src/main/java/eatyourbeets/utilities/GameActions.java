@@ -701,6 +701,11 @@ public final class GameActions
         return StackAffinityPower(CyberLevelPower.AFFINITY_TYPE, amount, retain);
     }
 
+    public ApplyPower GainCounterAttack(int amount)
+    {
+        return StackPower(new CounterAttackPower(player, amount));
+    }
+
     public GainGold GainGold(int amount)
     {
         return Add(new GainGold(amount, true));
@@ -726,9 +731,19 @@ public final class GameActions
         return Add(new IncreaseMaxOrbAction(slots));
     }
 
+    public ApplyPower GainPanache(int amount)
+    {
+        return StackPower(new PanachePower(player, amount));
+    }
+
     public ApplyPower GainPlatedArmor(int amount)
     {
         return StackPower(new AnimatorPlatedArmorPower(player, amount));
+    }
+
+    public ApplyPower GainRage(int amount)
+    {
+        return StackPower(new RagePower(player, amount));
     }
 
     public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain)

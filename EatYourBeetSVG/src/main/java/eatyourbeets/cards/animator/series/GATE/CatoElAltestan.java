@@ -1,70 +1,38 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_Apply;
-import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
-import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class CatoElAltestan extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(CatoElAltestan.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
-
-    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public CatoElAltestan()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetAffinity_Water(2);
+        SetAffinity_Water();
+        SetAffinity_Fire();
+        SetAffinity_Thunder();
 
         SetExhaust(true);
-
-        SetAffinityRequirement(Affinity.Fire, 2);
-        SetAffinityRequirement(Affinity.Water, 2);
-        SetAffinityRequirement(Affinity.Air, 2);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-
-
         GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
         .SetOptions(false, true)
-        .SetFilter(GameUtilities::HasBlueAffinity)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard c : cards)
-            {
-                GameActions.Bottom.IncreaseScaling(c, Affinity.Water, 1);
-            }
-        });
-
-        choices.Initialize(this, true);
-        if (CheckAffinity(Affinity.Water))
-        {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Freezing, secondaryValue));
-        }
-        if (CheckAffinity(Affinity.Fire))
-        {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Burning, secondaryValue));
-        }
-        if (CheckAffinity(Affinity.Air))
-        {
-            choices.AddEffect(new GenericEffect_ChannelOrb(new Air()));
-        }
-        choices.Select(1, m);
+        .SetFilter(card -> GameUtilities.HasAffinity(card, Affinity.Water)
+                || GameUtilities.HasAffinity(card, Affinity.Fire)
+                || GameUtilities.HasAffinity(card, Affinity.Thunder));
     }
 }

@@ -378,6 +378,12 @@
 		"NAMES": ["orb stance"],
 		"PROPER_NAME": "Orb Stance"
 	},
+	"Panache":
+	{
+		"DESCRIPTION": "From when this Power is first applied, deal damage every time you play 5 cards in a single turn.",
+		"NAMES": ["panache"],
+		"PROPER_NAME": "Panache"
+	},
 	"Plated Armor":
 	{
 		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
@@ -395,6 +401,12 @@
 		"DESCRIPTION": "Removed from combat.",
 		"NAMES": ["purge", "purged", "purges"],
 		"PROPER_NAME": "Purge"
+	},
+	"Rage":
+	{
+		"DESCRIPTION": "Whenever you play an Attack this turn, gain #yBlock.",
+		"NAMES": ["rage"],
+		"PROPER_NAME": "Rage"
 	},
 	"Rebound":
 	{

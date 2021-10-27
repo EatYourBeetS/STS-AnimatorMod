@@ -2,31 +2,36 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import com.megacrit.cardcrawl.orbs.Plasma;
+import com.megacrit.cardcrawl.stances.CalmStance;
+import com.megacrit.cardcrawl.stances.NeutralStance;
+import com.megacrit.cardcrawl.stances.WrathStance;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.GuardStance;
+import eatyourbeets.stances.OrbStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Kuribayashi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kuribayashi.class)
-            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public Kuribayashi()
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 3);
-        SetUpgrade(3, 0, 0);
+        Initialize(13, 0, 7, 9);
+        SetUpgrade(6, 0, 0);
 
-        SetAffinity_Fire(1, 1, 1);
-        SetAffinity_Air(2, 0, 1);
-
-        SetAffinityRequirement(Affinity.Fire, 3);
-        SetAffinityRequirement(Affinity.Air, 2);
+        SetAffinity_Earth(2);
+        SetAffinity_Steel();
     }
 
     @Override
@@ -34,16 +39,16 @@ public class Kuribayashi extends AnimatorCard
     {
         super.OnDrag(m);
 
-        if (m != null && CheckAffinity(Affinity.Fire))
+        if (m != null && GameUtilities.InStance(WrathStance.STANCE_ID))
         {
-            GameUtilities.GetIntent(m).AddStrength(-secondaryValue);
+            GameUtilities.GetIntent(m).AddStrength(-magicNumber);
         }
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return AgilityStance.IsActive() ? super.GetDamageInfo().AddMultiplier(2) : super.GetDamageInfo();
+        return GameUtilities.InStance(GuardStance.STANCE_ID) ? super.GetDamageInfo().AddMultiplier(3) : super.GetDamageInfo();
     }
 
     @Override
@@ -51,16 +56,23 @@ public class Kuribayashi extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
 
-        if (CheckAffinity(Affinity.Air))
+        if (GameUtilities.InStance(WrathStance.STANCE_ID))
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+            GameActions.Bottom.ReduceStrength(m, magicNumber, true);
         }
-
-        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-
-        if (CheckAffinity(Affinity.Fire))
+        else if (GameUtilities.InStance(GuardStance.STANCE_ID))
         {
-            GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        }
+        else if (GameUtilities.InStance(CalmStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+            GameActions.Bottom.GainSupportDamage(secondaryValue);
+        }
+        else if (GameUtilities.InStance(OrbStance.STANCE_ID))
+        {
+            GameActions.Bottom.ChannelOrb(new Plasma());
         }
     }
 }

@@ -35,7 +35,10 @@ import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.blights.animator.UpgradedHand;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
@@ -52,6 +55,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.common.SuperchargedPower;
+import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
@@ -745,6 +749,25 @@ public class GameUtilities
         }
 
         return room;
+    }
+
+    public static int GetBuffsCount(AbstractCreature creature)
+    {
+        return (creature == null || creature.powers == null) ? 0 : GetBuffsCount(creature.powers);
+    }
+
+    public static int GetBuffsCount(ArrayList<AbstractPower> powers)
+    {
+        int result = 0;
+        for (AbstractPower power : powers)
+        {
+            if (power.type == AbstractPower.PowerType.BUFF)
+            {
+                result += 1;
+            }
+        }
+
+        return result;
     }
 
     public static int GetDebuffsCount(AbstractCreature creature)
@@ -1799,6 +1822,19 @@ public class GameUtilities
             return true;
         }
         return false;
+    }
+
+    public static void TriggerSupportDamage(int times)
+    {
+        for (AbstractPower power : player.powers)
+        {
+            SupportDamagePower supportDamage = JUtils.SafeCast(power, SupportDamagePower.class);
+            if (supportDamage != null) {
+                for (int i=0; i<times; i++) {
+                    supportDamage.atEndOfTurn(true);
+                }
+            }
+        }
     }
 
     public static void TriggerWhenPlayed(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)

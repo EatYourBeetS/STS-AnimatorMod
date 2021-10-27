@@ -2,13 +2,13 @@ package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 
-public class BozesPower extends AnimatorPower implements OnSynergySubscriber
+public class BozesPower extends AnimatorPower implements OnAfterCardPlayedSubscriber
 {
     public static final String POWER_ID = CreateFullID(BozesPower.class);
 
@@ -24,7 +24,7 @@ public class BozesPower extends AnimatorPower implements OnSynergySubscriber
     {
         super.onInitialApplication();
 
-        CombatStats.onSynergy.Subscribe(this);
+        CombatStats.onAfterCardPlayed.Subscribe(this);
     }
 
     @Override
@@ -32,11 +32,11 @@ public class BozesPower extends AnimatorPower implements OnSynergySubscriber
     {
         super.onRemove();
 
-        CombatStats.onSynergy.Unsubscribe(this);
+        CombatStats.onAfterCardPlayed.Unsubscribe(this);
     }
 
     @Override
-    public void OnSynergy(AbstractCard card)
+    public void OnAfterCardPlayed(AbstractCard card)
     {
         GameActions.Bottom.StackPower(new SupportDamagePower(owner, amount));
         this.flash();

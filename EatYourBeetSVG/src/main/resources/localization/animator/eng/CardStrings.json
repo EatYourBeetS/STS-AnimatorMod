@@ -1562,7 +1562,7 @@
 		},
 		"animator:Lust":
 		{
-			"DESCRIPTION": "{Full Hand}: Gain !M! Temp HP.",
+			"DESCRIPTION": "{Full Hand}: Gain !M! [Temp HP].",
 			"NAME": "Lust"
 		},
 		"animator:MaesHughes":
@@ -1610,80 +1610,84 @@
 		"animator:Arpeggio":
 		{
 			"DESCRIPTION": "Gain !M! Orb Slot(s). || !A! [E]: Channel 1 [Earth] and Gain !S! [E].",
-			"NAME": "Arpeggio"
+			"NAME": "Arpeggio El Lalena"
 		},
 		"animator:Bozes":
 		{
-			"DESCRIPTION": "Motivate !M!. || Until end of turn, ** whenever a card ** Synergizes: Gain !S! [Support Damage].",
-			"NAME": "Bozes"
+			"DESCRIPTION": "Whenever you play a card this turn, gain !M! Support Damage. || !A! [F] or [S]: Gain !S! [Rage] for each threshold reached.",
+			"NAME": "Bozes Co Palesti"
 		},
 		"animator:CatoElAltestan":
 		{
-			"DESCRIPTION": "Fetch 2 <W> cards and give them +1 [W] scaling. Then, Choose 1: ** !A! <W>: Apply !S! [Freezing] ** !A! <F>: Apply !S! [Burning] ** !A! <A>: Channel 1 [Air]",
+			"DESCRIPTION": "Fetch !M! <W>, <F>, or <T> card(s) from your draw pile.",
 			"NAME": "Cato El Altestan"
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || Synergy: Gain !S! [Support Damage].",
-			"NAME": "Itami Youji"
+			"DESCRIPTION": "Draw !M! cards and Retain them. || Trigger your [Support Damage] twice for each Attack drawn.",
+			"NAME": "Youji Itami"
 		},
 		"animator:MariKurokawa":
 		{
-			"DESCRIPTION": "Recover !M! [HP]. || Discard 2 {Attacks} ** to gain !S! Block.",
-			"NAME": "Kurokawa"
+			"DESCRIPTION": "Gain [Temp HP] equal to !M! times the number of Buffs you have.",
+			"NAME": "Mari Kurokawa"
 		},
 		"animator:ShunyaKengun":
 		{
-			"DESCRIPTION": "Draw 1 <A> {Attack} ** and Retain it. || When drawn: Apply ** 1 [~Lock-On] to a random ** enemy, ignoring [Artifact].",
-			"NAME": "Kengun"
+			"DESCRIPTION": "Gain !M! Support Damage.",
+			"NAME": "Shunya Kengun"
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <A>: Attack twice. || !A! <F>: Apply !S! [Shackles].",
-			"NAME": "Kuribayashi"
+			"DESCRIPTION": "<WS>: Apply !M! [Shackles]. ** <GS>: Attack two additional times. ** <CS>: Exit your stance. Gain !S! [Support Damage] ** <OS>: Channel [Plasma].",
+			"NAME": "Shino Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
 		{
-			"DESCRIPTION": "Discard a random card ** to {Channel} !M! [Frost]. || Synergy: Apply 1 [Weak].",
-			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Discard a card ** to {Channel} !M! [Frost]. || Synergy: Apply 1 [Weak]."
+			"DESCRIPTION": "Cycle an <E> card to Channel !M! [Frost]. || On Discard: Apply !S! [Weak] to ALL enemies.",
+			"NAME": "Lelei La Lalena"
 		},
 		"animator:MoltSolAugustus":
 		{
-			"DESCRIPTION": "At the end of each turn: ** Give ALL <F> cards {~Haste}. || Draw 1 less card each turn. || Once per turn: Pay [EN] to ** add !S! {Imperial Archers} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [EN] to add #b{0} #yImperial #yArchers to your draw pile. || Draw #b{1} less card(s) each turn. At the start of each turn: Give ALL <F> cards #yHaste."],
-			"NAME": "Molt Sol Augustus"
+			"DESCRIPTION": "Draw 1 less card each turn. || Start of turn: Add an {Imperial Archers} to your hand.",
+			"EXTENDED_DESCRIPTION": ["Start of Turn: Add #b{0} #yImperial #yArchers to your hand. || Draw #b{1} less card(s) each turn."],
+			"NAME": "Molt Sol Augustus",
+			"UPGRADE_DESCRIPTION": "Draw 1 less card each turn. || At start of turn: Add an upgraded {Imperial Archers} to your hand."
 		},
 		"animator:MoltSolAugustus_ImperialArchers":
 		{
-			"DESCRIPTION": "Gain !M! [Support Damage]. || When drawn: Deal !S! ** damage to a random ** enemy 3 times.",
+			"DESCRIPTION": "Increase your [Support Damage] by !M!%.",
 			"NAME": "Imperial Archers"
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "The first {0-Cost} card ** you play each turn ** activates its effect twice. || Once per turn: Discard !M! non-{Purging} cards to <DRW> next turn.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Discard #b{1} non-#yPurging cards to draw 1 more card next turn. || Your next #b{0} #y0-Cost card(s) activate their effects twice."],
+			"DESCRIPTION": "The first {0-Cost} card you play each turn is played twice."
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "Give this card {~Haste}. || <SLM>. ** If all enemies have ** [Vulnerable]: Gain 1 [Inspiration].",
+			"DESCRIPTION": "!M! [Support Damage]: Gain [Counter-Attack] equal to the damage dealt. || On Discard with !A! [F], [E], or [P]: Gain !S! [Panache] for each threshold reached.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "!A! <L>: {Maintain} [L]. || !A! <A>: {Maintain} [A]. || If you have no [Block]: ** <DRW>.",
-			"NAME": "Tuka"
+			"DESCRIPTION": "If you have no [Block]: <DRW>.",
+			"NAME": "Tuka Luna Marceau"
 		},
 		"animator:Tyuule":
 		{
-			"DESCRIPTION": "Increase the ** {Common Debuffs} of ** each enemy by 1. || X <A>: Apply !M! [Poison].",
+			"DESCRIPTION": "Apply !M! [Poison] to ALL enemies, then increase the {Common Debuffs} of each enemy by !S!. ",
 			"NAME": "Tyuule"
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Shackles]. || Synergizes with {0-Cost} cards.",
+			"DESCRIPTION": "Deals additional damage equal to half your [Support Damage].",
 			"NAME": "Yao Ha Ducy"
+		},
+		"animator:ZorzalElCaesar":
+		{
+			"DESCRIPTION": "When this hits an enemy: Gain !M! [E] for each of its {Common Debuffs}. || On Exhaust: Next turn, draw !S! cards and gain [EN].",
+			"NAME": "Zorzal El Caesar"
 		}
 	},
 	"SERIES:GOBLINSLAYER":
@@ -3093,7 +3097,8 @@
 		},
 		"animator:Giselle":
 		{
-			"DESCRIPTION": "Gain Fire Breathing equal to <Y>.",
+			"DESCRIPTION": "When drawn: Gain !M! [F] and !M! [E]. || Enter <WS>. When you play an Attack this turn: Gain [Support Damage] equal to its damage.",
+			"EXTENDED_DESCRIPTION": ["When you play an Attack this turn, gain #ySupport #yDamage equal to #b{0} times their damage."],
 			"NAME": "Giselle"
 		},
 		"animator:Hero":

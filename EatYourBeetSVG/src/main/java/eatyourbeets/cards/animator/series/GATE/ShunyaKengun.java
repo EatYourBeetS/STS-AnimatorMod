@@ -1,14 +1,13 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class ShunyaKengun extends AnimatorCard
 {
@@ -20,40 +19,17 @@ public class ShunyaKengun extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 3);
-        SetUpgrade(3, 0, 0);
+        Initialize(8, 0, 3);
+        SetUpgrade(1, 0, 2);
 
-        SetAffinity_Fire(1, 0, 1);
-        SetAffinity_Air(1, 0, 1);
-        SetAffinity_Earth(1, 1, 0);
-
-        SetAffinityRequirement(Affinity.Fire, 2);
-        SetAffinityRequirement(Affinity.Air, 2);
-
-        SetDrawPileCardPreview(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c));
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 1).IgnoreArtifact(true);
-        GameActions.Bottom.Flash(this);
+        SetAffinity_Earth();
+        SetAffinity_Mind();
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.9f, 1f);
-        GameActions.Bottom.Draw(1)
-        .SetFilter(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c), false)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard c : cards)
-            {
-                GameUtilities.Retain(c);
-            }
-        });
+        GameActions.Bottom.GainSupportDamage(magicNumber);
     }
 }

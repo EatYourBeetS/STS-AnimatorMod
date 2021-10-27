@@ -2,10 +2,10 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -21,12 +21,16 @@ public class RoryMercury extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 0);
+        Initialize(4, 0, 10, 3);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Fire(1, 1, 1);
-        SetAffinity_Dark(1, 0, 1);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Fire();
+        SetAffinity_Earth();
+        SetAffinity_Poison();
+
+        SetAffinityRequirement(Affinity.Fire, 8);
+        SetAffinityRequirement(Affinity.Earth, 8);
+        SetAffinityRequirement(Affinity.Poison, 8);
     }
 
     @Override
@@ -36,29 +40,36 @@ public class RoryMercury extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
+    public void triggerOnManualDiscard() {
+        super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ModifyAllInstances(uuid)
-        .AddCallback(c -> GameUtilities.SetCardTag(c, HASTE, true));
+        if (CheckAffinity(Affinity.Fire))
+        {
+            GameActions.Bottom.GainPanache(secondaryValue);
+        }
+
+        if (CheckAffinity(Affinity.Earth))
+        {
+            GameActions.Bottom.GainPanache(secondaryValue);
+        }
+
+        if (CheckAffinity(Affinity.Poison))
+        {
+            GameActions.Bottom.GainPanache(secondaryValue);
+        }
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-        {
-            if (!enemy.hasPower(VulnerablePower.POWER_ID))
-            {
-                return;
-            }
-        }
-
-        if (info.TryActivateSemiLimited())
-        {
-            GameActions.Bottom.GainInspiration(1);
+        for (int i=0; i<2; i++) {
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY)
+            .AddCallback(enemy -> {
+                if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) >= magicNumber)
+                {
+                    GameActions.Top.GainCounterAttack(damage);
+                }
+            });
         }
     }
 }

@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yuuichirou_Asuramaru;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,7 +22,7 @@ public class Yuuichirou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1);
+        Initialize(7, 0, 2);
         SetUpgrade(3, 0);
 
         SetAffinity_Red(2, 0, 1);
@@ -40,7 +39,7 @@ public class Yuuichirou extends AnimatorCard
         GameActions.Bottom.Draw(1);
 
         if (AgilityStance.IsActive()) {
-            GameActions.Bottom.GainForce(1, true);
+            GameActions.Bottom.GainForce(magicNumber, true);
         }
     }
 

@@ -45,6 +45,6 @@ public class CounterIntentEffect_Defend_Buff extends CounterIntentEffect
 
     private int GetForce(EYBCard nanami)
     {
-        return nanami.energyOnUse + 1;
+        return (nanami.energyOnUse + 1) * 2;
     }
 }

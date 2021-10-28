@@ -19,7 +19,8 @@ public class ShioriSekine extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 0, 1);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
         SetEthereal(true);
@@ -42,7 +43,7 @@ public class ShioriSekine extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.GainWillpower(secondaryValue);
     }
 
     @Override

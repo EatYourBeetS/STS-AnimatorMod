@@ -35,9 +35,9 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new DesecrationPower(p, 1));
         for (int i = 0; i < CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true) / secondaryValue; i++) {
-            GameActions.Bottom.GainForce(magicNumber,true);
-            GameActions.Bottom.GainAgility(magicNumber,true);
-            GameActions.Bottom.GainIntellect(magicNumber,true);
+            GameActions.Bottom.GainForce(magicNumber);
+            GameActions.Bottom.GainAgility(magicNumber);
+            GameActions.Bottom.GainIntellect(magicNumber);
             GameActions.Bottom.MakeCardInHand(new Status_Burn()).SetUpgrade(true,false);
         }
     }

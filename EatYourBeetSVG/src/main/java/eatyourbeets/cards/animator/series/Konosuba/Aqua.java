@@ -30,7 +30,7 @@ public class Aqua extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Light(2);
         SetAffinity_Blue(1);
@@ -81,7 +81,6 @@ public class Aqua extends AnimatorCard
     {
         if (!transformed)
         {
-            GameActions.Bottom.GainBlessing(1, upgraded);
             GameActions.Bottom.Heal(magicNumber);
             GameActions.Bottom.Draw(1);
             if (upgraded && CheckAffinity(Affinity.Blue) && info.IsSynergizing && info.TryActivateLimited()) {

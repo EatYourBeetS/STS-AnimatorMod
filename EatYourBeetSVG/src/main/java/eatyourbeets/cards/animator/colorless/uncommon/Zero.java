@@ -23,7 +23,8 @@ public class Zero extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
+        SetUpgrade(0,0,0);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -35,7 +36,7 @@ public class Zero extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainIntellect(1, upgraded);
+        GameActions.Bottom.GainIntellect(magicNumber);
         if (upgraded) {
             GameActions.Bottom.Draw(1);
         }

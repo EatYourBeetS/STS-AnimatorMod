@@ -1,8 +1,6 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PhilosopherStone;
@@ -10,12 +8,14 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.GenesisPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
-//TODO If you already have one, gain 1 Genesis and give ALL enemies 1 Strength
 public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddingToCardRewardListener
 {
     private static final AbstractRelic relic = new PhilosopherStone();
@@ -70,25 +70,24 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
     @Override
     public boolean ShouldCancel()
     {
-        return GR.Animator.Dungeon.BannedCards.contains(cardID) || AbstractDungeon.actNum >= 4 || player == null;
+        return GR.Animator.Dungeon.BannedCards.contains(cardID) || player == null;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
-        GameActions.Bottom.VFX(new OfferingEffect(), 0.5f);
-        GameActions.Bottom.Callback(() -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
-        //AbstractDungeon.bossRelicPool.remove(relic.relicId);
-
+        if (GameUtilities.HasRelic(relic.relicId)) {
+            GameActions.Bottom.StackPower(new GenesisPower(player, 1));
+            GameActions.Bottom.ApplyPower(TargetHelper.Enemies(), PowerHelper.Strength, 1);
+        }
+        else {
+            p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));
+            GameActions.Bottom.VFX(new OfferingEffect(), 0.5f);
+            GameActions.Bottom.Callback(() -> GameEffects.Queue.SpawnRelic(relic.makeCopy(), current_x, current_y));
+            //AbstractDungeon.bossRelicPool.remove(relic.relicId);
+        }
         p.energy.energy += 1;
 
-        //noinspection StatementWithEmptyBody
-        while (p.masterDeck.removeCard(cardID));
 
-        for (AbstractCard card : GameUtilities.GetAllInBattleCopies(cardID))
-        {
-            GameActions.Bottom.Purge(card);
-        }
     }
 }

@@ -36,8 +36,8 @@ public class Spearman extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f));
-        GameActions.Bottom.GainAgility(magicNumber, true);
-        GameActions.Bottom.GainForce(magicNumber, true);
+        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainForce(magicNumber);
     }
 
     @Override

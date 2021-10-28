@@ -21,7 +21,7 @@ public class TomoeKashiwaba extends AnimatorCard //TODO
         super(DATA);
 
         Initialize(8, 2, 0);
-        SetUpgrade(0, 0, 0);
+        SetUpgrade(2, 2, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
     }
@@ -36,7 +36,7 @@ public class TomoeKashiwaba extends AnimatorCard //TODO
     public void triggerWhenDrawn()
     {
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainWillpower(1, upgraded);
+            GameActions.Bottom.GainWillpower(1);
         }
     }
 

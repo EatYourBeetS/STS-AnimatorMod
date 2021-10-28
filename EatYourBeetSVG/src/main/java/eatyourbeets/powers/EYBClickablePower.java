@@ -35,7 +35,12 @@ public abstract class EYBClickablePower extends EYBPower
 
     private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
-        super(owner, cardData, relic, null);
+        this(owner, cardData, relic, null);
+    }
+
+    private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic, String originalID)
+    {
+        super(owner, cardData, relic, originalID);
 
         priority = CombatStats.Instance.priority + 1;
         tooltip = new EYBCardTooltip(name, description);
@@ -45,6 +50,7 @@ public abstract class EYBClickablePower extends EYBPower
         final float size = ICON_SIZE * Settings.scale * 1.5f;
         hb = new Hitbox(size, size);
     }
+
 
     public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount)
     {
@@ -58,6 +64,13 @@ public abstract class EYBClickablePower extends EYBPower
         this(owner, null, relic);
 
         triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, EYBRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)
+    {
+        this(owner, null, relic);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
 
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount)
@@ -77,6 +90,27 @@ public abstract class EYBClickablePower extends EYBPower
     public EYBClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)
     {
         this(owner, cardData, null);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount)
+    {
+        this(owner, null, null, originalID);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    {
+        this(owner, null, null, originalID);
+
+        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
+    }
+
+    public EYBClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)
+    {
+        this(owner, null, null, originalID);
 
         triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
@@ -172,7 +206,13 @@ public abstract class EYBClickablePower extends EYBPower
         Color borderColor = (enabled && triggerCondition.CanUse()) ? c : disabledColor;
         Color imageColor = enabled ? c : disabledColor;
         RenderHelpers.DrawCentered(sb, borderColor, GR.Common.Images.SquaredButton_EmptyCenter.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
-        RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
+        if (this.powerIcon != null) {
+            RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
+        }
+        else {
+            RenderHelpers.DrawCentered(sb, imageColor, this.img, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);
+        }
+
         if (enabled && hb.hovered && clickable)
         {
             RenderHelpers.DrawCentered(sb, Colors.White(0.3f), GR.Common.Images.SquaredButton.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);

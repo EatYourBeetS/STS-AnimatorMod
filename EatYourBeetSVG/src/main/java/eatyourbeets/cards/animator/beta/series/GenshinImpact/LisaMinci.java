@@ -18,7 +18,7 @@ public class LisaMinci extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 3, 3, 2);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 1, 1, 0);
         SetAffinity_Blue(2, 0, 1);
     }
 
@@ -47,7 +47,7 @@ public class LisaMinci extends AnimatorCard {
                         }
 
                         if (activateEffect1) {
-                            GameActions.Bottom.GainIntellect(secondaryValue, upgraded);
+                            GameActions.Bottom.GainIntellect(secondaryValue);
                         }
                         if (activateEffect2) {
                             GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));

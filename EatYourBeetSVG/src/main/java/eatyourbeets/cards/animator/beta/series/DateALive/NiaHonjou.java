@@ -21,6 +21,7 @@ public class NiaHonjou extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
+        SetUpgrade(0,0,0,1);
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Blue(1, 0, 0);
     }
@@ -43,7 +44,7 @@ public class NiaHonjou extends AnimatorCard
         super.triggerOnManualDiscard();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Top.GainBlessing(secondaryValue, upgraded);
+            GameActions.Top.GainBlessing(secondaryValue);
         }
     }
 

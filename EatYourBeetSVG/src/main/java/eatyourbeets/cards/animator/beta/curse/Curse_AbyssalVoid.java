@@ -32,7 +32,7 @@ public class Curse_AbyssalVoid extends AnimatorCard_Curse
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
-        GameActions.Bottom.GainCorruption(magicNumber * stacks, true);
+        GameActions.Bottom.GainCorruption(magicNumber * stacks);
         GameActions.Bottom.LoseHP(secondaryValue * stacks, AttackEffects.DARKNESS);
     }
 }

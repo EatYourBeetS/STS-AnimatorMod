@@ -16,7 +16,7 @@ public class Noda extends AnimatorCard
         super(DATA);
 
         Initialize(12, 0, 2, 2);
-        SetUpgrade(3, 0, 1, 0);
+        SetUpgrade(3, 0, 2, 0);
 
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Orange(0, 0, 1);
@@ -41,8 +41,8 @@ public class Noda extends AnimatorCard
 
         if (info.IsSynergizing || TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.GainForce(secondaryValue, upgraded);
-            GameActions.Bottom.GainWillpower(secondaryValue, upgraded);
+            GameActions.Bottom.GainForce(secondaryValue);
+            GameActions.Bottom.GainWillpower(secondaryValue);
         }
     }
 }

@@ -21,8 +21,8 @@ public class SuikaIbuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 6, 1, 1);
-        SetUpgrade(2, 1, 0, 0);
+        Initialize(7, 6, 1, 2);
+        SetUpgrade(2, 1, 0, 1);
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Blue(0, 0, 1);
         SetEthereal(true);
@@ -53,7 +53,7 @@ public class SuikaIbuki extends AnimatorCard
 
         if (hasPower)
         {
-            GameActions.Bottom.GainForce(secondaryValue, upgraded);
+            GameActions.Bottom.GainForce(secondaryValue);
         }
     }
 }

@@ -29,7 +29,7 @@ public class KanadeTachibana extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(secondaryValue,true);
+        GameActions.Bottom.GainBlessing(secondaryValue);
         GameActions.Bottom.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]).AddCallback(

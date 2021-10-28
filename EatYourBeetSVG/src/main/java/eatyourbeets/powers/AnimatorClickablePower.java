@@ -33,4 +33,14 @@ public abstract class AnimatorClickablePower extends EYBClickablePower
     {
         super(owner, relic, type, requiredAmount, checkCondition, payCost);
     }
+
+    public AnimatorClickablePower(AbstractCreature owner, String orignialID, PowerTriggerConditionType type, int requiredAmount)
+    {
+        super(owner, orignialID, type, requiredAmount);
+    }
+
+    public AnimatorClickablePower(AbstractCreature owner, String orignialID, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
+    {
+        super(owner, orignialID, type, requiredAmount, checkCondition, payCost);
+    }
 }

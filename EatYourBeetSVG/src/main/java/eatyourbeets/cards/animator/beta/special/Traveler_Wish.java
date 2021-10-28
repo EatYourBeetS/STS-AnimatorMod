@@ -23,6 +23,14 @@ public class Traveler_Wish extends AnimatorCard
     }
 
     @Override
+    public void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetLoyal(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlessing(1, upgraded);

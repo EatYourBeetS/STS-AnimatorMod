@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.curse.SayakaMiki_Oktavia;
@@ -25,7 +26,7 @@ public class SayakaMiki extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 1, 1);
+        SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
@@ -33,30 +34,24 @@ public class SayakaMiki extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        int aff = CombatStats.Affinities.GetAffinityLevel(Affinity.Blue, true);
-        magicNumber = aff + baseMagicNumber;
-        isMagicNumberModified = magicNumber > baseMagicNumber;
-        SetAffinityRequirement(Affinity.Blue, aff);
+    public int GetXValue() {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Blue, true);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        return TempHPAttribute.Instance.SetCard(this).SetText(magicNumber + GetXValue(), Settings.CREAM_COLOR);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        TrySpendAffinity(Affinity.Blue);
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(GetXValue());
+        TrySpendAffinity(Affinity.Blue, GetXValue());
         GameActions.Bottom.ChannelOrb(new Frost());
 
-        GameActions.Bottom.StackAffinityPower(Affinity.Blue, secondaryValue, upgraded);
+        GameActions.Bottom.GainIntellect(secondaryValue);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

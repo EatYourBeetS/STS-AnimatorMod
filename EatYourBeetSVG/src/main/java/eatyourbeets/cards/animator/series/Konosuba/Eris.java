@@ -95,7 +95,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(secondaryValue,true);
+        GameActions.Bottom.GainBlessing(secondaryValue);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
     }
 

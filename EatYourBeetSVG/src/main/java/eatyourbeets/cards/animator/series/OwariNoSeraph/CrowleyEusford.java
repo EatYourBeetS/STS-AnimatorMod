@@ -40,7 +40,7 @@ public class CrowleyEusford extends AnimatorCard
 
         for (AbstractMonster mo: GameUtilities.GetEnemies(true)) {
             if (GameUtilities.GetPowerAmount(mo, VulnerablePower.POWER_ID) > 0) {
-                GameActions.Bottom.GainForce(magicNumber, true);
+                GameActions.Bottom.GainForce(magicNumber);
                 break;
             }
         }
@@ -52,8 +52,8 @@ public class CrowleyEusford extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.GainAgility(magicNumber, true);
-        GameActions.Bottom.GainForce(magicNumber, true);
+        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainForce(magicNumber);
 
         if (CheckSpecialCondition(true))
         {

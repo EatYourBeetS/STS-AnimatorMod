@@ -27,7 +27,7 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainWillpower(1, true);
+        GameActions.Bottom.GainWillpower(secondaryValue);
     }
 
     @Override

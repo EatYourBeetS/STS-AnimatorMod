@@ -23,17 +23,13 @@ public class CounterIntentEffect_Buff extends CounterIntentEffect
     private int GetForce(EYBCard nanami)
     {
         int energy = nanami.energyOnUse;
-        if (energy == 0)
+        if (nanami.upgraded)
         {
-            return 1;
-        }
-        else if (nanami.upgraded)
-        {
-            return 2 + (energy / 2) + energy;
+            return 4 + 3 * energy;
         }
         else
         {
-            return 1 + energy;
+            return (1 + energy) * 2;
         }
     }
 }

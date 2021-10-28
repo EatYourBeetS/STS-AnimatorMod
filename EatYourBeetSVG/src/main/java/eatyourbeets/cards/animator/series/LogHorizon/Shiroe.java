@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Shiroe extends AnimatorCard
 {
-    public static final int MINIMUM_AFFINITY = 3;
+    public static final int MINIMUM_AFFINITY = 4;
     public static final EYBCardData DATA = Register(Shiroe.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(2)
@@ -34,7 +35,13 @@ public class Shiroe extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Cycle(name, magicNumber);
+        GameActions.Bottom.Cycle(name, magicNumber).AddCallback(cards -> {
+            for (AbstractCard c : cards) {
+                if (c instanceof EYBCard) {
+                    CombatStats.Affinities.AddAffinities(((EYBCard) c).affinities);
+                }
+            }
+        });
         GameActions.Bottom.StackPower(new ShiroePower(p, secondaryValue));
     }
 
@@ -54,10 +61,9 @@ public class Shiroe extends AnimatorCard
         {
             super.onAfterCardPlayed(card);
 
-            if (card instanceof EYBCard && ((EYBCard) card).GetHandAffinity(Affinity.General) >= MINIMUM_AFFINITY)
-            {
+            GameActions.Bottom.TryChooseSpendAffinity(name, MINIMUM_AFFINITY).AddConditionalCallback(() -> {
                 GameActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
-            }
+            });
         }
 
         @Override

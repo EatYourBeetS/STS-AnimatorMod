@@ -22,7 +22,7 @@ public class Ara extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 3, 2);
-        SetUpgrade(1, 0);
+        SetUpgrade(1, 0, 1, 0);
 
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
@@ -53,11 +53,11 @@ public class Ara extends AnimatorCard
 
         if (auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainWillpower(magicNumber, upgraded);
+            GameActions.Bottom.GainWillpower(magicNumber);
         }
         else if (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Orange))
         {
-            GameActions.Bottom.GainAgility(magicNumber, upgraded);
+            GameActions.Bottom.GainAgility(magicNumber);
         }
     }
 

@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
+import eatyourbeets.ui.common.EnchantCampfireOption;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
@@ -21,10 +22,10 @@ public class CampfireUIPatches
         public static void Postfix(CampfireUI __instance)
         {
             ArrayList<AbstractCampfireOption> buttons = _buttons.Get(__instance);
-            //if (EnchantCampfireOption.CanAddOption())
-            //{
-            //    AddOption(__instance, new EnchantCampfireOption());
-            //}
+            if (EnchantCampfireOption.CanAddOption())
+            {
+                AddOption(__instance, new EnchantCampfireOption());
+            }
             //if (KirbyCampfireOption.CanAddOption())
             //{
             //    AddOption(__instance, new KirbyCampfireOption());

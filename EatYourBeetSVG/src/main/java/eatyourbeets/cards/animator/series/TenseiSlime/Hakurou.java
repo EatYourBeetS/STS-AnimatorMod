@@ -55,18 +55,13 @@ public class Hakurou extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
-        .RequireNeutralStance(true)
-        .AddCallback(stance ->
-        {
-            if (stance != null)
-            {
-                GameActions.Bottom.Flash(this);
-            }
-        });
-
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() -> {
-            GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
+            if (AgilityStance.IsActive()) {
+                GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
+            }
+            else {
+                GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+            }
         });
     }
 }

@@ -34,7 +34,7 @@ public class SougenEsaka extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         if (GameUtilities.InStance(ForceStance.STANCE_ID)) {
-            GameActions.Bottom.GainWillpower(secondaryValue, true);
+            GameActions.Bottom.GainWillpower(secondaryValue);
         }
 
 

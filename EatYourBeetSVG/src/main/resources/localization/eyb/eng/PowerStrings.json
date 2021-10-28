@@ -60,6 +60,11 @@
 		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
 		"NAME": "Exit Stance Next Turn"
     },
+	"eyb:ExitStancePower":
+	{
+		"DESCRIPTIONS": ["Exit your Stance."],
+		"NAME": "Exit Stance"
+	},
 	"eyb:FireElementPower":
 	{
 	  "DESCRIPTIONS": ["Immune to Burning. Freezing is twice as effective."],

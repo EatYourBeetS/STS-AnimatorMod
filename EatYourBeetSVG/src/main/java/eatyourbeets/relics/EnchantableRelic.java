@@ -12,6 +12,7 @@ import eatyourbeets.cards.animator.enchantments.Enchantment;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.animator.EnchantmentPower;
+import eatyourbeets.powers.common.ExitStancePower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
@@ -128,6 +129,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     {
         super.atBattleStartPreDraw();
 
+        GameActions.Bottom.ApplyPower(new ExitStancePower(player, 1)).ShowEffect(false, true);
         if (enchantment != null)
         {
             GameActions.Bottom.ApplyPower(new EnchantmentPower(this, player, 1)).ShowEffect(false, true);

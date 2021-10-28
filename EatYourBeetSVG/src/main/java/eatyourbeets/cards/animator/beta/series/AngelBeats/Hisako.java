@@ -32,7 +32,7 @@ public class Hisako extends AnimatorCard implements Hidden
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainWillpower(1, upgraded);
+        GameActions.Bottom.GainWillpower(1);
         GameActions.Bottom.Motivate(secondaryValue);
 
         if (CombatStats.ControlPile.Contains(this))

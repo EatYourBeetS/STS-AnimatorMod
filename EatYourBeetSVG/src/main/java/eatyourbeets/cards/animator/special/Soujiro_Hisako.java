@@ -19,7 +19,7 @@ public class Soujiro_Hisako extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(1);
@@ -43,7 +43,7 @@ public class Soujiro_Hisako extends AnimatorCard
         {
             if (orbs.size() > 0)
             {
-                GameActions.Bottom.GainIntellect(1, true);
+                GameActions.Bottom.GainIntellect(magicNumber);
             }
         });
     }

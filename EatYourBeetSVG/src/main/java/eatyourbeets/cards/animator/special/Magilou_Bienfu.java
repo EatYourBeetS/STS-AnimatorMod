@@ -20,7 +20,7 @@ public class Magilou_Bienfu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
@@ -37,7 +37,7 @@ public class Magilou_Bienfu extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        GameActions.Bottom.GainIntellect(1, true);
+        GameActions.Bottom.GainIntellect(magicNumber);
     }
 
     @Override

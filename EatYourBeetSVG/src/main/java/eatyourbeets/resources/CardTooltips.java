@@ -13,6 +13,7 @@ import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.animator.*;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
@@ -127,6 +128,7 @@ public class CardTooltips
     public EYBCardTooltip Impaired = FindByID("Impaired");
     public EYBCardTooltip Genesis = FindByID("Genesis");
     public EYBCardTooltip Tainted = FindByID("Tainted");
+    public EYBCardTooltip Slow = FindByID("Slow");
     public EYBCardTooltip SelfImmolation = FindByID("Self-Immolation");
     public EYBCardTooltip Multiform = FindByID("~Multiform");
     public EYBCardTooltip BranchUpgrade = FindByID("~Branch Upgrade");
@@ -301,6 +303,7 @@ public class CardTooltips
         LoadFromPower(Impaired, new ImpairedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Genesis, new GenesisPower(FakeCharacter.Instance, 0));
         LoadFromPower(Tainted, new TaintedPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Slow, new AntiArtifactSlowPower(FakeCharacter.Instance, 0));
         LoadFromPower(SelfImmolation, new SelfImmolationPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player

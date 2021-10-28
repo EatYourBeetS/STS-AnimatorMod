@@ -19,7 +19,7 @@ public class Shuna extends AnimatorCard
         super(DATA);
 
         Initialize(0, 1, 2, 2);
-        SetUpgrade(0, 1, 0, 1);
+        SetUpgrade(0, 2, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 1, 1);
@@ -38,8 +38,8 @@ public class Shuna extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainBlessing(magicNumber, upgraded);
-        GameActions.Bottom.GainWillpower(magicNumber, upgraded);
+        GameActions.Bottom.GainBlessing(magicNumber);
+        GameActions.Bottom.GainWillpower(magicNumber);
         GameActions.Bottom.Draw(magicNumber);
     }
 }

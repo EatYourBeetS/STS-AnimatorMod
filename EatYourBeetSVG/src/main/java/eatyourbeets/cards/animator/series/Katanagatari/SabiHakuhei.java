@@ -36,14 +36,6 @@ public class SabiHakuhei extends AnimatorCard {
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        DoEffect();
-    }
-
-    @Override
     public void triggerOnManualDiscard()
     {
         super.triggerOnManualDiscard();
@@ -59,9 +51,11 @@ public class SabiHakuhei extends AnimatorCard {
     }
 
     public void DoEffect() {
-        if (CombatStats.CanActivateSemiLimited(cardID) && TrySpendAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Green).AddConditionalCallback(() -> {
+                GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            });
         }
     }
 }

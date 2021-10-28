@@ -66,7 +66,7 @@ public class Aisha extends AnimatorCard
             {
                 if (orbs.size() > 0)
                 {
-                    GameActions.Bottom.GainIntellect(1, true);
+                    GameActions.Bottom.StackAffinityPower(auxiliaryData.form == 1 ? Affinity.Dark : Affinity.Blue, magicNumber, false);
                 }
                 else {
                     GameActions.Bottom.ChannelOrb(auxiliaryData.form == 1 ? new Dark() : new Lightning());

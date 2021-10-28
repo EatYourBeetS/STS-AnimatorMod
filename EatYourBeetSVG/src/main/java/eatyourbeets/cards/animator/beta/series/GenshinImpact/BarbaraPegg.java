@@ -20,8 +20,8 @@ public class BarbaraPegg extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
-        SetUpgrade(0, 0, 3);
+        Initialize(0, 0, 4, 2);
+        SetUpgrade(0, 0, 3, 1);
         SetAffinity_Light(2);
         SetAffinity_Blue(1);
 
@@ -42,7 +42,7 @@ public class BarbaraPegg extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
-        GameActions.Bottom.GainBlessing(1, upgraded);
+        GameActions.Bottom.GainBlessing(secondaryValue);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
         if (info.CanActivateSemiLimited && JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsAttacking()) == null && TrySpendAffinity(Affinity.Blue) && info.TryActivateSemiLimited()) {
             Water waterOrb = new Water();

@@ -23,7 +23,7 @@ public class Nyanta extends AnimatorCard
         super(DATA);
 
         Initialize(0, 5, 2, 3);
-        SetUpgrade(0, 0, 0, 1);
+        SetUpgrade(0, 2, 1, 1);
 
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Orange(2, 0, 1);
@@ -32,14 +32,6 @@ public class Nyanta extends AnimatorCard
 
         SetAffinityRequirement(Affinity.Green, 3);
         SetAffinityRequirement(Affinity.Orange, 3);
-    }
-
-    @Override
-    public void OnUpgrade()
-    {
-        super.OnUpgrade();
-
-        SetRetain(true);
     }
 
     @Override
@@ -57,11 +49,11 @@ public class Nyanta extends AnimatorCard
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Orange,Affinity.Green).AddConditionalCallback((cards) -> {
             for (AbstractCard c : cards) {
                 if (c.cardID.equals(AffinityToken_Green.DATA.ID)) {
-                    GameActions.Bottom.GainWillpower(magicNumber, upgraded);
+                    GameActions.Bottom.GainWillpower(magicNumber);
                     GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
                 }
                 else {
-                    GameActions.Bottom.GainAgility(magicNumber, upgraded);
+                    GameActions.Bottom.GainAgility(magicNumber);
                     GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
                 }
             }

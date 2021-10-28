@@ -57,12 +57,12 @@ public class Rider extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainAgility(magicNumber, true);
+            GameActions.Bottom.GainAgility(magicNumber);
         }
 
         if (TrySpendAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.GainIntellect(magicNumber, true);
+            GameActions.Bottom.GainIntellect(magicNumber);
         }
     }
 }

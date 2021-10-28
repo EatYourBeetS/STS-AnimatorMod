@@ -15,13 +15,13 @@ public class TukaLunaMarceau extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3);
+        Initialize(0, 3, 2);
         SetUpgrade(0, 2);
 
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Light, 1);
-        SetAffinityRequirement(Affinity.Green, 1);
+        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class TukaLunaMarceau extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Light))
         {
-            GameActions.Bottom.GainBlessing(1, true);
+            GameActions.Bottom.GainBlessing(magicNumber);
         }
         if (TrySpendAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainAgility(1, true);
+            GameActions.Bottom.GainAgility(magicNumber);
         }
     }
 }

@@ -445,7 +445,7 @@
         },
 		"animator:KenzoTenma":
 		{
-			"DESCRIPTION": "Multiply this card's damage by your lowest <W>. || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
+			"DESCRIPTION": "Multiply this card's damage by <B> or <O> (whichever is lower). || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
 			"NAME": "Kenzo Tenma"
 		},
 		"animator:Kirby":
@@ -734,7 +734,7 @@
 	{
 		"animator:Amber":
 		{
-			"DESCRIPTION": "<ST>: Gain [A] ** and Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
+			"DESCRIPTION": "<ST>: Gain !S! [A] ** and Channel 1 [Fire]. || Synergy: Apply !M! [~Lock-On].",
 			"NAME": "Amber"
 		},
 		"animator:AyakaKamisato":
@@ -1149,7 +1149,7 @@
 		},
 		"animator:SanaeKochiya":
 		{
-			"DESCRIPTION": "Scry !M!. || If you discarded a card with {Ethereal}, add a {Miracle} to your hand next turn.",
+			"DESCRIPTION": "Scry !M!. || If you discarded a card with {~Ethereal}, add a {Miracle} to your hand next turn.",
 			"EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 			"NAME": "Sanae Kochiya"
 		},
@@ -1384,13 +1384,13 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || Pay !A! <D> or Synergy: Exhaust a ** card anywhere ** to Obtain an {Orb Core}.",
+			"DESCRIPTION": "Add !S! {Crystallize} to your ** draw pile. Next turn: Draw ** !M! card(s) and gain [E] [E]. || Pay !A! <D> or Synergy: Exhaust a card anywhere ** to Obtain an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "If you discarded ** a card this turn: ** Enter <IS>. || Pay !S! <L>: Obtain {<B> Token}{+}.",
-			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <IS>. || Pay !S! <D>: Obtain {<B> Token}{+}."],
+			"DESCRIPTION": "Deal +1 damage if you have [Frost]. ** If you discarded a card this turn: Enter <IS>. || Pay !A! <L>: Gain !S! Temp. [Focus].",
+			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <IS>. || Pay !A! <D>: Gain !S! Temp. [Focus]."],
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -2155,8 +2155,8 @@
 		},
 		"animator:Tetora":
 		{
-			"DESCRIPTION": "Pay !A! <W> to play. || On your first !M! Synergies each turn: Gain a random <W> power. || Once per turn, pay !S! <W>: <DRW>, then put up to 1 card on top of your draw pile.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, pay #b{2} [A-Gen]: Draw a card, then place up to 1 card on top of your draw pile."],
+			"DESCRIPTION": "Pay !A! <W> to play. || On your first 2 Synergies each turn: Gain a random <W> power !M! times. || Once per turn, pay !S! <W>: {Exchange} 1 card with your draw pile.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} times you #ySynergize this turn: Gain a random #yAffinity #yPower #b{1} time(s). NL Once per turn, pay #b{2} [A-Gen]: #yExchange 1 card with your draw pile."],
 			"NAME": "Tetra"
 		}
 	},
@@ -2522,7 +2522,7 @@
 		},
 		"animator:Demiurge":
 		{
-			"DESCRIPTION": "Discard 1 card. || Gain [E] and !S! [C]. The ** next time you draw ** this: Take !M! [Delayed Damage].",
+			"DESCRIPTION": "Discard 1 card. || Gain [E] and !S! <D>. The ** next time you draw ** this: Take !M! [Delayed Damage].",
 			"NAME": "Demiurge"
 		},
 		"animator:Entoma":
@@ -2681,7 +2681,7 @@
 		},
 		"animator:Gabiru":
 		{
-			"DESCRIPTION": "<ST>. Motivate a card in your draw pile. || @If@ <G> @>@ <O>: Retain !M! <B> card(s). Otherwise, Retain !M! <O> card(s). || On Exhaust: Apply !S! [Poison] to ALL enemies.",
+			"DESCRIPTION": "<ST>. Motivate a card in your draw pile. || @If@ <G> @>@ <O>: Retain !M! <G> card(s). Otherwise, Retain !M! <O> card(s). || On Exhaust: Apply !S! [Poison] to ALL enemies.",
 			"NAME": "Gabiru"
 		},
 		"animator:Gobta":

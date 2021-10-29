@@ -115,7 +115,7 @@ public class AyakaKamisato extends AnimatorCard {
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, CombatStats.CanActivateLimited(AyakaKamisato.DATA.ID) ? JUtils.Format(DESCRIPTIONS[1],THRESHOLD) : "");
+            description = FormatDescription(0, amount, CombatStats.CanActivateLimited(AyakaKamisato.DATA.ID) ? JUtils.Format(powerStrings.DESCRIPTIONS[1],THRESHOLD) : "");
         }
     }
 }

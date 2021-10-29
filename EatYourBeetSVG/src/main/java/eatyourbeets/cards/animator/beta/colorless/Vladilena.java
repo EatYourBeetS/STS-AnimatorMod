@@ -45,12 +45,15 @@ public class Vladilena extends AnimatorCard
         pile.AddAll(player.discardPile.group);
         while (group.size() < magicNumber && pile.Size() > 0)
         {
-            group.addToTop(pile.Retrieve(rng));
+            AbstractCard ca = pile.Retrieve(rng);
+            if (ca != null && ca.type == CardType.ATTACK) {
+                group.addToTop(ca);
+            }
         }
 
         if (group.size() >= 1) {
-            GameActions.Bottom.SelectFromPile(name, magicNumber, group)
-                    .SetOptions(true, false)
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+                    .SetOptions(false, false)
                     .SetFilter(c -> c.type == CardType.ATTACK)
                     .AddCallback(cards -> {
                         for (AbstractCard c : cards) {
@@ -64,11 +67,9 @@ public class Vladilena extends AnimatorCard
                                             }
                                         }));
                             }
-                            GameActions.Bottom.PlayCopy(c, m);
-                            GameActions.Bottom.PlayCard(c, m).AddCallback(ca -> {
-                                if (ca != null) {
-                                    GameActions.Last.Exhaust(c);
-                                }
+                            GameActions.Top.PlayCopy(c, m);
+                            GameActions.Bottom.PlayCard(c, m).AddCallback(() -> {
+                                GameActions.Last.Exhaust(c);
                             });
                         }
                     });

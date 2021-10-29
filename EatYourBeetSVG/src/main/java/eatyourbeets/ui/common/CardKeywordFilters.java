@@ -57,8 +57,32 @@ public class CardKeywordFilters extends GUIElement
     public boolean draggingScreen;
     public boolean autoShowScrollbar;
 
-
     private boolean shouldSortByCount;
+
+    public static ArrayList<EYBCardTooltip> GetAllTooltips(EYBCard eC) {
+        ArrayList<EYBCardTooltip> dynamicTooltips = new ArrayList<>();
+        if (eC != null) {
+            eC.GenerateDynamicTooltips(dynamicTooltips);
+            for (EYBCardTooltip tip : eC.tooltips)
+            {
+                if (tip.canRender && !dynamicTooltips.contains(tip))
+                {
+                    dynamicTooltips.add(tip);
+                }
+            }
+        }
+        return dynamicTooltips;
+    }
+
+    public static ArrayList<AbstractCard> ApplyFilters(ArrayList<AbstractCard> input) {
+        return JUtils.Filter(input, c -> {
+                    EYBCard eC = JUtils.SafeCast(c, EYBCard.class);
+                    if (eC == null) {
+                        return false;
+                    }
+                    return GetAllTooltips(eC).containsAll(CurrentFilters);
+                });
+    }
 
     public CardKeywordFilters()
     {
@@ -108,8 +132,9 @@ public class CardKeywordFilters extends GUIElement
 
         if (referenceCards != null) {
             for (AbstractCard card : referenceCards) {
-                if (card instanceof EYBCard) {
-                    for (EYBCardTooltip tooltip : ((EYBCard) card).tooltips) {
+                EYBCard eC = JUtils.SafeCast(card, EYBCard.class);
+                if (eC != null) {
+                    for (EYBCardTooltip tooltip : GetAllTooltips(eC)) {
                         CurrentFilterCounts.merge(tooltip, 1, Integer::sum);
                     }
                 }

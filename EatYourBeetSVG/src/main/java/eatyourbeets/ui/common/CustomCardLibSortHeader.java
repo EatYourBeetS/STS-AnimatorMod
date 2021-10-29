@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -190,7 +189,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             this.group.group = originalGroup;
         }
         else {
-            ArrayList<AbstractCard> tempGroup = JUtils.Filter(originalGroup, c -> c instanceof EYBCard && ((EYBCard) c).tooltips != null && ((EYBCard) c).tooltips.containsAll(CardKeywordFilters.CurrentFilters));
+            ArrayList<AbstractCard> tempGroup = CardKeywordFilters.ApplyFilters(originalGroup);
             if (tempGroup.size() > 0) {
                 this.group.group = tempGroup;
             }

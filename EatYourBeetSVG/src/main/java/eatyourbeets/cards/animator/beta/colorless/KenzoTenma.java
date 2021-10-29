@@ -8,7 +8,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class KenzoTenma extends AnimatorCard
 {
@@ -18,7 +17,7 @@ public class KenzoTenma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2 , 0);
+        Initialize(2, 0, 3 , 0);
         SetUpgrade(1, 0, 1 , 0);
 
         SetAffinity_Orange(2, 0, 1);
@@ -28,7 +27,8 @@ public class KenzoTenma extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        return JUtils.Min(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+        int increase = Math.min(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true), CombatStats.Affinities.GetAffinityLevel(Affinity.Orange,true));
+        return secondaryValue + increase;
     }
 
     @Override

@@ -2,11 +2,9 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Demiurge extends AnimatorCard
@@ -19,7 +17,7 @@ public class Demiurge extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0,7, 2);
+        Initialize(0,0,7, 3);
         SetUpgrade(0,0, -1, 1);
 
         SetAffinity_Orange(1);
@@ -50,7 +48,7 @@ public class Demiurge extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.GainEnergy(1);
-        GameActions.Bottom.GainCorruption(secondaryValue);
+        CombatStats.Affinities.AddAffinity(Affinity.Dark, secondaryValue);
         GameActions.Bottom.ModifyAllInstances(uuid)
         .AddCallback(c -> c.misc += magicNumber);
     }

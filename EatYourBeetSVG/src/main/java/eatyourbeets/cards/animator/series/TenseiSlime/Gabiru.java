@@ -45,7 +45,7 @@ public class Gabiru extends AnimatorCard
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                 .SetOptions(true, true, true)
                 .SetMessage(RetainCardsAction.TEXT[0])
-                .SetFilter(c -> GameUtilities.CanRetain(c) && (CheckPrimaryCondition(true) ? GameUtilities.HasBlueAffinity(c) : GameUtilities.HasOrangeAffinity(c))).AddCallback(cards ->
+                .SetFilter(c -> GameUtilities.CanRetain(c) && (CheckPrimaryCondition(true) ? GameUtilities.HasGreenAffinity(c) : GameUtilities.HasOrangeAffinity(c))).AddCallback(cards ->
         {
             for (AbstractCard c : cards)
             {

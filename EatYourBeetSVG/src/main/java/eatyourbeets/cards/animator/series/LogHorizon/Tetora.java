@@ -24,19 +24,21 @@ public class Tetora extends AnimatorCard
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_CARD_COST = 7;
+    private static final int POWER_CARD_COST = 4;
+    private static final int USE_COST = 7;
+    private static final int SYNERGY_TIMES = 2;
 
     public Tetora()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, POWER_CARD_COST);
+        Initialize(0, 0, 3, POWER_CARD_COST);
 
         SetAffinity_Star(1);
 
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.General, 10);
+        SetAffinityRequirement(Affinity.General, USE_COST);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class Tetora extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-            GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, magicNumber));
+            GameActions.Bottom.StackPower(new TetoraPower(p, magicNumber, SYNERGY_TIMES));
         });
     }
 

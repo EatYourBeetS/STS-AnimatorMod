@@ -81,12 +81,20 @@ public class CardLibraryScreenPatches
 
         @SpirePostfixPatch
         public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
-            GR.UI.CardFilters.Initialize(customHeader.group.group, __ -> customHeader.UpdateForFilters());
+            GR.UI.CardFilters.Refresh(customHeader.group.group, __ -> customHeader.UpdateForFilters());
             if (openButton == null) {
-                openButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false))
-                        .SetBorder(GR.Common.Images.HexagonalButton.Texture(), Color.WHITE)
-                        .SetPosition(Settings.WIDTH * 0.9f, Settings.HEIGHT * 0.95f).SetText(GR.Animator.Strings.Misc.Filters)
-                        .SetOnClick(() -> GR.UI.CardFilters.Open());
+                openButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false).SetIsPopupCompatible(true))
+                        .SetBorder(GR.Common.Images.HexagonalButtonBorder.Texture(), Color.WHITE)
+                        .SetPosition(Settings.WIDTH * 0.96f, Settings.HEIGHT * 0.95f).SetText(GR.Animator.Strings.Misc.Filters)
+                        .SetOnClick(() -> {
+                            if (GR.UI.CardFilters.isActive) {
+                                GR.UI.CardFilters.Close();
+                            }
+                            else {
+                                GR.UI.CardFilters.Open();
+                            }
+                        })
+                        .SetColor(Color.GRAY);
             }
         }
     }
@@ -100,7 +108,7 @@ public class CardLibraryScreenPatches
         public static void Prefix(CardLibraryScreen __instance)
         {
             if (openButton != null) {
-                openButton.TryUpdate();
+                openButton.SetColor(GR.UI.CardFilters.isActive ? Color.WHITE : Color.GRAY).TryUpdate();
             }
             if (GR.UI.CardFilters.TryUpdate())
             {
@@ -118,7 +126,6 @@ public class CardLibraryScreenPatches
             if (openButton != null) {
                 openButton.TryRender(sb);
             }
-            GR.UI.CardFilters.TryRender(sb);
         }
     }
 }

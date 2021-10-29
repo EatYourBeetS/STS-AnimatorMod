@@ -53,6 +53,8 @@ public class CardCrawlGamePatches
         @SpireInsertPatch(locator = Locator.class, localvars = {"sb"})
         public static void Insert(CardCrawlGame __instance, SpriteBatch sb)
         {
+            //TODO make a generic overlay property for UI
+            GR.UI.CardFilters.TryRender(sb);
             GR.UI.PostRender(sb);
         }
 

@@ -199,5 +199,6 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             }
         }
         didChangeOrder(lastUsedButton, isAscending);
+        GR.UI.CardFilters.Refresh(this.group.group);
     }
 }

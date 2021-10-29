@@ -88,6 +88,7 @@ public class CardSeries
     public final static CardSeries Magi = Add(72, "Magi");
     public final static CardSeries Monster = Add(73, "Monster");
     public final static CardSeries EurekaSeven = Add(74, "EurekaSeven");
+    public final static CardSeries EightySix = Add(75, "EightySix");
 
     private static AbstractCard currentSynergy = null;
     private static AnimatorCard lastCardPlayed = null;

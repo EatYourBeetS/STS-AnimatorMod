@@ -36,6 +36,7 @@ public class CardTooltips
     public EYBCardTooltip Health = FindByID("Health").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+    public EYBCardTooltip Dazed = FindByID("Dazed").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
     public EYBCardTooltip Damage = FindByID("~Damage").ShowText(false);
     public EYBCardTooltip Strength = FindByID("Strength");

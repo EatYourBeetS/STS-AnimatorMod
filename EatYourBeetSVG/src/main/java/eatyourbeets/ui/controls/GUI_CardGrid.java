@@ -24,7 +24,7 @@ public class GUI_CardGrid extends GUIElement
     private static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
     private static final float PAD_Y = AbstractCard.IMG_HEIGHT * 0.75f + Settings.CARD_VIEW_PAD_Y;
     private static final float SCROLL_BAR_THRESHOLD = 500f * Settings.scale;
-    private static final int ROW_SIZE = 5;
+    public static final int ROW_SIZE = 5;
 
     public final GUI_VerticalScrollBar scrollBar;
     public final ArrayList<AbstractCard> cards;

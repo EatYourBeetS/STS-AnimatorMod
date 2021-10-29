@@ -209,6 +209,37 @@ public class JUtils
         return result;
     }
 
+    public static <T, N extends Comparable<N>> N Max(T[] list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) > 0)
+            {
+                best = prop;
+            }
+        }
+
+        return best;
+    }
+
+
+    public static <T, N extends Comparable<N>> N Max(Iterable<T> list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) > 0)
+            {
+                best = prop;
+            }
+        }
+
+        return best;
+    }
+
     public static <T, N extends Comparable<N>> T FindMin(T[] list, FuncT1<N, T> getProperty)
     {
         N best = null;
@@ -241,6 +272,36 @@ public class JUtils
         }
 
         return result;
+    }
+
+    public static <T, N extends Comparable<N>> N Min(T[] list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) < 0)
+            {
+                best = prop;
+            }
+        }
+
+        return best;
+    }
+
+    public static <T, N extends Comparable<N>> N Min(Iterable<T> list, FuncT1<N, T> getProperty)
+    {
+        N best = null;
+        for (T t : list)
+        {
+            N prop = getProperty.Invoke(t);
+            if (best == null || prop.compareTo(best) < 0)
+            {
+                best = prop;
+            }
+        }
+
+        return best;
     }
 
     // Simple string Formatting in which integers inside curly braces are replaced by args[i].

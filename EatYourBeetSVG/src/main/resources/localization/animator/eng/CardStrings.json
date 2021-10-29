@@ -446,7 +446,6 @@
 		"animator:KenzoTenma":
 		{
 			"DESCRIPTION": "Multiply this card's damage by your lowest <W>. || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
-			"EXTENDED_DESCRIPTION": ["The target takes #b{0}% more damage from [~Damage] #yAttacks."],
 			"NAME": "Kenzo Tenma"
 		},
 		"animator:Kirby":
@@ -612,6 +611,11 @@
 			"DESCRIPTION": "Reload: Gains {Autoplay} ** and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
 			"EXTENDED_DESCRIPTION": ["The next Attack played gains #b{0} damage."],
 			"NAME": "Vash the Stampede"
+		},
+		"animator:Vladilena":
+		{
+			"DESCRIPTION": "Play 1 of !M! random Attacks from your draw or discard pile twice and Exhaust it. || <LIM>. If it was 0-Cost or a Basic card: Obtain 1 of !M! {<W> Tokens}.",
+			"NAME": "Vladilena Milize"
 		},
 		"animator:Yae":
 		{

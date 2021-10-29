@@ -11,13 +11,11 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
 import eatyourbeets.ui.controls.GUI_Button;
-import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -29,13 +27,11 @@ public class CardKeywordButton extends GUIElement
     private ActionT1<CardKeywordButton> onClick;
 
     public final EYBCardTooltip Tooltip;
-    public final float baseCountOffset = 0.15f;
-    public final float baseTextOffset = 0.35f;
-    public float baseImageOffset;
+    public final float baseCountOffset = -0.35f;
+    public final float baseTextOffset = 0.15f;
     public int CardCount = -1;
 
     public GUI_Button background_button;
-    public GUI_Image tooltip_image;
     public GUI_Label title_text;
     public GUI_Label count_text;
 
@@ -65,32 +61,25 @@ public class CardKeywordButton extends GUIElement
                     }
                 });
 
-        baseImageOffset = -1 * (iconSize / hb.width);
-
-        tooltip_image = tooltip.icon != null ? RenderHelpers.ForTexture(tooltip.icon.getTexture())
-        .SetHitbox(new RelativeHitbox(hb, iconSize, iconSize, baseImageOffset, 0, true)) : null;
-
         title_text = new GUI_Label(EYBFontHelper.CardTooltipFont,
-        new RelativeHitbox(hb, 0.28f, 1, baseTextOffset, 0f))
-        .SetAlignment(0.5f, 0.5f) // 0.1f
-        .SetText(Tooltip.title);
+        new RelativeHitbox(hb, 1f, 1, baseTextOffset, 0f))
+        .SetAlignment(0.9f, 0.1f, true) // 0.1f
+        .SetText((Tooltip.icon != null ? "[" + Tooltip.id + "] " : "") + Tooltip.title);
 
-        count_text = new GUI_Label(EYBFontHelper.CardTooltipFont,
+        count_text = new GUI_Label(EYBFontHelper.CardDescriptionFont_Normal,
                 new RelativeHitbox(hb, 0.28f, 1, baseCountOffset, 0f))
                 .SetAlignment(0.5f, 0.5f) // 0.1f
+                .SetColor(Color.YELLOW)
                 .SetText(CardCount);
     }
 
     public CardKeywordButton SetIndex(int index)
     {
-        float x = (index % GRID_WIDTH) * 1.05f;
+        float x = (index % GRID_WIDTH) * 1.06f;
         float y = -(Math.floorDiv(index,GRID_WIDTH)) * 1.05f;
         RelativeHitbox.SetPercentageOffset(background_button.hb, x, y);
         RelativeHitbox.SetPercentageOffset(title_text.hb, x + baseTextOffset, y);
         RelativeHitbox.SetPercentageOffset(count_text.hb, x + baseCountOffset, y);
-        if (tooltip_image != null) {
-            RelativeHitbox.SetPercentageOffset(tooltip_image.hb, x + baseImageOffset, y);
-        }
 
         return this;
     }
@@ -113,9 +102,6 @@ public class CardKeywordButton extends GUIElement
     public void Update()
     {
         background_button.SetInteractable(GameEffects.IsEmpty()).Update();
-        if (tooltip_image != null) {
-            tooltip_image.Update();
-        }
         title_text.Update();
         count_text.Update();
     }
@@ -124,12 +110,12 @@ public class CardKeywordButton extends GUIElement
     public void Render(SpriteBatch sb)
     {
         background_button.Render(sb);
-        if (tooltip_image != null) {
-            tooltip_image.Render(sb);
-        }
         title_text.Render(sb);
         if (CardCount >= 0) {
             count_text.Render(sb);
+        }
+        if (background_button.hb.hovered) {
+            Tooltip.Render(sb, background_button.hb.x, background_button.hb.y, 0);
         }
     }
 }

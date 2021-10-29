@@ -1,6 +1,7 @@
 package patches.screens;
 
 import basemod.patches.com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar.ColorTabBarFix;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -12,11 +13,14 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.common.CustomCardLibSortHeader;
+import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
 public class CardLibraryScreenPatches
 {
+    private static GUI_Button openButton;
     @SpirePatch(clz = CardLibraryScreen.class, method = "open")
     public static class CardLibraryScreen_Open
     {
@@ -77,7 +81,13 @@ public class CardLibraryScreenPatches
 
         @SpirePostfixPatch
         public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
-            GR.UI.CardFilters.Open(customHeader.group.group, __ -> customHeader.UpdateForFilters());
+            GR.UI.CardFilters.Initialize(customHeader.group.group, __ -> customHeader.UpdateForFilters());
+            if (openButton == null) {
+                openButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false))
+                        .SetBorder(GR.Common.Images.HexagonalButton.Texture(), Color.WHITE)
+                        .SetPosition(Settings.WIDTH * 0.9f, Settings.HEIGHT * 0.95f).SetText(GR.Animator.Strings.Misc.Filters)
+                        .SetOnClick(() -> GR.UI.CardFilters.Open());
+            }
         }
     }
 
@@ -89,19 +99,25 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Prefix(CardLibraryScreen __instance)
         {
-            if (GR.UI.CardFilters.TryUpdate() && GR.UI.CardFilters.isActive)
+            if (openButton != null) {
+                openButton.TryUpdate();
+            }
+            if (GR.UI.CardFilters.TryUpdate())
             {
                 _grabbedScreen.Set(__instance, false);
             }
         }
     }
 
-    @SpirePatch(clz= CardLibraryScreen.class, method="render")
+    @SpirePatch(clz= CardLibraryScreen.class, method="render", paramtypez = {SpriteBatch.class})
     public static class CardLibraryScreen_Render
     {
         @SpirePrefixPatch
         public static void Postfix(CardLibraryScreen __instance, SpriteBatch sb)
         {
+            if (openButton != null) {
+                openButton.TryRender(sb);
+            }
             GR.UI.CardFilters.TryRender(sb);
         }
     }

@@ -21,39 +21,45 @@ import java.util.Map;
 public class CardKeywordFilters extends GUIElement
 {
     public static final HashSet<EYBCardTooltip> CurrentFilters = new HashSet<>();
-    private final ArrayList<CardKeywordButton> filterButtons = new ArrayList<>();
-    private final GUI_Button openButton;
+    private static final ArrayList<CardKeywordButton> filterButtons = new ArrayList<>();
+    private static GUI_Button closeButton;
     private final AdvancedHitbox hb;
 
-    private boolean canShowFilters;
     private boolean shouldSortByCount;
 
     public CardKeywordFilters()
     {
-        hb = new DraggableHitbox(ScreenW(0.15f), ScreenH(0.65f), Scale(140), Scale(50), false);
-        for (Map.Entry<String, EYBCardTooltip> tooltipEntry : CardTooltips.GetEntries()) {
-            filterButtons.add(new CardKeywordButton(hb, tooltipEntry.getValue()));
+        hb = new DraggableHitbox(ScreenW(0.15f), ScreenH(0.65f), Scale(180), Scale(50), false);
+        if (filterButtons.isEmpty()) {
+            for (Map.Entry<String, EYBCardTooltip> tooltipEntry : CardTooltips.GetEntries()) {
+                filterButtons.add(new CardKeywordButton(hb, tooltipEntry.getValue()));
+            }
         }
-
-        openButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, ScreenW(0.07f), ScreenH(0.07f)))
+        closeButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f))
                 .SetBorder(GR.Common.Images.HexagonalButton.Texture(), Color.WHITE)
-                .SetPosition(Settings.WIDTH * 0.75f, Settings.HEIGHT * 0.95f).SetText(GR.Animator.Strings.Misc.Filters)
-                .SetOnClick(() -> canShowFilters = !canShowFilters);
+                .SetPosition(Settings.WIDTH * 0.9f, Settings.HEIGHT * 0.95f).SetText("CLOSE")
+                .SetOnClick(() -> {
+                    //CardCrawlGame.isPopupOpen = false;
+                    SetActive(false);
+                });
     }
 
-    public void Open(ArrayList<AbstractCard> cards, ActionT1<CardKeywordButton> onClick)
+    public void Open() {
+        //CardCrawlGame.isPopupOpen = true;
+        SetActive(true);
+    }
+
+    public void Initialize(ArrayList<AbstractCard> cards, ActionT1<CardKeywordButton> onClick)
     {
         for (CardKeywordButton c : filterButtons)
         {
             c.SetOnClick(onClick).SetCardCount(cards);
         }
-
         Refresh();
     }
 
     public void Refresh()
     {
-
         filterButtons.sort((a, b) -> shouldSortByCount ? a.CardCount - b.CardCount : StringUtils.compare(a.Tooltip.title, b.Tooltip.title));
 
         int index = 0;
@@ -70,7 +76,7 @@ public class CardKeywordFilters extends GUIElement
     @Override
     public void Update() {
         hb.update();
-        openButton.TryUpdate();
+        closeButton.TryUpdate();
         for (CardKeywordButton c : filterButtons)
         {
             c.TryUpdate();
@@ -79,13 +85,11 @@ public class CardKeywordFilters extends GUIElement
 
     @Override
     public void Render(SpriteBatch sb) {
-        openButton.TryRender(sb);
-        if (canShowFilters) {
-            hb.render(sb);
-            for (CardKeywordButton c : filterButtons)
-            {
-                c.TryRender(sb);
-            }
+        hb.render(sb);
+        closeButton.TryRender(sb);
+        for (CardKeywordButton c : filterButtons)
+        {
+            c.TryRender(sb);
         }
     }
 }

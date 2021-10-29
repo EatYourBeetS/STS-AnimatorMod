@@ -164,7 +164,7 @@ public class CardTooltips
     }
 
     public static Set<Map.Entry<String, EYBCardTooltip>> GetEntries() {
-        return tooltips.entrySet();
+        return tooltipIDs.entrySet();
     }
 
     public static EYBCardTooltip FindByName(String name)

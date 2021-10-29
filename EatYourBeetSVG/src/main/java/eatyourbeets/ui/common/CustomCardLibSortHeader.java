@@ -20,7 +20,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public static CardLibraryScreen Screen;
     public static CustomCardLibSortHeader Instance;
     public static boolean ShowSpecial = GR.TEST_MODE;
-    private static ArrayList<AbstractCard> falseGroup;
+    private static CardGroup falseGroup;
 
     private ArrayList<AbstractCard> originalGroup;
     private SortHeaderButton[] override = null;
@@ -35,10 +35,10 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
 
     public static ArrayList<AbstractCard> GetFakeGroup() {
         if (falseGroup == null) {
-            falseGroup = new ArrayList<>();
-            falseGroup.add(new FakeLibraryCard());
+            falseGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            falseGroup.addToBottom(new FakeLibraryCard());
         }
-        return falseGroup;
+        return falseGroup.group;
     }
 
     public CustomCardLibSortHeader(CardGroup group)

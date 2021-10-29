@@ -168,6 +168,12 @@
 		"NAMES": ["diminish", "diminished", "diminishing"],
 		"PROPER_NAME": "Diminish"
 	},
+	"Electrified":
+	{
+		"DESCRIPTION": "When #yAttacking, deal #b15% of damage dealt to ALL other characters (min. #b1). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"NAMES": ["electrified"],
+		"PROPER_NAME": "Electrified"
+	},
 	"Elemental Exposure":
 	{
         "DESCRIPTION": "Amplifies the effects of Burning and Freezing. Lasts for 2 turns.",

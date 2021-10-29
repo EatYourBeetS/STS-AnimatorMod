@@ -263,7 +263,7 @@
 		},
 		"animator:MayuriKurotsuchi":
 		{
-			"DESCRIPTION": "Apply !M! [Poison]. Apply additional [Poison] for each point of [F] and [A]. || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
+			"DESCRIPTION": "Apply [Poison] equal to your [A] + !M! (!X!). || If the target has at least 30 [Poison]: Apply !S! of a random {Common Debuff}.",
 			"EXTENDED_DESCRIPTION": ["Common Debuffs", "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles."],
 			"NAME": "Mayuri Kurotsuchi"
 		},
@@ -741,7 +741,7 @@
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain [B]. || <SLM>. If ALL enemies intend to attack, Pay !A! <B>: Channel 1 [Water] and trigger it once.",
+			"DESCRIPTION": "Gain !S! [B]. || <SLM>. If ALL enemies intend to attack, Pay !A! <B>: Channel 1 [Water] and trigger it once.",
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Bennett":
@@ -1913,7 +1913,7 @@
 		},
 		"animator:Nanami":
 		{
-			"DESCRIPTION": "For each enemy: Apply !M! [Weak] if it intends to attack. Otherwise, apply !M! [Vulnerable]. || If at least half the enemies intend to attack: Gain !S! Temp. [Thorns]. Otherwise, Gain !S! [Counter-Attack].",
+			"DESCRIPTION": "For each enemy: Apply !M! [Weak] if it intends to attack. Otherwise, apply !M! [Vulnerable]. || @If@ @at@ @least@ @half@ @the@ @enemies@ @intend@ @to@ @attack@: Gain !S! Temp. [Thorns]. Otherwise, Gain !S! [Counter-Attack].",
 			"NAME": "Nanami Yasuri"
 		},
 		"animator:SabiHakuhei":
@@ -2623,7 +2623,7 @@
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [I] @>@ 6: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
+			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [I] @>@ 20: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Focus], or Gain !M! Temp. [Desecration].",
 			"NAME": "Lest Karr"
 		},
 		"animator:Mikaela":

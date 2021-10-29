@@ -3,12 +3,8 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.affinity.AgilityPower;
-import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -27,18 +23,13 @@ public class MayuriKurotsuchi extends AnimatorCard {
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy) {
-        super.Refresh(enemy);
-
-        int force = GameUtilities.GetPowerAmount(player, ForcePower.POWER_ID);
-        int agility = GameUtilities.GetPowerAmount(player, AgilityPower.POWER_ID);
-
-        GameUtilities.IncreaseMagicNumber(this, force + agility, true);
+    public int GetXValue() {
+        return magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Green);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber)
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), GetXValue())
                 .AddCallback(m, (enemy, cards) -> {
                     int poisonThreshold = 30;
 

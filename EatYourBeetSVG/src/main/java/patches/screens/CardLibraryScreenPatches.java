@@ -1,7 +1,9 @@
 package patches.screens;
 
 import basemod.patches.com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar.ColorTabBarFix;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -71,6 +73,36 @@ public class CardLibraryScreenPatches
                     _sortHeader.Set(screen, defaultHeader);
                 }
             }
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
+            GR.UI.CardFilters.Open(customHeader.group.group, __ -> customHeader.UpdateForFilters());
+        }
+    }
+
+    @SpirePatch(clz= CardLibraryScreen.class, method="update")
+    public static class CardLibraryScreen_Update
+    {
+        private static FieldInfo<Boolean> _grabbedScreen = JUtils.GetField("grabbedScreen", CardLibraryScreen.class);
+
+        @SpirePrefixPatch
+        public static void Prefix(CardLibraryScreen __instance)
+        {
+            if (GR.UI.CardFilters.TryUpdate() && GR.UI.CardFilters.isActive)
+            {
+                _grabbedScreen.Set(__instance, false);
+            }
+        }
+    }
+
+    @SpirePatch(clz= CardLibraryScreen.class, method="render")
+    public static class CardLibraryScreen_Render
+    {
+        @SpirePrefixPatch
+        public static void Postfix(CardLibraryScreen __instance, SpriteBatch sb)
+        {
+            GR.UI.CardFilters.TryRender(sb);
         }
     }
 }

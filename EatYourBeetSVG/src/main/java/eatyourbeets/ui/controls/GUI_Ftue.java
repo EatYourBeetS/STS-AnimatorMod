@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import com.megacrit.cardcrawl.ui.buttons.GotItButton;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Ftue extends FtueTip //TODO
@@ -65,7 +65,7 @@ public class GUI_Ftue extends FtueTip //TODO
     @Override
     public void render(SpriteBatch sb) {
         sb.setColor(Color.WHITE);
-        sb.draw(ImageMaster.FTUE, this.x - 311.0F, this.y - 142.0F, 311.0F, 142.0F, 622.0F, 334.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 622, 284, false, false);
+        sb.draw(GR.Common.Images.Panel_Rounded.Texture(), this.x - 311.0F, this.y - 142.0F, 311.0F, 142.0F, 622.0F, 334.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 622, 284, false, false);
         sb.setColor(new Color(1.0F, 1.0F, 1.0F, 0.7F + (MathUtils.cosDeg((float)(System.currentTimeMillis() / 2L % 360L)) + 1.25F) / 5.0F));
         this.button.render(sb);
         FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, LABEL[0] + this.header, this.x - 190.0F * Settings.scale, this.y + 130.0F * Settings.scale, Settings.GOLD_COLOR);

@@ -23,7 +23,7 @@ public class MariKurokawa extends AnimatorCard
         Initialize(5, 0, 2, 3);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Light(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 1, 1);
 

@@ -29,6 +29,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
         SetUpgrade(0,0,-1);
         SetAffinity_Blue(2, 0, 0);
         SetAffinity_Light(1, 0, 2);
+        SetAffinity_Silver(1,0,0);
         SetAffinity_Dark(0,0,1);
     }
 

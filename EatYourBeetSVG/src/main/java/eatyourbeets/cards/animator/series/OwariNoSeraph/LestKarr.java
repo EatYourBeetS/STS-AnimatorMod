@@ -27,7 +27,7 @@ public class LestKarr extends AnimatorCard
     public static final EYBCardData DATA = Register(LestKarr.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.Self)
             .SetSeries(CardSeries.OwariNoSeraph);
-    public static final int INTELLECT_THRESHOLD = 6;
+    public static final int INTELLECT_THRESHOLD = 20;
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public LestKarr()

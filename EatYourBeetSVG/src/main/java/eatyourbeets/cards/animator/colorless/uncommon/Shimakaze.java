@@ -22,6 +22,7 @@ public class Shimakaze extends AnimatorCard
         Initialize(2, 2, 3, 2);
         
         SetAffinity_Green(1);
+        SetAffinity_Silver(1);
         SetAffinity_Star(0,0,1);
         SetExhaust(true);
     }

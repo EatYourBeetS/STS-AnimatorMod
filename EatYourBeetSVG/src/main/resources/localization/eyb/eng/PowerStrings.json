@@ -45,6 +45,11 @@
 	  "DESCRIPTIONS": ["When [A-Gen] is spent or when you gain a #yDebuff: Gains #b{0} #yCharge for each [A-Gen] spent or #yDebuff stack gained. When you play a card that targets a monster, spend #b{1} #yCharge to apply #b{2} [Tainted].{3}","NL #yCharge is conserved this turn."],
 	  "NAME": "Desecration"
 	},
+	"eyb:ElectrifiedPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt by the creature is dealt to ALL other characters (min. #b1)."],
+		"NAME": "Electrified"
+	},
 	"eyb:EndurancePower":
 	{
 	  "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Receive #b{2}% less damage from attacks.", "Increase the effects of [Vulnerable] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%. Receive #b{2}% more damage from attacks."],

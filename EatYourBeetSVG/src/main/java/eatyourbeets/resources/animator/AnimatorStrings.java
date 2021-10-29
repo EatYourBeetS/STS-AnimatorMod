@@ -107,6 +107,8 @@ public class AnimatorStrings
         public final String EnableEventsForOtherCharacters = Strings.TEXT[19];
         public final String EnableRelicsForOtherCharacters = Strings.TEXT[20];
         public final String UnofficialDisclaimer = Strings.TEXT[21];
+        public final String Filters = Strings.TEXT[22];
+        public final String NoCardsFound = Strings.TEXT[23];
 
         public final String MaxStacks(int stacks)
         {

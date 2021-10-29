@@ -118,4 +118,17 @@ public class CardGroupPatches
             }
         }
     }
+
+    @SpirePatch(clz = CardGroup.class, method = "getBottomCard", paramtypez = {})
+    public static class CardGroupPatches_GetBottomCard
+    {
+        @SpirePostfixPatch
+        public static void Prefix(CardGroup __instance)
+        {
+            if (__instance.group.size() == 0) {
+                SpireReturn.Return(null);
+            }
+            SpireReturn.Continue();
+        }
+    }
 }

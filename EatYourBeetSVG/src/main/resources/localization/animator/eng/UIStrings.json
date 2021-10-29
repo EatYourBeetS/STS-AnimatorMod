@@ -261,8 +261,9 @@
 			"(Max #b{0} [Block])",
 			"Enable certain events for non-Animator characters",
 			"Enable certain relics for non-Animator characters",
-			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions."
-
+			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions.",
+			"Filters",
+			"No cards matching the current filters were found."
 		]
 	},
 

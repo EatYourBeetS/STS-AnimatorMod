@@ -19,6 +19,8 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class CardTooltips
 {
@@ -159,6 +161,10 @@ public class CardTooltips
     public static void RegisterName(String name, EYBCardTooltip tooltip)
     {
         tooltips.put(name, tooltip);
+    }
+
+    public static Set<Map.Entry<String, EYBCardTooltip>> GetEntries() {
+        return tooltips.entrySet();
     }
 
     public static EYBCardTooltip FindByName(String name)

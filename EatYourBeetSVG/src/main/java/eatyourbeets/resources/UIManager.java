@@ -17,6 +17,7 @@ import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
 import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor;
 import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
+import eatyourbeets.ui.common.CardKeywordFilters;
 import eatyourbeets.ui.common.EYBSingleCardPopup;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -38,6 +39,7 @@ public class UIManager
     public AnimatorSeriesSelectScreen SeriesSelection;
     public AnimatorLoadoutEditor LoadoutEditor;
     public CardAffinityPanel CardAffinities;
+    public CardKeywordFilters CardFilters;
 
     public void Initialize()
     {
@@ -46,6 +48,7 @@ public class UIManager
         CardPopup = new EYBSingleCardPopup();
         SeriesSelection = new AnimatorSeriesSelectScreen();
         LoadoutEditor = new AnimatorLoadoutEditor();
+        CardFilters = new CardKeywordFilters();
     }
 
     public void Dispose()

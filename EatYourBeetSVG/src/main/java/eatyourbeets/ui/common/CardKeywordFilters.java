@@ -115,11 +115,6 @@ public class CardKeywordFilters extends GUIElement
         }
     }
 
-    public void Refresh(ArrayList<AbstractCard> cards, ActionT1<CardKeywordButton> onClick){
-        this.onClick = onClick;
-        Refresh(cards);
-    }
-
     public void Refresh(ArrayList<AbstractCard> cards)
     {
         referenceCards = cards;
@@ -161,6 +156,11 @@ public class CardKeywordFilters extends GUIElement
                 index += 1;
             }
         }
+    }
+
+    public CardKeywordFilters SetOnClick(ActionT1<CardKeywordButton> onClick) {
+        this.onClick = onClick;
+        return this;
     }
 
     @Override

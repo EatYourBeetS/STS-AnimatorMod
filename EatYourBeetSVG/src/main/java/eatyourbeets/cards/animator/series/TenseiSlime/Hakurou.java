@@ -10,7 +10,7 @@ import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Hakurou extends AnimatorCard
+public class Hakurou extends AnimatorCard //TODO
 {
     public static final EYBCardData DATA = Register(Hakurou.class)
             .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true)

@@ -23,7 +23,7 @@ public class SougenEsaka extends AnimatorCard
         SetAffinity_Orange(2, 0, 2);
         SetAffinity_Red(0, 0, 1);
 
-        SetAffinityRequirement(Affinity.Orange, 3);
+        SetAffinityRequirement(Affinity.Orange, 5);
     }
 
 
@@ -38,13 +38,12 @@ public class SougenEsaka extends AnimatorCard
         }
 
 
-        if (TrySpendAffinity(Affinity.Orange))
+        if (CheckAffinity(Affinity.Orange))
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
                     .ShowEffect(true, true)
                     .SetOrigin(CardSelection.Top).AddCallback(() -> {
                         GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
-                        GameActions.Bottom.GainWillpower(magicNumber);
                     });
 
         }

@@ -1,60 +1,53 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class SuikaIbuki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SuikaIbuki.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(SuikaIbuki.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public SuikaIbuki()
     {
         super(DATA);
 
-        Initialize(7, 6, 1, 2);
-        SetUpgrade(2, 1, 0, 1);
+        Initialize(8, 9, 2, 2);
+        SetUpgrade(1, 2, 1, 0);
         SetAffinity_Red(1, 1, 1);
-        SetAffinity_Blue(0, 0, 1);
-        SetEthereal(true);
+        SetAffinity_Blue(1, 0, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (!GameUtilities.InStance(ForceStance.STANCE_ID))
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        for (int i = 0; i < Math.min(magicNumber, player.drawPile.size()); ++i)
         {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
-            GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, magicNumber));
+            group.addToTop(player.drawPile.group.get(player.drawPile.size() - i - 1));
         }
 
-        boolean hasPower = false;
-
-        for (AbstractCard card : player.discardPile.group)
-        {
-            if (card.type.equals(CardType.POWER))
-            {
-                hasPower = true;
-                break;
+        GameActions.Bottom.ExhaustFromPile(name, 1, group).SetOptions(false, true).AddCallback(cards -> {
+            if (cards.size() <= 0) {
+                GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(player, 1));
             }
-        }
-
-        if (hasPower)
-        {
-            GameActions.Bottom.GainForce(secondaryValue);
-        }
+            else {
+                for (AbstractCard card : cards) {
+                    if (card.type == CardType.ATTACK) {
+                        CombatStats.Affinities.AddAffinity(Affinity.Red, secondaryValue);
+                    }
+                }
+            }
+        });
     }
 }
 

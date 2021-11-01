@@ -86,7 +86,6 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
         this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true), affinity.GetAlternateColor(0.55f));
 
         SetRetain(true);
-        SetHaste(true);
     }
 
     public void OnUpgrade() {

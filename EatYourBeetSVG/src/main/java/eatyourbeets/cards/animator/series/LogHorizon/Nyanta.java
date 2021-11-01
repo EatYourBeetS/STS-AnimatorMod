@@ -22,7 +22,7 @@ public class Nyanta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 3);
+        Initialize(0, 5, 2, 2);
         SetUpgrade(0, 2, 1, 1);
 
         SetAffinity_Green(2, 0, 1);

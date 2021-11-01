@@ -14,16 +14,17 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
+import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.cards.animator.beta.special.Traveler_Wish;
 import eatyourbeets.cards.animator.beta.ultrarare.Dainsleif;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.cards.base.AnimatorCard_Dynamic;
-import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.animator.tokens.AffinityToken_Dark;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.DelayedDamagePower;
+import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.*;
@@ -68,9 +69,9 @@ public class DainsleifAbyssPower extends AnimatorPower {
             CardCrawlGame.sound.play("POWER_TIME_WARP", 0.05F);
             GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.BLUE, true));
-            GameActions.Bottom.PlayFromPile(null, 1, null, player.drawPile, player.discardPile, player.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif);
+            GameActions.Top.PlayFromPile(null, 1, null, player.drawPile, player.discardPile, player.hand).SetOptions(true, false).SetFilter(ca -> ca instanceof Dainsleif);
             ChooseEffect();
-            GameActions.Bottom.Add(new PressEndTurnButtonAction());
+            GameActions.Last.Add(new PressEndTurnButtonAction());
         }
         this.updateDescription();
     }
@@ -158,7 +159,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
 
 
     private enum AbyssNegativeEffect {
-        DiscardRandomCard(ACTIONS.DiscardRandom(1, true), 1, (c, p, m) -> GameActions.Bottom.DiscardFromHand(c.cardID, 1, true)),
+        DrawLessNextTurn(ACTIONS.NextTurnDrawLess(1, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1))),
         EnemiesGainBlock(ACTIONS.GiveAllEnemies(10, GR.Tooltips.Block, true), 1, (c, p, m) -> {
             for (AbstractMonster mo : GameUtilities.GetEnemies(true)) GameActions.Bottom.GainBlock(mo, 10);
         }),
@@ -180,8 +181,8 @@ public class DainsleifAbyssPower extends AnimatorPower {
         PlayerTakeDamage2(ACTIONS.TakeDamage(8, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(new DelayedDamagePower(p, 8))),
         RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(3, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 3)),
         RandomEnemyGainStrength2(ACTIONS.GiveRandomEnemy(6, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Strength, 6)),
-        EndTurn(ACTIONS.DainsleifEndTurn(true), 4, (c, p, m) -> {
-            GameActions.Last.Add(new PressEndTurnButtonAction());
+        ObtainCurses(ACTIONS.CreateCurses(true), 4, (c, p, m) -> {
+            GameActions.Bottom.Add(new CreateRandomCurses(3, player.drawPile));
         });
 
 
@@ -197,7 +198,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
     }
 
     private enum AbyssPositiveEffect {
-        ApplyBlinded(ACTIONS.ApplyToALL(2, GR.Tooltips.Blinded, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), 2)),
+        ApplyBlinded(ACTIONS.ApplyToALL(3, GR.Tooltips.Blinded, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), 2)),
         ApplyBurning(ACTIONS.ApplyToALL(5, GR.Tooltips.Burning, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 4)),
         ApplyFreezing(ACTIONS.ApplyToALL(5, GR.Tooltips.Freezing, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), 4)),
         ApplyVulnerable(ACTIONS.ApplyToALL(3, GR.Tooltips.Vulnerable, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 3)),
@@ -206,10 +207,11 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
         NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(4, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
-        GainCorruption(ACTIONS.GainAmount(6, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
-        GainIntellect(ACTIONS.GainAmount(4, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
-        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 7, 3, (c, p, m) -> {
+        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
+        GainCorruption(ACTIONS.GainAmount(12, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
+        GainIntellect(ACTIONS.GainAmount(9, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
+        GainStrength(ACTIONS.GainAmount(2, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainStrength(2)),
+        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 9, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());
 
@@ -230,7 +232,9 @@ public class DainsleifAbyssPower extends AnimatorPower {
                         }
                     });
         }),
+        ObtainTokenDark(ACTIONS.AddToDrawPile(2, AffinityToken_Dark.DATA.Strings.NAME, true), 7, 3, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(AffinityToken.GetCopy(Affinity.Dark, false))),
         ObtainWish(ACTIONS.AddToDrawPile(2, Traveler_Wish.DATA.Strings.NAME, true), 6, 4, (c, p, m) -> GameActions.Bottom.MakeCardInDrawPile(new Traveler_Wish()));
+
 
 
         private final String text;

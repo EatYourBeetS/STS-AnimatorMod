@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
@@ -27,7 +28,7 @@ public class KomachiOnozuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(10, 0, 2, 0);
+        Initialize(10, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(2, 0, 0);
@@ -50,6 +51,9 @@ public class KomachiOnozuka extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(enemy ->
         {
+            if (GameUtilities.GetPowerAmount(enemy, VulnerablePower.POWER_ID) > 0) {
+                CombatStats.Affinities.AddAffinity(Affinity.Light, secondaryValue);
+            }
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
             && GameUtilities.IsFatal(enemy, false)

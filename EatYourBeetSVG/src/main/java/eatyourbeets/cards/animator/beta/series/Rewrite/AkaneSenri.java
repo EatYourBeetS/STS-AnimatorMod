@@ -62,12 +62,14 @@ public class AkaneSenri extends AnimatorCard
         @Override
         public void onInitialApplication()
         {
+            super.onInitialApplication();
             CombatStats.onShuffle.Subscribe(this);
         }
 
         @Override
         public void onRemove()
         {
+            super.onRemove();
             CombatStats.onShuffle.Unsubscribe(this);
         }
 

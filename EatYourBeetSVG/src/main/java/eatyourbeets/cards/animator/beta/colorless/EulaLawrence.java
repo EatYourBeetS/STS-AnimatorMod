@@ -21,13 +21,13 @@ public class EulaLawrence extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(21, 0, MODIFIER, 3);
+        Initialize(20, 0, MODIFIER, 2);
         SetUpgrade(5,0,0,0);
 
-        SetAffinity_Light(1);
         SetAffinity_Red(1);
+        SetAffinity_Blue(1);
 
-        SetAffinityRequirement(Affinity.General, 2);
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override

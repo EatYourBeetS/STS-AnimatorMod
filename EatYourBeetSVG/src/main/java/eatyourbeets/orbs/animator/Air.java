@@ -94,10 +94,10 @@ public class Air extends AnimatorOrb
     {
         sb.setColor(this.c);
 
-        float scaleExt1 = this.bobEffect.y / 88f;
-        float scaleExt2 = this.bobEffect.y / 77f;
-        float angleExt1 = this.angle / 2.2f;
-        float angleExt2 = this.angle / 1.5f;
+        float scaleExt1 = this.bobEffect.y / 77f;
+        float scaleExt2 = this.bobEffect.y / 65f;
+        float angleExt1 = this.angle / 1.5f;
+        float angleExt2 = this.angle / 1.1f;
 
         sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, angleExt1, 0, 0, 96, 96, this.hFlip1, false);
         sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt2, 0, 0, 96, 96, this.hFlip1, false);

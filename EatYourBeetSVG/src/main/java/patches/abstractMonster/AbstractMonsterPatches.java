@@ -2,13 +2,22 @@ package patches.abstractMonster;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
+
+import java.util.ArrayList;
 
 public class AbstractMonsterPatches
 {
@@ -72,6 +81,37 @@ public class AbstractMonsterPatches
             }
 
             return SpireReturn.Return();
+        }
+    }
+
+    @SpirePatch(
+            clz = GameActionManager.class,
+            method = "getNextAction"
+    )
+    public static class GameActionManager_GetNextAction {
+        public GameActionManager_GetNextAction() {
+        }
+
+        public static ExprEditor Instrument() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getClassName().equals("com.megacrit.cardcrawl.monsters.AbstractMonster") && m.getMethodName().equals("takeTurn")) {
+                        m.replace("if (m.hasPower(eatyourbeets.powers.animator.ProvokedPower.POWER_ID)) {patches.abstractMonster.AbstractMonsterPatches.GameActionManager_GetNextAction.Use(m);} else {$_ = $proceed($$);}");
+                    }
+
+                }
+            };
+        }
+
+        public static void Use(AbstractMonster m)
+        {
+            ArrayList<DamageInfo> damages = m.damage;
+            if (damages == null || damages.isEmpty()) {
+                GameActions.Bottom.DealDamage(m, AbstractDungeon.player, 1, DamageInfo.DamageType.NORMAL, AttackEffects.BLUNT_HEAVY);
+            }
+            else {
+                GameActions.Bottom.DealDamage(m, AbstractDungeon.player, m.damage.get(0).base, m.damage.get(0).type, AttackEffects.BLUNT_HEAVY);
+            }
         }
     }
 }

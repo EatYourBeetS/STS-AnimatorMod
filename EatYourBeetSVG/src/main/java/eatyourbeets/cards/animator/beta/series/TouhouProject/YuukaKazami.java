@@ -18,7 +18,7 @@ public class YuukaKazami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 8, 2, 3);
+        Initialize(0, 9, 2, 3);
         SetUpgrade(0, 3, 0, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Green(1, 0, 1);
@@ -28,7 +28,7 @@ public class YuukaKazami extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        if (GameActionManager.turn % 2 == 0) {
+        if (CheckPrimaryCondition(true)) {
             GameActions.Bottom.ChannelOrb(new Air());
         }
         else {
@@ -50,6 +50,12 @@ public class YuukaKazami extends AnimatorCard
 
         Affinity lowest = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
         CombatStats.Affinities.AddAffinity(lowest, 1);
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return GameActionManager.turn % 2 == 0;
     }
 }
 

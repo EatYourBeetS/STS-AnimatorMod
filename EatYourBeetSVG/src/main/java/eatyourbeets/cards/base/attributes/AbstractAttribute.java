@@ -98,6 +98,10 @@ public abstract class AbstractAttribute
 
     public void Render(SpriteBatch sb, EYBCard card)
     {
+        if (mainText == null) {
+            return;
+        }
+
         final float suffix_scale = 0.66f;
         final float cw = AbstractCard.RAW_W;
         final float ch = AbstractCard.RAW_H;

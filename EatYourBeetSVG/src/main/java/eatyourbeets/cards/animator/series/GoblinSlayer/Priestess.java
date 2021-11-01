@@ -22,7 +22,7 @@ public class Priestess extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(1);

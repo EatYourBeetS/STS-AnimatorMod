@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.animator.SelfImmolationPower;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +17,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     public Curse_Eclipse()
     {
         super(DATA, true);
-        Initialize(0,0,1,2);
+        Initialize(0,0,1,1);
         SetAffinity_Dark(2);
     }
 
@@ -35,7 +36,9 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDesecration, secondaryValue);
+        if (CombatStats.TryActivateLimited(cardID)) {
+            GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Desecration, secondaryValue);
+        }
     }
 
     @Override

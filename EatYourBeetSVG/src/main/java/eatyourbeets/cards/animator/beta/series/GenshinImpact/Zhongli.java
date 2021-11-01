@@ -62,6 +62,7 @@ public class Zhongli extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.ChannelOrb(new Earth());
         GameActions.Bottom.ApplyPower(new ZhongliPower(p, this, this.magicNumber, this.secondaryValue));
     }
 

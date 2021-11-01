@@ -240,7 +240,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
     {
-        return affinity != null && affinity.level >= 2 && GetLastAffinityLevel(affinity.type) > 0 && CanActivateSynergyBonus(affinity.type);
+        return affinity != null && affinity.level + GetLastAffinityLevel(affinity.type) >= 3 && CanActivateSynergyBonus(affinity.type);
     }
 
     public boolean CanActivateSynergyBonus(Affinity affinity)

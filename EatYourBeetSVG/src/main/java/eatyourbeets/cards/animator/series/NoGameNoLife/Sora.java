@@ -30,7 +30,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 2, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);
@@ -42,6 +42,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(new Sora_Strategy1());
         group.addToBottom(new Sora_Strategy2());

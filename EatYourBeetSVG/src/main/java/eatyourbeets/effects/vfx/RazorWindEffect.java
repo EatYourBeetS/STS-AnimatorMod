@@ -3,6 +3,7 @@ package eatyourbeets.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
@@ -67,6 +68,13 @@ public class RazorWindEffect extends EYBEffect
         {
             GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (Random(-100, 100) * Settings.scale),
                     Random(-300f, -50f) * Math.signum(horizontalSpeed), Random(-200f, 200f)));
+            GameEffects.Queue.Add(new FadingParticleEffect(image.Texture(), x, y)
+                    .SetTranslucent(0.5f)
+                    .Edit(rotation, (r, p) -> p
+                            .SetColor(new Color(MathUtils.random(0.8f, 1f), 1f, MathUtils.random(0.8f, 1f), 0.5f))
+                            .SetRotation(rotation)
+                            .SetScale(scale).SetTargetRotation(36000, null)
+                            .SetSpeed(0f, 0f, Random(300f, 400f), null)));
             vfxTimer = vfxFrequency;
         }
 

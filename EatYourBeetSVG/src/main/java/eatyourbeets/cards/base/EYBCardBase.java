@@ -647,7 +647,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public ColoredString GetXString()
     {
-        if (GameUtilities.InGame() && player != null) {
+        if (GameUtilities.InBattle() && player != null) {
             int value = GetXValue();
             if (value >= 0)
             {

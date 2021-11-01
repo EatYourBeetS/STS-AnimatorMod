@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
@@ -31,6 +32,8 @@ public class Natsumi extends AnimatorCard
         SetAffinity_Blue(2, 0, 2);
         SetExhaust(true);
 
+        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Light, 4);
     }
 
     @Override
@@ -48,18 +51,20 @@ public class Natsumi extends AnimatorCard
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {
-            if (cards.size() > 0)
+            for (AbstractCard card : cards)
             {
-                for (AbstractCard card : cards)
-                {
-                    if (GameUtilities.IsHindrance(card))
-                    {
-                        GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
-                    }
-
-                    GameActions.Bottom.ReplaceCard(card.uuid, AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy());
-                }
+                GameActions.Bottom.ReplaceCard(card.uuid, AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy());
             }
         });
+
+        if (player.filledOrbCount() > 0) {
+            GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Light).AddConditionalCallback(() -> {
+                AbstractOrb orb = GameUtilities.GetFirstOrb(null);
+                GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb), false);
+                GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb), false);
+                GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
+            });
+        }
+
     }
 }

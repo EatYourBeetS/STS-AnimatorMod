@@ -81,6 +81,7 @@ public class CardKeywordButton extends GUIElement
 
         count_text = new GUI_Label(EYBFontHelper.CardDescriptionFont_Normal,
                 new RelativeHitbox(hb, 0.28f, 1, baseCountOffset, 0f))
+                .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.8f)
                 .SetAlignment(0.5f, 0.51f) // 0.1f
                 .SetColor(Settings.GOLD_COLOR)
                 .SetText(CardCount);

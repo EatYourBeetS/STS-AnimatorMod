@@ -71,7 +71,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.DealDamage(source, owner, GetPassiveDamage(), DamageInfo.DamageType.HP_LOSS, AttackEffects.ICE);
+        Trigger();
         ReducePower(1);
     }
 
@@ -104,5 +104,10 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
 
     private float GetElementalExposure() {
         return ElementalExposurePower.CalculatePercentage(GameUtilities.GetPowerAmount(owner, ElementalExposurePower.POWER_ID));
+    }
+
+    public void Trigger() {
+        GameActions.Bottom.LoseHP(source, owner, GetPassiveDamage(), AttackEffects.ICE)
+                .CanKill(owner == null || !owner.isPlayer);
     }
 }

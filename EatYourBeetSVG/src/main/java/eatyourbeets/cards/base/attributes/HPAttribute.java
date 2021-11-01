@@ -1,6 +1,8 @@
 package eatyourbeets.cards.base.attributes;
 
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.Colors;
 
 public class HPAttribute extends AbstractAttribute
 {
@@ -15,7 +17,7 @@ public class HPAttribute extends AbstractAttribute
     @Override
     public AbstractAttribute SetCard(EYBCard card)
     {
-        mainText = null;
+        mainText = card.heal > 0 ? new ColoredString(card.heal, Colors.Cream(1.0F)) : null;
         iconTag = null;
         suffix = null;
 

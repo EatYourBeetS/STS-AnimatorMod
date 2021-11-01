@@ -25,7 +25,7 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, THRESHOLD);
+        Initialize(20, 0, 2, THRESHOLD);
         SetUpgrade(4, 0, 0, 0);
         SetAffinity_Blue(2, 0, 3);
         SetAffinity_Green(1, 0, 0);
@@ -58,10 +58,17 @@ public class AyakaKamisato extends AnimatorCard {
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+            CheckCondition();
+        }
+
+
+        @Override
         public void onGainedBlock(float blockAmount) {
             super.onGainedBlock(blockAmount);
             ApplyShackles(amount);
-            CheckCondition();
         }
 
         @Override
@@ -69,7 +76,6 @@ public class AyakaKamisato extends AnimatorCard {
         {
             super.onPlayerGainedBlock(blockAmount);
             ApplyShackles(amount);
-            CheckCondition();
             return super.onPlayerGainedBlock(blockAmount);
         }
 
@@ -78,7 +84,6 @@ public class AyakaKamisato extends AnimatorCard {
         {
             super.onPlayerGainedBlock(blockAmount);
             ApplyShackles(amount);
-            CheckCondition();
             return super.onPlayerGainedBlock(blockAmount);
         }
 
@@ -108,7 +113,12 @@ public class AyakaKamisato extends AnimatorCard {
             {
                 AbstractCard c = new SheerCold();
                 c.applyPowers();
-                GameActions.Last.PlayCopy(c, null);
+                if (GameUtilities.IsPlayerTurn()) {
+                    GameActions.Bottom.PlayCopy(c, null);
+                }
+                else {
+                    c.use(player, null);
+                }
             }
         }
 

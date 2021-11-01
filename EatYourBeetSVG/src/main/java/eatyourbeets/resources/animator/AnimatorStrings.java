@@ -415,7 +415,7 @@ public class AnimatorStrings
             return Format(addPeriod, 40, category);
         }
 
-        public final String DainsleifEndTurn(boolean addPeriod)
+        public final String CreateCurses(boolean addPeriod)
         {
             return Get(41) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }

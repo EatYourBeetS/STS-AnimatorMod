@@ -48,7 +48,7 @@ public class Patchouli extends AnimatorCard
 
         SetAffinity_Blue(2, 0, 2);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 5);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class SherryTueli extends AnimatorCard
     {
         if (CalculateHeal() > 0)
         {
-            GameActions.Bottom.Heal(heal);
+            GameActions.Bottom.RecoverHP(heal);
         }
 
         GameActions.Bottom.DiscardFromHand(name, 2, false)

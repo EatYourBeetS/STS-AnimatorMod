@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -21,7 +22,7 @@ public class KaguyaHouraisan extends AnimatorCard
         Initialize(10, 0, 4);
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(2, 0, 2);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Silver(2, 0, 0);
 
         SetHitCount(4,1);
     }
@@ -35,7 +36,16 @@ public class KaguyaHouraisan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.POISON);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.PSYCHOKINESIS);
+        GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1)
+                .SetOptions(true, false)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.MakeCardInDrawPile(c);
+                    }
+                }));
 
         if (info.IsSynergizing)
         {

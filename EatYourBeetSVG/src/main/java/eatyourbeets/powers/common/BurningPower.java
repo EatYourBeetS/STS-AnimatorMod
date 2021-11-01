@@ -86,8 +86,7 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     {
         this.flashWithoutSound();
 
-        GameActions.Bottom.LoseHP(source, owner, GetPassiveDamage(), AttackEffects.FIRE)
-        .CanKill(owner == null || !owner.isPlayer);
+        Trigger();
         ReducePower(1);
     }
 
@@ -121,5 +120,10 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
 
     private float GetElementalExposure() {
         return ElementalExposurePower.CalculatePercentage(GameUtilities.GetPowerAmount(owner, ElementalExposurePower.POWER_ID));
+    }
+
+    public void Trigger() {
+        GameActions.Bottom.LoseHP(source, owner, GetPassiveDamage(), AttackEffects.FIRE)
+                .CanKill(owner == null || !owner.isPlayer);
     }
 }

@@ -25,6 +25,7 @@ public class Magilou_Bienfu extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
+        SetLoyal(true);
         SetEthereal(true);
     }
 
@@ -43,7 +44,7 @@ public class Magilou_Bienfu extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Last.MoveCard(this, player.drawPile).ShowEffect(true, true);
+        super.triggerOnManualDiscard();
         SetHaste(true);
     }
 

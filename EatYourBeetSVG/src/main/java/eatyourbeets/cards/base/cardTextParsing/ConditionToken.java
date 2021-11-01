@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ConditionToken extends CTToken
 {
@@ -34,7 +35,12 @@ public class ConditionToken extends CTToken
                     final String text = builder.toString();
                     ConditionToken token = new ConditionToken(text);
                     if (parser.card != null) {
-                        token.coloredString.SetColor(parser.card.CheckPrimaryCondition(false) ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+                        boolean inBattle = GameUtilities.InBattle();
+                        boolean conditionMet = parser.card.CheckPrimaryCondition(false);
+                        token.coloredString.SetColor(inBattle && conditionMet ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+                        if (inBattle && !conditionMet) {
+                            token.coloredString.color.a = 0.6f;
+                        }
                     }
                     parser.AddToken(token);
 

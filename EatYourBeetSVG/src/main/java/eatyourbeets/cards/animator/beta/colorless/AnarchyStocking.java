@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -49,7 +48,7 @@ public class AnarchyStocking extends AnimatorCard implements OnPurgeSubscriber
         if (isEthereal) {
             int amount = GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);
             if (amount > 0) {
-                GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, MathUtils.ceil(amount / 2f));
+                GameActions.Bottom.RemovePower(player, player, DelayedDamagePower.POWER_ID);
             }
         }
     }
@@ -61,7 +60,7 @@ public class AnarchyStocking extends AnimatorCard implements OnPurgeSubscriber
 
         int amount = GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);
         if (amount > 0) {
-            GameActions.Bottom.ReducePower(player, player, DelayedDamagePower.POWER_ID, MathUtils.ceil(amount / 2f));
+            GameActions.Bottom.RemovePower(player, player, DelayedDamagePower.POWER_ID);
         }
     }
 

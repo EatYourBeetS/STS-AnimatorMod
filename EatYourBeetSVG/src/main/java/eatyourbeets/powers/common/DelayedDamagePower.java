@@ -9,6 +9,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class DelayedDamagePower extends CommonPower implements HealthBarRenderPower
 {
@@ -42,7 +43,8 @@ public class DelayedDamagePower extends CommonPower implements HealthBarRenderPo
     @Override
     public void atEndOfTurn(boolean isPlayer)
     {
-        GameActions.Bottom.TakeDamage(owner, amount, attackEffect);
+        int damageAmount = owner.isPlayer ? Math.max(0, Math.min(GameUtilities.GetHP(owner, true, true) - 1, amount)) : amount;
+        GameActions.Bottom.TakeDamage(owner, damageAmount, attackEffect);
         RemovePower();
 
         playApplyPowerSfx();
@@ -61,5 +63,11 @@ public class DelayedDamagePower extends CommonPower implements HealthBarRenderPo
     public Color getColor()
     {
         return healthBarColor;
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(0, amount, owner.isPlayer ? powerStrings.DESCRIPTIONS[1] : "");
     }
 }

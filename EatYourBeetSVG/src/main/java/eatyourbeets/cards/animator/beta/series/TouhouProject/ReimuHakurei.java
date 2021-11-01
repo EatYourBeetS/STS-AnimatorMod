@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
@@ -24,14 +21,18 @@ public class ReimuHakurei extends AnimatorCard
 
         SetProtagonist(true);
         SetHarmonic(true);
+
+        SetAffinityRequirement(Affinity.Light, 3);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        int amount = TrySpendAffinity(Affinity.Light) ? magicNumber + 1 : magicNumber;
+
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
-        GameActions.Bottom.ApplyWeak(p, m, magicNumber);
+        GameActions.Bottom.ApplyVulnerable(p, m, amount);
+        GameActions.Bottom.ApplyWeak(p, m, amount);
         if (IsStarter())
         {
             GameActions.Bottom.Scry(secondaryValue);

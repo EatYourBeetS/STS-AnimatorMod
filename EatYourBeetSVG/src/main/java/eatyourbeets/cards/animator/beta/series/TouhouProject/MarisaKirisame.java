@@ -7,6 +7,7 @@ import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MarisaKirisame extends AnimatorCard
 {
@@ -16,10 +17,9 @@ public class MarisaKirisame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
+        Initialize(4, 0, 2, 2);
         SetUpgrade(3, 0, 0);
         SetAffinity_Blue(2, 0, 0);
-        SetEthereal(true);
     }
 
     @Override
@@ -28,13 +28,14 @@ public class MarisaKirisame extends AnimatorCard
         super.triggerOnExhaust();
 
         GameActions.Bottom.EvokeOrb(magicNumber, EvokeOrb.Mode.SameOrb)
-                .SetFilter(o -> Lightning.ORB_ID.equals(o.ID));
+                .SetFilter(GameUtilities::IsCommonOrb);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.LIGHTNING);
+        GameActions.Bottom.GainIntellect(secondaryValue);
 
         if (info.IsSynergizing)
         {

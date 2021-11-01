@@ -74,7 +74,7 @@
 	},
 	"Burning":
 	{
-		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -86,13 +86,13 @@
 	},
 	"Common Buff":
 	{
-		"DESCRIPTION": "[Strength], [Thorns], [Plated Armor], [Metallicize], [Intangible], [Artifact].",
+		"DESCRIPTION": "[Strength], [Dexterity], [Focus], [Endurance], [Thorns], [Blur], [Plated Armor], [Metallicize], [Intangible], [Artifact].",
 		"NAMES": ["common buff", "common buffs"],
 		"PROPER_NAME": "Common Buff"
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Shackles].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Freezing], [Shackles], [Delayed Damage].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -146,7 +146,7 @@
 	},
 	"Delayed Damage":
 	{
-		"DESCRIPTION": "Take damage at the end of your turn.",
+		"DESCRIPTION": "Take damage at the end of your turn. Only enemies can die from this damage.",
 		"NAMES": ["delayed damage"],
 		"PROPER_NAME": "Delayed Damage"
 	},
@@ -260,7 +260,7 @@
 	},
 	"Freezing":
 	{
-		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (min. #b1 less damage). This multiplier can be increased up to #b50% by card effects. NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (can go up to #b50%, min. #b1 less damage). NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
 	},
@@ -492,6 +492,12 @@
 	  "NAMES": ["supercharged"],
 	  "PROPER_NAME": "Supercharged"
 	},
+	"Swirled":
+	{
+		"DESCRIPTION": "If the target has [Burning] or [Freezing]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
+		"NAMES": ["swirled"],
+		"PROPER_NAME": "Swirled"
+	},
 	"Synergic":
 	{
 		"DESCRIPTION": "A card that Synergizes with this card.",
@@ -500,7 +506,7 @@
 	},
 	"Tainted":
 	{
-		"DESCRIPTION": "Take additional damage from attacks and Orbs. Deal 1 less damage with attacks. Reduced by half each turn.",
+		"DESCRIPTION": "Take additional damage from attacks. Deal 1 less damage with attacks. Reduced by half each turn.",
 		"NAMES": ["tainted"],
 		"PROPER_NAME": "Tainted"
 	},

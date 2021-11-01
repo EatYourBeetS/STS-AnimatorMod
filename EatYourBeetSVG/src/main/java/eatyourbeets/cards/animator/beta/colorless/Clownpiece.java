@@ -6,11 +6,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.ProvokedPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Clownpiece extends AnimatorCard //TODO Provoke the enemy
+public class Clownpiece extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Clownpiece.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+    public static final EYBCardData DATA = Register(Clownpiece.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject);
 
@@ -21,6 +23,7 @@ public class Clownpiece extends AnimatorCard //TODO Provoke the enemy
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Star(1,1,0);
+        SetInnate(true);
         SetExhaust(true);
 
     }
@@ -67,9 +70,9 @@ public class Clownpiece extends AnimatorCard //TODO Provoke the enemy
                 else
                 {
                     GameActions.Top.Draw(1);
-                    //for (AbstractMonster mp : GameUtilities.GetEnemies(true)) {
-                        //mp.setMove();
-                    //}
+                    for (AbstractMonster mp : GameUtilities.GetEnemies(true)) {
+                        GameActions.Bottom.ApplyPower(p, new ProvokedPower(mp));
+                    }
                 }
             }
         });

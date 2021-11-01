@@ -33,22 +33,22 @@ public class GinIchimaru extends AnimatorCard
         SetHitCount(2);
     }
 
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (TrySpendAffinity(Affinity.Blue))
+        {
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
+        }
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
-
-        if (CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true) >= secondaryValue || CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) >= secondaryValue)
-        {
-            GameActions.Bottom.Exhaust(this);
-        }
-
-        if (TrySpendAffinity(Affinity.Blue))
-        {
-            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
-        }
     }
 
     @Override

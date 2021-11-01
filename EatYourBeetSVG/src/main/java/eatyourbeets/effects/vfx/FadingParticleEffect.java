@@ -33,6 +33,7 @@ public class FadingParticleEffect extends EYBEffect
     public FadingParticleEffect SetColor(Color color)
     {
         this.projectile.SetColor(color);
+        this.alpha = color.a;
 
         return this;
     }
@@ -76,6 +77,13 @@ public class FadingParticleEffect extends EYBEffect
     public <T> FadingParticleEffect Edit(T state, ActionT2<T, Projectile> action)
     {
         action.Invoke(state, projectile);
+
+        return this;
+    }
+
+    public FadingParticleEffect SetTranslucent()
+    {
+        this.isTranslucent = true;
 
         return this;
     }

@@ -9,37 +9,53 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class SanaeKochiya extends AnimatorCard {
-    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None, true).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Miracle(), false));
 
     public SanaeKochiya() {
         super(DATA);
 
-        Initialize(0, 0, 4, 0);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 1, 1);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Top.Scry(magicNumber)
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Top.Scry(secondaryValue)
                 .AddCallback(cards -> {
                             boolean hasEthereal = false;
+                            boolean hasPurge = false;
 
                             for (AbstractCard card : cards) {
                                 if (card.isEthereal) {
                                     hasEthereal = true;
-                                    break;
+                                }
+                                else if (card.purgeOnUse || card.hasTag(PURGE)) {
+                                    hasPurge = true;
                                 }
                             }
 
                             if (hasEthereal) {
                                 GameActions.Top.StackPower(new NextTurnMiracle(player, 1));
+                            }
+                            if (hasPurge) {
+                                GameActions.Top.ApplyBlinded(TargetHelper.Enemies(), 1);
                             }
                         }
                 );

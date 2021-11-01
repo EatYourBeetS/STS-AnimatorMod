@@ -18,7 +18,7 @@ public class Millim extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 2);
+        Initialize(6, 0, 5, 2);
 
         SetAffinity_Star(1, 0, 1);
 

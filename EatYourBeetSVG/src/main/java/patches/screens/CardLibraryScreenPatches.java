@@ -7,7 +7,6 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
@@ -49,39 +48,18 @@ public class CardLibraryScreenPatches
         {
             CustomCardLibSortHeader.Screen = screen;
 
-            if (defaultHeader == null)
+            if (_sortHeader.Get(screen) != customHeader)
             {
-                defaultHeader = _sortHeader.Get(screen);
-
-                Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
-
-                float offsetX = 130 * Settings.scale;
-
-                upgradeHitbox.width -= offsetX;
-                //upgradeHitbox.move(upgradeHitbox.cX + (offsetX * 2), upgradeHitbox.cY);
+                _sortHeader.Set(screen, customHeader);
             }
 
-            if (newSelection == ColorTabBar.CurrentTab.COLORLESS || newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR))
-            {
-                if (_sortHeader.Get(screen) != customHeader)
-                {
-                    _sortHeader.Set(screen, customHeader);
-                }
-
-                customHeader.SetupButtons(newSelection == ColorTabBar.CurrentTab.COLORLESS);
-            }
-            else
-            {
-                if (_sortHeader.Get(screen) != defaultHeader)
-                {
-                    _sortHeader.Set(screen, defaultHeader);
-                }
-            }
+            customHeader.SetupButtons(!(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR)));
         }
 
         @SpirePostfixPatch
         public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
-            GR.UI.CardFilters.Refresh(customHeader.group.group, __ -> customHeader.UpdateForFilters());
+            GR.UI.CardFilters.SetOnClick(__ -> customHeader.UpdateForFilters());
+            customHeader.UpdateForFilters();
             if (openButton == null) {
                 openButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false).SetIsPopupCompatible(true))
                         .SetBorder(GR.Common.Images.HexagonalButtonBorder.Texture(), Color.WHITE)

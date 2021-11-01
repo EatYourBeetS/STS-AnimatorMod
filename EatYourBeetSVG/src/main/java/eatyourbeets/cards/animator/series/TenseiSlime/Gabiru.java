@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Gabiru extends AnimatorCard
 {
@@ -25,14 +24,6 @@ public class Gabiru extends AnimatorCard
 
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1);
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), secondaryValue);
     }
 
     @Override

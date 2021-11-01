@@ -37,7 +37,7 @@
 	},
 	"eyb:DelayedDamagePower":
 	{
-		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
+		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn.{1}", " If this effect would kill you, survive with #b1 HP."],
 		"NAME": "Delayed Damage"
 	},
 	"eyb:DesecrationPower":
@@ -150,9 +150,14 @@
 		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
 		"NAME": "Support Damage"
 	},
+	"animator:SwirledPower":
+	{
+	  "DESCRIPTIONS": ["If the target has [Burning] or [Freezing], apply #b1 of each to ALL other enemies, then reduce this by #b1. If there are no other enemies: increase stacks of those powers by #b1."],
+	  "NAME": "Swirled"
+	},
 	"eyb:TaintedPower":
 	{
-		"DESCRIPTIONS": ["Take #b{0} additional damage from #yAttacks. Take #b{1}% more damage from #yOrbs. Deal #b{2} less damage with #yAttacks."],
+		"DESCRIPTIONS": ["Take #b{0} additional damage from #yAttacks. Deal #b{1} less damage with #yAttacks."],
 		"NAME": "Tainted"
 	},
 	"eyb:TechnicPower":

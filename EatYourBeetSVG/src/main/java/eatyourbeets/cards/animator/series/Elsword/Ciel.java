@@ -13,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Ciel extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ciel.class)
-            .SetSkill(2, CardRarity.COMMON)
+            .SetSkill(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Lu(), false));
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -22,10 +22,10 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 6, 2);
-        SetUpgrade(0, 1, 2, 0);
+        Initialize(0, 5, 6, 2);
+        SetUpgrade(0, 2, 1, 0);
 
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 

@@ -3,6 +3,7 @@ package eatyourbeets.powers.animator;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -24,6 +25,12 @@ public class SelfImmolationPower extends AnimatorPower
         this.isTurnBased = true;
 
         updateDescription();
+    }
+
+    @Override
+    public void playApplyPowerSfx()
+    {
+        SFX.Play(SFX.HEART_BEAT, 1f, 1.15f, 0.95f);
     }
 
     @Override

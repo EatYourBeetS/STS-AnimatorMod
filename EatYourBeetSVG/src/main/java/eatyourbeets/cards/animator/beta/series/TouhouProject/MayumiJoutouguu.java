@@ -3,11 +3,9 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Haniwa;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class MayumiJoutouguu extends AnimatorCard
 {
@@ -18,9 +16,11 @@ public class MayumiJoutouguu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2);
-        SetUpgrade(0, 1, 1);
-        SetAffinity_Orange(1, 1, 1);
+        Initialize(0, 9, 1);
+        SetUpgrade(0, 3, 0);
+        SetAffinity_Orange(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Orange, 3);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
     }
@@ -28,13 +28,15 @@ public class MayumiJoutouguu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameUtilities.MaintainPower(Affinity.Orange);
         GameActions.Bottom.GainBlock(block);
 
-        if (info.IsSynergizing)
+        cooldown.ProgressCooldownAndTrigger(m);
+
+        if (info.CanActivateSemiLimited && TrySpendAffinity(Affinity.Orange) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.GainPlatedArmor(magicNumber);
         }
-        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

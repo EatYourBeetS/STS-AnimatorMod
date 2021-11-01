@@ -132,6 +132,7 @@ public class CardTooltips
     public EYBCardTooltip Genesis = FindByID("Genesis");
     public EYBCardTooltip Tainted = FindByID("Tainted");
     public EYBCardTooltip Slow = FindByID("Slow");
+    public EYBCardTooltip Swirled = FindByID("Swirled");
     public EYBCardTooltip SelfImmolation = FindByID("Self-Immolation");
     public EYBCardTooltip Multiform = FindByID("~Multiform");
     public EYBCardTooltip BranchUpgrade = FindByID("~Branch Upgrade");
@@ -312,6 +313,7 @@ public class CardTooltips
         LoadFromPower(Tainted, new TaintedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Slow, new AntiArtifactSlowPower(FakeCharacter.Instance, 0));
         LoadFromPower(SelfImmolation, new SelfImmolationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Swirled, new SwirledPower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

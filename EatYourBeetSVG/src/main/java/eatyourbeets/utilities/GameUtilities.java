@@ -44,10 +44,7 @@ import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.monsters.EnemyIntent;
-import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.orbs.animator.Water;
+import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
@@ -58,6 +55,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
 import org.apache.commons.lang3.StringUtils;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
@@ -163,12 +161,17 @@ public class GameUtilities
                 || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
     }
 
+    public static boolean CanTriggerDesecration()
+    {
+        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
+        return po != null && po.enabled && po.charge >= DesecrationPower.CHARGE_THRESHOLD;
+    }
+
     public static boolean CanTriggerSupercharged()
     {
         SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
         return po != null && po.enabled && po.charge >= SuperchargedPower.CHARGE_THRESHOLD;
     }
-
 
     public static void ClearPostCombatActions()
     {
@@ -299,7 +302,7 @@ public class GameUtilities
     {
         for (AbstractOrb orb : player.orbs)
         {
-            if (orb != null && orbID.equals(orb.ID))
+            if (orb != null && (orbID == null || orbID.equals(orb.ID)))
             {
                 return orb;
             }
@@ -578,10 +581,20 @@ public class GameUtilities
         if (commonBuffs.isEmpty())
         {
             commonBuffs.add(PowerHelper.Strength);
+            commonBuffs.add(PowerHelper.Dexterity);
+            commonBuffs.add(PowerHelper.Focus);
+            commonBuffs.add(PowerHelper.Endurance);
+            commonBuffs.add(PowerHelper.TemporaryStrength);
+            commonBuffs.add(PowerHelper.TemporaryDexterity);
+            commonBuffs.add(PowerHelper.TemporaryFocus);
+            commonBuffs.add(PowerHelper.TemporaryEndurance);
             commonBuffs.add(PowerHelper.Thorns);
+            commonBuffs.add(PowerHelper.TemporaryThorns);
+            commonBuffs.add(PowerHelper.Blur);
             commonBuffs.add(PowerHelper.PlatedArmor);
             commonBuffs.add(PowerHelper.Metallicize);
             commonBuffs.add(PowerHelper.Artifact);
+            commonBuffs.add(PowerHelper.TemporaryArtifact);
         }
 
         return commonDebuffs;
@@ -596,7 +609,9 @@ public class GameUtilities
             commonDebuffs.add(PowerHelper.Frail);
             commonDebuffs.add(PowerHelper.Poison);
             commonDebuffs.add(PowerHelper.Burning);
+            commonDebuffs.add(PowerHelper.Freezing);
             commonDebuffs.add(PowerHelper.Shackles);
+            commonDebuffs.add(PowerHelper.DelayedDamage);
         }
 
         return commonDebuffs;
@@ -762,6 +777,28 @@ public class GameUtilities
         }
 
         return cards;
+    }
+
+    public static int GetOrbBaseEvokeAmount(AbstractOrb orb) {
+        Object f = GetOrbField(orb, "baseEvokeAmount");
+        return (f != null ? (int) f : 0);
+    }
+
+    public static int GetOrbBasePassiveAmount(AbstractOrb orb) {
+        Object f = GetOrbField(orb, "basePassiveAmount");
+        return (f != null ? (int) f : 0);
+    }
+
+    public static Object GetOrbField(AbstractOrb orb, String field) {
+        try {
+            Field f = AbstractOrb.class.getDeclaredField(field);
+            f.setAccessible(true);
+            return f.get(orb);
+        }
+        catch (NoSuchFieldException | IllegalAccessException var2) {
+            JUtils.LogWarning(orb, "Orb could not be modified");
+            return null;
+        }
     }
 
     public static <T> T GetPower(AbstractCreature owner, Class<T> powerType)
@@ -1522,6 +1559,32 @@ public class GameUtilities
         card.isHitCountModified = (card.hitCount != card.baseHitCount);
     }
 
+    public static void ModifyOrbBaseEvokeAmount(AbstractOrb orb, int amount, boolean canModifyNonFocusOrb) {
+        if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
+            ModifyOrbField(orb, "baseEvokeAmount", amount);
+        }
+
+    }
+
+    public static void ModifyOrbBasePassiveAmount(AbstractOrb orb, int amount, boolean canModifyNonFocusOrb) {
+        if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
+            ModifyOrbField(orb, "basePassiveAmount", amount);
+        }
+    }
+
+    public static void ModifyOrbField(AbstractOrb orb, String field, int amount) {
+        try {
+            Field f = AbstractOrb.class.getDeclaredField(field);
+            f.setAccessible(true);
+            f.set(orb, amount);
+            orb.applyFocus();
+            orb.updateDescription();
+        }
+        catch (NoSuchFieldException | IllegalAccessException var2) {
+            JUtils.LogWarning(orb, "Orb could not be modified");
+        }
+    }
+
     public static void ObtainBlight(float cX, float cY, AbstractBlight blight)
     {
         GetCurrentRoom(true).spawnBlightAndObtain(cX, cY, blight);
@@ -1646,6 +1709,16 @@ public class GameUtilities
             AbstractDungeon.topPanel.unhoverHitboxes();
             //AbstractDungeon.topPanel.potionUi.isHidden = !visible;
         }
+    }
+
+    public static boolean SpendDesecrationCharge(int amount)
+    {
+        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
+        if (po != null && po.charge >= amount) {
+            po.charge -= amount;
+            return true;
+        }
+        return false;
     }
 
     public static boolean SpendSuperchargedCharge(int amount)

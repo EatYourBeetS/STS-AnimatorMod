@@ -19,7 +19,7 @@ public class Tartaglia extends AnimatorCard {
     public Tartaglia() {
         super(DATA);
 
-        Initialize(8, 0, 2);
+        Initialize(10, 0, 4);
         SetUpgrade(3, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
@@ -31,7 +31,10 @@ public class Tartaglia extends AnimatorCard {
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
         for (AbstractCreature c : GameUtilities.GetAllCharacters(true)) {
-            amount += GameUtilities.GetPowerAmount(c, BurningPower.POWER_ID) * magicNumber;
+            if (GameUtilities.GetPowerAmount(c, BurningPower.POWER_ID) > 0) {
+                amount += magicNumber;
+            }
+
         }
 
         return super.ModifyDamage(enemy, amount);

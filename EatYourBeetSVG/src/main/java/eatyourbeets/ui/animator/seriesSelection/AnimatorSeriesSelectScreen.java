@@ -85,11 +85,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnToggle(this::ToggleBetaSeries)
         .SetBackground(panelTexture, Color.DARK_GRAY);
 
-        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.DeselectAll)
-        .SetOnClick(this::DeselectAll)
-        .SetColor(Color.FIREBRICK);
-
         selectRandomMinimum = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectRandom(MINIMUM_CARDS))
         .SetOnClick(() -> SelectRandom(MINIMUM_CARDS))
@@ -99,6 +94,11 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetText(buttonStrings.SelectRandom(BONUS_RELIC_THRESHOLD))
         .SetOnClick(() -> SelectRandom(BONUS_RELIC_THRESHOLD))
         .SetColor(Color.SKY);
+
+        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+                .SetText(buttonStrings.DeselectAll)
+                .SetOnClick(this::DeselectAll)
+                .SetColor(Color.FIREBRICK);
 
         selectAll = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.SelectAll)

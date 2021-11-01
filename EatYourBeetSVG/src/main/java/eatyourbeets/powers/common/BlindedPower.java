@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnChannelOrbSubscriber;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -66,12 +65,6 @@ public class BlindedPower extends CommonPower implements OnChannelOrbSubscriber,
     public void updateDescription()
     {
         this.description = FormatDescription(0, GetDamageReduction());
-    }
-
-    @Override
-    public void playApplyPowerSfx()
-    {
-        SFX.Play(SFX.ORB_FROST_EVOKE, 1.2f, 1.5f);
     }
 
     @Override

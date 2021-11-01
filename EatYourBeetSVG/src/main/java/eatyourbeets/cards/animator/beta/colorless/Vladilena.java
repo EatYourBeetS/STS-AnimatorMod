@@ -57,7 +57,7 @@ public class Vladilena extends AnimatorCard
                     .SetFilter(c -> c.type == CardType.ATTACK)
                     .AddCallback(cards -> {
                         for (AbstractCard c : cards) {
-                            if (c.costForTurn == 0 || c.rarity.equals(CardRarity.BASIC) && info.TryActivateLimited()) {
+                            if (c.rarity.equals(CardRarity.BASIC) && info.TryActivateLimited()) {
                                 GameActions.Last.Add(AffinityToken.SelectTokenAction(name, 1, magicNumber)
                                         .AddCallback(tokens ->
                                         {
@@ -71,6 +71,7 @@ public class Vladilena extends AnimatorCard
                             GameActions.Bottom.PlayCard(c, m).AddCallback(() -> {
                                 GameActions.Last.Exhaust(c);
                             });
+                            //GameActions.Bottom.DealDamageAtEndOfTurn(player, player, c.costForTurn * 2, AttackEffects.SLASH_VERTICAL);
                         }
                     });
         }

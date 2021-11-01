@@ -3,13 +3,10 @@ package eatyourbeets.cards.animator.beta.series.Bleach;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.common.CounterAttackPower;
+import eatyourbeets.powers.common.TemporaryThornsPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard //TODO
@@ -20,11 +17,13 @@ public class OrihimeInoue extends AnimatorCard //TODO
     {
         super(DATA);
 
-        Initialize(0, 5, 1, 2);
+        Initialize(0, 5, 1, 4);
         SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Light(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
@@ -34,9 +33,9 @@ public class OrihimeInoue extends AnimatorCard //TODO
 
         GameActions.Bottom.StackPower(new OrihimeInouePower(p, magicNumber));
 
-        if (info.IsSynergizing)
+        if (TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
+            GameActions.Bottom.StackPower(new TemporaryThornsPower(p, secondaryValue));
         }
     }
 

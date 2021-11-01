@@ -3,15 +3,14 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.SwirledPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class JeanGunnhildr extends AnimatorCard
 {
@@ -41,7 +40,10 @@ public class JeanGunnhildr extends AnimatorCard
     public void triggerOnManualDiscard()
     {
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainAgility(1, false);
+            for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
+                GameActions.Bottom.ApplyPower(player, new SwirledPower(m, 1));
+                break;
+            }
         }
     }
 
@@ -57,7 +59,7 @@ public class JeanGunnhildr extends AnimatorCard
                     {
                         for (AbstractPower power : player.powers)
                         {
-                            if (WeakPower.POWER_ID.equals(power.ID) || VulnerablePower.POWER_ID.equals(power.ID) || FrailPower.POWER_ID.equals(power.ID))
+                            if (GameUtilities.IsCommonDebuff(power))
                             {
                                 int decrease = Math.min(discarded, power.amount);
                                 GameActions.Top.ReducePower(power, decrease);
@@ -67,9 +69,6 @@ public class JeanGunnhildr extends AnimatorCard
                                     break;
                                 }
                             }
-                        }
-                        if (discarded > 0) {
-                            GameActions.Bottom.GainAgility(discarded * secondaryValue);
                         }
                     }
                 });

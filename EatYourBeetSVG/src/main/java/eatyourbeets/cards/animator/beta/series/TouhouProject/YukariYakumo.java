@@ -4,44 +4,57 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.ImpairedPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
-public class YukariYakumo extends AnimatorCard //TODO interact with Desecration
+import static eatyourbeets.powers.common.ImpairedPower.GetOrbMultiplier;
+
+public class YukariYakumo extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final int DESECRATION_COST = 10;
 
     public YukariYakumo()
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 2);
+        Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Dark(2, 0, 0);
 
         SetExhaust(true);
+        SetAffinityRequirement(Affinity.Dark, 6);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ApplyFrail(p, p, magicNumber);
+        //GameActions.Bottom.ApplyFrail(p, p, magicNumber);
         GameActions.Bottom.ApplyVulnerable(p, p, magicNumber);
         GameActions.Bottom.ApplyWeak(p, p, magicNumber);
+        GameActions.Bottom.StackPower(new ImpairedPower(player, magicNumber));
         GameActions.Bottom.StackPower(new InvertPower(player, secondaryValue));
+
+        if (GameUtilities.SpendSuperchargedCharge(DESECRATION_COST) || TrySpendAffinity(Affinity.Dark)) {
+            //GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), secondaryValue);
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), secondaryValue);
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
+        }
     }
 
-    public static class InvertPower extends AnimatorPower
+    public static class InvertPower extends AnimatorPower implements OnOrbApplyFocusSubscriber
     {
 
         public InvertPower(AbstractCreature owner, int amount)
@@ -52,6 +65,23 @@ public class YukariYakumo extends AnimatorCard //TODO interact with Desecration
             this.priority = 99;
             updateDescription();
         }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onOrbApplyFocus.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onOrbApplyFocus.Unsubscribe(this);
+        }
+
 
         @Override
         public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
@@ -98,6 +128,19 @@ public class YukariYakumo extends AnimatorCard //TODO interact with Desecration
         {
             this.description = FormatDescription(0, amount);
             this.enabled = (amount > 0);
+        }
+
+        @Override
+        public void OnApplyFocus(AbstractOrb orb) {
+            AbstractPower power = GameUtilities.GetPower(owner, ImpairedPower.POWER_ID);
+            if (power != null)
+            {
+                if (GetOrbMultiplier() > 0) {
+                    float inverter = GetOrbMultiplier() * GetOrbMultiplier() / 10000f;
+                    orb.passiveAmount /= inverter;
+                    orb.evokeAmount /= inverter;
+                }
+            }
         }
     }
 

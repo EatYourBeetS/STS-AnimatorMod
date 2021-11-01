@@ -230,6 +230,11 @@
 		"DESCRIPTIONS": ["On death, ALL characters take #b{0} #yPiercing damage."],
 		"NAME": "Lightning Wisp"
 	},
+	"animator:MagusForm":
+	{
+		"DESCRIPTIONS": ["Each turn, gain #b{0} [Focus] and lose #b{1} [Strength] and [Dexterity]."],
+		"NAME": "Magus Form"
+	},
 	"animator:MarkOfPoisonPower":
 	{
 		"DESCRIPTIONS": ["Whenever you receive damage also receive #b{0} #yPoison."],
@@ -300,6 +305,11 @@
 		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
 		"NAME": "Pride"
 	},
+	"animator:ProvokedPower":
+	{
+		"DESCRIPTIONS": ["Takes #b{0}% more damage from #yAttacks. Will always #yAttack this turn."],
+		"NAME": "Provoked"
+	},
 	"animator:RejuvenationPower":
 	{
 	  "DESCRIPTIONS": ["At the end of each turn, heal #b{0} HP."],
@@ -309,6 +319,11 @@
 	{
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
 		"NAME": "Rory Mercury"
+	},
+	"animator:SealedPower":
+	{
+	  "DESCRIPTIONS": ["#yCommon #yBuffs are negated. You cannot gain #yCommon #yBuffs or #yAffinity #yPowers."],
+	  "NAME": "Sealed"
 	},
 	"animator:SelfImmolationPower":
 	{
@@ -329,6 +344,11 @@
 	{
 		"DESCRIPTIONS": ["At the start of your turn, gain #b{0} energy."],
 		"NAME": "Shiro"
+	},
+	"animator:SilencedPower":
+	{
+	  "DESCRIPTIONS": ["You cannot play #ySkills.","This enemy cannot #yBuff or #yDebuff."],
+	  "NAME": "Silenced"
 	},
 	"animator:SonicPower":
 	{

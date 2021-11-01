@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.IntellectStance;
@@ -21,8 +20,7 @@ public class Ain extends AnimatorCard
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetMultiformData(2, false)
-            .SetSeries(CardSeries.Elsword)
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
+            .SetSeries(CardSeries.Elsword);
 
     public Ain()
     {

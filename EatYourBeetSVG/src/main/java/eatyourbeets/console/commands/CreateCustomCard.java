@@ -107,7 +107,7 @@ public class CreateCustomCard extends ConsoleCommand
         try
         {
             jsonString = new String(Files.readAllBytes(Paths.get("C:/temp/Animator-DynamicCards.json")));
-            cardPool.putAll(new Gson().fromJson(GR.Animator.ProcessJson(jsonString, true), typeToken));
+            cardPool.putAll(new Gson().fromJson(GR.Animator.ProcessCardStringsShortcutsJson(jsonString, true), typeToken));
         }
         catch (Exception e)
         {

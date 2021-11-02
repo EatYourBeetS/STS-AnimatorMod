@@ -26,6 +26,8 @@ public abstract class AnimatorLoadout
 
     public int ID;
     public String Name;
+    public String Theme;
+    public String SourceMaterial;
     public Synergy Synergy;
     public boolean IsBeta;
 

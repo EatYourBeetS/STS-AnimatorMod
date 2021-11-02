@@ -4,12 +4,13 @@ import basemod.BaseMod;
 import basemod.abstracts.CustomUnlock;
 import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.utils.Base64Coder;
-import eatyourbeets.resources.animator.loadouts.beta.*;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.Synergy;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
+import eatyourbeets.resources.animator.loadouts.beta.*;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
@@ -17,6 +18,7 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
@@ -234,6 +236,8 @@ public class AnimatorPlayerData
 
             BaseMod.addUnlockBundle(bundle, GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
         }
+
+        AddThemeAndSourceMaterial(BaseLoadouts);
     }
 
     private void AddBetaLoadouts()
@@ -246,6 +250,8 @@ public class AnimatorPlayerData
         BetaLoadouts.add(new RozenMaiden());
         BetaLoadouts.add(new Bleach());
         //BetaLoadouts.add(new <YourLoadoutHere>);
+
+        AddThemeAndSourceMaterial(BetaLoadouts);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...
@@ -301,6 +307,19 @@ public class AnimatorPlayerData
                         Trophies.add(trophies);
                     }
                 }
+            }
+        }
+    }
+
+    public void AddThemeAndSourceMaterial(ArrayList<AnimatorLoadout> loadouts) {
+        Map<String, String[]> seriesDesc = GR.Animator.ProcessSeriesStringsJson(true);
+
+        for (AnimatorLoadout loadout : loadouts) {
+            if (seriesDesc.containsKey(loadout.Name)) {
+                String[] seriesInfo = seriesDesc.get(loadout.Name);
+
+                loadout.Theme = seriesInfo[0];
+                loadout.SourceMaterial = seriesInfo[1];
             }
         }
     }

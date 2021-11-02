@@ -120,6 +120,8 @@ public class AnimatorStrings
         public final String PickupBonusHeader = Strings.TEXT[4];
         public final String PickupBonusBody = Strings.TEXT[5];
         public final String RightClickToPreview = Strings.TEXT[6];
+        public final String ThemeHeader = Strings.TEXT[7];
+        public final String SourceMaterialHeader = Strings.TEXT[8];
 
         public final String ContainsNCards(int cardCount)
         {

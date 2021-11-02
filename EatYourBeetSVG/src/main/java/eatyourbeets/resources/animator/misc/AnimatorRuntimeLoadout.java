@@ -70,6 +70,19 @@ public class AnimatorRuntimeLoadout
         AbstractCard temp = data.CreateNewInstance();
         AnimatorCardBuilder builder = new AnimatorCardBuilder(String.valueOf(Loadout.ID)).SetImage(temp.assetUrl).CanUpgrade(false);
 
+        EYBCardTooltip themeTooltip = null;
+        EYBCardTooltip sourceMaterialTooltip = null;
+
+        if (Loadout.Theme != null && !Loadout.Theme.equals(""))
+        {
+            themeTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ThemeHeader, Loadout.Theme);
+        }
+
+        if (Loadout.SourceMaterial != null)
+        {
+            sourceMaterialTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.SourceMaterialHeader, Loadout.SourceMaterial);
+        }
+
         if (promoted)
         {
             card = builder
@@ -88,6 +101,15 @@ public class AnimatorRuntimeLoadout
             card = builder
             .SetText(Loadout.Name, GR.Animator.Strings.SeriesSelection.ContainsNCards(Cards.size()), "")
             .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
+        }
+
+        if (themeTooltip != null)
+        {
+            card.tooltips.add(themeTooltip);
+        }
+
+        if (sourceMaterialTooltip != null) {
+            card.tooltips.add(sourceMaterialTooltip);
         }
 
         return card;

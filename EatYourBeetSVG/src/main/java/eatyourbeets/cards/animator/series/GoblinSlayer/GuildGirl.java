@@ -17,7 +17,6 @@ public class GuildGirl extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(GuildGirl.class)
             .SetPower(1, CardRarity.UNCOMMON)
-            .SetMultiformData(2)
             .SetSeriesFromClassPackage();
     public static final int GOLD_GAIN = 4;
 
@@ -26,25 +25,10 @@ public class GuildGirl extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, GOLD_GAIN);
+        SetCostUpgrade(-1);
 
         SetAffinity_Earth(1);
     }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetInnate(true);
-        }
-    }
-
-    @Override
-    public int SetForm(Integer form, int timesUpgraded) {
-        if (timesUpgraded > 0) {
-            SetInnate(form == 0);
-        }
-        return super.SetForm(form, timesUpgraded);
-    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

@@ -1,8 +1,12 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
+import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
@@ -19,13 +23,11 @@ public class DwarfShaman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(6, 0, 3);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Water(1, 0, 2);
-        SetAffinity_Earth(1);
+        SetAffinity_Earth();
 
-        SetAffinityRequirement(Affinity.General, 3);
         SetEvokeOrbCount(1);
     }
 
@@ -35,10 +37,7 @@ public class DwarfShaman extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).SetVFX(true, false)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.4f)).duration).SetRealtime(true);
         GameActions.Bottom.ChannelOrb(new Earth());
-
-        if (CheckAffinity(Affinity.General))
-        {
-            GameActions.Bottom.UpgradeFromPile(p.drawPile, 1, false);
-        }
+        GameActions.Bottom.MakeCardInDrawPile(new Dazed())
+        .SetOriginalOrder(GameActions.ActionOrder.Top);
     }
 }

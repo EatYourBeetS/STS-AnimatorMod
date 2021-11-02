@@ -11,18 +11,24 @@ import eatyourbeets.utilities.GameUtilities;
 public class CowGirl extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(CowGirl.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public CowGirl()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
 
-        SetAffinity_Earth(1);
+        SetAffinity_Earth();
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override
@@ -39,8 +45,7 @@ public class CowGirl extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        (upgraded ? GameActions.Bottom.FetchFromPile(name, 1, player.drawPile, player.discardPile)
-                  : GameActions.Bottom.FetchFromPile(name, 1, player.drawPile))
+        GameActions.Bottom.FetchFromPile(name, 1, player.drawPile)
         .SetOptions(false, false)
         .SetFilter(c -> c.type == CardType.ATTACK && c instanceof AnimatorCard && ((AnimatorCard) c).attackType == EYBAttackType.Normal).AddCallback(cards -> {
             for (AbstractCard c : cards) {

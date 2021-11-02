@@ -15,17 +15,17 @@ public class GoblinSlayer extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(GoblinSlayer.class)
             .SetAttack(1, CardRarity.RARE)
-            .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
 
     public GoblinSlayer()
     {
         super(DATA);
 
-        Initialize(4, 4, 3);
-        SetUpgrade(3, 3);
+        Initialize(1, 4, 3);
+        SetUpgrade(0,0,2);
 
-        SetAffinity_Fire(1);
+        SetAffinity_Air();
+        SetAffinity_Light();
 
         SetRetain(true);
         SetProtagonist(true);

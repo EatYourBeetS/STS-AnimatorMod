@@ -1694,19 +1694,23 @@
 	{
 		"animator:ApprenticeCleric":
 		{
-			"DESCRIPTION": "Gain|Boost [L]. Give all <F>, <E>, ** and <A> cards in hand ** +1 [L] scaling (max !M!). || <SLM>. When ** Drawn: Gain [L].",
+			"DESCRIPTION": "Gain !M! [L].  || If there are at least 3 {Hindrances} in your Exhaust pile: Give !S! random cards in your hand <L>.",
 			"NAME": "Apprentice Cleric"
 		},
 		"animator:CowGirl":
 		{
-			"DESCRIPTION": "Fetch a [~Damage] Attack from your draw pile. It deals !M! more damage this turn. || <LIM>. When ** Discarded: Motivate 1.",
-			"NAME": "Cow Girl",
-			"UPGRADE_DESCRIPTION": "Fetch a [~Damage] Attack from your discard or draw pile. It deals !M! more damage this turn. || <LIM>. When ** Discarded: Motivate 1."
+			"DESCRIPTION": "Draw a random Attack from your draw pile.  Increase its damage by !M!. || <LIM>. When Discarded: Motivate 1.",
+			"NAME": "Cow Girl"
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "Channel 1 [Earth]. || !A! <Y>: Upgrade a ** random card in ** your draw pile.",
+			"DESCRIPTION": "Channel 1 [Earth].  Add a {Dazed} to the top of your draw pile.",
 			"NAME": "Dwarf Shaman"
+		},
+		"animator:Fighter":
+		{
+			"DESCRIPTION": "When Drawn: Add !M! {Goblins} to your hand.",
+			"NAME": "Fighter"
 		},
 		"animator:GoblinSlayer":
 		{
@@ -3103,7 +3107,7 @@
 		},
 		"animator:Hero":
 		{
-			"DESCRIPTION": "Startup: Lose half of your current HP. This card's [HP] gain is 20% of your current missing HP. || <LIM>. If Fatal, 40% chance to ** obtain a {Relic} at the ** end of combat.",
+			"DESCRIPTION": "<LIM>. If Fatal with !M! {Hindrances} in your exhaust pile: Obtain a {Relic} at the end of combat.",
 			"NAME": "'Hero'"
 		},
 		"animator:HiiragiTenri":

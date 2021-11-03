@@ -30,10 +30,10 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         switch (level)
         {
-            case  1: return 2;
-            case  2: return 4;
-            case  3: return 6;
-            case  4: return 8;
+            case  1: return 10;
+            case  2: return 20;
+            case  3: return 30;
+            case  4: return 40;
             default: return 0;
         }
     }
@@ -48,10 +48,10 @@ public abstract class PlayerAttributePower extends CommonPower
                 switch (power.threshold)
                 {
                     case 0: return 0;
-                    case 2: return 1;
-                    case 4: return 2;
-                    case 6: return 3;
-                    case 8: return 4;
+                    case 10: return 1;
+                    case 20: return 2;
+                    case 30: return 3;
+                    case 40: return 4;
                     default: return 5;
                 }
             }
@@ -75,7 +75,7 @@ public abstract class PlayerAttributePower extends CommonPower
         {
             this.amount = 0;
         }
-        this.threshold = 2;
+        this.threshold = 10;
 
         updateDescription();
     }
@@ -112,17 +112,6 @@ public abstract class PlayerAttributePower extends CommonPower
             super.stackPower(stackAmount);
 
             UpdateThreshold();
-        }
-    }
-
-    @Override
-    public void atStartOfTurn()
-    {
-        super.atStartOfTurn();
-
-        if (enabled && amount > 0)
-        {
-            reducePower(1);
         }
     }
 

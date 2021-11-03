@@ -8,7 +8,7 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Upon reaching a multiple of #b10 #yAgility, gain #yDexterity (max 4).",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
@@ -116,7 +116,7 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
+		"DESCRIPTION": "Upon reaching a multiple of #b10 #yForce, gain #yStrength (max 4).",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
@@ -140,7 +140,7 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
+		"DESCRIPTION": "Upon reaching a multiple of #b10 #yIntellect, gain #yFocus (max 4).",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},

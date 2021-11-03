@@ -12,17 +12,17 @@
 	},
 	"EYB:ForcePower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yForce at the start of each turn.", " If you reach #b{0} #yForce, gain #b{1} #yStrength."],
+		"DESCRIPTIONS": ["Used for scaling #yStrength and some card effects. ","If you reach #b{0} #yForce, gain #b{1} #yStrength."],
 		"NAME": "Force"
 	},
 	"EYB:AgilityPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yAgility at the start of each turn.", " If you reach #b{0} #yAgility, gain #b{1} #yDexterity."],
+		"DESCRIPTIONS": ["Used for scaling #yDexterity and some card effects. ","If you reach #b{0} #yAgility, gain #b{1} #yDexterity."],
 		"NAME": "Agility"
 	},
 	"EYB:IntellectPower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yIntellect at the start of each turn.", " If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
+		"DESCRIPTIONS": ["Used for scaling #yFocus and some card effects. ","If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
 		"NAME": "Intellect"
 	},
 	"EYB:DeenergizedPower":

@@ -54,6 +54,22 @@ public class AyaShameimaru extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onOrbApplyFocus.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onOrbApplyFocus.Unsubscribe(this);
+        }
+
+        @Override
         public void onEvokeOrb(AbstractOrb orb) {
 
             super.onEvokeOrb(orb);

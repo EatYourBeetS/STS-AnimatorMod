@@ -29,6 +29,8 @@ public class UIManager
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected float delta = 0;
     protected float timer = 0;
+    protected float dropdownX = 0;
+    protected float dropdownY = 0;
     protected boolean isDragging;
     protected Hitbox lastHovered;
     protected Hitbox lastHoveredTemp;

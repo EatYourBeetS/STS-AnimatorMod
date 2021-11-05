@@ -16,14 +16,15 @@ import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RenderHelpers;
 
 import static com.megacrit.cardcrawl.core.CardCrawlGame.popupMX;
 import static com.megacrit.cardcrawl.core.CardCrawlGame.popupMY;
 
 public class CardKeywordButton extends GUIElement
 {
-    private static final Color ACTIVE_COLOR = new Color(0.75f, 0.75f, 0.75f, 1f);
-    private static final Color PANEL_COLOR = new Color(0.22f, 0.22f, 0.22f, 1f);
+    private static final Color ACTIVE_COLOR = new Color(0.76f, 0.76f, 0.76f, 1f);
+    private static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
     private ActionT1<CardKeywordButton> onClick;
 
     public final EYBCardTooltip Tooltip;
@@ -103,7 +104,10 @@ public class CardKeywordButton extends GUIElement
     public CardKeywordButton SetCardCount(int count)
     {
         this.CardCount = count;
-        count_text.SetText(count);
+        count_text.SetText(count).SetColor(count > 0 ? Settings.GOLD_COLOR : Color.DARK_GRAY);
+        title_text.SetColor(CardKeywordFilters.CurrentFilters.contains(Tooltip) ? PANEL_COLOR : count > 0 ? Color.WHITE : Color.DARK_GRAY);
+        tooltip_text.SetColor(CardCount == 0 ? Color.DARK_GRAY : Color.WHITE);
+        background_button.SetInteractable(count != 0);
 
         return this;
     }
@@ -117,8 +121,8 @@ public class CardKeywordButton extends GUIElement
     @Override
     public void Update()
     {
-        background_button.SetInteractable(GameEffects.IsEmpty()).Update();
-        tooltip_text.Update();
+        background_button.SetInteractable(GameEffects.IsEmpty() && CardCount != 0).Update();
+        tooltip_text.SetColor(CardCount == 0 ? Color.DARK_GRAY : Color.WHITE).Update();
         title_text.Update();
         count_text.Update();
     }
@@ -136,7 +140,15 @@ public class CardKeywordButton extends GUIElement
             //sb.setColor(Color.WHITE.cpy());
             //sb.draw(Tooltip.icon, background_button.hb.x + 30f * Settings.scale, background_button.hb.y, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
         //}
-        tooltip_text.Render(sb);
+        if (CardCount != 0) {
+            tooltip_text.Render(sb);
+        }
+        else {
+            RenderHelpers.DrawGrayscale(sb, () -> {
+                tooltip_text.Render(sb);
+                return true;});
+        }
+
         title_text.Render(sb);
         if (CardCount >= 0) {
             count_text.Render(sb);
@@ -152,6 +164,8 @@ public class CardKeywordButton extends GUIElement
                 actualMX = InputHelper.mX;
                 actualMY = InputHelper.mY;
             }
+
+
             EYBCardTooltip.QueueTooltip(Tooltip, actualMX, actualMY);
         }
     }

@@ -173,6 +173,7 @@ public class Kirby extends AnimatorCard implements
 
     @Override
     public void triggerOnEndOfTurnForPlayingCard() {
+        super.triggerOnEndOfTurnForPlayingCard();
         for (AbstractCard card : inheritedCards) {
             card.triggerOnEndOfTurnForPlayingCard();
         }
@@ -180,6 +181,7 @@ public class Kirby extends AnimatorCard implements
 
     @Override
     public void triggerOnExhaust() {
+        super.triggerOnExhaust();
         for (AbstractCard card : inheritedCards) {
             card.triggerOnExhaust();
         }
@@ -187,6 +189,7 @@ public class Kirby extends AnimatorCard implements
 
     @Override
     public void triggerOnManualDiscard() {
+        super.triggerOnManualDiscard();
         for (AbstractCard card : inheritedCards) {
             card.triggerOnManualDiscard();
         }
@@ -223,6 +226,7 @@ public class Kirby extends AnimatorCard implements
 
     @Override
     public void triggerWhenDrawn() {
+        super.triggerWhenDrawn();
         for (AbstractCard card : inheritedCards) {
             card.triggerWhenDrawn();
         }

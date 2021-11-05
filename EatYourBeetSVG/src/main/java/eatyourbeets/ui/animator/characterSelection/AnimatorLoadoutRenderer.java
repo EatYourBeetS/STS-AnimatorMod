@@ -1,23 +1,23 @@
 package eatyourbeets.ui.animator.characterSelection;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Dropdown;
+import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -25,32 +25,33 @@ public class AnimatorLoadoutRenderer extends GUIElement
 {
     protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);
     protected static final FieldInfo<Integer> _gold = JUtils.GetField("gold", CharacterOption.class);
+    protected static final float POS_X = 250f * Settings.scale;
+    protected static final float POS_Y = ((float) Settings.HEIGHT / 2f) - (20 * Settings.scale);
+    protected static final float ROW_OFFSET = 60 * Settings.scale;
 
-    protected static final AnimatorStrings.CharacterSelect charSelectStrings = GR.Animator.Strings.CharSelect;
     protected static final Random RNG = new Random();
 
     protected final ArrayList<AnimatorLoadout> availableLoadouts;
     protected final ArrayList<AnimatorLoadout> loadouts;
 
-    //TODO: Use GUI_Button and GUI_Label
-    protected final Hitbox startingCardsLabelHb;
-    protected final Hitbox startingCardsSelectedHb;
-    protected final Hitbox startingCardsLeftHb;
-    protected final Hitbox startingCardsRightHb;
-
+    protected GUI_Dropdown SeriesDropdown;
+    protected GUI_Button SeriesLeftButton;
+    protected GUI_Button SeriesRightButton;
     protected GUI_Button RandomizeButton;
     protected GUI_Button LoadoutEditorButton;
+    protected GUI_Label StartingCardsLabel;
+    protected GUI_Label StartingCardsListLabel;
+    protected GUI_Label SeriesLabel;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected AnimatorLoadout loadout;
 
     protected float textScale;
-    protected ColoredString subtitle;
 
     public AnimatorLoadoutRenderer()
     {
-        final float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.LeftText, 9999f, 0f); // Ascension
-        final float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, charSelectStrings.RightText, 9999f, 0f); // Level 22
+        final float leftTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, GR.Animator.Strings.CharSelect.LeftText, 9999f, 0f); // Ascension
+        final float rightTextWidth = FontHelper.getSmartWidth(FontHelper.cardTitleFont, GR.Animator.Strings.CharSelect.RightText, 9999f, 0f); // Level 22
 
         textScale = Settings.scale;
 
@@ -60,31 +61,55 @@ public class AnimatorLoadoutRenderer extends GUIElement
             textScale = 1;
         }
 
-        float POS_X = 180f * Settings.scale;
-        float POS_Y = ((float) Settings.HEIGHT / 2f) + (20 * Settings.scale);
+        float POS_X = 330f * Settings.scale;
+        float POS_Y = ((float) Settings.HEIGHT / 2f) - (20 * Settings.scale);
 
-        subtitle = new ColoredString();
         loadouts = new ArrayList<>();
         availableLoadouts = new ArrayList<>();
-        startingCardsLabelHb = new Hitbox(leftTextWidth, 50f * Settings.scale);
-        startingCardsSelectedHb = new Hitbox(rightTextWidth, 50f * Settings.scale);
-        startingCardsLeftHb = new Hitbox(70f * Settings.scale, 50f * Settings.scale);
-        startingCardsRightHb = new Hitbox(70f * Settings.scale, 50f * Settings.scale);
 
-        startingCardsLabelHb.move(POS_X + (leftTextWidth / 2f), POS_Y);
-        startingCardsLeftHb.move(startingCardsLabelHb.x + startingCardsLabelHb.width + (20 * Settings.scale), POS_Y - (10 * Settings.scale));
-        startingCardsSelectedHb.move(startingCardsLeftHb.x + startingCardsLeftHb.width + (rightTextWidth / 2f), POS_Y);
-        startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
+        StartingCardsLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(POS_X, POS_Y, leftTextWidth, 50f * Settings.scale))
+                .SetColor(Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f, false)
+                .SetText(GR.Animator.Strings.CharSelect.LeftText);
+
+        SeriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(POS_X, POS_Y - ROW_OFFSET, leftTextWidth, 50f * Settings.scale))
+                .SetColor(Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f, false)
+                .SetText(GR.Animator.Strings.CharSelect.RightText);
+
+        SeriesLeftButton = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new AdvancedHitbox(StartingCardsLabel.hb.x + StartingCardsLabel.hb.width, SeriesLabel.hb.y, Scale(48), Scale(48)))
+                .SetText("")
+                .SetOnClick(() -> {
+                    ChangeLoadout(loadouts.indexOf(loadout) - 1);
+                });
+
+        SeriesDropdown = new GUI_Dropdown<AnimatorLoadout>(new AdvancedHitbox(SeriesLeftButton.hb.x + SeriesLeftButton.hb.width + (20 * Settings.scale), SeriesLabel.hb.y, Scale(240), Scale(48)), cs -> cs.Series.LocalizedName)
+                .SetOnChange(selectedSeries -> {
+                    ChangeLoadout(selectedSeries.get(0));
+                });
+
+        SeriesRightButton = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new AdvancedHitbox(SeriesDropdown.hb.x + SeriesDropdown.hb.width + (10 * Settings.scale), SeriesLabel.hb.y, Scale(48), Scale(48)))
+                .SetText("")
+                .SetOnClick(() -> {
+                    ChangeLoadout(loadouts.indexOf(loadout) + 1);
+                });
+
+        StartingCardsListLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(SeriesDropdown.hb.x, POS_Y, leftTextWidth, 50f * Settings.scale))
+                .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
+                .SetAlignment(0.5f, 0.5f, false);
 
         RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(70)).SetText("")
-        .SetOnClick(this::RandomizeLoadout);
+                .SetPosition(SeriesRightButton.hb.x + SeriesRightButton.hb.width + Scale(40), SeriesLabel.hb.y + Scale(25)).SetText("")
+                .SetOnClick(this::RandomizeLoadout);
 
         LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
-        .SetTooltip(charSelectStrings.DeckEditor, charSelectStrings.DeckEditorInfo)
-        .SetOnRightClick(this::ChangePreset)
-        .SetOnClick(this::OpenLoadoutEditor);
+                .SetPosition(SeriesRightButton.hb.x + SeriesRightButton.hb.width + Scale(40), StartingCardsLabel.hb.y + Scale(25)).SetText("")
+                .SetTooltip(GR.Animator.Strings.CharSelect.DeckEditor, GR.Animator.Strings.CharSelect.DeckEditorInfo)
+                .SetOnRightClick(this::ChangePreset)
+                .SetOnClick(this::OpenLoadoutEditor);
     }
 
     private void OpenLoadoutEditor()
@@ -93,6 +118,22 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
         }
+    }
+
+    private void ChangeLoadout(int index)
+    {
+        int actualIndex = index % loadouts.size();
+        if (actualIndex < 0) {
+            actualIndex = loadouts.size() - 1;
+        }
+        GR.Animator.Data.SelectedLoadout = loadouts.get(actualIndex);
+        Refresh(selectScreen, characterOption);
+    }
+
+    private void ChangeLoadout(AnimatorLoadout loadout)
+    {
+        GR.Animator.Data.SelectedLoadout = loadout;
+        Refresh(selectScreen, characterOption);
     }
 
     private void ChangePreset()
@@ -176,6 +217,9 @@ public class AnimatorLoadoutRenderer extends GUIElement
         RandomizeButton.SetActive(availableLoadouts.size() > 1);
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
+
+        this.SeriesDropdown.SetItems(this.loadouts);
+        this.SeriesDropdown.SetSelection(GR.Animator.Data.SelectedLoadout, false);
     }
 
     public void RefreshInternal(boolean refreshPortrait)
@@ -191,19 +235,19 @@ public class AnimatorLoadoutRenderer extends GUIElement
         int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel < loadout.UnlockLevel)
         {
-            subtitle.SetText(GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel)).SetColor(Settings.RED_TEXT_COLOR);
+            StartingCardsListLabel.SetText(GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel)).SetColor(Settings.RED_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(false);
             selectScreen.confirmButton.isDisabled = true;
         }
         else if (!loadout.Validate().IsValid)
         {
-            subtitle.SetText(GR.Animator.Strings.CharSelect.InvalidLoadout).SetColor(Settings.RED_TEXT_COLOR);
+            StartingCardsListLabel.SetText(GR.Animator.Strings.CharSelect.InvalidLoadout).SetColor(Settings.RED_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(true);
             selectScreen.confirmButton.isDisabled = true;
         }
         else
         {
-            subtitle.SetText(loadout.GetDeckPreviewString(true)).SetColor(Settings.GREEN_TEXT_COLOR);
+            StartingCardsListLabel.SetText(loadout.GetDeckPreviewString(true)).SetColor(Settings.GREEN_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(true);
             selectScreen.confirmButton.isDisabled = false;
         }
@@ -211,87 +255,25 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public void Update()
     {
-        startingCardsLabelHb.update();
-        startingCardsRightHb.update();
-        startingCardsLeftHb.update();
         RandomizeButton.TryUpdate();
         LoadoutEditorButton.TryUpdate();
-
-        if (InputHelper.justClickedLeft)
-        {
-            if (startingCardsLabelHb.hovered)
-            {
-                startingCardsLabelHb.clickStarted = true;
-            }
-            else if (startingCardsRightHb.hovered)
-            {
-                startingCardsRightHb.clickStarted = true;
-            }
-            else if (startingCardsLeftHb.hovered)
-            {
-                startingCardsLeftHb.clickStarted = true;
-            }
-        }
-
-        if (startingCardsLeftHb.clicked)
-        {
-            startingCardsLeftHb.clicked = false;
-
-            int current = loadouts.indexOf(loadout);
-            if (current == 0)
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() - 1);
-            }
-            else
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current - 1);
-            }
-
-            Refresh(selectScreen, characterOption);
-        }
-
-        if (startingCardsRightHb.clicked)
-        {
-            startingCardsRightHb.clicked = false;
-
-            int current = loadouts.indexOf(loadout);
-            if (current >= (loadouts.size() - 1))
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(0);
-            }
-            else
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current + 1);
-            }
-
-            Refresh(selectScreen, characterOption);
-        }
+        SeriesDropdown.TryUpdate();
+        SeriesLeftButton.TryUpdate();
+        SeriesRightButton.TryUpdate();
+        StartingCardsLabel.Update();
+        StartingCardsListLabel.Update();
+        SeriesLabel.Update();
     }
 
     public void Render(SpriteBatch sb)
     {
-        // NOTE: this was FontHelper.cardTitleFont_small;
-        BitmapFont font = EYBFontHelper.CardTitleFont_Small;
-        float originalScale = font.getData().scaleX;
-        font.getData().setScale(0.8f);
-
-        FontHelper.renderFont(sb, font, subtitle.text, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), subtitle.color);
-        font.getData().setScale(originalScale);
-
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont, charSelectStrings.LeftText, startingCardsLabelHb.x, startingCardsLabelHb.cY, Settings.GOLD_COLOR);
-        FontHelper.renderFont(sb, FontHelper.cardTitleFont, loadout.Name, startingCardsSelectedHb.x, startingCardsSelectedHb.cY, Settings.CREAM_COLOR);//.BLUE_TEXT_COLOR);
-
-        final float scale = Settings.scale;
-
-        sb.setColor(startingCardsLeftHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(ImageMaster.CF_LEFT_ARROW, startingCardsLeftHb.cX - 24f, startingCardsLeftHb.cY - 24f, 24f, 24f,
-                48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
-
-        sb.setColor(startingCardsRightHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(ImageMaster.CF_RIGHT_ARROW, startingCardsRightHb.cX - 24f, startingCardsRightHb.cY - 24f, 24f, 24f,
-                48f, 48f, scale, scale, 0f, 0, 0, 48, 48, false, false);
-
         RandomizeButton.TryRender(sb);
         LoadoutEditorButton.TryRender(sb);
+        SeriesDropdown.TryRender(sb);
+        SeriesLeftButton.TryRender(sb);
+        SeriesRightButton.TryRender(sb);
+        StartingCardsLabel.Render(sb);
+        StartingCardsListLabel.Render(sb);
+        SeriesLabel.Render(sb);
     }
 }

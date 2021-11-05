@@ -10,15 +10,20 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Dropdown;
+import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.controls.GUI_VerticalScrollBar;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,13 +35,15 @@ import java.util.Map;
 public class CardKeywordFilters extends GUIElement
 {
     private static final Color FADE_COLOR = new Color(0f, 0f, 0f, 0.8f);
+    protected static final float SPACING = Settings.scale * 22.5f;
     protected static final float DRAW_START_X = (float) Settings.WIDTH * 0.15f;
-    protected static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.92f;
+    protected static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.78f;
     protected static final float PAD_X = AbstractCard.IMG_WIDTH * 0.75f + Settings.CARD_VIEW_PAD_X;
     protected static final float PAD_Y = Scale(10);
     protected static final float SCROLL_BAR_THRESHOLD = 500f * Settings.scale;
 
     public static final int ROW_SIZE = 8;
+    public static final HashSet<CardSeries> CurrentSeries = new HashSet<>();
     public static final HashSet<EYBCardTooltip> CurrentFilters = new HashSet<>();
     protected final HashMap<EYBCardTooltip,Integer> CurrentFilterCounts = new HashMap<>();
     protected final ArrayList<CardKeywordButton> FilterButtons = new ArrayList<>();
@@ -51,11 +58,15 @@ public class CardKeywordFilters extends GUIElement
     protected float scrollStart;
     protected float scrollDelta;
     protected int filterSizeCache;
+    protected final GUI_Dropdown<CardSeries> SeriesDropdown;
     protected final GUI_Button clearButton;
     public final GUI_VerticalScrollBar scrollBar;
+    public final GUI_Label seriesLabel;
+    public final GUI_Label keywordsSectionLabel;
     public final AdvancedHitbox hb;
     public boolean draggingScreen;
     public boolean autoShowScrollbar;
+    public boolean isScreenDisabled;
 
     private boolean shouldSortByCount;
 
@@ -76,16 +87,21 @@ public class CardKeywordFilters extends GUIElement
 
     public static ArrayList<AbstractCard> ApplyFilters(ArrayList<AbstractCard> input) {
         return JUtils.Filter(input, c -> {
-                    EYBCard eC = JUtils.SafeCast(c, EYBCard.class);
-                    if (eC == null) {
-                        return false;
+                    if (!CurrentSeries.isEmpty()) {
+                        AnimatorCard aC = JUtils.SafeCast(c, AnimatorCard.class);
+                        if (aC == null || aC.series == null || !CurrentSeries.contains(aC.series)) {
+                            return false;
+                        }
                     }
-                    return GetAllTooltips(eC).containsAll(CurrentFilters);
-                });
+                    EYBCard eC = JUtils.SafeCast(c, EYBCard.class);
+                    return CurrentFilters.isEmpty() || (eC != null && GetAllTooltips(eC).containsAll(CurrentFilters));
+        });
     }
 
     public CardKeywordFilters()
     {
+        ArrayList<CardSeries> series = JUtils.Map(GR.Animator.Data.BaseLoadouts, loadout -> loadout.Series);
+
         isActive = false;
         hb = new AdvancedHitbox(DRAW_START_X, DRAW_START_Y, Scale(180), Scale(70)).SetIsPopupCompatible(true);
         clearButton = new GUI_Button(GR.Common.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f).SetIsPopupCompatible(true))
@@ -95,6 +111,65 @@ public class CardKeywordFilters extends GUIElement
                 .SetOnClick(this::Clear);
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
                 .SetOnScroll(this::OnScroll);
+        SeriesDropdown = new GUI_Dropdown<CardSeries>(new AdvancedHitbox(hb.x - SPACING, hb.y + SPACING * 3, Scale(240), Scale(48)), cs -> cs.LocalizedName)
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                    CardCrawlGame.isPopupOpen = this.isActive;
+                })
+                .SetOnChange(selectedSeries -> {
+                    CurrentSeries.clear();
+                    CurrentSeries.addAll(selectedSeries);
+                    if (onClick != null) {
+                        onClick.Invoke(null);
+                    }
+                })
+                .SetIsMultiSelect(true);
+        seriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 7, Scale(100), Scale(48)))
+                .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
+                .SetText(GR.Animator.Strings.SeriesUI.SeriesUI)
+                .SetColor(Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f, false);
+        keywordsSectionLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 2, Scale(100), Scale(48)))
+                .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
+                .SetText(GR.Animator.Strings.SeriesUI.Keywords)
+                .SetColor(Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f, false);
+    }
+
+    public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards) {
+        CurrentFilters.clear();
+        CurrentSeries.clear();
+        CurrentFilterCounts.clear();
+        FilterButtons.clear();
+
+        HashSet<CardSeries> availableSeries = new HashSet<>();
+
+        this.onClick = onClick;
+        referenceCards = cards;
+        for (AbstractCard card : referenceCards) {
+            EYBCard eC = JUtils.SafeCast(card, EYBCard.class);
+            if (eC != null) {
+                for (EYBCardTooltip tooltip : GetAllTooltips(eC)) {
+                    CurrentFilterCounts.merge(tooltip, 1, Integer::sum);
+                }
+                if (eC instanceof AnimatorCard && ((AnimatorCard) eC).series != null) {
+                    availableSeries.add(((AnimatorCard) eC).series);
+                }
+            }
+        }
+
+        for (Map.Entry<EYBCardTooltip,Integer> filter : CurrentFilterCounts.entrySet())
+        {
+            FilterButtons.add(new CardKeywordButton(hb, filter.getKey()).SetOnClick(onClick).SetCardCount(filter.getValue()));
+        }
+
+        ArrayList<CardSeries> items = new ArrayList<CardSeries>(availableSeries);
+        items.sort((a, b) -> StringUtils.compare(a.LocalizedName, b.LocalizedName));
+        SeriesDropdown.SetItems(items);
+
+        return this;
     }
 
     public void Open() {
@@ -110,6 +185,8 @@ public class CardKeywordFilters extends GUIElement
 
     public void Clear() {
         CurrentFilters.clear();
+        CurrentSeries.clear();
+        SeriesDropdown.SetSelectionIndices(new int[]{}, false);
         if (onClick != null) {
             onClick.Invoke(null);
         }
@@ -123,7 +200,6 @@ public class CardKeywordFilters extends GUIElement
 
     public void RefreshButtons() {
         CurrentFilterCounts.clear();
-        FilterButtons.clear();
 
         if (referenceCards != null) {
             for (AbstractCard card : referenceCards) {
@@ -135,11 +211,11 @@ public class CardKeywordFilters extends GUIElement
                 }
             }
         }
-
-        for (Map.Entry<EYBCardTooltip,Integer> filter : CurrentFilterCounts.entrySet())
+        for (CardKeywordButton c : FilterButtons)
         {
-            FilterButtons.add(new CardKeywordButton(hb, filter.getKey()).SetOnClick(onClick).SetCardCount(filter.getValue()));
+            c.SetCardCount(CurrentFilterCounts.getOrDefault(c.Tooltip, 0));
         }
+
         RefreshButtonOrder();
     }
 
@@ -158,14 +234,12 @@ public class CardKeywordFilters extends GUIElement
         }
     }
 
-    public CardKeywordFilters SetOnClick(ActionT1<CardKeywordButton> onClick) {
-        this.onClick = onClick;
-        return this;
-    }
-
     @Override
     public void Update() {
         hb.y = DRAW_START_Y + scrollDelta;
+        seriesLabel.SetPosition(hb.x - SPACING, DRAW_START_Y + scrollDelta + SPACING * 2).Update();
+        SeriesDropdown.SetPosition(hb.x  - SPACING, DRAW_START_Y + scrollDelta + SPACING * 3);
+        keywordsSectionLabel.SetPosition(hb.x- SPACING, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
         hb.update();
         clearButton.TryUpdate();
         if (invalidated) {
@@ -173,22 +247,26 @@ public class CardKeywordFilters extends GUIElement
             RefreshButtons();
         }
 
-        for (CardKeywordButton c : FilterButtons)
-        {
-            c.TryUpdate();
+        if (!isScreenDisabled) {
+            for (CardKeywordButton c : FilterButtons)
+            {
+                c.TryUpdate();
+            }
+
+            if (ShouldShowScrollbar())
+            {
+                scrollBar.Update();
+                UpdateScrolling(scrollBar.isDragging);
+            }
+            else
+            {
+                UpdateScrolling(false);
+            }
+
+            UpdateInput();
         }
 
-        if (ShouldShowScrollbar())
-        {
-            scrollBar.Update();
-            UpdateScrolling(scrollBar.isDragging);
-        }
-        else
-        {
-            UpdateScrolling(false);
-        }
-
-        UpdateInput();
+        SeriesDropdown.TryUpdate();
     }
 
     @Override
@@ -198,10 +276,13 @@ public class CardKeywordFilters extends GUIElement
         sb.setColor(Color.WHITE);
         hb.render(sb);
         clearButton.TryRender(sb);
+        seriesLabel.Render(sb);
+        keywordsSectionLabel.Render(sb);
         for (CardKeywordButton c : FilterButtons)
         {
             c.TryRender(sb);
         }
+        SeriesDropdown.TryRender(sb);
     }
 
     protected void OnScroll(float newPercent)
@@ -213,7 +294,7 @@ public class CardKeywordFilters extends GUIElement
     {
         if (InputHelper.justClickedLeft)
         {
-            if (clearButton.hb.hovered) {
+            if (clearButton.hb.hovered || SeriesDropdown.AreAnyItemsHovered()) {
                 return;
             }
             for (CardKeywordButton c : FilterButtons)

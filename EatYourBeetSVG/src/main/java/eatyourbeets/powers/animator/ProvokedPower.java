@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.lang.reflect.Field;
@@ -32,15 +31,18 @@ public class ProvokedPower extends AnimatorPower
     {
         super.onRemove();
 
-        AbstractMonster m = (AbstractMonster)this.owner;
-        if (this.move != null) {
-            m.setMove(this.moveByte, this.moveIntent, this.move.baseDamage, this.move.multiplier, this.move.isMultiDamage);
-        } else {
-            m.setMove(this.moveByte, this.moveIntent);
+        AbstractMonster m = JUtils.SafeCast(this.owner, AbstractMonster.class);
+        if (m != null && this.moveIntent != null) {
+            if (this.move != null) {
+                m.setMove(this.moveByte, this.moveIntent, this.move.baseDamage, this.move.multiplier, this.move.isMultiDamage);
+            } else {
+                m.setMove(this.moveByte, this.moveIntent);
+            }
+
+            m.createIntent();
+            m.applyPowers();
         }
 
-        m.createIntent();
-        m.applyPowers();
     }
 
     @Override
@@ -49,7 +51,7 @@ public class ProvokedPower extends AnimatorPower
         super.onInitialApplication();
 
         final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
-        if (monster != null && !GameUtilities.IsAttacking(monster.intent))
+        if (monster != null)
         {
             this.moveByte = monster.nextMove;
             this.moveIntent = monster.intent;

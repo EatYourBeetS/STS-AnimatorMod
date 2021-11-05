@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class FlandreScarlet extends AnimatorCard
@@ -61,15 +62,19 @@ public class FlandreScarlet extends AnimatorCard
             GameActions.Bottom.RecoverHP(heal);
         }
 
-        AbstractCard handCard = JUtils.Random(player.hand.group);
-        boolean isLimited = CheckAffinity(Affinity.Dark) && info.TryActivateLimited();
+        GameActions.Last.Callback(() -> {
+            if (m != null && !GameUtilities.IsDeadOrEscaped(m)) {
+                AbstractCard handCard = JUtils.Random(player.hand.group);
+                boolean isLimited = CheckAffinity(Affinity.Dark) && info.TryActivateLimited();
 
-        choices.Initialize(this, true);
-        choices.AddEffect(new GenericEffect_FlandreScarlet(0, this, isLimited));
-        if (handCard != null) {
-            choices.AddEffect(new GenericEffect_FlandreScarlet(0, handCard, isLimited));
-        }
-        choices.Select(1, m);
+                choices.Initialize(this, true);
+                choices.AddEffect(new GenericEffect_FlandreScarlet(0, this, isLimited));
+                if (handCard != null) {
+                    choices.AddEffect(new GenericEffect_FlandreScarlet(1, handCard, isLimited));
+                }
+                choices.Select(1, m);
+            }
+        });
     }
 
     protected int CalculateHeal()

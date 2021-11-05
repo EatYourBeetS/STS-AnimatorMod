@@ -446,7 +446,7 @@
 	},
 	"Self-Immolation":
 	{
-	  "DESCRIPTION": "When you gain [Block] from any source, ALL characters take twice that much [Delayed Damage].",
+	  "DESCRIPTION": "When you play a card that gives [Block], ALL characters take [Delayed Damage] equal to twice its [Block].",
 	  "NAMES": ["self-immolation"],
 	  "PROPER_NAME": "Self-Immolation"
 	},

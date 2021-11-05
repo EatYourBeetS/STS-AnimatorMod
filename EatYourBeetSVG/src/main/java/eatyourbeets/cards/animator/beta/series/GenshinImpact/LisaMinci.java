@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -17,7 +16,7 @@ public class LisaMinci extends AnimatorCard {
     public LisaMinci() {
         super(DATA);
 
-        Initialize(0, 3, 3, 2);
+        Initialize(0, 1, 3, 2);
         SetUpgrade(0, 1, 1, 0);
         SetAffinity_Blue(2, 0, 1);
     }
@@ -47,10 +46,10 @@ public class LisaMinci extends AnimatorCard {
                         }
 
                         if (activateEffect1) {
-                            GameActions.Bottom.GainIntellect(secondaryValue);
+                            GameActions.Bottom.GainFocus(secondaryValue, true);
                         }
                         if (activateEffect2) {
-                            GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
+                            GameActions.Bottom.GainIntellect(secondaryValue);
                         }
                         if (activateEffect3) {
                             GameActions.Bottom.ChannelOrb(new Lightning());

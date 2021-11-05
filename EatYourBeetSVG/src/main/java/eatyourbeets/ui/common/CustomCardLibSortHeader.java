@@ -20,8 +20,9 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public static CustomCardLibSortHeader Instance;
     public static boolean ShowSpecial = GR.TEST_MODE;
     private static CardGroup falseGroup;
+    private static FakeLibraryCard fakeLibraryCard;
 
-    private ArrayList<AbstractCard> originalGroup;
+    public ArrayList<AbstractCard> originalGroup;
     private SortHeaderButton[] override = null;
     private SortHeaderButton seriesButton = null;
     private SortHeaderButton rarityButton;
@@ -33,9 +34,12 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     private boolean isColorless;
 
     public static ArrayList<AbstractCard> GetFakeGroup() {
+        if (fakeLibraryCard == null) {
+            fakeLibraryCard = new FakeLibraryCard();
+        }
         if (falseGroup == null) {
             falseGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            falseGroup.addToBottom(new FakeLibraryCard());
+            falseGroup.addToBottom(fakeLibraryCard);
         }
         return falseGroup.group;
     }
@@ -45,6 +49,9 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         super(group);
 
         Instance = this;
+        if (fakeLibraryCard == null) {
+            fakeLibraryCard = new FakeLibraryCard();
+        }
     }
 
     public void SetupButtons(boolean isColorless)
@@ -106,6 +113,11 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     public void setGroup(CardGroup group)
     {
         this.originalGroup = new ArrayList<>(group.group);
+        if (group.group.size() > 0) {
+            fakeLibraryCard.current_x = group.group.get(0).current_x;
+            fakeLibraryCard.current_y = group.group.get(0).current_y;
+        }
+
         if (isColorless)
         {
             super.setGroup(group);
@@ -185,13 +197,18 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     }
 
     public void UpdateForFilters() {
-        if (CardKeywordFilters.CurrentFilters.isEmpty()) {
+        if (CardKeywordFilters.CurrentFilters.isEmpty() && CardKeywordFilters.CurrentSeries.isEmpty()) {
             this.group.group = originalGroup;
         }
         else {
             ArrayList<AbstractCard> tempGroup = CardKeywordFilters.ApplyFilters(originalGroup);
             if (tempGroup.size() > 0) {
                 this.group.group = tempGroup;
+            }
+            else if (!CardKeywordFilters.CurrentSeries.isEmpty() && !CardKeywordFilters.CurrentFilters.isEmpty()) {
+                CardKeywordFilters.CurrentFilters.clear();
+                tempGroup = CardKeywordFilters.ApplyFilters(originalGroup);
+                this.group.group = tempGroup.size() > 0 ? tempGroup : GetFakeGroup();
             }
             else {
                 this.group.group = GetFakeGroup();

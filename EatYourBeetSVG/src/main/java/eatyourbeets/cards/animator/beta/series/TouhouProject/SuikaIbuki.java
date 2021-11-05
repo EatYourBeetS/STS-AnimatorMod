@@ -10,6 +10,8 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class SuikaIbuki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(SuikaIbuki.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
@@ -27,6 +29,7 @@ public class SuikaIbuki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        AtomicBoolean shouldDrawLess = new AtomicBoolean(true);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
 
@@ -36,17 +39,21 @@ public class SuikaIbuki extends AnimatorCard
             group.addToTop(player.drawPile.group.get(player.drawPile.size() - i - 1));
         }
 
-        GameActions.Bottom.ExhaustFromPile(name, 1, group).SetOptions(false, true).AddCallback(cards -> {
-            if (cards.size() <= 0) {
-                GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(player, 1));
+        GameActions.Bottom.ExhaustFromPile(name, 1, group).SetOptions(false,true).AddCallback(cards -> {
+            if (cards.size() > 0) {
+                shouldDrawLess.set(false);
             }
-            else {
-                for (AbstractCard card : cards) {
-                    if (card.type == CardType.ATTACK) {
-                        CombatStats.Affinities.AddAffinity(Affinity.Red, secondaryValue);
-                    }
+            for (AbstractCard card : cards) {
+                if (card.type == CardType.ATTACK) {
+                    CombatStats.Affinities.AddAffinity(Affinity.Red, secondaryValue);
                 }
             }
+        });
+
+        GameActions.Last.Callback(() -> {
+           if (shouldDrawLess.get()) {
+               GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(player, 1));
+           }
         });
     }
 }

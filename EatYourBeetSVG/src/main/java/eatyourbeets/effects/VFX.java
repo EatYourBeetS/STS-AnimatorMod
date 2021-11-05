@@ -291,6 +291,16 @@ public class VFX
         return new SnowballImpactEffect(cX, cY);
     }
 
+    public static SparkImpactEffect SparkImpact(Hitbox target, float spread)
+    {
+        return new SparkImpactEffect(RandomX(target, spread), RandomY(target, spread));
+    }
+
+    public static SparkImpactEffect SparkImpact(float cX, float cY)
+    {
+        return new SparkImpactEffect(cX, cY);
+    }
+
 
     public static ColoredSweepingBeamEffect SweepingBeam(AbstractCreature source)
     {

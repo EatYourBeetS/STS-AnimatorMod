@@ -1084,6 +1084,28 @@ public class GameUtilities
             || CombatStats.GetTurnData(relicID, false);
     }
 
+    public static boolean HasUpgradableAffinities(AbstractCard c)
+    {
+        final EYBCardAffinities a = GameUtilities.GetAffinities(c);
+        if (a != null)
+        {
+            if (a.Star != null && a.Star.level == 1)
+            {
+                return true;
+            }
+
+            for (EYBCardAffinity affinity : a.List)
+            {
+                if (affinity.level == 1)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static void ChangeCardName(AbstractCard card, String newName)
     {
         card.name = card.name.replace(card.originalName, newName);

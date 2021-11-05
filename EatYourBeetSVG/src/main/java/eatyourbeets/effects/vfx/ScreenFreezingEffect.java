@@ -47,7 +47,6 @@ public class ScreenFreezingEffect extends EYBEffect
     public void MakeSnowflake() {
         GameEffects.Queue.Add(new SnowballParticleEffect(MathUtils.random(0.0F, (float) Settings.WIDTH),  MathUtils.random(900.0F, 1100.0F) * Settings.scale, color)
                 .SetSpeed(MathUtils.random(-70.0F, 70.0F) * Settings.scale, MathUtils.random(-1100.0F, -450.0F) * Settings.scale)
-                .DisableFloor()
                 .SetRealtime(isRealtime));
     }
 

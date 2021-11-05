@@ -27,6 +27,7 @@ public class CommonImages
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/eyb/ui/topPanel/Panel_Rounded_Half_H.png");
     public final TextureCache Panel_Elliptical            = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical.png");
     public final TextureCache Panel_Elliptical_Half_H     = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical_Half_H.png");
+    public final TextureCache RectangularButton           = new TextureCache("images/eyb/ui/topPanel/RectangularButton.png");
     public final TextureCache Discord                     = new TextureCache("images/eyb/ui/topPanel/Discord.png");
     public final TextureCache Steam                       = new TextureCache("images/eyb/ui/topPanel/Steam.png");
     public final TextureCache Randomize                   = new TextureCache("images/eyb/ui/topPanel/Randomize.png");
@@ -196,6 +197,8 @@ public class CommonImages
         public final TextureCache IceImpact        = new TextureCache("images/animator/effects/IceImpact.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
+        public final TextureCache Spark1           = new TextureCache("images/animator/effects/Spark1.png");
+        public final TextureCache Spark2           = new TextureCache("images/animator/effects/Spark2.png");
         public final TextureCache WaterDome        = new TextureCache("images/animator/effects/WaterDome.png");
         public final TextureCache WaterSplash1     = new TextureCache("images/animator/effects/WaterSplash1.png");
         public final TextureCache WaterSplash2     = new TextureCache("images/animator/effects/WaterSplash2.png");

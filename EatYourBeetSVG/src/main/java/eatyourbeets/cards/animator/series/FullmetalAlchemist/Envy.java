@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
@@ -93,31 +96,9 @@ public class Envy extends AnimatorCard
             GameActions.Last.Callback(() ->
             {
                 GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
-                        .SetFilter(EnvyPower::HasUpgradableAffinities);
+                        .SetFilter(GameUtilities::HasUpgradableAffinities);
                 flash();
             });
-        }
-
-        private static boolean HasUpgradableAffinities(AbstractCard c)
-        {
-            final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-            if (a != null)
-            {
-                if (a.Star != null && a.Star.level == 1)
-                {
-                    return true;
-                }
-
-                for (EYBCardAffinity affinity : a.List)
-                {
-                    if (affinity.level == 1)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
         }
 
         @Override

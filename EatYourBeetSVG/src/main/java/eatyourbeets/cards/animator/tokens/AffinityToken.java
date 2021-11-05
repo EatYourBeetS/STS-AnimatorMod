@@ -29,6 +29,31 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
         return data;
     }
 
+    public static Affinity GetAffinityFromCardID(String ID) {
+        if (AffinityToken_Red.DATA.ID.equals(ID)) {
+            return Affinity.Red;
+        }
+        else if (AffinityToken_Green.DATA.ID.equals(ID)) {
+            return Affinity.Green;
+        }
+        else if (AffinityToken_Blue.DATA.ID.equals(ID)) {
+            return Affinity.Blue;
+        }
+        else if (AffinityToken_Orange.DATA.ID.equals(ID)) {
+            return Affinity.Orange;
+        }
+        else if (AffinityToken_Light.DATA.ID.equals(ID)) {
+            return Affinity.Light;
+        }
+        else if (AffinityToken_Dark.DATA.ID.equals(ID)) {
+            return Affinity.Dark;
+        }
+        else if (AffinityToken_Silver.DATA.ID.equals(ID)) {
+            return Affinity.Silver;
+        }
+        return Affinity.Star;
+    }
+
     public static ArrayList<EYBCardData> GetCards()
     {
         if (cards.isEmpty())
@@ -99,16 +124,21 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
 
     public static SelectFromPile SelectTokenAction(String name, int amount, int size)
     {
-        return new SelectFromPile(name, amount, CreateTokenGroup(size, GameUtilities.GetRNG()));
+        return SelectTokenAction(name, amount, size, false);
     }
 
-    public static CardGroup CreateTokenGroup(int amount, Random rng)
+    public static SelectFromPile SelectTokenAction(String name, int amount, int size, boolean upgrade)
+    {
+        return new SelectFromPile(name, amount, CreateTokenGroup(size, GameUtilities.GetRNG(), upgrade));
+    }
+
+    public static CardGroup CreateTokenGroup(int amount, Random rng, boolean upgrade)
     {
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         final RandomizedList<EYBCardData> temp = new RandomizedList<>(GetCards());
         while (amount > 0 && temp.Size() > 0)
         {
-            group.group.add(temp.Retrieve(rng, true).MakeCopy(false));
+            group.group.add(temp.Retrieve(rng, true).MakeCopy(upgrade));
             amount -= 1;
         }
 

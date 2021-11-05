@@ -7,7 +7,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorPower;
@@ -20,19 +23,17 @@ public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 7;
+    public static final int THRESHOLD = 16;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 2, THRESHOLD);
-        SetUpgrade(4, 0, 0, 0);
-        SetAffinity_Blue(2, 0, 3);
+        Initialize(20, 0, 3, THRESHOLD);
+        SetUpgrade(5, 0, 0, 0);
+        SetAffinity_Blue(2, 0, 2);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(0, 0, 3);
-
-        SetAffinityRequirement(Affinity.Blue, 6);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -42,7 +43,7 @@ public class AyakaKamisato extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.CLAW)
                 .forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.1f));
         GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
         GameActions.Bottom.StackPower(new AyakaKamisatoPower(p, 1));
@@ -66,25 +67,13 @@ public class AyakaKamisato extends AnimatorCard {
 
 
         @Override
-        public void onGainedBlock(float blockAmount) {
-            super.onGainedBlock(blockAmount);
-            ApplyShackles(amount);
-        }
-
-        @Override
-        public int onPlayerGainedBlock(float blockAmount)
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
         {
-            super.onPlayerGainedBlock(blockAmount);
-            ApplyShackles(amount);
-            return super.onPlayerGainedBlock(blockAmount);
-        }
-
-        @Override
-        public int onPlayerGainedBlock(int blockAmount)
-        {
-            super.onPlayerGainedBlock(blockAmount);
-            ApplyShackles(amount);
-            return super.onPlayerGainedBlock(blockAmount);
+            super.onPlayCard(card,m);
+            if (card.block > 0) {
+                ApplyVulnerable(amount);
+                this.flash();
+            }
         }
 
         @Override
@@ -102,9 +91,9 @@ public class AyakaKamisato extends AnimatorCard {
             CheckCondition();
         }
 
-        private void ApplyShackles(int amount) {
+        private void ApplyVulnerable(int amount) {
             if (GameUtilities.GetPowerAmount(owner, SelfImmolationPower.POWER_ID) > 0 && amount > 0) {
-                GameActions.Bottom.ApplyShackles(TargetHelper.Enemies(), 1);
+                GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1);
             }
         }
 

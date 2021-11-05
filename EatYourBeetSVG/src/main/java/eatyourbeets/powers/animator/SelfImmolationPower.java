@@ -1,7 +1,8 @@
 package eatyourbeets.powers.animator;
 
-import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorPower;
@@ -34,22 +35,13 @@ public class SelfImmolationPower extends AnimatorPower
     }
 
     @Override
-    public void onGainedBlock(float blockAmount) {
-        ApplyDebuff(MathUtils.floor(blockAmount * 2));
-    }
-
-    @Override
-    public int onPlayerGainedBlock(float blockAmount)
+    public void onPlayCard(AbstractCard card, AbstractMonster m)
     {
-        ApplyDebuff(MathUtils.floor(blockAmount * 2));
-        return super.onPlayerGainedBlock(blockAmount);
-    }
-
-    @Override
-    public int onPlayerGainedBlock(int blockAmount)
-    {
-        ApplyDebuff(blockAmount * 2);
-        return super.onPlayerGainedBlock(blockAmount);
+        super.onPlayCard(card,m);
+        if (card.block > 0) {
+            ApplyDebuff(card.block * 2);
+            this.flash();
+        }
     }
 
     @Override

@@ -134,25 +134,25 @@
 			"DESCRIPTION": "Channel !M! [Dark] and trigger them once if in <IS>. Otherwise, enter <IS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
-		"animator:Chaa":
-		{
-			"DESCRIPTION": "Whenever you Purge a card from your Exhaust pile: Gain !M! [Block]. || Once per turn, pay 3 <W>: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
-			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay 3 [A-Gen]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
-			"NAME": "Chaa"
-		},
 		"animator:EriShiina":
 		{
 			"DESCRIPTION": "In {Afterlife} or <AS>: Obtain !M! [T-Knife]. || Synergy with {0-cost} cards: Gain !S! [Blur] and [A].",
 			"NAME": "Eri Shiina"
 		},
+		"animator:Fujimaki":
+		{
+			"DESCRIPTION": "Pay !A! <R> and <G>: Enter <FS>. || <CDN>: Gain !M! [F] and Obtain {~Wound}.",
+			"NAME": "Fujimaki"
+		},
 		"animator:GirlDeMo":
 		{
-			"DESCRIPTION": "Double all <W> powers tied for the highest amount, excluding [C]. || If you have [Supercharged], give it !M! {Charge}.",
+			"DESCRIPTION": "Double ALL <W> powers tied for the highest amount. || If you have [Supercharged], give it !M! {Charge}.",
 			"NAME": "Girls Dead Monster"
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "Pay !A! <R> and <L>: Enter <FS>. || <CDN>: Gain !M! [F] and add a {~Wound} to your hand.",
+			"DESCRIPTION": "Whenever you Purge a card from your Exhaust pile: Gain !M! [Block]. || Once per turn, pay 7 <W>: Add 1 of !S! Common {Afterlife} cards to your draw pile and Motivate it.",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay 7 [A-Gen]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile and Motivate it."],
 			"NAME": "Matsushita Godan"
 		},
 		"animator:HidekiHinata":
@@ -162,8 +162,13 @@
 		},
 		"animator:Hisako":
 		{
-			"DESCRIPTION": "The first time you play a card from {Afterlife} each turn, Choose 1: Enter <BS>; Motivate !S!.",
+			"DESCRIPTION": "Pay !A! <W>: Draw a card with a <W> matching the <W> you spent. || When you Exhaust or Purge a card with this card in hand: Gain [B].",
 			"NAME": "Hisako"
+		},
+		"animator:IrieMiyuki":
+		{
+			"DESCRIPTION": "Channel [Lightning]. Discard the top !M! cards of your draw pile. Trigger your first Orb for every Skill or {Hindrance} among them. || <LIM>. Synergy: Lose ALL [B] and [C]. Heal +!S! [HP] for every 10 [B] and [C] lost.",
+			"NAME": "Irie Miyuki"
 		},
 		"animator:KanadeTachibana":
 		{
@@ -269,7 +274,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn. || Pay !A! <R>: Gain !S! Temp. [Thorns].",
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn. || Pay !A! <R> and <L> to Choose 1: Gain !S! Temp. [Thorns], or Enter <BS>.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -481,6 +486,13 @@
 			"EXTENDED_DESCRIPTION": ["give Harmonic."],
 			"NAME": "Megurine Luka"
 		},
+		"animator:Merlin":
+		{
+			"DESCRIPTION": "Remove your first Orb. Enchant a playable card with an effect depending on the Orb.{0}",
+			"EXTENDED_DESCRIPTION": ["Whenever you play {0}: {1}"],
+			"NAME": "Merlin",
+			"UPGRADE_DESCRIPTION": "Evoke your first Orb. Enchant a playable card with an effect depending on the Orb.{0}"
+		},
 		"animator:MotokoKusanagi":
 		{
 			"DESCRIPTION": "<RCT>: Moves to your draw pile. Reduced by 1 for every 150 Gold you have (minimum 1). || On Exhaust: Gain !M! [Blur] and [Counter-Attack].",
@@ -592,7 +604,7 @@
 		},
 		"animator:TomoyaOkazaki":
 		{
-			"DESCRIPTION": "Motivate !M! random Cards in your draw pile or discard pile whose Affinity matches that of your highest Affinity.",
+			"DESCRIPTION": "Motivate !M! random Cards in your draw pile or discard pile whose <W> is among your highest <W>.",
 			"NAME": "Tomoya Okazaki"
 		},
 		"animator:UruhaRushia":
@@ -614,7 +626,7 @@
 		},
 		"animator:Vladilena":
 		{
-			"DESCRIPTION": "Play 1 of !M! random Attacks from your draw or discard pile twice and Exhaust it. || <LIM>. If it was a Basic card: Obtain 1 of !M! {<W> Tokens}.",
+			"DESCRIPTION": "Play 1 of !M! random Attacks from your draw or discard pile twice and Exhaust it. || <LIM>. If it was a Basic card: Obtain 1 of !M! {<W> Tokens}{+}.",
 			"NAME": "Vladilena Milize"
 		},
 		"animator:Yae":
@@ -739,8 +751,8 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "Gain !M! [Self-Immolation]. When it triggers this turn: Apply 1 [Shackles] to ALL enemies. || <LIM>. Any time this turn, if you have [Self-Immolation] and !S! [Delayed Damage]: Play {Sheer Cold}.",
-			"EXTENDED_DESCRIPTION": ["When [Self-Immolation] is triggered: Apply #b{0} [Shackles] to ALL enemies.{1}"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
+			"DESCRIPTION": "Gain !M! [Self-Immolation]. When it triggers this turn: Apply 1 [Vulnerable] to a random enemy. || <LIM>. Any time this turn, if you have [Self-Immolation] and !S! [Delayed Damage]: Play {Sheer Cold}.",
+			"EXTENDED_DESCRIPTION": ["When [Self-Immolation] is triggered: Apply #b{0} [Vulnerable] to a random enemy.{1}"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -823,7 +835,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. If any of the Scried cards' costs was: ** 0 or None: Gain !S! [I] ** 1 or X: Gain !S! [Energized]. ** 2+: Channel [Lightning]",
+			"DESCRIPTION": "{Scry} !M!. If any of the Scried cards' costs was: ** 0 or None: Gain !S! Temp. [Focus] ** 1 or X: Gain !S! [I]. ** 2+: Channel [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Ningguang":
@@ -1627,6 +1639,11 @@
 			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all unblock damage, and it applies #b{0} [Constricted] to the attacker."],
 			"NAME": "Pride"
 		},
+		"animator:RizaHawkeye":
+		{
+			"DESCRIPTION": "Unplayable unless you have !M!+ cards in hand. || For each card in hand: Gain its <W>. Reduce its <W> levels by 1, then, if it has no <W>, Exhaust it to gain !S! [F].",
+			"NAME": "Riza Hawkeye"
+		},
 		"animator:RoyMustang":
 		{
 			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** past 1 (min. 1). || Pay !A! <R>: [Burning] gains +!S!% damage bonus this combat.",
@@ -1651,7 +1668,7 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal Attack damage to ALL enemies equal to [F].",
+			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal Attack damage to ALL enemies with +2 [F] Scaling.",
 			"NAME": "Wrath"
 		}
 	},
@@ -1983,8 +2000,8 @@
 		},
 		"animator:Cecily":
 		{
-			"DESCRIPTION": "Next turn, {Gain} ALL <W> Powers. || Pay up to 4 <W> : Cycle !X! card(s). ** <LIM>. Synergy. ** Afterwards, Motivate !S!.",
-			"EXTENDED_DESCRIPTION": ["Next turn, {Gain} ALL <W> Powers."],
+			"DESCRIPTION": "Increase the <W> levels of the next card drawn by 1. || Pay up to 4 <W> : Cycle !X! card(s). ** <LIM>. Synergy. ** Afterwards, Motivate !S!.",
+			"EXTENDED_DESCRIPTION": ["Increase the [A-Gen] levels of the next card drawn by #b1."],
 			"NAME": "Cecily"
 		},
 		"animator:Darkness":
@@ -2206,7 +2223,7 @@
 		},
 		"animator:IrohaTamaki_Giovanna":
 		{
-			"DESCRIPTION": "Take !S! damage. You and a random enemy gain !M! [Shackles]. Fetch {Iroha Tamaki} from your Exhaust Pile.",
+			"DESCRIPTION": "You and a random enemy gain !M! [Shackles]. Fetch {Iroha Tamaki} from your Exhaust Pile.",
 			"NAME": "Giovanna"
 		},
 		"animator:KyokoSakura":
@@ -2221,7 +2238,7 @@
 		},
 		"animator:Kyubey":
 		{
-			"DESCRIPTION": "{Startup}: Gain !S! [C]. || Gain !S! [E]. <DRW-M>. ** Drain 1 {Soul} from random {Soul} cards in hand three times. If you could not: Purge and Obtain a random Curse.",
+			"DESCRIPTION": "{Startup}: Gain !S! [C]. || Gain !S! [E]. <DRW-M>. ** Drain 1 {Soul} from random {Soul} cards in hand 3 times. If you could not: Purge and Obtain a random Curse.",
 			"NAME": "Kyubey"
 		},
 		"animator:MadokaKaname":
@@ -2242,7 +2259,7 @@
 		},
 		"animator:MamiTomoe_Candeloro":
 		{
-			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: ** Obtain [Grief Seed]. || At the end of turn: Obtain !M! random Curses. Fetch !S! card(s) from your discard pile.",
+			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: ** Obtain [Grief Seed]. || At the end of turn: Obtain !M! random Curses. Fetch !S! card(s) from your discard pile and Motivate them.",
 			"NAME": "Candeloro"
 		},
 		"animator:MifuyuAsuza":
@@ -2258,8 +2275,8 @@
 		},
 		"animator:NagisaMomoe_Charlotte":
 		{
-			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: ALL characters gain !M! [Vulnerable] and take !S! [Delayed Damage].",
-			"EXTENDED_DESCRIPTION": ["Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: ALL characters Recover !M! [HP]."],
+			"DESCRIPTION": "On Exhaust or Purge: ** Obtain [Grief Seed]. || ALL characters gain !M! [Vulnerable].",
+			"EXTENDED_DESCRIPTION": ["On Exhaust or Purge: Obtain [Grief Seed]. || ALL characters Recover !M! [HP]."],
 			"NAME": "Charlotte"
 		},
 		"animator:OrikoMikuni":
@@ -2274,7 +2291,7 @@
 		},
 		"animator:SayakaMiki_Oktavia":
 		{
-			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: Lose ALL [Block], then ALL characters gain !M! [Weak].",
+			"DESCRIPTION": "Unplayable. || On Exhaust or Purge: Obtain [Grief Seed]. || At the end of turn: ALL characters gain !M! [Frail] and [Weak].",
 			"NAME": "Oktavia"
 		},
 		"animator:SuzuneAmano":
@@ -2331,7 +2348,7 @@
 		},
 		"animator:EmirEins":
 		{
-			"DESCRIPTION": "Activate the Evoke effect of your first Orb twice (Channel [Plasma] instead if you had no Orbs). Then, gain !M! [Impaired]. || On Discard: Shuffle your draw pile.",
+			"DESCRIPTION": "Reload: Evoke a copy of your first Orb. If you had no Orbs: Channel [Plasma] instead. Gain !M! [Impaired]. || On Discard or Exhaust: Exchange !S! random cards in your discard pile with your draw pile.",
 			"NAME": "Emir Eins"
 		},
 		"animator:FielNirvalen":

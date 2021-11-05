@@ -327,7 +327,7 @@
 	},
 	"animator:SelfImmolationPower":
 	{
-	  "DESCRIPTIONS": ["For the next #b", " turns, when you gain [Block]: ALL characters take twice that much #yDelayed #yDamage."],
+	  "DESCRIPTIONS": ["For the next #b", " turns, when you play a card that gives [Block]: ALL characters take [Delayed Damage] equal to twice its [Block]."],
 	  "NAME": "Self-Immolation"
 	},
 	"animator:SheerColdPower":

@@ -16,6 +16,7 @@ public class AdvancedHitbox extends Hitbox
     public float lerpSpeed;
     public float target_cX;
     public float target_cY;
+    public boolean isDropdownCompatbile;
     public boolean isPopupCompatible;
 
     public AdvancedHitbox(Hitbox hb)
@@ -53,6 +54,12 @@ public class AdvancedHitbox extends Hitbox
     {
         this.target_cX = cX;
         this.target_cY = cY;
+
+        return this;
+    }
+
+    public AdvancedHitbox SetIsDropdownCompatible(boolean value) {
+        this.isDropdownCompatbile = value;
 
         return this;
     }

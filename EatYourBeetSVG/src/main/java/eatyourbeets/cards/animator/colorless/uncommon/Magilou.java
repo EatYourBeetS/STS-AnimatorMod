@@ -7,11 +7,10 @@ import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.cards.animator.special.Magilou_Bienfu;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Magilou extends AnimatorCard implements OnCardResetListener
+public class Magilou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Magilou.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -33,12 +32,6 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
     }
 
     @Override
-    public void OnReset()
-    {
-        LoadImage(null);
-    }
-
-    @Override
     public void triggerWhenDrawn()
     {
         if (CombatStats.TryActivateLimited(cardID))
@@ -46,10 +39,6 @@ public class Magilou extends AnimatorCard implements OnCardResetListener
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
             .AddCallback(() -> GameActions.Top.MakeCardInHand(new Magilou_Bienfu()))
             .SetDuration(0.5f, true);
-        }
-        else
-        {
-            LoadImage("2");
         }
     }
 

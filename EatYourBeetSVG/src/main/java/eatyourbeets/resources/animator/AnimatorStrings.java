@@ -78,6 +78,8 @@ public class AnimatorStrings
         private final UIStrings Strings = GetUIStrings("SeriesUI");
 
         public final String SeriesUI = Strings.TEXT[0];
+        public final String ItemsSelected = Strings.TEXT[1];
+        public final String Keywords = Strings.TEXT[2];
     }
 
 

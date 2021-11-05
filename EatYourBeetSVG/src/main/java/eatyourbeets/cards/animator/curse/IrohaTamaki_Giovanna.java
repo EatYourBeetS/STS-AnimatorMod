@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
@@ -36,7 +35,6 @@ public class IrohaTamaki_Giovanna extends AnimatorCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.TakeDamage(secondaryValue, AttackEffects.CLAW);
         GameActions.Bottom.ReduceStrength(player,magicNumber,true);
         GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Shackles, magicNumber);
         GameActions.Bottom.FetchFromPile(name,1,player.exhaustPile).SetFilter(c -> IrohaTamaki.DATA.ID.equals(c.cardID));

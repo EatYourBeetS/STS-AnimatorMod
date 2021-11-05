@@ -52,7 +52,11 @@ public class MamiTomoe_Candeloro extends AnimatorCard_Curse implements OnPurgeSu
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (dontTriggerOnUseCard) {
-            GameActions.Bottom.FetchFromPile(name, secondaryValue, p.discardPile);
+            GameActions.Bottom.FetchFromPile(name, secondaryValue, p.discardPile).SetOptions(true, false).AddCallback(cards -> {
+                for (AbstractCard c : cards) {
+                    GameActions.Bottom.Motivate(c, 1);
+                }
+            });
             GameActions.Delayed.Add(new CreateRandomCurses(magicNumber, p.hand));
         }
     }

@@ -42,6 +42,7 @@ public class AttackEffects
    public static final AttackEffect SMALL_EXPLOSION = GR.Enums.AttackEffect.SMALL_EXPLOSION;
    public static final AttackEffect FIRE_EXPLOSION = GR.Enums.AttackEffect.FIRE_EXPLOSION;
    public static final AttackEffect ICE = GR.Enums.AttackEffect.ICE;
+   public static final AttackEffect SPARK = GR.Enums.AttackEffect.SPARK;
    public static final AttackEffect DARKNESS = GR.Enums.AttackEffect.DARKNESS;
    public static final AttackEffect PSYCHOKINESIS = GR.Enums.AttackEffect.PSYCHOKINESIS;
    public static final AttackEffect SHIELD_FROST = GR.Enums.AttackEffect.SHIELD_FROST;
@@ -174,6 +175,11 @@ public class AttackEffects
         Add(other, SHIELD, ImageMaster.ATK_SHIELD)
                 .SetVFX(VFX::Shield)
                 .SetSFX(SFX.BLOCK_GAIN_1, SFX.BLOCK_GAIN_2, SFX.BLOCK_GAIN_3);
+
+        Add(magic, SPARK)
+                .SetVFX(VFX::SparkImpact)
+                .SetSFX(SFX.ORB_LIGHTNING_CHANNEL)
+                .SetDamageTint(Colors.Lerp(Color.YELLOW, Color.WHITE, 0.3f));
 
         Add(magic, LIGHTNING)
                 .SetVFX(VFX::Lightning)

@@ -226,7 +226,7 @@
 		"TEXT":
 		[
 			"Starting Cards: ",
-			"###############",
+			"Chosen Series: ",
 			"Unlocks at Level {0} (You are Level {1})",
 			"Invalid Loadout (Please Edit)",
 			"Unlocks at Ascension {0}",
@@ -280,7 +280,9 @@
 	{
 		"TEXT":
 		[
-			"Series"
+			"Series",
+			"Item(s) selected",
+			"Keywords"
 		]
 	},
 

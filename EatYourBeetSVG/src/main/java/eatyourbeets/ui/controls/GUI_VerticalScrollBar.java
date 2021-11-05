@@ -2,6 +2,7 @@ package eatyourbeets.ui.controls;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
@@ -64,7 +65,7 @@ public class GUI_VerticalScrollBar extends GUIElement
             }
             else
             {
-                Scroll(ToPercentage(InputHelper.mY), true);
+                Scroll(ToPercentage(CardCrawlGame.isPopupOpen ? CardCrawlGame.popupMY : InputHelper.mY), true);
             }
         }
         else if (hb.hovered && InputHelper.isMouseDown)

@@ -39,7 +39,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng);
+        final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng, upgraded);
         GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
         .SetOptions(false, false)
         .AddCallback(m, (enemy, cards) ->
@@ -54,7 +54,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     @Override
     public boolean OnAddToDeck()
     {
-        final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng);
+        final CardGroup group = AffinityToken.CreateTokenGroup(AffinityToken.cards.size(), rng, upgraded);
 
         GameEffects.TopLevelQueue.Callback(new SelectFromPile(name, 1, group)
         .HideTopPanel(true)
@@ -64,11 +64,6 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
         {
             for (AbstractCard c : cards)
             {
-                if (upgraded)
-                {
-                    c.upgrade();
-                }
-
                 GameEffects.TopLevelQueue.ShowAndObtain(c, InputHelper.mX, InputHelper.mY, false);
             }
         }));

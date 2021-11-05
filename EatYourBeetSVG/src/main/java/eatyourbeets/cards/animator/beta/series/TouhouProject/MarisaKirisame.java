@@ -11,14 +11,14 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class MarisaKirisame extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MarisaKirisame.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.Random).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(MarisaKirisame.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public MarisaKirisame()
     {
         super(DATA);
 
-        Initialize(4, 0, 2, 2);
-        SetUpgrade(3, 0, 0);
+        Initialize(5, 0, 2, 2);
+        SetUpgrade(2, 0, 0, 1);
         SetAffinity_Blue(2, 0, 0);
     }
 

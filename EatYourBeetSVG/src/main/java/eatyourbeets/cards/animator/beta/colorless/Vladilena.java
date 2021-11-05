@@ -58,7 +58,7 @@ public class Vladilena extends AnimatorCard
                     .AddCallback(cards -> {
                         for (AbstractCard c : cards) {
                             if (c.rarity.equals(CardRarity.BASIC) && info.TryActivateLimited()) {
-                                GameActions.Last.Add(AffinityToken.SelectTokenAction(name, 1, magicNumber)
+                                GameActions.Last.Add(AffinityToken.SelectTokenAction(name, 1, magicNumber, upgraded)
                                         .AddCallback(tokens ->
                                         {
                                             for (AbstractCard t : tokens)

@@ -107,7 +107,7 @@ public class CardKeywordButton extends GUIElement
         count_text.SetText(count).SetColor(count > 0 ? Settings.GOLD_COLOR : Color.DARK_GRAY);
         title_text.SetColor(CardKeywordFilters.CurrentFilters.contains(Tooltip) ? PANEL_COLOR : count > 0 ? Color.WHITE : Color.DARK_GRAY);
         tooltip_text.SetColor(CardCount == 0 ? Color.DARK_GRAY : Color.WHITE);
-        background_button.SetInteractable(count != 0);
+        background_button.SetColor(CardKeywordFilters.CurrentFilters.contains(Tooltip) ? ACTIVE_COLOR : PANEL_COLOR).SetInteractable(count != 0);
 
         return this;
     }

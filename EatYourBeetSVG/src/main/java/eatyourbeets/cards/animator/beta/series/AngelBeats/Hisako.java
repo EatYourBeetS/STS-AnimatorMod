@@ -8,8 +8,10 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
 
 public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterlifeSubscriber
 {
@@ -19,19 +21,21 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
     {
         super(DATA);
 
-        Initialize(0, 7, 3, 2);
+        Initialize(0, 7, 3, 1);
+        SetUpgrade(0,0,1,0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
 
-        SetAffinity_General(3);
+        SetAffinityRequirement(Affinity.General, 3);
         SetExhaust(true);
+        AfterLifeMod.Add(this);
     }
 
     @Override
     protected void OnUpgrade()
     {
         SetRetainOnce(true);
-        SetAffinity_General(2);
+        SetAffinityRequirement(Affinity.General, 2);
     }
 
     @Override
@@ -41,7 +45,20 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback((cards) -> {
             if (cards.size() > 0) {
                 Affinity af = AffinityToken.GetAffinityFromCardID(cards.get(0).cardID);
-                GameActions.Bottom.Draw(1).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(af) > 0, false);
+
+                final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                final RandomizedList<AbstractCard> pile = new RandomizedList<>(player.drawPile.group);
+                while (group.size() < magicNumber && pile.Size() > 0)
+                {
+                    AbstractCard c = pile.Retrieve(rng);
+                    if (c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(af) > 0)
+                    group.addToTop(c);
+                }
+
+                if (group.size() >= 0)
+                {
+                    GameActions.Bottom.FetchFromPile(name, 1, group).SetOptions(false, true);
+                }
             }
         });
     }
@@ -49,14 +66,14 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
     @Override
     public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
         if (player.hand.contains(this)) {
-            GameActions.Bottom.GainBlessing(1);
+            GameActions.Bottom.GainBlessing(secondaryValue);
         }
     }
 
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
-        if (player.hand.contains(this) && source == player.exhaustPile) {
-            GameActions.Bottom.GainBlessing(1);
+        if (player.hand.contains(this)) {
+            GameActions.Bottom.GainBlessing(secondaryValue);
         }
     }
 

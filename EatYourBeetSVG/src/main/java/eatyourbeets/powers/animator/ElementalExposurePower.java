@@ -6,6 +6,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ElementalExposurePower extends AnimatorPower
 {
@@ -13,6 +14,11 @@ public class ElementalExposurePower extends AnimatorPower
     public static final int ELEMENTAL_MODIFIER = 25;
     public static final int DECAY_TURNS = 1;
     public int secondaryAmount;
+
+    public static float CalculatePercentage(AbstractCreature target)
+    {
+        return CalculatePercentage(GameUtilities.GetPowerAmount(target, POWER_ID));
+    }
 
     public static float CalculatePercentage(int amount)
     {

@@ -1,7 +1,7 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.AngelBeats.*;
-import eatyourbeets.cards.animator.beta.ultrarare.AngelAlter;
+import eatyourbeets.cards.animator.beta.ultrarare.TK;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -33,6 +33,6 @@ public class Loadout_AngelBeats extends AnimatorLoadout
     @Override
     public EYBCardData GetUltraRare()
     {
-        return AngelAlter.DATA;
+        return TK.DATA;
     }
 }

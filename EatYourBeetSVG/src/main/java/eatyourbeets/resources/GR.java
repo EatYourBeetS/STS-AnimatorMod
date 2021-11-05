@@ -500,6 +500,7 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags PROTAGONIST;
             @SpireEnum public static AbstractCard.CardTags ANIMATOR_ETHEREAL;
             @SpireEnum public static AbstractCard.CardTags ANIMATOR_EXHAUST;
+            @SpireEnum public static AbstractCard.CardTags AFTERLIFE;
         }
 
         public static class AttackEffect

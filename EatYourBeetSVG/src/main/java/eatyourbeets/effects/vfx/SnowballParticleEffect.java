@@ -37,8 +37,8 @@ public class SnowballParticleEffect extends EYBEffect
         this.y = y - (float) (SIZE / 2);
         this.rotation = Random(-10f, 10f);
         this.scale = Random(0.2f, 1.5f) * Settings.scale;
-        this.vX = Random(-900f, 900f) * Settings.scale;
-        this.vY = Random(-900f, 900f) * Settings.scale;
+        this.vX = Random(-650f, 650f) * Settings.scale;
+        this.vY = Random(-650f, 650f) * Settings.scale;
         this.floor = Random(100f, 250f) * Settings.scale;
         this.vR = Random(-600f, 600f);
         this.flip = RandomBoolean(0.5f);

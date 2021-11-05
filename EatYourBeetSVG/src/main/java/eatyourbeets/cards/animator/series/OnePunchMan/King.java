@@ -20,7 +20,7 @@ public class King extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 2);
+        Initialize(0, 0, 6, 4);
         SetUpgrade(0, 0, -1, 0);
 
         SetAffinity_Red(1);

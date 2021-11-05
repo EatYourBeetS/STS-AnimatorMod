@@ -67,6 +67,7 @@ public class CardTooltips
     public EYBCardTooltip Desecration = FindByID("Desecration");
     public EYBCardTooltip Dexterity = FindByID("Dexterity");
     public EYBCardTooltip Earth = FindByID("Earth");
+    public EYBCardTooltip Electrified = FindByID("Electrified");
     public EYBCardTooltip Elemental = FindByID("~Elemental");
     public EYBCardTooltip ElementalExposure = FindByID("Elemental Exposure");
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
@@ -272,8 +273,9 @@ public class CardTooltips
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Regeneration.SetIcon(tooltips.Regeneration.Texture(), 6);
 
-        LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(0.95f, 0.95f);
-        LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));//.SetIconSizeMulti(0.95f, 0.95f);
+        LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0));
+        LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));
+        LoadFromPower(Electrified, new ElectrifiedPower(FakeCharacter.Instance, null,0));
         LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0)).SetIconSizeMulti(0.95f, 0.95f);
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));

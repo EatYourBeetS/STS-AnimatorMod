@@ -43,6 +43,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.interfaces.subscribers.OnAfterCardPlayedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.CombatStats;
@@ -1466,6 +1467,9 @@ public class GameUtilities
         if (aCard != null) {
             if (tag.equals(AUTOPLAY)) {
                 aCard.SetAutoplay(value);
+            }
+            else if (tag.equals(AFTERLIFE)) {
+                AfterLifeMod.Add(aCard);
             }
             else if (tag.equals(ANIMATOR_ETHEREAL)) {
                 aCard.SetEthereal(value);

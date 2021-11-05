@@ -48,5 +48,6 @@ public class GiftBox extends AnimatorCard
         for (Affinity af : Affinity.Basic()) {
             CombatStats.Affinities.AddAffinity(af, 99);
         }
+
     }
 }

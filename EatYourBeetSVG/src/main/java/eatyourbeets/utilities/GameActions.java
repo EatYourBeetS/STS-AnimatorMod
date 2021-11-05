@@ -209,6 +209,11 @@ public final class GameActions
         return StackPower(target, PowerHelper.Constricted, amount);
     }
 
+    public ApplyPower ApplyElectrified(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new ElectrifiedPower(target, source, amount));
+    }
+
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new AnimatorFrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));

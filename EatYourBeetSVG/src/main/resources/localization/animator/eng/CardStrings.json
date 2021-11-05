@@ -162,7 +162,7 @@
 		},
 		"animator:Hisako":
 		{
-			"DESCRIPTION": "Pay !A! <W>: Draw a card with a <W> matching the <W> you spent. || When you Exhaust or Purge a card with this card in hand: Gain [B].",
+			"DESCRIPTION": "Pay !A! <W>: Fetch 1 of !M! cards in your draw pile with a <W> matching the <W> you spent. || When you Exhaust or Purge a card with this card in hand: Gain [B].",
 			"NAME": "Hisako"
 		},
 		"animator:IrieMiyuki":
@@ -193,7 +193,7 @@
 		},
 		"animator:TK":
 		{
-			"DESCRIPTION": "Gain [A]. || <LIM>: If you would die while this card is in your exhaust pile: Purge. Remove 1 of !M! cards in your deck: Purge and play all copies of it in play.",
+			"DESCRIPTION": "Gain !M! [B]. || <LIM>: If you would die with this card in your Exhaust pile: Take no damage. Permanently give 1 of !S! cards in your master deck {Afterlife} and remove the others from your deck.",
 			"NAME": "TK"
 		},
 		"animator:Yui":
@@ -405,7 +405,7 @@
 		},
 		"animator:IonizingStorm":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies half of its [Focus] as [Freezing] to a random enemy when triggered and to ALL enemies when Evoked. || [Lightning] gains 1 [Focus] for every !S! [Supercharge] {Charge}.",
+			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies half of its [Focus] as [Electrified] to a random enemy when triggered and to ALL enemies when Evoked. || [Lightning] gains 1 [Focus] for every !S! [Supercharged] {Charge}.",
 			"NAME": "Ionizing Storm"
 		},
 		"animator:JetBlack":
@@ -666,7 +666,7 @@
 		},
 		"animator:MikuIzayoi":
 		{
-			"DESCRIPTION": "Gain !S! [Inspiration]. Gain double [Inspiration] if you have at least !M! interactable powers. || {Same-Series} Synergy: {Motivate} !S!.",
+			"DESCRIPTION": "Gain !S! [Inspiration]. Gain double [Inspiration] if you have at least !M! {Interactables}. || {Same-Series} Synergy: {Motivate} !S!.",
 			"NAME": "Miku Izayoi"
 		},
 		"animator:MioTakamiya":
@@ -1160,7 +1160,7 @@
 		},
 		"animator:MarisaKirisame":
 		{
-			"DESCRIPTION": "Gain !M! [I]. || Synergy: Channel [Lightning]. || On Exhaust: Evoke your first {Common Orb} !M! times.",
+			"DESCRIPTION": "When played or Exhausted: Gain !M! [I]. || Synergy and/or Pay !S! [Supercharged] {Charge}: Channel [Lightning].",
 			"NAME": "Marisa Kirisame"
 		},
 		"animator:MayumiJoutouguu":
@@ -2365,9 +2365,9 @@
 		},
 		"animator:Jibril":
 		{
-			"DESCRIPTION": "Costs 1 less for each Power played this turn. || Shuffle your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs.",
+			"DESCRIPTION": "Costs 1 less for each Power or {Interactable} used this turn. || Shuffle your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs.",
 			"NAME": "Jibril",
-			"UPGRADE_DESCRIPTION": "Costs 1 less for each Power played this turn. || Shuffle and trigger your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs."
+			"UPGRADE_DESCRIPTION": "Costs 1 less for each Power or {Interactable} used this turn. || Shuffle and trigger your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs."
 		},
 		"animator:Miko":
 		{

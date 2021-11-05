@@ -7,7 +7,7 @@ import eatyourbeets.utilities.GameEffects;
 
 public class SnowballImpactEffect extends EYBEffect
 {
-    protected int particles = 25;
+    protected int particles = 40;
     protected float x;
     protected float y;
 
@@ -30,7 +30,7 @@ public class SnowballImpactEffect extends EYBEffect
     {
         for (int i = 0; i < particles; i++)
         {
-            GameEffects.Queue.Add(new SnowballParticleEffect(this.x, this.y, color).SetRealtime(isRealtime));
+            GameEffects.Queue.Add(new SnowballParticleEffect(this.x, this.y, color).SetDuration(0.75f, isRealtime));
             GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, color));
         }
 

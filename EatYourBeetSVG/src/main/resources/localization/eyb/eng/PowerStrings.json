@@ -47,7 +47,7 @@
 	},
 	"eyb:ElectrifiedPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt by the creature is dealt to ALL other characters (min. #b1)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt is dealt to ALL allies, or to itself if it has no allies (min. #b1)."],
 		"NAME": "Electrified"
 	},
 	"eyb:EndurancePower":

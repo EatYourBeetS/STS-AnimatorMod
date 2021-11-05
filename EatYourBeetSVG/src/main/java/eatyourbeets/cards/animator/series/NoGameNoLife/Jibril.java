@@ -13,14 +13,16 @@ import eatyourbeets.cards.base.attributes.DamageAttribute;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnClickablePowerUsed;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Jibril extends AnimatorCard
+public class Jibril extends AnimatorCard implements OnClickablePowerUsed
 {
     public static final EYBCardData DATA = Register(Jibril.class)
             .SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.ALL)
@@ -110,5 +112,11 @@ public class Jibril extends AnimatorCard
                             .SetPiercing(true, false);
                 }
         );
+    }
+
+    @Override
+    public void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target) {
+        costReduction -= 1;
+        GameActions.Bottom.Callback(this::RefreshCost);
     }
 }

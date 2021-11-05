@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -17,8 +16,8 @@ public class MarisaKirisame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 2);
-        SetUpgrade(2, 0, 0, 1);
+        Initialize(5, 0, 2, 4);
+        SetUpgrade(2, 0, 1, 0);
         SetAffinity_Blue(2, 0, 0);
     }
 
@@ -27,18 +26,20 @@ public class MarisaKirisame extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.EvokeOrb(magicNumber, EvokeOrb.Mode.SameOrb)
-                .SetFilter(GameUtilities::IsCommonOrb);
+        GameActions.Bottom.GainIntellect(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.LIGHTNING);
-        GameActions.Bottom.GainIntellect(secondaryValue);
+        GameActions.Bottom.GainIntellect(magicNumber);
 
         if (info.IsSynergizing)
         {
+            GameActions.Bottom.ChannelOrb(new Lightning());
+        }
+        if (GameUtilities.SpendSuperchargedCharge(secondaryValue)) {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }
     }

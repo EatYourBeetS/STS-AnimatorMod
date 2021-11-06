@@ -23,8 +23,8 @@ public class FeliciaMitsuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 4);
-        SetUpgrade(3, 0, 1, 0);
+        Initialize(8, 0, 3, 4);
+        SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1,0,0);
         SetAffinity_Orange(1, 0, 1);

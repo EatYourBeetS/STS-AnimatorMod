@@ -23,6 +23,7 @@ public class Loadout_Rewrite extends AnimatorLoadout
         AddStarterCard(Shimako.DATA, 5);
         AddStarterCard(SougenEsaka.DATA, 6);
         AddStarterCard(ChihayaOhtori.DATA, 8);
+        AddStarterCard(SakuyaOhtori.DATA, 11);
     }
 
     @Override

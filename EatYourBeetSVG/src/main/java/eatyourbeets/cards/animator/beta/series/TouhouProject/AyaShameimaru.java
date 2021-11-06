@@ -18,7 +18,7 @@ public class AyaShameimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(2, 0, 0);
         SetAffinity_Orange(1, 0, 0);
@@ -82,7 +82,7 @@ public class AyaShameimaru extends AnimatorCard
         @Override
         public void OnApplyFocus(AbstractOrb orb) {
             int index = player.orbs.indexOf(orb);
-            if (index >= 0 && !Air.ORB_ID.equals(orb.ID)) {
+            if (index >= 0) {
                 if (index + 1 < player.filledOrbCount() && Air.ORB_ID.equals(player.orbs.get(index + 1).ID)) {
                     orb.passiveAmount += amount;
                     orb.evokeAmount += amount;

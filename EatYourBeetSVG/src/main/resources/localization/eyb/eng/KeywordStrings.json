@@ -314,7 +314,7 @@
 	},
 	"Inspiration":
 	{
-		"DESCRIPTION": "The next time you activate an interactable #yPower, gain [E].",
+		"DESCRIPTION": "Ignore the costs of the next #yInteractable Power used.",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
@@ -446,7 +446,7 @@
 	},
 	"Self-Immolation":
 	{
-	  "DESCRIPTION": "When you play a card that gives [Block], ALL characters take [Delayed Damage] equal to twice its [Block].",
+	  "DESCRIPTION": "When you play a card with [Block], ALL characters take [Delayed Damage] equal to twice its [Block].",
 	  "NAMES": ["self-immolation"],
 	  "PROPER_NAME": "Self-Immolation"
 	},

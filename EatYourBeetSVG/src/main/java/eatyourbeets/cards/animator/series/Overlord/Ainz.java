@@ -11,10 +11,10 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Ainz extends AnimatorCard
 {
@@ -24,17 +24,19 @@ public class Ainz extends AnimatorCard
             .SetSeriesFromClassPackage();
     public static final int CHANNEL_AMOUNT = 3;
     public static final int POWER_ENERGY_COST = 10;
+    public static final Affinity[] AFFINITIES = new Affinity[] {Affinity.Red, Affinity.Blue, Affinity.Orange, Affinity.Dark};
 
     public Ainz()
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 6);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
+        SetCostUpgrade(-1);
 
         SetProtagonist(true);
         SetHarmonic(true);
@@ -62,7 +64,7 @@ public class Ainz extends AnimatorCard
             GameActions.Bottom.GainBlock(block);
         }
 
-        GameActions.Bottom.StackPower(new AinzPower(p, 1));
+        GameActions.Bottom.StackPower(new AinzPower(p, magicNumber));
     }
 
     public static class AinzPower extends AnimatorClickablePower
@@ -109,15 +111,9 @@ public class Ainz extends AnimatorCard
         {
             super.atStartOfTurnPostDraw();
 
-            for (Affinity a : Affinity.Basic())
+            for (Affinity a : AFFINITIES)
             {
-                if (a == Affinity.Dark && CorruptionStance.IsActive()) {
-                    GameActions.Bottom.StackAffinityPower(a, amount + 1, true);
-                }
-                else if (a != Affinity.Light)
-                {
-                    GameActions.Bottom.StackAffinityPower(a, amount, true);
-                }
+                GameActions.Bottom.StackAffinityPower(a, amount, CorruptionStance.IsActive());
             }
 
             this.flash();
@@ -130,10 +126,9 @@ public class Ainz extends AnimatorCard
         }
 
         private void EnablePowers() {
-            CombatStats.Affinities.GetPower(Affinity.Red).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Blue).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Orange).SetEnabled(true);
+            GameUtilities.MaintainPower(Affinity.Red);
+            GameUtilities.MaintainPower(Affinity.Blue);
+            GameUtilities.MaintainPower(Affinity.Orange);
         }
     }
 }

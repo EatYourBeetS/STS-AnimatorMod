@@ -35,13 +35,10 @@ public class RukiaKuchiki extends AnimatorCard
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
-        if (IntellectStance.IsActive() || TrySpendAffinity(Affinity.Green))
+        if ((player.filledOrbCount() >= secondaryValue || IntellectStance.IsActive()) && TrySpendAffinity(Affinity.Green))
         {
-            if (player.filledOrbCount() >= secondaryValue)
-            {
-                GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
-                GameActions.Bottom.Exhaust(this);
-            }
+            GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
+            GameActions.Last.Exhaust(this);
         }
     }
 }

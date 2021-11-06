@@ -18,10 +18,10 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 4);
+        SetUpgrade(0, 0, 1, 1);
 
-        SetExhaust(true);
+        SetPurge(true);
         SetAffinity_Blue(2, 0, 0);
         SetAffinity_Light(2, 0, 0);
     }

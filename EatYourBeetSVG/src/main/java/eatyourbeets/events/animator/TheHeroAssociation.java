@@ -31,7 +31,7 @@ public class TheHeroAssociation extends EYBEvent
 
     public static TheHeroAssociation TryCreate(Random rng)
     {
-        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && AbstractDungeon.floorNum > 8 && !(GameUtilities.HasRelic(GranviaShieldCrest.ID)) && rng.randomBoolean(0.15f)) {
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && AbstractDungeon.floorNum > 8 && !(GameUtilities.HasRelic(GranviaShieldCrest.ID)) && rng.randomBoolean(0.1f)) {
             return new TheHeroAssociation();
         }
         return null;

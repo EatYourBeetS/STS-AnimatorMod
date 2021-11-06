@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -41,9 +40,6 @@ public class Yuuichirou extends AnimatorCard
         GameActions.Bottom.Draw(1);
 
         GameUtilities.MaintainPower(Affinity.Red);
-        if (AgilityStance.IsActive()) {
-            GameActions.Bottom.GainForce(magicNumber, true);
-        }
     }
 
     @Override

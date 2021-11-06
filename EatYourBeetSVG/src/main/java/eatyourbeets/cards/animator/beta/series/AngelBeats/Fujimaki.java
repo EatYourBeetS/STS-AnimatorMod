@@ -25,8 +25,7 @@ public class Fujimaki extends AnimatorCard
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 1, 2);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class Fujimaki extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (TrySpendAffinity(Affinity.Red, Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

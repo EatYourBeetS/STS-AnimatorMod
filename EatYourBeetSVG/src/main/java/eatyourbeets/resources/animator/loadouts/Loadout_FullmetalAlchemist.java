@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.*;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.animator.ultrarare.Truth;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -22,6 +23,7 @@ public class Loadout_FullmetalAlchemist extends AnimatorLoadout
         AddStarterCard(Sloth.DATA, 10);
         AddStarterCard(Pride.DATA, 11);
         AddStarterCard(RoyMustang.DATA, 12);
+        AddStarterCard(Status_Dazed.DATA, -3);
     }
 
     @Override

@@ -162,55 +162,59 @@ public class PowerTriggerCondition
             return;
         }
 
-        if (payCost != null)
-        {
-            payCost.Invoke(requiredAmount);
-        }
+        boolean shouldPayCost = CombatStats.OnClickablePowerUsed(power, m);
 
-        switch (type)
-        {
-            case Energy:
+        if (shouldPayCost) {
+            if (payCost != null)
             {
-                GameActions.Bottom.SpendEnergy(requiredAmount, false);
-                break;
+                payCost.Invoke(requiredAmount);
             }
-            case Discard:
+
+            switch (type)
             {
-                GameActions.Bottom.DiscardFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
-                break;
-            }
-            case Exhaust:
-            {
-                GameActions.Bottom.ExhaustFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
-                break;
-            }
-            case TakeDamage:
-            {
-                GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
-                GameActions.Bottom.TakeDamage(requiredAmount, AttackEffects.NONE);
-                break;
-            }
-            case TakeDelayedDamage:
-            {
-                GameActions.Bottom.DealDamageAtEndOfTurn(power.owner, power.owner, requiredAmount);
-                break;
-            }
-            case Affinity:
-            {
-                GameActions.Bottom.TryChooseSpendAffinity(power.name, requiredAmount, affinities);
-                break;
-            }
-            case LoseHP:
-            {
-                GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
-                GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
-                break;
-            }
-            case Gold:
-            {
-                AbstractDungeon.player.loseGold(requiredAmount);
-                SFX.Play(SFX.EVENT_PURCHASE, 0.95f, 1.05f);
-                break;
+                case Energy:
+                {
+                    GameActions.Bottom.SpendEnergy(requiredAmount, false);
+                    break;
+                }
+                case Discard:
+                {
+                    GameActions.Bottom.DiscardFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
+                    break;
+                }
+                case Exhaust:
+                {
+                    GameActions.Bottom.ExhaustFromHand(power.name, requiredAmount, false).SetOptions(false, false, false);
+                    break;
+                }
+                case TakeDamage:
+                {
+                    GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
+                    GameActions.Bottom.TakeDamage(requiredAmount, AttackEffects.NONE);
+                    break;
+                }
+                case TakeDelayedDamage:
+                {
+                    GameActions.Bottom.DealDamageAtEndOfTurn(power.owner, power.owner, requiredAmount);
+                    break;
+                }
+                case Affinity:
+                {
+                    GameActions.Bottom.TryChooseSpendAffinity(power.name, requiredAmount, affinities);
+                    break;
+                }
+                case LoseHP:
+                {
+                    GameActions.Bottom.SFX(SFX.BLOOD_SPLAT, 1.2f, 1.3f);
+                    GameActions.Bottom.LoseHP(requiredAmount, AttackEffects.NONE);
+                    break;
+                }
+                case Gold:
+                {
+                    AbstractDungeon.player.loseGold(requiredAmount);
+                    SFX.Play(SFX.EVENT_PURCHASE, 0.95f, 1.05f);
+                    break;
+                }
             }
         }
 
@@ -223,7 +227,5 @@ public class PowerTriggerCondition
         power.flashWithoutSound();
         Refresh(false);
         power.updateDescription();
-
-        CombatStats.OnClickablePowerUsed(power, m);
     }
 }

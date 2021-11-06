@@ -1,16 +1,14 @@
 package patches.customModeScreen;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
@@ -18,7 +16,13 @@ import eatyourbeets.dailymods.AnimatorDailyMod;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.*;
+import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Dropdown;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.MethodInfo;
 import javassist.CtBehavior;
 import org.apache.logging.log4j.util.Strings;
 
@@ -38,6 +42,7 @@ public class CustomModeScreenPatch {
     private static final Random RNG = new Random();
 
     private static boolean displaySeries = false;
+    private static boolean forceStopScroll = false;
 
     private static ArrayList<AnimatorDailyMod> allAnimatorMods = new ArrayList<>();
 
@@ -45,12 +50,14 @@ public class CustomModeScreenPatch {
 
     private static ArrayList<AnimatorLoadout> availableLoadouts = new ArrayList<>();;
     private static ArrayList<AnimatorLoadout> loadouts = new ArrayList<>();;
+    private static GUI_Dropdown<AnimatorLoadout> SeriesDropdown;
+    private static GUI_Button SeriesLeftButton;
+    private static GUI_Button SeriesRightButton;
 
-    private static Hitbox seriesleftHb = null;
-    private static Hitbox seriesRightHb = null;
-    private static Hitbox seriesHb = null;
 
     private static String seriesLabel = Strings.EMPTY;
+
+
 
 
     @SpirePatch(clz = CustomModeScreen.class, method = "open")
@@ -93,7 +100,20 @@ public class CustomModeScreenPatch {
         @SpirePostfixPatch
         public static void Postfix(CustomModeScreen __instance, SpriteBatch sb)
         {
-            FontHelper.renderSmartText(sb, FontHelper.panelNameFont, GR.Animator.Strings.SeriesUI.SeriesUI, seriesleftHb.cX - 24.0F, _scrollY.Get(__instance) - 460.0F * Settings.scale + 850.0F * Settings.scale, 9999.0F, 32.0F * Settings.scale, Settings.GOLD_COLOR);
+            FontHelper.renderSmartText(sb, FontHelper.panelNameFont, GR.Animator.Strings.SeriesUI.SeriesUI, SeriesLeftButton.hb.cX - 24.0F, _scrollY.Get(__instance) - 460.0F * Settings.scale + 850.0F * Settings.scale, 9999.0F, 32.0F * Settings.scale, Settings.GOLD_COLOR);
+        }
+    }
+
+    @SpirePatch(clz = CustomModeScreen.class, method = "updateScrolling")
+    public static class CustomModeScreen_UpdateScrolling
+    {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractCard> Prefix(CustomModeScreen __instance)
+        {
+            if (forceStopScroll) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
         }
     }
 
@@ -120,47 +140,40 @@ public class CustomModeScreenPatch {
         private static void RenderSeries(CustomModeScreen __instance, SpriteBatch sb)
         {
 
-            if (seriesleftHb == null || seriesRightHb == null || seriesHb == null || !displaySeries)
+            if (ShouldHideSeries())
             {
                 return;
             }
-
-            if (seriesleftHb.hovered || Settings.isControllerMode) {
-                sb.setColor(Color.WHITE);
-            } else {
-                sb.setColor(Color.LIGHT_GRAY);
-            }
-            sb.draw(ImageMaster.CF_LEFT_ARROW, seriesleftHb.cX - 24.0F * Settings.scale, seriesleftHb.cY - 24.0F * Settings.scale, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-
-            if (startingLoadout != null)
-            {
-                seriesLabel = startingLoadout.Name;
-            }
-
-            FontHelper.renderFontLeft(sb, seriesFont, seriesLabel, seriesHb.cX - (seriesHb.width/2), seriesHb.cY, Settings.BLUE_TEXT_COLOR);
-
-            if (seriesRightHb.hovered || Settings.isControllerMode) {
-                sb.setColor(Color.WHITE);
-            } else {
-                sb.setColor(Color.LIGHT_GRAY);
-            }
-            sb.draw(ImageMaster.CF_RIGHT_ARROW, seriesRightHb.cX - 24.0F * Settings.scale, seriesRightHb.cY - 24.0F * Settings.scale, 24.0F, 24.0F, 48.0F, 48.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 48, 48, false, false);
-
             Hitbox seedHb = _seedHb.Get(__instance);
             float seedRightWidth = seedHb.cX + seedHb.width + 2.5F;
-            FontHelper.renderFontLeft(sb, EYBFontHelper.CardTitleFont_Small, startingLoadout.GetDeckPreviewString(true), seedRightWidth, seedHb.cY - seriesleftHb.height - 10.0F, Settings.GREEN_TEXT_COLOR);
-
-            seriesleftHb.render(sb);
-            seriesRightHb.render(sb);
-            seriesHb.render(sb);
+            FontHelper.renderFontLeft(sb, EYBFontHelper.CardTitleFont_Small, startingLoadout.GetDeckPreviewString(true), seedRightWidth, seedHb.cY - SeriesLeftButton.hb.height - 20.0F, Settings.GREEN_TEXT_COLOR);
+            SeriesLeftButton.TryRender(sb);
+            SeriesDropdown.TryRender(sb);
+            SeriesRightButton.TryRender(sb);
         }
     }
 
     private static void InitializeSeries(CustomModeScreen __instance)
     {
-        seriesleftHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
-        seriesRightHb = new Hitbox(70.0F * Settings.scale, 70.0F * Settings.scale);
-        seriesHb = new Hitbox(80.0F * Settings.scale, 80.0F * Settings.scale);
+        forceStopScroll = false;
+        SeriesLeftButton = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new AdvancedHitbox(-9999, -9999, 48 * Settings.scale, 48 * Settings.scale))
+                .SetText("")
+                .SetOnClick(() -> {
+                    ChangeLoadout(loadouts.indexOf(startingLoadout) - 1);
+                });
+        SeriesRightButton = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new AdvancedHitbox(-9999, -9999, 48 * Settings.scale, 48 * Settings.scale))
+                .SetText("")
+                .SetOnClick(() -> {
+                    ChangeLoadout(loadouts.indexOf(startingLoadout) + 1);
+                });
+        SeriesDropdown = new GUI_Dropdown<AnimatorLoadout>(new AdvancedHitbox(-9999, -9999, 240 * Settings.scale, 48 * Settings.scale), cs -> cs.Series.LocalizedName)
+                .SetOnChange(selectedSeries -> {
+                    ChangeLoadout(selectedSeries.get(0));
+                })
+                .SetOnOpenOrClose(isOpen -> {
+                    forceStopScroll = isOpen;
+                });
+
 
         InitializeAllAnimatorMods();
         UpdateDisplaySeries(__instance);
@@ -218,6 +231,8 @@ public class CustomModeScreenPatch {
         {
             startingLoadout = GR.Animator.Data.SelectedLoadout = loadouts.get(0);
         }
+        SeriesDropdown.SetItems(loadouts);
+        SeriesDropdown.SetSelection(GR.Animator.Data.SelectedLoadout, false);
     }
 
     private static void InitializeAllAnimatorMods()
@@ -230,84 +245,23 @@ public class CustomModeScreenPatch {
 
     private static void UpdateSeriesArrows(CustomModeScreen __instance)
     {
-        if (seriesleftHb == null || seriesRightHb == null || seriesHb == null || !displaySeries)
+        if (ShouldHideSeries())
         {
             return;
         }
 
-        if (seriesHb.justHovered || seriesleftHb.justHovered || seriesRightHb.justHovered ) {
-            _playHoverSound.Invoke(__instance);
-        }
-
         boolean loadoutHbRightClick = false;
-
-        if (seriesleftHb.hovered && InputHelper.justClickedLeft) {
-            _playClickStartSound.Invoke(__instance);
-            seriesleftHb.clickStarted = true;
-         } else if (seriesRightHb.hovered && InputHelper.justClickedLeft) {
-            _playClickStartSound.Invoke(__instance);
-            seriesRightHb.clickStarted = true;
-         } else if (seriesHb.hovered && InputHelper.justClickedLeft) {
-            _playClickStartSound.Invoke(__instance);
-            seriesHb.clickStarted = true;
-        }
-
-        if (seriesleftHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
-            //Go to previous series
-
-            seriesleftHb.clicked = false;
-
-            int current = loadouts.indexOf(startingLoadout);
-            if (current == 0)
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(loadouts.size() - 1);
-            }
-            else
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current - 1);
-            }
-        }
-        else if (seriesRightHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
-            //Go to next series
-
-            seriesRightHb.clicked = false;
-
-            int current = loadouts.indexOf(startingLoadout);
-            if (current >= (loadouts.size() - 1))
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(0);
-            }
-            else
-            {
-                GR.Animator.Data.SelectedLoadout = loadouts.get(current + 1);
-            }
-
-        }
-        else if (seriesHb.clicked || CInputActionSet.topPanel.isJustPressed()) {
-            //Go to random series
-
-            seriesHb.clicked = false;
-
-            if (availableLoadouts.size() > 1) {
-                while (startingLoadout == GR.Animator.Data.SelectedLoadout) {
-                    GR.Animator.Data.SelectedLoadout = GameUtilities.GetRandomElement(availableLoadouts, RNG);
-                }
-            }
-        }
 
         Hitbox seedHb = _seedHb.Get(__instance);
         float seedRightWidth = seedHb.cX + seedHb.width + 2.5F;
 
-        seriesleftHb.move(seedRightWidth - 70.0F * 0.5F, seedHb.cY);
+        SeriesLeftButton.SetPosition(seedRightWidth - 70.0F * 0.5F, seedHb.cY);
+        SeriesDropdown.SetPosition(SeriesLeftButton.hb.x + SeriesLeftButton.hb.width + (20 * Settings.scale), SeriesLeftButton.hb.y);
+        SeriesRightButton.SetPosition(SeriesDropdown.hb.x + SeriesDropdown.hb.width + (40 * Settings.scale), seedHb.cY);
 
-        seriesHb.width = FontHelper.getSmartWidth(seriesFont, seriesLabel, 9999f, 0f);
-        seriesHb.move(seedRightWidth + 10.0F * 1.5F + (seriesHb.width/2), seedHb.cY);
-
-        seriesRightHb.move(seedRightWidth + seriesHb.width + 20.0F * 1.5F + 70.0F * 1.5F, seedHb.cY);
-
-        seriesleftHb.update();
-        seriesRightHb.update();
-        seriesHb.update();
+        SeriesLeftButton.TryUpdate();
+        SeriesDropdown.TryUpdate();
+        SeriesRightButton.TryUpdate();
 
         startingLoadout = GR.Animator.Data.SelectedLoadout;
     }
@@ -330,6 +284,7 @@ public class CustomModeScreenPatch {
         }
 
         displaySeries = false;
+        forceStopScroll = false;
     }
 
     private static boolean IsModNoDisplaySeries(CustomMod mod)
@@ -343,5 +298,24 @@ public class CustomModeScreenPatch {
         }
 
         return false;
+    }
+
+    private static void ChangeLoadout(int index)
+    {
+        int actualIndex = index % loadouts.size();
+        if (actualIndex < 0) {
+            actualIndex = loadouts.size() - 1;
+        }
+        ChangeLoadout(loadouts.get(actualIndex));
+    }
+
+    private static void ChangeLoadout(AnimatorLoadout loadout)
+    {
+        GR.Animator.Data.SelectedLoadout = loadout;
+        SeriesDropdown.SetSelection(GR.Animator.Data.SelectedLoadout, false);
+    }
+
+    private static boolean ShouldHideSeries() {
+        return (SeriesLeftButton == null || SeriesRightButton == null || SeriesDropdown == null || !displaySeries);
     }
 }

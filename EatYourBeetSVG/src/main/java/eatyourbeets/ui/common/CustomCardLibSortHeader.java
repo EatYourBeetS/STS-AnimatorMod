@@ -112,6 +112,10 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     @Override
     public void setGroup(CardGroup group)
     {
+        GR.UI.CardFilters.Clear(false);
+        if (this.group != null && this.originalGroup != null) {
+            this.group.group = this.originalGroup;
+        }
         this.originalGroup = new ArrayList<>(group.group);
         if (group.group.size() > 0) {
             fakeLibraryCard.current_x = group.group.get(0).current_x;

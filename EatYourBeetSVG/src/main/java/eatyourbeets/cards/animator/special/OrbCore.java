@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,7 +10,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
@@ -95,8 +95,8 @@ public abstract class OrbCore extends AnimatorCard
             cores2.Add(new OrbCore_Chaos());
             cores2.Add(new OrbCore_Water());
 
-            cores.AddAll(cores0.GetInnerList(),8);
-            cores.AddAll(cores1.GetInnerList(), 5);
+            cores.AddAll(cores0.GetInnerList(),10);
+            cores.AddAll(cores1.GetInnerList(), 6);
             cores.AddAll(cores2.GetInnerList(), 2);
         }
     }
@@ -216,7 +216,7 @@ public abstract class OrbCore extends AnimatorCard
         @Override
         public void OnOrbPassiveEffect(AbstractOrb orb) {
             if (Chaos.class.equals(card.GetOrb()) && Chaos.ORB_ID.equals(orb.ID)) {
-                AnimatorCard c = QuestionMarkAction.GetRandomCard();
+                AbstractCard c = GameUtilities.GetCardPoolInCombat(CardRarity.COMMON).Retrieve(rng);
                 if (c != null)
                 {
                     GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));

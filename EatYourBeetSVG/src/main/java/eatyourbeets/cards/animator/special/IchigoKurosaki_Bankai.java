@@ -17,7 +17,6 @@ public class IchigoKurosaki_Bankai extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IchigoKurosaki_Bankai.class)
             .SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.ALL)
-            .SetColor(CardColor.COLORLESS)
             .SetSeries(IchigoKurosaki.DATA.Series);
 
     public IchigoKurosaki_Bankai()

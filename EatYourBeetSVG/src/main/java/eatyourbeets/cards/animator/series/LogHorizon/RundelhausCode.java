@@ -36,7 +36,7 @@ public class RundelhausCode extends AnimatorCard
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.General, 7);
+        SetAffinityRequirement(Affinity.General, 6);
     }
 
     @Override

@@ -72,7 +72,7 @@ public class Chung extends AnimatorCard
             GameActions.Bottom.Add(new RemoveOrb(orb));
         }
         else {
-            GameActions.Bottom.Exhaust(this);
+            GameActions.Last.Exhaust(this);
         }
     }
 }

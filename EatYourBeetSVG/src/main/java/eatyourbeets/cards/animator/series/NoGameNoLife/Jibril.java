@@ -115,8 +115,9 @@ public class Jibril extends AnimatorCard implements OnClickablePowerUsed
     }
 
     @Override
-    public void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target) {
+    public boolean OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target) {
         costReduction -= 1;
         GameActions.Bottom.Callback(this::RefreshCost);
+        return true;
     }
 }

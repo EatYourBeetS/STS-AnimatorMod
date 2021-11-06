@@ -366,12 +366,14 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public static void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
+    public static boolean OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
     {
+        boolean shouldPayCost = true;
         for (OnClickablePowerUsed s : onClickablePowerUsed.GetSubscribers())
         {
-            s.OnClickablePowerUsed(power, target);
+            shouldPayCost = shouldPayCost & s.OnClickablePowerUsed(power, target);
         }
+        return shouldPayCost;
     }
 
     public static void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)

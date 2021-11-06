@@ -57,7 +57,7 @@ public class Kyubey extends AnimatorCard
         }
         if (soul.get() < secondaryValue) {
             GameActions.Bottom.Purge(this).ShowEffect(true);
-            GameActions.Bottom.Add(new CreateRandomCurses(1, player.hand));
+            GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, player.hand));
         }
     }
 

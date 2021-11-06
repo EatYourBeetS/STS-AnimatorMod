@@ -1,10 +1,6 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
-import eatyourbeets.cards.animator.beta.colorless.Clownpiece;
-import eatyourbeets.cards.animator.beta.series.TouhouProject.AyaShameimaru;
-import eatyourbeets.cards.animator.beta.series.TouhouProject.MarisaKirisame;
-import eatyourbeets.cards.animator.beta.series.TouhouProject.MayumiJoutouguu;
-import eatyourbeets.cards.animator.beta.series.TouhouProject.ReimuHakurei;
+import eatyourbeets.cards.animator.beta.series.TouhouProject.*;
 import eatyourbeets.cards.animator.beta.ultrarare.YuyukoSaigyouji;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -24,7 +20,8 @@ public class Loadout_TouhouProject extends AnimatorLoadout
         AddStarterCard(MarisaKirisame.DATA, 4);
         AddStarterCard(ReimuHakurei.DATA, 5);
         AddStarterCard(MayumiJoutouguu.DATA, 5);
-        AddStarterCard(Clownpiece.DATA, 9);
+        AddStarterCard(YuukaKazami.DATA, 7);
+        AddStarterCard(Cirno.DATA, 11);
     }
 
     @Override

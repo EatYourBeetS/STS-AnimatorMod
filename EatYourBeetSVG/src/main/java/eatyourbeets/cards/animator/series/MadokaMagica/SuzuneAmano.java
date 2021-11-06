@@ -47,7 +47,7 @@ public class SuzuneAmano extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
 
-        if (IsStarter())
+        if (TrySpendAffinity(Affinity.Blue))
         {
             GameActions.Bottom.Draw(JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)));
         }
@@ -63,7 +63,7 @@ public class SuzuneAmano extends AnimatorCard
         {
             if (cards != null && cards.size() > 0)
             {
-                GameActions.Bottom.ApplyBurning(TrySpendAffinity(Affinity.Blue) && GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
+                GameActions.Bottom.ApplyBurning(GameUtilities.IsHindrance(cards.get(0)) ? TargetHelper.Enemies() : TargetHelper.Normal(enemy), magicNumber);
             }
         });
     }

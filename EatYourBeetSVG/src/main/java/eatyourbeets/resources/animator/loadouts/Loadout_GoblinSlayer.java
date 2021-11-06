@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.series.GoblinSlayer.*;
+import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.animator.ultrarare.Hero;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,6 +24,7 @@ public class Loadout_GoblinSlayer extends AnimatorLoadout
         AddStarterCard(Spearman.DATA, 8);
         AddStarterCard(Witch.DATA, 9);
         AddStarterCard(GoblinSlayer.DATA, 25);
+        AddStarterCard(Status_Wound.DATA, -4);
     }
 
     @Override

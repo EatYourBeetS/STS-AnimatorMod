@@ -20,10 +20,11 @@ public class Loadout_MadokaMagica extends AnimatorLoadout
         AddStarterCard(IrohaTamaki.DATA, 5);
         AddStarterCard(FeliciaMitsuki.DATA, 4);
         AddStarterCard(OrikoMikuni.DATA, 4);
-        AddStarterCard(YuiTsuruno.DATA, 5);
-        AddStarterCard(KyokoSakura.DATA, 6);
+        AddStarterCard(KyokoSakura.DATA, 7);
+        AddStarterCard(YuiTsuruno.DATA, 7);
         AddStarterCard(NagisaMomoe.DATA, 10);
-        AddStarterCard(Kyubey.DATA, 20);
+        AddStarterCard(SayakaMiki.DATA, 10);
+        AddStarterCard(Kyubey.DATA, 25);
         AddStarterCard(Curse_GriefSeed.DATA, -2);
     }
 

@@ -108,7 +108,7 @@ public class CardKeywordFilters extends GUIElement
                 .SetBorder(GR.Common.Images.HexagonalButtonBorder.Texture(), Color.WHITE)
                 .SetColor(Color.FIREBRICK)
                 .SetPosition(Settings.WIDTH * 0.96f, Settings.HEIGHT * 0.86f).SetText("Clear")
-                .SetOnClick(this::Clear);
+                .SetOnClick(() -> this.Clear(true));
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
                 .SetOnScroll(this::OnScroll);
         SeriesDropdown = new GUI_Dropdown<CardSeries>(new AdvancedHitbox(hb.x - SPACING, hb.y + SPACING * 3, Scale(240), Scale(48)), cs -> cs.LocalizedName)
@@ -123,19 +123,20 @@ public class CardKeywordFilters extends GUIElement
                         onClick.Invoke(null);
                     }
                 })
-                .SetIsMultiSelect(true);
+                .SetIsMultiSelect(true)
+                .SetCanAutosizeButton(true);
         seriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
                 new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 7, Scale(100), Scale(48)))
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
                 .SetText(GR.Animator.Strings.SeriesUI.SeriesUI)
                 .SetColor(Settings.GOLD_COLOR)
-                .SetAlignment(0.5f, 0.5f, false);
+                .SetAlignment(0.5f, 0.0f, false);
         keywordsSectionLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
                 new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 2, Scale(100), Scale(48)))
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
                 .SetText(GR.Animator.Strings.SeriesUI.Keywords)
                 .SetColor(Settings.GOLD_COLOR)
-                .SetAlignment(0.5f, 0.5f, false);
+                .SetAlignment(0.5f, 0.0f, false);
     }
 
     public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards) {
@@ -183,11 +184,12 @@ public class CardKeywordFilters extends GUIElement
         SetActive(false);
     }
 
-    public void Clear() {
+
+    public void Clear(boolean shouldInvoke) {
         CurrentFilters.clear();
         CurrentSeries.clear();
         SeriesDropdown.SetSelectionIndices(new int[]{}, false);
-        if (onClick != null) {
+        if (shouldInvoke && onClick != null) {
             onClick.Invoke(null);
         }
     }
@@ -287,7 +289,9 @@ public class CardKeywordFilters extends GUIElement
 
     protected void OnScroll(float newPercent)
     {
-        scrollDelta = MathHelper.valueFromPercentBetween(lowerScrollBound, upperScrollBound, newPercent);
+        if (!isScreenDisabled) {
+            scrollDelta = MathHelper.valueFromPercentBetween(lowerScrollBound, upperScrollBound, newPercent);
+        }
     }
 
     private void UpdateInput()

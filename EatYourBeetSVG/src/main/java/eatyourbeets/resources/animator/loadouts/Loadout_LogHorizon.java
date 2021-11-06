@@ -22,6 +22,8 @@ public class Loadout_LogHorizon extends AnimatorLoadout
         AddStarterCard(Marielle.DATA, 7);
         AddStarterCard(Naotsugu.DATA, 8);
         AddStarterCard(RundelhausCode.DATA, 11);
+        AddStarterCard(Nyanta.DATA, 11);
+        AddStarterCard(Shiroe.DATA, 24);
     }
 
     @Override

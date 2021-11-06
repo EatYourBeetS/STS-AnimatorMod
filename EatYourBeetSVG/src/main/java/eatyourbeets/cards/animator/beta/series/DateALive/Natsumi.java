@@ -27,13 +27,13 @@ public class Natsumi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
-        SetUpgrade(0,0, 1);
+        Initialize(2, 0, 2, 2);
+        SetUpgrade(0,0, 1, 1);
         SetAffinity_Blue(2, 0, 2);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
-        SetAffinityRequirement(Affinity.Light, 4);
+        SetAffinityRequirement(Affinity.Blue, 6);
+        SetAffinityRequirement(Affinity.Light, 6);
     }
 
     @Override
@@ -59,10 +59,12 @@ public class Natsumi extends AnimatorCard
 
         if (player.filledOrbCount() > 0) {
             GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Light).AddConditionalCallback(() -> {
-                AbstractOrb orb = GameUtilities.GetFirstOrb(null);
-                GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb), false);
-                GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb), false);
-                GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
+                for (int i = 0; i < Math.min(secondaryValue, player.filledOrbCount()); i++) {
+                    AbstractOrb orb = player.orbs.get(0);
+                    GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb) * 2, false);
+                    GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb) * 2, false);
+                    GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
+                }
             });
         }
 

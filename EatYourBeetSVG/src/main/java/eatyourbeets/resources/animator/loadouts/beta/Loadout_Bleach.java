@@ -19,10 +19,11 @@ public class Loadout_Bleach extends AnimatorLoadout
     public void AddStarterCards()
     {
         AddStarterCard(RenjiAbarai.DATA, 4);
-        AddStarterCard(UryuuIshida.DATA, 4);
         AddStarterCard(OrihimeInoue.DATA, 4);
         AddStarterCard(YasutoraSado.DATA, 5);
+        AddStarterCard(UryuuIshida.DATA, 5);
         AddStarterCard(IchigoKurosaki.DATA, 7);
+        AddStarterCard(RukiaKuchiki.DATA, 11);
     }
 
 

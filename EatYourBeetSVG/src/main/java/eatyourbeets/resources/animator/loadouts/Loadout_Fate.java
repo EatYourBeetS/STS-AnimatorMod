@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.series.Fate.*;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.animator.ultrarare.JeanneDArc;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,6 +24,7 @@ public class Loadout_Fate extends AnimatorLoadout
         AddStarterCard(RinTohsaka.DATA, 8);
         AddStarterCard(Berserker.DATA, 10);
         AddStarterCard(EmiyaShirou.DATA, 11);
+        AddStarterCard(Status_Dazed.DATA, -3);
     }
 
     @Override

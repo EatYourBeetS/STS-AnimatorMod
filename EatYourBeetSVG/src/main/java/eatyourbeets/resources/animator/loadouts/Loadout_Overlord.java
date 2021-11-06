@@ -23,6 +23,7 @@ public class Loadout_Overlord extends AnimatorLoadout
         AddStarterCard(Sebas.DATA, 7);
         AddStarterCard(CZDelta.DATA, 8);
         AddStarterCard(AuraBellaFiora.DATA, 11);
+        AddStarterCard(MareBelloFiore.DATA, 12);
     }
 
     @Override

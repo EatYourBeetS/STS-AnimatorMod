@@ -6,7 +6,7 @@ import eatyourbeets.interfaces.subscribers.OnClickablePowerUsed;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.EYBClickablePower;
-import eatyourbeets.utilities.GameActions;
+import eatyourbeets.powers.PowerTriggerConditionType;
 
 public class InspirationPower extends CommonPower implements OnClickablePowerUsed
 {
@@ -36,11 +36,13 @@ public class InspirationPower extends CommonPower implements OnClickablePowerUse
     }
 
     @Override
-    public void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
+    public boolean OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target)
     {
-        ReducePower(1);
-        GameActions.Bottom.GainEnergy(1);
+        if (!power.triggerCondition.type.equals(PowerTriggerConditionType.None)) {
+            ReducePower(1);
 
-        this.flashWithoutSound();
+            this.flashWithoutSound();
+        }
+        return false;
     }
 }

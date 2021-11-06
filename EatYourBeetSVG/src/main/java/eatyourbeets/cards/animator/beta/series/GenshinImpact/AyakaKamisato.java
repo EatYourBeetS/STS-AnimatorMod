@@ -17,18 +17,21 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SelfImmolationPower;
 import eatyourbeets.powers.common.DelayedDamagePower;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 16;
+    public static final int THRESHOLD = 18;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, THRESHOLD);
+        Initialize(20, 0, 3, 4);
         SetUpgrade(5, 0, 0, 0);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Green(1, 0, 0);
@@ -41,12 +44,19 @@ public class AyakaKamisato extends AnimatorCard {
     }
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(THRESHOLD);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.CLAW)
                 .forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.TEAL, Color.LIGHT_GRAY, Color.SKY, Color.BLUE).duration * 0.1f));
         GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
-        GameActions.Bottom.StackPower(new AyakaKamisatoPower(p, 1));
+        GameActions.Bottom.StackPower(new AyakaKamisatoPower(p, magicNumber));
+        GameActions.Bottom.TakeDamage(secondaryValue, AttackEffects.CLAW).IsCancellable(false);
     }
 
     public static class AyakaKamisatoPower extends AnimatorPower
@@ -71,7 +81,9 @@ public class AyakaKamisato extends AnimatorCard {
         {
             super.onPlayCard(card,m);
             if (card.block > 0) {
-                ApplyVulnerable(amount);
+                if (GameUtilities.GetPowerAmount(owner, SelfImmolationPower.POWER_ID) > 0 && amount > 0) {
+                    GameActions.Bottom.GainTemporaryThorns(amount);
+                }
                 this.flash();
             }
         }
@@ -89,12 +101,6 @@ public class AyakaKamisato extends AnimatorCard {
             super.onApplyPower(power, target, source);
 
             CheckCondition();
-        }
-
-        private void ApplyVulnerable(int amount) {
-            if (GameUtilities.GetPowerAmount(owner, SelfImmolationPower.POWER_ID) > 0 && amount > 0) {
-                GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1);
-            }
         }
 
         private void CheckCondition() {

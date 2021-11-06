@@ -38,7 +38,7 @@ public class Ren extends AnimatorCard
                GameActions.Bottom.ChannelOrb(new Dark());
            }
            else {
-               GameActions.Bottom.TriggerOrbPassive(1, true, false);
+               GameActions.Bottom.TriggerOrbPassive(1, false, false).SetFilter(o -> Dark.ORB_ID.equals(o.ID));
            }
         }).AddCallback(m, (enemy, __) -> {
             int darkCount = GameUtilities.GetOrbCount(Dark.ORB_ID);

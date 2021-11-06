@@ -20,10 +20,9 @@ public class Magilou_Bienfu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 3);
 
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1);
 
         SetLoyal(true);
         SetEthereal(true);

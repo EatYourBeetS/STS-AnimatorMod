@@ -34,7 +34,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected final ArrayList<AnimatorLoadout> availableLoadouts;
     protected final ArrayList<AnimatorLoadout> loadouts;
 
-    protected GUI_Dropdown SeriesDropdown;
+    protected GUI_Dropdown<AnimatorLoadout> SeriesDropdown;
     protected GUI_Button SeriesLeftButton;
     protected GUI_Button SeriesRightButton;
     protected GUI_Button RandomizeButton;

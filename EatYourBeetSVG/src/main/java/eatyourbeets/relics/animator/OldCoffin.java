@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TupleT2;
 import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.TupleT2;
 import eatyourbeets.utilities.WeightedList;
 
 public class OldCoffin extends AnimatorRelic
@@ -23,9 +23,11 @@ public class OldCoffin extends AnimatorRelic
         {
             Debuffs.Add(new TupleT2<>(PowerHelper.Vulnerable, 1), 5);
             Debuffs.Add(new TupleT2<>(PowerHelper.Weak, 1), 5);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Shackles, 2), 4);
             Debuffs.Add(new TupleT2<>(PowerHelper.Poison, 3), 3);
             Debuffs.Add(new TupleT2<>(PowerHelper.Burning, 3), 3);
-            Debuffs.Add(new TupleT2<>(PowerHelper.Freezing, 2), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Freezing, 3), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Blinded, 2), 2);
             Debuffs.Add(new TupleT2<>(PowerHelper.Constricted, 2), 2);
         }
     }

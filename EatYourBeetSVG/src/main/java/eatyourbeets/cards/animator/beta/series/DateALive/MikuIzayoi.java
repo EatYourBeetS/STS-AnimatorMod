@@ -23,8 +23,8 @@ public class MikuIzayoi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
-        SetAffinity_Light(1, 1, 0);
+        Initialize(0, 0, 2, 4);
+        SetAffinity_Light(1, 1, 1);
         SetEthereal(true);
         SetHarmonic(true);
     }
@@ -63,18 +63,18 @@ public class MikuIzayoi extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.GainInspiration(secondaryValue);
+        GameActions.Bottom.GainInspiration(1);
         if (CheckSpecialCondition(true)) {
-            GameActions.Bottom.GainInspiration(secondaryValue);
+            GameActions.Bottom.GainInspiration(1);
         }
 
-        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard)) {
-            GameActions.Bottom.Motivate(secondaryValue);
+        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
+            GameActions.Bottom.Motivate(1);
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= magicNumber;
+        return JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= secondaryValue;
     }
 }

@@ -5,5 +5,5 @@ import eatyourbeets.powers.EYBClickablePower;
 
 public interface OnClickablePowerUsed
 {
-    void OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target);
+    boolean OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target);
 }

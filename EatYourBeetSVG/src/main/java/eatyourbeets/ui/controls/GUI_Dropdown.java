@@ -37,25 +37,26 @@ public class GUI_Dropdown<T> extends GUIElement
     private static final float SCROLLBAR_PADDING = 8.0F * Settings.scale;
     private static final float TOGGLE_OFFSET = 5f;
 
-    public final ArrayList<DropdownRow<T>> rows = new ArrayList<>();
-    protected final TreeSet<Integer> currentIndices = new TreeSet<>();
     protected ActionT1<ArrayList<T>> onChange;
     protected ActionT1<Boolean> onOpenOrClose;
     protected BitmapFont font;
     protected FuncT1<String, T> labelFunction;
+    protected GUI_VerticalScrollBar scrollBar;
     protected boolean isOpen;
     protected boolean rowsHaveBeenPositioned;
     protected boolean shouldSnapCursorToSelectedIndex;
+    protected final GUI_Button button;
+    protected final GUI_Button clearButton;
+    protected final TreeSet<Integer> currentIndices = new TreeSet<>();
     protected float fontScale;
-    protected float rowWidth;
     protected float rowHeight;
+    protected float rowWidth;
     protected int maxRows;
     protected int topVisibleRowIndex;
-    public final AdvancedHitbox hb;
-    protected final GUI_Button button;
-    protected GUI_VerticalScrollBar scrollBar;
-    public boolean isMultiSelect;
     public boolean canAutosizeButton;
+    public boolean isMultiSelect;
+    public final AdvancedHitbox hb;
+    public final ArrayList<DropdownRow<T>> rows = new ArrayList<>();
 
     public GUI_Dropdown(AdvancedHitbox hb) {
         this(hb, Object::toString, new ArrayList<>(), EYBFontHelper.CardTooltipFont, DEFAULT_MAX_ROWS, false);
@@ -91,7 +92,21 @@ public class GUI_Dropdown<T> extends GUIElement
                 .SetFont(font, fontScale)
                 .SetText(currentIndices.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected)
                 .SetOnClick(this::OpenOrCloseMenu);
+        this.clearButton = new GUI_Button(GR.Common.Images.SquaredButton.Texture(), new AdvancedHitbox(hb.x + hb.width, hb.y, hb.height,hb.height).SetIsPopupCompatible(true))
+                .SetColor(Color.GRAY)
+                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.3f)
+                .SetText("X")
+                .SetOnClick(() -> {SetSelectionIndices(new int[] {}, true);});
         Autosize();
+    }
+
+    public GUI_Dropdown<T> SetCanAutosizeButton(boolean value) {
+        this.canAutosizeButton = value;
+        if (this.canAutosizeButton) {
+            Autosize();
+        }
+
+        return this;
     }
 
     public GUI_Dropdown<T> SetIsMultiSelect(boolean value) {
@@ -143,6 +158,7 @@ public class GUI_Dropdown<T> extends GUIElement
         this.hb.translate(x, y);
         this.button.hb.translate(x, y);
         this.scrollBar.hb.translate(x + hb.width - SCROLLBAR_PADDING, y + CalculateScrollbarOffset());
+        this.clearButton.hb.translate(x + hb.width, y);
         return this;
     }
 
@@ -186,6 +202,8 @@ public class GUI_Dropdown<T> extends GUIElement
         this.rowHeight = CalculateRowHeight();
         if (canAutosizeButton) {
             hb.resize(rowWidth, hb.height);
+            button.hb.resize(rowWidth, hb.height);
+            this.clearButton.hb.translate(hb.x + hb.width, hb.y);
         }
         for (DropdownRow<T> row : rows) {
             row.hb.resize(rowWidth,rowHeight);
@@ -195,7 +213,7 @@ public class GUI_Dropdown<T> extends GUIElement
     }
 
     public boolean AreAnyItemsHovered() {
-        if (this.hb.hovered) {
+        if (this.hb.hovered || this.clearButton.hb.hovered) {
             return true;
         }
         for(int i = 0; i < this.visibleRowCount(); ++i) {
@@ -262,10 +280,16 @@ public class GUI_Dropdown<T> extends GUIElement
     public void Update() {
         this.hb.update();
         this.button.Update();
-
+        if (this.isMultiSelect && currentIndices.size() != 0) {
+            this.clearButton.Update();
+        }
         if (this.rows.size() != 0 && this.isOpen) {
                 boolean isHoveringOver = this.hb.hovered;
                 this.updateNonMouseInput();
+
+                if (this.isMultiSelect) {
+                    isHoveringOver = isHoveringOver | this.clearButton.hb.hovered;
+                }
 
                 for(int i = 0; i < rows.size(); ++i) {
                     if (this.rows.get(i).update(i >= topVisibleRowIndex || i < topVisibleRowIndex + visibleRowCount(), currentIndices.contains(i))) {
@@ -373,6 +397,9 @@ public class GUI_Dropdown<T> extends GUIElement
 
         this.hb.render(sb);
         this.button.TryRender(sb);
+        if (this.isMultiSelect && currentIndices.size() != 0) {
+            this.clearButton.Render(sb);
+        }
         if (this.rows.size() > 0) {
             int rowCount = this.isOpen ? this.visibleRowCount() : 0;
             this.layoutRowsBelow(hb.x, hb.y);

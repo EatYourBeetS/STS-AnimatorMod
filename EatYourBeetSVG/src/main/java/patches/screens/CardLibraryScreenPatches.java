@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
@@ -96,6 +98,19 @@ public class CardLibraryScreenPatches
             {
                 _grabbedScreen.Set(__instance, false);
             }
+        }
+    }
+
+    @SpirePatch(clz = CardLibraryScreen.class, method = "updateScrolling")
+    public static class CardLibraryScreen_UpdateScrolling
+    {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractCard> Prefix(CardLibraryScreen __instance)
+        {
+            if (GR.UI.CardFilters.TryUpdate()) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
         }
     }
 

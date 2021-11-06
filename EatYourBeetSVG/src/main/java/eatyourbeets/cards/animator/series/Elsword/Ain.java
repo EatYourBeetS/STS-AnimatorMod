@@ -24,7 +24,7 @@ public class Ain extends AnimatorCard
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(1, 0, 0);
+
 
         SetSynergy(Synergies.Elsword);
         SetSpellcaster();

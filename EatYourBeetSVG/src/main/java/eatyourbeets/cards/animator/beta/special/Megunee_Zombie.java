@@ -26,7 +26,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
 
         Initialize(13, 0, 6, 10);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 0, 3);
+
 
         SetHealing(true);
         SetExhaust(true);

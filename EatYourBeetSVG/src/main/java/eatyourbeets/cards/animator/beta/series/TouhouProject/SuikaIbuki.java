@@ -23,7 +23,7 @@ public class SuikaIbuki extends AnimatorCard
 
         Initialize(7, 6, 1, 1);
         SetUpgrade(2, 1, 0, 0);
-        SetScaling(0, 0, 1);
+
         SetEthereal(true);
 
         SetSynergy(Synergies.TouhouProject);

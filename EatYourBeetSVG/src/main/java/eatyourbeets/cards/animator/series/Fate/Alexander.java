@@ -18,7 +18,7 @@ public class Alexander extends AnimatorCard
 
         Initialize(6, 0);
         SetUpgrade(1, 0);
-        SetScaling(0, 0, 1);
+
 
         SetMultiDamage(true);
         SetSynergy(Synergies.Fate);

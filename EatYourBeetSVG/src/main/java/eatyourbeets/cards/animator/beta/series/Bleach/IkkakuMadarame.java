@@ -26,7 +26,7 @@ public class IkkakuMadarame extends AnimatorCard
 
         Initialize(4, 0, 0, ForcePower.GetThreshold(2));
         SetUpgrade(3, 0, 0);
-        SetScaling(0,1,1);
+
 
         SetSynergy(Synergies.Bleach);
     }

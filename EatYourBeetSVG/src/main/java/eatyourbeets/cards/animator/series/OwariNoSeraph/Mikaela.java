@@ -21,7 +21,7 @@ public class Mikaela extends AnimatorCard
 
         Initialize(6, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.OwariNoSeraph);
     }

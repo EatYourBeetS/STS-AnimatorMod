@@ -22,7 +22,7 @@ public class Jibril extends AnimatorCard
 
         Initialize(6, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(3, 0, 0);
+
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.NoGameNoLife);

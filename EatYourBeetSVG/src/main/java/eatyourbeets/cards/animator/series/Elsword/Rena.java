@@ -27,7 +27,7 @@ public class Rena extends AnimatorCard
 
         Initialize(0, 3, 0, 2);
         SetUpgrade(0, 3);
-        SetScaling(0, 1, 0);
+
 
         SetSynergy(Synergies.Elsword);
     }

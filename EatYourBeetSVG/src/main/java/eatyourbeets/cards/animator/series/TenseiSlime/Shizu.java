@@ -20,7 +20,7 @@ public class Shizu extends AnimatorCard
 
         Initialize(13, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 2, 0);
+
 
         SetExhaust(true);
         SetSynergy(Synergies.TenSura);

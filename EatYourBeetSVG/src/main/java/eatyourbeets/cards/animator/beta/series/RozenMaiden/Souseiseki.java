@@ -25,14 +25,14 @@ public class Souseiseki extends AnimatorCard
         Initialize(10, 0, 0, 0);
         SetUpgrade(2, 0, 0, 0);
         
-        SetScaling(0, 1, 0);
+
         SetSynergy(Synergies.RozenMaiden);
     }
 
     @Override
     protected void OnUpgrade()
     {
-    	SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
+
     }
 
     @Override

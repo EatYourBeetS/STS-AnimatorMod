@@ -31,7 +31,7 @@ public class Spearman extends AnimatorCard
 
         Initialize(8, 0, 1);
         SetUpgrade(4, 0);
-        SetScaling(0, 1, 1);
+
 
         SetSynergy(Synergies.GoblinSlayer);
     }

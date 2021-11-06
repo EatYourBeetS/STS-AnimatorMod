@@ -20,7 +20,7 @@ public class AngelAlter extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(10, 0, 1, 0);
-        SetScaling(0, 2, 2);
+
 
         SetSynergy(Synergies.AngelBeats);
         AfterLifeMod.Add(this);
@@ -29,7 +29,7 @@ public class AngelAlter extends AnimatorCard_UltraRare
     @Override
     protected void OnUpgrade()
     {
-        SetScaling(0, 3, 3);
+
     }
 
     @Override

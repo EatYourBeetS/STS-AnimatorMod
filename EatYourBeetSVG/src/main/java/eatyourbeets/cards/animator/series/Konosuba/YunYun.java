@@ -22,7 +22,7 @@ public class YunYun extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(4, 0);
-        SetScaling(1, 0, 0);
+
 
         SetSynergy(Synergies.Konosuba);
         SetSpellcaster();

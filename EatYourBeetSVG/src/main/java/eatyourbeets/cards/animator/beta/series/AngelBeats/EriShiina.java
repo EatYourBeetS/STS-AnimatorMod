@@ -30,7 +30,7 @@ public class EriShiina extends AnimatorCard
 
         Initialize(7, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0, 1, 0);
+
 
         SetSynergy(Synergies.AngelBeats);
         SetMartialArtist();

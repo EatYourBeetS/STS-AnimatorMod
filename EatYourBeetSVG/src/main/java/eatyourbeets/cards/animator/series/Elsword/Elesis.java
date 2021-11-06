@@ -156,7 +156,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(3, 0, 5);
                 SetUpgrade(0, 0, 2);
-                SetScaling(0, 1, 1);
+
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -171,7 +171,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(6, 0, 0);
                 SetUpgrade(4, 0, 0);
-                SetScaling(0, 1, 0);
+
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -186,7 +186,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                 Initialize(9, 0, 3);
                 SetUpgrade(0, 0, -1);
-                SetScaling(0, 0, 2);
+
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

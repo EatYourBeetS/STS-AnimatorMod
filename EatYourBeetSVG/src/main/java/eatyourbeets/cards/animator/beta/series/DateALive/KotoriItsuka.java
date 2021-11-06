@@ -24,7 +24,7 @@ public class KotoriItsuka extends AnimatorCard
 
         Initialize(6, 0, 5, 5);
         SetUpgrade(0, 0, 0);
-        SetScaling(0,0,1);
+
         SetExhaust(true);
 
         SetSynergy(Synergies.DateALive);

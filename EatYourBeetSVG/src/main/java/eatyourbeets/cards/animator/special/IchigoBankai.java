@@ -22,7 +22,7 @@ public class IchigoBankai extends AnimatorCard
 
         Initialize(8, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 3, 0);
+
 
         SetExhaust(true);
         SetMultiDamage(true);

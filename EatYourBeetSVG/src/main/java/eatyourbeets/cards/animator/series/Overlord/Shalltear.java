@@ -22,7 +22,7 @@ public class Shalltear extends AnimatorCard
 
         Initialize(3, 0, 3, 1);
         SetUpgrade(0, 0, 0);
-        SetScaling(1, 1, 1);
+
 
         SetEthereal(true);
         SetSynergy(Synergies.Overlord);

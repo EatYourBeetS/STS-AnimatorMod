@@ -22,7 +22,7 @@ public class LizardPriest extends AnimatorCard
 
         Initialize(0, 7, 1);
         SetUpgrade(0, 2, 1);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.GoblinSlayer);
     }

@@ -26,7 +26,7 @@ public class UneriGinkaku extends AnimatorCard
 
         Initialize(13, 0, 3);
         SetUpgrade(4, 0, 1);
-        SetScaling(0, 3, 0);
+
 
         SetEthereal(true);
         SetSynergy(Synergies.Katanagatari);

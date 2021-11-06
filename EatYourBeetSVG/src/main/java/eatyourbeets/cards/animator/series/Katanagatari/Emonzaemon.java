@@ -31,7 +31,7 @@ public class Emonzaemon extends AnimatorCard
 
         Initialize(4, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
+
 
         SetSynergy(Synergies.Katanagatari);
         SetMartialArtist();

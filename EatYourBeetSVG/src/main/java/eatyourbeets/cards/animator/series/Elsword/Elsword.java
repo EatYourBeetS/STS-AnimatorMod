@@ -20,7 +20,7 @@ public class Elsword extends AnimatorCard
 
         Initialize(13, 0, 2);
         SetUpgrade(4,  0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetSynergy(Synergies.Elsword);
     }

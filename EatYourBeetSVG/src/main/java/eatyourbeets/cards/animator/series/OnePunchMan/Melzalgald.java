@@ -27,7 +27,7 @@ public class Melzalgald extends AnimatorCard
         super(DATA);
 
         Initialize(21, 0);
-        SetScaling(2, 2, 2);
+
 
         SetExhaust(true);
         SetSynergy(Synergies.OnePunchMan);

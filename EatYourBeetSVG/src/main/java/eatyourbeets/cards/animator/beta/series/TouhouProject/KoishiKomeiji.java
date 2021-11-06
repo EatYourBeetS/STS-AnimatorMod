@@ -20,7 +20,7 @@ public class KoishiKomeiji extends AnimatorCard
 
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 0, 0);
-        SetScaling(0, 0, 0);
+
         SetEthereal(true);
         SetSynergy(Synergies.TouhouProject);
     }

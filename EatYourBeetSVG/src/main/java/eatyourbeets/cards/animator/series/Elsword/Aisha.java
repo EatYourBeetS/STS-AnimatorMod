@@ -26,7 +26,7 @@ public class Aisha extends AnimatorCard
 
         Initialize(2, 0, 0);
         SetUpgrade(0, 0, 1);
-        SetScaling(1, 0, 0);
+
 
         SetSynergy(Synergies.Elsword);
         SetSpellcaster();

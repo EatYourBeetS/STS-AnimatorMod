@@ -21,7 +21,7 @@ public class Ara extends AnimatorCard
 
         Initialize(3, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
+
 
         SetSynergy(Synergies.Elsword);
         SetMartialArtist();

@@ -21,7 +21,7 @@ public class RinTohsaka extends AnimatorCard
 
         Initialize(0, 5, 0, 1);
         SetUpgrade(0, 1, 0, 1);
-        SetScaling(1, 0, 0);
+
 
         SetSynergy(Synergies.Fate);
         SetSpellcaster();

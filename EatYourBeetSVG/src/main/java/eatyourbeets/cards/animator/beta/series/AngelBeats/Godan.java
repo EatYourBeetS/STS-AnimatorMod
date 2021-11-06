@@ -21,7 +21,7 @@ public class Godan extends AnimatorCard
 
         Initialize(5, 0, 2);
         SetUpgrade(1, 0, 1);
-        SetScaling(0, 0, 1);
+
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
         SetSynergy(Synergies.AngelBeats);

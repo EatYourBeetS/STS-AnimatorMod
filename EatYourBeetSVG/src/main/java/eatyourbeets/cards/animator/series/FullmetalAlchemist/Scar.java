@@ -21,7 +21,7 @@ public class Scar extends AnimatorCard
 
         Initialize(14, 0);
         SetUpgrade(4, 0);
-        SetScaling(1, 0, 1);
+
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

@@ -244,7 +244,7 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
-                SetScaling(0, 3, 3);
+
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
@@ -261,7 +261,7 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[4], true);
 
                 Initialize(999, 0, 0, 0);
-                SetScaling(0, 99, 99);
+
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;

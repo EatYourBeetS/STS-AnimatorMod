@@ -21,7 +21,7 @@ public class KaguyaHouraisan extends AnimatorCard
 
         Initialize(10, 0, 4);
         SetUpgrade(0, 0, 1);
-        SetScaling(2, 0, 0);
+
 
         SetSpellcaster();
         SetSynergy(Synergies.TouhouProject);

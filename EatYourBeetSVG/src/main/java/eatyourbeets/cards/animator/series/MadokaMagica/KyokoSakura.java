@@ -19,7 +19,7 @@ public class KyokoSakura extends AnimatorCard
 
         Initialize(9, 0, 1);
         SetUpgrade(2, 0, 1);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.MadokaMagica);
     }

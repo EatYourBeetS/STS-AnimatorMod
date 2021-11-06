@@ -23,7 +23,7 @@ public class Sebas extends AnimatorCard
 
         Initialize(0, 6, 3);
         SetUpgrade(0, 3);
-        SetScaling(0, 1, 2);
+
 
         SetExhaust(true);
         SetSynergy(Synergies.Overlord);

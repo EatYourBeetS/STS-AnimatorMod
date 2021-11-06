@@ -20,7 +20,7 @@ public class Millim extends AnimatorCard
 
         Initialize(5, 0, 2);
         SetUpgrade(1, 0, 0);
-        SetScaling(1, 1, 1);
+
 
         SetUnique(true, true);
         SetSynergy(Synergies.TenSura);

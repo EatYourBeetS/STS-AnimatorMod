@@ -24,7 +24,7 @@ public class SatoriKomeiji extends AnimatorCard
 
         Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 0, 0);
-        SetScaling(0, 0, 0);
+
 
         SetCostUpgrade(-1);
         SetSynergy(Synergies.TouhouProject);

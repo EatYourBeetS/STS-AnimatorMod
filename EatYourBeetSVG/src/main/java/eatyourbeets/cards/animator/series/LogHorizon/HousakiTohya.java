@@ -23,7 +23,7 @@ public class HousakiTohya extends AnimatorCard
 
         Initialize(5, 0, 1, 3);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.LogHorizon);

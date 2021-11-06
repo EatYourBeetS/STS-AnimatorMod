@@ -24,7 +24,7 @@ public class Hero extends AnimatorCard_UltraRare
 
         Initialize(8, 0, 2);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetSynergy(Synergies.GoblinSlayer);
     }

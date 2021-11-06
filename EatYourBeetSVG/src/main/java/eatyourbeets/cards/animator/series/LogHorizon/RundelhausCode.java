@@ -30,7 +30,7 @@ public class RundelhausCode extends AnimatorCard
         Initialize(7, 0, 1, 3);
         SetUpgrade(0, 0, 1, 0);
 
-        SetScaling(1, 0, 0);
+
         SetSynergy(Synergies.LogHorizon);
         SetSpellcaster();
     }

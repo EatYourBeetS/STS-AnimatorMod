@@ -21,7 +21,7 @@ public class Lancer extends AnimatorCard
 
         Initialize(6, 0, 1);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetSynergy(Synergies.Fate);
         SetMartialArtist();

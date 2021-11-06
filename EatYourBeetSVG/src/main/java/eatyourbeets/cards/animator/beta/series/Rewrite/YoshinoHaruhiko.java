@@ -21,7 +21,7 @@ public class YoshinoHaruhiko extends AnimatorCard
 
         Initialize(3, 0, 2, 1);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.Rewrite);
         SetMartialArtist();

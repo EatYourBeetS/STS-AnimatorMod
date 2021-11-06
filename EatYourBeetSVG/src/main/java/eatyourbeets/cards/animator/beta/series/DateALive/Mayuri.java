@@ -24,7 +24,7 @@ public class Mayuri extends AnimatorCard
         Initialize(8, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetScaling(0,0, 2);
+
         SetSynergy(Synergies.DateALive);
     }
 

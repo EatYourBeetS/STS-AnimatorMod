@@ -24,7 +24,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
         Initialize(20, 2, 10);
         SetUpgrade(7, 0, 0);
 
-        SetScaling(0, 1, 1);
+
         SetMartialArtist();
         SetSynergy(Synergies.LogHorizon);
     }

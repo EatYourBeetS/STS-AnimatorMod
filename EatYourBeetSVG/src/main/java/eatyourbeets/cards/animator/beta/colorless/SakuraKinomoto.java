@@ -32,7 +32,7 @@ public class SakuraKinomoto extends AnimatorCard
 
         Initialize(17, 0, 2);
         SetUpgrade(0, 0, 1);
-        SetScaling(1,0,0);
+
 
         SetExhaust(true);
         SetSpellcaster();

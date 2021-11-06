@@ -22,7 +22,7 @@ public class Kuribayashi extends AnimatorCard
 
         Initialize(7, 0, 2, 3);
         SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.Gate);

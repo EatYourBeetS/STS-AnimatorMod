@@ -27,7 +27,7 @@ public class AcuraTooru extends AnimatorCard
 
         Initialize(3, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 1, 0);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.Chaika);

@@ -24,7 +24,7 @@ public class YuriNakamura extends AnimatorCard
 
         Initialize(4, 8, 1, 0);
         SetUpgrade(1, 2);
-        SetScaling(0, 1, 0);
+
         SetExhaust(true);
         SetSynergy(Synergies.AngelBeats);
     }

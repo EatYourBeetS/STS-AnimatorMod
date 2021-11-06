@@ -21,7 +21,7 @@ public class GoblinSlayer extends AnimatorCard
 
         Initialize(4, 4);
         SetUpgrade(3, 3);
-        SetScaling(1, 0, 1);
+
 
         SetRetain(true);
         SetSynergy(Synergies.GoblinSlayer);

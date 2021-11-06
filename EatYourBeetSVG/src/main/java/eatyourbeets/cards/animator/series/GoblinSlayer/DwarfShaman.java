@@ -22,7 +22,7 @@ public class DwarfShaman extends AnimatorCard
 
         Initialize(2, 0, 3);
         SetUpgrade(4, 0, 0);
-        SetScaling(1, 0, 1);
+
 
         SetEvokeOrbCount(1);
         SetSynergy(Synergies.GoblinSlayer);

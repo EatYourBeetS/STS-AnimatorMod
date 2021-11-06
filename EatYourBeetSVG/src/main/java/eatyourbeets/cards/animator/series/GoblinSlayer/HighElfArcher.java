@@ -21,7 +21,7 @@ public class HighElfArcher extends AnimatorCard
 
         Initialize(2, 0, 2);
         SetUpgrade(1, 0, 1);
-        SetScaling(0, 1, 0);
+
 
         SetSynergy(Synergies.GoblinSlayer);
     }

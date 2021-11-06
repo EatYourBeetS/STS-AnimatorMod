@@ -42,7 +42,7 @@ public class Enju_Barasuishou extends AnimatorCard
         Initialize(6, 0, Hitcount);
         SetUpgrade(2, 0, 0);
 
-        SetScaling(1, 0, 0);
+
         
         SetUnique(true, true);
         SetSpellcaster();

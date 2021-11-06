@@ -29,7 +29,7 @@ public class KomachiOnozuka extends AnimatorCard
 
         Initialize(10, 0, 2, 0);
         SetUpgrade(2, 0, 1, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.TouhouProject);
     }

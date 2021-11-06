@@ -23,7 +23,7 @@ public class Shichika extends AnimatorCard
 
         Initialize(0, 2);
         SetUpgrade(0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetExhaust(true);
         SetSynergy(Synergies.Katanagatari);

@@ -23,7 +23,7 @@ public class Nyanta extends AnimatorCard
         super(DATA);
 
         Initialize(2, 0, 3);
-        SetScaling(0, 1, 0);
+
 
         SetRetain(true);
         SetSynergy(Synergies.LogHorizon);

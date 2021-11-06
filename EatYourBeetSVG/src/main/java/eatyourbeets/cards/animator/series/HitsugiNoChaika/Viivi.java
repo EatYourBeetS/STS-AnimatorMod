@@ -27,7 +27,7 @@ public class Viivi extends AnimatorCard
 
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
-        SetScaling(0, 1, 0);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.Chaika);

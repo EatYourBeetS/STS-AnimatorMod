@@ -23,7 +23,7 @@ public class Naotsugu extends AnimatorCard
 
         Initialize(9, 0);
         SetUpgrade(3, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.LogHorizon);
     }

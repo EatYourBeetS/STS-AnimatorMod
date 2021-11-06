@@ -26,7 +26,7 @@ public class YukariYakumo extends AnimatorCard
 
         Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 0, 0);
+
 
         SetExhaust(true);
         SetSpellcaster();

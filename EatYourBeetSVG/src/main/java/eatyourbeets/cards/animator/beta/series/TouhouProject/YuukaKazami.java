@@ -23,7 +23,7 @@ public class YuukaKazami extends AnimatorCard
 
         Initialize(9, 0, 2, 3);
         SetUpgrade(2, 0, 0, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSpellcaster();
         SetSynergy(Synergies.TouhouProject);

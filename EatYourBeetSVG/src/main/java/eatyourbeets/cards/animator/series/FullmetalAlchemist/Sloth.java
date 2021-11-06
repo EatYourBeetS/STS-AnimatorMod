@@ -21,7 +21,7 @@ public class Sloth extends AnimatorCard
 
         Initialize(16, 13, 2, 9);
         SetUpgrade(0, 0, -1, 0);
-        SetScaling(0, 0, 2);
+
 
         SetSynergy(Synergies.FullmetalAlchemist);
     }

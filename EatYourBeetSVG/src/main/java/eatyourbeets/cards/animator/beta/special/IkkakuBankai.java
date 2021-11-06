@@ -17,7 +17,7 @@ public class IkkakuBankai extends AnimatorCard
 
         Initialize(1, 0, 4);
         SetUpgrade(2, 0, 0);
-        SetScaling(0,2,2);
+
         SetExhaust(true);
 
         SetSynergy(Synergies.Bleach);

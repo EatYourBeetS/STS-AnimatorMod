@@ -24,7 +24,7 @@ public class SajinKomamura extends AnimatorCard
 
         Initialize(0, 7, 2,1);
         SetUpgrade(0, 3, 0);
-        SetScaling(0,1,0);
+
 
         SetMartialArtist();
 

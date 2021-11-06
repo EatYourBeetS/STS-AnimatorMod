@@ -41,7 +41,7 @@ public class Soujiro extends AnimatorCard
 
         Initialize(10, 0, 4);
         SetUpgrade(2, 0, 1);
-        SetScaling(0,1, 1);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.LogHorizon);

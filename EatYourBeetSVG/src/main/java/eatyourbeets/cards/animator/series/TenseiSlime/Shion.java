@@ -21,7 +21,7 @@ public class Shion extends AnimatorCard
 
         Initialize(16, 0, 2);
         SetUpgrade(5, 0, 0);
-        SetScaling(0, 0, 1);
+
 
         SetSynergy(Synergies.TenSura);
     }

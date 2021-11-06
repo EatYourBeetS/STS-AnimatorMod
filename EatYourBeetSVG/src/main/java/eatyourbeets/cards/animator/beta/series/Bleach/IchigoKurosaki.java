@@ -22,7 +22,7 @@ public class IchigoKurosaki extends AnimatorCard
 
         Initialize(2, 0, 0, ForcePower.GetThreshold(4));
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(0,1,1);
+
 
         SetSynergy(Synergies.Bleach);
         SetMartialArtist();

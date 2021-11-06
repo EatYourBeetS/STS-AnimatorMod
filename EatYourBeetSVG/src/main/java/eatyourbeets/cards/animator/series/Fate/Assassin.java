@@ -30,7 +30,7 @@ public class Assassin extends AnimatorCard
 
         Initialize(2, 0, DEBUFFS_COUNT);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
+
 
         SetRetain(true);
         SetMartialArtist();

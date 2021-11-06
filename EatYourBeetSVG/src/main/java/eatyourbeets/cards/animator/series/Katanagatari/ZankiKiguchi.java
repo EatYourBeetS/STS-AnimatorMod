@@ -20,7 +20,7 @@ public class ZankiKiguchi extends AnimatorCard
 
         Initialize(2, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 1, 1);
+
 
         SetSynergy(Synergies.Katanagatari);
         SetMartialArtist();

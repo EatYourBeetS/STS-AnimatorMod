@@ -27,7 +27,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
 
         Initialize(21, 0, 6, 2);
         SetUpgrade(7, 0, 0, 0);
-        SetScaling(2, 0, 0);
+
 
         tags.add(GR.Enums.CardTags.IGNORE_PEN_NIB);
 

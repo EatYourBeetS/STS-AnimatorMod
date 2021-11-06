@@ -198,10 +198,10 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         switch (currentForm)
         {
             case Dominica:
-                SetScaling(intellectScaling, agilityScaling - 1, forceScaling);
+
                 break;
             case Dragoon:
-                SetScaling(intellectScaling, agilityScaling, forceScaling - 1);
+
                 break;
         }
 
@@ -242,7 +242,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
 
-                SetScaling(intellectScaling, agilityScaling, forceScaling + 1);
+
 
                 break;
             }
@@ -256,7 +256,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
 
-                SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
+
 
                 break;
             }

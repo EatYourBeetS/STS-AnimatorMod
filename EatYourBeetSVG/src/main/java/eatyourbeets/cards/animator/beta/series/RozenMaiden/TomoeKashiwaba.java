@@ -23,7 +23,7 @@ public class TomoeKashiwaba extends AnimatorCard
 
         Initialize(8, 4, 0);
         SetUpgrade(0, 0, 0);
-        SetScaling(0, 0, 1);
+
 
         SetMartialArtist();
         SetSynergy(Synergies.RozenMaiden);

@@ -21,7 +21,7 @@ public class Cocytus extends AnimatorCard
 
         Initialize(6, 0, 2, 1);
         SetUpgrade(1, 0, 1, 0);
-        SetScaling(0, 0, 2);
+
 
         SetSynergy(Synergies.Overlord);
     }

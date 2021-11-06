@@ -24,7 +24,7 @@ public class AliceMargatroid extends AnimatorCard
 
         Initialize(0, 0, 1, 5);
         SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 0, 0);
+
 
         SetEthereal(true);
         SetSpellcaster();

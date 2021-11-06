@@ -19,7 +19,7 @@ public class ReimuHakurei extends AnimatorCard
 
         Initialize(4, 0, 1, 2);
         SetUpgrade(1, 0, 0, 1);
-        SetScaling(0, 0, 0);
+
 
         SetSynergy(Synergies.TouhouProject);
     }

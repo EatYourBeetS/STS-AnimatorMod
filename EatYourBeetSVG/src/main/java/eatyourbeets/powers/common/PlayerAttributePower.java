@@ -169,7 +169,7 @@ public abstract class PlayerAttributePower extends CommonPower
     {
         if (threshold > 0)
         {
-            final float offset_x = -24 * Settings.scale;
+            final float offset_x = -32 * Settings.scale;
             final float offset_y = -5 * Settings.scale;
             final float offset_x2 = 0 * Settings.scale;
             final float offset_y2 = -5 * Settings.scale;
@@ -187,23 +187,22 @@ public abstract class PlayerAttributePower extends CommonPower
 
     protected void UpdateThreshold()
     {
-        int powerGain = 0;
-        if (threshold == 2 && amount >= threshold)
+        if (threshold == 10 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 4;
+            threshold = 20;
         }
-        if (threshold == 4 && amount >= threshold)
+        if (threshold == 20 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 6;
+            threshold = 30;
         }
-        if (threshold == 6 && amount >= threshold)
+        if (threshold == 30 && amount >= threshold)
         {
             OnThresholdReached();
-            threshold = 8;
+            threshold = 40;
         }
-        if (threshold == 8 && amount >= threshold)
+        if (threshold == 40 && amount >= threshold)
         {
             OnThresholdReached();
             threshold = -1;

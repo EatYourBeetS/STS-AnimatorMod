@@ -18,10 +18,10 @@ public class Loadout_DateALive extends AnimatorLoadout {
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(ShidoItsuka.DATA, 5);
         AddStarterCard(YamaiSisters.DATA, 4);
+        AddStarterCard(ShidoItsuka.DATA, 5);
         AddStarterCard(Mayuri.DATA, 5);
-        AddStarterCard(ReineMurasame.DATA, 8);
+        AddStarterCard(ReineMurasame.DATA, 10);
     }
 
     @Override

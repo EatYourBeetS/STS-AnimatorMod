@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animator.beta.series.Bleach;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
@@ -14,14 +14,14 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class IsshinKurosaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(IsshinKurosaki.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(IsshinKurosaki.class).SetAttack(2, CardRarity.UNCOMMON).SetSeriesFromClassPackage();
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public IsshinKurosaki()
     {
         super(DATA);
 
-        Initialize(0, 6, 1, 2);
+        Initialize(4, 7, 2, 4);
         SetUpgrade(0, 3, 0);
         SetAffinity_Red(2, 0, 2);
 
@@ -31,6 +31,7 @@ public class IsshinKurosaki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
     }
 
@@ -39,7 +40,7 @@ public class IsshinKurosaki extends AnimatorCard
     {
         makeChoice(m);
 
-        if ((TrySpendAffinity(Affinity.Red) || ForceStance.IsActive()) && CombatStats.TryActivateLimited(cardID))
+        if (TrySpendAffinity(Affinity.Red) || ForceStance.IsActive())
         {
             makeChoice(m);
         }

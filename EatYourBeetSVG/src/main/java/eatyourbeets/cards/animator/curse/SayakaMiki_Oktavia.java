@@ -52,7 +52,6 @@ public class SayakaMiki_Oktavia extends AnimatorCard_Curse implements OnPurgeSub
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (dontTriggerOnUseCard) {
-            GameActions.Bottom.ApplyFrail(TargetHelper.AllCharacters(),magicNumber);
             GameActions.Bottom.ApplyWeak(TargetHelper.AllCharacters(),magicNumber);
         }
     }

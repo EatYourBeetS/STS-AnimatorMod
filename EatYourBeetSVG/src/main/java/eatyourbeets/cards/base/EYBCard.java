@@ -393,12 +393,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public boolean TrySpendAffinity(Affinity affinity)
     {
-        return CombatStats.Affinities.TrySpendAffinity(affinity, affinities.GetRequirement(affinity), true);
+        return GameUtilities.TrySpendAffinity(affinity, affinities.GetRequirement(affinity), true);
     }
 
     public boolean TrySpendAffinity(Affinity affinity, int amount)
     {
-        return CombatStats.Affinities.TrySpendAffinity(affinity, amount, true);
+        return GameUtilities.TrySpendAffinity(affinity, amount, true);
     }
 
     public boolean TrySpendAffinity(Affinity... affinityList)
@@ -409,7 +409,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             }
         }
         for (Affinity affinity : affinityList) {
-            if (!CombatStats.Affinities.TrySpendAffinity(affinity, affinities.GetRequirement(affinity), true)) {
+            if (!GameUtilities.TrySpendAffinity(affinity, affinities.GetRequirement(affinity), true)) {
                 return false;
             }
         }
@@ -1306,12 +1306,12 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                 GameUtilities.ModifyCostForCombat(this, data.modifiedCost, true);
             }
             if (data.modifiedAffinities != null) {
-                for (Affinity affinity : Affinity.Basic()) {
+                for (Affinity affinity : Affinity.Extended()) {
                     affinities.Add(affinity, data.modifiedAffinities[affinity.ID]);
                 }
             }
             if (data.modifiedScaling != null) {
-                for (Affinity affinity : Affinity.Basic()) {
+                for (Affinity affinity : Affinity.Extended()) {
                     affinities.Add(affinity, data.modifiedScaling[affinity.ID]);
                 }
             }

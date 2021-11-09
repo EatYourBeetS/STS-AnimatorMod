@@ -44,7 +44,7 @@ public class Venti extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                if (card.type == CardType.POWER)
+                if (card.type == CardType.SKILL)
                 {
                     GameActions.Bottom.TriggerOrbPassive(1).SetFilter(o -> Air.ORB_ID.equals(o.ID));
                 }

@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,7 +19,7 @@ public class SuikaIbuki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 9, 2, 2);
+        Initialize(8, 8, 2, 2);
         SetUpgrade(1, 2, 1, 0);
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Blue(1, 0, 1);
@@ -45,7 +44,7 @@ public class SuikaIbuki extends AnimatorCard
             }
             for (AbstractCard card : cards) {
                 if (card.type == CardType.ATTACK) {
-                    CombatStats.Affinities.AddAffinity(Affinity.Red, secondaryValue);
+                    GameActions.Bottom.AddAffinity(Affinity.Red, secondaryValue);
                 }
             }
         });

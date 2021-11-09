@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 
 public class GenericEffect_PayAffinity extends GenericEffect
 {
@@ -26,6 +26,6 @@ public class GenericEffect_PayAffinity extends GenericEffect
     @Override
     public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
     {
-        CombatStats.Affinities.TrySpendAffinity(affinity,amount,true);
+        GameUtilities.TrySpendAffinity(affinity,amount,true);
     }
 }

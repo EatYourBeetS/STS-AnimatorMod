@@ -2,6 +2,7 @@ package eatyourbeets.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.Colors;
@@ -11,7 +12,7 @@ import eatyourbeets.utilities.JUtils;
 public class SparkImpactEffect extends EYBEffect
 {
     private static final TextureCache[] images = {IMAGES.Spark1, IMAGES.Spark2};
-    protected int particles = 75;
+    protected int particles = 60;
     protected float radius = 500;
     protected float x;
     protected float y;
@@ -20,7 +21,7 @@ public class SparkImpactEffect extends EYBEffect
     {
         this.x = x;
         this.y = y;
-        this.color = Color.WHITE.cpy();
+        this.color = Color.GOLDENROD.cpy();
     }
 
     public SparkImpactEffect SetParticleCount(int particles)
@@ -51,7 +52,7 @@ public class SparkImpactEffect extends EYBEffect
                             .SetAcceleration(MathUtils.random(-15f, 15f), MathUtils.random(25f, 125f) * -1, null, null, null)
                             .SetTargetPosition(x + radius * MathUtils.cos(r), y + radius * MathUtils.sin(r))).SetDuration(0.5f, false)
             .SetDuration(MathUtils.random(0.5F, 1.0F), true));
-            //GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, color));
+            GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, color));
         }
 
         Complete();

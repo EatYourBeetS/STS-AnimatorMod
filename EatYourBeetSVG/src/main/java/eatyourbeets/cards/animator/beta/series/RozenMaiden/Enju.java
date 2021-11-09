@@ -9,11 +9,12 @@ import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Enju extends AnimatorCard //TODO
+public class Enju extends AnimatorCard implements Hidden //TODO
 {
     public static final EYBCardData DATA = Register(Enju.class).SetPower(-1, CardRarity.RARE).SetSeriesFromClassPackage()
             .PostInitialize(data -> {

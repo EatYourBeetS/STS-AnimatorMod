@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.Arrays;
 
-public class TomoyaOkazaki extends AnimatorCard
+public class TomoyaOkazaki extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(TomoyaOkazaki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
 
@@ -30,7 +31,7 @@ public class TomoyaOkazaki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetHandAffinity);
+        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Extended()), this::GetHandAffinity);
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile, player.drawPile)
                 .SetOptions(true, true)
                 .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).affinities.GetLevel(highestAffinity) > 0)

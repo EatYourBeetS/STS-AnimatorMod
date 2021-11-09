@@ -63,7 +63,7 @@ public class MikuIzayoi extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.GainInspiration(1);
+        GameActions.Bottom.GainEnergyNextTurn(1);
         if (CheckSpecialCondition(true)) {
             GameActions.Bottom.GainInspiration(1);
         }

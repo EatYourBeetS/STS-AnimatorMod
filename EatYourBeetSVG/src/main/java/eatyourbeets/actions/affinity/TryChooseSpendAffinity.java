@@ -1,4 +1,4 @@
-package eatyourbeets.actions.special;
+package eatyourbeets.actions.affinity;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -40,7 +40,7 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
 
     public TryChooseSpendAffinity(String sourceName, int cost)
     {
-        this(ActionType.CARD_MANIPULATION, sourceName, 1, cost, Affinity.Basic());
+        this(ActionType.CARD_MANIPULATION, sourceName, 1, cost, Affinity.Extended());
     }
 
     public TryChooseSpendAffinity(String sourceName, int cost, Affinity... affinities)
@@ -50,7 +50,7 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
 
     public TryChooseSpendAffinity(String sourceName, int amount, int cost)
     {
-        this(ActionType.CARD_MANIPULATION, sourceName, amount, cost, Affinity.Basic());
+        this(ActionType.CARD_MANIPULATION, sourceName, amount, cost, Affinity.Extended());
     }
 
     public TryChooseSpendAffinity(ActionType type, String sourceName, int amount, int cost, Affinity... affinities)
@@ -59,7 +59,7 @@ public class TryChooseSpendAffinity extends EYBActionWithCallback<ArrayList<Abst
 
         // Paying with the General affinity means that you can pay with any affinity
         if (JUtils.Find(affinities, af -> af == Affinity.General) != null) {
-            this.affinities = Affinity.Basic();
+            this.affinities = Affinity.Extended();
         }
         else {
             this.affinities = affinities;

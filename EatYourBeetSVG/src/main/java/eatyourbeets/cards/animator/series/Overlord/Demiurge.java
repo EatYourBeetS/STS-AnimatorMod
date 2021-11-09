@@ -48,7 +48,7 @@ public class Demiurge extends AnimatorCard
     {
         GameActions.Bottom.DiscardFromHand(name, 1, false);
         GameActions.Bottom.GainEnergy(1);
-        CombatStats.Affinities.AddAffinity(Affinity.Dark, secondaryValue);
+        GameActions.Bottom.AddAffinity(Affinity.Dark, secondaryValue);
         GameActions.Bottom.ModifyAllInstances(uuid)
         .AddCallback(c -> c.misc += magicNumber);
     }

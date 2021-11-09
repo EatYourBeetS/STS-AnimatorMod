@@ -24,24 +24,30 @@ public enum Affinity implements Comparable<Affinity>
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
     protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
-    protected static final Affinity[] BASIC_TYPES = new Affinity[7];
+    protected static final Affinity[] BASIC_TYPES = new Affinity[6];
+    protected static final Affinity[] EXTENDED_TYPES = new Affinity[7];
     protected static final Affinity[] ALL_TYPES = new Affinity[8];
 
     static
     {
-        ALL_TYPES[0] = BASIC_TYPES[0] = Red;
-        ALL_TYPES[1] = BASIC_TYPES[1] = Green;
-        ALL_TYPES[2] = BASIC_TYPES[2] = Blue;
-        ALL_TYPES[3] = BASIC_TYPES[3] = Orange;
-        ALL_TYPES[4] = BASIC_TYPES[4] = Light;
-        ALL_TYPES[5] = BASIC_TYPES[5] = Dark;
-        ALL_TYPES[6] = BASIC_TYPES[6] = Silver;
+        ALL_TYPES[0] = EXTENDED_TYPES[0] = BASIC_TYPES[0] = Red;
+        ALL_TYPES[1] = EXTENDED_TYPES[1] = BASIC_TYPES[1] = Green;
+        ALL_TYPES[2] = EXTENDED_TYPES[2] = BASIC_TYPES[2] = Blue;
+        ALL_TYPES[3] = EXTENDED_TYPES[3] = BASIC_TYPES[3] = Orange;
+        ALL_TYPES[4] = EXTENDED_TYPES[4] = BASIC_TYPES[4] = Light;
+        ALL_TYPES[5] = EXTENDED_TYPES[5] = BASIC_TYPES[5] = Dark;
+        ALL_TYPES[6] = EXTENDED_TYPES[6] = Silver;
         ALL_TYPES[7] = Star;
     }
 
     public static Affinity[] Basic()
     {
         return BASIC_TYPES;
+    }
+
+    public static Affinity[] Extended()
+    {
+        return EXTENDED_TYPES;
     }
 
     public static Affinity[] All()

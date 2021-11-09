@@ -1,16 +1,12 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import basemod.Pair;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
-import java.util.Comparator;
+import eatyourbeets.utilities.JUtils;
 
 public class GirlDeMo extends AnimatorCard
 {
@@ -39,27 +35,11 @@ public class GirlDeMo extends AnimatorCard
     {
         GameUtilities.IncreaseSuperchargedCharge(magicNumber);
 
-        ArrayList<Pair<ActionT1<Integer>, Integer>> pairs = new ArrayList<>();
-        pairs.add(new Pair<>(GameActions.Bottom::GainForce, CombatStats.Affinities.GetPowerAmount(Affinity.Red)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainAgility, CombatStats.Affinities.GetPowerAmount(Affinity.Green)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainIntellect, CombatStats.Affinities.GetPowerAmount(Affinity.Blue)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainWillpower, CombatStats.Affinities.GetPowerAmount(Affinity.Orange)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainBlessing, CombatStats.Affinities.GetPowerAmount(Affinity.Light)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainCorruption, CombatStats.Affinities.GetPowerAmount(Affinity.Dark)));
-        pairs.add(new Pair<>(GameActions.Bottom::GainTechnic, CombatStats.Affinities.GetPowerAmount(Affinity.Silver)));
-        pairs.sort(Comparator.comparingInt(Pair::getValue));
+        Affinity lowest = JUtils.FindMin(Affinity.Basic(), CombatStats.Affinities::GetPowerAmount);
+        Affinity highest = JUtils.FindMax(Affinity.Basic(), CombatStats.Affinities::GetPowerAmount);
 
-        int amount = pairs.get(6).getValue();
-        if (amount > 0)
-        {
-            pairs.get(3).getKey().Invoke(amount);
-
-            for (int i = 5; i >= 0; i--) {
-                if (pairs.get(i).getValue().equals(amount))
-                {
-                    pairs.get(i).getKey().Invoke(amount);
-                }
-            }
+        if (lowest != null && highest != null) {
+            GameActions.Bottom.StackAffinityPower(lowest, CombatStats.Affinities.GetPowerAmount(highest) - CombatStats.Affinities.GetPowerAmount(lowest), false);
         }
     }
 }

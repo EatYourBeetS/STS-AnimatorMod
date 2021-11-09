@@ -40,7 +40,7 @@ public class YuukaKazami extends AnimatorCard
     public void triggerWhenDrawn()
     {
         Affinity lowest = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
-        CombatStats.Affinities.AddAffinity(lowest, 1);
+        GameActions.Bottom.AddAffinity(lowest, 1);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class YuukaKazami extends AnimatorCard
         super.triggerOnManualDiscard();
 
         Affinity lowest = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
-        CombatStats.Affinities.AddAffinity(lowest, 1);
+        GameActions.Bottom.AddAffinity(lowest, 1);
     }
 
     @Override

@@ -72,6 +72,13 @@ public class GUI_Label extends GUIElement
         return this;
     }
 
+    public GUI_Label SetFontScale(float fontScale)
+    {
+        this.fontScale = fontScale;
+
+        return this;
+    }
+
     public GUI_Label SetPosition(float cX, float cY)
     {
         this.hb.move(cX, cY);

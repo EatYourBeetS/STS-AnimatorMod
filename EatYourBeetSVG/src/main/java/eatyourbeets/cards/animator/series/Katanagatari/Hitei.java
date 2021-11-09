@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -19,7 +21,7 @@ public class Hitei extends AnimatorCard
             .SetPower(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    public static final int POWER_ACTIVATION_COST = 4;
+    public static final int POWER_ACTIVATION_COST = 5;
     public static final int EXHAUST_SELECTION_SIZE = 2;
     public static final int CARD_DRAW = 2;
 
@@ -37,6 +39,7 @@ public class Hitei extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainVitality(1);
         GameActions.Bottom.StackPower(new HiteiPower(p, 1));
     }
 
@@ -96,8 +99,12 @@ public class Hitei extends AnimatorCard
             {
                 GameActions.Top.ExhaustFromPile(name, 1, group)
                 .SetOptions(false, true).AddCallback(cards -> {
-                    if (cards.size() > 0) {
-                        GameActions.Bottom.GainTemporaryHP(cards.size() * amount);
+                    for (AbstractCard c : cards) {
+                        GameActions.Bottom.GainTemporaryHP(1);
+                        if (c instanceof EYBCard) {
+                            CombatStats.Affinities.AddAffinities(((EYBCard) c).affinities);
+                            CombatStats.Affinities.AddAffinities(((EYBCard) c).affinities);
+                        }
                     }
                 });
             }

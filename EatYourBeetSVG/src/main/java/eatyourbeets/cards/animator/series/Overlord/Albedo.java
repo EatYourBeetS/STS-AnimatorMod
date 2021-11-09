@@ -89,7 +89,7 @@ public class Albedo extends AnimatorCard
 
         protected void updateCount(AbstractOrb orb) {
             if (Dark.ORB_ID.equals(orb.ID)) {
-                CombatStats.Affinities.AddAffinity(Affinity.Dark, amount);
+                GameActions.Bottom.AddAffinity(Affinity.Dark, amount);
             }
         }
 

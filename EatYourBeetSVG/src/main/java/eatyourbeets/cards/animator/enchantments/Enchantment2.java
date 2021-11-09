@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.enchantments;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Enchantment2 extends Enchantment
@@ -30,12 +30,12 @@ public class Enchantment2 extends Enchantment
     {
         currentAffinity = GetAffinity();
         if (currentAffinity == null) {
-            currentAffinity = GameUtilities.GetRandomElement(Affinity.Basic());
+            currentAffinity = GameUtilities.GetRandomElement(Affinity.Extended());
         }
-        CombatStats.Affinities.AddAffinity(currentAffinity, magicNumber);
+        GameActions.Bottom.AddAffinity(currentAffinity, magicNumber);
 
         if (auxiliaryData.form == 7) {
-            CombatStats.Affinities.AddAffinity(GameUtilities.GetRandomElement(Affinity.Basic()), magicNumber);
+            GameActions.Bottom.AddAffinity(GameUtilities.GetRandomElement(Affinity.Extended()), magicNumber);
         }
     }
 

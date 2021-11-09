@@ -31,7 +31,7 @@ public class PuriPuriPrisoner extends AnimatorCard
 
         SetAffinity_Red(2);
 
-        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Red, 5);
     }
 
     @Override

@@ -52,6 +52,7 @@ public class EYBCardData
     public boolean CanScaleMagicNumber = false;
     public boolean CanTriggerSupercharge = true;
     public boolean CanGrantAffinity = true;
+    public boolean IsExpansionCard;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
@@ -178,7 +179,11 @@ public class EYBCardData
         }
     }
 
-    public EYBCardData SetSeriesFromClassPackage()
+    public EYBCardData SetSeriesFromClassPackage() {
+        return SetSeriesFromClassPackage(false);
+    }
+
+    public EYBCardData SetSeriesFromClassPackage(boolean isExpansionCard)
     {
         final int length = "eatyourbeets.cards.animator.".length();
         final String name = type.getPackage().getName();
@@ -187,6 +192,7 @@ public class EYBCardData
         {
             throw new RuntimeException("Couldn't find card series from class package: " + type);
         }
+        this.IsExpansionCard = isExpansionCard;
 
         return SetSeries(series);
     }

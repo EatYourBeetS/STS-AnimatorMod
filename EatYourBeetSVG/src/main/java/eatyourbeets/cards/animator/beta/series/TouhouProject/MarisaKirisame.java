@@ -16,9 +16,10 @@ public class MarisaKirisame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 4);
+        Initialize(4, 0, 2, 4);
         SetUpgrade(2, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(1);
     }
 
     @Override

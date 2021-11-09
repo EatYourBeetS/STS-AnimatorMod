@@ -323,7 +323,7 @@ public class ParseGenericCommand extends ConsoleCommand
 
                 if (tokens[1].equals("extract-affinity-data"))
                 {
-                    final int MAX_AFFINITIES = Affinity.Basic().length;
+                    final int MAX_AFFINITIES = Affinity.Extended().length;
                     final StringBuilder sb = new StringBuilder();
                     for (AnimatorLoadout loadout : GR.Animator.Data.GetEveryLoadout())
                     {

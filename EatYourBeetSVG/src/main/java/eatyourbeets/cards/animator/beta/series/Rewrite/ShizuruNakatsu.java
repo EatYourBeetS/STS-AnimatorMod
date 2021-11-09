@@ -54,7 +54,7 @@ public class ShizuruNakatsu extends AnimatorCard
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), this::GetHandAffinity);
+        Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Extended()), this::GetHandAffinity);
         return (highestAffinity.equals(Affinity.Green));
     }
 }

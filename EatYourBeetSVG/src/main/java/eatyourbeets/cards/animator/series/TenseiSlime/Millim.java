@@ -22,7 +22,7 @@ public class Millim extends AnimatorCard
 
         SetAffinity_Star(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 6);
+        SetAffinityRequirement(Affinity.General, 5);
         SetUnique(true, true);
     }
 

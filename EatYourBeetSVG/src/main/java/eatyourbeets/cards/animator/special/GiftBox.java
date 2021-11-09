@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -45,8 +44,8 @@ public class GiftBox extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         //TODO: Make this into an actual card and not something for testing
-        for (Affinity af : Affinity.Basic()) {
-            CombatStats.Affinities.AddAffinity(af, 99);
+        for (Affinity af : Affinity.Extended()) {
+            GameActions.Bottom.AddAffinity(af, 99);
         }
 
     }

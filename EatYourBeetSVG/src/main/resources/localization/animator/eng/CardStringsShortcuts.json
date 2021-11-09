@@ -4,8 +4,10 @@
 	"<SLM>": "{Semi-Limited}",
 	"<slm>": "{Semi-Lim}",
 
-	"<DRW>": "Draw 1 card",
+	"<DRW>": "Draw a card",
 	"<DRW-M>": "Draw !M! card(s)",
+	"<CYC>": "Cycle a card",
+	"<CYC-M>": "Cycle !M! card(s)",
 	"<SPACE>": "    ",
 
 	"<ST>": "Starter",

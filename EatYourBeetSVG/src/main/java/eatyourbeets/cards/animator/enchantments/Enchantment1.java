@@ -99,19 +99,19 @@ public class Enchantment1 extends Enchantment
     protected Affinity[] GetAffinityList() {
         switch(auxiliaryData.form) {
             case 1:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Red);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Red);
             case 2:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Green);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Green);
             case 3:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Blue);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Blue);
             case 4:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Orange);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Orange);
             case 5:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Light);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Light);
             case 6:
-                return ArrayUtils.removeElement(Affinity.Basic(), Affinity.Dark);
+                return ArrayUtils.removeElement(Affinity.Extended(), Affinity.Dark);
         }
-        return Affinity.Basic();
+        return Affinity.Extended();
     }
 
     protected boolean IsStanceSpecific() {

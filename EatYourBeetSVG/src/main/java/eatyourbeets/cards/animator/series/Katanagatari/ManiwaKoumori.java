@@ -7,7 +7,6 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.CorruptionStance;
 import eatyourbeets.utilities.GameActions;
 
 public class ManiwaKoumori extends AnimatorCard
@@ -58,7 +57,6 @@ public class ManiwaKoumori extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.ChangeStance(CorruptionStance.STANCE_ID);
             GameActions.Bottom.CreateThrowingKnives(secondaryValue);
             this.exhaustOnUseOnce = true;
         }

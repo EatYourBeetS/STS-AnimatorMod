@@ -16,7 +16,7 @@ public class MayumiJoutouguu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 1);
+        Initialize(0, 7, 1);
         SetUpgrade(0, 3, 0);
         SetAffinity_Orange(1, 0, 1);
 

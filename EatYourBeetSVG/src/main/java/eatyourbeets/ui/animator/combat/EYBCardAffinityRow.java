@@ -1,7 +1,9 @@
 package eatyourbeets.ui.animator.combat;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -9,6 +11,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.effects.affinity.ChangeAffinityCountEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
@@ -16,10 +19,7 @@ import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 public class EYBCardAffinityRow extends GUIElement
 {
@@ -35,11 +35,12 @@ public class EYBCardAffinityRow extends GUIElement
     public int AvailableActivations;
     public int ActivationPowerAmount;
     public int Level;
+    protected float fontScale = 1.0F;
 
-    protected final GUI_Image image_background;
-    protected final GUI_Image image_affinity;
-    protected final GUI_Label text_affinity;
-    protected final GUI_Image image_synergy;
+    public final GUI_Image image_background;
+    public final GUI_Image image_affinity;
+    public final GUI_Label text_affinity;
+    public final GUI_Image image_synergy;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
     {
@@ -99,6 +100,11 @@ public class EYBCardAffinityRow extends GUIElement
         {
             Power.Initialize(AbstractDungeon.player);
         }
+    }
+
+    public void Flash() {
+        this.fontScale = 8.0F;
+        GameEffects.List.Add(new ChangeAffinityCountEffect(this, true));
     }
 
     public void Update(EYBCardAffinities previewAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
@@ -164,7 +170,14 @@ public class EYBCardAffinityRow extends GUIElement
             }
         }
 
-        text_affinity.SetText(Level).SetColor(isTriggering ? Colors.Green(1) : Colors.Cream(Level > 0 ? 1 : 0.6f));
+        if (this.fontScale != 1.0F) {
+            this.fontScale = MathUtils.lerp(this.fontScale, 1.0F, Gdx.graphics.getDeltaTime() * 10.0F);
+            if (this.fontScale - 1.0F < 0.05F) {
+                this.fontScale = 1.0F;
+            }
+        }
+        text_affinity.SetText(Level).SetColor(isTriggering ? Colors.Green(1) : Colors.Cream(Level > 0 ? 1 : 0.6f))
+                .SetFontScale(this.fontScale);
 
         Update();
     }

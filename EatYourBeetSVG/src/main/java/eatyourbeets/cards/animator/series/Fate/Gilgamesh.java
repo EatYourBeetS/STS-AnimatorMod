@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
+import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -38,7 +39,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 25);
+        Initialize(4, 0, 1, 25);
         SetUpgrade(1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -49,6 +50,15 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         SetDelayed(true);
 
         SetHitCount(3);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 6 == 1)
+        {
+            upgradeMagicNumber(1);
+        }
     }
 
     public void OnRelicObtained(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
@@ -107,6 +117,10 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
         {
             GameActions.Bottom.DealDamageToAll(this, AttackEffects.SPEAR).forEach(d -> d
                     .SetSoundPitch(1.3f, 1.4f).SetVFXColor(Color.YELLOW));
+        }
+
+        for (int i = 0; i < magicNumber; i++) {
+            GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
         }
     }
 }

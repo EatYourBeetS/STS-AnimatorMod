@@ -1,12 +1,16 @@
 package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.ListSelection;
+import eatyourbeets.utilities.TargetHelper;
 
 import java.util.Comparator;
 
@@ -54,7 +58,7 @@ public class Enchantment3 extends Enchantment
     @Override
     public boolean CanUsePower(int cost)
     {
-        return CombatStats.Affinities.CheckAffinityLevels(Affinity.Basic(), cost, true) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
+        return CombatStats.Affinities.CheckAffinityLevels(Affinity.Extended(), cost, true) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
     }
 
     @Override
@@ -73,14 +77,38 @@ public class Enchantment3 extends Enchantment
     {
         switch (auxiliaryData.form) {
             case 0:
-                GameActions.Bottom.ReduceCommonDebuffs(player, magicNumber).SetSelection(ListSelection.First(0), 1);
+                GameActions.Bottom.ReduceCommonDebuffs(player, magicNumber).SetSelection(ListSelection.First(0), 1).AddCallback(po -> {
+                    if (po.size() > 0) {
+                        AbstractPower debuff = po.get(0);
+                        if (DelayedDamagePower.POWER_ID.equals(debuff.ID)) {
+                            GameActions.Bottom.ReducePower(debuff, magicNumber);
+                        }
+                    }
+                });;
                 return;
             case 1:
             case 2:
                 GameActions.Bottom.ReduceCommonDebuffs(player, magicNumber).SetSelection(auxiliaryData.form == 1 ? ListSelection.First(0) : ListSelection.Last(0), 1).AddCallback(po -> {
                     if (po.size() > 0) {
-                        for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
-                            GameActions.Bottom.ApplyPower(player,mo,po.get(0));
+                        AbstractPower debuff = po.get(0);
+                        int applyAmount = magicNumber;
+                        if (DelayedDamagePower.POWER_ID.equals(debuff.ID)) {
+                            GameActions.Bottom.ReducePower(debuff, magicNumber);
+                            applyAmount += magicNumber;
+                        }
+
+                        PowerHelper debuffHelper = null;
+                        for (PowerHelper commonDebuffHelper : GameUtilities.GetCommonDebuffs()) {
+                            if (commonDebuffHelper.ID.equals(debuff.ID)) {
+                                debuffHelper = commonDebuffHelper;
+                                break;
+                            }
+                        }
+
+                        if (debuffHelper != null) {
+                            for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
+                                GameActions.Bottom.ApplyPower(TargetHelper.Normal(mo), debuffHelper);
+                            }
                         }
                     }
                 });

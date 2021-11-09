@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Enchantment4 extends Enchantment
@@ -44,7 +45,7 @@ public class Enchantment4 extends Enchantment
         if (GetAffinity() == null) {
             GameActions.Bottom.TryChooseSpendAffinity(name, cost);
         }
-        CombatStats.Affinities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
+        GameUtilities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
     }
 
     @Override

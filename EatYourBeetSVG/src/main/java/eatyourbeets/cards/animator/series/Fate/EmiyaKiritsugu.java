@@ -11,7 +11,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.WeightedList;
+import eatyourbeets.utilities.RandomizedList;
 
 public class EmiyaKiritsugu extends AnimatorCard
 {
@@ -23,13 +23,12 @@ public class EmiyaKiritsugu extends AnimatorCard
                 data.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
                 data.AddPreview(AffinityToken.GetCard(Affinity.Dark), false);
             });
-    public static final int CARD_CHOICE = 2;
 
     public EmiyaKiritsugu()
     {
         super(DATA);
 
-        Initialize(9, 7, 0, 2);
+        Initialize(9, 7, 3, 2);
         SetUpgrade(2, 2);
 
         SetAffinity_Light(1, 1, 0);
@@ -46,22 +45,19 @@ public class EmiyaKiritsugu extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetUnplayable(JUtils.Count(player.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON) < CARD_CHOICE);
+        SetUnplayable(JUtils.Count(player.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON) < magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final WeightedList<AbstractCard> uncommonCards = new WeightedList<>();
-        for (AbstractCard c : p.drawPile.group)
-        {
-            if (c.rarity == CardRarity.UNCOMMON)
-            {
-                uncommonCards.Add(c, (GameUtilities.IsHindrance(c) || (GameUtilities.GetAffinityLevel(c, Affinity.Star, true) > 0)) ? 1 : 10);
-            }
+        final RandomizedList<AbstractCard> uncommonCards = new RandomizedList<>();
+        uncommonCards.AddAll(JUtils.Filter(p.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON));
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        while (group.size() < magicNumber && uncommonCards.Size() > 0) {
+            group.addToBottom(uncommonCards.Retrieve(rng, true));
         }
-
-        if (uncommonCards.Size() < CARD_CHOICE)
+        if (group.size() < magicNumber)
         {
             return;
         }
@@ -70,17 +66,6 @@ public class EmiyaKiritsugu extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
         .SetSoundPitch(0.6f, 0.7f)
         .SetVFXColor(Color.GOLD));
-
-        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        final AbstractCard c1 = uncommonCards.Retrieve(rng, true);
-        AbstractCard c2;
-        do
-        {
-            c2 = uncommonCards.Retrieve(rng, true);
-        }
-        while (c2.cardID.equals(c1.cardID) && uncommonCards.Size() > 0);
-        group.group.add(c1);
-        group.group.add(c2);
 
         GameActions.Bottom.ExhaustFromPile(name, 1, group)
         .SetOptions(false, false)
@@ -101,7 +86,7 @@ public class EmiyaKiritsugu extends AnimatorCard
                     }
                     if (a.GetLevel(Affinity.Blue, true) > 0)
                     {
-                        GameActions.Bottom.ApplyVulnerable(player, enemy, secondaryValue);
+                        GameActions.Bottom.GainEnergyNextTurn(1);
                     }
                 }
             }

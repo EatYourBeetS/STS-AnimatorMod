@@ -75,7 +75,7 @@ public class AyaShameimaru extends AnimatorCard
             super.onEvokeOrb(orb);
 
             if (Air.ORB_ID.equals(orb.ID)) {
-                CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Orange,true) ? Affinity.Orange : Affinity.Green, amount);
+                GameActions.Bottom.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Green,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Orange,true) ? Affinity.Orange : Affinity.Green, amount);
             }
         }
 

@@ -138,7 +138,7 @@ public abstract class EYBStance extends AbstractStance
 
         if (TryApplyStance(ID))
         {
-            for (Affinity af : Affinity.Basic()) {
+            for (Affinity af : Affinity.Extended()) {
                 if (af.equals(affinity)) {
                     CombatStats.Affinities.GetPower(af).SetGainMultiplier(2);
                 }
@@ -158,7 +158,7 @@ public abstract class EYBStance extends AbstractStance
 
         if (TryApplyStance(null))
         {
-            for (Affinity af : Affinity.Basic()) {
+            for (Affinity af : Affinity.Extended()) {
                 if (af.equals(this.affinity)) {
                     CombatStats.Affinities.GetPower(af).SetGainMultiplier(1);
                 }

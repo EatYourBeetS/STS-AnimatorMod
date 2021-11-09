@@ -153,7 +153,7 @@ public class MissingPieceReward extends AnimatorReward
             return;
         }
 
-        int max = Affinity.Basic().length;
+        int max = Affinity.Extended().length;
         int borderLevel, i = 0, rendered = 0;
         float size, cX, cY;
         while (rendered < max)

@@ -50,7 +50,7 @@ public class Emonzaemon extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        CombatStats.Affinities.AddAffinity(Affinity.Green, 1);
+        GameActions.Bottom.AddAffinity(Affinity.Green, 1);
     }
 
     @Override

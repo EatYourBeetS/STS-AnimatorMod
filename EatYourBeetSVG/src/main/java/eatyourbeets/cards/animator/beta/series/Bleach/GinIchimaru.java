@@ -9,6 +9,7 @@ import eatyourbeets.misc.GenericEffects.GenericEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class GinIchimaru extends AnimatorCard
@@ -91,7 +92,7 @@ public class GinIchimaru extends AnimatorCard
         @Override
         public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
         {
-            if (CombatStats.Affinities.TrySpendAffinity(affinity,amount,true)) {
+            if (GameUtilities.TrySpendAffinity(affinity,amount,true)) {
                 GameActions.Bottom.StackAffinityPower(affinity,amount,false);
             }
         }

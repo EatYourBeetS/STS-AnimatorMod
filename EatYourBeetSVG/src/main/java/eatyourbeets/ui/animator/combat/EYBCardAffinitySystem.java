@@ -114,29 +114,19 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return requireAll;
     }
 
+    public void Flash(Affinity affinity) {
+        EYBCardAffinityRow row = GetRow(affinity);
+        if (row != null) {
+            row.Flash();
+        }
+    }
+
     public int GetAffinityLevel(Affinity affinity, boolean addStar) {
         int base = BonusAffinities.GetLevel(affinity, false);
         if (addStar) {
             base += BonusAffinities.GetLevel(Affinity.Star, false);
         }
         return CombatStats.OnTrySpendAffinity(affinity, base, addStar, false);
-    }
-
-    public boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar)
-    {
-        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar, true);
-        int baseAmount = GetAffinityLevel(affinity, false);
-        int starAmount = canSpendStar ? GetAffinityLevel(Affinity.Star, false) : 0;
-        if (baseAmount + starAmount >= requiredAmount) {
-            int baseDecrement = Math.min(baseAmount, requiredAmount);
-            BonusAffinities.Add(affinity, -baseDecrement);
-            requiredAmount -= baseDecrement;
-            if (requiredAmount > 0 && starAmount >= requiredAmount) {
-                BonusAffinities.Add(Affinity.Star, -requiredAmount);
-            }
-            return true;
-        }
-        return false;
     }
 
     public EYBCardAffinities GetCardAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)
@@ -323,7 +313,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             return synergies;
         }
 
-        for (Affinity affinity : Affinity.Basic())
+        for (Affinity affinity : Affinity.Extended())
         {
             int lv_a = a.affinities.GetLevel(affinity);
             int lv_b = b.affinities.GetLevel(affinity);

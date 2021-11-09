@@ -95,8 +95,15 @@ public class Envy extends AnimatorCard
 
             GameActions.Last.Callback(() ->
             {
-                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
-                        .SetFilter(GameUtilities::HasUpgradableAffinities);
+                GameActions.Bottom.SelectFromPile(name, 9999, player.hand).SetOptions(true, false).AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        for (Affinity af : Affinity.All()) {
+                            if (GameUtilities.GetAffinityLevel(c, af, false) > 0) {
+                                GameActions.Bottom.IncreaseScaling(c, af, 1);
+                            }
+                        }
+                    }
+                });
                 flash();
             });
         }

@@ -76,6 +76,9 @@ public class LizardPriest extends AnimatorCard
                                 break;
                         }
                     }
+                    else {
+                        GameActions.Bottom.StackPower(new NextTurnBlockPower(player, BLOCK_NEXT_TURN));
+                    }
                 }
             });
             RemovePower();

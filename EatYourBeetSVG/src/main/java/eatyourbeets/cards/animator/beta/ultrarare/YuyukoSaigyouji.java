@@ -22,7 +22,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard
+public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard //TODO
 {
     public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.TouhouProject);
 

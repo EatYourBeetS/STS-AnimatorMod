@@ -25,6 +25,8 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.affinity.ChangeAffinityCount;
+import eatyourbeets.actions.affinity.TryChooseSpendAffinity;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.actions.basic.*;
@@ -47,7 +49,10 @@ import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
 import eatyourbeets.actions.powers.*;
-import eatyourbeets.actions.special.*;
+import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.PlaySFX;
+import eatyourbeets.actions.special.PlayVFX;
+import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
@@ -177,6 +182,11 @@ public final class GameActions
         }
 
         return action;
+    }
+
+    public ChangeAffinityCount AddAffinity(Affinity affinity, int amount)
+    {
+        return Add(new ChangeAffinityCount(affinity, amount).ShowEffect(true));
     }
 
     public ApplyPower ApplyBlinded(AbstractCreature source, AbstractCreature target, int amount)

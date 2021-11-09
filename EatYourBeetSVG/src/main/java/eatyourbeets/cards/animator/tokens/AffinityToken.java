@@ -58,7 +58,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     {
         if (cards.isEmpty())
         {
-            for (Affinity affinity : Affinity.Basic())
+            for (Affinity affinity : Affinity.Extended())
             {
                 cards.add(GetCardData(affinity));
             }
@@ -148,7 +148,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        CombatStats.Affinities.AddAffinity(this.affinity, magicNumber);
+        GameActions.Bottom.AddAffinity(this.affinity, magicNumber);
     }
 
     @Override
@@ -162,7 +162,8 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
         if (isActuallySpending && affinity.equals(this.affinity) && player.hand.contains(this)) {
             CombatStats.onTrySpendAffinity.Unsubscribe(this);
-            GameActions.Last.Purge(this);
+            GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
+            GameActions.Last.Purge(this).ShowEffect(true);
             return 0;
         }
         return amount;

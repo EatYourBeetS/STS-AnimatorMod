@@ -43,7 +43,7 @@ public class Suiseiseki extends AnimatorCard
 
         GameActions.Bottom.MakeCard(new Status_Slimed(), player.drawPile);
 
-        if (info.IsSynergizing && info.GetPreviousCardID().equals(Souseiseki.DATA.ID))
+        if (info.IsSynergizing && info.GetPreviousCardID().equals(Souseiseki.DATA.ID) && info.TryActivateLimited())
         {
             GameActions.Top.PlayCopy(this, m);
         }

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -7,6 +8,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -31,6 +33,22 @@ public class Nanami extends AnimatorCard
         SetAffinity_Dark(2);
 
         SetExhaust(true);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        if (JUtils.Find(GameUtilities.GetIntents(), EnemyIntent::IsAttacking) != null && CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.Cycle(name, 1).AddCallback(cards -> {
+               for (AbstractCard c : cards) {
+                   if (GameUtilities.HasGreenAffinity(c)) {
+                       GameActions.Bottom.StackPower(new CounterAttackPower(player, magicNumber));
+                   }
+               }
+            });
+        }
     }
 
     @Override

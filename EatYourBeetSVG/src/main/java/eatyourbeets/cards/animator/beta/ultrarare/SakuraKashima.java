@@ -95,7 +95,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
         }
 
         private void EnablePowers() {
-            for (Affinity affinity : Affinity.Basic()) {
+            for (Affinity affinity : Affinity.Extended()) {
                 CombatStats.Affinities.GetPower(affinity).SetEnabled(true);
             }
         }

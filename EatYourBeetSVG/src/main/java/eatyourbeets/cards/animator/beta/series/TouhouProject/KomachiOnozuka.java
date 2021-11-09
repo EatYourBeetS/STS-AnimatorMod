@@ -52,7 +52,7 @@ public class KomachiOnozuka extends AnimatorCard
         .AddCallback(enemy ->
         {
             if (GameUtilities.GetPowerAmount(enemy, VulnerablePower.POWER_ID) > 0) {
-                CombatStats.Affinities.AddAffinity(Affinity.Light, secondaryValue);
+                GameActions.Bottom.AddAffinity(Affinity.Light, secondaryValue);
             }
             AbstractRoom room = AbstractDungeon.getCurrRoom();
             if ((room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)

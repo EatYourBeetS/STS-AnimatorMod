@@ -70,6 +70,41 @@ public class GameUtilities
     private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
+    public static void AddAffinity(Affinity affinity, int amount) {
+        AddAffinity(affinity, amount, true);
+    }
+
+    public static void AddAffinity(Affinity affinity, int amount, boolean showEffect) {
+        CombatStats.Affinities.AddAffinity(affinity, amount);
+        if (showEffect) {
+            CombatStats.Affinities.Flash(affinity);
+        }
+    }
+
+    public static boolean TrySpendAffinity(Affinity affinity, int amount) {
+        return TrySpendAffinity(affinity, amount, true, true);
+    }
+
+    public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar) {
+        return TrySpendAffinity(affinity, amount, canSpendStar, true);
+    }
+
+    public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar, boolean showEffect) {
+        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar, true);
+        int baseAmount = CombatStats.Affinities.GetAffinityLevel(affinity, false);
+        int starAmount = canSpendStar ? CombatStats.Affinities.GetAffinityLevel(Affinity.Star, false) : 0;
+        if (baseAmount + starAmount >= requiredAmount) {
+            int baseDecrement = Math.min(baseAmount, requiredAmount);
+            AddAffinity(affinity, -baseDecrement, showEffect);
+            requiredAmount -= baseDecrement;
+            if (requiredAmount > 0 && starAmount >= requiredAmount) {
+                AddAffinity(Affinity.Star, -requiredAmount, showEffect);
+            }
+            return true;
+        }
+        return false;
+    }
+
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
     {
         ApplyPowerInstantly(TargetHelper.Source(target), powerHelper, stacks);

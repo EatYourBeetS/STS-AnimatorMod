@@ -136,7 +136,7 @@ public class Eve extends AnimatorCard
 
             if (CombatStats.Affinities.IsSynergizing(usedCard))
             {
-                Affinity lowestAffinity = JUtils.FindMin(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
+                Affinity lowestAffinity = JUtils.FindMin(Affinity.Extended(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
                 final int damage = CombatStats.Affinities.GetAffinityLevel(lowestAffinity,true);
                 if (damage > 0)
                 {

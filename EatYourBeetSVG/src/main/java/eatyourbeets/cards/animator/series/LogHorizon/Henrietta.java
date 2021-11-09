@@ -26,7 +26,7 @@ public class Henrietta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 2, 3);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);
@@ -72,7 +72,7 @@ public class Henrietta extends AnimatorCard
         public void OnUse(AbstractMonster m, int cost)
         {
             super.OnUse(m, cost);
-            Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Basic()), af -> CombatStats.Affinities.GetAffinityLevel(af, true));
+            Affinity highestAffinity = JUtils.FindMax(Arrays.asList(Affinity.Extended()), af -> CombatStats.Affinities.GetAffinityLevel(af, true));
             GameActions.Bottom.StackAffinityPower(highestAffinity, secondaryValue, false);
         }
 
@@ -80,7 +80,7 @@ public class Henrietta extends AnimatorCard
         public void onInitialApplication() {
             super.onInitialApplication();
 
-            for (Affinity affinity: Affinity.Basic()) {
+            for (Affinity affinity: Affinity.Extended()) {
                 CombatStats.Affinities.AddMaxActivationsPerTurn(affinity, amount);
             }
         }
@@ -90,7 +90,7 @@ public class Henrietta extends AnimatorCard
         {
             super.onRemove();
 
-            for (Affinity affinity: Affinity.Basic()) {
+            for (Affinity affinity: Affinity.Extended()) {
                 CombatStats.Affinities.AddMaxActivationsPerTurn(affinity, -amount);
             }
         }

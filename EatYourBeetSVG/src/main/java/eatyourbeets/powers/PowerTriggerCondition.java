@@ -41,7 +41,7 @@ public class PowerTriggerCondition
 
     protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
-        this(power, type, requiredAmount, checkCondition, payCost, Affinity.Basic());
+        this(power, type, requiredAmount, checkCondition, payCost, Affinity.Extended());
     }
 
     protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, Affinity... affinities)

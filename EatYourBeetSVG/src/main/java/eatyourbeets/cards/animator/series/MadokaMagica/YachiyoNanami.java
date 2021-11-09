@@ -85,7 +85,7 @@ public class YachiyoNanami extends AnimatorCard
 
         private void invokeGrief(AbstractCard card) {
             if (card != null && card.type.equals(CardType.CURSE)) {
-                CombatStats.Affinities.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Light,true) ? Affinity.Light : Affinity.Blue, 1);
+                GameActions.Bottom.AddAffinity(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Light,true) ? Affinity.Light : Affinity.Blue, 1);
             }
         }
 

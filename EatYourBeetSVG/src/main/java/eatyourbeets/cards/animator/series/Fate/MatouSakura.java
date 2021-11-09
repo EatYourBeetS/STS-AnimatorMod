@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.actions.orbs.RemoveOrb;
+import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
@@ -18,7 +19,10 @@ public class MatouSakura extends AnimatorCard
     public static final EYBCardData DATA = Register(MatouSakura.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage().PostInitialize(data ->
+            {
+                data.AddPreview(new Crystallize(), false);
+            });
 
     public MatouSakura()
     {
@@ -61,14 +65,8 @@ public class MatouSakura extends AnimatorCard
            }
            else
            {
-               GameActions.Bottom.ChannelOrb(new Dark())
-               .AddCallback(orbs ->
-               {
-                   for (AbstractOrb o : orbs)
-                   {
-                       GameActions.Bottom.TriggerOrbPassive(o, magicNumber);
-                   }
-               });
+               GameActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
+               GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
            }
         });
 

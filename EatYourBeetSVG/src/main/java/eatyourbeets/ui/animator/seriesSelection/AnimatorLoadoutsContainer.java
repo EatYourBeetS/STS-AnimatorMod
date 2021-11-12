@@ -25,6 +25,8 @@ public class AnimatorLoadoutsContainer
     public final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     public final ArrayList<AbstractCard> betaCards = new ArrayList<>();
     public final ArrayList<AbstractCard> allCards = new ArrayList<>();
+    public int selectSeriesCache = 0;
+    public int expandedSeriesCache = 0;
 
     public static void PreloadResources()
     {
@@ -49,6 +51,8 @@ public class AnimatorLoadoutsContainer
         betaCards.clear();
         allCards.clear();
 
+        selectSeriesCache = 0;
+        expandedSeriesCache = 0;
         int promotedCount = 0;
         final RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
         final ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
@@ -117,27 +121,28 @@ public class AnimatorLoadoutsContainer
         return cardsMap.values();
     }
 
-    public int ToggleExpansion(AbstractCard card)
+    public boolean ToggleExpansion(AbstractCard card)
     {
         AnimatorRuntimeLoadout c = Find(card);
         return ToggleExpansion(c, !c.expansionEnabled);
     }
 
-    public int ToggleExpansion(AbstractCard card, boolean value)
+    public boolean ToggleExpansion(AbstractCard card, boolean value)
     {
         AnimatorRuntimeLoadout c = Find(card);
         return ToggleExpansion(c, value);
     }
 
-    public int ToggleExpansion(AnimatorRuntimeLoadout c, boolean value)
+    public boolean ToggleExpansion(AnimatorRuntimeLoadout c, boolean value)
     {
-        TotalCardsInPool -= c.GetCardPoolInPlay().size();
-        c.ToggleExpansion(value);
-        TotalCardsInPool += c.GetCardPoolInPlay().size();
         if (c.canEnableExpansion) {
-            return c.expansionEnabled ? 1 : -1;
+            TotalCardsInPool -= c.GetCardPoolInPlay().size();
+            c.ToggleExpansion(value);
+            TotalCardsInPool += c.GetCardPoolInPlay().size();
+            expandedSeriesCache += c.expansionEnabled ? 1 : -1;
+            return true;
         }
-        return 0;
+        return false;
     }
 
 
@@ -147,6 +152,7 @@ public class AnimatorLoadoutsContainer
         {
             TotalCardsInPool += Find(card).GetCardPoolInPlay().size();
             selectedCards.add(card);
+            selectSeriesCache += 1;
             return true;
         }
 
@@ -159,6 +165,7 @@ public class AnimatorLoadoutsContainer
         if (!c.promoted && selectedCards.remove(card))
         {
             TotalCardsInPool -= c.GetCardPoolInPlay().size();
+            selectSeriesCache -= 1;
             return true;
         }
 

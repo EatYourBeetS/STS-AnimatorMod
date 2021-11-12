@@ -32,7 +32,6 @@ public class Vladilena extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Orange(1, 1, 0);
         SetAffinity_Silver(2);
-        SetAffinity_Light(1);
 
         SetDrawPileCardPreview(this::FindCards);
         SetExhaust(true);

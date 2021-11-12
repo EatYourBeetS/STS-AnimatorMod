@@ -41,6 +41,7 @@ public class Ningguang extends AnimatorCard
             GameActions.Bottom.Add(new EarthOrbEvokeAction(next, magicNumber));
             GameActions.Delayed.Callback(() -> {
                next.IncreaseBaseEvokeAmount(1);
+               next.evokeAmount = next.GetBaseEvokeAmount();
             });
         }
         else {

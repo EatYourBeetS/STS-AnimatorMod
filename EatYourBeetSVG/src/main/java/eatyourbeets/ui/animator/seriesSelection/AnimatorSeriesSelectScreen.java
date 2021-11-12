@@ -43,8 +43,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected static final AnimatorStrings.SeriesSelectionButtons buttonStrings = GR.Animator.Strings.SeriesSelectionButtons;
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
-    protected int selectSeriesCache = 0;
-    protected int expandedSeriesCache = 0;
 
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
@@ -342,12 +340,11 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void ToggleExpansion(AbstractCard card)
     {
-        expandedSeriesCache += container.ToggleExpansion(card);
-        if (container.selectedCards.contains(card)) {
+        if (container.ToggleExpansion(card) && container.selectedCards.contains(card)) {
             Refresh(card);
         }
 
-        if (expandedSeriesCache <= 0) {
+        if (container.expandedSeriesCache <= 0) {
             massExpansionButton
                     .SetText(buttonStrings.AllExpansionEnable)
                     .SetOnClick(this::SelectAllExpansions)
@@ -363,8 +360,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void ToggleExpansion(AbstractCard card, boolean value)
     {
-        expandedSeriesCache += container.ToggleExpansion(card, value);
-        if (container.selectedCards.contains(card)) {
+        if (container.ToggleExpansion(card, value) && container.selectedCards.contains(card)) {
             Refresh(card);
         }
     }
@@ -399,7 +395,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             card.targetTransparency = 0.66f;
             card.stopGlowing();
-            selectSeriesCache -= 1;
         }
     }
 
@@ -409,7 +404,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             card.targetTransparency = 1f;
             card.beginGlowing();
-            selectSeriesCache += 1;
         }
     }
 
@@ -495,7 +489,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             selectionAmount.SetFontColor(Color.GRAY);
         }
 
-        if (selectSeriesCache <= PROMOTED_COUNT) {
+        if (container.selectSeriesCache <= PROMOTED_COUNT) {
             massSelectSeriesButton
                     .SetText(buttonStrings.SelectAll)
                     .SetOnClick(this::SelectAll)

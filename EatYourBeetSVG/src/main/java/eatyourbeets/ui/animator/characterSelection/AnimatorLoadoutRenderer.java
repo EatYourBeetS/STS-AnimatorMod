@@ -21,9 +21,11 @@ import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
+import static eatyourbeets.resources.animator.misc.AnimatorLoadout.BRONZE_REQUIRED_EXPANSION;
+
 public class AnimatorLoadoutRenderer extends GUIElement
 {
-    private final static EYBCardTooltip ExpansionLockedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, GR.Animator.Strings.SeriesSelection.ExpansionSeriesLocked);
+    private final static EYBCardTooltip ExpansionLockedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, JUtils.Format(GR.Animator.Strings.SeriesSelection.ExpansionSeriesLocked, BRONZE_REQUIRED_EXPANSION));
     private final static EYBCardTooltip ExpansionUnlockedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, GR.Animator.Strings.SeriesSelection.ExpansionSeriesUnlocked);
 
     protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);

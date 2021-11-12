@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
@@ -197,8 +198,12 @@ public abstract class AnimatorLoadout
 
     public boolean CanEnableExpansion()
     {
-        //return HasExpansion;
-        if (!HasExpansion) {return false;}
+        if (!HasExpansion) {
+            return false;
+        }
+        if (Settings.isDebug) {
+            return true;
+        }
         final AnimatorTrophies trophies = GetTrophies();
         final int bronze = trophies == null ? 20 : trophies.Trophy1;
         return bronze >= BRONZE_REQUIRED_EXPANSION;

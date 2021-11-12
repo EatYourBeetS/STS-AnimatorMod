@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
-public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscriber
+public class Curse_Rozen extends AnimatorCard_Curse implements OnSynergySubscriber, Hidden
 {
     public static final EYBCardData DATA = Register(Curse_Rozen.class)
     		.SetCurse(-2, EYBCardTarget.None, false).SetSeries(CardSeries.RozenMaiden);

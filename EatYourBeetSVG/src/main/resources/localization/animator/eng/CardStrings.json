@@ -914,7 +914,7 @@
 		},
 		"animator:Xiangling_Guoba":
 		{
-			"DESCRIPTION": "At the start of turn: Apply !M! [Burning] to ALL enemies, then reduce this amount by 1. When this reaches 0: Burning gains +!S!% damage bonus.",
+			"DESCRIPTION": "At the start of turn: Apply !M! [Burning] to ALL enemies, then reduce this amount by 1. When this reaches 0: [Burning] gains +!S!% damage bonus.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Apply #b{0} [Burning] to ALL enemies, then reduce this number by #b1. NL When this reaches #b0: [Burning] gains #b+{1}% damage bonus."],
 			"NAME": "Guoba"
 		},

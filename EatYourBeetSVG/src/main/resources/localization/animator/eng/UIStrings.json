@@ -191,7 +191,7 @@
 	  "Cards from this series may have a random bonus upon pickup (#yGold, #yMax. #yHP increase, #yCommon #yUpgrade). NL Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
 	  "#pRight-Click a series to view cards from its pool.",
 	  "Expansion",
-	  "This series has additional cards that may be enabled by holding 'CTRL' and clicking on this card.",
+	  "This series has additional cards that may be enabled by holding #p'CTRL' and clicking on this card.",
 	  "Additional cards for this series can now be enabled on the series select screen.",
 	  "Additional cards for this series are unlocked by obtaining a Bronze trophy at Ascension {0} or higher."
 	]

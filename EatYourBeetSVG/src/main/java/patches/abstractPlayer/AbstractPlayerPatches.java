@@ -177,9 +177,9 @@ public class AbstractPlayerPatches
 
                 for (AnimatorCard card : cards)
                 {
-                    if (!card.color.equals(AbstractCard.CardColor.COLORLESS) && card.rarity.equals(AbstractCard.CardRarity.COMMON) ||
+                    if (!card.color.equals(AbstractCard.CardColor.COLORLESS) && (card.rarity.equals(AbstractCard.CardRarity.COMMON) ||
                             card.rarity.equals(AbstractCard.CardRarity.UNCOMMON) ||
-                            card.rarity.equals(AbstractCard.CardRarity.RARE))
+                            card.rarity.equals(AbstractCard.CardRarity.RARE)))
 
                     __instance.masterDeck.addToTop(card.makeCopy());
                 }

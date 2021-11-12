@@ -154,7 +154,7 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
         return this.basePassiveAmount;
     }
 
-    public int GetBaseEvokeAmount(int amount) {
+    public int GetBaseEvokeAmount() {
         return this.baseEvokeAmount;
     }
 

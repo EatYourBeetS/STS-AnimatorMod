@@ -197,12 +197,11 @@ public abstract class AnimatorLoadout
 
     public boolean CanEnableExpansion()
     {
-        return HasExpansion;
-        //TODO for testing only
-        //if (!HasExpansion) return false;
-        //final AnimatorTrophies trophies = GetTrophies();
-        //final int bronze = trophies == null ? 20 : trophies.Trophy1;
-        //return bronze >= BRONZE_REQUIRED_EXPANSION;
+        //return HasExpansion;
+        if (!HasExpansion) {return false;}
+        final AnimatorTrophies trophies = GetTrophies();
+        final int bronze = trophies == null ? 20 : trophies.Trophy1;
+        return bronze >= BRONZE_REQUIRED_EXPANSION;
     }
 
     public boolean CanChangePreset(int preset)

@@ -21,7 +21,7 @@ public class Ningguang extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 10, 3);
+        Initialize(3, 0, 5, 3);
         SetUpgrade(3, 0, 0, 0);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(2, 0, 0);

@@ -23,7 +23,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class AyakaKamisato extends AnimatorCard {
-    public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Brutal).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
     public static final int THRESHOLD = 18;

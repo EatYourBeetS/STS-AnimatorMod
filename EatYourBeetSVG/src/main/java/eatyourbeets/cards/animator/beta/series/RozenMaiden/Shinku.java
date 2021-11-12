@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.BlessingStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -27,6 +26,7 @@ public class Shinku extends AnimatorCard
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Light(1, 1, 1);
 
+        SetAffinityRequirement(Affinity.Light, 7);
         SetAffinityRequirement(Affinity.Dark, 7);
     }
 
@@ -52,9 +52,9 @@ public class Shinku extends AnimatorCard
                     GameActions.Bottom.RecoverHP(secondaryValue);
                 }));
 
-        if (BlessingStance.IsActive() || TrySpendAffinity(Affinity.Dark)) {
-            GameActions.Bottom.GainTemporaryThorns(GetXValue());
-        }
+        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Light, Affinity.Dark).AddConditionalCallback(() -> {
+            GameActions.Bottom.GainEndurance(secondaryValue, true);
+        });
     }
 }
 

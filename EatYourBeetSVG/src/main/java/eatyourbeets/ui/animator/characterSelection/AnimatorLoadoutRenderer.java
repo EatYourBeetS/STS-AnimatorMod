@@ -4,25 +4,28 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Dropdown;
+import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
 public class AnimatorLoadoutRenderer extends GUIElement
 {
+    private final static EYBCardTooltip ExpansionLockedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, GR.Animator.Strings.SeriesSelection.ExpansionSeriesLocked);
+    private final static EYBCardTooltip ExpansionUnlockedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, GR.Animator.Strings.SeriesSelection.ExpansionSeriesUnlocked);
+
     protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);
     protected static final FieldInfo<Integer> _gold = JUtils.GetField("gold", CharacterOption.class);
     protected static final float POS_X = 250f * Settings.scale;
@@ -42,6 +45,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected GUI_Label StartingCardsLabel;
     protected GUI_Label StartingCardsListLabel;
     protected GUI_Label SeriesLabel;
+    protected GUI_Image ExpansionImage;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected AnimatorLoadout loadout;
@@ -110,6 +114,9 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 .SetTooltip(GR.Animator.Strings.CharSelect.DeckEditor, GR.Animator.Strings.CharSelect.DeckEditorInfo)
                 .SetOnRightClick(this::ChangePreset)
                 .SetOnClick(this::OpenLoadoutEditor);
+
+        ExpansionImage = new GUI_Image(GR.Common.Images.Icons.BranchUpgrade_L.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+                .SetPosition(RandomizeButton.hb.x + RandomizeButton.hb.width + Scale(40), RandomizeButton.hb.y + Scale(25));
     }
 
     private void OpenLoadoutEditor()
@@ -220,6 +227,8 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         this.SeriesDropdown.SetItems(this.loadouts);
         this.SeriesDropdown.SetSelection(GR.Animator.Data.SelectedLoadout, false);
+
+
     }
 
     public void RefreshInternal(boolean refreshPortrait)
@@ -263,6 +272,16 @@ public class AnimatorLoadoutRenderer extends GUIElement
         StartingCardsLabel.Update();
         StartingCardsListLabel.Update();
         SeriesLabel.Update();
+        ExpansionImage.Update();
+
+        if (loadout != null && loadout.HasExpansion && ExpansionImage.hb.hovered) {
+            if (loadout.CanEnableExpansion()) {
+                EYBCardTooltip.QueueTooltip(ExpansionUnlockedTooltip, InputHelper.mX + (60 * Settings.scale), InputHelper.mY + (60 * Settings.scale));
+            }
+            else {
+                EYBCardTooltip.QueueTooltip(ExpansionLockedTooltip, InputHelper.mX + (60 * Settings.scale), InputHelper.mY + (60 * Settings.scale));
+            }
+        }
     }
 
     public void Render(SpriteBatch sb)
@@ -275,5 +294,13 @@ public class AnimatorLoadoutRenderer extends GUIElement
         StartingCardsLabel.Render(sb);
         StartingCardsListLabel.Render(sb);
         SeriesLabel.Render(sb);
+        if (loadout != null && loadout.HasExpansion) {
+            if (!loadout.CanEnableExpansion()) {
+                RenderHelpers.DrawGrayscale(sb, () -> {ExpansionImage.Render(sb); return true;});
+            }
+            else {
+                ExpansionImage.Render(sb);
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
 package eatyourbeets.ui.animator.seriesSelection;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,21 +33,26 @@ import eatyourbeets.utilities.RandomizedList;
 
 import java.util.Collection;
 
+import static eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer.PROMOTED_COUNT;
+
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
     protected static final int MINIMUM_CARDS = 120;
     protected static final int BONUS_RELIC_THRESHOLD = 180;
     protected static final Random rng = new Random();
+    protected static final AnimatorStrings.SeriesSelectionButtons buttonStrings = GR.Animator.Strings.SeriesSelectionButtons;
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;
+    protected int selectSeriesCache = 0;
+    protected int expandedSeriesCache = 0;
 
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
-    public final GUI_Button deselectAll;
+    public final GUI_Button massSelectSeriesButton;
     public final GUI_Button selectRandomMinimum;
     public final GUI_Button selectRandomForPurgingStone;
-    public final GUI_Button selectAll;
+    public final GUI_Button massExpansionButton;
     public final GUI_Button previewCards;
     public final GUI_Button confirm;
     public final GUI_Toggle upgradeToggle;
@@ -58,7 +65,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     public AnimatorSeriesSelectScreen()
     {
         final AnimatorStrings.SeriesSelection textboxStrings = GR.Animator.Strings.SeriesSelection;
-        final AnimatorStrings.SeriesSelectionButtons buttonStrings = GR.Animator.Strings.SeriesSelectionButtons;
+
         final Texture panelTexture = GR.Common.Images.Panel.Texture();
         final FuncT1<Float, Float> getY = (delta) -> ScreenH(0.95f) - ScreenH(0.08f * delta);
         final float buttonHeight = ScreenH(0.07f);
@@ -95,14 +102,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetOnClick(() -> SelectRandom(BONUS_RELIC_THRESHOLD))
         .SetColor(Color.SKY);
 
-        deselectAll = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
-                .SetText(buttonStrings.DeselectAll)
-                .SetOnClick(this::DeselectAll)
-                .SetColor(Color.FIREBRICK);
+        massSelectSeriesButton = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+                .SetText(buttonStrings.SelectAll)
+                .SetOnClick(this::SelectAll)
+                .SetColor(Color.ROYAL);
 
-        selectAll = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectAll)
-        .SetOnClick(this::SelectAll)
+        massExpansionButton = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
+        .SetText(buttonStrings.AllExpansionEnable)
+        .SetOnClick(this::SelectAllExpansions)
         .SetColor(Color.ROYAL);
 
         selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(5.8f), buttonWidth, buttonHeight * 0.8f))
@@ -162,10 +169,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         toggleBeta.TryRender(sb);
 
         startingDeck.TryRender(sb);
-        deselectAll.Render(sb);
+        massSelectSeriesButton.Render(sb);
         selectRandomMinimum.Render(sb);
         selectRandomForPurgingStone.Render(sb);
-        selectAll.Render(sb);
+        massExpansionButton.Render(sb);
         previewCards.Render(sb);
         confirm.Render(sb);
 
@@ -211,10 +218,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         bonusRelicImage.TryUpdate();
 
         startingDeck.TryUpdate();
-        deselectAll.Update();
+        massSelectSeriesButton.Update();
         selectRandomMinimum.Update();
         selectRandomForPurgingStone.Update();
-        selectAll.Update();
+        massExpansionButton.Update();
         previewCards.Update();
         confirm.Update();
 
@@ -225,7 +232,11 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     protected void OnCardClicked(AbstractCard card)
     {
         AnimatorRuntimeLoadout c = container.Find(card);
-        if (c.promoted)
+        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) && c.canEnableExpansion) {
+            CardCrawlGame.sound.play("CARD_SELECT");
+            ToggleExpansion(card);
+        }
+        else if (c.promoted)
         {
             CardCrawlGame.sound.play("CARD_REJECT");
         }
@@ -279,14 +290,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         }
     }
 
-    public void PreviewCardPool(AbstractCard source)
-    {
+    public CardGroup GetCardPool(AnimatorRuntimeLoadout loadout) {
         final CardGroup cards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        if (source != null)
-        {
-            source.unhover();
-
-            final Collection<AbstractCard> cardsSource = container.Find(source).Cards.values();
+        if (loadout != null) {
+            final Collection<AbstractCard> cardsSource = loadout.GetCardPoolInPlay().values();
             for (AbstractCard c : cardsSource)
             {
                 AbstractCard nc = c.makeStatEquivalentCopy();
@@ -294,11 +301,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                 cards.group.add(nc);
             }
         }
-        else
-        {
+        else {
             for (AbstractCard cs : container.selectedCards)
             {
-                final Collection<AbstractCard> cardsSource = container.Find(cs).Cards.values();
+                final Collection<AbstractCard> cardsSource = container.Find(cs).GetCardPoolInPlay().values();
                 for (AbstractCard c : cardsSource)
                 {
                     AbstractCard nc = c.makeStatEquivalentCopy();
@@ -307,19 +313,84 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                 }
             }
         }
-
         cards.sortAlphabetically(true);
         cards.group.sort(new CardSeriesComparator());
         cards.sortByRarity(true);
-
-        PreviewCards(cards);
+        return cards;
     }
 
-    public void PreviewCards(CardGroup cards)
+    public void PreviewCardPool(AbstractCard source)
+    {
+        AnimatorRuntimeLoadout loadout = null;
+        if (source != null) {
+            source.unhover();
+            loadout = container.Find(source);
+        }
+        final CardGroup cards = GetCardPool(loadout);
+        PreviewCards(cards, loadout);
+    }
+
+    public void PreviewCards(CardGroup cards, AnimatorRuntimeLoadout loadout)
     {
         previewCardsEffect = new ShowCardPileEffect(cards)
         .SetStartingPosition(InputHelper.mX, InputHelper.mY);
+        previewCardsEffect.SetLoadout(loadout, () -> {
+           previewCardsEffect.Refresh(GetCardPool(loadout));
+        });
         GameEffects.Manual.Add(previewCardsEffect);
+    }
+
+    public void ToggleExpansion(AbstractCard card)
+    {
+        expandedSeriesCache += container.ToggleExpansion(card);
+        if (container.selectedCards.contains(card)) {
+            Refresh(card);
+        }
+
+        if (expandedSeriesCache <= 0) {
+            massExpansionButton
+                    .SetText(buttonStrings.AllExpansionEnable)
+                    .SetOnClick(this::SelectAllExpansions)
+                    .SetColor(Color.ROYAL);
+        }
+        else {
+            massExpansionButton
+                    .SetText(buttonStrings.AllExpansionDisable)
+                    .SetOnClick(this::DeselectAllExpansions)
+                    .SetColor(Color.FIREBRICK);
+        }
+    }
+
+    public void ToggleExpansion(AbstractCard card, boolean value)
+    {
+        expandedSeriesCache += container.ToggleExpansion(card, value);
+        if (container.selectedCards.contains(card)) {
+            Refresh(card);
+        }
+    }
+
+    public void DeselectAllExpansions()
+    {
+        for (AbstractCard card : container.allCards)
+        {
+            ToggleExpansion(card, false);
+        }
+        massExpansionButton
+                .SetText(buttonStrings.AllExpansionEnable)
+                .SetOnClick(this::SelectAllExpansions)
+                .SetColor(Color.ROYAL);
+    }
+
+    public void SelectAllExpansions()
+    {
+        for (AbstractCard card : container.allCards)
+        {
+            ToggleExpansion(card, true);
+        }
+        massExpansionButton
+                .SetText(buttonStrings.AllExpansionDisable)
+                .SetOnClick(this::DeselectAllExpansions)
+                .SetColor(Color.FIREBRICK);
     }
 
     public void Deselect(AbstractCard card)
@@ -328,11 +399,23 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             card.targetTransparency = 0.66f;
             card.stopGlowing();
+            selectSeriesCache -= 1;
         }
     }
 
     public void Select(AbstractCard card)
     {
+        if (container.Select(card))
+        {
+            card.targetTransparency = 1f;
+            card.beginGlowing();
+            selectSeriesCache += 1;
+        }
+    }
+
+    public void Refresh(AbstractCard card)
+    {
+        container.Deselect(card);
         if (container.Select(card))
         {
             card.targetTransparency = 1f;
@@ -393,7 +476,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                     group.group.sort(new CardSeriesComparator());
                     group.group.sort(new CardAffinityComparator(c.Type));
 
-                    PreviewCards(group);
+                    PreviewCards(group, null);
                 }
             });
         }
@@ -410,6 +493,19 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             confirm.SetInteractable(false);
             selectionAmount.SetFontColor(Color.GRAY);
+        }
+
+        if (selectSeriesCache <= PROMOTED_COUNT) {
+            massSelectSeriesButton
+                    .SetText(buttonStrings.SelectAll)
+                    .SetOnClick(this::SelectAll)
+                    .SetColor(Color.ROYAL);
+        }
+        else {
+            massSelectSeriesButton
+                    .SetText(buttonStrings.DeselectAll)
+                    .SetOnClick(this::DeselectAll)
+                    .SetColor(Color.FIREBRICK);
         }
     }
 

@@ -42,7 +42,7 @@ public class Suigintou extends AnimatorCard implements OnPurgeSubscriber
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 6 == 1)
+        if (timesUpgraded % 6 == 0)
         {
             upgradeMagicNumber(1);
         }

@@ -2,41 +2,55 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
+import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class Ningguang extends AnimatorCard implements Hidden
+public class Ningguang extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ningguang.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Ningguang.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage(true);
 
     public Ningguang()
     {
         super(DATA);
 
-        Initialize(4, 0, 1, 2);
-        SetUpgrade(1, 0, 0, 1);
-        SetAffinity_Light(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        Initialize(3, 0, 10, 3);
+        SetUpgrade(3, 0, 0, 0);
+        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Orange(2, 0, 0);
 
-        SetProtagonist(true);
-        SetHarmonic(true);
-
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinityRequirement(Affinity.Orange, 6);
+        SetAffinityRequirement(Affinity.Blue, 6);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = TrySpendAffinity(Affinity.Light) ? magicNumber + 1 : magicNumber;
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
+                .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.5f)).duration).SetRealtime(true));
+        final Earth next = JUtils.SafeCast(GameUtilities.GetFirstOrb(Earth.ORB_ID), Earth.class);
+        if (next != null && next.projectilesCount > magicNumber) {
+            GameActions.Top.Add(new EarthOrbPassiveAction(next, -magicNumber));
+            GameActions.Bottom.Add(new EarthOrbEvokeAction(next, magicNumber));
+            GameActions.Delayed.Callback(() -> {
+               next.IncreaseBaseEvokeAmount(1);
+            });
+        }
+        else {
+            GameActions.Bottom.ChannelOrb(new Earth());
+        }
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.ApplyVulnerable(p, m, amount);
-        GameActions.Bottom.ApplyWeak(p, m, amount);
-        if (IsStarter())
-        {
-            GameActions.Bottom.Scry(secondaryValue);
+        if (info.CanActivateSemiLimited && (CheckAffinity(Affinity.Orange) || CheckAffinity(Affinity.Blue)) && info.TryActivateSemiLimited()) {
+            GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Orange).AddConditionalCallback(() -> {
+                GameActions.Bottom.GainEndurance(secondaryValue, true);
+            });
         }
     }
 }

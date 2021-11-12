@@ -158,24 +158,30 @@ public class AnimatorStrings
     {
         private final UIStrings Strings = GetUIStrings("SeriesSelection");
 
+        public final String Promoted = Strings.TEXT[1];
+        public final String Beta = Strings.TEXT[2];
         public final String PurgingStoneRequirement = Strings.TEXT[3];
-        public final String PickupBonusHeader = Strings.TEXT[4];
-        public final String PickupBonusBody = Strings.TEXT[5];
+        public final String TooltipBeta = Strings.TEXT[4];
+        public final String TooltipPromoted = Strings.TEXT[5];
         public final String RightClickToPreview = Strings.TEXT[6];
+        public final String ExpansionHeader = Strings.TEXT[7];
+        public final String ExpansionCardBody = Strings.TEXT[8];
+        public final String ExpansionSeriesUnlocked = Strings.TEXT[9];
+        public final String ExpansionSeriesLocked = Strings.TEXT[10];
 
-        public final String ContainsNCards(int cardCount)
+        public final String ContainsNCards(Object cardCount)
         {
-            return cardCount > 0 ? JUtils.Format(Strings.TEXT[0], cardCount) : "";
+            return JUtils.Format(Strings.TEXT[0], cardCount);
         }
 
-        public final String ContainsNCards_Promoted(int cardCount)
+        public final String ContainsNCards_Promoted(Object cardCount)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1];
+            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1] + ".";
         }
 
-        public final String ContainsNCards_Beta(int cardCount)
+        public final String ContainsNCards_Beta(Object cardCount)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2];
+            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2] + ".";
         }
     }
 
@@ -188,6 +194,9 @@ public class AnimatorStrings
         public final String SelectAll = Strings.TEXT[3];
         public final String ShowCardPool = Strings.TEXT[4];
         public final String Proceed = Strings.TEXT[5];
+        public final String EnableExpansion = Strings.TEXT[6];
+        public final String AllExpansionEnable = Strings.TEXT[7];
+        public final String AllExpansionDisable = Strings.TEXT[8];
 
         public final String SelectRandom(int cards)
         {

@@ -17,6 +17,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+    private static final CardGroup upgradedChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     public static final EYBCardData DATA = Register(ChaikaTrabant.class)
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
@@ -27,6 +28,9 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
                 cardChoices.addToBottom(new Layla());
                 for (AbstractCard c : cardChoices.group)
                 {
+                    AbstractCard copy = c.makeStatEquivalentCopy();
+                    c.upgrade();
+                    upgradedChoices.addToBottom(c);
                     data.AddPreview(c, true);
                 }
             });
@@ -53,10 +57,14 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromHand(name, 9999, false).AddCallback(cards -> {
-           for (AbstractCard c : cards) {
-               GameUtilities.ModifyDamage(c, c.baseDamage * 2, !upgraded);
-           }
+        GameActions.Bottom.SelectFromPile(name, 9999, player.hand)
+                .SetOptions(true, false)
+                .SetFilter(c -> c.costForTurn == 0)
+                .AddCallback(cards -> {
+                   for (AbstractCard c : cards) {
+                       c.flash();
+                       GameUtilities.IncreaseDamage(c, c.baseDamage, false);
+                   }
         });
         ChaikaTrabant other = (ChaikaTrabant) makeStatEquivalentCopy();
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);
@@ -73,7 +81,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
 
         GameActions.Bottom.Callback(() ->
-                GameActions.Bottom.SelectFromPile(name, 1, cardChoices)
+                GameActions.Bottom.SelectFromPile(name, 1, upgraded ? upgradedChoices : cardChoices)
                         .SetOptions(false, false)
                         .AddCallback(cards ->
                         {

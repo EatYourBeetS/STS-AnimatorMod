@@ -2,14 +2,15 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
@@ -21,8 +22,8 @@ public class Shion extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(15, 0, 2, 9);
-        SetUpgrade(3, 0, 0);
+        Initialize(15, 0, 6, 0);
+        SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1, 1, 2);
     }
@@ -30,23 +31,11 @@ public class Shion extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        for (AbstractPower p : player.powers)
-        {
-            amount = p.atDamageGive(amount, damageTypeForTurn, this);
+        if (enemy != null) {
+            if (GameUtilities.GetPowerAmount(enemy, VulnerablePower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(enemy, WeakPower.POWER_ID) > 0) {
+                return super.ModifyDamage(enemy, amount + magicNumber);
+            }
         }
-        for (AbstractPower p : enemy.powers)
-        {
-            amount = p.atDamageReceive(amount, damageTypeForTurn, this);
-        }
-        for (AbstractPower p : player.powers)
-        {
-            amount = p.atDamageFinalGive(amount, damageTypeForTurn, this);
-        }
-        for (AbstractPower p : enemy.powers)
-        {
-            amount = p.atDamageFinalReceive(amount, damageTypeForTurn, this);
-        }
-        amount = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, amount, this);
         return super.ModifyDamage(enemy, amount);
     }
 

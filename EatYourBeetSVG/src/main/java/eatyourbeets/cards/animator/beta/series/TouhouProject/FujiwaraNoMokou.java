@@ -7,16 +7,15 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class FujiwaraNoMokou extends AnimatorCard implements Hidden
+public class FujiwaraNoMokou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(FujiwaraNoMokou.class).SetAttack(1, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage(true);
 
     public FujiwaraNoMokou()
     {

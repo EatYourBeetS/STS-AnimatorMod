@@ -7,26 +7,29 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Gargantua extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Gargantua.class)
-            .SetSkill(3, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Brutal)
             .SetSeriesFromClassPackage();
 
     public Gargantua()
     {
         super(DATA);
 
-        Initialize(0, 10, 1);
-        SetUpgrade(0, 3, 1);
+        Initialize(5, 9, 1);
+        SetUpgrade(2, 2, 1);
 
         SetAffinity_Red(0,0,2);
         SetAffinity_Orange(2, 0, 1);
@@ -36,6 +39,8 @@ public class Gargantua extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
+                .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.5f)).duration).SetRealtime(true));
         GameActions.Bottom.GainBlock(block);
         final Earth next = JUtils.SafeCast(GameUtilities.GetFirstOrb(Earth.ORB_ID), Earth.class);
         if (next != null) {

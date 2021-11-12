@@ -576,6 +576,12 @@
 		"NAMES": ["~branchupgrade, ~branch upgrade"],
 		"PROPER_NAME": "Branch Upgrade"
 	},
+	"~Brutal":
+	{
+		"DESCRIPTION": "Affected twice by damage modifiers.",
+		"NAMES": ["~brutal"],
+		"PROPER_NAME": "Brutal Damage"
+	},
 	"~Crystallize":
 	{
 		"DESCRIPTION": "A Status card that gives [Metallicize] at the cost of HP and [E].",

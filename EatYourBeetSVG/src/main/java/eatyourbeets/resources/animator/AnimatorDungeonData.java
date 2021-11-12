@@ -238,7 +238,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                 {
                     for (AnimatorRuntimeLoadout loadout : Loadouts)
                     {
-                        if (loadout.Cards.containsKey(card.cardID))
+                        if (loadout.GetCardPoolInPlay().containsKey(card.cardID))
                         {
                             return false;
                         }

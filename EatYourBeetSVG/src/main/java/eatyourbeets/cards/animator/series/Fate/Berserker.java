@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.Fate;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.stances.ForceStance;
@@ -16,7 +13,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Berserker extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Berserker.class)
-            .SetAttack(3, CardRarity.COMMON)
+            .SetAttack(3, CardRarity.COMMON, EYBAttackType.Brutal)
             .SetSeriesFromClassPackage();
 
     public Berserker()

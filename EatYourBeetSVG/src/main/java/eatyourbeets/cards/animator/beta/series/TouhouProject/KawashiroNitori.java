@@ -9,19 +9,18 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class KawashiroNitori extends AnimatorCard implements Hidden
+public class KawashiroNitori extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KawashiroNitori.class)
             .SetPower(1, CardRarity.COMMON)
             .SetMaxCopies(3)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage(true);
 
     public KawashiroNitori()
     {

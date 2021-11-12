@@ -19,11 +19,12 @@ public class ShuuOuma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0,0,1,1);
+        Initialize(0, 0, 1, 4);
+        SetUpgrade(0,0,1,2);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
+        SetAffinity_Blue(1);
 
         SetExhaust(true);
 

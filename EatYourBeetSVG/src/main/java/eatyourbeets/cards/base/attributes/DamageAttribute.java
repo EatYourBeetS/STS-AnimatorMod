@@ -13,6 +13,11 @@ public class DamageAttribute extends AbstractAttribute
 
         switch (card.attackType)
         {
+            case Brutal:
+                icon = ICONS.Brutal_L.Texture();
+                largeIcon = ICONS.Brutal.Texture();
+                break;
+
             case Elemental:
                 icon = ICONS.Elemental.Texture();
                 largeIcon = ICONS.Elemental_L.Texture();

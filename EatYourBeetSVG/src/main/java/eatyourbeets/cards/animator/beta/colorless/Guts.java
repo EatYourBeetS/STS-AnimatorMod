@@ -17,7 +17,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 
 public class Guts extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Guts.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Berserk);
+    public static final EYBCardData DATA = Register(Guts.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Brutal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Berserk);
 
     public Guts()
     {

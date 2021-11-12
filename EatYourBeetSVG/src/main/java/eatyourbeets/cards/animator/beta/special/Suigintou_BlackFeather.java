@@ -2,12 +2,15 @@ package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.series.RozenMaiden.Suigintou;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStartOfTurnPostDrawSubscriber
 {
@@ -19,7 +22,7 @@ public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStar
     {
         super(DATA, false);
 
-        Initialize(0, 0, 1, 4);
+        Initialize(0, 0, 2, 5);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Dark(2, 0, 0);
@@ -29,21 +32,21 @@ public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStar
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        SetRetain(false);
-        SetEthereal(true);
+        GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile, player.discardPile, player.exhaustPile)
+                .SetFilter(c -> Suigintou.DATA.ID.equals(c.cardID));
+
+        GameActions.Bottom.DealDamage(null, player, secondaryValue, DamageInfo.DamageType.THORNS, AttackEffects.DARKNESS);
+        for (AbstractCreature cr : GameUtilities.GetEnemies(true)) {
+            GameActions.Bottom.DealDamageAtEndOfTurn(player, cr, upgraded ? secondaryValue : magicNumber, AttackEffects.DARKNESS);
+        }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public boolean canUpgrade()
     {
-        GameActions.Bottom.FetchFromPile(name, 1, player.drawPile, player.discardPile, player.exhaustPile)
-                .SetFilter(c -> Suigintou.DATA.ID.equals(c.cardID));
-
-        int[] damageMatrix = DamageInfo.createDamageMatrix(secondaryValue, true);
-        GameActions.Bottom.DealDamage(null, player, secondaryValue, DamageInfo.DamageType.THORNS, AttackEffects.DARKNESS);
-        GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.DARKNESS);
+        return true;
     }
 
     @Override
@@ -54,5 +57,13 @@ public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStar
             GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.DARKNESS);
         }
 
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 }

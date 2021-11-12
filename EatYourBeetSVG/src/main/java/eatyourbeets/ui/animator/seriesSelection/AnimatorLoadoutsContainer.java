@@ -18,6 +18,7 @@ import java.util.Map;
 
 public class AnimatorLoadoutsContainer
 {
+    public static final int PROMOTED_COUNT = 3;
     public int TotalCardsInPool = 0;
     public final Map<AbstractCard, AnimatorRuntimeLoadout> cardsMap = new HashMap<>();
     public final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
@@ -86,7 +87,7 @@ public class AnimatorLoadoutsContainer
         }
 
         final Random rng = new Random(Settings.seed + 13);
-        while (promotedCount < 3)
+        while (promotedCount < PROMOTED_COUNT)
         {
             toPromote.Retrieve(rng).Promote();
             promotedCount += 1;
@@ -116,11 +117,35 @@ public class AnimatorLoadoutsContainer
         return cardsMap.values();
     }
 
+    public int ToggleExpansion(AbstractCard card)
+    {
+        AnimatorRuntimeLoadout c = Find(card);
+        return ToggleExpansion(c, !c.expansionEnabled);
+    }
+
+    public int ToggleExpansion(AbstractCard card, boolean value)
+    {
+        AnimatorRuntimeLoadout c = Find(card);
+        return ToggleExpansion(c, value);
+    }
+
+    public int ToggleExpansion(AnimatorRuntimeLoadout c, boolean value)
+    {
+        TotalCardsInPool -= c.GetCardPoolInPlay().size();
+        c.ToggleExpansion(value);
+        TotalCardsInPool += c.GetCardPoolInPlay().size();
+        if (c.canEnableExpansion) {
+            return c.expansionEnabled ? 1 : -1;
+        }
+        return 0;
+    }
+
+
     public boolean Select(AbstractCard card)
     {
         if (!selectedCards.contains(card))
         {
-            TotalCardsInPool += Find(card).Cards.size();
+            TotalCardsInPool += Find(card).GetCardPoolInPlay().size();
             selectedCards.add(card);
             return true;
         }
@@ -133,7 +158,7 @@ public class AnimatorLoadoutsContainer
         AnimatorRuntimeLoadout c = Find(card);
         if (!c.promoted && selectedCards.remove(card))
         {
-            TotalCardsInPool -= c.Cards.size();
+            TotalCardsInPool -= c.GetCardPoolInPlay().size();
             return true;
         }
 
@@ -173,7 +198,7 @@ public class AnimatorLoadoutsContainer
         final ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard card : selectedCards)
         {
-            cards.addAll(Find(card).Cards.values());
+            cards.addAll(Find(card).GetCardPoolInPlay().values());
         }
 
         return cards;

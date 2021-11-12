@@ -11,6 +11,7 @@ import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.AnimatorCharacter;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.resources.GR;
@@ -100,6 +101,7 @@ public abstract class AnimatorLoadout
     public static final int GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED = 7;
     public static final int BRONZE_REQUIRED_PRESET_SLOT_2 = 7;
     public static final int BRONZE_REQUIRED_PRESET_SLOT_3 = 14;
+    public static final int BRONZE_REQUIRED_EXPANSION = 16;
     public static final int MAX_PRESETS = 3;
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
@@ -122,6 +124,7 @@ public abstract class AnimatorLoadout
     public String Name;
     public CardSeries Series;
     public boolean IsBeta;
+    public boolean HasExpansion;
 
     public int CardDraw = 5;
     public int OrbSlots = 3;
@@ -133,6 +136,7 @@ public abstract class AnimatorLoadout
         this.Series = null;
         this.Name = name;
         this.ID = -1;
+        this.HasExpansion = CheckForExpansion();
     }
 
     public AnimatorLoadout(CardSeries series)
@@ -141,6 +145,21 @@ public abstract class AnimatorLoadout
         this.Series = series;
         this.Name = series.LocalizedName;
         this.ID = series.ID;
+        this.HasExpansion = CheckForExpansion();
+    }
+
+    private boolean CheckForExpansion() {
+        if (this.Series == null) {
+            return false;
+        }
+        for (AbstractCard c : CardLibrary.getAllCards())
+        {
+            AnimatorCard aC = JUtils.SafeCast(c, AnimatorCard.class);
+            if (aC != null && this.Series.equals(aC.series) && aC.cardData != null && aC.cardData.IsExpansionCard && !(aC instanceof Hidden)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public abstract void AddStarterCards();
@@ -174,6 +193,16 @@ public abstract class AnimatorLoadout
     public Validation Validate()
     {
         return GetPreset().Validate();
+    }
+
+    public boolean CanEnableExpansion()
+    {
+        return HasExpansion;
+        //TODO for testing only
+        //if (!HasExpansion) return false;
+        //final AnimatorTrophies trophies = GetTrophies();
+        //final int bronze = trophies == null ? 20 : trophies.Trophy1;
+        //return bronze >= BRONZE_REQUIRED_EXPANSION;
     }
 
     public boolean CanChangePreset(int preset)

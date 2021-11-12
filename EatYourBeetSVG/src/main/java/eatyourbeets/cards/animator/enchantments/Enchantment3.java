@@ -47,7 +47,7 @@ public class Enchantment3 extends Enchantment
     }
 
     @Override
-    protected String GetRawDescription()
+    public String GetRawDescription()
     {
         if (auxiliaryData.form == 5) {
             return super.GetRawDescription(UP5_BLOCK);

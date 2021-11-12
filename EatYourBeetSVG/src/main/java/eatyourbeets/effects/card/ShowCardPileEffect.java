@@ -10,7 +10,9 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.effects.EYBEffectWithCallback;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.controls.GUI_CardGrid;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -25,6 +27,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     private static final GUI_Toggle upgradeToggle;
     private static final GUI_Toggle zoomToggle;
     private static final GUI_Toggle simplifyCardUIToggle;
+    private static final GUI_Toggle toggleExpansion;
     static
     {
         upgradeToggle = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
@@ -48,9 +51,16 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         .SetText(GR.Animator.Strings.Misc.SimplifyCardUI)
         .SetOnToggle(ShowCardPileEffect::ToggleSimplifyCardUI);
 
+        toggleExpansion = new GUI_Toggle(new Hitbox(Settings.scale * 256f, Settings.scale * 48f))
+                .SetBackground(GR.Common.Images.Panel.Texture(), Color.DARK_GRAY)
+                .SetPosition(Settings.WIDTH * 0.075f, simplifyCardUIToggle.hb.y - simplifyCardUIToggle.hb.height * 2)
+                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
+                .SetText(GR.Animator.Strings.SeriesSelectionButtons.EnableExpansion);
     }
 
-    private final CardGroup cards;
+    private CardGroup cards;
+    private ActionT0 invokeFunc;
+    private AnimatorRuntimeLoadout loadout;
     private boolean draggingScreen;
     private boolean showTopPanelOnComplete;
     private Color screenColor;
@@ -63,12 +73,18 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 
     public ShowCardPileEffect(CardGroup cards)
     {
+        this(cards, null);
+    }
+
+    public ShowCardPileEffect(CardGroup cards, AnimatorRuntimeLoadout loadout)
+    {
         super(0.7f);
 
         this.cards = cards;
         this.isRealtime = true;
         this.screenColor = AbstractDungeon.fadeColor.cpy();
         this.screenColor.a = 0.8f;
+        this.loadout = loadout;
 
         AbstractDungeon.overlayMenu.proceedButton.hide();
 
@@ -87,6 +103,19 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         this.grid = new GUI_CardGrid()
         .CanDragScreen(false)
         .AddCards(cards.group);
+
+        if (loadout != null) {
+            toggleExpansion.SetOnToggle(this::ToggleExpansion);
+        }
+    }
+
+    public ShowCardPileEffect SetLoadout(AnimatorRuntimeLoadout loadout, ActionT0 invokeFunc) {
+        this.loadout = loadout;
+        this.invokeFunc = invokeFunc;
+        if (loadout != null) {
+            toggleExpansion.SetOnToggle(this::ToggleExpansion);
+        }
+        return this;
     }
 
     public ShowCardPileEffect SetStartingPosition(float x, float y)
@@ -100,6 +129,13 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         return this;
     }
 
+    public void Refresh(CardGroup cards) {
+        this.cards = cards;
+        this.grid = new GUI_CardGrid()
+                .CanDragScreen(false)
+                .AddCards(cards.group);
+    }
+
     @Override
     protected void UpdateInternal(float deltaTime)
     {
@@ -107,8 +143,11 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
         zoomToggle.SetToggle(GR.Animator.Config.CropCardImages.Get()).Update();
         simplifyCardUIToggle.SetToggle(GR.Animator.Config.SimplifyCardUI.Get()).Update();
+        if (loadout != null) {
+            toggleExpansion.SetToggle(loadout.expansionEnabled).Update();
+        }
 
-        if (upgradeToggle.hb.hovered || zoomToggle.hb.hovered || simplifyCardUIToggle.hb.hovered)
+        if (upgradeToggle.hb.hovered || zoomToggle.hb.hovered || simplifyCardUIToggle.hb.hovered || toggleExpansion.hb.hovered)
         {
             duration = startingDuration * 0.1f;
             isDone = false;
@@ -143,6 +182,9 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
         simplifyCardUIToggle.Render(sb);
+        if (loadout != null) {
+            toggleExpansion.Render(sb);
+        }
     }
 
     @Override
@@ -154,6 +196,14 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         {
             GameUtilities.SetTopPanelVisible(true);
             showTopPanelOnComplete = false;
+        }
+    }
+
+    private void ToggleExpansion(boolean value)
+    {
+        if (loadout != null) {
+            loadout.ToggleExpansion(value);
+            invokeFunc.Invoke();
         }
     }
 

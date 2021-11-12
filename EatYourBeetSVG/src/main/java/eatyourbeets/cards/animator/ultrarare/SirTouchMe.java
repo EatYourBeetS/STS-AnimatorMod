@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -14,7 +11,7 @@ import eatyourbeets.utilities.GameEffects;
 public class SirTouchMe extends AnimatorCard_UltraRare
 {
     public static final EYBCardData DATA = Register(SirTouchMe.class)
-            .SetAttack(2, CardRarity.SPECIAL)
+            .SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Brutal)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Overlord);
 

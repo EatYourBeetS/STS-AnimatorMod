@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, EYBAttackType.Brutal, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
 
     private int turns;
 

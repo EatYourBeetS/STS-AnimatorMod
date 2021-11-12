@@ -130,8 +130,8 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
 
     protected void SetInteractable(boolean value)
     {
-        screen.selectAll.SetInteractable(value);
-        screen.deselectAll.SetInteractable(value);
+        screen.massExpansionButton.SetInteractable(value);
+        screen.massSelectSeriesButton.SetInteractable(value);
         screen.selectRandomMinimum.SetInteractable(value);
         screen.selectRandomForPurgingStone.SetInteractable(value);
         screen.toggleBeta.SetInteractable(value);

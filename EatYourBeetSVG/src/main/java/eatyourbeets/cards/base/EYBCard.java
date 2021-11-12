@@ -195,7 +195,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         return null;
     }
 
-    protected String GetRawDescription()
+    public String GetRawDescription()
     {
         return GetRawDescription((Object[]) null);
     }
@@ -519,7 +519,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         //    dynamicTooltips.add(GR.Tooltips.Affinity_Star);
         //}
 
-        if (attackType == EYBAttackType.Elemental)
+        if (attackType == EYBAttackType.Brutal)
+        {
+            dynamicTooltips.add(GR.Tooltips.Brutal);
+        }
+        else if (attackType == EYBAttackType.Elemental)
         {
             dynamicTooltips.add(GR.Tooltips.Elemental);
         }
@@ -1147,6 +1151,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));
         float tempBlock = GetInitialBlock();
         float tempDamage = GetInitialDamage();
+        int applyCount = attackType == EYBAttackType.Brutal ? 2 : 1;
 
         for (AbstractRelic r : player.relics)
         {
@@ -1159,7 +1164,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         for (AbstractPower p : player.powers)
         {
             tempBlock = p.modifyBlock(tempBlock, this);
-            tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
+            for (int i = 0; i < applyCount; i++) {
+                tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
+            }
+
         }
 
         tempBlock = ModifyBlock(enemy, tempBlock);
@@ -1205,7 +1213,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
             for (AbstractPower p : enemy.powers)
             {
-                tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+                for (int i = 0; i < applyCount; i++) {
+                    tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+                }
             }
         }
 
@@ -1213,16 +1223,22 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         for (AbstractPower p : player.powers)
         {
-            tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
+            for (int i = 0; i < applyCount; i++) {
+                tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
+            }
         }
 
         if (applyEnemyPowers)
         {
             for (AbstractPower p : enemy.powers)
             {
-                tempDamage = p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+                for (int i = 0; i < applyCount; i++) {
+                    tempDamage = p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+                }
             }
-            tempDamage = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, tempDamage, this);
+            for (int i = 0; i < applyCount; i++) {
+                tempDamage = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, tempDamage, this);
+            }
         }
 
         UpdateBlock(tempBlock);

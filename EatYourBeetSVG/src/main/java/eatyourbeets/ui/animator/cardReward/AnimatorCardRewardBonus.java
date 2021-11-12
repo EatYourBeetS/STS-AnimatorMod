@@ -144,7 +144,7 @@ public class AnimatorCardRewardBonus extends GUIElement
             {
                 if (series.promoted && series.bonus < 8)
                 {
-                    if (series.Cards.containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
+                    if (series.GetCardPoolInPlay().containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {
                         switch (series.bonus % 3)
                         {
@@ -193,7 +193,7 @@ public class AnimatorCardRewardBonus extends GUIElement
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.Cards.containsKey(bundle.card.cardID))
+            if (series.GetCardPoolInPlay().containsKey(bundle.card.cardID))
             {
                 SFX.Play(SFX.GOLD_GAIN);
                 AbstractDungeon.player.gainGold(bundle.amount);
@@ -210,7 +210,7 @@ public class AnimatorCardRewardBonus extends GUIElement
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.Cards.containsKey(bundle.card.cardID))
+            if (series.GetCardPoolInPlay().containsKey(bundle.card.cardID))
             {
                 AbstractDungeon.player.increaseMaxHp(bundle.amount, true);
                 series.bonus += 1;
@@ -226,7 +226,7 @@ public class AnimatorCardRewardBonus extends GUIElement
     {
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.Cards.containsKey(bundle.card.cardID))
+            if (series.GetCardPoolInPlay().containsKey(bundle.card.cardID))
             {
                 GameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
                 series.bonus += 1;

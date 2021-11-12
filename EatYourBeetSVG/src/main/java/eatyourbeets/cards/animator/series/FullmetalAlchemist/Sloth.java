@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
@@ -14,7 +15,7 @@ import eatyourbeets.utilities.GameActions;
 public class Sloth extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sloth.class)
-            .SetAttack(2, CardRarity.COMMON)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Brutal)
             .SetSeriesFromClassPackage();
 
     public Sloth()
@@ -22,9 +23,9 @@ public class Sloth extends AnimatorCard
         super(DATA);
 
         Initialize(16, 13, 2, 9);
-        SetUpgrade(0, 0, -1, 0);
+        SetUpgrade(2, 0, -1, 0);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(2, 0, 4);
         SetAffinity_Dark(2);
     }
 

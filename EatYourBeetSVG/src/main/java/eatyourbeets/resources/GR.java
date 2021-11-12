@@ -484,6 +484,7 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags MARKED;
             @SpireEnum public static AbstractCard.CardTags VOLATILE;
             @SpireEnum public static AbstractCard.CardTags UNIQUE;
+            @SpireEnum public static AbstractCard.CardTags EXPANDED;
             @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
             @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
             @SpireEnum public static AbstractCard.CardTags ECHO;

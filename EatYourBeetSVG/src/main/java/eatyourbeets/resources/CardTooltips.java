@@ -54,6 +54,7 @@ public class CardTooltips
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Blur = FindByID("Blur");
     public EYBCardTooltip BranchUpgrade = FindByID("~Branch Upgrade");
+    public EYBCardTooltip Brutal = FindByID("~Brutal");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip Constricted = FindByID("Constricted");
@@ -207,7 +208,7 @@ public class CardTooltips
         RegisterID("A-Gen", Affinity_General);
 
         RegisterID("HP", Health);
-        RegisterID("Temp HP", TempHP);
+        RegisterID("THP", TempHP);
         RegisterID("Random Orb", RandomOrb);
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
@@ -236,6 +237,7 @@ public class CardTooltips
         Ranged.SetIcon(icons.Ranged.Texture(), 6);
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
+        Brutal.SetIcon(icons.Brutal.Texture(), 6);
         TempHP.SetIcon(icons.TempHP.Texture(), 6);
         Health.SetIcon(icons.HP.Texture(), 6);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);

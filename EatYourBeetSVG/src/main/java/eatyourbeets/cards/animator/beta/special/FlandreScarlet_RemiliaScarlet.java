@@ -1,13 +1,10 @@
-package eatyourbeets.cards.animator.beta.series.TouhouProject;
+package eatyourbeets.cards.animator.beta.special;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -15,11 +12,11 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class RemiliaScarlet extends AnimatorCard
+public class FlandreScarlet_RemiliaScarlet extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RemiliaScarlet.class).SetAttack(1, CardRarity.SPECIAL).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(FlandreScarlet_RemiliaScarlet.class).SetAttack(1, CardRarity.SPECIAL).SetSeries(CardSeries.TouhouProject);
 
-    public RemiliaScarlet()
+    public FlandreScarlet_RemiliaScarlet()
     {
         super(DATA);
 

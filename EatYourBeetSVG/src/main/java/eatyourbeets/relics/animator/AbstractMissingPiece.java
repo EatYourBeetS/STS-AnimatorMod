@@ -216,7 +216,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.Cards.size() >= 10)
+            if (series.GetCardPoolInPlay().size() >= 10)
             {
                 CardSeries s = series.Loadout.Series;
 

@@ -82,7 +82,7 @@ public class RollingCubes extends AnimatorRelic
                 tempGroup1.clear();
                 tempGroup2.clear();
 
-                for (AbstractCard sc : loadout.Cards.values())
+                for (AbstractCard sc : loadout.GetCardPoolInPlay().values())
                 {
                     if (g1.contains(sc))
                     {

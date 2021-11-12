@@ -19,9 +19,11 @@ public class Loadout_RozenMaiden extends AnimatorLoadout
     {
         AddStarterCard(TomoeKashiwaba.DATA, 5);
         AddStarterCard(Hinaichigo.DATA, 5);
-        AddStarterCard(Suiseiseki.DATA, 7);
+        AddStarterCard(MitsuKusabue.DATA, 7);
         AddStarterCard(Souseiseki.DATA, 8);
-        AddStarterCard(JunSakurada.DATA, 7);
+        AddStarterCard(Shinku.DATA, 8);
+        AddStarterCard(JunSakurada.DATA, 11);
+        AddStarterCard(Suigintou.DATA, 16);
     }
 
     @Override

@@ -15,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Zadkiel extends AnimatorCard {
-    public static final EYBCardData DATA = Register(Zadkiel.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.Random).SetSeries(CardSeries.DateALive);
+    public static final EYBCardData DATA = Register(Zadkiel.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Brutal, EYBCardTarget.Random).SetSeries(CardSeries.DateALive);
 
     public Zadkiel() {
         super(DATA);

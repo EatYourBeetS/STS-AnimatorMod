@@ -5,13 +5,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.animator.tokens.AffinityToken_Green;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class KonpakuYoumu extends AnimatorCard implements Hidden
+public class KonpakuYoumu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KonpakuYoumu.class).SetSkill(-1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(KonpakuYoumu.class).SetSkill(-1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage(true)
             .SetMultiformData(2, false)
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 

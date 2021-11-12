@@ -184,12 +184,16 @@
 	"TEXT":
 	[
 	  "Contains {0} cards.",
-	  "Cards from this series NL may have a random NL {Bonus} upon pickup.",
-	  "Selecting this series will NL not unlock trophies for NL the current run.",
+	  "Promoted",
+	  "Beta",
 	  "Select #ySeries for a total of #b120 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b180 cards.",
-	  "Pickup Bonus",
-	  "Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
-	  "#pRight-Click a series to view cards from its pool."
+	  "Selecting this series will not unlock trophies for the current run.",
+	  "Cards from this series may have a random bonus upon pickup (#yGold, #yMax. #yHP increase, #yCommon #yUpgrade). NL Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
+	  "#pRight-Click a series to view cards from its pool.",
+	  "Expansion",
+	  "This series has additional cards that may be enabled by holding 'CTRL' and clicking on this card.",
+	  "Additional cards for this series can now be enabled on the series select screen.",
+	  "Additional cards for this series are unlocked by obtaining a Bronze trophy at Ascension {0} or higher."
 	]
   },
 
@@ -202,7 +206,10 @@
 	  "Random ({0} cards)",
 	  "Select All",
 	  "Show card pool",
-	  "Proceed"
+	  "Proceed",
+	  "Expansion Enabled",
+	  "Enable All Expansions",
+	  "Disable All Expansions"
 	]
   },
 

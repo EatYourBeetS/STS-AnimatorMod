@@ -6,7 +6,6 @@ import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -14,9 +13,9 @@ import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class HinanawiTenshi extends AnimatorCard implements Hidden
+public class HinanawiTenshi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HinanawiTenshi.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(HinanawiTenshi.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage(true);
 
     public HinanawiTenshi()
     {

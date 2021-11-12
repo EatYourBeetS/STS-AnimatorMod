@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.special.FlandreScarlet_RemiliaScarlet;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
@@ -19,7 +20,8 @@ public class FlandreScarlet extends AnimatorCard
     public static final EYBCardData DATA = Register(FlandreScarlet.class)
             .SetAttack(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new FlandreScarlet_RemiliaScarlet(), false));;
 
     public FlandreScarlet()
     {
@@ -31,7 +33,7 @@ public class FlandreScarlet extends AnimatorCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Dark, 9);
+        SetAffinityRequirement(Affinity.Dark, 8);
 
         SetEthereal(true);
     }
@@ -68,11 +70,17 @@ public class FlandreScarlet extends AnimatorCard
                 boolean isLimited = CheckAffinity(Affinity.Dark) && info.TryActivateLimited();
 
                 choices.Initialize(this, true);
-                choices.AddEffect(new GenericEffect_FlandreScarlet(0, this, isLimited));
+                choices.AddEffect(new GenericEffect_FlandreScarlet(0, this));
                 if (handCard != null) {
-                    choices.AddEffect(new GenericEffect_FlandreScarlet(1, handCard, isLimited));
+                    choices.AddEffect(new GenericEffect_FlandreScarlet(1, handCard));
                 }
                 choices.Select(1, m);
+            }
+        });
+
+        GameActions.Last.Callback(() -> {
+            if (CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+                GameActions.Bottom.MakeCardInDrawPile(new FlandreScarlet_RemiliaScarlet());
             }
         });
     }
@@ -84,13 +92,11 @@ public class FlandreScarlet extends AnimatorCard
 
     protected static class GenericEffect_FlandreScarlet extends GenericEffect
     {
-        private final boolean isLimited;
         private final AbstractCard target;
-        public GenericEffect_FlandreScarlet(int amount, AbstractCard target, boolean isLimited)
+        public GenericEffect_FlandreScarlet(int amount, AbstractCard target)
         {
             this.amount = amount;
             this.target = target;
-            this.isLimited = isLimited;
         }
 
         @Override
@@ -102,12 +108,7 @@ public class FlandreScarlet extends AnimatorCard
         @Override
         public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
         {
-            GameActions.Bottom.Exhaust(target).AddCallback(c -> {
-                if (c != null && isLimited) {
-                    GameActions.Last.MakeCardInDrawPile(c.makeStatEquivalentCopy());
-                    GameActions.Last.MakeCardInDrawPile(c.makeStatEquivalentCopy());
-                }
-            });
+            GameActions.Bottom.Exhaust(target);
         }
     }
 

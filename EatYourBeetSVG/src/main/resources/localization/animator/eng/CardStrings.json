@@ -766,6 +766,11 @@
         	"DESCRIPTION": "Take !M! [Delayed Damage]. || Gain !M! [Vigor]. Synergy and/or below 20% Max [HP]: Gain !S! more.",
         	"NAME": "Bennett"
         },
+		"animator:Chongyun":
+		{
+			"DESCRIPTION": "Apply [Freezing] equal to your [Frost] count + !M!. || Pay !A! <B>: Channel [Frost].",
+			"NAME": "Chongyun"
+		},
 		"animator:Curse_Delusion":
 		{
 			"DESCRIPTION": "Unplayable. || At the end of your turn, a random card in your Draw Pile gains {Autoplay}. || On Exhaust: Obtain **{<G> Token}+.",
@@ -851,7 +856,7 @@
 		},
 		"animator:Ningguang":
 		{
-			"DESCRIPTION": "Evoke !M! of your [Earth] particles to increase its base projectile damage by 1.",
+			"DESCRIPTION": "Evoke !M! of your [Earth] particles, then increase its base projectile damage by 1. Otherwise, Channel [Earth]. || <SLM>. Pay !A! <B> or <O>: Gain +!S! Temp. [Endurance].",
 			"NAME": "Ningguang"
 		},
 		"animator:Noelle":
@@ -904,23 +909,29 @@
 		},
 		"animator:Xiangling":
 		{
-			"DESCRIPTION": "Whenever this hits an enemy with [Burning] or [Vulnerable], shuffle Guoba into your draw pile. || {Synergy}: Gain !M! [Temp. HP]",
-			"NAME": "Venti"
+			"DESCRIPTION": "Whenever this hits an enemy with [Burning] or [Freezing], shuffle {Guoba} into your draw pile. || {Synergy}: Gain !M! [THP].",
+			"NAME": "Xiangling"
 		},
 		"animator:Xiangling_Guoba":
 		{
-			"DESCRIPTION": "At the end of your next !M! turns: Apply !S! [Burning] to ALL enemies. Afterwards, increase the damage bonus of Burning by 5% this combat.",
-			"NAME": "Venti"
+			"DESCRIPTION": "At the start of turn: Apply !M! [Burning] to ALL enemies, then reduce this amount by 1. When this reaches 0: Burning gains +!S!% damage bonus.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Apply #b{0} [Burning] to ALL enemies, then reduce this number by #b1. NL When this reaches #b0: [Burning] gains #b+{1}% damage bonus."],
+			"NAME": "Guoba"
+		},
+		"animator:Xiao":
+		{
+			"DESCRIPTION": "Deal +!M! damage for each of your [Air]. || <AS>: Exit your stance, then ALL enemies gain !S! [Poison] for each card in hand. Otherwise: Enter <AS>.",
+			"NAME": "Xiao"
 		},
 		"animator:Xingqiu":
 		{
-			"DESCRIPTION": "Unplayable unless the target has [Burning]. || Remove the target's [Burning]. For the rest of the turn: Trigger your first orb when you Attack.",
+			"DESCRIPTION": "If the target has [Burning]: Deal +!M! damage, then remove [Burning]. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
 			"NAME": "Xingqiu"
 		},
 		"animator:Yoimiya":
 		{
 			"DESCRIPTION": "Obtain [T-Knife] for each ** unblocked hit. ** <ST>: Cycle a random card. || Double your {Common Debuffs}. ** <LIM>. If you have at least !S! of them: Play {Blazing Heat}.",
-			"NAME": "Yoimiya"
+			"NAME": "Yoimiya Naganohara"
 		},
 		"animator:Zhongli":
 		{
@@ -1073,7 +1084,7 @@
 		},
 		"animator:MitsuKusabue":
 		{
-			"DESCRIPTION": "Draw !M! card(s) and Retain them. They cost 1 ** more this turn. || <BS>. Gain !S! [Temp HP] for ** each <L> one.",
+			"DESCRIPTION": "Draw !M! card(s) and Retain them. They cost 1 ** more this turn. || <BS>. Gain !S! [THP] for ** each <L> one.",
 			"NAME": "Mitsu Kusabue"
 		},
 		"animator:NoriSakurada":
@@ -1083,7 +1094,7 @@
 		},
 		"animator:Shinku":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). Exhaust a <D> card from your discard pile to Recover !S! [HP]. || Pay !A! <D>: Gain !M! Temp. [Thorns] for each card in hand.",
+			"DESCRIPTION": "Cycle !M! card(s). Exhaust a <D> card from your discard pile to Recover !S! [HP]. || Pay !A! <L> or <D>: Gain !M! Temp. [Thorns] for each card in hand.",
 			"EXTENDED_DESCRIPTION": ["Exhaust a card to recover HP."],
 			"NAME": "Shinku"
 		},
@@ -1099,8 +1110,9 @@
 		},
 		"animator:Suigintou_BlackFeather":
 		{
-			"DESCRIPTION": "In hand at the start of turn: Take !M! [Delayed Damage]. || Fetch {Suigintou} from anywhere. ALL characters take !S! damage.",
-			"NAME": "Black Feather"
+			"DESCRIPTION": "In hand at the start of turn: Take !M! [Delayed Damage]. || Fetch {Suigintou} from anywhere. Take !S! damage. ALL enemies take !M! [Delayed Damage].",
+			"NAME": "Black Feather",
+			"UPGRADE_DESCRIPTION": "In hand at the start of turn: Take !M! [Delayed Damage]. || Fetch {Suigintou} from anywhere. Take !S! damage. ALL enemies take !S! [Delayed Damage]."
 		},
 		"animator:Suiseiseki":
 		{
@@ -1139,9 +1151,14 @@
 		},
 		"animator:FlandreScarlet":
 		{
-			"DESCRIPTION": "Recover [HP] equal to damage. || Exhaust this or a random card. ** <LIM>. !A! <D>: Create 2 copies of the Exhausted card in your draw pile.",
+			"DESCRIPTION": "Recover [HP] equal to damage. || Exhaust this or ** a random card. ** <LIM>. !A! <D>: Add {Remilia Scarlet} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["Exhaust this.", "Exhaust a random card in hand."],
 			"NAME": "Flandre Scarlet"
+		},
+		"animator:FlandreScarlet_RemiliaScarlet":
+		{
+			"DESCRIPTION": "Transfer !M! damage from ALL Attacks in hand to this card. Recover [HP] equal to damage. || Pay !A! <L>: This damage reduction is temporary.",
+			"NAME": "Remilia Scarlet"
 		},
 		"animator:FujiwaraNoMokou":
 		{
@@ -1206,17 +1223,12 @@
 		},
 		"animator:ReisenInaba":
 		{
-			"DESCRIPTION": "Unplayable if you have [E]. || Obtain a random {Hindrance}. When you Discard or Exhaust it: Obtain 1 of 3 {Same-Series} cards, it costs 1 less. || When Exhausted, Exhaust 2 cards anywhere.",
+			"DESCRIPTION": "Unplayable if you have [E]. || Obtain a random {Hindrance}. When you Exhaust it: Obtain 1 of !M! cards that cost 1 less. || On Exhaust: Exhaust !S! cards anywhere.",
 			"NAME": "Reisen Inaba"
-		},
-		"animator:RemiliaScarlet":
-		{
-			"DESCRIPTION": "Transfer !M! damage from ALL Attacks in hand to this card. Recover [HP] equal to damage. || Pay !A! <L>: This damage reduction is temporary.",
-			"NAME": "Remilia Scarlet"
 		},
 		"animator:Rumia":
 		{
-			"DESCRIPTION": "Remove !M! of your first [Dark]'s Evoke amount to gain 1 [Temp HP]. Do this up to !S! times. || <SLM>. On Discard or Exhaust: Channel [Dark].",
+			"DESCRIPTION": "Remove !M! of your first [Dark]'s Evoke amount to gain 1 [THP]. Do this up to !S! times. || <SLM>. On Discard or Exhaust: Channel [Dark].",
 			"NAME": "Rumia"
 		},
 		"animator:SanaeKochiya":
@@ -1340,7 +1352,7 @@
 		},
 		"animator:LimeBell":
 		{
-			"DESCRIPTION": "Convert up to ** !M! [Block] into [Temp HP]. || Reload: Gain !S! [B].",
+			"DESCRIPTION": "Convert up to ** !M! [Block] into [THP]. || Reload: Gain !S! [B].",
 			"NAME": "Lime Bell"
 		},
 		"animator:Magilou":
@@ -1399,7 +1411,7 @@
 		"animator:Urushihara":
 		{
 			"DESCRIPTION": "Channel 1 [Dark]. || Deal damage after ** !M! to !S! turns.",
-			"NAME": "Urushihara"
+			"NAME": "Hanzo Urushihara"
 		},
 		"animator:Zero":
 		{
@@ -1660,7 +1672,7 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Unplayable unless you have {0}+ cards in hand. || For each card in hand: Gain its <W> and !M! [Temp HP]. Reduce its <W> levels by 1, then, if it has no <W>, Exhaust it to gain !S! [F].",
+			"DESCRIPTION": "Unplayable unless you have {0}+ cards in hand. || For each card in hand: Gain its <W> and !M! [THP]. Reduce its <W> levels by 1, then, if it has no <W>, Exhaust it to gain !S! [F].",
 			"EXTENDED_DESCRIPTION": ["Not enough cards in hand."],
 			"NAME": "Gluttony"
 		},
@@ -1787,7 +1799,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "Deal +!M! damage if you and/or the target have [Vulnerable]. || <LIM>. If Fatal: Exhaust, gain [Vulnerable], and gain [Temp HP] equal to the damage dealt.",
+			"DESCRIPTION": "Deal +!M! damage if you and/or the target have [Vulnerable]. || <LIM>. If Fatal: Exhaust, gain [Vulnerable], and gain [THP] equal to the damage dealt.",
 			"NAME": "Rory Mercury"
 		},
 		"animator:TukaLunaMarceau":
@@ -1910,9 +1922,9 @@
 		},
 		"animator:ChaikaTrabant":
 		{
-			"DESCRIPTION": "Double the damage of ALL 0-Cost card in hand this turn. Next turn: Obtain {Chaika Bogdan} or {Layla}. || <LIM>. Pay !A! <G>: Whenever you apply [Poison] this combat: Apply !S! more.",
+			"DESCRIPTION": "Double the damage of ALL 0-Cost cards in hand. Next turn: Obtain {Chaika Bogdan} or {Layla}. || <LIM>. Pay !A! <G>: Whenever you apply [Poison] this combat: Apply !S! more.",
 			"NAME": "Chaika Trabant",
-			"UPGRADE_DESCRIPTION": "Double the damage of ALL 0-Cost cards in hand this combat. Next turn: Obtain {Chaika Bogdan} or {Layla}. || <LIM>. Pay !A! <G>: Whenever you apply [Poison] this combat: Apply !S! more."
+			"UPGRADE_DESCRIPTION": "Double the damage of ALL 0-Cost cards in hand. Next turn: Obtain an upgraded {Chaika Bogdan} or {Layla}. || <LIM>. Pay !A! <G>: Whenever you apply [Poison] this combat: Apply !S! more."
 		},
 		"animator:Fredrika":
 		{
@@ -1974,7 +1986,7 @@
 		"animator:Hitei":
 		{
 			"DESCRIPTION": "Gain 1 [Vitality]. At the start of each turn: Exhaust 1 of !M! cards in your draw pile and gain its <W> twice. || Once per turn, take !S! ** Damage: Draw 2 cards.",
-			"EXTENDED_DESCRIPTION": ["Take #b{0} Damage: Draw #b{1} card(s). || At the start of each turn, #yExhaust #b1 of #b{2} cards in your draw pile to gain #b{3} [Temp HP]."],
+			"EXTENDED_DESCRIPTION": ["Take #b{0} Damage: Draw #b{1} card(s). || At the start of each turn, #yExhaust #b1 of #b{2} cards in your draw pile to gain #b{3} [THP]."],
 			"NAME": "Hiteihime"
 		},
 		"animator:Konayuki":
@@ -2041,7 +2053,7 @@
 		"animator:Aqua":
 		{
 			"DESCRIPTION": "<DRW>. || Becomes useless this combat.",
-			"EXTENDED_DESCRIPTION": ["", "On Exhaust or ** Discarded: Gain !S! [Temp HP]."],
+			"EXTENDED_DESCRIPTION": ["", "On Exhaust or ** Discarded: Gain !S! [THP]."],
 			"NAME": "Aqua",
 			"UPGRADE_DESCRIPTION": "<DRW>. || Becomes slightly less useless this combat. || <LIM>. Synergy. !A! <B>: Channel 1 [Water]."
 		},
@@ -2080,7 +2092,7 @@
 		},
 		"animator:Hans":
 		{
-			"DESCRIPTION": "Apply !M! [Poison]. Then, Steal !S! [Temp HP] from each enemy with [Poison]. || <LIM>. If you spend 7+ <W> at once while this is in your Exhaust pile: Play this and Purge it.",
+			"DESCRIPTION": "Apply !M! [Poison]. Then, Steal !S! [THP] from each enemy with [Poison]. || <LIM>. If you spend 7+ <W> at once while this is in your Exhaust pile: Play this and Purge it.",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, apply #b{0} #y[Poison] to ALL enemies, then gain #b{1} #yTemporary #yHP for each enemy with #y[Poison]."],
 			"NAME": "Hans"
 		},
@@ -2317,7 +2329,7 @@
 		},
 		"animator:NagisaMomoe":
 		{
-			"DESCRIPTION": "<SOUL>: {Charlotte} || Randomly Gain [A], [I] or [B] !M! times. || While in hand: Gain !S! [Temp HP] when you play a LV2 <B> or <L> card.",
+			"DESCRIPTION": "<SOUL>: {Charlotte} || Randomly Gain [A], [I] or [B] !M! times. || While in hand: Gain !S! [THP] when you play a LV2 <B> or <L> card.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animator:NagisaMomoe_Charlotte":
@@ -2333,7 +2345,7 @@
 		},
 		"animator:SayakaMiki":
 		{
-			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain !M! [I]. Channel 1 [Frost]. || Pay X <B>: Gain +!X! [Temp HP].",
+			"DESCRIPTION": "<SOUL>: {Oktavia}. || Gain !M! [I]. Channel 1 [Frost]. || Pay X <B>: Gain +!X! [THP].",
 			"NAME": "Sayaka Miki"
 		},
 		"animator:SayakaMiki_Oktavia":
@@ -2605,8 +2617,8 @@
 		},
 		"animator:Entoma":
 		{
-			"DESCRIPTION": "Apply [Poison] equal ** to the damage dealt. || <slm>. For 2 turns, ** whenever you apply ** [Poison]: Gain 1 [Temp HP].",
-			"EXTENDED_DESCRIPTION": ["Whenever you apply [Poison], gain #b1 [Temp HP]."],
+			"DESCRIPTION": "Apply [Poison] equal ** to the damage dealt. || <slm>. For 2 turns, ** whenever you apply ** [Poison]: Gain 1 [THP].",
+			"EXTENDED_DESCRIPTION": ["Whenever you apply [Poison], gain #b1 [THP]."],
 			"NAME": "Entoma"
 		},
 		"animator:Evileye":
@@ -2667,7 +2679,7 @@
 		},
 		"animator:FeridBathory":
 		{
-			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [Temp HP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
+			"DESCRIPTION": "Whenever a card is ** Exhausted: Steal !M! HP from ** a random enemy as [THP]. || <LIM>. At the start of turn, ** if you have 20 or more cards ** in Exhaust pile: Gain !S! [F].",
 			"EXTENDED_DESCRIPTION": ["Whenever a card is Exhausted, a random enemy loses #b{0} HP and you gain #b{0} #yTemporary #yHP."],
 			"NAME": "Ferid Bathory"
 		},
@@ -2695,7 +2707,7 @@
 		},
 		"animator:KrulTepes":
 		{
-			"DESCRIPTION": "Apply !M! [Weak]. ** If the enemy has [Vulnerable]: Gain !S! [Temp HP]. || <LIM>. If {Fatal} on an Elite or Boss: ** Obtain {Blood Vial}.",
+			"DESCRIPTION": "Apply !M! [Weak]. ** If the enemy has [Vulnerable]: Gain !S! [THP]. || <LIM>. If {Fatal} on an Elite or Boss: ** Obtain {Blood Vial}.",
 			"NAME": "Krul Tepes"
 		},
 		"animator:KyLuc":
@@ -2786,7 +2798,7 @@
 		},
 		"animator:Ramiris":
 		{
-			"DESCRIPTION": "<ST>. Apply !M! [Weak] and ** !S! [Shackles] to ALL enemies. ** Gain 10 [Shackles]. || {Startup}: Gain 2 [Temp HP].",
+			"DESCRIPTION": "<ST>. Apply !M! [Weak] and ** !S! [Shackles] to ALL enemies. ** Gain 10 [Shackles]. || {Startup}: Gain 2 [THP].",
 			"NAME": "Ramiris"
 		},
 		"animator:Ranga":
@@ -2801,7 +2813,7 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Affected twice by powers on you or the target that modify damage. || <SLM>. Synergy: ** Enter <FS>.",
+			"DESCRIPTION": "Deal +!M! damage if the target has [Weak] or [Vulnerable]. || <SLM>. Synergy: ** Enter <FS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
@@ -2817,7 +2829,7 @@
 		},
 		"animator:Shuna":
 		{
-			"DESCRIPTION": "Gain !M! [B] [W]. ** <DRW-M>. || When Drawn: ** Gain !S! [Temp HP].",
+			"DESCRIPTION": "Gain !M! [B] [W]. ** <DRW-M>. || When Drawn: ** Gain !S! [THP].",
 			"NAME": "Shuna"
 		},
 		"animator:Souei":
@@ -3221,8 +3233,8 @@
 		},
 		"animator:Walpurgisnacht":
 		{
-			"DESCRIPTION": "Whenever {Soul} is lost: Gain !M! [Temp HP]. || Once per turn, pay 5 <W>: Transform a Curse in hand back to its {Soul} card form and give it +1 [C] Scaling.",
-			"EXTENDED_DESCRIPTION": ["Whenever #ySoul is lost: Gain #b{0} [Temp HP]. NL Pay 5 [A-Gen]: Transform a Curse in hand back to its #ySoul card form and give it +1 [C] Scaling."],
+			"DESCRIPTION": "Whenever {Soul} is lost: Gain !M! [THP]. || Once per turn, pay 5 <W>: Transform a Curse in hand back to its {Soul} card form and give it +1 [C] Scaling.",
+			"EXTENDED_DESCRIPTION": ["Whenever #ySoul is lost: Gain #b{0} [THP]. NL Pay 5 [A-Gen]: Transform a Curse in hand back to its #ySoul card form and give it +1 [C] Scaling."],
 			"NAME": "Walpurgisnacht"
 		}
 	}

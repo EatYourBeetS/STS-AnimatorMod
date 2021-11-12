@@ -210,10 +210,10 @@ public class EYBCardText
             if (card.hasTag(GR.Enums.CardTags.UNIQUE)) {
                 offset_y += RenderFooter(sb, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), offset_y, Color.BLACK, null);
             }
-            else if (card.cardData.CanToggleFromPopup && card.upgraded || card.cardData.UnUpgradedCanToggleForms) {
+            else if (card.cardData.CanToggleFromPopup && (card.upgraded || card.cardData.UnUpgradedCanToggleForms)) {
                 offset_y += RenderFooter(sb, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), offset_y, Color.BLACK, null);
             }
-            else if (card.cardData.CanToggleOnUpgrade) {
+            else if (card.hasTag(GR.Enums.CardTags.EXPANDED) || card.cardData.CanToggleOnUpgrade) {
                 offset_y += RenderFooter(sb, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), offset_y, Color.BLACK, null);
             }
         }

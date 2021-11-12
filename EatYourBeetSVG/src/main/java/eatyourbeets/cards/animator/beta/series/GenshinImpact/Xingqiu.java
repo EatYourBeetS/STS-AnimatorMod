@@ -1,42 +1,96 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Xingqiu extends AnimatorCard implements Hidden
+public class Xingqiu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Xingqiu.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Xingqiu.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage(true);
 
     public Xingqiu()
     {
         super(DATA);
 
-        Initialize(13, 0, 1, 2);
-        SetUpgrade(1, 0, 0, 1);
-        SetAffinity_Blue(1, 0, 0);
+        Initialize(1, 1, 12, 1);
+        SetUpgrade(2, 0, 2, 0);
+        SetAffinity_Blue(1, 0, 4);
+        SetAffinity_Green(1);
         SetAffinity_Orange(1, 0, 0);
 
-        SetProtagonist(true);
-        SetHarmonic(true);
+        SetExhaust(true);
+    }
 
-        SetAffinityRequirement(Affinity.Light, 3);
+    @Override
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    {
+        if (enemy != null && GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) > 0)
+        {
+            return super.ModifyDamage(enemy, amount + magicNumber);
+        }
+        return super.ModifyDamage(enemy, amount);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = TrySpendAffinity(Affinity.Light) ? magicNumber + 1 : magicNumber;
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+                .SetDamageEffect(enemy ->
+                {
+                    float wait = GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,
+                            500f, 200f, 290f, 3f, Color.TEAL.cpy(), Color.BLUE.cpy())).duration;
+                    wait += GameEffects.Queue.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 60f * Settings.scale,
+                            500f, 200f, 290f, 5f, Color.TEAL.cpy(), Color.BLUE.cpy())).duration;
+                    SFX.Play(SFX.ATTACK_REAPER);
+                    return wait * 0.55f;
+                }));
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.StackPower(new XingqiuPower(p, secondaryValue));
+    }
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.ApplyVulnerable(p, m, amount);
-        GameActions.Bottom.ApplyWeak(p, m, amount);
-        if (IsStarter())
+    public static class XingqiuPower extends AnimatorPower
+    {
+        public XingqiuPower(AbstractCreature owner, int amount)
         {
-            GameActions.Bottom.Scry(secondaryValue);
+            super(owner, Xingqiu.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        {
+            super.onPlayCard(card, m);
+
+            if (card.type == CardType.ATTACK && card.costForTurn >= 1)
+            {
+                GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(amount));
+                this.flashWithoutSound();
+            }
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            RemovePower();
         }
     }
 }

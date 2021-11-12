@@ -2,41 +2,41 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.beta.special.Xiangling_Guoba;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Xiangling extends AnimatorCard implements Hidden
+public class Xiangling extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage(true)
+            .PostInitialize(data -> data.AddPreview(new Xiangling_Guoba(), false));
 
     public Xiangling()
     {
         super(DATA);
 
-        Initialize(4, 0, 1, 2);
-        SetUpgrade(1, 0, 0, 1);
-        SetAffinity_Light(1, 0, 0);
+        Initialize(6, 0, 3, 0);
+        SetUpgrade(3, 0, 0, 0);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
-
-        SetProtagonist(true);
-        SetHarmonic(true);
-
-        SetAffinityRequirement(Affinity.Light, 3);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = TrySpendAffinity(Affinity.Light) ? magicNumber + 1 : magicNumber;
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d.AddCallback(m, (enemy, __) -> {
+            if (GameUtilities.GetPowerAmount(BurningPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(FreezingPower.POWER_ID) > 0) {
+                GameActions.Bottom.MakeCardInDrawPile(new Xiangling_Guoba());
+            }
+        }));
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        GameActions.Bottom.ApplyVulnerable(p, m, amount);
-        GameActions.Bottom.ApplyWeak(p, m, amount);
-        if (IsStarter())
-        {
-            GameActions.Bottom.Scry(secondaryValue);
+        if (info.IsSynergizing) {
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
     }
 }

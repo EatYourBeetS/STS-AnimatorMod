@@ -4,6 +4,7 @@ public enum EYBAttackType
 {
     None(false, false),
     Normal(false, false),
+    Brutal(false, false),
     Elemental(false, true),
     Piercing(true, true),
     Ranged(false, true);

@@ -17,14 +17,14 @@ import eatyourbeets.utilities.TargetHelper;
 public class RizaHawkeye extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(RizaHawkeye.class)
-            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Ranged)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public RizaHawkeye()
     {
         super(DATA);
 
-        Initialize(9, 0, 2, 0);
+        Initialize(8, 0, 2, 0);
         SetUpgrade(3, 0, 1);
 
         SetAffinity_Orange(2, 0, 1);

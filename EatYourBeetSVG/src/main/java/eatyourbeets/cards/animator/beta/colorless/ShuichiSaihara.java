@@ -18,7 +18,7 @@ import eatyourbeets.utilities.RandomizedList;
 public class ShuichiSaihara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShuichiSaihara.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Danganronpa)
-            .PostInitialize(data -> data.AddPreview(new KaedeAkamatsu(), false));;
+            .PostInitialize(data -> data.AddPreview(new KaedeAkamatsu(), false));
 
     public ShuichiSaihara()
     {

@@ -6,9 +6,15 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.relics.EYBRelic;
+import eatyourbeets.resources.GR;
 
 public abstract class AnimatorClickablePower extends EYBClickablePower
 {
+    public static String CreateFullID(Class<? extends AnimatorClickablePower> type)
+    {
+        return GR.Animator.CreateID(type.getSimpleName());
+    }
+
     public AnimatorClickablePower(AbstractCreature owner, EYBCardData cardData, PowerTriggerConditionType type, int requiredAmount)
     {
         super(owner, cardData, type, requiredAmount);

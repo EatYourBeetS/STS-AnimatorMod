@@ -57,6 +57,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     @Override
     public void OnStartOfTurnPostDraw()
     {
+        super.OnStartOfTurnPostDraw();
         turns -= 1;
         if (turns <= 0)
         {

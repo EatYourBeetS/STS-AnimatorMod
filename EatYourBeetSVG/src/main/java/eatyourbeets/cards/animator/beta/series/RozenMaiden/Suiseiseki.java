@@ -1,12 +1,10 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Status_Slimed;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
@@ -22,11 +20,19 @@ public class Suiseiseki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 4, 3);
+        Initialize(0, 7, 4, 3);
         SetUpgrade(0, 3, 0);
 
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Orange, 7);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return Souseiseki.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
     }
 
     @Override
@@ -41,7 +47,11 @@ public class Suiseiseki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        GameActions.Bottom.MakeCard(new Status_Slimed(), player.drawPile);
+        Status_Slimed slimed = new Status_Slimed();
+        if (CheckAffinity(Affinity.Orange)) {
+            slimed.retain = true;
+        }
+        GameActions.Bottom.MakeCard(slimed, player.drawPile);
 
         if (info.IsSynergizing && info.GetPreviousCardID().equals(Souseiseki.DATA.ID) && info.TryActivateLimited())
         {

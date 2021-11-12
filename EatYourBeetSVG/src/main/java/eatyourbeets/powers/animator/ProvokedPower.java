@@ -18,6 +18,9 @@ public class ProvokedPower extends AnimatorPower
     private byte moveByte;
     private AbstractMonster.Intent moveIntent;
     private EnemyMoveInfo move;
+    protected int lastDamage;
+    protected int lastMultiplier;
+    protected boolean lastIsMultiDamage;
 
     public ProvokedPower(AbstractCreature owner)
     {
@@ -33,12 +36,7 @@ public class ProvokedPower extends AnimatorPower
 
         AbstractMonster m = JUtils.SafeCast(this.owner, AbstractMonster.class);
         if (m != null && this.moveIntent != null) {
-            if (this.move != null) {
-                m.setMove(this.moveByte, this.moveIntent, this.move.baseDamage, this.move.multiplier, this.move.isMultiDamage);
-            } else {
-                m.setMove(this.moveByte, this.moveIntent);
-            }
-
+            m.setMove(this.moveByte, this.moveIntent, this.lastDamage, this.lastMultiplier, this.lastIsMultiDamage);
             m.createIntent();
             m.applyPowers();
         }
@@ -60,6 +58,9 @@ public class ProvokedPower extends AnimatorPower
                     Field f = AbstractMonster.class.getDeclaredField("move");
                     f.setAccessible(true);
                     this.move = (EnemyMoveInfo)f.get(monster);
+                    this.lastDamage = this.move.baseDamage;
+                    this.lastMultiplier = this.move.multiplier;
+                    this.lastIsMultiDamage = this.move.isMultiDamage;
                     this.move.intent = AbstractMonster.Intent.ATTACK;
                     ArrayList<DamageInfo> damages = monster.damage;
                     if (damages == null || damages.isEmpty()) {

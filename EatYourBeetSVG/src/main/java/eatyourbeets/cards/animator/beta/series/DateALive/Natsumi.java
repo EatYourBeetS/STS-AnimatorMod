@@ -61,8 +61,8 @@ public class Natsumi extends AnimatorCard
             GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Light).AddConditionalCallback(() -> {
                 for (int i = 0; i < Math.min(secondaryValue, player.filledOrbCount()); i++) {
                     AbstractOrb orb = player.orbs.get(0);
-                    GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb) * 2, false);
-                    GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb) * 2, false);
+                    GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb) * 2, false, false);
+                    GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb) * 2, false, false);
                     GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
                 }
             });

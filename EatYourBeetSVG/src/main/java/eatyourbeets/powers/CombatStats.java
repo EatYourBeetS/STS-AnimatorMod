@@ -809,6 +809,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             GameActions.Top.Add(new UnlimboAction(card));
         }
+
+        if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE)) {
+            OnPurge(card, player.hand);
+        }
     }
 
     @Override

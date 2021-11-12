@@ -59,7 +59,7 @@ public class Gluttony extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        return magicNumber * (player.hand.size() - (player.hand.contains(this) ? 1 : 0));
+        return player != null ? (magicNumber * (player.hand.size() - (player.hand.contains(this) ? 1 : 0))) : -1;
     }
 
     @Override
@@ -79,9 +79,7 @@ public class Gluttony extends AnimatorCard
                 for (AbstractCard c : cards) {
                     EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
                     if (eCard == null || eCard.affinities.GetLevel(Affinity.General) <= 0) {
-                        GameActions.Last.Exhaust(c).AddCallback(() -> {
-                            GameActions.Bottom.GainForce(secondaryValue);
-                        });
+                        GameActions.Last.Exhaust(c).AddCallback(() -> GameActions.Bottom.GainForce(secondaryValue));
                     }
                 }
             });

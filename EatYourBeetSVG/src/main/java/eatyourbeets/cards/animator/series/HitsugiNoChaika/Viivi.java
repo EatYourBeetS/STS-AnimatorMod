@@ -6,10 +6,11 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class Viivi extends AnimatorCard
+public class Viivi extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(Viivi.class)
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random)

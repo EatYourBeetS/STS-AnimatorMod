@@ -8,12 +8,13 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber //TODO use multiform
+public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber, Hidden //TODO use multiform
 {
     private enum Form
     {

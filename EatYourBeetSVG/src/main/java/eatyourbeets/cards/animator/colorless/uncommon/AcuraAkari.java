@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.HitsugiNoChaika;
+package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,7 +12,8 @@ public class AcuraAkari extends AnimatorCard
     public static final EYBCardData DATA = Register(AcuraAkari.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetMaxCopies(3)
-            .SetSeriesFromClassPackage()
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.HitsugiNoChaika)
             .PostInitialize(data ->
             {
                 for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -26,6 +27,7 @@ public class AcuraAkari extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 1, 1);
+        SetUpgrade(0,0,1,0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 1, 0);
@@ -36,8 +38,7 @@ public class AcuraAkari extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
-        .SetOptions(false, false, false)
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded));
 
         if (info.IsSynergizing && TrySpendAffinity(Affinity.Green))

@@ -7,10 +7,11 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Gillette extends AnimatorCard
+public class Gillette extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(Gillette.class)
             .SetAttack(1, CardRarity.COMMON)

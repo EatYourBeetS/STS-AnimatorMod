@@ -205,6 +205,11 @@
 		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
 		"NAME": "Horned Bat (R)"
 	},
+	"animator:InvertPower":
+	{
+	  "DESCRIPTIONS": ["The effects of [Weak], [Vulnerable], [Frail], and [Impaired] on you are inverted for #b{0} turn(s)."],
+	  "NAME": "Inversion"
+	},
 	"animator:IonizingStormPower":
 	{
 	  "DESCRIPTIONS": ["[Lightning] applies #b{0} [Electrified] once to a random enemy when Triggered and twice to all enemies when Evoked. NL [Lightning] gains #b1 [Focus] for every #b5 [Supercharged] #yCharge."],
@@ -244,6 +249,11 @@
 	{
 		"DESCRIPTIONS": ["Whenever you receive damage also receive #b{0} #yPoison."],
 		"NAME": "Mark of Poison"
+	},
+	"animator:MindControlPower":
+	{
+	  "DESCRIPTIONS": ["Applied Card: #y{0}. NL When this creature dies: Return this card to your hand. NL NL Pay #b{1} {2}: This creature will {3}.{4}", "deal #b{0} damage to a random enemy", "apply {0} {1} to a random enemy", "grant you {0} {1}", "target a random enemy", "be the target of ALL enemy intents", " NL #gThis #gPower #gis #gactive.", " NL #rAnother #rMind #rControl #rPower #ris #ralready #ractive."],
+	  "NAME": "Mind Control"
 	},
 	"animator:NextTurnDexterityPower":
 	{

@@ -6,10 +6,11 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
-public class Guy extends AnimatorCard
+public class Guy extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(Guy.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)

@@ -212,7 +212,7 @@
 	},
 	"Envenom":
 	{
-		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply #b1 #yPoison.",
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply [Poison].",
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},

@@ -1,19 +1,13 @@
 package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class MeguKakizaki extends AnimatorCard
 {
@@ -24,12 +18,22 @@ public class MeguKakizaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 5, 4);
-        SetUpgrade(0, 1, 5, 2);
+        Initialize(0, 5, 5, 3);
+        SetUpgrade(0, 1, 5, 0);
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
+        SetAffinityRequirement(Affinity.Dark, 8);
+
         SetEthereal(true);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        heal = GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) > 0 ? block : 0;
     }
 
     @Override
@@ -37,33 +41,10 @@ public class MeguKakizaki extends AnimatorCard
     {
         GameActions.Bottom.Callback(() ->
         {
-            if (CombatStats.TryActivateLimited(cardID)) {
-                if (!DrawSuigintou(player.drawPile))
-                    DrawSuigintou(player.discardPile);
+            if (CheckAffinity(Affinity.Dark)) {
+                GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), secondaryValue);
             }
         });
-    }
-
-    private boolean DrawSuigintou(CardGroup group) // Copied from Chibimoth.java
-    {
-        for (AbstractCard c : group.group)
-        {
-            if (Suigintou.DATA.ID.equals(c.cardID))
-            {
-                if (group.type != CardGroup.CardGroupType.HAND)
-                {
-                    GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
-
-                    GameActions.Top.MoveCard(c, group, player.hand)
-                            .ShowEffect(true, true)
-                            .AddCallback(GameUtilities::Retain);
-                }
-
-                return true;
-            }
-        }
-
-        return false;
     }
 
     @Override
@@ -76,20 +57,11 @@ public class MeguKakizaki extends AnimatorCard
             if (mo != null && toTransfer > 0) {
                 GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
             }
+            else if (toTransfer == 0) {
+                GameActions.Bottom.RecoverHP(heal);
+                GameActions.Bottom.Exhaust(this);
+            }
         });
-
-        GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile, p.hand)
-                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                .SetFilter(c -> c.type == CardType.CURSE)
-                .SetOptions(false, true)
-                .AddCallback(() ->
-                {
-                    CombatStats.TryActivateLimited(cardID);
-                    GameActions.Bottom.RecoverHP(secondaryValue);
-                });
     }
 }
-
-// <LIM>. Exhaust a Curse anywhere to Heal !M! HP at the end of combat.
-// <SLM>. When Discarded: Draw the bottom card of your draw pile.
 

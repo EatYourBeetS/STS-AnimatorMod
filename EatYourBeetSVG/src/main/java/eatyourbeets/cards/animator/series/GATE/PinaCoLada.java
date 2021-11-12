@@ -47,7 +47,7 @@ public class PinaCoLada extends AnimatorCard
             SetInnate(form == 0);
         }
         return super.SetForm(form, timesUpgraded);
-    };
+    }
 
 
     @Override
@@ -66,6 +66,7 @@ public class PinaCoLada extends AnimatorCard
             Initialize(amount);
         }
 
+        @Override
         public void atStartOfTurn()
         {
             super.atStartOfTurn();

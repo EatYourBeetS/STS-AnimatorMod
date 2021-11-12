@@ -74,6 +74,7 @@ public class CardTooltips
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip Endurance = FindByID("Endurance");
     public EYBCardTooltip Energized = FindByID("Energized");
+    public EYBCardTooltip Envenom = FindByID("Envenom");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Fire = FindByID("Fire");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
@@ -291,6 +292,7 @@ public class CardTooltips
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Endurance, new EndurancePower(FakeCharacter.Instance, 0));
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Envenom, new EnvenomPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
         LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
         LoadFromPower(Genesis, new GenesisPower(FakeCharacter.Instance, 0));

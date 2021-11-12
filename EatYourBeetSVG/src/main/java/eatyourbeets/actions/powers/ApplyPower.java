@@ -30,6 +30,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
     public AbstractPower callbackResult;
     public AbstractPower powerToApply;
     public boolean chooseRandomTarget;
+    public boolean allowDuplicates;
     public boolean ignoreArtifact;
     public boolean showEffect = true;
     public boolean skipIfZero = false;
@@ -82,6 +83,13 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             HardCodedStuff_Corruption(player.discardPile);
             HardCodedStuff_Corruption(player.exhaustPile);
         }
+    }
+
+    public ApplyPower AllowDuplicates(boolean allowDuplicates)
+    {
+        this.allowDuplicates = allowDuplicates;
+
+        return this;
     }
 
     public ApplyPower CanStack(boolean canStack)
@@ -185,7 +193,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
                     existingPower = power;
                     break;
                 }
-                else
+                else if (!allowDuplicates)
                 {
                     return;
                 }

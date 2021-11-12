@@ -21,12 +21,12 @@ public class PowerTriggerCondition
     public int requiredAmount;
     public int baseUses;
     public int uses;
+    public Affinity[] affinities;
 
     private static final ActionT1<Integer> EMPTY_ACTION = __ -> {};
     private static final FuncT1<Boolean, Integer> EMPTY_FUNCTION = __ -> true;
-    private Affinity[] affinities;
-    private FuncT1<Boolean, Integer> checkCondition;
-    private ActionT1<Integer> payCost;
+    public FuncT1<Boolean, Integer> checkCondition;
+    public ActionT1<Integer> payCost;
     private boolean canUse;
 
     protected PowerTriggerCondition(EYBClickablePower power, PowerTriggerConditionType type, int requiredAmount)

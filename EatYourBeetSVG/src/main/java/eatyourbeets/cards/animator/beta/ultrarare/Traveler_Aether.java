@@ -31,8 +31,11 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
         SetAffinity_Light(2);
         SetAffinity_Dark(2);
         SetAffinity_Green(1);
+
         SetEthereal(true);
         SetPurge(true);
+        SetProtagonist(true);
+        SetHarmonic(true);
     }
 
     @Override
@@ -41,7 +44,7 @@ public class Traveler_Aether extends AnimatorCard_UltraRare
         GameActions.Bottom.ChannelOrbs(Air::new, secondaryValue).AddCallback(() -> {
             int orbsInduced = 0;
 
-            RandomizedList<AbstractOrb> orbList = new RandomizedList<AbstractOrb>(JUtils.Filter(player.orbs, GameUtilities::IsCommonOrb));
+            RandomizedList<AbstractOrb> orbList = new RandomizedList<>(JUtils.Filter(player.orbs, GameUtilities::IsCommonOrb));
             if (orbList.Size() > 0) {
                 for (int i = 0; i < magicNumber; i++) {
                     GameActions.Bottom.InduceOrb(orbList.Retrieve(rng,false).makeCopy(), true);

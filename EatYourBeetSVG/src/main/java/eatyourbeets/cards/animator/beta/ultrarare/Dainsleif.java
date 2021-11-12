@@ -50,7 +50,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
     {
         super.initializeDescription();
 
-        if (cardText != null && Phase != null)
+        if (tooltips != null && Phase != null && !tooltips.contains(Phase))
         {
             tooltips.add(Phase);
         }
@@ -62,9 +62,7 @@ public class Dainsleif extends AnimatorCard_UltraRare {
         GameActions.Bottom.ChannelOrb(new Chaos());
 
         if (CheckAffinity(Affinity.General)) {
-            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-                DoAction(2);
-            });
+            GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> DoAction(2));
         }
         else {
             DoAction(1);

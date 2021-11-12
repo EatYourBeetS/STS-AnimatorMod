@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Souseiseki extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Souseiseki.class)
-    		.SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true).SetSeriesFromClassPackage()
+    		.SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Suiseiseki(), false));
 
     public Souseiseki()
@@ -20,7 +20,7 @@ public class Souseiseki extends AnimatorCard
         Initialize(7, 2, 0, 0);
         SetUpgrade(2, 1, 0, 0);
         SetAffinity_Orange(2, 0, 0);
-        SetAffinity_Green(0,0,1);
+        SetAffinity_Green(1,0,1);
     }
 
     @Override

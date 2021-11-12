@@ -56,7 +56,7 @@ public class GarbageDoll extends AnimatorCard
                 if (!limited && (card.cardID.equals(Ushio.DATA.ID)))
                 {
                     CombatStats.TryActivateLimited(this.cardID);
-                    GameEffects.Queue.ShowCardBriefly(card);
+                    GameEffects.Queue.ShowCardBriefly(card.makeStatEquivalentCopy());
                     AfterLifeMod.Add(card);
                     AfterLifeMod.AfterlifeAddToControlPile(card);
                 }
@@ -66,9 +66,8 @@ public class GarbageDoll extends AnimatorCard
                     CardCrawlGame.sound.play("CARD_EXHAUST", 0.2f);
                 }
 
-                if (card instanceof AnimatorCard) {
-                    AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
-
+                AnimatorCard aCard = JUtils.SafeCast(card, AnimatorCard.class);
+                if (aCard != null) {
                     final CardGroup possiblePicks = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                     if (aCard.affinities.GetLevel(Affinity.Star) > 0) {
                         for (AbstractCard possibleCard : player.discardPile.group)

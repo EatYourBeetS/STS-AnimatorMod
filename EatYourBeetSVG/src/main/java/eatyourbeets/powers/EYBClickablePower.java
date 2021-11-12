@@ -31,7 +31,7 @@ public abstract class EYBClickablePower extends EYBPower
     public boolean clickable;
 
     private GameActionManager.Phase currentPhase;
-    private Hitbox hb;
+    protected Hitbox hb;
 
     private EYBClickablePower(AbstractCreature owner, EYBCardData cardData, EYBRelic relic)
     {
@@ -198,13 +198,18 @@ public abstract class EYBClickablePower extends EYBPower
     @Override
     public void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
+        Color borderColor = (enabled && triggerCondition.CanUse()) ? c : disabledColor;
+        Color imageColor = enabled ? c : disabledColor;
+
+        renderIconsImpl(sb, x, y, borderColor, imageColor);
+    }
+
+    protected void renderIconsImpl(SpriteBatch sb, float x, float y, Color borderColor, Color imageColor) {
         if (hb.cX != x || hb.cY != y)
         {
             hb.move(x, y);
         }
 
-        Color borderColor = (enabled && triggerCondition.CanUse()) ? c : disabledColor;
-        Color imageColor = enabled ? c : disabledColor;
         RenderHelpers.DrawCentered(sb, borderColor, GR.Common.Images.SquaredButton_EmptyCenter.Texture(), x, y, ICON_SIZE, ICON_SIZE, 1.5f, 0);
         if (this.powerIcon != null) {
             RenderHelpers.DrawCentered(sb, imageColor, this.powerIcon, x, y, ICON_SIZE, ICON_SIZE, 0.75f, 0);

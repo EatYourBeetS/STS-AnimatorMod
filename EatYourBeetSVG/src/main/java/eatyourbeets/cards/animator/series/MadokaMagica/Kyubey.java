@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -44,7 +45,7 @@ public class Kyubey extends AnimatorCard
         AtomicInteger soul = new AtomicInteger();
         for (int i = 0; i < SOUL_COST; i++) {
             GameActions.Bottom.SelectFromHand(name, 1, true)
-                    .SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).cooldown != null && ((AnimatorCard) c).cooldown.cardConstructor != null)
+                    .SetFilter(GameUtilities::IsSoul)
                     .AddCallback(cards -> {
                         for (AbstractCard c : cards) {
                             if (c instanceof AnimatorCard) {

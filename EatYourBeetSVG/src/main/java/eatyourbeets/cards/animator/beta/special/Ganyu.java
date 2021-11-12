@@ -65,6 +65,7 @@ public class Ganyu extends AnimatorCard
 
         return false;
     }
+
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {

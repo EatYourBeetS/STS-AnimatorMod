@@ -42,7 +42,7 @@ public class KonpakuYoumu extends AnimatorCard implements Hidden
             SetRetain(false);
         }
         return super.SetForm(form, timesUpgraded);
-    };
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -50,7 +50,7 @@ public class KonpakuYoumu extends AnimatorCard implements Hidden
         int xCost = GameUtilities.GetXCostEnergy(this) + magicNumber;
         GameActions.Bottom.Scry(xCost);
         GameActions.Bottom.DrawNextTurn(xCost);
-        if (xCost > 2 && CheckAffinity(Affinity.Green) && info.TryActivateLimited()) {
+        if (xCost > 2 && CheckAffinity(Affinity.Green)) {
             AffinityToken_Green token = new AffinityToken_Green();
             token.upgrade();
             GameActions.Bottom.MakeCardInHand(token);

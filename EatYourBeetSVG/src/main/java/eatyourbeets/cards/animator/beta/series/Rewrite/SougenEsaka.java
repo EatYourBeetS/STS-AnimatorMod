@@ -12,13 +12,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SougenEsaka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL, true).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(SougenEsaka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public SougenEsaka()
     {
         super(DATA);
 
-        Initialize(2, 3, 1, 2);
+        Initialize(2, 4, 1, 2);
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(2, 0, 2);
         SetAffinity_Red(0, 0, 1);
@@ -42,9 +42,7 @@ public class SougenEsaka extends AnimatorCard
         {
             GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
                     .ShowEffect(true, true)
-                    .SetOrigin(CardSelection.Top).AddCallback(() -> {
-                        GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
-                    });
+                    .SetOrigin(CardSelection.Top).AddCallback(() -> GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID));
 
         }
     }

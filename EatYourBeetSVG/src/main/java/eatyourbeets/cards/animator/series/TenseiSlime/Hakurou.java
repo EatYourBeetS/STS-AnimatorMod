@@ -5,15 +5,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Hakurou extends AnimatorCard //TODO
+public class Hakurou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Hakurou.class)
-            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, true)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), true));
 
@@ -34,6 +35,12 @@ public class Hakurou extends AnimatorCard //TODO
     }
 
     @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return super.GetBlockInfo().AddMultiplier(hitCount);
+    }
+
+    @Override
     protected void OnUpgrade()
     {
         upgradedDamage = true;
@@ -45,6 +52,7 @@ public class Hakurou extends AnimatorCard //TODO
         super.triggerWhenDrawn();
 
         GameUtilities.MaintainPower(Affinity.Green);
+        GameUtilities.MaintainPower(Affinity.Orange);
         GameActions.Bottom.Flash(this);
     }
 
@@ -53,7 +61,9 @@ public class Hakurou extends AnimatorCard //TODO
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
-        GameActions.Bottom.GainBlock(block);
+        for (int i = 0; i < hitCount; i++) {
+            GameActions.Bottom.GainBlock(block);
+        }
 
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() -> {
             if (AgilityStance.IsActive()) {

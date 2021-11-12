@@ -1,10 +1,11 @@
-package eatyourbeets.cards.animator.series.HitsugiNoChaika;
+package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
@@ -17,8 +18,9 @@ import eatyourbeets.utilities.GameUtilities;
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
     public static final EYBCardData DATA = Register(ChaikaBohdan.class)
-            .SetAttack(1, CardRarity.COMMON)
-            .SetSeriesFromClassPackage();
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public ChaikaBohdan()
     {
@@ -35,7 +37,13 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetRetainOnce(true);
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        GameActions.Bottom.GainAgility(secondaryValue);
     }
 
     @Override

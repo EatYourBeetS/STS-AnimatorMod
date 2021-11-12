@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.affinity.ChangeAffinityCount;
+import eatyourbeets.actions.affinity.TryChooseGainAffinity;
 import eatyourbeets.actions.affinity.TryChooseSpendAffinity;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
@@ -1203,6 +1204,16 @@ public final class GameActions
     public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)
     {
         return Add(new TriggerOrbPassiveAbility(orb, times));
+    }
+
+    public TryChooseGainAffinity TryChooseGainAffinity(String sourceName, int gain)
+    {
+        return Add(new TryChooseGainAffinity(sourceName, gain));
+    }
+
+    public TryChooseGainAffinity TryChooseGainAffinity(String sourceName, int gain, Affinity... affinities)
+    {
+        return Add(new TryChooseGainAffinity(sourceName, gain, affinities));
     }
 
     public TryChooseSpendAffinity TryChooseSpendAffinity(EYBCard sourceCard)

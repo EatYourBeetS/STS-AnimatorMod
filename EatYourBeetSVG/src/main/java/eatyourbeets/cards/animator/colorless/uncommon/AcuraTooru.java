@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.series.HitsugiNoChaika;
+package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -6,14 +6,18 @@ import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class AcuraTooru extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(AcuraTooru.class)
             .SetAttack(2, CardRarity.UNCOMMON)
+            .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.HitsugiNoChaika)
             .PostInitialize(data ->
             {
+                data.AddPreview(new AcuraAkari(), false);
                 for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
                 {
                     data.AddPreview(knife, false);
@@ -24,7 +28,7 @@ public class AcuraTooru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 2);
+        Initialize(4, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Green(1, 0, 2);
@@ -33,7 +37,7 @@ public class AcuraTooru extends AnimatorCard
         SetProtagonist(true);
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Green, 4);
         SetHitCount(2);
     }
 
@@ -42,20 +46,23 @@ public class AcuraTooru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainBlock(magicNumber);
-        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (TrySpendAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green)) {
+            GameActions.Bottom.MakeCardInDrawPile(GameUtilities.Imitate(new AcuraAkari()));
+        }
+
+        if (info.IsSynergizing)
         {
-            GameActions.Bottom.GainBlock(magicNumber);
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
         }
     }
 }

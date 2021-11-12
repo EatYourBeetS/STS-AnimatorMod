@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.powers.animator.PoisonAffinityPower;
 import eatyourbeets.utilities.GameActions;
 
-public class AcuraShin extends AnimatorCard
+public class AcuraShin extends AnimatorCard implements Hidden
 {
     public static final EYBCardData DATA = Register(AcuraShin.class)
             .SetAttack(2, CardRarity.RARE, EYBAttackType.Piercing)

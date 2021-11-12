@@ -6,12 +6,15 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.MindControlPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
@@ -96,14 +99,14 @@ public class AbstractMonsterPatches
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
                     if (m.getClassName().equals("com.megacrit.cardcrawl.monsters.AbstractMonster") && m.getMethodName().equals("takeTurn")) {
-                        m.replace("if (m.hasPower(eatyourbeets.powers.animator.ProvokedPower.POWER_ID)) {patches.abstractMonster.AbstractMonsterPatches.GameActionManager_GetNextAction.Use(m);} else {$_ = $proceed($$);}");
+                        m.replace("if (m.hasPower(eatyourbeets.powers.animator.ProvokedPower.POWER_ID)) {patches.abstractMonster.AbstractMonsterPatches.GameActionManager_GetNextAction.Provoke(m);} else if (m.hasPower(eatyourbeets.powers.animator.MindControlPower.POWER_ID)) {patches.abstractMonster.AbstractMonsterPatches.GameActionManager_GetNextAction.Use(m);} else {$_ = $proceed($$);}");
                     }
 
                 }
             };
         }
 
-        public static void Use(AbstractMonster m)
+        public static void Provoke(AbstractMonster m)
         {
             ArrayList<DamageInfo> damages = m.damage;
             if (damages == null || damages.isEmpty()) {
@@ -111,6 +114,21 @@ public class AbstractMonsterPatches
             }
             else {
                 GameActions.Bottom.DealDamage(m, AbstractDungeon.player, m.damage.get(0).base, m.damage.get(0).type, AttackEffects.BLUNT_HEAVY);
+            }
+        }
+
+        public static void Use(AbstractMonster m)
+        {
+            boolean canAct = true;
+            for (AbstractPower p : m.powers) {
+                MindControlPower mp = JUtils.SafeCast(p, MindControlPower.class);
+                if (mp != null && mp.active)
+                {
+                    canAct = canAct & mp.DoActions();
+                }
+            }
+            if (canAct) {
+                m.takeTurn();
             }
         }
     }

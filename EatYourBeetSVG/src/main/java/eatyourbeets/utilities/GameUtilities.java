@@ -1318,6 +1318,11 @@ public class GameUtilities
         return canUse;
     }
 
+    public static boolean IsSoul(AbstractCard card)
+    {
+        return card instanceof AnimatorCard && ((AnimatorCard) card).cooldown != null && ((AnimatorCard) card).cooldown.cardConstructor != null;
+    }
+
     public static boolean IsHighCost(AbstractCard card)
     {
         return card.costForTurn >= 2;
@@ -1620,29 +1625,29 @@ public class GameUtilities
         card.isHitCountModified = (card.hitCount != card.baseHitCount);
     }
 
-    public static void ModifyOrbBaseEvokeAmount(AbstractOrb orb, int amount, boolean canModifyNonFocusOrb) {
+    public static void ModifyOrbBaseEvokeAmount(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
         if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
-            ModifyOrbField(orb, "baseEvokeAmount", amount);
+            ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
         }
 
     }
 
-    public static void ModifyOrbBasePassiveAmount(AbstractOrb orb, int amount, boolean canModifyNonFocusOrb) {
+    public static void ModifyOrbBasePassiveAmount(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
         if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
-            ModifyOrbField(orb, "basePassiveAmount", amount);
+            ModifyOrbField(orb, "basePassiveAmount", amount, isRelative);
         }
     }
 
-    public static void ModifyOrbField(AbstractOrb orb, String field, int amount) {
+    public static void ModifyOrbField(AbstractOrb orb, String field, int amount, boolean isRelative) {
         try {
             Field f = AbstractOrb.class.getDeclaredField(field);
             f.setAccessible(true);
-            f.set(orb, amount);
+            f.set(orb, isRelative ? amount + (int) f.get(orb) : amount);
             orb.applyFocus();
             orb.updateDescription();
         }
-        catch (NoSuchFieldException | IllegalAccessException var2) {
-            JUtils.LogWarning(orb, "Orb could not be modified");
+        catch (Exception e) {
+            JUtils.LogWarning(orb, "Orb could not be modified: " + e.getLocalizedMessage());
         }
     }
 

@@ -53,7 +53,7 @@ public class Vladilena extends AnimatorCard
         }
 
         if (group.size() >= 1) {
-            GameActions.Bottom.SelectFromPile(name, 1, group)
+            GameActions.Bottom.ExhaustFromPile(name, 1, group)
                     .SetOptions(false, false)
                     .SetFilter(c -> c.type == CardType.ATTACK)
                     .AddCallback(cards -> {
@@ -69,9 +69,7 @@ public class Vladilena extends AnimatorCard
                                         }));
                             }
                             GameActions.Top.PlayCopy(c.makeStatEquivalentCopy(), m);
-                            GameActions.Bottom.PlayCard(c, m).AddCallback(() -> {
-                                GameActions.Last.Exhaust(c);
-                            });
+                            GameActions.Top.PlayCopy(c.makeStatEquivalentCopy(), m);
                             //GameActions.Bottom.DealDamageAtEndOfTurn(player, player, c.costForTurn * 2, AttackEffects.SLASH_VERTICAL);
                         }
                     });

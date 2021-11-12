@@ -289,7 +289,7 @@ public class AnimatorPlayerData
         };
 
         //add.Invoke(new Loadout_HitsugiNoChaika(), 5);
-        //add.Invoke(new Loadout_RozenMaiden(), 7);
+        add.Invoke(new Loadout_RozenMaiden(), 7);
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...

@@ -12,13 +12,13 @@ import eatyourbeets.utilities.GameActions;
 
 public class AyaShameimaru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetPower(2, CardRarity.RARE).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(AyaShameimaru.class).SetPower(2, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage();
 
     public AyaShameimaru()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
         SetAffinity_Green(2, 0, 0);
         SetAffinity_Orange(1, 0, 0);

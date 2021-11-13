@@ -19,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class KomachiOnozuka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KomachiOnozuka.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(KomachiOnozuka.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Brutal).SetSeriesFromClassPackage();
 
     private static final AbstractRelic relicReward = new ShinigamisFerry();
     private static final EYBCardTooltip tooltip = new EYBCardTooltip(relicReward.name, relicReward.description);

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Xiangling_Guoba;
@@ -29,11 +30,13 @@ public class Xiangling extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d.AddCallback(m, (enemy, __) -> {
-            if (GameUtilities.GetPowerAmount(BurningPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(FreezingPower.POWER_ID) > 0) {
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
+
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true)) {
+            if (GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) > 0) {
                 GameActions.Bottom.MakeCardInDrawPile(new Xiangling_Guoba());
             }
-        }));
+        }
 
         if (info.IsSynergizing) {
             GameActions.Bottom.GainTemporaryHP(magicNumber);

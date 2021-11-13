@@ -34,7 +34,7 @@ public class Curse_JunTormented extends AnimatorCard_Curse implements OnPurgeSub
         super.triggerWhenDrawn();
 
         for (AbstractCard c : player.hand.group) {
-            if (GameUtilities.IsHindrance(c) && !uuid.equals(c.uuid)) {
+            if (GameUtilities.IsHindrance(c) && !uuid.equals(c.uuid) && !Curse_JunTormented.DATA.ID.equals(c.cardID)) {
                 GameActions.Last.MakeCardInHand(c.makeStatEquivalentCopy());
             }
         }
@@ -54,7 +54,7 @@ public class Curse_JunTormented extends AnimatorCard_Curse implements OnPurgeSub
 
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card.uuid.equals(uuid) && CombatStats.TryActivateLimited(cardID)) {
+        if (card != null && this.uuid.equals(card.uuid) && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInHand(new AffinityToken_Blue());
         }
     }

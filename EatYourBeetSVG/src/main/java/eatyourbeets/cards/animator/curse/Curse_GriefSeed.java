@@ -32,7 +32,6 @@ public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscr
     public void triggerWhenCreated(boolean startOfBattle)
     {
         super.triggerWhenCreated(startOfBattle);
-
         CombatStats.onPurge.Subscribe(this);
     }
 

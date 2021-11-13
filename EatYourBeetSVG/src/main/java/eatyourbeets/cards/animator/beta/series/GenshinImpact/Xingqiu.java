@@ -29,12 +29,16 @@ public class Xingqiu extends AnimatorCard
         super(DATA);
 
         Initialize(1, 1, 12, 1);
-        SetUpgrade(2, 0, 2, 0);
         SetAffinity_Blue(1, 0, 4);
         SetAffinity_Green(1);
         SetAffinity_Orange(1, 0, 0);
 
         SetExhaust(true);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        SetExhaust(false);
     }
 
     @Override

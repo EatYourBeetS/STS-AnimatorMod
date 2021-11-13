@@ -48,7 +48,7 @@ public class Xiangling_Guoba extends AnimatorCard
 
             GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), amount);
 
-            ReducePower(-1);
+            ReducePower(1);
         }
 
         @Override

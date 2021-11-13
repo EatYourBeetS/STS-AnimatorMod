@@ -78,7 +78,7 @@ public class SwirledPower extends AnimatorPower implements OnTryApplyPowerListen
     @Override
     public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action) {
         if (target == owner) {
-            GameActions.Last.Callback(this::Swirl);
+            GameActions.Bottom.Callback(this::Swirl);
         }
         return true;
     }

@@ -33,7 +33,7 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.LIGHTNING);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
         GameActions.Bottom.GainIntellect(magicNumber);
 
         if (info.IsSynergizing)

@@ -335,6 +335,8 @@ public class MoveCard extends EYBActionWithCallback<AbstractCard>
         {
             SFX.Play(SFX.CARD_BURN);
         }
+
+        CombatStats.OnPurge(card, sourcePile);
     }
 
     protected void MoveToPile()

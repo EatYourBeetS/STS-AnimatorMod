@@ -761,6 +761,12 @@
 			"EXTENDED_DESCRIPTION": ["To play this, Remove your first 2 [Water]."],
 			"NAME": "Barbara Pegg"
 		},
+		"animator:Beidou":
+		{
+			"DESCRIPTION": "Gain !M! [Counter-Attack]. This turn, whenever you block damage: Trigger the damaging Debuffs of ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["This turn, whenever you block damage: Trigger the damaging #yDebuffs of ALL enemies."],
+			"NAME": "Beidou"
+		},
 		"animator:Bennett":
         {
         	"DESCRIPTION": "Take !M! [Delayed Damage]. || Gain !M! [Vigor]. Synergy and/or below 20% Max [HP]: Gain !S! more.",
@@ -826,7 +832,8 @@
 		},
 		"animator:Kazuha":
 		{
-			"DESCRIPTION": "Take half your current HP as [Delayed Damage]. Next turn: Single-target attacks target ALL enemies. AOE attacks attack twice if there is only one enemy.",
+			"DESCRIPTION": "Apply !M! [Swirled] to a random enemy. This turn, when you attack an enemy with [Swirled]: Deal half of that Attack's damage to ALL other enemies.",
+			"EXTENDED_DESCRIPTION": ["This turn, when you #yAttack an enemy with [Swirled]: Deal half of that #yAttack's damage to ALL other enemies (min. #b1)."],
 			"NAME": "Kazuha Kaedehara"
 		},
 		"animator:Keqing":
@@ -875,6 +882,11 @@
 			"DESCRIPTION": "Set your HP to [C] times !S!. You cannot no longer die from damage. || Die at the end of your !M!th turn (This effect cannot be prevented).",
 			"NAME": "Raiden Ei"
 		},
+		"animator:RaidenShogun":
+		{
+			"DESCRIPTION": "[Lightning] and [Dark] give !M! [I] [C] when Evoked and have +!M! [I] and [C] Scaling. Whenever a non-[Lightning], non-[Dark] Orb is Channeled, transform it into [Lightning], then take !S! damage.",
+			"NAME": "Raiden Shogun"
+		},
 		"animator:Sayu":
 		{
 			"DESCRIPTION": "At the start of your next !M! turns: Create !S! random cards in your hand. || Synergy: Imitate this and add it to your discard pile.",
@@ -909,7 +921,7 @@
 		},
 		"animator:Xiangling":
 		{
-			"DESCRIPTION": "Whenever this hits an enemy with [Burning] or [Freezing], shuffle {Guoba} into your draw pile. || {Synergy}: Gain !M! [THP].",
+			"DESCRIPTION": "If any enemy has [Burning] or [Freezing], shuffle {Guoba} into your draw pile. || {Synergy}: Gain !M! [THP].",
 			"NAME": "Xiangling"
 		},
 		"animator:Xiangling_Guoba":
@@ -920,12 +932,13 @@
 		},
 		"animator:Xiao":
 		{
-			"DESCRIPTION": "Deal +!M! damage for each of your [Air]. || <AS>: Exit your stance, then ALL enemies gain !S! [Poison] for each card in hand. Otherwise: Enter <AS>.",
+			"DESCRIPTION": "Deal +!M! damage for each of your [Air]. || <AS>: Exhaust, then ALL enemies gain !S! [Poison] for each card in hand. Otherwise: Enter <AS>.",
 			"NAME": "Xiao"
 		},
 		"animator:Xingqiu":
 		{
-			"DESCRIPTION": "If the target has [Burning]: Deal +!M! damage, then remove [Burning]. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
+			"DESCRIPTION": "If the target has [Burning]: Deal +!M! damage. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Trigger your first orb whenever you play a #b1+ Cost Attack."],
 			"NAME": "Xingqiu"
 		},
 		"animator:Yoimiya":
@@ -1105,7 +1118,7 @@
 		},
 		"animator:Suigintou":
 		{
-			"DESCRIPTION": "Channel [Dark]. ALL [Dark] gain [Focus] equal to [Desecration] + !M!. Then, Trigger your first [Dark] once for every {Hindrance} in hand. || On Discard or Purge: Obtain {Black Feather}.",
+			"DESCRIPTION": "Channel !S! [Dark]. ALL [Dark] gain +!M! [Focus]. Then, Trigger your first [Dark] once for every {Hindrance} in hand. || On Discard or Purge: Obtain {Black Feather}.",
 			"NAME": "Suigintou"
 		},
 		"animator:Suigintou_BlackFeather":
@@ -1430,8 +1443,8 @@
 		},
 		"animator:Curse_Destroyer":
 		{
-			"DESCRIPTION": "Unplayable. ** At the end of each turn, deal !M! damage to ALL characters. Increase this amount by !S! whenever this card is drawn.",
-			"NAME": "Eclipse"
+			"DESCRIPTION": "Unplayable. ** While this card is in play: Deal !M! damage to ALL characters at the end of each round. Increase this amount by !M! whenever this card is drawn.",
+			"NAME": "Destroyer"
 		},
 		"animator:Curse_Dizziness":
 		{

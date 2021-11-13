@@ -20,7 +20,7 @@ public class EmirEins extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 2);
+        Initialize(0, 0, 2, 4);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);

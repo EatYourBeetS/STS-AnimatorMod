@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -14,7 +15,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
 {
     public static final EYBCardData DATA = Register(Shiro.class)
-            .SetSkill(2, CardRarity.RARE)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
     public static final int CHARGE_COST = 8;
     private AbstractOrb focusedOrb;

@@ -21,20 +21,13 @@ public class Geryuganshoop extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 2);
+        SetUpgrade(0,0,0,1);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Silver(1);
 
-        SetExhaust(true);
-
         SetDrawPileCardPreview(GameUtilities::HasDarkAffinity);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
     }
 
     @Override

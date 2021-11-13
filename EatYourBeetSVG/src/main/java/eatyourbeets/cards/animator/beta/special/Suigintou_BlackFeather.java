@@ -44,12 +44,6 @@ public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStar
     }
 
     @Override
-    public boolean canUpgrade()
-    {
-        return true;
-    }
-
-    @Override
     public void OnStartOfTurnPostDraw()
     {
         super.OnStartOfTurnPostDraw();

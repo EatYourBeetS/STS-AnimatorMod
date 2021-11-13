@@ -7,12 +7,15 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
+import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -26,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class MindControlPower extends AnimatorClickablePower
 {
@@ -33,6 +37,7 @@ public class MindControlPower extends AnimatorClickablePower
     public static final Color ACTIVE_COLOR = new Color(0.5f, 1f, 0.5f, 1f);
     public static final int AFFINITY_GAIN = 2;
     public static final int BUFF_DEBUFF_GAIN = 1;
+    public static final HashMap<String, OrbConstructor> ORB_MAP = new HashMap<>();
 
     protected final AbstractCard sourceCard;
 
@@ -42,6 +47,7 @@ public class MindControlPower extends AnimatorClickablePower
     public int block;
     public int damage;
     public ArrayList<Affinity> affinityPowers = new ArrayList<>();
+    public ArrayList<OrbConstructor> orbs = new ArrayList<>();
     public ArrayList<PowerHelper> buffs = new ArrayList<>();
     public ArrayList<PowerHelper> debuffs = new ArrayList<>();
     protected byte moveByte;
@@ -50,6 +56,18 @@ public class MindControlPower extends AnimatorClickablePower
     protected int lastDamage;
     protected int lastMultiplier;
     protected boolean lastIsMultiDamage;
+
+    static {
+        ORB_MAP.put(GR.Tooltips.Air.id, new OrbConstructor(GR.Tooltips.Air, Air::new, 2));
+        ORB_MAP.put(GR.Tooltips.Chaos.id, new OrbConstructor(GR.Tooltips.Chaos, Chaos::new, 3));
+        ORB_MAP.put(GR.Tooltips.Dark.id, new OrbConstructor(GR.Tooltips.Dark, Dark::new, 1));
+        ORB_MAP.put(GR.Tooltips.Earth.id, new OrbConstructor(GR.Tooltips.Earth, Earth::new, 2));
+        ORB_MAP.put(GR.Tooltips.Fire.id, new OrbConstructor(GR.Tooltips.Fire, Fire::new, 1));
+        ORB_MAP.put(GR.Tooltips.Frost.id, new OrbConstructor(GR.Tooltips.Frost, Frost::new, 1));
+        ORB_MAP.put(GR.Tooltips.Lightning.id, new OrbConstructor(GR.Tooltips.Lightning, Lightning::new, 1));
+        ORB_MAP.put(GR.Tooltips.Plasma.id, new OrbConstructor(GR.Tooltips.Plasma, Plasma::new, 3));
+        ORB_MAP.put(GR.Tooltips.Water.id, new OrbConstructor(GR.Tooltips.Water, Water::new, 3));
+    }
 
     private static ArrayList<Affinity> GetAffinityPowers(AbstractCard card, int limit) {
         ArrayList<Affinity> affs = new ArrayList<>();
@@ -93,6 +111,23 @@ public class MindControlPower extends AnimatorClickablePower
         }
 
         return powers;
+    }
+
+    private static ArrayList<OrbConstructor> GetOrbs(AbstractCard card, int limit) {
+        ArrayList<OrbConstructor> orbs = new ArrayList<>();
+        if (card instanceof EYBCard) {
+            for (EYBCardTooltip tip : ((EYBCard) card).tooltips)
+            {
+                OrbConstructor found = ORB_MAP.get(tip.id);
+                if (found != null) {
+                    orbs.add(found);
+                    if (orbs.size() >= limit) {
+                        break;
+                    }
+                }
+            }
+        }
+        return orbs;
     }
 
     public MindControlPower(AbstractCreature owner, AbstractCard sourceCard)
@@ -177,6 +212,12 @@ public class MindControlPower extends AnimatorClickablePower
             }
             sb.append(JUtils.Format(powerStrings.DESCRIPTIONS[2], BUFF_DEBUFF_GAIN, StringUtils.join(JUtils.Map(debuffs, debuff -> debuff.Tooltip.id))));
         }
+        if (orbs.size() > 0) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append(JUtils.Format(powerStrings.DESCRIPTIONS[3], BUFF_DEBUFF_GAIN, StringUtils.join(JUtils.Map(orbs, orb -> orb.Tooltip.id))));
+        }
         if (canRedirect) {
             if (sb.length() > 0) {
                 sb.append(", ");
@@ -216,7 +257,7 @@ public class MindControlPower extends AnimatorClickablePower
         boolean isAttacking = damage > 0;
         boolean isDefending = block > 0;
         boolean isDebuffing = debuffs.size() > 0;
-        boolean isBuffing = buffs.size() > 0;
+        boolean isBuffing = buffs.size() > 0 || orbs.size() > 0;
 
         final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && (isAttacking || isDefending || isDebuffing || isBuffing))
@@ -293,8 +334,11 @@ public class MindControlPower extends AnimatorClickablePower
         for (PowerHelper ph : debuffs) {
             GameActions.Bottom.ApplyPower(TargetHelper.RandomEnemy(), ph, BUFF_DEBUFF_GAIN);
         }
+        for (OrbConstructor o : orbs) {
+            GameActions.Bottom.ChannelOrbs(o.OrbInvoker, 1);
+        }
 
-        return damage <= 0 && block <= 0 && buffs.isEmpty() && debuffs.isEmpty();
+        return damage <= 0 && block <= 0 && buffs.isEmpty() && debuffs.isEmpty() && orbs.isEmpty();
     }
 
 
@@ -311,9 +355,10 @@ public class MindControlPower extends AnimatorClickablePower
         1. If the card has Common Debuff tooltips, apply them to a random target besides you
         2. If card has Common Buff or Affinity power tooltips, it gives you that power. The total number of Common Debuff and Buffs cannot exceed R
         3. If the card has Block, you gain M Block, where M = Monster max health * (card block) / 100 and cannot exceed card block
+        4. If the card has Orbs, you channel 1 Orb
 
-        COST is 4 + (M / 15) + buff/debuff count.
-        4. If none of the above actions is applicable, monster will target the enemy if attacking/debuffing, or you if buffing
+        COST is 4 + (M / 15) + buff/debuff count + orbs.
+        5. If none of the above actions is applicable, monster will target the enemy if attacking/debuffing, or you if buffing
 
         COST is 10 General
     If the card is a CURSE/OTHER:
@@ -352,9 +397,10 @@ public class MindControlPower extends AnimatorClickablePower
                 affinityPowers = GetAffinityPowers(card, rarityModifier);
                 buffs = GetCommonBuffs(card, rarityModifier -= affinityPowers.size());
                 debuffs = GetCommonDebuffs(card, rarityModifier -= buffs.size());
+                orbs = GetOrbs(card, rarityModifier -= debuffs.size());
 
-                if (block > 0 || affinityPowers.size() > 0 || buffs.size() > 0 || debuffs.size() > 0) {
-                    this.triggerCondition.requiredAmount = 4 + debuffs.size() + buffs.size() + affinityPowers.size() + block / 15;
+                if (block > 0 || affinityPowers.size() > 0 || buffs.size() > 0 || debuffs.size() > 0 || orbs.size() > 0) {
+                    this.triggerCondition.requiredAmount = 4 + debuffs.size() + buffs.size() + affinityPowers.size() + block / 15 + (int) JUtils.Sum(orbs, o -> (float) o.cost);
                 }
                 else {
                     canRedirect = true;
@@ -401,5 +447,17 @@ public class MindControlPower extends AnimatorClickablePower
             }
         }
         return 1;
+    }
+
+    private static class OrbConstructor {
+        public EYBCardTooltip Tooltip;
+        public FuncT0<AbstractOrb> OrbInvoker;
+        public int cost;
+
+        public OrbConstructor(EYBCardTooltip tooltip, FuncT0<AbstractOrb> func, int cost) {
+            this.Tooltip = tooltip;
+            this.OrbInvoker = func;
+            this.cost = cost;
+        }
     }
 }

@@ -22,20 +22,42 @@ public class ManiwaHouou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ManiwaHouou.class)
             .SetPower(2, CardRarity.RARE)
-            .SetSeries(CardSeries.Katanagatari);
+            .SetSeries(CardSeries.Katanagatari)
+            .SetMultiformData(2);
 
     public ManiwaHouou()
     {
         super(DATA);
 
         Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 0, 0);
 
         SetAffinity_Green(2);
         SetAffinity_Dark(2);
 
         SetEthereal(true);
     }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (auxiliaryData.form == 0) {
+            SetEthereal(true);
+            SetInnate(true);
+        }
+        else {
+            SetEthereal(false);
+        }
+    }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetEthereal(form == 1);
+            SetInnate(form == 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

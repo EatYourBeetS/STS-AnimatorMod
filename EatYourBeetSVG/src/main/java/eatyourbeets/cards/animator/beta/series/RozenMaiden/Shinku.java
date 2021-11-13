@@ -53,7 +53,7 @@ public class Shinku extends AnimatorCard
                 }));
 
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Light, Affinity.Dark).AddConditionalCallback(() -> {
-            GameActions.Bottom.GainEndurance(secondaryValue, true);
+            GameActions.Bottom.GainTemporaryThorns(secondaryValue);
         });
     }
 }

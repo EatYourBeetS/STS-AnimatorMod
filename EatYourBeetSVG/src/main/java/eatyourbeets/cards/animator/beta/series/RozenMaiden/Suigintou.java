@@ -29,23 +29,14 @@ public class Suigintou extends AnimatorCard implements OnPurgeSubscriber
     {
         super(DATA);
 
-        Initialize(5, 0, 1, 1);
-        SetUpgrade(2, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Dark(2, 0, 0);
+        Initialize(3, 0, 2, 2);
+        SetUpgrade(3, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Dark(2, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);
         SetUnique(true, true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (timesUpgraded % 6 == 0)
-        {
-            upgradeMagicNumber(1);
-        }
     }
 
     @Override

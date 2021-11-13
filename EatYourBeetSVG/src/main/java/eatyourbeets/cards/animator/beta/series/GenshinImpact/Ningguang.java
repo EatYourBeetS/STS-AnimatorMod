@@ -5,24 +5,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.effects.VFX;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Ningguang extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ningguang.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental).SetSeriesFromClassPackage(true);
+    public static final EYBCardData DATA = Register(Ningguang.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage(true);
 
     public Ningguang()
     {
         super(DATA);
 
-        Initialize(3, 0, 5, 3);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(0, 2, 5, 3);
+        SetUpgrade(0, 1, -1, 0);
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(2, 0, 0);
 
@@ -33,8 +30,7 @@ public class Ningguang extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
-                .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowRock(player.hb, c.hb, 0.5f)).duration).SetRealtime(true));
+        GameActions.Bottom.GainBlock(block);
         final Earth next = JUtils.SafeCast(GameUtilities.GetFirstOrb(Earth.ORB_ID), Earth.class);
         if (next != null && next.projectilesCount > magicNumber) {
             GameActions.Top.Add(new EarthOrbPassiveAction(next, -magicNumber));

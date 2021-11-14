@@ -14,7 +14,6 @@ import eatyourbeets.ui.animator.combat.CombatHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Mathf;
-import eatyourbeets.utilities.TargetHelper;
 
 import java.util.UUID;
 
@@ -26,24 +25,38 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final int ATTACK_MULTIPLIER = 15;
     public static int PLAYER_ATTACK_BONUS = 0;
+    public static int PLAYER_DAMAGE_BONUS = 0;
 
     public static void AddPlayerAttackBonus(int multiplier)
     {
-        if (CombatStats.BattleID != battleID)
-        {
-            battleID = CombatStats.BattleID;
-            PLAYER_ATTACK_BONUS = 0;
-        }
+        CheckForNewBattle();
 
         if (multiplier > 0)
         {
             PLAYER_ATTACK_BONUS += multiplier;
 
-            for (BurningPower p : GameUtilities.<BurningPower>GetPowers(TargetHelper.Enemies(), POWER_ID))
-            {
-                p.updateDescription();
-                p.flashWithoutSound();
-            }
+            GameUtilities.UpdatePowerDescriptions();
+        }
+    }
+
+    public static void AddPlayerDamageBonus(int multiplier)
+    {
+        CheckForNewBattle();
+
+        if (multiplier > 0)
+        {
+            PLAYER_DAMAGE_BONUS += multiplier;
+
+            GameUtilities.UpdatePowerDescriptions();
+        }
+    }
+
+    public static void CheckForNewBattle() {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            PLAYER_ATTACK_BONUS = 0;
+            PLAYER_DAMAGE_BONUS = 0;
         }
     }
 
@@ -110,7 +123,12 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
 
     public int GetPassiveDamage()
     {
-        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetElementalExposure());
+        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetDamageMultiplier() / 100);
+    }
+
+    public float GetDamageMultiplier()
+    {
+        return (GameUtilities.IsPlayer(owner)) ? 100 : (100 + PLAYER_DAMAGE_BONUS) * GetElementalExposure();
     }
 
     public float GetMultiplier()

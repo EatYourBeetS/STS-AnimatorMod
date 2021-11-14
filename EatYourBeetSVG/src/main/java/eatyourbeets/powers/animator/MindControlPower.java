@@ -256,8 +256,8 @@ public class MindControlPower extends AnimatorClickablePower
 
         boolean isAttacking = damage > 0;
         boolean isDefending = block > 0;
-        boolean isDebuffing = debuffs.size() > 0;
-        boolean isBuffing = buffs.size() > 0 || orbs.size() > 0;
+        boolean isDebuffing = !debuffs.isEmpty();
+        boolean isBuffing = !buffs.isEmpty() || !orbs.isEmpty();
 
         final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && (isAttacking || isDefending || isDebuffing || isBuffing))
@@ -302,8 +302,11 @@ public class MindControlPower extends AnimatorClickablePower
                         if (isDebuffing) {
                             this.move.intent = AbstractMonster.Intent.STRONG_DEBUFF;
                         }
-                        else {
+                        else if (!buffs.isEmpty()) {
                             this.move.intent = AbstractMonster.Intent.BUFF;
+                        }
+                        else {
+                            this.move.intent = AbstractMonster.Intent.MAGIC;
                         }
                     }
                     else {

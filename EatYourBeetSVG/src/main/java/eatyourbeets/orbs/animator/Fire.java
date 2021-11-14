@@ -45,7 +45,7 @@ public class Fire extends AnimatorOrb {
         super(ORB_ID, Timing.EndOfTurn);
 
         this.hFlip1 = MathUtils.randomBoolean();
-        this.baseEvokeAmount = this.evokeAmount = BURNING_AMOUNT * 3;
+        this.baseEvokeAmount = this.evokeAmount = 4;
         this.basePassiveAmount = this.passiveAmount = 2;
 
         this.updateDescription();
@@ -54,7 +54,7 @@ public class Fire extends AnimatorOrb {
 
     public void updateDescription() {
         this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, BURNING_AMOUNT, this.evokeAmount);
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, BURNING_AMOUNT, this.evokeAmount, this.evokeAmount / 2);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class Fire extends AnimatorOrb {
 
     @Override
     public void Evoke() {
-        GameActions.Top.Add(new FireOrbEvokeAction(evokeAmount));
+        GameActions.Top.Add(new FireOrbEvokeAction(this, evokeAmount));
 
         super.Evoke();
     }

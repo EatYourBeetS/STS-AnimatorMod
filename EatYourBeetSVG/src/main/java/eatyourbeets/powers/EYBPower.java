@@ -148,6 +148,12 @@ public abstract class EYBPower extends AbstractPower implements CloneablePowerIn
             return;
         }
 
+        if (powerStrings == null || powerStrings.DESCRIPTIONS == null) {
+            this.description = "";
+            JUtils.LogError(this, "powerStrings.Description does not exist, " + this.name);
+            return;
+        }
+
         switch (powerStrings.DESCRIPTIONS.length)
         {
             case 0:

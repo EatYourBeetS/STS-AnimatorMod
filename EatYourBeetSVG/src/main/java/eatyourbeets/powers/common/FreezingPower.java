@@ -27,11 +27,7 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
 
     public static void AddPlayerReductionBonus(int multiplier)
     {
-        if (CombatStats.BattleID != battleID)
-        {
-            battleID = CombatStats.BattleID;
-            PLAYER_REDUCTION_BONUS = 0;
-        }
+        CheckForNewBattle();
 
         if (multiplier > 0)
         {
@@ -39,6 +35,15 @@ public class FreezingPower extends CommonPower implements HealthBarRenderPower
             GameUtilities.UpdatePowerDescriptions();
         }
     }
+
+    public static void CheckForNewBattle() {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            PLAYER_REDUCTION_BONUS = 0;
+        }
+    }
+
 
     public static float CalculateDamage(float damage, float multiplier)
     {

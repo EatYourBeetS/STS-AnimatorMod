@@ -22,7 +22,7 @@
 	},
 	"animator:BlazingHeatPower":
 	{
-	  "DESCRIPTIONS": ["[Fire] deals #b{0} times its damage to ALL enemies when Evoked. At the start of your turn: #yTrigger [Burning] and [Freezing] on ALL enemies."],
+	  "DESCRIPTIONS": ["[Fire] deals #b+{0}% damage on Trigger and #b+{1}% damage on Evoke to the highest health enemy."],
 	  "NAME": "Blazing Heat"
 	},
 	"animator:BorosPower":
@@ -347,7 +347,7 @@
 	},
 	"animator:SheerColdPower":
 	{
-	  "DESCRIPTIONS": ["[Frost] applies #b{0} [Freezing] once to a random enemy when Triggered and twice to all enemies when Evoked."],
+	  "DESCRIPTIONS": ["[Frost] damages and applies #b{0} [Freezing] to the enemy with the highest damage and twice to all enemies when Evoked."],
 	  "NAME": "Sheer Cold"
 	},
 	"animator:ShikizakiKikiPower":

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.actions.animator.CreateRandomCurses;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -19,12 +20,13 @@ import eatyourbeets.utilities.RandomizedList;
 public class ReisenInaba extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ReisenInaba.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage(true);
+    public static final int CARDS = 3;
 
     public ReisenInaba()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, CARDS, 2);
         SetUpgrade(0, 0, 0, 1);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
@@ -35,6 +37,12 @@ public class ReisenInaba extends AnimatorCard
     @Override
     public void OnUpgrade() {
         SetEthereal(false);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return EnergyPanel.getCurrentEnergy() <= 0;
     }
 
     @Override
@@ -77,11 +85,13 @@ public class ReisenInaba extends AnimatorCard
                 pool.AddAll(GameUtilities.GetCardPoolInCombat(CardRarity.RARE).GetInnerList());
                 final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-                while (choice.size() < 3 && pool.Size() > 0)
+                while (choice.size() < CARDS && pool.Size() > 0)
                 {
                     AbstractCard temp = pool.Retrieve(rng);
                     if (!(temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.VOLATILE))) {
-                        choice.addToTop(temp.makeCopy());
+                        AbstractCard temp2 = temp.makeCopy();
+                        GameUtilities.ModifyCostForCombat(temp2, -1, true);
+                        choice.addToTop(temp2);
                     }
                 }
 
@@ -97,7 +107,11 @@ public class ReisenInaba extends AnimatorCard
 
         }
 
-
+        @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, card.name.replace(" ", " #y"));
+        }
     }
 }
 

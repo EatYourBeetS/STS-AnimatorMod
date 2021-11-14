@@ -29,7 +29,7 @@
 		"NAME": "Fire",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #g{0} damage to the highest health enemy and apply #b{1} #yBurning. NL #yEvoke: Apply #g{2} #yBurning to ALL enemies."
+			"#yPassive: At the end of turn, deal #g{0} damage to the highest health enemy and apply #b{1} #yBurning. NL #yEvoke: Deal #g{2} damage to the highest health enemy and apply #b{3} #yBurning."
 		]
 	},
 	"animator:Water":

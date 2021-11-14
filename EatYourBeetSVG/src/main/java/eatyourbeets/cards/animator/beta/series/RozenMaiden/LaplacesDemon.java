@@ -2,14 +2,12 @@ package eatyourbeets.cards.animator.beta.series.RozenMaiden;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.subscribers.OnCardMovedSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -18,7 +16,7 @@ import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class LaplacesDemon extends AnimatorCard implements OnCardMovedSubscriber
+public class LaplacesDemon extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LaplacesDemon.class)
     		.SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage()
@@ -79,6 +77,17 @@ public class LaplacesDemon extends AnimatorCard implements OnCardMovedSubscriber
     }
 
     @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        if (player != null) {
+            SetForm(player.exhaustPile.contains(this) ? 1 : 0, timesUpgraded);
+        }
+
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (auxiliaryData.form == 1) {
@@ -89,20 +98,6 @@ public class LaplacesDemon extends AnimatorCard implements OnCardMovedSubscriber
             int[] damageMatrix = DamageInfo.createDamageMatrix(GetXValue(), true);
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.HP_LOSS, AttackEffects.NONE);
         }
-    }
-
-    @Override
-    public void OnCardMoved(AbstractCard card, CardGroup source, CardGroup destination) {
-        if (card == this) {
-            SetForm(destination.type.equals(CardGroup.CardGroupType.EXHAUST_PILE) ? 1 : 0, timesUpgraded);
-        }
-    }
-
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-        CombatStats.onCardMoved.Subscribe(this);
     }
 
     public static class LaplacesDemonPower extends AnimatorPower
@@ -132,9 +127,19 @@ public class LaplacesDemon extends AnimatorCard implements OnCardMovedSubscriber
             else {
                 GameActions.Bottom.SelectFromHand(name, 999, true)
                         .AddCallback(cards -> {
+                            int totalCost = 0;
                             for (AbstractCard card : cards) {
-                                GameUtilities.ModifyCostForCombat(card, MathUtils.random(0,3), false);
-                                card.flash();
+                                if (card.costForTurn >= 0) {
+                                    totalCost += card.costForTurn;
+                                }
+                            }
+                            for (AbstractCard card : cards) {
+                                if (card.costForTurn >= 0) {
+                                    int newCost = MathUtils.random(0, Math.min(totalCost, 3));
+                                    totalCost -= newCost;
+                                    GameUtilities.ModifyCostForCombat(card, totalCost, false);
+                                    card.flash();
+                                }
                             }
                         });
             }

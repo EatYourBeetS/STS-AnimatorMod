@@ -1,11 +1,11 @@
 package eatyourbeets.actions.orbs;
 
 import com.badlogic.gdx.graphics.Color;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.vfx.megacritCopy.FireballEffect2;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
@@ -41,18 +41,22 @@ public class FireOrbPassiveAction extends EYBAction
 
         if (enemy != null)
         {
-            GameActions.Top.ApplyBurning(source, enemy, Fire.BURNING_AMOUNT);
+            GameActions.Top.ApplyBurning(source, enemy, Fire.BURNING_AMOUNT * 3);
 
             int actualDamage = AbstractOrb.applyLockOn(enemy, amount);
             if (actualDamage > 0)
             {
                 GameActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE)
-                .SetVFX(true, true);
+                .SetVFX(true, false);
             }
 
             GameActions.Top.Wait(0.15f);
             GameActions.Top.VFX(new FireballEffect2(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
-            .SetColor(Color.RED, Color.ORANGE).SetRealtime(true));
+            .SetColor(Color.RED, Color.ORANGE));
+            GameActions.Top.VFX(new FireballEffect2(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
+                    .SetColor(Color.RED, Color.ORANGE));
+            GameActions.Top.VFX(new FireballEffect2(orb.hb.cX, orb.hb.cY, enemy.hb.cX, enemy.hb.cY)
+                    .SetColor(Color.RED, Color.ORANGE).SetRealtime(true));
         }
 
         Complete();

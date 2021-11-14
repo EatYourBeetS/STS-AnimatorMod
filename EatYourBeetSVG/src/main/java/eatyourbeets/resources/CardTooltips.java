@@ -36,6 +36,7 @@ public class CardTooltips
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Health = FindByID("Health").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
+    public EYBCardTooltip Trigger = FindByID("Trigger").ShowText(false);
     public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);

@@ -131,7 +131,7 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Channel !M! [Dark] and trigger them once if in <IS>. Otherwise, enter <IS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
+			"DESCRIPTION": "Channel !M! [Dark] and Trigger them once if in <IS>. Otherwise, enter <IS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:EriShiina":
@@ -367,7 +367,7 @@
 		},
 		"animator:BlazingHeat":
 		{
-			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals damage equal to !S! times its [Focus] to ALL enemies when Evoked. || At the start of your turn: Trigger [Burning] and [Freezing] on ALL enemies.",
+			"DESCRIPTION": "Channel !M! [Fire]. [Fire] deals +!S!% damage on Trigger and +{0}% damage on Evoke to the highest health enemy. || [Burning] deals +100% damage.",
 			"NAME": "Blazing Heat"
 		},
 		"animator:Curse_AbyssalVoid":
@@ -377,8 +377,8 @@
     	},
 		"animator:ForceImpulseGundam":
 		{
-			"DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust.",
-			"EXTENDED_DESCRIPTION": ["Reload: Increase this card's damage by !M! until played. Skills and Statuses trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust."],
+			"DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses Trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust.",
+			"EXTENDED_DESCRIPTION": ["Reload: Increase this card's damage by !M! until played. Skills and Statuses Trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust."],
 			"NAME": "Force Impulse Gundam"
 		},
 		"animator:GarbageDoll":
@@ -405,7 +405,7 @@
 		},
 		"animator:IonizingStorm":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies half of its [Focus] as [Electrified] to a random enemy when triggered and to ALL enemies when Evoked. || [Lightning] gains 1 [Focus] for every !S! [Supercharged] {Charge}.",
+			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies half of its [Focus] as [Electrified] to a random enemy when Triggered and to ALL enemies when Evoked. || [Lightning] gains 1 [Focus] for every !S! [Supercharged] {Charge}.",
 			"NAME": "Ionizing Storm"
 		},
 		"animator:JetBlack":
@@ -500,8 +500,8 @@
 		},
 		"animator:MS06ZakuII":
 		{
-			"DESCRIPTION": "The first !M! Reload triggers this turn activate twice. || <LIM>. If you reached !S! of any affinity power this combat, Pay !A! <W>: Gain {Upgraded Hand}.",
-			"EXTENDED_DESCRIPTION": ["Your next #b{0} Reload triggers this turn activate twice."],
+			"DESCRIPTION": "The first !M! Reload Triggers this turn activate twice. || <LIM>. If you reached !S! of any affinity power this combat, Pay !A! <W>: Gain {Upgraded Hand}.",
+			"EXTENDED_DESCRIPTION": ["Your next #b{0} Reload Triggers this turn activate twice."],
 			"NAME": "MS-06 Zaku II"
 		},
 		"animator:Mythra":
@@ -559,7 +559,7 @@
 		},
 		"animator:SheerCold":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage and applies [Freezing] equal to half of its [Focus] to a random enemy. || [Freezing] gains +!S!% damage reduction this combat.",
+			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage to the enemy with the highest damage and applies half that much [Freezing] ({0}% of [Focus] on Trigger and {1}% on Evoke). || [Freezing] gains +!S!% reduction bonus.",
 			"NAME": "Sheer Cold"
 		},
 		"animator:ShuichiSaihara":
@@ -644,8 +644,8 @@
 		},
 		"animator:InverseOrigami":
 		{
-			"DESCRIPTION": "Play an {Orb Core}. The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to trigger !M! random Orbs and increase this power's duration by 1.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked activate your #ySupport #yDamage. Pay #b{1} #ySupport #yDamage to trigger #b{2} random #yOrbs and increase this power's duration by 1."],
+			"DESCRIPTION": "Play an {Orb Core}. The next !M! Orbs Evoked activate your [Support Damage]. || Pay !S! [Support Damage] to Trigger !M! random Orbs and increase this power's duration by 1.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Orb(s) Evoked activate your #ySupport #yDamage. Pay #b{1} #ySupport #yDamage to #yTrigger #b{2} random #yOrbs and increase this power's duration by 1."],
 			"NAME": "Inverse Origami"
 		},
 		"animator:InverseTohka":
@@ -655,7 +655,7 @@
 		},
 		"animator:KotoriItsuka":
 		{
-			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <SLM>. Synergy: [Burning] gains +15% damage bonus this combat.",
+			"DESCRIPTION": "Remove !M! [Freezing] to deal double damage and apply !S! [Vulnerable]. Otherwise, apply !S! [Burning]. || <SLM>. Synergy: [Burning] gains +15% attack bonus.",
 			"NAME": "Kotori Itsuka"
 		},
 		"animator:KurumiTokisaki":
@@ -751,13 +751,13 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "Take !S! damage and Gain !M! [Self-Immolation]. When it triggers this turn: Gain !M! {Temp.} [Thorns]. || <LIM>. Any time this turn, if you have [Self-Immolation] and {0} [Delayed Damage]: Play {Sheer Cold}.",
-			"EXTENDED_DESCRIPTION": ["When [Self-Immolation] is triggered: Gain #b{0} #yTemporary [Thorns].{1}"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
+			"DESCRIPTION": "Take !S! damage and Gain !M! [Self-Immolation]. When it Triggers this turn: Gain !M! {Temp.} [Thorns]. || <LIM>. Any time this turn, if you have [Self-Immolation] and {0} [Delayed Damage]: Play {Sheer Cold}.",
+			"EXTENDED_DESCRIPTION": ["When [Self-Immolation] is Triggered: Gain #b{0} #yTemporary [Thorns].{1}"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
 		{
-			"DESCRIPTION": "Gain !S! [B]. || <LIM>. Pay !A! <B>: Channel 1 [Water]. If ALL enemies intend to attack, trigger it once.",
+			"DESCRIPTION": "Gain !S! [B]. || <LIM>. Pay !A! <B>: Channel 1 [Water]. If ALL enemies intend to attack, Trigger it once.",
 			"EXTENDED_DESCRIPTION": ["To play this, Remove your first 2 [Water]."],
 			"NAME": "Barbara Pegg"
 		},
@@ -790,7 +790,7 @@
 		},
 		"animator:Dainsleif":
 		{
-			"DESCRIPTION": "At the start of combat: Gain {Phase of the Abyssal Moon}. Play this card whenever it is triggered. || Channel !M! [Chaos]. Add either {Aether} or {Lumine} to your draw pile. ** Pay !A! <W>. Add both.",
+			"DESCRIPTION": "At the start of combat: Gain {Phase of the Abyssal Moon}. Play this card whenever it is Triggered. || Channel !M! [Chaos]. Add either {Aether} or {Lumine} to your draw pile. ** Pay !A! <W>. Add both.",
 			"NAME": "Dainsleif"
 		},
 		"animator:EulaLawrence":
@@ -843,7 +843,7 @@
 		},
 		"animator:Klee":
 		{
-			"DESCRIPTION": "[Burning] gains +!M!% damage bonus this combat. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** Pay !A! <R>: Add 1 more.",
+			"DESCRIPTION": "[Burning] gains +!M!% attack bonus. || Add !S! {Jumpy Dumpty} ** to your Draw Pile. ** Pay !A! <R>: Add 1 more.",
 			"NAME": "Klee"
 		},
 		"animator:KokomiSangonomiya":
@@ -926,8 +926,8 @@
 		},
 		"animator:Xiangling_Guoba":
 		{
-			"DESCRIPTION": "At the start of turn: Apply !M! [Burning] to ALL enemies, then reduce this amount by 1. When this reaches 0: [Burning] gains +!S!% damage bonus.",
-			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Apply #b{0} [Burning] to ALL enemies, then reduce this number by #b1. NL When this reaches #b0: [Burning] gains #b+{1}% damage bonus."],
+			"DESCRIPTION": "At the start of turn: Apply !M! [Burning] to ALL enemies, then reduce this amount by 1. When this reaches 0: [Burning] gains +!S!% attack bonus.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Apply #b{0} [Burning] to ALL enemies, then reduce this number by #b1. NL When this reaches #b0: [Burning] gains #b+{1}% attack bonus."],
 			"NAME": "Guoba"
 		},
 		"animator:Xiao":
@@ -957,8 +957,8 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Whenever you shuffle your deck: Give {~Haste} to !M! random cards. Once per turn: Gain [A] when {~Haste} triggers. || Once per turn, pay 5 <L>: Channel [Dark]. Trigger it once for every card in hand.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [A] when {~Haste} triggers. Whenever you shuffle your deck: Give {~Haste} to #b{0} random cards. || Pay #b{1} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
+			"DESCRIPTION": "Whenever you shuffle your deck: Give {~Haste} to !M! random cards. Once per turn: Gain [A] when {~Haste} Triggers. || Once per turn, pay 5 <L>: Channel [Dark]. Trigger it once for every card in hand.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [A] when {~Haste} Triggers. Whenever you shuffle your deck: Give {~Haste} to #b{0} random cards. || Pay #b{1} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
@@ -1086,7 +1086,7 @@
 		"animator:LaplacesDemon":
 		{
 			"DESCRIPTION": "ALL enemies lose !M! [HP] for each <W> Threshold power you have (!X!). || Changes form in {Afterlife}.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, if [A-Light] > [A-Dark]: Give ALL #ySoul and #ySame-Series cards in hand #yAfterlife. Otherwise: Scramble the cost of ALL cards in hand.", "At the start of turn, If <L> > <D>: Give ALL {Soul} and {Same-Series} cards in hand {Afterlife}. Otherwise: Scramble the cost of ALL cards in hand."],
+			"EXTENDED_DESCRIPTION": ["At the start of turn, if [A-Light] > [A-Dark]: Give ALL #ySoul and #ySame-Series cards in hand #yAfterlife. Otherwise: Scramble the cost of ALL cards in hand.", "At the start of turn, If <L> > <D>: Give ALL {Soul} and {Same-Series} cards in hand {Afterlife}. Otherwise: Scramble the cost of ALL cards in hand.","When #yScrambled: A card is given a random cost between 0-3. Does not affect X cost cards, and the total cost cannot exceed that of your original hand's cost."],
 			"NAME": "Laplace's Demon"
 		},
 		"animator:MeguKakizaki":
@@ -1237,6 +1237,7 @@
 		"animator:ReisenInaba":
 		{
 			"DESCRIPTION": "Unplayable if you have [E]. || Obtain a random {Hindrance}. When you Exhaust it: Obtain 1 of !M! cards that cost 1 less. || On Exhaust: Exhaust !S! cards anywhere.",
+			"EXTENDED_DESCRIPTION": ["When you Exhaust {0}: Obtain #b1 of #b3 cards that cost #b1 less."],
 			"NAME": "Reisen Inaba"
 		},
 		"animator:Rumia":
@@ -1260,6 +1261,11 @@
 		{
 			"DESCRIPTION": "Exhaust 1 of the top !M! cards in your draw pile, or draw 1 less next turn. || If you Exhausted an Attack: Gain +!S! <R>.",
 			"NAME": "Suika Ibuki"
+		},
+		"animator:UtsuhoReiuji":
+		{
+			"DESCRIPTION": "Exhaust any number of cards in hand. For each: Gain [Energized].",
+			"NAME": "Utsuho Reiuji"
 		},
 		"animator:YukariYakumo":
 		{
@@ -1589,7 +1595,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! [Strength]. Gain !S! [Frail] and !M! [C]. Lose 1 [Endurance]. || Synergy: Channel 1 [Dark] and trigger it once.",
+			"DESCRIPTION": "Steal !M! [Strength]. Gain !S! [Frail] and !M! [C]. Lose 1 [Endurance]. || Synergy: Channel 1 [Dark] and Trigger it once.",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
@@ -1625,7 +1631,7 @@
 		},
 		"animator:RinTohsaka":
 		{
-			"DESCRIPTION": "If any enemy intends to debuff: Gain !S! {Temp}. [Artifact]. Otherwise, trigger !S! random Orbs. || <LIM>. If you have 3 ** different orb types: ** Obtain 1 {Orb Core}{+}.",
+			"DESCRIPTION": "If any enemy intends to debuff: Gain !S! {Temp}. [Artifact]. Otherwise, Trigger !S! random Orbs. || <LIM>. If you have 3 ** different orb types: ** Obtain 1 {Orb Core}{+}.",
 			"NAME": "Rin Tohsaka"
 		},
 		"animator:Saber":
@@ -1718,7 +1724,7 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** past 1 (min. 1). || Pay !A! <R>: [Burning] gains +!S!% damage bonus this combat.",
+			"DESCRIPTION": "Apply !M! [Burning] to ALL enemies. Apply 1 less for each enemy ** past 1 (min. 1). || Pay !A! <R>: [Burning] gains +!S!% attack bonus.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
@@ -1740,7 +1746,8 @@
 		},
 		"animator:Wrath":
 		{
-			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal Attack damage to ALL enemies with +2 [F] Scaling.",
+			"DESCRIPTION": "Gain !M! [F]. For !S! turns: You may only play 1+ Cost Attacks. When you do so: Deal damage to ALL enemies equal to half your [F].",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: You may only play #b1+ Cost #yAttacks. When you do so: Deal damage to ALL enemies equal to half your [F] (rounded up)."],
 			"NAME": "Wrath"
 		}
 	},
@@ -1749,7 +1756,7 @@
 		"animator:Arpeggio":
 		{
 			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay 3 <W>: Trigger your first 3 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to Trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
@@ -2169,8 +2176,8 @@
 		},
 		"animator:Henrietta":
 		{
-			"DESCRIPTION": "All <W> Synergy bonuses can be triggered !M! more times per turn. || Once per turn, Pay 6 <W>: Gain !S! of the {<W> Power} of your highest <W>.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen]: Gain #b{1} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be triggered #b{2} additional time(s) per turn."],
+			"DESCRIPTION": "All <W> Synergy bonuses can be Triggered !M! more times per turn. || Once per turn, Pay 6 <W>: Gain !S! of the {<W> Power} of your highest <W>.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen]: Gain #b{1} of the [A-Gen] #yPower of your highest #yAffinity. NL All #yAffinity #ySynergy bonuses can be Triggered #b{2} additional time(s) per turn."],
 			"NAME": "Henrietta"
 		},
 		"animator:IsuzuTonan":
@@ -2181,7 +2188,7 @@
 		},
 		"animator:Krusty":
 		{
-			"DESCRIPTION": "Gains +!M! [F] scaling. || <SLM>. On Discard: Gain !S! [F].",
+			"DESCRIPTION": "Give ALL cards in hand +!M! [F] scaling. || <CDN>: Exhaust and Obtain <R> {Token}. || <SLM>. On Discard: Gain !S! [F].",
 			"NAME": "Krusty"
 		},
 		"animator:Marielle":
@@ -2439,12 +2446,12 @@
 		{
 			"DESCRIPTION": "Costs 1 less for each Power or {Interactable} used this turn. || Shuffle your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs.",
 			"NAME": "Jibril",
-			"UPGRADE_DESCRIPTION": "Costs 1 less for each Power or {Interactable} used this turn. || Shuffle and trigger your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs."
+			"UPGRADE_DESCRIPTION": "Costs 1 less for each Power or {Interactable} used this turn. || Shuffle and Trigger your Orbs. Deal damage equal to the sum of the Evoke amounts of your first !M! Orbs."
 		},
 		"animator:Miko":
 		{
-			"DESCRIPTION": "Gain !M! [Supercharged] {Charge} per stack of [Supercharged] whenever you Synergize or trigger [Plasma]. [Supercharged] {Charge} is now consumed in stacks of 16. || <LIM>. Gain 1 [Supercharged].",
-			"EXTENDED_DESCRIPTION": ["Gain #b{0} [Supercharged] #yCharge whenever you #ySynergize or trigger [Plasma]. [Supercharged] #yCharge is consumed in stacks of #b{1}."],
+			"DESCRIPTION": "Gain !M! [Supercharged] {Charge} per stack of [Supercharged] whenever you Synergize or Trigger [Plasma]. [Supercharged] {Charge} is now consumed in stacks of 16. || <LIM>. Gain 1 [Supercharged].",
+			"EXTENDED_DESCRIPTION": ["Gain #b{0} [Supercharged] #yCharge whenever you #ySynergize or Trigger [Plasma]. [Supercharged] #yCharge is consumed in stacks of #b{1}."],
 			"NAME": "Miko"
 		},
 		"animator:NinaClive":
@@ -2546,7 +2553,7 @@
 		},
 		"animator:MetalKnight":
 		{
-			"DESCRIPTION": "Pay !A! <S>: Channel 1 [Plasma]. || If this triggers [Supercharged]: Deal +!M! damage. || <LIM>. Gain !S! [Metallicize].",
+			"DESCRIPTION": "Pay !A! <S>: Channel 1 [Plasma]. || If this Triggers [Supercharged]: Deal +!M! damage. || <LIM>. Gain !S! [Metallicize].",
 			"NAME": "Metal Knight"
 		},
 		"animator:MetalBat":
@@ -2636,7 +2643,7 @@
 		},
 		"animator:Evileye":
 		{
-			"DESCRIPTION": "Apply !M! [Blinded]. Channel [Dark] and trigger it once for every debuff on the target. || Pay !A! <B> and <D>: Transfer !M! stacks of your leftmost {Common Debuffs} to the target first.",
+			"DESCRIPTION": "Apply !M! [Blinded]. Channel [Dark] and Trigger it once for every debuff on the target. || Pay !A! <B> and <D>: Transfer !M! stacks of your leftmost {Common Debuffs} to the target first.",
 			"NAME": "Evileye"
 		},
 		"animator:Gargantua":
@@ -2663,7 +2670,7 @@
 		},
 		"animator:MareBelloFiore":
 		{
-			"DESCRIPTION": "Channel 1 [Earth], then ** trigger all [Earth]. || Pay !A! <B> and <G>: Apply !S! [Weak] to ALL enemies.",
+			"DESCRIPTION": "Channel 1 [Earth], then ** Trigger all [Earth]. || Pay !A! <B> and <G>: Apply !S! [Weak] to ALL enemies.",
 			"NAME": "Mare Bello Fiore"
 		},
 		"animator:Sebas":
@@ -2703,8 +2710,8 @@
 		},
 		"animator:HiiragiKureto":
 		{
-			"DESCRIPTION": "Exhaust a random card in hand for each unblocked hit. ** For each: The next Attack played triggers ALL [Lightning] ** (Channel [Lightning] first if you have none).",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you play an Attack: Channel [Lightning] if you have none, then trigger ALL [Lightning]."],
+			"DESCRIPTION": "Exhaust a random card in hand for each unblocked hit. ** For each: The next Attack played Triggers ALL [Lightning] ** (Channel [Lightning] first if you have none).",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} times you play an Attack: Channel [Lightning] if you have none, then Trigger ALL [Lightning]."],
 			"NAME": "Kureto Hiiragi"
 		},
 		"animator:HiiragiShinya":
@@ -2836,7 +2843,7 @@
 		},
 		"animator:Shizu_Ifrit":
 		{
-			"DESCRIPTION": "Apply !S! [Burning] to ALL characters. Increase the damage bonus of [Burning] by !M!% this combat. || <LIM>. Choose 1: Play {Blazing Heat}; ** Gain 2 [Demon Form].",
+			"DESCRIPTION": "Apply !S! [Burning] to ALL characters. [Burning] gains +!M!% attack bonus. || <LIM>. Choose 1: Play {Blazing Heat}; ** Gain 2 [Demon Form].",
 			"EXTENDED_DESCRIPTION": ["Gain 2 [Demon Form].","Play {Blazing Heat}."],
 			"NAME": "Ifrit"
 		},
@@ -2847,7 +2854,7 @@
 		},
 		"animator:Souei":
 		{
-			"DESCRIPTION": "Apply !M! [Poison], then trigger the target's [Poison]. ** If Fatal: Spread its [Poison] to ALL enemies.",
+			"DESCRIPTION": "Apply !M! [Poison], then Trigger the target's [Poison]. ** If Fatal: Spread its [Poison] to ALL enemies.",
 			"NAME": "Souei"
 		},
 		"animator:Vesta":

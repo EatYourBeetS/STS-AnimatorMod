@@ -540,6 +540,12 @@
 		"NAMES": ["temporary thorns", "temp. thorns"],
 		"PROPER_NAME": "Temporary Thorns"
 	},
+	"Trigger":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["trigger","triggered","triggers"],
+		"PROPER_NAME": "Trigger"
+	},
 	"Vitality":
 	{
 		"DESCRIPTION": "At the start of each turn, gain [Temporary HP].",

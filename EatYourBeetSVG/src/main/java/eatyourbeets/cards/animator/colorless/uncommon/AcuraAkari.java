@@ -31,8 +31,6 @@ public class AcuraAkari extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 1, 0);
-
-        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -41,7 +39,7 @@ public class AcuraAkari extends AnimatorCard
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber).SetUpgrade(upgraded));
 
-        if (info.IsSynergizing && TrySpendAffinity(Affinity.Green))
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

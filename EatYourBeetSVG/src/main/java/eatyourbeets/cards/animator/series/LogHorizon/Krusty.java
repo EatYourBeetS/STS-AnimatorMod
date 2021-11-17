@@ -9,7 +9,6 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class Krusty extends AnimatorCard
@@ -32,17 +31,6 @@ public class Krusty extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (CombatStats.TryActivateSemiLimited(cardID))
-        {
-            GameActions.Bottom.GainForce(secondaryValue);
-        }
-    }
-
-    @Override
     public AbstractAttribute GetSpecialInfo()
     {
         return TempHPAttribute.Instance.SetCard(this, true);
@@ -51,9 +39,11 @@ public class Krusty extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainForce(secondaryValue);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.IncreaseScaling(player.hand, player.hand.size(), Affinity.Red, secondaryValue).SetFilter(c -> c.uuid != uuid);
+        cooldown.ProgressCooldownAndTrigger(null);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

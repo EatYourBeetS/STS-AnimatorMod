@@ -22,6 +22,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class CardLibraryScreenPatches
 {
+    private static final FieldInfo<AbstractCard> hoveredCards = JUtils.GetField("hoveredCard", CardLibraryScreen.class);
     private static GUI_Button openButton;
     @SpirePatch(clz = CardLibraryScreen.class, method = "open")
     public static class CardLibraryScreen_Open

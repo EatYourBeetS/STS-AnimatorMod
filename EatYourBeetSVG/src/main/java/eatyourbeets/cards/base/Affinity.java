@@ -14,7 +14,7 @@ public enum Affinity implements Comparable<Affinity>
     Orange(3, "Orange", GR.Common.Images.Affinities.Orange),
     Light(4, "Light", GR.Common.Images.Affinities.Light),
     Dark(5, "Dark", GR.Common.Images.Affinities.Dark),
-    Silver(6, "Dark", GR.Common.Images.Affinities.Silver),
+    Silver(6, "Silver", GR.Common.Images.Affinities.Silver),
     Star(-1, "Star", GR.Common.Images.Affinities.Star),
     General(-2, "General", GR.Common.Images.Affinities.General);// Don't use directly
 
@@ -88,26 +88,7 @@ public enum Affinity implements Comparable<Affinity>
 
     public TextureRegion GetPowerIcon()
     {
-        switch (this)
-        {
-            case Red: return GR.Tooltips.Force.icon;
-
-            case Green: return GR.Tooltips.Agility.icon;
-
-            case Blue: return GR.Tooltips.Intellect.icon;
-
-            case Orange: return GR.Tooltips.Willpower.icon;
-
-            case Light: return GR.Tooltips.Blessing.icon;
-
-            case Dark: return GR.Tooltips.Corruption.icon;
-
-            case Silver: return GR.Tooltips.Technic.icon;
-
-            case Star: return GR.Tooltips.Affinity_Star.icon;
-
-            default: return null;
-        }
+        return GetPowerTooltip().icon;
     }
 
     public Color GetAlternateColor(float lerp)
@@ -164,6 +145,24 @@ public enum Affinity implements Comparable<Affinity>
             case Silver: return GR.Tooltips.Affinity_Silver;
             case Star: return GR.Tooltips.Affinity_Star;
             case General: return GR.Tooltips.Affinity_General;
+            default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+        }
+    }
+
+    public EYBCardTooltip GetPowerTooltip()
+    {
+        switch (this)
+        {
+            case Red: return GR.Tooltips.Force;
+            case Green: return GR.Tooltips.Agility;
+            case Blue: return GR.Tooltips.Intellect;
+            case Orange: return GR.Tooltips.Willpower;
+            case Light: return GR.Tooltips.Blessing;
+            case Dark: return GR.Tooltips.Corruption;
+            case Silver: return GR.Tooltips.Technic;
+            case Star:
+            case General:
+                return GR.Tooltips.Affinity_Star;
             default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
         }
     }

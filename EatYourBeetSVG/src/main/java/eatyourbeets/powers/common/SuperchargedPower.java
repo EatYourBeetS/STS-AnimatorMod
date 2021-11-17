@@ -130,12 +130,16 @@ public class SuperchargedPower extends CommonPower implements OnSpendEnergySubsc
 
     @Override
     public int OnSpendEnergy(int spendAmount) {
-        int increase = spendAmount * this.amount;
+        return IncreaseCharge(spendAmount, true);
+    }
+
+    public int IncreaseCharge(int increaseAmount, boolean multiplicative) {
+        int increase = multiplicative ? increaseAmount * this.amount : increaseAmount;
         if (increase > 0) {
             this.charge += increase;
             this.flash();
             this.updateDescription();
         }
-        return spendAmount;
+        return increaseAmount;
     }
 }

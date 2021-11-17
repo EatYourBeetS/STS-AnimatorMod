@@ -22,6 +22,8 @@ import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.TreeSet;
 
 public class GUI_Dropdown<T> extends GUIElement
@@ -37,10 +39,11 @@ public class GUI_Dropdown<T> extends GUIElement
     private static final float SCROLLBAR_PADDING = 8.0F * Settings.scale;
     private static final float TOGGLE_OFFSET = 5f;
 
-    protected ActionT1<ArrayList<T>> onChange;
+    protected ActionT1<List<T>> onChange;
     protected ActionT1<Boolean> onOpenOrClose;
     protected BitmapFont font;
     protected FuncT1<String, T> labelFunction;
+    protected FuncT1<String, List<T>> labelFunctionButton;
     protected GUI_VerticalScrollBar scrollBar;
     protected boolean isOpen;
     protected boolean rowsHaveBeenPositioned;
@@ -118,7 +121,11 @@ public class GUI_Dropdown<T> extends GUIElement
         return this;
     }
 
-    public GUI_Dropdown<T> SetItems(ArrayList<T> options) {
+    public GUI_Dropdown<T> SetItems(T[] options) {
+        return SetItems(Arrays.asList(options));
+    }
+
+    public GUI_Dropdown<T> SetItems(List<T> options) {
         this.currentIndices.clear();
         this.rows.clear();
         for (int i = 0; i < options.size(); i++) {
@@ -126,6 +133,23 @@ public class GUI_Dropdown<T> extends GUIElement
         }
         Autosize();
 
+        return this;
+    }
+
+    public GUI_Dropdown<T> SetLabelFunctionForButton(FuncT1<String, List<T>> labelFunctionButton, boolean isSmartText) {
+        this.button.SetSmartText(isSmartText);
+        this.labelFunctionButton = labelFunctionButton;
+        if (labelFunctionButton != null) {
+            this.button.SetText(labelFunctionButton.Invoke(GetCurrentItems()));
+        }
+        return this;
+    }
+
+    public GUI_Dropdown<T> SetLabelFunctionForOption(FuncT1<String, T> labelFunction, boolean isSmartText) {
+        this.labelFunction = labelFunction;
+        for (DropdownRow<T> row : rows) {
+            row.SetLabelFunction(labelFunction, isSmartText);
+        }
         return this;
     }
 
@@ -142,7 +166,7 @@ public class GUI_Dropdown<T> extends GUIElement
         return this;
     }
 
-    public GUI_Dropdown<T> SetOnChange(ActionT1<ArrayList<T>> onChange) {
+    public GUI_Dropdown<T> SetOnChange(ActionT1<List<T>> onChange) {
         this.onChange = onChange;
         return this;
     }
@@ -292,7 +316,7 @@ public class GUI_Dropdown<T> extends GUIElement
                 }
 
                 for(int i = 0; i < rows.size(); ++i) {
-                    if (this.rows.get(i).update(i >= topVisibleRowIndex || i < topVisibleRowIndex + visibleRowCount(), currentIndices.contains(i))) {
+                    if (this.rows.get(i).update(i >= topVisibleRowIndex && i < topVisibleRowIndex + visibleRowCount(), currentIndices.contains(i))) {
                         this.setSelectedIndex(i);
                         isHoveringOver = true;
                         CardCrawlGame.sound.play("UI_CLICK_2");
@@ -475,11 +499,11 @@ public class GUI_Dropdown<T> extends GUIElement
     public void updateForSelection(boolean shouldInvoke) {
         int temp = currentIndices.size() > 0 ? currentIndices.first() : 0;
         if (isMultiSelect) {
-            this.button.text = currentIndices.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
+            this.button.text = labelFunctionButton != null ? labelFunctionButton.Invoke(GetCurrentItems()) : currentIndices.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
         }
         else if (currentIndices.size() > 0) {
             this.topVisibleRowIndex = Math.min(temp, this.rows.size() - this.visibleRowCount());
-            this.button.text = rows.get(temp).label.text;
+            this.button.text = labelFunctionButton != null ? labelFunctionButton.Invoke(GetCurrentItems()) : rows.get(temp).label.text;
             this.scrollBar.Scroll(this.scrollPercentForTopVisibleRowIndex(this.topVisibleRowIndex), false);
         }
         if (shouldInvoke && onChange != null) {
@@ -517,24 +541,32 @@ public class GUI_Dropdown<T> extends GUIElement
         GUI_Label label;
         int index;
         boolean isSelected;
+        boolean isSmartText;
         boolean isMultiSelect;
 
         DropdownRow(AdvancedHitbox hb, T item, FuncT1<String, T> labelFunction, BitmapFont font, float fontScale, int index) {
             this.hb = new RelativeHitbox(hb, 1f, 1f, 0f, 0f).SetIsPopupCompatible(true);
             this.item = item;
             this.index = index;
-            this.label = new GUI_Label(font, this.hb).SetFont(font, fontScale).SetText(labelFunction.Invoke(item)).SetAlignment(0.5f, 0f);
+            this.label = new GUI_Label(font, this.hb).SetFont(font, fontScale).SetText(labelFunction.Invoke(item)).SetAlignment(0.5f, 0f, isSmartText);
             this.checkbox = new GUI_Image(ImageMaster.COLOR_TAB_BOX_UNTICKED,  new RelativeHitbox(hb, 48f, 48f, 0f, -TOGGLE_OFFSET, false));
         }
 
         public DropdownRow<T> SetIsMultiSelect(boolean value) {
             isMultiSelect = value;
             if (isMultiSelect) {
-                this.label.SetAlignment(0.5f, 0.22f);
+                this.label.SetAlignment(0.5f, 0.22f, isSmartText);
             }
             else {
-                this.label.SetAlignment(0.5f, 0.1f);
+                this.label.SetAlignment(0.5f, 0.1f, isSmartText);
             }
+            return this;
+        }
+
+        public DropdownRow<T> SetLabelFunction(FuncT1<String, T> labelFunction, boolean isSmartText) {
+            this.isSmartText = isSmartText;
+            this.label.SetSmartText(isSmartText);
+            this.label.SetText(labelFunction.Invoke(item));
             return this;
         }
 

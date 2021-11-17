@@ -20,11 +20,11 @@ public class Xiangling extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 0);
+        Initialize(6, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Orange(0, 0, 1);
+        SetAffinity_Green(0, 0, 0);
     }
 
     @Override
@@ -34,12 +34,12 @@ public class Xiangling extends AnimatorCard
 
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true)) {
             if (GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) > 0) {
-                GameActions.Bottom.MakeCardInDrawPile(new Xiangling_Guoba());
+                GameActions.Bottom.GainTemporaryHP(magicNumber);
             }
         }
 
         if (info.IsSynergizing) {
-            GameActions.Bottom.GainTemporaryHP(magicNumber);
+            GameActions.Bottom.MakeCardInDrawPile(new Xiangling_Guoba());
         }
     }
 }

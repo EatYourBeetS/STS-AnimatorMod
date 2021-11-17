@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Saber extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Saber.class)
-            .SetAttack(1, CardRarity.RARE, EYBAttackType.Normal, EYBCardTarget.Normal, true)
+            .SetAttack(1, CardRarity.RARE, EYBAttackType.Normal, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Saber_Excalibur(), false));
 

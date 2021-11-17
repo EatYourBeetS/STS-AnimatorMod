@@ -3,6 +3,7 @@
 	"<LIM>": "{Limited}",
 	"<SLM>": "{Semi-Limited}",
 	"<slm>": "{Semi-Lim}",
+	"<ST>": "Starter",
 
 	"<DRW>": "Draw a card",
 	"<DRW-M>": "Draw !M! card(s)",
@@ -10,13 +11,21 @@
 	"<CYC-M>": "Cycle !M! card(s)",
 	"<SPACE>": "    ",
 
-	"<ST>": "Starter",
+	"<FSC>": "{[F] Scaling}",
+	"<ISC>": "{[I] Scaling}",
+	"<ASC>": "{[A] Scaling}",
+	"<WSC>": "{[W] Scaling}",
+	"<BSC>": "{[B] Scaling}",
+	"<CSC>": "{[C] Scaling}",
+	"<TSC>": "{[T] Scaling}",
+
 	"<FS>": "{[F] Stance}",
 	"<IS>": "{[I] Stance}",
 	"<AS>": "{[A] Stance}",
 	"<WS>": "{[W] Stance}",
 	"<BS>": "{[B] Stance}",
 	"<CS>": "{[C] Stance}",
+	"<TS>": "{[T] Stance}",
 
 	"<R>": "[A-Red]",
 	"<G>": "[A-Green]",

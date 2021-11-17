@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.NirvanaPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -22,18 +24,23 @@ public class SatoriKomeiji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Blue(2, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
         SetCostUpgrade(-1);
+
+        SetAffinityRequirement(Affinity.General, 10);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new SatoriPower(p, magicNumber));
+        if (CheckAffinity(Affinity.General) && info.TryActivateLimited()) {
+            GameActions.Bottom.StackPower(new NirvanaPower(p, secondaryValue));
+        }
     }
 
     public static class SatoriPower extends AnimatorPower

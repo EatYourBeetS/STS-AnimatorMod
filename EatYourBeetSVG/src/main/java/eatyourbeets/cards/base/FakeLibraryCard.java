@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.hitboxes.FakeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 
 public class FakeLibraryCard extends EYBCardBase
@@ -19,7 +20,8 @@ public class FakeLibraryCard extends EYBCardBase
 
     public FakeLibraryCard()
     {
-        super("","", null, 0, GR.Animator.Strings.Misc.NoCardsFound, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
+        super("","", null, 0, GR.Animator.Strings.Misc.NotEnoughCards, CardType.SKILL, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
+        this.hb = new FakeHitbox(hb);
     }
 
     @Override
@@ -54,6 +56,7 @@ public class FakeLibraryCard extends EYBCardBase
     @Override
     public void update()
     {
+        super.update();
         this.hovered = false;
         this.renderTip = false;
     }
@@ -61,6 +64,6 @@ public class FakeLibraryCard extends EYBCardBase
     @Override
     public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
-        FontHelper.renderFontLeft(sb, EYBFontHelper.CardTooltipFont, GR.Animator.Strings.Misc.NoCardsFound, hb.x, hb.y, Color.WHITE);
+        FontHelper.renderFontLeft(sb, EYBFontHelper.CardTitleFont_Normal, GR.Animator.Strings.Misc.NotEnoughCards, hb.cX, hb.cY, Color.WHITE);
     }
 }

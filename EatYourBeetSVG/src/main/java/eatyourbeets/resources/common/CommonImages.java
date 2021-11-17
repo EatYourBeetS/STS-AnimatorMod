@@ -125,6 +125,7 @@ public class CommonImages
         public final TextureCache Gold             = new TextureCache("images/eyb/cardui/tooltips/Gold.png");
         public final TextureCache GriefSeed        = new TextureCache("images/eyb/cardui/tooltips/GriefSeed.png");
         public final TextureCache Lightning        = new TextureCache("images/eyb/cardui/tooltips/Lightning.png");
+        public final TextureCache OrbSlot          = new TextureCache("images/eyb/cardui/tooltips/OrbSlot.png");
         public final TextureCache Plasma           = new TextureCache("images/eyb/cardui/tooltips/Plasma.png");
         public final TextureCache RandomOrb        = new TextureCache("images/eyb/cardui/tooltips/RandomOrb.png");
         public final TextureCache Regeneration     = new TextureCache("images/eyb/cardui/tooltips/Regeneration.png");

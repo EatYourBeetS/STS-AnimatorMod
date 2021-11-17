@@ -201,7 +201,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     }
 
     public void UpdateForFilters() {
-        if (CardKeywordFilters.CurrentFilters.isEmpty() && CardKeywordFilters.CurrentSeries.isEmpty()) {
+        if (CardKeywordFilters.AreFiltersEmpty()) {
             this.group.group = originalGroup;
         }
         else {
@@ -209,7 +209,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             if (tempGroup.size() > 0) {
                 this.group.group = tempGroup;
             }
-            else if (!CardKeywordFilters.CurrentSeries.isEmpty() && !CardKeywordFilters.CurrentFilters.isEmpty()) {
+            else if (!CardKeywordFilters.AreFiltersEmpty()) {
                 CardKeywordFilters.CurrentFilters.clear();
                 tempGroup = CardKeywordFilters.ApplyFilters(originalGroup);
                 this.group.group = tempGroup.size() > 0 ? tempGroup : GetFakeGroup();

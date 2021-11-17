@@ -90,6 +90,10 @@ public class GameUtilities
     }
 
     public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar, boolean showEffect) {
+        if (affinity == null) {
+            JUtils.LogWarning(null, "Tried to spend null affinity.");
+            return false;
+        }
         int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar, true);
         int baseAmount = CombatStats.Affinities.GetAffinityLevel(affinity, false);
         int starAmount = canSpendStar ? CombatStats.Affinities.GetAffinityLevel(Affinity.Star, false) : 0;
@@ -332,6 +336,12 @@ public class GameUtilities
     {
         final EYBCardAffinities a = GetAffinities(card);
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
+    }
+
+    public static int GetAffinityScaling(AbstractCard card, Affinity affinity, boolean useStarScaling)
+    {
+        final EYBCardAffinities a = GetAffinities(card);
+        return a != null ? a.GetScaling(affinity, useStarScaling) : 0;
     }
 
     public static AbstractOrb GetFirstOrb(String orbID)
@@ -1233,12 +1243,24 @@ public class GameUtilities
         ModifyDamage(card, card.baseDamage + amount, temporary);
     }
 
+    public static void IncreaseDesecrationCharge(int amount)
+    {
+        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
+        if (po == null) {
+            po = new DesecrationPower(player, 0);
+            GameActions.Bottom.StackPower(po);
+        }
+        po.IncreaseCharge(amount, false);
+    }
+
     public static void IncreaseSuperchargedCharge(int amount)
     {
         SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-        if (po != null) {
-            po.OnSpendEnergy(amount);
+        if (po == null) {
+            po = new SuperchargedPower(player, 0);
+            GameActions.Bottom.StackPower(po);
         }
+        po.IncreaseCharge(amount, false);
     }
 
     public static void IncreaseHandSizePermanently(float cX, float cY)

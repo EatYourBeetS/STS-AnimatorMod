@@ -123,12 +123,29 @@ public class CardGroupPatches
     public static class CardGroupPatches_GetBottomCard
     {
         @SpirePostfixPatch
-        public static void Prefix(CardGroup __instance)
+        public static SpireReturn<AbstractCard> Prefix(CardGroup __instance)
         {
             if (__instance.group.size() == 0) {
-                SpireReturn.Return(null);
+                return SpireReturn.Return(null);
             }
-            SpireReturn.Continue();
+            else {
+                return SpireReturn.Continue();
+            }
+        }
+    }
+
+    @SpirePatch(clz = CardGroup.class, method = "getTopCard", paramtypez = {})
+    public static class CardGroupPatches_GetTopCard
+    {
+        @SpirePostfixPatch
+        public static SpireReturn<AbstractCard> Prefix(CardGroup __instance)
+        {
+            if (__instance.group.size() == 0) {
+                return SpireReturn.Return(null);
+            }
+            else {
+                return SpireReturn.Continue();
+            }
         }
     }
 }

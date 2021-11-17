@@ -5,26 +5,26 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HiiragiKureto extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HiiragiKureto.class)
             .SetAttack(2, CardRarity.RARE)
             .SetSeriesFromClassPackage();
+    public static final int AMOUNT = 2;
 
     public HiiragiKureto()
     {
         super(DATA);
 
-        Initialize(5, 0, 3);
+        Initialize(5, 0, AMOUNT, 3);
         SetUpgrade(0, 0);
 
         SetAffinity_Red(1, 1, 1);
@@ -56,6 +56,10 @@ public class HiiragiKureto extends AnimatorCard
                 );
             }
         }));
+
+        if (IntellectStance.IsActive()) {
+            GameActions.Bottom.ModifyTag(player.hand, 1, HASTE, true);
+        }
     }
 
     public class HiiragiKuretoPower extends AnimatorPower
@@ -72,13 +76,8 @@ public class HiiragiKureto extends AnimatorCard
         {
             super.onUseCard(card, action);
 
-            if (card.type.equals(CardType.ATTACK)) {
-                if (GameUtilities.GetOrbCount(Lightning.ORB_ID) == 0) {
-                    GameActions.Top.ChannelOrb(new Lightning());
-                }
-                GameActions.Bottom.TriggerOrbPassive(player.orbs.size())
-                        .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
-                        .SetSequential(true);
+            if (card.type.equals(CardType.ATTACK) && action.target != null) {
+                GameActions.Bottom.ApplyElectrified(player, action.target, AMOUNT);
                 this.amount -= 1;
                 if (this.amount <= 0) {
                     RemovePower();

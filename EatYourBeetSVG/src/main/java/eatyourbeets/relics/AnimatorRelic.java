@@ -37,6 +37,7 @@ public abstract class AnimatorRelic extends EYBRelic
                 data.RemoveRelic(SacredBark.ID);
                 data.RemoveRelic(RunicPyramid.ID);
                 data.RemoveRelic(CeramicFish.ID);
+                data.RemoveRelic(TinyHouse.ID);
             }
 
             data.AddRelic(MarkOfPain.ID, AbstractRelic.RelicTier.BOSS);
@@ -84,7 +85,6 @@ public abstract class AnimatorRelic extends EYBRelic
             data.AddRelic(PaperCrane.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(PaperFrog.ID, AbstractRelic.RelicTier.UNCOMMON);
             data.AddRelic(RedSkull.ID, AbstractRelic.RelicTier.COMMON);
-            data.AddRelic(TinyHouse.ID, AbstractRelic.RelicTier.COMMON);
 
             if (ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
                 data.AddRelic(BurningBlood.ID, AbstractRelic.RelicTier.SHOP);

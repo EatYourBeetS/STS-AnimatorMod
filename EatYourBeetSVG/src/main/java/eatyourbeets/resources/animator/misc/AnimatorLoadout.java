@@ -108,9 +108,9 @@ public abstract class AnimatorLoadout
     public static final int MIN_CARDS = 10;
     public static final int BASE_GOLD = 99;
     public static final int BASE_HP = 70;
-    public static final int GOLD_STEP = 30;
-    public static final int HP_STEP = 4;
-    public static final int MAX_STEP = 3;
+    public static final int GOLD_STEP = 15;
+    public static final int HP_STEP = 2;
+    public static final int MAX_STEP = 6;
 
     public AnimatorLoadoutData[] Presets = new AnimatorLoadoutData[3];
     public AnimatorCardSlot SpecialSlot1;

@@ -10,10 +10,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
@@ -34,6 +31,26 @@ import java.util.Map;
 
 public class CardKeywordFilters extends GUIElement
 {
+    public enum CostFilter
+    {
+        CostX("X", -1, -1),
+        Cost0("0", 0, 0),
+        Cost1("1", 1, 1),
+        Cost2("2",2,2),
+        Cost3Plus("3+",3,9999),
+        Unplayable("Unplayable",-9999,-2);
+
+        public final int lowerBound;
+        public final int upperBound;
+        public final String name;
+
+        CostFilter(String name, int lowerBound, int upperBound) {
+            this.lowerBound = lowerBound;
+            this.upperBound = upperBound;
+            this.name = name;
+        }
+    }
+
     private static final Color FADE_COLOR = new Color(0f, 0f, 0f, 0.8f);
     protected static final float SPACING = Settings.scale * 22.5f;
     protected static final float DRAW_START_X = (float) Settings.WIDTH * 0.15f;
@@ -45,8 +62,14 @@ public class CardKeywordFilters extends GUIElement
     public static final int ROW_SIZE = 8;
     public static final HashSet<CardSeries> CurrentSeries = new HashSet<>();
     public static final HashSet<EYBCardTooltip> CurrentFilters = new HashSet<>();
+    public static final HashSet<CostFilter> CurrentCosts = new HashSet<>();
+    public static final HashSet<AbstractCard.CardRarity> CurrentRarities = new HashSet<>();
+    public static final HashSet<AbstractCard.CardType> CurrentTypes = new HashSet<>();
+    public static EYBCardAffinities CurrentAffinities = new EYBCardAffinities(null);
     protected final HashMap<EYBCardTooltip,Integer> CurrentFilterCounts = new HashMap<>();
     protected final ArrayList<CardKeywordButton> FilterButtons = new ArrayList<>();
+    protected final ArrayList<GUI_Button> AffinityButtons = new ArrayList<>();
+    protected final ArrayList<GUI_Button> ScalingButtons = new ArrayList<>();
     protected ArrayList<AbstractCard> referenceCards;
     protected ActionT1<CardKeywordButton> onClick;
 
@@ -59,9 +82,15 @@ public class CardKeywordFilters extends GUIElement
     protected float scrollDelta;
     protected int filterSizeCache;
     protected final GUI_Dropdown<CardSeries> SeriesDropdown;
+    protected final GUI_Dropdown<CostFilter> CostDropdown;
+    protected final GUI_Dropdown<AbstractCard.CardRarity> RaritiesDropdown;
+    protected final GUI_Dropdown<AbstractCard.CardType> TypesDropdown;
     protected final GUI_Button clearButton;
     public final GUI_VerticalScrollBar scrollBar;
     public final GUI_Label seriesLabel;
+    public final GUI_Label costsLabel;
+    public final GUI_Label raritiesLabel;
+    public final GUI_Label typesLabel;
     public final GUI_Label keywordsSectionLabel;
     public final AdvancedHitbox hb;
     public boolean draggingScreen;
@@ -87,15 +116,48 @@ public class CardKeywordFilters extends GUIElement
 
     public static ArrayList<AbstractCard> ApplyFilters(ArrayList<AbstractCard> input) {
         return JUtils.Filter(input, c -> {
+                    //Series check
                     if (!CurrentSeries.isEmpty()) {
                         AnimatorCard aC = JUtils.SafeCast(c, AnimatorCard.class);
                         if (aC == null || aC.series == null || !CurrentSeries.contains(aC.series)) {
                             return false;
                         }
                     }
+
+                    //Tooltips check
                     EYBCard eC = JUtils.SafeCast(c, EYBCard.class);
-                    return CurrentFilters.isEmpty() || (eC != null && GetAllTooltips(eC).containsAll(CurrentFilters));
+                    if (!CurrentFilters.isEmpty() && eC != null && !GetAllTooltips(eC).containsAll(CurrentFilters)) {
+                        return false;
+                    }
+
+                    //Rarities check
+                    if (!CurrentRarities.isEmpty() && !CurrentRarities.contains(c.rarity)) {
+                        return false;
+                    }
+
+                    //Types check
+                    if (!CurrentTypes.isEmpty() && !CurrentTypes.contains(c.type)) {
+                        return false;
+                    }
+
+                    //Cost check
+                    if (!CurrentCosts.isEmpty()) {
+                        boolean passes = false;
+                        for (CostFilter cf : CurrentCosts) {
+                            if (c.cost >= cf.lowerBound && c.cost <= cf.upperBound) {
+                                passes = true;
+                                break;
+                            }
+                        }
+                        return passes;
+                    }
+
+                    return true;
         });
+    }
+
+    public static boolean AreFiltersEmpty() {
+        return CurrentFilters.isEmpty() && CurrentSeries.isEmpty() && CurrentCosts.isEmpty() && CurrentRarities.isEmpty() && CurrentTypes.isEmpty();
     }
 
     public CardKeywordFilters()
@@ -111,7 +173,8 @@ public class CardKeywordFilters extends GUIElement
                 .SetOnClick(() -> this.Clear(true));
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
                 .SetOnScroll(this::OnScroll);
-        SeriesDropdown = new GUI_Dropdown<CardSeries>(new AdvancedHitbox(hb.x - SPACING, hb.y + SPACING * 3, Scale(240), Scale(48)), cs -> cs.LocalizedName)
+
+        SeriesDropdown = new GUI_Dropdown<CardSeries>(new AdvancedHitbox(hb.x - SPACING * 3, hb.y + SPACING * 3, Scale(240), Scale(48)), cs -> cs.LocalizedName)
                 .SetOnOpenOrClose(isOpen -> {
                     isScreenDisabled = isOpen;
                     CardCrawlGame.isPopupOpen = this.isActive;
@@ -125,23 +188,109 @@ public class CardKeywordFilters extends GUIElement
                 })
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true);
+
+        CostDropdown = new GUI_Dropdown<CostFilter>(new AdvancedHitbox(hb.x + SeriesDropdown.hb.width + SPACING * 3, hb.y + SPACING * 3, Scale(240), Scale(48)), c -> c.name)
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                    CardCrawlGame.isPopupOpen = this.isActive;
+                })
+                .SetOnChange(costs -> {
+                    CurrentCosts.clear();
+                    CurrentCosts.addAll(costs);
+                    if (onClick != null) {
+                        onClick.Invoke(null);
+                    }
+                })
+                .SetLabelFunctionForButton(items -> {
+                    if (items.size() == 0) {
+                        return GR.Animator.Strings.Misc.Any;
+                    }
+                    if (items.size() > 1) {
+                        return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
+                    }
+                    return StringUtils.join(JUtils.Map(items, item -> item.name), ", ");
+                }, false)
+                .SetIsMultiSelect(true)
+                .SetCanAutosizeButton(true)
+                .SetItems(CostFilter.values());
+
+        RaritiesDropdown = new GUI_Dropdown<AbstractCard.CardRarity>(new AdvancedHitbox(hb.x + CostDropdown.hb.width + SPACING * 3, hb.y + SPACING * 3, Scale(240), Scale(48))
+                ,item -> StringUtils.capitalize(item.toString().toLowerCase()))
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                    CardCrawlGame.isPopupOpen = this.isActive;
+                })
+                .SetOnChange(costs -> {
+                    CurrentRarities.clear();
+                    CurrentRarities.addAll(costs);
+                    if (onClick != null) {
+                        onClick.Invoke(null);
+                    }
+                })
+                .SetLabelFunctionForButton(items -> {
+                    if (items.size() == 0) {
+                        return GR.Animator.Strings.Misc.Any;
+                    }
+                    if (items.size() > 1) {
+                        return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
+                    }
+                    return StringUtils.join(JUtils.Map(items, item -> StringUtils.capitalize(item.toString().toLowerCase())), ", ");
+                }, false)
+                .SetIsMultiSelect(true)
+                .SetCanAutosizeButton(true)
+                .SetItems(AbstractCard.CardRarity.values());
+
+        TypesDropdown = new GUI_Dropdown<AbstractCard.CardType>(new AdvancedHitbox(hb.x + RaritiesDropdown.hb.width + SPACING * 3, hb.y + SPACING * 3, Scale(240), Scale(48))
+                ,item -> StringUtils.capitalize(item.toString().toLowerCase()))
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                    CardCrawlGame.isPopupOpen = this.isActive;
+                })
+                .SetOnChange(costs -> {
+                    CurrentTypes.clear();
+                    CurrentTypes.addAll(costs);
+                    if (onClick != null) {
+                        onClick.Invoke(null);
+                    }
+                })
+                .SetLabelFunctionForButton(items -> {
+                    if (items.size() == 0) {
+                        return GR.Animator.Strings.Misc.Any;
+                    }
+                    if (items.size() > 1) {
+                        return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
+                    }
+                    return StringUtils.join(JUtils.Map(items, item -> StringUtils.capitalize(item.toString().toLowerCase())), ", ");
+                }, false)
+                .SetIsMultiSelect(true)
+                .SetCanAutosizeButton(true)
+                .SetItems(AbstractCard.CardType.values());
+
         seriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 7, Scale(100), Scale(48)))
+                new AdvancedHitbox(hb.x - SPACING, hb.y + SPACING * 7, Scale(100), Scale(48)))
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
                 .SetText(GR.Animator.Strings.SeriesUI.SeriesUI)
                 .SetColor(Settings.GOLD_COLOR)
                 .SetAlignment(0.5f, 0.0f, false);
-        keywordsSectionLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new AdvancedHitbox(hb.x- SPACING, hb.y + SPACING * 2, Scale(100), Scale(48)))
-                .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
-                .SetText(GR.Animator.Strings.SeriesUI.Keywords)
-                .SetColor(Settings.GOLD_COLOR)
-                .SetAlignment(0.5f, 0.0f, false);
+        costsLabel = seriesLabel.MakeCopy()
+                .SetText(GR.Animator.Strings.SeriesUI.Costs)
+                .SetPosition(seriesLabel.hb.x + SeriesDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
+        raritiesLabel = seriesLabel.MakeCopy()
+                .SetText(GR.Animator.Strings.SeriesUI.Rarities)
+                .SetPosition(costsLabel.hb.x + CostDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
+        typesLabel = seriesLabel.MakeCopy()
+                .SetText(GR.Animator.Strings.SeriesUI.Types)
+                .SetPosition(raritiesLabel.hb.x + RaritiesDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
+        keywordsSectionLabel = seriesLabel.MakeCopy().SetText(GR.Animator.Strings.SeriesUI.Keywords);
     }
 
     public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards) {
         CurrentFilters.clear();
         CurrentSeries.clear();
+        CurrentCosts.clear();
+        CurrentRarities.clear();
+        CurrentTypes.clear();
+        CurrentAffinities.Clear();
         CurrentFilterCounts.clear();
         FilterButtons.clear();
 
@@ -188,6 +337,10 @@ public class CardKeywordFilters extends GUIElement
     public void Clear(boolean shouldInvoke) {
         CurrentFilters.clear();
         CurrentSeries.clear();
+        CurrentCosts.clear();
+        CurrentRarities.clear();
+        CurrentTypes.clear();
+        CurrentAffinities.Clear();
         SeriesDropdown.SetSelectionIndices(new int[]{}, false);
         if (shouldInvoke && onClick != null) {
             onClick.Invoke(null);
@@ -239,9 +392,15 @@ public class CardKeywordFilters extends GUIElement
     @Override
     public void Update() {
         hb.y = DRAW_START_Y + scrollDelta;
-        seriesLabel.SetPosition(hb.x - SPACING, DRAW_START_Y + scrollDelta + SPACING * 2).Update();
-        SeriesDropdown.SetPosition(hb.x  - SPACING, DRAW_START_Y + scrollDelta + SPACING * 3);
-        keywordsSectionLabel.SetPosition(hb.x- SPACING, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        SeriesDropdown.SetPosition(hb.x - SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        CostDropdown.SetPosition(SeriesDropdown.hb.x + SeriesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        RaritiesDropdown.SetPosition(CostDropdown.hb.x + CostDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        TypesDropdown.SetPosition(RaritiesDropdown.hb.x + RaritiesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        seriesLabel.SetPosition(SeriesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        costsLabel.SetPosition(CostDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        raritiesLabel.SetPosition(RaritiesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        typesLabel.SetPosition(TypesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        keywordsSectionLabel.SetPosition(hb.x- SPACING, DRAW_START_Y + scrollDelta + SPACING * 2).Update();
         hb.update();
         clearButton.TryUpdate();
         if (invalidated) {
@@ -269,6 +428,9 @@ public class CardKeywordFilters extends GUIElement
         }
 
         SeriesDropdown.TryUpdate();
+        CostDropdown.TryUpdate();
+        RaritiesDropdown.TryUpdate();
+        TypesDropdown.TryUpdate();
     }
 
     @Override
@@ -279,12 +441,18 @@ public class CardKeywordFilters extends GUIElement
         hb.render(sb);
         clearButton.TryRender(sb);
         seriesLabel.Render(sb);
+        costsLabel.Render(sb);
+        raritiesLabel.Render(sb);
+        typesLabel.Render(sb);
         keywordsSectionLabel.Render(sb);
         for (CardKeywordButton c : FilterButtons)
         {
             c.TryRender(sb);
         }
         SeriesDropdown.TryRender(sb);
+        CostDropdown.TryRender(sb);
+        RaritiesDropdown.TryRender(sb);
+        TypesDropdown.TryRender(sb);
     }
 
     protected void OnScroll(float newPercent)
@@ -298,7 +466,7 @@ public class CardKeywordFilters extends GUIElement
     {
         if (InputHelper.justClickedLeft)
         {
-            if (clearButton.hb.hovered || SeriesDropdown.AreAnyItemsHovered()) {
+            if (clearButton.hb.hovered || SeriesDropdown.AreAnyItemsHovered() || CostDropdown.AreAnyItemsHovered() || RaritiesDropdown.AreAnyItemsHovered() || TypesDropdown.AreAnyItemsHovered()) {
                 return;
             }
             for (CardKeywordButton c : FilterButtons)

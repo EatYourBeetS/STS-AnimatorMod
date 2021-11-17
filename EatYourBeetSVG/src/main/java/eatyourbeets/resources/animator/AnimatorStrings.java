@@ -80,8 +80,12 @@ public class AnimatorStrings
         public final String SeriesUI = Strings.TEXT[0];
         public final String ItemsSelected = Strings.TEXT[1];
         public final String Keywords = Strings.TEXT[2];
+        public final String Costs = Strings.TEXT[3];
+        public final String Rarities = Strings.TEXT[4];
+        public final String Types = Strings.TEXT[5];
+        public final String Affinities = Strings.TEXT[6];
+        public final String Scalings = Strings.TEXT[7];
     }
-
 
     public class Misc
     {
@@ -110,7 +114,7 @@ public class AnimatorStrings
         public final String EnableRelicsForOtherCharacters = Strings.TEXT[20];
         public final String UnofficialDisclaimer = Strings.TEXT[21];
         public final String Filters = Strings.TEXT[22];
-        public final String NoCardsFound = Strings.TEXT[23];
+        public final String Any = Strings.TEXT[23];
 
         public final String MaxStacks(int stacks)
         {

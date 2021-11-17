@@ -96,8 +96,7 @@ public class DesecrationPower extends CommonPower implements OnTrySpendAffinityS
         if (enabled && power.type == PowerType.DEBUFF && power.owner == this.owner && !power.owner.hasPower(ArtifactPower.POWER_ID))
         {
             GameActions.Last.Callback(() -> {
-                this.charge += power.amount * amount;
-                this.flash();
+                IncreaseCharge(amount, true);
             });
         }
     }
@@ -106,11 +105,20 @@ public class DesecrationPower extends CommonPower implements OnTrySpendAffinityS
     public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
         if (isActuallySpending) {
             GameActions.Last.Callback(() -> {
-                this.charge += this.amount * amount;
-                this.flash();
+                IncreaseCharge(amount, true);
             });
         }
         return amount;
+    }
+
+    public int IncreaseCharge(int increaseAmount, boolean multiplicative) {
+        int increase = multiplicative ? increaseAmount * this.amount : increaseAmount;
+        if (increase > 0) {
+            this.charge += increase;
+            this.flash();
+            this.updateDescription();
+        }
+        return increaseAmount;
     }
 
     @Override

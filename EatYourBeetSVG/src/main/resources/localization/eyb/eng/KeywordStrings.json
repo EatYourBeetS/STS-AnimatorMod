@@ -30,6 +30,12 @@
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
+	"Agility Scaling":
+	{
+	  "DESCRIPTION": "For each point of [A] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [A].",
+	  "NAMES": ["[a] scaling", "agility scaling"],
+	  "PROPER_NAME": "Agility Scaling"
+	},
 	"Agility Stance":
 	{
 		"DESCRIPTION": "Stance: [A] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A].",
@@ -47,6 +53,12 @@
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Supercharged] for every #b10 [B] up to #b50.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
+	},
+	"Blessing Scaling":
+	{
+	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [B].",
+	  "NAMES": ["[b] scaling", "blessing scaling"],
+	  "PROPER_NAME": "Blessing Scaling"
 	},
 	"Blessing Stance":
 	{
@@ -119,6 +131,12 @@
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Desecration] for every #b10 [C] up to #b50.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
+	},
+	"Corruption Scaling":
+	{
+	  "DESCRIPTION": "For each point of [C] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [C].",
+	  "NAMES": ["[c] scaling", "corruption scaling"],
+	  "PROPER_NAME": "Corruption Scaling"
 	},
 	"Corruption Stance":
 	{
@@ -252,6 +270,12 @@
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
+	"Force Scaling":
+	{
+	  "DESCRIPTION": "For each point of [F] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [F].",
+	  "NAMES": ["[f] scaling", "force scaling"],
+	  "PROPER_NAME": "Force Scaling"
+	},
 	"Force Stance":
 	{
 		"DESCRIPTION": "Stance: [F] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F].",
@@ -330,6 +354,12 @@
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
+	"Intellect Scaling":
+	{
+	  "DESCRIPTION": "For each point of [I] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [I].",
+	  "NAMES": ["[i] scaling", "intellect scaling"],
+	  "PROPER_NAME": "Intellect Scaling"
+	},
 	"Intellect Stance":
 	{
 		"DESCRIPTION": "Stance: [I] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
@@ -396,6 +426,12 @@
 		"NAMES": ["neutral stance"],
 		"PROPER_NAME": "Neutral Stance"
 	},
+	"Orb Slot":
+	{
+	  "DESCRIPTION": "#yOrb #ySlots allow you to channel additional Orbs.",
+	  "NAMES": ["orb slot"],
+	  "PROPER_NAME": "Orb Slot"
+	},
 	"Phasing":
 	{
 		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
@@ -458,7 +494,7 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "Reduce #yStrength until end of turn.",
+		"DESCRIPTION": "Reduce [Strength] until end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
 	},
@@ -494,7 +530,7 @@
 	},
 	"Swirled":
 	{
-		"DESCRIPTION": "If the target has [Burning] or [Freezing]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
+		"DESCRIPTION": "If the target has [Burning], [Freezing], or [Electrified]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
 		"NAMES": ["swirled"],
 		"PROPER_NAME": "Swirled"
 	},
@@ -521,6 +557,12 @@
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Genesis] for every #b20 [T] up to #b60.",
 		"NAMES": ["technic"],
 		"PROPER_NAME": "Technic"
+	},
+	"Technic Scaling":
+	{
+	  "DESCRIPTION": "For each point of [T] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [T].",
+	  "NAMES": ["[t] scaling", "technic scaling"],
+	  "PROPER_NAME": "Technic Scaling"
 	},
 	"Technic Stance":
 	{
@@ -557,6 +599,12 @@
 	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [W] up to #b50.",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
+	},
+	"Willpower Scaling":
+	{
+	  "DESCRIPTION": "For each point of [W] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [W].",
+	  "NAMES": ["[w] scaling", "willpower scaling"],
+	  "PROPER_NAME": "Willpower Scaling"
 	},
 	"Willpower Stance":
 	{

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
@@ -36,6 +37,15 @@ public class GUI_Label extends GUIElement
         this.font = font;
         this.text = "-";
         this.hb = hb;
+    }
+
+    public GUI_Label MakeCopy()
+    {
+        return new GUI_Label(font, new AdvancedHitbox(hb))
+                .SetAlignment(verticalRatio, horizontalRatio, smartText)
+                .SetColor(textColor)
+                .SetFont(font, fontScale)
+                .SetText(text);
     }
 
     public GUI_Label SetText(Object content)
@@ -97,6 +107,11 @@ public class GUI_Label extends GUIElement
         this.horizontalRatio = horizontalRatio;
         this.smartText = smartText;
 
+        return this;
+    }
+
+    public GUI_Label SetSmartText(boolean smartText) {
+        this.smartText = smartText;
         return this;
     }
 

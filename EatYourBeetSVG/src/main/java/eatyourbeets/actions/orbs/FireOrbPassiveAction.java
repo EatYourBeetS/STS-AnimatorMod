@@ -41,7 +41,7 @@ public class FireOrbPassiveAction extends EYBAction
 
         if (enemy != null)
         {
-            GameActions.Top.ApplyBurning(source, enemy, Fire.BURNING_AMOUNT * 3);
+            GameActions.Top.ApplyBurning(source, enemy, Fire.BURNING_AMOUNT);
 
             int actualDamage = AbstractOrb.applyLockOn(enemy, amount);
             if (actualDamage > 0)

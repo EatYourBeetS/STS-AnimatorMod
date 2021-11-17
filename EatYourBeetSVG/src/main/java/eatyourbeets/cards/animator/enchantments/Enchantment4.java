@@ -45,7 +45,9 @@ public class Enchantment4 extends Enchantment
         if (GetAffinity() == null) {
             GameActions.Bottom.TryChooseSpendAffinity(name, cost);
         }
-        GameUtilities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
+        else {
+            GameUtilities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
+        }
     }
 
     @Override

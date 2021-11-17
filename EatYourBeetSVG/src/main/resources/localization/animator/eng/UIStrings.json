@@ -251,7 +251,7 @@
 			"The Animator Discord link.",
 			"Steam", 
 			"The Animator Steam page.",
-			"Not enough cards of this type.",
+			"No cards match the current filters.",
 			"Dynamic Portraits",
 			"Dynamic card portraits",
 			"'CTRL' to cycle",
@@ -270,7 +270,7 @@
 			"Enable certain relics for non-Animator characters",
 			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions.",
 			"Filters",
-			"No cards matching the current filters were found."
+			"Any"
 		]
 	},
 
@@ -288,8 +288,13 @@
 		"TEXT":
 		[
 			"Series",
-			"Item(s) selected",
-			"Keywords"
+			"Item(s)",
+			"Keywords",
+			"Costs",
+			"Rarities",
+			"Types",
+			"Affinities",
+            "Scaling"
 		]
 	},
 

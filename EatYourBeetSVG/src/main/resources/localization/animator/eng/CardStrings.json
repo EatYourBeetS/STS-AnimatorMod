@@ -405,7 +405,7 @@
 		},
 		"animator:IonizingStorm":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies half of its [Focus] as [Electrified] to a random enemy when Triggered and to ALL enemies when Evoked. || [Lightning] gains 1 [Focus] for every !S! [Supercharged] {Charge}.",
+			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] applies {0}% of [Focus] as [Electrified] to a random enemy on Trigger and to ALL enemies on Evoke. || Whenever [Electrified] Triggers: Gain [Supercharge] {Charge} equal to half its stacks.",
 			"NAME": "Ionizing Storm"
 		},
 		"animator:JetBlack":
@@ -559,7 +559,7 @@
 		},
 		"animator:SheerCold":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage to the enemy with the highest damage and applies half that much [Freezing] ({0}% of [Focus] on Trigger and {1}% on Evoke). || [Freezing] gains +!S!% reduction bonus.",
+			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage ({0}% of [Focus] on Trigger and {1}% on Evoke) to the enemy with the highest damage and applies half that much [Freezing]. || [Freezing] gains +!S!% reduction bonus.",
 			"NAME": "Sheer Cold"
 		},
 		"animator:ShuichiSaihara":
@@ -628,6 +628,11 @@
 		{
 			"DESCRIPTION": "Exhaust 1 of !M! random Attacks from your draw or discard pile and play 2 copies of it. || <LIM>. If it was a Basic card: Obtain 1 of !M! {<W> Tokens}{+}.",
 			"NAME": "Vladilena Milize"
+		},
+		"animator:WingGundamZero":
+		{
+			"DESCRIPTION": "<LIM>. Play {Ionizing Storm}.",
+			"NAME": "Wing Gundam Zero"
 		},
 		"animator:Yae":
 		{
@@ -738,7 +743,7 @@
 		},
 		"animator:Zadkiel":
 		{
-			"DESCRIPTION": "Take !S! [Delayed Damage]. || If Fatal: Evoke !M! orbs, then fill your orb slots with [Frost].",
+			"DESCRIPTION": "Take !S! [Delayed Damage]. || If Fatal: Evoke !M! orbs, then fill ALL empty [Orb Slot] with [Frost].",
 			"NAME": "Zadkiel"
 		}
 	},
@@ -758,7 +763,7 @@
 		"animator:BarbaraPegg":
 		{
 			"DESCRIPTION": "Gain !S! [B]. || <LIM>. Pay !A! <B>: Channel 1 [Water]. If ALL enemies intend to attack, Trigger it once.",
-			"EXTENDED_DESCRIPTION": ["To play this, Remove your first 2 [Water]."],
+			"EXTENDED_DESCRIPTION": ["To play this, remove your first [Water]. Deal additional damage equal to its Evoke amount. <SLM>. If {Fatal}: Obtain {Wish}."],
 			"NAME": "Barbara Pegg"
 		},
 		"animator:Beidou":
@@ -873,7 +878,7 @@
 		},
 		"animator:Oz":
 		{
-			"DESCRIPTION": "Gain 1 Orb Slot. || The first time you play a LV2 <B> or <D> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
+			"DESCRIPTION": "Gain 1 [Orb Slot]. || The first time you play a LV2 <B> or <D> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
 			"EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 #yBlue or LV.2 #yDark card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 #yBlue and LV.2 #yDark card(s)."],
 			"NAME": "Oz"
 		},
@@ -921,7 +926,7 @@
 		},
 		"animator:Xiangling":
 		{
-			"DESCRIPTION": "If any enemy has [Burning] or [Freezing], shuffle {Guoba} into your draw pile. || {Synergy}: Gain !M! [THP].",
+			"DESCRIPTION": "Gain !M! [THP] for each enemy with [Burning] or [Freezing]. || {Synergy}: Add {Guoba} to your draw pile.",
 			"NAME": "Xiangling"
 		},
 		"animator:Xiangling_Guoba":
@@ -1152,6 +1157,11 @@
 			"EXTENDED_DESCRIPTION": ["[Air] gives adjacent #yOrbs +#b{0} [Focus]. When you #yEvoke [Air]: Gain +#b{1} [A-Green] or [A-Orange] (whichever is lower)."],
 			"NAME": "Aya Shameimaru"
 		},
+		"animator:ByakurenHijiri":
+		{
+			"DESCRIPTION": "When you Enter a Stance: Gain +!M! of its <W>. ** On your first Synergy each turn: Enter a random Stance. || <LIM>. !A! <W>: Gain {Nirvana}.",
+			"NAME": "Byakuren Hijiri"
+		},
 		"animator:Cirno":
 		{
 			"DESCRIPTION": "Apply !M! [Freezing] and !S! [Shackles] to ** ALL enemies. || On Exhaust, ** Channel 1 [Frost].",
@@ -1253,7 +1263,7 @@
 		},
 		"animator:SatoriKomeiji":
 		{
-			"DESCRIPTION": "At the start of your turn, move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order.",
+			"DESCRIPTION": "At the start of turn: Move !M! card(s) in your draw pile to the top. || Your draw pile is viewed in order. || <LIM>. !A! <W>: Gain !S! {Nirvana}.",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
 			"NAME": "Satori Komeiji"
 		},
@@ -1262,9 +1272,14 @@
 			"DESCRIPTION": "Exhaust 1 of the top !M! cards in your draw pile, or draw 1 less next turn. || If you Exhausted an Attack: Gain +!S! <R>.",
 			"NAME": "Suika Ibuki"
 		},
+		"animator:SuwakoMoriya":
+		{
+			"DESCRIPTION": "@If@ <R> @>@ <G>: Apply !M! [Constricted]. Otherwise, Apply !M! [Poison]. || <LIM>. !S! [Earth]: Gain !S! [Malleable].",
+			"NAME": "Suwako Moriya"
+		},
 		"animator:UtsuhoReiuji":
 		{
-			"DESCRIPTION": "Exhaust any number of cards in hand. For each: Gain [Energized].",
+			"DESCRIPTION": "Exhaust any number of cards in hand. For each: Gain [Energized]. || <SLM>. Synergy: Draw a card for each Exhausted card.",
 			"NAME": "Utsuho Reiuji"
 		},
 		"animator:YukariYakumo":
@@ -1535,7 +1550,7 @@
 			"DESCRIPTION": "Play an {Orb Core}. When you Synergize: Deal damage equal to your lowest <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: Add {Battle Drones} to your hand and draw piles.",
 			"EXTENDED_DESCRIPTION": ["Pay 2 [E]: Add {0} #yBattle #yDrones to your hand and draw piles. || Whenever a card #ySynergizes, deal damage equal to your lowest [A-Gen] to a random enemy #b{0} time(s).", "#b1 of #b2"],
 			"NAME": "Eve",
-			"UPGRADE_DESCRIPTION": "Play an {Orb Core}. Gain 1 {Orb Slot}. When you Synergize: Deal damage equal to your lowest <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: Add {Battle Drones} to your hand and draw piles."
+			"UPGRADE_DESCRIPTION": "Gain 1 [Orb Slot]. Play an {Orb Core}. When you Synergize: Deal damage equal to your lowest <W> to a random enemy !M! times. || Once per turn, pay 2 [E]: Add {Battle Drones} to your hand and draw piles."
 		},
 		"animator:Eve_Drone":
 		{
@@ -1656,7 +1671,7 @@
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 orb slot to ** Fetch a <R> or <O> card ** from your discard pile. ** Give it <A> scaling equal to its cost + !M! and Motivate it.",
+			"DESCRIPTION": "Lose 1 [Orb Slot] to ** Fetch a <R> or <O> card ** from your discard pile. ** Give it <A> scaling equal to its cost + !M! and Motivate it.",
 			"NAME": "Command Spell"
 		}
 	},
@@ -1669,7 +1684,7 @@
 		},
 		"animator:ElricAlphonse_Alt":
 		{
-			"DESCRIPTION": "Gain 1 orb slot. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
+			"DESCRIPTION": "Gain 1 [Orb Slot]. ** Channel !S! [Lightning]. || Synergy: Gain !M! [Plated Armor].",
 			"NAME": "Armored Alphonse"
 		},
 		"animator:ElricEdward":
@@ -1755,7 +1770,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! orb slot(s). || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay 3 <W>: Trigger your first 3 [Earth].",
+			"DESCRIPTION": "Gain !M! [Orb Slot]. || Your <B> Synergy bonus grants 1 additional [I]. || !S! times per turn, Pay 3 <W>: Trigger your first 3 [Earth].",
 			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to Trigger your first #b{1} [Earth]. || Your <B> Synergy bonus grants #b{2} additional [I] (max #b{3}^)."],
 			"NAME": "Arpeggio"
 		},
@@ -1922,7 +1937,7 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard !M! cards. Obtain [T-Knife] for each. || Synergy and Pay !A! <G>: Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "Discard !M! cards. Obtain [T-Knife] for each. || Synergy: Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari Acura"
 		},
 		"animator:AcuraShin":
@@ -2188,7 +2203,7 @@
 		},
 		"animator:Krusty":
 		{
-			"DESCRIPTION": "Give ALL cards in hand +!M! [F] scaling. || <CDN>: Exhaust and Obtain <R> {Token}. || <SLM>. On Discard: Gain !S! [F].",
+			"DESCRIPTION": "Gain !S! [F]. Give ALL cards in hand +!M! [F] Scaling. || <CDN>: Exhaust and Obtain <R> {Token}.",
 			"NAME": "Krusty"
 		},
 		"animator:Marielle":
@@ -2343,9 +2358,9 @@
 		},
 		"animator:MifuyuAsuza":
 		{
-			"DESCRIPTION": "Obtain X [Grief Seed]. Gain X Orb Slots. || Pay !A! <W>: Fill those Orb Slots with random {Common Orbs}.",
+			"DESCRIPTION": "Obtain X [Grief Seed]. Gain X [Orb Slot]. || Pay !A! <W>: Fill them with random {Common Orbs}.",
 			"NAME": "Mifuyu Asuza",
-			"UPGRADE_DESCRIPTION": "Obtain X + !M! [Grief Seed]. Gain X + !M! Orb Slots. || Pay !A! <W>: Fill those Orb Slots with random {Common Orbs}."
+			"UPGRADE_DESCRIPTION": "Obtain X + !M! [Grief Seed]. Gain X + !M! [Orb Slot]. || Pay !A! <W>: Fill them with random {Common Orbs}."
 		},
 		"animator:NagisaMomoe":
 		{
@@ -2710,8 +2725,8 @@
 		},
 		"animator:HiiragiKureto":
 		{
-			"DESCRIPTION": "Exhaust a random card in hand for each unblocked hit. ** For each: The next Attack played Triggers ALL [Lightning] ** (Channel [Lightning] first if you have none).",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you play an Attack: Channel [Lightning] if you have none, then Trigger ALL [Lightning]."],
+			"DESCRIPTION": "Exhaust a random card for each unblocked hit. ** For each: The next Attack played applies !M! [Electrified]. || <IS>: Give {~Haste} to a random card.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} Attacks played apply #b{1} [Electrified]."],
 			"NAME": "Kureto Hiiragi"
 		},
 		"animator:HiiragiShinya":

@@ -44,12 +44,14 @@ public class CardTooltips
     public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
     public EYBCardTooltip Agility = FindByID("Agility");
+    public EYBCardTooltip AgilityScaling = FindByID("Agility Scaling");
     public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip Air = FindByID("Air");
     public EYBCardTooltip Artifact = FindByID("Artifact");
     public EYBCardTooltip Aura = FindByID("Aura");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
     public EYBCardTooltip Blessing = FindByID("Blessing");
+    public EYBCardTooltip BlessingScaling = FindByID("Blessing Scaling");
     public EYBCardTooltip BlessingStance = FindByID("Blessing Stance");
     public EYBCardTooltip Blinded = FindByID("Blinded");
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
@@ -60,6 +62,7 @@ public class CardTooltips
     public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip Corruption = FindByID("Corruption");
+    public EYBCardTooltip CorruptionScaling = FindByID("Corruption Scaling");
     public EYBCardTooltip CorruptionStance = FindByID("Corruption Stance");
     public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip Dark = FindByID("Dark");
@@ -82,6 +85,7 @@ public class CardTooltips
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
     public EYBCardTooltip Focus = FindByID("Focus");
     public EYBCardTooltip Force = FindByID("Force");
+    public EYBCardTooltip ForceScaling = FindByID("Force Scaling");
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Freezing = FindByID("Freezing");
@@ -95,6 +99,7 @@ public class CardTooltips
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip Intangible = FindByID("Intangible");
     public EYBCardTooltip Intellect = FindByID("Intellect");
+    public EYBCardTooltip IntellectScaling = FindByID("Intellect Scaling");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip Lightning = FindByID("Lightning");
     public EYBCardTooltip Limited = FindByID("Limited");
@@ -105,6 +110,7 @@ public class CardTooltips
     public EYBCardTooltip Multiform = FindByID("~Multiform");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
+    public EYBCardTooltip OrbSlot = FindByID("Orb Slot");
     public EYBCardTooltip Phasing = FindByID("Phasing");
     public EYBCardTooltip Piercing = FindByID("~Piercing");
     public EYBCardTooltip Plasma = FindByID("Plasma");
@@ -129,6 +135,8 @@ public class CardTooltips
     public EYBCardTooltip Swirled = FindByID("Swirled");
     public EYBCardTooltip Tainted = FindByID("Tainted");
     public EYBCardTooltip Technic = FindByID("Technic");
+    public EYBCardTooltip TechnicScaling = FindByID("Technic Scaling");
+    public EYBCardTooltip TechnicStance = FindByID("Technic Stance");
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip TemporaryThorns = FindByID("Temporary Thorns");
     public EYBCardTooltip Thorns = FindByID("Thorns");
@@ -139,6 +147,7 @@ public class CardTooltips
     public EYBCardTooltip Water = FindByID("Water");
     public EYBCardTooltip Weak = FindByID("Weak");
     public EYBCardTooltip Willpower = FindByID("Willpower");
+    public EYBCardTooltip WillpowerScaling = FindByID("Willpower Scaling");
     public EYBCardTooltip WillpowerStance = FindByID("Willpower Stance");
 
     // No Description
@@ -274,6 +283,7 @@ public class CardTooltips
         Chaos.SetIcon(tooltips.Chaos.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Gold.SetIcon(tooltips.Gold.Texture(), 6);
+        OrbSlot.SetIcon(tooltips.OrbSlot.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Regeneration.SetIcon(tooltips.Regeneration.Texture(), 6);
 

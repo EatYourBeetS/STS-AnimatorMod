@@ -1,10 +1,10 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 public class Wrath extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Wrath.class)
-            .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
+            .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
 
     public Wrath()
@@ -53,22 +53,23 @@ public class Wrath extends AnimatorCard
         }
 
         @Override
-        public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target)
-        {
-            super.onAttack(info, damageAmount, target);
-
-            if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
-            {
-                final int[] damage = DamageInfo.createDamageMatrix(CombatStats.Affinities.GetPowerAmount(Affinity.Red), true);
-                GameActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-                this.flash();
-            }
-        }
-
-        @Override
         public boolean canPlayCard(AbstractCard card) {
             return card.type == CardType.ATTACK && card.cost > 0;
         }
+
+        @Override
+        public void onPlayCard(AbstractCard card, AbstractMonster m)
+        {
+            super.onPlayCard(card, m);
+
+            if (card.type == CardType.ATTACK && card.costForTurn >= 1)
+            {
+                final int[] damage = DamageInfo.createDamageMatrix(MathUtils.ceil(CombatStats.Affinities.GetPowerAmount(Affinity.Red) / 2f), true);
+                GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                this.flashWithoutSound();
+            }
+        }
+
 
         @Override
         public void atEndOfTurn(boolean isPlayer)

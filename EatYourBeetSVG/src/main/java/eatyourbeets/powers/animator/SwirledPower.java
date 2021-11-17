@@ -9,6 +9,7 @@ import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.ElectrifiedPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -48,6 +49,9 @@ public class SwirledPower extends AnimatorPower implements OnTryApplyPowerListen
         }
         if (GameUtilities.GetPowerAmount(owner, FreezingPower.POWER_ID) > 0) {
             powerHelpers.add(PowerHelper.Freezing);
+        }
+        if (GameUtilities.GetPowerAmount(owner, ElectrifiedPower.POWER_ID) > 0) {
+            powerHelpers.add(PowerHelper.Electrified);
         }
 
         if (powerHelpers.size() > 0) {

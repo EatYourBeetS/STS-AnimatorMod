@@ -33,6 +33,7 @@ public class GUI_Button extends GUIElement
     public float targetAlpha = 1f;
     public float currentAlpha = 1f;
     public boolean interactable;
+    public boolean isSmartText;
     public EYBCardTooltip tooltip;
     public GenericCallback<GUI_Button> onLeftClick;
     public GenericCallback<GUI_Button> onRightClick;
@@ -40,6 +41,7 @@ public class GUI_Button extends GUIElement
 
     protected boolean darkenNonInteractableButton;
     protected BitmapFont font;
+    protected GUI_Label label;
     protected float fontScale;
     protected float currentClickDelay = 0f;
     protected Color textColor = Color.WHITE.cpy();
@@ -91,6 +93,13 @@ public class GUI_Button extends GUIElement
     public GUI_Button SetInteractable(boolean interactable)
     {
         this.interactable = interactable;
+
+        return this;
+    }
+
+    public GUI_Button SetSmartText(boolean isSmartText)
+    {
+        this.isSmartText = isSmartText;
 
         return this;
     }
@@ -273,7 +282,10 @@ public class GUI_Button extends GUIElement
 
             font.getData().setScale(fontScale);
             final Color color = interactable ? textColor : TEXT_DISABLED_COLOR;
-            if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
+            if (isSmartText) {
+                RenderHelpers.WriteSmartText(sb, font, text, hb.x + (hb.width * 0.5f), hb.y + (hb.height * 0.5f), hb.width, font.getLineHeight(), color);
+            }
+            else if (FontHelper.getSmartWidth(font, text, 9999f, 0f) > (hb.width * 0.7))
             {
                 RenderHelpers.WriteCentered(sb, font, text, hb, color, 0.8f);
             }

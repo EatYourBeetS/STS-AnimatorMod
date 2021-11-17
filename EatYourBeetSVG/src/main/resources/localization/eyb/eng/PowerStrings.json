@@ -152,7 +152,7 @@
 	},
 	"animator:SwirledPower":
 	{
-	  "DESCRIPTIONS": ["If the target has [Burning] or [Freezing], apply #b1 of each to ALL other enemies, then reduce this by #b1. If there are no other enemies: increase stacks of those powers by #b1."],
+	  "DESCRIPTIONS": ["If the target has [Burning], [Freezing], or [Electrified]: Apply #b1 of each to ALL other enemies, then reduce this by #b1. If there are no other enemies: Increase stacks of those powers by #b1."],
 	  "NAME": "Swirled"
 	},
 	"eyb:TaintedPower":

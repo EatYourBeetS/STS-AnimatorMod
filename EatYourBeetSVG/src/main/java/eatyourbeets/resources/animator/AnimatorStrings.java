@@ -137,10 +137,12 @@ public class AnimatorStrings
         private final UIStrings Strings = GetUIStrings("CharacterSelect");
 
         public final String LeftText = Strings.TEXT[0];  // Starting Cards:
-        public final String RightText = Strings.TEXT[1]; // ##############
+        public final String RightText = Strings.TEXT[1]; // Unlock
         public final String InvalidLoadout = Strings.TEXT[3];
         public final String DeckEditor = Strings.TEXT[5];
         public final String DeckEditorInfo = Strings.TEXT[6];
+        public final String SeriesEditor = Strings.TEXT[8];
+        public final String SeriesEditorInfo = Strings.TEXT[9];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {
@@ -162,16 +164,25 @@ public class AnimatorStrings
     {
         private final UIStrings Strings = GetUIStrings("SeriesSelection");
 
-        public final String Promoted = Strings.TEXT[1];
-        public final String Beta = Strings.TEXT[2];
-        public final String PurgingStoneRequirement = Strings.TEXT[3];
-        public final String TooltipBeta = Strings.TEXT[4];
-        public final String TooltipPromoted = Strings.TEXT[5];
+        public final String Beta = Strings.TEXT[1];
+        public final String TooltipBeta = Strings.TEXT[2];
+        public final String RemoveFromPool = Strings.TEXT[3];
+        public final String AddToPool = Strings.TEXT[4];
+        public final String ViewPool = Strings.TEXT[5];
         public final String RightClickToPreview = Strings.TEXT[6];
         public final String ExpansionHeader = Strings.TEXT[7];
         public final String ExpansionCardBody = Strings.TEXT[8];
         public final String ExpansionSeriesUnlocked = Strings.TEXT[9];
         public final String ExpansionSeriesLocked = Strings.TEXT[10];
+        public final String PoolSizeHeader = Strings.TEXT[11];
+        public final String PoolSizeTip = Strings.TEXT[12];
+        public final String SeriesSelectedCount = Strings.TEXT[13];
+        public final String CardsSelectedCount = Strings.TEXT[14];
+
+        public final String CardsSelected(Object cardCount)
+        {
+            return JUtils.Format(CardsSelectedCount, cardCount);
+        }
 
         public final String ContainsNCards(Object cardCount)
         {
@@ -187,6 +198,11 @@ public class AnimatorStrings
         {
             return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2] + ".";
         }
+
+        public final String SeriesSelected(Object cardCount)
+        {
+            return JUtils.Format(SeriesSelectedCount, cardCount);
+        }
     }
 
     public class SeriesSelectionButtons
@@ -195,12 +211,14 @@ public class AnimatorStrings
 
         public final String ShowBetaSeries = Strings.TEXT[0];
         public final String DeselectAll = Strings.TEXT[1];
-        public final String SelectAll = Strings.TEXT[3];
+        public final String SelectAll = Strings.TEXT[2];
+        public final String SelectRandom = Strings.TEXT[3];
         public final String ShowCardPool = Strings.TEXT[4];
-        public final String Proceed = Strings.TEXT[5];
+        public final String Save = Strings.TEXT[5];
         public final String EnableExpansion = Strings.TEXT[6];
         public final String AllExpansionEnable = Strings.TEXT[7];
         public final String AllExpansionDisable = Strings.TEXT[8];
+        public final String Cancel = Strings.TEXT[9];
 
         public final String SelectRandom(int cards)
         {

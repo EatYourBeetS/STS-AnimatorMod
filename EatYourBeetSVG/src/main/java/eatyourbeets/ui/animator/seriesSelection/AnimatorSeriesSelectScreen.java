@@ -12,53 +12,91 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import eatyourbeets.cards.base.CardAffinityComparator;
 import eatyourbeets.cards.base.CardSeriesComparator;
 import eatyourbeets.effects.card.ShowCardPileEffect;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.FuncT1;
-import eatyourbeets.relics.animator.RollingCubes;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.AbstractScreen;
 import eatyourbeets.ui.controls.*;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
-import static eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer.PROMOTED_COUNT;
+import static eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer.MINIMUM_SERIES;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
-    protected static final int MINIMUM_CARDS = 120;
-    protected static final int BONUS_RELIC_THRESHOLD = 180;
+    public enum ContextOption
+    {
+        Deselect(GR.Animator.Strings.SeriesSelection.RemoveFromPool, (screen, card) -> {
+            screen.RemoveFromPool(card);
+            return null;
+        }),
+        Select(GR.Animator.Strings.SeriesSelection.AddToPool, (screen, card) -> {
+            screen.AddToPool(card);
+            return null;
+        }),
+        ToggleExpansion(GR.Animator.Strings.SeriesSelectionButtons.EnableExpansion, (screen, card) -> {
+            screen.ToggleExpansion(card);
+            return null;
+        }),
+        ViewCards(GR.Animator.Strings.SeriesSelection.ViewPool, (screen, card) -> {
+            if (screen.previewCardsEffect == null) {
+                screen.PreviewCardPool(card);
+            }
+            return null;
+        });
+
+        public final String name;
+        public final FuncT2<Void, AnimatorSeriesSelectScreen, AbstractCard> onSelect;
+
+        ContextOption(String name, FuncT2<Void, AnimatorSeriesSelectScreen, AbstractCard> onSelect) {
+            this.name = name;
+            this.onSelect = onSelect;
+        }
+    }
+
     protected static final Random rng = new Random();
     protected static final AnimatorStrings.SeriesSelectionButtons buttonStrings = GR.Animator.Strings.SeriesSelectionButtons;
+    protected AbstractCard selectedCard;
+    protected ActionT0 onClose;
     protected ShowCardPileEffect previewCardsEffect;
+    protected CharacterOption characterOption;
     protected int totalCardsCache = 0;
+    public boolean isScreenDisabled;
 
     public final AnimatorLoadoutsContainer container = new AnimatorLoadoutsContainer();
+    public final GUI_Image background_image;
     public final GUI_CardGrid cardGrid;
     public final GUI_Label startingDeck;
     public final GUI_Button massSelectSeriesButton;
-    public final GUI_Button selectRandomMinimum;
-    public final GUI_Button selectRandomForPurgingStone;
     public final GUI_Button massExpansionButton;
     public final GUI_Button previewCards;
+    public final GUI_Button selectRandom;
+    public final GUI_Button cancel;
     public final GUI_Button confirm;
+    public final GUI_Button seriesCountLeft;
+    public final GUI_Button seriesCountRight;
     public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle toggleBeta;
-    public final GUI_TextBox selectionInfo;
-    public final GUI_TextBox selectionAmount;
+    public final GUI_TextBox seriesAmount;
+    public final GUI_TextBox cardsAmount;
     public final GUI_TextBox previewCardsInfo;
-    public final GUI_Relic bonusRelicImage;
+    public final GUI_Dropdown<Integer> seriesCountDropdown;
+    public final GUI_ContextMenu<ContextOption> contextMenu;
 
     public AnimatorSeriesSelectScreen()
     {
@@ -70,6 +108,10 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         final float buttonWidth = ScreenW(0.18f);
         final float xPos = ScreenW(0.82f);
 
+        background_image = new GUI_Image(GR.Common.Images.FullSquare.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
+                .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
+                .SetColor(0, 0, 0, 0.85f);
+
         cardGrid = new GUI_CardGrid(0.41f, false)
         .SetOnCardClick(this::OnCardClicked)
         .SetOnCardRightClick(this::OnCardRightClicked)
@@ -80,86 +122,134 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
         .SetColor(Settings.CREAM_COLOR);
 
-        upgradeToggle = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.2f), buttonWidth, buttonHeight * 0.8f))
+        upgradeToggle = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.5f), buttonWidth, buttonHeight * 0.8f))
                 .SetBackground(panelTexture, Color.DARK_GRAY)
                 .SetText(SingleCardViewPopup.TEXT[6])
                 .SetOnToggle(this::ToggleViewUpgrades);
 
-        toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(1f), buttonWidth, buttonHeight * 0.8f))
-        .SetText(buttonStrings.ShowBetaSeries)
-        .SetOnToggle(this::ToggleBetaSeries)
-        .SetBackground(panelTexture, Color.DARK_GRAY);
+        previewCardsInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(1.2f), buttonWidth, buttonHeight * 2f))
+                .SetText(JUtils.Format(textboxStrings.RightClickToPreview, MINIMUM_SERIES))
+                .SetAlignment(0.75f, 0.1f, true)
+                .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
+                .SetFont(FontHelper.tipBodyFont, 1);
 
-        selectRandomMinimum = CreateHexagonalButton(xPos, getY.Invoke(2f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectRandom(MINIMUM_CARDS))
-        .SetOnClick(() -> SelectRandom(MINIMUM_CARDS))
-        .SetColor(Color.SKY);
+        seriesAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(2.0f), buttonWidth, buttonHeight * 0.8f))
+                .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f)
+                .SetFont(FontHelper.charDescFont, 1);
 
-        selectRandomForPurgingStone = CreateHexagonalButton(xPos, getY.Invoke(3f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.SelectRandom(BONUS_RELIC_THRESHOLD))
-        .SetOnClick(() -> SelectRandom(BONUS_RELIC_THRESHOLD))
-        .SetColor(Color.SKY);
+        cardsAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(2.8f), buttonWidth, buttonHeight * 0.8f))
+                .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
+                .SetFontColor(Color.WHITE)
+                .SetAlignment(0.5f, 0.5f)
+                .SetFont(FontHelper.charDescFont, 1);
 
-        massSelectSeriesButton = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+        selectRandom = CreateHexagonalButton(xPos, getY.Invoke(4f), buttonWidth, buttonHeight)
+                .SetText(buttonStrings.SelectRandom)
+                .SetOnClick(this::SelectRandom)
+                .SetColor(Color.SKY);
+
+        previewCards = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
+                .SetText(buttonStrings.ShowCardPool)
+                .SetOnClick(() -> PreviewCardPool(null))
+                .SetColor(Color.LIGHT_GRAY);
+
+        massSelectSeriesButton = CreateHexagonalButton(xPos, getY.Invoke(6f), buttonWidth, buttonHeight)
                 .SetText(buttonStrings.SelectAll)
                 .SetOnClick(this::SelectAll)
                 .SetColor(Color.ROYAL);
 
-        massExpansionButton = CreateHexagonalButton(xPos, getY.Invoke(5f), buttonWidth, buttonHeight)
+        massExpansionButton = CreateHexagonalButton(xPos, getY.Invoke(7f), buttonWidth, buttonHeight)
         .SetText(buttonStrings.AllExpansionEnable)
         .SetOnClick(this::SelectAllExpansions)
         .SetColor(Color.ROYAL);
 
-        selectionAmount = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(5.8f), buttonWidth, buttonHeight * 0.8f))
-        .SetColors(Color.DARK_GRAY, Settings.GOLD_COLOR)
-        .SetAlignment(0.5f, 0.5f)
-        .SetFont(FontHelper.charDescFont, 1); //FontHelper.textAboveEnemyFont);
+        seriesCountDropdown = new GUI_Dropdown<Integer>(new AdvancedHitbox(ScreenW(0.875f),getY.Invoke(8f),buttonWidth,buttonHeight * 0.5f))
+                .SetFontForButton(EYBFontHelper.CardTitleFont_Small, 1f)
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 1f, Settings.GOLD_COLOR, textboxStrings.PoolSizeHeader)
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                })
+                .SetOnChange(value -> {
+                    if (value.size() > 0) {
+                        container.CurrentSeriesLimit = value.get(0);
+                    }
+                })
+                .SetCanAutosizeButton(true);
 
-        final float selectionAmountSize = selectionAmount.hb.height;
-        bonusRelicImage = new GUI_Relic(new RollingCubes(), new Hitbox(selectionAmount.hb.x + (selectionAmountSize * 0.2f),
-        selectionAmount.hb.y, selectionAmountSize, selectionAmountSize));
+        seriesCountLeft = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new AdvancedHitbox(seriesCountDropdown.hb.cX - ScreenW(0.023f), seriesCountDropdown.hb.y, Scale(48), Scale(48)))
+                .SetText("")
+                .SetOnClick(() -> {
+                    int val = container.CurrentSeriesLimit - 1;
+                    if (val >= MINIMUM_SERIES) {
+                        container.CurrentSeriesLimit = val;
+                        seriesCountDropdown.SetSelection(val, false);
+                    }
+                });
 
-        selectionInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 2.5f))
-        .SetText(textboxStrings.PurgingStoneRequirement)
-        .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(FontHelper.tipBodyFont, 1);
+        seriesCountRight = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new AdvancedHitbox(seriesCountDropdown.hb.cX + ScreenW(0.05f), seriesCountDropdown.hb.y, Scale(48), Scale(48)))
+                .SetText("")
+                .SetOnClick(() -> {
+                    int val = container.CurrentSeriesLimit + 1;
+                    if (val <= container.allCards.size()) {
+                        container.CurrentSeriesLimit = val;
+                        seriesCountDropdown.SetSelection(val, false);
+                    }
+                });
 
-        previewCardsInfo = new GUI_TextBox(panelTexture, new Hitbox(xPos, getY.Invoke(9f), buttonWidth, buttonHeight * 1.2f))
-        .SetText(textboxStrings.RightClickToPreview)
-        .SetAlignment(0.75f, 0.1f, true)
-        .SetColors(Color.DARK_GRAY, Settings.CREAM_COLOR)
-        .SetFont(FontHelper.tipBodyFont, 1);
 
-        previewCards = CreateHexagonalButton(xPos, getY.Invoke(10f), buttonWidth, buttonHeight)
-        .SetText(buttonStrings.ShowCardPool)
-        .SetOnClick(() -> PreviewCardPool(null))
-        .SetColor(Color.LIGHT_GRAY);
+        toggleBeta = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(8f), buttonWidth, buttonHeight * 0.8f))
+                .SetText(buttonStrings.ShowBetaSeries)
+                .SetOnToggle(this::ToggleBetaSeries)
+                .SetBackground(panelTexture, Color.DARK_GRAY);
+
+        cancel = CreateHexagonalButton(xPos, getY.Invoke(10f), buttonWidth, buttonHeight * 1.1f)
+                .SetText(buttonStrings.Cancel)
+                .SetOnClick(this::Cancel)
+                .SetColor(Color.FIREBRICK);
 
         confirm = CreateHexagonalButton(xPos, getY.Invoke(11f), buttonWidth, buttonHeight * 1.1f)
-        .SetText(buttonStrings.Proceed)
+        .SetText(buttonStrings.Save)
         .SetOnClick(this::Proceed)
         .SetColor(Color.FOREST);
+
+        contextMenu = new GUI_ContextMenu<ContextOption>(new AdvancedHitbox(0,0,0,0), o -> o.name)
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                })
+            .SetOnChange(options -> {
+                for (ContextOption o: options) {
+                    o.onSelect.Invoke(this, selectedCard);
+                }
+            })
+            .SetCanAutosizeButton(true);
     }
 
-    public void Open(boolean firstTime)
+    public void Open(CharacterOption characterOption, ActionT0 onClose)
     {
         super.Open();
+        this.onClose = onClose;
+        this.characterOption = characterOption;
 
-        if (firstTime)
-        {
-            upgradeToggle.isActive = false;
-            toggleBeta.isActive = false;
-            bonusRelicImage.isActive = false;
-            upgradeToggle.Toggle(false);
-            UpdateStartingDeckText();
-            GameEffects.TopLevelList.Add(new AnimatorSeriesSelectEffect(this));
-        }
+        upgradeToggle.isActive = false;
+        toggleBeta.isActive = false;
+        upgradeToggle.Toggle(false);
+
+        container.CreateCards();
+        cardGrid.AddCards(container.allCards);
+        UpdateStartingDeckText();
+
+        GR.UI.CardAffinities.SetActive(true);
+        GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+
+        seriesCountDropdown.SetItems(GetSelectionOptionArray(GR.Animator.Data.GetEveryLoadout().size()));
+        seriesCountDropdown.SetSelection(GR.Animator.Config.SeriesSize.Get(), false);
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        GR.UI.CardAffinities.TryRender(sb);
+        background_image.Render(sb);
 
         cardGrid.TryRender(sb);
 
@@ -167,28 +257,39 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         toggleBeta.TryRender(sb);
 
         startingDeck.TryRender(sb);
-        massSelectSeriesButton.Render(sb);
-        selectRandomMinimum.Render(sb);
-        selectRandomForPurgingStone.Render(sb);
-        massExpansionButton.Render(sb);
+        selectRandom.TryRender(sb);
+        massSelectSeriesButton.TryRender(sb);
+        massExpansionButton.TryRender(sb);
         previewCards.Render(sb);
+        cancel.Render(sb);
         confirm.Render(sb);
 
-        selectionInfo.Render(sb);
-        selectionAmount.Render(sb);
+        seriesAmount.Render(sb);
+        cardsAmount.Render(sb);
         previewCardsInfo.Render(sb);
-
-        bonusRelicImage.TryRender(sb);
-
         if (previewCardsEffect != null)
         {
             previewCardsEffect.render(sb);
         }
+        else {
+            GR.UI.CardAffinities.TryRender(sb);
+        }
+
+        seriesCountDropdown.TryRender(sb);
+        if (container.CurrentSeriesLimit > MINIMUM_SERIES) {
+            seriesCountLeft.TryRender(sb);
+        }
+        if (container.CurrentSeriesLimit < container.allCards.size()) {
+            seriesCountRight.TryRender(sb);
+        }
+
+        contextMenu.TryRender(sb);
     }
 
     @Override
     public void Update()
     {
+        background_image.Update();
         GR.UI.CardAffinities.TryUpdate();
 
         if (previewCardsEffect != null)
@@ -213,62 +314,81 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
         toggleBeta.SetToggle(GR.Animator.Config.DisplayBetaSeries.Get()).TryUpdate();
 
-        bonusRelicImage.TryUpdate();
-
         startingDeck.TryUpdate();
-        massSelectSeriesButton.Update();
-        selectRandomMinimum.Update();
-        selectRandomForPurgingStone.Update();
-        massExpansionButton.Update();
-        previewCards.Update();
-        confirm.Update();
 
-        cardGrid.TryUpdate();
+        if (!isScreenDisabled) {
+            selectRandom.TryUpdate();
+            massSelectSeriesButton.TryUpdate();
+            massExpansionButton.TryUpdate();
+            previewCards.Update();
+            cancel.Update();
+            confirm.Update();
+            cardGrid.TryUpdate();
+        }
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
+
+        if (container.CurrentSeriesLimit > MINIMUM_SERIES) {
+            seriesCountLeft.TryUpdate();
+        }
+        if (container.CurrentSeriesLimit < container.allCards.size()) {
+            seriesCountRight.TryUpdate();
+        }
+        seriesCountDropdown.TryUpdate();
+        contextMenu.TryUpdate();
+    }
+
+    protected void OpenLoadoutEditor()
+    {
+        AnimatorRuntimeLoadout current = container.Find(container.currentSeriesCard);
+        if (characterOption != null && current != null) {
+            GR.UI.LoadoutEditor.Open(current.Loadout, characterOption, () -> {});
+        }
     }
 
     protected void OnCardClicked(AbstractCard card)
     {
-        AnimatorRuntimeLoadout c = container.Find(card);
-        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) && c.canEnableExpansion) {
-            CardCrawlGame.sound.play("CARD_SELECT");
-            ToggleExpansion(card);
-        }
-        else if (c.promoted)
-        {
-            CardCrawlGame.sound.play("CARD_REJECT");
-        }
-        else if (container.selectedCards.contains(card))
-        {
-            Deselect(card);
-        }
-        else
-        {
-            Select(card);
-            CardCrawlGame.sound.play("CARD_SELECT");
+        if (!isScreenDisabled) {
+            AnimatorRuntimeLoadout c = container.Find(card);
+            if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) && c.canEnableExpansion) {
+                CardCrawlGame.sound.play("CARD_SELECT");
+                ToggleExpansion(card);
+            }
+            else
+            {
+                if (!container.currentCards.contains(card)) {
+                    container.AddToPool(card);
+                }
+                ChooseSeries(card);
+            }
         }
     }
 
     public void OnCardRightClicked(AbstractCard card)
     {
-        if (previewCardsEffect == null)
-        {
-            PreviewCardPool(card);
+        selectedCard = card;
+        ArrayList<ContextOption> list = new ArrayList<>();
+        list.add(ContextOption.ViewCards);
+        if (container.currentCards.contains(card) && container.currentSeriesCard != card) {
+            list.add(ContextOption.Deselect);
         }
+        else if (!container.currentCards.contains(card)) {
+            list.add(ContextOption.Select);
+        }
+        AnimatorRuntimeLoadout c = container.Find(card);
+        if (c.canEnableExpansion) {
+            list.add(ContextOption.ToggleExpansion);
+        }
+
+        contextMenu.SetPosition(InputHelper.mX, InputHelper.mY);
+        contextMenu.SetItems(list);
+        contextMenu.OpenOrCloseMenu();
     }
 
-    public void SelectRandom(int minimum)
+    public void SelectRandom()
     {
-        final RandomizedList<AbstractCard> toSelect = new RandomizedList<>();
-        for (AbstractCard c : container.allCards)
-        {
-            Deselect(c);
-            toSelect.Add(c);
-        }
-
-        while (toSelect.Size() > 0 && container.TotalCardsInPool < minimum)
-        {
-            Select(toSelect.Retrieve(rng));
+        final RandomizedList<AbstractCard> toSelect = new RandomizedList<>(container.currentCards);
+        if (toSelect.Size() > 0) {
+            ChooseSeries(toSelect.Retrieve(rng));
         }
     }
 
@@ -276,7 +396,9 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         for (AbstractCard c : container.allCards)
         {
-            Deselect(c);
+            if (c != container.currentSeriesCard) {
+                RemoveFromPool(c);
+            }
         }
     }
 
@@ -284,7 +406,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         for (AbstractCard c : container.allCards)
         {
-            Select(c);
+            AddToPool(c);
         }
     }
 
@@ -300,7 +422,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             }
         }
         else {
-            for (AbstractCard cs : container.selectedCards)
+            for (AbstractCard cs : container.currentCards)
             {
                 final Collection<AbstractCard> cardsSource = container.Find(cs).GetCardPoolInPlay().values();
                 for (AbstractCard c : cardsSource)
@@ -319,13 +441,15 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void PreviewCardPool(AbstractCard source)
     {
-        AnimatorRuntimeLoadout loadout = null;
-        if (source != null) {
-            source.unhover();
-            loadout = container.Find(source);
+        if (container.TotalCardsInPool > 0) {
+            AnimatorRuntimeLoadout loadout = null;
+            if (source != null) {
+                source.unhover();
+                loadout = container.Find(source);
+            }
+            final CardGroup cards = GetCardPool(loadout);
+            PreviewCards(cards, loadout);
         }
-        final CardGroup cards = GetCardPool(loadout);
-        PreviewCards(cards, loadout);
     }
 
     public void PreviewCards(CardGroup cards, AnimatorRuntimeLoadout loadout)
@@ -340,28 +464,17 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
     public void ToggleExpansion(AbstractCard card)
     {
-        if (container.ToggleExpansion(card) && container.selectedCards.contains(card)) {
-            Refresh(card);
-        }
-
-        if (container.expandedSeriesCache <= 0) {
-            massExpansionButton
-                    .SetText(buttonStrings.AllExpansionEnable)
-                    .SetOnClick(this::SelectAllExpansions)
-                    .SetColor(Color.ROYAL);
-        }
-        else {
-            massExpansionButton
-                    .SetText(buttonStrings.AllExpansionDisable)
-                    .SetOnClick(this::DeselectAllExpansions)
-                    .SetColor(Color.FIREBRICK);
+        if (container.ToggleExpansion(card) && totalCardsCache != container.TotalCardsInPool) {
+            totalCardsCache = container.TotalCardsInPool;
+            TotalCardsChanged(totalCardsCache);
         }
     }
 
     public void ToggleExpansion(AbstractCard card, boolean value)
     {
-        if (container.ToggleExpansion(card, value) && container.selectedCards.contains(card)) {
-            Refresh(card);
+        if (container.ToggleExpansion(card, value) && totalCardsCache != container.TotalCardsInPool) {
+            totalCardsCache = container.TotalCardsInPool;
+            TotalCardsChanged(totalCardsCache);
         }
     }
 
@@ -371,10 +484,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             ToggleExpansion(card, false);
         }
-        massExpansionButton
-                .SetText(buttonStrings.AllExpansionEnable)
-                .SetOnClick(this::SelectAllExpansions)
-                .SetColor(Color.ROYAL);
     }
 
     public void SelectAllExpansions()
@@ -383,38 +492,23 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             ToggleExpansion(card, true);
         }
-        massExpansionButton
-                .SetText(buttonStrings.AllExpansionDisable)
-                .SetOnClick(this::DeselectAllExpansions)
-                .SetColor(Color.FIREBRICK);
     }
 
-    public void Deselect(AbstractCard card)
+    public void ChooseSeries(AbstractCard card)
     {
-        if (container.Deselect(card))
-        {
-            card.targetTransparency = 0.66f;
-            card.stopGlowing();
+        if (container.SelectCard(card)) {
+            UpdateStartingDeckText();
         }
     }
 
-    public void Select(AbstractCard card)
+    public void RemoveFromPool(AbstractCard card)
     {
-        if (container.Select(card))
-        {
-            card.targetTransparency = 1f;
-            card.beginGlowing();
-        }
+        container.RemoveFromPool(card);
     }
 
-    public void Refresh(AbstractCard card)
+    public void AddToPool(AbstractCard card)
     {
-        container.Deselect(card);
-        if (container.Select(card))
-        {
-            card.targetTransparency = 1f;
-            card.beginGlowing();
-        }
+        container.AddToPool(card);
     }
 
     public void ToggleBetaSeries(boolean value)
@@ -432,7 +526,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         {
             for (AbstractCard card : container.betaCards)
             {
-                Deselect(card);
+                RemoveFromPool(card);
                 cardGrid.cards.remove(card);
                 container.allCards.remove(card);
             }
@@ -442,17 +536,22 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         UpdateStartingDeckText();
     }
 
+    public void Cancel()
+    {
+        SingleCardViewPopup.isViewingUpgrade = false;
+        cardGrid.Clear();
+        AbstractDungeon.closeCurrentScreen();
+    }
+
     public void Proceed()
     {
-        //TODO: Check card pool
-        if (bonusRelicImage.isActive)
-        {
-            GameEffects.TopLevelQueue.SpawnRelic(new RollingCubes(), bonusRelicImage.hb.cX, bonusRelicImage.hb.cY);
-        }
-
         SingleCardViewPopup.isViewingUpgrade = false;
         cardGrid.Clear();
         container.CommitChanges();
+        if (onClose != null)
+        {
+            onClose.Invoke();
+        }
         AbstractDungeon.closeCurrentScreen();
     }
 
@@ -475,21 +574,21 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
             });
         }
 
-        selectionAmount.SetText(totalCards + " cards selected.");
-        bonusRelicImage.SetActive(totalCards >= BONUS_RELIC_THRESHOLD);
+        seriesAmount.SetText(GR.Animator.Strings.SeriesSelection.SeriesSelected(container.currentCards.size()));
+        cardsAmount.SetText(GR.Animator.Strings.SeriesSelection.CardsSelected(totalCards));
 
-        if (totalCards >= MINIMUM_CARDS)
+        if (container.currentCards.size() >= MINIMUM_SERIES)
         {
             confirm.SetInteractable(true);
-            selectionAmount.SetFontColor(Color.GREEN);
+            seriesAmount.SetFontColor(Color.GREEN);
         }
         else
         {
             confirm.SetInteractable(false);
-            selectionAmount.SetFontColor(Color.GRAY);
+            seriesAmount.SetFontColor(Color.GRAY);
         }
 
-        if (container.selectSeriesCache <= PROMOTED_COUNT) {
+        if (container.currentCards.size() < container.cardsMap.size()) {
             massSelectSeriesButton
                     .SetText(buttonStrings.SelectAll)
                     .SetOnClick(this::SelectAll)
@@ -501,11 +600,24 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
                     .SetOnClick(this::DeselectAll)
                     .SetColor(Color.FIREBRICK);
         }
+
+        if (container.expandedCards.size() == 0) {
+            massExpansionButton
+                    .SetText(buttonStrings.AllExpansionEnable)
+                    .SetOnClick(this::SelectAllExpansions)
+                    .SetColor(Color.ROYAL);
+        }
+        else {
+            massExpansionButton
+                    .SetText(buttonStrings.AllExpansionDisable)
+                    .SetOnClick(this::DeselectAllExpansions)
+                    .SetColor(Color.FIREBRICK);
+        }
     }
 
     protected void UpdateStartingDeckText()
     {
-        String text = "Starting Series: NL #y" + GR.Animator.Data.SelectedLoadout.Name.replace(" ", " #y");
+        String text = "Starting Series: NL #y" + ((container.currentSeriesCard != null) ? container.currentSeriesCard.name.replace(" ", " #y").replace("+","") : "");
         if (GR.Animator.Config.DisplayBetaSeries.Get() && GR.Animator.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";
@@ -517,4 +629,14 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     {
         SingleCardViewPopup.isViewingUpgrade = value;
     }
+
+    private Integer[] GetSelectionOptionArray(int end) {
+        if (end <= AnimatorLoadoutsContainer.MINIMUM_SERIES) {
+            return new Integer[]{MINIMUM_SERIES};
+        }
+        Integer[] values = new Integer[end - AnimatorLoadoutsContainer.MINIMUM_SERIES + 1];
+        Arrays.setAll(values, i -> i + AnimatorLoadoutsContainer.MINIMUM_SERIES);
+        return values;
+    }
+
 }

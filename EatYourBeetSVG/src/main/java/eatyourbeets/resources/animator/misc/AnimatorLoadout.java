@@ -335,7 +335,7 @@ public abstract class AnimatorLoadout
                 }
             }
 
-            shortDescription = ("#" + (Preset + 1) + ": ") + (sj.length() > 0 ? sj.toString() : "-");
+            shortDescription = JUtils.Format("{0} #{1}",Series.LocalizedName,Preset + 1);
         }
 
         return shortDescription;

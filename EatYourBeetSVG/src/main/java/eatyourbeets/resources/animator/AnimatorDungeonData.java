@@ -32,9 +32,12 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+
+import static eatyourbeets.cards.base.EYBCardBase.rng;
 
 public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, StartGameSubscriber, StartActSubscriber
 {
@@ -110,7 +113,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             final AnimatorLoadoutProxy proxy = new AnimatorLoadoutProxy();
             proxy.id = loadout.ID;
             proxy.isBeta = loadout.IsBeta;
-            proxy.promoted = loadout.promoted;
             proxy.bonus = loadout.bonus;
             loadouts.add(proxy);
         }
@@ -150,11 +152,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
                 final AnimatorRuntimeLoadout loadout = AnimatorRuntimeLoadout.TryCreate(GR.Animator.Data.GetLoadout(proxy.id, proxy.isBeta));
                 if (loadout != null)
                 {
-                    if (proxy.promoted)
-                    {
-                        loadout.Promote();
-                    }
-
                     loadout.bonus = proxy.bonus;
                     loadout.BuildCard();
                     Loadouts.add(loadout);
@@ -196,6 +193,39 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
 
     public void InitializeCardPool(boolean startGame)
     {
+        Loadouts.clear();
+
+        // Always include the selected loadout
+        if (GR.Animator.Data.SelectedLoadout != null) {
+            final AnimatorRuntimeLoadout rloadout = AnimatorRuntimeLoadout.TryCreate(GR.Animator.Data.SelectedLoadout);
+            GR.Animator.Dungeon.AddLoadout(rloadout);
+            if (GR.Animator.Data.SelectedLoadout.IsBeta)
+            {
+                Settings.seedSet = true;
+            }
+        }
+
+        RandomizedList<AnimatorLoadout> rList = new RandomizedList<>(GR.Animator.Data.GetEveryLoadout());
+        while (Loadouts.size() < GR.Animator.Config.SeriesSize.Get() && rList.Size() > 0) {
+            AnimatorLoadout loadout = rList.Retrieve(rng, true);
+            if ((GR.Animator.Data.SelectedLoadout == null || !GR.Animator.Data.SelectedLoadout.Series.equals(loadout.Series)) || GR.Animator.Config.SelectedSeries.Get().contains(loadout.Series)) {
+                if (loadout.IsBeta)
+                {
+                    // Do not unlock trophies or ascension
+                    Settings.seedSet = true;
+                }
+
+                final AnimatorRuntimeLoadout rloadout = AnimatorRuntimeLoadout.TryCreate(loadout);
+                GR.Animator.Dungeon.AddLoadout(rloadout);
+            }
+        }
+
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GameUtilities.IsNormalRun(false) && Settings.seed != null)
+        {
+            GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
+        }
+
+
         final AbstractPlayer player = CombatStats.RefreshPlayer();
         if (player.chosenClass != GR.Animator.PlayerClass)
         {
@@ -401,6 +431,5 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         public int id;
         public int bonus;
         public boolean isBeta;
-        public boolean promoted;
     }
 }

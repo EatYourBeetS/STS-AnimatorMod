@@ -54,11 +54,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.promoted)
-            {
-                goldBonus += series.bonus * 7;
-                hp += series.bonus;
-            }
+            goldBonus += series.bonus * 7;
+            hp += series.bonus;
         }
 
         if (hp < 999 && apparitionsCount > 1)

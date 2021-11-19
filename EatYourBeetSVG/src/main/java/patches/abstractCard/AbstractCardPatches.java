@@ -1,5 +1,6 @@
 package patches.abstractCard;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,7 +9,10 @@ import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.powers.CombatStats;
+import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
 
 public class AbstractCardPatches
 {
@@ -80,6 +84,23 @@ public class AbstractCardPatches
                 return new int[]{LineFinder.findInOrder(ctMethodToPatch, finalMatcher)[0] + 1};
             }
         }
+    }
+
+    @SpirePatch(clz = AbstractCard.class, method = "renderMainBorder", paramtypez = {SpriteBatch.class})
+    public static class AbstractCard_RenderMainBorder
+    {
+        public static ExprEditor Instrument() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getClassName().equals("com.megacrit.cardcrawl.dungeons.AbstractDungeon") && m.getMethodName().equals("getCurrRoom")) {
+                        m.replace("if (eatyourbeets.utilities.GameUtilities.InGame()) {sb.setColor(GREEN_BORDER_GLOW_COLOR);} else {$_ = $proceed($$);}");
+                    }
+
+                }
+            };
+        }
+
+
     }
 
 

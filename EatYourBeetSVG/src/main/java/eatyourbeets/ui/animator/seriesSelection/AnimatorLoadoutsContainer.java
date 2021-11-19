@@ -2,14 +2,11 @@ package eatyourbeets.ui.animator.seriesSelection;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,15 +15,16 @@ import java.util.Map;
 
 public class AnimatorLoadoutsContainer
 {
-    public static final int PROMOTED_COUNT = 3;
+    public static final int MINIMUM_SERIES = 10;
+
+    public int CurrentSeriesLimit;
     public int TotalCardsInPool = 0;
     public final Map<AbstractCard, AnimatorRuntimeLoadout> cardsMap = new HashMap<>();
-    public final ArrayList<AbstractCard> promotedCards = new ArrayList<>();
-    public final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
+    public final ArrayList<AbstractCard> currentCards = new ArrayList<>();
+    public final ArrayList<AbstractCard> expandedCards = new ArrayList<>();
     public final ArrayList<AbstractCard> betaCards = new ArrayList<>();
     public final ArrayList<AbstractCard> allCards = new ArrayList<>();
-    public int selectSeriesCache = 0;
-    public int expandedSeriesCache = 0;
+    public AbstractCard currentSeriesCard;
 
     public static void PreloadResources()
     {
@@ -46,31 +44,17 @@ public class AnimatorLoadoutsContainer
         TotalCardsInPool = 0;
 
         cardsMap.clear();
-        selectedCards.clear();
-        promotedCards.clear();
+        currentCards.clear();
+        expandedCards.clear();
         betaCards.clear();
         allCards.clear();
 
-        selectSeriesCache = 0;
-        expandedSeriesCache = 0;
-        int promotedCount = 0;
-        final RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
         final ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
         for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
         {
             final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
-                if (loadout == GR.Animator.Data.SelectedLoadout)
-                {
-                    card.Promote();
-                    promotedCount += 1;
-                }
-                else
-                {
-                    toPromote.Add(card);
-                }
-
                 seriesSelectionItems.add(card);
             }
         }
@@ -80,21 +64,8 @@ public class AnimatorLoadoutsContainer
             final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
-                if (loadout == GR.Animator.Data.SelectedLoadout)
-                {
-                    card.Promote();
-                    promotedCount += 1;
-                }
-
                 seriesSelectionItems.add(card);
             }
-        }
-
-        final Random rng = new Random(Settings.seed + 13);
-        while (promotedCount < PROMOTED_COUNT)
-        {
-            toPromote.Retrieve(rng).Promote();
-            promotedCount += 1;
         }
 
         for (AnimatorRuntimeLoadout c : seriesSelectionItems)
@@ -102,13 +73,40 @@ public class AnimatorLoadoutsContainer
             final AbstractCard card = c.BuildCard();
             if (card != null)
             {
-                cardsMap.put(c.BuildCard(), c);
+                cardsMap.put(card, c);
+                if (c.IsBeta) {
+                    betaCards.add(card);
+                }
+                else {
+                    allCards.add(card);
+                }
+
+                if (GR.Animator.Config.SelectedSeries.Get().contains(c.Loadout.Series)) {
+                    TotalCardsInPool += c.GetCardPoolInPlay().size();
+                    currentCards.add(card);
+                    card.targetTransparency = 1f;
+                }
+                else {
+                    card.targetTransparency = 0.5f;
+                }
+
+                if (GR.Animator.Config.ExpandedSeries.Get().contains(c.Loadout.Series)) {
+                    expandedCards.add(card);
+                }
+
+                if (c.Loadout.Series.equals(GR.Animator.Data.SelectedLoadout.Series)) {
+                    currentSeriesCard = card;
+                    card.rarity = AbstractCard.CardRarity.RARE;
+                    card.beginGlowing();
+                }
             }
             else
             {
                 JUtils.LogError(this, "AnimatorRuntimeLoadout.BuildCard() failed, " + c.Loadout.Name);
             }
         }
+
+        CurrentSeriesLimit = Mathf.Clamp(GR.Animator.Config.SeriesSize.Get(), MINIMUM_SERIES, currentCards.size());
     }
 
     public AnimatorRuntimeLoadout Find(AbstractCard card)
@@ -124,48 +122,68 @@ public class AnimatorLoadoutsContainer
     public boolean ToggleExpansion(AbstractCard card)
     {
         AnimatorRuntimeLoadout c = Find(card);
-        return ToggleExpansion(c, !c.expansionEnabled);
+        return ToggleExpansion(card, c, !c.expansionEnabled);
     }
 
     public boolean ToggleExpansion(AbstractCard card, boolean value)
     {
         AnimatorRuntimeLoadout c = Find(card);
-        return ToggleExpansion(c, value);
+        return ToggleExpansion(card, c, value);
     }
 
-    public boolean ToggleExpansion(AnimatorRuntimeLoadout c, boolean value)
+    public boolean ToggleExpansion(AbstractCard card, AnimatorRuntimeLoadout c, boolean value)
     {
         if (c.canEnableExpansion) {
             TotalCardsInPool -= c.GetCardPoolInPlay().size();
             c.ToggleExpansion(value);
             TotalCardsInPool += c.GetCardPoolInPlay().size();
-            expandedSeriesCache += c.expansionEnabled ? 1 : -1;
+
+            if (expandedCards.contains(card) && !value) {
+                expandedCards.remove(card);
+            }
+            else if (!expandedCards.contains(card) && value) {
+                expandedCards.add(card);
+            }
             return true;
         }
         return false;
     }
 
+    public boolean SelectCard(AbstractCard card) {
+        if (cardsMap.containsKey(card) && card.type != AbstractCard.CardType.CURSE) {
+            currentSeriesCard = card;
+            for (AbstractCard c : cardsMap.keySet()) {
+                c.stopGlowing();
+                c.rarity = AbstractCard.CardRarity.COMMON;
+            }
+            card.rarity = AbstractCard.CardRarity.RARE;
+            card.beginGlowing();
+            return true;
+        }
+        return false;
+    }
 
-    public boolean Select(AbstractCard card)
+    public boolean AddToPool(AbstractCard card)
     {
-        if (!selectedCards.contains(card))
+        if (!currentCards.contains(card))
         {
             TotalCardsInPool += Find(card).GetCardPoolInPlay().size();
-            selectedCards.add(card);
-            selectSeriesCache += 1;
+            currentCards.add(card);
+            card.targetTransparency = 1f;
             return true;
         }
 
         return false;
     }
 
-    public boolean Deselect(AbstractCard card)
+    public boolean RemoveFromPool(AbstractCard card)
     {
         AnimatorRuntimeLoadout c = Find(card);
-        if (!c.promoted && selectedCards.remove(card))
+        if (currentCards.remove(card))
         {
             TotalCardsInPool -= c.GetCardPoolInPlay().size();
-            selectSeriesCache -= 1;
+            card.targetTransparency = 0.5f;
+            CurrentSeriesLimit = Mathf.Clamp(CurrentSeriesLimit, MINIMUM_SERIES, currentCards.size());
             return true;
         }
 
@@ -174,36 +192,16 @@ public class AnimatorLoadoutsContainer
 
     public void CommitChanges()
     {
-        GR.Animator.Dungeon.Loadouts.clear();
-        for (AbstractCard card : selectedCards)
-        {
-            final AnimatorRuntimeLoadout loadout = Find(card);
-            if (loadout.IsBeta)
-            {
-                // Do not unlock trophies or ascension
-                Settings.seedSet = true;
-            }
-
-            GR.Animator.Dungeon.AddLoadout(loadout);
-        }
-
-        if (GR.Animator.Data.SelectedLoadout.IsBeta)
-        {
-            Settings.seedSet = true;
-        }
-
-        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GameUtilities.IsNormalRun(false) && Settings.seed != null)
-        {
-            GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
-        }
-
-        GR.Animator.Dungeon.InitializeCardPool(false);
+        GR.Animator.Data.SelectedLoadout = Find(currentSeriesCard).Loadout;
+        GR.Animator.Config.SelectedSeries.Set(JUtils.Map(currentCards, card -> Find(card).Loadout.Series), true);
+        GR.Animator.Config.ExpandedSeries.Set(JUtils.Map(expandedCards, card -> Find(card).Loadout.Series), true);
+        GR.Animator.Config.SeriesSize.Set(CurrentSeriesLimit, true);
     }
 
     public ArrayList<AbstractCard> GetAllCardsInPool()
     {
         final ArrayList<AbstractCard> cards = new ArrayList<>();
-        for (AbstractCard card : selectedCards)
+        for (AbstractCard card : currentCards)
         {
             cards.addAll(Find(card).GetCardPoolInPlay().values());
         }

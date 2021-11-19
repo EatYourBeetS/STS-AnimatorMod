@@ -2,14 +2,14 @@ package patches;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import javassist.CtBehavior;
 
 public class CardGlowBorderPatches
 {
@@ -23,18 +23,46 @@ public class CardGlowBorderPatches
     @SpirePatch(clz = CardGlowBorder.class, method = SpirePatch.CONSTRUCTOR, paramtypez = {AbstractCard.class, Color.class})
     public static class CardGlowBorderPatches_ctor
     {
+        @SpireInsertPatch(locator = Locator.class)
+        public static SpireReturn<Void> InsertPre(CardGlowBorder __instance, AbstractCard card, Color letsHardcodeEverything)
+        {
+            if (!GameUtilities.InGame()) {
+                OverrideColor(__instance);
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+
         @SpirePostfixPatch
         public static void Method(CardGlowBorder __instance, AbstractCard card, Color letsHardcodeEverything)
         {
+            OverrideColor(__instance);
+        }
+
+        private static void OverrideColor(CardGlowBorder __instance)
+        {
+            Color color = _color.Get(__instance);
+            if (color == null) {
+                _color.Set(__instance, Color.GREEN.cpy());
+                color = _color.Get(__instance);
+            }
             if (overrideColor != null)
             {
-                Color color = _color.Get(__instance);
-                if (color != null)
+                if (_color.Get(__instance) != null)
                 {
                     color.r = overrideColor.r;
                     color.g = overrideColor.g;
                     color.b = overrideColor.b;
                 }
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            public int[] Locate(CtBehavior ctBehavior) throws Exception
+            {
+                Matcher matcher = new Matcher.FieldAccessMatcher(CardGlowBorder.class, "duration");
+                return new int[]{ LineFinder.findInOrder(ctBehavior, matcher)[0] + 1 };
             }
         }
     }

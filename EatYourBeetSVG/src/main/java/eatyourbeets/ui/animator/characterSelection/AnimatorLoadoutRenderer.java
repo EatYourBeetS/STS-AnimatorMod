@@ -3,8 +3,6 @@ package eatyourbeets.ui.animator.characterSelection;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
@@ -13,11 +11,12 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
-import eatyourbeets.ui.controls.GUI_Dropdown;
-import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -30,7 +29,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     protected static final FieldInfo<String> _hp = JUtils.GetField("hp", CharacterOption.class);
     protected static final FieldInfo<Integer> _gold = JUtils.GetField("gold", CharacterOption.class);
-    protected static final float POS_X = 250f * Settings.scale;
+    protected static final float POS_X = 170f * Settings.scale;
     protected static final float POS_Y = ((float) Settings.HEIGHT / 2f) - (20 * Settings.scale);
     protected static final float ROW_OFFSET = 60 * Settings.scale;
 
@@ -39,15 +38,10 @@ public class AnimatorLoadoutRenderer extends GUIElement
     protected final ArrayList<AnimatorLoadout> availableLoadouts;
     protected final ArrayList<AnimatorLoadout> loadouts;
 
-    protected GUI_Dropdown<AnimatorLoadout> SeriesDropdown;
-    protected GUI_Button SeriesLeftButton;
-    protected GUI_Button SeriesRightButton;
-    protected GUI_Button RandomizeButton;
+    protected GUI_Button SeriesButton;
     protected GUI_Button LoadoutEditorButton;
     protected GUI_Label StartingCardsLabel;
     protected GUI_Label StartingCardsListLabel;
-    protected GUI_Label SeriesLabel;
-    protected GUI_Image ExpansionImage;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected AnimatorLoadout loadout;
@@ -67,9 +61,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
             textScale = 1;
         }
 
-        float POS_X = 330f * Settings.scale;
-        float POS_Y = ((float) Settings.HEIGHT / 2f) - (20 * Settings.scale);
-
         loadouts = new ArrayList<>();
         availableLoadouts = new ArrayList<>();
 
@@ -79,46 +70,21 @@ public class AnimatorLoadoutRenderer extends GUIElement
                 .SetAlignment(0.5f, 0.5f, false)
                 .SetText(GR.Animator.Strings.CharSelect.LeftText);
 
-        SeriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new AdvancedHitbox(POS_X, POS_Y - ROW_OFFSET, leftTextWidth, 50f * Settings.scale))
-                .SetColor(Settings.GOLD_COLOR)
-                .SetAlignment(0.5f, 0.5f, false)
-                .SetText(GR.Animator.Strings.CharSelect.RightText);
-
-        SeriesLeftButton = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new AdvancedHitbox(StartingCardsLabel.hb.x + StartingCardsLabel.hb.width, SeriesLabel.hb.y, Scale(48), Scale(48)))
-                .SetText("")
-                .SetOnClick(() -> {
-                    ChangeLoadout(loadouts.indexOf(loadout) - 1);
-                });
-
-        SeriesDropdown = new GUI_Dropdown<AnimatorLoadout>(new AdvancedHitbox(SeriesLeftButton.hb.x + SeriesLeftButton.hb.width + (20 * Settings.scale), SeriesLabel.hb.y, Scale(240), Scale(48)), cs -> cs.Series.LocalizedName)
-                .SetOnChange(selectedSeries -> {
-                    ChangeLoadout(selectedSeries.get(0));
-                });
-
-        SeriesRightButton = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new AdvancedHitbox(SeriesDropdown.hb.x + SeriesDropdown.hb.width + (10 * Settings.scale), SeriesLabel.hb.y, Scale(48), Scale(48)))
-                .SetText("")
-                .SetOnClick(() -> {
-                    ChangeLoadout(loadouts.indexOf(loadout) + 1);
-                });
-
         StartingCardsListLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new AdvancedHitbox(SeriesDropdown.hb.x, POS_Y, leftTextWidth, 50f * Settings.scale))
+                new AdvancedHitbox(POS_X + ROW_OFFSET * 3.5f, POS_Y, leftTextWidth, 50f * Settings.scale))
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
                 .SetAlignment(0.5f, 0.5f, false);
 
-        RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(SeriesRightButton.hb.x + SeriesRightButton.hb.width + Scale(40), SeriesLabel.hb.y + Scale(25)).SetText("")
-                .SetOnClick(this::RandomizeLoadout);
+        SeriesButton = new GUI_Button(GR.Common.Images.Edit.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+                .SetPosition(StartingCardsListLabel.hb.x + StartingCardsListLabel.hb.width + Scale(40), StartingCardsListLabel.hb.y + Scale(25)).SetText("")
+                .SetTooltip(GR.Animator.Strings.CharSelect.SeriesEditor, GR.Animator.Strings.CharSelect.SeriesEditorInfo)
+                .SetOnClick(this::OpenSeriesSelect);
 
         LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(SeriesRightButton.hb.x + SeriesRightButton.hb.width + Scale(40), StartingCardsLabel.hb.y + Scale(25)).SetText("")
+                .SetPosition(SeriesButton.hb.x + SeriesButton.hb.width + Scale(40), StartingCardsLabel.hb.y + Scale(25)).SetText("")
                 .SetTooltip(GR.Animator.Strings.CharSelect.DeckEditor, GR.Animator.Strings.CharSelect.DeckEditorInfo)
                 .SetOnRightClick(this::ChangePreset)
                 .SetOnClick(this::OpenLoadoutEditor);
-
-        ExpansionImage = new GUI_Image(GR.Common.Images.Icons.BranchUpgrade_L.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(RandomizeButton.hb.x + RandomizeButton.hb.width + Scale(40), RandomizeButton.hb.y + Scale(25));
     }
 
     private void OpenLoadoutEditor()
@@ -126,6 +92,14 @@ public class AnimatorLoadoutRenderer extends GUIElement
         if (loadout != null && characterOption != null)
         {
             GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
+        }
+    }
+
+    private void OpenSeriesSelect()
+    {
+        if (loadout != null && characterOption != null)
+        {
+            GR.UI.SeriesSelection.Open(characterOption, () -> Refresh(selectScreen, characterOption));
         }
     }
 
@@ -223,14 +197,9 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
         RefreshInternal(true);
 
-        RandomizeButton.SetActive(availableLoadouts.size() > 1);
+        SeriesButton.SetActive(availableLoadouts.size() > 1);
         AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
-
-        this.SeriesDropdown.SetItems(this.loadouts);
-        this.SeriesDropdown.SetSelection(GR.Animator.Data.SelectedLoadout, false);
-
-
     }
 
     public void RefreshInternal(boolean refreshPortrait)
@@ -266,43 +235,17 @@ public class AnimatorLoadoutRenderer extends GUIElement
 
     public void Update()
     {
-        RandomizeButton.TryUpdate();
+        SeriesButton.TryUpdate();
         LoadoutEditorButton.TryUpdate();
-        SeriesDropdown.TryUpdate();
-        SeriesLeftButton.TryUpdate();
-        SeriesRightButton.TryUpdate();
         StartingCardsLabel.Update();
         StartingCardsListLabel.Update();
-        SeriesLabel.Update();
-        ExpansionImage.Update();
-
-        if (loadout != null && loadout.HasExpansion && ExpansionImage.hb.hovered) {
-            if (loadout.CanEnableExpansion()) {
-                EYBCardTooltip.QueueTooltip(ExpansionUnlockedTooltip, InputHelper.mX + (60 * Settings.scale), InputHelper.mY + (60 * Settings.scale));
-            }
-            else {
-                EYBCardTooltip.QueueTooltip(ExpansionLockedTooltip, InputHelper.mX + (60 * Settings.scale), InputHelper.mY + (60 * Settings.scale));
-            }
-        }
     }
 
     public void Render(SpriteBatch sb)
     {
-        RandomizeButton.TryRender(sb);
+        SeriesButton.TryRender(sb);
         LoadoutEditorButton.TryRender(sb);
-        SeriesDropdown.TryRender(sb);
-        SeriesLeftButton.TryRender(sb);
-        SeriesRightButton.TryRender(sb);
         StartingCardsLabel.Render(sb);
         StartingCardsListLabel.Render(sb);
-        SeriesLabel.Render(sb);
-        if (loadout != null && loadout.HasExpansion) {
-            if (!loadout.CanEnableExpansion()) {
-                RenderHelpers.DrawGrayscale(sb, () -> {ExpansionImage.Render(sb); return true;});
-            }
-            else {
-                ExpansionImage.Render(sb);
-            }
-        }
     }
 }

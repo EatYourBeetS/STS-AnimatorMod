@@ -82,11 +82,13 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 
         this.cards = cards;
         this.isRealtime = true;
-        this.screenColor = AbstractDungeon.fadeColor.cpy();
+        this.screenColor = Color.BLACK.cpy();
         this.screenColor.a = 0.8f;
         this.loadout = loadout;
 
-        AbstractDungeon.overlayMenu.proceedButton.hide();
+        if (GameUtilities.InGame()) {
+            AbstractDungeon.overlayMenu.proceedButton.hide();
+        }
 
         if (cards.isEmpty())
         {

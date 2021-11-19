@@ -184,16 +184,20 @@
 	"TEXT":
 	[
 	  "Contains {0} cards.",
-	  "Promoted",
 	  "Beta",
-	  "Select #ySeries for a total of #b120 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b180 cards.",
 	  "Selecting this series will not unlock trophies for the current run.",
-	  "Cards from this series may have a random bonus upon pickup (#yGold, #yMax. #yHP increase, #yCommon #yUpgrade). NL Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
-	  "#pRight-Click a series to view cards from its pool.",
+	  "Remove from Pool",
+	  "Add to Pool",
+	  "View Cards",
+	  "Select at least #b{0} #ySeries. NL #pRight-Click a #ySeries for more options.",
 	  "Expansion",
 	  "This series has additional cards that may be enabled by holding #p'CTRL' and clicking on this card.",
 	  "Additional cards for this series can now be enabled on the series select screen.",
-	  "Additional cards for this series are unlocked by obtaining a Bronze trophy at Ascension {0} or higher."
+	  "Additional cards for this series are unlocked by obtaining a Bronze trophy at Ascension {0} or higher.",
+	  "Pool Size",
+	  "This determines the number of series that will be randomly chosen from the available series to be available in a run.",
+	  "{0} Series selected.",
+	  "{0} cards selected."
 	]
   },
 
@@ -202,14 +206,15 @@
 	"TEXT":
 	[
 	  "Show Beta Series.",
-	  "Deselect All",
-	  "Random ({0} cards)",
-	  "Select All",
+	  "Clear Pool",
+	  "Add All to Pool",
+	  "Select Random",
 	  "Show card pool",
-	  "Proceed",
-	  "Expansion Enabled",
-	  "Enable All Expansions",
-	  "Disable All Expansions"
+	  "Save Changes",
+	  "Enable Expansion",
+	  "Enable Expansions",
+	  "Disable Expansions",
+	  "Cancel"
 	]
   },
 
@@ -232,14 +237,16 @@
 	{
 		"TEXT":
 		[
-			"Starting Cards: ",
-			"Chosen Series: ",
+			"Current Loadout: ",
+			"Locked Series",
 			"Unlocks at Level {0} (You are Level {1})",
 			"Invalid Loadout (Please Edit)",
 			"Unlocks at Ascension {0}",
-			"Starting Deck Editor",
+			"Loadout Editor",
 			"#pLeft-Click to open the editor. NL #pRight-Click to change preset.",
-			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock"
+			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock",
+			"Select Series",
+			"Choose which Series to start with as well as which Series will be present in your runs."
 		]
 	},
 	

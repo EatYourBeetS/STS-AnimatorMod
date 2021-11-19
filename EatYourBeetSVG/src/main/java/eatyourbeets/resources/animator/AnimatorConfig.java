@@ -6,10 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.powers.monsters.DarkCubePower;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.config.ConfigOption_Boolean;
-import eatyourbeets.ui.config.ConfigOption_Integer;
-import eatyourbeets.ui.config.ConfigOption_String;
-import eatyourbeets.ui.config.ConfigOption_Vector2;
+import eatyourbeets.ui.config.*;
 import eatyourbeets.utilities.JUtils;
 
 import java.io.File;
@@ -17,6 +14,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collections;
 import java.util.HashSet;
+
+import static eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer.MINIMUM_SERIES;
 
 public class AnimatorConfig
 {
@@ -31,6 +30,9 @@ public class AnimatorConfig
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
     private static final String AFFINITY_SYSTEM_POSITION =  "TheAnimator-AffinitySystemPosition";
     private static final String VERSION =  "TheAnimator-Version";
+    private static final String SELECTEDSERIES =  "TheAnimator-SelectedSeries";
+    private static final String EXPANDEDSERIES =  "TheAnimator-ExpandedSeries";
+    private static final String SERIESSIZE =  "TheAnimator-SeriesSize";
 
     private SpireConfig config;
     private HashSet<String> tips = null;
@@ -44,6 +46,9 @@ public class AnimatorConfig
     public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
     public ConfigOption_Integer MajorVersion = new ConfigOption_Integer(VERSION, null);
+    public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTEDSERIES, null);
+    public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDEDSERIES, null);
+    public ConfigOption_Integer SeriesSize = new ConfigOption_Integer(SERIESSIZE, MINIMUM_SERIES);
 
     public void Load(int slot)
     {
@@ -75,6 +80,9 @@ public class AnimatorConfig
             DisplayBetaSeries.SetConfig(config);
             EnableEventsForOtherCharacters.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
+            SelectedSeries.SetConfig(config);
+            ExpandedSeries.SetConfig(config);
+            SeriesSize.SetConfig(config);
         }
         catch (IOException e)
         {

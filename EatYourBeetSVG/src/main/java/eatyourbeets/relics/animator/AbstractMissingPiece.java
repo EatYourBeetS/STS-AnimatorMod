@@ -158,20 +158,22 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         StringJoiner joiner = new StringJoiner(" NL ");
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            if (series.promoted)
+            String line;
+            if (GR.Animator.Data.SelectedLoadout.Series.equals(series.Loadout.Series))
             {
-                String line = "- #y" + StringUtils.replace(series.Loadout.Name, " ", " #y");
-                if (series.bonus > 0)
-                {
-                    line += " #y( " + series.bonus + "/6 #y)";
-                }
-
-                joiner.add(line);
+               line = "- #y" + StringUtils.replace(series.Loadout.Name, " ", " #y");
             }
             else
             {
-                joiner.add("- " + series.Loadout.Name);
+                line = "- " + series.Loadout.Name;
             }
+
+            if (series.bonus > 0)
+            {
+                line += " #y( " + series.bonus + "/6 #y)";
+            }
+
+            joiner.add(line);
         }
 
         return base + " NL  NL " + DESCRIPTIONS[1] + " NL " + joiner.toString();
@@ -199,19 +201,14 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     {
         final WeightedList<CardSeries> list = new WeightedList<>();
         final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.GetCardsBySynergy(player.masterDeck.group);
-        final RandomizedList<CardSeries> promotedList = new RandomizedList<>();
+        final RandomizedList<CardSeries> seriesList = new RandomizedList<>(JUtils.Map(GR.Animator.Dungeon.Loadouts, series -> series.Loadout.Series));
 
         if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {
             GR.Animator.Dungeon.AddAllLoadouts();
         }
 
-        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts) {
-            if (series.promoted) {
-                promotedList.Add(series.Loadout.Series);
-            }
-        }
-        final CardSeries chosenSeries = GetActualCounter() == 0 ? promotedList.Retrieve(rng) : null;
+        final CardSeries chosenSeries = GetActualCounter() == 0 ? seriesList.Retrieve(rng) : null;
 
 
         for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)

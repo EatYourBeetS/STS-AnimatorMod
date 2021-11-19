@@ -2,6 +2,7 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -142,7 +143,7 @@ public class AnimatorCardRewardBonus extends GUIElement
         {
             for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
             {
-                if (series.promoted && series.bonus < 8)
+                if (MathUtils.randomBoolean(0.25f) && series.bonus < 8)
                 {
                     if (series.GetCardPoolInPlay().containsKey(card.cardID) && GameUtilities.GetMasterDeckCopies(card.cardID).isEmpty())
                     {

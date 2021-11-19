@@ -64,6 +64,6 @@ public class FakeLibraryCard extends EYBCardBase
     @Override
     public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
     {
-        FontHelper.renderFontLeft(sb, EYBFontHelper.CardTitleFont_Normal, GR.Animator.Strings.Misc.NotEnoughCards, hb.cX, hb.cY, Color.WHITE);
+        FontHelper.renderFontLeft(sb, EYBFontHelper.CardTitleFont_Normal, GR.Animator.Strings.Misc.NotEnoughCards, hb.cX, hb.cY + hb.height / 4, Color.WHITE);
     }
 }

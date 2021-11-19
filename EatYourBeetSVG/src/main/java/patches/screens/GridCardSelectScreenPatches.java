@@ -281,12 +281,12 @@ public class GridCardSelectScreenPatches
             clz = GridCardSelectScreen.class,
             method = "update"
     )
-    public static class StupidFuckingUpdateBullshitImSoMadDontChangeThisClassNameKio {
-        public StupidFuckingUpdateBullshitImSoMadDontChangeThisClassNameKio() {
+    public static class GridCardSelectScreen_Update {
+        public GridCardSelectScreen_Update() {
         }
 
         @SpireInsertPatch(
-                locator = GridCardSelectScreenPatches.StupidFuckingUpdateBullshitImSoMadDontChangeThisClassNameKio.Locator.class
+                locator = GridCardSelectScreen_Update.Locator.class
         )
         public static void Insert(GridCardSelectScreen __instance) {
             if (GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.get(__instance) != null) {

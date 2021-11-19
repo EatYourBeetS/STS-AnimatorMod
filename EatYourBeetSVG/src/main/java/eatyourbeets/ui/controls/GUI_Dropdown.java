@@ -39,11 +39,12 @@ public class GUI_Dropdown<T> extends GUIElement
     private static final float SCROLLBAR_PADDING = 8.0F * Settings.scale;
     private static final float TOGGLE_OFFSET = 5f;
 
-    protected ActionT1<List<T>> onChange;
     protected ActionT1<Boolean> onOpenOrClose;
+    protected ActionT1<List<T>> onChange;
     protected BitmapFont font;
-    protected FuncT1<String, T> labelFunction;
     protected FuncT1<String, List<T>> labelFunctionButton;
+    protected FuncT1<String, T> labelFunction;
+    protected GUI_Label header; // TODO
     protected GUI_VerticalScrollBar scrollBar;
     protected boolean isOpen;
     protected boolean rowsHaveBeenPositioned;
@@ -95,11 +96,13 @@ public class GUI_Dropdown<T> extends GUIElement
                 .SetFont(font, fontScale)
                 .SetText(currentIndices.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected)
                 .SetOnClick(this::OpenOrCloseMenu);
-        this.clearButton = new GUI_Button(GR.Common.Images.SquaredButton.Texture(), new AdvancedHitbox(hb.x + hb.width, hb.y, hb.height,hb.height).SetIsPopupCompatible(true))
+        this.clearButton = new GUI_Button(GR.Common.Images.SquaredButton.Texture(), new AdvancedHitbox(hb.x + hb.width, hb.y, hb.height, hb.height).SetIsPopupCompatible(true))
                 .SetColor(Color.GRAY)
                 .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.3f)
                 .SetText("X")
                 .SetOnClick(() -> {SetSelectionIndices(new int[] {}, true);});
+        this.header = new GUI_Label(EYBFontHelper.CardTitleFont_Small, new AdvancedHitbox(hb.x, hb.y + hb.height, hb.width, hb.height)).SetAlignment(0.5f,0.0f,false);
+        this.header.SetActive(false);
         Autosize();
     }
 
@@ -108,6 +111,16 @@ public class GUI_Dropdown<T> extends GUIElement
         if (this.canAutosizeButton) {
             Autosize();
         }
+
+        return this;
+    }
+
+    public GUI_Dropdown<T> SetHeader(BitmapFont font, float fontScale, Color textColor, String text) {
+        return SetHeader(font,fontScale,textColor,text,false);
+    }
+
+    public GUI_Dropdown<T> SetHeader(BitmapFont font, float fontScale, Color textColor, String text, boolean smartText) {
+        this.header.SetFont(font, fontScale).SetColor(textColor).SetText(text).SetSmartText(smartText).SetActive(true);
 
         return this;
     }
@@ -153,7 +166,15 @@ public class GUI_Dropdown<T> extends GUIElement
         return this;
     }
 
-    public GUI_Dropdown<T> SetFont(BitmapFont font, float fontScale)
+    public GUI_Dropdown<T> SetFontForButton(BitmapFont font, float fontScale)
+    {
+        button.SetFont(font, fontScale);
+        Autosize();
+
+        return this;
+    }
+
+    public GUI_Dropdown<T> SetFontForRows(BitmapFont font, float fontScale)
     {
         this.font = font;
         this.fontScale = fontScale;
@@ -182,6 +203,7 @@ public class GUI_Dropdown<T> extends GUIElement
         this.hb.translate(x, y);
         this.button.hb.translate(x, y);
         this.scrollBar.hb.translate(x + hb.width - SCROLLBAR_PADDING, y + CalculateScrollbarOffset());
+        this.header.hb.translate(x, y + hb.height);
         this.clearButton.hb.translate(x + hb.width, y);
         return this;
     }
@@ -227,6 +249,7 @@ public class GUI_Dropdown<T> extends GUIElement
         if (canAutosizeButton) {
             hb.resize(rowWidth, hb.height);
             button.hb.resize(rowWidth, hb.height);
+            this.header.hb.translate(hb.x, hb.y + hb.height);
             this.clearButton.hb.translate(hb.x + hb.width, hb.y);
         }
         for (DropdownRow<T> row : rows) {
@@ -304,6 +327,7 @@ public class GUI_Dropdown<T> extends GUIElement
     public void Update() {
         this.hb.update();
         this.button.Update();
+        this.header.TryUpdate();
         if (this.isMultiSelect && currentIndices.size() != 0) {
             this.clearButton.Update();
         }
@@ -421,44 +445,51 @@ public class GUI_Dropdown<T> extends GUIElement
 
         this.hb.render(sb);
         this.button.TryRender(sb);
+        this.header.TryRender(sb);
         if (this.isMultiSelect && currentIndices.size() != 0) {
             this.clearButton.Render(sb);
         }
         if (this.rows.size() > 0) {
-            int rowCount = this.isOpen ? this.visibleRowCount() : 0;
-            this.layoutRowsBelow(hb.x, hb.y);
-            float topY = this.yPositionForRowBelow(hb.y, -1);
-            float bottomY = this.yPositionForRowBelow(hb.y, rowCount);
-            if (this.isOpen) {
-                this.renderBorder(sb, hb.x, bottomY, hb.width, topY - bottomY);
-            }
-
-            //this.renderBorderFromTop(sb, hb.x, hb.y, hb.width, this.rowHeight - BOX_EDGE_H * 2.5F);
-            if (this.isOpen) {
-                for(int i = 0; i < this.visibleRowCount(); ++i) {
-                    this.rows.get(i + this.topVisibleRowIndex).renderRow(sb);
-                }
-
-                if (this.shouldShowSlider()) {
-                    this.scrollBar.TryRender(sb);
-                }
-            }
-
-            // Render arrow for dropdown
-            float arrowIconX = hb.x + hb.width - ARROW_ICON_W - Settings.scale * 10.0F;
-            Texture dropdownArrowIcon = this.isOpen ? ImageMaster.OPTION_TOGGLE_ON : ImageMaster.FILTER_ARROW;
-            sb.draw(dropdownArrowIcon, arrowIconX, hb.y + hb.height / 4, ARROW_ICON_W, ARROW_ICON_H);
+            RenderRowContent(sb);
+            RenderArrows(sb);
         }
     }
 
-    private void layoutRowsBelow(float originX, float originY) {
+    protected void RenderRowContent(SpriteBatch sb) {
+        int rowCount = this.isOpen ? this.visibleRowCount() : 0;
+        this.layoutRowsBelow(hb.x, hb.y);
+        float topY = this.yPositionForRowBelow(hb.y, -1);
+        float bottomY = this.yPositionForRowBelow(hb.y, rowCount);
+        if (this.isOpen) {
+            this.renderBorder(sb, hb.x, bottomY, hb.width, topY - bottomY);
+        }
+
+        //this.renderBorderFromTop(sb, hb.x, hb.y, hb.width, this.rowHeight - BOX_EDGE_H * 2.5F);
+        if (this.isOpen) {
+            for(int i = 0; i < this.visibleRowCount(); ++i) {
+                this.rows.get(i + this.topVisibleRowIndex).renderRow(sb);
+            }
+
+            if (this.shouldShowSlider()) {
+                this.scrollBar.TryRender(sb);
+            }
+        }
+    }
+
+    protected void RenderArrows(SpriteBatch sb) {
+        float arrowIconX = hb.x + hb.width - ARROW_ICON_W - Settings.scale * 10.0F;
+        Texture dropdownArrowIcon = this.isOpen ? ImageMaster.OPTION_TOGGLE_ON : ImageMaster.FILTER_ARROW;
+        sb.draw(dropdownArrowIcon, arrowIconX, hb.y + hb.height / 4, ARROW_ICON_W, ARROW_ICON_H);
+    }
+
+    protected void layoutRowsBelow(float originX, float originY) {
         for(int i = 0; i < this.visibleRowCount(); ++i) {
             this.rows.get(this.topVisibleRowIndex + i).move(originX, this.yPositionForRowBelow(originY, i + 1));
         }
         this.rowsHaveBeenPositioned = true;
     }
 
-    private void renderBorder(SpriteBatch sb, float x, float bottom, float width, float height) {
+    protected void renderBorder(SpriteBatch sb, float x, float bottom, float width, float height) {
         float BOX_W = width + 2.0F * BORDER_SIZE;
         float FRAME_X = x - BORDER_SIZE;
         sb.setColor(Color.WHITE);
@@ -469,7 +500,7 @@ public class GUI_Dropdown<T> extends GUIElement
         sb.draw(ImageMaster.KEYWORD_TOP, FRAME_X, bottom + middleHeight + BORDER_SIZE, BOX_W, rowHeight);
     }
 
-    private void renderBorderFromTop(SpriteBatch sb, float x, float top, float width, float height) {
+    protected void renderBorderFromTop(SpriteBatch sb, float x, float top, float width, float height) {
         float BORDER_TOP_Y = top - BOX_EDGE_H + BORDER_SIZE;
         float BOX_W = width + 2.0F * BORDER_SIZE;
         float FRAME_X = x - BORDER_SIZE;

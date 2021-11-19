@@ -2,7 +2,6 @@ package eatyourbeets.resources.animator.misc;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
@@ -16,7 +15,6 @@ import static eatyourbeets.resources.GR.Enums.CardTags.EXPANDED;
 
 public class AnimatorRuntimeLoadout
 {
-    private final static EYBCardTooltip PromotedTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.Promoted, GR.Animator.Strings.SeriesSelection.TooltipPromoted);
     private final static EYBCardTooltip BetaTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.Beta, GR.Animator.Strings.SeriesSelection.TooltipBeta);
     private final static EYBCardTooltip ExpansionTooltip = new EYBCardTooltip(GR.Animator.Strings.SeriesSelection.ExpansionHeader, GR.Animator.Strings.SeriesSelection.ExpansionCardBody);
 
@@ -25,11 +23,11 @@ public class AnimatorRuntimeLoadout
     public final AnimatorLoadout Loadout;
     public final Map<String, AbstractCard> BaseCards = new HashMap<>();
     public final Map<String, AbstractCard> ExpandedCards = new HashMap<>();
+    public final EYBCardTooltip UnlockTooltip;
 
     public int bonus;
     public AnimatorCard card;
     public EYBCardAffinityStatistics AffinityStatistics;
-    public boolean promoted;
     public boolean expansionEnabled;
     public boolean canEnableExpansion;
 
@@ -54,11 +52,11 @@ public class AnimatorRuntimeLoadout
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
         this.canEnableExpansion = loadout.CanEnableExpansion();
+        this.UnlockTooltip = new EYBCardTooltip(GR.Animator.Strings.CharSelect.RightText, GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, GR.Animator.GetUnlockLevel()));
         InitializeCards(loadout.Series);
 
         this.AffinityStatistics = new EYBCardAffinityStatistics(GetCardPoolInPlay().values(), false);
 
-        this.promoted = false;
         this.card = null;
     }
 
@@ -86,22 +84,6 @@ public class AnimatorRuntimeLoadout
         return group;
     }
 
-    public void Promote()
-    {
-        if (Settings.isDebug)
-        {
-            JUtils.LogInfo(this, "Debug mode: No mandatory series, but no trophies will be unlocked.");
-            return;
-        }
-
-        if (card != null)
-        {
-            throw new RuntimeException("Can not promote a card that has already been built.");
-        }
-
-        this.promoted = true;
-    }
-
     public void ToggleExpansion(boolean value) {
         if (!this.canEnableExpansion) {
             value = false;
@@ -113,10 +95,7 @@ public class AnimatorRuntimeLoadout
             card.upgraded = value;
             card.cardText.ForceRefresh();
             card.tooltips.add(ExpansionTooltip);
-            if (promoted) {
-                card.tooltips.add(PromotedTooltip);
-            }
-            else if (Loadout.IsBeta) {
+            if (Loadout.IsBeta) {
                 card.tooltips.add(BetaTooltip);
             }
         }
@@ -141,17 +120,15 @@ public class AnimatorRuntimeLoadout
                 .SetNumbers(0,0,BaseCards.size(),ExpandedCards.size(),0)
                 .CanUpgrade(false);
 
-        if (promoted)
-        {
+        if (GR.Animator.GetUnlockLevel() < Loadout.UnlockLevel) {
             card = builder
-            .SetText(Loadout.Name,
-                    GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted("!M!"),
-                    GR.Animator.Strings.SeriesSelection.ContainsNCards_Promoted("!S!"))
-
-            .SetProperties(temp.type, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE).Build();
-            card.tooltips.add(PromotedTooltip);
+                    .SetText(Loadout.Name,
+                            GR.Animator.Strings.SeriesSelection.ContainsNCards("!M!"),
+                            GR.Animator.Strings.SeriesSelection.ContainsNCards("!S!"))
+                    .SetProperties(AbstractCard.CardType.CURSE, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE).Build();
+            card.tooltips.add(UnlockTooltip);
         }
-        else if (Loadout.IsBeta)
+        if (Loadout.IsBeta)
         {
             card = builder
             .SetText(Loadout.Name,
@@ -166,7 +143,7 @@ public class AnimatorRuntimeLoadout
             .SetText(Loadout.Name,
                     GR.Animator.Strings.SeriesSelection.ContainsNCards("!M!"),
                     GR.Animator.Strings.SeriesSelection.ContainsNCards("!S!"))
-            .SetProperties(temp.type, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE).Build();
+            .SetProperties(temp.type, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE).Build();
         }
 
         if (canEnableExpansion) {

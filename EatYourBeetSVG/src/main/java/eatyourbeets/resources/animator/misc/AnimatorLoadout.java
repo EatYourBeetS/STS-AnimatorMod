@@ -61,7 +61,7 @@ public abstract class AnimatorLoadout
             TotalValue.Set(MAX_VALUE, false);
             AllCardsSeen = true;
             final EYBCardAffinities affinities = new EYBCardAffinities(null);
-            for (AnimatorCardSlot slot : data)
+            for (AnimatorCardSlot slot : data.cardSlots)
             {
                 if (slot == null)
                 {
@@ -250,7 +250,7 @@ public abstract class AnimatorLoadout
     public ArrayList<String> GetStartingDeck()
     {
         final ArrayList<String> cards = new ArrayList<>();
-        for (AnimatorCardSlot slot : GetPreset())
+        for (AnimatorCardSlot slot : GetPreset().cardSlots)
         {
             EYBCardData data = slot.GetData();
             if (data != null)

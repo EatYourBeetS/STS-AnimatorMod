@@ -240,7 +240,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         UpdateStartingDeckText();
 
         GR.UI.CardAffinities.SetActive(true);
-        GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+        GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), false, null, true);
 
         seriesCountDropdown.SetItems(GetSelectionOptionArray(GR.Animator.Data.GetEveryLoadout().size()));
         seriesCountDropdown.SetSelection(GR.Animator.Config.SeriesSize.Get(), false);
@@ -267,20 +267,19 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         seriesAmount.Render(sb);
         cardsAmount.Render(sb);
         previewCardsInfo.Render(sb);
-        if (previewCardsEffect != null)
-        {
-            previewCardsEffect.render(sb);
-        }
-        else {
-            GR.UI.CardAffinities.TryRender(sb);
-        }
-
         seriesCountDropdown.TryRender(sb);
         if (container.CurrentSeriesLimit > MINIMUM_SERIES) {
             seriesCountLeft.TryRender(sb);
         }
         if (container.CurrentSeriesLimit < container.allCards.size()) {
             seriesCountRight.TryRender(sb);
+        }
+        if (previewCardsEffect != null)
+        {
+            previewCardsEffect.render(sb);
+        }
+        else {
+            GR.UI.CardAffinities.TryRender(sb);
         }
 
         contextMenu.TryRender(sb);
@@ -571,7 +570,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
 
                     PreviewCards(group, null);
                 }
-            });
+            }, true);
         }
 
         seriesAmount.SetText(GR.Animator.Strings.SeriesSelection.SeriesSelected(container.currentCards.size()));

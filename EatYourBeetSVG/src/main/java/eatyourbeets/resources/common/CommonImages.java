@@ -24,6 +24,7 @@ public class CommonImages
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/eyb/ui/topPanel/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/eyb/ui/topPanel/HexagonalButtonHover.png");
     public final TextureCache Info                        = new TextureCache("images/eyb/ui/topPanel/Info.png");
+    public final TextureCache Minus                       = new TextureCache("images/eyb/ui/topPanel/Minus.png");
     public final TextureCache Panel                       = new TextureCache("images/eyb/ui/topPanel/Panel.png");
     public final TextureCache Panel_Elliptical            = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical.png");
     public final TextureCache Panel_Elliptical_Half_H     = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical_Half_H.png");
@@ -31,6 +32,7 @@ public class CommonImages
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/eyb/ui/topPanel/Panel_Rounded_Half_H.png");
     public final TextureCache Panel_Skewed                = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed.png");
     public final TextureCache Panel_Skewed_L              = new TextureCache("images/eyb/ui/topPanel/Panel_Skewed_L.png");
+    public final TextureCache Plus                        = new TextureCache("images/eyb/ui/topPanel/Plus.png");
     public final TextureCache Randomize                   = new TextureCache("images/eyb/ui/topPanel/Randomize.png");
     public final TextureCache RectangularButton           = new TextureCache("images/eyb/ui/topPanel/RectangularButton.png");
     public final TextureCache SquaredButton               = new TextureCache("images/eyb/ui/topPanel/SquaredButton.png");
@@ -42,6 +44,7 @@ public class CommonImages
     public final TextureCache UnnamedReignBossOutline     = new TextureCache("images/animator/ui/map/bossOutline/TheUnnamed.png");
     public final TextureCache UnnamedReignEntrance        = new TextureCache("images/animator/ui/map/act5Entrance.png");
     public final TextureCache UnnamedReignEntranceOutline = new TextureCache("images/animator/ui/map/act5EntranceOutline.png");
+    public final TextureCache X                           = new TextureCache("images/eyb/ui/topPanel/X.png");
 
     public static class CardIcons
     {

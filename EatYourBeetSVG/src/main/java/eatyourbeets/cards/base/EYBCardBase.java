@@ -1,5 +1,6 @@
 package eatyourbeets.cards.base;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -17,17 +18,17 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.vfx.cardManip.CardGlowBorder;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
+import eatyourbeets.effects.card.EYBCardGlowBorderEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class EYBCardBase extends AbstractCard
 {
     //@Formatter: Off
-    @SpireOverride protected void updateGlow() { SpireSuper.call(); }
     @SpireOverride protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected) { SpireSuper.call(sb, hovered, selected); }
     @SpireOverride protected void renderTint(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderDescription(SpriteBatch sb) { SpireSuper.call(sb); }
@@ -51,7 +52,6 @@ public abstract class EYBCardBase extends AbstractCard
     @Override protected final void applyPowersToBlock() { throw new RuntimeException("Not Implemented"); }
     //@Formatter: On
 
-    protected static final FieldInfo<ArrayList<CardGlowBorder>> _glowList = JUtils.GetField("glowList", AbstractCard.class);
     protected static final FieldInfo<Float> _glowTimer = JUtils.GetField("glowTimer", AbstractCard.class);
     protected static final FieldInfo<Boolean> _darken = JUtils.GetField("darken", AbstractCard.class);
     protected static final FieldInfo<Color> _renderColor = JUtils.GetField("renderColor", AbstractCard.class);
@@ -91,6 +91,7 @@ public abstract class EYBCardBase extends AbstractCard
     public EYBCardCooldown cooldown;
     protected AdvancedTexture portraitImg;
     protected AdvancedTexture portraitForeground;
+    protected final ArrayList<EYBCardGlowBorderEffect> glowList = new ArrayList<>();
 
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
@@ -260,6 +261,30 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SpireOverride
+    protected void updateGlow()
+    {
+        float newValue = _glowTimer.Get(this);
+        if (this.isGlowing) {
+            newValue -= Gdx.graphics.getDeltaTime();
+            if (newValue < 0.0F) {
+                glowList.add(new EYBCardGlowBorderEffect(this, this.glowColor));
+                newValue = 0.3F;
+            }
+            _glowTimer.Set(this,newValue);
+        }
+
+        Iterator<EYBCardGlowBorderEffect> i = this.glowList.iterator();
+
+        while(i.hasNext()) {
+            EYBCardGlowBorderEffect e = i.next();
+            e.update();
+            if (e.isDone) {
+                i.remove();
+            }
+        }
+    }
+
+    @SpireOverride
     protected void renderGlow(SpriteBatch sb)
     {
         if (transparency < 0.7f)
@@ -269,7 +294,7 @@ public abstract class EYBCardBase extends AbstractCard
 
         renderMainBorder(sb);
 
-        for (CardGlowBorder glowBorder : _glowList.Get(this))
+        for (EYBCardGlowBorderEffect glowBorder : glowList)
         {
             glowBorder.render(sb);
         }

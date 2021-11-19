@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.LogHorizon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -26,6 +27,12 @@ public class HousakiMinori extends AnimatorCard
         SetAffinity_Light(1, 1, 1);
 
         SetCooldown(4, -1, this::OnCooldownCompleted);
+    }
+
+    @Override
+    public boolean HasDirectSynergy(AbstractCard other)
+    {
+        return HousakiTohya.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
     }
 
     @Override

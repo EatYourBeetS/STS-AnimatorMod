@@ -3080,7 +3080,7 @@
 		},
 		"animator:ThrowingKnife":
 		{
-			"DESCRIPTION": "{0} || Does not give <W> when played. || On Discard: Play this on a random enemy.",
+			"DESCRIPTION": "{0} || Does not give <W>. || On Discard: Play this on a random enemy.",
 			"EXTENDED_DESCRIPTION": ["Apply a Debuff.", "Apply !M! [Weak].", "Apply !M! [Vulnerable].", "Apply !S! [Poison]."],
 			"NAME": "Throwing-Knife"
 		}

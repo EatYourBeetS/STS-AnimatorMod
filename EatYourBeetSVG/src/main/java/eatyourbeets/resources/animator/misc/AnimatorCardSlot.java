@@ -65,7 +65,7 @@ public class AnimatorCardSlot
         for (Item item : Cards)
         {
             boolean add = true;
-            for (AnimatorCardSlot slot : Container)
+            for (AnimatorCardSlot slot : Container.cardSlots)
             {
                 if (slot != this && slot.GetData() == item.data)
                 {
@@ -112,7 +112,7 @@ public class AnimatorCardSlot
         while (true)
         {
             int currentIndex = i;
-            for (AnimatorCardSlot s : Container)
+            for (AnimatorCardSlot s : Container.cardSlots)
             {
                 if (s != this && selected.data == s.GetData())
                 {
@@ -139,9 +139,14 @@ public class AnimatorCardSlot
         return (selected != null) && amount < max;
     }
 
+    public boolean CanDecrement()
+    {
+        return (selected != null) && amount > 1 && amount > min;
+    }
+
     public boolean CanRemove()
     {
-        return (selected != null) && amount > min;
+        return (selected != null) && min <= 0;
     }
 
     public void Add()
@@ -152,15 +157,11 @@ public class AnimatorCardSlot
         }
     }
 
-    public void Remove()
+    public void Decrement()
     {
         if (amount > 1)
         {
             amount -= 1;
-        }
-        else if (min <= 0)
-        {
-            Select(null);
         }
     }
 
@@ -175,6 +176,10 @@ public class AnimatorCardSlot
         {
             Cards.Add(new Item(data, estimatedValue));
         }
+    }
+
+    public AnimatorCardSlot Clear() {
+        return Select(null);
     }
 
     public AnimatorCardSlot Select(Item item)

@@ -71,7 +71,7 @@ public class AnimatorFrailPower extends FrailPower implements CloneablePowerInte
     public AnimatorFrailPower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner,amount,isSourceMonster);
-        if (!GameUtilities.IsPlayerTurn() && isSourceMonster) {
+        if (isSourceMonster) {
             this.justApplied = true;
         }
 

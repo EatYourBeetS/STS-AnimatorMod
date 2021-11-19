@@ -68,12 +68,12 @@ public class CardAffinityPanel extends GUIElement
 
     public void Open(ArrayList<AbstractCard> cards)
     {
-        Open(cards, false, null);
+        Open(cards, false, null, false);
     }
 
-    public void Open(ArrayList<AbstractCard> cards, boolean showUpgradeToggle, ActionT1<CardAffinityCounter> onClick)
+    public void Open(ArrayList<AbstractCard> cards, boolean showUpgradeToggle, ActionT1<CardAffinityCounter> onClick, boolean force)
     {
-        isActive = GR.Animator.IsSelected() && cards != null;
+        isActive = (force || GR.Animator.IsSelected()) && cards != null;
 
         if (!isActive)
         {

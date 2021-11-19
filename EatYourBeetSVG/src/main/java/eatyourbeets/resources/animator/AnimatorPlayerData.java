@@ -375,7 +375,16 @@ public class AnimatorPlayerData
                       .append("_Gold@").append(data.Gold).append(";")
                       .append("_HP@").append(data.HP).append(";");
 
-                    for (AnimatorCardSlot slot : data)
+                    for (AnimatorRelicSlot slot : data.relicSlots)
+                    {
+                        if (slot.selected != null)
+                        {
+                            sb.append("_Relic_").append(slot.GetRelic().relicId).append("~")
+                                    .append(slot.GetSlotIndex()).append(";");
+                        }
+                    }
+
+                    for (AnimatorCardSlot slot : data.cardSlots)
                     {
                         if (slot.amount > 0)
                         {
@@ -448,14 +457,27 @@ public class AnimatorPlayerData
                         {
                             return;
                         }
-
-                        final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
-                        for (AnimatorCardSlot.Item c : slot.Cards)
-                        {
-                            if (c.data.ID.equals(itemID))
+                        if (itemID.startsWith("_Relic_")) {
+                            final String actualItemID = itemID.substring(7);
+                            final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
+                            for (AnimatorCardSlot.Item c : slot.Cards)
                             {
-                                slot.Select(c, itemAmount);
-                                break;
+                                if (c.data.ID.equals(itemID))
+                                {
+                                    slot.Select(c, itemAmount);
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
+                            for (AnimatorCardSlot.Item c : slot.Cards)
+                            {
+                                if (c.data.ID.equals(itemID))
+                                {
+                                    slot.Select(c, itemAmount);
+                                    break;
+                                }
                             }
                         }
 

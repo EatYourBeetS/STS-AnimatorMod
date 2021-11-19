@@ -143,6 +143,9 @@ public class AnimatorStrings
         public final String DeckEditorInfo = Strings.TEXT[6];
         public final String SeriesEditor = Strings.TEXT[8];
         public final String SeriesEditorInfo = Strings.TEXT[9];
+        public final String DeckHeader = Strings.TEXT[10];
+        public final String RelicsHeader = Strings.TEXT[11];
+        public final String AttributesHeader = Strings.TEXT[12];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {

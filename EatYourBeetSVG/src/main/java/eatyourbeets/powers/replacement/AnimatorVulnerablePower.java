@@ -64,7 +64,7 @@ public class AnimatorVulnerablePower extends VulnerablePower implements Cloneabl
     public AnimatorVulnerablePower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner,amount,isSourceMonster);
-        if (!GameUtilities.IsPlayerTurn() && isSourceMonster) {
+        if (isSourceMonster) {
             this.justApplied = true;
         }
 

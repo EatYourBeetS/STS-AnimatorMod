@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
+    public static final int MAX_SLOTS = 6;
+
     protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
     protected final AnimatorLoadoutData[] presets = new AnimatorLoadoutData[AnimatorLoadout.MAX_PRESETS];
@@ -112,15 +114,12 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetPosition(save_button.hb.cX, cardsCount_text.hb.y + cardsCount_text.hb.height + labelHeight * 0.8f)
         .SetFont(FontHelper.charDescFont, 1);
 
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.135f), ScreenH(0.75f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.335f), ScreenH(0.75f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.135f), ScreenH(0.35f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.335f), ScreenH(0.35f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.685f), ScreenH(0.75f)));
-        slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.885f), ScreenH(0.75f)));
+        for (int i = 0; i < MAX_SLOTS; i++) {
+            slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.1f), ScreenH(0.75f - (i * 0.05f))));
+        }
 
-        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.666f), ScreenH(0.432f));
-        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.666f), ScreenH(0.343f));
+        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.82f), ScreenH(0.78f));
+        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.82f), ScreenH(0.691f));
 
         ascensionRequirement = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
@@ -254,9 +253,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         cardsCount_text.TryRender(sb);
         cardsValue_text.TryRender(sb);
 
-        for (AnimatorCardSlotEditor editor : slotsEditors)
+        //Render in reverse order to avoid things overlapping
+        for (int i = slotsEditors.size() - 1; i >= 0; i--)
         {
-            editor.TryRender(sb);
+            slotsEditors.get(i).TryRender(sb);
         }
     }
 

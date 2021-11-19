@@ -58,7 +58,7 @@ public class GUI_Button extends GUIElement
         this.hb = hitbox;
         this.background = RenderHelpers.ForTexture(buttonTexture);
         this.interactable = true;
-        this.text = "-";
+        this.text = "";
         this.font = FontHelper.buttonLabelFont;
         this.fontScale = 1f;
         SetColor(Color.WHITE);

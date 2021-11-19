@@ -208,7 +208,7 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         RandomizedList<AnimatorLoadout> rList = new RandomizedList<>(GR.Animator.Data.GetEveryLoadout());
         while (Loadouts.size() < GR.Animator.Config.SeriesSize.Get() && rList.Size() > 0) {
             AnimatorLoadout loadout = rList.Retrieve(rng, true);
-            if ((GR.Animator.Data.SelectedLoadout == null || !GR.Animator.Data.SelectedLoadout.Series.equals(loadout.Series)) || GR.Animator.Config.SelectedSeries.Get().contains(loadout.Series)) {
+            if ((GR.Animator.Data.SelectedLoadout == null || !GR.Animator.Data.SelectedLoadout.Series.equals(loadout.Series)) && GR.Animator.Config.SelectedSeries.Get().contains(loadout.Series)) {
                 if (loadout.IsBeta)
                 {
                     // Do not unlock trophies or ascension

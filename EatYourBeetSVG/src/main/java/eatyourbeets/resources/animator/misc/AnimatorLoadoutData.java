@@ -1,15 +1,14 @@
 package eatyourbeets.resources.animator.misc;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class AnimatorLoadoutData implements Iterable<AnimatorCardSlot>
+public class AnimatorLoadoutData
 {
     public int Preset;
     public int Gold;
     public int HP;
-
-    protected final ArrayList<AnimatorCardSlot> cardSlots = new ArrayList<>();
+    public final ArrayList<AnimatorCardSlot> cardSlots = new ArrayList<>();
+    public final ArrayList<AnimatorRelicSlot> relicSlots = new ArrayList<>();
 
     protected AnimatorLoadoutData()
     {
@@ -29,9 +28,22 @@ public class AnimatorLoadoutData implements Iterable<AnimatorCardSlot>
         return slot;
     }
 
+    public AnimatorRelicSlot AddRelicSlot()
+    {
+        final AnimatorRelicSlot slot = new AnimatorRelicSlot(this);
+        relicSlots.add(slot);
+
+        return slot;
+    }
+
     public AnimatorCardSlot GetCardSlot(int index)
     {
         return cardSlots.get(index);
+    }
+
+    public AnimatorRelicSlot GetRelicSlot(int index)
+    {
+        return relicSlots.get(index);
     }
 
     public int Size()
@@ -54,6 +66,10 @@ public class AnimatorLoadoutData implements Iterable<AnimatorCardSlot>
         {
             copy.cardSlots.add(slot.MakeCopy(copy));
         }
+        for (AnimatorRelicSlot slot : relicSlots)
+        {
+            copy.relicSlots.add(slot.MakeCopy(copy));
+        }
 
         return copy;
     }
@@ -61,11 +77,5 @@ public class AnimatorLoadoutData implements Iterable<AnimatorCardSlot>
     public AnimatorLoadout.Validation Validate()
     {
         return AnimatorLoadout.Validation.For(this);
-    }
-
-    @Override
-    public Iterator<AnimatorCardSlot> iterator()
-    {
-        return cardSlots.iterator();
     }
 }

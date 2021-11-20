@@ -87,12 +87,24 @@ public class AnimatorCardSlotEditor extends GUIElement
         this.slot = slot;
         this.card = slot.GetCard(true);
         this.cardName_text.SetText(card != null ? card.name : "").SetActive(true);
-        this.cardValue_text.SetActive(card != null);
+        this.cardValue_text.SetActive(true);
         this.cardAmount_text.SetActive(card != null);
-        this.add_button.SetOnClick(this.slot::Add).SetInteractable(slot.CanAdd()).SetActive(card != null);
-        this.decrement_button.SetOnClick(this.slot::Decrement).SetInteractable(slot.CanDecrement()).SetActive(card != null);
-        this.clear_button.SetOnClick(this.slot::Clear).SetInteractable(slot.CanRemove()).SetActive(card != null);
-        this.change_button.SetOnClick(() -> loadoutEditor.TrySelectCard(this.slot)).SetActive(change);
+        this.add_button.SetOnClick(this.slot::Add).SetInteractable(slot.CanAdd()).SetActive(true);
+        this.decrement_button.SetOnClick(this.slot::Decrement).SetInteractable(slot.CanDecrement()).SetActive(true);
+        this.clear_button.SetOnClick(this.slot::Clear).SetInteractable(slot.CanRemove()).SetActive(true);
+        this.change_button.SetOnClick(() -> loadoutEditor.TrySelectCard(this.slot)).SetInteractable(change).SetActive(true);
+
+        return this;
+    }
+
+    public AnimatorCardSlotEditor Translate(float cX, float cY) {
+        cardValue_text.SetPosition(cX, cY);
+        cardAmount_text.SetPosition(cardValue_text.hb.x + cardValue_text.hb.width, cY);
+        cardName_text.SetPosition(cardAmount_text.hb.x + cardAmount_text.hb.width, cY);
+        decrement_button.SetPosition(cardName_text.hb.x + cardName_text.hb.width, cY);
+        add_button.SetPosition(decrement_button.hb.x + decrement_button.hb.width, cY);
+        clear_button.SetPosition(add_button.hb.x + add_button.hb.width, cY);
+        change_button.SetPosition(clear_button.hb.x + clear_button.hb.width, cY);
 
         return this;
     }

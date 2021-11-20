@@ -206,7 +206,10 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public ArrayList<String> getStartingRelics()
     {
-        return PrepareLoadout().GetStartingRelics();
+        AnimatorLoadout currentLoadout = PrepareLoadout();
+        ArrayList<String> startingRelics = currentLoadout.GetStartingRelics();
+        startingRelics.addAll(currentLoadout.GetAdditionalRelics());
+        return startingRelics;
     }
 
     @Override

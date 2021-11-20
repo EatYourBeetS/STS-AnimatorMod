@@ -55,7 +55,7 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
         }
 
         this.grid = new GUI_DynamicCardGrid()
-        .UseScrollbar(false)
+        .UseScrollbar(true)
         .AddPadY(AbstractCard.IMG_HEIGHT * 0.15f)
         .SetOnCardClick(c -> OnCardClicked((EYBCard) c))
         .SetOnCardRender((sb, c) -> OnCardRender(sb, (EYBCard) c));

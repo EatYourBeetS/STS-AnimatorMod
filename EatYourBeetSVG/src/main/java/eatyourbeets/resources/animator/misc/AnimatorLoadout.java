@@ -7,20 +7,23 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.animator.basic.Defend;
-import eatyourbeets.cards.animator.basic.ImprovedDefend;
-import eatyourbeets.cards.animator.basic.ImprovedStrike;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.relics.animator.TheMissingPiece;
+import eatyourbeets.relics.animator.beta.PolychromePaintbrush;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TupleT2;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
+
+import static eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor.MAX_RELIC_SLOTS;
 
 public abstract class AnimatorLoadout
 {
@@ -76,6 +79,15 @@ public abstract class AnimatorLoadout
                 {
                     AllCardsSeen = false;
                 }
+            }
+            for (AnimatorRelicSlot slot : data.relicSlots)
+            {
+                if (slot == null)
+                {
+                    continue;
+                }
+
+                TotalValue.V1 += slot.GetEstimatedValue();
             }
 
             AffinityLevel = 0;
@@ -171,13 +183,13 @@ public abstract class AnimatorLoadout
     {
         data.HP = BASE_HP;
         data.Gold = BASE_GOLD;
-        data.AddCardSlot(1, 6).AddItem(Strike.DATA, -2);
-        data.AddCardSlot(1, 6).AddItem(Defend.DATA, -2);
-        data.AddCardSlot(0, 1).AddItems(ImprovedStrike.GetCards(), 0);
-        data.AddCardSlot(0, 1).AddItems(ImprovedDefend.GetCards(), 0);
+        data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Strike.DATA, -2);
+        data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Defend.DATA, -2);
 
-        final AnimatorCardSlot s1 = data.AddCardSlot(0, 1);
-        final AnimatorCardSlot s2 = data.AddCardSlot(0, 1);
+        final AnimatorCardSlot s1 = data.AddCardSlot(0, AnimatorCardSlot.MAX_LIMIT);
+        final AnimatorCardSlot s2 = data.AddCardSlot(0, AnimatorCardSlot.MAX_LIMIT);
+        final AnimatorCardSlot s3 = data.AddCardSlot(0, AnimatorCardSlot.MAX_LIMIT);
+        final AnimatorCardSlot s4 = data.AddCardSlot(0, AnimatorCardSlot.MAX_LIMIT);
 
         if (starterCards.isEmpty())
         {
@@ -188,7 +200,16 @@ public abstract class AnimatorLoadout
         {
             s1.AddItem(pair.V1, pair.V2);
             s2.AddItem(pair.V1, pair.V2);
+            s3.AddItem(pair.V1, pair.V2);
+            s4.AddItem(pair.V1, pair.V2);
         }
+
+        for (int i = 0; i < MAX_RELIC_SLOTS; i++) {
+            AnimatorRelicSlot r1 = data.AddRelicSlot();
+            r1.AddItem(new RollingCubes(), 2);
+            r1.AddItem(new PolychromePaintbrush(), 3);
+        }
+
     }
 
     public Validation Validate()
@@ -292,6 +313,17 @@ public abstract class AnimatorLoadout
         res.add(TheMissingPiece.ID);
 
         return res;
+    }
+
+    public ArrayList<String> GetAdditionalRelics()
+    {
+        final ArrayList<String> relicList = new ArrayList<>();
+        for (AnimatorRelicSlot rSlot : GetPreset().relicSlots) {
+            if (rSlot.selected != null && rSlot.selected.relic != null) {
+                relicList.add(rSlot.selected.relic.relicId);
+            }
+        }
+        return relicList;
     }
 
     public int GetHP()
@@ -410,12 +442,12 @@ public abstract class AnimatorLoadout
         data.Gold = BASE_GOLD;
         data.GetCardSlot(0).Select(0, 4).GetData().MarkSeen();
         data.GetCardSlot(1).Select(0, 4).GetData().MarkSeen();
-        data.GetCardSlot(2).Select(null);
-        JUtils.ForEach(ImprovedStrike.GetCards(), EYBCardData::MarkSeen);
-        data.GetCardSlot(3).Select(null);
-        JUtils.ForEach(ImprovedDefend.GetCards(), EYBCardData::MarkSeen);
-        data.GetCardSlot(4).Select(0, 1).GetData().MarkSeen();
-        data.GetCardSlot(5).Select(1, 1).GetData().MarkSeen();
+        data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
+        data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
+        data.GetCardSlot(4).Select(null);
+        data.GetCardSlot(5).Select(null);
+        data.GetRelicSlot(0).Select((EYBRelic) null);
+        data.GetRelicSlot(1).Select((EYBRelic) null);
         return data;
     }
 

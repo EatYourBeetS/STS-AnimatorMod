@@ -297,7 +297,13 @@ public class GUI_Button extends GUIElement
         }
         else
         {
-            this.RenderButton(sb, interactable, interactable ? buttonColor : disabledButtonColor);
+            if (interactable) {
+                this.RenderButton(sb, interactable, buttonColor);
+            }
+            else {
+                RenderHelpers.DrawGrayscale(sb, () -> {this.RenderButton(sb, interactable, buttonColor); return true;});
+            }
+
         }
 
         this.hb.render(sb);

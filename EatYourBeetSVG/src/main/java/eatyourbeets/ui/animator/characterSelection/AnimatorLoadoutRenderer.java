@@ -164,7 +164,7 @@ public class AnimatorLoadoutRenderer extends GUIElement
         {
             for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
             {
-                if (loadout.GetPreset().Size() > 0)
+                if (loadout.GetPreset().CardsSize() > 0)
                 {
                     this.loadouts.add(loadout);
                     if (unlockLevel >= loadout.UnlockLevel)

@@ -20,6 +20,10 @@ public class AnimatorLoadoutData
         loadout.InitializeData(this);
     }
 
+    public AnimatorCardSlot AddCardSlot() {
+        return AddCardSlot(0, AnimatorCardSlot.MAX_LIMIT);
+    }
+
     public AnimatorCardSlot AddCardSlot(int min, int max)
     {
         final AnimatorCardSlot slot = new AnimatorCardSlot(this, min, max);
@@ -46,9 +50,14 @@ public class AnimatorLoadoutData
         return relicSlots.get(index);
     }
 
-    public int Size()
+    public int CardsSize()
     {
         return cardSlots.size();
+    }
+
+    public int RelicsSize()
+    {
+        return relicSlots.size();
     }
 
     public AnimatorLoadoutData MakeCopy()

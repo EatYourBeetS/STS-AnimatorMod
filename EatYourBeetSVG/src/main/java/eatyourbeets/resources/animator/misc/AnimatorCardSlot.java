@@ -12,13 +12,20 @@ import java.util.ArrayList;
 
 public class AnimatorCardSlot
 {
+    public static final int MAX_LIMIT = 6;
     public transient final AnimatorLoadoutData Container;
     public transient final RotatingList<Item> Cards;
 
     public Item selected;
     public int amount;
+    public int current_max;
     public int max;
     public int min;
+
+    public AnimatorCardSlot(AnimatorLoadoutData container)
+    {
+        this(container,0,MAX_LIMIT);
+    }
 
     public AnimatorCardSlot(AnimatorLoadoutData container, int min, int max)
     {
@@ -136,7 +143,7 @@ public class AnimatorCardSlot
 
     public boolean CanAdd()
     {
-        return (selected != null) && amount < max;
+        return (selected != null) && amount < max && amount < current_max;
     }
 
     public boolean CanDecrement()
@@ -151,7 +158,7 @@ public class AnimatorCardSlot
 
     public void Add()
     {
-        if (amount < max)
+        if (amount < max && amount < current_max)
         {
             amount += 1;
         }
@@ -224,7 +231,9 @@ public class AnimatorCardSlot
             {
                 throw new RuntimeException("Tried to select an item, but no cards are allowed in this slot.");
             }
-            this.amount = MathUtils.clamp(amount, min, max);
+
+            current_max = Math.min(max, selected.data.MaxCopies >= min ? selected.data.MaxCopies : max);
+            this.amount = MathUtils.clamp(amount, min, current_max);
         }
 
         return this;

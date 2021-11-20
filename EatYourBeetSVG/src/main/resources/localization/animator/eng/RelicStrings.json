@@ -162,6 +162,12 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
+	"animator:PolychromePaintbrush":
+	{
+		"DESCRIPTIONS": ["When #pRight #pClicked: Transform a #yStrike or #yDefend into any of its #yImproved versions. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
+		"FLAVOR": "Now everything is in color!",
+		"NAME": "Polychrome Paintbrush"
+	},
 	"animator:RollingCubes":
 	{
 		"DESCRIPTIONS": ["During #yNormal card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],

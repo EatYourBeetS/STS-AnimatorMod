@@ -379,7 +379,7 @@ public class AnimatorPlayerData
                     {
                         if (slot.selected != null)
                         {
-                            sb.append("_Relic_").append(slot.GetRelic().relicId).append("~")
+                            sb.append("_Relic_").append(slot.GetRelic().relicId).append("@")
                                     .append(slot.GetSlotIndex()).append(";");
                         }
                     }
@@ -429,6 +429,11 @@ public class AnimatorPlayerData
                 final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
                 final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
                 final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt(amountAndIndex[1], -1) : -1;
+                JUtils.LogWarning(this, "Negatest, ID:" + id + " Item: " + item + " Index: " + index + " ItemIndex: " + itemIndex );
+                if (index == -1) {
+                    JUtils.LogWarning(this, "Loadout is corrupted, ID:" + id);
+                    continue;
+                }
                 final String itemID = item.substring(0, index);
                 switch (itemID)
                 {
@@ -453,23 +458,29 @@ public class AnimatorPlayerData
 
                     default:
                     {
-                        if (itemIndex < 0 || itemIndex >= loadoutData.Size())
-                        {
-                            return;
-                        }
                         if (itemID.startsWith("_Relic_")) {
-                            final String actualItemID = itemID.substring(7);
-                            final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
-                            for (AnimatorCardSlot.Item c : slot.Cards)
+                            // Relic indexes are stored in itemAmount instead of itemIndex
+                            if (itemAmount < 0 || itemAmount >= loadoutData.CardsSize())
                             {
-                                if (c.data.ID.equals(itemID))
+                                continue;
+                            }
+                            final String actualItemID = itemID.substring(7);
+                            JUtils.LogWarning(this, "GWARR, ID:" + id + " Item: " + actualItemID);
+                            final AnimatorRelicSlot slot = loadoutData.GetRelicSlot(itemAmount);
+                            for (AnimatorRelicSlot.Item c : slot.Relics)
+                            {
+                                if (c.relic.relicId.equals(actualItemID))
                                 {
-                                    slot.Select(c, itemAmount);
+                                    slot.Select(c);
                                     break;
                                 }
                             }
                         }
                         else {
+                            if (itemIndex < 0 || itemIndex >= loadoutData.CardsSize())
+                            {
+                                continue;
+                            }
                             final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
                             for (AnimatorCardSlot.Item c : slot.Cards)
                             {

@@ -33,9 +33,9 @@ public class AnimatorRelicSlot
         return (selected == null ? 0 : selected.estimatedValue);
     }
 
-    public ArrayList<EYBRelic> GetSelectableRelics()
+    public ArrayList<AnimatorRelicSlot.Item> GetSelectableRelics()
     {
-        final ArrayList<EYBRelic> relics = new ArrayList<>();
+        final ArrayList<AnimatorRelicSlot.Item> relics = new ArrayList<>();
         for (Item item : Relics)
         {
             boolean add = true;
@@ -49,7 +49,7 @@ public class AnimatorRelicSlot
 
             if (add)
             {
-                relics.add(item.relic);
+                relics.add(new AnimatorRelicSlot.Item(item.relic, item.estimatedValue));
             }
         }
 
@@ -106,6 +106,16 @@ public class AnimatorRelicSlot
                 return;
             }
         }
+    }
+
+    public boolean CanRemove()
+    {
+        return (selected != null);
+    }
+
+    public AnimatorRelicSlot Clear() {
+        selected = null;
+        return this;
     }
 
     public void AddItem(EYBRelic relic, int estimatedValue)

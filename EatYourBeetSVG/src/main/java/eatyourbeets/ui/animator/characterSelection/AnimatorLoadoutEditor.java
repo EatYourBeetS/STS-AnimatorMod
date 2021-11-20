@@ -14,22 +14,23 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
+import eatyourbeets.resources.animator.misc.AnimatorRelicSlot;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.controls.GUI_Button;
-import eatyourbeets.ui.controls.GUI_Image;
-import eatyourbeets.ui.controls.GUI_TextBox;
-import eatyourbeets.ui.controls.GUI_Toggle;
+import eatyourbeets.ui.controls.*;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
 public class AnimatorLoadoutEditor extends AbstractScreen
 {
-    public static final int MAX_SLOTS = 6;
+    public static final int MAX_CARD_SLOTS = 6;
+    public static final int MAX_RELIC_SLOTS = 2;
 
     protected final static AnimatorLoadout.Validation val = new AnimatorLoadout.Validation();
     protected final ArrayList<AnimatorCardSlotEditor> slotsEditors = new ArrayList<>();
+    protected final ArrayList<AnimatorRelicSlotEditor> relicsEditors = new ArrayList<>();
     protected final AnimatorLoadoutData[] presets = new AnimatorLoadoutData[AnimatorLoadout.MAX_PRESETS];
     protected AnimatorBaseStatEditor goldEditor;
     protected AnimatorBaseStatEditor hpEditor;
@@ -38,6 +39,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected int preset;
 
     protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
+    protected AnimatorRelicSlotSelectionEffect relicSelectionEffect;
+    protected GUI_Label deck_text;
+    protected GUI_Label relic_text;
     protected GUI_Image background_image;
     protected GUI_Button[] preset_buttons;
     protected GUI_Button cancel_button;
@@ -58,7 +62,19 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
         background_image = new GUI_Image(GR.Common.Images.FullSquare.Texture(), new Hitbox(ScreenW(1), ScreenH(1)))
         .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
-        .SetColor(0, 0, 0, 0.85f);
+        .SetColor(0, 0, 0, 0.9f);
+
+        deck_text = new GUI_Label(EYBFontHelper.CardTitleFont_Large,
+                new Hitbox(ScreenW(0.1f), ScreenH(0.8f), buttonHeight, buttonHeight))
+                .SetText(GR.Animator.Strings.CharSelect.DeckHeader)
+                .SetFontScale(0.8f)
+                .SetAlignment(0.5f, 0.5f);
+
+        relic_text = new GUI_Label(EYBFontHelper.CardTitleFont_Large,
+                new Hitbox(ScreenW(0.1f), ScreenH(0.4f), buttonHeight, buttonHeight))
+                .SetText(GR.Animator.Strings.CharSelect.RelicsHeader)
+                .SetFontScale(0.8f)
+                .SetAlignment(0.5f, 0.5f);
 
         preset_buttons = new GUI_Button[AnimatorLoadout.MAX_PRESETS];
         for (int i = 0; i < preset_buttons.length; i++)
@@ -114,8 +130,12 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetPosition(save_button.hb.cX, cardsCount_text.hb.y + cardsCount_text.hb.height + labelHeight * 0.8f)
         .SetFont(FontHelper.charDescFont, 1);
 
-        for (int i = 0; i < MAX_SLOTS; i++) {
+        for (int i = 0; i < MAX_CARD_SLOTS; i++) {
             slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.1f), ScreenH(0.75f - (i * 0.05f))));
+        }
+
+        for (int i = 0; i < MAX_RELIC_SLOTS; i++) {
+            relicsEditors.add(new AnimatorRelicSlotEditor(this, ScreenW(0.1f), ScreenH(0.35f - (i * 0.05f))));
         }
 
         hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.82f), ScreenH(0.78f));
@@ -182,6 +202,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
         val.Refresh(presets[preset]);
         background_image.Update();
+        deck_text.Update();
+        relic_text.Update();
         upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
 
         if (cardSelectionEffect != null)
@@ -191,6 +213,16 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             if (cardSelectionEffect.isDone)
             {
                 cardSelectionEffect = null;
+                SetSlotsActive(true);
+            }
+        }
+        else if (relicSelectionEffect != null)
+        {
+            relicSelectionEffect.update();
+
+            if (relicSelectionEffect.isDone)
+            {
+                relicSelectionEffect = null;
                 SetSlotsActive(true);
             }
         }
@@ -210,11 +242,15 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             goldEditor.SetEstimatedValue(val.GoldValue).Update();
             cancel_button.Update();
             save_button.Update();
-        }
 
-        for (AnimatorCardSlotEditor editor : slotsEditors)
-        {
-            editor.TryUpdate();
+            for (AnimatorCardSlotEditor editor : slotsEditors)
+            {
+                editor.TryUpdate();
+            }
+            for (AnimatorRelicSlotEditor editor : relicsEditors)
+            {
+                editor.TryUpdate();
+            }
         }
 
         affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).SetActive(val.AffinityLevel > 0).TryUpdate();
@@ -230,7 +266,11 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
         background_image.Render(sb);
 
-        if (cardSelectionEffect != null)
+        if (relicSelectionEffect != null)
+        {
+            relicSelectionEffect.render(sb);
+        }
+        else if (cardSelectionEffect != null)
         {
             cardSelectionEffect.render(sb);
         }
@@ -241,28 +281,44 @@ public class AnimatorLoadoutEditor extends AbstractScreen
                 button.TryRender(sb);
             }
 
+            deck_text.Render(sb);
+            relic_text.Render(sb);
             hpEditor.Render(sb);
             goldEditor.Render(sb);
             ascensionRequirement.TryRender(sb);
             cancel_button.Render(sb);
             save_button.Render(sb);
-        }
+            upgrade_toggle.Render(sb);
+            affinityValue_text.TryRender(sb);
+            cardsCount_text.TryRender(sb);
+            cardsValue_text.TryRender(sb);
 
-        upgrade_toggle.Render(sb);
-        affinityValue_text.TryRender(sb);
-        cardsCount_text.TryRender(sb);
-        cardsValue_text.TryRender(sb);
+            for (int i = relicsEditors.size() - 1; i >= 0; i--)
+            {
+                relicsEditors.get(i).TryRender(sb);
+            }
 
-        //Render in reverse order to avoid things overlapping
-        for (int i = slotsEditors.size() - 1; i >= 0; i--)
-        {
-            slotsEditors.get(i).TryRender(sb);
+            //Render in reverse order to avoid things overlapping
+            for (int i = slotsEditors.size() - 1; i >= 0; i--)
+            {
+                slotsEditors.get(i).TryRender(sb);
+            }
         }
+    }
+
+    public void RepositionSlotEditor(AnimatorCardSlotEditor cardSlotEditor, int index) {
+        cardSlotEditor.Translate(ScreenW(0.1f), ScreenH(0.75f - (index * 0.05f)));
     }
 
     public void TrySelectCard(AnimatorCardSlot cardSlot)
     {
         cardSelectionEffect = new AnimatorCardSlotSelectionEffect(cardSlot);
+        SetSlotsActive(false);
+    }
+
+    public void TrySelectRelic(AnimatorRelicSlot relicSlot)
+    {
+        relicSelectionEffect = new AnimatorRelicSlotSelectionEffect(relicSlot);
         SetSlotsActive(false);
     }
 
@@ -304,12 +360,18 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     {
         if (active)
         {
+            final AnimatorLoadoutData data = presets[preset];
             for (int i = 0; i < slotsEditors.size(); i++)
             {
-                final AnimatorLoadoutData data = presets[preset];
                 final AnimatorCardSlotEditor editor = slotsEditors.get(i);
-                editor.SetActive(data.Size() > i);
+                editor.SetActive(data.CardsSize() > i);
                 editor.SetSlot(editor.isActive ? data.GetCardSlot(i) : null);
+            }
+            for (int i = 0; i < relicsEditors.size(); i++)
+            {
+                final AnimatorRelicSlotEditor reditor = relicsEditors.get(i);
+                reditor.SetActive(data.RelicsSize() > i);
+                reditor.SetSlot(reditor.isActive ? data.GetRelicSlot(i) : null);
             }
         }
         else

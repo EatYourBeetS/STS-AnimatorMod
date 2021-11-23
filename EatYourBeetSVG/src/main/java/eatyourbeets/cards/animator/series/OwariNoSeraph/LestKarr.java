@@ -80,8 +80,8 @@ public class LestKarr extends AnimatorCard
 
                     if (choices.TryInitialize(this))
                     {
+                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, magicNumber, true));
                         choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
-                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryDesecration, GR.Tooltips.Desecration, magicNumber, true));
                     }
                     choices.Select(1, m);
                 });

@@ -11,10 +11,9 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class LaplacesDemon extends AnimatorCard
 {
@@ -31,7 +30,7 @@ public class LaplacesDemon extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 10, 2);
+        Initialize(0, 10, 1);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(2, 0, 0);
         SetAffinity_Dark(1, 1, 0);
@@ -59,15 +58,7 @@ public class LaplacesDemon extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        int sum = 0;
-        for (Affinity af : Affinity.Extended()) {
-            final AbstractAffinityPower p = CombatStats.Affinities.GetPower(af);
-            final PowerHelper ph = p.GetThresholdBonusPower();
-            if (ph != null) {
-                sum += GameUtilities.GetPowerAmount(player, ph.ID);
-            }
-        }
-        return magicNumber * sum;
+        return magicNumber * JUtils.Max(CombatStats.Affinities.Powers, p -> p.amount);
     }
 
     @Override

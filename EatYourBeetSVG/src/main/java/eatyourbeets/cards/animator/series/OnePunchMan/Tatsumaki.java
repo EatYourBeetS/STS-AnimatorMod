@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Tatsumaki extends AnimatorCard
@@ -34,7 +34,7 @@ public class Tatsumaki extends AnimatorCard
         GameActions.Bottom.ChannelOrb(new Air());
         GameActions.Bottom.GainFocus(magicNumber, true);
         if (IsStarter() && TrySpendAffinity(Affinity.Red, Affinity.Blue)) {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
         }
     }
 }

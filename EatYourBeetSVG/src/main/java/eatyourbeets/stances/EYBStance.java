@@ -16,6 +16,7 @@ import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.animator.combat.EYBCardAffinityRow;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
@@ -35,20 +36,20 @@ public abstract class EYBStance extends AbstractStance
     public static void Initialize()
     {
         stances.clear();
-        stances.put(ForceStance.STANCE_ID, ForceStance::new);
-        stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
-        stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
-        stances.put(WillpowerStance.STANCE_ID, WillpowerStance::new);
-        stances.put(BlessingStance.STANCE_ID, BlessingStance::new);
-        stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
+        stances.put(MightStance.STANCE_ID, MightStance::new);
+        stances.put(WisdomStance.STANCE_ID, WisdomStance::new);
+        stances.put(VelocityStance.STANCE_ID, VelocityStance::new);
+        stances.put(EnduranceStance.STANCE_ID, EnduranceStance::new);
+        stances.put(SuperchargeStance.STANCE_ID, SuperchargeStance::new);
+        stances.put(DesecrationStance.STANCE_ID, DesecrationStance::new);
 
         tooltips.clear();
-        tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
-        tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
-        tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
-        tooltips.put(WillpowerStance.STANCE_ID, GR.Tooltips.WillpowerStance);
-        tooltips.put(BlessingStance.STANCE_ID, GR.Tooltips.BlessingStance);
-        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
+        tooltips.put(MightStance.STANCE_ID, GR.Tooltips.MightStance);
+        tooltips.put(VelocityStance.STANCE_ID, GR.Tooltips.VelocityStance);
+        tooltips.put(WisdomStance.STANCE_ID, GR.Tooltips.WisdomStance);
+        tooltips.put(EnduranceStance.STANCE_ID, GR.Tooltips.EnduranceStance);
+        tooltips.put(SuperchargeStance.STANCE_ID, GR.Tooltips.SuperchargeStance);
+        tooltips.put(DesecrationStance.STANCE_ID, GR.Tooltips.DesecrationStance);
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
@@ -98,7 +99,7 @@ public abstract class EYBStance extends AbstractStance
     @Override
     public void updateDescription()
     {
-        description = strings.DESCRIPTION[0];
+        description = JUtils.Format(strings.DESCRIPTION[0], EYBCardAffinityRow.SYNERGY_MULTIPLIER);
     }
 
     @Override
@@ -171,7 +172,7 @@ public abstract class EYBStance extends AbstractStance
 
     public void onRefreshStance()
     {
-        GameActions.Bottom.StackAffinityPower(affinity, 1, true);
+        GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER, true);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 
 public class YoshinoHaruhiko extends AnimatorCard
@@ -28,7 +28,7 @@ public class YoshinoHaruhiko extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
-        GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+        GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
 
         if (IsStarter())
         {

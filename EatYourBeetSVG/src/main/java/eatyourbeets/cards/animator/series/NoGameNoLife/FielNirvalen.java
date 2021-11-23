@@ -19,7 +19,14 @@ public class FielNirvalen extends AnimatorCard
     public static final EYBCardData DATA = Register(FielNirvalen.class)
             .SetPower(2, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (EYBCardData d : AffinityToken.GetCards())
+                {
+                    data.AddPreview(d.CreateNewInstance(), true);
+                }
+            });
 
     public FielNirvalen()
     {

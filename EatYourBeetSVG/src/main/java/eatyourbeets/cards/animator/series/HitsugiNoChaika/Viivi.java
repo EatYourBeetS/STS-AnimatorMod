@@ -61,7 +61,7 @@ public class Viivi extends AnimatorCard implements Hidden
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainVelocity(1);
             GameActions.Bottom.Draw(1);
         }
 

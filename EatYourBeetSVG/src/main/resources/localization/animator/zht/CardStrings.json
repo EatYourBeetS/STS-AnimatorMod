@@ -242,9 +242,9 @@
 		},
 		"animator:IchigoKurosaki":
 		{
-			"DESCRIPTION": "提升 [F] [A] 。 ** 被 消耗 : 如果 ** 你擁有至少 5 [F] ， ** 添加 1 張 {天鎖斬月} ** 到抽牌堆。",
+			"DESCRIPTION": "提升 [R] [G] 。 ** 被 消耗 : 如果 ** 你擁有至少 5 [R] ， ** 添加 1 張 {天鎖斬月} ** 到抽牌堆。",
 			"NAME": "黑崎一護",
-			"UPGRADE_DESCRIPTION": "提升 [F] [A] 。 ** 抽1張牌。 ** 被 消耗 : 如果 ** 你擁有至少 5 [F] ， ** 添加 1 張 {天鎖斬月} ** 到抽牌堆。"
+			"UPGRADE_DESCRIPTION": "提升 [R] [G] 。 ** 抽1張牌。 ** 被 消耗 : 如果 ** 你擁有至少 5 [R] ， ** 添加 1 張 {天鎖斬月} ** 到抽牌堆。"
 		},
 		"animator:Kuroyukihime":
 		{
@@ -334,17 +334,17 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "生成 1 個隨機的充能球。 ** 同調或丟棄： ** 獲得 [I] 。",
+			"DESCRIPTION": "生成 1 個隨機的充能球。 ** 同調或丟棄： ** 獲得 [B] 。",
 			"NAME": "艾因"
 		},
 		"animator:Aisha":
 		{
-			"DESCRIPTION": "每有1個充能球， ** 額外攻擊1次。** {有限} 。 如果這場戰鬥中 ** 你抵達過 2 [I] :  ** 獲得 1 個充能球欄位。",
+			"DESCRIPTION": "每有1個充能球， ** 額外攻擊1次。** {有限} 。 如果這場戰鬥中 ** 你抵達過 2 [B] :  ** 獲得 1 個充能球欄位。",
 			"NAME": "愛莎‧藍塔"
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "敵人每有一種 {負面效果} ，抽1張牌。丟棄 1 張牌。 ** 如果你丟棄的是 {能力牌} : 獲得 2 [F] 和 [A] 。",
+			"DESCRIPTION": "敵人每有一種 {負面效果} ，抽1張牌。丟棄 1 張牌。 ** 如果你丟棄的是 {能力牌} : 獲得 2 [R] 和 [G] 。",
 			"NAME": "愛拉"
 		},
 		"animator:Chung":
@@ -360,7 +360,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "戰鬥開始時從 3 種 {形態} 中選擇 ** 1 種並永久替換為這張牌。",
-			"EXTENDED_DESCRIPTION": ["使用剩餘的 [E] : 獲得等量的 [F] [A] 。 ** 被抽到或丟棄時， ** 直到被打出前增加 ** 這張牌的傷害 !M! 點。", "敵人每有一種 {負面效果} ** 給予 1 層 點燃 。 ** {有限} 。 ** 同調或丟棄時， ** 抽1張牌。", "給予 1 層 易傷 。 ** 每場戰鬥開始時: 失去 !M! 生命。"],
+			"EXTENDED_DESCRIPTION": ["使用剩餘的 [E] : 獲得等量的 [R] [G] 。 ** 被抽到或丟棄時， ** 直到被打出前增加 ** 這張牌的傷害 !M! 點。", "敵人每有一種 {負面效果} ** 給予 1 層 點燃 。 ** {有限} 。 ** 同調或丟棄時， ** 抽1張牌。", "給予 1 層 易傷 。 ** 每場戰鬥開始時: 失去 !M! 生命。"],
 			"NAME": "愛利西斯",
 			"UPGRADE_DESCRIPTION": "戰鬥開始時從 3 種已 升級 的 ** {形態} 中選擇 1 種並永久替換為這張牌。"
 		},
@@ -403,9 +403,9 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "在下一回合中 ** 不會失去 [F] 。 ** 被 消耗 : 打出這張牌。",
+			"DESCRIPTION": "在下一回合中 ** 不會失去 [R] 。 ** 被 消耗 : 打出這張牌。",
 			"NAME": "亞歷山大大帝",
-			"UPGRADE_DESCRIPTION": "獲得 [F] 。 ** 被 消耗 : 打出這張牌。"
+			"UPGRADE_DESCRIPTION": "獲得 [R] 。 ** 被 消耗 : 打出這張牌。"
 		},
 		"animator:Archer":
 		{
@@ -419,12 +419,12 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "獲得 !M! [F] 。 ** 如果敵人死亡 ** 或者失去 格擋： ** 獲得 !S! 點 格擋 。",
+			"DESCRIPTION": "獲得 !M! [R] 。 ** 如果敵人死亡 ** 或者失去 格擋： ** 獲得 !S! 點 格擋 。",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "給予 !M! 層 {鐐銬} ， ** 獲得 [F] [I] 。 ** <SLM>. ** {~協同} 或 消耗 時： ** 生成 1 個 {~黑暗} 充能球 。",
+			"DESCRIPTION": "給予 !M! 層 {鐐銬} ， ** 獲得 [R] [B] 。 ** <SLM>. ** {~協同} 或 消耗 時： ** 生成 1 個 {~黑暗} 充能球 。",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaShirou":
@@ -478,7 +478,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "如果你有不超過 ** !M! 點 [I] ，提升 [I] 。 ** 消耗 : 將 ** {阿爾馮斯護甲} ** 加入棄牌堆。",
+			"DESCRIPTION": "如果你有不超過 ** !M! 點 [B] ，提升 [B] 。 ** 消耗 : 將 ** {阿爾馮斯護甲} ** 加入棄牌堆。",
 			"NAME": "阿爾馮斯"
 		},
 		"animator:ElricEdward":
@@ -544,7 +544,7 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "獲得 !S! [I] 。 ** 獲得 !M! 個充能球欄位。 ** {曇現} 。 同調 ： ** 生成 1 個 大地 充能球。",
+			"DESCRIPTION": "獲得 !S! [B] 。 ** 獲得 !M! 個充能球欄位。 ** {曇現} 。 同調 ： ** 生成 1 個 大地 充能球。",
 			"NAME": "阿爾蓓吉歐"
 		},
 		"animator:Bozes":
@@ -576,7 +576,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "對第一個攻擊到的敵人 ** 給予 1 層 易傷 。 ** 被抽到：獲得1點 [F] 。",
+			"DESCRIPTION": "對第一個攻擊到的敵人 ** 給予 1 層 易傷 。 ** 被抽到：獲得1點 [R] 。",
 			"NAME": "蘿莉·麥丘利"
 		},
 		"animator:TukaLunaMarceau":
@@ -638,12 +638,12 @@
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "提升 [A] 。 ** 獲得 1 張 {傷口} 。 ** 同調 ：獲得 [F] 。",
+			"DESCRIPTION": "提升 [G] 。 ** 獲得 1 張 {傷口} 。 ** 同調 ：獲得 [R] 。",
 			"NAME": "長槍手"
 		},
 		"animator:SwordMaiden":
 		{
-			"DESCRIPTION": "移除最右邊 ** 的 {負面效果} 。 ** 提升 [F] [A] [I] 。",
+			"DESCRIPTION": "移除最右邊 ** 的 {負面效果} 。 ** 提升 [R] [G] [B] 。",
 			"NAME": "劍之聖女"
 		},
 		"animator:Witch":
@@ -667,7 +667,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "獲得 !S! 張 {飛刀} 。 ** 同調 或丟棄： ** 獲得 [A] 和 !M! 點 格擋 。",
+			"DESCRIPTION": "獲得 !S! 張 {飛刀} 。 ** 同調 或丟棄： ** 獲得 [G] 和 !M! 點 格擋 。",
 			"NAME": "托魯"
 		},
 		"animator:ChaikaBohdan":
@@ -717,7 +717,7 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "獲得1層 人工製品 。 ** 獲得 !M! 層 荊棘 。 ** 每回合結束時，** 消耗 1 點剩餘能量 ** 來獲得 2 [F] [A] 。",
+			"DESCRIPTION": "獲得1層 人工製品 。 ** 獲得 !M! 層 荊棘 。 ** 每回合結束時，** 消耗 1 點剩餘能量 ** 來獲得 2 [R] [G] 。",
 			"NAME": "微刀釵"
 		},
 		"animator:Emonzaemon":
@@ -738,7 +738,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "獲得 !M! 層 [F]。 ** {曇現} 。 若至少 ** 擁有 10 點 力量 ， ** 對一名隨機敵人 ** 造成 40 點傷害。",
+			"DESCRIPTION": "獲得 !M! 層 [R]。 ** {曇現} 。 若至少 ** 擁有 10 點 力量 ， ** 對一名隨機敵人 ** 造成 40 點傷害。",
 			"NAME": "凍空粉雪"
 		},
 		"animator:Nanami":
@@ -749,7 +749,7 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "獲得/提升 [F] [A] 。 ** 獲得 1 張 {虛刀流} 。",
+			"DESCRIPTION": "獲得/提升 [R] [G] 。 ** 獲得 1 張 {虛刀流} 。",
 			"NAME": "鑢七花"
 		},
 		"animator:Togame":
@@ -770,7 +770,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "{曇現} 。 被 消耗 : 回到手牌並 ** 提升 [A] [A] 。",
+			"DESCRIPTION": "{曇現} 。 被 消耗 : 回到手牌並 ** 提升 [G] [G] 。",
 			"NAME": "汽口慚愧"
 		}
 	},
@@ -817,7 +817,7 @@
 		},
 		"animator:Mitsurugi":
 		{
-			"DESCRIPTION": "獲得/提升 [F] 。 ** 只有當敵人的 ** 意圖是攻擊時， ** 才能造成傷害。 ** 被 消耗 : 獲得 !S! 點 格擋 。",
+			"DESCRIPTION": "獲得/提升 [R] 。 ** 只有當敵人的 ** 意圖是攻擊時， ** 才能造成傷害。 ** 被 消耗 : 獲得 !S! 點 格擋 。",
 			"NAME": "御劍響夜"
 		},
 		"animator:Vanir":
@@ -846,7 +846,7 @@
 	{
 		"animator:ChlammyZell":
 		{
-			"DESCRIPTION": "抽 2 張牌。 ** 下一回合， **抽 !M! 張牌。 ** {曇現} 。 如果本場戰鬥中 ** 你達到過 !S! [I] :  ** 獲得 1 張 {克拉米計劃} 。",
+			"DESCRIPTION": "抽 2 張牌。 ** 下一回合， **抽 !M! 張牌。 ** {曇現} 。 如果本場戰鬥中 ** 你達到過 !S! [B] :  ** 獲得 1 張 {克拉米計劃} 。",
 			"NAME": "克拉米·傑爾"
 		},
 		"animator:DolaCouronne":
@@ -872,8 +872,8 @@
 		},
 		"animator:FielNirvalen":
 		{
-			"DESCRIPTION": "選擇 !S! : 提升 [A] , ** 提升 [I] 或者 提升 [F] 。 ** 每回合一次， ** 當你重洗抽牌堆時: 預見 !S! 。",
-			"EXTENDED_DESCRIPTION": ["每回合一次，當你重洗抽牌堆時: #y預見 #b{0} 。", "提升 [A] 。", "提升 [I] 。", "提升 [F] 。"],
+			"DESCRIPTION": "選擇 !S! : 提升 [G] , ** 提升 [B] 或者 提升 [R] 。 ** 每回合一次， ** 當你重洗抽牌堆時: 預見 !S! 。",
+			"EXTENDED_DESCRIPTION": ["每回合一次，當你重洗抽牌堆時: #y預見 #b{0} 。", "提升 [G] 。", "提升 [B] 。", "提升 [R] 。"],
 			"NAME": "菲爾·尼爾巴連"
 		},
 		"animator:IzunaHatsuse":
@@ -884,7 +884,7 @@
 		},
 		"animator:Jibril":
 		{
-			"DESCRIPTION": "生成 1 個 黑暗 充能球。 ** 下個回合不會失去 [I] 。 ** 同調：打亂你的充能球 ** 並觸發你的前!M!個充能球。",
+			"DESCRIPTION": "生成 1 個 黑暗 充能球。 ** 下個回合不會失去 [B] 。 ** 同調：打亂你的充能球 ** 並觸發你的前!M!個充能球。",
 			"NAME": "吉普莉爾"
 		},
 		"animator:Shiro":
@@ -949,17 +949,17 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "獲得/提升 [A] 。 ** 同調 : 給手中 ** 隨機 1 張 攻擊牌 ** 提升 1 [A] 。",
+			"DESCRIPTION": "獲得/提升 [G] 。 ** 同調 : 給手中 ** 隨機 1 張 攻擊牌 ** 提升 1 [G] 。",
 			"NAME": "銀色獠牙"
 		},
 		"animator:Sonic":
 		{
-			"DESCRIPTION": "獲得 !S! 點 [A] 。 ** 獲得 !M! 層 殘影 。 ** 同調 : 獲得 1 張 {飛刀} 。",
+			"DESCRIPTION": "獲得 !S! 點 [G] 。 ** 獲得 !M! 層 殘影 。 ** 同調 : 獲得 1 張 {飛刀} 。",
 			"NAME": "音速索尼克"
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "獲得/提升 [I] 。 ** 生成 1 個 ** 凌風 充能球。   ** {有限} 。 被抽到時， ** 如果你有 3 個 ** 以上不同的充能球， ** 抽1張牌。",
+			"DESCRIPTION": "獲得/提升 [B] 。 ** 生成 1 個 ** 凌風 充能球。   ** {有限} 。 被抽到時， ** 如果你有 3 個 ** 以上不同的充能球， ** 抽1張牌。",
 			"NAME": "龍捲"
 		}
 	},
@@ -968,7 +968,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "你的回合開始時， ** 從四種隨機 {效果} 中選擇一種觸發。 ** 抽到： 減少 ** 這張牌的耗能 1 點， ** 然後隨機獲得 **  [I] ， [F] 或者 [A] 。",
+			"DESCRIPTION": "你的回合開始時， ** 從四種隨機 {效果} 中選擇一種觸發。 ** 抽到： 減少 ** 這張牌的耗能 1 點， ** 然後隨機獲得 **  [B] ， [R] 或者 [G] 。",
 			"NAME": "安茲·烏爾·恭"
 		},
 		"animator:Albedo":
@@ -978,7 +978,7 @@
 		},
 		"animator:Cocytus":
 		{
-			"DESCRIPTION": "如果你有不超過 ** !M! [F] : 提升 [F] 。 ** {有限} 。 同調 :  ** 獲得 !S! 層 {多層護甲} 。",
+			"DESCRIPTION": "如果你有不超過 ** !M! [R] : 提升 [R] 。 ** {有限} 。 同調 :  ** 獲得 !S! 層 {多層護甲} 。",
 			"NAME": "科賽特斯"
 		},
 		"animator:Demiurge":
@@ -1015,7 +1015,7 @@
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "對所有敵人 ** 給予 1 層 虛弱 。 ** 同調 : 從每個敵人偷取1點 [F] 。",
+			"DESCRIPTION": "對所有敵人 ** 給予 1 層 虛弱 。 ** 同調 : 從每個敵人偷取1點 [R] 。",
 			"NAME": "夏爾提雅"
 		}
 	},
@@ -1024,7 +1024,7 @@
 	{
 		"animator:CrowleyEusford":
 		{
-			"DESCRIPTION": "提高 [F] [A] 。 ** 本回合， ** 如果你 消耗 過牌， ** 激勵 1。",
+			"DESCRIPTION": "提高 [R] [G] 。 ** 本回合， ** 如果你 消耗 過牌， ** 激勵 1。",
 			"NAME": "克勞利·尤斯福德"
 		},
 		"animator:FeridBathory":
@@ -1049,7 +1049,7 @@
 		},
 		"animator:Mikaela":
 		{
-			"DESCRIPTION": "從棄牌堆中 ** 消耗 1 張牌。 ** 如果你消耗了 ** 狀態牌 或 詛咒牌 ： ** 獲得 !S! [F] 。",
+			"DESCRIPTION": "從棄牌堆中 ** 消耗 1 張牌。 ** 如果你消耗了 ** 狀態牌 或 詛咒牌 ： ** 獲得 !S! [R] 。",
 			"NAME": "百夜米迦爾"
 		},
 		"animator:Mitsuba":
@@ -1142,7 +1142,7 @@
 	{
 		"animator:Asuramaru":
 		{
-			"DESCRIPTION": "獲得 !M! [F] [A] [I] 。 ** 獲得 2 層 {惡魔形態}。 ** 獲得 2 張 {傷口} 。",
+			"DESCRIPTION": "獲得 !M! [R] [G] [B] 。 ** 獲得 2 層 {惡魔形態}。 ** 獲得 2 張 {傷口} 。",
 			"NAME": "阿朱羅丸"
 		},
 		"animator:BlackLotus":
@@ -1199,22 +1199,22 @@
 		},
 		"animator:Bienfu":
 		{
-			"DESCRIPTION": "不能被打出 。 ** 抽到時：提升 [I] 。 ** 被丟棄時：返回抽牌堆。",
+			"DESCRIPTION": "不能被打出 。 ** 抽到時：提升 [B] 。 ** 被丟棄時：返回抽牌堆。",
 			"NAME": "Bienfu"
 		},
 		"animator:MelzalgaldAlt_1":
 		{
-			"DESCRIPTION": "獲得 !M! 點 [F] 。",
+			"DESCRIPTION": "獲得 !M! 點 [R] 。",
 			"NAME": "梅魯扎嘎魯多之一"
 		},
 		"animator:MelzalgaldAlt_2":
 		{
-			"DESCRIPTION": "獲得 !M! 點 [I]。",
+			"DESCRIPTION": "獲得 !M! 點 [B]。",
 			"NAME": "梅魯扎嘎魯多之二"
 		},
 		"animator:MelzalgaldAlt_3":
 		{
-			"DESCRIPTION": "獲得 !M! 點 [A]。",
+			"DESCRIPTION": "獲得 !M! 點 [G]。",
 			"NAME": "梅魯扎嘎魯多之三"
 		},
 		"animator:OrbCore_Air":
@@ -1375,13 +1375,13 @@
 		},
 		"animator:SeriousSaitama":
 		{
-			"DESCRIPTION": "擊暈 所有敵人。 ** 給予所有敵人 X 層 易傷 。 ** 獲得 X [F] 。",
+			"DESCRIPTION": "擊暈 所有敵人。 ** 給予所有敵人 X 層 易傷 。 ** 獲得 X [R] 。",
 			"NAME": "認真的埼玉",
-			"UPGRADE_DESCRIPTION": "擊暈 所有敵人。 ** 給予所有敵人 X+ !M! 層 易傷 。 ** 獲得 X+!M! [F] 。"
+			"UPGRADE_DESCRIPTION": "擊暈 所有敵人。 ** 給予所有敵人 X+ !M! 層 易傷 。 ** 獲得 X+!M! [R] 。"
 		},
 		"animator:ShikizakiKiki":
 		{
-			"DESCRIPTION": "<DRW-M> 。 ** 增加 [F] 和 [A] 。 ** 手中所有的攻擊牌 ** 數值乘以 !S! 。 ",
+			"DESCRIPTION": "<DRW-M> 。 ** 增加 [R] 和 [G] 。 ** 手中所有的攻擊牌 ** 數值乘以 !S! 。 ",
 			"NAME": "四季崎 記紀"
 		},
 		"animator:SirTouchMe":
@@ -1391,7 +1391,7 @@
 		},
 		"animator:Truth":
 		{
-			"DESCRIPTION": "獲得 !M! [F] [A] [I] [E] 。 ** 如果你有 至少 3 個 ** 不同的充能球， ** 移除所有充能球， ** 否則從牌組選擇1張牌， ** 用1張 傷口永久替代它。",
+			"DESCRIPTION": "獲得 !M! [R] [G] [B] [E] 。 ** 如果你有 至少 3 個 ** 不同的充能球， ** 移除所有充能球， ** 否則從牌組選擇1張牌， ** 用1張 傷口永久替代它。",
 			"NAME": "真理"
 		},
 		"animator:Veldora":

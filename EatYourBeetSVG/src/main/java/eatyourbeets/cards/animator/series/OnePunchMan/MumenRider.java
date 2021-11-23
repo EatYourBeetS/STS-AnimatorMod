@@ -35,7 +35,7 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
-        GameUtilities.RetainSupercharged(true);
+        GameUtilities.MaintainPower(Affinity.Light);
         GameActions.Bottom.Cycle(name, 1);
     }
 

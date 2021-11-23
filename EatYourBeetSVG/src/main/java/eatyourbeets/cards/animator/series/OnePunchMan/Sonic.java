@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Sonic extends AnimatorCard
@@ -39,10 +39,10 @@ public class Sonic extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlur(secondaryValue);
-        GameActions.Bottom.GainAgility(magicNumber);
+        GameActions.Bottom.GainVelocity(magicNumber);
 
         int knives = 0;
-        if (AgilityStance.IsActive())
+        if (VelocityStance.IsActive())
         {
             knives += 1;
         }

@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
 import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.PlayerAttribute;
 import eatyourbeets.utilities.TargetHelper;
@@ -40,7 +40,7 @@ public class IsshinKurosaki extends AnimatorCard
     {
         makeChoice(m);
 
-        if (TrySpendAffinity(Affinity.Red) || ForceStance.IsActive())
+        if (TrySpendAffinity(Affinity.Red) || MightStance.IsActive())
         {
             makeChoice(m);
         }

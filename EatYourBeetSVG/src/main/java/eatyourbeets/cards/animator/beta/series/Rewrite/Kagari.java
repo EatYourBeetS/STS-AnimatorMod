@@ -11,7 +11,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.stances.EnduranceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -90,7 +90,7 @@ public class Kagari extends AnimatorCard //TODO add secondary effect
         @Override
         public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
-                GameActions.Bottom.GainWillpower(willpowerAmount + (player.stance.ID.equals(WillpowerStance.STANCE_ID) ? 1 : 0), player.stance.ID.equals(WillpowerStance.STANCE_ID));
+                GameActions.Bottom.GainEndurance(willpowerAmount + (player.stance.ID.equals(EnduranceStance.STANCE_ID) ? 1 : 0), player.stance.ID.equals(EnduranceStance.STANCE_ID));
                 GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, shacklesAmount);
                 this.amount -= 1;
                 updateDescription();

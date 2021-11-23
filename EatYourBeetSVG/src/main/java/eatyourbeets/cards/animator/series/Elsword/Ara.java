@@ -53,11 +53,11 @@ public class Ara extends AnimatorCard
 
         if (auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainWillpower(magicNumber);
+            GameActions.Bottom.GainEndurance(magicNumber);
         }
         else if (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Orange))
         {
-            GameActions.Bottom.GainAgility(magicNumber);
+            GameActions.Bottom.GainVelocity(magicNumber);
         }
     }
 

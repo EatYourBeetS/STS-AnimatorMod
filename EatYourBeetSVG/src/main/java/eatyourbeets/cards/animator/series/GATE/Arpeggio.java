@@ -27,7 +27,7 @@ public class Arpeggio extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(2);
@@ -47,7 +47,7 @@ public class Arpeggio extends AnimatorCard
 
     public static class ArpeggioPower extends AnimatorClickablePower
     {
-        private static final int MAX_BONUS = 2;
+        private static final int MAX_BONUS = 6;
         private static final int EARTH_BONUS = 1;
         private int intellectBonus;
 

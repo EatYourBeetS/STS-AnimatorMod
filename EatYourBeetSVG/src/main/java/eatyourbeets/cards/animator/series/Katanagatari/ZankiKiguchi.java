@@ -35,12 +35,12 @@ public class ZankiKiguchi extends AnimatorCard
 
         if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) < magicNumber)
         {
-            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.GainMight(1);
         }
 
         if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) < magicNumber)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainVelocity(1);
         }
 
         if (info.CanActivateSemiLimited)

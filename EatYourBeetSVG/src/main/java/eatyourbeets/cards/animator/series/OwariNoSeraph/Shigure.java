@@ -7,7 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -46,7 +46,7 @@ public class Shigure extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (AgilityStance.IsActive())
+        if (VelocityStance.IsActive())
         {
             GameActions.Bottom.Cycle(name, secondaryValue);
         }

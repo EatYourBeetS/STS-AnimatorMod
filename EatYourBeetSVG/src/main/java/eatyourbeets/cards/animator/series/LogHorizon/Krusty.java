@@ -40,7 +40,7 @@ public class Krusty extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainForce(secondaryValue);
+        GameActions.Bottom.GainMight(secondaryValue);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.IncreaseScaling(player.hand, player.hand.size(), Affinity.Red, secondaryValue).SetFilter(c -> c.uuid != uuid);

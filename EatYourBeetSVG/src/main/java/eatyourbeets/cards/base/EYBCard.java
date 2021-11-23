@@ -28,6 +28,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.resources.GR;
@@ -1168,6 +1169,11 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
                 tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
             }
 
+        }
+
+        for (AbstractAffinityPower p : CombatStats.Affinities.Powers) {
+            tempBlock = p.modifyBlock(tempBlock, this);
+            tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
         }
 
         tempBlock = ModifyBlock(enemy, tempBlock);

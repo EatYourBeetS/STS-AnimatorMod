@@ -45,7 +45,7 @@ public class Mikaela extends AnimatorCard
         {
             if (cards.size() > 0 && GameUtilities.IsHindrance(cards.get(0)))
             {
-                GameActions.Bottom.GainForce(secondaryValue);
+                GameActions.Bottom.GainMight(secondaryValue);
                 GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.SLASH_VERTICAL);
             }
         });

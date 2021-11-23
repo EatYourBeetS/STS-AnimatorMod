@@ -3,20 +3,20 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.MightPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class CorruptionStance extends EYBStance
+public class MightStance extends EYBStance
 {
-    public static final Affinity AFFINITY = CorruptionPower.AFFINITY_TYPE;
-    public static final String STANCE_ID = CreateFullID(CorruptionStance.class);
+    public static final Affinity AFFINITY = MightPower.AFFINITY_TYPE;
+    public static final String STANCE_ID = CreateFullID(MightStance.class);
 
     public static boolean IsActive()
     {
         return GameUtilities.InStance(STANCE_ID);
     }
 
-    public CorruptionStance()
+    public MightStance()
     {
         super(STANCE_ID, AFFINITY, AbstractDungeon.player);
     }
@@ -24,19 +24,18 @@ public class CorruptionStance extends EYBStance
     @Override
     protected Color GetParticleColor()
     {
-        return CreateColor(0.3f, 0.35f, 0.2f, 0.3f, 0.4f, 0.5f);
+        return CreateColor(0.8f, 0.9f, 0.3f, 0.4f, 0.2f, 0.3f);
     }
 
     @Override
     protected Color GetAuraColor()
     {
-        return CreateColor(0.3f, 0.35f, 0.1f, 0.2f, 0.4f, 0.5f);
+        return CreateColor(0.8f, 0.9f, 0.3f, 0.4f, 0.2f, 0.3f);
     }
 
     @Override
     protected Color GetMainColor()
     {
-        return new Color(0.3f, 0.2f, 0.7f, 1f);
+        return new Color(1f, 0.3f, 0.2f, 1f);
     }
-
 }

@@ -69,7 +69,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (info.IsSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
         {
-            GameActions.Bottom.GainIntellect(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
+            GameActions.Bottom.GainWisdom(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
         }
 
         Traveler_Lumine other = (Traveler_Lumine) makeStatEquivalentCopy();

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.animator.beta.special.RukiaBankai;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 
 public class RukiaKuchiki extends AnimatorCard
@@ -35,7 +35,7 @@ public class RukiaKuchiki extends AnimatorCard
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         }
 
-        if ((player.filledOrbCount() >= secondaryValue || IntellectStance.IsActive()) && TrySpendAffinity(Affinity.Green))
+        if ((player.filledOrbCount() >= secondaryValue || WisdomStance.IsActive()) && TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.MakeCardInDrawPile(new RukiaBankai());
             GameActions.Last.Exhaust(this);

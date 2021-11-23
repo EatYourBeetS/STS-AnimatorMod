@@ -15,7 +15,14 @@ import java.util.List;
 
 public class KaguyaHouraisan extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KaguyaHouraisan.class).SetSkill(1,CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(KaguyaHouraisan.class).SetSkill(1,CardRarity.RARE, EYBCardTarget.None).SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (EYBCardData d : AffinityToken.GetCards())
+                {
+                    data.AddPreview(d.CreateNewInstance(), true);
+                }
+            });
 
     public KaguyaHouraisan()
     {

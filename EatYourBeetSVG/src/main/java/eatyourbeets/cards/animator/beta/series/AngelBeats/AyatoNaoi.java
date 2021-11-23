@@ -12,7 +12,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -61,14 +61,14 @@ public class AyatoNaoi extends AnimatorCard
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(o -> {
-                if (o.size() > 0 && IntellectStance.IsActive()) {
+                if (o.size() > 0 && WisdomStance.IsActive()) {
                     GameActions.Bottom.TriggerOrbPassive(o.get(0), 1);
                 }
             });
         }
 
-        if (!IntellectStance.IsActive()) {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+        if (!WisdomStance.IsActive()) {
+            GameActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
         }
     }
 }

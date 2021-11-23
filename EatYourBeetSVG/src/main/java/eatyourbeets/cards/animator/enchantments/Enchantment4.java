@@ -7,7 +7,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class Enchantment4 extends Enchantment
 {
@@ -68,15 +67,12 @@ public class Enchantment4 extends Enchantment
         currentAffinity = GetAffinity();
         if (currentAffinity != null) {
             final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber, true);
-
-            if (p.GetThresholdBonusPower() == null) {
-                GameActions.Bottom.GainEnergyNextTurn(magicNumber);
+            if (p != null) {
+                p.IncreasePowerLevelModifier(magicNumber);
             }
             else {
-                GameActions.Bottom.StackPower(TargetHelper.Player(), p.GetThresholdBonusPower(), magicNumber);
+                GameActions.Bottom.GainEnergyNextTurn(magicNumber);
             }
-
         }
     }
 
@@ -84,8 +80,8 @@ public class Enchantment4 extends Enchantment
     public void AtEndOfTurnEffect(boolean isPlayer) {
         if (currentAffinity != null) {
             final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            if (p.GetThresholdBonusPower() != null) {
-                GameActions.Bottom.StackPower(TargetHelper.Player(), p.GetThresholdBonusPower(), -magicNumber);
+            if (p != null) {
+                p.IncreasePowerLevelModifier(-magicNumber);
             }
 
             currentAffinity = null;

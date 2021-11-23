@@ -304,7 +304,7 @@ public class JUtils
         return best;
     }
 
-    // Simple string Formatting in which integers inside curly braces are replaced by args[i].
+    // Simple string Formatting in which integers inside curly braces are replaced by args[B].
     public static String Format(String format, Object... args)
     {
         if (StringUtils.isEmpty(format))

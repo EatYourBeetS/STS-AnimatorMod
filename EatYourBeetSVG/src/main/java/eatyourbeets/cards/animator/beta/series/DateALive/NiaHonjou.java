@@ -44,7 +44,7 @@ public class NiaHonjou extends AnimatorCard
         super.triggerOnManualDiscard();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Top.GainBlessing(secondaryValue);
+            GameActions.Top.GainSupercharge(secondaryValue);
         }
     }
 

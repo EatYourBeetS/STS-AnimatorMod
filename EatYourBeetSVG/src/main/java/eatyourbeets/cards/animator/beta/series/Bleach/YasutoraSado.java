@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.VelocityStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -62,8 +62,8 @@ public class YasutoraSado extends AnimatorCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
         }
 
         choices.Select(GameActions.Top, 1, m)

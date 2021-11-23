@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -54,7 +54,7 @@ public class SabiHakuhei extends AnimatorCard {
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Green).AddConditionalCallback(() -> {
-                GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+                GameActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
             });
         }
     }

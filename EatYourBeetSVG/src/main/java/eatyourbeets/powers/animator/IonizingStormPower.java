@@ -9,7 +9,6 @@ import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.SuperchargedPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber, OnOrbApplyFocusSubscriber
 {
-    public static final int PER_CHARGE = 5;
+    public static final int PER_CHARGE = 3;
     public static final String POWER_ID = CreateFullID(IonizingStormPower.class);
 
     public IonizingStormPower(AbstractPlayer owner, int amount)
@@ -92,12 +91,7 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
     @Override
     public void OnApplyFocus(AbstractOrb orb) {
         if (Lightning.ORB_ID.equals(orb.ID)) {
-            SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-            if (po != null) {
-                orb.passiveAmount += po.charge / PER_CHARGE;
-                orb.evokeAmount += po.charge / PER_CHARGE;
-            }
-
+            GameActions.Bottom.GainSupercharge(PER_CHARGE);
         }
     }
 }

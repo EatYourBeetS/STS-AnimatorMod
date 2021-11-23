@@ -8,8 +8,8 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.stances.EnduranceStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Nyanta extends AnimatorCard
@@ -49,12 +49,12 @@ public class Nyanta extends AnimatorCard
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Orange,Affinity.Green).AddConditionalCallback((cards) -> {
             for (AbstractCard c : cards) {
                 if (c.cardID.equals(AffinityToken_Green.DATA.ID)) {
-                    GameActions.Bottom.GainWillpower(magicNumber);
-                    GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+                    GameActions.Bottom.GainEndurance(magicNumber);
+                    GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
                 }
                 else {
-                    GameActions.Bottom.GainAgility(magicNumber);
-                    GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+                    GameActions.Bottom.GainVelocity(magicNumber);
+                    GameActions.Bottom.ChangeStance(EnduranceStance.STANCE_ID);
                 }
             }
         });

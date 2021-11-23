@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.common.CounterAttackPower;
-import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.stances.EnduranceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -40,12 +40,12 @@ public class Sebas extends AnimatorCard
         final int counter = JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking);
         if (counter > 0)
         {
-            GameActions.Bottom.GainForce(counter);
+            GameActions.Bottom.GainMight(counter);
             GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
         }
 
         int energy = 0;
-        if (WillpowerStance.IsActive())
+        if (EnduranceStance.IsActive())
         {
             energy += 1;
         }

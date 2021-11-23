@@ -46,7 +46,7 @@ public class Ningguang extends AnimatorCard
 
         if (info.CanActivateSemiLimited && (CheckAffinity(Affinity.Orange) || CheckAffinity(Affinity.Blue)) && info.TryActivateSemiLimited()) {
             GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Orange).AddConditionalCallback(() -> {
-                GameActions.Bottom.GainEndurance(secondaryValue, true);
+                GameActions.Bottom.GainResistance(secondaryValue, true);
             });
         }
     }

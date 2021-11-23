@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.BurningPower;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -51,7 +51,7 @@ public class Tartaglia extends AnimatorCard {
                         if (GameUtilities.IsDeadOrEscaped(t) && CombatStats.TryActivateLimited(cardID))
                         {
                             GameActions.Bottom.MakeCardInDrawPile(new Curse_Delusion());
-                            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+                            GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
                             break;
                         }
                     }

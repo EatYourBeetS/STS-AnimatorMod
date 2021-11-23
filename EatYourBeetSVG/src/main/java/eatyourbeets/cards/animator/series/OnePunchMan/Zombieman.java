@@ -33,7 +33,7 @@ public class Zombieman extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainForce(1);
+        GameActions.Bottom.GainMight(1);
         GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false).IgnoreTempHP(true);
         GameActions.Bottom.Flash(this);
     }

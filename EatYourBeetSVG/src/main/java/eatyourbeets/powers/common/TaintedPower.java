@@ -7,7 +7,6 @@ import eatyourbeets.powers.CommonPower;
 public class TaintedPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(TaintedPower.class);
-    public static final int DAMAGE_DECREASE = 1;
 
     public TaintedPower(AbstractCreature owner, int amount)
     {
@@ -19,17 +18,13 @@ public class TaintedPower extends CommonPower
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - DAMAGE_DECREASE) : damage, type);
+        return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - GetDamageDecrease()) : damage, type);
     }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
     {
-        if (damageType == DamageInfo.DamageType.NORMAL)
-        {
-            damage += amount;
-        }
-        return super.atDamageReceive(damage, damageType);
+        return super.atDamageReceive(damage += amount, damageType);
     }
 
     @Override
@@ -43,6 +38,10 @@ public class TaintedPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount, DAMAGE_DECREASE);
+        this.description = FormatDescription(0, amount, GetDamageDecrease());
+    }
+
+    public int GetDamageDecrease() {
+        return 1 + amount / 10;
     }
 }

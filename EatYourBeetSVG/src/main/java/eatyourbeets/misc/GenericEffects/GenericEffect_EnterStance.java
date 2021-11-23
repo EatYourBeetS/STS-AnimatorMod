@@ -27,12 +27,12 @@ public class GenericEffect_EnterStance extends GenericEffect
     {
         // TODO: Create a reusable method which replaces all keywords with their icons
         String text = tooltip.title
-        .replace(GR.Tooltips.Agility.title, "[A]")
-        .replace(GR.Tooltips.Force.title, "[F]")
-        .replace(GR.Tooltips.Intellect.title, "[I]")
-        .replace(GR.Tooltips.Willpower.title, "[W]")
-        .replace(GR.Tooltips.Blessing.title, "[B]")
-        .replace(GR.Tooltips.Corruption.title, "[C]");
+        .replace(GR.Tooltips.Velocity.title, "[R]")
+        .replace(GR.Tooltips.Might.title, "[G]")
+        .replace(GR.Tooltips.Wisdom.title, "[B]")
+        .replace(GR.Tooltips.Endurance.title, "[O]")
+        .replace(GR.Tooltips.Supercharge.title, "[L]")
+        .replace(GR.Tooltips.Desecration.title, "[D]");
 
         return GR.Animator.Strings.Actions.EnterStance("{" + text + "}", true);
     }

@@ -12,9 +12,15 @@
 		"NAMES": ["affinity"],
 		"PROPER_NAME": "Affinity Count"
 	},
+	"Affinity Level":
+	{
+		"DESCRIPTION": "Increases [A-Gen] #yPower gains from any source by #b+100% per level of that [A-Gen] #yPower.",
+		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels"],
+		"PROPER_NAME": "Affinity Level"
+	},
 	"Affinity Power":
 	{
-		"DESCRIPTION": "[A-Red] -> [F], [A-Green] -> [A], [A-Blue] -> [I], NL [A-Orange] -> [W], [A-Light] -> [B], [A-Dark] -> [C], NL [A-Silver] -> [T]",
+		"DESCRIPTION": "[A-Red] -> [R], [A-Green] -> [G], [A-Blue] -> [B], NL [A-Orange] -> [O], [A-Light] -> [L], [A-Dark] -> [D], NL [A-Silver] -> [S]",
 		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
@@ -26,21 +32,9 @@
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [A] up to #b50.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [G] up to #b50.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
-	},
-	"Agility Scaling":
-	{
-	  "DESCRIPTION": "For each point of [A] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [A].",
-	  "NAMES": ["[a] scaling", "agility scaling"],
-	  "PROPER_NAME": "Agility Scaling"
-	},
-	"Agility Stance":
-	{
-		"DESCRIPTION": "Stance: [A] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A].",
-		"NAMES": ["[a] stance", "agility stance"],
-		"PROPER_NAME": "Agility Stance"
 	},
 	"Autoplay":
 	{
@@ -50,21 +44,9 @@
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Supercharged] for every #b10 [B] up to #b50.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [L] for every #b10 [L] up to #b50.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
-	},
-	"Blessing Scaling":
-	{
-	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [B].",
-	  "NAMES": ["[b] scaling", "blessing scaling"],
-	  "PROPER_NAME": "Blessing Scaling"
-	},
-	"Blessing Stance":
-	{
-	  "DESCRIPTION": "Stance: [B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B].",
-	  "NAMES": ["[b] stance", "blessing stance"],
-	  "PROPER_NAME": "Blessing Stance"
 	},
 	"Blinded":
 	{
@@ -98,7 +80,7 @@
 	},
 	"Common Buff":
 	{
-		"DESCRIPTION": "[Strength], [Dexterity], [Focus], [Endurance], [Thorns], [Blur], [Plated Armor], [Metallicize], [Intangible], [Artifact].",
+		"DESCRIPTION": "Buffs that are not prefixed with the name of a card.",
 		"NAMES": ["common buff", "common buffs"],
 		"PROPER_NAME": "Common Buff"
 	},
@@ -128,21 +110,9 @@
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Desecration] for every #b10 [C] up to #b50.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [D] for every #b10 [D] up to #b50.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
-	},
-	"Corruption Scaling":
-	{
-	  "DESCRIPTION": "For each point of [C] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [C].",
-	  "NAMES": ["[c] scaling", "corruption scaling"],
-	  "PROPER_NAME": "Corruption Scaling"
-	},
-	"Corruption Stance":
-	{
-	  "DESCRIPTION": "Stance: [C] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C].",
-	  "NAMES": ["[c] stance", "corruption stance"],
-	  "PROPER_NAME": "Corruption Stance"
 	},
 	"Counter-Attack":
 	{
@@ -176,15 +146,21 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gains #yCharge as you expend [A-Gen] or gain debuffs. NL When you play a card targeting an enemy, Consume 6 #yCharge to apply [Tainted] to the target, ignoring [Artifact] (this effect can stack).",
+	  "DESCRIPTION": "Gains stacks when you make [A-Dark] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Dark] gained this combat. NL Spend #b10 stacks to apply #b2 [Tainted] upon playing a card targeting an enemy (this effect can stack).",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
-	"Diminish":
+	"Desecration Scaling":
 	{
-		"DESCRIPTION": "Decrease the stat of a card for the rest of this combat.",
-		"NAMES": ["diminish", "diminished", "diminishing"],
-		"PROPER_NAME": "Diminish"
+	  "DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [D].",
+	  "NAMES": ["[d] scaling", "desecration scaling"],
+	  "PROPER_NAME": "Desecration Scaling"
+	},
+	"Desecration Stance":
+	{
+	  "DESCRIPTION": "Stance: [D] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [D].",
+	  "NAMES": ["[d] stance", "desecration stance"],
+	  "PROPER_NAME": "Desecration Stance"
 	},
 	"Electrified":
 	{
@@ -212,9 +188,21 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you. Reduce damage taken by 4% per stack.",
+	  "DESCRIPTION": "Gains stacks when you make [A-Orange] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Orange] gained this combat. NL Spend #b10 stacks to increase the [Block] of the next [Block] card by #b+100% (this effect can stack).",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
+	},
+	"Endurance Scaling":
+	{
+	  "DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [O].",
+	  "NAMES": ["[o] scaling", "endurance scaling"],
+	  "PROPER_NAME": "Endurance Scaling"
+	},
+	"Endurance Stance":
+	{
+	  "DESCRIPTION": "Stance: [O] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [O].",
+	  "NAMES": ["[o] stance", "endurance stance"],
+	  "PROPER_NAME": "Endurance Stance"
 	},
 	"Energized":
 	{
@@ -266,21 +254,9 @@
 	},
 	"Force":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Strength] for every #b10 [F] up to #b50.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Strength] for every #b10 [R] up to #b50.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
-	},
-	"Force Scaling":
-	{
-	  "DESCRIPTION": "For each point of [F] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [F].",
-	  "NAMES": ["[f] scaling", "force scaling"],
-	  "PROPER_NAME": "Force Scaling"
-	},
-	"Force Stance":
-	{
-		"DESCRIPTION": "Stance: [F] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F].",
-		"NAMES": ["[f] stance", "force stance"],
-		"PROPER_NAME": "Force Stance"
 	},
 	"Freezing":
 	{
@@ -350,21 +326,9 @@
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Focus] for every #b10 [I] up to #b50.",
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Focus] for every #b10 [B] up to #b50.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
-	},
-	"Intellect Scaling":
-	{
-	  "DESCRIPTION": "For each point of [I] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [I].",
-	  "NAMES": ["[i] scaling", "intellect scaling"],
-	  "PROPER_NAME": "Intellect Scaling"
-	},
-	"Intellect Stance":
-	{
-		"DESCRIPTION": "Stance: [I] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I].",
-		"NAMES": ["[i] stance", "intellect stance"],
-		"PROPER_NAME": "Intellect Stance"
 	},
 	"Interactable":
 	{
@@ -413,6 +377,24 @@
 		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
+	},
+	"Might":
+	{
+	  "DESCRIPTION": "Gains stacks when you make [A-Red] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Red] gained this combat. NL Spend #b10 stacks to increase the damage of the next #yAttack by #b+100% (this effect can stack).",
+	  "NAMES": ["might"],
+	  "PROPER_NAME": "Might"
+	},
+	"Might Scaling":
+	{
+	  "DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [R].",
+	  "NAMES": ["[r] scaling", "might scaling"],
+	  "PROPER_NAME": "Might Scaling"
+	},
+	"Might Stance":
+	{
+		"DESCRIPTION": "Stance: [R] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [R].",
+		"NAMES": ["[r] stance", "might stance"],
+		"PROPER_NAME": "Might Stance"
 	},
 	"Multicolor":
 	{
@@ -474,6 +456,12 @@
 	  "NAMES": ["rejuvenation"],
 	  "PROPER_NAME": "Rejuvenation"
 	},
+	"Resistance":
+	{
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you.",
+	  "NAMES": ["resistance"],
+	  "PROPER_NAME": "Resistance"
+	},
 	"Same-Series":
 	{
 		"DESCRIPTION": "A card belonging to the same series as this one.",
@@ -522,11 +510,23 @@
 		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPER_NAME": "Stun"
 	},
-	"Supercharged":
+	"Supercharge":
 	{
-	  "DESCRIPTION": "Gains #yCharge as you expend [E]. NL Consume 8 #yCharge to increase the damage and [Block] of the next card played with damage and [Block] by 50% (this effect can stack).",
-	  "NAMES": ["supercharged"],
-	  "PROPER_NAME": "Supercharged"
+	  "DESCRIPTION": "Gains stacks when you make [A-Light] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Light] gained this combat. NL Spend #b10 stacks to increase the amount of the next buff gained by #b+100% (this effect can stack).",
+	  "NAMES": ["Supercharge"],
+	  "PROPER_NAME": "Supercharge"
+	},
+	"Supercharge Scaling":
+	{
+	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [L].",
+	  "NAMES": ["[l] scaling", "supercharge scaling"],
+	  "PROPER_NAME": "Supercharge Scaling"
+	},
+	"Supercharge Stance":
+	{
+	  "DESCRIPTION": "Stance: [L] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [L].",
+	  "NAMES": ["[l] stance", "supercharge stance"],
+	  "PROPER_NAME": "Supercharge Stance"
 	},
 	"Swirled":
 	{
@@ -542,7 +542,7 @@
 	},
 	"Tainted":
 	{
-		"DESCRIPTION": "Take additional damage from attacks. Deal 1 less damage with attacks. Reduced by half each turn.",
+		"DESCRIPTION": "Take additional damage from any source. Deal #b1 less damage with attacks, increasing by #b1 for every #b10 stacks. Reduced by half each turn. Ignores [Artifact].",
 		"NAMES": ["tainted"],
 		"PROPER_NAME": "Tainted"
 	},
@@ -554,20 +554,20 @@
 	},
 	"Technic":
 	{
-		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Genesis] for every #b20 [T] up to #b60.",
+		"DESCRIPTION": "Gains stacks when you make [A-Silver] #ySynergies. Gains #b1 #yLevel for every #b20 [A-Silver] gained this combat. NL Spend #b10 stacks to reduce the cost of the next #yAttack or #ySkill played by #b1 this combat.",
 		"NAMES": ["technic"],
 		"PROPER_NAME": "Technic"
 	},
 	"Technic Scaling":
 	{
-	  "DESCRIPTION": "For each point of [T] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [T].",
-	  "NAMES": ["[t] scaling", "technic scaling"],
+	  "DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [S].",
+	  "NAMES": ["[s] scaling", "technic scaling"],
 	  "PROPER_NAME": "Technic Scaling"
 	},
 	"Technic Stance":
 	{
-		"DESCRIPTION": "Stance: [T] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [T].",
-		"NAMES": ["[t] stance", "technic stance"],
+		"DESCRIPTION": "Stance: [S] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [S].",
+		"NAMES": ["[s] stance", "technic stance"],
 		"PROPER_NAME": "Technic Stance"
 	},
 	"Temporary HP":
@@ -588,6 +588,30 @@
 		"NAMES": ["trigger","triggered","triggers"],
 		"PROPER_NAME": "Trigger"
 	},
+	"Velocity":
+	{
+	  "DESCRIPTION": "Gains stacks when you make [A-Green] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Green] gained this combat. NL Spend #b10 stacks to draw #b1 card upon playing a #ySkill (this effect can stack).",
+	  "NAMES": ["velocity"],
+	  "PROPER_NAME": "Velocity"
+	},
+	"Velocity Scaling":
+	{
+	  "DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [G].",
+	  "NAMES": ["[g] scaling", "velocity scaling"],
+	  "PROPER_NAME": "Velocity Scaling"
+	},
+	"Velocity Stance":
+	{
+		"DESCRIPTION": "Stance: [G] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [G].",
+		"NAMES": ["[g] stance", "velocity stance"],
+		"PROPER_NAME": "Velocity Stance"
+	},
+	"Vigor":
+	{
+		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
+		"NAMES": ["vigor"],
+		"PROPER_NAME": "Vigor"
+	},
 	"Vitality":
 	{
 		"DESCRIPTION": "At the start of each turn, gain [Temporary HP].",
@@ -596,27 +620,27 @@
 	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [W] up to #b50.",
+	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [O] up to #b50.",
 	  "NAMES": ["willpower"],
 	  "PROPER_NAME": "Willpower"
 	},
-	"Willpower Scaling":
+	"Wisdom":
 	{
-	  "DESCRIPTION": "For each point of [W] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [W].",
-	  "NAMES": ["[w] scaling", "willpower scaling"],
-	  "PROPER_NAME": "Willpower Scaling"
+	  "DESCRIPTION": "Gains stacks when you make [A-Blue] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Blue] gained this combat. NL Spend #b10 stacks to increase the [Focus] of the next #yOrb #yChanneled by #b+100% (this effect can stack).",
+	  "NAMES": ["wisdom"],
+	  "PROPER_NAME": "Wisdom"
 	},
-	"Willpower Stance":
+	"Wisdom Scaling":
 	{
-	  "DESCRIPTION": "Stance: [W] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W].",
-	  "NAMES": ["[w] stance", "willpower stance"],
-	  "PROPER_NAME": "Willpower Stance"
+	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [B].",
+	  "NAMES": ["[b] scaling", "wisdom scaling"],
+	  "PROPER_NAME": "Wisdom Scaling"
 	},
-	"Vigor":
+	"Wisdom Stance":
 	{
-		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
-		"NAMES": ["vigor"],
-		"PROPER_NAME": "Vigor"
+		"DESCRIPTION": "Stance: [B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [B].",
+		"NAMES": ["[b] stance", "wisdom stance"],
+		"PROPER_NAME": "Wisdom Stance"
 	},
 	"~Block Scaling":
 	{

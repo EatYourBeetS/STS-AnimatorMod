@@ -62,7 +62,7 @@ public class HeavyWarrior extends AnimatorCard
             GameActions.Bottom.Motivate(1);
         }
 
-        GameActions.Bottom.GainForce(GetXValue());
+        GameActions.Bottom.GainMight(GetXValue());
         TrySpendAffinity(Affinity.Red, GetXValue());
     }
 }

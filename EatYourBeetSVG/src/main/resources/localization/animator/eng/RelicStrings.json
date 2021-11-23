@@ -68,7 +68,7 @@
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} HP to deal #b{1} damage to ALL enemies, then increase damage and cost by #b{2}."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [R] and [G]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} HP to deal #b{1} damage to ALL enemies, then increase damage and cost by #b{2}."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},
@@ -104,7 +104,7 @@
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [B]."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [L]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
@@ -296,7 +296,7 @@
 	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [B].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},

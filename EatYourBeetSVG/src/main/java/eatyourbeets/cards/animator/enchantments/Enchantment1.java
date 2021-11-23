@@ -81,12 +81,12 @@ public class Enchantment1 extends Enchantment
         else if (auxiliaryData.form == 7) {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(WillpowerStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(BlessingStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(CorruptionStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
             }
 
             choices.Select(1, m);
@@ -121,17 +121,17 @@ public class Enchantment1 extends Enchantment
     protected String GetStanceID() {
         switch(auxiliaryData.form) {
             case 1:
-                return ForceStance.STANCE_ID;
+                return MightStance.STANCE_ID;
             case 2:
-                return AgilityStance.STANCE_ID;
+                return VelocityStance.STANCE_ID;
             case 3:
-                return IntellectStance.STANCE_ID;
+                return WisdomStance.STANCE_ID;
             case 4:
-                return WillpowerStance.STANCE_ID;
+                return EnduranceStance.STANCE_ID;
             case 5:
-                return BlessingStance.STANCE_ID;
+                return SuperchargeStance.STANCE_ID;
             case 6:
-                return CorruptionStance.STANCE_ID;
+                return DesecrationStance.STANCE_ID;
         }
         return NeutralStance.STANCE_ID;
     }

@@ -43,7 +43,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.GainAgility(secondaryValue);
+        GameActions.Bottom.GainVelocity(secondaryValue);
     }
 
     @Override

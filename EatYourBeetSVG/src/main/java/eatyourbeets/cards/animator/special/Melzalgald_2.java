@@ -25,6 +25,6 @@ public class Melzalgald_2 extends MelzalgaldAlt
     {
         GameActions.Bottom.RecoverHP(secondaryValue);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainWisdom(magicNumber);
     }
 }

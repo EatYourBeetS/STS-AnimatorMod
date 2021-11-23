@@ -49,6 +49,21 @@ public class AliceMargatroid extends AnimatorCard
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+            CombatStats.onTrySpendAffinity.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+            CombatStats.onTrySpendAffinity.Unsubscribe(this);
+        }
+
+
+        @Override
         public void atStartOfTurnPostDraw()
         {
             super.atStartOfTurn();

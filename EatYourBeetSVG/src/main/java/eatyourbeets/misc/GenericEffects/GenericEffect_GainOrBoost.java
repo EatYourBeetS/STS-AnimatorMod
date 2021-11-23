@@ -23,17 +23,17 @@ public class GenericEffect_GainOrBoost extends GenericEffect
     public String GetText()
     {
         String symbol = "";
-        if (GR.Tooltips.Agility.Is(tooltip))
+        if (GR.Tooltips.Velocity.Is(tooltip))
         {
-            symbol = "[A]";
+            symbol = "[G]";
         }
-        else if (GR.Tooltips.Force.Is(tooltip))
+        else if (GR.Tooltips.Might.Is(tooltip))
         {
-            symbol = "[F]";
+            symbol = "[R]";
         }
-        else if (GR.Tooltips.Intellect.Is(tooltip))
+        else if (GR.Tooltips.Wisdom.Is(tooltip))
         {
-            symbol = "[I]";
+            symbol = "[B]";
         }
 
         if (boost)
@@ -53,17 +53,17 @@ public class GenericEffect_GainOrBoost extends GenericEffect
     @Override
     public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
     {
-        if (GR.Tooltips.Agility.Is(tooltip))
+        if (GR.Tooltips.Velocity.Is(tooltip))
         {
-            GameActions.Bottom.GainAgility(amount, boost);
+            GameActions.Bottom.GainVelocity(amount, boost);
         }
-        else if (GR.Tooltips.Force.Is(tooltip))
+        else if (GR.Tooltips.Might.Is(tooltip))
         {
-            GameActions.Bottom.GainForce(amount, boost);
+            GameActions.Bottom.GainMight(amount, boost);
         }
-        else if (GR.Tooltips.Intellect.Is(tooltip))
+        else if (GR.Tooltips.Wisdom.Is(tooltip))
         {
-            GameActions.Bottom.GainIntellect(amount, boost);
+            GameActions.Bottom.GainWisdom(amount, boost);
         }
     }
 }

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -42,13 +42,13 @@ public class ShizuruNakatsu extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
         GameActions.Bottom.GainBlock(block);
 
-        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        if (!player.stance.ID.equals(VelocityStance.STANCE_ID))
         {
             GameActions.Bottom.DiscardFromHand(name, magicNumber, true)
                     .ShowEffect(true, true)
                     .SetFilter(c -> c.type == CardType.SKILL)
                     .SetOptions(false, false, false)
-                    .AddCallback(() -> GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID));
+                    .AddCallback(() -> GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID));
         }
     }
 

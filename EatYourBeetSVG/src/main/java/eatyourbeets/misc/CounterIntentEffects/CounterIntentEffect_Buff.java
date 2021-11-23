@@ -11,13 +11,13 @@ public class CounterIntentEffect_Buff extends CounterIntentEffect
     @Override
     public void EnqueueActions(EYBCard nanami, AbstractPlayer p, AbstractMonster m)
     {
-        GameActions.Bottom.GainForce(GetForce(nanami));
+        GameActions.Bottom.GainMight(GetForce(nanami));
     }
 
     @Override
     public String GetDescription(EYBCard nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Might, true);
     }
 
     private int GetForce(EYBCard nanami)

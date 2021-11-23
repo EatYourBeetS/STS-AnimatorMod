@@ -173,7 +173,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
         PlayerGainVulnerable2(ACTIONS.GainAmount(3, GR.Tooltips.Vulnerable, true), 3, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(null, p, 3)),
         PlayerGainWeak(ACTIONS.GainAmount(2, GR.Tooltips.Weak, true), 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 2)),
         PlayerGainWeak2(ACTIONS.GainAmount(3, GR.Tooltips.Weak, true), 3, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 3)),
-        PlayerLoseBalance(ACTIONS.LosePower(1, GR.Tooltips.Endurance, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Endurance, -1)),
+        PlayerLoseBalance(ACTIONS.LosePower(1, GR.Tooltips.Resistance, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -1)),
         PlayerLoseDexterity(ACTIONS.LosePower(1, GR.Tooltips.Dexterity, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Dexterity, -1)),
         PlayerLoseFocus(ACTIONS.LosePower(1, GR.Tooltips.Focus, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Focus, -1)),
         PlayerLoseStrength(ACTIONS.LosePower(1, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Strength, -1)),
@@ -207,9 +207,9 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
         NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Blessing, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainBlessing(3, false)),
-        GainCorruption(ACTIONS.GainAmount(12, GR.Tooltips.Corruption, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainCorruption(4, false)),
-        GainIntellect(ACTIONS.GainAmount(9, GR.Tooltips.Intellect, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainIntellect(3, false)),
+        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Supercharge, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainSupercharge(3, false)),
+        GainCorruption(ACTIONS.GainAmount(12, GR.Tooltips.Desecration, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainDesecration(4, false)),
+        GainIntellect(ACTIONS.GainAmount(9, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainWisdom(3, false)),
         GainStrength(ACTIONS.GainAmount(2, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainStrength(2)),
         ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 9, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

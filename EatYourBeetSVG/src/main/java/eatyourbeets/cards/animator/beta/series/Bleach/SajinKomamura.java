@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.stances.EYBStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.MightStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
@@ -52,19 +52,19 @@ public class SajinKomamura extends AnimatorCard
     {
         RandomizedList<String> stances = new RandomizedList<>();
 
-        if (!player.stance.ID.equals(ForceStance.STANCE_ID))
+        if (!player.stance.ID.equals(MightStance.STANCE_ID))
         {
-            stances.Add(ForceStance.STANCE_ID);
+            stances.Add(MightStance.STANCE_ID);
         }
 
-        if (!player.stance.ID.equals(AgilityStance.STANCE_ID))
+        if (!player.stance.ID.equals(VelocityStance.STANCE_ID))
         {
-            stances.Add(AgilityStance.STANCE_ID);
+            stances.Add(VelocityStance.STANCE_ID);
         }
 
-        if (!player.stance.ID.equals(IntellectStance.STANCE_ID))
+        if (!player.stance.ID.equals(WisdomStance.STANCE_ID))
         {
-            stances.Add(IntellectStance.STANCE_ID);
+            stances.Add(WisdomStance.STANCE_ID);
         }
 
         if (!player.stance.ID.equals(NeutralStance.STANCE_ID))

@@ -10,7 +10,7 @@ import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.resources.GR;
-import eatyourbeets.stances.BlessingStance;
+import eatyourbeets.stances.SuperchargeStance;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard //TODO
@@ -43,7 +43,7 @@ public class OrihimeInoue extends AnimatorCard //TODO
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryThorns, GR.Tooltips.Thorns, secondaryValue, true));
-                choices.AddEffect(new GenericEffect_EnterStance(BlessingStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
             }
             choices.Select(1, m);
         }

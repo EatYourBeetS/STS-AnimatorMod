@@ -45,7 +45,7 @@ public class YuzuruOtonashi extends AnimatorCard
             {
                 if (card.type == CardType.ATTACK)
                 {
-                    GameActions.Bottom.GainBlessing(1, true);
+                    GameActions.Bottom.GainSupercharge(1, true);
                 }
                 else if (card.type == CardType.SKILL)
                 {

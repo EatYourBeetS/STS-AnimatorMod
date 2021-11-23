@@ -35,15 +35,15 @@ public class Shimako extends AnimatorCard
 
         AbstractOrb orb;
         String curStance = player.stance.ID;
-        if (curStance.equals(ForceStance.STANCE_ID) || curStance.equals(BlessingStance.STANCE_ID))
+        if (curStance.equals(MightStance.STANCE_ID) || curStance.equals(SuperchargeStance.STANCE_ID))
         {
             orb = new Fire();
         }
-        else if (curStance.equals(WillpowerStance.STANCE_ID))
+        else if (curStance.equals(EnduranceStance.STANCE_ID))
         {
             orb = new Earth();
         }
-        else if (curStance.equals(IntellectStance.STANCE_ID) || curStance.equals(CorruptionStance.STANCE_ID))
+        else if (curStance.equals(WisdomStance.STANCE_ID) || curStance.equals(DesecrationStance.STANCE_ID))
         {
             orb = new Dark();
         }
@@ -54,7 +54,7 @@ public class Shimako extends AnimatorCard
 
         GameActions.Bottom.ChannelOrb(orb);
 
-        if (curStance.equals(IntellectStance.STANCE_ID))
+        if (curStance.equals(WisdomStance.STANCE_ID))
         {
             GameActions.Bottom.ChannelOrb(new Dark());
         }

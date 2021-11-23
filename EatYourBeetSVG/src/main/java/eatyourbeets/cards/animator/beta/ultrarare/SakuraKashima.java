@@ -13,7 +13,6 @@ import eatyourbeets.stances.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.TargetHelper;
 
 public class SakuraKashima extends AnimatorCard_UltraRare {
     public static final EYBCardData DATA = Register(SakuraKashima.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.Rewrite);
@@ -35,12 +34,12 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
             GameEffects.List.ShowCopy(this);
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(WillpowerStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(BlessingStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(CorruptionStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
             }
 
             choices.Select(1, null);
@@ -80,14 +79,14 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
             if (eOldStance != null) {
                 GameActions.Bottom.StackAffinityPower(eOldStance.affinity, amount, false);
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eOldStance.affinity);
-                if (p.GetThresholdBonusPower() != null) {
-                    GameActions.Bottom.StackPower(TargetHelper.Player(), p.GetThresholdBonusPower(), -amount);
+                if (p != null) {
+                    p.SetScalingMultiplier(p.scalingMultiplier - 1);
                 }
             }
             if (eNewStance != null) {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eNewStance.affinity);
-                if (p.GetThresholdBonusPower() != null) {
-                    GameActions.Bottom.StackPower(TargetHelper.Player(), p.GetThresholdBonusPower(), amount);
+                if (p != null) {
+                    p.SetScalingMultiplier(p.scalingMultiplier + 1);
                 }
             }
 

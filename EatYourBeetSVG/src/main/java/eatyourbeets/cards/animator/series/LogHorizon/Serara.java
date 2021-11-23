@@ -59,7 +59,7 @@ public class Serara extends AnimatorCard
             buffs.clear();
         }
 
-        GameActions.Bottom.GainWillpower(secondaryValue);
+        GameActions.Bottom.GainEndurance(secondaryValue);
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)

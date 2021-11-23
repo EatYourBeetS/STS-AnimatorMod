@@ -72,7 +72,7 @@ public class MatouSakura extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Light))
         {
-            GameActions.Bottom.GainBlessing(secondaryValue);
+            GameActions.Bottom.GainSupercharge(secondaryValue);
         }
     }
 }

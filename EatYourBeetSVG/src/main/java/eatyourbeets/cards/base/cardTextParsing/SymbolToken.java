@@ -2,6 +2,7 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
@@ -14,19 +15,19 @@ public class SymbolToken extends CTToken
 {
     protected EYBCardTooltip tooltip;
 
-    static final Map<String, SymbolToken> tokenCache = new HashMap<>();
+    public static final Map<String, SymbolToken> tokenCache = new HashMap<>();
     static
     {
 //        tokenCache.put("R", new SymbolToken("[R]"));
 //        tokenCache.put("G", new SymbolToken("[G]"));
         tokenCache.put("E", new SymbolToken("[E]")); // Energy
-        tokenCache.put("F", new SymbolToken("[F]")); // Force
-        tokenCache.put("A", new SymbolToken("[A]")); // Agility
-        tokenCache.put("I", new SymbolToken("[I]")); // Intellect
-        tokenCache.put("W", new SymbolToken("[W]")); // Willpower
-        tokenCache.put("B", new SymbolToken("[B]")); // Blessing
-        tokenCache.put("C", new SymbolToken("[C]")); // Corruption
-        tokenCache.put("T", new SymbolToken("[T]")); // Technic
+        tokenCache.put(Affinity.Red.PowerSymbol, new SymbolToken(Affinity.Red.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Green.PowerSymbol, new SymbolToken(Affinity.Green.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Blue.PowerSymbol, new SymbolToken(Affinity.Blue.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Orange.PowerSymbol, new SymbolToken(Affinity.Orange.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Light.PowerSymbol, new SymbolToken(Affinity.Light.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Dark.PowerSymbol, new SymbolToken(Affinity.Dark.GetFormattedPowerSymbol()));
+        tokenCache.put(Affinity.Silver.PowerSymbol, new SymbolToken(Affinity.Silver.GetFormattedPowerSymbol()));
     }
 
     private SymbolToken(String text)

@@ -43,7 +43,7 @@ public class Soujiro_Hisako extends AnimatorCard
         {
             if (orbs.size() > 0)
             {
-                GameActions.Bottom.GainIntellect(magicNumber);
+                GameActions.Bottom.GainWisdom(magicNumber);
             }
         });
     }

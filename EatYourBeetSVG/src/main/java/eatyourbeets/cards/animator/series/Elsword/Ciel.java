@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.stances.CorruptionStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.DesecrationStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -56,8 +56,8 @@ public class Ciel extends AnimatorCard
         {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(CorruptionStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
             }
             choices.Select(1, m);
         }

@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
 import eatyourbeets.effects.AttackEffects;
@@ -102,16 +103,16 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip("[F]", "Force", new ForcePower());
-        AddPowerTooltip("[A]", "Agility", new AgilityPower());
-        AddPowerTooltip("[I]", "Intellect", new IntellectPower());
-        AddPowerTooltip("[W]", "Willpower", new WillpowerPower());
-        AddPowerTooltip("[B]", "Blessing", new BlessingPower());
-        AddPowerTooltip("[C]", "Corruption", new CorruptionPower());
-        AddPowerTooltip("[T]", "Technic", new TechnicPower());
+        AddPowerTooltip(Affinity.Red.GetFormattedPowerSymbol(), "Might", new MightPower());
+        AddPowerTooltip(Affinity.Green.GetFormattedPowerSymbol(), "Velocity", new VelocityPower());
+        AddPowerTooltip(Affinity.Blue.GetFormattedPowerSymbol(), "Wisdom", new WisdomPower());
+        AddPowerTooltip(Affinity.Orange.GetFormattedPowerSymbol(), "Endurance", new EndurancePower());
+        AddPowerTooltip(Affinity.Light.GetFormattedPowerSymbol(), "Supercharge", new SuperchargePower());
+        AddPowerTooltip(Affinity.Dark.GetFormattedPowerSymbol(), "Desecration", new DesecrationPower());
+        AddPowerTooltip(Affinity.Silver.GetFormattedPowerSymbol(), "Technic", new TechnicPower());
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
-//        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
+//        AddEnergyTooltip("[L]", AbstractCard.orb_blue);
 //        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
         AddEnergyTooltip("[E]", null); // TODO: generalize this
 

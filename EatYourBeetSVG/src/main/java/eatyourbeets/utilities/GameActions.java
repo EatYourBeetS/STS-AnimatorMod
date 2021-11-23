@@ -64,7 +64,6 @@ import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.affinity.CorruptionPower;
 import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
@@ -537,14 +536,14 @@ public final class GameActions
         return VFX(new CardFlashVfx(card, Color.ORANGE.cpy(), true));
     }
 
-    public ApplyAffinityPower GainAgility(int amount)
+    public ApplyAffinityPower GainVelocity(int amount)
     {
-        return GainAgility(amount, false);
+        return GainVelocity(amount, false);
     }
 
-    public ApplyAffinityPower GainAgility(int amount, boolean maintain)
+    public ApplyAffinityPower GainVelocity(int amount, boolean maintain)
     {
-        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(VelocityPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainArtifact(int amount)
@@ -552,14 +551,14 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
-    public ApplyAffinityPower GainBlessing(int amount)
+    public ApplyAffinityPower GainSupercharge(int amount)
     {
-        return GainBlessing(amount, false);
+        return GainSupercharge(amount, false);
     }
 
-    public ApplyAffinityPower GainBlessing(int amount, boolean maintain)
+    public ApplyAffinityPower GainSupercharge(int amount, boolean maintain)
     {
-        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(SuperchargePower.AFFINITY_TYPE, amount, maintain);
     }
 
     public GainBlock GainBlock(int amount)
@@ -588,14 +587,14 @@ public final class GameActions
     }
 
 
-    public ApplyAffinityPower GainCorruption(int amount)
+    public ApplyAffinityPower GainDesecration(int amount)
     {
-        return GainCorruption(amount, false);
+        return GainDesecration(amount, false);
     }
 
-    public ApplyAffinityPower GainCorruption(int amount, boolean maintain)
+    public ApplyAffinityPower GainDesecration(int amount, boolean maintain)
     {
-        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(DesecrationPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainDexterity(int amount)
@@ -603,14 +602,14 @@ public final class GameActions
         return StackPower(new DexterityPower(player, amount));
     }
 
-    public ApplyPower GainEndurance(int amount)
+    public ApplyPower GainResistance(int amount)
     {
-        return StackPower(new EndurancePower(player, amount));
+        return StackPower(new ResistancePower(player, amount));
     }
 
-    public ApplyPower GainEndurance(int amount, boolean temporary)
+    public ApplyPower GainResistance(int amount, boolean temporary)
     {
-        return StackPower(temporary ? new TemporaryEndurancePower(player, amount) : new EndurancePower(player, amount));
+        return StackPower(temporary ? new TemporaryResistancePower(player, amount) : new ResistancePower(player, amount));
     }
 
     public GainEnergyAction GainEnergy(int amount)
@@ -633,14 +632,14 @@ public final class GameActions
         return StackPower(temporary ? new TemporaryFocusPower(player, amount) : new FocusPower(player, amount));
     }
 
-    public ApplyAffinityPower GainForce(int amount)
+    public ApplyAffinityPower GainMight(int amount)
     {
-        return GainForce(amount, false);
+        return GainMight(amount, false);
     }
 
-    public ApplyAffinityPower GainForce(int amount, boolean maintain)
+    public ApplyAffinityPower GainMight(int amount, boolean maintain)
     {
-        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(MightPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public GainGold GainGold(int amount)
@@ -653,14 +652,14 @@ public final class GameActions
         return StackPower(new InspirationPower(player, amount));
     }
 
-    public ApplyAffinityPower GainIntellect(int amount)
+    public ApplyAffinityPower GainWisdom(int amount)
     {
-        return GainIntellect(amount, false);
+        return GainWisdom(amount, false);
     }
 
-    public ApplyAffinityPower GainIntellect(int amount, boolean maintain)
+    public ApplyAffinityPower GainWisdom(int amount, boolean maintain)
     {
-        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(WisdomPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public ApplyPower GainMalleable(int amount)
@@ -696,11 +695,6 @@ public final class GameActions
     public ApplyPower GainStrength(int amount)
     {
         return StackPower(new StrengthPower(player, amount));
-    }
-
-    public ApplyPower GainSupercharged(int amount)
-    {
-        return StackPower(new SuperchargedPower(player, amount));
     }
 
     public ApplyPower GainSupportDamage(int amount)
@@ -743,14 +737,14 @@ public final class GameActions
         return StackPower(new VitalityPower(player, amount));
     }
 
-    public ApplyAffinityPower GainWillpower(int amount)
+    public ApplyAffinityPower GainEndurance(int amount)
     {
-        return GainWillpower(amount, false);
+        return GainEndurance(amount, false);
     }
 
-    public ApplyAffinityPower GainWillpower(int amount, boolean maintain)
+    public ApplyAffinityPower GainEndurance(int amount, boolean maintain)
     {
-        return StackAffinityPower(WillpowerPower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(EndurancePower.AFFINITY_TYPE, amount, maintain);
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)
@@ -771,6 +765,11 @@ public final class GameActions
     public HealCreature HealPlayerLimited(AbstractCard card, int amount)
     {
         return Add(new HealCreature(player, player, amount).SetCard(card));
+    }
+
+    public IncreaseAffinityPowerLevel IncreaseAffinityPowerLevel(Affinity affinity, int amount)
+    {
+        return Add(new IncreaseAffinityPowerLevel(player, affinity, amount));
     }
 
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
@@ -1139,6 +1138,11 @@ public final class GameActions
     public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)
     {
         return Add(new SpendEnergy(amount, canSpendLess));
+    }
+
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount)
+    {
+        return Add(new ApplyAffinityPower(player, affinity, amount, false));
     }
 
     public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean maintain)

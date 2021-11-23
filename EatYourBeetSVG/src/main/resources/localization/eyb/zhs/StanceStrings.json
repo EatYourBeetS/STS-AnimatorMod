@@ -1,6 +1,6 @@
 
 {
-	"EYB:ForceStance":
+	"EYB:MightStance":
 	{
 		"NAME": "武力姿态",
 		"DESCRIPTION":
@@ -8,7 +8,7 @@
 			"#g+{0} #g力量， NL #r-{1} #r集中， NL #r-{1} #r敏捷。 NL 进入这一 #y姿态 时，#y增强 #y武力。"
 		]
 	},
-	"EYB:AgilityStance":
+	"EYB:VelocityStance":
 	{
 		"NAME": "机敏姿态",
 		"DESCRIPTION":
@@ -16,7 +16,7 @@
 			"#g+{0} #g敏捷， NL #r-{1} #r力量， NL #r-{1} #r集中。 NL 进入这一 #y姿态 时，#y增强 #y机敏。"
 		]
 	},
-	"EYB:IntellectStance":
+	"EYB:WisdomStance":
 	{
 		"NAME": "智力姿态",
 		"DESCRIPTION":

@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class GirlDeMo extends AnimatorCard
@@ -16,7 +15,7 @@ public class GirlDeMo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
         SetAffinity_Star(2);
         SetHarmonic(true);
@@ -33,7 +32,7 @@ public class GirlDeMo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameUtilities.IncreaseSuperchargedCharge(magicNumber);
+        GameActions.Bottom.Motivate(magicNumber);
 
         Affinity lowest = JUtils.FindMin(Affinity.Basic(), CombatStats.Affinities::GetPowerAmount);
         Affinity highest = JUtils.FindMax(Affinity.Basic(), CombatStats.Affinities::GetPowerAmount);

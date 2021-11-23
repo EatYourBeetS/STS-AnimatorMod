@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
@@ -26,6 +27,7 @@ public class EYBCardAffinityRow extends GUIElement
     public static final Color COLOR_DEFAULT = new Color(0.05f, 0.05f, 0.05f, 1f);
     public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
+    public static final int SYNERGY_MULTIPLIER = 3;
 
     public final Affinity Type;
     public final EYBCardAffinitySystem System;
@@ -35,11 +37,13 @@ public class EYBCardAffinityRow extends GUIElement
     public int AvailableActivations;
     public int ActivationPowerAmount;
     public int Level;
+    public int Total;
     protected float fontScale = 1.0F;
 
     public final GUI_Image image_background;
     public final GUI_Image image_affinity;
-    public final GUI_Label text_affinity;
+    public final GUI_Label current_affinity;
+    public final GUI_Label total_affinity;
     public final GUI_Image image_synergy;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
@@ -53,7 +57,7 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Power != null)
         {
-            Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
+            Power.hb = new RelativeHitbox(hb, 1, 1, 2.75f, offset_y);
         }
 
         image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
@@ -63,13 +67,19 @@ public class EYBCardAffinityRow extends GUIElement
         image_affinity = new GUI_Image(affinity.GetIcon(),
         new RelativeHitbox(hb, Scale(36), Scale(36), Scale(12f), offset_y * hb.height, false));
 
-        text_affinity = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+        current_affinity = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
         new RelativeHitbox(hb, 0.5f, 1f, 0.55f, offset_y))
-        .SetAlignment(0.5f, 0.5f)
+        .SetAlignment(0.5f, 1f)
         .SetText("-");
 
+        total_affinity = new GUI_Label(FontHelper.powerAmountFont,
+                new RelativeHitbox(hb, 0.5f, 1f, 1.15f, offset_y))
+                .SetAlignment(0.5f, 0f)
+                .SetColor(Colors.Cream(0.6f))
+                .SetText("");
+
         image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
+        new RelativeHitbox(hb, Scale(20), Scale(20), 1.95f * hb.width, offset_y * hb.height, false));
 
         image_synergy.SetActive(Power != null);
     }
@@ -94,7 +104,7 @@ public class EYBCardAffinityRow extends GUIElement
     public void Initialize()
     {
         AvailableActivations = MaxActivationsPerTurn = 1;
-        ActivationPowerAmount = 1;
+        ActivationPowerAmount = SYNERGY_MULTIPLIER;
 
         if (Power != null)
         {
@@ -107,7 +117,7 @@ public class EYBCardAffinityRow extends GUIElement
         GameEffects.List.Add(new ChangeAffinityCountEffect(this, true));
     }
 
-    public void Update(EYBCardAffinities previewAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
+    public void Update(EYBCardAffinitySystem.AffinityCounts previewAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
     {
         image_background.SetColor(COLOR_DEFAULT);
         image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
@@ -115,28 +125,41 @@ public class EYBCardAffinityRow extends GUIElement
 
         if (Type == Affinity.General)
         {
-            Level = previewAffinities.GetLevel(Type, false) + previewAffinities.GetDirectLevel(Affinity.General);
+            int am = previewAffinities.GetAmount(Affinity.General);
+            Level = previewAffinities.GetAmount(Type, false) + am;
+            if (Power != null) {
+                Total = Power.experience + am;
+            }
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
-                final EYBCardAffinity best = previewAffinities.Get(Affinity.General);
-                final Affinity affinity = best == null ? null : best.type;
-                for (AbstractCard c : AbstractDungeon.player.hand.group)
-                {
-                    final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
-                    if (temp == null || (temp.affinities.GetLevel(affinity) == 0 && temp.affinities.GetDirectLevel(Affinity.General) == 0))
-                    {
-                        c.transparency = 0.35f;
+                final int best = previewAffinities.GetAmount(Affinity.General);
+                for (Affinity affinity : Affinity.Extended()) {
+                    if (previewAffinities.GetAmount(affinity) == best) {
+                        for (AbstractCard c : AbstractDungeon.player.hand.group)
+                        {
+                            final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
+                            if (temp == null || (temp.affinities.GetLevel(affinity) == 0 && temp.affinities.GetDirectLevel(Affinity.General) == 0))
+                            {
+                                c.transparency = 0.35f;
+                            }
+                        }
                     }
                 }
             }
         }
         else
         {
+            Level = previewAffinities.GetAmount(Type, false);
+            if (Power != null) {
+                Total = Power.experience;
+            }
+
             if (hoveredCard != null)
             {
                 if ((hoveredCard.affinities.GetLevel(Type,false) > 0 || (hoveredCard.affinities.GetLevel(Affinity.Star,false) > 0 && System.GetLastAffinityLevel(Type) > 0)) && hoveredCard.cardData.CanGrantAffinity) {
-                    previewAffinities.Add(Type, 1);
+                    Level += 1;
+                    Total += 1;
                 }
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
                 if (System.CanActivateSynergyBonus(a))
@@ -150,12 +173,10 @@ public class EYBCardAffinityRow extends GUIElement
 
 
                 if (hoveredCard.affinities.GetRequirement(Type) > 0 && hoveredCard.CheckAffinity(Type)) {
-                    previewAffinities.Add(Type, -hoveredCard.affinities.GetRequirement(Type));
+                    Level -= hoveredCard.affinities.GetRequirement(Type);
                     isTriggering = true;
                 }
             }
-
-            Level = previewAffinities.GetLevel(Type, false);
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
@@ -176,7 +197,13 @@ public class EYBCardAffinityRow extends GUIElement
                 this.fontScale = 1.0F;
             }
         }
-        text_affinity.SetText(Level).SetColor(isTriggering ? Colors.Green(1) : Colors.Cream(Level > 0 ? 1 : 0.6f))
+
+        current_affinity
+                .SetText(Level)
+                .SetColor(isTriggering ? Colors.Green(1) : Colors.Cream(Level > 0 ? 1 : 0.6f))
+                .SetFontScale(this.fontScale);
+        total_affinity
+                .SetText(Power != null ? JUtils.Format("/{0}/{1}", Total, Power.GetCurrentThreshold()) : "")
                 .SetFontScale(this.fontScale);
 
         Update();
@@ -187,7 +214,8 @@ public class EYBCardAffinityRow extends GUIElement
     {
         image_background.TryUpdate();
         image_affinity.TryUpdate();
-        text_affinity.TryUpdate();
+        current_affinity.TryUpdate();
+        total_affinity.TryUpdate();
         image_synergy.TryUpdate();
     }
 
@@ -196,7 +224,8 @@ public class EYBCardAffinityRow extends GUIElement
     {
         image_background.TryRender(sb);
         image_affinity.TryRender(sb);
-        text_affinity.TryRender(sb);
+        current_affinity.TryRender(sb);
+        total_affinity.TryRender(sb);
         image_synergy.TryRender(sb);
 
         if (Power != null)

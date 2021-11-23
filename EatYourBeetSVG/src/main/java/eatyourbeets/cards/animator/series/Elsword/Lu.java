@@ -11,8 +11,8 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.stances.CorruptionStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.DesecrationStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -66,7 +66,7 @@ public class Lu extends AnimatorCard
         GameActions.Bottom.ChannelOrb(new Frost());
         GameActions.Bottom.ChannelOrb(new Dark());
 
-        if (IntellectStance.IsActive() || CorruptionStance.IsActive()) {
+        if (WisdomStance.IsActive() || DesecrationStance.IsActive()) {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
                     .AddCallback(info, (info2, stance) ->
                     {

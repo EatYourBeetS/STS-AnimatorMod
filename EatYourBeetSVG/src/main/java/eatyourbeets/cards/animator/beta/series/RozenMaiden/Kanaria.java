@@ -113,8 +113,8 @@ public class Kanaria extends AnimatorCard
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle) {
             if (amount > 0 && GameUtilities.IsHindrance(card)) {
-                GameActions.Bottom.GainAgility(secondaryAmount);
-                GameActions.Bottom.GainBlessing(secondaryAmount);
+                GameActions.Bottom.GainVelocity(secondaryAmount);
+                GameActions.Bottom.GainSupercharge(secondaryAmount);
                 amount -= 1;
             }
         }

@@ -31,7 +31,7 @@ public class Noda extends AnimatorCard
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.Exhaust(this);
-        GameActions.Bottom.GainForce(magicNumber, false);
+        GameActions.Bottom.GainMight(magicNumber, false);
     }
 
     @Override
@@ -41,8 +41,8 @@ public class Noda extends AnimatorCard
 
         if (info.IsSynergizing || TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.GainForce(secondaryValue);
-            GameActions.Bottom.GainWillpower(secondaryValue);
+            GameActions.Bottom.GainMight(secondaryValue);
+            GameActions.Bottom.GainEndurance(secondaryValue);
         }
     }
 }

@@ -10,7 +10,7 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.powers.common.EndurancePower;
+import eatyourbeets.powers.common.ResistancePower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -93,7 +93,7 @@ public class Zhongli extends AnimatorCard
 
             if (choices.TryInitialize(this.zhongli))
             {
-                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1],amount), (c,p,mo) -> {GameActions.Bottom.GainEndurance(amount, true);});
+                choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[1],amount), (c,p,mo) -> {GameActions.Bottom.GainResistance(amount, true);});
                 choices.AddEffect( JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],amount), (c,p,mo) -> {
                     gainAmount += amount;
                     CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -122,7 +122,7 @@ public class Zhongli extends AnimatorCard
 
         @Override
         public void OnStartOfTurnPostDraw() {
-            GameActions.Bottom.GainEndurance(gainAmount, true);
+            GameActions.Bottom.GainResistance(gainAmount, true);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             gainAmount = 0;
         }
@@ -134,7 +134,7 @@ public class Zhongli extends AnimatorCard
         }
 
         private int GetBlockAmount() {
-            return secondaryValue + Math.max(0,GameUtilities.GetPowerAmount(EndurancePower.POWER_ID));
+            return secondaryValue + Math.max(0,GameUtilities.GetPowerAmount(ResistancePower.POWER_ID));
         }
     }
 }

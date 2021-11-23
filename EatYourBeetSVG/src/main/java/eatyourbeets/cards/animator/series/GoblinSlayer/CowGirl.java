@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class CowGirl extends AnimatorCard
 {
@@ -44,7 +43,7 @@ public class CowGirl extends AnimatorCard
         .SetOptions(false, false)
         .SetFilter(c -> c.type == CardType.ATTACK && c instanceof AnimatorCard && ((AnimatorCard) c).attackType == EYBAttackType.Normal).AddCallback(cards -> {
             for (AbstractCard c : cards) {
-                GameUtilities.ModifyDamage(c,magicNumber,true);
+                GameActions.Bottom.IncreaseScaling(c, Affinity.Orange, 1);
             }
         });
     }

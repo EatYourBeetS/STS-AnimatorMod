@@ -25,21 +25,15 @@ import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
-    public static final int SCALING_DIVISION = 4;
+    public static final int SCALING_DIVISION = 1;
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
-    public final EYBCardAffinities BonusAffinities = new EYBCardAffinities(null);
-    public final ForcePower Force;
-    public final AgilityPower Agility;
-    public final IntellectPower Intellect;
-    public final WillpowerPower Willpower;
-    public final BlessingPower Blessing;
-    public final CorruptionPower Corruption;
-    public final TechnicPower Technic;
+    public AffinityCounts AffinityCounts = new AffinityCounts();
 
     protected final DraggableHitbox hb;
     protected final GUI_Image dragPanel_image;
@@ -54,13 +48,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinitySystem()
     {
-        Powers.add(Force = new ForcePower());
-        Powers.add(Agility = new AgilityPower());
-        Powers.add(Intellect = new IntellectPower());
-        Powers.add(Willpower = new WillpowerPower());
-        Powers.add(Blessing = new BlessingPower());
-        Powers.add(Corruption = new CorruptionPower());
-        Powers.add(Technic = new TechnicPower());
+        Powers.add(new MightPower());
+        Powers.add(new VelocityPower());
+        Powers.add(new WisdomPower());
+        Powers.add(new EndurancePower());
+        Powers.add(new SuperchargePower());
+        Powers.add(new DesecrationPower());
+        Powers.add(new TechnicPower());
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
@@ -88,14 +82,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         //rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
     }
 
-    public EYBCardAffinity AddAffinity(Affinity affinity, int amount)
+    public AffinityCounts AddAffinity(Affinity affinity, int amount)
     {
-        return BonusAffinities.Add(affinity, amount);
+        return AffinityCounts.Add(affinity, amount);
     }
 
-    public EYBCardAffinities AddAffinities(EYBCardAffinities affinities)
+    public AffinityCounts AddAffinities(EYBCardAffinities affinities)
     {
-        return BonusAffinities.Add(affinities, 1);
+        return AffinityCounts.Add(affinities, 1);
     }
 
     public boolean CheckAffinityLevels(Affinity[] affinities, int amount, boolean addStar) {
@@ -122,10 +116,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     }
 
     public int GetAffinityLevel(Affinity affinity, boolean addStar) {
-        int base = BonusAffinities.GetLevel(affinity, false);
-        if (addStar) {
-            base += BonusAffinities.GetLevel(Affinity.Star, false);
-        }
+        int base = AffinityCounts.GetAmount(affinity, addStar);
         return CombatStats.OnTrySpendAffinity(affinity, base, addStar, false);
     }
 
@@ -146,7 +137,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinities GetHandAffinities(AbstractCard ignored)
     {
-        return player == null ? BonusAffinities : GetCardAffinities(player.hand.group, ignored).Add(BonusAffinities);
+        return player == null ? new EYBCardAffinities(null) : GetCardAffinities(player.hand.group, ignored);
     }
 
     public int GetHandAffinityLevel(Affinity affinity, AbstractCard ignored)
@@ -191,7 +182,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return p == null ? 0 : p.amount;
     }
 
-    public int GetPowerThreshold(Affinity affinity)
+    public int GetPowerLevel(Affinity affinity)
     {
         final AbstractAffinityPower p = GetPower(affinity);
         return p == null ? 0 : p.GetCurrentThreshold();
@@ -214,6 +205,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public AnimatorCard GetLastCardPlayed()
     {
         return lastCardPlayed;
+    }
+
+    public AffinityCounts SpendAffinity(Affinity affinity, int amount)
+    {
+        return AffinityCounts.Spend(affinity, amount);
     }
 
     public boolean TrySynergize(AbstractCard card)
@@ -393,7 +389,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
     {
-        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount / (float)SCALING_DIVISION);
+        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.GetEffectiveScaling());
     }
 
     // ====================== //
@@ -402,8 +398,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Initialize()
     {
-        BonusAffinities.Star = null;
-        BonusAffinities.List.clear();
+        AffinityCounts = new AffinityCounts();
         CombatStats.onStartOfTurn.Subscribe(this);
 
         if (savedPosition != null)
@@ -421,6 +416,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         for (EYBCardAffinityRow row : rows)
         {
             row.Initialize();
+        }
+
+        for (AbstractAffinityPower po : Powers) {
+            CombatStats.onGainAffinity.Subscribe(po);
+            CombatStats.onApplyPower.Subscribe(po);
+            JUtils.LogError(this, po.name);
         }
     }
 
@@ -451,8 +452,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
         }
 
-        final EYBCardAffinities previewAffinities = new EYBCardAffinities(null);
-        previewAffinities.Add(BonusAffinities);
+        final AffinityCounts previewAffinities = new AffinityCounts(AffinityCounts);
         final EYBCardAffinities synergies = GetSynergies(hoveredCard, lastCardPlayed);
         for (EYBCardAffinityRow row : rows)
         {
@@ -488,6 +488,104 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         for (EYBCardAffinityRow t : rows)
         {
             t.Render(sb);
+        }
+    }
+
+    public static class AffinityCounts {
+        public int[] Counts = new int[Affinity.Extended().length];
+        public int Star;
+
+        public AffinityCounts() {
+        }
+
+        public AffinityCounts(AffinityCounts counts) {
+            Counts = counts.Counts.clone();
+        }
+
+        public AffinityCounts(EYBCardAffinities affinities) {
+            for (EYBCardAffinity affinity : affinities.List) {
+                Counts[affinity.type.ID] = affinity.level;
+            }
+            if (affinities.Star != null) {
+                Star = affinities.Star.level;
+            }
+        }
+
+        public AffinityCounts Add(Affinity affinity, int amount) {
+            int actualAmount = CombatStats.OnGainAffinity(affinity, amount, true);
+            if (Affinity.Star.equals(affinity) || Affinity.General.equals(affinity)) {
+                Star += actualAmount;
+            }
+            else {
+                Counts[affinity.ID] += actualAmount;
+            }
+            return this;
+        }
+
+        public AffinityCounts Add(AffinityCounts counts) {
+            for (int i = 0; i < Counts.length; i++) {
+                Counts[i] += CombatStats.OnGainAffinity(Affinity.Extended()[i], counts.Counts[i], true);
+            }
+            Star += counts.Star;
+            return this;
+        }
+
+        public AffinityCounts Add(EYBCardAffinities affinities) {
+            for (EYBCardAffinity affinity : affinities.List) {
+                Counts[affinity.type.ID] += CombatStats.OnGainAffinity(affinity.type, affinity.level, true);
+            }
+            if (affinities.Star != null) {
+                Star += affinities.Star.level;
+            }
+            return this;
+        }
+
+        public AffinityCounts Add(EYBCardAffinities affinities, int amount) {
+            for (EYBCardAffinity affinity : affinities.List) {
+                int actualAmount = CombatStats.OnGainAffinity(affinity.type, amount, true);
+                Counts[affinity.type.ID] += actualAmount;
+            }
+            if (affinities.Star != null) {
+                Star += amount;
+            }
+            return this;
+        }
+
+        public AffinityCounts Spend(Affinity affinity, int amount) {
+            if (Affinity.Star.equals(affinity) || Affinity.General.equals(affinity)) {
+                Star -= amount;
+                if (Star < 0) {
+                    Star = 0;
+                }
+            }
+            else {
+                Counts[affinity.ID] -= amount;
+                if (Counts[affinity.ID] < 0) {
+                    Counts[affinity.ID] = 0;
+                }
+            }
+            return this;
+        }
+
+        public int GetAmount(Affinity affinity)
+        {
+            return GetAmount(affinity,true);
+        }
+
+        public int GetAmount(Affinity affinity, boolean addStar)
+        {
+            if (affinity == Affinity.Star)
+            {
+                return Star;
+            }
+            else if (affinity == Affinity.General)
+            {
+                return Arrays.stream(Counts).max().getAsInt() + (addStar ? Star : 0);
+            }
+            else
+            {
+                return Counts[affinity.ID] + (addStar ? Star : 0);
+            }
         }
     }
 }

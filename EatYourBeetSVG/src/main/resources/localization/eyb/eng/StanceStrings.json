@@ -1,51 +1,51 @@
 
 {
-	"eyb:ForceStance":
+	"eyb:MightStance":
 	{
-		"NAME": "Force Stance",
+		"NAME": "Might Stance",
 		"DESCRIPTION": 
 		[
-			"[F] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [F]"
+			"[R] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [R]"
 		]
 	},
-	"eyb:AgilityStance":
+	"eyb:VelocityStance":
 	{
-		"NAME": "Agility Stance",
+		"NAME": "Velocity Stance",
 		"DESCRIPTION": 
 		[
-			"[A] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [A]"
+			"[G] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [G]"
 		]
 	},
-	"eyb:IntellectStance":
+	"eyb:WisdomStance":
 	{
-		"NAME": "Intellect Stance",
+		"NAME": "Wisdom Stance",
 		"DESCRIPTION": 
 		[
-			"[I] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [I]"
+			"[B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [B]"
 		]
 	},
-	"eyb:WillpowerStance":
+	"eyb:EnduranceStance":
 	{
-		"NAME": "Willpower Stance",
+		"NAME": "Endurance Stance",
 		"DESCRIPTION":
 		[
-			"[W] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [W]"
+			"[O] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [O]"
 		]
 	},
-	"eyb:BlessingStance":
+	"eyb:SuperchargeStance":
 	{
-		"NAME": "Blessing Stance",
+		"NAME": "Supercharge Stance",
 		"DESCRIPTION":
 		[
-			"[B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [B]"
+			"[L] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [L]"
 		]
 	},
-	"eyb:CorruptionStance":
+	"eyb:DesecrationStance":
 	{
-		"NAME": "Corruption Stance",
+		"NAME": "Desecration Stance",
 		"DESCRIPTION":
 		[
-			"[C] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [C]"
+			"[D] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [D]"
 		]
 	},
 	"eyb:TechnicStance":
@@ -53,7 +53,7 @@
     	"NAME": "Technic Stance",
     	"DESCRIPTION":
     	[
-    		"[T] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: #yBoost [T]"
+    		"[S] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [S]"
     	]
     }
 }

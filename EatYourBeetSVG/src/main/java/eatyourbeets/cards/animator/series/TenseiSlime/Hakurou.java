@@ -7,7 +7,7 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -66,11 +66,11 @@ public class Hakurou extends AnimatorCard
         }
 
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() -> {
-            if (AgilityStance.IsActive()) {
+            if (VelocityStance.IsActive()) {
                 GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Green, upgraded));
             }
             else {
-                GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+                GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
             }
         });
     }

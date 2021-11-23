@@ -54,7 +54,7 @@ public class ReduceStrength extends EYBActionWithCallback<Boolean>
         {
             if (giveForceToPlayer)
             {
-                GameActions.Top.GainForce(amount);
+                GameActions.Top.GainMight(amount);
             }
             if (giveStrengthToSource)
             {

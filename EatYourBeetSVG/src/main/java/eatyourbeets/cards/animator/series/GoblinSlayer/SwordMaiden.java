@@ -65,7 +65,7 @@ public class SwordMaiden extends AnimatorCard
         GameActions.Bottom.RecoverHP(secondaryValue);
         GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1).AddCallback(debuffs -> {
             if (debuffs.size() == 0) {
-                GameActions.Bottom.GainBlessing(secondaryValue);
+                GameActions.Bottom.GainSupercharge(secondaryValue);
             }
         });
     }

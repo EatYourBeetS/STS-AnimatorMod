@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Naotsugu extends AnimatorCard
@@ -41,7 +41,7 @@ public class Naotsugu extends AnimatorCard
             {
                 if (c.block > 0 && c.block < maxBlock)
                 {
-                    if (ForceStance.IsActive() || TrySpendAffinity(Affinity.Red))
+                    if (MightStance.IsActive() || TrySpendAffinity(Affinity.Red))
                     {
                         GameActions.Top.PlayCard(c, player.hand, (AbstractMonster) e)
                         .SetDuration(Settings.ACTION_DUR_MED, true);

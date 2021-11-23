@@ -41,7 +41,7 @@ public class HeavyHalberd extends AnimatorRelic implements OnApplyPowerSubscribe
     {
         if (source != null && source.isPlayer && VulnerablePower.POWER_ID.equals(power.ID))
         {
-            GameActions.Bottom.GainForce(1);
+            GameActions.Bottom.GainMight(1);
             this.flash();
         }
     }

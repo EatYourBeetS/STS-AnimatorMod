@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -96,7 +96,7 @@ public class Ain extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
         }
 
         if ((auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Dark)) || (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Light)))

@@ -14,7 +14,10 @@ import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.EnchantedArmorPower;
-import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.common.BlindedPower;
+import eatyourbeets.powers.common.BurningPower;
+import eatyourbeets.powers.common.FreezingPower;
+import eatyourbeets.powers.common.TaintedPower;
 import eatyourbeets.powers.replacement.AnimatorFrailPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.powers.replacement.AnimatorWeakPower;
@@ -35,7 +38,6 @@ public class EnemyIntent
         private static final ArrayList<AbstractPower> DEFAULT_PLAYER_POWERS = new ArrayList<>();
         private static final VulnerablePower VULNERABLE = new AnimatorVulnerablePower(null, 0, false);
         private static final EnchantedArmorPower ENCHANTED_ARMOR = new EnchantedArmorPower(null, 0, false);
-        private static final EndurancePower ENDURANCE = new EndurancePower(null, 0);
         private static final BurningPower BURNING = new BurningPower(null, null, 0);
 
         private static final ArrayList<AbstractPower> DEFAULT_ENEMY_POWERS = new ArrayList<>();
@@ -54,7 +56,6 @@ public class EnemyIntent
             DEFAULT_PLAYER_POWERS.add(VULNERABLE);
             DEFAULT_PLAYER_POWERS.add(ENCHANTED_ARMOR);
             DEFAULT_PLAYER_POWERS.add(BURNING);
-            DEFAULT_PLAYER_POWERS.add(ENDURANCE);
             DEFAULT_ENEMY_POWERS.add(WEAK);
             DEFAULT_ENEMY_POWERS.add(STRENGTH);
             DEFAULT_ENEMY_POWERS.add(FREEZING);
@@ -229,11 +230,6 @@ public class EnemyIntent
     public EnemyIntent AddEnchantedArmor(int amount)
     {
         return AddModifier(EnchantedArmorPower.POWER_ID, amount);
-    }
-
-    public EnemyIntent AddEndurance(int amount)
-    {
-        return AddModifier(EndurancePower.POWER_ID, amount);
     }
 
     public EnemyIntent AddStrength(int amount)

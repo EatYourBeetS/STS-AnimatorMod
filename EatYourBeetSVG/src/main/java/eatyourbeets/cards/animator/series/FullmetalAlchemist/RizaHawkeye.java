@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.stances.EnduranceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -49,7 +49,7 @@ public class RizaHawkeye extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
         if (GameUtilities.GetPowerAmount(m, VulnerablePower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0 ) {
             GameActions.Delayed.ExhaustFromPile(name, 1, player.drawPile).AddCallback(cards -> {if (cards.size() > 0)
-                GameActions.Bottom.ChangeStance(WillpowerStance.STANCE_ID);
+                GameActions.Bottom.ChangeStance(EnduranceStance.STANCE_ID);
             });
         }
         if (IsStarter()) {

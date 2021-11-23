@@ -36,11 +36,11 @@ public class TukaLunaMarceau extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Light))
         {
-            GameActions.Bottom.GainBlessing(magicNumber);
+            GameActions.Bottom.GainSupercharge(magicNumber);
         }
         if (TrySpendAffinity(Affinity.Green))
         {
-            GameActions.Bottom.GainAgility(magicNumber);
+            GameActions.Bottom.GainVelocity(magicNumber);
         }
     }
 }

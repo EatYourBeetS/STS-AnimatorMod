@@ -18,19 +18,19 @@ public class GenericEffect_GainStat extends GenericEffect
 
         if (attribute.equals(PlayerAttribute.Force))
         {
-            this.tooltip = GR.Tooltips.Force;
+            this.tooltip = GR.Tooltips.Might;
         }
         else if (attribute.equals(PlayerAttribute.Agility))
         {
-            this.tooltip = GR.Tooltips.Agility;
+            this.tooltip = GR.Tooltips.Velocity;
         }
         else if (attribute.equals(PlayerAttribute.Intellect))
         {
-            this.tooltip = GR.Tooltips.Intellect;
+            this.tooltip = GR.Tooltips.Wisdom;
         }
         else
         {
-            this.tooltip = GR.Tooltips.Willpower;
+            this.tooltip = GR.Tooltips.Endurance;
         }
     }
 
@@ -45,19 +45,19 @@ public class GenericEffect_GainStat extends GenericEffect
     {
         if (attribute.equals(PlayerAttribute.Force))
         {
-            GameActions.Bottom.GainForce(amount);
+            GameActions.Bottom.GainMight(amount);
         }
         else if (attribute.equals(PlayerAttribute.Agility))
         {
-            GameActions.Bottom.GainAgility(amount);
+            GameActions.Bottom.GainVelocity(amount);
         }
         else if (attribute.equals(PlayerAttribute.Intellect))
         {
-            GameActions.Bottom.GainIntellect(amount);
+            GameActions.Bottom.GainWisdom(amount);
         }
         else
         {
-            GameActions.Bottom.GainWillpower(amount);
+            GameActions.Bottom.GainEndurance(amount);
         }
     }
 }

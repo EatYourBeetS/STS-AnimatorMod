@@ -5,18 +5,19 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.JUtils;
 
 public enum Affinity implements Comparable<Affinity>
 {
-    Red(0, "Red", GR.Common.Images.Affinities.Red),
-    Green(1, "Green", GR.Common.Images.Affinities.Green),
-    Blue(2, "Blue", GR.Common.Images.Affinities.Blue),
-    Orange(3, "Orange", GR.Common.Images.Affinities.Orange),
-    Light(4, "Light", GR.Common.Images.Affinities.Light),
-    Dark(5, "Dark", GR.Common.Images.Affinities.Dark),
-    Silver(6, "Silver", GR.Common.Images.Affinities.Silver),
-    Star(-1, "Star", GR.Common.Images.Affinities.Star),
-    General(-2, "General", GR.Common.Images.Affinities.General);// Don't use directly
+    Red(0, "Red", "R", GR.Common.Images.Affinities.Red),
+    Green(1, "Green", "G", GR.Common.Images.Affinities.Green),
+    Blue(2, "Blue", "B", GR.Common.Images.Affinities.Blue),
+    Orange(3, "Orange", "O", GR.Common.Images.Affinities.Orange),
+    Light(4, "Light", "L", GR.Common.Images.Affinities.Light),
+    Dark(5, "Dark", "D", GR.Common.Images.Affinities.Dark),
+    Silver(6, "Silver", "S", GR.Common.Images.Affinities.Silver),
+    Star(-1, "Star", "A", GR.Common.Images.Affinities.Star),
+    General(-2, "Gen", "W", GR.Common.Images.Affinities.General);// Don't use directly
 
     public static final int MAX_ID = 4;
 
@@ -57,13 +58,15 @@ public enum Affinity implements Comparable<Affinity>
 
     public final int ID;
     public final TextureCache Icon;
-    public final String Symbol;
+    public final String Name;
+    public final String PowerSymbol;
 
-    Affinity(int id, String symbol, TextureCache icon)
+    Affinity(int id, String name, String powerSymbol, TextureCache icon)
     {
         this.ID = id;
         this.Icon = icon;
-        this.Symbol = symbol;
+        this.Name = name;
+        this.PowerSymbol = powerSymbol;
     }
 
     public Texture GetIcon()
@@ -118,6 +121,18 @@ public enum Affinity implements Comparable<Affinity>
         }
     }
 
+    public String GetAffinitySymbol() {
+        return JUtils.Format("A-{0}", Name);
+    }
+
+    public String GetFormattedAffinitySymbol() {
+        return JUtils.Format("[{0}]", GetAffinitySymbol());
+    }
+
+    public String GetFormattedPowerSymbol() {
+        return JUtils.Format("[{0}]", PowerSymbol);
+    }
+
     public static Affinity FromTooltip(EYBCardTooltip tooltip)
     {   //@Formatter: Off
         if (tooltip.Is(GR.Tooltips.Affinity_Red)    ) { return Affinity.Red;     }
@@ -153,12 +168,12 @@ public enum Affinity implements Comparable<Affinity>
     {
         switch (this)
         {
-            case Red: return GR.Tooltips.Force;
-            case Green: return GR.Tooltips.Agility;
-            case Blue: return GR.Tooltips.Intellect;
-            case Orange: return GR.Tooltips.Willpower;
-            case Light: return GR.Tooltips.Blessing;
-            case Dark: return GR.Tooltips.Corruption;
+            case Red: return GR.Tooltips.Might;
+            case Green: return GR.Tooltips.Velocity;
+            case Blue: return GR.Tooltips.Wisdom;
+            case Orange: return GR.Tooltips.Endurance;
+            case Light: return GR.Tooltips.Supercharge;
+            case Dark: return GR.Tooltips.Desecration;
             case Silver: return GR.Tooltips.Technic;
             case Star:
             case General:

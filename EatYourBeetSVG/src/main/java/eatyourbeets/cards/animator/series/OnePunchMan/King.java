@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -39,8 +36,8 @@ public class King extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (GameUtilities.SpendSuperchargedCharge(magicNumber)) {
-            GameActions.Bottom.GainForce(secondaryValue);
+        if (GameUtilities.TrySpendAffinityPower(Affinity.Red, magicNumber)) {
+            GameActions.Bottom.GainMight(secondaryValue);
         }
     }
 }

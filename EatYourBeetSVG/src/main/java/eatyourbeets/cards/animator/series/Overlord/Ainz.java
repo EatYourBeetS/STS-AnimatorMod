@@ -12,7 +12,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.stances.CorruptionStance;
+import eatyourbeets.stances.DesecrationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -87,7 +87,7 @@ public class Ainz extends AnimatorCard
         @Override
         public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
             super.onChangeStance(oldStance,newStance);
-            if (newStance.ID.equals(CorruptionStance.STANCE_ID)) {
+            if (newStance.ID.equals(DesecrationStance.STANCE_ID)) {
                 EnablePowers();
             }
         }
@@ -101,7 +101,7 @@ public class Ainz extends AnimatorCard
             GameActions.Bottom.BorderLongFlash(Color.valueOf("3d0066"));
             GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
 
-            if (CorruptionStance.IsActive()) {
+            if (DesecrationStance.IsActive()) {
                 EnablePowers();
             }
         }
@@ -113,7 +113,7 @@ public class Ainz extends AnimatorCard
 
             for (Affinity a : AFFINITIES)
             {
-                GameActions.Bottom.StackAffinityPower(a, amount, CorruptionStance.IsActive());
+                GameActions.Bottom.StackAffinityPower(a, amount, DesecrationStance.IsActive());
             }
 
             this.flash();

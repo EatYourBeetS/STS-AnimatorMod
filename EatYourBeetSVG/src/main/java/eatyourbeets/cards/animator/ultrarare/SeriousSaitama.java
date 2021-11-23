@@ -37,7 +37,7 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
 
         if (amount > 0)
         {
-            GameActions.Bottom.GainForce(amount);
+            GameActions.Bottom.GainMight(amount);
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
         }
 

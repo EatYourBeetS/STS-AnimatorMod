@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.characters.FakeCharacter;
 import eatyourbeets.powers.EYBPower;
@@ -43,16 +44,10 @@ public class CardTooltips
 
     public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
-    public EYBCardTooltip Agility = FindByID("Agility");
-    public EYBCardTooltip AgilityScaling = FindByID("Agility Scaling");
-    public EYBCardTooltip AgilityStance = FindByID("Agility Stance");
     public EYBCardTooltip Air = FindByID("Air");
     public EYBCardTooltip Artifact = FindByID("Artifact");
     public EYBCardTooltip Aura = FindByID("Aura");
     public EYBCardTooltip Autoplay = FindByID("Autoplay");
-    public EYBCardTooltip Blessing = FindByID("Blessing");
-    public EYBCardTooltip BlessingScaling = FindByID("Blessing Scaling");
-    public EYBCardTooltip BlessingStance = FindByID("Blessing Stance");
     public EYBCardTooltip Blinded = FindByID("Blinded");
     public EYBCardTooltip BlockScaling = FindByID("~Block Scaling");
     public EYBCardTooltip Blur = FindByID("Blur");
@@ -60,16 +55,16 @@ public class CardTooltips
     public EYBCardTooltip Brutal = FindByID("~Brutal");
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Chaos = FindByID("Chaos");
+    public EYBCardTooltip CommonBuff = FindByID("Common Buff");
     public EYBCardTooltip Constricted = FindByID("Constricted");
-    public EYBCardTooltip Corruption = FindByID("Corruption");
-    public EYBCardTooltip CorruptionScaling = FindByID("Corruption Scaling");
-    public EYBCardTooltip CorruptionStance = FindByID("Corruption Stance");
     public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip Dark = FindByID("Dark");
     public EYBCardTooltip Delayed = FindByID("~Delayed");
     public EYBCardTooltip DelayedDamage = FindByID("Delayed Damage");
     public EYBCardTooltip DemonForm = FindByID("Demon Form");
     public EYBCardTooltip Desecration = FindByID("Desecration");
+    public EYBCardTooltip DesecrationScaling = FindByID("Desecration Scaling");
+    public EYBCardTooltip DesecrationStance = FindByID("Desecration Stance");
     public EYBCardTooltip Dexterity = FindByID("Dexterity");
     public EYBCardTooltip Earth = FindByID("Earth");
     public EYBCardTooltip Electrified = FindByID("Electrified");
@@ -78,15 +73,14 @@ public class CardTooltips
     public EYBCardTooltip ElementalMastery = FindByID("Elemental Mastery");
     public EYBCardTooltip EnchantedArmor = FindByID("Enchanted Armor");
     public EYBCardTooltip Endurance = FindByID("Endurance");
+    public EYBCardTooltip EnduranceScaling = FindByID("Endurance Scaling");
+    public EYBCardTooltip EnduranceStance = FindByID("Endurance Stance");
     public EYBCardTooltip Energized = FindByID("Energized");
     public EYBCardTooltip Envenom = FindByID("Envenom");
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Fire = FindByID("Fire");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
     public EYBCardTooltip Focus = FindByID("Focus");
-    public EYBCardTooltip Force = FindByID("Force");
-    public EYBCardTooltip ForceScaling = FindByID("Force Scaling");
-    public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Freezing = FindByID("Freezing");
     public EYBCardTooltip Frost = FindByID("Frost");
@@ -98,15 +92,15 @@ public class CardTooltips
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
     public EYBCardTooltip Intangible = FindByID("Intangible");
-    public EYBCardTooltip Intellect = FindByID("Intellect");
-    public EYBCardTooltip IntellectScaling = FindByID("Intellect Scaling");
-    public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip Lightning = FindByID("Lightning");
     public EYBCardTooltip Limited = FindByID("Limited");
     public EYBCardTooltip LockOn = FindByID("~Lock-On");
     public EYBCardTooltip Loyal = FindByID("Loyal");
     public EYBCardTooltip Malleable = FindByID("Malleable");
     public EYBCardTooltip Metallicize = FindByID("Metallicize");
+    public EYBCardTooltip Might = FindByID("Might");
+    public EYBCardTooltip MightScaling = FindByID("Might Scaling");
+    public EYBCardTooltip MightStance = FindByID("Might Stance");
     public EYBCardTooltip Multiform = FindByID("~Multiform");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
@@ -120,6 +114,7 @@ public class CardTooltips
     public EYBCardTooltip Ranged = FindByID("~Ranged");
     public EYBCardTooltip Regeneration = FindByID("Regeneration");
     public EYBCardTooltip Rejuvenation = FindByID("Rejuvenation");
+    public EYBCardTooltip Resistance = FindByID("Resistance");
     public EYBCardTooltip Retain = FindByID("~Retain");
     public EYBCardTooltip RetainInfinite = FindByID("~RetainInfinite");
     public EYBCardTooltip RetainOnce = FindByID("~RetainOnce");
@@ -130,7 +125,9 @@ public class CardTooltips
     public EYBCardTooltip Slow = FindByID("Slow");
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Strength = FindByID("Strength");
-    public EYBCardTooltip Supercharged = FindByID("Supercharged");
+    public EYBCardTooltip Supercharge = FindByID("Supercharge");
+    public EYBCardTooltip SuperchargeScaling = FindByID("Supercharge Scaling");
+    public EYBCardTooltip SuperchargeStance = FindByID("Supercharge Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip Swirled = FindByID("Swirled");
     public EYBCardTooltip Tainted = FindByID("Tainted");
@@ -141,14 +138,17 @@ public class CardTooltips
     public EYBCardTooltip TemporaryThorns = FindByID("Temporary Thorns");
     public EYBCardTooltip Thorns = FindByID("Thorns");
     public EYBCardTooltip Unique = FindByID("~Unique");
+    public EYBCardTooltip Velocity = FindByID("Velocity");
+    public EYBCardTooltip VelocityScaling = FindByID("Velocity Scaling");
+    public EYBCardTooltip VelocityStance = FindByID("Velocity Stance");
     public EYBCardTooltip Vigor = FindByID("Vigor");
     public EYBCardTooltip Vitality = FindByID("Vitality");
     public EYBCardTooltip Vulnerable = FindByID("Vulnerable");
     public EYBCardTooltip Water = FindByID("Water");
     public EYBCardTooltip Weak = FindByID("Weak");
-    public EYBCardTooltip Willpower = FindByID("Willpower");
-    public EYBCardTooltip WillpowerScaling = FindByID("Willpower Scaling");
-    public EYBCardTooltip WillpowerStance = FindByID("Willpower Stance");
+    public EYBCardTooltip Wisdom = FindByID("Wisdom");
+    public EYBCardTooltip WisdomScaling = FindByID("Wisdom Scaling");
+    public EYBCardTooltip WisdomStance = FindByID("Wisdom Stance");
 
     // No Description
     public EYBCardTooltip Affinity_Red = new EYBCardTooltip("Red Affinity", null).ShowText(false);
@@ -207,15 +207,15 @@ public class CardTooltips
 
     public CardTooltips()
     {
-        RegisterID("A-Red", Affinity_Red);
-        RegisterID("A-Green", Affinity_Green);
-        RegisterID("A-Blue", Affinity_Blue);
-        RegisterID("A-Orange", Affinity_Orange);
-        RegisterID("A-Light", Affinity_Light);
-        RegisterID("A-Dark", Affinity_Dark);
-        RegisterID("A-Silver", Affinity_Silver);
-        RegisterID("A-Star", Affinity_Star);
-        RegisterID("A-Gen", Affinity_General);
+        RegisterID(Affinity.Red.GetAffinitySymbol(), Affinity_Red);
+        RegisterID(Affinity.Green.GetAffinitySymbol(), Affinity_Green);
+        RegisterID(Affinity.Blue.GetAffinitySymbol(), Affinity_Blue);
+        RegisterID(Affinity.Orange.GetAffinitySymbol(), Affinity_Orange);
+        RegisterID(Affinity.Light.GetAffinitySymbol(), Affinity_Light);
+        RegisterID(Affinity.Dark.GetAffinitySymbol(), Affinity_Dark);
+        RegisterID(Affinity.Silver.GetAffinitySymbol(), Affinity_Silver);
+        RegisterID(Affinity.Star.GetAffinitySymbol(), Affinity_Star);
+        RegisterID(Affinity.General.GetAffinitySymbol(), Affinity_General);
 
         RegisterID("HP", Health);
         RegisterID("THP", TempHP);
@@ -298,12 +298,10 @@ public class CardTooltips
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(DemonForm, new DemonFormPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Desecration, new DesecrationPower(FakeCharacter.Instance, 0));
         LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalExposure, new ElementalExposurePower(FakeCharacter.Instance, 0));
         LoadFromPower(ElementalMastery, new ElementalMasteryPower(FakeCharacter.Instance, 0));
         LoadFromPower(EnchantedArmor, new EnchantedArmorPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Endurance, new EndurancePower(FakeCharacter.Instance, 0));
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Envenom, new EnvenomPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
@@ -318,12 +316,12 @@ public class CardTooltips
         LoadFromPower(Phasing, new PhasingPower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
         LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Resistance, new ResistancePower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(SelfImmolation, new SelfImmolationPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Slow, new AntiArtifactSlowPower(FakeCharacter.Instance, 0));
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Supercharged, new SuperchargedPower(FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(Swirled, new SwirledPower(FakeCharacter.Instance, 0));
         LoadFromPower(Tainted, new TaintedPower(FakeCharacter.Instance, 0));
@@ -349,9 +347,12 @@ public class CardTooltips
         {
             tooltip.SetIcon(p.powerIcon);
         }
-        else
+        else if (p.img != null)
         {
             tooltip.SetIcon(p.img);
+        }
+        else {
+            throw new RuntimeException("Image could not be read for " + p.name);
         }
 
         return tooltip;

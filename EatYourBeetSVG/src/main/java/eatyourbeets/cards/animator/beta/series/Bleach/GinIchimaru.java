@@ -86,7 +86,7 @@ public class GinIchimaru extends AnimatorCard
         @Override
         public String GetText()
         {
-            return GR.Animator.Strings.Actions.PayCost(amount, affinity.GetTooltip(), true) + "NL" + GR.Animator.Strings.Actions.GainAmount(amount, affinity.equals(Affinity.Green) ? GR.Tooltips.Agility : GR.Tooltips.Force, true);
+            return GR.Animator.Strings.Actions.PayCost(amount, affinity.GetTooltip(), true) + "NL" + GR.Animator.Strings.Actions.GainAmount(amount, affinity.equals(Affinity.Green) ? GR.Tooltips.Velocity : GR.Tooltips.Might, true);
         }
 
         @Override

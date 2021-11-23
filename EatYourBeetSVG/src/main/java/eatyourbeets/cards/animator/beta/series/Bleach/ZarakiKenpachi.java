@@ -12,17 +12,20 @@ import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
 
 public class ZarakiKenpachi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ZarakiKenpachi.class).SetPower(2, CardRarity.RARE).SetSeriesFromClassPackage();
+    public static final int MODIFIER_INCREASE = 2;
+    public static final int MODIFIER_DECREASE = -1;
 
     public ZarakiKenpachi()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
         SetUpgrade(0, 0, 2);
         SetAffinity_Red(2, 0, 0);
     }
@@ -44,10 +47,9 @@ public class ZarakiKenpachi extends AnimatorCard
 
             this.amount = amount;
 
-            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(-amount);
-            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(+amount);
+            for (AbstractAffinityPower po : CombatStats.Affinities.Powers) {
+                po.IncreasePowerLevelModifier(Affinity.Red.equals(po.affinity) ? MODIFIER_INCREASE : MODIFIER_DECREASE);
+            }
 
             CombatStats.onBlockBroken.Subscribe(this);
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
@@ -67,10 +69,9 @@ public class ZarakiKenpachi extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.Affinities.GetPower(Affinity.Orange).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Blue).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Green).AddThresholdBonusModifier(+amount);
-            CombatStats.Affinities.GetPower(Affinity.Red).AddThresholdBonusModifier(-amount);
+            for (AbstractAffinityPower po : CombatStats.Affinities.Powers) {
+                po.IncreasePowerLevelModifier(Affinity.Red.equals(po.affinity) ? -MODIFIER_INCREASE : -MODIFIER_DECREASE);
+            }
 
             CombatStats.onBlockBroken.Unsubscribe(this);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

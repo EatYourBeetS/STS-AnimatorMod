@@ -7,7 +7,7 @@ import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.WillpowerStance;
+import eatyourbeets.stances.EnduranceStance;
 import eatyourbeets.utilities.GameActions;
 
 public class ChihayaOhtori extends AnimatorCard
@@ -81,7 +81,7 @@ public class ChihayaOhtori extends AnimatorCard
     public void RefreshCost()
     {
         int orange = GetHandAffinity(Affinity.Orange, false);
-        if (WillpowerStance.IsActive()) {
+        if (EnduranceStance.IsActive()) {
             CostModifiers.For(this).Set(-1);
         }
         else {

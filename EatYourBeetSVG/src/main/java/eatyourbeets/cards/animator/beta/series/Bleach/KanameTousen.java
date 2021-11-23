@@ -15,8 +15,8 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.BlindedPower;
-import eatyourbeets.powers.common.EndurancePower;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.powers.common.ResistancePower;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -50,7 +50,7 @@ public class KanameTousen extends AnimatorCard {
             }
         }
 
-        if (IntellectStance.IsActive() && CombatStats.TryActivateLimited(cardID)) {
+        if (WisdomStance.IsActive() && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.StackPower(player, new KanameTousenPower(player, 2));
         }
     }
@@ -58,7 +58,7 @@ public class KanameTousen extends AnimatorCard {
 
     public static class KanameTousenPower extends AnimatorPower
     {
-        private static final String[] POWER_IDS = {StrengthPower.POWER_ID, DexterityPower.POWER_ID, FocusPower.POWER_ID, EndurancePower.POWER_ID};
+        private static final String[] POWER_IDS = {StrengthPower.POWER_ID, DexterityPower.POWER_ID, FocusPower.POWER_ID, ResistancePower.POWER_ID};
         private final HashMap<String, Integer> counts = new HashMap<>();
 
         public KanameTousenPower(AbstractPlayer owner, int amount)

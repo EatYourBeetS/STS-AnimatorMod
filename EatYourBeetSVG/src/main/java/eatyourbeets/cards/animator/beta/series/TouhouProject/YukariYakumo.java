@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.animator.InvertPower;
 import eatyourbeets.powers.common.ImpairedPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class YukariYakumo extends AnimatorCard
@@ -36,7 +35,7 @@ public class YukariYakumo extends AnimatorCard
         GameActions.Bottom.StackPower(new ImpairedPower(player, magicNumber));
         GameActions.Bottom.StackPower(new InvertPower(player, secondaryValue));
 
-        if (GameUtilities.SpendSuperchargedCharge(DESECRATION_COST) || TrySpendAffinity(Affinity.Dark)) {
+        if (TrySpendAffinity(Affinity.Dark)) {
             //GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), secondaryValue);
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), secondaryValue);
             GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);

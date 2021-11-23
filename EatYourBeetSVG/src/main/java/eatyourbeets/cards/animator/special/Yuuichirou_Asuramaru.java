@@ -6,7 +6,6 @@ import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.DesecrationPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Yuuichirou_Asuramaru extends AnimatorCard
@@ -33,11 +32,11 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new DesecrationPower(p, 1));
+        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Dark, 1);
         for (int i = 0; i < CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true) / secondaryValue; i++) {
-            GameActions.Bottom.GainForce(magicNumber);
-            GameActions.Bottom.GainAgility(magicNumber);
-            GameActions.Bottom.GainIntellect(magicNumber);
+            GameActions.Bottom.GainMight(magicNumber);
+            GameActions.Bottom.GainVelocity(magicNumber);
+            GameActions.Bottom.GainWisdom(magicNumber);
             GameActions.Bottom.MakeCardInHand(new Status_Burn()).SetUpgrade(true,false);
         }
     }

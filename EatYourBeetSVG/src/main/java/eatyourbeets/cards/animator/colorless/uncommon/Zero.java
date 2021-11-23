@@ -36,7 +36,7 @@ public class Zero extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainWisdom(magicNumber);
         if (upgraded) {
             GameActions.Bottom.Draw(1);
         }

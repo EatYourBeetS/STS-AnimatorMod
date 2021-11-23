@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.VelocityStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 
 public class RenjiAbarai extends AnimatorCard
@@ -47,7 +47,7 @@ public class RenjiAbarai extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (!AgilityStance.IsActive() || !ForceStance.IsActive()){
+        if (!VelocityStance.IsActive() || !MightStance.IsActive()){
             GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
         }
     }

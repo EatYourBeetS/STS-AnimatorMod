@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -43,7 +40,7 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
                         GameActions.Bottom.TriggerOrbPassive(cards.size(), true, false);
                     }
 
-                    if (GameUtilities.SpendSuperchargedCharge(CHARGE_COST)) {
+                    if (GameUtilities.TrySpendAffinityPower(Affinity.Blue, CHARGE_COST)) {
                         focusedOrb = null;
                         for (AbstractOrb orb : player.orbs)
                         {

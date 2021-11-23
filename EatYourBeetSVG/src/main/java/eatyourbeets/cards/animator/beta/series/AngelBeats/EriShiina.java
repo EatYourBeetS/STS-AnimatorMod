@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -44,7 +44,7 @@ public class EriShiina extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
-        if (CombatStats.ControlPile.Contains(this) || AgilityStance.IsActive())
+        if (CombatStats.ControlPile.Contains(this) || VelocityStance.IsActive())
         {
             GameActions.Bottom.CreateThrowingKnives(magicNumber);
         }
@@ -52,7 +52,7 @@ public class EriShiina extends AnimatorCard
         final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
         if (info.IsSynergizing && last != null && (last.cost <= 0 || last.costForTurn <= 0))
         {
-            GameActions.Bottom.GainAgility(secondaryValue);
+            GameActions.Bottom.GainVelocity(secondaryValue);
             GameActions.Bottom.GainBlur(1);
         }
     }

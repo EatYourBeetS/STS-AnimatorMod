@@ -94,8 +94,8 @@ public class Elesis extends AnimatorCard
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.GainForce(amount * 2);
-                    GameActions.Bottom.GainAgility(amount * 2);
+                    GameActions.Bottom.GainMight(amount * 2);
+                    GameActions.Bottom.GainVelocity(amount * 2);
                 });
                 AddDamageBonus(-bonusDamage);
                 break;

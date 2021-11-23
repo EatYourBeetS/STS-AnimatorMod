@@ -49,8 +49,6 @@ import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
-import eatyourbeets.powers.common.DesecrationPower;
-import eatyourbeets.powers.common.SuperchargedPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.EYBStance;
@@ -81,6 +79,13 @@ public class GameUtilities
         }
     }
 
+    public static void SpendAffinity(Affinity affinity, int amount, boolean showEffect) {
+        CombatStats.Affinities.SpendAffinity(affinity, amount);
+        if (showEffect) {
+            CombatStats.Affinities.Flash(affinity);
+        }
+    }
+
     public static boolean TrySpendAffinity(Affinity affinity, int amount) {
         return TrySpendAffinity(affinity, amount, true, true);
     }
@@ -99,10 +104,10 @@ public class GameUtilities
         int starAmount = canSpendStar ? CombatStats.Affinities.GetAffinityLevel(Affinity.Star, false) : 0;
         if (baseAmount + starAmount >= requiredAmount) {
             int baseDecrement = Math.min(baseAmount, requiredAmount);
-            AddAffinity(affinity, -baseDecrement, showEffect);
+            SpendAffinity(affinity, baseDecrement, showEffect);
             requiredAmount -= baseDecrement;
             if (requiredAmount > 0 && starAmount >= requiredAmount) {
-                AddAffinity(Affinity.Star, -requiredAmount, showEffect);
+                SpendAffinity(Affinity.Star, requiredAmount, showEffect);
             }
             return true;
         }
@@ -201,16 +206,25 @@ public class GameUtilities
                 || AbstractDungeon.screen == GR.Enums.Screens.EYB_SCREEN);
     }
 
-    public static boolean CanTriggerDesecration()
+    public static boolean CanSpendAffinityPower(Affinity affinity)
     {
-        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
-        return po != null && po.enabled && po.charge >= DesecrationPower.CHARGE_THRESHOLD;
+        return CanSpendAffinityPower(affinity, -1);
+    }
+    public static boolean CanSpendAffinityPower(Affinity affinity, int amount)
+    {
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+        return po != null && po.CanSpend(amount >= 0 ? amount : po.amount);
     }
 
-    public static boolean CanTriggerSupercharged()
+    public static boolean TrySpendAffinityPower(Affinity affinity)
     {
-        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-        return po != null && po.enabled && po.charge >= SuperchargedPower.CHARGE_THRESHOLD;
+        return TrySpendAffinityPower(affinity, -1);
+    }
+
+    public static boolean TrySpendAffinityPower(Affinity affinity, int amount)
+    {
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+        return po != null && po.TrySpend(amount >= 0 ? amount : po.amount);
     }
 
     public static void ClearPostCombatActions()
@@ -336,6 +350,18 @@ public class GameUtilities
     {
         final EYBCardAffinities a = GetAffinities(card);
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
+    }
+
+    public static int GetAffinityPowerLevel(Affinity affinity)
+    {
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+        return po != null ? po.GetEffectiveLevel() : 0;
+    }
+
+    public static int GetAffinityPowerThreshold(Affinity affinity)
+    {
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+        return po != null ? po.GetCurrentThreshold() : 0;
     }
 
     public static int GetAffinityScaling(AbstractCard card, Affinity affinity, boolean useStarScaling)
@@ -626,24 +652,14 @@ public class GameUtilities
     {
         if (commonBuffs.isEmpty())
         {
-            commonBuffs.add(PowerHelper.Strength);
-            commonBuffs.add(PowerHelper.Dexterity);
-            commonBuffs.add(PowerHelper.Focus);
-            commonBuffs.add(PowerHelper.Endurance);
-            commonBuffs.add(PowerHelper.TemporaryStrength);
-            commonBuffs.add(PowerHelper.TemporaryDexterity);
-            commonBuffs.add(PowerHelper.TemporaryFocus);
-            commonBuffs.add(PowerHelper.TemporaryEndurance);
-            commonBuffs.add(PowerHelper.Thorns);
-            commonBuffs.add(PowerHelper.TemporaryThorns);
-            commonBuffs.add(PowerHelper.Blur);
-            commonBuffs.add(PowerHelper.PlatedArmor);
-            commonBuffs.add(PowerHelper.Metallicize);
-            commonBuffs.add(PowerHelper.Artifact);
-            commonBuffs.add(PowerHelper.TemporaryArtifact);
+            for (PowerHelper ph : PowerHelper.ALL.values()) {
+                if (!ph.IsDebuff) {
+                    commonBuffs.add(ph);
+                }
+            }
         }
 
-        return commonDebuffs;
+        return commonBuffs;
     }
 
     public static ArrayList<PowerHelper> GetCommonDebuffs()
@@ -1243,26 +1259,6 @@ public class GameUtilities
         ModifyDamage(card, card.baseDamage + amount, temporary);
     }
 
-    public static void IncreaseDesecrationCharge(int amount)
-    {
-        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
-        if (po == null) {
-            po = new DesecrationPower(player, 0);
-            GameActions.Bottom.StackPower(po);
-        }
-        po.IncreaseCharge(amount, false);
-    }
-
-    public static void IncreaseSuperchargedCharge(int amount)
-    {
-        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-        if (po == null) {
-            po = new SuperchargedPower(player, 0);
-            GameActions.Bottom.StackPower(po);
-        }
-        po.IncreaseCharge(amount, false);
-    }
-
     public static void IncreaseHandSizePermanently(float cX, float cY)
     {
         for (AbstractBlight blight : player.blights)
@@ -1750,21 +1746,15 @@ public class GameUtilities
         }
     }
 
-    public static void RetainDesecration(boolean retain)
+    public static AbstractAffinityPower SetAffinityPowerThreshold(Affinity affinity, int amount, boolean relative)
     {
-        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
-        if (po != null) {
-            po.enabled = !retain;
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
+        if (power != null)
+        {
+            power.SetChargeThreshold(relative ? power.chargeThreshold + amount : amount);
         }
-    }
 
-
-    public static void RetainSupercharged(boolean retain)
-    {
-        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-        if (po != null) {
-            po.enabled = !retain;
-        }
+        return power;
     }
 
     public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
@@ -1797,26 +1787,6 @@ public class GameUtilities
             AbstractDungeon.topPanel.unhoverHitboxes();
             //AbstractDungeon.topPanel.potionUi.isHidden = !visible;
         }
-    }
-
-    public static boolean SpendDesecrationCharge(int amount)
-    {
-        DesecrationPower po = GameUtilities.GetPower(player, DesecrationPower.POWER_ID);
-        if (po != null && po.charge >= amount) {
-            po.charge -= amount;
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean SpendSuperchargedCharge(int amount)
-    {
-        SuperchargedPower po = GameUtilities.GetPower(player, SuperchargedPower.POWER_ID);
-        if (po != null && po.charge >= amount) {
-            po.charge -= amount;
-            return true;
-        }
-        return false;
     }
 
     public static void TriggerWhenPlayed(AbstractCard card, ActionT1<AbstractCard> onCardPlayed)

@@ -27,20 +27,20 @@ public class MarisaKirisame extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainWisdom(magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainWisdom(magicNumber);
 
         if (info.IsSynergizing)
         {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }
-        if (GameUtilities.SpendSuperchargedCharge(secondaryValue)) {
+        if (GameUtilities.TrySpendAffinityPower(Affinity.Blue, magicNumber)) {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }
     }

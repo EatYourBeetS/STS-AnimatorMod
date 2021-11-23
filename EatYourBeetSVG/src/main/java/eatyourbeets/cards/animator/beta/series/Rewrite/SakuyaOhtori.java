@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.MightStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -42,9 +42,9 @@ public class SakuyaOhtori extends AnimatorCard
             GameActions.Bottom.GainBlock(block);
         }
 
-        if (GameUtilities.InStance(ForceStance.STANCE_ID))
+        if (GameUtilities.InStance(MightStance.STANCE_ID))
         {
-            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
 
             Dark dark = null;
 
@@ -64,7 +64,7 @@ public class SakuyaOhtori extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
 
             for (int i = 0; i < p.hand.size(); i++)
             {

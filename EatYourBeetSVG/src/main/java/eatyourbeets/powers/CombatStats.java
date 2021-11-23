@@ -27,7 +27,8 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.orbs.EYBOrb;
-import eatyourbeets.powers.common.EndurancePower;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.common.ResistancePower;
 import eatyourbeets.powers.common.VitalityPower;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
@@ -74,6 +75,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnGainAffinitySubscriber> onGainAffinity = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
@@ -505,12 +507,26 @@ public class CombatStats extends EYBPower implements InvisiblePower
             GameActions.Top.Add(cachedActions.get(cachedActions.size() - 1 - i));
         }
 
+        for (AbstractAffinityPower po : CombatStats.Affinities.Powers) {
+            po.OnUsingCard(card, p, m);
+        }
+
         if (card.affinities != null && card.cardData.CanGrantAffinity) {
             Affinities.AddAffinities(card.affinities);
             if (card.affinities.GetLevel(Affinity.Star) > 0 && info.IsSynergizing && info.PreviousCard instanceof EYBCard && ((EYBCard) info.PreviousCard).affinities != null) {
                 Affinities.AddAffinities(((EYBCard) info.PreviousCard).affinities);
             }
         }
+    }
+
+    public static int OnGainAffinity(Affinity affinity, int amount, boolean isActuallyGaining)
+    {
+        for (OnGainAffinitySubscriber s : onGainAffinity.GetSubscribers())
+        {
+            amount = s.OnGainAffinity(affinity, amount, isActuallyGaining);
+        }
+
+        return amount;
     }
 
     public static int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending)
@@ -742,7 +758,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             power.priority = -2097;
         }
-        else if (EndurancePower.POWER_ID.equals(power.ID))
+        else if (ResistancePower.POWER_ID.equals(power.ID))
         {
             power.priority = -2097;
         }

@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 
@@ -37,8 +37,8 @@ public class Lancer extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetVFXColor(Colors.Lerp(Color.SCARLET, Color.WHITE, 0.3f), Color.RED));
 
-        if (ForceStance.IsActive()) {
-            GameActions.Bottom.GainAgility(magicNumber, true);
+        if (MightStance.IsActive()) {
+            GameActions.Bottom.GainVelocity(magicNumber, true);
         }
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 

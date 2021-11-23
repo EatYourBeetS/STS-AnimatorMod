@@ -54,7 +54,7 @@ public class Garou extends AnimatorCard
                 final int light = JUtils.Count(CombatStats.CardsExhaustedThisTurn(), GameUtilities::HasLightAffinity);
                 if (light > 0)
                 {
-                    GameActions.Bottom.GainForce(light);
+                    GameActions.Bottom.GainMight(light);
                 }
             });
         }

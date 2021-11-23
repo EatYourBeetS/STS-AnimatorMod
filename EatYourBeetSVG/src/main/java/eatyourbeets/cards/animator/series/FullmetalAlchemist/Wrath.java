@@ -36,7 +36,7 @@ public class Wrath extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainForce(magicNumber);
+        GameActions.Bottom.GainMight(magicNumber);
         GameActions.Bottom.StackPower(new WrathPower(p, secondaryValue));
 
     }

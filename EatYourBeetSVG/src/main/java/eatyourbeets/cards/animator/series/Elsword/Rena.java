@@ -47,7 +47,7 @@ public class Rena extends AnimatorCard
                 {
                     if (orbs.size() > 0)
                     {
-                        GameActions.Bottom.GainAgility(magicNumber);
+                        GameActions.Bottom.GainVelocity(magicNumber);
                     }
                     else
                     {

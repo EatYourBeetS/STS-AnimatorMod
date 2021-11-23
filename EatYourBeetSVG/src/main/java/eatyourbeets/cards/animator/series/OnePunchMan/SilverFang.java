@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class SilverFang extends AnimatorCard
@@ -54,7 +54,7 @@ public class SilverFang extends AnimatorCard
 
         if (info.IsSynergizing && info.TryActivateSemiLimited())
         {
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
         }
     }
 }

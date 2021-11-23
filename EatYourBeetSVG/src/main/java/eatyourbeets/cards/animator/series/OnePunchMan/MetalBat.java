@@ -10,7 +10,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -25,8 +24,8 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(1, 0, 6, 1);
-        SetUpgrade(1, 0, 3, 0);
+        Initialize(1, 0, 1, 1);
+        SetUpgrade(1, 0, 0, 1);
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1);
@@ -38,8 +37,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        GameActions.Bottom.GainForce(magicNumber);
-        gainedForce = ForceStance.IsActive() ? magicNumber * 2 : magicNumber;
+        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Red, 1);
         CombatStats.onEndOfTurn.Subscribe(this);
 
         if (TrySpendAffinity(Affinity.Red)) {
@@ -49,7 +47,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
 
     @Override
     public void OnEndOfTurn(boolean isPlayer) {
-        GameActions.Bottom.GainForce(ForceStance.IsActive() && gainedForce == magicNumber ? -(magicNumber / 2) : -magicNumber);
+        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Red, -1);
         CombatStats.onEndOfTurn.Unsubscribe(this);
     }
 }

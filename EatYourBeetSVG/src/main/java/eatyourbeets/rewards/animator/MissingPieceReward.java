@@ -96,7 +96,7 @@ public class MissingPieceReward extends AnimatorReward
                     final StringBuilder builder = new StringBuilder();
                     for (EYBCardAffinityStatistics.Group g : statistics)
                     {
-                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Affinity.Symbol, g.GetPercentageString(0), g.GetTotal(0)));
+                        builder.append(JUtils.Format(" NL [A-{0}] : {1} ( #b{2} )", g.Affinity.Name, g.GetPercentageString(0), g.GetTotal(0)));
                     }
 
                     tooltip.description += builder.toString();

@@ -61,8 +61,8 @@ public class NobleFencer extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainAgility(secondaryValue);
-            GameActions.Bottom.GainIntellect(secondaryValue);
+            GameActions.Bottom.GainVelocity(secondaryValue);
+            GameActions.Bottom.GainWisdom(secondaryValue);
         }
 
         GameActions.Bottom.EvokeOrb(1).SetFilter(Lightning.class::isInstance);

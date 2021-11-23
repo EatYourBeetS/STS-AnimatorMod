@@ -21,13 +21,13 @@ public class CounterIntentEffect_Defend_Buff extends CounterIntentEffect
             GameUtilities.UsePenNib();
         }
 
-        GameActions.Bottom.GainForce(GetForce(nanami));
+        GameActions.Bottom.GainMight(GetForce(nanami));
     }
 
     @Override
     public String GetDescription(EYBCard nanami)
     {
-        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Force, true);
+        return ACTIONS.GainAmount(GetForce(nanami), GR.Tooltips.Might, true);
     }
 
     @Override

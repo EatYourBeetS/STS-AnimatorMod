@@ -7,9 +7,9 @@ import eatyourbeets.powers.replacement.AnimatorFrailPower;
 import eatyourbeets.powers.replacement.AnimatorVulnerablePower;
 import eatyourbeets.powers.replacement.AnimatorWeakPower;
 
-public class EndurancePower extends CommonPower
+public class ResistancePower extends CommonPower
 {
-    public static final String POWER_ID = CreateFullID(EndurancePower.class);
+    public static final String POWER_ID = CreateFullID(ResistancePower.class);
     public static final int MULTIPLIER = 5;
     public static final int MULTIPLIER2 = 3;
     public static final int DEFENSE_MULTIPLIER = 4;
@@ -21,7 +21,7 @@ public class EndurancePower extends CommonPower
         return Math.max(0.1f, 1f - amount * DEFENSE_MULTIPLIER / 100f);
     }
 
-    public EndurancePower(AbstractCreature owner, int amount)
+    public ResistancePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         Initialize(amount);

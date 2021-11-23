@@ -60,7 +60,7 @@ public class Darkness extends AnimatorCard
             {
                 damageTaken += damageAmount;
                 if (damageTaken >= 5) {
-                    GameActions.Bottom.GainForce(amount);
+                    GameActions.Bottom.GainMight(amount);
                     RemovePower();
                     this.flash();
                 }

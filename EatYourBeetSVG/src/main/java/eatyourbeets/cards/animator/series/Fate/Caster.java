@@ -65,8 +65,8 @@ public class Caster extends AnimatorCard
     {
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
         GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
-        GameActions.Bottom.GainCorruption(magicNumber);
-        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Endurance, -1);
+        GameActions.Bottom.GainDesecration(magicNumber);
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -1);
 
         if (info.IsSynergizing)
         {

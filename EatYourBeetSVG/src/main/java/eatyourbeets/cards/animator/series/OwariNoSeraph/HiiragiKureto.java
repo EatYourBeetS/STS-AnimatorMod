@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 
 public class HiiragiKureto extends AnimatorCard
@@ -57,7 +57,7 @@ public class HiiragiKureto extends AnimatorCard
             }
         }));
 
-        if (IntellectStance.IsActive()) {
+        if (WisdomStance.IsActive()) {
             GameActions.Bottom.ModifyTag(player.hand, 1, HASTE, true);
         }
     }

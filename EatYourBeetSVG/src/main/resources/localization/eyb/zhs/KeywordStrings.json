@@ -12,10 +12,10 @@
 		"NAMES": ["机敏"],
 		"PROPER_NAME": "机敏"
 	},
-	"Agility Stance":
+	"Velocity Stance":
 	{
 		"DESCRIPTION": "#g+2 #g敏捷， #r-1 #r力量， #r-1 #r集中。 NL 进入这一 #y姿态 时， #y增强 #y机敏。",
-		"NAMES": ["[a] 姿态", "机敏姿态"],
+		"NAMES": ["[G] 姿态", "机敏姿态"],
 		"PROPER_NAME": "机敏姿态"
 	},
 	"Autoplay":
@@ -114,10 +114,10 @@
 		"NAMES": ["武力"],
 		"PROPER_NAME": "武力"
 	},
-	"Force Stance":
+	"Might Stance":
 	{
 		"DESCRIPTION": "#g+2 #g力量， #r-1 #r集中， #r-1 #r敏捷。 NL 进入这一 #y姿态 时， #y增强 #y武力。",
-		"NAMES": ["[f] 姿态", "武力姿态"],
+		"NAMES": ["[R] 姿态", "武力姿态"],
 		"PROPER_NAME": "武力姿态"
 	},
 	"High-Cost":
@@ -138,10 +138,10 @@
 		"NAMES": ["智力"],
 		"PROPER_NAME": "智力"
 	},
-	"Intellect Stance":
+	"Wisdom Stance":
 	{
 		"DESCRIPTION": "#g+2 #g集中， #r-1 #r力量， #r-1 #r敏捷。 NL 进入这一 #y姿态 时， #y增强 #y智力。",
-		"NAMES": ["[i] 姿态", "智力姿态"],
+		"NAMES": ["[B] 姿态", "智力姿态"],
 		"PROPER_NAME": "智力姿态"
 	},
 	"Juggernaut":

@@ -31,12 +31,12 @@ public class AyakaKamisato extends AnimatorCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, 4);
+        Initialize(20, 0, 2, 4);
         SetUpgrade(5, 0, 0, 0);
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(2, 0, 0);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Dark(0, 0, 3);
+        SetAffinity_Dark(0, 0, 2);
 
         SetEthereal(true);
         SetExhaust(true);

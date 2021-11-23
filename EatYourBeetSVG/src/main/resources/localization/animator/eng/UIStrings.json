@@ -289,7 +289,7 @@
 		"TEXT":
 		[
 			"Click this to learn more about #yAffinities.",
-			"Whenever you play a card, the counters of each #yAffinity on the card will increase by 1. Cards that have #yAffinity requirements for their effects will decrement these counters when they activate. NL Once per turn, when a card with LV2 #yAffinity #ySynergizes, gain the power shown on the right."
+			"Whenever you play a card, the counters of each of its #yAffinities will increase by 1. Spend counters to activate effects requiring them. NL Once per turn, when a card #ySynergizes, gain the power shown on the right. NL This power gains #b1 #yLevel for every #b100 cumulative #yAffinity gained this combat. Power gains from any source increase by #b+100% per #yLevel."
 		]
 	},
 

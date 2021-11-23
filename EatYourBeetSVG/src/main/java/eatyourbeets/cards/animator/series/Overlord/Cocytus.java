@@ -53,7 +53,7 @@ public class Cocytus extends AnimatorCard
         {
             if (orbs.size() > 0)
             {
-                GameActions.Bottom.GainForce(magicNumber);
+                GameActions.Bottom.GainMight(magicNumber);
             }
             else
             {

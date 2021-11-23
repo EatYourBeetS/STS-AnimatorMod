@@ -20,7 +20,14 @@ public class Vladilena extends AnimatorCard
     public static final EYBCardData DATA = Register(Vladilena.class)
             .SetSkill(1, CardRarity.RARE)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.EightySix);
+            .SetSeries(CardSeries.EightySix)
+            .PostInitialize(data ->
+            {
+                for (EYBCardData d : AffinityToken.GetCards())
+                {
+                    data.AddPreview(d.CreateNewInstance(), true);
+                }
+            });
 
     public Vladilena()
     {

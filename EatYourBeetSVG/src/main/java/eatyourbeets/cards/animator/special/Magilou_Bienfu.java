@@ -37,7 +37,7 @@ public class Magilou_Bienfu extends AnimatorCard
     @Override
     public void triggerWhenDrawn()
     {
-        GameActions.Bottom.GainIntellect(magicNumber);
+        GameActions.Bottom.GainWisdom(magicNumber);
     }
 
     @Override

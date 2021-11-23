@@ -35,7 +35,7 @@ public class GazelDwargon extends AnimatorCard //TODO
         {
             GameActions.Bottom.GainPlatedArmor(stacks + secondaryValue);
             GameActions.Bottom.StackPower(new GazelDwargonPower(p, stacks * magicNumber));
-            GameActions.Bottom.GainWillpower(stacks);
+            GameActions.Bottom.GainEndurance(stacks);
         }
     }
 

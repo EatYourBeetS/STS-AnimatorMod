@@ -34,7 +34,7 @@ public class MetalKnight extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        if (GameUtilities.CanTriggerSupercharged()) {
+        if (GameUtilities.CanSpendAffinityPower(Affinity.Red)) {
             return super.ModifyDamage(enemy, amount + magicNumber);
         }
         return super.ModifyDamage(enemy, amount);

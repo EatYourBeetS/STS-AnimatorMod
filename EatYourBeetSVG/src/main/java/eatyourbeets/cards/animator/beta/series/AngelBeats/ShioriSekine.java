@@ -43,7 +43,7 @@ public class ShioriSekine extends AnimatorCard
     @Override
     public void triggerOnManualDiscard()
     {
-        GameActions.Bottom.GainWillpower(secondaryValue);
+        GameActions.Bottom.GainEndurance(secondaryValue);
     }
 
     @Override

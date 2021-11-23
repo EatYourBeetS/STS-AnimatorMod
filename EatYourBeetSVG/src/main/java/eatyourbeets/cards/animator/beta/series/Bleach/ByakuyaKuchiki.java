@@ -10,8 +10,8 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.VelocityStance;
+import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 //TODO Choose 1: Gain +M damage and Red, or Gain +M Block and Green
 public class ByakuyaKuchiki extends AnimatorCard {
@@ -34,7 +34,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
             ChooseAction(enemy);
         });
 
-        if (ForceStance.IsActive() || AgilityStance.IsActive()) {
+        if (MightStance.IsActive() || VelocityStance.IsActive()) {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
             GameActions.Bottom.MakeCardInDrawPile(new ByakuyaBankai());
             GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);

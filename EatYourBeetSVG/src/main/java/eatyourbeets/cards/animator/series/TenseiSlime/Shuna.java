@@ -38,8 +38,8 @@ public class Shuna extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainBlessing(magicNumber);
-        GameActions.Bottom.GainWillpower(magicNumber);
+        GameActions.Bottom.GainSupercharge(magicNumber);
+        GameActions.Bottom.GainEndurance(magicNumber);
         GameActions.Bottom.Draw(magicNumber);
     }
 }

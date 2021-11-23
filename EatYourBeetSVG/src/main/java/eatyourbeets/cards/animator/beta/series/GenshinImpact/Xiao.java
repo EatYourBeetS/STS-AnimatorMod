@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Air;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -52,12 +52,12 @@ public class Xiao extends AnimatorCard
                 }));
         GameActions.Bottom.GainBlock(block);
 
-        if (AgilityStance.IsActive()) {
+        if (VelocityStance.IsActive()) {
             GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), secondaryValue * player.hand.size());
             GameActions.Last.Exhaust(this);
         }
         else {
-            GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
         }
     }
 }

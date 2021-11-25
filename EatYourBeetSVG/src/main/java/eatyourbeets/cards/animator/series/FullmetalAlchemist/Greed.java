@@ -27,7 +27,7 @@ public class Greed extends AnimatorCard
             {
                 data.AddPreview(new Crystallize(), false);
             });
-    public static final int THRESHOLD = 5;
+    public static final int THRESHOLD = 4;
     public static final int GOLD = 25;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -55,12 +55,10 @@ public class Greed extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (choices.TryInitialize(this))
-        {
-            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Malleable, magicNumber));
-            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Metallicize, secondaryValue));
-        }
 
+        choices.Initialize(this, true);
+        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Malleable, magicNumber));
+        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.Metallicize, secondaryValue));
         choices.Select(1, m);
         GameActions.Bottom.StackPower(new GreedPower(p, 1));
     }
@@ -80,7 +78,7 @@ public class Greed extends AnimatorCard
             for (int i = 0; i < amount; i++) {
                 Crystallize c = new Crystallize();
                 GameUtilities.ModifyCostForCombat(c, 0, false);
-                GameActions.Bottom.MakeCardInDrawPile(new Crystallize());
+                GameActions.Bottom.MakeCardInDrawPile(c);
             }
         }
 

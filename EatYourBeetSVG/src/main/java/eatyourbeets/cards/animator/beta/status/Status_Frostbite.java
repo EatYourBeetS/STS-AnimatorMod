@@ -17,8 +17,8 @@ public class Status_Frostbite extends AnimatorCard_Status
     {
         super(DATA, true);
 
-        Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 2, 2);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Status_Frostbite extends AnimatorCard_Status
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (auxiliaryData.form == 1) {
-            GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(),magicNumber);
+            GameActions.Bottom.ApplyFreezing(TargetHelper.RandomEnemy(),magicNumber);
         }
         else if (this.dontTriggerOnUseCard)
         {
@@ -46,6 +46,6 @@ public class Status_Frostbite extends AnimatorCard_Status
     }
 
     private void performAction() {
-        GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(),secondaryValue);
+        GameActions.Bottom.ApplyFreezing(TargetHelper.RandomEnemy(),secondaryValue);
     }
 }

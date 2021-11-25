@@ -168,10 +168,10 @@
 		"FLAVOR": "Now everything is in color!",
 		"NAME": "Polychrome Paintbrush"
 	},
-	"animator:RollingCubes":
+	"animator:PurgingStone":
 	{
-		"DESCRIPTIONS": ["During #yNormal card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
-		"FLAVOR": "A pair of rolling cubes.",
+		"DESCRIPTIONS": ["During card rewards, you may remove a card from the card reward pool and replace it with another card. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
+		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Rolling Cubes"
 	},
 	"animator:PurpleTeddyBear":
@@ -179,6 +179,12 @@
 		"DESCRIPTIONS": ["At the start of each combat, shuffle 3 0-Cost, upgraded Shido Itsukas into your deck."],
 		"FLAVOR": "...Shin?",
 		"NAME": "Purple Teddy Bear"
+	},
+	"animator:RollingCubes":
+	{
+		"DESCRIPTIONS": ["During card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
+		"FLAVOR": "A pair of rolling cubes.",
+		"NAME": "Rolling Cubes"
 	},
 	"animator:RacePiece":
 	{

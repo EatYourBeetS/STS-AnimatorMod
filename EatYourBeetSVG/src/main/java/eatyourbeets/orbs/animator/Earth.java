@@ -5,27 +5,28 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.interfaces.subscribers.OnRawDamageReceived;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
-public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
+public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber, OnRawDamageReceived
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
     public static final int BASE_PROJECTILES = 6;
@@ -100,13 +101,14 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         AddProjectiles(projectilesCount);
 
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        CombatStats.onRawDamageReceived.Subscribe(this);
     }
 
     @Override
     public void updateDescription()
     {
         this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], passiveAmount, MAX_PROJECTILES, evokeAmount, turns);
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], passiveAmount, MAX_PROJECTILES, evokeAmount, evokeAmount, turns);
     }
 
     @Override
@@ -238,6 +240,7 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         turns = 0;
         evoked = true;
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+        CombatStats.onRawDamageReceived.Unsubscribe(this);
     }
 
     @Override
@@ -250,5 +253,16 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     protected Color GetColor2()
     {
         return Color.DARK_GRAY;
+    }
+
+    @Override
+    public int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage) {
+        if (info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsPlayer(target) && GameUtilities.IsMonster(info.owner))
+        {
+            GameActions.Top.Add(new EarthOrbPassiveAction(this, -1));
+            GameActions.Top.DealDamage(null, info.owner, evokeAmount, DamageInfo.DamageType.THORNS, AttackEffects.SMASH).SetVFXColor(Color.TAN);
+            GameActions.Top.GainBlock(evokeAmount);
+        }
+        return damage;
     }
 }

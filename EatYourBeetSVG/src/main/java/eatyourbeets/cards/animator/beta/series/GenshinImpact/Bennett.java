@@ -33,6 +33,6 @@ public class Bennett extends AnimatorCard {
         if (info.IsSynergizing) {
             GameActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
         }
-        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.SMASH);
+        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.BLUNT_HEAVY);
     }
 }

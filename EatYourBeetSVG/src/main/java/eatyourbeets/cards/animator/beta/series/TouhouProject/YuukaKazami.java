@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class YuukaKazami extends AnimatorCard
@@ -55,7 +56,7 @@ public class YuukaKazami extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GameActionManager.turn % 2 == 0;
+        return GameUtilities.InBattle() && GameActionManager.turn % 2 == 0;
     }
 }
 

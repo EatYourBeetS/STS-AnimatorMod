@@ -48,8 +48,7 @@ public class SparkImpactEffect extends EYBEffect
                     .SetTranslucent(1f)
                     .Edit(i, (r, p) -> p
                             .SetScale(scale * MathUtils.random(0.04f, 0.55f)).SetTargetRotation(36000f,1440f)
-                            .SetSpeed(MathUtils.random(170f, 800f), MathUtils.random(170f, 800f), MathUtils.random(700f, 1010f),0f)
-                            .SetAcceleration(MathUtils.random(-15f, 15f), MathUtils.random(25f, 125f) * -1, null, null, null)
+                            .SetSpeed(MathUtils.random(170f, 800f), MathUtils.random(170f, 800f), MathUtils.random(700f, 1010f),-0.03f)
                             .SetTargetPosition(x + radius * MathUtils.cos(r), y + radius * MathUtils.sin(r))).SetDuration(0.5f, false)
             .SetDuration(MathUtils.random(0.5F, 1.0F), true));
             GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, color));

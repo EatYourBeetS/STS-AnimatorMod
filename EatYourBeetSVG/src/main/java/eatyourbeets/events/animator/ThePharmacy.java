@@ -47,7 +47,7 @@ public class ThePharmacy extends EYBEvent
     private static class Offering extends EYBEventPhase<ThePharmacy, ThePharmacy.EventStrings>
     {
         private String merchantLine;
-        protected static int price = 20;
+        protected static int price = 25;
 
 
         @Override

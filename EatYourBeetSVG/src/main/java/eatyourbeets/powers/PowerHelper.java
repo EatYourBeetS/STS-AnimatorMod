@@ -60,6 +60,7 @@ public class PowerHelper
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new, false);
     public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, null, VitalityPower::new, false);
     public static final PowerHelper Vigor = new PowerHelper(VigorPower.POWER_ID, null, VigorPower::new, false);
+    public static final PowerHelper EnchantedArmor = new PowerHelper(EnchantedArmorPower.POWER_ID, null, (o, s, a) -> new EnchantedArmorPower(o, a), false);
     public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, null, (o, s, a) -> new RitualPower(o, a, GameUtilities.IsPlayer(o)), false);
 
     public EYBCardTooltip Tooltip;

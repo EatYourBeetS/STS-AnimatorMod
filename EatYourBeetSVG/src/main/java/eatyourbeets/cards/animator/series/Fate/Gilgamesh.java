@@ -39,7 +39,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     {
         super(DATA);
 
-        Initialize(4, 0, 1, 25);
+        Initialize(3, 0, 1, 25);
         SetUpgrade(1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -54,7 +54,7 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 6 == 1)
+        if (timesUpgraded % 4 == 0)
         {
             upgradeMagicNumber(1);
         }

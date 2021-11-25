@@ -42,7 +42,7 @@ public class BarbaraPegg extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new RainbowCardEffect());
-        GameActions.Bottom.GainSupercharge(secondaryValue);
+        GameActions.Bottom.GainWisdom(secondaryValue);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
         if (info.CanActivateLimited && TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited()) {
             Water waterOrb = new Water();

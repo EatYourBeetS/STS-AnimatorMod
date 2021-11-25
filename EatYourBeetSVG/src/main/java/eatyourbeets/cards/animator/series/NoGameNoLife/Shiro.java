@@ -14,7 +14,7 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
     public static final EYBCardData DATA = Register(Shiro.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
-    public static final int CHARGE_COST = 8;
+    public static final int CHARGE_COST = 5;
     private AbstractOrb focusedOrb;
 
     public Shiro()
@@ -40,7 +40,7 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
                         GameActions.Bottom.TriggerOrbPassive(cards.size(), true, false);
                     }
 
-                    if (GameUtilities.TrySpendAffinityPower(Affinity.Blue, CHARGE_COST)) {
+                    if (GameUtilities.TrySpendAffinityPower(Affinity.Light, CHARGE_COST)) {
                         focusedOrb = null;
                         for (AbstractOrb orb : player.orbs)
                         {

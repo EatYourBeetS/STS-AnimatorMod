@@ -23,7 +23,7 @@ public class Tyuule extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 0, 1);
+        Initialize(0, 2, 0, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Dark(1, 1, 0);

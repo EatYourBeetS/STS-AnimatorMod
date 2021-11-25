@@ -24,7 +24,7 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
         Initialize(0, 7, 3, 1);
         SetUpgrade(0,0,1,0);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(Affinity.General, 3);
         SetExhaust(true);

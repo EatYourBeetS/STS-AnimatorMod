@@ -51,6 +51,8 @@ public class CommonStrings
         public final String Purge_F1 = Strings.TEXT[4];
         public final String Scry = Strings.TEXT[5];
         public final String Fetch_F1 = Strings.TEXT[6];
+        public final String Pay_F1 = Strings.TEXT[7];
+        public final String Give_F1 = Strings.TEXT[8];
         public final String Discard = DiscardAction.TEXT[0];
         public final String Exhaust = ExhaustAction.TEXT[0];
         public final String Cycle = GamblingChipAction.TEXT[1];
@@ -84,6 +86,16 @@ public class CommonStrings
         public final String Fetch(int amount)
         {
             return JUtils.Format(Fetch_F1, amount);
+        }
+
+        public final String PayAffinity(int amount)
+        {
+            return JUtils.Format(Pay_F1, amount);
+        }
+
+        public final String Give(int amount, Object item)
+        {
+            return JUtils.Format(Give_F1, amount, item);
         }
     }
 

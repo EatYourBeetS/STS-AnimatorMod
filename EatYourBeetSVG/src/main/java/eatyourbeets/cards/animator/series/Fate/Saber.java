@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Saber_Excalibur;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +22,7 @@ public class Saber extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 4, 0);
+        Initialize(9, 1, 3);
         SetUpgrade(2, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -35,23 +34,17 @@ public class Saber extends AnimatorCard
     }
 
     @Override
-    public AbstractAttribute GetBlockInfo()
-    {
-        return GetInitialBlock() > 0 ? super.GetBlockInfo() : null;
-    }
-
-    @Override
     protected float GetInitialBlock()
     {
         ArrayList<EnemyIntent> intents = GameUtilities.GetIntents();
         if (intents.size() == 0) {
-            return 0;
+            return super.GetInitialBlock();
         }
         for (EnemyIntent intent : GameUtilities.GetIntents())
         {
             if (!intent.IsAttacking())
             {
-                return 0;
+                return super.GetInitialBlock();
             }
         }
         return super.GetInitialBlock();

@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 

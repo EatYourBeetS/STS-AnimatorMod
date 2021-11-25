@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.vfx.ScreenFreezingEffect;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.animator.SheerColdPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
@@ -38,7 +39,7 @@ public class SheerCold extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         GameActions.Bottom.StackPower(new SheerColdPower(p, 1));
-        GameActions.Bottom.Callback(() -> FreezingPower.AddPlayerReductionBonus(FREEZING_REDUCTION_BONUS));
+        GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(FreezingPower.POWER_ID, FREEZING_REDUCTION_BONUS));
         GameActions.Bottom.VFX(new ScreenFreezingEffect());
     }
 }

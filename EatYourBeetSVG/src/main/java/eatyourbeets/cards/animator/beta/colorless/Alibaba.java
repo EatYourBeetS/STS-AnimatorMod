@@ -2,19 +2,25 @@ package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.cards.animator.beta.special.Alibaba_Aladdin;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
 import eatyourbeets.misc.GenericEffects.GenericEffect_TriggerOrb;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-public class Alibaba extends AnimatorCard implements Hidden
+public class Alibaba extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Alibaba.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Magi);
+    public static final EYBCardData DATA = Register(Alibaba.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Magi)
+            .PostInitialize(data -> data.AddPreview(new Alibaba_Aladdin(), false));
+
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Alibaba()
@@ -49,6 +55,19 @@ public class Alibaba extends AnimatorCard implements Hidden
                 choices.Select(1, m);
             }
         }));
+
+        int uniqueRareOrbs = 0;
+        for (AbstractOrb orb : player.orbs)
+        {
+            if (GameUtilities.IsValidOrb(orb) && !GameUtilities.IsCommonOrb(orb))
+            {
+                uniqueRareOrbs += 1;
+            }
+        }
+        if (uniqueRareOrbs >= secondaryValue && info.TryActivateLimited()) {
+            GameActions.Bottom.MakeCardInHand(new Alibaba_Aladdin());
+            GameActions.Last.Exhaust(this);
+        }
     }
 
 }

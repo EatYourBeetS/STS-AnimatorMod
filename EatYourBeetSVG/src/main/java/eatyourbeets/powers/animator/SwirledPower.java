@@ -61,14 +61,14 @@ public class SwirledPower extends AnimatorPower implements OnTryApplyPowerListen
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
         if (GameUtilities.IsPlayer(owner) || enemies.size() == 1) {
             for (PowerHelper ph : powerHelpers) {
-                GameActions.Bottom.StackPower(TargetHelper.Normal(owner), ph, amount);
+                GameActions.Delayed.StackPower(TargetHelper.Normal(owner), ph, amount);
             }
         }
         else {
             for (AbstractMonster enemy : enemies) {
                 if (enemy != owner) {
                     for (PowerHelper ph : powerHelpers) {
-                        GameActions.Bottom.StackPower(TargetHelper.Normal(enemy), ph, amount);
+                        GameActions.Delayed.StackPower(TargetHelper.Normal(enemy), ph, amount);
                     }
                 }
             }
@@ -81,7 +81,7 @@ public class SwirledPower extends AnimatorPower implements OnTryApplyPowerListen
 
     @Override
     public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action) {
-        if (target == owner) {
+        if (target == owner && (BurningPower.POWER_ID.equals(power.ID) || FreezingPower.POWER_ID.equals(power.ID) || ElectrifiedPower.POWER_ID.equals(power.ID))) {
             GameActions.Bottom.Callback(this::Swirl);
         }
         return true;

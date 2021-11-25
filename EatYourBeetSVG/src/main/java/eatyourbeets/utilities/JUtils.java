@@ -696,6 +696,16 @@ public class JUtils
         }
     }
 
+    public static Integer[] RangeArray(int lowest, int highest)
+    {
+        if (highest < lowest) {
+            return new Integer[]{};
+        }
+        Integer[] values = new Integer[highest - lowest + 1];
+        Arrays.setAll(values, i -> i + lowest);
+        return values;
+    }
+
     public static float Round(float value, int precision)
     {
         final float scale = (float) Math.pow(10, precision);

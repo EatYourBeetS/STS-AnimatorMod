@@ -12,7 +12,7 @@ public class Konayuki extends AnimatorCard
     public static final EYBCardData DATA = Register(Konayuki.class)
             .SetSkill(2, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
-    public static final int THRESHOLD = 20;
+    public static final int THRESHOLD = 10;
 
     public Konayuki()
     {

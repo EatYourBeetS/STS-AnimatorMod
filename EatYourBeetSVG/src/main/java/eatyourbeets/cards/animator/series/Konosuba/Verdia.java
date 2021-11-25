@@ -29,8 +29,8 @@ public class Verdia extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
+        SetAffinityRequirement(Affinity.Dark, 4);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class Verdia extends AnimatorCard
             GameActions.Bottom.IncreaseScaling(this, Affinity.Red, 1);
         }
         if (TrySpendAffinity(Affinity.Dark)) {
-            GameActions.Bottom.IncreaseScaling(this, Affinity.Dark, 1);
+            GameActions.Bottom.IncreaseScaling(this, Affinity.Red, 1);
         }
     }
 }

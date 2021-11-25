@@ -185,7 +185,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public int GetPowerLevel(Affinity affinity)
     {
         final AbstractAffinityPower p = GetPower(affinity);
-        return p == null ? 0 : p.GetCurrentThreshold();
+        return p == null ? 0 : p.GetEffectiveLevel();
     }
 
     @Override
@@ -251,6 +251,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                 if (row != null)
                 {
                     row.ActivateSynergyBonus(card);
+                }
+                else {
+                    // Fall back on light if no row was found
+                    GetRow(Affinity.Light).ActivateSynergyBonus(card);
                 }
             }
         }
@@ -420,8 +424,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         for (AbstractAffinityPower po : Powers) {
             CombatStats.onGainAffinity.Subscribe(po);
-            CombatStats.onApplyPower.Subscribe(po);
-            JUtils.LogError(this, po.name);
+            po.StartOtherSubscriptions();
         }
     }
 
@@ -500,6 +503,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         public AffinityCounts(AffinityCounts counts) {
             Counts = counts.Counts.clone();
+            Star = counts.Star;
         }
 
         public AffinityCounts(EYBCardAffinities affinities) {
@@ -535,7 +539,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                 Counts[affinity.type.ID] += CombatStats.OnGainAffinity(affinity.type, affinity.level, true);
             }
             if (affinities.Star != null) {
-                Star += affinities.Star.level;
+                int actualAmount = CombatStats.OnGainAffinity(Affinity.Star, affinities.Star.level, true);
+                Star += actualAmount;
             }
             return this;
         }
@@ -546,7 +551,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                 Counts[affinity.type.ID] += actualAmount;
             }
             if (affinities.Star != null) {
-                Star += amount;
+                int actualAmount = CombatStats.OnGainAffinity(Affinity.Star, amount, true);
+                Star += actualAmount;
             }
             return this;
         }
@@ -574,11 +580,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         public int GetAmount(Affinity affinity, boolean addStar)
         {
-            if (affinity == Affinity.Star)
+            if (Affinity.Star.equals(affinity))
             {
                 return Star;
             }
-            else if (affinity == Affinity.General)
+            else if (Affinity.General.equals(affinity))
             {
                 return Arrays.stream(Counts).max().getAsInt() + (addStar ? Star : 0);
             }

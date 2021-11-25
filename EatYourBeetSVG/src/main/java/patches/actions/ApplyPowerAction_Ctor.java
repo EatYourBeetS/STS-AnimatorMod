@@ -19,6 +19,8 @@ import eatyourbeets.utilities.JUtils;
 public class ApplyPowerAction_Ctor
 {
     private static final FieldInfo<AbstractPower> _powerToApply = JUtils.GetField("powerToApply", ApplyPowerAction.class);
+    private static final FieldInfo<Boolean> _justAppliedForVulnerable = JUtils.GetField("justApplied", VulnerablePower.class);
+    private static final FieldInfo<Boolean> _justAppliedForWeak = JUtils.GetField("justApplied", WeakPower.class);
 
     @SpirePrefixPatch
     public static void Prefix(ApplyPowerAction __instance, AbstractCreature target, AbstractCreature source, @ByRef AbstractPower[] powerToApply,
@@ -35,12 +37,14 @@ public class ApplyPowerAction_Ctor
         {
             if (power instanceof VulnerablePower && !(power instanceof AnimatorVulnerablePower))
             {
-                powerToApply[0] = new AnimatorVulnerablePower(power.owner, power.amount, !GameUtilities.IsPlayer(source));
+                boolean justApplied = _justAppliedForVulnerable.Get(power);
+                powerToApply[0] = new AnimatorVulnerablePower(power.owner, power.amount, justApplied);
                 _powerToApply.Set(__instance, powerToApply[0]);
             }
             if (power instanceof WeakPower && !(power instanceof AnimatorWeakPower))
             {
-                powerToApply[0] = new AnimatorWeakPower(power.owner, power.amount, !GameUtilities.IsPlayer(source));
+                boolean justApplied = _justAppliedForWeak.Get(power);
+                powerToApply[0] = new AnimatorWeakPower(power.owner, power.amount, justApplied);
                 _powerToApply.Set(__instance, powerToApply[0]);
             }
             if (power instanceof FrailPower && !(power instanceof AnimatorFrailPower))

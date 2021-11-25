@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import eatyourbeets.cards.animator.beta.status.SearingBurn;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
@@ -25,7 +26,7 @@ public class WitchsHeartFlames extends AnimatorRelic implements OnCardCreatedSub
         super.atBattleStart();
 
         CombatStats.onCardCreated.Subscribe(this);
-        GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
+        GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
     }
 
     @Override

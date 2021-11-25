@@ -50,12 +50,6 @@ public class Yoimiya extends AnimatorCard
             }
         }));
 
-        if (IsStarter()) {
-            GameActions.Bottom.Callback(() -> {
-                GameActions.Bottom.Cycle(name,magicNumber);
-            });
-        }
-
         int total = 0;
         for (AbstractPower debuff : player.powers) {
             for (PowerHelper commonDebuffHelper : GameUtilities.GetCommonDebuffs()) {

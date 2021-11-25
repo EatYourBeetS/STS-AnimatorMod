@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,9 +10,10 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class KawashiroNitori extends AnimatorCard
 {
@@ -26,7 +26,7 @@ public class KawashiroNitori extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 0);
+        Initialize(0, 0, 2, 5);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
@@ -50,24 +50,38 @@ public class KawashiroNitori extends AnimatorCard
 
         public KawashiroNitoriPower(AbstractCreature owner, int amount)
         {
-            super(owner, KawashiroNitori.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, KawashiroNitori.DATA, PowerTriggerConditionType.Affinity, 5);
             this.amount = amount;
             updateDescription();
         }
 
         @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onTagChanged.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onTagChanged.Unsubscribe(this);
+        }
+
+
+        @Override
         public void OnUse(AbstractMonster m, int cost)
         {
-            GameActions.Bottom.SelectFromHand(name, amount, false)
+            GameActions.Bottom.SelectFromHand(name, 1, false)
                     .SetOptions(true, true, true)
-                    .SetMessage(RetainCardsAction.TEXT[0])
+                    .SetMessage(GR.Common.Strings.GridSelection.Give(amount, GR.Tooltips.Retain.title))
                     .AddCallback(cards ->
                     {
-                        AbstractCard card = null;
-                        if (cards.size() > 0)
-                        {
-                            card = cards.get(0);
-                            GameUtilities.Retain(card);
+                        for (AbstractCard c : cards) {
+                            GameActions.Bottom.ModifyTag(c, HASTE, true);
                         }
                     });
         }

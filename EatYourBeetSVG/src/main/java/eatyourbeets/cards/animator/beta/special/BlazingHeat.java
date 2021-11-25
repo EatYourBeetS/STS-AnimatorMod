@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.vfx.megacritCopy.ScreenOnFireEffect2;
 import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.animator.BlazingHeatPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
@@ -38,7 +39,7 @@ public class BlazingHeat extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrbs(Fire::new, magicNumber);
         GameActions.Bottom.StackPower(new BlazingHeatPower(p, 1));
-        GameActions.Bottom.Callback(() -> BurningPower.AddPlayerDamageBonus(BURNING_DAMAGE_BONUS));
+        GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddPlayerDamageBonus(BurningPower.POWER_ID, BURNING_DAMAGE_BONUS));
         GameActions.Bottom.VFX(new ScreenOnFireEffect2());
     }
 }

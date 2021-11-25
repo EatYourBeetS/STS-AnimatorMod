@@ -95,7 +95,7 @@ public class Biyorigo extends AnimatorCard
         @Override
         public void OnSynergyBonus(AbstractCard card, Affinity affinity)
         {
-            if (affinity == Affinity.Red)
+            if (Affinity.Red.equals(affinity))
             {
                 GameActions.Bottom.GainMetallicize(Math.min(MAX_METALLICIZE, amount));
                 this.flashWithoutSound();

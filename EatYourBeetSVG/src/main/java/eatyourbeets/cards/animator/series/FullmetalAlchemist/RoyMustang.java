@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -49,7 +50,7 @@ public class RoyMustang extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
+            GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
         }
     }
 }

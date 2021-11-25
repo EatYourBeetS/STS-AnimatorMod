@@ -2,6 +2,7 @@ package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.TouhouProject.*;
 import eatyourbeets.cards.animator.beta.ultrarare.YuyukoSaigyouji;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -21,7 +22,9 @@ public class Loadout_TouhouProject extends AnimatorLoadout
         AddStarterCard(ReimuHakurei.DATA, 5);
         AddStarterCard(MayumiJoutouguu.DATA, 5);
         AddStarterCard(YuukaKazami.DATA, 7);
+        AddStarterCard(SuikaIbuki.DATA, 10);
         AddStarterCard(Cirno.DATA, 11);
+        AddStarterCard(Status_Dazed.DATA, -3);
     }
 
     @Override

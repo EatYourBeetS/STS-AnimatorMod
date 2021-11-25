@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -131,6 +132,10 @@ public class EYBCardAffinities
     public boolean HasStar()
     {
         return Star != null && Star.level > 0;
+    }
+
+    public boolean IsEmpty() {
+        return (List.isEmpty() || JUtils.All(List, af -> af.level <= 0)) && !HasStar();
     }
 
     public EYBCardAffinities Add(EYBCardAffinities other, int levelLimit)

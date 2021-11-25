@@ -12,6 +12,11 @@ public class Amplification_LightningPower extends Amplification_AbstractPower
 
     public Amplification_LightningPower(AbstractCreature owner, int amount)
     {
-        super(owner, POWER_ID, ORB_ID, AFFINITY, amount);
+        super(owner, POWER_ID, ORB_ID, amount, 1, AFFINITY);
+    }
+
+    public Amplification_LightningPower(AbstractCreature owner, int amount, Affinity... affinities)
+    {
+        super(owner, POWER_ID, ORB_ID, amount, 1, affinities);
     }
 }

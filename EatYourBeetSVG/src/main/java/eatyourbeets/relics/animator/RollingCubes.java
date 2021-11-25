@@ -24,6 +24,7 @@ public class RollingCubes extends AnimatorRelic
     public static final String ID = CreateFullID(RollingCubes.class);
     public static final int MAX_STORED_USES = 3;
     public static final int USES_PER_ELITE = 2;
+    public static final int USES_PER_NORMAL = 1;
 
     public RollingCubes()
     {
@@ -58,7 +59,7 @@ public class RollingCubes extends AnimatorRelic
 
     public boolean CanActivate(RewardItem rewardItem)
     {
-        return CanReroll() && !GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem);
+        return CanReroll() && !GameUtilities.InBattle() && rewardItem != null && (rewardItem.type == RewardItem.RewardType.CARD || rewardItem.type == GR.Enums.Rewards.SYNERGY_CARDS) && !_isBoss.Get(rewardItem);
     }
 
     public boolean CanReroll()

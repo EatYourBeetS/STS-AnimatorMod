@@ -28,7 +28,7 @@ public class MatouSakura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 4);
+        Initialize(0, 2, 2, 5);
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Dark(2, 0, 2);
@@ -36,7 +36,7 @@ public class MatouSakura extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light, 6);
+        SetAffinityRequirement(Affinity.Light, 7);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MatouSakura extends AnimatorCard
 
         if (TrySpendAffinity(Affinity.Light))
         {
-            GameActions.Bottom.GainSupercharge(secondaryValue);
+            GameActions.Bottom.GainWisdom(secondaryValue);
         }
     }
 }

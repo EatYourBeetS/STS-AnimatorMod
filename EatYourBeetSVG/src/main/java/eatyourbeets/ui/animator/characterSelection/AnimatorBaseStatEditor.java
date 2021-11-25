@@ -8,16 +8,17 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
-import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
+import eatyourbeets.ui.controls.GUI_Dropdown;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
-import eatyourbeets.ui.controls.GUI_TextBox;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
+import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.JUtils;
 
 public class AnimatorBaseStatEditor extends GUIElement
 {
@@ -79,12 +80,14 @@ public class AnimatorBaseStatEditor extends GUIElement
     protected GUI_Label label;
     protected GUI_Button decrease_button;
     protected GUI_Button increase_button;
-    protected GUI_TextBox value_text;
+    protected GUI_Dropdown<Integer> valueDropdown;
+    protected AnimatorLoadoutEditor editor;
 
-    public AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type type, float cX, float cY)
+    public AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type type, float cX, float cY, AnimatorLoadoutEditor editor)
     {
         this.type = type;
         this.hb = new AdvancedHitbox(0, 0, ICON_SIZE * 2.5f, ICON_SIZE).SetPosition(cX, cY);
+        this.editor = editor;
 
         final float w = hb.width;
         final float h = hb.height;
@@ -102,16 +105,30 @@ public class AnimatorBaseStatEditor extends GUIElement
         .SetOnClick(this::Increase)
         .SetText(null);
 
-        value_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new RelativeHitbox(hb, 0.5f, 0.75f, 0.5f, -0.1f))
-        .SetBackgroundTexture(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Color(0.5f, 0.5f, 0.5f , 1f), 1.05f)
-        .SetColors(new Color(0, 0, 0, 0.85f), Settings.CREAM_COLOR)
-        .SetAlignment(0.5f, 0.5f)
-        .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
+        valueDropdown = new GUI_Dropdown<Integer>(new RelativeHitbox(hb, 0.5f, 0.75f, 0.5f, -0.1f))
+                .SetFontForButton(EYBFontHelper.CardTitleFont_Small, 1f)
+                .SetOnOpenOrClose(isOpen -> {
+                    editor.activeEditor = isOpen ? this : null;
+                })
+                .SetOnChange(value -> {
+                    if (value.size() > 0) {
+                        Set(value.get(0));
+                    }
+                })
+                .SetCanAutosizeButton(true)
+                .SetLabelFunctionForButton(null, value -> {
+                    if (value.isEmpty()) {
+                        return Settings.CREAM_COLOR;
+                    }
+                    int first = value.get(0);
+                    return first == 0 ? Settings.CREAM_COLOR : first < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
+                }, false)
+                .SetItems(JUtils.RangeArray(AnimatorLoadout.MAX_STEP * -1, AnimatorLoadout.MAX_STEP));
     }
 
     public AnimatorBaseStatEditor SetEstimatedValue(int value)
     {
-        value_text.SetText(value).SetFontColor(value == 0 ? Settings.CREAM_COLOR : value < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR);
+        valueDropdown.SetSelection(value, true);
 
         return this;
     }
@@ -131,7 +148,7 @@ public class AnimatorBaseStatEditor extends GUIElement
         label.SetText(type.GetText(data)).Update();
         decrease_button.SetInteractable(interactable && CanDecrease()).Update();
         increase_button.SetInteractable(interactable && CanIncrease()).Update();
-        value_text.Update();
+        valueDropdown.TryUpdate();
     }
 
     @Override
@@ -141,7 +158,7 @@ public class AnimatorBaseStatEditor extends GUIElement
         label.Render(sb);
         decrease_button.Render(sb);
         increase_button.Render(sb);
-        value_text.Render(sb);
+        valueDropdown.TryRender(sb);
     }
 
     public void SetLoadout(AnimatorLoadoutData data)
@@ -151,21 +168,25 @@ public class AnimatorBaseStatEditor extends GUIElement
 
     public boolean CanDecrease()
     {
-        return type.GetAmount(data) > (type.GetBaseValue() - (type.GetStep() * AnimatorLoadout.MAX_STEP));
+        return valueDropdown.GetCurrentIndex() > 0;
     }
 
     public void Decrease()
     {
-        type.SetAmount(data, type.GetAmount(data) - type.GetStep());
+        valueDropdown.SetSelectionIndices(new int[]{valueDropdown.GetCurrentIndex() - 1}, true);
     }
 
     public boolean CanIncrease()
     {
-        return type.GetAmount(data) < (type.GetBaseValue() + (type.GetStep() * AnimatorLoadout.MAX_STEP));
+        return valueDropdown.GetCurrentIndex() < valueDropdown.rows.size() - 1;
     }
 
     public void Increase()
     {
-        type.SetAmount(data, type.GetAmount(data) + type.GetStep());
+        valueDropdown.SetSelectionIndices(new int[]{valueDropdown.GetCurrentIndex() + 1}, true);
+    }
+
+    public void Set(int amount) {
+        type.SetAmount(data, type.GetBaseValue() + type.GetStep() * amount);
     }
 }

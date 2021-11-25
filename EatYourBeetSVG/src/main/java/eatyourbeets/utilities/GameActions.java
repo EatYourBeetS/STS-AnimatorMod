@@ -219,6 +219,12 @@ public final class GameActions
         return StackPower(target, PowerHelper.Constricted, amount);
     }
 
+    public ApplyPowerAuto ApplyElectrified(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Electrified, amount);
+    }
+
+
     public ApplyPower ApplyElectrified(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new ElectrifiedPower(target, source, amount));

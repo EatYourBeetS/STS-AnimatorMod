@@ -10,6 +10,7 @@ import eatyourbeets.cards.animator.series.TenseiSlime.Shizu;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -43,7 +44,7 @@ public class Shizu_Ifrit extends AnimatorCard
         effect.duration = effect.startingDuration = 1.5f; // Changed from 3f
         GameActions.Bottom.VFX(effect, 0.2f);
         GameActions.Bottom.ApplyBurning(TargetHelper.AllCharacters(),secondaryValue);
-        GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(magicNumber));
+        GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
 
 
         if (CombatStats.TryActivateLimited(cardID)) {

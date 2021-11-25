@@ -21,6 +21,7 @@ import eatyourbeets.ui.controls.GUI_VerticalScrollBar;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -68,7 +69,7 @@ public class CardKeywordFilters extends GUIElement
     public static EYBCardAffinities CurrentAffinities = new EYBCardAffinities(null);
     protected final HashMap<EYBCardTooltip,Integer> CurrentFilterCounts = new HashMap<>();
     protected final ArrayList<CardKeywordButton> FilterButtons = new ArrayList<>();
-    protected final ArrayList<GUI_Button> AffinityButtons = new ArrayList<>();
+    protected final ArrayList<AffinityKeywordButton> AffinityButtons = new ArrayList<>();
     protected final ArrayList<GUI_Button> ScalingButtons = new ArrayList<>();
     protected ArrayList<AbstractCard> referenceCards;
     protected ActionT1<CardKeywordButton> onClick;
@@ -87,10 +88,7 @@ public class CardKeywordFilters extends GUIElement
     protected final GUI_Dropdown<AbstractCard.CardType> TypesDropdown;
     protected final GUI_Button clearButton;
     public final GUI_VerticalScrollBar scrollBar;
-    public final GUI_Label seriesLabel;
-    public final GUI_Label costsLabel;
-    public final GUI_Label raritiesLabel;
-    public final GUI_Label typesLabel;
+    public final GUI_Label affinitiesSectionLabel;
     public final GUI_Label keywordsSectionLabel;
     public final AdvancedHitbox hb;
     public boolean draggingScreen;
@@ -140,6 +138,16 @@ public class CardKeywordFilters extends GUIElement
                         return false;
                     }
 
+                    //Affinity check
+                    for (EYBCardAffinity cAffinity : CurrentAffinities.List) {
+                        if (GameUtilities.GetAffinityLevel(c, cAffinity.type, true) < cAffinity.level) {
+                            return false;
+                        }
+                    }
+                    if (GameUtilities.GetAffinityLevel(c, Affinity.Star, true) < CurrentAffinities.GetLevel(Affinity.Star)) {
+                        return false;
+                    }
+
                     //Cost check
                     if (!CurrentCosts.isEmpty()) {
                         boolean passes = false;
@@ -157,7 +165,7 @@ public class CardKeywordFilters extends GUIElement
     }
 
     public static boolean AreFiltersEmpty() {
-        return CurrentFilters.isEmpty() && CurrentSeries.isEmpty() && CurrentCosts.isEmpty() && CurrentRarities.isEmpty() && CurrentTypes.isEmpty();
+        return CurrentFilters.isEmpty() && CurrentSeries.isEmpty() && CurrentCosts.isEmpty() && CurrentRarities.isEmpty() && CurrentTypes.isEmpty() && CurrentAffinities.IsEmpty();
     }
 
     public CardKeywordFilters()
@@ -186,6 +194,7 @@ public class CardKeywordFilters extends GUIElement
                         onClick.Invoke(null);
                     }
                 })
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.Animator.Strings.SeriesUI.SeriesUI)
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true);
 
@@ -209,7 +218,8 @@ public class CardKeywordFilters extends GUIElement
                         return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
                     }
                     return StringUtils.join(JUtils.Map(items, item -> item.name), ", ");
-                }, false)
+                }, null,false)
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.Animator.Strings.SeriesUI.Costs)
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true)
                 .SetItems(CostFilter.values());
@@ -235,7 +245,8 @@ public class CardKeywordFilters extends GUIElement
                         return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
                     }
                     return StringUtils.join(JUtils.Map(items, item -> StringUtils.capitalize(item.toString().toLowerCase())), ", ");
-                }, false)
+                }, null,false)
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.Animator.Strings.SeriesUI.Rarities)
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true)
                 .SetItems(AbstractCard.CardRarity.values());
@@ -261,27 +272,31 @@ public class CardKeywordFilters extends GUIElement
                         return items.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected;
                     }
                     return StringUtils.join(JUtils.Map(items, item -> StringUtils.capitalize(item.toString().toLowerCase())), ", ");
-                }, false)
+                }, null,false)
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.Animator.Strings.SeriesUI.Types)
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true)
                 .SetItems(AbstractCard.CardType.values());
 
-        seriesLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
-                new AdvancedHitbox(hb.x - SPACING, hb.y + SPACING * 7, Scale(100), Scale(48)))
+        affinitiesSectionLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(TypesDropdown.hb.x + TypesDropdown.hb.width + SPACING * 4, hb.y + SPACING * 6.1f, Scale(48), Scale(48)))
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
-                .SetText(GR.Animator.Strings.SeriesUI.SeriesUI)
+                .SetText(GR.Animator.Strings.SeriesUI.Affinities)
                 .SetColor(Settings.GOLD_COLOR)
                 .SetAlignment(0.5f, 0.0f, false);
-        costsLabel = seriesLabel.MakeCopy()
-                .SetText(GR.Animator.Strings.SeriesUI.Costs)
-                .SetPosition(seriesLabel.hb.x + SeriesDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
-        raritiesLabel = seriesLabel.MakeCopy()
-                .SetText(GR.Animator.Strings.SeriesUI.Rarities)
-                .SetPosition(costsLabel.hb.x + CostDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
-        typesLabel = seriesLabel.MakeCopy()
-                .SetText(GR.Animator.Strings.SeriesUI.Types)
-                .SetPosition(raritiesLabel.hb.x + RaritiesDropdown.hb.width + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7);
-        keywordsSectionLabel = seriesLabel.MakeCopy().SetText(GR.Animator.Strings.SeriesUI.Keywords);
+        keywordsSectionLabel = affinitiesSectionLabel.MakeCopy().SetText(GR.Animator.Strings.SeriesUI.Keywords);
+
+        for (int i = 0; i < Affinity.All().length; i++)
+        {
+            Affinity a = Affinity.All()[i];
+            AffinityButtons.add(new AffinityKeywordButton(affinitiesSectionLabel.hb, a, CardKeywordFilters.CurrentAffinities.GetLevel(a)).SetIndex(i).SetOnClick((button) -> {
+                CurrentAffinities.Set(button.Type, button.currentLevel);
+                if (onClick != null) {
+                    onClick.Invoke(null);
+                }
+            }));
+        }
+
     }
 
     public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards) {
@@ -314,6 +329,10 @@ public class CardKeywordFilters extends GUIElement
         {
             FilterButtons.add(new CardKeywordButton(hb, filter.getKey()).SetOnClick(onClick).SetCardCount(filter.getValue()));
         }
+        for (AffinityKeywordButton c : AffinityButtons)
+        {
+            c.Reset(false);
+        }
 
         ArrayList<CardSeries> items = new ArrayList<CardSeries>(availableSeries);
         items.sort((a, b) -> StringUtils.compare(a.LocalizedName, b.LocalizedName));
@@ -342,6 +361,10 @@ public class CardKeywordFilters extends GUIElement
         CurrentTypes.clear();
         CurrentAffinities.Clear();
         SeriesDropdown.SetSelectionIndices(new int[]{}, false);
+        for (AffinityKeywordButton c : AffinityButtons)
+        {
+            c.Reset(false);
+        }
         if (shouldInvoke && onClick != null) {
             onClick.Invoke(null);
         }
@@ -396,10 +419,7 @@ public class CardKeywordFilters extends GUIElement
         CostDropdown.SetPosition(SeriesDropdown.hb.x + SeriesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
         RaritiesDropdown.SetPosition(CostDropdown.hb.x + CostDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
         TypesDropdown.SetPosition(RaritiesDropdown.hb.x + RaritiesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
-        seriesLabel.SetPosition(SeriesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
-        costsLabel.SetPosition(CostDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
-        raritiesLabel.SetPosition(RaritiesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
-        typesLabel.SetPosition(TypesDropdown.hb.x + SPACING * 2, DRAW_START_Y + scrollDelta + SPACING * 7).Update();
+        affinitiesSectionLabel.SetPosition(TypesDropdown.hb.x + TypesDropdown.hb.width + SPACING * 4, DRAW_START_Y + scrollDelta + SPACING * 6.1f).Update();
         keywordsSectionLabel.SetPosition(hb.x- SPACING, DRAW_START_Y + scrollDelta + SPACING * 2).Update();
         hb.update();
         clearButton.TryUpdate();
@@ -431,6 +451,10 @@ public class CardKeywordFilters extends GUIElement
         CostDropdown.TryUpdate();
         RaritiesDropdown.TryUpdate();
         TypesDropdown.TryUpdate();
+        for (AffinityKeywordButton c : AffinityButtons)
+        {
+            c.TryUpdate();
+        }
     }
 
     @Override
@@ -440,10 +464,7 @@ public class CardKeywordFilters extends GUIElement
         sb.setColor(Color.WHITE);
         hb.render(sb);
         clearButton.TryRender(sb);
-        seriesLabel.Render(sb);
-        costsLabel.Render(sb);
-        raritiesLabel.Render(sb);
-        typesLabel.Render(sb);
+        affinitiesSectionLabel.Render(sb);
         keywordsSectionLabel.Render(sb);
         for (CardKeywordButton c : FilterButtons)
         {
@@ -453,6 +474,10 @@ public class CardKeywordFilters extends GUIElement
         CostDropdown.TryRender(sb);
         RaritiesDropdown.TryRender(sb);
         TypesDropdown.TryRender(sb);
+        for (AffinityKeywordButton c : AffinityButtons)
+        {
+            c.TryRender(sb);
+        }
     }
 
     protected void OnScroll(float newPercent)
@@ -466,7 +491,12 @@ public class CardKeywordFilters extends GUIElement
     {
         if (InputHelper.justClickedLeft)
         {
-            if (clearButton.hb.hovered || SeriesDropdown.AreAnyItemsHovered() || CostDropdown.AreAnyItemsHovered() || RaritiesDropdown.AreAnyItemsHovered() || TypesDropdown.AreAnyItemsHovered()) {
+            if (clearButton.hb.hovered
+                    || SeriesDropdown.AreAnyItemsHovered()
+                    || CostDropdown.AreAnyItemsHovered()
+                    || RaritiesDropdown.AreAnyItemsHovered()
+                    || TypesDropdown.AreAnyItemsHovered()
+                    || JUtils.Any(AffinityButtons, ab -> ab.background_button.hb.hovered)) {
                 return;
             }
             for (CardKeywordButton c : FilterButtons)

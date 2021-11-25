@@ -24,6 +24,8 @@ public class CommonImages
     public final TextureCache HexagonalButtonBorder       = new TextureCache("images/eyb/ui/topPanel/HexagonalButtonBorder.png");
     public final TextureCache HexagonalButtonHover        = new TextureCache("images/eyb/ui/topPanel/HexagonalButtonHover.png");
     public final TextureCache Info                        = new TextureCache("images/eyb/ui/topPanel/Info.png");
+    public final TextureCache LongButton                  = new TextureCache("images/eyb/ui/topPanel/LongButton.png");
+    public final TextureCache LongButtonBorder            = new TextureCache("images/eyb/ui/topPanel/LongButtonBorder.png");
     public final TextureCache Minus                       = new TextureCache("images/eyb/ui/topPanel/Minus.png");
     public final TextureCache Panel                       = new TextureCache("images/eyb/ui/topPanel/Panel.png");
     public final TextureCache Panel_Elliptical            = new TextureCache("images/eyb/ui/topPanel/Panel_Elliptical.png");
@@ -188,6 +190,7 @@ public class CommonImages
         public final TextureCache AirTrail3        = new TextureCache("images/animator/effects/AirTrail3.png");
         public final TextureCache Circle           = new TextureCache("images/animator/effects/Circle.png");
         public final TextureCache Darkness         = new TextureCache("images/animator/effects/Darkness.png");
+        public final TextureCache Droplet          = new TextureCache("images/animator/effects/Droplet.png");
         public final TextureCache FireBurst        = new TextureCache("images/animator/effects/FireBurst.png");
         public final TextureCache FrostSnow1       = new TextureCache("images/animator/effects/FrostSnow1.png");
         public final TextureCache FrostSnow2       = new TextureCache("images/animator/effects/FrostSnow2.png");

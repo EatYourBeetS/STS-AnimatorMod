@@ -18,11 +18,11 @@ public class Hibiki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 1);
+        Initialize(2, 0, 2, 1);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Star(0, 0, 1);
-        SetAffinity_Orange(1);
+        SetAffinity_Light(1);
         SetAffinity_Silver(1);
 
         SetHitCount(3);
@@ -32,9 +32,13 @@ public class Hibiki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
+        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d
                 .SetOptions(true, false));
 
         GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseHitCount((EYBCard) c, secondaryValue, false));
+
+        if (info.IsSynergizing) {
+            GameActions.Bottom.AddAffinity(Affinity.Star, magicNumber);
+        }
     }
 }

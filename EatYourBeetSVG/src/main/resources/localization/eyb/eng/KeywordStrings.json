@@ -14,7 +14,7 @@
 	},
 	"Affinity Level":
 	{
-		"DESCRIPTION": "Increases [A-Gen] #yPower gains from any source by #b+100% per level of that [A-Gen] #yPower.",
+		"DESCRIPTION": "Increases [A-Gen] #yPower gains from any source by #b+50% per level of that [A-Gen] #yPower.",
 		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels"],
 		"PROPER_NAME": "Affinity Level"
 	},
@@ -26,7 +26,7 @@
 	},
 	"Affinity Token":
 	{
-		"DESCRIPTION": "#yPower which increases your #yAffinity for the rest of combat.",
+		"DESCRIPTION": "A card that can be substituted for a single #yAffinity payment while in hand.",
 		"NAMES": ["[a-gen] token", "[a-gen] tokens", "affinity token", "affinity tokens"],
 		"PROPER_NAME": "Affinity Token"
 	},
@@ -164,7 +164,7 @@
 	},
 	"Electrified":
 	{
-		"DESCRIPTION": "When #yAttacking, deal #b15% of damage dealt to ALL allies, or to yourself if you have no allies (min. #b1). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Electrified] and reduce [Electrified] by #b1.",
+		"DESCRIPTION": "When #yAttacking, deal #b25% of damage dealt to ALL allies, or to yourself if you have no allies (min. #b1). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Electrified] and reduce [Electrified] by #b1.",
 		"NAMES": ["electrified"],
 		"PROPER_NAME": "Electrified"
 	},
@@ -245,6 +245,12 @@
 		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
 		"NAMES": ["flame barrier", "flame_barrier"],
 		"PROPER_NAME": "Flame Barrier"
+	},
+	"Flaming Weapon":
+	{
+	  "DESCRIPTION": "Whenever an attack deals unblocked damage, apply [Burning].",
+	  "NAMES": ["flaming weapon"],
+	  "PROPER_NAME": "Flaming Weapon"
 	},
 	"Flight":
 	{
@@ -362,7 +368,7 @@
 	},
 	"Maintain":
 	{
-		"DESCRIPTION": "This turn, an #yAffinity #yPower that was disabled due to a Stance can be gained this turn.",
+		"DESCRIPTION": "This turn, an #yAffinity #yPower that was disabled due to a Stance can be gained.",
 		"NAMES": ["maintain"],
 		"PROPER_NAME": "Maintain"
 	},

@@ -31,6 +31,7 @@ public abstract class AnimatorRelic extends EYBRelic
 
             if (!ModHelper.isModEnabled(AllRelicAnimatorRun.ID)) {
                 data.RemoveRelic(PenNib.ID);
+                data.RemoveRelic(Shuriken.ID);
                 data.RemoveRelic(Kunai.ID);
                 data.RemoveRelic(StrikeDummy.ID);
                 data.RemoveRelic(SneckoEye.ID);

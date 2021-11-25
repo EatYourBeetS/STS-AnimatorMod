@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class NinaClive extends AnimatorCard
@@ -45,8 +46,10 @@ public class NinaClive extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromPile(name, upgraded && auxiliaryData.form == 1 ? magicNumber : 1, player.hand, player.discardPile)
+        int amount = upgraded && auxiliaryData.form == 1 ? magicNumber : 1;
+        GameActions.Bottom.SelectFromPile(name, amount, player.hand, player.discardPile)
         .SetOptions(false, true)
+        .SetMessage(GR.Common.Strings.GridSelection.Give(amount, GR.Tooltips.Delayed.title))
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {
@@ -57,7 +60,7 @@ public class NinaClive extends AnimatorCard
             if (cards.size() > 0) {
                 GameActions.Bottom.SelectFromPile(name, cards.size(), player.hand)
                         .SetOptions(false, true)
-                        .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[1])
+                        .SetMessage(GR.Common.Strings.GridSelection.Give(cards.size(), GR.Tooltips.Innate.title))
                         .AddCallback(cards2 -> {
                             for (AbstractCard c2 : cards2) {
                                 GameActions.Bottom.ModifyTag(c2,ANIMATOR_INNATE,true);

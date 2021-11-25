@@ -37,6 +37,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected AnimatorLoadout loadout;
     protected ActionT0 onClose;
     protected int preset;
+    public AnimatorBaseStatEditor activeEditor;
 
     protected AnimatorCardSlotSelectionEffect cardSelectionEffect;
     protected AnimatorRelicSlotSelectionEffect relicSelectionEffect;
@@ -138,8 +139,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             relicsEditors.add(new AnimatorRelicSlotEditor(this, ScreenW(0.1f), ScreenH(0.35f - (i * 0.05f))));
         }
 
-        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.82f), ScreenH(0.78f));
-        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.82f), ScreenH(0.691f));
+        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.82f), ScreenH(0.78f), this);
+        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.82f), ScreenH(0.691f), this);
 
         ascensionRequirement = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
@@ -238,8 +239,12 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             }
 
             ascensionRequirement.TryUpdate();
-            hpEditor.SetEstimatedValue(val.HpValue).Update();
-            goldEditor.SetEstimatedValue(val.GoldValue).Update();
+            if (activeEditor == null || activeEditor == goldEditor) {
+                goldEditor.SetEstimatedValue(val.GoldValue).Update();
+            }
+            if (activeEditor == null || activeEditor == hpEditor) {
+                hpEditor.SetEstimatedValue(val.HpValue).Update();
+            }
             cancel_button.Update();
             save_button.Update();
 
@@ -283,8 +288,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             deck_text.Render(sb);
             relic_text.Render(sb);
-            hpEditor.Render(sb);
             goldEditor.Render(sb);
+            hpEditor.Render(sb);
             ascensionRequirement.TryRender(sb);
             cancel_button.Render(sb);
             save_button.Render(sb);

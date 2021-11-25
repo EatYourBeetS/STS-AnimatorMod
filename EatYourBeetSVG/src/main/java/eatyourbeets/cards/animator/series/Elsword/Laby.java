@@ -11,7 +11,7 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -27,7 +27,7 @@ public class Laby extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 36);
+        Initialize(0, 0, 2, 30);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);

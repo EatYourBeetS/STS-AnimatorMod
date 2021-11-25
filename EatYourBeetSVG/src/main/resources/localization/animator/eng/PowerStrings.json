@@ -5,9 +5,14 @@
 		"DESCRIPTIONS": ["At the start of your turn activate 1 of 4 random effects #b{0} time(s)."],
 		"NAME": "Ainz Ooal Gown"
 	},
+	"animator:Amplification_DarkPower":
+	{
+	  "DESCRIPTIONS": ["[Dark] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
+	  "NAME": "Dark Amplification"
+	},
 	"animator:Amplification_LightningPower":
 	{
-	  "DESCRIPTIONS": ["Your Lightning Orbs have #b{0} #y{1} scaling when Triggered and #b{0} #y{1} scaling when Evoked."],
+	  "DESCRIPTIONS": ["[Lightning] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
 	  "NAME": "Lightning Amplification"
 	},
 	"animator:ArcherPower":
@@ -100,11 +105,6 @@
 		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
 		"NAME": "Unlimited Blade Works"
 	},
-	"animator:EnchantedArmorPower":
-	{
-		"DESCRIPTIONS": ["Take #b{0}% less #yAttack damage."],
-		"NAME": "Enchanted Armor"
-	},
 	"animator:EntouJyuuPower":
 	{
 		"DESCRIPTIONS": ["On your next #b{0} #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
@@ -132,7 +132,7 @@
 	},
 	"animator:FlamingWeaponPower":
 	{
-		"DESCRIPTIONS": ["Whenever you deal unblocked damage to an enemy, apply #b{0} #yBurning."],
+		"DESCRIPTIONS": ["For #b{0} turns: Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning]."],
 		"NAME": "Flaming Weapon"
 	},
 	"animator:FrostCrystalPower":
@@ -242,7 +242,7 @@
 	},
 	"animator:MagusForm":
 	{
-		"DESCRIPTIONS": ["Each turn, gain #b{0} [Focus] and lose #b{1} [Strength] and [Dexterity]."],
+		"DESCRIPTIONS": ["At the start of turn: Gain #b{0} [Focus] and lose #b{1} [Strength] and [Dexterity]."],
 		"NAME": "Magus Form"
 	},
 	"animator:MarkOfPoisonPower":

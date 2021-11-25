@@ -95,7 +95,7 @@ public class SnowballParticleEffect extends EYBEffect
 
         if (enableFloor && y < floor)
         {
-            vY = -vY * 0.75f;
+            vY = -vY * 0.35f;
             y = floor + 0.1f;
             vX *= 1.1f;
         }

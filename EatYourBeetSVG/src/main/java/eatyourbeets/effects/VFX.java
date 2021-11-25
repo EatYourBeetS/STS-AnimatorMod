@@ -43,6 +43,11 @@ public class VFX
         return new BiteEffect2(cX, cY - (40.0F * Settings.scale), color);
     }
 
+    public static BleedEffect Bleed(Hitbox target)
+    {
+        return new BleedEffect(target.cX, target.cY - (50.0F * Settings.scale), 32);
+    }
+
     public static CataclysmEffect Cataclysm()
     {
         return new CataclysmEffect();

@@ -84,8 +84,8 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
         {
             GameEffects.Queue.ShowCardBriefly(this);
 
-            AbstractDungeon.effectsQueue.add(new RoomTintEffect(Color.BLACK.cpy(), 0.8F, 2.0F + (orbCount / 10.0F), true));
-            AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(new Color(1.0F, 1.0F, 1.0F, 0.5F)));
+            GameEffects.Queue.Add(new RoomTintEffect(Color.BLACK.cpy(), 0.8F, 2.0F + (orbCount / 10.0F), true));
+            GameEffects.Queue.Add(new BorderLongFlashEffect(new Color(1.0F, 1.0F, 1.0F, 0.5F)));
 
             int startIdx = Math.max(orbCount - magicNumber, 0);
 

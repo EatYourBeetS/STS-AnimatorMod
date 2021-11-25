@@ -1,32 +1,55 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.orbs.*;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
+import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
+import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.JUtils;
 
-import static eatyourbeets.ui.animator.combat.EYBCardAffinitySystem.SCALING_DIVISION;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public abstract class Amplification_AbstractPower extends AnimatorPower implements OnOrbApplyFocusSubscriber
 {
-    public final String orbID;
-    public final Affinity affinity;
-    public final int evokeMultiplier;
+    protected static final HashMap<String, TextureCache> IMAGES = new HashMap<>();
 
-    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, Affinity affinity, int scaling) {
-        this(owner,powerID,orbID,affinity,scaling,2);
+    public final String orbID;
+    public final int evokeMultiplier;
+    public final HashSet<Affinity> affinities = new HashSet<>();
+    protected String cachedName = "";
+
+    static {
+        IMAGES.put(Air.ORB_ID, GR.Common.Images.Tooltips.Air);
+        IMAGES.put(Chaos.ORB_ID, GR.Common.Images.Tooltips.Chaos);
+        IMAGES.put(Dark.ORB_ID, GR.Common.Images.Tooltips.Dark);
+        IMAGES.put(Earth.ORB_ID, GR.Common.Images.Tooltips.Earth);
+        IMAGES.put(Fire.ORB_ID, GR.Common.Images.Tooltips.Fire);
+        IMAGES.put(Frost.ORB_ID, GR.Common.Images.Tooltips.Frost);
+        IMAGES.put(Lightning.ORB_ID, GR.Common.Images.Tooltips.Lightning);
+        IMAGES.put(Plasma.ORB_ID, GR.Common.Images.Tooltips.Plasma);
+        IMAGES.put(Water.ORB_ID, GR.Common.Images.Tooltips.Water);
     }
 
-    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, Affinity affinity, int scaling, int evokeMultiplier)
+    public Amplification_AbstractPower(AbstractCreature owner, String powerID, String orbID, int scaling, int evokeMultiplier, Affinity... affinities)
     {
         super(owner, powerID);
 
         this.orbID = orbID;
-        this.affinity = affinity;
+        this.affinities.addAll(Arrays.asList(affinities));
         this.evokeMultiplier = evokeMultiplier;
+
+        TextureCache tc = IMAGES.get(orbID);
+        if (tc != null) {
+            this.img = tc.Texture();
+        }
+
+        UpdateCachedName();
 
         Initialize(scaling);
         refreshOrbs();
@@ -52,8 +75,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     @Override
     public void updateDescription()
     {
-        String powerName = CombatStats.Affinities.GetPower(affinity).name;
-        description = FormatDescription(0, amount, powerName, this.evokeMultiplier * amount);
+        description = FormatDescription(0, amount, cachedName, this.evokeMultiplier * amount);
     }
 
     @Override
@@ -73,8 +95,17 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
         }
     }
 
+    public void AddAffinity(Affinity affinity) {
+        affinities.add(affinity);
+        UpdateCachedName();
+    }
+
     private float GetScaledIncrease() {
-        return CombatStats.Affinities.GetPowerAmount(affinity) * amount / (float)SCALING_DIVISION;
+        return JUtils.Sum(affinities,affinity -> Float.valueOf(CombatStats.Affinities.GetPowerLevel(affinity) * amount));
+    }
+
+    private void UpdateCachedName() {
+        cachedName = JUtils.JoinStrings(", ", JUtils.Map(Arrays.asList(this.affinities.toArray()), affinity -> CombatStats.Affinities.GetPower((Affinity) affinity).name));
     }
 
     private void refreshOrbs() {
@@ -84,4 +115,11 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
             }
         }
     }
+
+    @Override
+    public void update(int slot) {
+        super.update(slot);
+        refreshOrbs();
+    }
+
 }

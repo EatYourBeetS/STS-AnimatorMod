@@ -8,9 +8,12 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
+import static eatyourbeets.resources.GR.Enums.CardTags.ANIMATOR_ETHEREAL;
+import static eatyourbeets.resources.GR.Enums.CardTags.ANIMATOR_EXHAUST;
+
 public class HiedaNoAkyuu extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+    public static final EYBCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject);
 
@@ -18,11 +21,13 @@ public class HiedaNoAkyuu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 0);
+        Initialize(0, 0, 3, 0);
         SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Light(1, 1, 0);
 
         SetExhaust(true);
         SetCostUpgrade(-1);
+        SetAffinityRequirement(Affinity.General, 15);
     }
 
     @Override
@@ -32,14 +37,18 @@ public class HiedaNoAkyuu extends AnimatorCard
         .SetDuration(0.01f, false);
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile)
-        .SetMessage(GR.Common.Strings.GridSelection.MoveToDrawPile(magicNumber))
+        .SetMessage(GR.Common.Strings.GridSelection.Give(magicNumber, GR.Tooltips.Innate.title))
         .SetOptions(false, true)
         .AddCallback(cards ->
         {
+            boolean canRemoveTags = cards.size() > 0 && CheckAffinity(Affinity.General) && info.TryActivateLimited();
             for (AbstractCard card : cards)
             {
-                GameActions.Top.MoveCard(card, player.drawPile)
-                .ShowEffect(true, true);
+                GameActions.Bottom.ModifyTag(card,ANIMATOR_INNATE,true);
+                if (canRemoveTags) {
+                    GameActions.Bottom.ModifyTag(card,ANIMATOR_ETHEREAL,false);
+                    GameActions.Bottom.ModifyTag(card,ANIMATOR_EXHAUST,false);
+                }
             }
         });
 

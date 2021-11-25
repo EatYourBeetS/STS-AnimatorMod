@@ -11,12 +11,10 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnGainAffinitySubscriber;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.resources.CardTooltips;
@@ -27,10 +25,11 @@ import eatyourbeets.utilities.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public abstract class AbstractAffinityPower extends CommonPower implements OnGainAffinitySubscriber, OnApplyPowerSubscriber
+public abstract class AbstractAffinityPower extends CommonPower implements OnGainAffinitySubscriber
 {
-    public static final int BASE_CHARGE_THRESHOLD = 10;
+    public static final int BASE_CHARGE_THRESHOLD = 5;
     public static final int BASE_EXPERIENCE_PER_LEVEL = 10;
+    public static final int MULTIPLIER_PER_LEVEL = 50;
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.##");
     //@Formatter: off
     @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
@@ -83,6 +82,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
     }
 
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m) {}
+    public void StartOtherSubscriptions() {}
 
     public void SetChargeThreshold(int chargeThreshold) {
         this.chargeThreshold = chargeThreshold;
@@ -108,8 +108,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
             Maintain();
         }
 
-        amount *= gainMultiplier;
-        amount *= 1 + GetEffectiveLevel();
+        amount *= GetEffectiveAmountMultiplier();
         super.stackPower(amount, false);
         this.amountGainedThisTurn += amount;
     }
@@ -127,6 +126,10 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
 
     public Integer GetEffectiveLevel() {
         return Math.max(0, powerLevel + powerLevelModifier);
+    }
+
+    public Integer GetEffectiveAmountMultiplier() {
+        return gainMultiplier * (100 + MULTIPLIER_PER_LEVEL * GetEffectiveLevel()) / 100;
     }
 
     public Integer GetCurrentThreshold()
@@ -151,10 +154,6 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
             IncreaseLevel(1);
         }
         updateDescription();
-    }
-
-    @Override
-    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
     }
 
     @Override
@@ -184,7 +183,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
 
     protected String GetUpdatedDescription()
     {
-        return FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, 100 * GetEffectiveLevel(), GetCurrentChargeCost(), GetMultiplierForDescription(), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
+        return FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, (GetEffectiveAmountMultiplier() * 100) - 100, GetCurrentChargeCost(), GetMultiplierForDescription(), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
     }
 
     protected int GetMultiplierForDescription() {
@@ -192,7 +191,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
     }
 
     public boolean CanSpend(int amount) {
-        return enabled && amount >= chargeThreshold;
+        return enabled && this.amount >= amount;
     }
 
     public boolean TrySpend(int amount)
@@ -206,7 +205,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
     }
 
     protected boolean TryUse(AbstractCard card) {
-        if (CanSpend(amount) && card != null && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
+        if (CanSpend(chargeThreshold) && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
         {
             amount -= GetCurrentChargeCost();
             updateDescription();

@@ -308,7 +308,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         if (hasTag(AUTOPLAY))
         {
-            GameActions.Bottom.PlayCard(this, player.hand, null)
+            GameActions.Last.PlayCard(this, player.hand, null)
                     .SpendEnergy(true)
                     .AddCondition(AbstractCard::hasEnoughEnergy);
         }

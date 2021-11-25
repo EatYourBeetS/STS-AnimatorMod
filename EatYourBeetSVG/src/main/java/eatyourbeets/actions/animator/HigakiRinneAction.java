@@ -20,7 +20,7 @@ import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.EnchantedArmorPower;
 import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
 import eatyourbeets.utilities.*;
 

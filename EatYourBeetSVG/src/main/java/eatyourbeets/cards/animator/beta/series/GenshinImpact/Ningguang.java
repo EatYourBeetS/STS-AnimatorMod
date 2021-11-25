@@ -23,8 +23,8 @@ public class Ningguang extends AnimatorCard
         SetAffinity_Blue(2, 0, 2);
         SetAffinity_Orange(2, 0, 0);
 
-        SetAffinityRequirement(Affinity.Orange, 6);
-        SetAffinityRequirement(Affinity.Blue, 6);
+        SetAffinityRequirement(Affinity.Orange, 5);
+        SetAffinityRequirement(Affinity.Blue, 5);
     }
 
     @Override

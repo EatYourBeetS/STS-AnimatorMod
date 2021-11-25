@@ -17,8 +17,8 @@ public class King extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6, 4);
-        SetUpgrade(0, 0, -1, 0);
+        Initialize(0, 0, 3, 3);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Red(1);
     }
@@ -36,7 +36,7 @@ public class King extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (GameUtilities.TrySpendAffinityPower(Affinity.Red, magicNumber)) {
+        if (GameUtilities.TrySpendAffinityPower(Affinity.Light, magicNumber)) {
             GameActions.Bottom.GainMight(secondaryValue);
         }
     }

@@ -50,6 +50,11 @@
 		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt is dealt to ALL allies, or to itself if it has no allies (min. #b1)."],
 		"NAME": "Electrified"
 	},
+	"eyb:EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0}% less #yAttack damage."],
+		"NAME": "Enchanted Armor"
+	},
 	"eyb:EndurancePower":
 	{
 	  "DESCRIPTIONS": ["When you make a [A-Orange] #ySynergy: Gain #b{0} [O]. NL Increase ALL [O] gains by #b+{1}%. NL When you play a [Block] card: Spend #b{2} stacks to increase its [Block] by #b{3}%.{4}","NL #yCharge is conserved this turn."],

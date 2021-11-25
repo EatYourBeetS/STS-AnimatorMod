@@ -32,7 +32,6 @@ import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import static eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer.MINIMUM_SERIES;
@@ -242,7 +241,7 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
         GR.UI.CardAffinities.SetActive(true);
         GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), false, null, true);
 
-        seriesCountDropdown.SetItems(GetSelectionOptionArray(GR.Animator.Data.GetEveryLoadout().size()));
+        seriesCountDropdown.SetItems(JUtils.RangeArray(AnimatorLoadoutsContainer.MINIMUM_SERIES, GR.Animator.Data.GetEveryLoadout().size()));
         seriesCountDropdown.SetSelection(GR.Animator.Config.SeriesSize.Get(), false);
     }
 
@@ -627,15 +626,6 @@ public class AnimatorSeriesSelectScreen extends AbstractScreen
     private void ToggleViewUpgrades(boolean value)
     {
         SingleCardViewPopup.isViewingUpgrade = value;
-    }
-
-    private Integer[] GetSelectionOptionArray(int end) {
-        if (end <= AnimatorLoadoutsContainer.MINIMUM_SERIES) {
-            return new Integer[]{MINIMUM_SERIES};
-        }
-        Integer[] values = new Integer[end - AnimatorLoadoutsContainer.MINIMUM_SERIES + 1];
-        Arrays.setAll(values, i -> i + AnimatorLoadoutsContainer.MINIMUM_SERIES);
-        return values;
     }
 
 }

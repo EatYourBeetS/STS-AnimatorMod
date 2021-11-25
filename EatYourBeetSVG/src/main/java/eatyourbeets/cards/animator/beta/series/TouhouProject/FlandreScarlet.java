@@ -67,7 +67,6 @@ public class FlandreScarlet extends AnimatorCard
         GameActions.Last.Callback(() -> {
             if (m != null && !GameUtilities.IsDeadOrEscaped(m)) {
                 AbstractCard handCard = JUtils.Random(player.hand.group);
-                boolean isLimited = CheckAffinity(Affinity.Dark) && info.TryActivateLimited();
 
                 choices.Initialize(this, true);
                 choices.AddEffect(new GenericEffect_FlandreScarlet(0, this));

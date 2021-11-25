@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.series.DateALive.ShidoItsuka;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.animator.MagusFormPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -32,6 +33,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.StackPower(new MagusFormPower(p, this.magicNumber));
         GameActions.Bottom.StackPower(new MioTakamiyaPower(p, magicNumber));
     }
 
@@ -44,14 +46,6 @@ public class MioTakamiya extends AnimatorCard_UltraRare
             this.amount = amount;
 
             Initialize(amount);
-        }
-
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-            GameActions.Bottom.GainFocus(2);
-            GameActions.Bottom.GainStrength(-1);
-            GameActions.Bottom.GainDexterity(-1);
         }
 
         @Override

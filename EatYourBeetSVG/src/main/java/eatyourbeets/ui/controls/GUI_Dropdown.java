@@ -19,6 +19,7 @@ import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class GUI_Dropdown<T> extends GUIElement
     protected ActionT1<Boolean> onOpenOrClose;
     protected ActionT1<List<T>> onChange;
     protected BitmapFont font;
+    protected FuncT1<Color, List<T>> colorFunctionButton;
     protected FuncT1<String, List<T>> labelFunctionButton;
     protected FuncT1<String, T> labelFunction;
     protected GUI_Label header; // TODO
@@ -96,10 +98,7 @@ public class GUI_Dropdown<T> extends GUIElement
                 .SetFont(font, fontScale)
                 .SetText(currentIndices.size() + " " + GR.Animator.Strings.SeriesUI.ItemsSelected)
                 .SetOnClick(this::OpenOrCloseMenu);
-        this.clearButton = new GUI_Button(GR.Common.Images.SquaredButton.Texture(), new AdvancedHitbox(hb.x + hb.width, hb.y, hb.height, hb.height).SetIsPopupCompatible(true))
-                .SetColor(Color.GRAY)
-                .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.3f)
-                .SetText("X")
+        this.clearButton = new GUI_Button(GR.Common.Images.X.Texture(), new AdvancedHitbox(hb.x + hb.width, hb.y, hb.height, hb.height).SetIsPopupCompatible(true))
                 .SetOnClick(() -> {SetSelectionIndices(new int[] {}, true);});
         this.header = new GUI_Label(EYBFontHelper.CardTitleFont_Small, new AdvancedHitbox(hb.x, hb.y + hb.height, hb.width, hb.height)).SetAlignment(0.5f,0.0f,false);
         this.header.SetActive(false);
@@ -149,11 +148,15 @@ public class GUI_Dropdown<T> extends GUIElement
         return this;
     }
 
-    public GUI_Dropdown<T> SetLabelFunctionForButton(FuncT1<String, List<T>> labelFunctionButton, boolean isSmartText) {
+    public GUI_Dropdown<T> SetLabelFunctionForButton(FuncT1<String, List<T>> labelFunctionButton, FuncT1<Color, List<T>> colorFunctionButton, boolean isSmartText) {
         this.button.SetSmartText(isSmartText);
         this.labelFunctionButton = labelFunctionButton;
+        this.colorFunctionButton = colorFunctionButton;
         if (labelFunctionButton != null) {
             this.button.SetText(labelFunctionButton.Invoke(GetCurrentItems()));
+        }
+        if (colorFunctionButton != null) {
+            this.button.SetTextColor(colorFunctionButton.Invoke(GetCurrentItems()));
         }
         return this;
     }
@@ -287,6 +290,10 @@ public class GUI_Dropdown<T> extends GUIElement
 
     public float CalculateScrollbarOffset() {
         return -this.visibleRowCount() * this.rowHeight;
+    }
+
+    public ArrayList<T> GetAllItems() {
+        return JUtils.Map(this.rows, row -> row.item);
     }
 
     public ArrayList<T> GetCurrentItems() {
@@ -535,6 +542,10 @@ public class GUI_Dropdown<T> extends GUIElement
         else if (currentIndices.size() > 0) {
             this.topVisibleRowIndex = Math.min(temp, this.rows.size() - this.visibleRowCount());
             this.button.text = labelFunctionButton != null ? labelFunctionButton.Invoke(GetCurrentItems()) : rows.get(temp).label.text;
+            if (colorFunctionButton != null) {
+                this.button.SetTextColor(colorFunctionButton.Invoke(GetCurrentItems()));
+            }
+
             this.scrollBar.Scroll(this.scrollPercentForTopVisibleRowIndex(this.topVisibleRowIndex), false);
         }
         if (shouldInvoke && onChange != null) {

@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
@@ -56,7 +57,7 @@ public class KotoriItsuka extends AnimatorCard
             }
 
             if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
-                GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_ATTACK_BONUS));
+                GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
             }
         }));
     }

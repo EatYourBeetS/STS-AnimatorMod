@@ -61,7 +61,7 @@ public class AnimatorWeakPower extends WeakPower implements CloneablePowerInterf
     public AnimatorWeakPower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner,amount,isSourceMonster);
-        if (!GameUtilities.IsPlayerTurn() && isSourceMonster) {
+        if (isSourceMonster) {
             this.justApplied = true;
         }
 

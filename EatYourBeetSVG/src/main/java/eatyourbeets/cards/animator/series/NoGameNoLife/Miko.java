@@ -29,7 +29,7 @@ public class Miko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 5);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(2);

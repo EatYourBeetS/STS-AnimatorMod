@@ -8,10 +8,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SuperchargePower extends AbstractAffinityPower
+public class SuperchargePower extends AbstractAffinityPower implements OnApplyPowerSubscriber
 {
     public static final String POWER_ID = CreateFullID(SuperchargePower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Light;
@@ -22,8 +24,13 @@ public class SuperchargePower extends AbstractAffinityPower
     }
 
     @Override
+    public void StartOtherSubscriptions() {
+        CombatStats.onApplyPower.Subscribe(this);
+    }
+
+    @Override
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 0);
         int applyAmount = (int) (power.amount * (GetChargeMultiplier() - 1));
 
         if (GameUtilities.IsPlayer(power.owner) && GameUtilities.IsCommonBuff(power) && TryUse(last)) {

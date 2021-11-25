@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SelfImmolationPower extends AnimatorPower
@@ -26,6 +28,14 @@ public class SelfImmolationPower extends AnimatorPower
         this.isTurnBased = true;
 
         updateDescription();
+    }
+
+    @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        GameEffects.Queue.Add(VFX.Bleed(owner.hb));
     }
 
     @Override

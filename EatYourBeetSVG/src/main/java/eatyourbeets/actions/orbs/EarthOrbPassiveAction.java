@@ -1,5 +1,6 @@
 package eatyourbeets.actions.orbs;
 
+import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Earth;
@@ -35,14 +36,13 @@ public class EarthOrbPassiveAction extends EYBAction
             orb.AddProjectiles(amount);
         }
 
-        if (orb.projectilesCount != orb.projectiles.size())
+        if (orb.projectilesCount <= 0) {
+            GameActions.Top.Add(new EvokeSpecificOrbAction(orb));
+        }
+        else if (orb.projectilesCount != orb.projectiles.size())
         {
             SFX.Play(SFX.ANIMATOR_ORB_EARTH_CHANNEL, 0.8f, 1.2f, 0.6f);
             orb.projectilesCount = orb.projectiles.size();
-        }
-
-        if (amount > 0) {
-            GameActions.Bottom.GainTemporaryThorns(amount);
         }
 
         Complete();

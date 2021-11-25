@@ -213,7 +213,7 @@ public class GameUtilities
     public static boolean CanSpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.CanSpend(amount >= 0 ? amount : po.amount);
+        return po != null && po.CanSpend(amount >= 0 ? amount : po.chargeThreshold);
     }
 
     public static boolean TrySpendAffinityPower(Affinity affinity)
@@ -224,7 +224,7 @@ public class GameUtilities
     public static boolean TrySpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.TrySpend(amount >= 0 ? amount : po.amount);
+        return po != null && po.TrySpend(amount >= 0 ? amount : po.chargeThreshold);
     }
 
     public static void ClearPostCombatActions()
@@ -1720,6 +1720,9 @@ public class GameUtilities
     {
         if (CanRetain(card))
         {
+            if (card instanceof EYBCard) {
+                ModifyCardTag(card, ANIMATOR_RETAIN, true);
+            }
             card.retain = true;
             return true;
         }

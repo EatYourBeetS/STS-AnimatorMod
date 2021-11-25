@@ -8,11 +8,16 @@ import eatyourbeets.utilities.GameActions;
 public class FlamingWeaponPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(FlamingWeaponPower.class);
-    public static final int BURNING_AMOUNT = 2;
+    public int secondaryAmount;
 
-    public FlamingWeaponPower(AbstractCreature owner, int amount)
+    public FlamingWeaponPower(AbstractCreature owner, int amount) {
+        this(owner, amount, amount);
+    }
+
+    public FlamingWeaponPower(AbstractCreature owner, int amount, int secondaryAmount)
     {
         super(owner, POWER_ID);
+        this.secondaryAmount = secondaryAmount;
 
         Initialize(amount, PowerType.BUFF, true);
     }
@@ -20,7 +25,7 @@ public class FlamingWeaponPower extends AnimatorPower
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(0, BURNING_AMOUNT);
+        description = FormatDescription(0, amount, secondaryAmount);
     }
 
     @Override
@@ -30,7 +35,7 @@ public class FlamingWeaponPower extends AnimatorPower
 
         if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL)
         {
-            GameActions.Top.ApplyBurning(owner, target, BURNING_AMOUNT).ShowEffect(false, true);
+            GameActions.Top.ApplyBurning(owner, target, secondaryAmount).ShowEffect(true, true);
             this.flash();
         }
     }

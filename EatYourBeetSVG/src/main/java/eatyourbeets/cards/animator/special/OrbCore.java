@@ -24,8 +24,6 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
 
-import static eatyourbeets.ui.animator.combat.EYBCardAffinitySystem.SCALING_DIVISION;
-
 public abstract class OrbCore extends AnimatorCard
 {
     public static final String ID = GR.Animator.CreateID(OrbCore.class.getSimpleName());
@@ -226,7 +224,7 @@ public abstract class OrbCore extends AnimatorCard
         }
 
         private float GetScaledIncrease() {
-            return CombatStats.Affinities.GetPowerAmount(card.GetAffinity()) * amount / (float)SCALING_DIVISION;
+            return CombatStats.Affinities.GetPowerLevel(card.GetAffinity()) * amount;
         }
 
         private void refreshOrbs() {

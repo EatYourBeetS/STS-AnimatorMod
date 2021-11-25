@@ -8,7 +8,7 @@ import eatyourbeets.cards.animator.series.Fate.Saber;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.powers.common.EnchantedArmorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 

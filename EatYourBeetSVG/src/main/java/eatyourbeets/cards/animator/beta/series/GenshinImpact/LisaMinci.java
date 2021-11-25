@@ -26,11 +26,11 @@ public class LisaMinci extends AnimatorCard {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Scry(magicNumber)
                 .AddCallback(cards -> {
+                    boolean activateEffect1 = false;
+                    boolean activateEffect2 = false;
+                    boolean activateEffect3 = false;
                     for (AbstractCard card : cards)
                     {
-                        boolean activateEffect1 = false;
-                        boolean activateEffect2 = false;
-                        boolean activateEffect3 = false;
                         switch (card.cost) {
                             case 0:
                             case -2:
@@ -44,16 +44,15 @@ public class LisaMinci extends AnimatorCard {
                                 activateEffect3 = true;
                                 break;
                         }
-
-                        if (activateEffect1) {
-                            GameActions.Bottom.GainFocus(secondaryValue, true);
-                        }
-                        if (activateEffect2) {
-                            GameActions.Bottom.GainWisdom(secondaryValue);
-                        }
-                        if (activateEffect3) {
-                            GameActions.Bottom.ChannelOrb(new Lightning());
-                        }
+                    }
+                    if (activateEffect1) {
+                        GameActions.Bottom.GainFocus(secondaryValue, true);
+                    }
+                    if (activateEffect2) {
+                        GameActions.Bottom.GainWisdom(secondaryValue);
+                    }
+                    if (activateEffect3) {
+                        GameActions.Bottom.ChannelOrb(new Lightning());
                     }
                 });
     }

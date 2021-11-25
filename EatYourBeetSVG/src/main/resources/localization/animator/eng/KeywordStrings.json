@@ -2,7 +2,7 @@
 {
 	"Air":
 	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When Evoked: #yCycle #b1 card.",
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When #yEvoked: #yCycle #b1 card.",
 		"NAMES": ["aether", "aether+", "air", "air+"],
 		"PROPER_NAME": "Air"
 	},
@@ -27,13 +27,13 @@
 	},
 	"Earth":
 	{
-		"DESCRIPTION": "Orb: When #yTriggered, increase this orb's projectile count and gain Temp. [Thorns]. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
+		"DESCRIPTION": "Orb: Gains projectiles when #yTriggered. When you are attacked: Remove #b1 projectile to gain [Block] and deal damage back to the attacker. When #yEvoked: Each projectile deals damage to a random enemy. Automatically #yEvoked after #b3 turns.",
 		"NAMES": ["earth", "earth+"],
 		"PROPER_NAME": "Earth"
 	},
 	"Enchanted Armor":
 	{
-		"DESCRIPTION": "For every #yAttack received, lose #b1 [Enchanted Armor] at the start of turn (max #b10 per turn). NL Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
+		"DESCRIPTION": "Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
 	},

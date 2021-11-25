@@ -1,64 +1,19 @@
 package eatyourbeets.powers.common;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.CommonPower;
-import eatyourbeets.powers.animator.ElementalExposurePower;
-import eatyourbeets.ui.animator.combat.CombatHelper;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.utilities.Mathf;
 
-import java.util.UUID;
-
-public class BurningPower extends CommonPower implements HealthBarRenderPower
+public class BurningPower extends CommonTriggerablePower
 {
     private static final Color healthBarColor = Color.ORANGE.cpy();
-    private static UUID battleID;
-
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final int ATTACK_MULTIPLIER = 15;
-    public static int PLAYER_ATTACK_BONUS = 0;
-    public static int PLAYER_DAMAGE_BONUS = 0;
-
-    public static void AddPlayerAttackBonus(int multiplier)
-    {
-        CheckForNewBattle();
-
-        if (multiplier > 0)
-        {
-            PLAYER_ATTACK_BONUS += multiplier;
-
-            GameUtilities.UpdatePowerDescriptions();
-        }
-    }
-
-    public static void AddPlayerDamageBonus(int multiplier)
-    {
-        CheckForNewBattle();
-
-        if (multiplier > 0)
-        {
-            PLAYER_DAMAGE_BONUS += multiplier;
-
-            GameUtilities.UpdatePowerDescriptions();
-        }
-    }
-
-    public static void CheckForNewBattle() {
-        if (CombatStats.BattleID != battleID)
-        {
-            battleID = CombatStats.BattleID;
-            PLAYER_ATTACK_BONUS = 0;
-            PLAYER_DAMAGE_BONUS = 0;
-        }
-    }
 
     public static float CalculateDamage(float damage, float multiplier)
     {
@@ -67,25 +22,11 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
 
     public BurningPower(AbstractCreature owner, AbstractCreature source, int amount)
     {
-        super(owner, source, POWER_ID);
+        super(owner, source, POWER_ID, ATTACK_MULTIPLIER);
 
         this.priority = 4;
 
         Initialize(amount, PowerType.DEBUFF, true);
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        this.description = FormatDescription(0, GetPassiveDamage(), GetMultiplier());
-    }
-
-    @Override
-    public void onInitialApplication()
-    {
-        super.onInitialApplication();
-
-        AddPlayerAttackBonus(0); // Refresh multiplier
     }
 
     @Override
@@ -95,53 +36,19 @@ public class BurningPower extends CommonPower implements HealthBarRenderPower
     }
 
     @Override
-    public void atStartOfTurn()
-    {
-        this.flashWithoutSound();
-
-        Trigger();
-        ReducePower(1);
-    }
-
-    @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType type)
     {
-        return super.atDamageReceive(type == DamageInfo.DamageType.NORMAL ? CalculateDamage(damage, GetMultiplier()) : damage, type);
+        return super.atDamageReceive(type == DamageInfo.DamageType.NORMAL ? CalculateDamage(damage, GetEffectMultiplier()) : damage, type);
     }
 
     @Override
-    public int getHealthBarAmount()
-    {
-        return CombatHelper.GetHealthBarAmount(owner, GetPassiveDamage(), false, true);
+    public AbstractGameAction.AttackEffect GetAttackEffect() {
+        return AttackEffects.FIRE;
     }
 
     @Override
     public Color getColor()
     {
         return healthBarColor;
-    }
-
-    public int GetPassiveDamage()
-    {
-        return MathUtils.round((amount == 1 ? 1 : amount < 1 ? 0 : amount / 2 + amount % 2) * GetDamageMultiplier() / 100);
-    }
-
-    public float GetDamageMultiplier()
-    {
-        return (GameUtilities.IsPlayer(owner)) ? 100 : (100 + PLAYER_DAMAGE_BONUS) * GetElementalExposure();
-    }
-
-    public float GetMultiplier()
-    {
-        return (GameUtilities.IsPlayer(owner)) ? ATTACK_MULTIPLIER : (ATTACK_MULTIPLIER + PLAYER_ATTACK_BONUS) * GetElementalExposure();
-    }
-
-    private float GetElementalExposure() {
-        return ElementalExposurePower.CalculatePercentage(GameUtilities.GetPowerAmount(owner, ElementalExposurePower.POWER_ID));
-    }
-
-    public void Trigger() {
-        GameActions.Bottom.LoseHP(source, owner, GetPassiveDamage(), AttackEffects.FIRE)
-                .CanKill(owner == null || !owner.isPlayer);
     }
 }

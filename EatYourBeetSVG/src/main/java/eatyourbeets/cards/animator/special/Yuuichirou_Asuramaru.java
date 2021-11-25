@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Status_Burn;
-import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +12,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     public static final EYBCardData DATA = Register(Yuuichirou_Asuramaru.class)
             .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(CardSeries.OwariNoSeraph)
-            .PostInitialize(data -> data.AddPreview(new Status_Wound(), false));
+            .PostInitialize(data -> data.AddPreview(new Status_Burn(), false));
 
     public Yuuichirou_Asuramaru()
     {
@@ -37,7 +36,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
             GameActions.Bottom.GainMight(magicNumber);
             GameActions.Bottom.GainVelocity(magicNumber);
             GameActions.Bottom.GainWisdom(magicNumber);
-            GameActions.Bottom.MakeCardInHand(new Status_Burn()).SetUpgrade(true,false);
+            GameActions.Bottom.MakeCardInHand(new Status_Burn());
         }
     }
 }

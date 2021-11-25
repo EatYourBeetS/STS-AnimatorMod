@@ -19,7 +19,7 @@ public class VelocityPower extends AbstractAffinityPower
     @Override
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        int cardDraw = (int) GetChargeMultiplier();
+        int cardDraw = (int) GetChargeIncrease(amount);
 
         if (c.type == AbstractCard.CardType.SKILL && TryUse(c))
         {

@@ -58,15 +58,15 @@ public class MindControlPower extends AnimatorClickablePower
     protected boolean lastIsMultiDamage;
 
     static {
-        ORB_MAP.put(GR.Tooltips.Air.id, new OrbConstructor(GR.Tooltips.Air, Air::new, 2));
-        ORB_MAP.put(GR.Tooltips.Chaos.id, new OrbConstructor(GR.Tooltips.Chaos, Chaos::new, 3));
+        ORB_MAP.put(GR.Tooltips.Air.id, new OrbConstructor(GR.Tooltips.Air, Air::new, 3));
+        ORB_MAP.put(GR.Tooltips.Chaos.id, new OrbConstructor(GR.Tooltips.Chaos, Chaos::new, 5));
         ORB_MAP.put(GR.Tooltips.Dark.id, new OrbConstructor(GR.Tooltips.Dark, Dark::new, 1));
-        ORB_MAP.put(GR.Tooltips.Earth.id, new OrbConstructor(GR.Tooltips.Earth, Earth::new, 2));
-        ORB_MAP.put(GR.Tooltips.Fire.id, new OrbConstructor(GR.Tooltips.Fire, Fire::new, 1));
-        ORB_MAP.put(GR.Tooltips.Frost.id, new OrbConstructor(GR.Tooltips.Frost, Frost::new, 1));
+        ORB_MAP.put(GR.Tooltips.Earth.id, new OrbConstructor(GR.Tooltips.Earth, Earth::new, 3));
+        ORB_MAP.put(GR.Tooltips.Fire.id, new OrbConstructor(GR.Tooltips.Fire, Fire::new, 2));
+        ORB_MAP.put(GR.Tooltips.Frost.id, new OrbConstructor(GR.Tooltips.Frost, Frost::new, 2));
         ORB_MAP.put(GR.Tooltips.Lightning.id, new OrbConstructor(GR.Tooltips.Lightning, Lightning::new, 1));
-        ORB_MAP.put(GR.Tooltips.Plasma.id, new OrbConstructor(GR.Tooltips.Plasma, Plasma::new, 3));
-        ORB_MAP.put(GR.Tooltips.Water.id, new OrbConstructor(GR.Tooltips.Water, Water::new, 3));
+        ORB_MAP.put(GR.Tooltips.Plasma.id, new OrbConstructor(GR.Tooltips.Plasma, Plasma::new, 6));
+        ORB_MAP.put(GR.Tooltips.Water.id, new OrbConstructor(GR.Tooltips.Water, Water::new, 5));
     }
 
     private static ArrayList<Affinity> GetAffinityPowers(AbstractCard card, int limit) {

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.JumpyDumpty;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -34,7 +35,7 @@ public class Klee extends AnimatorCard
     {
 
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
-        GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(magicNumber));
+        GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
         //GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, secondaryValue);
 
         int cardCount = secondaryValue;

@@ -10,7 +10,6 @@ import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
-import eatyourbeets.powers.common.ResistancePower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -19,13 +18,13 @@ import eatyourbeets.utilities.JUtils;
 public class Zhongli extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(1).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 8;
+    private static final int POWER_ENERGY_COST = 7;
 
     public Zhongli()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 5);
+        Initialize(0, 0, 4, 5);
         SetUpgrade(0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
         SetDelayed(true);
@@ -134,7 +133,7 @@ public class Zhongli extends AnimatorCard
         }
 
         private int GetBlockAmount() {
-            return secondaryValue + Math.max(0,GameUtilities.GetPowerAmount(ResistancePower.POWER_ID));
+            return secondaryValue + GameUtilities.GetAffinityPowerLevel(Affinity.Orange);
         }
     }
 }

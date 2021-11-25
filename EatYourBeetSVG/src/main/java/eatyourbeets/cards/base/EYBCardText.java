@@ -18,7 +18,6 @@ import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
-import eatyourbeets.ui.animator.combat.EYBCardAffinitySystem;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
 
@@ -236,7 +235,7 @@ public class EYBCardText
                 else
                 {
                     cs.SetColor(Colors.Cream(1));
-                    cs.text = "x" + scaling + "/" + EYBCardAffinitySystem.SCALING_DIVISION;
+                    cs.text = "x" + scaling;
                 }
 
                 offset_y += RenderScaling(sb, affinity.GetPowerIcon(), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());

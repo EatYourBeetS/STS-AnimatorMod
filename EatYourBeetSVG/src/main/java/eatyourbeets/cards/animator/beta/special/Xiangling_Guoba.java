@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
@@ -56,7 +57,7 @@ public class Xiangling_Guoba extends AnimatorCard
         {
             super.onRemove();
 
-            GameActions.Bottom.Callback(() -> BurningPower.AddPlayerAttackBonus(BURNING_BONUS));
+            GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_BONUS));
         }
 
         @Override

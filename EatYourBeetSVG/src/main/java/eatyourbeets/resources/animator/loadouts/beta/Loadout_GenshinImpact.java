@@ -24,6 +24,7 @@ public class Loadout_GenshinImpact extends AnimatorLoadout
         AddStarterCard(KaeyaAlberich.DATA, 7);
         AddStarterCard(Fischl.DATA, 10);
         AddStarterCard(Klee.DATA, 14);
+        AddStarterCard(JeanGunnhildr.DATA, 20);
         AddStarterCard(Venti.DATA, 25);
         AddStarterCard(Status_Burn.DATA, -5);
     }

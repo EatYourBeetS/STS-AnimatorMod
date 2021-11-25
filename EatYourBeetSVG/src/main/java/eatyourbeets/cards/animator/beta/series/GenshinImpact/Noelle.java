@@ -49,7 +49,6 @@ public class Noelle extends AnimatorCard
             GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                     .SetOptions(true, true, true)
                     .SetMessage(RetainCardsAction.TEXT[0])
-                    .SetFilter(c -> !c.isEthereal && (GameUtilities.HasOrangeAffinity(c) || GameUtilities.HasRedAffinity(c)))
                     .AddCallback(cards ->
                     {
                         if (cards.size() > 0)

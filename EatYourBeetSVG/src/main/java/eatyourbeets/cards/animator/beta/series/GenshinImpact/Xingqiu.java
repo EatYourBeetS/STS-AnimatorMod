@@ -28,7 +28,7 @@ public class Xingqiu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 1, 12, 1);
+        Initialize(2, 0, 4, 1);
         SetAffinity_Blue(1, 0, 4);
         SetAffinity_Green(1);
         SetAffinity_Orange(1, 0, 0);
@@ -44,9 +44,9 @@ public class Xingqiu extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        if (enemy != null && GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) > 0)
+        if (enemy != null)
         {
-            return super.ModifyDamage(enemy, amount + magicNumber);
+            return super.ModifyDamage(enemy, amount + GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) * magicNumber);
         }
         return super.ModifyDamage(enemy, amount);
     }
@@ -64,7 +64,7 @@ public class Xingqiu extends AnimatorCard
                     SFX.Play(SFX.ATTACK_REAPER);
                     return wait * 0.55f;
                 }));
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.RemovePower(p, m, BurningPower.POWER_ID);
         GameActions.Bottom.StackPower(new XingqiuPower(p, secondaryValue));
     }
 

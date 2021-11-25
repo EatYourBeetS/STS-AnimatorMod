@@ -100,8 +100,8 @@ public abstract class AnimatorLoadout
                 }
             }
 
-            GoldValue = 2 * ((data.Gold - BASE_GOLD) / GOLD_STEP);
-            HpValue = 2 * ((data.HP - BASE_HP) / HP_STEP);
+            GoldValue = ((data.Gold - BASE_GOLD) / GOLD_STEP);
+            HpValue = ((data.HP - BASE_HP) / HP_STEP);
             TotalValue.V1 += GoldValue + HpValue + AffinityLevel;
             TotalValue.V2 = TotalValue.V1 <= MAX_VALUE;
             CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;

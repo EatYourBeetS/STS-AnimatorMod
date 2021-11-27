@@ -17,6 +17,7 @@ import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -38,7 +39,6 @@ public class CardTooltips
     public EYBCardTooltip Health = FindByID("Health").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Trigger = FindByID("Trigger").ShowText(false);
-    public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
 
@@ -138,6 +138,7 @@ public class CardTooltips
     public EYBCardTooltip TempHP = FindByID("Temporary HP");
     public EYBCardTooltip TemporaryThorns = FindByID("Temporary Thorns");
     public EYBCardTooltip Thorns = FindByID("Thorns");
+    public EYBCardTooltip Unplayable = FindByID("Unplayable");
     public EYBCardTooltip Unique = FindByID("~Unique");
     public EYBCardTooltip Velocity = FindByID("Velocity");
     public EYBCardTooltip VelocityScaling = FindByID("Velocity Scaling");
@@ -229,20 +230,21 @@ public class CardTooltips
     public void InitializeIcons()
     {
         CommonImages.Badges badges = GR.Common.Images.Badges;
-        Afterlife.SetIcon(badges.Afterlife.Texture(), 6);
-        Autoplay.SetIcon(badges.Autoplay.Texture(), 6);
-        Delayed.SetIcon(badges.Delayed.Texture(), 6);
-        Ethereal.SetIcon(badges.Ethereal.Texture(), 6);
-        Exhaust.SetIcon(badges.Exhaust.Texture(), 6);
-        Harmonic.SetIcon(badges.Harmonic.Texture(), 6);
-        Haste.SetIcon(badges.Haste.Texture(), 6);
-        HasteInfinite.SetIcon(badges.HasteInfinite.Texture(), 6);
-        Innate.SetIcon(badges.Innate.Texture(), 6);
-        Loyal.SetIcon(badges.Loyal.Texture(), 6);
-        Purge.SetIcon(badges.Purge.Texture(), 6);
-        Retain.SetIcon(badges.Retain.Texture(), 6);
-        RetainInfinite.SetIcon(badges.RetainInfinite.Texture(), 6);
-        RetainOnce.SetIcon(badges.Retain.Texture(), 6);
+        Afterlife.SetIcon(badges.Afterlife.Texture(), 6).SetColor(Colors.COLOR_AFTERLIFE);
+        Autoplay.SetIcon(badges.Autoplay.Texture(), 6).SetColor(Colors.COLOR_AUTOPLAY);
+        Delayed.SetIcon(badges.Delayed.Texture(), 6).SetColor(Colors.COLOR_DELAYED);
+        Ethereal.SetIcon(badges.Ethereal.Texture(), 6).SetColor(Colors.COLOR_ETHEREAL);
+        Exhaust.SetIcon(badges.Exhaust.Texture(), 6).SetColor(Colors.COLOR_EXHAUST);
+        Harmonic.SetIcon(badges.Harmonic.Texture(), 6).SetColor(Colors.COLOR_HARMONIC);
+        Haste.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE);
+        HasteInfinite.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE);
+        Innate.SetIcon(badges.Innate.Texture(), 6).SetColor(Colors.COLOR_INNATE);
+        Loyal.SetIcon(badges.Loyal.Texture(), 6).SetColor(Colors.COLOR_LOYAL);
+        Purge.SetIcon(badges.Purge.Texture(), 6).SetColor(Colors.COLOR_PURGE);
+        Retain.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
+        RetainInfinite.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
+        RetainOnce.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
+        Unplayable.SetIcon(badges.Unplayable.Texture(), 6).SetColor(Colors.COLOR_UNPLAYABLE);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);

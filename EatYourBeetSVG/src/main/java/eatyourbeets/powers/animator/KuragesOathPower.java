@@ -1,5 +1,6 @@
 package eatyourbeets.powers.animator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,16 +8,21 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
-public class KuragesOathPower extends AnimatorPower
+public class KuragesOathPower extends AnimatorPower implements OnOrbApplyFocusSubscriber
 {
     public static final String POWER_ID = CreateFullID(KuragesOathPower.class);
+    protected static final Color PARTICLE_COLOR = Color.TEAL.cpy();
     public int secondaryAmount;
 
     public KuragesOathPower(AbstractPlayer owner, int amount, int secondaryAmount)
@@ -30,6 +36,25 @@ public class KuragesOathPower extends AnimatorPower
     }
 
     @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+
+        GameActions.Bottom.VFX(VFX.WaterDome(owner.hb.cX,(owner.hb.y+owner.hb.cY)/2));
+        GameActions.Bottom.SFX(SFX.ANIMATOR_WATER_DOME);
+        CombatStats.onOrbApplyFocus.Subscribe(this);
+    }
+
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        CombatStats.onOrbApplyFocus.Unsubscribe(this);
+    }
+
+
+    @Override
     public void updateDescription()
     {
         description = FormatDescription(0, amount, secondaryAmount);
@@ -41,12 +66,11 @@ public class KuragesOathPower extends AnimatorPower
         super.atEndOfTurn(isPlayer);
 
         if (GameUtilities.GetOrbCount(Water.ORB_ID) == 0) {
-            GameActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE);
-            Water waterOrb = new Water();
-            waterOrb.IncreaseBasePassiveAmount(this.amount);
-            waterOrb.IncreaseBaseEvokeAmount(this.amount);
-            waterOrb.evokeAmount += this.amount;
-            GameActions.Bottom.ChannelOrb(waterOrb);
+            GameActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE).AddCallback(() -> {
+                Water water = new Water();
+                GameActions.Bottom.TriggerOrbPassive(water, 1);
+                GameActions.Bottom.ChannelOrb(water);
+            });
         }
     }
 
@@ -116,5 +140,12 @@ public class KuragesOathPower extends AnimatorPower
     @Override
     public float modifyBlockLast(float blockAmount) {
         return 0f;
+    }
+
+    @Override
+    public void OnApplyFocus(AbstractOrb orb) {
+        if (Water.ORB_ID.equals(orb.ID)) {
+            orb.passiveAmount += this.amount;
+        }
     }
 }

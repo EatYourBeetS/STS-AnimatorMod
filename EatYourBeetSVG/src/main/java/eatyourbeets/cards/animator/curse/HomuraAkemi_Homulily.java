@@ -25,6 +25,7 @@ public class HomuraAkemi_Homulily extends AnimatorCard_Curse
         SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Dark(2);
+        SetUnplayable(true);
     }
 
     @Override

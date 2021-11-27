@@ -1538,6 +1538,15 @@ public class GameUtilities
             else if (tag.equals(ANIMATOR_INNATE)) {
                 aCard.SetInnate(value);
             }
+            else if (tag.equals(ANIMATOR_RETAIN)) {
+                aCard.SetRetain(value);
+            }
+            else if (tag.equals(ANIMATOR_RETAIN_ONCE)) {
+                aCard.SetRetainOnce(value);
+            }
+            else if (tag.equals(ANIMATOR_UNPLAYABLE)) {
+                aCard.SetUnplayable(value);
+            }
             else if (tag.equals(DELAYED)) {
                 aCard.SetDelayed(value);
             }
@@ -1721,7 +1730,7 @@ public class GameUtilities
         if (CanRetain(card))
         {
             if (card instanceof EYBCard) {
-                ModifyCardTag(card, ANIMATOR_RETAIN, true);
+                ModifyCardTag(card, ANIMATOR_RETAIN_ONCE, true);
             }
             card.retain = true;
             return true;

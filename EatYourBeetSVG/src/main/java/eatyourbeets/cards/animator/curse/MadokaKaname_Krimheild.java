@@ -31,6 +31,7 @@ public class MadokaKaname_Krimheild extends AnimatorCard_Curse
 
         SetAffinity_Blue(2);
         SetAffinity_Dark(2);
+
     }
 
     @Override

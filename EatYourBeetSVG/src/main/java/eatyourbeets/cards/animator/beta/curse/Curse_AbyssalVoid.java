@@ -12,13 +12,13 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Curse_AbyssalVoid extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(Curse_AbyssalVoid.class).SetCurse(-1, EYBCardTarget.None, false);
+    public static final EYBCardData DATA = Register(Curse_AbyssalVoid.class).SetCurse(-1, EYBCardTarget.None, true);
 
     public Curse_AbyssalVoid()
     {
         super(DATA, false);
 
-        Initialize(0, 0, 4, 4);
+        Initialize(0, 0, 6, 3);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Dark(2);
 
@@ -33,6 +33,6 @@ public class Curse_AbyssalVoid extends AnimatorCard_Curse
     {
         int stacks = GameUtilities.UseXCostEnergy(this);
         GameActions.Bottom.GainDesecration(magicNumber * stacks);
-        GameActions.Bottom.LoseHP(secondaryValue * stacks, AttackEffects.DARKNESS);
+        GameActions.Bottom.DealDamageAtEndOfTurn(player, player,secondaryValue * stacks, AttackEffects.DARKNESS);
     }
 }

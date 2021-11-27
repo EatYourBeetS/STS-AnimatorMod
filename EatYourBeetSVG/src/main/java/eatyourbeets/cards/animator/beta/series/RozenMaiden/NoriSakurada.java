@@ -19,13 +19,12 @@ public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
     public NoriSakurada() {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Light(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Light, 8);
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {

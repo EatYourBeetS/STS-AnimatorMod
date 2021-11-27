@@ -29,6 +29,8 @@ public class KyokoSakura_Ophelia extends AnimatorCard_Curse implements OnPurgeSu
 
         SetAffinity_Red(1);
         SetAffinity_Dark(2);
+
+        SetUnplayable(true);
     }
 
     @Override

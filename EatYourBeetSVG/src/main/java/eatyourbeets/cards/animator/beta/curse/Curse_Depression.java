@@ -19,6 +19,7 @@ public class Curse_Depression extends AnimatorCard_Curse
     {
         super(DATA, true);
         SetAffinity_Blue(1);
+        SetUnplayable(true);
     }
 
     @Override

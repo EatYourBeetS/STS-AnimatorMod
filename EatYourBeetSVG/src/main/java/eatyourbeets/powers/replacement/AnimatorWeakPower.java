@@ -58,6 +58,10 @@ public class AnimatorWeakPower extends WeakPower implements CloneablePowerInterf
         }
     }
 
+    public AnimatorWeakPower(AbstractCreature owner, int amount) {
+        this(owner, amount, false);
+    }
+
     public AnimatorWeakPower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner,amount,isSourceMonster);

@@ -222,7 +222,7 @@
 	},
 	"animator:KuragesOathPower":
 	{
-		"DESCRIPTIONS": ["[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Take #b{1} damage and channel [Water] with #b{0} extra [Focus]."],
+		"DESCRIPTIONS": ["[Water] has #b+{0} [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Take #b{1} damage and channel [Water]."],
 		"NAME": "Kurage's Oath"
 	},
 	"animator:LightningCrystalPower":

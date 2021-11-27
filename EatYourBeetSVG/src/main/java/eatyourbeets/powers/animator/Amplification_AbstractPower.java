@@ -100,15 +100,15 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
         UpdateCachedName();
     }
 
-    private float GetScaledIncrease() {
+    protected float GetScaledIncrease() {
         return JUtils.Sum(affinities,affinity -> Float.valueOf(CombatStats.Affinities.GetPowerLevel(affinity) * amount));
     }
 
-    private void UpdateCachedName() {
+    protected void UpdateCachedName() {
         cachedName = JUtils.JoinStrings(", ", JUtils.Map(Arrays.asList(this.affinities.toArray()), affinity -> CombatStats.Affinities.GetPower((Affinity) affinity).name));
     }
 
-    private void refreshOrbs() {
+    protected void refreshOrbs() {
         for (AbstractOrb orb : player.orbs) {
             if (orb != null && !(orb instanceof EmptyOrbSlot)) {
                 orb.applyFocus();

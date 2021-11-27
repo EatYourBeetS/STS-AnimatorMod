@@ -4,14 +4,20 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.curses.AscendersBane;
-import com.megacrit.cardcrawl.cards.status.*;
+import com.megacrit.cardcrawl.cards.curses.*;
+import com.megacrit.cardcrawl.cards.status.Dazed;
+import com.megacrit.cardcrawl.cards.status.Slimed;
+import com.megacrit.cardcrawl.cards.status.VoidCard;
+import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.animator.curse.Curse_AscendersBane;
-import eatyourbeets.cards.animator.status.*;
+import eatyourbeets.cards.animator.curse.*;
+import eatyourbeets.cards.animator.status.Status_Dazed;
+import eatyourbeets.cards.animator.status.Status_Slimed;
+import eatyourbeets.cards.animator.status.Status_Void;
+import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
@@ -35,12 +41,21 @@ public class CardLibraryPatches
         switch (cardID)
         {
             case AscendersBane.ID: return Curse_AscendersBane.DATA;
+            case Clumsy.ID: return Curse_Clumsy.DATA;
+            case Decay.ID: return Curse_Decay.DATA;
+            case Doubt.ID: return Curse_Doubt.DATA;
+            case Injury.ID: return Curse_Injury.DATA;
+            case Normality.ID: return Curse_Normality.DATA;
+            case Pain.ID: return Curse_Pain.DATA;
+            case Parasite.ID: return Curse_Parasite.DATA;
+            case Regret.ID: return Curse_Regret.DATA;
+            case Shame.ID: return Curse_Shame.DATA;
+            case Writhe.ID: return Curse_Writhe.DATA;
+            case Dazed.ID: return Status_Dazed.DATA;
             case Miracle.ID: return eatyourbeets.cards.animator.special.Miracle.DATA;
             case Slimed.ID: return Status_Slimed.DATA;
-            case Wound.ID: return Status_Wound.DATA;
-            case Burn.ID: return Status_Burn.DATA;
-            case Dazed.ID: return Status_Dazed.DATA;
             case VoidCard.ID: return Status_Void.DATA;
+            case Wound.ID: return Status_Wound.DATA;
 
             default: return null;
         }

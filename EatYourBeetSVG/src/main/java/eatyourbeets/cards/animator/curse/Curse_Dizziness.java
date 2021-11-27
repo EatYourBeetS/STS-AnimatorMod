@@ -19,6 +19,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
         super(DATA, false);
 
         SetAffinity_Dark(1);
+        SetUnplayable(true);
     }
 
     @Override

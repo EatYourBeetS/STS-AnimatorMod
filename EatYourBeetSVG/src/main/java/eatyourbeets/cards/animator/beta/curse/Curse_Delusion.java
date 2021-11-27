@@ -17,6 +17,7 @@ public class Curse_Delusion extends AnimatorCard_Curse
     {
         super(DATA, true);
         SetAffinity_Dark(1);
+        SetUnplayable(true);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class GirlDeMo extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(1).AddCallback(() -> {
-            GameActions.Bottom.SelectFromHand(name, 999, true).AddCallback(cards -> {
+            GameActions.Bottom.SelectFromHand(name, player.hand.size(), true).AddCallback(cards -> {
                 for (AbstractCard c : cards)
                 {
                     GameActions.Top.Motivate(c, 1);

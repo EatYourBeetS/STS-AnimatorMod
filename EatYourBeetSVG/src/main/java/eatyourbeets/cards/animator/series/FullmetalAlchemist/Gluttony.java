@@ -75,7 +75,7 @@ public class Gluttony extends AnimatorCard
                 }
                 GameActions.Bottom.GainTemporaryHP(magicNumber);
             }
-            GameActions.Delayed.ModifyAffinityLevel(player.hand, 9999, Affinity.General,  -1, true).AddCallback(cards -> {
+            GameActions.Delayed.ModifyAffinityLevel(player.hand, player.hand.size(), Affinity.General,  -1, true).AddCallback(cards -> {
                 for (AbstractCard c : cards) {
                     EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
                     if (eCard == null || eCard.affinities.GetLevel(Affinity.General) <= 0) {

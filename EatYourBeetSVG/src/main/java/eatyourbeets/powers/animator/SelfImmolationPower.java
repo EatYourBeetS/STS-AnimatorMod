@@ -14,8 +14,13 @@ import eatyourbeets.utilities.GameUtilities;
 public class SelfImmolationPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(SelfImmolationPower.class);
+    public boolean justApplied;
 
-    public SelfImmolationPower(AbstractCreature owner, int amount)
+    public SelfImmolationPower(AbstractCreature owner, int amount) {
+        this(owner, amount, false);
+    }
+
+    public SelfImmolationPower(AbstractCreature owner, int amount, boolean justApplied)
     {
         super(owner, POWER_ID);
 
@@ -24,8 +29,9 @@ public class SelfImmolationPower extends AnimatorPower
         {
             this.amount = 9999;
         }
-        this.type = PowerType.DEBUFF;
-        this.isTurnBased = true;
+        Initialize(amount, PowerType.DEBUFF, true);
+        this.justApplied = justApplied;
+
 
         updateDescription();
     }
@@ -58,7 +64,13 @@ public class SelfImmolationPower extends AnimatorPower
     public void atStartOfTurnPostDraw()
     {
         super.atStartOfTurnPostDraw();
-        GameActions.Bottom.ReducePower(this, 1);
+        if (justApplied) {
+            justApplied = false;
+        }
+        else {
+            ReducePower(1);
+        }
+
     }
 
     private void ApplyDebuff(int amount) {

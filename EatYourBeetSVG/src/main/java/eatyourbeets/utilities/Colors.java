@@ -6,6 +6,19 @@ import com.megacrit.cardcrawl.core.Settings;
 
 public class Colors
 {
+    public static final Color COLOR_AFTERLIFE = new Color(0.7f,0.9f,1.0f,1);
+    public static final Color COLOR_AUTOPLAY = new Color(0.33f,0.33f,0.45f,1);
+    public static final Color COLOR_DELAYED = new Color(0.26f,0.26f,0.26f,1);
+    public static final Color COLOR_HARMONIC = new Color(1.0f,0.55f,0.8f,1);
+    public static final Color COLOR_HASTE = new Color(0.35f,0.45f,0.78f,1);
+    public static final Color COLOR_LOYAL = new Color(0.79f,0.5f,0.3f,1);
+    public static final Color COLOR_PURGE = new Color(0.75f,0.3f,0.55f,1);
+    public static final Color COLOR_ETHEREAL = new Color(0.48f,0.68f,0.56f,1);
+    public static final Color COLOR_EXHAUST = new Color(0.81f,0.35f,0.35f,1);
+    public static final Color COLOR_INNATE = new Color(0.8f,0.8f,0.35f,1);
+    public static final Color COLOR_RETAIN = new Color(0.47f,0.75f,0.35f,1);
+    public static final Color COLOR_UNPLAYABLE = new Color(0.39f,0.26f,0.26f,1);
+
     private static final Color BLACK = Color.BLACK.cpy();
     private static final Color WHITE = Color.WHITE.cpy();
     private static final Color CREAM = Settings.CREAM_COLOR.cpy();

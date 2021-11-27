@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameEffects;
@@ -15,6 +16,7 @@ public class TornadoParticleEffect extends EYBEffect
 {
     protected static final int SIZE = 230;
     protected static final TextureCache[] images = {IMAGES.AirTornado1,IMAGES.AirTornado2};
+    protected static final Color PARTICLE_COLOR = Color.LIME.cpy();
 
     protected float x;
     protected float y;
@@ -25,6 +27,7 @@ public class TornadoParticleEffect extends EYBEffect
     protected float rotationSpeed;
     protected float alpha;
     protected float vfxTimer = 0.3f;
+    protected Color secondaryColor;
     protected Texture image;
 
     public TornadoParticleEffect(float x, float y, float radiusSpeed)
@@ -78,6 +81,7 @@ public class TornadoParticleEffect extends EYBEffect
         {
             GameEffects.Queue.Add(new RazorWindParticleEffect(tX, tY,
                     Random(-300f, 300f), Random(-300f, 300f)));
+            GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, PARTICLE_COLOR));
             vfxTimer = Random(0.3f,3f);
         }
     }

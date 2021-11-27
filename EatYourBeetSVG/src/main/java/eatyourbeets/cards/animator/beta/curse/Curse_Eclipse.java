@@ -17,16 +17,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
         super(DATA, true);
         Initialize(0,0,1,1);
         SetAffinity_Dark(2);
-    }
-
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.StackPower(new SelfImmolationPower(player, magicNumber));
-
-        GameActions.Bottom.Flash(this);
+        SetUnplayable(true);
     }
 
     @Override
@@ -42,6 +33,10 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (dontTriggerOnUseCard)
+        {
+            GameActions.Bottom.StackPower(new SelfImmolationPower(player, magicNumber, true));
+        }
     }
 
 }

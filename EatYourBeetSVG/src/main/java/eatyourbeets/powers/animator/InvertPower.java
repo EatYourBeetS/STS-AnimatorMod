@@ -3,11 +3,13 @@ package eatyourbeets.powers.animator;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
+import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.ImpairedPower;
@@ -99,7 +101,7 @@ public class InvertPower extends AnimatorPower implements OnOrbApplyFocusSubscri
         AbstractPower power = GameUtilities.GetPower(owner, ImpairedPower.POWER_ID);
         if (power != null)
         {
-            if (GetOrbMultiplier() > 0) {
+            if (GetOrbMultiplier() > 0 && !Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID)) {
                 float inverter = GetOrbMultiplier() * GetOrbMultiplier() / 10000f;
                 orb.passiveAmount /= inverter;
                 orb.evokeAmount /= inverter;

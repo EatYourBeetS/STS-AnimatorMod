@@ -429,7 +429,6 @@ public class AnimatorPlayerData
                 final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
                 final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
                 final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt(amountAndIndex[1], -1) : -1;
-                JUtils.LogWarning(this, "Negatest, ID:" + id + " Item: " + item + " Index: " + index + " ItemIndex: " + itemIndex );
                 if (index == -1) {
                     JUtils.LogWarning(this, "Loadout is corrupted, ID:" + id);
                     continue;

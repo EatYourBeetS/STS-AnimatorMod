@@ -183,7 +183,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
 
     protected String GetUpdatedDescription()
     {
-        return FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, (GetEffectiveAmountMultiplier() * 100) - 100, GetCurrentChargeCost(), GetMultiplierForDescription(), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
+        return FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, (!enabled && !forceEnableThisTurn) ? 0 : (GetEffectiveAmountMultiplier() * 100) - 100, GetCurrentChargeCost(), GetMultiplierForDescription(), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
     }
 
     protected int GetMultiplierForDescription() {

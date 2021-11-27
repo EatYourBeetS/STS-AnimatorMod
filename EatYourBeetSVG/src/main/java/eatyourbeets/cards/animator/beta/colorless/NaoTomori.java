@@ -2,10 +2,10 @@ package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.curses.Normality;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.curse.Curse_Normality;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.PhasingPower;
 import eatyourbeets.utilities.GameActions;
@@ -70,8 +70,8 @@ public class NaoTomori extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.ReplaceCard(cards.get(0).uuid, new Normality());
                 GameActions.Bottom.StackPower(new PhasingPower(player, secondaryValue));
+                GameActions.Last.ReplaceCard(cards.get(0).uuid, new Curse_Normality());
             }
         });
     }

@@ -107,17 +107,19 @@ public class CommonImages
     {
         public final TextureCache Afterlife               = new TextureCache("images/eyb/cardui/badges/Afterlife.png");
         public final TextureCache Autoplay                = new TextureCache("images/eyb/cardui/badges/Autoplay.png");
+        public final TextureCache Base_Badge              = new TextureCache("images/eyb/cardui/badges/Base_Badge.png");
+        public final TextureCache Base_Border             = new TextureCache("images/eyb/cardui/badges/Base_Border.png");
+        public final TextureCache Base_Infinite           = new TextureCache("images/eyb/cardui/badges/Base_Infinite.png");
         public final TextureCache Delayed                 = new TextureCache("images/eyb/cardui/badges/Delayed.png");
         public final TextureCache Ethereal                = new TextureCache("images/eyb/cardui/badges/Ethereal.png");
         public final TextureCache Exhaust                 = new TextureCache("images/eyb/cardui/badges/Exhaust.png");
         public final TextureCache Harmonic                = new TextureCache("images/eyb/cardui/badges/Harmonic.png");
         public final TextureCache Haste                   = new TextureCache("images/eyb/cardui/badges/Haste.png");
-        public final TextureCache HasteInfinite           = new TextureCache("images/eyb/cardui/badges/HasteInfinite.png");
         public final TextureCache Innate                  = new TextureCache("images/eyb/cardui/badges/Innate.png");
         public final TextureCache Loyal                   = new TextureCache("images/eyb/cardui/badges/Loyal.png");
         public final TextureCache Purge                   = new TextureCache("images/eyb/cardui/badges/Purge.png");
         public final TextureCache Retain                  = new TextureCache("images/eyb/cardui/badges/Retain.png");
-        public final TextureCache RetainInfinite          = new TextureCache("images/eyb/cardui/badges/RetainInfinite.png");
+        public final TextureCache Unplayable              = new TextureCache("images/eyb/cardui/badges/Unplayable.png");
     }
 
     public static class Tooltips

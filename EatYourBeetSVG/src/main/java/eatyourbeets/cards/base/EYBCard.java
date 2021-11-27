@@ -42,8 +42,7 @@ import java.util.Map;
 
 import static eatyourbeets.powers.animator.ElementalExposurePower.ELEMENTAL_MODIFIER;
 import static eatyourbeets.powers.replacement.AnimatorLockOnPower.GetAttackMultiplier;
-import static eatyourbeets.resources.GR.Enums.CardTags.PROTAGONIST;
-import static eatyourbeets.resources.GR.Enums.CardTags.UNIQUE;
+import static eatyourbeets.resources.GR.Enums.CardTags.*;
 
 public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscriber, OnStartOfTurnPostDrawSubscriber, CustomSavable<EYBCardSaveData>
 {
@@ -466,6 +465,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (AfterLifeMod.IsAdded(this))
         {
             dynamicTooltips.add(GR.Tooltips.Afterlife);
+        }
+        if (unplayable || hasTag(ANIMATOR_UNPLAYABLE))
+        {
+            dynamicTooltips.add(GR.Tooltips.Unplayable);
         }
         if (isInnate || hasTag(ANIMATOR_INNATE))
         {

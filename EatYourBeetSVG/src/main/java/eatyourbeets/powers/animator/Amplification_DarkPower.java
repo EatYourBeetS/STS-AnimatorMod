@@ -1,6 +1,7 @@
 package eatyourbeets.powers.animator;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.Affinity;
 
@@ -18,5 +19,13 @@ public class Amplification_DarkPower extends Amplification_AbstractPower
     public Amplification_DarkPower(AbstractCreature owner, int amount, Affinity... affinities)
     {
         super(owner, POWER_ID, ORB_ID, amount, 1, affinities);
+    }
+
+    @Override
+    public void OnApplyFocus(AbstractOrb orb)
+    {
+        if (orb != null && orb.ID.equals(orbID)) {
+            orb.passiveAmount += GetScaledIncrease();
+        }
     }
 }

@@ -481,28 +481,30 @@ public class GR
 
         public static class CardTags
         {
-            @SpireEnum public static AbstractCard.CardTags MARKED;
-            @SpireEnum public static AbstractCard.CardTags VOLATILE;
-            @SpireEnum public static AbstractCard.CardTags UNIQUE;
-            @SpireEnum public static AbstractCard.CardTags EXPANDED;
-            @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
-            @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
-            @SpireEnum public static AbstractCard.CardTags ECHO;
-            @SpireEnum public static AbstractCard.CardTags PURGE;
-            @SpireEnum public static AbstractCard.CardTags ANIMATOR_INNATE;
-            @SpireEnum public static AbstractCard.CardTags DELAYED;
-            @SpireEnum public static AbstractCard.CardTags HASTE;
-            @SpireEnum public static AbstractCard.CardTags HASTE_INFINITE;
-            @SpireEnum public static AbstractCard.CardTags PURGING;
-            @SpireEnum public static AbstractCard.CardTags LOYAL;
-            @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
-            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
-            @SpireEnum public static AbstractCard.CardTags HARMONIC;
-            @SpireEnum public static AbstractCard.CardTags PROTAGONIST;
+            @SpireEnum public static AbstractCard.CardTags AFTERLIFE;
             @SpireEnum public static AbstractCard.CardTags ANIMATOR_ETHEREAL;
             @SpireEnum public static AbstractCard.CardTags ANIMATOR_EXHAUST;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_INNATE;
             @SpireEnum public static AbstractCard.CardTags ANIMATOR_RETAIN;
-            @SpireEnum public static AbstractCard.CardTags AFTERLIFE;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_RETAIN_ONCE;
+            @SpireEnum public static AbstractCard.CardTags ANIMATOR_UNPLAYABLE;
+            @SpireEnum public static AbstractCard.CardTags AUTOPLAY;
+            @SpireEnum public static AbstractCard.CardTags DELAYED;
+            @SpireEnum public static AbstractCard.CardTags ECHO;
+            @SpireEnum public static AbstractCard.CardTags EXPANDED;
+            @SpireEnum public static AbstractCard.CardTags HARMONIC;
+            @SpireEnum public static AbstractCard.CardTags HASTE;
+            @SpireEnum public static AbstractCard.CardTags HASTE_INFINITE;
+            @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
+            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags MARKED;
+            @SpireEnum public static AbstractCard.CardTags PROTAGONIST;
+            @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags PURGING;
+            @SpireEnum public static AbstractCard.CardTags UNIQUE;
+            @SpireEnum public static AbstractCard.CardTags VOIDBOUND;
+            @SpireEnum public static AbstractCard.CardTags VOLATILE;
         }
 
         public static class AttackEffect

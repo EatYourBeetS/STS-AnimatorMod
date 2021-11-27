@@ -33,6 +33,7 @@ public class Curse_AscendersBane extends AnimatorCard_Curse implements OnRemoved
         Initialize(0, 0, 3);
 
         SetEthereal(true);
+        SetUnplayable(true);
     }
 
     @Override

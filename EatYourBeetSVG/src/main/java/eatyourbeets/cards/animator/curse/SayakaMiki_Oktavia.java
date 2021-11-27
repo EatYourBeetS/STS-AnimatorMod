@@ -30,6 +30,8 @@ public class SayakaMiki_Oktavia extends AnimatorCard_Curse implements OnPurgeSub
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(2);
+
+        SetUnplayable(true);
     }
 
     @Override

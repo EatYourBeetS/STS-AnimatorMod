@@ -30,6 +30,8 @@ public class MamiTomoe_Candeloro extends AnimatorCard_Curse implements OnPurgeSu
 
         SetAffinity_Light(1);
         SetAffinity_Dark(2);
+
+        SetUnplayable(true);
     }
 
     @Override

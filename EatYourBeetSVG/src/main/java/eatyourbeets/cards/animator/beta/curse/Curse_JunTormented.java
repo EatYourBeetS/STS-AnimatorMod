@@ -26,6 +26,7 @@ public class Curse_JunTormented extends AnimatorCard_Curse implements OnPurgeSub
         Initialize(0,0,2,0);
         SetAffinity_Dark(1);
         SetAffinity_Blue(1);
+        SetUnplayable(true);
     }
 
     @Override

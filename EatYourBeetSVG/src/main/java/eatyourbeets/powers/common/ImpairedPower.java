@@ -2,7 +2,9 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
+import eatyourbeets.orbs.animator.Chaos;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameUtilities;
@@ -16,6 +18,7 @@ public class ImpairedPower extends CommonPower implements OnOrbApplyFocusSubscri
     private static UUID battleID;
     public static final int ORB_MULTIPLIER = 50;
     public static int PLAYER_MODIFIER = 0;
+    public boolean justApplied;
 
     public static void AddPlayerModifier(int multiplier)
     {
@@ -58,19 +61,29 @@ public class ImpairedPower extends CommonPower implements OnOrbApplyFocusSubscri
         return (ORB_MULTIPLIER + PLAYER_MODIFIER);
     }
 
-    public ImpairedPower(AbstractCreature owner, int amount)
+    public ImpairedPower(AbstractCreature owner, int amount) {
+        this(owner, amount, false);
+    }
+
+    public ImpairedPower(AbstractCreature owner, int amount, boolean isSourceMonster)
     {
         super(owner, POWER_ID);
+        justApplied = isSourceMonster;
 
         Initialize(amount, PowerType.DEBUFF, true);
     }
 
     @Override
-    public void atEndOfTurn(boolean isPlayer)
+    public void atStartOfTurnPostDraw()
     {
-        super.atEndOfTurn(isPlayer);
+        super.atStartOfTurnPostDraw();
+        if (justApplied) {
+            justApplied = false;
+        }
+        else {
+            ReducePower(1);
+        }
 
-        ReducePower(1);
     }
 
     @Override
@@ -80,7 +93,9 @@ public class ImpairedPower extends CommonPower implements OnOrbApplyFocusSubscri
 
     @Override
     public void OnApplyFocus(AbstractOrb orb) {
-        orb.passiveAmount *= Math.max(0,GetOrbMultiplier() / 100f);
-        orb.evokeAmount *= Math.max(0,GetOrbMultiplier() / 100f);
+        if (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID)) {
+            orb.passiveAmount *= Math.max(0,GetOrbMultiplier() / 100f);
+            orb.evokeAmount *= Math.max(0,GetOrbMultiplier() / 100f);
+        }
     }
 }

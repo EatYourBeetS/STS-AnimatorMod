@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.random.Random;
@@ -15,6 +16,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import eatyourbeets.orbs.animator.Chaos;
+import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -203,6 +205,9 @@ public abstract class OrbCore extends AnimatorCard
                 if (Plasma.class.equals(card.GetOrb())) {
                     orb.passiveAmount += 1;
                     orb.evokeAmount += 1;
+                }
+                else if (Dark.class.equals(card.GetOrb()) || Water.class.equals(card.GetOrb())) {
+                    orb.passiveAmount += GetScaledIncrease();
                 }
                 else if (!Chaos.class.equals(card.GetOrb())){
                     orb.passiveAmount += GetScaledIncrease();

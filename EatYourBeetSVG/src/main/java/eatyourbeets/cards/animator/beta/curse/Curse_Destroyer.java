@@ -23,6 +23,7 @@ public class Curse_Destroyer extends AnimatorCard_Curse
         SetAffinity_Dark(2);
 
         SetUnique(true, false);
+        SetUnplayable(true);
     }
 
     @Override

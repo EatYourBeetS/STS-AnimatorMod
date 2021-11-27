@@ -19,6 +19,7 @@ public class Curse_Greed extends AnimatorCard_Curse
         Initialize(0, 0, 2);
 
         SetAffinity_Dark(1);
+        SetUnplayable(true);
     }
 
     @Override

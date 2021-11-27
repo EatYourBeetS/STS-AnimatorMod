@@ -57,7 +57,7 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromPile(name, 9999, player.hand)
+        GameActions.Bottom.SelectFromPile(name, player.hand.size(), player.hand)
                 .SetOptions(true, false)
                 .SetFilter(c -> c.costForTurn == 0)
                 .AddCallback(cards -> {

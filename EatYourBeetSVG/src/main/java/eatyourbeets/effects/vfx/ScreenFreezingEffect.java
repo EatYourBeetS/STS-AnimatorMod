@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameEffects;
@@ -48,6 +49,9 @@ public class ScreenFreezingEffect extends EYBEffect
         GameEffects.Queue.Add(new SnowballParticleEffect(MathUtils.random(0.0F, (float) Settings.WIDTH),  MathUtils.random(900.0F, 1100.0F) * Settings.scale, color)
                 .SetSpeed(MathUtils.random(-70.0F, 70.0F) * Settings.scale, MathUtils.random(-1100.0F, -450.0F) * Settings.scale)
                 .SetRealtime(isRealtime));
+        if (MathUtils.randomBoolean()) {
+            GameEffects.Queue.Add(new LightFlareParticleEffect(MathUtils.random(0.0F, (float) Settings.WIDTH), MathUtils.random(100.0F, 700.0F) * Settings.scale, color));
+        }
     }
 
     public void render(SpriteBatch sb) {

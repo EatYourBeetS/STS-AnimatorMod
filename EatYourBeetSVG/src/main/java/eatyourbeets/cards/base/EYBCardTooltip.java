@@ -66,6 +66,7 @@ public class EYBCardTooltip
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
     public TextureRegion icon;
+    public Color color;
     public String id;
     public String title;
     public ColoredString subText;
@@ -506,6 +507,13 @@ public class EYBCardTooltip
         return h;
     }
 
+    public EYBCardTooltip SetColor(Color color)
+    {
+        this.color = color;
+
+        return this;
+    }
+
     public EYBCardTooltip SetIconSizeMulti(float w, float h)
     {
         this.iconMulti_W = w;
@@ -574,7 +582,7 @@ public class EYBCardTooltip
 
     public void renderTipEnergy(SpriteBatch sb, TextureRegion region, float x, float y, float width, float height)
     {
-        sb.setColor(Color.WHITE);
+        sb.setColor(color != null ? color : Color.WHITE);
         sb.draw(region.getTexture(), x, y, 0f, 0f,
                 width, height, Settings.scale, Settings.scale, 0f,
                 region.getRegionX(), region.getRegionY(), region.getRegionWidth(),

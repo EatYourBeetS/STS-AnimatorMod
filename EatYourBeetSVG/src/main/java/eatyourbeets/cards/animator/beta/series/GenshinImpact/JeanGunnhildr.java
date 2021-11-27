@@ -41,8 +41,7 @@ public class JeanGunnhildr extends AnimatorCard
     {
         if (CombatStats.TryActivateSemiLimited(cardID)) {
             for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
-                GameActions.Bottom.StackPower(player, new SwirledPower(m, 1));
-                break;
+                GameActions.Delayed.StackPower(player, new SwirledPower(m, 1));
             }
         }
     }

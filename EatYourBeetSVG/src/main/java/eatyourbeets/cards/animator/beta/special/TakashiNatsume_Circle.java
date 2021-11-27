@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.animator.beta.colorless.TakashiNatsume;
+import eatyourbeets.cards.animator.beta.series.GenshinImpact.AyakaKamisato;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
@@ -19,6 +20,7 @@ import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -29,6 +31,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
         None,
         Curse_Delusion,
         Curse_Depression,
+        Curse_Eclipse,
         Curse_GriefSeed,
         Curse_Greed,
         Curse_JunTormented,
@@ -77,6 +80,9 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 break;
             case Curse_Depression:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.Draw(secondaryValue, true), true);
+                break;
+            case Curse_Eclipse:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(AyakaKamisato.DATA.Strings.NAME, true), true);
                 break;
             case Curse_Greed:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.Motivate(secondaryValue, true), true);
@@ -144,6 +150,19 @@ public class TakashiNatsume_Circle extends AnimatorCard
             case Curse_Depression:
                 GameActions.Bottom.Draw(secondaryValue);
                 break;
+            case Curse_Eclipse:
+                AbstractCard c = new AyakaKamisato();
+                if (upgraded) {
+                    c.upgrade();
+                }
+                c.applyPowers();
+                if (GameUtilities.IsPlayerTurn()) {
+                    GameActions.Bottom.PlayCopy(c, null);
+                }
+                else {
+                    c.use(player, null);
+                }
+                break;
             case Curse_JunTormented:
                 GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
                 GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), magicNumber);
@@ -194,6 +213,15 @@ public class TakashiNatsume_Circle extends AnimatorCard
             default:
                 GameActions.Bottom.DrawNextTurn(secondaryValue);
                 break;
+        }
+    }
+
+    protected AbstractCard GetCardForEffect() {
+        switch(currentForm) {
+            case Curse_Eclipse:
+                return new AyakaKamisato();
+            default:
+                return null;
         }
     }
 

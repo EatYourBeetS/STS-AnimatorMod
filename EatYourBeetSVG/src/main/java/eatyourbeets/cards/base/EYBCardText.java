@@ -26,6 +26,7 @@ public class EYBCardText
     private static final CommonImages.Badges BADGES = GR.Common.Images.Badges;
     private static final CommonImages.CardIcons ICONS = GR.Common.Images.Icons;
     private static final ColoredString cs = new ColoredString("", Settings.CREAM_COLOR);
+
     private static AbstractPlayer player;
     private float badgeAlphaTargetOffset = 1f;
     private float badgeAlphaOffset = -0.2f;
@@ -150,57 +151,61 @@ public class EYBCardText
         int offset_y = 0;
         if (AfterLifeMod.IsAdded(card))
         {
-            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), Colors.COLOR_AFTERLIFE, offset_y, alpha, null);
+        }
+        if (card.unplayable)
+        {
+            offset_y -= RenderBadge(sb, BADGES.Unplayable.Texture(), Colors.COLOR_UNPLAYABLE, offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.DELAYED))
         {
-            offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Delayed.Texture(), Colors.COLOR_DELAYED, offset_y, alpha, null);
         }
         else if (card.isInnate || card.hasTag(GR.Enums.CardTags.ANIMATOR_INNATE))
         {
-            offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Innate.Texture(), Colors.COLOR_INNATE, offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.HARMONIC))
         {
-            offset_y -= RenderBadge(sb, BADGES.Harmonic.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Harmonic.Texture(), Colors.COLOR_HARMONIC, offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.LOYAL))
         {
-            offset_y -= RenderBadge(sb, BADGES.Loyal.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Loyal.Texture(), Colors.COLOR_LOYAL, offset_y, alpha, null);
         }
         if (card.isEthereal)
         {
-            offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Ethereal.Texture(), Colors.COLOR_ETHEREAL, offset_y, alpha, null);
         }
         if (card.selfRetain)
         {
-            offset_y -= RenderBadge(sb, BADGES.RetainInfinite.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), Colors.COLOR_RETAIN, offset_y, alpha, null, true);
         }
         else if (card.retain)
         {
-            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Retain.Texture(), Colors.COLOR_RETAIN, offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.HASTE_INFINITE))
         {
-            offset_y -= RenderBadge(sb, BADGES.HasteInfinite.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), Colors.COLOR_HASTE, offset_y, alpha, null, true);
         }
         else if (card.hasTag(GR.Enums.CardTags.HASTE))
         {
-            offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Haste.Texture(), Colors.COLOR_HASTE, offset_y, alpha, null);
         }
 
         if (card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE))
         {
-            offset_y -= RenderBadge(sb, BADGES.Purge.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Purge.Texture(), Colors.COLOR_PURGE, offset_y, alpha, null);
         }
         else if (card.exhaust || card.exhaustOnUseOnce)
         {
-            offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), Colors.COLOR_EXHAUST, offset_y, alpha, null);
         }
         if (card.hasTag(GR.Enums.CardTags.AUTOPLAY))
         {
             //noinspection UnusedAssignment
-            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), offset_y, alpha, null);
+            offset_y -= RenderBadge(sb, BADGES.Autoplay.Texture(), Colors.COLOR_AUTOPLAY, offset_y, alpha, null);
         }
 
         // Render card footers
@@ -260,11 +265,20 @@ public class EYBCardText
         return 36; // y offset
     }
 
-    private float RenderBadge(SpriteBatch sb, Texture texture, float offset_y, float alpha, String text)
+    private float RenderBadge(SpriteBatch sb, Texture texture, Color color, float offset_y, float alpha, String text) {
+        return RenderBadge(sb, texture, color, offset_y, alpha, text, false);
+    }
+
+    private float RenderBadge(SpriteBatch sb, Texture texture, Color color, float offset_y, float alpha, String text, boolean isInfinite)
     {
         Vector2 offset = new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y);
 
-        RenderHelpers.DrawOnCardAuto(sb, card, texture, offset, 64, 64, Color.WHITE, alpha, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Badges.Base_Badge.Texture(), new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y), 64, 64, color, alpha, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture, new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y), 64, 64, Color.WHITE, alpha, 1);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Badges.Base_Border.Texture(), new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y), 64, 64, Color.WHITE, alpha, 1);
+        if (isInfinite) {
+            RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Badges.Base_Infinite.Texture(), new Vector2(AbstractCard.RAW_W * 0.45f, AbstractCard.RAW_H * 0.45f + offset_y), 64, 64, Color.WHITE, alpha, 1);
+        }
 
         if (text != null)
         {

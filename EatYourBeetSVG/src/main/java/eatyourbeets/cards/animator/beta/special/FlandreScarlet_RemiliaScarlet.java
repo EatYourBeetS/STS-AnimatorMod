@@ -65,7 +65,7 @@ public class FlandreScarlet_RemiliaScarlet extends AnimatorCard
             GameActions.Bottom.RecoverHP(heal);
         }
         boolean isTemporary = TrySpendAffinity(Affinity.Light);
-        GameActions.Bottom.SelectFromHand(name, 9999, true).SetFilter(c -> c.uuid != this.uuid && c.type == CardType.ATTACK).AddCallback(cards -> {
+        GameActions.Delayed.SelectFromHand(name, player.hand.size() - 1, true).SetFilter(c -> c.uuid != this.uuid && c.type == CardType.ATTACK).AddCallback(cards -> {
             for (AbstractCard c : cards) {
                 GameUtilities.ModifyDamage(c, magicNumber, isTemporary);
             }

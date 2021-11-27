@@ -107,7 +107,7 @@ public class LaplacesDemon extends AnimatorCard
             super.atStartOfTurn();
 
             if (CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true)) {
-                GameActions.Bottom.SelectFromHand(name, 999, true)
+                GameActions.Bottom.SelectFromHand(name, player.hand.size(), true)
                         .SetFilter(c -> GameUtilities.IsSoul(c) || GameUtilities.IsSameSeries(c, laplace))
                         .AddCallback(cards -> {
                             for (AbstractCard card : cards) {
@@ -116,7 +116,7 @@ public class LaplacesDemon extends AnimatorCard
                         });
             }
             else {
-                GameActions.Bottom.SelectFromHand(name, 999, true)
+                GameActions.Bottom.SelectFromHand(name, player.hand.size(), true)
                         .AddCallback(cards -> {
                             int totalCost = 0;
                             for (AbstractCard card : cards) {

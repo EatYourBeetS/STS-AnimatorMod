@@ -373,7 +373,7 @@
 		},
 		"animator:Curse_AbyssalVoid":
 		{
-			"DESCRIPTION": "Lose !S!X [HP]. Gain !M!X [D].",
+			"DESCRIPTION": "Take !S!X [Delayed Damage]. || Gain !M!X [D].",
 			"NAME": "Abyssal Void"
     	},
 		"animator:ForceImpulseGundam":
@@ -627,7 +627,7 @@
 		},
 		"animator:Vladilena":
 		{
-			"DESCRIPTION": "Exhaust 1 of !M! random Attacks from your draw or discard pile and play 2 copies of it. || <LIM>. If it was a Basic card: Obtain 1 of !M! {<W> Tokens}{+}.",
+			"DESCRIPTION": "Play 1 of !M! random Attacks in your draw or discard pile twice. Replace it with 1 of !M! {<W> Tokens}{+}. || <LIM>. If it was Basic or 0-Cost: Give the {<W> Token} {Loyal}.",
 			"NAME": "Vladilena Milize"
 		},
 		"animator:WingGundamZero":
@@ -645,7 +645,7 @@
 	{
 		"animator:Curse_Depression":
 		{
-			"DESCRIPTION": "Unplayable. || When drawn: Discard a random non-Hindrance card in your hand.",
+			"DESCRIPTION": "When drawn: Discard a random non-Hindrance card in your hand.",
 			"NAME": "Depression"
 		},
 		"animator:InverseOrigami":
@@ -827,7 +827,7 @@
 		},
 		"animator:JeanGunnhildr":
 		{
-			"DESCRIPTION": "Discard up to !M! card(s). For each: Remove 1 of your leftmost {Common Debuff}. || <SLM>. On Discard, Apply [Swirled] to the leftmost enemy.",
+			"DESCRIPTION": "Discard up to !M! card(s). For each: Remove 1 of your leftmost {Common Debuff}. || <SLM>. On Discard, Apply [Swirled] to ALL enemies.",
 			"NAME": "Jean Gunnhildr"
 		},
 		"animator:JumpyDumpty":
@@ -859,12 +859,13 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "[Water] reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water] with +!M! [Focus].",
+			"DESCRIPTION": "[Water] has +!M! [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water].",
+			"EXTENDED_DESCRIPTION": ["Play {Water Core}. [Water] has +!M! [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water]."],
 			"NAME": "Kokomi Sangonomiya"
 		},
 		"animator:KujouSara":
 		{
-			"DESCRIPTION": "Discard ALL cards in hand and give them +1 [G] and [O] Scaling. ** <LIM>. <ST>. [Electrified] gains +!S!% effect bonus.",
+			"DESCRIPTION": "Discard ALL cards in hand and give them +1 [G] and [O] Scaling. Apply !M! [Electrified] to ALL enemies for each. ** <LIM>. <ST>. [Electrified] gains +!S!% effect bonus.",
 			"NAME": "Kujou Sara"
 		},
 		"animator:LisaMinci":
@@ -1109,7 +1110,7 @@
 		},
 		"animator:NoriSakurada":
 		{
-			"DESCRIPTION": "At the end of turn: ** {Reload}: Remove 1 [Delayed Damage]. || {Exchange} !M! card(s) with your discard pile. ** !A! <L>: Retain them.",
+			"DESCRIPTION": "At the end of turn: ** {Reload}: Remove !S! [Delayed Damage]. || {Exchange} !M! card(s) with your discard pile. ** !A! <L>: Retain the drawn cards.",
 			"NAME": "Nori Sakurada"
 		},
 		"animator:Shinku":
@@ -1467,28 +1468,43 @@
 	{
 		"animator:Curse_AscendersBane":
 		{
-			"DESCRIPTION": "Unplayable.",
+			"DESCRIPTION": "",
 			"EXTENDED_DESCRIPTION": ["Take !M! damage. || At the end of turn: Purge ** the top card of your draw ** pile. If it was a Hindrance: ** Replace it with this card.", "Ascension {0}+"],
 			"NAME": "Ascender's Bane"
 		},
+		"animator:Curse_Clumsy":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Clumsy"
+		},
 		"animator:Curse_Destroyer":
 		{
-			"DESCRIPTION": "Unplayable. ** While this card is in play: Deal !M! damage to ALL characters at the end of each round. Increase this amount by !M! whenever this card is drawn.",
+			"DESCRIPTION": "While this card is in play: Deal !M! damage to ALL characters at the end of each round. Increase this amount by !M! whenever this card is drawn.",
 			"NAME": "Destroyer"
+		},
+		"animator:Curse_Decay":
+		{
+			"DESCRIPTION": "At the end of turn: ** Take !M! damage. || <LIM>. On Exhaust: Remove your [Vulnerable].",
+			"NAME": "Decay"
 		},
 		"animator:Curse_Dizziness":
 		{
-			"DESCRIPTION": "Unplayable. ** When drawn: Add ** a Dazed to your ** draw pile.",
+			"DESCRIPTION": " When drawn: Add ** a Dazed to your ** draw pile.",
 			"NAME": "Dizziness"
+		},
+		"animator:Curse_Doubt":
+		{
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Weak]. || <LIM>. On Exhaust: Remove your [Weak].",
+			"NAME": "Doubt"
 		},
 		"animator:Curse_Eclipse":
 		{
-			"DESCRIPTION": "Unplayable. ** When drawn: Gain !M! [Self-Immolation]. || <LIM>. On Exhaust: Gain +!S! {[D] Level}.",
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Self-Immolation]. || <LIM>. On Exhaust: Gain +!S! {[D] Level}.",
 			"NAME": "Eclipse"
 		},
 		"animator:Curse_Greed":
 		{
-			"DESCRIPTION": "Unplayable. ** When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
+			"DESCRIPTION": "When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
 			"NAME": "Avarice"
 		},
 		"animator:Curse_GriefSeed":
@@ -1496,15 +1512,51 @@
 			"DESCRIPTION": "Restore 1 {Soul} to a random {Soul} card twice. || In hand at the end of turn: Take !M! Damage. || On Purge: Remove a random {Debuff}.",
 			"NAME": "Grief Seed"
 		},
+		"animator:Curse_Injury":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Injury"
+		},
+		"animator:Curse_Normality":
+		{
+			"DESCRIPTION": "While in hand: Negate your {Common Debuffs}. Negate {Common Buffs} on ALL characters. You cannot play more than !M! cards this turn.{0}",
+			"EXTENDED_DESCRIPTION": ["(You have played !X! card(s) this turn).","I cannot play more than 3 cards this turn."],
+			"NAME": "Normality"
+		},
 		"animator:Curse_Nutcracker":
 		{
-			"DESCRIPTION": "Unplayable. ** At the end of turn: ** ALL enemies heal !M! HP. || On Exhaust: ** Gain 1 [Inspiration].",
+			"DESCRIPTION": "At the end of turn: ** ALL enemies heal !M! HP. || On Exhaust: ** Gain 1 [Inspiration].",
 			"NAME": "Nutcracker"
+		},
+		"animator:Curse_Pain":
+		{
+			"DESCRIPTION": "While in hand: Lose !M! [HP] when you play another card. || <LIM>. On Exhaust: Deal !M! damage to a random enemy for every card played this turn.",
+			"NAME": "Pain"
+		},
+		"animator:Curse_Parasite":
+		{
+			"DESCRIPTION": "Startup: Take !M! [Delayed Damage]. || <SLM>. On Discard or Exhaust: Steal !S! [THP] from a random enemy.",
+			"NAME": "Parasite"
+		},
+		"animator:Curse_Regret":
+		{
+			"DESCRIPTION": "At the end of turn: ** Lose !M! HP for every card in hand. || <LIM>. On Exhaust: Recover !S! [HP] for every card in hand.",
+			"NAME": "Regret"
+		},
+		"animator:Curse_Shame":
+		{
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Frail]. || <LIM>. On Exhaust: Remove your [Frail].",
+			"NAME": "Shame"
 		},
 		"animator:Curse_Slumber":
 		{
-			"DESCRIPTION": "At the end of turn: ** Gain !M! [Impaired].",
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Impaired]. || <LIM>. On Exhaust: Invert the effects of [Impaired] for 1 turn.",
 			"NAME": "Slumber"
+		},
+		"animator:Curse_Writhe":
+		{
+			"DESCRIPTION": "<LIM>. On Exhaust: <DRW>.",
+			"NAME": "Writhe"
 		}
 	},
 	"SERIES:ELSWORD":
@@ -2678,9 +2730,9 @@
 		},
 		"animator:NarberalGamma":
 		{
-			"DESCRIPTION": "Channel !M! [Lightning]. || Lightning hits ALL ** enemies this turn.",
+			"DESCRIPTION": "Channel !M! [Lightning]. [Lightning] hits ALL enemies this turn. || <SLM>. For each LV1 <W> card in hand, Pay !A! <L> or <D>: Apply !S! [Electrified] to a random enemy.",
 			"NAME": "Gamma Narberal",
-			"UPGRADE_DESCRIPTION": "Channel !M! [Lightning]. ** <DRW>. || Lightning hits ALL ** enemies this turn."
+			"UPGRADE_DESCRIPTION": "<DRW>. Channel !M! [Lightning]. [Lightning] hits ALL enemies this turn. || <SLM>. For each LV1 <W> card in hand, Pay !A! <L> or <D>: Apply !S! [Electrified] to a random enemy."
 		},
 		"animator:PandorasActor":
 		{

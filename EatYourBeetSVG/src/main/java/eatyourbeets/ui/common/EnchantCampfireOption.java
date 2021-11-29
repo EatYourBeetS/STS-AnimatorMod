@@ -12,8 +12,8 @@ import eatyourbeets.utilities.JUtils;
 
 public class EnchantCampfireOption extends AbstractCampfireOption
 {
-    private static final String LABEL_GOLD_F1 = "Respec [{0} Gold]";
-    private static final String LABEL_MAX = "Respec [No Upgrades]";
+    private static final String LABEL_GOLD_F1 = GR.Animator.Strings.CardMods.RespecLivingPicture;
+    private static final String LABEL_MAX = GR.Animator.Strings.CardMods.RespecLivingPictureLocked;
 
     private EnchantableRelic relic;
     private RestRoom room;
@@ -34,6 +34,8 @@ public class EnchantCampfireOption extends AbstractCampfireOption
 
     public EnchantCampfireOption()
     {
+        this.description = GR.Animator.Strings.CardMods.RespecLivingPictureDescription;
+        this.img = GR.Common.Images.CampfireOption_Enchant.Texture();
         Refresh();
     }
 
@@ -74,9 +76,6 @@ public class EnchantCampfireOption extends AbstractCampfireOption
             this.label = JUtils.Format(LABEL_GOLD_F1, goldCost);
             this.usable = AbstractDungeon.player.gold >= goldCost;
         }
-
-        this.description = "Respec Living Picture (Free option).";
-        this.img = GR.Common.Images.CampfireOption_Enchant.Texture();
     }
 
     @Override

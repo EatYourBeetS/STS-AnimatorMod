@@ -17,7 +17,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Yoimiya extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yoimiya.class)
-            .SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Ranged, EYBCardTarget.Normal)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> {data.AddPreview(new BlazingHeat(), false);
@@ -35,17 +35,23 @@ public class Yoimiya extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1, 0, 2);
 
         SetExhaust(true);
-        SetHitCount(4, 1);
+        SetHitCount(4, 0);
+    }
+
+    @Override
+    public void OnUpgrade() {
+        AddScaling(Affinity.Red, 1);
+        SetHaste(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
-            if (e.lastDamageTaken > 0) {
+            if (IsStarter() && e.lastDamageTaken > 0) {
                 GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
             }
         }));
@@ -55,8 +61,12 @@ public class Yoimiya extends AnimatorCard
             for (PowerHelper commonDebuffHelper : GameUtilities.GetCommonDebuffs()) {
                 if (commonDebuffHelper.ID.equals(debuff.ID)) {
                     int amount = GameUtilities.GetPowerAmount(player, debuff.ID);
-                    GameActions.Bottom.ApplyPower(TargetHelper.Player(), commonDebuffHelper, amount);
-                    total += amount * 2;
+                    if (IsStarter()) {
+                        GameActions.Bottom.ApplyPower(TargetHelper.Player(), commonDebuffHelper, amount);
+                        total += amount;
+                    }
+
+                    total += amount;
                 }
             }
         }

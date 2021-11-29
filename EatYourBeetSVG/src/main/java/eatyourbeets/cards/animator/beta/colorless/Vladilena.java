@@ -3,12 +3,14 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -65,21 +67,25 @@ public class Vladilena extends AnimatorCard implements OnStartOfTurnPostDrawSubs
                     .SetFilter(c -> c.type == CardType.ATTACK)
                     .AddCallback(cards -> {
                         for (AbstractCard c : cards) {
-                            GameActions.Last.Add(AffinityToken.SelectTokenAction(name, 1, magicNumber, upgraded)
-                                    .AddCallback(tokens ->
-                                    {
-                                        boolean isLoyal = (c.rarity.equals(CardRarity.BASIC) || c.costForTurn == 0) && info.TryActivateLimited();
-                                        for (AbstractCard t : tokens)
-                                        {
-                                            if (isLoyal) {
-                                                GameActions.Top.ModifyTag(t, LOYAL, true);
-                                            }
-                                            GameActions.Bottom.MakeCardInHand(t);
-                                        }
-                                    }));
                             GameActions.Top.PlayCopy(c.makeStatEquivalentCopy(), m);
-                            GameActions.Top.PlayCopy(c.makeStatEquivalentCopy(), m);
-                            //GameActions.Bottom.DealDamageAtEndOfTurn(player, player, c.costForTurn * 2, AttackEffects.SLASH_VERTICAL);
+                            GameActions.Top.PlayCopy(c.makeStatEquivalentCopy(), m).AddCallback(() -> {
+                                if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                                    GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, 1, magicNumber, upgraded)
+                                            .AddCallback(tokens ->
+                                            {
+                                                boolean isLoyal = (c.rarity.equals(CardRarity.BASIC) || c.costForTurn == 0) && info.TryActivateLimited();
+                                                for (AbstractCard t : tokens)
+                                                {
+                                                    if (isLoyal) {
+                                                        GameActions.Top.ModifyTag(t, LOYAL, true);
+                                                    }
+                                                    GameActions.Bottom.MakeCardInHand(t);
+                                                }
+                                            }));
+                                }
+                            });
+                            GameActions.Bottom.DealDamageAtEndOfTurn(player, player, c.costForTurn * 2, AttackEffects.SLASH_VERTICAL);
+
                         }
                     });
         }

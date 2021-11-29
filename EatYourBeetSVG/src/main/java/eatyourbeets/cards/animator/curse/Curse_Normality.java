@@ -29,7 +29,6 @@ public class Curse_Normality extends AnimatorCard_Curse implements OnTryApplyPow
 {
     protected static final HashMap<AbstractCreature, HashMap<String, Integer>> POWERS = new HashMap<>();
     protected static UUID battleID;
-
     public static final EYBCardData DATA = Register(Curse_Normality.class)
             .SetCurse(-2, EYBCardTarget.None, false);
 
@@ -106,26 +105,26 @@ public class Curse_Normality extends AnimatorCard_Curse implements OnTryApplyPow
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        TryRestorePowers();
+        TryRestorePowers(false);
     }
 
     @Override
     public void triggerOnManualDiscard()
     {
         super.triggerOnManualDiscard();
-        TryRestorePowers();
+        TryRestorePowers(false);
     }
 
     @Override
     public void OnStartOfTurn()
     {
         super.OnStartOfTurn();
-        TryRestorePowers();
+        TryRestorePowers(true);
     }
 
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
-        TryRestorePowers();
+        TryRestorePowers(false);
     }
 
     @Override
@@ -145,7 +144,7 @@ public class Curse_Normality extends AnimatorCard_Curse implements OnTryApplyPow
         GameActions.Bottom.RemovePower(owner, power);
     }
 
-    protected void TryRestorePowers() {
+    protected void TryRestorePowers(boolean shouldProgress) {
         CheckForNewBattle();
         if (JUtils.Find(player.hand.group, c -> c.cardID.equals(Curse_Normality.DATA.ID)) == null) {
             for (AbstractCreature owner : POWERS.keySet()) {
@@ -154,6 +153,16 @@ public class Curse_Normality extends AnimatorCard_Curse implements OnTryApplyPow
                     for (String powerID : targetSet.keySet()) {
                         int amount = targetSet.getOrDefault(powerID, 0);
                         PowerHelper ph = PowerHelper.ALL.get(powerID);
+
+                        if (shouldProgress) {
+                            if (ph.EndTurnBehavior == PowerHelper.Behavior.TurnBased) {
+                                amount -= 1;
+                            }
+                            else if (ph.EndTurnBehavior == PowerHelper.Behavior.Temporary) {
+                                amount = 0;
+                            }
+                        }
+
                         if (ph != null && amount != 0) {
                             GameActions.Bottom.ApplyPower(TargetHelper.Normal(owner), ph, amount);
                         }

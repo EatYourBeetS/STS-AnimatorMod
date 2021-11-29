@@ -296,7 +296,7 @@
 	},
 	"animator:WitchsHeartFlames":
 	{
-	  "DESCRIPTIONS": ["Whenever a Burn is created, transform it into a Searing Burn. At the start of combat, increase #yBurning's damage bonus by #b15%."],
+	  "DESCRIPTIONS": ["All #yBurns are transformed into #ySearing #yBurn. At the start of combat, increase #yBurning's damage bonus by #b15%."],
 	  "FLAVOR": "A clear bottle containing liquid fire.",
 	  "NAME": "Witch's Heart Flames"
 	},

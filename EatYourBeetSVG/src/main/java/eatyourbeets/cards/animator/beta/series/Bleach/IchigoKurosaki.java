@@ -19,7 +19,7 @@ public class IchigoKurosaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 30);
+        Initialize(2, 0, 2, 8);
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(2, 0, 1);

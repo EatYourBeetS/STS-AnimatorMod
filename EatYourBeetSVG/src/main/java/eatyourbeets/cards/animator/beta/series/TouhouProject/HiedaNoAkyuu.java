@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.beta.colorless;
+package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,8 +14,7 @@ import static eatyourbeets.resources.GR.Enums.CardTags.ANIMATOR_EXHAUST;
 public class HiedaNoAkyuu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
-            .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.TouhouProject);
+            .SetSeriesFromClassPackage(true);
 
     public HiedaNoAkyuu()
     {

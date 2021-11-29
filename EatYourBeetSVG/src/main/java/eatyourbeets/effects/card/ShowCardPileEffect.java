@@ -145,7 +145,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
         zoomToggle.SetToggle(GR.Animator.Config.CropCardImages.Get()).Update();
         simplifyCardUIToggle.SetToggle(GR.Animator.Config.SimplifyCardUI.Get()).Update();
-        if (loadout != null) {
+        if (loadout != null && loadout.canEnableExpansion) {
             toggleExpansion.SetToggle(loadout.expansionEnabled).Update();
         }
 
@@ -184,7 +184,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
         simplifyCardUIToggle.Render(sb);
-        if (loadout != null) {
+        if (loadout != null && loadout.canEnableExpansion) {
             toggleExpansion.Render(sb);
         }
     }

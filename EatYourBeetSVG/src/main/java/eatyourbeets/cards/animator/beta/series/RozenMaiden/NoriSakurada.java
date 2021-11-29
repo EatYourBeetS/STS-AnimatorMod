@@ -45,7 +45,7 @@ public class NoriSakurada extends AnimatorCard implements OnEndOfTurnSubscriber
     public void OnEndOfTurn(boolean isPlayer) {
         GameActions.Top.Reload(NoriSakurada.DATA.Strings.NAME, cards -> {
             if (cards.size() > 0) {
-                GameActions.Top.ReducePower(player, player, DelayedDamagePower.POWER_ID, cards.size());
+                GameActions.Top.ReducePower(player, player, DelayedDamagePower.POWER_ID, cards.size() * secondaryValue);
             }
         });
     }

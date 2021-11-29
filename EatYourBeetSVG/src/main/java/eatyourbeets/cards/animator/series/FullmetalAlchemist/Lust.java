@@ -35,10 +35,10 @@ public class Lust extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber, AttackEffects.SLASH_VERTICAL);
         int amount = TrySpendAffinity(Affinity.Dark) ? secondaryValue + 1 : secondaryValue;
-        GameActions.Bottom.ApplyFrail(TargetHelper.Enemies(), amount);
+        GameActions.Top.ApplyFrail(TargetHelper.Enemies(), amount);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), amount);
+        GameActions.Bottom.DealDamageAtEndOfTurn(p, p, magicNumber, AttackEffects.SLASH_VERTICAL);
     }
 }

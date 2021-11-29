@@ -18,6 +18,7 @@ public class AnimatorStrings
     public Actions Actions;
     public Trophies Trophies;
     public Tutorial Tutorial;
+    public CardMods CardMods;
 
     public void Initialize()
     {
@@ -32,6 +33,7 @@ public class AnimatorStrings
         SeriesSelection = new SeriesSelection();
         SeriesSelectionButtons = new SeriesSelectionButtons();
         SingleCardPopupButtons = new SingleCardPopupButtons();
+        CardMods = new CardMods();
     }
 
     public class Rewards
@@ -240,6 +242,20 @@ public class AnimatorStrings
         public final String CurrentCopies = Strings.TEXT[4];
         public final String MaxCopies = Strings.TEXT[5];
         public final String MaxCopiesTooltip = Strings.TEXT[6];
+    }
+
+    public class CardMods
+    {
+        private final UIStrings Strings = GetUIStrings("CardMods");
+
+        public final String HandSize = Strings.TEXT[0];
+        public final String Unknown = Strings.TEXT[1];
+        public final String AfterLifeLocked = Strings.TEXT[2];
+        public final String RespecLivingPicture = Strings.TEXT[3];
+        public final String RespecLivingPictureLocked = Strings.TEXT[4];
+        public final String RespecLivingPictureDescription = Strings.TEXT[5];
+        public final String Kirby = Strings.TEXT[6];
+        public final String KirbyDescription = Strings.TEXT[7];
     }
 
     public class Actions

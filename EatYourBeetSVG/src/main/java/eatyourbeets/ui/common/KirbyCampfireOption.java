@@ -21,31 +21,14 @@ public class KirbyCampfireOption extends AbstractCampfireOption
     public KirbyCampfireOption()
     {
         kirby = (Kirby) AbstractDungeon.player.masterDeck.findCardById(Kirby.DATA.ID);
-        Refresh();
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        if (GR.UI.Elapsed100())
-        {
-            Refresh();
-        }
-    }
-
-    public void Refresh()
-    {
-        this.description = "Regurgitate cards from Kirby (Free option).";
-        this.img = GR.Common.Images.CampfireOption_Kirby.Texture();
+        description = GR.Animator.Strings.CardMods.KirbyDescription;
+        label = GR.Animator.Strings.CardMods.Kirby;
+        img =  GR.Common.Images.CampfireOption_Kirby.Texture();
     }
 
     @Override
     public void useOption()
     {
-        Refresh();
-
         if (!usable || kirby == null)
         {
             GameEffects.Queue.Callback(new WaitAction(0.1f), ((RestRoom) AbstractDungeon.getCurrRoom()).campfireUI::reopen);

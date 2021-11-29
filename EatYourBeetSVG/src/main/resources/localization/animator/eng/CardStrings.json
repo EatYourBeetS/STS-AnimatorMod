@@ -131,17 +131,17 @@
 		},
 		"animator:AyatoNaoi":
 		{
-			"DESCRIPTION": "Channel !M! [Dark] and Trigger them once if in <IS>. Otherwise, enter <IS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
+			"DESCRIPTION": "Channel !M! [Dark] and Trigger them once if in <BS>. Otherwise, enter <BS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "In {Afterlife} or <AS>: Obtain !M! [T-Knife]. || Synergy with {0-cost} cards: Gain !S! [Blur] and [G].",
+			"DESCRIPTION": "In {Afterlife} or <GS>: Obtain !M! [T-Knife]. || Synergy with {0-cost} cards: Gain !S! [Blur] and [G].",
 			"NAME": "Eri Shiina"
 		},
 		"animator:Fujimaki":
 		{
-			"DESCRIPTION": "Pay !A! <G>: Enter <FS>. || <CDN>: Gain !M! [R] and Obtain {~Wound}.",
+			"DESCRIPTION": "Pay !A! <G>: Enter <RS>. || <CDN>: Gain !M! [R] and Obtain {~Wound}.",
 			"NAME": "Fujimaki"
 		},
 		"animator:GirlDeMo":
@@ -237,7 +237,7 @@
         },
 		"animator:KanameTousen":
 		{
-			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. || <LIM>. <IS>: For the next !S! turns, ignore your buffs with negative stacks.",
+			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. || <LIM>. <BS>: For the next !S! turns, ignore your buffs with negative stacks.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, ignore buffs with negative stacks."],
 			"NAME": "Kaname Tousen"
 		},
@@ -258,12 +258,12 @@
 		},
 		"animator:IkkakuMadarame":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [G]. Otherwise: Gain !M! [R]. || If [R] or [G] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"DESCRIPTION": "<RS>: Gain !M! [G]. Otherwise: Gain !M! [R]. || If [R] or [G] > !S!: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 			"NAME": "Ikkaku Madarame"
 		},
 		"animator:IsshinKurosaki":
 		{
-			"DESCRIPTION": "Choose 1: Gain !S! [R], or Apply !M! [Burning] to ALL enemies. || <FS> or Pay ** !A! <R>: Activate this effect again.",
+			"DESCRIPTION": "Choose 1: Gain !S! [R], or Apply !M! [Burning] to ALL enemies. || <RS> or Pay ** !A! <R>: Activate this effect again.",
 			"NAME": "Isshin Kurosaki"
 		},
 		"animator:MayuriKurotsuchi":
@@ -274,7 +274,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn. || Pay !A! <R> and <L> to Choose 1: Gain !S! Temp. [Thorns], or Enter <BS>.",
+			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn. || Pay !A! <R> and <L> to Choose 1: Gain !S! Temp. [Thorns], or Enter <LS>.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -290,7 +290,7 @@
 		},
 		"animator:RukiaKuchiki":
 		{
-			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || <IS> or if you have !S! Orbs, Pay !A! <G>: Exhaust, then add {Rukia Bankai} to ** your draw pile.",
+			"DESCRIPTION": "<ST>: Channel !M! [Frost]. || <BS> or if you have !S! Orbs, Pay !A! <G>: Exhaust, then add {Rukia Bankai} to ** your draw pile.",
 			"NAME": "Rukia Kuchiki"
 		},
 		"animator:SajinKomamura":
@@ -321,7 +321,7 @@
 		},
 		"animator:YasutoraSado":
 		{
-			"DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect. || <CDN>: Exhaust this card to enter <FS> or <AS>.",
+			"DESCRIPTION": "Can only attack an enemy with [Block] or is intending to inflict a Negative Effect. || <CDN>: Exhaust this card to enter <RS> or <GS>.",
 			"NAME": "Yasutora Sado"
 		},
 		"animator:ZarakiKenpachi":
@@ -376,6 +376,18 @@
 			"DESCRIPTION": "Take !S!X [Delayed Damage]. || Gain !M!X [D].",
 			"NAME": "Abyssal Void"
     	},
+		"animator:DioBrando":
+		{
+			"DESCRIPTION": "<SOUL>: {The World}. || Spend {Soul} for each Attack in hand: Give a card +1 of a random Scaling that many times.",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Nao Tomori"
+		},
+		"animator:DioBrando_TheWorld":
+		{
+			"DESCRIPTION": "Gain !M! [Strength]. || Once per turn, Spend !A! <A>: Halve the damage and double the hit count of the last attack played (does not stack).",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Nao Tomori"
+		},
 		"animator:ForceImpulseGundam":
 		{
 			"DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses Trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust.",
@@ -414,6 +426,18 @@
 			"DESCRIPTION": "The next !M! Defends played this turn activate twice. || <LIM>. !A! <W>: Carry this effect over to the next turn.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} Defend(s) played this turn activate twice."],
 			"NAME": "Jet Black"
+		},
+		"animator:JotaroKujo":
+		{
+			"DESCRIPTION": "<SOUL>: {Star Platinum}. || Draw a {Power}. Spend {Soul} equal to its cost: Give a card +1 of a random Scaling that many times.",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Nao Tomori"
+		},
+		"animator:JotaroKujo_StarPlatinum":
+		{
+			"DESCRIPTION": "Gain 1 [Intangible]. || Whenever you play a {Colorless} or non-{Series} card: Gain +!M! <A>.",
+			"EXTENDED_DESCRIPTION": ["transform into a Normality."],
+			"NAME": "Star Platinum"
 		},
 		"animator:KaedeAkamatsu":
 		{
@@ -478,12 +502,12 @@
 		},
 		"animator:Megunee_Zombie":
 		{
-			"DESCRIPTION": "<LIM>. If Fatal: Heal !M! HP. || On Exhaust: Put this card in your hand after a random number of turns.",
+			"DESCRIPTION": "<LIM>. If Fatal: Heal !M! [HP]. || On Exhaust: Put this card in your hand after a random number of turns.",
 			"NAME": "Zombie Megu-nee"
 		},
 		"animator:MegurineLuka":
 		{
-			"DESCRIPTION": "Give up to !M! cards {Harmonic}. || <LIM>. {Synergy} with {Hatsune Miku}: Give {Harmonic} to ALL cards in your discard pile.",
+			"DESCRIPTION": "Give up to !M! cards [Harmonic]. || <LIM>. {Synergy} with {Hatsune Miku}: Give [Harmonic] to ALL cards in your discard pile.",
 			"EXTENDED_DESCRIPTION": ["give Harmonic."],
 			"NAME": "Megurine Luka"
 		},
@@ -501,7 +525,7 @@
 		},
 		"animator:MS06ZakuII":
 		{
-			"DESCRIPTION": "The first !M! Reload Triggers this turn activate twice. || <LIM>. If you reached !S! of any affinity power this combat, Pay !A! <W>: Gain {Upgraded Hand}.",
+			"DESCRIPTION": "The first !M! Reload Triggers this turn activate twice. || <LIM>. If you reached !S! of any <W> power this combat, Pay !A! <W>: Gain {Upgraded Hand}.",
 			"EXTENDED_DESCRIPTION": ["Your next #b{0} Reload Triggers this turn activate twice."],
 			"NAME": "MS-06 Zaku II"
 		},
@@ -523,8 +547,8 @@
 			[
 				"After #b{0} turn(s), create a copy of {1}.",
 				"Double its hit count and [Block] and increase its base cost by 1.",
-				"Give it {~Ethereal} and reduce its base cost by 1. If it already had {~Ethereal}, give it Exhaust.",
-				"Give it {~Innate}, replace its affinities with Lv2 <S> and replace its Scalings with +6 [S] Scaling."
+				"Give it [~Ethereal] and reduce its base cost by 1. If it already had [~Ethereal], give it Exhaust.",
+				"Give it [~Innate], replace its affinities with Lv2 <S> and replace its Scalings with +6 [S] Scaling."
 			],
 			"NAME": "Nirvash Type theEND",
 			"UPGRADE_DESCRIPTION": "Apply 1 of 3 upgrades to any Animator card in play. || <LIM>. Pay !A! <S>: Make this upgrade permanent. Remove this card from your deck."
@@ -595,7 +619,7 @@
 		"animator:TakashiNatsume_Circle":
         {
         	"DESCRIPTION": "Played at the end of turn.",
-        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove {Autoplay} from ALL cards in your draw pile.","<LIM>. Move ALL copies of {Takashi Natsume} to your draw pile. Motivate them and give them {Afterlife}."],
+        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove [Autoplay] from ALL cards in your draw pile.","<LIM>. Move ALL copies of {Takashi Natsume} to your draw pile. Motivate them and give them {Afterlife}."],
         	"NAME": "Youkai Circle"
         },
 		"animator:TimeParadox":
@@ -621,13 +645,13 @@
 		},
 		"animator:Vash":
 		{
-			"DESCRIPTION": "Reload: Gains {Autoplay} ** and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
+			"DESCRIPTION": "Reload: Gains [Autoplay] ** and +!M! damage. ** Choose a card type. If the top card of your deck is of that type: Give it +!D! damage and [Block]. Otherwise, Exhaust it, this, and ALL cards discarded.",
 			"EXTENDED_DESCRIPTION": ["The next Attack played gains #b{0} damage."],
 			"NAME": "Vash the Stampede"
 		},
 		"animator:Vladilena":
 		{
-			"DESCRIPTION": "Play 1 of !M! random Attacks in your draw or discard pile twice. Replace it with 1 of !M! {<W> Tokens}{+}. || <LIM>. If it was Basic or 0-Cost: Give the {<W> Token} {Loyal}.",
+			"DESCRIPTION": "Play 1 of !M! random Attacks in your draw or discard pile twice. Take [Delayed Damage] equal to twice its cost, then replace it with 1 of !M! {<W> Tokens}{+}. || <LIM>. If it was Basic or 0-Cost: Give the {<W> Token} [Loyal].",
 			"NAME": "Vladilena Milize"
 		},
 		"animator:WingGundamZero":
@@ -666,7 +690,7 @@
 		},
 		"animator:KurumiTokisaki":
 		{
-			"DESCRIPTION": "Give up to !M! cards in your hand {~Delayed}. Gain [Energized] for each. || <CDN>: Purge. Duplicate a {~Delayed} card in your draw or discard pile. It costs 1 less and has {Autoplay}.",
+			"DESCRIPTION": "Give up to !M! cards in your hand [~Delayed]. Gain [Energized] for each. || <CDN>: Purge. Duplicate a [~Delayed] card in your draw or discard pile. It costs 1 less and has [Autoplay].",
 			"EXTENDED_DESCRIPTION": ["give Delayed."],
 			"NAME": "Kurumi Tokisaki"
 		},
@@ -688,7 +712,7 @@
 		},
 		"animator:MukuroHoshimiya":
 		{
-			"DESCRIPTION": "Deals 1 more damage for every !M! cards in ** your draw pile. || Scry !S!. Give all discarded cards {~Delayed} until the next time you shuffle your deck.",
+			"DESCRIPTION": "Deals 1 more damage for every !M! cards in ** your draw pile. || Scry !S!. Give all discarded cards [~Delayed] until the next time you shuffle your deck.",
 			"NAME": "Mukuro Hoshimiya"
 		},
 		"animator:Natsumi":
@@ -719,6 +743,12 @@
 		{
 			"DESCRIPTION": "Trigger your first [Dark]. Otherwise, channel [Dark]. Then, apply !M! [Poison] for each [Dark] Channeled. || <SLM>. 3 [Dark]: Obtain {<D> Token}{+}.",
 			"NAME": "Ren"
+		},
+		"animator:RinneSonogami":
+		{
+			"DESCRIPTION": "When you play consecutive {Same-Series} cards: Gain +!M! of a random <W>, then increase this by 1 until the end of turn.",
+			"EXTENDED_DESCRIPTION": ["When you play consecutive #ySame-Series cards: Gain #b+{0} of a random <W>, then increase this by #b1 until the end of turn."],
+			"NAME": "Rinne Sonogami"
 		},
 		"animator:ShidoItsuka":
 		{
@@ -780,12 +810,12 @@
         },
 		"animator:Chongyun":
 		{
-			"DESCRIPTION": "Apply [Freezing] equal to your [Frost] count + !M!. || Pay !A! <B>: Channel [Frost].",
+			"DESCRIPTION": "Apply [Freezing] equal to your [Frost] count + !M! (!X!). || Pay !A! <B>: Channel [Frost].",
 			"NAME": "Chongyun"
 		},
 		"animator:Curse_Delusion":
 		{
-			"DESCRIPTION": "Unplayable. || At the end of your turn, a random card in your Draw Pile gains {Autoplay}. || On Exhaust: Obtain ** {<G> Token}+.",
+			"DESCRIPTION": "Unplayable. || At the end of your turn, a random card in your Draw Pile gains [Autoplay]. || On Exhaust: Obtain ** {<G> Token}+.",
 			"NAME": "Delusion"
 		},
 		"animator:Cyno":
@@ -849,7 +879,7 @@
 		},
 		"animator:Keqing":
 		{
-			"DESCRIPTION": "<RCT>: Moves to your draw pile. Progress Ricochet by 1 upon Evoking [Lightning] or [Air]. || Motivate and give {~Haste} to this card and a random card in your discard pile.",
+			"DESCRIPTION": "<RCT>: Moves to your draw pile. Progress Ricochet by 1 upon Evoking [Lightning] or [Air]. || Motivate and give [~Haste] to this card and a random card in your discard pile.",
 			"NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -870,7 +900,7 @@
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. If any of the Scried cards' costs was: ** 0 or None: Gain !S! Temp. [Focus] ** 1 or X: Gain !S! [B]. ** 2+: Channel [Lightning]",
+			"DESCRIPTION": "{Scry} !M!. If you discard a card of cost: ** 0 or None: Gain !S! Temp. [Focus] ** 1 or X: Gain !S! [B]. ** 2+: Channel [Lightning]",
 			"NAME": "Lisa Minci"
 		},
 		"animator:Ningguang":
@@ -902,7 +932,7 @@
 		},
 		"animator:Tartaglia":
 		{
-			"DESCRIPTION": "Deal +!M! damage for each character with [Burning]. Remove [Burning] from ALL characters. || <LIM>. If Fatal: Enter <FS> and add {Delusion} to your draw pile.",
+			"DESCRIPTION": "Deal +!M! damage for each character with [Burning]. Remove [Burning] from ALL characters. || <LIM>. If Fatal: Enter <RS> and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
 		"animator:Traveler_Aether":
@@ -940,7 +970,7 @@
 		},
 		"animator:Xiao":
 		{
-			"DESCRIPTION": "Deal +!M! damage for each ** of your [Air]. || <AS>: Exhaust, then ALL enemies gain !S! [Poison] for each card in hand. Otherwise: Enter <AS>.",
+			"DESCRIPTION": "Deal +!M! damage for each ** of your [Air]. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] for each card in hand. Otherwise: Enter <GS>.",
 			"NAME": "Xiao"
 		},
 		"animator:Xingqiu":
@@ -951,7 +981,7 @@
 		},
 		"animator:Yoimiya":
 		{
-			"DESCRIPTION": "Obtain [T-Knife] for each ** unblocked hit. || Double your {Common Debuffs}. ** <LIM>. If you have at least !S! of them: Play {Blazing Heat}.",
+			"DESCRIPTION": "<ST>. Obtain [T-Knife] for each unblocked hit, then double your {Common Debuffs}. || <LIM>. If you have !S!+ stacks of any debuff: Play {Blazing Heat}.",
 			"NAME": "Yoimiya Naganohara"
 		},
 		"animator:Zhongli":
@@ -965,8 +995,8 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "Whenever you shuffle your deck: Give {~Haste} to !M! random cards. Once per turn: Gain [G] when {~Haste} Triggers. || Once per turn, pay 5 <L>: Channel [Dark]. Trigger it once for every card in hand.",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [G] when {~Haste} Triggers. Whenever you shuffle your deck: Give {~Haste} to #b{0} random cards. || Pay #b{1} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
+			"DESCRIPTION": "Whenever you shuffle your deck: Give [~Haste] to !M! random cards. Once per turn: Gain [G] when [~Haste] Triggers. || Once per turn, pay 5 <L>: Channel [Dark]. Trigger it once for every card in hand.",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Gain [G] when [~Haste] Triggers. Whenever you shuffle your deck: Give [~Haste] to #b{0} random cards. || Pay #b{1} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
 			"NAME": "Akane Senri"
 		},
 		"animator:Chibimoth":
@@ -977,13 +1007,13 @@
 		},
 		"animator:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Choose 1: Fetch a <O> card from your discard pile and {Motivate} it; ** Gain !S! {Temp}. [Artifact]. || Costs 1 less in <WS>.",
+			"DESCRIPTION": "Choose 1: Fetch a <O> card from your discard pile and {Motivate} it; ** Gain !S! {Temp}. [Artifact]. || Costs 1 less in <OS>.",
 		  	"EXTENDED_DESCRIPTION": ["Fetch a <O> card from your discard pile and {Motivate} it.", "Gain 3 {Temp}. [Artifact]."],
 		  	"NAME": "Chihaya Ohtori"
 		},
 		"animator:Kagari":
 		{
-			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Apply !M! [Shackles] ** to ALL enemies and gain !S! [O]. Gain 1 more [O] in <WS>.",
+			"DESCRIPTION": "Once per turn, When you Channel [Earth]: Apply !M! [Shackles] ** to ALL enemies and gain !S! [O]. Gain 1 more [O] in <OS>.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) you Channel #yEarth this turn, Apply #b{2} Shackles to ALL enemies and gain #b{1} #yWillpower (Gain in #yWillpower #yStance)."],
 			"NAME": "Kagari"
 		},
@@ -1016,7 +1046,7 @@
 		},
 		"animator:SakuyaOhtori":
 		{
-			"DESCRIPTION": "<FS>: Enter <IS> and apply !M! [Blinded] to ALL enemies. ** Otherwise, Enter <FS> and double your rightmost [Dark] amount.",
+			"DESCRIPTION": "<RS>: Enter <BS> and apply !M! [Blinded] to ALL enemies. ** Otherwise, Enter <RS> and double your rightmost [Dark] amount.",
 			"NAME": "Sakuya Ohtori"
 		},
 		"animator:Shimako":
@@ -1026,12 +1056,12 @@
 		},
 		"animator:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Not in <AS>: Discard !M! random {Skills} ** to Enter <AS>. || If your highest <W> is <G>: Deal +!S! damage.",
+			"DESCRIPTION": "Not in <GS>: Discard !M! random {Skills} ** to Enter <GS>. || If your highest <W> is <G>: Deal +!S! damage.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"animator:SougenEsaka":
 		{
-			"DESCRIPTION": "<FS>: Gain !S! [O]. || !A! <O>: Discard the top card of your Draw Pile to enter <WS>.",
+			"DESCRIPTION": "<RS>: Gain !S! [O]. || !A! <O>: Discard the top card of your Draw Pile to enter <OS>.",
 			"NAME": "Sougen Esaka"
 		},
 		"animator:ToukaNishikujou":
@@ -1041,7 +1071,7 @@
 		},
 		"animator:YoshinoHaruhiko":
 		{
-			"DESCRIPTION": "Enter <FS>. || {Starter}: Give !M! cards in your hand +1 [R] Scaling.",
+			"DESCRIPTION": "Enter <RS>. || {Starter}: Give !M! cards in your hand +1 [R] Scaling.",
 			"NAME": "Yoshino Haruhiko"
 		}
 	},
@@ -1064,7 +1094,7 @@
 		},
 		"animator:Hinaichigo":
 		{
-			"DESCRIPTION": "If the target has [Poison]: Apply !M! [Weak]. Otherwise: Apply !S! [Poison]. || <ST>. Pay !A! <B>: ** Enter <BS>.",
+			"DESCRIPTION": "If the target has [Poison]: Apply !M! [Weak]. Otherwise: Apply !S! [Poison]. || <ST>. Pay !A! <B>: ** Enter <LS>.",
 			"NAME": "Hina Ichigo"
 		},
 		"animator:JunSakurada":
@@ -1105,7 +1135,7 @@
 		},
 		"animator:MitsuKusabue":
 		{
-			"DESCRIPTION": "Draw !M! card(s) and Retain them. They cost 1 ** more this turn. || <BS>. Gain !S! [THP] for ** each <L> one.",
+			"DESCRIPTION": "Draw !M! card(s) and Retain them. They cost 1 ** more this turn. || <LS>. Gain !S! [THP] for ** each <L> one.",
 			"NAME": "Mitsu Kusabue"
 		},
 		"animator:NoriSakurada":
@@ -1208,7 +1238,7 @@
 		},
 		"animator:HiedaNoAkyuu":
 		{
-			"DESCRIPTION": "You cannot draw additional cards this turn. || Discard your draw pile. Give !M! cards in your discard pile {~Innate}. ** <LIM>. !A! <W>: Also remove {~Ethereal} and Exhaust from them.",
+			"DESCRIPTION": "You cannot draw additional cards this turn. || Discard your draw pile. Give !M! cards in your discard pile [~Innate]. ** <LIM>. !A! <W>: Also remove [~Ethereal] and Exhaust from them.",
 			"NAME": "Hieda no Akyuu"
 		},
 		"animator:KaguyaHouraisan":
@@ -1218,8 +1248,8 @@
 		},
 		"animator:KawashiroNitori":
 		{
-			"DESCRIPTION": "Whenever a tag is given to a card, gain +!M! of every <W>. || Once per turn, pay !S! <W>: Give a card {~Haste}.",
-			"EXTENDED_DESCRIPTION": ["Whenever a tag is given to a card, gain +#b{0} of ALL Affinities. Once per turn, pay #b5 [A-Gen]: Give a card #yHaste."],
+			"DESCRIPTION": "The first time a tag is given to a card each turn: Gain +!M! of a random <W>. || Once per turn, pay !S! <W>: Give a card [~Haste].",
+			"EXTENDED_DESCRIPTION": ["The first #b{0} time(s) a tag is given to a card this turn: Gain +#b{1} of a random [A-Gen]. Once per turn, pay #b5 [A-Gen]: Give a card #yHaste."],
 			"NAME": "Kawashiro Nitori"
 		},
 		"animator:KoishiKomeiji":
@@ -1266,7 +1296,7 @@
 		},
 		"animator:SanaeKochiya":
 		{
-			"DESCRIPTION": "Scry !S!. If any of the Scried cards had: ** {~Ethereal} -> Obtain {Miracle} next turn. ** {Purge} -> Apply [Blinded] to ALL enemies.",
+			"DESCRIPTION": "Scry !S!. If you discard a card with: ** [~Ethereal] -> Obtain {Miracle} next turn. ** [Purge] -> Apply [Blinded] to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["At the start of your next turn, add #b{0} #yMiracle(s) to your hand."],
 			"NAME": "Sanae Kochiya"
 		},
@@ -1314,7 +1344,7 @@
 	{
 		"animator:Emilia":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. || At the start of next ** turn: Channel 1 [Lightning] for ** each [Frost] you have.",
+			"DESCRIPTION": "Evoke ALL Orbs, then Channel !M! [Frost]. || At the end of next ** turn: Gain 1 [Orb Slot] for ** each unique Orb you have.",
 			"NAME": "Emilia"
 		},
 		"animator:HarukoHaruhara":
@@ -1401,12 +1431,13 @@
 		},
 		"animator:Magilou":
 		{
-			"DESCRIPTION": "Trigger your first orb ** !M! time(s), then Evoke it. || <LIM>. When Drawn: ** Discard this and add ** {Bienfu} to your hand.",
-			"NAME": "Magilou"
+			"DESCRIPTION": "Channel a copy of your first Orb, then shuffle your Orbs. || <LIM>. When Drawn: ** Discard this and ** Obtain {Bienfu}.",
+			"NAME": "Magilou",
+			"UPGRADE_DESCRIPTION": "Channel a copy of your first Orb, then shuffle and trigger ALL Orbs. || <LIM>. When Drawn: ** Discard this and ** Obtain {Bienfu}."
 		},
 		"animator:Magilou_Bienfu":
 		{
-			"DESCRIPTION": "Unplayable. || When Drawn: Gain !M! [B]. || On Discard: Give this {~Haste}.",
+			"DESCRIPTION": "When Drawn: Gain !M! [B]. || On Discard: Trigger a random Orb.",
 			"NAME": "Bienfu"
 		},
 		"animator:MamizouFutatsuiwa":
@@ -1568,8 +1599,8 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Deal +1 damage if you have [Frost]. ** If you discarded a card this turn: Enter <IS>. || Pay !A! <L>: Gain !S! Temp. [Focus].",
-			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <IS>. || Pay !A! <D>: Gain !S! Temp. [Focus]."],
+			"DESCRIPTION": "Deal +1 damage if you have [Frost]. ** If you discarded a card this turn: Enter <BS>. || Pay !A! <L>: Gain !S! Temp. [Focus].",
+			"EXTENDED_DESCRIPTION": ["If you discarded ** a card this turn: ** Enter <BS>. || Pay !A! <D>: Gain !S! Temp. [Focus]."],
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -1592,7 +1623,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "Apply !S! [~Lock-On]. || Every copy of {Lu} gains +!M! damage. || Synergy with {Lu} or Pay !A! <B>: Enter <IS> or <CS>.",
+			"DESCRIPTION": "Apply !S! [~Lock-On]. || Every copy of {Lu} gains +!M! damage. || Synergy with {Lu} or Pay !A! <B>: Enter <BS> or <DS>.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -1626,7 +1657,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || <IS> or <CS>: Exit your stance to give every copy of {Ciel} +!M! [Block].",
+			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || <BS> or <DS>: Exit your stance to give every copy of {Ciel} +!M! [Block].",
 			"NAME": "Lu"
 		},
 		"animator:Noah":
@@ -1650,7 +1681,7 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "Gain !M! [R]. || <FS>: <DRW>. || On Exhaust: ** Play this card.",
+			"DESCRIPTION": "Gain !M! [R]. || <RS>: <DRW>. || On Exhaust: ** Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
@@ -1666,7 +1697,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain !M! [R]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Block]. || Pay !A! <R>: Enter <FS>.",
+			"DESCRIPTION": "Gain !M! [R]. || If Fatal or if the enemy loses its [Block]: Gain !S! [Block]. || Pay !A! <R>: Enter <RS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -1696,7 +1727,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable]. || <FS>: Gain +!M! <G>. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Apply 1 [Vulnerable]. || <RS>: Gain +!M! <G>. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -1795,7 +1826,7 @@
 		},
 		"animator:RizaHawkeye":
 		{
-			"DESCRIPTION": "<ST>. Deal +!M! damage and Apply !M! [~Lock-On]. || If the target had [Vulnerable] or [~Lock-On]: You may Exhaust a card in your draw pile to enter <WS>.",
+			"DESCRIPTION": "<ST>. Deal +!M! damage and Apply !M! [~Lock-On]. || If the target had [Vulnerable] or [~Lock-On]: You may Exhaust a card in your draw pile to enter <OS>.",
 			"NAME": "Riza Hawkeye"
 		},
 		"animator:RoyMustang":
@@ -1847,7 +1878,7 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || Synergy: Gain !S! [Support Damage].",
+			"DESCRIPTION": "<DRW-M>, then ** {Reload}: Attack. || Synergy: Gain 1 [Support Damage] for every card played this turn (!X!).",
 			"NAME": "Itami Youji"
 		},
 		"animator:MariKurokawa":
@@ -1878,7 +1909,7 @@
 		},
 		"animator:MoltSolAugustus":
 		{
-			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards {~Haste}. || Draw 1 less card each turn. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
+			"DESCRIPTION": "At the end of each turn: ** Give ALL <R> cards [~Haste]. || Draw 1 less card each turn. || Once per turn: Pay [E] to ** add !S! {Imperial Archers} ** to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || Draw #b{1} less card(s) each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
 			"NAME": "Molt Sol Augustus"
 		},
@@ -1915,7 +1946,7 @@
 		},
 		"animator:ZorzalElCaesar":
 		{
-			"DESCRIPTION": "Draw 1 less card each turn. At the end of each turn: ** Give ALL <R> cards {~Haste}. || Once per turn: Pay [E] to ** add 1 of 3 0-Cost Uncommon cards to your draw pile.",
+			"DESCRIPTION": "Draw 1 less card each turn. At the end of each turn: ** Give ALL <R> cards [~Haste]. || Once per turn: Pay [E] to ** add 1 of 3 0-Cost Uncommon cards to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["Once per turn: Pay [E] to add #b1 of #b{0} 0-Cost Uncommon cards to your draw pile. || Draw #b{1} less card(s) each turn. At the start of each turn: Give ALL <R> cards #yHaste."],
 			"NAME": "Zorzal El Caesar"
 		}
@@ -2108,13 +2139,13 @@
 		},
 		"animator:SabiHakuhei":
 		{
-			"DESCRIPTION": "Deal +!M! damage for each stack of [Blur], then remove [Blur]. || <SLM>. On Discard, You may pay !A! <G>: Enter <IS>.",
+			"DESCRIPTION": "Deal +!M! damage for each stack of [Blur], then remove [Blur]. || <SLM>. On Discard, You may pay !A! <G>: Enter <BS>.",
 			"NAME": "Sabi Hakuhei"
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Choose 1: ** Enter <AS> and gain !M! [Counter-Attack]; ** Enter <FS> and Obtain {Kyotouryuu}{+}. || <LIM>. Pay !A! <R> and <G>: Refund [E].",
-			"EXTENDED_DESCRIPTION": ["Enter <FS>. ** Obtain {{0}}.", "Enter <AS>. ** Gain {0} [Counter-Attack]."],
+			"DESCRIPTION": "Choose 1: ** Enter <GS> and gain !M! [Counter-Attack]; ** Enter <RS> and Obtain {Kyotouryuu}{+}. || <LIM>. Pay !A! <R> and <G>: Refund [E].",
+			"EXTENDED_DESCRIPTION": ["Enter <RS>. ** Obtain {{0}}.", "Enter <GS>. ** Gain {0} [Counter-Attack]."],
 			"NAME": "Shichika Yasuri"
 		},
 		"animator:Shichika_Kyotouryuu":
@@ -2131,7 +2162,7 @@
 		{
 			"DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 0 or 1 Cost ** {Attack} and add it ** to your draw pile.",
 			"NAME": "Tsuruga Meisai",
-			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 0 or 1 Cost ** {Attack}, give it {~Haste} and ** add it to your draw pile."
+			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. || Imitate a 0 or 1 Cost ** {Attack}, give it [~Haste] and ** add it to your draw pile."
 		},
 		"animator:UneriGinkaku":
 		{
@@ -2246,9 +2277,9 @@
 	{
 		"animator:Akatsuki":
 		{
-			"DESCRIPTION": "If the enemy is not attacking: Deal +!S! damage. || Pay !A! <G>: Obtain [T-Knife]. || <LIM>. When drawn: Imitate this !M! times with {~Ethereal} in your draw pile.",
+			"DESCRIPTION": "If the enemy is not attacking: Deal +!S! damage. || Pay !A! <G>: Obtain [T-Knife]. || <LIM>. When drawn: Imitate this !M! times with [~Ethereal] in your draw pile.",
 			"NAME": "Akatsuki",
-			"UPGRADE_DESCRIPTION": "If the enemy is not attacking: Deal +!S! damage. || Pay !A! <G>: Obtain [T-Knife]. || <LIM>. When drawn: Imitate this !M! times with {~Ethereal} and {~Haste} in your draw pile."
+			"UPGRADE_DESCRIPTION": "If the enemy is not attacking: Deal +!S! damage. || Pay !A! <G>: Obtain [T-Knife]. || <LIM>. When drawn: Imitate this !M! times with [~Ethereal] and [~Haste] in your draw pile."
 		},
 		"animator:Henrietta":
 		{
@@ -2284,12 +2315,12 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** unblocked damage dealt. || <FS> or Pay !A! <R>: Play ALL eligible cards instead.",
+			"DESCRIPTION": "Play the lowest [Block] card ** with [Block] lower than ** unblocked damage dealt. || <RS> or Pay !A! <R>: Play ALL eligible cards instead.",
 			"NAME": "Naotsugu"
 		},
 		"animator:Nyanta":
 		{
-			"DESCRIPTION": "Pay !A! <G> or <O>: ** <G>: Gain !M! [O] and enter <AS>. ** <O>: Gain !M! [G] and enter <WS>. || On Discard: Gain !S! Temp. [Thorns].",
+			"DESCRIPTION": "Pay !A! <G> or <O>: ** <G>: Gain !M! [O] and enter <GS>. ** <O>: Gain !M! [G] and enter <OS>. || On Discard: Gain !S! Temp. [Thorns].",
 			"NAME": "Nyanta"
 		},
 		"animator:Rayneshia":
@@ -2362,7 +2393,7 @@
 		},
 		"animator:HomuraAkemi":
 		{
-			"DESCRIPTION": "<SOUL>: {Homulily} || To play this: Purge any Curse in play. In !M! turns, Obtain a card from your deck. It costs 1 less and has Purge. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
+			"DESCRIPTION": "<SOUL>: {Homulily} || To play this: Purge any Curse in play. In !M! turns, Obtain a card from your deck. It costs 1 less and has [Purge]. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
 			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), Obtain 1 of 2 #ySame-Series cards from your deck. it costs #b1 less and #yPurges on use."],
 			"NAME": "Homura Akemi"
 		},
@@ -2532,14 +2563,14 @@
 		},
 		"animator:NinaClive":
 		{
-			"DESCRIPTION": "Give {~Delayed} to a card in hand or discard pile. If you do: Give {~Innate} to a card in hand.",
+			"DESCRIPTION": "Give [~Delayed] to a card in hand or discard pile. If you do: Give [~Innate] to a card in hand.",
 			"EXTENDED_DESCRIPTION": ["Select card(s) to give Delayed","Select card(s) to give Innate"],
 			"NAME": "Nina Clive",
-			"UPGRADE_DESCRIPTION": "Give {~Delayed} to up to !M! cards in hand or discard pile. For each: Give {~Innate} to a card in hand."
+			"UPGRADE_DESCRIPTION": "Give [~Delayed] to up to !M! cards in hand or discard pile. For each: Give [~Innate] to a card in hand."
 		},
 		"animator:Shiro":
 		{
-			"DESCRIPTION": "Scry !M!. For each card Scried: Trigger a random Orb. || Spend 5 [L]: Evoke your first Orb twice with ** +!S! [Focus].",
+			"DESCRIPTION": "Scry !M!. For each discarded card: Trigger a random Orb. || Spend 5 [L]: Evoke your first Orb twice ** with +!S! [Focus].",
 			"NAME": "Shiro"
 		},
 		"animator:Sora":
@@ -2585,7 +2616,7 @@
 			[
 				"After #b{0} turn(s), create a copy of {1}.",
 				"Double its damage ** and [Block] and increase ** its base cost by 1.",
-				"Give it {~Ethereal} and **  reduce its base cost ** by 1 (Minimum 1).",
+				"Give it [~Ethereal] and **  reduce its base cost ** by 1 (Minimum 1).",
 				"Give it LV1 <A> and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
 			],
 			"NAME": "Dr. Genus"
@@ -2657,12 +2688,12 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || <SLM>. Synergy: ** Enter <AS>.",
+			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || <SLM>. Synergy: ** Enter <GS>.",
 			"NAME": "Silver Fang"
 		},
 		"animator:Sonic":
 		{
-			"DESCRIPTION": "Gain !M! [G]. ** Gain !S! [Blur]. || <AS> and/or ** Pay !A! <D>: Obtain 1 [T-Knife].",
+			"DESCRIPTION": "Gain !M! [G]. ** Gain !S! [Blur]. || <GS> and/or ** Pay !A! <D>: Obtain 1 [T-Knife].",
 			"NAME": "Sonic"
 		},
 		"animator:PuriPuriPrisoner":
@@ -2673,7 +2704,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Air]. ** Gain !M! {Temp.} [Focus]. || <ST>. Pay !A! <R> and <B>: Enter <IS>.",
+			"DESCRIPTION": "Channel 1 [Air]. ** Gain !M! {Temp.} [Focus]. || <ST>. Pay !A! <R> and <B>: Enter <BS>.",
 			"NAME": "Tatsumaki"
 		},
 		"animator:Zombieman":
@@ -2686,7 +2717,7 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: Gain !M! [R] [B] [O] [D]. {Maintain} them in <CS>. || When Drawn: Motivate this. || Pay {0} <D>: Channel {1} [Chaos].",
+			"DESCRIPTION": "At the start of turn: Gain !M! [R] [B] [O] [D]. {Maintain} them in <DS>. || When Drawn: Motivate this. || Pay {0} <D>: Channel {1} [Chaos].",
 			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Dark] to #yChannel #b{1} [Chaos]. || At the start of each turn, #yGain #b{2} [R] [B] [O] [D]. #yMaintain those powers in [D] #yStance."],
 			"NAME": "Ainz Ooal Gown"
 		},
@@ -2703,7 +2734,7 @@
 		},
 		"animator:CZDelta":
 		{
-			"DESCRIPTION": "Next turn: Have !M! less [Dexterity] until the end of turn. || <LIM>. If a card lowers an enemy to 10% HP or less, Fetch this card and give it Purge.",
+			"DESCRIPTION": "Next turn: Have !M! less [Dexterity] until the end of turn. || <LIM>. If a card lowers an enemy to 10% HP or less, Fetch this card and give it [Purge].",
 			"NAME": "CZ Delta"
 		},
 		"animator:Demiurge":
@@ -2751,12 +2782,12 @@
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "Gain 1 [R] and !M! [Counter-Attack] ** for each enemy who ** intends to {Attack}. || <WS> and/or ** Pay !A! <R>: Gain [E].",
+			"DESCRIPTION": "Gain 1 [R] and !M! [Counter-Attack] ** for each enemy who ** intends to {Attack}. || <OS> and/or ** Pay !A! <R>: Gain [E].",
 			"NAME": "Sebas"
 		},
 		"animator:Shalltear":
 		{
-			"DESCRIPTION": "Steal !M! [HP] ** from ALL enemies. || Convert up to ** !S! [L] to [D]. If no [L] was converted: Enter <CS>.",
+			"DESCRIPTION": "Steal !M! [HP] ** from ALL enemies. || Convert up to ** !S! [L] to [D]. If no [L] was converted: Enter <DS>.",
 			"NAME": "Shalltear"
 		},
 		"animator:Victim":
@@ -2786,7 +2817,7 @@
 		},
 		"animator:HiiragiKureto":
 		{
-			"DESCRIPTION": "Exhaust a random card for each unblocked hit. ** For each: The next Attack played applies !M! [Electrified]. || <BS> or Pay !A! <L>: [Electrified] gains +!S!% effect bonus.",
+			"DESCRIPTION": "Exhaust a random card for each unblocked hit. ** For each: The next Attack played applies !M! [Electrified]. || <LS> or Pay !A! <L>: [Electrified] gains +!S!% effect bonus.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} Attacks played apply #b{1} [Electrified]."],
 			"NAME": "Kureto Hiiragi"
 		},
@@ -2813,7 +2844,7 @@
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [B] @>@ 20: Give it {~Haste}. || Then, choose 1: Gain !M! Temp. [Dexterity], or Gain !M! Temp. [Focus].",
+			"DESCRIPTION": "Choose 1 of !S! Hindrances to add to your draw pile. ** [B] @>@ 20: Give it [~Haste]. || Then, choose 1: Gain !M! Temp. [Dexterity], or Gain !M! Temp. [Focus].",
 			"NAME": "Lest Karr"
 		},
 		"animator:Mikaela":
@@ -2828,7 +2859,7 @@
 		},
 		"animator:Shigure":
 		{
-			"DESCRIPTION": "@If@ <L> @>@ <G>, Gain !M! [Support Damage]. Otherwise, Apply !M! [Poison]. || <AS>: Cycle !S! cards.",
+			"DESCRIPTION": "@If@ <L> @>@ <G>, Gain !M! [Support Damage]. Otherwise, Apply !M! [Poison]. || <GS>: Cycle !S! cards.",
 			"NAME": "Shigure Yukimi"
 		},
 		"animator:Shinoa":
@@ -2873,12 +2904,12 @@
 		"animator:Gobta":
 		{
 			"DESCRIPTION": "This turn, when you apply a {Common Debuff} to an enemy: Increase its stacks by !M!. || On Discard: Apply !S! [Poison] to a random enemy.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} times you apply a #yCommon #yDebuff} to an enemy this turn: Increase its stacks by 1."],
+			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, when you apply a #yCommon #yDebuff to an enemy: Increase its stacks by #b1."],
 			"NAME": "Gobta"
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "Pay !A! <R> or <O> to Choose 1: Enter <AS>, or Gain +!M! <G>. || When Drawn: {Maintain} [G] and [O].",
+			"DESCRIPTION": "Pay !A! <R> or <O> to Choose 1: Enter <GS>, or Gain +!M! <G>. || When Drawn: {Maintain} [G] and [O].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":
@@ -2909,7 +2940,7 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Deal +!M! damage if the target has [Weak] or [Vulnerable]. || <SLM>. Synergy: ** Enter <FS>.",
+			"DESCRIPTION": "Deal +!M! damage if the target has [Weak] or [Vulnerable]. || <SLM>. Synergy: ** Enter <RS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
@@ -2919,7 +2950,7 @@
 		},
 		"animator:Shizu_Ifrit":
 		{
-			"DESCRIPTION": "Apply !S! [Burning] to ALL characters. [Burning] gains +!M!% effect bonus. || <LIM>. Choose 1: Play {Blazing Heat}; ** Gain 2 [Demon Form].",
+			"DESCRIPTION": "Apply !S! [Burning] to ALL characters. [Burning] gains +!M!% effect bonus. || <LIM>. !A! <R>. Choose 1: Play {Blazing Heat}; ** Gain 2 [Demon Form].",
 			"EXTENDED_DESCRIPTION": ["Gain 2 [Demon Form].","Play {Blazing Heat}."],
 			"NAME": "Ifrit"
 		},
@@ -2954,12 +2985,12 @@
 			"DESCRIPTION": "Once per turn, ** Pay !S! <W>: ** Enter a random stance.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, ** Pay !S! of any <W> except for <R>: ** <FS>: Exit <FS>, then gain !M! [R]. Otherwise, enter <FS>.",
-				"Once per turn, ** Pay !S! of any <W> except for <G>: ** <AS>: Exit <AS>, then gain !M! [G]. Otherwise, enter <AS>.",
-				"Once per turn, ** Pay !S! of any <W> except for <B>: ** <IS>: Exit <IS>, then gain !M! [B]. Otherwise, enter <IS>.",
-				"Once per turn, ** Pay !S! of any <W> except for <O>: ** <WS>: Exit <WS>, then gain !M! [O]. Otherwise, enter <WS>.",
-				"Once per turn, ** Pay !S! of any <W> except for <L>: ** <BS>: Exit <BS>, then gain !M! [L]. Otherwise, enter <BS>.",
-				"Once per turn, ** Pay !S! of any <W> except for <D>: ** <CS>: Exit <CS>, then gain !M! [D]. Otherwise, enter <CS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <R>: ** Enter <RS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <G>: ** Enter <GS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <B>: ** Enter <BS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <O>: ** Enter <OS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <L>: ** Enter <LS>.",
+				"Once per turn, ** Pay !S! of any <W> ** except for <D>: ** Enter <DS>.",
 				"Once per turn, ** Pay !S! <W>: ** Enter any stance."
 			],
 			"NAME": "Stances"

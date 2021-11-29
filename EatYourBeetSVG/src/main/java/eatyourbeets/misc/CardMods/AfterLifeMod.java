@@ -19,7 +19,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class AfterLifeMod extends AbstractCardModifier
 {
     public static final String ID = GR.Animator.CreateID("Afterlife");
-    public static final String[] TEXT = GR.GetUIStrings(GR.Animator.CreateID("CardMods")).TEXT;
+    public static final String LABEL = GR.Animator.Strings.CardMods.AfterLifeLocked;
 
     public static void Add(AbstractCard card)
     {
@@ -65,7 +65,7 @@ public class AfterLifeMod extends AbstractCardModifier
             {
                 if (JUtils.Find(player.exhaustPile.group, AfterLifeMod::CanPurge) == null)
                 {
-                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, TEXT[2], true));
+                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3.0F, LABEL, true));
                     return;
                 }
 

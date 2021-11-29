@@ -561,7 +561,9 @@ public class RenderHelpers
                     }
 
                     foundIcon = false;
-                    TextureRegion icon = GetSmallIcon(build.Invoke(builder));
+                    String iconID = build.Invoke(builder);
+                    Color iconColor = GetColorForTooltip(iconID);
+                    TextureRegion icon = GetSmallIcon(iconID);
                     if (icon != null)
                     {
                         final float orbWidth = icon.getRegionWidth();
@@ -570,7 +572,7 @@ public class RenderHelpers
                         final float scaleY = CARD_ENERGY_IMG_WIDTH / orbHeight;
 
                         //sb.setColor(1f, 1f, 1f, baseColor.a);
-                        sb.setColor(baseColor);
+                        sb.setColor(iconColor != null ? iconColor : baseColor);
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
                         {
                             curHeight -= lineSpacing;
@@ -771,6 +773,8 @@ public class RenderHelpers
                 return GR.Tooltips.Supercharge.icon;
             case "D":
                 return GR.Tooltips.Desecration.icon;
+            case "S":
+                return GR.Tooltips.Technic.icon;
 
             case "E":
                 return AbstractDungeon.player != null ? AbstractDungeon.player.getOrb() : GR.Tooltips.Energy.icon;
@@ -787,6 +791,11 @@ public class RenderHelpers
                 EYBCardTooltip tooltip = CardTooltips.FindByID(id);
                 return (tooltip != null) ? tooltip.icon : null;
         }
+    }
+
+    private static Color GetColorForTooltip(String id) {
+        EYBCardTooltip tooltip = CardTooltips.FindByID(id);
+        return (tooltip != null) ? tooltip.color : null;
     }
 
     private static Color GetColor(Character c, Color baseColor)

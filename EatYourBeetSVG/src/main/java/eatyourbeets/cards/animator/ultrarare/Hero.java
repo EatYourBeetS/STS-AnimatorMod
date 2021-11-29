@@ -16,7 +16,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.Mathf;
 
-public class Hero extends AnimatorCard_UltraRare
+public class Hero extends AnimatorCard_UltraRare //TODO
 {
     public static final EYBCardData DATA = Register(Hero.class)
             .SetAttack(1, CardRarity.SPECIAL)

@@ -153,7 +153,7 @@ public class EYBCardText
         {
             offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), Colors.COLOR_AFTERLIFE, offset_y, alpha, null);
         }
-        if (card.unplayable)
+        if (card.unplayable || GameUtilities.IsUnplayableThisTurn(card))
         {
             offset_y -= RenderBadge(sb, BADGES.Unplayable.Texture(), Colors.COLOR_UNPLAYABLE, offset_y, alpha, null);
         }

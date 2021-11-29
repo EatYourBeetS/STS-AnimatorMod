@@ -355,7 +355,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "本回合如果你丢弃过牌： ** 进入 <IS> 。 || 同调 ：获得 [B] 。",
+			"DESCRIPTION": "本回合如果你丢弃过牌： ** 进入 <BS> 。 || 同调 ：获得 [B] 。",
 			"NAME": "艾因"
 		},
 		"animator:Aisha":
@@ -365,7 +365,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "敌人每有一种 {负面效果} ， ** 抽 1 张牌。 丢弃 1 张牌。 || 若以此法丢弃 {能力牌} ： ** 进入 <AS> 。",
+			"DESCRIPTION": "敌人每有一种 {负面效果} ， ** 抽 1 张牌。 丢弃 1 张牌。 || 若以此法丢弃 {能力牌} ： ** 进入 <GS> 。",
 			"NAME": "艾拉"
 		},
 		"animator:Chung":
@@ -405,7 +405,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "生成 1 个 <冰霜> 和 <黑暗> 。 || 被抽到时不在任何 ** 姿态 ： 进入 <FS> 。",
+			"DESCRIPTION": "生成 1 个 <冰霜> 和 <黑暗> 。 || 被抽到时不在任何 ** 姿态 ： 进入 <RS> 。",
 			"NAME": "露"
 		},
 		"animator:Raven":
@@ -424,9 +424,9 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "下回合开始时不失去 [R] 。 || <FS> ： 获得 1 层 <多层> 。 || 被 消耗 时： 打出这张牌。",
+			"DESCRIPTION": "下回合开始时不失去 [R] 。 || <RS> ： 获得 1 层 <多层> 。 || 被 消耗 时： 打出这张牌。",
 			"NAME": "亚历山大大帝",
-			"UPGRADE_DESCRIPTION": "获得 [R] 。 || <FS> ： 获得 1 层 <多层> 。 || 被 消耗 时： 打出这张牌。"
+			"UPGRADE_DESCRIPTION": "获得 [R] 。 || <RS> ： 获得 1 层 <多层> 。 || 被 消耗 时： 打出这张牌。"
 		},
 		"animator:Archer":
 		{
@@ -440,7 +440,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "<FS> ：获得 !M! [R] 。 ** 否则： 进入 <FS> 。 || 如果这张牌杀死了 ** 敌人或突破了 <格挡> ： ** 获得 !S! 点 <格挡> 。",
+			"DESCRIPTION": "<RS> ：获得 !M! [R] 。 ** 否则： 进入 <RS> 。 || 如果这张牌杀死了 ** 敌人或突破了 <格挡> ： ** 获得 !S! 点 <格挡> 。",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -581,7 +581,7 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "给予 !M! 层 <易伤> 。 || <AS> ：造成伤害两次。 || <FS>: 给予 !S! 层 <镣铐> 。",
+			"DESCRIPTION": "给予 !M! 层 <易伤> 。 || <GS> ：造成伤害两次。 || <RS>: 给予 !S! 层 <镣铐> 。",
 			"NAME": "栗林志乃"
 		},
 		"animator:LeleiLaLalena":
@@ -597,7 +597,7 @@
 		},
 		"animator:RoryMercury":
 		{
-			"DESCRIPTION": "这张牌获得 {~急促} 。 || <SLM> 。 如果击中 ** 一名有 <易伤> 的敌人： ** 选择：进入 <FS> ** 或者 进入 <AS> 。",
+			"DESCRIPTION": "这张牌获得 {~急促} 。 || <SLM> 。 如果击中 ** 一名有 <易伤> 的敌人： ** 选择：进入 <RS> ** 或者 进入 <GS> 。",
 			"NAME": "萝莉·麦丘利"
 		},
 		"animator:TukaLunaMarceau":
@@ -627,7 +627,7 @@
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "生成 1 个 <大地> 。 || <FS> 或 <IS> ： ** 抽 1 张牌，然后 ** 升级 1 张手牌。",
+			"DESCRIPTION": "生成 1 个 <大地> 。 || <RS> 或 <BS> ： ** 抽 1 张牌，然后 ** 升级 1 张手牌。",
 			"NAME": "矿人道士"
 		},
 		"animator:GoblinSlayer":
@@ -732,7 +732,7 @@
 	{
 		"animator:Azekura":
 		{
-			"DESCRIPTION": "获得 !S! 层 <多层> 。 ** 所有手牌的 基础 <格挡> ** 在本场战斗下降 !M! 。 || <FS> 或被 消耗 时： ** 获得 !S! 层 <荆棘> 。",
+			"DESCRIPTION": "获得 !S! 层 <多层> 。 ** 所有手牌的 基础 <格挡> ** 在本场战斗下降 !M! 。 || <RS> 或被 消耗 时： ** 获得 !S! 层 <荆棘> 。",
 			"NAME": "校仓必"
 		},
 		"animator:Biyorigo":
@@ -780,7 +780,7 @@
 		},
 		"animator:TsurugaMeisai":
 		{
-			"DESCRIPTION": "消耗 一张手牌。 根据其种类发动效果： || {能力牌} -> 激励 2 。 ** {技能牌} -> 进入 <AS> 。 ** {攻击牌} -> 增加 !M! 张 ** 其复制到你的抽牌堆。",
+			"DESCRIPTION": "消耗 一张手牌。 根据其种类发动效果： || {能力牌} -> 激励 2 。 ** {技能牌} -> 进入 <GS> 。 ** {攻击牌} -> 增加 !M! 张 ** 其复制到你的抽牌堆。",
 			"NAME": "敦贺迷彩"
 		},
 		"animator:UneriGinkaku":
@@ -914,7 +914,7 @@
 		},
 		"animator:Naotsugu":
 		{
-			"DESCRIPTION": "以有 <格挡> 值且低于 ** 这张牌造成的未被 格挡 的 ** 伤害为限，从手牌打出： ** <格挡> 值最低的牌。 ** <FS> ：改为所有牌。",
+			"DESCRIPTION": "以有 <格挡> 值且低于 ** 这张牌造成的未被 格挡 的 ** 伤害为限，从手牌打出： ** <格挡> 值最低的牌。 ** <RS> ：改为所有牌。",
 			"NAME": "直继"
 		},
 		"animator:Nyanta":
@@ -1034,7 +1034,7 @@
 		},
 		"animator:OrikoMikuni":
 		{
-			"DESCRIPTION": "选择 1 项进行： 预见 !M! ， ** 下一回合抽 1 张牌， ** 或者下一回合获得 !S! 点 <格挡> 。 || <LIM> 。 <IS> ： ** 选择全部 3 项。",
+			"DESCRIPTION": "选择 1 项进行： 预见 !M! ， ** 下一回合抽 1 张牌， ** 或者下一回合获得 !S! 点 <格挡> 。 || <LIM> 。 <BS> ： ** 选择全部 3 项。",
 			"NAME": "美国织莉子"
 		},
 		"animator:SayakaMiki":
@@ -1061,7 +1061,7 @@
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "每回合开始时：你可以丢弃 ** 一张牌以获得 !M! 点 <格挡> 。 || 同调 ：你可以进入 ** <AS> 或者 <IS> 。",
+			"DESCRIPTION": "每回合开始时：你可以丢弃 ** 一张牌以获得 !M! 点 <格挡> 。 || 同调 ：你可以进入 ** <GS> 或者 <BS> 。",
 			"EXTENDED_DESCRIPTION": ["回合开始时，你可以丢弃最多 #b{0} 张牌，每张获得 #b{1} 点 #y格挡 。"],
 			"NAME": "七海八千代"
 		},
@@ -1179,7 +1179,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "<AS> ：手牌一张随机 ** {攻击牌} 从 [G] 多得到 ** 1 倍的加成。 || 同调 ：进入 <AS> 。",
+			"DESCRIPTION": "<GS> ：手牌一张随机 ** {攻击牌} 从 [G] 多得到 ** 1 倍的加成。 || 同调 ：进入 <GS> 。",
 			"NAME": "邦古"
 		},
 		"animator:Sonic":
@@ -1189,7 +1189,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "生成 1 个 <空气> 。 || <IS> ：获得 1 个充能球栏位。 || <SLM> 。不在任何 姿态 ： ** 进入 <IS> 。 ** 否则：退出当前 姿态 。",
+			"DESCRIPTION": "生成 1 个 <空气> 。 || <BS> ：获得 1 个充能球栏位。 || <SLM> 。不在任何 姿态 ： ** 进入 <BS> 。 ** 否则：退出当前 姿态 。",
 			"NAME": "战栗的龙卷"
 		}
 	},
@@ -1289,7 +1289,7 @@
 		},
 		"animator:Shigure":
 		{
-			"DESCRIPTION": "给予 !M! 层 <中毒> 。 || <AS> ： 循环 1 张牌。 || 被 消耗 时： 获得 !S! 点 <支援> 。",
+			"DESCRIPTION": "给予 !M! 层 <中毒> 。 || <GS> ： 循环 1 张牌。 || 被 消耗 时： 获得 !S! 点 <支援> 。",
 			"NAME": "雪见时雨"
 		},
 		"animator:Shinoa":
@@ -1323,7 +1323,7 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "<FS> ： 获得 !S! 点 <格挡> 。 || 同调 或被抽到时 ： ** 获得 1 [G] 。",
+			"DESCRIPTION": "<RS> ： 获得 !S! 点 <格挡> 。 || 同调 或被抽到时 ： ** 获得 1 [G] 。",
             "NAME": "白老"
         },
 		"animator:Kaijin":
@@ -1343,7 +1343,7 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "丢弃 1 张牌。 ** 下一回合：抽 1 张牌。 || <LIM> 。 同调 ： ** 进入 <FS> 。",
+			"DESCRIPTION": "丢弃 1 张牌。 ** 下一回合：抽 1 张牌。 || <LIM> 。 同调 ： ** 进入 <RS> 。",
 			"NAME": "紫苑"
 		},
 		"animator:Shizu":

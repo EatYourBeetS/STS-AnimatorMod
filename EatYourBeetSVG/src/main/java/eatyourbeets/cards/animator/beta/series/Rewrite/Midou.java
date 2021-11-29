@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
@@ -16,7 +17,7 @@ public class Midou extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new SearingBurn(), false));
+            .PostInitialize(data -> data.AddPreview(new SearingBurn(), false).AddPreview(new Status_Burn(), false));
 
     public Midou()
     {
@@ -56,6 +57,6 @@ public class Midou extends AnimatorCard
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
 
         GameActions.Bottom.ChannelOrb(new Fire());
-        GameActions.Bottom.MakeCardInHand(new Burn());
+        GameActions.Bottom.MakeCardInHand(new Status_Burn());
     }
 }

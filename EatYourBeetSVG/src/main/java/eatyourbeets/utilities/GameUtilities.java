@@ -666,14 +666,11 @@ public class GameUtilities
     {
         if (commonDebuffs.isEmpty())
         {
-            commonDebuffs.add(PowerHelper.Weak);
-            commonDebuffs.add(PowerHelper.Vulnerable);
-            commonDebuffs.add(PowerHelper.Frail);
-            commonDebuffs.add(PowerHelper.Poison);
-            commonDebuffs.add(PowerHelper.Burning);
-            commonDebuffs.add(PowerHelper.Freezing);
-            commonDebuffs.add(PowerHelper.Shackles);
-            commonDebuffs.add(PowerHelper.DelayedDamage);
+            for (PowerHelper ph : PowerHelper.ALL.values()) {
+                if (ph.IsDebuff) {
+                    commonDebuffs.add(ph);
+                }
+            }
         }
 
         return commonDebuffs;
@@ -1835,6 +1832,7 @@ public class GameUtilities
     public static void SetUnplayableThisTurn(AbstractCard card)
     {
         CombatStats.UnplayableCards().add(card.uuid);
+        CombatStats.OnTagChanged(card, ANIMATOR_UNPLAYABLE, true);
     }
 
     public static boolean IsUnplayableThisTurn(AbstractCard card)

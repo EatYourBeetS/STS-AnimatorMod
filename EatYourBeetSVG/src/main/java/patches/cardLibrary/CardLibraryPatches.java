@@ -5,19 +5,13 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.*;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.cards.status.VoidCard;
-import com.megacrit.cardcrawl.cards.status.Wound;
+import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.animator.curse.*;
-import eatyourbeets.cards.animator.status.Status_Dazed;
-import eatyourbeets.cards.animator.status.Status_Slimed;
-import eatyourbeets.cards.animator.status.Status_Void;
-import eatyourbeets.cards.animator.status.Status_Wound;
+import eatyourbeets.cards.animator.status.*;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
@@ -53,6 +47,7 @@ public class CardLibraryPatches
             case Writhe.ID: return Curse_Writhe.DATA;
             case Dazed.ID: return Status_Dazed.DATA;
             case Miracle.ID: return eatyourbeets.cards.animator.special.Miracle.DATA;
+            case Burn.ID: return Status_Burn.DATA;
             case Slimed.ID: return Status_Slimed.DATA;
             case VoidCard.ID: return Status_Void.DATA;
             case Wound.ID: return Status_Wound.DATA;
@@ -160,7 +155,8 @@ public class CardLibraryPatches
             for (Map.Entry<String, AbstractCard> entry : _curses.Get(null).entrySet())
             {
                 final AbstractCard c = entry.getValue();
-                if (c.rarity != AbstractCard.CardRarity.SPECIAL && (ignore == null || !c.cardID.equals(ignore.cardID)))
+                final EYBCardData replacement = (GR.IsLoaded && GameUtilities.IsPlayerClass(GR.Animator.PlayerClass)) ? GetReplacement(c.cardID) : null;
+                if (c.rarity != AbstractCard.CardRarity.SPECIAL && (ignore == null || !c.cardID.equals(ignore.cardID)) && replacement == null)
                 {
                     cards.Add(entry.getKey());
                 }

@@ -1,14 +1,15 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
-import eatyourbeets.actions.utility.WaitRealtimeAction;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.cards.animator.special.Magilou_Bienfu;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Magilou extends AnimatorCard
 {
@@ -23,8 +24,7 @@ public class Magilou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 0);
 
         SetAffinity_Blue(2);
 
@@ -45,7 +45,13 @@ public class Magilou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Callback(new TriggerOrbPassiveAbility(magicNumber));
-        GameActions.Bottom.Callback(new WaitRealtimeAction(0.3f), () -> GameActions.Bottom.Add(new EvokeOrbAction(1)));
+        AbstractOrb firstOrb = GameUtilities.GetFirstOrb(null);
+        AbstractOrb newOrb = firstOrb != null ? firstOrb.makeCopy() : new Lightning();
+        GameActions.Bottom.ChannelOrb(newOrb);
+        GameActions.Bottom.Callback(new ShuffleOrbs(1)).AddCallback(() -> {
+            if (upgraded) {
+                GameActions.Bottom.TriggerOrbPassive(player.orbs.size(), false, true);
+            }
+        });
     }
 }

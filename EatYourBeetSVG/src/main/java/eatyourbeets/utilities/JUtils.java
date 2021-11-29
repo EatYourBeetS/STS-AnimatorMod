@@ -749,17 +749,22 @@ public class JUtils
 
     public static <T> T Random(T[] items)
     {
-        return items[RNG.nextInt(items.length)];
+        return items != null && items.length > 0 ? items[RNG.nextInt(items.length)] : null;
     }
 
     public static <T> T Random(ArrayList<T> items)
     {
-        return items.get(RNG.nextInt(items.size()));
+        int size = items != null ? items.size() : 0;
+        if (size == 0)
+        {
+            return null;
+        }
+        return items.get(RNG.nextInt(size));
     }
 
     public static <T> T Random(Collection<T> items)
     {
-        int size = items.size();
+        int size = items != null ? items.size() : 0;
         if (size == 0)
         {
             return null;

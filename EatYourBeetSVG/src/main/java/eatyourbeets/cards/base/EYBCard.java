@@ -466,7 +466,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Afterlife);
         }
-        if (unplayable || hasTag(ANIMATOR_UNPLAYABLE))
+        if (unplayable || hasTag(ANIMATOR_UNPLAYABLE) || (GameUtilities.IsUnplayableThisTurn(this)))
         {
             dynamicTooltips.add(GR.Tooltips.Unplayable);
         }

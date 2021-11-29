@@ -12,6 +12,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import static eatyourbeets.resources.GR.Enums.CardTags.ANIMATOR_ETHEREAL;
 import static eatyourbeets.resources.GR.Enums.CardTags.ANIMATOR_EXHAUST;
@@ -80,7 +81,7 @@ public class Nirvash extends AnimatorCard
         .SetFilter(c -> !c.hasTag(GR.Enums.CardTags.VOLATILE) && c instanceof EYBCard)
         .AddCallback(cards ->
         {
-           boolean isPermanent = (TrySpendAffinity(Affinity.Silver) && CombatStats.TryActivateLimited(cardID));
+           boolean isPermanent = (JUtils.All(cards, c -> GameUtilities.GetMasterDeckInstance(c.uuid) != null) && TrySpendAffinity(Affinity.Silver) && CombatStats.TryActivateLimited(cardID));
 
            for (AbstractCard c : cards)
            {
@@ -102,7 +103,7 @@ public class Nirvash extends AnimatorCard
                        while (p.masterDeck.removeCard(cardID));
 
                        GameEffects.List.ShowCardBriefly(makeStatEquivalentCopy());
-                       for (AbstractCard card : GameUtilities.GetAllInBattleCopies(cardID))
+                       for (AbstractCard card : GameUtilities.GetAllInBattleInstances(uuid))
                        {
                            GameActions.Bottom.Purge(card).ShowEffect(true);
                        }

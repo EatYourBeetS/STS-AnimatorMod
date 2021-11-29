@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
@@ -10,7 +9,6 @@ import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import org.apache.commons.lang3.ArrayUtils;
 
 public class Enchantment1 extends Enchantment
@@ -63,20 +61,9 @@ public class Enchantment1 extends Enchantment
     @Override
     public void UsePower(AbstractMonster m)
     {
-        if (IsStanceSpecific()) {
-            if (GameUtilities.InStance(GetStanceID())) {
-                GameActions.Bottom.ChangeStance(GetStanceID());
-            }
-            else {
-                GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
-                        .AddCallback((stance) ->
-                        {
-                            if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && stance instanceof EYBStance)
-                            {
-                                GameActions.Bottom.StackAffinityPower(((EYBStance) stance).affinity, magicNumber, false);
-                            }
-                        });
-            }
+        String stanceID = GetStanceID();
+        if (stanceID != null) {
+            GameActions.Bottom.ChangeStance(stanceID);
         }
         else if (auxiliaryData.form == 7) {
             if (choices.TryInitialize(this))
@@ -114,10 +101,6 @@ public class Enchantment1 extends Enchantment
         return Affinity.Extended();
     }
 
-    protected boolean IsStanceSpecific() {
-        return auxiliaryData.form > 0 && auxiliaryData.form < 7;
-    }
-
     protected String GetStanceID() {
         switch(auxiliaryData.form) {
             case 1:
@@ -133,6 +116,6 @@ public class Enchantment1 extends Enchantment
             case 6:
                 return DesecrationStance.STANCE_ID;
         }
-        return NeutralStance.STANCE_ID;
+        return null;
     }
 }

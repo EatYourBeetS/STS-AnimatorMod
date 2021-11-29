@@ -314,7 +314,12 @@
 	[
 	  "Permanently increase your maximum hand size by 1. Can be obtained up to 3 times across all card effects.",
 	  "",
-	  "I do not have a non-Afterlife card in my exhaust pile to purge."
+	  "I do not have a non-Afterlife card in my exhaust pile to purge.",
+	  "Respec [{0} Gold].",
+	  "Respec [No Upgrades].",
+	  "Respec Living Picture (Free option).",
+	  "Spit Out.",
+	  "Retrieve cards from Kirby (Free option)."
 	]
    }
 }

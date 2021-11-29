@@ -7,22 +7,21 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.common.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ItamiYouji extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ItamiYouji.class)
-            .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged)
+            .SetAttack(2, CardRarity.RARE, EYBAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public ItamiYouji()
     {
         super(DATA);
 
-        Initialize(2, 0, 1, 2);
-        SetUpgrade(1, 0, 0);
+        Initialize(2, 0, 3, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(1, 0, 1);
@@ -43,13 +42,29 @@ public class ItamiYouji extends AnimatorCard
     }
 
     @Override
+    public int GetXValue() {
+        return GameUtilities.GetTotalCardsPlayed(this, true);
+    }
+
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(1.3f, 1.5f));
+        GameActions.Bottom.Draw(magicNumber).AddCallback(() -> {
+            GameActions.Top.Reload(name, m, (enemy, cards) ->
+            {
+                for (int i = 0; i < cards.size(); i++) {
+                    if (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
+                    {
+                        GameActions.Bottom.DealDamage(this, enemy, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(1.3f, 1.5f));
+                    }
+                }
+            });
+        });
 
         if (info.IsSynergizing)
         {
-            GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
+            GameActions.Bottom.GainSupportDamage(GetXValue());
         }
     }
 }

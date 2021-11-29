@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.rooms.CampfireUI;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import eatyourbeets.ui.common.EnchantCampfireOption;
+import eatyourbeets.ui.common.KirbyCampfireOption;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
@@ -26,10 +27,10 @@ public class CampfireUIPatches
             {
                 AddOption(__instance, new EnchantCampfireOption());
             }
-            //if (KirbyCampfireOption.CanAddOption())
-            //{
-            //    AddOption(__instance, new KirbyCampfireOption());
-            //}
+            if (KirbyCampfireOption.CanAddOption())
+            {
+                AddOption(__instance, new KirbyCampfireOption());
+            }
         }
     }
 

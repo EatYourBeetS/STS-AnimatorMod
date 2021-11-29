@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -14,7 +14,9 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class MasamiIwasawa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Status_Dazed(), false));
 
     public MasamiIwasawa()
     {
@@ -35,7 +37,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed())
+        GameActions.Bottom.MakeCardInDrawPile(new Status_Dazed())
                 .Repeat(secondaryValue);
 
         if (IsStarter())

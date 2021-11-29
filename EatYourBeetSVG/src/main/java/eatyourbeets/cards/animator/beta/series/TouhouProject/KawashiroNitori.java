@@ -14,6 +14,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class KawashiroNitori extends AnimatorCard
 {
@@ -42,16 +43,19 @@ public class KawashiroNitori extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new KawashiroNitoriPower(p, magicNumber));
+        GameActions.Bottom.StackPower(new KawashiroNitoriPower(p, 1, magicNumber));
     }
 
     public static class KawashiroNitoriPower extends AnimatorClickablePower implements OnTagChangedSubscriber
     {
+        protected int secondaryAmount;
 
-        public KawashiroNitoriPower(AbstractCreature owner, int amount)
+        public KawashiroNitoriPower(AbstractCreature owner, int amount, int secondaryAmount)
         {
             super(owner, KawashiroNitori.DATA, PowerTriggerConditionType.Affinity, 5);
             this.amount = amount;
+            this.secondaryAmount = secondaryAmount;
+            Initialize(amount);
             updateDescription();
         }
 
@@ -71,6 +75,13 @@ public class KawashiroNitori extends AnimatorCard
             CombatStats.onTagChanged.Unsubscribe(this);
         }
 
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            ResetAmount();
+        }
 
         @Override
         public void OnUse(AbstractMonster m, int cost)
@@ -88,10 +99,17 @@ public class KawashiroNitori extends AnimatorCard
 
         @Override
         public void OnTagChanged(AbstractCard card, CardTags tag, boolean value) {
-            for (Affinity af : Affinity.Extended()) {
-                GameActions.Bottom.AddAffinity(af, amount);
+            if (amount > 0) {
+                GameActions.Bottom.AddAffinity(JUtils.Random(Affinity.Extended()), secondaryAmount);
+                amount -= 1;
+                flash();
             }
-            flash();
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, secondaryAmount);
         }
     }
 }

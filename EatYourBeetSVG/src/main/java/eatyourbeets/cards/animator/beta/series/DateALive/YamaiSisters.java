@@ -21,13 +21,19 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
     {
         super(DATA);
 
-        Initialize(2, 0 );
-        SetUpgrade(1, 0 );
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
-        SetHitCount(1,1);
+        Initialize(1, 0 );
+        SetUpgrade(0, 0 );
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetHitCount(2,0);
     }
 
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+        CombatStats.onSynergy.Subscribe(this);
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -43,7 +49,7 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
     @Override
     public void OnSynergy(AbstractCard card) {
         if ((GameUtilities.HasRedAffinity(card) || GameUtilities.HasLightAffinity(card)) && CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.MoveCard(this,player.hand);
+            GameActions.Last.MoveCard(this,player.hand);
         }
     }
 }

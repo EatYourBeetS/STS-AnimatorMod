@@ -28,8 +28,8 @@ public class Gobta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 2, 3);
-        SetUpgrade(2, 0, 1);
+        Initialize(5, 0, 1, 3);
+        SetUpgrade(3, 0, 0, 1);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
@@ -47,7 +47,7 @@ public class Gobta extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        GameActions.Bottom.StackPower(new GobtaPower(p, 2));
+        GameActions.Bottom.StackPower(new GobtaPower(p, 1));
     }
 
     public class GobtaPower extends AnimatorPower
@@ -78,8 +78,6 @@ public class Gobta extends AnimatorCard
                 {
                     JUtils.LogWarning(this, "Unknown action type: " + action.getClass().getName());
                 }
-
-                ReducePower(1);
             }
         }
 
@@ -88,7 +86,7 @@ public class Gobta extends AnimatorCard
         {
             super.atEndOfTurn(isPlayer);
 
-            RemovePower();
+            ReducePower(1);
         }
     }
 }

@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.FlandreScarlet_RemiliaScarlet;
 import eatyourbeets.cards.base.*;
@@ -11,7 +12,6 @@ import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class FlandreScarlet extends AnimatorCard
@@ -65,7 +65,7 @@ public class FlandreScarlet extends AnimatorCard
         }
 
         GameActions.Last.Callback(() -> {
-            if (m != null && !GameUtilities.IsDeadOrEscaped(m)) {
+            if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                 AbstractCard handCard = JUtils.Random(player.hand.group);
 
                 choices.Initialize(this, true);
@@ -73,7 +73,7 @@ public class FlandreScarlet extends AnimatorCard
                 if (handCard != null) {
                     choices.AddEffect(new GenericEffect_FlandreScarlet(1, handCard));
                 }
-                choices.Select(1, m);
+                choices.Select(1, null);
             }
         });
 

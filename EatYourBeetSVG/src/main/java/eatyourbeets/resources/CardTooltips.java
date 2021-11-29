@@ -18,6 +18,7 @@ import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -56,6 +57,7 @@ public class CardTooltips
     public EYBCardTooltip Burning = FindByID("Burning");
     public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip CommonBuff = FindByID("Common Buff");
+    public EYBCardTooltip CommonDebuff = FindByID("Common Debuff");
     public EYBCardTooltip Constricted = FindByID("Constricted");
     public EYBCardTooltip CounterAttack = FindByID("Counter-Attack");
     public EYBCardTooltip Dark = FindByID("Dark");
@@ -230,29 +232,29 @@ public class CardTooltips
     public void InitializeIcons()
     {
         CommonImages.Badges badges = GR.Common.Images.Badges;
-        Afterlife.SetIcon(badges.Afterlife.Texture(), 6).SetColor(Colors.COLOR_AFTERLIFE);
-        Autoplay.SetIcon(badges.Autoplay.Texture(), 6).SetColor(Colors.COLOR_AUTOPLAY);
-        Delayed.SetIcon(badges.Delayed.Texture(), 6).SetColor(Colors.COLOR_DELAYED);
-        Ethereal.SetIcon(badges.Ethereal.Texture(), 6).SetColor(Colors.COLOR_ETHEREAL);
-        Exhaust.SetIcon(badges.Exhaust.Texture(), 6).SetColor(Colors.COLOR_EXHAUST);
-        Harmonic.SetIcon(badges.Harmonic.Texture(), 6).SetColor(Colors.COLOR_HARMONIC);
-        Haste.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE);
-        HasteInfinite.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE);
-        Innate.SetIcon(badges.Innate.Texture(), 6).SetColor(Colors.COLOR_INNATE);
-        Loyal.SetIcon(badges.Loyal.Texture(), 6).SetColor(Colors.COLOR_LOYAL);
-        Purge.SetIcon(badges.Purge.Texture(), 6).SetColor(Colors.COLOR_PURGE);
-        Retain.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
-        RetainInfinite.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
-        RetainOnce.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN);
-        Unplayable.SetIcon(badges.Unplayable.Texture(), 6).SetColor(Colors.COLOR_UNPLAYABLE);
+        Afterlife.SetIcon(badges.Afterlife.Texture(), 6).SetColor(Colors.COLOR_AFTERLIFE).SetIconSizeMulti(1.2f, 1.2f);
+        Autoplay.SetIcon(badges.Autoplay.Texture(), 6).SetColor(Colors.COLOR_AUTOPLAY).SetIconSizeMulti(1.2f, 1.2f);
+        Delayed.SetIcon(badges.Delayed.Texture(), 6).SetColor(Colors.COLOR_DELAYED).SetIconSizeMulti(1.2f, 1.2f);
+        Ethereal.SetIcon(badges.Ethereal.Texture(), 6).SetColor(Colors.COLOR_ETHEREAL).SetIconSizeMulti(1.2f, 1.2f);
+        Exhaust.SetIcon(badges.Exhaust.Texture(), 6).SetColor(Colors.COLOR_EXHAUST).SetIconSizeMulti(1.2f, 1.2f);
+        Harmonic.SetIcon(badges.Harmonic.Texture(), 6).SetColor(Colors.COLOR_HARMONIC).SetIconSizeMulti(1.2f, 1.2f);
+        Haste.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE).SetIconSizeMulti(1.2f, 1.2f);
+        HasteInfinite.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE).SetIconSizeMulti(1.2f, 1.2f);
+        Innate.SetIcon(badges.Innate.Texture(), 6).SetColor(Colors.COLOR_INNATE).SetIconSizeMulti(1.2f, 1.2f);
+        Loyal.SetIcon(badges.Loyal.Texture(), 6).SetColor(Colors.COLOR_LOYAL).SetIconSizeMulti(1.2f, 1.2f);
+        Purge.SetIcon(badges.Purge.Texture(), 6).SetColor(Colors.COLOR_PURGE).SetIconSizeMulti(1.2f, 1.2f);
+        Retain.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
+        RetainInfinite.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
+        RetainOnce.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
+        Unplayable.SetIcon(badges.Unplayable.Texture(), 6).SetColor(Colors.COLOR_UNPLAYABLE).SetIconSizeMulti(1.2f, 1.2f);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
         Brutal.SetIcon(icons.Brutal.Texture(), 6);
-        TempHP.SetIcon(icons.TempHP.Texture(), 6);
-        Health.SetIcon(icons.HP.Texture(), 6);
+        TempHP.SetIcon(icons.TempHP.Texture(), 6).SetIconSizeMulti(0.85f, 0.85f);
+        Health.SetIcon(icons.HP.Texture(), 6).SetIconSizeMulti(0.85f, 0.85f);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         BlockScaling.SetIcon(icons.BlockScaling.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         Damage.SetIcon(icons.Damage.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
@@ -293,7 +295,7 @@ public class CardTooltips
         LoadFromPower(Burning, new BurningPower(FakeCharacter.Instance, null, 0));
         LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));
         LoadFromPower(Electrified, new ElectrifiedPower(FakeCharacter.Instance, null,0));
-        LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0)).SetIconSizeMulti(0.95f, 0.95f);
+        LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0));
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
@@ -338,6 +340,10 @@ public class CardTooltips
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
         LoadFromPower(Frail, new FrailPower(null, 0, false));
+
+        //Common Debuff/Buff require loading powers for existing tooltips
+        CommonBuff.description = JUtils.JoinStrings(", ", JUtils.Map(GameUtilities.GetCommonBuffs(), ph -> "[" + ph.ID + "]"));
+        CommonDebuff.description = JUtils.JoinStrings(", ", JUtils.Map(GameUtilities.GetCommonDebuffs(), ph -> "[" + ph.ID + "]"));
     }
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)

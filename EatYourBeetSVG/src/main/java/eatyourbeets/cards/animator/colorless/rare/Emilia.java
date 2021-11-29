@@ -2,14 +2,14 @@ package eatyourbeets.cards.animator.colorless.rare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
@@ -41,7 +41,9 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
+        GameActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential).AddCallback(() -> {
+            GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
+        });
         CombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());
     }
 
@@ -49,15 +51,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     public void OnStartOfTurnPostDraw()
     {
         GameEffects.Queue.ShowCardBriefly(this);
-
-        for (AbstractOrb orb : player.orbs)
-        {
-            if (orb != null && Frost.ORB_ID.equals(orb.ID))
-            {
-                GameActions.Bottom.ChannelOrb(new Lightning());
-            }
-        }
-
+        GameActions.Bottom.GainOrbSlots(GameUtilities.GetUniqueOrbsCount());
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }

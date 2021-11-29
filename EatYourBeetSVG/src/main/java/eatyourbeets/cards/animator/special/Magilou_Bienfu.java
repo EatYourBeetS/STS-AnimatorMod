@@ -44,7 +44,7 @@ public class Magilou_Bienfu extends AnimatorCard
     public void triggerOnManualDiscard()
     {
         super.triggerOnManualDiscard();
-        SetHaste(true);
+        GameActions.Bottom.TriggerOrbPassive(1, true, false);
     }
 
     @Override

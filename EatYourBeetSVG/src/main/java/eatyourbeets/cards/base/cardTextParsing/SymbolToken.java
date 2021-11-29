@@ -109,7 +109,7 @@ public class SymbolToken extends CTToken
             float iconH = size * tooltip.iconMulti_H;
             float diff = partial / tooltip.iconMulti_W;
 
-            sb.setColor(context.color);
+            sb.setColor(tooltip.color != null ? tooltip.color : context.color);
             sb.draw(tooltip.icon, context.start_x - diff, context.start_y - (partial * 6), iconW, iconH);
         }
         else

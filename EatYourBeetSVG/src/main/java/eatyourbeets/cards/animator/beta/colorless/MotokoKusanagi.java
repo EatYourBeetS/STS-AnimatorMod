@@ -32,6 +32,7 @@ public class MotokoKusanagi extends AnimatorCard
     @Override
     public void triggerWhenCreated(boolean startOfBattle)
     {
+        super.triggerWhenCreated(startOfBattle);
         this.baseCooldownValue = this.cooldownValue = Math.max(1, BASE_RICOCHET - Math.floorDiv(player.gold, GOLD_THRESHOLD));
     }
 

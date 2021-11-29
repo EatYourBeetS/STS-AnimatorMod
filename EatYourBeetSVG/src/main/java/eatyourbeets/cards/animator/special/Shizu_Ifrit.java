@@ -34,6 +34,8 @@ public class Shizu_Ifrit extends AnimatorCard
         SetAffinity_Red(2);
         SetAffinity_Dark(2);
 
+        SetAffinityRequirement(Affinity.Red, 10);
+
         SetExhaust(true);
     }
 
@@ -47,7 +49,7 @@ public class Shizu_Ifrit extends AnimatorCard
         GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
 
 
-        if (CombatStats.TryActivateLimited(cardID)) {
+        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateLimited(cardID)) {
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_DemonForm());

@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.beta.series.GenshinImpact;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
@@ -19,6 +16,8 @@ public class Amber extends AnimatorCard {
         Initialize(3, 1, 2, 2);
         SetUpgrade(2, 1, 0);
         SetAffinity_Green(2, 0 ,1);
+
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class Amber extends AnimatorCard {
             GameActions.Bottom.GainVelocity(secondaryValue, false);
         }
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing || TrySpendAffinity(Affinity.Blue))
         {
             GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
         }

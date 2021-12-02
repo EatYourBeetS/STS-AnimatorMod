@@ -23,9 +23,10 @@ public class JunSakurada extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Dark(0,0,1);
         
         SetUnique(true, true);
         SetEthereal(true);
@@ -35,10 +36,20 @@ public class JunSakurada extends AnimatorCard
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        if (timesUpgraded % 3 == 1)
+        {
+            upgradeBlock(1);
+        }
+    }
     
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.MakeCardInHand(new Curse_JunTormented());
         GameActions.Bottom.StackPower(new JunSakuradaPower(p, magicNumber));
         cooldown.ProgressCooldownAndTrigger(m);

@@ -10,6 +10,7 @@ import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class RazorWindEffect extends EYBEffect
 {
@@ -71,12 +72,13 @@ public class RazorWindEffect extends EYBEffect
             GameEffects.Queue.Add(new RazorWindParticleEffect(x, y + (Random(-100, 100) * Settings.scale),
                     Random(-300f, -50f) * Math.signum(horizontalSpeed), Random(-200f, 200f)));
             GameEffects.Queue.Add(new FadingParticleEffect(image.Texture(), x, y)
-                    .SetTranslucent(0.5f)
-                    .Edit(rotation, (r, p) -> p
-                            .SetColor(new Color(MathUtils.random(0.8f, 1f), 1f, MathUtils.random(0.8f, 1f), 0.5f))
-                            .SetRotation(rotation)
-                            .SetScale(scale).SetTargetRotation(36000, null)
-                            .SetSpeed(0f, 0f, Random(300f, 400f), null)));
+                            .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
+                            .SetOpacity(0.5f)
+                            .Edit(rotation, (r, p) -> p
+                                    .SetColor(new Color(MathUtils.random(0.8f, 1f), 1f, MathUtils.random(0.8f, 1f), 0.5f))
+                                    .SetRotation(rotation)
+                                    .SetScale(scale).SetTargetRotation(36000, null)
+                                    .SetSpeed(0f, 0f, Random(300f, 400f), null)));
             GameEffects.Queue.Add(new LightFlareParticleEffect(this.x, this.y, PARTICLE_COLOR));
             vfxTimer = vfxFrequency;
         }

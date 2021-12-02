@@ -20,9 +20,9 @@ public class NiaHonjou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 1, 2, 1);
         SetUpgrade(0,0,0,1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1, 1, 2);
         SetAffinity_Blue(1, 0, 0);
     }
 
@@ -35,6 +35,7 @@ public class NiaHonjou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
     }
 

@@ -24,11 +24,12 @@ public class HomuraAkemi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 2, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(2);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Light(0,0,1);
 
         SetDelayed(true);
         SetExhaust(true);
@@ -40,6 +41,7 @@ public class HomuraAkemi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.PurgeFromPile(name,1,player.hand,player.drawPile,player.discardPile).SetFilter(c -> CardType.CURSE.equals(c.type)).AddCallback(
                 pc -> {
                     if (pc.size() > 0) {

@@ -53,14 +53,13 @@ public class CardLibraryScreenPatches
             CustomCardLibSortHeader.Screen = screen;
 
             Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
-            float offsetX = 130 * Settings.scale;
-            upgradeHitbox.width -= offsetX;
+            upgradeHitbox.width = 260 * Settings.scale;
             if (_sortHeader.Get(screen) != customHeader)
             {
                 _sortHeader.Set(screen, customHeader);
             }
 
-            customHeader.SetupButtons(!(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR)));
+            customHeader.SetupButtons(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_ANIMATOR));
         }
 
         @SpirePostfixPatch

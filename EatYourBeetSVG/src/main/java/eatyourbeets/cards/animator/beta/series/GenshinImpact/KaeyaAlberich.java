@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
@@ -20,18 +17,22 @@ public class KaeyaAlberich extends AnimatorCard {
     public KaeyaAlberich() {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 1, 2);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(1, 0, 0);
+
+        SetAffinityRequirement(Affinity.Green, 4);
     }
 
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
+        GameActions.Bottom.GainBlock(block);
+
+        if ((info.IsSynergizing || TrySpendAffinity(Affinity.Green)) && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
 

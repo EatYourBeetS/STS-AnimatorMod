@@ -2,7 +2,7 @@
 {
 	"eyb:AbstractTemporaryPower":
     {
-		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn.","Gain #b{0} #b{1} at the start of your next turn."],
+		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn.","Gain #b{0} #b{1} at the start of your next turn.","Temporary {0}"],
 		"NAME": "Temporary Power"
     },
 	"eyb:AgilityPower":

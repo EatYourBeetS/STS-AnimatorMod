@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
-import com.megacrit.cardcrawl.vfx.combat.ScreenOnFireEffect;
 import eatyourbeets.cards.animator.beta.special.BlazingHeat;
 import eatyourbeets.cards.animator.series.TenseiSlime.Shizu;
 import eatyourbeets.cards.base.*;
@@ -22,19 +21,21 @@ public class Shizu_Ifrit extends AnimatorCard
             .SetSkill(3, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(Shizu.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));
+    public static final int AMOUNT = 2;
+    public static final int SELF_BURNING = 4;
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Shizu_Ifrit()
     {
         super(DATA);
 
-        Initialize(0, 0, 40, 2);
-        SetUpgrade(0, 0, 10);
+        Initialize(0, 0, 40, 11);
+        SetUpgrade(0, 0, 0, 4);
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Red, 10);
+        SetAffinityRequirement(Affinity.Dark, 6);
 
         SetExhaust(true);
     }
@@ -42,14 +43,12 @@ public class Shizu_Ifrit extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final ScreenOnFireEffect effect = new ScreenOnFireEffect();
-        effect.duration = effect.startingDuration = 1.5f; // Changed from 3f
-        GameActions.Bottom.VFX(effect, 0.2f);
-        GameActions.Bottom.ApplyBurning(TargetHelper.AllCharacters(),secondaryValue);
+        GameActions.Bottom.ApplyBurning(TargetHelper.Player(),SELF_BURNING);
+        GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(),secondaryValue);
         GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
 
 
-        if (CheckAffinity(Affinity.Red) && CombatStats.TryActivateLimited(cardID)) {
+        if (info.CanActivateLimited && TrySpendAffinity(Affinity.Dark) && CombatStats.TryActivateLimited(cardID)) {
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_DemonForm());
@@ -74,7 +73,7 @@ public class Shizu_Ifrit extends AnimatorCard
         @Override
         public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
         {
-            GameActions.Bottom.StackPower(new DemonFormPower(p, 2));
+            GameActions.Bottom.StackPower(new DemonFormPower(p, AMOUNT));
         }
     }
 

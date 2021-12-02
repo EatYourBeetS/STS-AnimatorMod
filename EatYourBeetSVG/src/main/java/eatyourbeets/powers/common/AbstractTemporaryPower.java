@@ -46,7 +46,12 @@ public abstract class AbstractTemporaryPower extends CommonPower
     @Override
     protected void onAmountChanged(int previousAmount, int difference)
     {
-        GameActions.Top.StackPower(constructorT2.Invoke(owner, difference));
+        if (constructorT2 != null) {
+            GameActions.Top.StackPower(constructorT2.Invoke(owner, difference));
+        }
+        else if (constructorT1 != null && previousAmount + difference != 0) {
+            GameActions.Top.StackPower(constructorT1.Invoke(owner));
+        }
 
         super.onAmountChanged(previousAmount, difference);
     }
@@ -54,7 +59,7 @@ public abstract class AbstractTemporaryPower extends CommonPower
     @Override
     public void atStartOfTurn()
     {
-        if (amount < 0) {
+        if (amount < 0 && constructorT2 != null) {
             GameActions.Top.StackPower(constructorT2.Invoke(owner, -amount));
         }
         RemovePower();
@@ -63,5 +68,6 @@ public abstract class AbstractTemporaryPower extends CommonPower
     @Override
     public void updateDescription() {
         this.description = amount < 0 ? FormatDescription(1, -amount, targetName) : FormatDescription(0, amount, targetName);
+        this.name = FormatDescription(2, targetName);
     }
 }

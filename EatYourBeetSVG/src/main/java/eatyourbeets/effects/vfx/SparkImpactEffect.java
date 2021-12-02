@@ -8,6 +8,7 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class SparkImpactEffect extends EYBEffect
 {
@@ -45,7 +46,7 @@ public class SparkImpactEffect extends EYBEffect
         {
             GameEffects.Queue.Add(new FadingParticleEffect(JUtils.Random(images).Texture(), x, y)
                     .SetColor(Colors.Random(0.5f,1f,false))
-                    .SetTranslucent(1f)
+                    .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
                     .Edit(i, (r, p) -> p
                             .SetScale(scale * MathUtils.random(0.04f, 0.55f)).SetTargetRotation(36000f,1440f)
                             .SetSpeed(MathUtils.random(170f, 800f), MathUtils.random(170f, 800f), MathUtils.random(700f, 1010f),-0.03f)

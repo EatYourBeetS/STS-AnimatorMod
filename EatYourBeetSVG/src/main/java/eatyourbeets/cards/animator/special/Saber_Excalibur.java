@@ -22,8 +22,8 @@ public class Saber_Excalibur extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(80, 0, 50);
-        SetUpgrade(0, 0, 30);
+        Initialize(80, 0, 20);
+        SetUpgrade(10, 0, 0);
 
         SetAffinity_Red(2);
         SetAffinity_Light(2, 0, 4);

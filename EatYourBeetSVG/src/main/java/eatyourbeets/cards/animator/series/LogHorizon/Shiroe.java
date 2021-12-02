@@ -21,11 +21,11 @@ public class Shiroe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 1, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Orange(2);
+        SetAffinity_Blue(2,0,2);
+        SetAffinity_Orange(2,0,1);
 
         SetExhaust(true);
         SetProtagonist(true);
@@ -35,6 +35,7 @@ public class Shiroe extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Cycle(name, magicNumber).AddCallback(cards -> {
             for (AbstractCard c : cards) {
                 if (c instanceof EYBCard) {

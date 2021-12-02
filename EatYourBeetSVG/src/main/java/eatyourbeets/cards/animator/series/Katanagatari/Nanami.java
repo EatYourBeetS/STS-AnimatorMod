@@ -29,7 +29,7 @@ public class Nanami extends AnimatorCard
         SetUpgrade(0, 2, 1);
 
         SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Green(2, 0, 2);
         SetAffinity_Dark(2);
 
         SetExhaust(true);

@@ -46,7 +46,7 @@ public class Shigure extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (VelocityStance.IsActive())
+        if (VelocityStance.IsActive() || info.IsSynergizing)
         {
             GameActions.Bottom.Cycle(name, secondaryValue);
         }

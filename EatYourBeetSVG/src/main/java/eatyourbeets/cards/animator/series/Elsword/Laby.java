@@ -20,14 +20,14 @@ public class Laby extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Laby.class)
             .SetPower(2, CardRarity.UNCOMMON)
-            .SetMaxCopies(3)
+            .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
     public Laby()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 30);
+        Initialize(0, 0, 2, 35);
 
         SetAffinity_Light(2);
         SetAffinity_Dark(2);

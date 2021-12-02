@@ -19,11 +19,11 @@ public class KotoriKanbe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 4);
+        Initialize(0, 1, 3, 4);
 
         SetEthereal(true);
         SetExhaust(true);
-        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Light(2, 0, 2);
         SetAffinity_Blue(1, 0, 0);
     }
 
@@ -62,6 +62,8 @@ public class KotoriKanbe extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
+
         int heal = m.maxHealth - m.currentHealth;
         int stacks = Math.floorDiv(heal, magicNumber);
 

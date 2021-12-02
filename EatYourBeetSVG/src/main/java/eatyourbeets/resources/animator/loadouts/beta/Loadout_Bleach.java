@@ -25,6 +25,7 @@ public class Loadout_Bleach extends AnimatorLoadout
         AddStarterCard(UryuuIshida.DATA, 5);
         AddStarterCard(IchigoKurosaki.DATA, 7);
         AddStarterCard(RukiaKuchiki.DATA, 11);
+        AddStarterCard(ByakuyaKuchiki.DATA, 20);
         AddStarterCard(Status_Wound.DATA, -4);
     }
 

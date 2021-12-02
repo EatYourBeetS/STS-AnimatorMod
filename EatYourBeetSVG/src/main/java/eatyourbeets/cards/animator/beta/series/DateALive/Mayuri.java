@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.SuperchargeStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -45,7 +46,7 @@ public class Mayuri extends AnimatorCard
                     {
                         AbstractCard card = cards.get(0);
                         GameUtilities.Retain(card);
-                        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard) && CombatStats.TryActivateSemiLimited(cardID)) {
+                        if ((SuperchargeStance.IsActive() || info.IsSynergizing) && CombatStats.TryActivateSemiLimited(cardID)) {
                             card.baseBlock += magicNumber;
                         }
                     }

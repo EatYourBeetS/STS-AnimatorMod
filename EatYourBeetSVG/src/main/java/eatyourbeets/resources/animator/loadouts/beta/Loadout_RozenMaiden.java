@@ -1,8 +1,8 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.RozenMaiden.*;
-import eatyourbeets.cards.animator.beta.special.Suigintou_BlackFeather;
 import eatyourbeets.cards.animator.beta.ultrarare.Kirakishou;
+import eatyourbeets.cards.animator.curse.Curse_Decay;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -24,7 +24,7 @@ public class Loadout_RozenMaiden extends AnimatorLoadout
         AddStarterCard(Souseiseki.DATA, 8);
         AddStarterCard(Shinku.DATA, 8);
         AddStarterCard(JunSakurada.DATA, 11);
-        AddStarterCard(Suigintou_BlackFeather.DATA, -7);
+        AddStarterCard(Curse_Decay.DATA, -7);
     }
 
     @Override

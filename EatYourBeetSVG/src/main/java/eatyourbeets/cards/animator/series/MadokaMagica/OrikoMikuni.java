@@ -43,7 +43,7 @@ public class OrikoMikuni extends AnimatorCard
         choices.AddEffect(new GenericEffect_NextTurnDraw(1));
         choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
 
-        if (TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited())
+        if (TrySpendAffinity(Affinity.Blue))
         {
             choices.Select(3, m);
         }

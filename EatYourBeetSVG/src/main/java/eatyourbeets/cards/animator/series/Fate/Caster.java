@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.stances.DesecrationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -25,7 +26,7 @@ public class Caster extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 0, -1);
 
         SetAffinity_Blue(2);
@@ -64,11 +65,9 @@ public class Caster extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
-        GameActions.Bottom.ApplyFrail(null, p, secondaryValue);
-        GameActions.Bottom.GainDesecration(magicNumber);
-        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -1);
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -secondaryValue);
 
-        if (info.IsSynergizing)
+        if (DesecrationStance.IsActive() || info.IsSynergizing)
         {
             GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(o -> {
                 if (o.size() > 0) {

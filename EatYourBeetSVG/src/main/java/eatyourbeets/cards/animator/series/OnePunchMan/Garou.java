@@ -20,11 +20,11 @@ public class Garou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
+        Initialize(0, 1, 6);
         SetUpgrade(0, 0, 2);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(2, 0, 1);
         SetAffinity_Dark(2);
 
         SetExhaust(true);
@@ -42,6 +42,7 @@ public class Garou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         if (p.drawPile.size() >= 3)
         {
             GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, magicNumber);

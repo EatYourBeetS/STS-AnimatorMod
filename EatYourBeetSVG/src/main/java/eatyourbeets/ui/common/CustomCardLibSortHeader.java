@@ -8,11 +8,13 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardAmountComparator;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.FakeLibraryCard;
 import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class CustomCardLibSortHeader extends CardLibSortHeader
 {
@@ -24,14 +26,14 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
 
     public ArrayList<AbstractCard> originalGroup;
     private SortHeaderButton[] override = null;
-    private SortHeaderButton seriesButton = null;
+    private SortHeaderButton amountButton = null;
     private SortHeaderButton rarityButton;
     private SortHeaderButton typeButton;
     private SortHeaderButton nameButton;
     private SortHeaderButton costButton;
     private SortHeaderButton lastUsedButton;
     private boolean isAscending;
-    private boolean isColorless;
+    private boolean isAnimator;
 
     public static ArrayList<AbstractCard> GetFakeGroup() {
         if (fakeLibraryCard == null) {
@@ -54,7 +56,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         }
     }
 
-    public void SetupButtons(boolean isColorless)
+    public void SetupButtons(boolean isAnimator)
     {
         if (override == null)
         {
@@ -77,7 +79,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
                 nameButton = buttons[3];
             }
 
-            seriesButton = new SortHeaderButton(CardSeries.GetLocalizedSeriesString(), xPosition, 0f, this);
+            amountButton = new SortHeaderButton(GR.Animator.Strings.SeriesUI.Amount, xPosition, 0f, this);
 
             float offsetX = -(Settings.scale * 30f);
 
@@ -88,15 +90,15 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             if (nameButton != null)
             {
                 SetupButton(nameButton, offsetX, 3);
-                SetupButton(seriesButton, offsetX, 4);
+                SetupButton(amountButton, offsetX, 4);
             }
             else
             {
-                SetupButton(seriesButton, offsetX, 3);
+                SetupButton(amountButton, offsetX, 3);
             }
         }
 
-        this.isColorless = isColorless;
+        this.isAnimator = isAnimator;
         this.buttons = override;
     }
 
@@ -122,7 +124,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             fakeLibraryCard.current_y = group.group.get(0).current_y;
         }
 
-        if (isColorless)
+        if (!isAnimator)
         {
             super.setGroup(group);
             return;
@@ -169,15 +171,15 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             {
                 this.group.sortAlphabetically(isAscending);
             }
-            else if (button == this.seriesButton)
+            else if (button == this.amountButton)
             {
                 if (!isAscending)
                 {
-                    this.group.group.sort(new CardSeriesComparator());
+                    this.group.group.sort(new CardAmountComparator(false));
                 }
                 else
                 {
-                    this.group.group.sort(Collections.reverseOrder(new CardSeriesComparator()));
+                    this.group.group.sort(new CardAmountComparator(true));
                 }
             }
             else

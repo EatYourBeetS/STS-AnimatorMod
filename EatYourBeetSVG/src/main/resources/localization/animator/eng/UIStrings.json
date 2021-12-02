@@ -249,7 +249,8 @@
 			"Choose which Series to start with as well as which Series will be present in your runs.",
 			"Deck",
 			"Relics",
-			"Attributes"
+			"Attributes",
+			"Reset"
 		]
 	},
 	
@@ -304,7 +305,8 @@
 			"Rarities",
 			"Types",
 			"Affinities",
-            "Scaling"
+            "Scaling",
+            "Amount"
 		]
 	},
 

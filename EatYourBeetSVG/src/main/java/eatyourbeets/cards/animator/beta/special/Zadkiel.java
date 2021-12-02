@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.beta.special;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Frost;
@@ -21,9 +22,10 @@ public class Zadkiel extends AnimatorCard {
         super(DATA);
 
         Initialize(36, 0, 2, 9);
-        SetUpgrade(15, 0, 0);
-        SetAffinity_Red(1, 0, 0);
-        SetAffinity_Dark(1, 0, 0);
+        SetUpgrade(10, 0, 0);
+        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Blue(0, 0, 2);
+        SetAffinity_Dark(1, 0, 1);
 
         SetExhaust(true);
     }
@@ -31,9 +33,12 @@ public class Zadkiel extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
+        GameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH).forEach(d -> d
+                .SetVFXColor(Color.NAVY)
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)
                 .AddCallback(enemy -> {
+                    GameActions.Top.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
                     if (GameUtilities.IsFatal(enemy, true)) {
                         GameActions.Bottom.EvokeOrb(magicNumber).AddCallback(() ->
                                 GameActions.Bottom.ChannelOrbs(Frost::new, JUtils.Count(player.orbs, o -> o instanceof EmptyOrbSlot)));

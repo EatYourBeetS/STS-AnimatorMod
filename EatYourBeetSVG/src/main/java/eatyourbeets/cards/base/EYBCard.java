@@ -484,19 +484,19 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         }
         if (selfRetain)
         {
-            dynamicTooltips.add(GR.Tooltips.Retain);
+            dynamicTooltips.add(GameUtilities.InGame() ? GR.Tooltips.RetainInfinite : GR.Tooltips.Retain);
         }
         else if (retain)
         {
-            dynamicTooltips.add(GR.Tooltips.RetainOnce);
+            dynamicTooltips.add(GameUtilities.InGame() ? GR.Tooltips.RetainOnce : GR.Tooltips.Retain);
         }
         if (hasTag(HASTE_INFINITE))
         {
-            dynamicTooltips.add(GR.Tooltips.HasteInfinite);
+            dynamicTooltips.add(GameUtilities.InGame() ? GR.Tooltips.HasteInfinite : GR.Tooltips.Haste);
         }
         else if (hasTag(HASTE))
         {
-            dynamicTooltips.add(GR.Tooltips.Haste);
+            dynamicTooltips.add(GameUtilities.InGame() ? GR.Tooltips.HasteOnce : GR.Tooltips.Haste);
         }
         if (purgeOnUse || hasTag(PURGE))
         {

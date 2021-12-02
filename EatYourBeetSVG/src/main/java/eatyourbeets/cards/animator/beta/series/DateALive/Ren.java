@@ -19,8 +19,8 @@ public class Ren extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
-        SetAffinity_Dark(2, 0, 0);
+        Initialize(0, 2, 3, 2);
+        SetAffinity_Dark(2, 0, 1);
         SetAffinity_Blue(1, 0, 0);
         SetEthereal(true);
     }
@@ -33,6 +33,7 @@ public class Ren extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Callback(() -> {
            if (GameUtilities.GetOrbCount(Dark.ORB_ID) == 0) {
                GameActions.Bottom.ChannelOrb(new Dark());

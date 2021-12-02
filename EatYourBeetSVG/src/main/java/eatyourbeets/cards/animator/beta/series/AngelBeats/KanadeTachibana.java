@@ -18,17 +18,19 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 4);
+        Initialize(0, 1, 2, 4);
         SetUpgrade(0, 0, 1, 1);
 
         SetPurge(true);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Green(0,0,1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainSupercharge(secondaryValue);
         GameActions.Bottom.FetchFromPile(name, magicNumber, p.discardPile)
         .SetOptions(false, true)

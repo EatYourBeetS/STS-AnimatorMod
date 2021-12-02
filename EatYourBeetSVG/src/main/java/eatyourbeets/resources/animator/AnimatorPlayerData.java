@@ -372,8 +372,8 @@ public class AnimatorPlayerData
                     sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'))
                       .append(" ")
                       .append("_Preset@").append(data.Preset).append(":").append((data.Preset == loadout.Preset) ? 1 : 0).append(";")
-                      .append("_Gold@").append(data.Gold).append(";")
-                      .append("_HP@").append(data.HP).append(";");
+                      .append("_Gold@").append(data.GoldValue).append(";")
+                      .append("_HP@").append(data.HPValue).append(";");
 
                     for (AnimatorRelicSlot slot : data.relicSlots)
                     {
@@ -448,11 +448,11 @@ public class AnimatorPlayerData
                         break;
 
                     case "_Gold":
-                        loadoutData.Gold = itemAmount;
+                        loadoutData.GoldValue = itemAmount;
                         break;
 
                     case "_HP":
-                        loadoutData.HP = itemAmount;
+                        loadoutData.HPValue = itemAmount;
                         break;
 
                     default:

@@ -21,9 +21,9 @@ public class ReineMurasame extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 2, 3);
         SetUpgrade(0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Blue(2, 0, 3);
         SetAffinity_Orange(1);
 
         SetExhaust(true);
@@ -32,6 +32,7 @@ public class ReineMurasame extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         int stacks = GameUtilities.UseXCostEnergy(this);
 
         for (int i = 0; i < stacks; i++)

@@ -23,6 +23,8 @@ public class SilverFang extends AnimatorCard
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Green(2, 0, 1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
@@ -52,7 +54,7 @@ public class SilverFang extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         BlockModifiers.For(this).Set(0);
 
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        if ((info.IsSynergizing || TrySpendAffinity(Affinity.Red)) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
         }

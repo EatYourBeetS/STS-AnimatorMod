@@ -22,14 +22,14 @@ public class Saber extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 1, 3);
+        Initialize(9, 1, 3, 2);
         SetUpgrade(2, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(2, 0, 1);
 
-        SetCooldown(8, 0, this::OnCooldownCompleted);
+        SetSoul(8, 0, Saber_Excalibur::new);
         SetLoyal(true);
     }
 
@@ -65,12 +65,6 @@ public class Saber extends AnimatorCard
             GameActions.Bottom.GainBlock(block);
         }
 
-        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 3 : 1, m);
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        GameActions.Bottom.Purge(uuid);
-        GameActions.Bottom.MakeCardInHand(new Saber_Excalibur());
+        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 1 + secondaryValue : 1, m);
     }
 }

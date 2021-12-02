@@ -23,7 +23,7 @@ public class Zero extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0,0,0);
 
         SetAffinity_Blue(1);
@@ -42,7 +42,14 @@ public class Zero extends AnimatorCard
         }
         GameActions.Bottom.PlayFromPile(name, 1, m, p.drawPile)
         .SetOptions(true, false)
-        .SetFilter(c -> c.type == CardType.SKILL);
+        .SetFilter(c -> c.type == CardType.SKILL).AddCallback(cards -> {
+                for (AbstractCard ca : cards) {
+                    if (ca.rarity == CardRarity.BASIC && info.TryActivateLimited()) {
+                        GameUtilities.ModifyCostForCombat(ca, 0, false);
+                        break;
+                    }
+                }
+        });
     }
 
     protected void FindCards(RotatingList<AbstractCard> cards, AbstractMonster target)

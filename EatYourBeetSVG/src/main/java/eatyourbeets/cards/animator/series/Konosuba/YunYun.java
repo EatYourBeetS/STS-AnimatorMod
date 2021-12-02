@@ -22,7 +22,7 @@ public class YunYun extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0);
+        Initialize(7, 0);
         SetUpgrade(4, 0);
 
         SetAffinity_Blue(2, 0, 1);
@@ -34,7 +34,7 @@ public class YunYun extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (CombatStats.TryActivateLimited(cardID))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ChannelOrb(new Lightning());
             GameActions.Bottom.Flash(this);

@@ -31,10 +31,12 @@ public class SFX
         BaseMod.addAudio(ANIMATOR_ORB_EARTH_CHANNEL, "audio/animator/sound/ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_WATER_EVOKE, "audio/animator/sound/ORB_WATER_EVOKE.ogg");
         BaseMod.addAudio(ANIMATOR_ORB_WATER_CHANNEL, "audio/animator/sound/ORB_WATER_CHANNEL.ogg");
+        BaseMod.addAudio(ANIMATOR_SUPPORT_DAMAGE, "audio/animator/sound/EVFX02_11_QuickBlade.ogg");
         BaseMod.addAudio(ANIMATOR_KIRA_POWER, "audio/animator/sound/KIRA_POWER.ogg");
         BaseMod.addAudio(ANIMATOR_MEGUMIN_CHARGE, "audio/animator/sound/MEGUMIN_CHARGE.ogg");
         BaseMod.addAudio(ANIMATOR_THE_ULTIMATE_CRYSTAL, "audio/animator/sound/THE_ULTIMATE_CRYSTAL.ogg");
-        BaseMod.addAudio(ANIMATOR_WATER_DOME, "audio/animator/sound/WATER_DOME.ogg");
+
+        BaseMod.addAudio(ANIMATOR_STAR, "audio/animator/sound/STAR.ogg");
 
         MainMusicPatches.SetFolderPath("audio/animator/music/");
         MainMusicPatches.AddMusic(ANIMATOR_THE_CREATURE);
@@ -57,6 +59,7 @@ public class SFX
     public static final String ANIMATOR_PSI = "ANIMATOR_PSI";
     public static final String ANIMATOR_PUNCH = "ANIMATOR_PUNCH";
     public static final String ANIMATOR_STAR = "ANIMATOR_STAR";
+    public static final String ANIMATOR_SUPPORT_DAMAGE = "ANIMATOR_SUPPORT_DAMAGE";
     public static final String ANIMATOR_THE_ULTIMATE_CRYSTAL = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
     public static final String ANIMATOR_THE_CREATURE = "THE_CREATURE.ogg";
     public static final String ANIMATOR_THE_HAUNT = "THE_HAUNT.ogg";

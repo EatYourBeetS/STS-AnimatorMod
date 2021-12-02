@@ -22,11 +22,11 @@ public class Victim extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 38, 4);
+        Initialize(0,3, 38, 4);
         SetUpgrade(0,0,5,2);
 
         SetAffinity_Light(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(2,0,2);
 
         SetExhaust(true);
 
@@ -36,6 +36,7 @@ public class Victim extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SelectFromHand(name, 1, false)
                 .SetOptions(true, true, true)
                 .SetMessage(RetainCardsAction.TEXT[0])

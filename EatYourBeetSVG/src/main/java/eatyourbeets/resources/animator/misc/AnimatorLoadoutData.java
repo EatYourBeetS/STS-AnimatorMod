@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class AnimatorLoadoutData
 {
     public int Preset;
-    public int Gold;
-    public int HP;
+    public int GoldValue;
+    public int HPValue;
     public final ArrayList<AnimatorCardSlot> cardSlots = new ArrayList<>();
     public final ArrayList<AnimatorRelicSlot> relicSlots = new ArrayList<>();
 
@@ -69,8 +69,8 @@ public class AnimatorLoadoutData
     {
         final AnimatorLoadoutData copy = new AnimatorLoadoutData();
         copy.Preset = preset;
-        copy.Gold = Gold;
-        copy.HP = HP;
+        copy.GoldValue = GoldValue;
+        copy.HPValue = HPValue;
         for (AnimatorCardSlot slot : cardSlots)
         {
             copy.cardSlots.add(slot.MakeCopy(copy));

@@ -13,21 +13,27 @@ public class Sora_Strategy2 extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Sora_Strategy2.class)
             .SetImagePath(Sora_Strategy1.DATA.ImagePath)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(Sora.DATA.Series);
 
     public Sora_Strategy2()
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 1);
-        SetUpgrade(0,0,0, 1);
+        Initialize(0, 20, 5);
+        SetUpgrade(0,5,0);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
 
         SetEthereal(true);
         SetExhaust(true);
+    }
+
+    @Override
+    protected void UpdateBlock(float amount)
+    {
+        super.UpdateBlock(baseBlock);
     }
 
     @Override
@@ -41,7 +47,6 @@ public class Sora_Strategy2 extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainTemporaryArtifact(magicNumber);
-        GameActions.Bottom.GainBlur(secondaryValue);
+        GameActions.Bottom.GainBlock(block);
     }
 }

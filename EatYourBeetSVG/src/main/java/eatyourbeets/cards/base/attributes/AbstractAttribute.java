@@ -96,6 +96,19 @@ public abstract class AbstractAttribute
         return this;
     }
 
+    public int GetParsedValue() {
+        if (this.mainText == null) {
+            return 0;
+        }
+
+        try {
+            return Integer.parseInt(mainText.text);
+        }
+        catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
     public void Render(SpriteBatch sb, EYBCard card)
     {
         if (mainText == null) {

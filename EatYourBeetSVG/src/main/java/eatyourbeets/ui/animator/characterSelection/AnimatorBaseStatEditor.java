@@ -41,11 +41,11 @@ public class AnimatorBaseStatEditor extends GUIElement
         {
             if (this == Gold)
             {
-                data.Gold = amount;
+                data.GoldValue = amount;
             }
             else
             {
-                data.HP = amount;
+                data.HPValue = amount;
             }
         }
 
@@ -61,7 +61,7 @@ public class AnimatorBaseStatEditor extends GUIElement
 
         public int GetAmount(AnimatorLoadoutData data)
         {
-            return this == Gold ? data.Gold : data.HP;
+            return GetBaseValue() + GetStep() * (this == Gold ? data.GoldValue : data.HPValue);
         }
 
         public String GetText(AnimatorLoadoutData data)
@@ -164,6 +164,7 @@ public class AnimatorBaseStatEditor extends GUIElement
     public void SetLoadout(AnimatorLoadoutData data)
     {
         this.data = data;
+        valueDropdown.SetSelection((type == Type.Gold ? data.GoldValue : data.HPValue), true);
     }
 
     public boolean CanDecrease()
@@ -187,6 +188,6 @@ public class AnimatorBaseStatEditor extends GUIElement
     }
 
     public void Set(int amount) {
-        type.SetAmount(data, type.GetBaseValue() + type.GetStep() * amount);
+        type.SetAmount(data, amount);
     }
 }

@@ -51,7 +51,7 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameUtilities.MaintainPower(Affinity.Green);
+        GameUtilities.MaintainPower(Affinity.Red);
         GameUtilities.MaintainPower(Affinity.Orange);
         GameActions.Bottom.Flash(this);
     }

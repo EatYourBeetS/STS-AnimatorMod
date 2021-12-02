@@ -23,7 +23,7 @@ public class Canti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 3);
+        Initialize(2, 3, 3);
 
         SetAffinity_Orange(1);
         SetAffinity_Light(1);
@@ -51,6 +51,10 @@ public class Canti extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+
+        if (m != null && !GameUtilities.IsAttacking(m.intent) && info.TryActivateSemiLimited()) {
+            GameActions.Delayed.GainTechnic(magicNumber, true);
+        }
 
         if (damage >= 20)
         {

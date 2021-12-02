@@ -24,10 +24,10 @@ public class CatoElAltestan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 1, 2, 3);
+        SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(2, 0, 2);
 
         SetExhaust(true);
 
@@ -39,7 +39,7 @@ public class CatoElAltestan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-
+        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
         .SetOptions(false, true)

@@ -14,10 +14,7 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.*;
 
 public class Fire extends AnimatorOrb {
     public static final String ORB_ID = CreateFullID(Fire.class);
@@ -80,7 +77,7 @@ public class Fire extends AnimatorOrb {
         this.vfxTimer -= Gdx.graphics.getDeltaTime();
         if (this.vfxTimer < 0.0F) {
             GameEffects.Queue.Add(new FadingParticleEffect(GetRandomTexture(), hb.cX + MathUtils.random(-32, 32), hb.cY - 32)
-                    .SetTranslucent(1f)
+                    .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
                     .Edit(angle, (r, p) -> p
                             .SetFlip(MathUtils.randomBoolean(), false)
                             .SetScale(scale * MathUtils.random(0.09f, 0.64f))

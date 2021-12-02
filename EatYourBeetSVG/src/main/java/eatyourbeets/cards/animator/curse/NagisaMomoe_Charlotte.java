@@ -26,10 +26,12 @@ public class NagisaMomoe_Charlotte extends AnimatorCard_Curse implements OnPurge
     {
         super(DATA, true);
 
-        Initialize(10, 0, 2, 0);
-        SetUpgrade(3, 0, 1, 0);
+        Initialize(12, 0, 2, 0);
+        SetUpgrade(4, 0, 1, 0);
 
         SetAffinity_Star(1);
+        SetAffinity_Red(0,0,2);
+        SetAffinity_Light(0,0,1);
         SetAutoplay(true);
     }
 

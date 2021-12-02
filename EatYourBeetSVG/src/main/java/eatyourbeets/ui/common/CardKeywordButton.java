@@ -166,7 +166,7 @@ public class CardKeywordButton extends GUIElement
             }
 
 
-            EYBCardTooltip.QueueTooltip(Tooltip, actualMX, actualMY);
+            EYBCardTooltip.QueueTooltip(Tooltip, actualMX + 20 * Settings.scale, actualMY + 20 * Settings.scale);
         }
     }
 }

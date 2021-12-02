@@ -26,9 +26,10 @@ public class YoshinoHimekawa extends AnimatorCard {
     public YoshinoHimekawa() {
         super(DATA);
 
-        Initialize(0, 0, 5, 2);
+        Initialize(0, 2, 5, 2);
         SetAffinity_Green(2, 0, 0);
         SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Star(0,0,1);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -74,8 +75,11 @@ public class YoshinoHimekawa extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.GainBlur(secondaryValue);
-        GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), magicNumber).ShowEffect(true, true);
+        GameActions.Bottom.GainBlock(block);
+        if (transformed) {
+            GameActions.Bottom.GainBlur(secondaryValue);
+            GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), magicNumber).ShowEffect(true, true);
+        }
     }
 
     private void SetTransformed(boolean value) {

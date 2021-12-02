@@ -22,8 +22,8 @@ public class RollingCubes extends AnimatorRelic
     private static final CardGroup tempGroup2 = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
     public static final String ID = CreateFullID(RollingCubes.class);
-    public static final int MAX_STORED_USES = 3;
-    public static final int USES_PER_ELITE = 2;
+    public static final int MAX_STORED_USES = 5;
+    public static final int USES_PER_ELITE = 3;
     public static final int USES_PER_NORMAL = 1;
 
     public RollingCubes()

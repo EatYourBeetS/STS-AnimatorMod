@@ -15,7 +15,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.ElectrifiedPower;
-import eatyourbeets.stances.SuperchargeStance;
 import eatyourbeets.utilities.GameActions;
 
 public class HiiragiKureto extends AnimatorCard
@@ -66,7 +65,7 @@ public class HiiragiKureto extends AnimatorCard
             }
         }));
 
-        if (SuperchargeStance.IsActive() || TrySpendAffinity(Affinity.Light)) {
+        if (TrySpendAffinity(Affinity.Light)) {
             GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
         }
     }

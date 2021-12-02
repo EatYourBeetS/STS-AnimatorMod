@@ -30,7 +30,7 @@ public class ShidoItsuka extends AnimatorCard
 
         Initialize(0, 8, 3);
         SetUpgrade(0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
 
         SetHarmonic(true);
         SetExhaust(true);

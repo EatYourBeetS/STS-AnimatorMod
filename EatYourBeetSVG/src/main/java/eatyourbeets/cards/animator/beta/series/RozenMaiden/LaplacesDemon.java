@@ -30,7 +30,7 @@ public class LaplacesDemon extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 10, 1);
+        Initialize(0, 10, 3, 2);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(2, 0, 0);
         SetAffinity_Dark(1, 1, 0);
@@ -58,7 +58,7 @@ public class LaplacesDemon extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        return magicNumber * JUtils.Max(CombatStats.Affinities.Powers, p -> p.amount);
+        return secondaryValue * JUtils.Max(Affinity.Extended(), a -> CombatStats.Affinities.GetAffinityLevel(a, true));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class LaplacesDemon extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (auxiliaryData.form == 1) {
-            GameActions.Bottom.StackPower(new LaplacesDemonPower(p, this));
+            GameActions.Bottom.StackPower(new LaplacesDemonPower(p, magicNumber));
         }
         else {
             GameActions.Bottom.GainBlock(block);
@@ -93,12 +93,11 @@ public class LaplacesDemon extends AnimatorCard
 
     public static class LaplacesDemonPower extends AnimatorPower
     {
-        protected final LaplacesDemon laplace;
 
-        public LaplacesDemonPower(AbstractCreature owner, LaplacesDemon laplace)
+        public LaplacesDemonPower(AbstractCreature owner, int amount)
         {
             super(owner, LaplacesDemon.DATA);
-            this.laplace = laplace;
+            Initialize(amount);
         }
 
         @Override
@@ -106,18 +105,9 @@ public class LaplacesDemon extends AnimatorCard
         {
             super.atStartOfTurn();
 
-            if (CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true)) {
-                GameActions.Bottom.SelectFromHand(name, player.hand.size(), true)
-                        .SetFilter(c -> GameUtilities.IsSoul(c) || GameUtilities.IsSameSeries(c, laplace))
-                        .AddCallback(cards -> {
-                            for (AbstractCard card : cards) {
-                                AfterLifeMod.Add(card);
-                            }
-                        });
-            }
-            else {
-                GameActions.Bottom.SelectFromHand(name, player.hand.size(), true)
-                        .AddCallback(cards -> {
+            GameActions.Bottom.SelectFromHand(name, amount, false)
+                    .AddCallback(cards -> {
+                        if (CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true)) {
                             int totalCost = 0;
                             for (AbstractCard card : cards) {
                                 if (card.costForTurn >= 0) {
@@ -132,8 +122,32 @@ public class LaplacesDemon extends AnimatorCard
                                     card.flash();
                                 }
                             }
-                        });
-            }
+                        }
+                        else {
+                            for (AbstractCard card : cards) {
+                                EYBCard eC = JUtils.SafeCast(card, EYBCard.class);
+                                if (eC != null) {
+                                    int affinities = 0;
+                                    for (Affinity af : Affinity.Extended()) {
+                                        // Increase the chance of an affinity winding up as 0
+                                        int val = Math.max(0, MathUtils.random(-1,2));
+                                        if (val > 0) {
+                                            affinities += 1;
+                                        }
+                                        GameActions.Last.ModifyAffinityLevel(eC, af, val, false);
+
+                                        // Do not let any card have more than 4 affinities
+                                        if (affinities >= 4) {
+                                            break;
+                                        }
+                                    }
+                                    if (affinities == 0) {
+                                        GameActions.Last.ModifyAffinityLevel(eC, Affinity.Star, MathUtils.random(1,2), false);
+                                    }
+                                }
+                            }
+                        }
+                    });
             flash();
         }
 

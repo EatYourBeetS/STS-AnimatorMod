@@ -10,6 +10,7 @@ import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.Projectile;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class GenericAnimationEffect extends EYBEffect
 {
@@ -92,6 +93,13 @@ public class GenericAnimationEffect extends EYBEffect
     {
         this.endFrame = projectile.totalFrames + fadingFrames;
         this.fade = fadingFrames > 0;
+
+        return this;
+    }
+
+    public GenericAnimationEffect SetBlendingMode(RenderHelpers.BlendingMode blendingMode)
+    {
+        this.projectile.SetBlendingMode(blendingMode);
 
         return this;
     }

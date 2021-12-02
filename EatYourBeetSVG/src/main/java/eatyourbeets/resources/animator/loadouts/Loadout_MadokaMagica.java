@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.animator.curse.Curse_Writhe;
 import eatyourbeets.cards.animator.series.MadokaMagica.*;
 import eatyourbeets.cards.animator.ultrarare.Walpurgisnacht;
 import eatyourbeets.cards.base.CardSeries;
@@ -24,8 +25,10 @@ public class Loadout_MadokaMagica extends AnimatorLoadout
         AddStarterCard(YuiTsuruno.DATA, 7);
         AddStarterCard(NagisaMomoe.DATA, 10);
         AddStarterCard(SayakaMiki.DATA, 10);
+        AddStarterCard(MadokaKaname.DATA, 25);
         AddStarterCard(Kyubey.DATA, 25);
         AddStarterCard(Curse_GriefSeed.DATA, -2);
+        AddStarterCard(Curse_Writhe.DATA, -5);
     }
 
     @Override

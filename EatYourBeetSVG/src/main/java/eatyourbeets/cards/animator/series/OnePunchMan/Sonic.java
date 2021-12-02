@@ -24,10 +24,10 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 2);
+        Initialize(0, 1, 4, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(2,0,3);
         SetAffinity_Dark(1);
 
         SetExhaust(true);
@@ -38,6 +38,7 @@ public class Sonic extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlur(secondaryValue);
         GameActions.Bottom.GainVelocity(magicNumber);
 

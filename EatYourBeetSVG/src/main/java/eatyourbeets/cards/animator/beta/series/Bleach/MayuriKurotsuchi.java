@@ -11,15 +11,17 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class MayuriKurotsuchi extends AnimatorCard {
     public static final EYBCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal).SetSeriesFromClassPackage();
+    public static final int POISON_THRESHOLD = 20;
 
     public MayuriKurotsuchi() {
         super(DATA);
 
-        Initialize(0, 0, 2, 4);
+        Initialize(0, 1, 2, 3);
         SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Silver(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Blue(0,0,1);
         SetAffinity_Dark(1);
     }
 
@@ -30,11 +32,10 @@ public class MayuriKurotsuchi extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), GetXValue())
                 .AddCallback(m, (enemy, cards) -> {
-                    int poisonThreshold = 30;
-
-                    if (GameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID) >= poisonThreshold) {
+                    if (GameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID) >= POISON_THRESHOLD) {
                         GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
                                 .ShowEffect(false, true);
                     }

@@ -22,11 +22,13 @@ public class Priestess extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Orange, 8);
     }
 
     @Override
@@ -38,12 +40,6 @@ public class Priestess extends AnimatorCard
         {
             intent.AddWeak();
         }
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        AddScaling(Affinity.Light,1);
     }
 
     @Override
@@ -59,7 +55,7 @@ public class Priestess extends AnimatorCard
         GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
         GameActions.Bottom.GainSupercharge(secondaryValue);
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing || CheckAffinity(Affinity.Orange))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
             .ShowEffect(true, true)
@@ -67,8 +63,8 @@ public class Priestess extends AnimatorCard
             .SetFilter(GameUtilities::IsHindrance).AddCallback(
                     cards -> {
                         if (cards.size() > 0) {
-                            GameActions.Bottom.ReducePower(player, FrailPower.POWER_ID,secondaryValue);
-                            GameActions.Bottom.ReducePower(player, VulnerablePower.POWER_ID,secondaryValue);
+                            GameActions.Bottom.ReducePower(player, FrailPower.POWER_ID,1);
+                            GameActions.Bottom.ReducePower(player, VulnerablePower.POWER_ID,1);
                         }
                     }
             );

@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -12,7 +14,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
 {
     public static final EYBCardData DATA = Register(Shiro.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None, true)
             .SetSeriesFromClassPackage();
     public static final int CHARGE_COST = 5;
     private AbstractOrb focusedOrb;
@@ -21,10 +23,10 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 2, 3);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
 
         SetProtagonist(true);
@@ -32,9 +34,16 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Scry(magicNumber).AddCallback(
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.Scry(secondaryValue).AddCallback(
                 cards -> {
                     if (cards.size() > 0) {
                         GameActions.Bottom.TriggerOrbPassive(cards.size(), true, false);

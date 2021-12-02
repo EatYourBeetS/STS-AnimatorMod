@@ -19,6 +19,7 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class Air extends AnimatorOrb
 {
@@ -78,14 +79,15 @@ public class Air extends AnimatorOrb
         this.vfxTimer -= Gdx.graphics.getDeltaTime();
         if (this.vfxTimer < 0.0F) {
             GameEffects.List.Add(new FadingParticleEffect(IMAGES.AirCloud.Texture(), hb.cX, hb.cY)
-                    .SetColor(new Color(MathUtils.random(0.7f, 1f), 1, MathUtils.random(0.8f, 1f), 1))
-                    .SetTranslucent(1f)
+                    .SetColor(new Color(MathUtils.random(0.7f, 1f), 1, MathUtils.random(0.8f, 1f), MathUtils.random(0.5f, 0.8f)))
+                    .SetBlendingMode(MathUtils.randomBoolean() ? RenderHelpers.BlendingMode.Overlay : RenderHelpers.BlendingMode.Normal)
                     .Edit(angle, (r, p) -> p
-                            .SetScale(scale * MathUtils.random(0.1f, 0.32f)).SetTargetRotation(36000f,1440f)
-                            .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(700f, 1010f),0f)
+                            .SetScale(scale * MathUtils.random(0.1f, 0.32f)).SetTargetRotation(36000f,200f)
+                            .SetSpeed(MathUtils.random(25f, 50f), MathUtils.random(25f, 50f), MathUtils.random(150f, 250f),MathUtils.random(0.3f, 0.6f))
                             .SetAcceleration(MathUtils.random(1f, 5f), MathUtils.random(1f, 5f), null, null, null)
-                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(0.5f, false));
-            this.vfxTimer = MathUtils.random(0.2f, 0.5f);
+                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false))
+                    .SetRenderBehind(true);
+            this.vfxTimer = MathUtils.random(0.1f, 0.25f);
         }
     }
 
@@ -96,16 +98,16 @@ public class Air extends AnimatorOrb
 
         float scaleExt1 = this.bobEffect.y / 77f;
         float scaleExt2 = this.bobEffect.y / 65f;
-        float angleExt1 = this.angle / 1.5f;
-        float angleExt2 = this.angle / 1.1f;
+        float angleExt1 = this.angle * 1.3f;
+        float angleExt2 = this.angle * 1.1f;
 
         sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, angleExt1, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt2, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt2.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt2, this.scale + scaleExt2, angleExt2, 0, 0, 96, 96, !this.hFlip1, false);
 
         sb.setBlendFunction(770, 1);
         this.shineColor.a = Interpolation.sine.apply(0.1f,0.33f, angleExt2 / 185);
         sb.setColor(this.shineColor);
-        sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, this.angle * 1.8f, 0, 0, 96, 96, this.hFlip1, false);
+        sb.draw(imgExt1.Texture(), this.cX - 48f, this.cY - 48f, 48f, 48f, 96f, 96f, this.scale + scaleExt1, this.scale + scaleExt1, this.angle * 1.8f, 0, 0, 96, 96, !this.hFlip1, false);
 
         this.shineColor.a = Interpolation.sine.apply(0.1f,0.33f, angleExt1 / 135);
         sb.setColor(this.shineColor);

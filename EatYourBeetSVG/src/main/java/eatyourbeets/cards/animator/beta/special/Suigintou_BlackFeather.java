@@ -15,7 +15,8 @@ import eatyourbeets.utilities.GameUtilities;
 public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Suigintou_BlackFeather.class)
-    		.SetCurse(0, EYBCardTarget.None, false).SetSeries(CardSeries.RozenMaiden)
+    		.SetCurse(0, EYBCardTarget.None, true)
+            .SetSeries(CardSeries.RozenMaiden)
             .PostInitialize(data -> data.AddPreview(new Suigintou(), false));
 
     public Suigintou_BlackFeather()

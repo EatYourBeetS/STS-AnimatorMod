@@ -202,6 +202,7 @@ public class CommonImages
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");
         public final TextureCache Shot             = new TextureCache("images/animator/effects/Shot.png");
+        public final TextureCache Slice            = new TextureCache("images/animator/effects/Slice.png");
         public final TextureCache Spark1           = new TextureCache("images/animator/effects/Spark1.png");
         public final TextureCache Spark2           = new TextureCache("images/animator/effects/Spark2.png");
         public final TextureCache Sparkle1         = new TextureCache("images/animator/effects/Sparkle1.png");

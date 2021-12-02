@@ -78,7 +78,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
             case Light: return AffinityToken_Light.DATA;
             case Dark: return AffinityToken_Dark.DATA;
             case Silver: return AffinityToken_Silver.DATA;
-            //case Star: return AffinityToken_Star.DATA;
+            case Star: return AffinityToken_Star.DATA;
 
             default:
             {

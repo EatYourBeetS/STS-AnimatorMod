@@ -7,22 +7,25 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import eatyourbeets.actions.animator.CreateRandomCurses;
+import eatyourbeets.cards.animator.special.TimeParadox;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
-public class MakiseKurisu extends AnimatorCard //TODO add custom Time Paradox statuses
+public class MakiseKurisu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(MakiseKurisu.class)
             .SetSkill(3, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(1)
-            .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.SteinsGate);
+            .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.SteinsGate)
+            .PostInitialize(data ->
+                data.AddPreview(new TimeParadox(), false)
+            );
 
     public MakiseKurisu()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 1, 2);
 
         SetAffinity_Blue(2);
         SetAffinity_Silver(2);
@@ -46,7 +49,9 @@ public class MakiseKurisu extends AnimatorCard //TODO add custom Time Paradox st
         GameActions.Bottom.Add(new SkipEnemiesTurnAction());
         GameActions.Bottom.DrawNextTurn(magicNumber);
         GameActions.Bottom.GainEnergyNextTurn(magicNumber);
-        GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.discardPile));
+        for (int i = 0; i < secondaryValue; i++) {
+            GameActions.Bottom.MakeCardInDiscardPile(new TimeParadox());
+        }
         GameActions.Bottom.Add(new PressEndTurnButtonAction());
     }
 }

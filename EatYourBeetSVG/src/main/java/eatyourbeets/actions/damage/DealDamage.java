@@ -18,6 +18,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected final DamageInfo info;
 
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
+    protected boolean applyPowers;
     protected boolean hasPlayedEffect;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
@@ -41,6 +42,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.pitchMin = other.pitchMin;
         this.pitchMax = other.pitchMax;
         this.skipWait = other.skipWait;
+        this.applyPowers = other.applyPowers;
         this.bypassBlock = other.bypassBlock;
         this.bypassThorns = other.bypassThorns;
         this.onDamageEffect = other.onDamageEffect;
@@ -62,6 +64,12 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.attackEffect = effect;
 
         Initialize(info.owner, target == null || GameUtilities.IsDeadOrEscaped(target) ? GameUtilities.GetRandomEnemy(true) : target, info.output);
+    }
+
+    public DealDamage ApplyPowers(boolean applyPowers)
+    {
+        this.applyPowers = applyPowers;
+        return this;
     }
 
     public DealDamage SetDamageEffect(FuncT1<Float, AbstractCreature> onDamageEffect)
@@ -176,6 +184,10 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (TickDuration(deltaTime))
         {
+            if (applyPowers) {
+                info.applyPowers(source, target);
+                GameUtilities.UsePenNib();
+            }
             DamageHelper.ApplyTint(target, enemyTint, attackEffect);
             DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);
 

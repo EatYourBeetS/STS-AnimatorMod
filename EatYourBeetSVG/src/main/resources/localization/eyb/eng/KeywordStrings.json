@@ -152,7 +152,7 @@
 	},
 	"Desecration Scaling":
 	{
-	  "DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [D].",
+	  "DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [D].",
 	  "NAMES": ["[d] scaling", "desecration scaling"],
 	  "PROPER_NAME": "Desecration Scaling"
 	},
@@ -194,7 +194,7 @@
 	},
 	"Endurance Scaling":
 	{
-	  "DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [O].",
+	  "DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [O].",
 	  "NAMES": ["[o] scaling", "endurance scaling"],
 	  "PROPER_NAME": "Endurance Scaling"
 	},
@@ -392,7 +392,7 @@
 	},
 	"Might Scaling":
 	{
-	  "DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [R].",
+	  "DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [R].",
 	  "NAMES": ["[r] scaling", "might scaling"],
 	  "PROPER_NAME": "Might Scaling"
 	},
@@ -404,15 +404,33 @@
 	},
 	"Multicolor":
 	{
-		"DESCRIPTION": "Counts as an #yAffinity of any color.",
+		"DESCRIPTION": "#yMulticolor cards can count as any #yAffinity. When you play a #yMulticolor card, gain all [A-Gen] of the last card played.",
 		"NAMES": ["multicolor"],
 		"PROPER_NAME": "Multicolor"
+	},
+	"Multicolor Scaling":
+	{
+		"DESCRIPTION": "For each point of [A-Star] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of any [A-Gen] #yPower.",
+		"NAMES": ["[a-star] scaling", "multicolor scaling"],
+		"PROPER_NAME": "Multicolor Scaling"
 	},
 	"Neutral Stance":
 	{
 		"DESCRIPTION": "",
 		"NAMES": ["neutral stance"],
 		"PROPER_NAME": "Neutral Stance"
+	},
+	"Next Turn Block":
+	{
+		"DESCRIPTION": "Gain [Block] at the start of next turn.",
+		"NAMES": ["next turn block"],
+		"PROPER_NAME": "Next Turn Block"
+	},
+	"Next Turn Draw":
+	{
+		"DESCRIPTION": "Draw additional cards at the start of next turn.",
+		"NAMES": ["next turn draw"],
+		"PROPER_NAME": "Next Turn Draw"
 	},
 	"Orb Slot":
 	{
@@ -524,7 +542,7 @@
 	},
 	"Supercharge Scaling":
 	{
-	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [L].",
+	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
 	  "NAMES": ["[l] scaling", "supercharge scaling"],
 	  "PROPER_NAME": "Supercharge Scaling"
 	},
@@ -566,7 +584,7 @@
 	},
 	"Technic Scaling":
 	{
-	  "DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [S].",
+	  "DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [S].",
 	  "NAMES": ["[s] scaling", "technic scaling"],
 	  "PROPER_NAME": "Technic Scaling"
 	},
@@ -602,7 +620,7 @@
 	},
 	"Velocity Scaling":
 	{
-	  "DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [G].",
+	  "DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [G].",
 	  "NAMES": ["[g] scaling", "velocity scaling"],
 	  "PROPER_NAME": "Velocity Scaling"
 	},
@@ -638,7 +656,7 @@
 	},
 	"Wisdom Scaling":
 	{
-	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] for every #b4 [B].",
+	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [B].",
 	  "NAMES": ["[b] scaling", "wisdom scaling"],
 	  "PROPER_NAME": "Wisdom Scaling"
 	},
@@ -746,21 +764,21 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn. NL If it is an [A-Gen] Power, not reduced at the start of next turn.",
+		"DESCRIPTION": "Retained cards are not discarded at the end of turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
 	},
 	"~RetainInfinite":
 	{
-	  "DESCRIPTION": "Not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
+	  "DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
 	  "NAMES": ["~retain infinite"],
-	  "PROPER_NAME": "Retain Once"
+	  "PROPER_NAME": "Retain"
 	},
 	"~RetainOnce":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+		"DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
 		"NAMES": ["~retain once"],
-		"PROPER_NAME": "Retain Once"
+		"PROPER_NAME": "Retain"
 	},
 	"~Steal":
 	{

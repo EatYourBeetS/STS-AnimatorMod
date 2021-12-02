@@ -17,10 +17,10 @@ public class Yoichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 2);
+        Initialize(0,1, 2);
         SetUpgrade(0,2, 0);
 
-        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

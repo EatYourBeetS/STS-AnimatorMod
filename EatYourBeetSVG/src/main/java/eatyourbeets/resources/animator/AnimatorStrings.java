@@ -87,6 +87,7 @@ public class AnimatorStrings
         public final String Types = Strings.TEXT[5];
         public final String Affinities = Strings.TEXT[6];
         public final String Scalings = Strings.TEXT[7];
+        public final String Amount = Strings.TEXT[8];
     }
 
     public class Misc
@@ -148,6 +149,7 @@ public class AnimatorStrings
         public final String DeckHeader = Strings.TEXT[10];
         public final String RelicsHeader = Strings.TEXT[11];
         public final String AttributesHeader = Strings.TEXT[12];
+        public final String Clear = Strings.TEXT[13];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {

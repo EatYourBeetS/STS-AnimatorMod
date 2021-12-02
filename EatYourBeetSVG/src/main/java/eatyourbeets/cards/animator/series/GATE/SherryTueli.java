@@ -24,7 +24,9 @@ public class SherryTueli extends AnimatorCard
 
         SetAffinity_Green(1);
         SetAffinity_Orange(1, 1, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Light, 5);
     }
 
     @Override
@@ -51,11 +53,15 @@ public class SherryTueli extends AnimatorCard
                 {
                     GameActions.Bottom.RecoverHP(heal);
                 }
-                if (JUtils.Find(cards, c -> !GameUtilities.HasOrangeAffinity(c)) != null && info.TryActivateSemiLimited()) {
+                if (JUtils.Find(cards, c -> !GameUtilities.HasOrangeAffinity(c)) != null) {
                     GameActions.Bottom.ObtainAffinityToken(Affinity.Orange, false);
                 }
             }
         });
+
+        if (TrySpendAffinity(Affinity.Light)) {
+            GameActions.Bottom.DrawNextTurn(1);
+        }
     }
 
     protected int CalculateHeal()

@@ -6,6 +6,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -109,7 +110,11 @@ public class SymbolToken extends CTToken
             float iconH = size * tooltip.iconMulti_H;
             float diff = partial / tooltip.iconMulti_W;
 
-            sb.setColor(tooltip.color != null ? tooltip.color : context.color);
+            if (tooltip.backgroundColor != null) {
+                sb.setColor(tooltip.backgroundColor);
+                sb.draw(GR.Common.Images.Badges.Base_Badge.Texture(), context.start_x - diff * 2.2f, context.start_y - (partial * 6) * 1.2f, iconW * 1.2f, iconH * 1.2f);
+            }
+            sb.setColor(context.color);
             sb.draw(tooltip.icon, context.start_x - diff, context.start_y - (partial * 6), iconW, iconH);
         }
         else

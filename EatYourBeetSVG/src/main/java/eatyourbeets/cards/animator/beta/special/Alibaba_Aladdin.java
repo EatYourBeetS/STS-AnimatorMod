@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class Alibaba_Aladdin extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Alibaba_Aladdin.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.GenshinImpact);
+    public static final EYBCardData DATA = Register(Alibaba_Aladdin.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.Magi);
 
     public Alibaba_Aladdin()
     {

@@ -23,11 +23,18 @@ public class Hans extends AnimatorCard implements OnTrySpendAffinitySubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 4);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 3, 5, 4);
+        SetUpgrade(0, 0, 2, 0);
 
         SetExhaust(true);
         SetAffinity_Star(2);
+        SetAffinity_Dark(0,0,2);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetainOnce(true);
     }
 
     @Override
@@ -41,6 +48,7 @@ public class Hans extends AnimatorCard implements OnTrySpendAffinitySubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber).AddCallback(() -> {
                 for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
                     if (GameUtilities.GetPowerAmount(mo, PoisonPower.POWER_ID) > 0) {

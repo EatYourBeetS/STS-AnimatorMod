@@ -24,10 +24,11 @@ public class LuciaKonohana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 2);
+        Initialize(0, 2, 4, 2);
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Green(0,0,1);
 
         SetExhaust(true);
     }
@@ -35,6 +36,7 @@ public class LuciaKonohana extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         int stacks = GameUtilities.UseXCostEnergy(this);
 
         for (int i=0; i<stacks; i++)

@@ -26,6 +26,7 @@ public abstract class CommonTriggerablePower extends CommonPower implements Heal
         {
             battleID = CombatStats.BattleID;
             EFFECT_BONUSES.clear();
+            PASSIVE_DAMAGE_BONUSES.clear();
         }
     }
 

@@ -92,6 +92,7 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 
         if (cards.isEmpty())
         {
+            this.grid = new GUI_CardGrid().CanDragScreen(false);
             Complete(cards);
             return;
         }

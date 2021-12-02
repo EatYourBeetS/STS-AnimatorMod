@@ -783,6 +783,11 @@ public final class GameActions
         return Add(new ModifyAffinityScaling(card, Affinity.General, amount, true));
     }
 
+    public ModifyAffinityScaling IncreaseRandomScaling(AbstractCard card, int amount)
+    {
+        return Add(new ModifyAffinityScaling(card, null, amount, true));
+    }
+
     public ModifyAffinityScaling IncreaseScaling(AbstractCard card, Affinity affinity, int amount)
     {
         return Add(new ModifyAffinityScaling(card, affinity, amount, true));

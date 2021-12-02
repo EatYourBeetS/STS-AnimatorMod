@@ -8,7 +8,10 @@ import eatyourbeets.cards.animator.curse.MadokaKaname_Krimheild;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class MadokaKaname extends AnimatorCard
 {
@@ -20,13 +23,11 @@ public class MadokaKaname extends AnimatorCard
                 data.AddPreview(new MadokaKaname_Krimheild(), true);
             });
 
-    private static final int HEAL_AMOUNT = 4;
-
     public MadokaKaname()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 0);
+        Initialize(0, 0, 3, 4);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1);
@@ -37,8 +38,8 @@ public class MadokaKaname extends AnimatorCard
         SetProtagonist(true);
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.Light, 3);
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Light, 7);
+        SetAffinityRequirement(Affinity.Dark, 7);
 
         SetSoul(4, 0, MadokaKaname_Krimheild::new);
     }
@@ -50,20 +51,17 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        GameUtilities.ModifySecondaryValue(this,
-        JUtils.Count(player.drawPile.group, c -> c.type == CardType.CURSE) +
-        JUtils.Count(player.discardPile.group, c -> c.type == CardType.CURSE) +
-        JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE), false);
+    public int GetXValue() {
+        return secondaryValue * (JUtils.Count(player.drawPile.group, c -> c.type == CardType.CURSE) +
+                JUtils.Count(player.discardPile.group, c -> c.type == CardType.CURSE) +
+                JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE) +
+                JUtils.Count(player.exhaustPile.group, c -> c.type == CardType.CURSE));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.PurgeFromPile(name, magicNumber, p.exhaustPile)
+        GameActions.Bottom.PurgeFromPile(name, magicNumber, p.exhaustPile, player.hand, player.discardPile, player.drawPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
         .SetFilter(c -> CardType.CURSE.equals(c.type))
@@ -71,9 +69,9 @@ public class MadokaKaname extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.HealPlayerLimited(this, HEAL_AMOUNT * cards.size());
-                if (info.CanActivateLimited && TrySpendAffinity(Affinity.Light, Affinity.Dark) && info.TryActivateLimited()) {
-                    GameActions.Bottom.GainSupportDamage(HEAL_AMOUNT * cards.size());
+                GameActions.Bottom.HealPlayerLimited(this, secondaryValue * cards.size());
+                if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
+                    GameActions.Bottom.GainSupportDamage(secondaryValue * cards.size());
                 }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }

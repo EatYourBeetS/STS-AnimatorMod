@@ -33,6 +33,8 @@ public class Shizu extends AnimatorCard
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
         SetAffinity_Light(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Red, 6);
     }
 
     @Override
@@ -58,16 +60,16 @@ public class Shizu extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d
         .SetDamageEffect(c -> GameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 0.9f, 1.1f).duration));
 
-        if (CheckSpecialCondition(true))
+        if (CheckSpecialCondition(true) && TrySpendAffinity(Affinity.Red))
         {
             this.exhaustOnUseOnce = true;
-            GameActions.Bottom.MakeCardInHand(new Shizu_Ifrit());
+            GameActions.Bottom.MakeCardInHand(new Shizu_Ifrit()).AddCallback(GameUtilities::Retain);
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameUtilities.GetOrbCount(Dark.ORB_ID) >= 1 && GameUtilities.GetOrbCount(Fire.ORB_ID) >= 1;
+        return GameUtilities.GetOrbCount(Dark.ORB_ID) >= 1 && GameUtilities.GetOrbCount(Fire.ORB_ID) >= 1 && CheckAffinity(Affinity.Red);
     }
 }

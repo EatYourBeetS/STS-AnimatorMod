@@ -22,6 +22,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -43,7 +44,6 @@ public class CardTooltips
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
 
-    public EYBCardTooltip Affinity_Star = FindByID("Multicolor");
     public EYBCardTooltip Afterlife = FindByID("Afterlife");
     public EYBCardTooltip Air = FindByID("Air");
     public EYBCardTooltip Artifact = FindByID("Artifact");
@@ -91,6 +91,7 @@ public class CardTooltips
     public EYBCardTooltip Harmonic = FindByID("Harmonic");
     public EYBCardTooltip Haste = FindByID("~Haste");
     public EYBCardTooltip HasteInfinite = FindByID("~HasteInfinite");
+    public EYBCardTooltip HasteOnce = FindByID("~HasteOnce");
     public EYBCardTooltip Impaired = FindByID("Impaired");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Inspiration = FindByID("Inspiration");
@@ -104,8 +105,12 @@ public class CardTooltips
     public EYBCardTooltip Might = FindByID("Might");
     public EYBCardTooltip MightScaling = FindByID("Might Scaling");
     public EYBCardTooltip MightStance = FindByID("Might Stance");
+    public EYBCardTooltip Multicolor = FindByID("Multicolor");
+    public EYBCardTooltip MulticolorScaling = FindByID("Multicolor Scaling");
     public EYBCardTooltip Multiform = FindByID("~Multiform");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
+    public EYBCardTooltip NextTurnBlock = FindByID("Next Turn Block");
+    public EYBCardTooltip NextTurnDraw = FindByID("Next Turn Draw");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip OrbSlot = FindByID("Orb Slot");
     public EYBCardTooltip Phasing = FindByID("Phasing");
@@ -218,7 +223,7 @@ public class CardTooltips
         RegisterID(Affinity.Light.GetAffinitySymbol(), Affinity_Light);
         RegisterID(Affinity.Dark.GetAffinitySymbol(), Affinity_Dark);
         RegisterID(Affinity.Silver.GetAffinitySymbol(), Affinity_Silver);
-        RegisterID(Affinity.Star.GetAffinitySymbol(), Affinity_Star);
+        RegisterID(Affinity.Star.GetAffinitySymbol(), Multicolor);
         RegisterID(Affinity.General.GetAffinitySymbol(), Affinity_General);
 
         RegisterID("HP", Health);
@@ -232,21 +237,22 @@ public class CardTooltips
     public void InitializeIcons()
     {
         CommonImages.Badges badges = GR.Common.Images.Badges;
-        Afterlife.SetIcon(badges.Afterlife.Texture(), 6).SetColor(Colors.COLOR_AFTERLIFE).SetIconSizeMulti(1.2f, 1.2f);
-        Autoplay.SetIcon(badges.Autoplay.Texture(), 6).SetColor(Colors.COLOR_AUTOPLAY).SetIconSizeMulti(1.2f, 1.2f);
-        Delayed.SetIcon(badges.Delayed.Texture(), 6).SetColor(Colors.COLOR_DELAYED).SetIconSizeMulti(1.2f, 1.2f);
-        Ethereal.SetIcon(badges.Ethereal.Texture(), 6).SetColor(Colors.COLOR_ETHEREAL).SetIconSizeMulti(1.2f, 1.2f);
-        Exhaust.SetIcon(badges.Exhaust.Texture(), 6).SetColor(Colors.COLOR_EXHAUST).SetIconSizeMulti(1.2f, 1.2f);
-        Harmonic.SetIcon(badges.Harmonic.Texture(), 6).SetColor(Colors.COLOR_HARMONIC).SetIconSizeMulti(1.2f, 1.2f);
-        Haste.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE).SetIconSizeMulti(1.2f, 1.2f);
-        HasteInfinite.SetIcon(badges.Haste.Texture(), 6).SetColor(Colors.COLOR_HASTE).SetIconSizeMulti(1.2f, 1.2f);
-        Innate.SetIcon(badges.Innate.Texture(), 6).SetColor(Colors.COLOR_INNATE).SetIconSizeMulti(1.2f, 1.2f);
-        Loyal.SetIcon(badges.Loyal.Texture(), 6).SetColor(Colors.COLOR_LOYAL).SetIconSizeMulti(1.2f, 1.2f);
-        Purge.SetIcon(badges.Purge.Texture(), 6).SetColor(Colors.COLOR_PURGE).SetIconSizeMulti(1.2f, 1.2f);
-        Retain.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
-        RetainInfinite.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
-        RetainOnce.SetIcon(badges.Retain.Texture(), 6).SetColor(Colors.COLOR_RETAIN).SetIconSizeMulti(1.2f, 1.2f);
-        Unplayable.SetIcon(badges.Unplayable.Texture(), 6).SetColor(Colors.COLOR_UNPLAYABLE).SetIconSizeMulti(1.2f, 1.2f);
+        Afterlife.SetIcon(badges.Afterlife.Texture(), 6).SetBadgeBackground(Colors.COLOR_AFTERLIFE);
+        Autoplay.SetIcon(badges.Autoplay.Texture(), 6).SetBadgeBackground(Colors.COLOR_AUTOPLAY);
+        Delayed.SetIcon(badges.Delayed.Texture(), 6).SetBadgeBackground(Colors.COLOR_DELAYED);
+        Ethereal.SetIcon(badges.Ethereal.Texture(), 6).SetBadgeBackground(Colors.COLOR_ETHEREAL);
+        Exhaust.SetIcon(badges.Exhaust.Texture(), 6).SetBadgeBackground(Colors.COLOR_EXHAUST);
+        Harmonic.SetIcon(badges.Harmonic.Texture(), 6).SetBadgeBackground(Colors.COLOR_HARMONIC);
+        Haste.SetIcon(badges.Haste.Texture(), 6).SetBadgeBackground(Colors.COLOR_HASTE);
+        HasteInfinite.SetIcon(badges.Haste.Texture(), 6).SetBadgeBackground(Colors.COLOR_HASTE);
+        HasteOnce.SetIcon(badges.Haste.Texture(), 6).SetBadgeBackground(Colors.COLOR_HASTE);
+        Innate.SetIcon(badges.Innate.Texture(), 6).SetBadgeBackground(Colors.COLOR_INNATE);
+        Loyal.SetIcon(badges.Loyal.Texture(), 6).SetBadgeBackground(Colors.COLOR_LOYAL);
+        Purge.SetIcon(badges.Purge.Texture(), 6).SetBadgeBackground(Colors.COLOR_PURGE);
+        Retain.SetIcon(badges.Retain.Texture(), 6).SetBadgeBackground(Colors.COLOR_RETAIN);
+        RetainInfinite.SetIcon(badges.Retain.Texture(), 6).SetBadgeBackground(Colors.COLOR_RETAIN);
+        RetainOnce.SetIcon(badges.Retain.Texture(), 6).SetBadgeBackground(Colors.COLOR_RETAIN);
+        Unplayable.SetIcon(badges.Unplayable.Texture(), 6).SetBadgeBackground(Colors.COLOR_UNPLAYABLE);
 
         CommonImages.CardIcons icons = GR.Common.Images.Icons;
         Ranged.SetIcon(icons.Ranged.Texture(), 6);
@@ -270,8 +276,16 @@ public class CardTooltips
         Affinity_Light.SetIcon(affinities.Light.Texture(), 8);
         Affinity_Dark.SetIcon(affinities.Dark.Texture(), 8);
         Affinity_Silver.SetIcon(affinities.Silver.Texture(), 8);
-        Affinity_Star.SetIcon(affinities.Star.Texture(), 8);
         Affinity_General.SetIcon(affinities.General.Texture(), 8);
+        Multicolor.SetIcon(affinities.Star.Texture(), 8);
+        MightScaling.icon = Affinity_Red.icon;
+        VelocityScaling.icon = Affinity_Green.icon;
+        WisdomScaling.icon = Affinity_Blue.icon;
+        EnduranceScaling.icon = Affinity_Orange.icon;
+        SuperchargeScaling.icon = Affinity_Light.icon;
+        DesecrationScaling.icon = Affinity_Dark.icon;
+        TechnicScaling.icon = Affinity_Silver.icon;
+        MulticolorScaling.icon = Multicolor.icon;
         Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
@@ -342,8 +356,8 @@ public class CardTooltips
         LoadFromPower(Frail, new FrailPower(null, 0, false));
 
         //Common Debuff/Buff require loading powers for existing tooltips
-        CommonBuff.description = JUtils.JoinStrings(", ", JUtils.Map(GameUtilities.GetCommonBuffs(), ph -> "[" + ph.ID + "]"));
-        CommonDebuff.description = JUtils.JoinStrings(", ", JUtils.Map(GameUtilities.GetCommonDebuffs(), ph -> "[" + ph.ID + "]"));
+        CommonBuff.description = JUtils.JoinStrings(", ", new HashSet<>(JUtils.Map(GameUtilities.GetCommonBuffs(), ph -> "[" + ph.Tooltip.id + "]")));
+        CommonDebuff.description = JUtils.JoinStrings(", ", new HashSet<>(JUtils.Map(GameUtilities.GetCommonDebuffs(), ph -> "[" + ph.Tooltip.id + "]")));
     }
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)

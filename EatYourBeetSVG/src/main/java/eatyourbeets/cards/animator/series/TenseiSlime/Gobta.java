@@ -47,7 +47,9 @@ public class Gobta extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        GameActions.Bottom.StackPower(new GobtaPower(p, 1));
+        if (info.TryActivateSemiLimited()) {
+            GameActions.Bottom.StackPower(new GobtaPower(p, 1));
+        }
     }
 
     public class GobtaPower extends AnimatorPower

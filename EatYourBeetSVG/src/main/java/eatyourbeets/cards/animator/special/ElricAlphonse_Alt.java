@@ -4,15 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.ElricAlphonse;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class ElricAlphonse_Alt extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ElricAlphonse_Alt.class)
-            .SetPower(1, CardRarity.SPECIAL)
+            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.Self)
             .SetSeries(ElricAlphonse.DATA.Series);
 
     public ElricAlphonse_Alt()
@@ -25,6 +23,8 @@ public class ElricAlphonse_Alt extends AnimatorCard
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
         SetAffinity_Red(1);
+
+        SetAffinityRequirement(Affinity.Orange, 4);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ElricAlphonse_Alt extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainOrbSlots(1);
 
-        if (info.IsSynergizing)
+        if (info.IsSynergizing || TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.GainPlatedArmor(magicNumber);
         }

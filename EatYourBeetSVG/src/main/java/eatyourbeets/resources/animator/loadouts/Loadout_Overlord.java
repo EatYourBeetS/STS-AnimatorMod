@@ -1,6 +1,8 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Pain;
 import eatyourbeets.cards.animator.series.Overlord.*;
+import eatyourbeets.cards.animator.status.Status_Void;
 import eatyourbeets.cards.animator.ultrarare.SirTouchMe;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -24,6 +26,8 @@ public class Loadout_Overlord extends AnimatorLoadout
         AddStarterCard(CZDelta.DATA, 8);
         AddStarterCard(AuraBellaFiora.DATA, 11);
         AddStarterCard(MareBelloFiore.DATA, 12);
+        AddStarterCard(Status_Void.DATA, -5);
+        AddStarterCard(Curse_Pain.DATA, -8);
     }
 
     @Override

@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.animator.special.Eris_Chris;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
@@ -29,8 +26,8 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
-        SetUpgrade(0, 0, 2, 1);
+        Initialize(0, 0, 4, 1);
+        SetUpgrade(0, 0, 3, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(2);
@@ -43,6 +40,11 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     public AbstractAttribute GetSpecialInfo()
     {
         return HPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
+    public int GetXValue() {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) + secondaryValue;
     }
 
     @Override
@@ -95,8 +97,9 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainSupercharge(secondaryValue);
+        GameActions.Bottom.GainSupercharge(GetXValue());
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
+        TrySpendAffinity(Affinity.Light, CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));
     }
 
     private boolean CanRevive()

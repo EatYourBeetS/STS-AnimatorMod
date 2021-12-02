@@ -30,7 +30,7 @@ public class FeliciaMitsuki extends AnimatorCard
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Light(0,0,1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Orange, 6);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class FeliciaMitsuki extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (TrySpendAffinity(Affinity.Red)) {
+        if (CheckAffinity(Affinity.Orange)) {
             GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetFilter(GameUtilities::IsHindrance).AddCallback(cards -> {
                 if (cards.size() > 0) {
                     GameActions.Bottom.GainEndurance(secondaryValue);

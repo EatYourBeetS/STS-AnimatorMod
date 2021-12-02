@@ -9,6 +9,8 @@ import eatyourbeets.cards.animator.special.Sora_Strategy1;
 import eatyourbeets.cards.animator.special.Sora_Strategy2;
 import eatyourbeets.cards.animator.special.Sora_Strategy3;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -17,7 +19,7 @@ import eatyourbeets.utilities.GameUtilities;
 public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(Sora.class)
-            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None, true)
             .SetSeries(CardSeries.NoGameNoLife)
             .PostInitialize(data -> data
                     .AddPreview(new Sora_Strategy1(), true)
@@ -30,9 +32,9 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
     {
         super(DATA);
 
-        Initialize(0, 2, 2);
+        Initialize(0, 0, 3, 2);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(2);
 
         SetProtagonist(true);
@@ -40,9 +42,15 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(new Sora_Strategy1());
         group.addToBottom(new Sora_Strategy2());
@@ -67,7 +75,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
 
         if (info.IsSynergizing && info.GetPreviousCardID().equals(Shiro.DATA.ID) && info.TryActivateLimited())
         {
-            GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
+            GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
         }
     }
 

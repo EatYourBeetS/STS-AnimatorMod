@@ -21,11 +21,11 @@ public class IsuzuTonan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 2, 1, 1);
 
         SetAffinity_Green(1);
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(1, 0, 1);
+        SetCostUpgrade(-1);
     }
 
     @Override
@@ -39,6 +39,7 @@ public class IsuzuTonan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new IsuzuTonanPower(p, magicNumber));
     }
 

@@ -20,7 +20,7 @@ public class MeguKakizaki extends AnimatorCard
 
         Initialize(0, 5, 5, 3);
         SetUpgrade(0, 1, 5, 0);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Dark, 8);

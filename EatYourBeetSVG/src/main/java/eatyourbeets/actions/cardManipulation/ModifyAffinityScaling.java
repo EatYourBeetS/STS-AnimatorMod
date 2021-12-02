@@ -67,7 +67,10 @@ public class ModifyAffinityScaling extends GenericCardSelection
         }
 
         final EYBCardAffinities affinities = eCard.affinities;
-        if (affinity == Affinity.General) // Modify all existing scaling
+        if (affinity == null) { // Random scaling
+            ChangeScaling(affinities.Get(JUtils.Random(Affinity.Extended()), true));
+        }
+        else if (affinity == Affinity.General) // Modify all existing scaling
         {
             for (EYBCardAffinity a : affinities.List)
             {

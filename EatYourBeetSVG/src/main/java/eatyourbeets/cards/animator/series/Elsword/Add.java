@@ -27,12 +27,12 @@ public class Add extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 3, 2, 3);
+        SetUpgrade(0, 1, 1, 0);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(1, 1, 1);
         SetAffinity_Dark(2);
-        SetAffinity_Silver(2,0,0);
+        SetAffinity_Silver(2,0,1);
 
         SetAffinityRequirement(Affinity.Dark, 3);
 
@@ -42,6 +42,7 @@ public class Add extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainEnergyNextTurn(2);
         GameActions.Bottom.DrawNextTurn(magicNumber);
     }

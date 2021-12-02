@@ -22,6 +22,7 @@ public class Projectile extends AdvancedTexture
     public Position2D speed = new Position2D(10f, 10f, 24f, 2f);
     public Position2D acceleration = new Position2D();
     public float acceleration_duration = 0;
+    public RenderHelpers.BlendingMode blendingMode = RenderHelpers.BlendingMode.Normal;
 
     public Projectile(Texture texture, float width, float height)
     {
@@ -236,6 +237,11 @@ public class Projectile extends AdvancedTexture
         return (Projectile) super.SetColor(r, g, b, a);
     }
 
+    public Projectile SetBlendingMode(RenderHelpers.BlendingMode blendingMode) {
+        this.blendingMode = blendingMode;
+        return this;
+    }
+
     public void Update(float delta)
     {
         pos.ApplyMovement(target_pos, speed, delta);
@@ -256,7 +262,14 @@ public class Projectile extends AdvancedTexture
 
     public void Render(SpriteBatch sb, Color color, float cX, float cY, float scale)
     {
-        RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
+        if (blendingMode != RenderHelpers.BlendingMode.Normal) {
+            sb.setBlendFunction(blendingMode.srcFunc, blendingMode.dstFunc);
+            RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
+            sb.setBlendFunction(770, 771);
+        }
+        else {
+            RenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
+        }
     }
 
     public Position2D GetCurrentPosition(boolean addOffset)

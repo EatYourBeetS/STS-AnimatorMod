@@ -12,6 +12,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -28,7 +29,7 @@ public class MamiTomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(9, 0, 1, 1);
+        Initialize(9, 1, 1, 1);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Orange(1);
@@ -41,8 +42,10 @@ public class MamiTomoe extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -75,6 +78,7 @@ public class MamiTomoe extends AnimatorCard
         GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
         GameActions.Bottom.SFX("ATTACK_FIRE");
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
 

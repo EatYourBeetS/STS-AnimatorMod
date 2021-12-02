@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.beta.curse.Curse_Slumber;
 import eatyourbeets.cards.animator.series.NoGameNoLife.*;
 import eatyourbeets.cards.animator.ultrarare.Azriel;
 import eatyourbeets.cards.base.CardSeries;
@@ -20,7 +21,10 @@ public class Loadout_NoGameNoLife extends AnimatorLoadout
         AddStarterCard(IzunaHatsuse.DATA, 5);
         AddStarterCard(ChlammyZell.DATA, 7);
         AddStarterCard(DolaSchwi.DATA, 9);
+        AddStarterCard(DolaStephanie.DATA, 10);
+        AddStarterCard(Tet.DATA, 14);
         AddStarterCard(Sora.DATA, 16);
+        AddStarterCard(Curse_Slumber.DATA, -7);
     }
 
     @Override

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.animator.series.MadokaMagica.SayakaMiki;
+import eatyourbeets.cards.animator.series.MadokaMagica.MadokaKaname;
 import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -17,15 +17,15 @@ public class MadokaKaname_Krimheild extends AnimatorCard_Curse
 {
     public static final EYBCardData DATA = Register(MadokaKaname_Krimheild.class)
             .SetCurse(1, EYBCardTarget.None, true)
-            .SetSeries(SayakaMiki.DATA.Series)
+            .SetSeries(MadokaKaname.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public MadokaKaname_Krimheild()
     {
         super(DATA, false);
 
-        Initialize(0, 0, 99, 0);
-        SetUpgrade(0, 0, -89, 0);
+        Initialize(0, 0, 10, 0);
+        SetUpgrade(0, 0, -5, 0);
         SetAutoplay(true);
         SetPurge(true);
 
@@ -76,9 +76,8 @@ public class MadokaKaname_Krimheild extends AnimatorCard_Curse
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
-            GameActions.Bottom.ReduceStrength(player,magicNumber,false);
-            GameActions.Bottom.GainDexterity(-magicNumber);
             GameActions.Bottom.GainFocus(-magicNumber);
+            GameActions.Bottom.GainResistance(-magicNumber);
             RemovePower();
         }
 

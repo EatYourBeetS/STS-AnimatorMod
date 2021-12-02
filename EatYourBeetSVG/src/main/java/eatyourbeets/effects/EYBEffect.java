@@ -50,6 +50,13 @@ public abstract class EYBEffect extends AbstractGameEffect
         return this;
     }
 
+    public EYBEffect SetRenderBehind(boolean renderBehind)
+    {
+        this.renderBehind = renderBehind;
+
+        return this;
+    }
+
     public EYBEffect SetDuration(float duration, boolean isRealtime)
     {
         this.isRealtime = isRealtime;

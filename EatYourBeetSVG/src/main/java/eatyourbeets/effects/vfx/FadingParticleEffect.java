@@ -9,6 +9,7 @@ import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.effects.Projectile;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class FadingParticleEffect extends EYBEffect
 {
@@ -81,18 +82,17 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
-    public FadingParticleEffect SetTranslucent()
+    public FadingParticleEffect SetOpacity(float alpha)
     {
-        this.isTranslucent = true;
+        this.alpha = alpha;
+        this.projectile.color.a = this.alpha;
 
         return this;
     }
 
-    public FadingParticleEffect SetTranslucent(float alpha)
+    public FadingParticleEffect SetBlendingMode(RenderHelpers.BlendingMode blendingMode)
     {
-        this.isTranslucent = true;
-        this.alpha = alpha;
-        this.projectile.color.a = this.alpha;
+        this.projectile.SetBlendingMode(blendingMode);
 
         return this;
     }
@@ -115,16 +115,7 @@ public class FadingParticleEffect extends EYBEffect
     {
         if (projectile != null)
         {
-            if (isTranslucent)
-            {
-                sb.setBlendFunction(770, 1);
-                projectile.Render(sb);
-                sb.setBlendFunction(770, 771);
-            }
-            else
-            {
-                projectile.Render(sb);
-            }
+            projectile.Render(sb);
         }
     }
 

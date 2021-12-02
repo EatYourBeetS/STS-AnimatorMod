@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,7 +10,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
+import eatyourbeets.interfaces.subscribers.OnSpendEnergySubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.SuperchargePower;
@@ -29,7 +28,7 @@ public class Miko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5);
+        Initialize(0, 0, 2);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(2);
@@ -44,7 +43,7 @@ public class Miko extends AnimatorCard
         GameActions.Bottom.StackPower(new MikoPower(p, magicNumber));
     }
 
-    public static class MikoPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber, OnSynergySubscriber
+    public static class MikoPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber, OnSpendEnergySubscriber
     {
         public MikoPower(AbstractCreature owner, int amount)
         {
@@ -59,7 +58,7 @@ public class Miko extends AnimatorCard
             super.onInitialApplication();
 
             CombatStats.onOrbPassiveEffect.Subscribe(this);
-            CombatStats.onSynergy.Subscribe(this);
+            CombatStats.onSpendEnergy.Subscribe(this);
             GameUtilities.SetAffinityPowerThreshold(Affinity.Light, SuperchargePower.BASE_CHARGE_THRESHOLD, true);
         }
 
@@ -69,14 +68,25 @@ public class Miko extends AnimatorCard
             super.onRemove();
 
             CombatStats.onOrbPassiveEffect.Unsubscribe(this);
-            CombatStats.onSynergy.Unsubscribe(this);
+            CombatStats.onSpendEnergy.Unsubscribe(this);
             GameUtilities.SetAffinityPowerThreshold(Affinity.Light, -SuperchargePower.BASE_CHARGE_THRESHOLD, true);
         }
 
         @Override
         public void OnOrbPassiveEffect(AbstractOrb orb) {
             if (Plasma.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.GainSupercharge(amount);
+                GameActions.Bottom.GainSupercharge(amount * orb.passiveAmount);
+                flash();
+            }
+        }
+
+        @Override
+        public void onEvokeOrb(AbstractOrb orb)
+        {
+            super.onEvokeOrb(orb);
+
+            if (Plasma.ORB_ID.equals(orb.ID)) {
+                GameActions.Bottom.GainSupercharge(amount * orb.evokeAmount);
                 flash();
             }
         }
@@ -88,9 +98,10 @@ public class Miko extends AnimatorCard
         }
 
         @Override
-        public void OnSynergy(AbstractCard card) {
-            GameActions.Bottom.GainSupercharge(amount);
+        public int OnSpendEnergy(int spendAmount) {
+            GameActions.Bottom.GainSupercharge(amount * spendAmount);
             flash();
+            return spendAmount;
         }
     }
 }

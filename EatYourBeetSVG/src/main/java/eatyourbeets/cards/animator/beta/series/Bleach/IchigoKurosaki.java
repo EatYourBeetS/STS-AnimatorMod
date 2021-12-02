@@ -37,13 +37,15 @@ public class IchigoKurosaki extends AnimatorCard
         GameActions.Bottom.GainMight(magicNumber);
         GameActions.Bottom.GainVelocity(magicNumber);
 
-        GameActions.Bottom.Callback(() -> {
-            if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue)
-            {
-                GameActions.Bottom.Exhaust(this);
-                GameActions.Bottom.MakeCardInDrawPile(new IchigoKurosaki_Bankai());
-            }
-        });
+        if (CheckSpecialCondition(true))
+        {
+            GameActions.Bottom.Exhaust(this);
+            GameActions.Bottom.MakeCardInDrawPile(new IchigoKurosaki_Bankai());
+        }
+    }
 
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue;
     }
 }

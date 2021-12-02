@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Shame;
 import eatyourbeets.cards.animator.series.LogHorizon.*;
 import eatyourbeets.cards.animator.ultrarare.Kanami;
 import eatyourbeets.cards.base.CardSeries;
@@ -23,7 +24,8 @@ public class Loadout_LogHorizon extends AnimatorLoadout
         AddStarterCard(Naotsugu.DATA, 8);
         AddStarterCard(RundelhausCode.DATA, 11);
         AddStarterCard(Nyanta.DATA, 11);
-        AddStarterCard(Shiroe.DATA, 24);
+        AddStarterCard(Shiroe.DATA, 20);
+        AddStarterCard(Curse_Shame.DATA, -7);
     }
 
     @Override

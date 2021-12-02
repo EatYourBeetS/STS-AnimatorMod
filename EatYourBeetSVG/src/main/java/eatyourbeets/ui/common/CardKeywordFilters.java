@@ -52,7 +52,7 @@ public class CardKeywordFilters extends GUIElement
         }
     }
 
-    private static final Color FADE_COLOR = new Color(0f, 0f, 0f, 0.8f);
+    private static final Color FADE_COLOR = new Color(0f, 0f, 0f, 0.84f);
     protected static final float SPACING = Settings.scale * 22.5f;
     protected static final float DRAW_START_X = (float) Settings.WIDTH * 0.15f;
     protected static final float DRAW_START_Y = (float) Settings.HEIGHT * 0.78f;
@@ -124,7 +124,7 @@ public class CardKeywordFilters extends GUIElement
 
                     //Tooltips check
                     EYBCard eC = JUtils.SafeCast(c, EYBCard.class);
-                    if (!CurrentFilters.isEmpty() && eC != null && !GetAllTooltips(eC).containsAll(CurrentFilters)) {
+                    if (!CurrentFilters.isEmpty() && (eC == null || !GetAllTooltips(eC).containsAll(CurrentFilters))) {
                         return false;
                     }
 

@@ -12,7 +12,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Zhongli extends AnimatorCard
@@ -24,7 +23,7 @@ public class Zhongli extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 5);
+        Initialize(0, 0, 4, 6);
         SetUpgrade(0, 0, 0);
         SetAffinity_Orange(2, 0, 0);
         SetDelayed(true);
@@ -104,7 +103,7 @@ public class Zhongli extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, POWER_ENERGY_COST, amount, GetBlockAmount());
+            return FormatDescription(0, POWER_ENERGY_COST, amount, secondaryValue);
         }
 
         @Override
@@ -115,7 +114,7 @@ public class Zhongli extends AnimatorCard
             Earth earthOrb = JUtils.SafeCast(orb, Earth.class);
 
             if (earthOrb != null) {
-                GameActions.Bottom.GainBlock(GetBlockAmount());
+                GameActions.Bottom.GainBlock(secondaryValue);
             }
         }
 
@@ -129,11 +128,7 @@ public class Zhongli extends AnimatorCard
         @Override
         protected ColoredString GetSecondaryAmount(Color c)
         {
-            return new ColoredString(GetBlockAmount(), Color.WHITE, c.a);
-        }
-
-        private int GetBlockAmount() {
-            return secondaryValue + GameUtilities.GetAffinityPowerLevel(Affinity.Orange);
+            return new ColoredString(secondaryValue, Color.WHITE, c.a);
         }
     }
 }

@@ -1,5 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Clumsy;
+import eatyourbeets.cards.animator.curse.Curse_Parasite;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.*;
 import eatyourbeets.cards.animator.ultrarare.HiiragiMahiru;
 import eatyourbeets.cards.base.CardSeries;
@@ -24,6 +26,8 @@ public class Loadout_OwariNoSeraph extends AnimatorLoadout
         AddStarterCard(CrowleyEusford.DATA, 8);
         AddStarterCard(Mikaela.DATA, 8);
         AddStarterCard(Yuuichirou.DATA, 8);
+        AddStarterCard(Curse_Parasite.DATA, -7);
+        AddStarterCard(Curse_Clumsy.DATA, -3);
     }
 
     @Override

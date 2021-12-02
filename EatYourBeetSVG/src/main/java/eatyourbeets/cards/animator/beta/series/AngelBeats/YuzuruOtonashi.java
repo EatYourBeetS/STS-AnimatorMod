@@ -18,10 +18,10 @@ public class YuzuruOtonashi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 1, 2, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 1, 1);
         SetAffinity_Light(1, 1, 0);
 
         SetProtagonist(true);
@@ -37,6 +37,7 @@ public class YuzuruOtonashi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ExhaustFromHand(name, magicNumber, false)
         .SetOptions(true, true, true)
         .AddCallback(cards ->

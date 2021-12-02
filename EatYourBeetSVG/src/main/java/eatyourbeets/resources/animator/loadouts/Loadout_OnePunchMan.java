@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.series.OnePunchMan.*;
+import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.animator.ultrarare.SeriousSaitama;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -23,6 +24,7 @@ public class Loadout_OnePunchMan extends AnimatorLoadout
         AddStarterCard(King.DATA, 7);
         AddStarterCard(Melzalgald.DATA, 12);
         AddStarterCard(Saitama.DATA, 16);
+        AddStarterCard(Status_Burn.DATA, -5);
     }
 
     @Override

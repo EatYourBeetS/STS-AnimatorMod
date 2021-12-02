@@ -11,10 +11,7 @@ import eatyourbeets.effects.utility.CombinedEffect;
 import eatyourbeets.effects.vfx.*;
 import eatyourbeets.effects.vfx.megacritCopy.*;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 public class VFX
 {
@@ -327,6 +324,11 @@ public class VFX
         return (StrongPunchEffect) new StrongPunchEffect(x, y, 2).SetDuration(1f,true);
     }
 
+    public static SupportDamageEffect SupportDamage(Hitbox source, Hitbox target)
+    {
+        return new SupportDamageEffect(source, target);
+    }
+
     public static ThrowDaggerEffect2 ThrowDagger(Hitbox target, float variance)
     {
         return new ThrowDaggerEffect2(RandomX(target, variance), RandomY(target, variance));
@@ -383,7 +385,8 @@ public class VFX
     {
         return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.WaterSplash1.Texture(), cX, cY).SetColor(Color.WHITE)
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000, 360f).SetSpeed(0f, 0f, MathUtils.random(500f, 750f), 5f).SetTargetScale(1f,5f))
-                .SetTranslucent(MathUtils.random(0.7f,1f))
+                .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
+                .SetOpacity(MathUtils.random(0.7f,1f))
                 .SetDuration(1.3f,false);
     }
 
@@ -396,7 +399,8 @@ public class VFX
     {
         return (FadingParticleEffect) new FadingParticleEffect(EYBEffect.IMAGES.WaterSplash2.Texture(), cX, cY).SetColor(Color.WHITE)
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000, 360f).SetSpeed(0f, 0f, MathUtils.random(500f, 750f), 5f).SetTargetScale(1f,5f))
-                .SetTranslucent(MathUtils.random(0.7f,1f))
+                .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
+                .SetOpacity(MathUtils.random(0.7f,1f))
                 .SetDuration(1.3f,false);
     }
 

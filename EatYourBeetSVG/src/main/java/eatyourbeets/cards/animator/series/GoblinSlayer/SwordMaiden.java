@@ -24,7 +24,7 @@ public class SwordMaiden extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 7, 3);
+        Initialize(0, 0, 7, 5);
 
         SetAffinity_Orange(1);
         SetAffinity_Light(2, 0, 1);

@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.resources.GR;
@@ -46,6 +47,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected GUI_Image background_image;
     protected GUI_Button[] preset_buttons;
     protected GUI_Button cancel_button;
+    protected GUI_Button clear_button;
     protected GUI_Button save_button;
     protected GUI_Toggle upgrade_toggle;
     protected GUI_TextBox ascensionRequirement;
@@ -85,25 +87,24 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             .SetPosition(ScreenW(0.5f) + ((i - 1f) * buttonHeight), ScreenH(1f) - (buttonHeight * 0.85f))
             .SetText(String.valueOf(i + 1))
             .SetOnClick(i, (preset, __) -> ChangePreset(preset));
-
-            if (i > 0)
-            {
-                preset_buttons[i].SetTooltip("Locked", GR.Animator.Strings.CharSelect.ObtainBronzeAtAscension(i == 1
-                        ? AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_2
-                        : AnimatorLoadout.BRONZE_REQUIRED_PRESET_SLOT_3));
-            }
         }
 
         cancel_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
         .SetPosition(buttonWidth * 0.75f, button_cY)
         .SetColor(Color.FIREBRICK)
-        .SetText("Cancel")
+        .SetText(GridCardSelectScreen.TEXT[1])
         .SetOnClick(AbstractDungeon::closeCurrentScreen);
+
+        clear_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
+                .SetPosition(buttonWidth * 0.75f, cancel_button.hb.y + cancel_button.hb.height + labelHeight * 0.8f)
+                .SetColor(Color.WHITE)
+                .SetText(GR.Animator.Strings.CharSelect.Clear)
+                .SetOnClick(this::Clear);
 
         save_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
         .SetPosition(ScreenW(1) - (buttonWidth * 0.75f), button_cY)
         .SetColor(Color.FOREST)
-        .SetText("Save")
+        .SetText(GridCardSelectScreen.TEXT[0])
         .SetInteractable(false)
         .SetOnClick(this::Save);
 
@@ -165,8 +166,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             if (!enableHPAndGoldEditor)
             {
-                presets[i].Gold = AnimatorLoadout.BASE_GOLD;
-                presets[i].HP = AnimatorLoadout.BASE_HP;
+                presets[i].GoldValue = 0;
+                presets[i].HPValue = 0;
             }
         }
 
@@ -246,6 +247,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
                 hpEditor.SetEstimatedValue(val.HpValue).Update();
             }
             cancel_button.Update();
+            clear_button.Update();
             save_button.Update();
 
             for (AnimatorCardSlotEditor editor : slotsEditors)
@@ -258,7 +260,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             }
         }
 
-        affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).SetActive(val.AffinityLevel > 0).TryUpdate();
+        affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).TryUpdate();
         cardsCount_text.SetText("Cards: {0}", val.CardsCount.V1).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         cardsValue_text.SetText("Value: {0}/{1}", val.TotalValue.V1, AnimatorLoadout.MAX_VALUE).SetFontColor(val.TotalValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         save_button.SetInteractable(val.IsValid).TryUpdate();
@@ -292,6 +294,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             hpEditor.Render(sb);
             ascensionRequirement.TryRender(sb);
             cancel_button.Render(sb);
+            clear_button.Render(sb);
             save_button.Render(sb);
             upgrade_toggle.Render(sb);
             affinityValue_text.TryRender(sb);
@@ -341,6 +344,13 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         this.preset = preset;
         this.hpEditor.SetLoadout(presets[preset]);
         this.goldEditor.SetLoadout(presets[preset]);
+        SetSlotsActive(true);
+    }
+
+    public void Clear()
+    {
+        AnimatorLoadoutData defaultData = loadout.GetDefaultData(preset);
+        presets[preset] = defaultData;
         SetSlotsActive(true);
     }
 

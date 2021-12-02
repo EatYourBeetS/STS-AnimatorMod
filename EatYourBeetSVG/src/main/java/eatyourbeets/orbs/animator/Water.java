@@ -19,6 +19,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class Water extends AnimatorOrb
 {
@@ -110,12 +111,13 @@ public class Water extends AnimatorOrb
         this.vfxTimer -= Gdx.graphics.getDeltaTime();
         if (this.vfxTimer < 0.0F) {
             GameEffects.Queue.Add(new FadingParticleEffect(IMAGES.WaterBubble.Texture(), hb.cX, hb.cY)
-                    .SetTranslucent(1f)
+                    .SetBlendingMode(RenderHelpers.BlendingMode.Glowing)
                     .Edit(angle, (r, p) -> p
                             .SetScale(scale * MathUtils.random(0.08f, 0.32f)).SetTargetRotation(36000f,360f)
                             .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 360f),0f)
                             .SetAcceleration(MathUtils.random(0f, 3f), MathUtils.random(0f, 3f), null, null, null)
-                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false));
+                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false))
+                    .SetRenderBehind(true);
             this.vfxTimer = MathUtils.random(0.2f, 0.5f);
         }
     }

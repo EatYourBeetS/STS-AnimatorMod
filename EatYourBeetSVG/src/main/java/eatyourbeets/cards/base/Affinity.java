@@ -142,7 +142,7 @@ public enum Affinity implements Comparable<Affinity>
         if (tooltip.Is(GR.Tooltips.Affinity_Light)  ) { return Affinity.Light;   }
         if (tooltip.Is(GR.Tooltips.Affinity_Dark)   ) { return Affinity.Dark;    }
         if (tooltip.Is(GR.Tooltips.Affinity_Silver) ) { return Affinity.Silver;  }
-        if (tooltip.Is(GR.Tooltips.Affinity_Star)   ) { return Affinity.Star;    }
+        if (tooltip.Is(GR.Tooltips.Multicolor)   ) { return Affinity.Star;    }
         if (tooltip.Is(GR.Tooltips.Affinity_General)) { return Affinity.General; }
         return null;
     }   //@Formatter: On
@@ -158,7 +158,7 @@ public enum Affinity implements Comparable<Affinity>
             case Light: return GR.Tooltips.Affinity_Light;
             case Dark: return GR.Tooltips.Affinity_Dark;
             case Silver: return GR.Tooltips.Affinity_Silver;
-            case Star: return GR.Tooltips.Affinity_Star;
+            case Star: return GR.Tooltips.Multicolor;
             case General: return GR.Tooltips.Affinity_General;
             default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
         }
@@ -177,7 +177,7 @@ public enum Affinity implements Comparable<Affinity>
             case Silver: return GR.Tooltips.Technic;
             case Star:
             case General:
-                return GR.Tooltips.Affinity_Star;
+                return GR.Tooltips.Multicolor;
             default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
         }
     }

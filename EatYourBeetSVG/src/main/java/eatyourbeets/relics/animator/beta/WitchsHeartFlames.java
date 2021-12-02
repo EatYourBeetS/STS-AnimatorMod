@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonTriggerablePower;
@@ -37,7 +38,7 @@ public class WitchsHeartFlames extends AnimatorRelic implements OnCardCreatedSub
         super.onEquip();
 
         for (AbstractCard c : player.masterDeck.group) {
-            if (Burn.ID.equals(c.cardID)) {
+            if (Burn.ID.equals(c.cardID) || Status_Burn.DATA.ID.equals(c.cardID)) {
                 player.masterDeck.group.remove(c);
                 GameEffects.TopLevelQueue.ShowAndObtain(new SearingBurn(), Settings.WIDTH / 2f, Settings.HEIGHT / 2f, false);
             }
@@ -47,7 +48,7 @@ public class WitchsHeartFlames extends AnimatorRelic implements OnCardCreatedSub
     @Override
     public void OnCardCreated(AbstractCard card, boolean startOfBattle)
     {
-        if (card instanceof Burn)
+        if (Burn.ID.equals(card.cardID) || Status_Burn.DATA.ID.equals(card.cardID))
         {
             GameActions.Last.ReplaceCard(card.uuid, new SearingBurn());
             flash();

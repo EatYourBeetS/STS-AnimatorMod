@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.misc;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,6 +14,7 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.relics.animator.beta.PolychromePaintbrush;
@@ -100,8 +102,8 @@ public abstract class AnimatorLoadout
                 }
             }
 
-            GoldValue = ((data.Gold - BASE_GOLD) / GOLD_STEP);
-            HpValue = ((data.HP - BASE_HP) / HP_STEP);
+            GoldValue = data.GoldValue;
+            HpValue = data.HPValue;
             TotalValue.V1 += GoldValue + HpValue + AffinityLevel;
             TotalValue.V2 = TotalValue.V1 <= MAX_VALUE;
             CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;
@@ -181,8 +183,8 @@ public abstract class AnimatorLoadout
 
     public void InitializeData(AnimatorLoadoutData data)
     {
-        data.HP = BASE_HP;
-        data.Gold = BASE_GOLD;
+        data.HPValue = 0;
+        data.GoldValue = 0;
         data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Strike.DATA, -2);
         data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Defend.DATA, -2);
 
@@ -208,6 +210,7 @@ public abstract class AnimatorLoadout
             AnimatorRelicSlot r1 = data.AddRelicSlot();
             r1.AddItem(new RollingCubes(), 2);
             r1.AddItem(new PolychromePaintbrush(), 3);
+            r1.AddItem(new PurgingStone(), 3);
         }
 
     }
@@ -232,18 +235,11 @@ public abstract class AnimatorLoadout
 
     public boolean CanChangePreset(int preset)
     {
-        if (preset == 0)
-        {
-            return true;
-        }
-        else if (preset < 0 || preset >= MAX_PRESETS)
+        if (preset < 0 || preset >= MAX_PRESETS)
         {
             return false;
         }
-
-        final AnimatorTrophies trophies = GetTrophies();
-        final int bronze = trophies == null ? 20 : trophies.Trophy1;
-        return (preset == 1) ? bronze >= BRONZE_REQUIRED_PRESET_SLOT_2 : bronze >= BRONZE_REQUIRED_PRESET_SLOT_3;
+        return true;
     }
 
     public AnimatorLoadoutData GetPreset()
@@ -264,8 +260,8 @@ public abstract class AnimatorLoadout
 
     public CharSelectInfo GetLoadout(String name, String description, AnimatorCharacter c)
     {
-        final AnimatorLoadoutData data = GetPreset();
-        return new CharSelectInfo(name + "-" + ID, description, data.HP, data.HP, OrbSlots, data.Gold, CardDraw, c, GetStartingRelics(), GetStartingDeck(), false);
+        int hp = GetHP();
+        return new CharSelectInfo(name + "-" + ID, description, hp, hp, OrbSlots, GetGold(), CardDraw, c, GetStartingRelics(), GetStartingDeck(), false);
     }
 
     public ArrayList<String> GetStartingDeck()
@@ -328,12 +324,22 @@ public abstract class AnimatorLoadout
 
     public int GetHP()
     {
-        return GetPreset().HP;
+        return BASE_HP + GetPreset().HPValue * HP_STEP;
+    }
+
+    public int GetHPValue()
+    {
+        return GetPreset().HPValue;
     }
 
     public int GetGold()
     {
-        return GetPreset().Gold;
+        return BASE_GOLD + GetPreset().GoldValue * GOLD_STEP;
+    }
+
+    public int GetGoldValue()
+    {
+        return GetPreset().GoldValue;
     }
 
     public AnimatorTrophies GetTrophies()
@@ -434,16 +440,72 @@ public abstract class AnimatorLoadout
         }
     }
 
-    protected AnimatorLoadoutData GetDefaultData(int preset)
+    public AnimatorLoadoutData GetDefaultData(int preset)
     {
         final AnimatorLoadoutData data = new AnimatorLoadoutData(this);
         data.Preset = preset;
-        data.HP = BASE_HP;
-        data.Gold = BASE_GOLD;
-        data.GetCardSlot(0).Select(0, 4).GetData().MarkSeen();
-        data.GetCardSlot(1).Select(0, 4).GetData().MarkSeen();
-        data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
-        data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
+        data.HPValue = 0;
+        data.GoldValue = 0;
+        data.GetCardSlot(0).Select(0, 5).GetData().MarkSeen();
+        data.GetCardSlot(1).Select(0, 5).GetData().MarkSeen();
+        //data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
+        //data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
+        data.GetCardSlot(2).Select(null);
+        data.GetCardSlot(3).Select(null);
+        data.GetCardSlot(4).Select(null);
+        data.GetCardSlot(5).Select(null);
+        data.GetRelicSlot(0).Select((EYBRelic) null);
+        data.GetRelicSlot(1).Select((EYBRelic) null);
+        return data;
+    }
+
+    // TODO finish this
+    public AnimatorLoadoutData RandomizeData(int preset)
+    {
+        final ArrayList<AnimatorCardSlot.Item> negativeItems = new ArrayList<>();
+        final ArrayList<AnimatorCardSlot.Item> positiveItems = new ArrayList<>();
+        final AnimatorLoadoutData data = new AnimatorLoadoutData(this);
+        data.Preset = preset;
+
+        for (AnimatorCardSlot.Item pick : data.GetCardSlot(2).Cards) {
+            if (pick.estimatedValue < 0) {
+                negativeItems.add(pick);
+            }
+            else {
+                positiveItems.add(pick);
+            }
+        }
+        negativeItems.sort((a, b) -> b.estimatedValue - a.estimatedValue);
+        positiveItems.sort((a, b) -> b.estimatedValue - a.estimatedValue);
+
+        /* Select, in order:
+            -Strikes
+            -Defends
+            -negative cards (from highest to lowest)
+            -positive cards (from highest to lowest)
+            -relics
+            -hp
+            -gold
+         */
+
+        data.GetCardSlot(0).Select(0, MathUtils.random(3,6)).GetData().MarkSeen();
+        data.GetCardSlot(1).Select(0, MathUtils.random(3,6)).GetData().MarkSeen();
+
+        // Favor less negative items over more ngeative items
+        for (AnimatorCardSlot.Item negativeItem : negativeItems) {
+            int amount = MathUtils.random(-2,2);
+        }
+
+        data.GetCardSlot(2).Select(null);
+
+        data.HPValue = 0;
+        data.GoldValue = 0;
+        data.GetCardSlot(0).Select(0, 5).GetData().MarkSeen();
+        data.GetCardSlot(1).Select(0, 5).GetData().MarkSeen();
+        //data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
+        //data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
+        data.GetCardSlot(2).Select(null);
+        data.GetCardSlot(3).Select(null);
         data.GetCardSlot(4).Select(null);
         data.GetCardSlot(5).Select(null);
         data.GetRelicSlot(0).Select((EYBRelic) null);

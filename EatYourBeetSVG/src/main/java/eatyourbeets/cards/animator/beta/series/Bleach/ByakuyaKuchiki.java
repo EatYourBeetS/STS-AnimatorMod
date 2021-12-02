@@ -10,8 +10,8 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
-import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.stances.MightStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 //TODO Choose 1: Gain +M damage and Red, or Gain +M Block and Green
 public class ByakuyaKuchiki extends AnimatorCard {
@@ -22,7 +22,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
     public ByakuyaKuchiki() {
         super(DATA);
 
-        Initialize(23, 14, 0);
+        Initialize(23, 15, 0);
         SetUpgrade(3, 3, 0);
         SetAffinity_Red(2, 0, 2);
         SetAffinity_Green(2, 0, 2);

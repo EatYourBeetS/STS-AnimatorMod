@@ -13,15 +13,15 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.UUID;
 
 public class Serara extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Serara.class)
             .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None, true)
             .SetSeries(CardSeries.LogHorizon);
-
-    private static final HashSet<AbstractCard> buffs = new HashSet<>();
+    private static HashMap<UUID, Integer> buffs;
 
     public Serara()
     {
@@ -43,6 +43,7 @@ public class Serara extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.MoveCards(player.hand, player.drawPile, 1);
     }
 
     @Override
@@ -53,23 +54,24 @@ public class Serara extends AnimatorCard
             return;
         }
 
-        if (!CombatStats.GetCombatData(cardID + "_buffs", false))
+        buffs = CombatStats.GetCombatData(cardID, null);
+        if (buffs == null)
         {
-            CombatStats.SetCombatData(cardID + "_buffs", true);
-            buffs.clear();
+            buffs = new HashMap<>();
+            CombatStats.SetCombatData(cardID, buffs);
         }
 
         GameActions.Bottom.GainEndurance(secondaryValue);
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && !buffs.contains(c) && (c.baseDamage >= 0 || c.baseBlock >= 0))
+        .SetFilter(c -> c instanceof EYBCard && !GameUtilities.IsHindrance(c) && buffs.getOrDefault(c.uuid, 0) < secondaryValue && (c.baseDamage >= 0 || c.baseBlock >= 0))
         .AddCallback(cards ->
         {
             for (AbstractCard c : cards)
             {
-                GameActions.Bottom.IncreaseScaling(c, Affinity.Orange, 2);
-                buffs.add(c);
+                GameActions.Bottom.IncreaseScaling(c, Affinity.Orange, secondaryValue);
+                JUtils.IncrementMapElement(buffs, c.uuid, secondaryValue);
                 c.flash();
             }
         });

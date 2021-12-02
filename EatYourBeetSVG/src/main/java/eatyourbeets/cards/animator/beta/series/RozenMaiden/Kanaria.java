@@ -82,6 +82,8 @@ public class Kanaria extends AnimatorCard
         {
             super.onInitialApplication();
 
+            CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
+            CombatStats.Affinities.GetPower(Affinity.Light).SetEnabled(true);
             CombatStats.onCardCreated.Subscribe(this);
         }
 

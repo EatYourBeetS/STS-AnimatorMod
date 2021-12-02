@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.TemporaryElectroPower;
+import eatyourbeets.stances.SuperchargeStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -21,12 +22,10 @@ public class NarberalGamma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 1, 1, 2);
 
         SetAffinity_Star(2);
-
-        SetAffinityRequirement(Affinity.Light, 2);
-        SetAffinityRequirement(Affinity.Dark, 2);
+        SetAffinity_Light(0,0,1);
 
         SetEvokeOrbCount(1);
     }
@@ -39,6 +38,7 @@ public class NarberalGamma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ChannelOrb(new Lightning());
 
         if (upgraded)
@@ -51,11 +51,9 @@ public class NarberalGamma extends AnimatorCard
             GameActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
 
-        if (info.TryActivateSemiLimited()) {
+        if (SuperchargeStance.IsActive() && info.TryActivateSemiLimited()) {
             for (int i = 0; i < GetXValue(); i++) {
-                GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Light, Affinity.Dark).AddConditionalCallback(() -> {
-                   GameActions.Bottom.ApplyElectrified(TargetHelper.RandomEnemy(), secondaryValue);
-                });
+                GameActions.Bottom.ApplyElectrified(TargetHelper.RandomEnemy(), secondaryValue);
             }
         }
     }

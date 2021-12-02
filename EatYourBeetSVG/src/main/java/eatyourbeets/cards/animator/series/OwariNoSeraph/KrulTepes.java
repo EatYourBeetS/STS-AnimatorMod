@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.BloodVial;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -36,8 +36,8 @@ public class KrulTepes extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 0, 2, 3);
-        SetUpgrade(4, 0, 0);
+        Initialize(13, 0, 2, 4);
+        SetUpgrade(4, 0, 0, 1);
 
         SetAffinity_Red(2);
         SetAffinity_Dark(2, 0, 2);
@@ -65,7 +65,7 @@ public class KrulTepes extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        this.gainTempHP = (enemy != null && enemy.hasPower(VulnerablePower.POWER_ID));
+        this.gainTempHP = (enemy != null && enemy.hasPower(WeakPower.POWER_ID));
     }
 
     @Override

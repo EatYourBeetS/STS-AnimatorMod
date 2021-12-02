@@ -1,6 +1,7 @@
 package eatyourbeets.utilities;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -26,6 +27,20 @@ import java.util.ArrayList;
 
 public class RenderHelpers
 {
+    public enum BlendingMode {
+        Normal(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA),
+        Glowing(GL20.GL_SRC_ALPHA, GL20.GL_ONE),
+        Overlay(GL20.GL_DST_COLOR, GL20.GL_ONE);
+
+        public final int srcFunc;
+        public final int dstFunc;
+
+        BlendingMode(int srcFunc, int dstFunc) {
+            this.srcFunc = srcFunc;
+            this.dstFunc = dstFunc;
+        }
+    }
+
     public static final float CARD_ENERGY_IMG_WIDTH = 26.0F * Settings.scale;
     private static final StringBuilder builder = new StringBuilder();
     private static final GlyphLayout layout = new GlyphLayout();
@@ -562,7 +577,7 @@ public class RenderHelpers
 
                     foundIcon = false;
                     String iconID = build.Invoke(builder);
-                    Color iconColor = GetColorForTooltip(iconID);
+                    Color backgroundColor = GetTooltipBackgroundColor(iconID);
                     TextureRegion icon = GetSmallIcon(iconID);
                     if (icon != null)
                     {
@@ -572,15 +587,31 @@ public class RenderHelpers
                         final float scaleY = CARD_ENERGY_IMG_WIDTH / orbHeight;
 
                         //sb.setColor(1f, 1f, 1f, baseColor.a);
-                        sb.setColor(iconColor != null ? iconColor : baseColor);
                         if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
                         {
                             curHeight -= lineSpacing;
+                            if (backgroundColor != null) {
+                                sb.setColor(backgroundColor);
+                                sb.draw(GR.Common.Images.Badges.Base_Badge.Texture(), x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale,
+                                        orbWidth / 2f, orbHeight / 2f,
+                                        orbWidth, orbHeight, scaleX, scaleY, 0f,
+                                        icon.getRegionX(), icon.getRegionY(), icon.getRegionWidth(),
+                                        icon.getRegionHeight(), false, false);
+                            }
+                            sb.setColor(baseColor);
                             sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
                         else
                         {
+                            if (backgroundColor != null) {
+                                sb.setColor(backgroundColor);
+                                sb.draw(GR.Common.Images.Badges.Base_Badge.Texture(), x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale,
+                                        orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f,
+                                        icon.getRegionX(), icon.getRegionY(), icon.getRegionWidth(),
+                                        icon.getRegionHeight(), false, false);
+                            }
+                            sb.setColor(baseColor);
                             sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
                             curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
                         }
@@ -793,9 +824,9 @@ public class RenderHelpers
         }
     }
 
-    private static Color GetColorForTooltip(String id) {
+    private static Color GetTooltipBackgroundColor(String id) {
         EYBCardTooltip tooltip = CardTooltips.FindByID(id);
-        return (tooltip != null) ? tooltip.color : null;
+        return (tooltip != null) ? tooltip.backgroundColor : null;
     }
 
     private static Color GetColor(Character c, Color baseColor)

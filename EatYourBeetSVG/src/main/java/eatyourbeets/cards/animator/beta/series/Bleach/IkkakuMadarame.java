@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.IkkakuBankai;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.affinity.MightPower;
-import eatyourbeets.powers.affinity.VelocityPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -39,11 +38,14 @@ public class IkkakuMadarame extends AnimatorCard{
             GameActions.Bottom.GainMight(magicNumber, true);
         }
 
-        GameActions.Bottom.Callback(card -> {
-            if (GameUtilities.GetPowerAmount(player, MightPower.POWER_ID) > secondaryValue || GameUtilities.GetPowerAmount(player, VelocityPower.POWER_ID) > secondaryValue) {
-                GameActions.Bottom.MakeCardInDrawPile(new IkkakuBankai());
-                GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
-            }
-        });
+        if (CheckSpecialCondition(true)) {
+            GameActions.Bottom.MakeCardInDrawPile(new IkkakuBankai());
+            GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
+        }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Red) >= secondaryValue || CombatStats.Affinities.GetPowerAmount(Affinity.Green) >= secondaryValue;
     }
 }

@@ -20,11 +20,11 @@ public class Evileye extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0,0, 2, 3);
+        Initialize(0,2, 2, 3);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -42,6 +42,7 @@ public class Evileye extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         if (TrySpendAffinity(Affinity.Blue, Affinity.Dark)) {
             int totalToTransfer = magicNumber;
             for (AbstractPower power : player.powers) {

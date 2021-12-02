@@ -5,23 +5,29 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.TimeParadox;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HououinKyouma extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HououinKyouma.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
+            .SetMaxCopies(1)
             .SetMultiformData(2)
-            .SetSeries(CardSeries.SteinsGate);
+            .SetSeries(CardSeries.SteinsGate)
+            .PostInitialize(data ->
+                    data.AddPreview(new TimeParadox(), false)
+            );
 
     public HououinKyouma()
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Silver(2);
@@ -33,18 +39,29 @@ public class HououinKyouma extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
+        SetDelayed(auxiliaryData.form == 1);
+        SetInnate(auxiliaryData.form == 0);
     }
 
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetDelayed(form == 1);
+            SetInnate(form == 0);
         }
         return super.SetForm(form, timesUpgraded);
     };
+
+    @Override
+    public void triggerWhenDrawn()
+    {
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.GainTechnic(secondaryValue);
+            GameActions.Bottom.MakeCardInDiscardPile(new TimeParadox());
+            GameUtilities.Retain(this);
+        }
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -73,7 +90,7 @@ public class HououinKyouma extends AnimatorCard
 
         if (choices.size() > 0)
         {
-            GameActions.Bottom.SelectFromPile(name, 1, choices)
+            GameActions.Bottom.SelectFromPile(name, magicNumber, choices)
             .SetOptions(false, false)
             .AddCallback(cards -> GameActions.Bottom.MakeCardInDrawPile(cards.get(0)).AddCallback(GameUtilities::Retain));
         }

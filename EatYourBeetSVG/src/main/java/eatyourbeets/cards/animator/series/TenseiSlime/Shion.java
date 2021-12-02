@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -26,6 +27,8 @@ public class Shion extends AnimatorCard
         SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1, 1, 2);
+
+        SetAffinityRequirement(Affinity.Orange, 4);
     }
 
     @Override
@@ -45,7 +48,7 @@ public class Shion extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        if ((info.IsSynergizing || TrySpendAffinity(Affinity.Orange)) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
         }

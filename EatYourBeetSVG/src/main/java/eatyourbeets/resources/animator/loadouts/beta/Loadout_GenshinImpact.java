@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.*;
+import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.animator.beta.ultrarare.Dainsleif;
 import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.base.CardSeries;
@@ -27,6 +28,7 @@ public class Loadout_GenshinImpact extends AnimatorLoadout
         AddStarterCard(JeanGunnhildr.DATA, 20);
         AddStarterCard(Venti.DATA, 25);
         AddStarterCard(Status_Burn.DATA, -5);
+        AddStarterCard(Status_Frostbite.DATA, -5);
     }
 
     @Override

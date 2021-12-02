@@ -1,6 +1,5 @@
 package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.animator.SupportDamageAction;
 import eatyourbeets.powers.CommonPower;
@@ -22,6 +21,6 @@ public class SupportDamagePower extends CommonPower
     {
         super.atEndOfTurn(isPlayer);
 
-        GameActions.Bottom.Add(new SupportDamageAction(new DamageInfo(owner, amount, DamageInfo.DamageType.NORMAL)));
+        GameActions.Bottom.Add(new SupportDamageAction(owner, amount));
     }
 }

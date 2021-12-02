@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class LisaMinci extends AnimatorCard {
@@ -17,8 +14,14 @@ public class LisaMinci extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 1, 3, 2);
-        SetUpgrade(0, 1, 1, 0);
-        SetAffinity_Blue(2, 0, 1);
+        SetUpgrade(0, 0, 1, 0);
+        SetAffinity_Blue(2, 0, 2);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        this.AddScaling(Affinity.Blue, 1);
     }
 
     @Override

@@ -26,9 +26,10 @@ public class Pride extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 1, 1, 2);
 
         SetAffinity_Star(2);
+        SetAffinity_Dark(0,0,1);
 
         SetEvokeOrbCount(magicNumber);
         SetEthereal(true);
@@ -44,6 +45,7 @@ public class Pride extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
         GameActions.Bottom.StackPower(new PridePower(p, secondaryValue));
     }

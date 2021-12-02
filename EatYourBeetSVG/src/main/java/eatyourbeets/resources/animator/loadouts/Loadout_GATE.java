@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Injury;
 import eatyourbeets.cards.animator.series.GATE.*;
 import eatyourbeets.cards.animator.ultrarare.Giselle;
 import eatyourbeets.cards.base.CardSeries;
@@ -23,6 +24,7 @@ public class Loadout_GATE extends AnimatorLoadout
         AddStarterCard(RoryMercury.DATA, 8);
         AddStarterCard(Bozes.DATA, 11);
         AddStarterCard(ItamiYouji.DATA, 25);
+        AddStarterCard(Curse_Injury.DATA, -4);
     }
 
     @Override

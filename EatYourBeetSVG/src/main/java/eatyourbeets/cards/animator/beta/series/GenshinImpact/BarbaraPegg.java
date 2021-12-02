@@ -13,7 +13,10 @@ import eatyourbeets.utilities.JUtils;
 
 public class BarbaraPegg extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(BarbaraPegg.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(BarbaraPegg.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(3)
+            .SetSeriesFromClassPackage();
     private static final int UNIQUE_THRESHOLD = 4;
 
     public BarbaraPegg()
@@ -44,7 +47,7 @@ public class BarbaraPegg extends AnimatorCard
         GameActions.Bottom.VFX(new RainbowCardEffect());
         GameActions.Bottom.GainWisdom(secondaryValue);
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
-        if (info.CanActivateLimited && TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited()) {
+        if (info.CanActivateSemiLimited && TrySpendAffinity(Affinity.Blue) && info.TryActivateSemiLimited()) {
             Water waterOrb = new Water();
             GameActions.Bottom.ChannelOrb(waterOrb);
             if (JUtils.Find(GameUtilities.GetIntents(), i -> !i.IsAttacking()) == null) {

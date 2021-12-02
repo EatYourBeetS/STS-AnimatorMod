@@ -25,11 +25,11 @@ public class Shichika extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2);
+        Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(2);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Green(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 3);
         SetAffinityRequirement(Affinity.Green, 3);

@@ -38,14 +38,16 @@ public class CrowleyEusford extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        for (AbstractMonster mo: GameUtilities.GetEnemies(true)) {
-            if (GameUtilities.GetPowerAmount(mo, VulnerablePower.POWER_ID) > 0) {
-                GameActions.Bottom.GainMight(magicNumber);
-                break;
+        if (CombatStats.CanActivateSemiLimited(cardID)) {
+            for (AbstractMonster mo: GameUtilities.GetEnemies(true)) {
+                if (GameUtilities.GetPowerAmount(mo, VulnerablePower.POWER_ID) > 0) {
+                    CombatStats.TryActivateSemiLimited(cardID);
+                    GameActions.Bottom.GainMight(magicNumber);
+                    GameActions.Bottom.Flash(this);
+                    break;
+                }
             }
         }
-
-        GameActions.Bottom.Flash(this);
     }
 
     @Override

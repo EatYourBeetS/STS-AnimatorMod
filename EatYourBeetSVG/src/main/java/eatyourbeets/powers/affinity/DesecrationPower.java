@@ -4,9 +4,8 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.TaintedPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public class DesecrationPower extends AbstractAffinityPower
 {
@@ -25,8 +24,7 @@ public class DesecrationPower extends AbstractAffinityPower
 
         if (m != null && TryUse(c))
         {
-            GameActions.Bottom.StackPower(TargetHelper.Normal(m), PowerHelper.Tainted, applyAmount)
-                    .ShowEffect(true, true).IgnoreArtifact(true);
+            GameActions.Bottom.StackPower(new TaintedPower(m, applyAmount)).ShowEffect(true, true).IgnoreArtifact(true);
         }
     }
 

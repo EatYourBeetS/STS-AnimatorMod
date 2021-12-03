@@ -54,6 +54,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected GUI_TextBox cardsCount_text;
     protected GUI_TextBox cardsValue_text;
     protected GUI_TextBox affinityValue_text;
+    protected GUI_TextBox hindranceValue_text;
 
     public AnimatorLoadoutEditor()
     {
@@ -118,19 +119,25 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
         .SetPosition(save_button.hb.cX, save_button.hb.y + save_button.hb.height + labelHeight * 0.8f)
-        .SetFont(FontHelper.charDescFont, 1);
+        .SetFont(FontHelper.tipHeaderFont, 1);
 
         cardsCount_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
-        .SetPosition(save_button.hb.cX, cardsValue_text.hb.y + cardsValue_text.hb.height + labelHeight * 0.8f)
-        .SetFont(FontHelper.charDescFont, 1);
+        .SetPosition(save_button.hb.cX, cardsValue_text.hb.y + cardsValue_text.hb.height + labelHeight * 0.5f)
+        .SetFont(FontHelper.tipHeaderFont, 1);
 
         affinityValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
-        .SetPosition(save_button.hb.cX, cardsCount_text.hb.y + cardsCount_text.hb.height + labelHeight * 0.8f)
-        .SetFont(FontHelper.charDescFont, 1);
+        .SetPosition(save_button.hb.cX, cardsCount_text.hb.y + cardsCount_text.hb.height + labelHeight * 0.5f)
+        .SetFont(FontHelper.tipHeaderFont, 1);
+
+        hindranceValue_text = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
+                .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
+                .SetAlignment(0.5f, 0.5f)
+                .SetPosition(save_button.hb.cX, affinityValue_text.hb.y + affinityValue_text.hb.height + labelHeight * 0.5f)
+                .SetFont(FontHelper.tipHeaderFont, 1);
 
         for (int i = 0; i < MAX_CARD_SLOTS; i++) {
             slotsEditors.add(new AnimatorCardSlotEditor(this, ScreenW(0.1f), ScreenH(0.75f - (i * 0.05f))));
@@ -260,9 +267,10 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             }
         }
 
-        affinityValue_text.SetText("Affinity: +" + val.AffinityLevel).TryUpdate();
-        cardsCount_text.SetText("Cards: {0}", val.CardsCount.V1).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
-        cardsValue_text.SetText("Value: {0}/{1}", val.TotalValue.V1, AnimatorLoadout.MAX_VALUE).SetFontColor(val.TotalValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        hindranceValue_text.SetText(GR.Animator.Strings.CharSelect.HindranceValue(val.HindranceLevel)).TryUpdate();
+        affinityValue_text.SetText(GR.Animator.Strings.CharSelect.AffinityValue(val.AffinityLevel)).TryUpdate();
+        cardsCount_text.SetText(GR.Animator.Strings.CharSelect.CardsCount(val.CardsCount.V1)).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
+        cardsValue_text.SetText(GR.Animator.Strings.CharSelect.TotalValue(val.TotalValue.V1, AnimatorLoadout.MAX_VALUE)).SetFontColor(val.TotalValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         save_button.SetInteractable(val.IsValid).TryUpdate();
     }
 
@@ -297,6 +305,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             clear_button.Render(sb);
             save_button.Render(sb);
             upgrade_toggle.Render(sb);
+            hindranceValue_text.TryRender(sb);
             affinityValue_text.TryRender(sb);
             cardsCount_text.TryRender(sb);
             cardsValue_text.TryRender(sb);

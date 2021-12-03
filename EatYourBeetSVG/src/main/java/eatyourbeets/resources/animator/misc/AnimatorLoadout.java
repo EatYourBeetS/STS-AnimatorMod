@@ -33,6 +33,7 @@ public abstract class AnimatorLoadout
     {
         public final TupleT2<Integer, Boolean> CardsCount = new TupleT2<>();
         public final TupleT2<Integer, Boolean> TotalValue = new TupleT2<>();
+        public int HindranceLevel;
         public int AffinityLevel;
         public int GoldValue;
         public int HpValue;
@@ -65,6 +66,8 @@ public abstract class AnimatorLoadout
             CardsCount.Set(0, false);
             TotalValue.Set(MAX_VALUE, false);
             AllCardsSeen = true;
+            int weakHindrances = 0;
+            int strongHindrances = 0;
             final EYBCardAffinities affinities = new EYBCardAffinities(null);
             for (AnimatorCardSlot slot : data.cardSlots)
             {
@@ -77,9 +80,18 @@ public abstract class AnimatorLoadout
                 TotalValue.V1 += slot.GetEstimatedValue();
                 CardsCount.V1 += slot.amount;
 
-                if (slot.selected != null && slot.selected.data.IsNotSeen())
+                if (slot.selected != null)
                 {
-                    AllCardsSeen = false;
+                    if (slot.selected.data.IsNotSeen()) {
+                        AllCardsSeen = false;
+                    }
+
+                    if (slot.selected.estimatedValue < -2) {
+                        strongHindrances += slot.amount;
+                    }
+                    else if (slot.selected.estimatedValue < 0) {
+                        weakHindrances += slot.amount;
+                    }
                 }
             }
             for (AnimatorRelicSlot slot : data.relicSlots)
@@ -92,8 +104,10 @@ public abstract class AnimatorLoadout
                 TotalValue.V1 += slot.GetEstimatedValue();
             }
 
+
+            // Affinity level is determined by how easy it is to rack up a particular Affinity
             AffinityLevel = 0;
-            for (Affinity t : Affinity.Extended())
+            for (Affinity t : Affinity.All())
             {
                 int level = affinities.GetLevel(t, false);
                 if (level > 2)
@@ -102,9 +116,17 @@ public abstract class AnimatorLoadout
                 }
             }
 
+            // Hindrance level is determined by the proportion of your deck that is "bad"
+            // Strikes/Defends and harmless hindrances have a weaker influence
+            // Curses and damaging hindrances have a stronger influence
+            int strongHindranceLevel = Math.max(0, (20 * strongHindrances * strongHindrances / CardsCount.V1));
+            int weakHindranceLevel = Math.max(0, (24 * (weakHindrances + strongHindrances) / CardsCount.V1) - 12);
+            HindranceLevel = -strongHindranceLevel -weakHindranceLevel;
+
+
             GoldValue = data.GoldValue;
             HpValue = data.HPValue;
-            TotalValue.V1 += GoldValue + HpValue + AffinityLevel;
+            TotalValue.V1 += GoldValue + HpValue + AffinityLevel + HindranceLevel;
             TotalValue.V2 = TotalValue.V1 <= MAX_VALUE;
             CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;
             IsValid = TotalValue.V2 && CardsCount.V2 && AllCardsSeen;

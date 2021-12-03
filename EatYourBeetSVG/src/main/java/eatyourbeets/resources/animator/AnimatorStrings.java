@@ -165,6 +165,26 @@ public class AnimatorStrings
         {
             return JUtils.Format(Strings.TEXT[7], ascension);
         }
+
+        public final String HindranceValue(int value)
+        {
+            return JUtils.Format(Strings.TEXT[14], value);
+        }
+
+        public final String AffinityValue(int value)
+        {
+            return JUtils.Format(Strings.TEXT[15], value);
+        }
+
+        public final String CardsCount(int value)
+        {
+            return JUtils.Format(Strings.TEXT[16], value);
+        }
+
+        public final String TotalValue(int value, int max)
+        {
+            return JUtils.Format(Strings.TEXT[17], value, max);
+        }
     }
 
     public class SeriesSelection

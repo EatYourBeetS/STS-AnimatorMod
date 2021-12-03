@@ -250,7 +250,13 @@
 			"Deck",
 			"Relics",
 			"Attributes",
-			"Reset"
+			"Reset",
+			"Hindrance: {0}",
+			"Affinity: {0}",
+			"Cards: {0}",
+			"Value: {0}/{1}",
+			"Your Hindrance level is determined by the proportion of your deck made up of negative-valued cards. Cards valued less than -2 have a larger impact on this number.",
+			"Your Affinity level is determined by the sum of the frequency of each Affinity that occurs more than 2 times in your deck."
 		]
 	},
 	

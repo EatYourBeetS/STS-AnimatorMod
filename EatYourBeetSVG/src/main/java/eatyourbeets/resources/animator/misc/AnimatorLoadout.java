@@ -19,10 +19,12 @@ import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.relics.animator.beta.PolychromePaintbrush;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.animator.characterSelection.AnimatorBaseStatEditor;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TupleT2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringJoiner;
 
 import static eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor.MAX_RELIC_SLOTS;
@@ -33,10 +35,9 @@ public abstract class AnimatorLoadout
     {
         public final TupleT2<Integer, Boolean> CardsCount = new TupleT2<>();
         public final TupleT2<Integer, Boolean> TotalValue = new TupleT2<>();
+        public final HashMap<AnimatorBaseStatEditor.StatType, Integer> Values = new HashMap<>();
         public int HindranceLevel;
         public int AffinityLevel;
-        public int GoldValue;
-        public int HpValue;
         public boolean AllCardsSeen;
         public boolean IsValid;
 
@@ -119,14 +120,12 @@ public abstract class AnimatorLoadout
             // Hindrance level is determined by the proportion of your deck that is "bad"
             // Strikes/Defends and harmless hindrances have a weaker influence
             // Curses and damaging hindrances have a stronger influence
-            int strongHindranceLevel = Math.max(0, (20 * strongHindrances * strongHindrances / CardsCount.V1));
-            int weakHindranceLevel = Math.max(0, (24 * (weakHindrances + strongHindrances) / CardsCount.V1) - 12);
+            int strongHindranceLevel = Math.max(0, (21 * strongHindrances * strongHindrances / CardsCount.V1));
+            int weakHindranceLevel = Math.max(0, (30 * (weakHindrances + strongHindrances) / CardsCount.V1) - 20);
             HindranceLevel = -strongHindranceLevel -weakHindranceLevel;
 
-
-            GoldValue = data.GoldValue;
-            HpValue = data.HPValue;
-            TotalValue.V1 += GoldValue + HpValue + AffinityLevel + HindranceLevel;
+            Values.putAll(data.Values);
+            TotalValue.V1 += (int) JUtils.Sum(Values.values(), Float::valueOf) + AffinityLevel + HindranceLevel;
             TotalValue.V2 = TotalValue.V1 <= MAX_VALUE;
             CardsCount.V2 = CardsCount.V1 >= MIN_CARDS;
             IsValid = TotalValue.V2 && CardsCount.V2 && AllCardsSeen;
@@ -142,11 +141,6 @@ public abstract class AnimatorLoadout
     public static final int MAX_PRESETS = 3;
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
-    public static final int BASE_GOLD = 99;
-    public static final int BASE_HP = 70;
-    public static final int GOLD_STEP = 15;
-    public static final int HP_STEP = 2;
-    public static final int MAX_STEP = 6;
 
     public AnimatorLoadoutData[] Presets = new AnimatorLoadoutData[3];
     public AnimatorCardSlot SpecialSlot1;
@@ -205,8 +199,9 @@ public abstract class AnimatorLoadout
 
     public void InitializeData(AnimatorLoadoutData data)
     {
-        data.HPValue = 0;
-        data.GoldValue = 0;
+        for (AnimatorBaseStatEditor.StatType type : AnimatorBaseStatEditor.StatType.values()) {
+            data.Values.put(type, 0);
+        }
         data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Strike.DATA, -2);
         data.AddCardSlot(1, AnimatorCardSlot.MAX_LIMIT).AddItem(Defend.DATA, -2);
 
@@ -346,22 +341,17 @@ public abstract class AnimatorLoadout
 
     public int GetHP()
     {
-        return BASE_HP + GetPreset().HPValue * HP_STEP;
-    }
-
-    public int GetHPValue()
-    {
-        return GetPreset().HPValue;
+        return AnimatorBaseStatEditor.StatType.HP.GetAmount(GetPreset());
     }
 
     public int GetGold()
     {
-        return BASE_GOLD + GetPreset().GoldValue * GOLD_STEP;
+        return AnimatorBaseStatEditor.StatType.Gold.GetAmount(GetPreset());
     }
 
-    public int GetGoldValue()
+    public int GetCommonUpgrades()
     {
-        return GetPreset().GoldValue;
+        return AnimatorBaseStatEditor.StatType.CommonUpgrade.GetAmount(GetPreset());
     }
 
     public AnimatorTrophies GetTrophies()
@@ -466,18 +456,19 @@ public abstract class AnimatorLoadout
     {
         final AnimatorLoadoutData data = new AnimatorLoadoutData(this);
         data.Preset = preset;
-        data.HPValue = 0;
-        data.GoldValue = 0;
+        for (AnimatorBaseStatEditor.StatType type : AnimatorBaseStatEditor.StatType.values()) {
+            data.Values.put(type, 0);
+        }
         data.GetCardSlot(0).Select(0, 5).GetData().MarkSeen();
         data.GetCardSlot(1).Select(0, 5).GetData().MarkSeen();
-        //data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
-        //data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
         data.GetCardSlot(2).Select(null);
         data.GetCardSlot(3).Select(null);
         data.GetCardSlot(4).Select(null);
         data.GetCardSlot(5).Select(null);
         data.GetRelicSlot(0).Select((EYBRelic) null);
         data.GetRelicSlot(1).Select((EYBRelic) null);
+        //data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
+        //data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
         return data;
     }
 
@@ -518,20 +509,7 @@ public abstract class AnimatorLoadout
             int amount = MathUtils.random(-2,2);
         }
 
-        data.GetCardSlot(2).Select(null);
-
-        data.HPValue = 0;
-        data.GoldValue = 0;
-        data.GetCardSlot(0).Select(0, 5).GetData().MarkSeen();
-        data.GetCardSlot(1).Select(0, 5).GetData().MarkSeen();
-        //data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
-        //data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
-        data.GetCardSlot(2).Select(null);
-        data.GetCardSlot(3).Select(null);
-        data.GetCardSlot(4).Select(null);
-        data.GetCardSlot(5).Select(null);
-        data.GetRelicSlot(0).Select((EYBRelic) null);
-        data.GetRelicSlot(1).Select((EYBRelic) null);
+        // TODO finish me
         return data;
     }
 

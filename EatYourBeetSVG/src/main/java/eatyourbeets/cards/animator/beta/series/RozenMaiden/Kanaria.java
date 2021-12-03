@@ -4,12 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.cards.animator.beta.special.Kanaria_Pizzicato;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
@@ -45,8 +46,15 @@ public class Kanaria extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSecondaryInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new KanariaPower(p, 1, magicNumber));
     }
 
@@ -82,8 +90,6 @@ public class Kanaria extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
-            CombatStats.Affinities.GetPower(Affinity.Light).SetEnabled(true);
             CombatStats.onCardCreated.Subscribe(this);
         }
 
@@ -100,16 +106,6 @@ public class Kanaria extends AnimatorCard
         public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.MakeCardInHand(new Kanaria_Pizzicato());
-        }
-
-        @Override
-        public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
-            super.onChangeStance(oldStance,newStance);
-
-            GameActions.Last.Callback(() -> {
-                CombatStats.Affinities.GetPower(Affinity.Green).SetEnabled(true);
-                CombatStats.Affinities.GetPower(Affinity.Light).SetEnabled(true);
-            });
         }
 
         @Override

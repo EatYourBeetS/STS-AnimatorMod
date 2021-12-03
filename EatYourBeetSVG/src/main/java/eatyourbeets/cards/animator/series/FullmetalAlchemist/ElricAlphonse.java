@@ -18,8 +18,8 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 8, 2);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 2, 6, 2);
+        SetUpgrade(0, 1, 4);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
@@ -40,7 +40,6 @@ public class ElricAlphonse extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameUtilities.MaintainPower(Affinity.Blue);
         if (CheckPrimaryCondition(true)) {
             GameActions.Bottom.GainWisdom(secondaryValue);
         }

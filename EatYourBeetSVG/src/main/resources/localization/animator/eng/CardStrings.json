@@ -632,8 +632,8 @@
 		},
 		"animator:UruhaRushia":
         {
-        	"DESCRIPTION": "During your phase this turn, reduce all direct damage received to 0.",
-        	"EXTENDED_DESCRIPTION": ["During your phase this turn, reduce all direct damage received to 0."],
+        	"DESCRIPTION": "Until the end of your turn, reduce all direct damage received to 0.",
+        	"EXTENDED_DESCRIPTION": ["Until the end of your turn, reduce all direct damage received to 0."],
         	"NAME": "Uruha Rushia"
         },
 		"animator:Ushio":
@@ -1038,8 +1038,8 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "Stances double the {Scaling} of their {<W> Power} and no longer disable other <W> powers. Upon leaving a Stance: Gain !S! of its {<W> Power}. || Startup: Enter any Stance.",
-		 	"EXTENDED_DESCRIPTION": ["Stances double the {Scaling} of their [A-Gen] #yPower no longer disable other [A-Gen] #yPowers. Upon leaving a Stance: Gain #b{1} of its [A-Gen] #yPower."],
+			"DESCRIPTION": "Stances double gains of their {<W> Power}. Upon leaving a Stance: Its {<W> Power} gains 1 level. || Startup: Enter any Stance.",
+		 	"EXTENDED_DESCRIPTION": ["Stances double gains of their [A-Gen] #yPower. Upon leaving a Stance: Its [A-Gen] #yPower gains #b{0} #yLevel(s)."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
@@ -1103,8 +1103,8 @@
 		},
 		"animator:Kanaria":
 		{
-			"DESCRIPTION": "Always {Maintain} [G] and [L]. The first time a {Hindrance} is created each turn: ** Gain !M! [G] [L]. || Once per turn, pay {0} <B> or <L>: Obtain {Pizzicato}.",
-			"EXTENDED_DESCRIPTION": ["Always #yMaintain [G] and [L]. The next #b{0} time(s) a #yHindrance is created this turn: Gain #b{1} [G] and [L]. NL Pay #b{2} [A-Blue] or [A-Light]. Obtain #yPizzicato."],
+			"DESCRIPTION": "The first time a {Hindrance} is created each turn: ** Gain !M! [G] [L]. || Once per turn, pay {0} <B> or <L>: Obtain {Pizzicato}.",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) a #yHindrance is created this turn: Gain #b{1} [G] and [L]. NL Pay #b{2} [A-Blue] or [A-Light]. Obtain #yPizzicato."],
 			"NAME": "Kanaria"
 		},
 		"animator:Kanaria_Pizzicato":
@@ -1409,7 +1409,7 @@
 	{
 		"animator:Canti":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's current attack damage. || <slm>. If the enemy is not attacking: Maintain [T] and Gain !M! [T].",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's current attack damage. || <slm>. If the enemy is not attacking: Gain !M! [T].",
 			"NAME": "Canti"
 		},
 		"animator:Kuroyukihime":
@@ -1774,7 +1774,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "{Maintain} [B]. @If@ [B] @<@ !M!: Gain !S! [B]. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
+			"DESCRIPTION": "@If@ [B] @<@ !M!: Gain !S! [B]. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -2679,7 +2679,7 @@
 		},
 		"animator:MumenRider":
 		{
-			"DESCRIPTION": "Cycle a card. [L] is conserved this turn. || <RCT>: {Fetch} this card.",
+			"DESCRIPTION": "Cycle a card. {<W> Powers} will be not spent this turn. || <RCT>: {Fetch} this card.",
 			"NAME": "Mumen Rider"
 		},
 		"animator:Saitama":
@@ -2720,8 +2720,8 @@
 	{
 		"animator:Ainz":
 		{
-			"DESCRIPTION": "At the start of turn: Gain !M! [R] [B] [O] [D]. {Maintain} them in <DS>. || When Drawn: Motivate this. || Pay {0} <D>: Channel {1} [Chaos].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Dark] to #yChannel #b{1} [Chaos]. || At the start of each turn, #yGain #b{2} [R] [B] [O] [D]. #yMaintain those powers in [D] #yStance."],
+			"DESCRIPTION": "At the start of turn: Gain !M! [R] [B] [O] [D]. || When Drawn: Motivate this. || Pay {0} <D>: Channel {1} [Chaos].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Dark] to #yChannel #b{1} [Chaos]. || At the start of each turn, #yGain #b{2} [R] [B] [O] [D]."],
 			"NAME": "Ainz Ooal Gown"
 		},
 		"animator:Albedo":
@@ -2877,7 +2877,7 @@
 		},
 		"animator:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. {Maintain} [R]. || On Exhaust: Add {Asuramaru} ** to your discard pile.",
+			"DESCRIPTION": "<DRW>. If it was a Hindrance: Draw 1 more. || On Exhaust: Add {Asuramaru} ** to your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"animator:Yuuichirou_Asuramaru":
@@ -2895,8 +2895,8 @@
 		},
 		"animator:GazelDwargon":
 		{
-			"DESCRIPTION": "Gain X + !S! [Plated Armor]. || Always Maintain [O]. At the start of turn: Preserve up to !M!X [Block].",
-			"EXTENDED_DESCRIPTION": ["Always #yMaintain [O]. Maintain up to #b{0} #yBlock at the start of each turn."],
+			"DESCRIPTION": "Gain X + !S! [Plated Armor]. || At the start of turn: Preserve up to !M!X [Block].",
+			"EXTENDED_DESCRIPTION": ["Preserve up to #b{0} #yBlock at the start of each turn."],
 			"NAME": "Gazel Dwargon"
 		},
 		"animator:Gabiru":
@@ -2912,7 +2912,7 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "Pay !A! <R> or <O> to Choose 1: Enter <GS>, or Gain +!M! <G>. || When Drawn: {Maintain} ** [R] and [G].",
+			"DESCRIPTION": "Pay !A! <R> or <O> to Choose 1: Enter <GS>, or Gain +!M! <G>. || <slm>. When Drawn: Gain [G].",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":

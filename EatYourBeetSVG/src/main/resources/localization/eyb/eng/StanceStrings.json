@@ -5,7 +5,7 @@
 		"NAME": "Might Stance",
 		"DESCRIPTION": 
 		[
-			"[R] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [R]"
+			"[R] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Red]"
 		]
 	},
 	"eyb:VelocityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Velocity Stance",
 		"DESCRIPTION": 
 		[
-			"[G] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [G]"
+			"[G] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Green]"
 		]
 	},
 	"eyb:WisdomStance":
@@ -21,7 +21,7 @@
 		"NAME": "Wisdom Stance",
 		"DESCRIPTION": 
 		[
-			"[B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [B]"
+			"[B] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Blue]"
 		]
 	},
 	"eyb:EnduranceStance":
@@ -29,7 +29,7 @@
 		"NAME": "Endurance Stance",
 		"DESCRIPTION":
 		[
-			"[O] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [O]"
+			"[O] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Orange]"
 		]
 	},
 	"eyb:SuperchargeStance":
@@ -37,7 +37,7 @@
 		"NAME": "Supercharge Stance",
 		"DESCRIPTION":
 		[
-			"[L] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [L]"
+			"[L] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Light]"
 		]
 	},
 	"eyb:DesecrationStance":
@@ -45,7 +45,7 @@
 		"NAME": "Desecration Stance",
 		"DESCRIPTION":
 		[
-			"[D] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [D]"
+			"[D] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Dark]"
 		]
 	},
 	"eyb:TechnicStance":
@@ -53,7 +53,7 @@
     	"NAME": "Technic Stance",
     	"DESCRIPTION":
     	[
-    		"[S] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain {0} [S]"
+    		"[S] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Silver]"
     	]
     }
 }

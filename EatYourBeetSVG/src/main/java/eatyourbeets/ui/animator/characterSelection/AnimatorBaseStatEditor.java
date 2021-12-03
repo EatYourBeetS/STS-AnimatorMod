@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
-import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadoutData;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -22,55 +22,59 @@ import eatyourbeets.utilities.JUtils;
 
 public class AnimatorBaseStatEditor extends GUIElement
 {
-    public enum Type
+    public enum StatType
     {
-        Gold,
-        HP;
-
-        public Texture GetIcon()
-        {
-            return this == Gold ? ImageMaster.TP_GOLD : ImageMaster.TP_HP;
-        }
-
-        public Color GetColor()
-        {
-            return this == Gold ? Settings.GOLD_COLOR : Settings.RED_TEXT_COLOR;
-        }
+        Gold(ImageMaster.TP_GOLD, Settings.GOLD_COLOR, 99, 15, -6, 6),
+        HP(ImageMaster.TP_HP, Settings.RED_TEXT_COLOR, 70, 2, -6, 6),
+        CommonUpgrade(ImageMaster.TP_ASCENSION, Settings.CREAM_COLOR, 0, 1, 0, 2);
 
         public void SetAmount(AnimatorLoadoutData data, int amount)
         {
-            if (this == Gold)
-            {
-                data.GoldValue = amount;
+            if (data != null) {
+                data.Values.put(this, amount);
             }
-            else
-            {
-                data.HPValue = amount;
-            }
-        }
-
-        public int GetBaseValue()
-        {
-            return this == Gold ? AnimatorLoadout.BASE_GOLD : AnimatorLoadout.BASE_HP;
-        }
-
-        public int GetStep()
-        {
-            return this == Gold ? AnimatorLoadout.GOLD_STEP : AnimatorLoadout.HP_STEP;
         }
 
         public int GetAmount(AnimatorLoadoutData data)
         {
-            return GetBaseValue() + GetStep() * (this == Gold ? data.GoldValue : data.HPValue);
+            return BaseAmount + AmountStep * (data != null ? data.Values.getOrDefault(this, 0) : 0);
         }
 
         public String GetText(AnimatorLoadoutData data)
         {
-            return (this == Gold ? CharacterOption.TEXT[5] : CharacterOption.TEXT[4]) + GetAmount(data);
+            if (data == null) {
+                return "";
+            }
+            switch (this) {
+                case Gold:
+                    return CharacterOption.TEXT[5] + GetAmount(data);
+                case HP:
+                    return CharacterOption.TEXT[4] + GetAmount(data);
+                case CommonUpgrade:
+                    return GR.Animator.Strings.Rewards.CommonUpgrade + GetAmount(data);
+                default:
+                    return "";
+            }
+        }
+
+        public final Texture Icon;
+        public final Color LabelColor;
+        public final int BaseAmount;
+        public final int AmountStep;
+        public final int MinValue;
+        public final int MaxValue;
+
+        StatType(Texture icon, Color labelColor, int baseAmount, int amountStep, int minValue, int maxValue) {
+            this.Icon = icon;
+            this.LabelColor = labelColor;
+            this.BaseAmount = baseAmount;
+            this.AmountStep = amountStep;
+            this.MinValue = minValue;
+            this.MaxValue = maxValue;
         }
     }
 
-    public AnimatorBaseStatEditor.Type type;
+    public StatType type;
     public AnimatorLoadoutData data;
 
     protected static final float ICON_SIZE = 64f * Settings.scale;
@@ -83,7 +87,7 @@ public class AnimatorBaseStatEditor extends GUIElement
     protected GUI_Dropdown<Integer> valueDropdown;
     protected AnimatorLoadoutEditor editor;
 
-    public AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type type, float cX, float cY, AnimatorLoadoutEditor editor)
+    public AnimatorBaseStatEditor(StatType type, float cX, float cY, AnimatorLoadoutEditor editor)
     {
         this.type = type;
         this.hb = new AdvancedHitbox(0, 0, ICON_SIZE * 2.5f, ICON_SIZE).SetPosition(cX, cY);
@@ -92,10 +96,10 @@ public class AnimatorBaseStatEditor extends GUIElement
         final float w = hb.width;
         final float h = hb.height;
 
-        image = new GUI_Image(type.GetIcon(), new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, (ICON_SIZE * 0.5f), h * 0.5f, false));
+        image = new GUI_Image(type.Icon, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, (ICON_SIZE * 0.5f), h * 0.5f, false));
         label = new GUI_Label(FontHelper.tipHeaderFont, new RelativeHitbox(hb, w - ICON_SIZE, h, (w + ICON_SIZE) * 0.5f, h * 0.5f, false))
         .SetAlignment(0.5f, 0f, false)
-        .SetColor(type.GetColor());
+        .SetColor(type.LabelColor);
 
         decrease_button = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, -(ICON_SIZE * 0.5f), (h * 0.35f), false))
         .SetOnClick(this::Decrease)
@@ -123,7 +127,7 @@ public class AnimatorBaseStatEditor extends GUIElement
                     int first = value.get(0);
                     return first == 0 ? Settings.CREAM_COLOR : first < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
                 }, false)
-                .SetItems(JUtils.RangeArray(AnimatorLoadout.MAX_STEP * -1, AnimatorLoadout.MAX_STEP));
+                .SetItems(JUtils.RangeArray(type.MinValue, type.MaxValue));
     }
 
     public AnimatorBaseStatEditor SetEstimatedValue(int value)
@@ -164,7 +168,7 @@ public class AnimatorBaseStatEditor extends GUIElement
     public void SetLoadout(AnimatorLoadoutData data)
     {
         this.data = data;
-        valueDropdown.SetSelection((type == Type.Gold ? data.GoldValue : data.HPValue), true);
+        valueDropdown.SetSelection(data.Values.getOrDefault(type, 0), true);
     }
 
     public boolean CanDecrease()

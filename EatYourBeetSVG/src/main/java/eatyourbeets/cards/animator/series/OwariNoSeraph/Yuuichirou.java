@@ -1,9 +1,9 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.Yuuichirou_Asuramaru;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -37,9 +37,13 @@ public class Yuuichirou extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        GameActions.Bottom.Draw(1);
-
-        GameUtilities.MaintainPower(Affinity.Red);
+        GameActions.Bottom.Draw(1).AddCallback(cards -> {
+            for (AbstractCard c : cards) {
+                if (GameUtilities.IsHindrance(c)) {
+                    GameActions.Top.Draw(1);
+                }
+            }
+        });
     }
 
     @Override

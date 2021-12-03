@@ -35,6 +35,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
     protected final AnimatorLoadoutData[] presets = new AnimatorLoadoutData[AnimatorLoadout.MAX_PRESETS];
     protected AnimatorBaseStatEditor goldEditor;
     protected AnimatorBaseStatEditor hpEditor;
+    protected AnimatorBaseStatEditor commonUpgradeEditor;
     protected AnimatorLoadout loadout;
     protected ActionT0 onClose;
     protected int preset;
@@ -147,8 +148,9 @@ public class AnimatorLoadoutEditor extends AbstractScreen
             relicsEditors.add(new AnimatorRelicSlotEditor(this, ScreenW(0.1f), ScreenH(0.35f - (i * 0.05f))));
         }
 
-        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.HP, ScreenW(0.82f), ScreenH(0.78f), this);
-        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.Type.Gold, ScreenW(0.82f), ScreenH(0.691f), this);
+        hpEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.StatType.HP, ScreenW(0.82f), ScreenH(0.78f), this);
+        goldEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.StatType.Gold, ScreenW(0.82f), ScreenH(0.69f), this);
+        commonUpgradeEditor = new AnimatorBaseStatEditor(AnimatorBaseStatEditor.StatType.CommonUpgrade, ScreenW(0.82f), ScreenH(0.6f), this);
 
         ascensionRequirement = new GUI_TextBox(GR.Common.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
@@ -166,6 +168,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         ascensionRequirement.SetActive(!enableHPAndGoldEditor);
         goldEditor.SetInteractable(enableHPAndGoldEditor);
         hpEditor.SetInteractable(enableHPAndGoldEditor);
+        //commonUpgradeEditor.SetInteractable(enableHPAndGoldEditor);
 
         for (int i = 0; i < loadout.Presets.length; i++)
         {
@@ -173,8 +176,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             if (!enableHPAndGoldEditor)
             {
-                presets[i].GoldValue = 0;
-                presets[i].HPValue = 0;
+                presets[i].Values.put(AnimatorBaseStatEditor.StatType.HP, 0);
+                presets[i].Values.put(AnimatorBaseStatEditor.StatType.Gold, 0);
             }
         }
 
@@ -248,11 +251,14 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             ascensionRequirement.TryUpdate();
             if (activeEditor == null || activeEditor == goldEditor) {
-                goldEditor.SetEstimatedValue(val.GoldValue).Update();
+                goldEditor.SetEstimatedValue(val.Values.getOrDefault(AnimatorBaseStatEditor.StatType.Gold, 0)).Update();
             }
             if (activeEditor == null || activeEditor == hpEditor) {
-                hpEditor.SetEstimatedValue(val.HpValue).Update();
+                hpEditor.SetEstimatedValue(val.Values.getOrDefault(AnimatorBaseStatEditor.StatType.HP, 0)).Update();
             }
+            //if (activeEditor == null || activeEditor == commonUpgradeEditor) {
+            //    commonUpgradeEditor.SetEstimatedValue(val.Values.getOrDefault(AnimatorBaseStatEditor.StatType.CommonUpgrade, 0)).Update();
+            //}
             cancel_button.Update();
             clear_button.Update();
             save_button.Update();
@@ -298,6 +304,8 @@ public class AnimatorLoadoutEditor extends AbstractScreen
 
             deck_text.Render(sb);
             relic_text.Render(sb);
+            // TODO find a better name for this before your render it
+            //commonUpgradeEditor.Render(sb);
             goldEditor.Render(sb);
             hpEditor.Render(sb);
             ascensionRequirement.TryRender(sb);
@@ -353,6 +361,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         this.preset = preset;
         this.hpEditor.SetLoadout(presets[preset]);
         this.goldEditor.SetLoadout(presets[preset]);
+        this.commonUpgradeEditor.SetLoadout(presets[preset]);
         SetSlotsActive(true);
     }
 

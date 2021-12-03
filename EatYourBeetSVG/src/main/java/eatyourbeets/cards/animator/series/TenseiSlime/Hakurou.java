@@ -7,9 +7,9 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Hakurou extends AnimatorCard
 {
@@ -22,7 +22,7 @@ public class Hakurou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 1, 3);
+        Initialize(1, 1, 3, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 0);
@@ -51,9 +51,10 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameUtilities.MaintainPower(Affinity.Red);
-        GameUtilities.MaintainPower(Affinity.Orange);
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.GainVelocity(secondaryValue);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override

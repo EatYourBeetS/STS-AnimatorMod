@@ -21,7 +21,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
     public SakuraKashima() {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 1);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(2, 0, 0);
     }
@@ -77,16 +77,16 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
             EYBStance eNewStance = JUtils.SafeCast(newStance, EYBStance.class);
 
             if (eOldStance != null) {
-                GameActions.Bottom.StackAffinityPower(eOldStance.affinity, amount, false);
+                GameActions.Bottom.IncreaseAffinityPowerLevel(eOldStance.affinity, amount);
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eOldStance.affinity);
                 if (p != null) {
-                    p.SetScalingMultiplier(p.scalingMultiplier - 1);
+                    p.SetGainMultiplier(p.gainMultiplier - 1);
                 }
             }
             if (eNewStance != null) {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eNewStance.affinity);
                 if (p != null) {
-                    p.SetScalingMultiplier(p.scalingMultiplier + 1);
+                    p.SetGainMultiplier(p.gainMultiplier + 1);
                 }
             }
 

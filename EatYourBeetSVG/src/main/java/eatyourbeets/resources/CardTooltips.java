@@ -278,13 +278,13 @@ public class CardTooltips
         Affinity_Silver.SetIcon(affinities.Silver.Texture(), 8);
         Affinity_General.SetIcon(affinities.General.Texture(), 8);
         Multicolor.SetIcon(affinities.Star.Texture(), 8);
-        MightScaling.icon = Affinity_Red.icon;
-        VelocityScaling.icon = Affinity_Green.icon;
-        WisdomScaling.icon = Affinity_Blue.icon;
-        EnduranceScaling.icon = Affinity_Orange.icon;
-        SuperchargeScaling.icon = Affinity_Light.icon;
-        DesecrationScaling.icon = Affinity_Dark.icon;
-        TechnicScaling.icon = Affinity_Silver.icon;
+        MightScaling.icon = Might.icon;
+        VelocityScaling.icon = Velocity.icon;
+        WisdomScaling.icon = Wisdom.icon;
+        EnduranceScaling.icon = Endurance.icon;
+        SuperchargeScaling.icon = Supercharge.icon;
+        DesecrationScaling.icon = Desecration.icon;
+        TechnicScaling.icon = Technic.icon;
         MulticolorScaling.icon = Multicolor.icon;
         Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;
 

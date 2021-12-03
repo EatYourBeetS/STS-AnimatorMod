@@ -334,10 +334,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    block = ApplyScaling(p, card, block);
-                }
+                block = ApplyScaling(p, card, block);
             }
         }
 
@@ -350,10 +347,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    damage = ApplyScaling(p, card, damage);
-                }
+                damage = ApplyScaling(p, card, damage);
             }
         }
 
@@ -364,10 +358,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         if (card.cardData.CanScaleMagicNumber) {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    magicNumber = ApplyScaling(p, card, magicNumber);
-                }
+                magicNumber = ApplyScaling(p, card, magicNumber);
             }
         }
         return magicNumber;
@@ -379,10 +370,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    base = ApplyScaling(p, card, base);
-                }
+                base = ApplyScaling(p, card, base);
             }
 
             return base;

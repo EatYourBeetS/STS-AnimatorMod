@@ -11,6 +11,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
 import eatyourbeets.resources.animator.loadouts.beta.*;
 import eatyourbeets.resources.animator.misc.*;
+import eatyourbeets.ui.animator.characterSelection.AnimatorBaseStatEditor;
 import eatyourbeets.utilities.JUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -372,8 +373,9 @@ public class AnimatorPlayerData
                     sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'))
                       .append(" ")
                       .append("_Preset@").append(data.Preset).append(":").append((data.Preset == loadout.Preset) ? 1 : 0).append(";")
-                      .append("_Gold@").append(data.GoldValue).append(";")
-                      .append("_HP@").append(data.HPValue).append(";");
+                      .append("_Gold@").append(data.Values.getOrDefault(AnimatorBaseStatEditor.StatType.Gold, 0)).append(";")
+                      .append("_HP@").append(data.Values.getOrDefault(AnimatorBaseStatEditor.StatType.HP, 0)).append(";")
+                      .append("_CommonUpgrade@").append(data.Values.getOrDefault(AnimatorBaseStatEditor.StatType.CommonUpgrade, 0)).append(";");
 
                     for (AnimatorRelicSlot slot : data.relicSlots)
                     {
@@ -448,11 +450,15 @@ public class AnimatorPlayerData
                         break;
 
                     case "_Gold":
-                        loadoutData.GoldValue = itemAmount;
+                        loadoutData.Values.put(AnimatorBaseStatEditor.StatType.Gold, itemAmount);
                         break;
 
                     case "_HP":
-                        loadoutData.HPValue = itemAmount;
+                        loadoutData.Values.put(AnimatorBaseStatEditor.StatType.HP, itemAmount);
+                        break;
+
+                    case "_CommonUpgrade":
+                        loadoutData.Values.put(AnimatorBaseStatEditor.StatType.CommonUpgrade, itemAmount);
                         break;
 
                     default:

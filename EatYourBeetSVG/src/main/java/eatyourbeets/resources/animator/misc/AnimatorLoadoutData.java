@@ -1,12 +1,14 @@
 package eatyourbeets.resources.animator.misc;
 
+import eatyourbeets.ui.animator.characterSelection.AnimatorBaseStatEditor;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AnimatorLoadoutData
 {
     public int Preset;
-    public int GoldValue;
-    public int HPValue;
+    public final HashMap<AnimatorBaseStatEditor.StatType, Integer> Values = new HashMap<>();
     public final ArrayList<AnimatorCardSlot> cardSlots = new ArrayList<>();
     public final ArrayList<AnimatorRelicSlot> relicSlots = new ArrayList<>();
 
@@ -69,8 +71,7 @@ public class AnimatorLoadoutData
     {
         final AnimatorLoadoutData copy = new AnimatorLoadoutData();
         copy.Preset = preset;
-        copy.GoldValue = GoldValue;
-        copy.HPValue = HPValue;
+        copy.Values.putAll(Values);
         for (AnimatorCardSlot slot : cardSlots)
         {
             copy.cardSlots.add(slot.MakeCopy(copy));

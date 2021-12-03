@@ -19,6 +19,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardBase;
+import eatyourbeets.effects.card.PermanentUpgradeEffect;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
@@ -287,6 +288,10 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             }
 
             RemoveExtraCopies(card);
+        }
+
+        for (int i = 0; i < (GR.Animator.Data.SelectedLoadout != null ? GR.Animator.Data.SelectedLoadout.GetCommonUpgrades() : 0); i++) {
+            GameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
         }
     }
 

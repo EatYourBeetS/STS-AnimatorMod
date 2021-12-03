@@ -25,6 +25,7 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.ui.animator.characterSelection.AnimatorBaseStatEditor;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import patches.RelicLibraryPatches;
@@ -169,7 +170,7 @@ public class AnimatorCharacter extends CustomPlayer
     @Override
     public int getAscensionMaxHPLoss()
     {
-        return AnimatorLoadout.BASE_HP / 10;
+        return AnimatorBaseStatEditor.StatType.HP.BaseAmount / 10;
     }
 
     @Override

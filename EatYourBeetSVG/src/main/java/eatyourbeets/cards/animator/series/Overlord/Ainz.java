@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.series.Overlord;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
@@ -14,7 +13,6 @@ import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.stances.DesecrationStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Ainz extends AnimatorCard
 {
@@ -85,14 +83,6 @@ public class Ainz extends AnimatorCard
         }
 
         @Override
-        public void onChangeStance(AbstractStance oldStance, AbstractStance newStance) {
-            super.onChangeStance(oldStance,newStance);
-            if (newStance.ID.equals(DesecrationStance.STANCE_ID)) {
-                EnablePowers();
-            }
-        }
-
-        @Override
         public void onInitialApplication()
         {
             super.onInitialApplication();
@@ -100,10 +90,6 @@ public class Ainz extends AnimatorCard
             GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.9f, 1.1f);
             GameActions.Bottom.BorderLongFlash(Color.valueOf("3d0066"));
             GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
-
-            if (DesecrationStance.IsActive()) {
-                EnablePowers();
-            }
         }
 
         @Override
@@ -123,12 +109,6 @@ public class Ainz extends AnimatorCard
         public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.ChannelOrbs(Chaos::new, Ainz.CHANNEL_AMOUNT);
-        }
-
-        private void EnablePowers() {
-            GameUtilities.MaintainPower(Affinity.Red);
-            GameUtilities.MaintainPower(Affinity.Blue);
-            GameUtilities.MaintainPower(Affinity.Orange);
         }
     }
 }

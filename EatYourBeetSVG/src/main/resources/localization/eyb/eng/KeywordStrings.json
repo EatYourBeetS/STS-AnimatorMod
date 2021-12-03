@@ -158,7 +158,7 @@
 	},
 	"Desecration Stance":
 	{
-	  "DESCRIPTION": "Stance: [D] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [D].",
+	  "DESCRIPTION": "Stance: [D] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Dark].",
 	  "NAMES": ["[d] stance", "desecration stance"],
 	  "PROPER_NAME": "Desecration Stance"
 	},
@@ -200,7 +200,7 @@
 	},
 	"Endurance Stance":
 	{
-	  "DESCRIPTION": "Stance: [O] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [O].",
+	  "DESCRIPTION": "Stance: [O] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Orange].",
 	  "NAMES": ["[o] stance", "endurance stance"],
 	  "PROPER_NAME": "Endurance Stance"
 	},
@@ -398,7 +398,7 @@
 	},
 	"Might Stance":
 	{
-		"DESCRIPTION": "Stance: [R] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [R].",
+		"DESCRIPTION": "Stance: [R] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Red]",
 		"NAMES": ["[r] stance", "might stance"],
 		"PROPER_NAME": "Might Stance"
 	},
@@ -548,7 +548,7 @@
 	},
 	"Supercharge Stance":
 	{
-	  "DESCRIPTION": "Stance: [L] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [L].",
+	  "DESCRIPTION": "Stance: [L] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Light].",
 	  "NAMES": ["[l] stance", "supercharge stance"],
 	  "PROPER_NAME": "Supercharge Stance"
 	},
@@ -590,7 +590,7 @@
 	},
 	"Technic Stance":
 	{
-		"DESCRIPTION": "Stance: [S] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [S].",
+		"DESCRIPTION": "Stance: [S] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Silver].",
 		"NAMES": ["[s] stance", "technic stance"],
 		"PROPER_NAME": "Technic Stance"
 	},
@@ -626,7 +626,7 @@
 	},
 	"Velocity Stance":
 	{
-		"DESCRIPTION": "Stance: [G] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [G].",
+		"DESCRIPTION": "Stance: [G] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Green].",
 		"NAMES": ["[g] stance", "velocity stance"],
 		"PROPER_NAME": "Velocity Stance"
 	},
@@ -662,7 +662,7 @@
 	},
 	"Wisdom Stance":
 	{
-		"DESCRIPTION": "Stance: [B] gains are doubled. Other [A-Gen] #yPowers cannot be gained. NL If re-entered: Gain #b3 [B].",
+		"DESCRIPTION": "Stance: [B] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Blue].",
 		"NAMES": ["[b] stance", "wisdom stance"],
 		"PROPER_NAME": "Wisdom Stance"
 	},

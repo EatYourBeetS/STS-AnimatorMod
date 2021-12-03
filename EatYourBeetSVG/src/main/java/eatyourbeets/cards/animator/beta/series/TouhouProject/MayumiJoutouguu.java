@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.Haniwa;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MayumiJoutouguu extends AnimatorCard
 {
@@ -28,7 +27,6 @@ public class MayumiJoutouguu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameUtilities.MaintainPower(Affinity.Orange);
         GameActions.Bottom.GainBlock(block);
 
         cooldown.ProgressCooldownAndTrigger(m);

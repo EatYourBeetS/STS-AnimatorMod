@@ -20,7 +20,7 @@ public class Sebas extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 2);
+        Initialize(0, 9, 3);
         SetUpgrade(0, 3, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -40,7 +40,6 @@ public class Sebas extends AnimatorCard
         final int counter = JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking);
         if (counter > 0)
         {
-            GameActions.Bottom.GainMight(counter);
             GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
         }
 

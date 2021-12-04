@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Yuuichirou_Asuramaru extends AnimatorCard
 {
@@ -18,12 +18,14 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
+        Initialize(0, 0, 2, 10);
         SetUpgrade(0,0,1,0);
 
         SetAffinity_Red(2);
         SetAffinity_Green(2);
         SetAffinity_Dark(2);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
 
         SetExhaust(true);
     }
@@ -31,8 +33,11 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Dark, 1);
-        for (int i = 0; i < CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true) / secondaryValue; i++) {
+        if (info.TryActivateLimited()) {
+            GameUtilities.SetAffinityPowerThreshold(Affinity.Red, secondaryValue, true);
+        }
+
+        if (TrySpendAffinity(Affinity.Dark)) {
             GameActions.Bottom.GainMight(magicNumber);
             GameActions.Bottom.GainVelocity(magicNumber);
             GameActions.Bottom.GainWisdom(magicNumber);

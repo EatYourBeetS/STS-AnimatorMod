@@ -5,13 +5,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.series.Overlord.Albedo;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -59,14 +60,16 @@ public class FeridBathory extends AnimatorCard
         GameActions.Bottom.StackPower(new FeridBathoryPower(p, magicNumber));
     }
 
-    public class FeridBathoryPower extends AnimatorPower
+    public class FeridBathoryPower extends AnimatorClickablePower
     {
-        public static final int EXHAUST_PILE_THRESHOLD = 20;
-        public static final int FORCE_AMOUNT = 10;
+        public static final int EXHAUST_PILE_THRESHOLD = 3;
+        public static final int FORCE_AMOUNT = 1;
 
         public FeridBathoryPower(AbstractCreature owner, int amount)
         {
-            super(owner, FeridBathory.DATA);
+            super(owner, Albedo.DATA, PowerTriggerConditionType.Special, EXHAUST_PILE_THRESHOLD);
+            this.triggerCondition.SetCheckCondition((__) -> player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD);
+            this.triggerCondition.SetPayCost((cost) -> GameActions.Bottom.PurgeFromPile(name, cost).SetOptions(false, false));
 
             Initialize(amount);
         }
@@ -87,15 +90,15 @@ public class FeridBathory extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void OnUse(AbstractMonster m, int cost)
         {
-            super.atStartOfTurnPostDraw();
+            GameActions.Bottom.GainMight(FORCE_AMOUNT);
+        }
 
-            if (player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD && CombatStats.TryActivateLimited(FeridBathory.DATA.ID))
-            {
-                GameEffects.Queue.ShowCardBriefly(new FeridBathory());
-                GameActions.Bottom.GainMight(FORCE_AMOUNT);
-            }
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, EXHAUST_PILE_THRESHOLD, FORCE_AMOUNT);
         }
     }
 }

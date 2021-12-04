@@ -19,8 +19,8 @@ public class Chibimoth extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
-        SetUpgrade(0,0,1,0);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0,0,1,1);
         SetAffinity_Star(1, 1, 0);
         SetLoyal(true);
         SetExhaust(true);

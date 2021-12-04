@@ -13,7 +13,7 @@ public class Amber extends AnimatorCard {
     public Amber() {
         super(DATA);
 
-        Initialize(3, 1, 2, 2);
+        Initialize(4, 1, 2, 2);
         SetUpgrade(2, 1, 0);
         SetAffinity_Green(2, 0 ,1);
 
@@ -29,7 +29,6 @@ public class Amber extends AnimatorCard {
         if (IsStarter())
         {
             GameActions.Bottom.ChannelOrb(new Fire());
-            GameActions.Bottom.GainVelocity(secondaryValue, false);
         }
 
         if (info.IsSynergizing || TrySpendAffinity(Affinity.Blue))

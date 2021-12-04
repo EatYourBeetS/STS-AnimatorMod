@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Azekura extends AnimatorCard
 {
@@ -17,7 +16,7 @@ public class Azekura extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 9, 3, 1);
+        Initialize(0, 9, 2, 1);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(2, 0, 1);
@@ -31,7 +30,6 @@ public class Azekura extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainPlatedArmor(magicNumber);
-        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
 
         if (TrySpendAffinity(Affinity.Red))
         {

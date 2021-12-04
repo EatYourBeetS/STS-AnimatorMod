@@ -229,7 +229,7 @@ public abstract class OrbCore extends AnimatorCard
         }
 
         private float GetScaledIncrease() {
-            return CombatStats.Affinities.GetPowerLevel(card.GetAffinity()) * amount;
+            return CombatStats.Affinities.GetPowerAmount(card.GetAffinity()) * amount;
         }
 
         private void refreshOrbs() {

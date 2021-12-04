@@ -213,7 +213,7 @@ public class GameUtilities
     public static boolean CanSpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.CanSpend(amount >= 0 ? amount : po.chargeThreshold);
+        return po != null && po.CanSpend(amount >= 0 ? amount : po.maxAmount);
     }
 
     public static boolean TrySpendAffinityPower(Affinity affinity)
@@ -224,7 +224,7 @@ public class GameUtilities
     public static boolean TrySpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.TrySpend(amount >= 0 ? amount : po.chargeThreshold);
+        return po != null && po.TrySpend(amount >= 0 ? amount : po.maxAmount);
     }
 
     public static void ClearPostCombatActions()
@@ -352,16 +352,10 @@ public class GameUtilities
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
-    public static int GetAffinityPowerLevel(Affinity affinity)
-    {
-        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null ? po.GetEffectiveLevel() : 0;
-    }
-
     public static int GetAffinityPowerThreshold(Affinity affinity)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null ? po.GetCurrentThreshold() : 0;
+        return po != null ? po.maxAmount : 0;
     }
 
     public static int GetAffinityScaling(AbstractCard card, Affinity affinity, boolean useStarScaling)
@@ -1760,7 +1754,7 @@ public class GameUtilities
         final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
         if (power != null)
         {
-            power.SetChargeThreshold(relative ? power.chargeThreshold + amount : amount);
+            power.SetThreshold(relative ? power.maxAmount + amount : amount);
         }
 
         return power;

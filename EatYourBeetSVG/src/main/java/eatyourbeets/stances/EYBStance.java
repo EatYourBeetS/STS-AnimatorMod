@@ -139,7 +139,7 @@ public abstract class EYBStance extends AbstractStance
 
         if (TryApplyStance(ID))
         {
-            CombatStats.Affinities.GetPower(affinity).SetScalingMultiplier(2);
+            CombatStats.Affinities.GetPower(affinity).SetEffectMultiplier(2);
         }
     }
 
@@ -152,14 +152,14 @@ public abstract class EYBStance extends AbstractStance
 
         if (TryApplyStance(null))
         {
-            CombatStats.Affinities.GetPower(affinity).SetScalingMultiplier(1);
-            GameActions.Bottom.AddAffinity(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
+            CombatStats.Affinities.GetPower(affinity).SetEffectMultiplier(1);
+            GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
         }
     }
 
     public void onRefreshStance()
     {
-        GameActions.Bottom.AddAffinity(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
+        GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
     }
 
     @Override

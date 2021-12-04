@@ -51,8 +51,6 @@ public class SayakaMiki extends AnimatorCard
         TrySpendAffinity(Affinity.Blue, GetXValue());
         GameActions.Bottom.ChannelOrb(new Frost());
 
-        GameActions.Bottom.GainWisdom(secondaryValue);
-
         cooldown.ProgressCooldownAndTrigger(m);
     }
 }

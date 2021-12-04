@@ -27,7 +27,7 @@ public class NobleFencer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 3, 2);
+        Initialize(0, 3, 3, 1);
 
         SetAffinity_Green(2);
         SetAffinity_Blue(2);
@@ -61,7 +61,6 @@ public class NobleFencer extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.GainVelocity(secondaryValue);
             GameActions.Bottom.GainWisdom(secondaryValue);
         }
 

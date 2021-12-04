@@ -48,7 +48,12 @@ public class ZarakiKenpachi extends AnimatorCard
             this.amount = amount;
 
             for (AbstractAffinityPower po : CombatStats.Affinities.Powers) {
-                po.IncreasePowerLevelModifier(Affinity.Red.equals(po.affinity) ? MODIFIER_INCREASE : MODIFIER_DECREASE);
+                if (Affinity.Red.equals(po.affinity)) {
+                    po.SetGainMultiplier(po.gainMultiplier + 1);
+                }
+                else {
+                    po.SetEnabled(false);
+                }
             }
 
             CombatStats.onBlockBroken.Subscribe(this);
@@ -70,7 +75,12 @@ public class ZarakiKenpachi extends AnimatorCard
             super.onRemove();
 
             for (AbstractAffinityPower po : CombatStats.Affinities.Powers) {
-                po.IncreasePowerLevelModifier(Affinity.Red.equals(po.affinity) ? -MODIFIER_INCREASE : -MODIFIER_DECREASE);
+                if (Affinity.Red.equals(po.affinity)) {
+                    po.SetGainMultiplier(po.gainMultiplier - 1);
+                }
+                else {
+                    po.SetEnabled(true);
+                }
             }
 
             CombatStats.onBlockBroken.Unsubscribe(this);

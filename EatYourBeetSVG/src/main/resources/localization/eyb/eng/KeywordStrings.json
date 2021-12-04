@@ -146,7 +146,7 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Dark] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Dark] gained this combat. NL Spend #b10 stacks to apply #b2 [Tainted] upon playing a card targeting an enemy (this effect can stack).",
+	  "DESCRIPTION": "Gain [D] when you make [A-Dark] #ySynergies. NL Spend #b5 stacks to apply [Tainted] to one enemy, decreasing its #yAttack damage and increasing damage dealt to it.",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
@@ -158,7 +158,7 @@
 	},
 	"Desecration Stance":
 	{
-	  "DESCRIPTION": "Stance: [D] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Dark].",
+	  "DESCRIPTION": "Stance: The #yThreshold effect of [D] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Dark].",
 	  "NAMES": ["[d] stance", "desecration stance"],
 	  "PROPER_NAME": "Desecration Stance"
 	},
@@ -188,7 +188,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Orange] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Orange] gained this combat. NL Spend #b10 stacks to increase the [Block] of the next [Block] card by #b+100% (this effect can stack).",
+	  "DESCRIPTION": "Gain [O] when you make [A-Orange] #ySynergies. NL Spend #b5 stacks to increase the [Block] of the next [Block] card by #b+100%.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},
@@ -200,7 +200,7 @@
 	},
 	"Endurance Stance":
 	{
-	  "DESCRIPTION": "Stance: [O] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Orange].",
+	  "DESCRIPTION": "Stance: The #yThreshold effect of [O] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Orange].",
 	  "NAMES": ["[o] stance", "endurance stance"],
 	  "PROPER_NAME": "Endurance Stance"
 	},
@@ -386,7 +386,7 @@
 	},
 	"Might":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Red] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Red] gained this combat. NL Spend #b10 stacks to increase the damage of the next #yAttack by #b+100% (this effect can stack).",
+	  "DESCRIPTION": "Gain [R] when you make [A-Red] #ySynergies. Spend #b5 stacks to increase the damage of the next #yAttack by #b+100%.",
 	  "NAMES": ["might"],
 	  "PROPER_NAME": "Might"
 	},
@@ -398,7 +398,7 @@
 	},
 	"Might Stance":
 	{
-		"DESCRIPTION": "Stance: [R] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Red]",
+		"DESCRIPTION": "Stance: The #yThreshold effect of [R] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Red]",
 		"NAMES": ["[r] stance", "might stance"],
 		"PROPER_NAME": "Might Stance"
 	},
@@ -536,7 +536,7 @@
 	},
 	"Supercharge":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Light] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Light] gained this combat. NL Spend #b10 stacks to increase the amount of the next buff gained by #b+100% (this effect can stack).",
+	  "DESCRIPTION": "Gain [L] when you make [A-Light] #ySynergies. NL Spend #b5 stacks to increase the amount of the next #yCommon #yBuff gained by #b+200%.",
 	  "NAMES": ["Supercharge"],
 	  "PROPER_NAME": "Supercharge"
 	},
@@ -548,7 +548,7 @@
 	},
 	"Supercharge Stance":
 	{
-	  "DESCRIPTION": "Stance: [L] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Light].",
+	  "DESCRIPTION": "Stance: The #yThreshold effect of [L] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Light].",
 	  "NAMES": ["[l] stance", "supercharge stance"],
 	  "PROPER_NAME": "Supercharge Stance"
 	},
@@ -566,7 +566,7 @@
 	},
 	"Tainted":
 	{
-		"DESCRIPTION": "Take additional damage from any source. Deal #b1 less damage with attacks, increasing by #b1 for every #b10 stacks. Reduced by half each turn. Ignores [Artifact].",
+		"DESCRIPTION": "Take additional damage from any source. Deal less damage with attacks. Reduced by 1 each turn. Ignores [Artifact].",
 		"NAMES": ["tainted"],
 		"PROPER_NAME": "Tainted"
 	},
@@ -578,7 +578,7 @@
 	},
 	"Technic":
 	{
-		"DESCRIPTION": "Gains stacks when you make [A-Silver] #ySynergies. Gains #b1 #yLevel for every #b20 [A-Silver] gained this combat. NL Spend #b10 stacks to reduce the cost of the next #yAttack or #ySkill played by #b1 this combat.",
+		"DESCRIPTION": "Gain [S] when you make [A-Silver] #ySynergies. NL Spend #b10 stacks to gain [E].",
 		"NAMES": ["technic"],
 		"PROPER_NAME": "Technic"
 	},
@@ -590,7 +590,7 @@
 	},
 	"Technic Stance":
 	{
-		"DESCRIPTION": "Stance: [S] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Silver].",
+		"DESCRIPTION": "Stance: The #yThreshold effect of [S] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Silver].",
 		"NAMES": ["[s] stance", "technic stance"],
 		"PROPER_NAME": "Technic Stance"
 	},
@@ -614,7 +614,7 @@
 	},
 	"Velocity":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Green] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Green] gained this combat. NL Spend #b10 stacks to draw #b1 card upon playing a #ySkill (this effect can stack).",
+	  "DESCRIPTION": "Gain [G] when you make [A-Green] #ySynergies. NL Spend #b5 stacks to draw #b2 cards.",
 	  "NAMES": ["velocity"],
 	  "PROPER_NAME": "Velocity"
 	},
@@ -626,7 +626,7 @@
 	},
 	"Velocity Stance":
 	{
-		"DESCRIPTION": "Stance: [G] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Green].",
+		"DESCRIPTION": "Stance: The #yThreshold effect of [G] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Green].",
 		"NAMES": ["[g] stance", "velocity stance"],
 		"PROPER_NAME": "Velocity Stance"
 	},
@@ -650,7 +650,7 @@
 	},
 	"Wisdom":
 	{
-	  "DESCRIPTION": "Gains stacks when you make [A-Blue] #ySynergies. Gains #b1 #yLevel for every #b10 [A-Blue] gained this combat. NL Spend #b10 stacks to increase the [Focus] of the next #yOrb #yChanneled by #b+100% (this effect can stack).",
+	  "DESCRIPTION": "Gain [B] when you make [A-Blue] #ySynergies. NL Spend #b5 stacks to increase the [Focus] of the next #yOrb #yChanneled by #b4.",
 	  "NAMES": ["wisdom"],
 	  "PROPER_NAME": "Wisdom"
 	},
@@ -662,7 +662,7 @@
 	},
 	"Wisdom Stance":
 	{
-		"DESCRIPTION": "Stance: [B] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Blue].",
+		"DESCRIPTION": "Stance: The #yThreshold effect of [B] is twice as effective. NL When exited or re-entered: Gain #b3 [A-Blue].",
 		"NAMES": ["[b] stance", "wisdom stance"],
 		"PROPER_NAME": "Wisdom Stance"
 	},
@@ -680,7 +680,7 @@
 	},
 	"~Brutal":
 	{
-		"DESCRIPTION": "Affected twice by damage modifiers.",
+		"DESCRIPTION": "Deal #b40% additional damage if the enemy has less than #b50% health.",
 		"NAMES": ["~brutal"],
 		"PROPER_NAME": "Brutal Damage"
 	},

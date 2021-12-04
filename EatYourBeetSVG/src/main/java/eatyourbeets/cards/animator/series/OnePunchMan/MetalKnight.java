@@ -19,8 +19,8 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(13, 6, 9, 2);
-        SetUpgrade(3, 0, 3, 0);
+        Initialize(13, 6, 3, 2);
+        SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Silver(2, 0, 1);
@@ -32,25 +32,15 @@ public class MetalKnight extends AnimatorCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        if (GameUtilities.CanSpendAffinityPower(Affinity.Red)) {
-            return super.ModifyDamage(enemy, amount + magicNumber);
-        }
-        return super.ModifyDamage(enemy, amount);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainMetallicize(magicNumber);
+        GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));
         if (TrySpendAffinity(Affinity.Silver)) {
             GameActions.Bottom.ChannelOrbs(Plasma::new, 1);
-        }
-        if (info.TryActivateLimited()) {
-            GameActions.Bottom.GainMetallicize(secondaryValue);
         }
     }
 }

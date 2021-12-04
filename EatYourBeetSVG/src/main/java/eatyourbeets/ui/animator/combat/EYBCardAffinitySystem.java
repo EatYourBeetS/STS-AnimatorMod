@@ -182,12 +182,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return p == null ? 0 : p.amount;
     }
 
-    public int GetPowerLevel(Affinity affinity)
-    {
-        final AbstractAffinityPower p = GetPower(affinity);
-        return p == null ? 0 : p.GetEffectiveLevel();
-    }
-
     @Override
     public void OnStartOfTurn()
     {
@@ -247,14 +241,13 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             if (CanActivateSynergyBonus(affinity))
             {
+                if (affinity.type.equals(Affinity.Star)) {
+                    GetRow(Affinity.Light).ActivateSynergyBonus(card);
+                }
                 final EYBCardAffinityRow row = GetRow(affinity.type);
                 if (row != null)
                 {
                     row.ActivateSynergyBonus(card);
-                }
-                else {
-                    // Fall back on light if no row was found
-                    GetRow(Affinity.Light).ActivateSynergyBonus(card);
                 }
             }
         }
@@ -408,11 +401,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         for (EYBCardAffinityRow row : rows)
         {
             row.Initialize();
-        }
-
-        for (AbstractAffinityPower po : Powers) {
-            CombatStats.onGainAffinity.Subscribe(po);
-            po.StartOtherSubscriptions();
         }
     }
 

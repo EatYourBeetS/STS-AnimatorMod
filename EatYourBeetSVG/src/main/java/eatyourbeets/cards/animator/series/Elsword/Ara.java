@@ -21,13 +21,13 @@ public class Ara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 3, 2);
-        SetUpgrade(1, 0, 1, 0);
+        Initialize(3, 0, 1, 2);
+        SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Green(1, 1, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Orange, 4);
+        SetAffinityRequirement(Affinity.Orange, 3);
         SetHitCount(2);
     }
 
@@ -35,13 +35,13 @@ public class Ara extends AnimatorCard
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
-            SetAffinityRequirement(Affinity.Green, 4);
+            SetAffinityRequirement(Affinity.Green, 3);
             SetAffinityRequirement(Affinity.Orange, 0);
         }
         else {
             this.cardText.OverrideDescription(null, true);
             SetAffinityRequirement(Affinity.Green, 0);
-            SetAffinityRequirement(Affinity.Orange, 4);
+            SetAffinityRequirement(Affinity.Orange, 3);
         }
         return super.SetForm(form, timesUpgraded);
     };

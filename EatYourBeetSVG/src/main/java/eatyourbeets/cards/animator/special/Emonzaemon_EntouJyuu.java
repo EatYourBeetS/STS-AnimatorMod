@@ -13,8 +13,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Emonzaemon_EntouJyuu extends AnimatorCard
 {
@@ -27,7 +29,7 @@ public class Emonzaemon_EntouJyuu extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, BONUS_DAMAGE);
+        Initialize(0, 0, 1, BONUS_DAMAGE);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
@@ -37,7 +39,7 @@ public class Emonzaemon_EntouJyuu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainVelocity(magicNumber);
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDexterity, magicNumber);
         GameActions.Bottom.StackPower(new Emonzaemon_EntouJyuuPower(p, secondaryValue));
     }
 

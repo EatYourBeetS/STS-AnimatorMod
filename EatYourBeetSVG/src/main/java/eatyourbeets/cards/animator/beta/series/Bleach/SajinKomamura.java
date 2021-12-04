@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.stances.EYBStance;
 import eatyourbeets.stances.MightStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -36,7 +36,7 @@ public class SajinKomamura extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         AbstractStance stance = player.stance;
         if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && stance instanceof EYBStance) {
-            GameActions.Bottom.StackAffinityPower(((EYBStance) stance).affinity, magicNumber, false);
+            GameActions.Bottom.AddAffinity(((EYBStance) stance).affinity, magicNumber);
         }
         else if (GameUtilities.InStance(NeutralStance.STANCE_ID)) {
             EnterRandomStanceNotCurrent();

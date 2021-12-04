@@ -18,13 +18,13 @@ public class TaintedPower extends CommonPower
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type)
     {
-        return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage - GetDamageDecrease()) : damage, type);
+        return super.atDamageGive(type == DamageInfo.DamageType.NORMAL ? (damage * (1f - GetDamageDealtDecrease())) : damage, type);
     }
 
     @Override
     public float atDamageReceive(float damage, DamageInfo.DamageType damageType)
     {
-        return super.atDamageReceive(damage += amount, damageType);
+        return super.atDamageReceive(damage * (1f + GetDamageReceivedIncrease()), damageType);
     }
 
     @Override
@@ -38,10 +38,14 @@ public class TaintedPower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, amount, GetDamageDecrease());
+        this.description = FormatDescription(0, GetDamageReceivedIncrease() * 100, GetDamageDealtDecrease() * 100);
     }
 
-    public int GetDamageDecrease() {
-        return 1 + amount / 10;
+    public float GetDamageDealtDecrease() {
+        return amount * 0.25f;
+    }
+
+    public float GetDamageReceivedIncrease() {
+        return amount * 0.5f;
     }
 }

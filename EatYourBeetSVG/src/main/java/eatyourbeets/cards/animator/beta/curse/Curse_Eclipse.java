@@ -15,7 +15,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
     public Curse_Eclipse()
     {
         super(DATA, true);
-        Initialize(0,0,1,1);
+        Initialize(0,0,1,5);
         SetAffinity_Dark(2);
         SetUnplayable(true);
     }
@@ -26,7 +26,7 @@ public class Curse_Eclipse extends AnimatorCard_Curse
         super.triggerOnExhaust();
 
         if (CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Dark, 1);
+            GameActions.Bottom.StackAffinityPower(Affinity.Dark, 5);
         }
     }
 

@@ -773,11 +773,6 @@ public final class GameActions
         return Add(new HealCreature(player, player, amount).SetCard(card));
     }
 
-    public IncreaseAffinityPowerLevel IncreaseAffinityPowerLevel(Affinity affinity, int amount)
-    {
-        return Add(new IncreaseAffinityPowerLevel(player, affinity, amount));
-    }
-
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
     {
         return Add(new ModifyAffinityScaling(card, Affinity.General, amount, true));

@@ -12,6 +12,7 @@ public class Sonic extends AnimatorCard
     public static final EYBCardData DATA = Register(Sonic.class)
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
+            .SetMultiformData(2, false)
             .PostInitialize(data ->
             {
                 for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
@@ -24,8 +25,8 @@ public class Sonic extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 4, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 1, 2);
+        SetUpgrade(0, 1, 0);
 
         SetAffinity_Green(2,0,3);
         SetAffinity_Dark(1);
@@ -36,10 +37,34 @@ public class Sonic extends AnimatorCard
     }
 
     @Override
+    public void OnUpgrade() {
+        if (auxiliaryData.form == 1) {
+            this.AddScaling(Affinity.Green, 2);
+        }
+        else {
+            SetHaste(true);
+        }
+    }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            if (form == 1) {
+                SetHaste(false);
+                this.AddScaling(Affinity.Green, 1);
+            }
+            else {
+                SetHaste(true);
+            }
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainBlur(secondaryValue);
+        GameActions.Bottom.GainBlur(magicNumber);
         GameActions.Bottom.GainVelocity(magicNumber);
 
         int knives = 0;

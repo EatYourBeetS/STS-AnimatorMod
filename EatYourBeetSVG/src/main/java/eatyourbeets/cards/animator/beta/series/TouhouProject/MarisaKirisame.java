@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MarisaKirisame extends AnimatorCard
 {
@@ -20,6 +19,8 @@ public class MarisaKirisame extends AnimatorCard
         SetUpgrade(2, 0, 1, 0);
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Blue, 4);
     }
 
     @Override
@@ -27,20 +28,19 @@ public class MarisaKirisame extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.GainWisdom(magicNumber);
+        GameActions.Bottom.AddAffinity(Affinity.Blue, magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
-        GameActions.Bottom.GainWisdom(magicNumber);
 
         if (info.IsSynergizing)
         {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }
-        if (GameUtilities.TrySpendAffinityPower(Affinity.Blue, magicNumber)) {
+        if (TrySpendAffinity(Affinity.Blue)) {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }
     }

@@ -15,21 +15,28 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
-import eatyourbeets.interfaces.subscribers.OnGainAffinitySubscriber;
-import eatyourbeets.powers.CommonPower;
+import eatyourbeets.powers.EYBClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinityRow;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public abstract class AbstractAffinityPower extends CommonPower implements OnGainAffinitySubscriber
+public abstract class AbstractAffinityPower extends EYBClickablePower
 {
-    public static final int BASE_CHARGE_THRESHOLD = 5;
-    public static final int BASE_EXPERIENCE_PER_LEVEL = 10;
-    public static final int MULTIPLIER_PER_LEVEL = 50;
+    public static String CreateFullID(Class<? extends AbstractAffinityPower> type)
+    {
+        return GR.Common.CreateID(type.getSimpleName());
+    }
+
+    public static final int BASE_THRESHOLD = 5;
+    public static final Color ACTIVE_COLOR = new Color(0.5f, 1f, 0.5f, 1f);
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.##");
     //@Formatter: off
     @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
@@ -38,23 +45,23 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
 
     public final Affinity affinity;
     public final ArrayList<EYBCardTooltip> tooltips = new ArrayList<>();
-    public int chargeThreshold = BASE_CHARGE_THRESHOLD;
     public int amountGainedThisTurn;
-    public int experience;
+    public int effectMultiplier;
     public int gainMultiplier;
     public int scalingMultiplier;
     public boolean forceEnableThisTurn;
+    public boolean isActive;
     public Hitbox hb;
 
     private static final StringBuilder builder = new StringBuilder();
-    protected int experiencePerLevel = BASE_EXPERIENCE_PER_LEVEL;
-    protected int powerLevel;
-    protected int powerLevelModifier;
 
     public AbstractAffinityPower(Affinity affinity, String powerID)
     {
-        super(null, powerID);
+        super(null, powerID, PowerTriggerConditionType.Special, BASE_THRESHOLD, null, null);
+        this.triggerCondition.checkCondition = (__) -> {return this.amount >= this.maxAmount;};
+        this.triggerCondition.payCost = this::TrySpend;
 
+        this.maxAmount = BASE_THRESHOLD;
         this.affinity = affinity;
 
         //TODO: Add tooltip to EYBPower base class
@@ -72,20 +79,26 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
     {
         this.owner = owner;
         this.enabled = true;
-        this.experience = 0;
+        this.effectMultiplier = 1;
         this.gainMultiplier = 1;
         this.scalingMultiplier = 1;
-        this.powerLevel = 0;
-        this.powerLevelModifier = 0;
 
         Initialize(0, PowerType.BUFF, true);
     }
 
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m) {}
-    public void StartOtherSubscriptions() {}
 
-    public void SetChargeThreshold(int chargeThreshold) {
-        this.chargeThreshold = chargeThreshold;
+    public void OnUse(AbstractMonster m, int cost) {
+        this.isActive = true;
+    }
+
+    public void SetThreshold(int threshold) {
+        this.maxAmount = threshold;
+        this.triggerCondition.requiredAmount = threshold;
+    }
+
+    public void SetEffectMultiplier(int effectMultiplier) {
+        this.effectMultiplier = effectMultiplier;
     }
 
     public void SetGainMultiplier(int gainMultiplier) {
@@ -108,86 +121,34 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
             Maintain();
         }
 
-        amount *= GetEffectiveAmountMultiplier();
+        amount *= this.gainMultiplier;
         super.stackPower(amount, false);
         this.amountGainedThisTurn += amount;
     }
 
-    public void IncreaseLevel(int amount)
-    {
-        powerLevel = Math.max(0, powerLevel + amount);
-        flash();
-        UpdateThreshold();
-    }
-
-    public Integer GetActualLevel() {
-        return powerLevel;
-    }
-
-    public Integer GetEffectiveLevel() {
-        return Math.max(0, powerLevel + powerLevelModifier);
-    }
-
-    public Integer GetEffectiveAmountMultiplier() {
-        return gainMultiplier * (100 + MULTIPLIER_PER_LEVEL * GetEffectiveLevel()) / 100;
-    }
-
-    public Integer GetCurrentThreshold()
-    {
-        int threshold = (powerLevel + 1) * experiencePerLevel;
-        return Math.max(threshold, experiencePerLevel);
-    }
-
     public Integer GetEffectiveScaling() {
-        return GetEffectiveLevel() * this.scalingMultiplier;
+        return amount * this.scalingMultiplier;
     }
 
-    public void IncreasePowerLevelModifier(int amount)
-    {
-        powerLevelModifier += amount;
-        updateDescription();
+    protected float GetEffectIncrease() {
+        return this.effectMultiplier;
     }
 
-    protected void UpdateThreshold()
-    {
-        while(experience >= GetCurrentThreshold()) {
-            IncreaseLevel(1);
-        }
-        updateDescription();
+    protected float GetEffectiveMultiplier() {
+        return 1f + GetEffectIncrease();
     }
+
 
     @Override
-    public int OnGainAffinity(Affinity affinity, int amount, boolean isActuallyGaining) {
-        if (isActuallyGaining && (affinity.equals(this.affinity) || affinity.equals(Affinity.Star))) {
-            experience += amount;
-            UpdateThreshold();
-        }
-        return amount;
-    }
-
-    @Override
-    public final void updateDescription()
+    public String GetUpdatedDescription()
     {
-        this.tooltips.get(0).description = this.description = GetUpdatedDescription();
-    }
-
-    protected float GetChargeIncrease(int charge) {
-        return Math.floorDiv(charge, BASE_CHARGE_THRESHOLD);
-    }
-
-    protected float GetChargeMultiplier() {
-        return 1f + GetChargeIncrease(amount);
-    }
-
-    protected int GetCurrentChargeCost() {return Math.max(chargeThreshold, Math.floorDiv(amount, chargeThreshold) * chargeThreshold);}
-
-    protected String GetUpdatedDescription()
-    {
-        return FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, (!enabled && !forceEnableThisTurn) ? 0 : (GetEffectiveAmountMultiplier() * 100) - 100, GetCurrentChargeCost(), GetMultiplierForDescription(), !enabled ? powerStrings.DESCRIPTIONS[1] : "");
+        String newDesc = FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, maxAmount, GetMultiplierForDescription(), (!enabled && !forceEnableThisTurn) ? powerStrings.DESCRIPTIONS[1] : "");
+        this.tooltips.get(0).description = newDesc;
+        return newDesc;
     }
 
     protected int GetMultiplierForDescription() {
-        return (int) (GetChargeIncrease(Math.max(amount,chargeThreshold)) * 100);
+        return (int) (GetEffectIncrease() * 100);
     }
 
     public boolean CanSpend(int amount) {
@@ -205,9 +166,9 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
     }
 
     protected boolean TryUse(AbstractCard card) {
-        if (CanSpend(chargeThreshold) && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
+        if (CanSpend(maxAmount) && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
         {
-            amount -= GetCurrentChargeCost();
+            amount -= maxAmount;
             updateDescription();
             flash();
             return true;
@@ -217,7 +178,6 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
 
     public void Maintain() {
         this.forceEnableThisTurn = true;
-        this.enabled = false;
     }
 
     @Override
@@ -228,6 +188,7 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
         this.amountGainedThisTurn = 0;
         this.forceEnableThisTurn = false;
         enabled = true;
+        isActive = false;
     }
 
     public void Render(SpriteBatch sb)
@@ -237,13 +198,11 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
         final float h = hb.height;
         final float x = hb.x + (5 * scale);
         final float y = hb.y + (9 * scale);
-        final float cX = hb.cX + (5 * scale);
+        final float cX = hb.cX + (15 * scale);
         final float cY = hb.cY;
 
-        Integer level = GetEffectiveLevel();
-        Color amountColor = !enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount >= GetCurrentChargeCost() ? Colors.Gold(1).cpy() : Colors.White(1f);
-        Color levelColor = GetEffectiveLevel() > 0 ? Colors.Green(1).cpy() : Colors.Cream(0.6f);
-        if (gainMultiplier > 1)
+        Color amountColor = !enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount >= maxAmount ? Colors.Gold(1).cpy() : Colors.White(1f);
+        if (effectMultiplier > 1)
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
             RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
@@ -254,15 +213,19 @@ public abstract class AbstractAffinityPower extends CommonPower implements OnGai
         }
 
         final Color imgColor = Colors.White((enabled || forceEnableThisTurn) ? 1 : 0.5f);
-        RenderHelpers.DrawCentered(sb, imgColor, img, x + 16 * scale, cY + (3f * scale), 32, 32, 1, 0);
+        final Color borderColor = isActive ? ACTIVE_COLOR : (enabled && triggerCondition.CanUse()) ? imgColor : disabledColor;
 
-        final Integer threshold = GetCurrentThreshold();
-        if (threshold != null)
+        super.renderIconsImpl(sb, x + 16 * scale, cY + (3f * scale), borderColor, imgColor);
+
+        if (maxAmount > 0)
         {
-            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "L" + String.valueOf(level), x + 36 * scale, y - 8 * scale, fontScale, levelColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + maxAmount, x + (maxAmount < 10 ? 90 : 95) * scale, y, 1, amountColor);
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 64 * scale, y, fontScale, amountColor);
         }
-
-        FontHelper.renderFontRightTopAligned(sb, EYBFontHelper.CardIconFont_Small, String.valueOf(amount), x + 64 * scale, y, fontScale, amountColor);
+        else
+        {
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 72 * scale, y, fontScale, amountColor);
+        }
 
         for (AbstractGameEffect e : effects)
         {

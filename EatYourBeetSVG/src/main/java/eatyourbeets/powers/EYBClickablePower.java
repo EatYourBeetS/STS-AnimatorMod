@@ -42,7 +42,7 @@ public abstract class EYBClickablePower extends EYBPower
     {
         super(owner, cardData, relic, originalID);
 
-        priority = CombatStats.Instance.priority + 1;
+        priority = CombatStats.PRIORITY + 1;
         tooltip = new EYBCardTooltip(name, description);
         tooltip.subText = new ColoredString();
         tooltip.icon = powerIcon;

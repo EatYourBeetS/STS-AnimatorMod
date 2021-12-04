@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.GenericEffects.GenericEffect_ApplyToAll;
-import eatyourbeets.misc.GenericEffects.GenericEffect_GainStat;
+import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.stances.MightStance;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.PlayerAttribute;
 import eatyourbeets.utilities.TargetHelper;
 
 public class IsshinKurosaki extends AnimatorCard
@@ -50,7 +49,7 @@ public class IsshinKurosaki extends AnimatorCard
         if (choices.TryInitialize(this))
         {
             choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PowerHelper.Burning, magicNumber));
-            choices.AddEffect(new GenericEffect_GainStat(secondaryValue, PlayerAttribute.Force));
+            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.CounterAttack, secondaryValue));
         }
         choices.Select(1, m);
     }

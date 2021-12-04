@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.relics.EnchantableRelic;
+import eatyourbeets.relics.animator.AbstractMissingPiece;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -47,11 +48,16 @@ public class GiftBox extends AnimatorCard
         //TODO: Make this into an actual card and not something for testing
         for (Affinity af : Affinity.Extended()) {
             GameActions.Bottom.AddAffinity(af, 99);
+            GameActions.Bottom.StackAffinityPower(af, 99);
         }
 
         EnchantableRelic enchantable = GameUtilities.GetRelic(EnchantableRelic.class);
         if (enchantable != null) {
             enchantable.AddCounter(99);
+        }
+        AbstractMissingPiece mp = GameUtilities.GetRelic(AbstractMissingPiece.class);
+        if (mp != null) {
+            mp.AddCounter(99);
         }
 
     }

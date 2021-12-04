@@ -25,7 +25,7 @@ public class Vesta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
+        Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);

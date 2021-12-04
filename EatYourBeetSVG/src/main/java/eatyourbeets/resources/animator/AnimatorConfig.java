@@ -12,6 +12,7 @@ import eatyourbeets.utilities.JUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
@@ -47,7 +48,7 @@ public class AnimatorConfig
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
     public ConfigOption_Integer MajorVersion = new ConfigOption_Integer(VERSION, null);
     public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTEDSERIES, null);
-    public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDEDSERIES, null);
+    public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDEDSERIES, new ArrayList<>());
     public ConfigOption_Integer SeriesSize = new ConfigOption_Integer(SERIESSIZE, MINIMUM_SERIES);
 
     public void Load(int slot)

@@ -8,8 +8,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ZankiKiguchi extends AnimatorCard
 {
@@ -21,7 +21,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 7);
+        Initialize(2, 0, 7, 1);
         SetUpgrade(1, 0, 3);
 
         SetAffinity_Red(1);
@@ -33,14 +33,9 @@ public class ZankiKiguchi extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Red) < magicNumber)
+        if (CheckPrimaryCondition(true))
         {
-            GameActions.Bottom.GainMight(1);
-        }
-
-        if (CombatStats.Affinities.GetPowerAmount(Affinity.Green) < magicNumber)
-        {
-            GameActions.Bottom.GainVelocity(1);
+            GameActions.Bottom.GainVelocity(secondaryValue);
         }
 
         if (info.CanActivateSemiLimited)
@@ -54,5 +49,11 @@ public class ZankiKiguchi extends AnimatorCard
                 }
             });
         }
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse)
+    {
+        return GameUtilities.GetPowerAmount(Affinity.Green) == 0;
     }
 }

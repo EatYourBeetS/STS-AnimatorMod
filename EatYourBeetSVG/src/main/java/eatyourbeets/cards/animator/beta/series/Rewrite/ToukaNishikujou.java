@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -27,7 +26,7 @@ public class ToukaNishikujou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainEndurance(secondaryValue);
+        GameActions.Bottom.Cycle(name, secondaryValue);
     }
 
     @Override
@@ -37,17 +36,16 @@ public class ToukaNishikujou extends AnimatorCard
         GameActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
                 if (CheckPrimaryCondition(false)) {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, secondaryValue);
                 }
                 else {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, CombatStats.Affinities.GetAffinityLevel(Affinity.Orange, true));
+                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, secondaryValue);
                 }
             }
 
             if (info.IsSynergizing)
             {
-                GameActions.Bottom.Cycle(name, secondaryValue)
-                        .SetFilter(c -> c.cardID.equals(ThrowingKnife.DATA.ID));
+                GameActions.Bottom.Cycle(name, secondaryValue);
             }
         });
     }
@@ -55,6 +53,6 @@ public class ToukaNishikujou extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Orange, true);
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Light) > 0;
     }
 }

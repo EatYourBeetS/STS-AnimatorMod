@@ -22,7 +22,7 @@ public class Nyanta extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 2);
+        Initialize(0, 7, 2, 2);
         SetUpgrade(0, 2, 1, 1);
 
         SetAffinity_Green(2, 0, 1);
@@ -49,11 +49,9 @@ public class Nyanta extends AnimatorCard
         GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Orange,Affinity.Green).AddConditionalCallback((cards) -> {
             for (AbstractCard c : cards) {
                 if (c.cardID.equals(AffinityToken_Green.DATA.ID)) {
-                    GameActions.Bottom.GainEndurance(magicNumber);
                     GameActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
                 }
                 else {
-                    GameActions.Bottom.GainVelocity(magicNumber);
                     GameActions.Bottom.ChangeStance(EnduranceStance.STANCE_ID);
                 }
             }

@@ -25,6 +25,7 @@ public class ReineMurasame extends AnimatorCard
         SetUpgrade(0, 0);
         SetAffinity_Blue(2, 0, 3);
         SetAffinity_Orange(1);
+        SetAffinity_Silver(1);
 
         SetExhaust(true);
     }

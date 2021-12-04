@@ -68,23 +68,11 @@ public class Enchantment4 extends Enchantment
         if (currentAffinity != null) {
             final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
             if (p != null) {
-                p.IncreasePowerLevelModifier(magicNumber);
+                GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber);
             }
             else {
                 GameActions.Bottom.GainEnergyNextTurn(magicNumber);
             }
-        }
-    }
-
-    @Override
-    public void AtEndOfTurnEffect(boolean isPlayer) {
-        if (currentAffinity != null) {
-            final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            if (p != null) {
-                p.IncreasePowerLevelModifier(-magicNumber);
-            }
-
-            currentAffinity = null;
         }
     }
 

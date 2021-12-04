@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -33,7 +34,8 @@ public class Zombieman extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainMight(1);
+        int[] damage = DamageInfo.createDamageMatrix(secondaryValue, true, true);
+        GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.LoseHP(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false).IgnoreTempHP(true);
         GameActions.Bottom.Flash(this);
     }

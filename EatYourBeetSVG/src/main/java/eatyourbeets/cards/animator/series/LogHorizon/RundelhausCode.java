@@ -30,7 +30,7 @@ public class RundelhausCode extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 2);
+        Initialize(9, 0, 1, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(2, 0, 2);
@@ -43,7 +43,6 @@ public class RundelhausCode extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
-        GameActions.Bottom.GainWisdom(secondaryValue);
     }
 
     @Override

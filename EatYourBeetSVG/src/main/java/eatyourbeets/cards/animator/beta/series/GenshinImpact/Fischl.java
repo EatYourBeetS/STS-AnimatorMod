@@ -38,7 +38,6 @@ public class Fischl extends AnimatorCard {
 
         GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS);
         GameActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
-        GameActions.Bottom.GainDesecration(magicNumber);
 
         if (info.IsSynergizing && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);

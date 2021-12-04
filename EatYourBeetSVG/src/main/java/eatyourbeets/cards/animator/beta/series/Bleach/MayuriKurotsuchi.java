@@ -17,7 +17,7 @@ public class MayuriKurotsuchi extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 1, 2, 3);
-        SetUpgrade(0, 0, 2, 1);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Silver(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
@@ -27,7 +27,7 @@ public class MayuriKurotsuchi extends AnimatorCard {
 
     @Override
     public int GetXValue() {
-        return magicNumber + CombatStats.Affinities.GetPowerAmount(Affinity.Green);
+        return magicNumber * CombatStats.Affinities.GetPowerAmount(Affinity.Green);
     }
 
     @Override

@@ -30,7 +30,8 @@ public class GinIchimaru extends AnimatorCard
         SetAffinity_Green(2, 0, 2);
         SetAffinity_Blue(0,0,1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
         SetHitCount(2);
     }
 
@@ -39,7 +40,7 @@ public class GinIchimaru extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (TrySpendAffinity(Affinity.Blue))
+        if (CombatStats.TryActivateSemiLimited(cardID))
         {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
@@ -61,13 +62,11 @@ public class GinIchimaru extends AnimatorCard
     private void makeChoice(AbstractMonster m, int selections) {
         if (choices.TryInitialize(this))
         {
-            int amountRed = Math.min(MAX_AMOUNT, CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true));
-            int amountGreen = Math.min(MAX_AMOUNT, CombatStats.Affinities.GetAffinityLevel(Affinity.Red,true));
-            if (amountRed > 0) {
-                choices.AddEffect(new GenericEffect_Gin(Affinity.Red, amountRed));
+            if (CheckAffinity(Affinity.Red)) {
+                choices.AddEffect(new GenericEffect_Gin(Affinity.Red, affinities.GetRequirement(Affinity.Red)));
             }
-            if (amountGreen > 0) {
-                choices.AddEffect(new GenericEffect_Gin(Affinity.Green, amountGreen));
+            if (CheckAffinity(Affinity.Green)) {
+                choices.AddEffect(new GenericEffect_Gin(Affinity.Green,  affinities.GetRequirement(Affinity.Green)));
             }
         }
         choices.Select(selections, m);
@@ -93,7 +92,7 @@ public class GinIchimaru extends AnimatorCard
         public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
         {
             if (GameUtilities.TrySpendAffinity(affinity,amount,true)) {
-                GameActions.Bottom.StackAffinityPower(affinity,amount,false);
+                GameActions.Bottom.StackAffinityPower(affinity,1,false);
             }
         }
     }

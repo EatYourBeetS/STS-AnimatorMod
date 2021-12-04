@@ -23,12 +23,18 @@ public class HeavyWarrior extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(28, 0, 0, 4);
+        Initialize(28, 0, 2, 4);
 
         SetAffinity_Red(2, 0, 6);
         SetAffinity_Orange(1, 0, 2);
 
         SetExhaust(true);
+    }
+
+    @Override
+    protected float ModifyBlock(AbstractMonster enemy, float amount)
+    {
+        return super.ModifyBlock(enemy, amount + GetXValue());
     }
 
     @Override
@@ -47,7 +53,7 @@ public class HeavyWarrior extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        return CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true);
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true) * 2;
     }
 
     @Override
@@ -62,7 +68,7 @@ public class HeavyWarrior extends AnimatorCard
             GameActions.Bottom.Motivate(1);
         }
 
-        GameActions.Bottom.GainMight(GetXValue());
-        TrySpendAffinity(Affinity.Red, GetXValue());
+        GameActions.Bottom.GainBlock(GetXValue());
+        TrySpendAffinity(Affinity.Red,  CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true));
     }
 }

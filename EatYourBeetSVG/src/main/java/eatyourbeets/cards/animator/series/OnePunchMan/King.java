@@ -18,7 +18,7 @@ public class King extends AnimatorCard
         super(DATA);
 
         Initialize(0, 1, 3, 3);
-        SetUpgrade(0, 0, 0, 1);
+        SetUpgrade(0, 1, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
     }
@@ -38,7 +38,7 @@ public class King extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
         if (GameUtilities.TrySpendAffinityPower(Affinity.Light, magicNumber)) {
-            GameActions.Bottom.GainMight(secondaryValue);
+            GameActions.Bottom.GainMight(magicNumber);
         }
     }
 }

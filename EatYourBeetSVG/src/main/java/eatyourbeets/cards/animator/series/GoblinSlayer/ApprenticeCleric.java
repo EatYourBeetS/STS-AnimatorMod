@@ -24,7 +24,7 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 2, 1);
+        Initialize(0, 5, 2, 2);
         SetUpgrade(0, 3, 1, 0);
 
         SetAffinity_Light(2, 0, 1);
@@ -38,7 +38,7 @@ public class ApprenticeCleric extends AnimatorCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            GameActions.Bottom.GainSupercharge(1);
+            GameActions.Bottom.RecoverHP(secondaryValue);
             GameActions.Bottom.Flash(this);
         }
     }
@@ -47,7 +47,7 @@ public class ApprenticeCleric extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainSupercharge(secondaryValue);
+        //GameActions.Bottom.GainSupercharge(secondaryValue);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package eatyourbeets.powers.affinity;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.powers.common.TaintedPower;
@@ -15,26 +13,21 @@ public class DesecrationPower extends AbstractAffinityPower
     public DesecrationPower()
     {
         super(AFFINITY_TYPE, POWER_ID);
+        this.triggerCondition.requiresTarget = true;
     }
 
     @Override
-    public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractMonster m, int cost)
     {
-        int applyAmount = (int) GetChargeMultiplier();
-
-        if (m != null && TryUse(c))
+        if (m != null)
         {
-            GameActions.Bottom.StackPower(new TaintedPower(m, applyAmount)).ShowEffect(true, true).IgnoreArtifact(true);
+            GameActions.Bottom.StackPower(new TaintedPower(m, (int) GetEffectIncrease())).ShowEffect(true, true).IgnoreArtifact(true);
+            flash();
         }
     }
 
     @Override
     protected int GetMultiplierForDescription() {
-        return (int) GetChargeIncrease(Math.max(amount,chargeThreshold));
-    }
-
-    @Override
-    protected float GetChargeMultiplier() {
-        return super.GetChargeMultiplier() * 2;
+        return (int) GetEffectIncrease();
     }
 }

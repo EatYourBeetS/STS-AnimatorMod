@@ -92,6 +92,7 @@ public class AnimatorLoadoutsContainer
 
                 if (GR.Animator.Config.ExpandedSeries.Get().contains(c.Loadout.Series)) {
                     expandedCards.add(card);
+                    c.ToggleExpansion(true);
                 }
 
                 if (c.Loadout.Series.equals(GR.Animator.Data.SelectedLoadout.Series)) {
@@ -138,10 +139,10 @@ public class AnimatorLoadoutsContainer
             c.ToggleExpansion(value);
             TotalCardsInPool += c.GetCardPoolInPlay().size();
 
-            if (expandedCards.contains(card) && !value) {
+            if (!value) {
                 expandedCards.remove(card);
             }
-            else if (!expandedCards.contains(card) && value) {
+            else if (!expandedCards.contains(card)) {
                 expandedCards.add(card);
             }
             return true;

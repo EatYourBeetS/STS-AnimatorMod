@@ -22,7 +22,7 @@ public class Hakurou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 1, 3, 1);
+        Initialize(1, 1, 3, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 0);
@@ -52,7 +52,7 @@ public class Hakurou extends AnimatorCard
         super.triggerWhenDrawn();
 
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Bottom.GainVelocity(secondaryValue);
+            GameActions.Bottom.GainBlock(secondaryValue);
             GameActions.Bottom.Flash(this);
         }
     }

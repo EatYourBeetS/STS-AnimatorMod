@@ -24,20 +24,20 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(1, 0, 1, 1);
-        SetUpgrade(1, 0, 0, 1);
+        Initialize(1, 0, 1, 2);
+        SetUpgrade(1, 0, 1, 0);
 
         SetAffinity_Red(2, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
-        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Red, 1);
+        GameActions.Bottom.StackAffinityPower(Affinity.Red, magicNumber);
         CombatStats.onEndOfTurn.Subscribe(this);
 
         if (TrySpendAffinity(Affinity.Red)) {
@@ -47,7 +47,7 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
 
     @Override
     public void OnEndOfTurn(boolean isPlayer) {
-        GameActions.Bottom.IncreaseAffinityPowerLevel(Affinity.Red, -1);
+        GameActions.Bottom.StackAffinityPower(Affinity.Red, -magicNumber);
         CombatStats.onEndOfTurn.Unsubscribe(this);
     }
 }

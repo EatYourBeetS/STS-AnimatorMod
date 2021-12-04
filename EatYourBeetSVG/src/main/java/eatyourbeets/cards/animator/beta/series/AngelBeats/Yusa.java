@@ -18,7 +18,7 @@ public class Yusa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Light(1, 0, 0);
@@ -28,12 +28,12 @@ public class Yusa extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Top.Scry(secondaryValue).AddCallback(() -> {
-            GameActions.Top.ExhaustFromPile(name, magicNumber, p.discardPile)
+            GameActions.Top.ExhaustFromPile(name, 1, p.discardPile)
                     .SetOptions(false,true)
                     .AddCallback(cards -> {
                 for (AbstractCard c : cards) {
                     if (GameUtilities.HasLightAffinity(c)) {
-                        GameActions.Bottom.GainSupercharge(1);
+                        GameActions.Bottom.GainTemporaryHP(magicNumber);
                     }
                 }
             });

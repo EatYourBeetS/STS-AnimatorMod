@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Spearman extends AnimatorCard
 {
@@ -22,7 +23,7 @@ public class Spearman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 2);
+        Initialize(12, 0, 1);
         SetUpgrade(4, 0);
 
         SetAffinity_Red(1, 1, 1);
@@ -36,8 +37,7 @@ public class Spearman extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f));
-        GameActions.Bottom.GainVelocity(magicNumber);
-        GameActions.Bottom.GainMight(magicNumber);
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.Normal(m), magicNumber);
     }
 
     @Override

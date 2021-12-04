@@ -1,7 +1,5 @@
 package eatyourbeets.powers.affinity;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.utilities.GameActions;
@@ -17,18 +15,19 @@ public class VelocityPower extends AbstractAffinityPower
     }
 
     @Override
-    public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
+    public void OnUse(AbstractMonster m, int cost)
     {
-        int cardDraw = (int) GetChargeIncrease(amount);
-
-        if (c.type == AbstractCard.CardType.SKILL && TryUse(c))
-        {
-            GameActions.Bottom.Draw(cardDraw);
-        }
+        GameActions.Bottom.Draw((int) GetEffectIncrease());
+        flash();
     }
 
     @Override
     protected int GetMultiplierForDescription() {
-        return (int) GetChargeIncrease(Math.max(amount,chargeThreshold));
+        return (int) GetEffectIncrease();
+    }
+
+    @Override
+    protected float GetEffectIncrease() {
+        return super.GetEffectIncrease() * 2;
     }
 }

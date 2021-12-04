@@ -36,7 +36,6 @@ public class Alexander extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.GainMight(magicNumber);
         if (MightStance.IsActive())
         {
             GameActions.Bottom.Draw(1);

@@ -6,6 +6,8 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class Shuna extends AnimatorCard
@@ -26,6 +28,12 @@ public class Shuna extends AnimatorCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
@@ -38,8 +46,7 @@ public class Shuna extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainSupercharge(magicNumber);
-        GameActions.Bottom.GainEndurance(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.Draw(magicNumber);
     }
 }

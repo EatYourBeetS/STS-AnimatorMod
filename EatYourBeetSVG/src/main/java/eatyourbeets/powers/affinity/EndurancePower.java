@@ -17,15 +17,16 @@ public class EndurancePower extends AbstractAffinityPower
 
     @Override
     public float modifyBlock(float blockAmount, AbstractCard card) {
-        return enabled ? blockAmount * GetChargeMultiplier() : blockAmount;
+        return isActive ? blockAmount * GetEffectiveMultiplier() : blockAmount;
     }
 
     @Override
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        if (c.baseBlock > 0)
+        if (c.baseBlock > 0 && isActive)
         {
-            TryUse(c);
+            isActive = false;
+            flash();
         }
     }
 }

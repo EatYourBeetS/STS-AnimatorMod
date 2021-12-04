@@ -42,7 +42,6 @@ public class Berserker extends AnimatorCard
             }
         }));
         GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
-        GameActions.Bottom.GainMight(magicNumber);
 
         if (TrySpendAffinity(Affinity.Red))
         {

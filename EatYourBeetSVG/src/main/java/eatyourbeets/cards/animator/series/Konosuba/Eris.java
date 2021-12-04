@@ -26,7 +26,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 1);
+        Initialize(0, 0, 4, 3);
         SetUpgrade(0, 0, 3, 0);
 
         SetAffinity_Blue(1);
@@ -44,7 +44,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
 
     @Override
     public int GetXValue() {
-        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) + secondaryValue;
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true) / secondaryValue;
     }
 
     @Override
@@ -97,7 +97,10 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainSupercharge(GetXValue());
+        int val = GetXValue();
+        if (val > 0) {
+            GameActions.Bottom.GainSupercharge(val);
+        }
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
         TrySpendAffinity(Affinity.Light, CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));
     }

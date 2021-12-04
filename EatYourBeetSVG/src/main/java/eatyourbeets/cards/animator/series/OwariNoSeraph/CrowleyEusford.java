@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
@@ -42,7 +43,7 @@ public class CrowleyEusford extends AnimatorCard
             for (AbstractMonster mo: GameUtilities.GetEnemies(true)) {
                 if (GameUtilities.GetPowerAmount(mo, VulnerablePower.POWER_ID) > 0) {
                     CombatStats.TryActivateSemiLimited(cardID);
-                    GameActions.Bottom.GainMight(magicNumber);
+                    GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
                     GameActions.Bottom.Flash(this);
                     break;
                 }
@@ -54,8 +55,6 @@ public class CrowleyEusford extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.GainVelocity(magicNumber);
-        GameActions.Bottom.GainMight(magicNumber);
 
         if (CheckSpecialCondition(true))
         {

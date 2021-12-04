@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Noda extends AnimatorCard
 {
@@ -15,8 +18,8 @@ public class Noda extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(12, 0, 2, 2);
-        SetUpgrade(3, 0, 2, 0);
+        Initialize(12, 0, 1, 4);
+        SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 1, 1);
         SetAffinity_Orange(0, 0, 1);
@@ -31,7 +34,7 @@ public class Noda extends AnimatorCard
         super.triggerOnManualDiscard();
 
         GameActions.Bottom.Exhaust(this);
-        GameActions.Bottom.GainMight(magicNumber, false);
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, magicNumber);
     }
 
     @Override
@@ -41,8 +44,7 @@ public class Noda extends AnimatorCard
 
         if (info.IsSynergizing || TrySpendAffinity(Affinity.Red))
         {
-            GameActions.Bottom.GainMight(secondaryValue);
-            GameActions.Bottom.GainEndurance(secondaryValue);
+            GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }
     }
 }

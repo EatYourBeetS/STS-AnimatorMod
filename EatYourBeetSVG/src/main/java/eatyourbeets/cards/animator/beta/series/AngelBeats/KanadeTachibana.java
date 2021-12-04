@@ -18,7 +18,7 @@ public class KanadeTachibana extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 4);
+        Initialize(0, 1, 2, 2);
         SetUpgrade(0, 0, 1, 1);
 
         SetPurge(true);

@@ -29,7 +29,7 @@ public class Kanaria extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0);
         SetAffinity_Light(2, 0, 0);
         SetAffinity_Green(1, 0, 0);
@@ -111,7 +111,6 @@ public class Kanaria extends AnimatorCard
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle) {
             if (amount > 0 && GameUtilities.IsHindrance(card)) {
-                GameActions.Bottom.GainVelocity(secondaryAmount);
                 GameActions.Bottom.GainSupercharge(secondaryAmount);
                 amount -= 1;
             }

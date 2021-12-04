@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -49,11 +48,6 @@ public class Serara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking) == 0)
-        {
-            return;
-        }
-
         buffs = CombatStats.GetCombatData(cardID, null);
         if (buffs == null)
         {
@@ -61,7 +55,6 @@ public class Serara extends AnimatorCard
             CombatStats.SetCombatData(cardID, buffs);
         }
 
-        GameActions.Bottom.GainEndurance(secondaryValue);
         GameActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)
         .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)

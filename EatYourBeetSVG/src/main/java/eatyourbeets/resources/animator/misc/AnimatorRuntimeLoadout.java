@@ -52,6 +52,7 @@ public class AnimatorRuntimeLoadout
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
         this.canEnableExpansion = loadout.CanEnableExpansion();
+        this.expansionEnabled = GR.Animator.Config.ExpandedSeries.Get().contains(loadout.Series);
         this.UnlockTooltip = new EYBCardTooltip(GR.Animator.Strings.CharSelect.RightText, GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, GR.Animator.GetUnlockLevel()));
         InitializeCards(loadout.Series);
 

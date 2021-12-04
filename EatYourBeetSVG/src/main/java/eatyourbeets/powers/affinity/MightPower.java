@@ -18,15 +18,16 @@ public class MightPower extends AbstractAffinityPower
 
     @Override
     public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card) {
-        return enabled && type == DamageInfo.DamageType.NORMAL ? damage * GetChargeMultiplier() : damage;
+        return isActive && type == DamageInfo.DamageType.NORMAL ? damage * GetEffectiveMultiplier() : damage;
     }
 
     @Override
     public void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
-        if (c.baseDamage > 0)
+        if (c.baseDamage > 0 && isActive)
         {
-            TryUse(c);
+            isActive = false;
+            flash();
         }
     }
 }

@@ -16,7 +16,7 @@ public class Gargantua extends AnimatorCard
     public static final EYBCardData DATA = Register(Gargantua.class)
             .SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Brutal)
             .SetSeriesFromClassPackage();
-    public static final int CHARGE_COST = 10;
+    public static final int CHARGE_COST = 5;
 
     public Gargantua()
     {

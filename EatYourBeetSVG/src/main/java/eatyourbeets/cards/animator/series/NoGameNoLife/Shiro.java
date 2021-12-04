@@ -2,22 +2,19 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
+public class Shiro extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Shiro.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None, true)
             .SetSeriesFromClassPackage();
-    public static final int CHARGE_COST = 5;
-    private AbstractOrb focusedOrb;
+    public static final int CHARGE_COST = 4;
 
     public Shiro()
     {
@@ -50,32 +47,9 @@ public class Shiro extends AnimatorCard implements OnOrbApplyFocusSubscriber
                     }
 
                     if (GameUtilities.TrySpendAffinityPower(Affinity.Light, CHARGE_COST)) {
-                        focusedOrb = null;
-                        for (AbstractOrb orb : player.orbs)
-                        {
-                            if (GameUtilities.IsValidOrb(orb))
-                            {
-                                focusedOrb = orb;
-                                break;
-                            }
-                        }
-                        if (focusedOrb != null) {
-                            CombatStats.onOrbApplyFocus.Subscribe(this);
-                            GameActions.Bottom.EvokeOrb(secondaryValue, focusedOrb).AddCallback(() -> {
-                                CombatStats.onOrbApplyFocus.Unsubscribe(this);
-                            });
-                        }
-
+                        GameActions.Bottom.EvokeOrb(secondaryValue, EvokeOrb.Mode.SameOrb);
                     }
                 }
         );
-    }
-
-    @Override
-    public void OnApplyFocus(AbstractOrb orb) {
-        if (orb == focusedOrb) {
-            orb.passiveAmount += secondaryValue;
-            orb.evokeAmount += secondaryValue;
-        }
     }
 }

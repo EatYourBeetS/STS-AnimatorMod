@@ -44,6 +44,7 @@ import java.util.*;
 public class CombatStats extends EYBPower implements InvisiblePower
 {
     public static final String POWER_ID = GR.Common.CreateID(CombatStats.class.getSimpleName());
+    public static final int PRIORITY = -3000;
 
     public static final CombatStats Instance = new CombatStats();
     public static final EYBCardAffinitySystem Affinities = new EYBCardAffinitySystem();
@@ -142,7 +143,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     {
         super(null, POWER_ID);
 
-        this.priority = -3000; //it was Integer.MIN_VALUE but it actually breaks the comparator, nice
+        this.priority = PRIORITY; //it was Integer.MIN_VALUE but it actually breaks the comparator, nice
     }
 
     public static AbstractPlayer RefreshPlayer()

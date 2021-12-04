@@ -3,7 +3,10 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EnergizedPower;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
@@ -21,7 +24,7 @@ public class HidekiHinata extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 4);
+        Initialize(7, 0, 1, 3);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
@@ -47,9 +50,7 @@ public class HidekiHinata extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
 
         if (! GameUtilities.IsAttacking(m.intent)) {
-            for (int i = 0; i < secondaryValue; i++) {
-                GameActions.Bottom.GainRandomAffinityPower(magicNumber, false, Affinity.Red, Affinity.Green);
-            }
+            GameActions.Bottom.GainSupportDamage(secondaryValue);
         }
 
         if (CombatStats.ControlPile.Contains(this)) {

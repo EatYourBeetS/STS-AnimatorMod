@@ -79,7 +79,7 @@ public class Gluttony extends AnimatorCard
                 for (AbstractCard c : cards) {
                     EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
                     if (eCard == null || eCard.affinities.GetLevel(Affinity.General) <= 0) {
-                        GameActions.Last.Exhaust(c).AddCallback(() -> GameActions.Bottom.GainMight(secondaryValue));
+                        GameActions.Last.Exhaust(c);
                     }
                 }
             });

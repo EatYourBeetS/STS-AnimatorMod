@@ -18,7 +18,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 6, 2);
+        Initialize(0, 2, 6, 1);
         SetUpgrade(0, 1, 4);
 
         SetAffinity_Blue(1);
@@ -48,6 +48,6 @@ public class ElricAlphonse extends AnimatorCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return GameUtilities.GetPowerAmount(Affinity.Blue) < magicNumber;
+        return GameUtilities.GetPowerAmount(Affinity.Blue) == 0;
     }
 }

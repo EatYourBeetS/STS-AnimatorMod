@@ -27,7 +27,7 @@
 	},
 	"eyb:CounterAttackPower":
 	{
-		"DESCRIPTIONS": ["If you fully block all enemy #yAttacks, gain #b{0} #yVigor and apply #b{1} [Vulnerable] to ALL enemies."],
+		"DESCRIPTIONS": ["Whenever you block damage this turn: Deal #b{0} damage to ALL enemies, then reduce stacks by 1."],
 		"NAME": "Counter-Attack"
 	},
 	"eyb:CorruptionPower":
@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When you make a [A-Dark] #ySynergy: Gain #b{0} [D]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and apply {2} [Tainted] to one enemy.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["When you make a [A-Dark] #ySynergy: Gain #b{0} [D]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and apply {2} [Tainted] to one enemy.{3}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Desecration"
 	},
 	"eyb:ElectrifiedPower":
@@ -57,7 +57,7 @@
 	},
 	"eyb:EndurancePower":
 	{
-	  "DESCRIPTIONS": ["When you make a [A-Orange] #ySynergy: Gain #b{0} [O]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["When you make a [A-Orange] #ySynergy: Gain #b{0} [O]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Endurance"
 	},
 	"eyb:EnergizedPower":
@@ -132,7 +132,7 @@
 	},
 	"eyb:MightPower":
 	{
-		"DESCRIPTIONS": ["When you make a [A-Red] #ySynergy: Gain #b{0} [R]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and increase its damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When you make a [A-Red] #ySynergy: Gain #b{0} [R]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase its damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Might"
 	},
 	"eyb:PhasingPower":
@@ -157,7 +157,7 @@
 	},
 	"eyb:SuperchargePower":
 	{
-		"DESCRIPTIONS": ["When you make a [A-Light] #ySynergy: Gain #b{0} [L]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When you make a [A-Light] #ySynergy: Gain #b{0} [L]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Supercharge"
 	},
 	"eyb:SupportDamagePower":
@@ -177,7 +177,7 @@
 	},
 	"eyb:TechnicPower":
 	{
-		"DESCRIPTIONS": ["When you make a [A-Silver] #ySynergy: Gain #b{0} [S]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and gain #b{2} [E].{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When you make a [A-Silver] #ySynergy: Gain #b{0} [S]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and gain #b{2} [Genesis].{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Technic"
 	},
 	"eyb:TemporaryDesecrationPower":
@@ -212,7 +212,7 @@
 	},
 	"eyb:VelocityPower":
 	{
-		"DESCRIPTIONS": ["When you make a [A-Green] #ySynergy: Gain #b{0} [G]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When you make a [A-Green] #ySynergy: Gain #b{0} [G]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Velocity"
 	},
 	"eyb:VitalityPower":
@@ -237,7 +237,7 @@
 	},
 	"eyb:WisdomPower":
 	{
-		"DESCRIPTIONS": ["When you make a [A-Blue] #ySynergy: Gain #b{0} [B]. Once this reaches #b{1} stacks, click this #yPower to lose ALL stacks and increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When you make a [A-Blue] #ySynergy: Gain #b{0} [B]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Wisdom"
 	}
 }

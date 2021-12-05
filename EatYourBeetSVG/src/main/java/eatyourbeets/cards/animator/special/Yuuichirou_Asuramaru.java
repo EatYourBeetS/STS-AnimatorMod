@@ -34,7 +34,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (info.TryActivateLimited()) {
-            GameUtilities.SetAffinityPowerThreshold(Affinity.Red, secondaryValue, true);
+            GameUtilities.SetAffinityPowerLevel(Affinity.Red, secondaryValue, true);
         }
 
         if (TrySpendAffinity(Affinity.Dark)) {

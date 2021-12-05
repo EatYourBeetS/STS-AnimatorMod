@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class MisaKurobane_Yusarin extends AnimatorCard
@@ -25,12 +26,16 @@ public class MisaKurobane_Yusarin extends AnimatorCard
 
         SetAffinity_Light(1);
 
+        SetHarmonic(true);
         SetExhaust(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.TriggerOrbPassive(p.orbs.size())
+                .SetFilter(o -> Fire.ORB_ID.equals(o.ID))
+                .SetSequential(true);
         GameActions.Bottom.Motivate(magicNumber);
     }
 }

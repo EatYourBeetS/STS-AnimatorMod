@@ -37,14 +37,6 @@ public class TohkaYatogami extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetHaste(true);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {

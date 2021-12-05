@@ -249,6 +249,10 @@ public class RenderHelpers
 
     public static void DrawOnCardCentered(SpriteBatch sb, AbstractCard card, Color color, Texture img, float drawX, float drawY, float width, float height, float imgScale, float imgRotation, boolean flipX, boolean flipY)
     {
+        if (img == null) {
+            JUtils.LogWarning(card, "Image was null:");
+            return;
+        }
         final float scale = card.drawScale * Settings.scale * imgScale;
 
         sb.setColor(color);

@@ -61,7 +61,7 @@ public class SuperchargePower extends AbstractAffinityPower implements OnApplyPo
 
 
     @Override
-    protected float GetEffectIncrease() {
-        return super.GetEffectIncrease() * 2;
+    protected float GetEffectiveIncrease() {
+        return super.GetEffectiveIncrease() * 2;
     }
 }

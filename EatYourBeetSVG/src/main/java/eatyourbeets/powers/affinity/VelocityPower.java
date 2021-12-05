@@ -17,17 +17,18 @@ public class VelocityPower extends AbstractAffinityPower
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
-        GameActions.Bottom.Draw((int) GetEffectIncrease());
+        this.SetMaxAmount(maxAmount + 1);
+        GameActions.Bottom.Draw((int) GetEffectiveIncrease());
         flash();
     }
 
     @Override
     protected int GetMultiplierForDescription() {
-        return (int) GetEffectIncrease();
+        return (int) GetEffectiveIncrease();
     }
 
     @Override
-    protected float GetEffectIncrease() {
-        return super.GetEffectIncrease() * 2;
+    protected float GetEffectiveIncrease() {
+        return super.GetEffectiveIncrease() * 2;
     }
 }

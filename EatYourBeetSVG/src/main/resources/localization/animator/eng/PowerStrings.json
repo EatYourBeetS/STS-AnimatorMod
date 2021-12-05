@@ -40,6 +40,11 @@
 		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b{0} #ySupport #yDamage."],
 		"NAME": "Bozes Co Palesti"
 	},
+	"animator:BurningWeaponPower":
+	{
+		"DESCRIPTIONS": ["For #b{0} turns: Deal double damage to enemies with [Freezing]. Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning] and remove its [Freezing]."],
+		"NAME": "Burning Weapon"
+	},
 	"animator:ChlammyZellPower":
 	{
 		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b{0} damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y{1}."],
@@ -129,11 +134,6 @@
 	{
 		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength and #yBurning."],
 		"NAME": "Fire Wisp"
-	},
-	"animator:FlamingWeaponPower":
-	{
-		"DESCRIPTIONS": ["For #b{0} turns: Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning]."],
-		"NAME": "Flaming Weapon"
 	},
 	"animator:FrostCrystalPower":
 	{
@@ -335,11 +335,6 @@
 		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
 		"NAME": "Rory Mercury"
 	},
-	"animator:SealedPower":
-	{
-	  "DESCRIPTIONS": ["#yCommon #yBuffs are negated. You cannot gain #yCommon #yBuffs or #yAffinity #yPowers."],
-	  "NAME": "Sealed"
-	},
 	"animator:SelfImmolationPower":
 	{
 	  "DESCRIPTIONS": ["For the next #b", " turns, when you play a card that gives [Block]: ALL characters take [Delayed Damage] equal to twice its [Block]."],
@@ -362,7 +357,7 @@
 	},
 	"animator:SilencedPower":
 	{
-	  "DESCRIPTIONS": ["You cannot play #ySkills.","This enemy cannot #yBuff or #yDebuff."],
+	  "DESCRIPTIONS": ["You cannot gain #yCommon #yBuffs."],
 	  "NAME": "Silenced"
 	},
 	"animator:SonicPower":

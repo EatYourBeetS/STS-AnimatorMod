@@ -48,7 +48,7 @@ public class Shion extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if ((info.IsSynergizing || TrySpendAffinity(Affinity.Orange)) && info.TryActivateSemiLimited())
+        if (TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
         }

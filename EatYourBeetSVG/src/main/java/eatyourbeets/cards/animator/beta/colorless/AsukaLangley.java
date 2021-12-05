@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.colorless;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.blue.LockOn;
@@ -28,7 +29,7 @@ public class AsukaLangley extends AnimatorCard
         super(DATA);
 
         Initialize(13, 0, 1 );
-        SetUpgrade(1, 0, 0 );
+        SetUpgrade(0, 0, 0 );
 
         SetAffinity_Orange(1, 0, 2);
         SetAffinity_Green(1);
@@ -38,26 +39,18 @@ public class AsukaLangley extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetHaste(true);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetHaste(false);
-                Initialize(13, 0, 1 );
-                SetUpgrade(1, 0, 0 );
-                AddScaling(Affinity.Orange, 2);
+                SetAttackTarget(EYBCardTarget.ALL);
+                SetMultiDamage(true);
+                upgradedDamage = true;
             }
             else {
+                Initialize(15, 0, 1 );
+                SetUpgrade(0, 0, 0 );
                 SetHaste(true);
-                Initialize(13, 0, 1 );
-                SetUpgrade(1, 0, 0 );
             }
         }
         return super.SetForm(form, timesUpgraded);
@@ -66,7 +59,12 @@ public class AsukaLangley extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        if (upgraded) {
+            GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));
+        }
+        else {
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));;
+        }
         GameActions.Bottom.StackPower(new AsukaLangleyPower(p));
         GameActions.Bottom.Reload(name, cards ->
         {
@@ -84,6 +82,13 @@ public class AsukaLangley extends AnimatorCard
             super(owner, AsukaLangley.DATA);
 
             Initialize(-1);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
             CombatStats.onDamageOverride.Subscribe(this);
         }
 

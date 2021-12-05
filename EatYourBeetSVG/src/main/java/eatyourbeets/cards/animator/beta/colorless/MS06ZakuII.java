@@ -45,10 +45,8 @@ public class MS06ZakuII extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetRetainOnce(true);
-        if (auxiliaryData.form == 0) {
-            SetInnate(true);
-        }
     }
 
     @Override

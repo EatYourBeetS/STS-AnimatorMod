@@ -21,18 +21,10 @@ public class OrigamiTobiichi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 9);
+        Initialize(0, 0, 4, 10);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 1, 0);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetInnate(true);
-        }
     }
 
     @Override

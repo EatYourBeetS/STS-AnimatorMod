@@ -2,17 +2,16 @@ package eatyourbeets.cards.animator.beta.colorless;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.actions.orbs.RemoveOrb;
+import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.animator.Amplification_LightningPower;
+import eatyourbeets.powers.animator.SilencedPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
-//TODO Seal the enemy
 public class Yae extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Yae.class).SetSkill(1, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.HoukaiGakuen);
@@ -21,7 +20,7 @@ public class Yae extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 2, 4);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(2);
@@ -40,24 +39,21 @@ public class Yae extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         int lightningCount = 0;
-        GameActions.Bottom.StackPower(new Amplification_LightningPower(p, magicNumber));
-        for (AbstractOrb orb : p.orbs)
-        {
-            if (!(orb instanceof EmptyOrbSlot) && orb.ID.equals(Lightning.ORB_ID))
-            {
-                GameActions.Bottom.Add(new RemoveOrb(orb));
-                GameActions.Bottom.GainWisdom(magicNumber);
-                if (++lightningCount >= magicNumber) {
-                    break;
-                }
-
-            }
+        for (AbstractMonster enemy : GameUtilities.GetEnemies(true)) {
+            GameActions.Bottom.StackPower(new SilencedPower(enemy, magicNumber));
         }
-
-        if (lightningCount == 0) {
-            GameActions.Bottom.ChannelOrb(new Dark());
-            GameActions.Bottom.ApplyBlinded(TargetHelper.AllCharacters(), secondaryValue);
-            GameActions.Bottom.ApplyFrail(TargetHelper.AllCharacters(), secondaryValue);
-        }
+        GameActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential)
+                .SetFilter(o -> Lightning.ORB_ID.equals(o.ID) || (upgraded && Dark.ORB_ID.equals(o.ID)))
+                .AddCallback(orbs ->
+                {
+                    if (orbs.size() == 0)
+                    {
+                        GameActions.Bottom.ApplyBlinded(TargetHelper.AllCharacters(), secondaryValue);
+                    }
+                    else
+                    {
+                        GameActions.Bottom.ChannelOrb(new Frost());
+                    }
+                });
     }
 }

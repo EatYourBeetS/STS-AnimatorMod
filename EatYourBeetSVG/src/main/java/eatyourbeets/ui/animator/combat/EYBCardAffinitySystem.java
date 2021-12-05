@@ -182,6 +182,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return p == null ? 0 : p.amount;
     }
 
+    public int GetPowerLevel(Affinity affinity)
+    {
+        final AbstractAffinityPower p = GetPower(affinity);
+        return p == null ? 0 : p.GetEffectiveLevel();
+    }
+
     @Override
     public void OnStartOfTurn()
     {
@@ -218,9 +224,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return false;
     }
 
+    public boolean CanActivateSynergyBonus(EYBCardAffinity affinity, int star)
+    {
+        return affinity != null && affinity.level + star > 0 && CanActivateSynergyBonus(affinity.type);
+    }
+
     public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
     {
-        return affinity != null && affinity.level + GetLastAffinityLevel(affinity.type) >= 3 && CanActivateSynergyBonus(affinity.type);
+        return affinity != null && affinity.level > 0 && CanActivateSynergyBonus(affinity.type);
     }
 
     public boolean CanActivateSynergyBonus(Affinity affinity)
@@ -237,13 +248,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void OnSynergy(AnimatorCard card)
     {
+        int star = card.affinities.Star != null ? card.affinities.Star.level : 0;
         for (EYBCardAffinity affinity : card.affinities.List)
         {
-            if (CanActivateSynergyBonus(affinity))
+            if (CanActivateSynergyBonus(affinity, star))
             {
-                if (affinity.type.equals(Affinity.Star)) {
-                    GetRow(Affinity.Light).ActivateSynergyBonus(card);
-                }
                 final EYBCardAffinityRow row = GetRow(affinity.type);
                 if (row != null)
                 {

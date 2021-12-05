@@ -52,7 +52,7 @@ public class LisaMinci extends AnimatorCard {
                         GameActions.Bottom.GainFocus(secondaryValue, true);
                     }
                     if (activateEffect2) {
-                        GameActions.Bottom.GainWisdom(secondaryValue);
+                        GameActions.Bottom.DrawNextTurn(secondaryValue);
                     }
                     if (activateEffect3) {
                         GameActions.Bottom.ChannelOrb(new Lightning());

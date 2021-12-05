@@ -257,12 +257,6 @@ public class Elesis extends AnimatorCard
                 break;
             }
         }
-
-        if (timesUpgraded > 0)
-        {
-            upgraded = false;
-            upgrade();
-        }
         return super.SetForm(form, timesUpgraded);
     }
 

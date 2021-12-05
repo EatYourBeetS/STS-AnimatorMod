@@ -27,7 +27,7 @@ public class MetalKnight extends AnimatorCard
         SetAffinity_Dark(1);
         SetAffinity_Blue(0,0,1);
 
-        SetAffinityRequirement(Affinity.Silver, 2);
+        SetAffinityRequirement(Affinity.Silver, 3);
         SetEvokeOrbCount(1);
     }
 

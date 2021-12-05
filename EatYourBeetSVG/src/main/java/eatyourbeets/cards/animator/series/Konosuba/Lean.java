@@ -20,23 +20,15 @@ public class Lean extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 2, 3);
 
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Green(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Green, 4);
 
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetHaste(true);
-        }
     }
 
     @Override
@@ -44,13 +36,11 @@ public class Lean extends AnimatorCard
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetHaste(false);
-                Initialize(0, 0, 2, 2);
-                SetUpgrade(0,0,3);
+                SetRetain(true);
             }
             else {
                 SetHaste(true);
-                Initialize(0, 0, 2, 2);
-                SetUpgrade(0,0,0);
+
             }
         }
         return super.SetForm(form, timesUpgraded);
@@ -71,7 +61,11 @@ public class Lean extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.GainSupportDamage(GetXValue());
+        int amount = GetXValue();
+        if (amount > 0) {
+            GameActions.Bottom.GainSupportDamage(amount);
+        }
+
         if (TrySpendAffinity(Affinity.Blue)) {
             GameActions.Bottom.ChannelOrbs(GameUtilities::GetRandomCommonOrb, 1);
         }

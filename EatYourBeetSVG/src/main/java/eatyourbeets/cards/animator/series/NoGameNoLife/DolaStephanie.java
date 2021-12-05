@@ -2,21 +2,24 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class DolaStephanie extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(DolaStephanie.class)
-            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public DolaStephanie()
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 1);
 
         SetAffinity_Light(1);
         SetAffinity_Orange(1, 1, 0);
@@ -35,7 +38,7 @@ public class DolaStephanie extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.GainRandomAffinityPower(1, false, Affinity.Light, Affinity.Blue);
+        GameActions.Bottom.Scry(magicNumber);
     }
 
     @Override

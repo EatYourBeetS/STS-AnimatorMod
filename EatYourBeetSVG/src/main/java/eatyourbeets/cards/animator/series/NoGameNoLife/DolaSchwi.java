@@ -26,13 +26,12 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
             .SetSeriesFromClassPackage();
 
     private int turns = 0;
-    private int turnReduction = 0;
 
     public DolaSchwi()
     {
         super(DATA);
 
-        Initialize(12, 0, 2, 2);
+        Initialize(12, 0, 2, 1);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1, 0, 3);
@@ -47,43 +46,40 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         GameActions.Bottom.ChannelOrb(new Lightning());
         GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
 
-        cooldown.ProgressCooldownAndTrigger(m);
-        DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
-        other.turns = secondaryValue;
-        CombatStats.onStartOfTurnPostDraw.Subscribe(other);
-        turnReduction = 0;
+        if (!cooldown.ProgressCooldownAndTrigger(m)) {
+            DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
+            other.turns = secondaryValue;
+            CombatStats.onStartOfTurnPostDraw.Subscribe(other);
+        };
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
         super.OnStartOfTurnPostDraw();
-        turns -= 1;
-        if (turns <= 0)
-        {
-            applyPowers();
+        GameEffects.Queue.ShowCardBriefly(this);
+        DoDamage();
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+    }
 
-            GameEffects.Queue.ShowCardBriefly(this);
-
-            if (GameUtilities.GetPowers(TargetHelper.Enemies(), LockOnPower.POWER_ID).size() > 0) {
-                GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
-                GameActions.Bottom.BorderFlash(Color.SKY);
-                GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
-                for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
-                    if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0) {
-                        this.calculateCardDamage(m);
-                        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
-                    }
+    public void DoDamage() {
+        applyPowers();
+        if (GameUtilities.GetPowers(TargetHelper.Enemies(), LockOnPower.POWER_ID).size() > 0) {
+            GameActions.Bottom.SFX(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.5f, 0.6f);
+            GameActions.Bottom.BorderFlash(Color.SKY);
+            GameActions.Bottom.VFX(VFX.Mindblast(player.dialogX, player.dialogY), 0.1f);
+            for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
+                if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0) {
+                    this.calculateCardDamage(m);
+                    GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
                 }
-                GameUtilities.UsePenNib();
             }
-
-            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            GameUtilities.UsePenNib();
         }
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
-        turnReduction = -1;
+        DoDamage();
     }
 }

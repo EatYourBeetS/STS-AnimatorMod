@@ -10,7 +10,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.animator.FlamingWeaponPower;
+import eatyourbeets.powers.animator.BurningWeaponPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -56,7 +56,7 @@ public class Shizu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new FlamingWeaponPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.StackPower(new BurningWeaponPower(p, magicNumber));
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d
         .SetDamageEffect(c -> GameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 0.9f, 1.1f).duration));
 

@@ -30,18 +30,6 @@ public class Zhongli extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-            SetInnate(true);
-        }
-        else {
-            SetDelayed(true);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetDelayed(form == 1);

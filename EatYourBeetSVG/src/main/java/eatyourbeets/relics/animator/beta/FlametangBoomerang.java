@@ -1,6 +1,6 @@
 package eatyourbeets.relics.animator.beta;
 
-import eatyourbeets.powers.animator.FlamingWeaponPower;
+import eatyourbeets.powers.animator.BurningWeaponPower;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
 
@@ -17,6 +17,6 @@ public class FlametangBoomerang extends AnimatorRelic
     public void atBattleStart()
     {
         super.atBattleStart();
-        GameActions.Bottom.StackPower(new FlamingWeaponPower(player , 2));
+        GameActions.Bottom.StackPower(new BurningWeaponPower(player , 2));
     }
 }

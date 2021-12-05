@@ -274,7 +274,7 @@
 		},
 		"animator:OrihimeInoue":
 		{
-			"DESCRIPTION": "Channel !M! [Fire] the next time you are attacked this turn. || Pay !A! <R> and <L> to Choose 1: Gain !S! Temp. [Thorns], or Enter <LS>.",
+			"DESCRIPTION": "The next time you are attacked this turn: Channel !M! [Fire]. || Pay !A! <R> and <L>: Enter <LS>.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} time you are attacked this turn, Channel #yFire."],
 			"NAME": "Orihime Inoue"
 		},
@@ -617,7 +617,15 @@
 		"animator:TakashiNatsume_Circle":
         {
         	"DESCRIPTION": "Played at the end of turn.",
-        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.","Attack an additional time for each card in your hand.","This turn, deal #b{0} damage to ALL enemies whenever you play a card.","Remove [Autoplay] from ALL cards in your draw pile.","<LIM>. Move ALL copies of {Takashi Natsume} to your draw pile. Motivate them and give them {Afterlife}."],
+        	"EXTENDED_DESCRIPTION": ["This turn: Stun the next #b{0} enemies that attack you.",
+        	"Attack an additional time for each card in your hand.",
+        	"This turn, deal #b{0} damage to ALL enemies whenever you play a card.",
+        	"Remove [Autoplay] from ALL cards in your draw pile.",
+        	"<LIM>. Move ALL copies of {Takashi Natsume} to your draw pile. Motivate them and give them {Afterlife}.",
+        	"Remove [Autoplay] from ALL cards in your draw pile.",
+        	"For #b{0} turns, invert the effects of [Weak], [Vulnerable], [Frail], and [Impaired] on you.",
+        	"Permanently scramble the stats of ALL cards in hand."
+        	],
         	"NAME": "Youkai Circle"
         },
 		"animator:TimeParadox":
@@ -659,8 +667,9 @@
 		},
 		"animator:Yae":
 		{
-			"DESCRIPTION": "Your [Lightning] has +!M! <BSC>. || Remove up to !M! [Lightning] to Gain !M! [B] for each. If you had no [Lightning]: Channel [Dark] and apply !S! [Blinded] and [Frail] to ALL characters.",
-			"NAME": "Yae Sakura"
+			"DESCRIPTION": "For !M! turn(s): Enemies cannot gain {Common Buffs}. || Evoke ALL [Lightning]. If you had none: Apply !S! [Blinded] to ALL characters.",
+			"NAME": "Yae Sakura",
+			"UPGRADE_DESCRIPTION": "For !M! turn(s): Enemies cannot gain {Common Buffs}. || Evoke ALL [Lightning] and [Dark]. If you had none: Apply !S! [Blinded] to ALL characters."
 		}
 	},
 	"BETA:DATEALIVE":
@@ -780,8 +789,8 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "Take !S! damage. || Gain !M! [Self-Immolation]. It applies {0}% more [Delayed Damage] this turn. ** <LIM>. If you gain [Self-Immolation] and {1} [Delayed Damage] this turn: Play {Sheer Cold}.",
-			"EXTENDED_DESCRIPTION": ["[Self-Immolation] applies +#b{0}% more [Delayed Damage].{1}"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
+			"DESCRIPTION": "If this ends the battle: Lose !S! [HP]. Otherwise, Gain !M! [Self-Immolation]. ** <LIM>. If you have {0} [Delayed Damage] any time this turn: Play {Sheer Cold}.",
+			"EXTENDED_DESCRIPTION": ["If you gain [Self-Immolation] and [Delayed Damage] any time this turn: Play #ySheer #yCold"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -803,7 +812,7 @@
         },
 		"animator:Chongyun":
 		{
-			"DESCRIPTION": "Apply [Freezing] equal to your [Frost] count + !M! (!X!). || Pay !A! <B>: Channel [Frost].",
+			"DESCRIPTION": "Apply [Freezing] equal to !M! + your [Frost] count (!X!). || Pay !A! <B>: Channel [Frost].",
 			"NAME": "Chongyun"
 		},
 		"animator:Curse_Delusion":
@@ -824,7 +833,7 @@
 		},
 		"animator:Diluc":
 		{
-			"DESCRIPTION": "Remove ALL [Freezing] on the target to deal +!M! damage for each. || Pay !A! <R>: Have !S! [Flaming Weapon] for !S! turns.",
+			"DESCRIPTION": "Remove ALL [Freezing] on the target to deal +!M! damage for each. || Pay !A! <R>: Gain !S! [Burning Weapon].",
 			"NAME": "Diluc Ragnvindr"
 		},
 		"animator:EulaLawrence":
@@ -872,7 +881,7 @@
 		},
 		"animator:Keqing":
 		{
-			"DESCRIPTION": "<RCT>: Moves to your draw pile. Progress Ricochet by 1 upon Evoking [Lightning] or [Air]. || Motivate and give [~Haste] to this card and a random card in your discard pile.",
+			"DESCRIPTION": "<RCT>: Moves to your draw pile and gains [~Haste]. || When drawn with [~Haste]: Channel [Lightning] and apply !M! [Electrified] to ALL enemies.",
 			"NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -888,17 +897,22 @@
 		},
 		"animator:KujouSara":
 		{
-			"DESCRIPTION": "Discard ALL cards in hand and give them +1 <GSC> (max. !M!). Apply !M! [Electrified] to ALL enemies for each. ** <LIM>. <ST>. [Electrified] gains +!S!% effect bonus.",
+			"DESCRIPTION": "Discard ALL cards in hand and give them +1 <GSC>. Apply !M! [Electrified] to ALL enemies for each. ** <LIM>. <ST>. [Electrified] gains +!S!% effect bonus.",
 			"NAME": "Kujou Sara"
 		},
 		"animator:LisaMinci":
 		{
-			"DESCRIPTION": "{Scry} !M!. If you discard a card of cost: ** 0 or None: Gain !S! Temp. [Focus] ** 1 or X: Gain !S! [B]. ** 2+: Channel [Lightning]",
+			"DESCRIPTION": "{Scry} !M!. If you discard a card of cost: ** 0 or None: Gain !S! Temp. [Focus] ** 1 or X: Next turn, Draw !S!. ** 2+: Channel [Lightning]",
 			"NAME": "Lisa Minci"
+		},
+		"animator:MonaMegistus":
+		{
+			"DESCRIPTION": "Scry !M!. Gain [Wisdom] for each {Common} discarded. || <slm>. If you Evoke an Orb with this in hand: Gain !S! Temp. [Focus].",
+			"NAME": "Mona Megistus"
 		},
 		"animator:Ningguang":
 		{
-			"DESCRIPTION": "Evoke !M! of your [Earth] particles, then increase its base projectile damage by 1. Otherwise, Channel [Earth]. || <SLM>. Pay !A! <B> or <O>: Gain +!S! Temp. [Resistance].",
+			"DESCRIPTION": "Evoke !M! of your first [Earth]'s particles, then increase its projectile damage by 1. Otherwise, Channel [Earth]. || <SLM>. Pay !A! <B> or <O>: Gain !S! Temp. [Resistance].",
 			"NAME": "Ningguang"
 		},
 		"animator:Noelle":
@@ -1038,8 +1052,8 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "Stances double the effect of their {<W> Power}'s {Scaling}. Upon leaving a Stance: Set its {<W> Power} to its {Threshold}. || Startup: Enter any Stance.",
-		 	"EXTENDED_DESCRIPTION": ["Stances double the effect of their [A-Gen] #yPower's #yScaling. Upon leaving a Stance: Set its [A-Gen] #yPower to its #yThreshold."],
+			"DESCRIPTION": "Stances double the effect of their {<W> Power}'s activation effect. Upon leaving a Stance: Set its {<W> Power} to its {Threshold}. || Startup: Enter any Stance.",
+		 	"EXTENDED_DESCRIPTION": ["Stances double the effect of their [A-Gen] #yPower's activation effect. Upon leaving a Stance: Set its [A-Gen] #yPower to its #yThreshold."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
@@ -1342,8 +1356,9 @@
 	{
 		"animator:Emilia":
 		{
-			"DESCRIPTION": "Evoke ALL Orbs, then Channel !M! [Frost]. || At the end of next ** turn: Gain 1 [Orb Slot] for ** each unique Orb you have.",
-			"NAME": "Emilia"
+			"DESCRIPTION": "Evoke ALL Orbs, then Channel !M! [Frost]. || Next turn: Gain 1 [Orb Slot] for each unique Orb.",
+			"NAME": "Emilia",
+			"UPGRADE_DESCRIPTION": "Evoke ALL Orbs with +!S! [Focus], then Channel !M! [Frost]. || Next turn: Gain 1 [Orb Slot] for each unique Orb."
 		},
 		"animator:HarukoHaruhara":
 		{
@@ -1401,7 +1416,7 @@
 		},
 		"animator:TanyaDegurechaff_Type95":
 		{
-			"DESCRIPTION": "Channel 1 [Plasma]. || Pay !A! <G>: Play a ** {[Plasma] Core} Instead.",
+			"DESCRIPTION": "Channel 1 [Plasma]. || Pay !A! <L> and <B>: Play a ** {[Plasma] Core} Instead.",
 			"NAME": "Type 95"
 		}
 	},
@@ -1414,7 +1429,7 @@
 		},
 		"animator:Kuroyukihime":
 		{
-			"DESCRIPTION": "Discard !M! cards to add ** {Black Lotus} to your ** hand, then Exhaust. || !A! <W>: Upgrade it.",
+			"DESCRIPTION": "Gain !S! [Blur]. || Discard !M! cards to ** Obtain {Black Lotus}. ** !A! <W>: Upgrade it.",
 			"NAME": "Kuroyukihime"
 		},
 		"animator:Kuroyukihime_BlackLotus":
@@ -1451,7 +1466,7 @@
 		},
 		"animator:MisaKurobane_Yusarin":
 		{
-			"DESCRIPTION": "Motivate !M!.",
+			"DESCRIPTION": "Trigger ALL [Fire]. || Motivate !M!.",
 			"NAME": "Yusarin"
 		},
 		"animator:MisakiNakahara":
@@ -1584,7 +1599,7 @@
 		},
 		"animator:Curse_Slumber":
 		{
-			"DESCRIPTION": "At the end of turn: ** Gain !M! [Impaired]. || <LIM>. On Exhaust: Invert the effects of [Impaired] for 1 turn.",
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Impaired]. || <LIM>. On Exhaust: Gain !S! Temp. [Focus].",
 			"NAME": "Slumber"
 		},
 		"animator:Curse_Writhe":
@@ -2526,12 +2541,12 @@
 		},
 		"animator:DolaSchwi":
 		{
-			"DESCRIPTION": "Channel 1 [Lightning]. Apply !M! [~Lock-On]. In !S! turns: Attack ALL ** targets with [~Lock-On]. || <CDN>: Takes 1 less turn to Attack.",
+			"DESCRIPTION": "Channel [Lightning]. Apply !M! [~Lock-On]. || At the start of next turn: Attack ALL enemies with [~Lock-On]. ** <CDN>: Attack this turn instead.",
 			"NAME": "Schwi Dola"
 		},
 		"animator:DolaStephanie":
 		{
-			"DESCRIPTION": "Choose a card in hand: Fetch a Same-Series card from your draw pile. || On Discard: Randomly gain [L] or [B].",
+			"DESCRIPTION": "Choose a card in hand: Fetch a Same-Series card from your draw pile. || On Discard: Scry !M!.",
 			"EXTENDED_DESCRIPTION": ["Fetch Cards with the same Synergy."],
 			"NAME": "Stephanie Dola"
 		},
@@ -2545,6 +2560,11 @@
 			"DESCRIPTION": "On your first Synergy each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose 1 of !S! {<W> Tokens} to add to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["On your first #b{0} Synergies each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose #b{0} of 3 <W> #yTokens to add to your draw pile."],
 			"NAME": "Fiel Nirvalen"
+		},
+		"animator:Holou":
+		{
+			"DESCRIPTION": "Whenever you shuffle your draw pile: Add {Doubt} to it. || {Curses} are now playable and have: Exhaust, lose 1 [HP], and apply !S! [Electrified] to ALL enemies.",
+			"NAME": "Holou"
 		},
 		"animator:IzunaHatsuse":
 		{
@@ -2560,7 +2580,7 @@
 		},
 		"animator:Miko":
 		{
-			"DESCRIPTION": "Channel !M! [Plasma]. When you {Trigger} or Evoke [Plasma], gain !M! [L]. || <LIM>. Increase the {Threshold} for [L] to 10.",
+			"DESCRIPTION": "Channel !M! [Plasma]. When you {Trigger} or Evoke [Plasma], gain !M! [L]. || <LIM>. [L] gains +1 {Level}.",
 			"EXTENDED_DESCRIPTION": ["Gain #b{0} [L] whenever you #yTrigger or #yEvoke [Plasma]."],
 			"NAME": "Miko"
 		},
@@ -2663,7 +2683,7 @@
 		},
 		"animator:MetalKnight":
 		{
-			"DESCRIPTION": "Gain !S! [Metallicize], then reduce this amount by 1. || Pay !A! <S>: Channel 1 [Plasma].",
+			"DESCRIPTION": "Gain !M! [Metallicize], then reduce this amount by 1. || Pay !A! <S>: Channel 1 [Plasma].",
 			"NAME": "Metal Knight"
 		},
 		"animator:MetalBat":
@@ -2943,12 +2963,12 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Deal +!M! damage if the target has [Weak] or [Vulnerable]. || <SLM>. Synergy or Pay !A! <O>: ** Enter <RS>.",
+			"DESCRIPTION": "Deal +!M! damage if the target has [Weak] or [Vulnerable]. || Pay !A! <O>: ** Enter <RS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
 		{
-			"DESCRIPTION": "Have !M! [Flaming Weapon] for !S! turns. || If you have [Dark] and [Fire], ** Pay !A! <R>: Exhaust, then obtain {Ifrit} and Retain it.",
+			"DESCRIPTION": "Gain !M! [Burning Weapon]. || If you have [Dark] and [Fire], ** Pay !A! <R>: Exhaust, then obtain {Ifrit} and Retain it.",
 			"NAME": "Shizu"
 		},
 		"animator:Shizu_Ifrit":

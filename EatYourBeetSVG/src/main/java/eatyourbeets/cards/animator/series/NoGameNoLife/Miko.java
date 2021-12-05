@@ -26,7 +26,7 @@ public class Miko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 5);
+        Initialize(0, 0, 1, 1);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(2);
@@ -36,7 +36,7 @@ public class Miko extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (info.TryActivateLimited()) {
-            GameUtilities.SetAffinityPowerThreshold(Affinity.Light, secondaryValue, true);
+            GameUtilities.SetAffinityPowerLevel(Affinity.Light, secondaryValue, true);
         }
         GameActions.Bottom.ChannelOrb(new Plasma());
         GameActions.Bottom.StackPower(new MikoPower(p, magicNumber));
@@ -89,7 +89,7 @@ public class Miko extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, GameUtilities.GetAffinityPowerThreshold(Affinity.Light));
+            description = FormatDescription(0, amount, GameUtilities.GetAffinityPowerLevel(Affinity.Light));
         }
     }
 }

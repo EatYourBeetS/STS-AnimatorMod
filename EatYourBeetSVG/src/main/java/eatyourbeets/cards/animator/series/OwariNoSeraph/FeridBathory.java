@@ -38,14 +38,6 @@ public class FeridBathory extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetDelayed(form == 1);

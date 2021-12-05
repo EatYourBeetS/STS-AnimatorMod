@@ -22,11 +22,12 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 1, 2, 0);
+        SetUpgrade(0, 0, 0, 2);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(1);
+        //SetCostUpgrade(-1);
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
@@ -41,6 +42,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential).AddCallback(() -> {
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         });

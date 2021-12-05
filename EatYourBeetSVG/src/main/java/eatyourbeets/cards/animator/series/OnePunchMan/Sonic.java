@@ -37,16 +37,6 @@ public class Sonic extends AnimatorCard
     }
 
     @Override
-    public void OnUpgrade() {
-        if (auxiliaryData.form == 1) {
-            this.AddScaling(Affinity.Green, 2);
-        }
-        else {
-            SetHaste(true);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {

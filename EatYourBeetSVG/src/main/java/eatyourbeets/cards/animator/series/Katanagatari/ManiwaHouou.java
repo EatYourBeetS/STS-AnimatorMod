@@ -39,18 +39,6 @@ public class ManiwaHouou extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        if (auxiliaryData.form == 0) {
-            SetEthereal(true);
-            SetInnate(true);
-        }
-        else {
-            SetEthereal(false);
-        }
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetEthereal(form == 1);

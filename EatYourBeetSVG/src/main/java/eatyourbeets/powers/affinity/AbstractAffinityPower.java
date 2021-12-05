@@ -35,7 +35,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         return GR.Common.CreateID(type.getSimpleName());
     }
 
-    public static final int BASE_THRESHOLD = 5;
+    public static final int BASE_THRESHOLD = 3;
     public static final Color ACTIVE_COLOR = new Color(0.5f, 1f, 0.5f, 1f);
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.##");
     //@Formatter: off
@@ -49,6 +49,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
     public int effectMultiplier;
     public int gainMultiplier;
     public int scalingMultiplier;
+    public int baseMaxAmount = BASE_THRESHOLD;
     public boolean forceEnableThisTurn;
     public boolean isActive;
     public Hitbox hb;
@@ -58,10 +59,10 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
     public AbstractAffinityPower(Affinity affinity, String powerID)
     {
         super(null, powerID, PowerTriggerConditionType.Special, BASE_THRESHOLD, null, null);
-        this.triggerCondition.checkCondition = (__) -> {return this.amount >= this.maxAmount;};
+        this.triggerCondition.checkCondition = (__) -> {return this.amount >= this.triggerCondition.requiredAmount;};
         this.triggerCondition.payCost = this::TrySpend;
 
-        this.maxAmount = BASE_THRESHOLD;
+        this.maxAmount = baseMaxAmount;
         this.affinity = affinity;
 
         //TODO: Add tooltip to EYBPower base class
@@ -90,11 +91,16 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
 
     public void OnUse(AbstractMonster m, int cost) {
         this.isActive = true;
+        this.SetMaxAmount(maxAmount + 1);
     }
 
-    public void SetThreshold(int threshold) {
+    public void SetMaxAmount(int threshold) {
         this.maxAmount = threshold;
+    }
+
+    public void SetPayCost(int threshold) {
         this.triggerCondition.requiredAmount = threshold;
+        this.baseMaxAmount = this.maxAmount = threshold;
     }
 
     public void SetEffectMultiplier(int effectMultiplier) {
@@ -127,28 +133,31 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
     }
 
     public Integer GetEffectiveScaling() {
-        return amount * this.scalingMultiplier;
+        return GetEffectiveLevel() * this.scalingMultiplier;
     }
 
-    protected float GetEffectIncrease() {
+    protected float GetEffectiveIncrease() {
         return this.effectMultiplier;
     }
 
-    protected float GetEffectiveMultiplier() {
-        return 1f + GetEffectIncrease();
+    public Integer GetEffectiveLevel() {
+        return Math.max(0, maxAmount - baseMaxAmount);
     }
 
+    protected float GetEffectiveMultiplier() {
+        return 1f + GetEffectiveIncrease();
+    }
 
     @Override
     public String GetUpdatedDescription()
     {
-        String newDesc = FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, maxAmount, GetMultiplierForDescription(), (!enabled && !forceEnableThisTurn) ? powerStrings.DESCRIPTIONS[1] : "");
+        String newDesc = FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, this.triggerCondition.requiredAmount, GetMultiplierForDescription(), (!enabled && !forceEnableThisTurn) ? powerStrings.DESCRIPTIONS[1] : "");
         this.tooltips.get(0).description = newDesc;
         return newDesc;
     }
 
     protected int GetMultiplierForDescription() {
-        return (int) (GetEffectIncrease() * 100);
+        return (int) (GetEffectiveIncrease() * 100);
     }
 
     public boolean CanSpend(int amount) {
@@ -166,9 +175,9 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
     }
 
     protected boolean TryUse(AbstractCard card) {
-        if (CanSpend(maxAmount) && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
+        if (CanSpend(this.triggerCondition.requiredAmount) && (!(card instanceof AnimatorCard) || ((AnimatorCard) card).cardData.CanTriggerSupercharge))
         {
-            amount -= maxAmount;
+            amount -= this.triggerCondition.requiredAmount;
             updateDescription();
             flash();
             return true;
@@ -201,7 +210,9 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         final float cX = hb.cX + (15 * scale);
         final float cY = hb.cY;
 
-        Color amountColor = !enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount >= maxAmount ? Colors.Gold(1).cpy() : Colors.White(1f);
+        Integer level = GetEffectiveLevel();
+        Color amountColor = !enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount >= this.triggerCondition.requiredAmount ? Colors.Gold(1).cpy() : Colors.White(1f);
+        Color levelColor = level > 0 ? Colors.Green(1).cpy() : Colors.Cream(0.6f);
         if (effectMultiplier > 1)
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
@@ -216,6 +227,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         final Color borderColor = isActive ? ACTIVE_COLOR : (enabled && triggerCondition.CanUse()) ? imgColor : disabledColor;
 
         super.renderIconsImpl(sb, x + 16 * scale, cY + (3f * scale), borderColor, imgColor);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "L" + String.valueOf(level), x + 36 * scale, y - 8 * scale, fontScale, levelColor);
 
         if (maxAmount > 0)
         {

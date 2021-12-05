@@ -80,13 +80,13 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eOldStance.affinity);
                 if (p != null) {
                     GameActions.Bottom.StackAffinityPower(eOldStance.affinity, p.maxAmount);
-                    p.SetScalingMultiplier(p.scalingMultiplier - 1);
+                    p.SetEffectMultiplier(p.effectMultiplier - 1);
                 }
             }
             if (eNewStance != null) {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eNewStance.affinity);
                 if (p != null) {
-                    p.SetScalingMultiplier(p.scalingMultiplier + 1);
+                    p.SetEffectMultiplier(p.effectMultiplier + 1);
                 }
             }
 

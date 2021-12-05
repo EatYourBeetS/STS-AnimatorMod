@@ -5,7 +5,7 @@
 		"NAME": "Might Stance",
 		"DESCRIPTION": 
 		[
-			"The #yThreshold effect of [R] is twice as effective. NL When exited or re-entered: Gain {0} [A-Red]"
+			"[R] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Red]"
 		]
 	},
 	"eyb:VelocityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Velocity Stance",
 		"DESCRIPTION": 
 		[
-			"The #yThreshold effect of [G] is twice as effective. NL When exited or re-entered: Gain {0} [A-Green]"
+			"[G] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Green]"
 		]
 	},
 	"eyb:WisdomStance":
@@ -21,7 +21,7 @@
 		"NAME": "Wisdom Stance",
 		"DESCRIPTION": 
 		[
-			"The #yThreshold effect of [B] is twice as effective. NL When exited or re-entered: Gain {0} [A-Blue]"
+			"[B] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Blue]"
 		]
 	},
 	"eyb:EnduranceStance":
@@ -29,7 +29,7 @@
 		"NAME": "Endurance Stance",
 		"DESCRIPTION":
 		[
-			"The #yThreshold effect of [O] is twice as effective. NL When exited or re-entered: Gain {0} [A-Orange]"
+			"[O] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Orange]"
 		]
 	},
 	"eyb:SuperchargeStance":
@@ -37,7 +37,7 @@
 		"NAME": "Supercharge Stance",
 		"DESCRIPTION":
 		[
-			"The #yThreshold effect of [L] is twice as effective. NL When exited or re-entered: Gain {0} [A-Light]"
+			"[L] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Light]"
 		]
 	},
 	"eyb:DesecrationStance":
@@ -45,7 +45,7 @@
 		"NAME": "Desecration Stance",
 		"DESCRIPTION":
 		[
-			"The #yThreshold effect of [D] is twice as effective. NL When exited or re-entered: Gain {0} [A-Dark]"
+			"[D] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Dark]"
 		]
 	},
 	"eyb:TechnicStance":
@@ -53,7 +53,7 @@
     	"NAME": "Technic Stance",
     	"DESCRIPTION":
     	[
-    		"The #yThreshold effect of [S] is twice as effective. NL When exited or re-entered: Gain {0} [A-Silver]"
+    		"[S] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Silver]"
     	]
     }
 }

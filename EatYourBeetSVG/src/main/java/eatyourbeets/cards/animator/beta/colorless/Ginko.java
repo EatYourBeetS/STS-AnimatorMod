@@ -18,11 +18,11 @@ public class Ginko extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 3, 3);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(2, 0, 1);
         SetExhaust(true);
     }
 
@@ -34,6 +34,7 @@ public class Ginko extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SelectFromPile(name, magicNumber, player.hand)
                 .SetOptions(false, true)
                 .SetFilter(c -> c.type == CardType.STATUS)

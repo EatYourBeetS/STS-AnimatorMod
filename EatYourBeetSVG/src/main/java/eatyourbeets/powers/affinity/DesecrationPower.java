@@ -19,15 +19,16 @@ public class DesecrationPower extends AbstractAffinityPower
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
+        this.SetMaxAmount(maxAmount + 1);
         if (m != null)
         {
-            GameActions.Bottom.StackPower(new TaintedPower(m, (int) GetEffectIncrease())).ShowEffect(true, true).IgnoreArtifact(true);
+            GameActions.Bottom.StackPower(new TaintedPower(m, (int) GetEffectiveIncrease())).ShowEffect(true, true).IgnoreArtifact(true);
             flash();
         }
     }
 
     @Override
     protected int GetMultiplierForDescription() {
-        return (int) GetEffectIncrease();
+        return (int) GetEffectiveIncrease();
     }
 }

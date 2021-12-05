@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.animator.FlamingWeaponPower;
+import eatyourbeets.powers.animator.BurningWeaponPower;
 import eatyourbeets.powers.common.FreezingPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -46,7 +46,7 @@ public class Diluc extends AnimatorCard
         }
 
         if (TrySpendAffinity(Affinity.Red)) {
-            GameActions.Bottom.StackPower(new FlamingWeaponPower(p, magicNumber, secondaryValue));
+            GameActions.Bottom.StackPower(new BurningWeaponPower(p, secondaryValue));
         }
     }
 }

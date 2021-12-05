@@ -10,11 +10,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.animator.beta.colorless.TakashiNatsume;
 import eatyourbeets.cards.animator.beta.series.GenshinImpact.AyakaKamisato;
+import eatyourbeets.cards.animator.curse.*;
+import eatyourbeets.cards.animator.series.MadokaMagica.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.animator.InvertPower;
 import eatyourbeets.powers.animator.TemporaryThousandCutsPower;
 import eatyourbeets.powers.common.DeenergizedPower;
 import eatyourbeets.resources.GR;
@@ -36,14 +39,23 @@ public class TakashiNatsume_Circle extends AnimatorCard
         Curse_Greed,
         Curse_JunTormented,
         Curse_Nutcracker,
+        Curse_Slumber,
         Decay,
         Doubt,
+        HomuraAkemi_Homulily,
+        IrohaTamaki_Giovanna,
+        KyokoSakura_Ophelia,
+        MadokaKaname_Krimheild,
+        MamiTomoe_Candeloro,
+        NagisaMomoe_Charlotte,
         Necronomicurse,
         Normality,
         Pain,
         Parasite,
         Regret,
-        Shame
+        SayakaMiki_Oktavia,
+        Shame,
+        TimeParadox
     }
 
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;
@@ -98,10 +110,31 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.HealHP(HEAL_NUTCRACKER + magicNumber, false), true);
                 break;
             case Curse_JunTormented:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true) + " NL  NL " + ACTIONS.ApplyToALL(magicNumber, GR.Tooltips.Frail, true), true);
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true) + " NL  NL " + ACTIONS.ApplyToALL(magicNumber, GR.Tooltips.Vulnerable, true), true);
+                break;
+            case Curse_Slumber:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[5],secondaryValue), true);
                 break;
             case Doubt:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true), true);
+                break;
+            case HomuraAkemi_Homulily:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(HomuraAkemi.DATA.Strings.NAME, true), true);
+                break;
+            case IrohaTamaki_Giovanna:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(IrohaTamaki.DATA.Strings.NAME, true), true);
+                break;
+            case KyokoSakura_Ophelia:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(KyokoSakura.DATA.Strings.NAME, true), true);
+                break;
+            case MadokaKaname_Krimheild:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(MadokaKaname.DATA.Strings.NAME, true), true);
+                break;
+            case MamiTomoe_Candeloro:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(MamiTomoe.DATA.Strings.NAME, true), true);
+                break;
+            case NagisaMomoe_Charlotte:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(NagisaMomoe.DATA.Strings.NAME, true), true);
                 break;
             case Necronomicurse:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " " + ACTIONS.NextTurnDraw(secondaryValue, true) + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[4], true);
@@ -112,6 +145,9 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 break;
             case Pain:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + JUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],secondaryValue), true);
+                break;
+            case SayakaMiki_Oktavia:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(SayakaMiki.DATA.Strings.NAME, true), true);
                 break;
             case Regret:
                 baseDamage = magicNumber;
@@ -151,7 +187,14 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 GameActions.Bottom.Draw(secondaryValue);
                 break;
             case Curse_Eclipse:
-                AbstractCard c = new AyakaKamisato();
+            case HomuraAkemi_Homulily:
+            case IrohaTamaki_Giovanna:
+            case KyokoSakura_Ophelia:
+            case MadokaKaname_Krimheild:
+            case MamiTomoe_Candeloro:
+            case NagisaMomoe_Charlotte:
+            case SayakaMiki_Oktavia:
+                AbstractCard c = GetCardForEffect();
                 if (upgraded) {
                     c.upgrade();
                 }
@@ -177,6 +220,9 @@ public class TakashiNatsume_Circle extends AnimatorCard
             case Curse_GriefSeed:
                 damageMatrix = DamageInfo.createDamageMatrix(damage, true);
                 GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+                break;
+            case Curse_Slumber:
+                GameActions.Bottom.StackPower(player, new InvertPower(player, secondaryValue));
                 break;
             case Doubt:
                 GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), secondaryValue);
@@ -220,6 +266,20 @@ public class TakashiNatsume_Circle extends AnimatorCard
         switch(currentForm) {
             case Curse_Eclipse:
                 return new AyakaKamisato();
+            case HomuraAkemi_Homulily:
+                return new HomuraAkemi_Homulily();
+            case IrohaTamaki_Giovanna:
+                return new IrohaTamaki_Giovanna();
+            case KyokoSakura_Ophelia:
+                return new KyokoSakura_Ophelia();
+            case MadokaKaname_Krimheild:
+                return new MadokaKaname_Krimheild();
+            case MamiTomoe_Candeloro:
+                return new MamiTomoe_Candeloro();
+            case NagisaMomoe_Charlotte:
+                return new NagisaMomoe_Charlotte();
+            case SayakaMiki_Oktavia:
+                return new SayakaMiki_Oktavia();
             default:
                 return null;
         }

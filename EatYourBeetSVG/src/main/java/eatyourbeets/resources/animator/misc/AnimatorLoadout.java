@@ -14,7 +14,6 @@ import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.relics.animator.LivingPicture;
-import eatyourbeets.relics.animator.PurgingStone;
 import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.relics.animator.TheMissingPiece;
 import eatyourbeets.relics.animator.beta.PolychromePaintbrush;
@@ -227,7 +226,7 @@ public abstract class AnimatorLoadout
             AnimatorRelicSlot r1 = data.AddRelicSlot();
             r1.AddItem(new RollingCubes(), 2);
             r1.AddItem(new PolychromePaintbrush(), 3);
-            r1.AddItem(new PurgingStone(), 3);
+            //r1.AddItem(new PurgingStone(), 3);
         }
 
     }

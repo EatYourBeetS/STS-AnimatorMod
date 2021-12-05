@@ -78,12 +78,12 @@ public class EYBCardCooldown
         }
     }
 
-    public void ProgressCooldownAndTrigger(AbstractMonster m)
+    public boolean ProgressCooldownAndTrigger(AbstractMonster m)
     {
-        ProgressCooldownAndTrigger(1, m);
+        return ProgressCooldownAndTrigger(1, m);
     }
 
-    public void ProgressCooldownAndTrigger(int progress, AbstractMonster m)
+    public boolean ProgressCooldownAndTrigger(int progress, AbstractMonster m)
     {
         boolean canProgress = CombatStats.OnCooldownTriggered(card, this);
         if (canProgress && ProgressCooldown(progress))
@@ -107,7 +107,9 @@ public class EYBCardCooldown
                     GameActions.Last.ModifyAllInstances(card.uuid).AddCallback(GameActions.Bottom::Exhaust);
                 }
             }
+            return true;
         }
+        return false;
     }
 
     public boolean ProgressCooldown()

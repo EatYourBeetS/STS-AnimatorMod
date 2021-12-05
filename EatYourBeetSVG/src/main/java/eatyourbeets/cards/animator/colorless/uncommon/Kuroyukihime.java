@@ -18,11 +18,13 @@ public class Kuroyukihime extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 1, 2, 1);
         SetCostUpgrade(-1);
 
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
         SetAffinity_Silver(1);
+
+        SetExhaust(true);
 
         SetAffinityRequirement(Affinity.General, 8);
     }
@@ -30,11 +32,12 @@ public class Kuroyukihime extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainBlur(secondaryValue);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, false)
         .AddCallback(() ->
         {
-            GameActions.Bottom.Exhaust(this);
             GameActions.Bottom.MakeCardInHand(new Kuroyukihime_BlackLotus())
             .SetUpgrade(CheckAffinity(Affinity.General), false);
         });

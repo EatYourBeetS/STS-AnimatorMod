@@ -103,7 +103,7 @@ public class AnimatorRuntimeLoadout
     }
 
     public Map<String, AbstractCard> GetCardPoolInPlay() {
-        return expansionEnabled ? ExpandedCards : BaseCards;
+        return canEnableExpansion && expansionEnabled ? ExpandedCards : BaseCards;
     }
 
     public AbstractCard BuildCard()

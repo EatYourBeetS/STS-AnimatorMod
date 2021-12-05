@@ -1,8 +1,8 @@
 {
-  "modid": "eatyourbeetsvg-theanimator_spinoff",
-  "name": "The Animator (Alternate)",
-  "author_list": ["EatYourBeetS, LeoZahn"],
-  "description": "Adds a new playable character, a new Act, 250+ cards, and 25+ relics. This is a standalone, unofficial version of The Animator with alternate card effects.",
+  "modid": "eatyourbeetsvg-thefool",
+  "name": "The Fool",
+  "author_list": ["PinaCoLada, EatYourBeetS, LeoZahn"],
+  "description": "Adds a new playable character based on The Animator, a new Act, 250+ cards, and 25+ relics.",
   "credits" : "SFX: The Berklee College of Music, SquishiSprite, Zoltan Mihalyi, ViRiX \n VFX: ashishlko11, Cethiel, The Free Archives @ Dreams Circle, Sinestesia, J. W. Bjerk, Airarcs, Font Awesome",
   "version": "7.7.3",
   "sts_version": "12-22-2020",

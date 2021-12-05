@@ -15,6 +15,7 @@ import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.combat.EYBCardAffinityRow;
 import eatyourbeets.utilities.GameActions;
@@ -137,9 +138,11 @@ public abstract class EYBStance extends AbstractStance
         sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
         GameEffects.Queue.Add(new BorderFlashEffect(GetMainColor(), true));
 
-        if (TryApplyStance(ID))
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+
+        if (po != null && TryApplyStance(ID))
         {
-            CombatStats.Affinities.GetPower(affinity).SetEffectMultiplier(2);
+            po.SetScalingMultiplier(po.scalingMultiplier + 1);
         }
     }
 
@@ -150,9 +153,10 @@ public abstract class EYBStance extends AbstractStance
 
         this.stopIdleSfx();
 
-        if (TryApplyStance(null))
+        AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
+        if (po != null && TryApplyStance(null))
         {
-            CombatStats.Affinities.GetPower(affinity).SetEffectMultiplier(1);
+            po.SetScalingMultiplier(po.scalingMultiplier - 1);
             GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
         }
     }

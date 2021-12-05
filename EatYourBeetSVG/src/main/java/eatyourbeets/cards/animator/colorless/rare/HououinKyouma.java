@@ -37,13 +37,6 @@ public class HououinKyouma extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetDelayed(auxiliaryData.form == 1);
-        SetInnate(auxiliaryData.form == 0);
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetDelayed(form == 1);

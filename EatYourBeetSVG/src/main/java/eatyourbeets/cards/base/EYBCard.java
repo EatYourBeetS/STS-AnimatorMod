@@ -1073,7 +1073,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     protected void OnUpgrade()
     {
-
+        SetForm(auxiliaryData.form, timesUpgraded);
     }
 
     @Override

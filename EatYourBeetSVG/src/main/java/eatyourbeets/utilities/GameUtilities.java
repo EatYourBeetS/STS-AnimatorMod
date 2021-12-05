@@ -213,7 +213,7 @@ public class GameUtilities
     public static boolean CanSpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.CanSpend(amount >= 0 ? amount : po.maxAmount);
+        return po != null && po.CanSpend(amount >= 0 ? amount : po.triggerCondition.requiredAmount);
     }
 
     public static boolean TrySpendAffinityPower(Affinity affinity)
@@ -224,7 +224,7 @@ public class GameUtilities
     public static boolean TrySpendAffinityPower(Affinity affinity, int amount)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null && po.TrySpend(amount >= 0 ? amount : po.maxAmount);
+        return po != null && po.TrySpend(amount >= 0 ? amount : po.triggerCondition.requiredAmount);
     }
 
     public static void ClearPostCombatActions()
@@ -352,10 +352,10 @@ public class GameUtilities
         return a != null ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
-    public static int GetAffinityPowerThreshold(Affinity affinity)
+    public static int GetAffinityPowerLevel(Affinity affinity)
     {
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
-        return po != null ? po.maxAmount : 0;
+        return po != null ? po.GetEffectiveLevel() : 0;
     }
 
     public static int GetAffinityScaling(AbstractCard card, Affinity affinity, boolean useStarScaling)
@@ -1749,12 +1749,12 @@ public class GameUtilities
         }
     }
 
-    public static AbstractAffinityPower SetAffinityPowerThreshold(Affinity affinity, int amount, boolean relative)
+    public static AbstractAffinityPower SetAffinityPowerLevel(Affinity affinity, int amount, boolean relative)
     {
         final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
         if (power != null)
         {
-            power.SetThreshold(relative ? power.maxAmount + amount : amount);
+            power.SetMaxAmount(relative ? power.maxAmount + amount : amount);
         }
 
         return power;

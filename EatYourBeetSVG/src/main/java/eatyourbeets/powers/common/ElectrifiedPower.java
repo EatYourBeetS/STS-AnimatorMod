@@ -42,15 +42,15 @@ public class ElectrifiedPower extends CommonTriggerablePower
     }
 
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
-        if (damageAmount > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
+        if (info.output > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
             if (GameUtilities.IsPlayer(owner) || enemies.size() == 1) {
-                GameActions.Bottom.DealDamage(owner, owner, (int) CalculateDamage(damageAmount, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
+                GameActions.Bottom.DealDamage(owner, owner, (int) CalculateDamage(info.output, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
             }
             else {
                 for (AbstractMonster enemy : enemies) {
                     if (enemy != owner) {
-                        GameActions.Bottom.DealDamage(owner, enemy, (int) CalculateDamage(damageAmount, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
+                        GameActions.Bottom.DealDamage(owner, enemy, (int) CalculateDamage(info.output, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
                     }
                 }
             }

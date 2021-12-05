@@ -18,9 +18,10 @@ public class WisdomPower extends AbstractAffinityPower
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
+        this.SetMaxAmount(maxAmount + 1);
         AbstractOrb orb = GameUtilities.GetFirstOrb(null);
         if (GameUtilities.IsValidOrb(orb)) {
-            int increase = (int) GetEffectIncrease();
+            int increase = (int) GetEffectiveIncrease();
             GameUtilities.ModifyOrbBaseEvokeAmount(orb, increase, true, false);
             GameUtilities.ModifyOrbBasePassiveAmount(orb, increase, true, false);
             flash();
@@ -29,11 +30,11 @@ public class WisdomPower extends AbstractAffinityPower
 
     @Override
     protected int GetMultiplierForDescription() {
-        return (int) GetEffectIncrease();
+        return (int) GetEffectiveIncrease();
     }
 
     @Override
-    protected float GetEffectIncrease() {
-        return super.GetEffectIncrease() * 7;
+    protected float GetEffectiveIncrease() {
+        return super.GetEffectiveIncrease() * 7;
     }
 }

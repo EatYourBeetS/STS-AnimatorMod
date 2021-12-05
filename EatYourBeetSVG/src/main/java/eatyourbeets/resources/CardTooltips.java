@@ -55,6 +55,7 @@ public class CardTooltips
     public EYBCardTooltip BranchUpgrade = FindByID("~Branch Upgrade");
     public EYBCardTooltip Brutal = FindByID("~Brutal");
     public EYBCardTooltip Burning = FindByID("Burning");
+    public EYBCardTooltip BurningWeapon = FindByID("Burning Weapon");
     public EYBCardTooltip Chaos = FindByID("Chaos");
     public EYBCardTooltip CommonBuff = FindByID("Common Buff");
     public EYBCardTooltip CommonDebuff = FindByID("Common Debuff");
@@ -82,7 +83,6 @@ public class CardTooltips
     public EYBCardTooltip Ethereal = FindByID("~Ethereal");
     public EYBCardTooltip Fire = FindByID("Fire");
     public EYBCardTooltip FlameBarrier = FindByID("Flame Barrier");
-    public EYBCardTooltip FlamingWeapon = FindByID("Flaming Weapon");
     public EYBCardTooltip Focus = FindByID("Focus");
     public EYBCardTooltip Frail = FindByID("Frail");
     public EYBCardTooltip Freezing = FindByID("Freezing");
@@ -324,7 +324,7 @@ public class CardTooltips
         LoadFromPower(Energized, new EnergizedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Envenom, new EnvenomPower(FakeCharacter.Instance, 0));
         LoadFromPower(FlameBarrier, new FlameBarrierPower(FakeCharacter.Instance, 0));
-        LoadFromPower(FlamingWeapon, new FlamingWeaponPower(FakeCharacter.Instance, 0));
+        LoadFromPower(BurningWeapon, new BurningWeaponPower(FakeCharacter.Instance, 0));
         LoadFromPower(Focus, new FocusPower(FakeCharacter.Instance, 0));
         LoadFromPower(Genesis, new GenesisPower(FakeCharacter.Instance, 0));
         LoadFromPower(Impaired, new ImpairedPower(FakeCharacter.Instance, 0));

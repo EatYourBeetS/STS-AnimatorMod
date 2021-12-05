@@ -41,7 +41,6 @@ public class PowerHelper
 
     public static final PowerHelper Artifact = new PowerHelper(ArtifactPower.POWER_ID, GR.Tooltips.Artifact, ArtifactPower::new, Behavior.Permanent,false);
     public static final PowerHelper Blur = new PowerHelper(AnimatorBlurPower.POWER_ID, GR.Tooltips.Blur, AnimatorBlurPower::new, Behavior.TurnBased,false);
-    public static final PowerHelper CounterAttack = new PowerHelper(CounterAttackPower.POWER_ID, GR.Tooltips.CounterAttack, CounterAttackPower::new, Behavior.Temporary,false);
     public static final PowerHelper Dexterity = new PowerHelper(DexterityPower.POWER_ID, GR.Tooltips.Dexterity, DexterityPower::new, Behavior.Permanent, false);
     public static final PowerHelper Energized = new PowerHelper(EnergizedPower.POWER_ID, GR.Tooltips.Energized, EnergizedPower::new, Behavior.Temporary,false);
     public static final PowerHelper Focus = new PowerHelper(FocusPower.POWER_ID, GR.Tooltips.Focus, FocusPower::new, Behavior.Permanent,false);
@@ -63,6 +62,7 @@ public class PowerHelper
     public static final PowerHelper Thorns = new PowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new, Behavior.Permanent,false);
     public static final PowerHelper Vitality = new PowerHelper(VitalityPower.POWER_ID, GR.Tooltips.Vitality, VitalityPower::new, Behavior.Permanent,false);
     public static final PowerHelper Vigor = new PowerHelper(VigorPower.POWER_ID, GR.Tooltips.Vigor, VigorPower::new, Behavior.Permanent,false);
+    public static final PowerHelper CounterAttack = new PowerHelper(CounterAttackPower.POWER_ID, GR.Tooltips.CounterAttack, (o, s, a) -> new CounterAttackPower(o, a), Behavior.Temporary,false);
     public static final PowerHelper EnchantedArmor = new PowerHelper(EnchantedArmorPower.POWER_ID, GR.Tooltips.EnchantedArmor, (o, s, a) -> new EnchantedArmorPower(o, a), Behavior.Permanent,false);
     public static final PowerHelper Ritual = new PowerHelper(RitualPower.POWER_ID, GR.Tooltips.Ritual, (o, s, a) -> new RitualPower(o, a, GameUtilities.IsPlayer(o)), Behavior.Permanent,false);
 

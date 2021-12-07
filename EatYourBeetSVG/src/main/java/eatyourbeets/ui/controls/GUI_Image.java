@@ -202,6 +202,18 @@ public class GUI_Image extends GUIElement
         }
     }
 
+    public void RenderCentered(SpriteBatch sb)
+    {
+        RenderCentered(sb, hb);
+
+        hb.render(sb);
+    }
+
+    public void RenderCentered(SpriteBatch sb, Hitbox hb)
+    {
+        RenderCentered(sb, hb.x, hb.y, hb.width, hb.height);
+    }
+
     public void RenderCentered(SpriteBatch sb, float x, float y, float width, float height)
     {
         if (background != null)

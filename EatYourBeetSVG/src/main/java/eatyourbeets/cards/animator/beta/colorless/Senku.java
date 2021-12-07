@@ -80,7 +80,7 @@ public class Senku extends AnimatorCard
             GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, attackEffect);
         }
         else {
-            GameActions.Bottom.DealDamage(this, m, attackEffect);
+            GameActions.Bottom.DealCardDamage(this, m, attackEffect);
         }
 
         if (block > 0) {

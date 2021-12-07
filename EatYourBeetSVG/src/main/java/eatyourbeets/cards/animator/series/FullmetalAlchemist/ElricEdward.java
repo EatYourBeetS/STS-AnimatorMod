@@ -37,7 +37,7 @@ public class ElricEdward extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
     }
 
     @Override

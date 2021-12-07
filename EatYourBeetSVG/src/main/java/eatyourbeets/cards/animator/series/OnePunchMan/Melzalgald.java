@@ -58,7 +58,7 @@ public class Melzalgald extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.RecoverHP(magicNumber);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
 
         GameActions.Bottom.MakeCardInHand(new Melzalgald_1()).SetUpgrade(upgraded, false);
         GameActions.Bottom.MakeCardInHand(new Melzalgald_2()).SetUpgrade(upgraded, false);

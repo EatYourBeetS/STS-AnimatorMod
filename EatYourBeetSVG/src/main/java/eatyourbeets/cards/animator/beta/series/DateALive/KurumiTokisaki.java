@@ -44,7 +44,7 @@ public class KurumiTokisaki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.GUNSHOT);
 
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                 .SetOptions(true, true, true)

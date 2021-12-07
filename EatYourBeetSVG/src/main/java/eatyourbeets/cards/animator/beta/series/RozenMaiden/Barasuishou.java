@@ -39,7 +39,7 @@ public class Barasuishou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.DARK);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.DARK);
     }
 
     @Override

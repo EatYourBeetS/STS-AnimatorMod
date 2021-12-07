@@ -63,7 +63,7 @@ public class EmiyaKiritsugu extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
         .SetSoundPitch(0.6f, 0.7f)
         .SetVFXColor(Color.GOLD));
 

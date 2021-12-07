@@ -52,7 +52,7 @@ public class Eve_Drone extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (damage > 0) {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.SetVFXColor(Color.CYAN));
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.SetVFXColor(Color.CYAN));
         }
         if (block > 0) {
             GameActions.Bottom.GainBlock(block);

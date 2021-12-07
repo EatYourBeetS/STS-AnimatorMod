@@ -49,12 +49,12 @@ public class Lu extends AnimatorCard
     {
         if (isMultiDamage)
         {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE).forEach(d -> d
             .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE))));
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> d
             .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.VIOLET, Color.WHITE)).duration));
         }
 

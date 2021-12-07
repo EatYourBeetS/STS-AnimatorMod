@@ -147,7 +147,7 @@ public class Saitama extends AnimatorCard //TODO
                 {
                     GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+                GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
                 break;
             }
@@ -160,7 +160,7 @@ public class Saitama extends AnimatorCard //TODO
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
                 GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH).forEach(d -> d.SetPiercing(true, true));
+                GameActions.Bottom.DealCardDamage(this, m, AttackEffects.PUNCH).forEach(d -> d.SetPiercing(true, true));
                 GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
 
                 GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));

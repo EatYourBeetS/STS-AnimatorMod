@@ -407,12 +407,7 @@ public final class GameActions
         .SetOptions(true, true, true));
     }
 
-    public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
-    {
-        return Add(new DealDamage(target, new DamageInfo(source, amount, damageType), effect));
-    }
-
-    public ArrayList<DealDamage> DealDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamage> DealCardDamage(EYBCard card, AbstractCreature target, AbstractGameAction.AttackEffect effect)
     {
         ArrayList<DealDamage> actions = new ArrayList<>();
         for (int i = 0; i < card.hitCount; i++)
@@ -424,7 +419,12 @@ public final class GameActions
         return actions;
     }
 
-    public ArrayList<DealDamageToAll> DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
+    public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new DealDamage(target, new DamageInfo(source, amount, damageType), effect));
+    }
+
+    public ArrayList<DealDamageToAll> DealCardDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
         ArrayList<DealDamageToAll> actions = new ArrayList<>();
         for (int i = 0; i < card.hitCount; i++)
@@ -441,12 +441,7 @@ public final class GameActions
         return Add(new DealDamageToAll(player, damageMatrix, damageType, effect, false));
     }
 
-    public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
-    {
-        return Add(new DealDamageToRandomEnemy(new DamageInfo(player, baseDamage, damageType), effect));
-    }
-
-    public ArrayList<DealDamageToRandomEnemy> DealDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamageToRandomEnemy> DealCardDamageToRandomEnemy(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
         ArrayList<DealDamageToRandomEnemy> actions = new ArrayList<>();
         for (int i = 0; i < card.hitCount; i++)
@@ -455,6 +450,11 @@ public final class GameActions
                     .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
         }
         return actions;
+    }
+
+    public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new DealDamageToRandomEnemy(new DamageInfo(player, baseDamage, damageType), effect));
     }
 
     public MoveCard Discard(AbstractCard card, CardGroup group)

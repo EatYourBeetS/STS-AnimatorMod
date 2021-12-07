@@ -65,7 +65,7 @@ public class Mitsurugi extends AnimatorCard
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
         }
     }
 

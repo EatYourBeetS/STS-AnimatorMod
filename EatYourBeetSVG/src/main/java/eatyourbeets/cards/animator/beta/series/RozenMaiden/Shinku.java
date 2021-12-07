@@ -40,7 +40,7 @@ public class Shinku extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this,m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this,m, AttackEffects.SLASH_VERTICAL);
 
         GameActions.Bottom.Cycle(name, magicNumber).AddCallback(() -> GameActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

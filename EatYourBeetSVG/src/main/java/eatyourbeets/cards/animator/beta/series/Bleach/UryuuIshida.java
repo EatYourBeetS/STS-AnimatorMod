@@ -35,7 +35,7 @@ public class UryuuIshida extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
         if (IsStarter()) {
             GameActions.Bottom.Callback(m, (enemy, __) -> TransferWeakVulnerable(enemy));

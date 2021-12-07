@@ -109,6 +109,6 @@ public class Cthulhu extends AnimatorCard_UltraRare //TODO make this play random
         EnergyPanel.useEnergy(COST);
         GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.VFX(VFX.Cataclysm(), 0.8f, true)
-        .AddCallback(__ -> GameActions.Top.DealDamageToAll(this, AttackEffects.NONE));
+        .AddCallback(__ -> GameActions.Top.DealCardDamageToAll(this, AttackEffects.NONE));
     }
 }

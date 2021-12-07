@@ -35,7 +35,7 @@ public class TanyaDegurechaff extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.75f, 0.8f));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.75f, 0.8f));
         GameActions.Bottom.DiscardFromPile(name, magicNumber, p.drawPile)
         .ShowEffect(true, true)
         .SetFilter(GameUtilities::IsHindrance)

@@ -46,7 +46,7 @@ public class RizaHawkeye extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
         if (GameUtilities.GetPowerAmount(m, VulnerablePower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0 ) {
             GameActions.Delayed.ExhaustFromPile(name, 1, player.drawPile).AddCallback(cards -> {if (cards.size() > 0)
                 GameActions.Bottom.ChangeStance(EnduranceStance.STANCE_ID);

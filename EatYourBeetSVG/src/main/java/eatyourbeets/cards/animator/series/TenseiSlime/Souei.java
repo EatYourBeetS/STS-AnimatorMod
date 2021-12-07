@@ -33,7 +33,7 @@ public class Souei extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber).AddCallback(
                 m, (enemy, __) -> {
                     PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);

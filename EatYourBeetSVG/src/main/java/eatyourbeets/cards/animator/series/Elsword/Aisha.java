@@ -51,7 +51,7 @@ public class Aisha extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false)
                 .SetDamageEffect(enemy ->
                 {
                     GameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.PURPLE));

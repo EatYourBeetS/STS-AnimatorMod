@@ -42,7 +42,7 @@ public class Xiao extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         SFX.Play(SFX.ATTACK_REAPER);
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE).forEach(d -> d
                 .SetDamageEffect((enemy, __) ->
                 {
                     float wait = GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,

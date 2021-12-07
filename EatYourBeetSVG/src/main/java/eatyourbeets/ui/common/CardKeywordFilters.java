@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import static eatyourbeets.ui.common.AffinityKeywordButton.ICON_SIZE;
+
 public class CardKeywordFilters extends GUIElement
 {
     public enum CostFilter
@@ -289,11 +291,15 @@ public class CardKeywordFilters extends GUIElement
         for (int i = 0; i < Affinity.All().length; i++)
         {
             Affinity a = Affinity.All()[i];
-            AffinityButtons.add(new AffinityKeywordButton(affinitiesSectionLabel.hb, a, CardKeywordFilters.CurrentAffinities.GetLevel(a)).SetIndex(i).SetOnClick((button) -> {
-                CurrentAffinities.Set(button.Type, button.currentLevel);
-                if (onClick != null) {
-                    onClick.Invoke(null);
-                }
+            AffinityButtons.add(new AffinityKeywordButton(affinitiesSectionLabel.hb, a)
+                            .SetLevel(CardKeywordFilters.CurrentAffinities.GetLevel(a))
+                            .SetOffsets(0.5f + (i * 1.05f), -0.5f * (ICON_SIZE / affinitiesSectionLabel.hb.width))
+                            .SetOnClick((button) -> {
+                                button.SetLevel((button.currentLevel + 1) % 2);
+                                CurrentAffinities.Set(button.Type, button.currentLevel);
+                                if (onClick != null) {
+                                    onClick.Invoke(null);
+                                }
             }));
         }
 

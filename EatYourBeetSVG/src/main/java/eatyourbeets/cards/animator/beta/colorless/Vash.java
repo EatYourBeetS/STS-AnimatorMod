@@ -37,7 +37,7 @@ public class Vash extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.5f, 0.7f));
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.5f, 0.7f));
         GameActions.Bottom.GainBlock(block);
 
 

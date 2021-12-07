@@ -45,7 +45,7 @@ public class MariKurokawa extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.9f, 1f));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.9f, 1f));
         GameActions.Bottom.Draw(1)
         .SetFilter(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c), false)
         .AddCallback(cards ->

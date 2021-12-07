@@ -77,8 +77,8 @@ public class SupportDamageAction extends EYBAction
         if (TickDuration(deltaTime))
         {
             SFX.Play(SFX.ATTACK_DAGGER_6, 0.7f, 0.9f);
-            SFX.Play(SFX.ANIMATOR_SUPPORT_DAMAGE, 0.46f, 0.7f, 1.7f);
-            SFX.Play(SFX.ANIMATOR_SUPPORT_DAMAGE, 0.26f, 0.46f, 1.7f);
+            SFX.Play(SFX.ANIMATOR_SUPPORT_DAMAGE, 0.46f, 0.7f, 1.2f);
+            SFX.Play(SFX.ANIMATOR_SUPPORT_DAMAGE, 0.26f, 0.46f, 1.2f);
             GameActions.Top.DealDamage(source, target, amount, DamageInfo.DamageType.NORMAL, AttackEffects.NONE)
                     .ApplyPowers(true)
                     .SetDamageEffect(c -> GameEffects.List.Add(VFX.SupportDamage(source.hb, target.hb).SetParticleCount(8 + amount / 3).SetDuration(0.9f, false)).duration * 0.35f)

@@ -64,6 +64,13 @@ public class GUI_Button extends GUIElement
         SetColor(Color.WHITE);
     }
 
+    public GUI_Button SetBackground(Texture borderTexture)
+    {
+        this.background = RenderHelpers.ForTexture(borderTexture);
+
+        return this;
+    }
+
     public GUI_Button SetBorder(Texture borderTexture, Color color)
     {
         if (borderTexture == null)

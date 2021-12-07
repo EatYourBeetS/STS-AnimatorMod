@@ -39,7 +39,7 @@ public class Diluc extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
 
         for (AbstractCreature c : GameUtilities.GetEnemies(true)) {
             GameActions.Bottom.RemovePower(p, c, FreezingPower.POWER_ID);

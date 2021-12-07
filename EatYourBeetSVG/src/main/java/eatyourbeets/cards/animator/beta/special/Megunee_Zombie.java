@@ -51,7 +51,7 @@ public class Megunee_Zombie extends AnimatorCard implements OnStartOfTurnPostDra
 
         if (stacks > 0)
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE)
+            GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.NONE)
                     .forEach(d -> d.SetDamageEffect(e ->
                             {
                                 GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.BROWN.cpy()));

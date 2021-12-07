@@ -181,6 +181,13 @@ public abstract class EYBEffect extends AbstractGameEffect
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 
+    protected void RenderImage(SpriteBatch sb, Texture img, float x, float y, boolean flipX, boolean flipY, RenderHelpers.BlendingMode blendingMode)
+    {
+        sb.setBlendFunction(blendingMode.srcFunc, blendingMode.dstFunc);
+        RenderHelpers.DrawCentered(sb, color, img, x, y, img.getWidth(), img.getHeight(), scale, rotation, flipX, flipY);
+        sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    }
+
     protected static <T> T RandomElement(T[] source, RandomizedList<T> container)
     {
         if (container.Size() <= 1)

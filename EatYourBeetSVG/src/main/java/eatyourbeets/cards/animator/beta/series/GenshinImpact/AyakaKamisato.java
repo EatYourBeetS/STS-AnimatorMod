@@ -31,7 +31,7 @@ public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Brutal).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 12;
+    public static final int THRESHOLD = 14;
 
     public AyakaKamisato() {
         super(DATA);
@@ -60,6 +60,7 @@ public class AyakaKamisato extends AnimatorCard {
 
         GameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
         SFX.Play(SFX.ATTACK_SCYTHE, 0.75f, 0.75f);
+        SFX.Play(SFX.ATTACK_SCYTHE, 0.55f, 0.55f, 0.75f);
         GameEffects.Queue.Add(new AdditiveSlashImpactEffect(m.hb.cX - 100f * Settings.scale, m.hb.cY + 100f * Settings.scale, Color.WHITE.cpy()));
         GameEffects.Queue.Add(new AnimatedSlashEffect(m.hb.cX, m.hb.cY + 20f * Settings.scale,
                 -500f, 0f, 260f, 8f, Color.LIGHT_GRAY.cpy(), Color.WHITE.cpy()));
@@ -72,11 +73,11 @@ public class AyakaKamisato extends AnimatorCard {
         }
         GameActions.Top.Wait(wait);
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH)
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH)
                 .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy()).SetVFX(true, true).SetDamageEffect(c ->
                         {
-                            SFX.Play(SFX.ATTACK_BUTCHER, 1.25f, 1.35f, 1.1f);
-                            SFX.Play(SFX.ATTACK_WHIFF_2, 1.25f, 1.35f, 1.1f);
+                            SFX.Play(SFX.ATTACK_BUTCHER, 0.75f, 0.85f, 1.1f);
+                            SFX.Play(SFX.ATTACK_WHIFF_2, 0.75f, 0.85f, 1.1f);
                             return GameEffects.Queue.Add(VFX.Bleed(c.hb)).duration;
                         }
 

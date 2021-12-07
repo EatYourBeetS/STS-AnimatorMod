@@ -176,7 +176,7 @@
 	},
 	"Electrified Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Freezing].",
+	  "DESCRIPTION": "Deal double damage against enemies with [Tainted]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Tainted].",
 	  "NAMES": ["electrified weapon"],
 	  "PROPER_NAME": "Electrified Weapon"
 	},

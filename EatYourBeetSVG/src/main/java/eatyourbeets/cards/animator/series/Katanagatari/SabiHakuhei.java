@@ -46,7 +46,7 @@ public class SabiHakuhei extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.RemovePower(p, p, BlurPower.POWER_ID);
     }
 

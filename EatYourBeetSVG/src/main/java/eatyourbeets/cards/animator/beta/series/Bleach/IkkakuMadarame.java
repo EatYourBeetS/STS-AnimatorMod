@@ -27,7 +27,7 @@ public class IkkakuMadarame extends AnimatorCard{
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
         GameActions.Bottom.GainBlock(block);
 
         GameUtilities.MaintainPower(Affinity.Green);

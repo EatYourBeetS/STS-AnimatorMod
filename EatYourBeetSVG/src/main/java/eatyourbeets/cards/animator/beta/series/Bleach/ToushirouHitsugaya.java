@@ -30,7 +30,7 @@ public class ToushirouHitsugaya extends AnimatorCard
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.ApplyFreezing(TargetHelper.Normal(m), magicNumber).ShowEffect(true, true).AddCallback(m, (enemy, __) -> {
             int freezingAmount = magicNumber;

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class StarParticleEffect extends EYBEffect
 {
@@ -21,6 +22,7 @@ public class StarParticleEffect extends EYBEffect
     protected float rotationSpeed;
     protected float alpha;
     protected boolean flipX;
+    protected boolean translucent;
     protected Texture image;
 
     public StarParticleEffect(float x, float y, float horizontalSpeed, float verticalSpeed, float scale, Color mainColor)
@@ -45,6 +47,7 @@ public class StarParticleEffect extends EYBEffect
         this.flipX = RandomBoolean();
         this.rotation = Random(-10f, 10f);
         this.rotationSpeed = Random(-12f, 12f);
+        this.translucent = RandomBoolean();
     }
 
     @Override
@@ -62,6 +65,6 @@ public class StarParticleEffect extends EYBEffect
 
     public void render(SpriteBatch sb)
     {
-        RenderImage(sb, image, x, y, flipX, false);
+        RenderImage(sb, image, x, y, flipX, false, this.translucent ? RenderHelpers.BlendingMode.Glowing : RenderHelpers.BlendingMode.Normal);
     }
 }

@@ -64,7 +64,7 @@ public class Chung extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.ICE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.ICE);
         GameActions.Bottom.GainBlock(block);
 
         AbstractOrb orb = GameUtilities.GetFirstOrb(Frost.ORB_ID);

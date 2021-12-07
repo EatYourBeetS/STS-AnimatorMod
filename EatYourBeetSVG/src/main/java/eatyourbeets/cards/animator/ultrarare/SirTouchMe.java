@@ -30,7 +30,7 @@ public class SirTouchMe extends AnimatorCard_UltraRare
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new JuggernautPower(p, magicNumber));
     }
 

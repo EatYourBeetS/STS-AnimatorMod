@@ -1,8 +1,8 @@
 package eatyourbeets.powers.deprecated;
 
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
 

@@ -30,7 +30,7 @@ public class YuriNakamura extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ExhaustFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards -> {

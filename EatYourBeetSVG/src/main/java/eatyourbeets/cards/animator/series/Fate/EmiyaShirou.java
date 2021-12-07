@@ -49,7 +49,7 @@ public class EmiyaShirou extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
 
         fireOrb = JUtils.SafeCast(GameUtilities.GetFirstOrb(Fire.ORB_ID),Fire.class);
         if (fireOrb != null) {

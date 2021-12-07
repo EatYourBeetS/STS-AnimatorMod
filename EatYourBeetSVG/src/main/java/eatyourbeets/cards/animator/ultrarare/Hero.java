@@ -38,7 +38,7 @@ public class Hero extends AnimatorCard_UltraRare //TODO
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(c ->
         {
             if (GameUtilities.IsFatal(c, true) && info.TryActivateLimited())

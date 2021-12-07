@@ -35,7 +35,7 @@ public class IrohaTamaki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
 
         if (p.drawPile.size() > 0)
         {

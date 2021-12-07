@@ -40,7 +40,7 @@ public class KenzoTenma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
         GameActions.Bottom.Callback(m, (enemy, __) -> {
             if (!GameUtilities.IsDeadOrEscaped(enemy)) {
                 int stacks = 0;

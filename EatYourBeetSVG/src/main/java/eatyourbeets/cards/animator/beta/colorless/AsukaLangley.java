@@ -60,10 +60,10 @@ public class AsukaLangley extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (upgraded) {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));
         }
         else {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));;
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));;
         }
         GameActions.Bottom.StackPower(new AsukaLangleyPower(p));
         GameActions.Bottom.Reload(name, cards ->

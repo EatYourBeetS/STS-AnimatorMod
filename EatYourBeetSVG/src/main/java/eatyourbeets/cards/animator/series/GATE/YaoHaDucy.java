@@ -71,7 +71,7 @@ public class YaoHaDucy extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
 
         if (!GameUtilities.HasArtifact(m))
         {

@@ -264,6 +264,18 @@ public class EYBCardAffinities
         return createIfNull ? Set(affinity, 0) : null;
     }
 
+    public ArrayList<Affinity> GetAffinities() {
+        final ArrayList<Affinity> list = new ArrayList<>();
+        for (EYBCardAffinity item : List)
+        {
+            if (item.level > 0)
+            {
+                list.add(item.type);
+            }
+        }
+        return list;
+    }
+
     public int GetScaling(Affinity affinity, boolean useStarScaling)
     {
         final int star = (Star != null ? Star.scaling : 0);

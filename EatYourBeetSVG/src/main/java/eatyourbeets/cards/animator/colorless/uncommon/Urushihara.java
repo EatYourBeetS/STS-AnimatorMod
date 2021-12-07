@@ -11,7 +11,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
+public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber //TODO
 {
     public static final EYBCardData DATA = Register(Urushihara.class)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
@@ -56,7 +56,7 @@ public class Urushihara extends AnimatorCard implements OnStartOfTurnPostDrawSub
 
             GameEffects.Queue.ShowCardBriefly(this);
 
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.FIRE);
             GameUtilities.UsePenNib();
 
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);

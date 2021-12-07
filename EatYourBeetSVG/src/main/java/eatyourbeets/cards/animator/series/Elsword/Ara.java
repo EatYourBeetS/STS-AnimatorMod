@@ -49,7 +49,7 @@ public class Ara extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetSoundPitch(1.1f, 1.3f));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SPEAR).forEach(d -> d.SetSoundPitch(1.1f, 1.3f));
 
         if (auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Green))
         {

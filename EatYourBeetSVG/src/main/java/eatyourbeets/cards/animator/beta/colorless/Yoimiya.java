@@ -50,7 +50,7 @@ public class Yoimiya extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
             if (IsStarter() && e.lastDamageTaken > 0) {
                 GameActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
             }

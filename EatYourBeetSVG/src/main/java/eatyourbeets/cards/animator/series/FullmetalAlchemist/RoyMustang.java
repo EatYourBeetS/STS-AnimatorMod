@@ -45,7 +45,7 @@ public class RoyMustang extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
 
         if (TrySpendAffinity(Affinity.Red))

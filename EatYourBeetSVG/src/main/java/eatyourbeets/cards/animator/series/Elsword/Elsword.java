@@ -34,7 +34,7 @@ public class Elsword extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).forEach(d -> d.SetVFXColor(Color.RED));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL).forEach(d -> d.SetVFXColor(Color.RED));
         GameActions.Bottom.GainBlock(block);
 
         if (m.hasPower(BurningPower.POWER_ID))

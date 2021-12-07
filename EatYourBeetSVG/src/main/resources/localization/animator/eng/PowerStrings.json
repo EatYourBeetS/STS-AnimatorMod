@@ -92,8 +92,8 @@
 	},
 	"animator:EarthenThornsPower":
 	{
-		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],
-		"NAME": "Temporary Thorns"
+		"DESCRIPTIONS": ["When attacked, apply #b{0} [Poison] to the attacker."],
+		"NAME": "Poisoned Thorns"
 	},
 	"animator:ElementalExposurePower":
 	{

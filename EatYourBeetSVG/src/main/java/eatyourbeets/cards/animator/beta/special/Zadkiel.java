@@ -34,7 +34,7 @@ public class Zadkiel extends AnimatorCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
         GameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SMASH).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SMASH).forEach(d -> d
                 .SetVFXColor(Color.NAVY)
                 .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.NAVY)).duration)
                 .AddCallback(enemy -> {

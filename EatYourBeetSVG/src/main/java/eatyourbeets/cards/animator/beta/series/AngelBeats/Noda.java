@@ -40,7 +40,7 @@ public class Noda extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
         if (info.IsSynergizing || TrySpendAffinity(Affinity.Red))
         {

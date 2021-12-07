@@ -95,7 +95,7 @@ public class ByakuyaBankai extends AnimatorCard {
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.WHITE));
         GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.WHITE, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75f);
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

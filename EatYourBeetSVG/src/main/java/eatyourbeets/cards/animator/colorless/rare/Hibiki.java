@@ -32,7 +32,7 @@ public class Hibiki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d
                 .SetOptions(true, false));
 
         GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseHitCount((EYBCard) c, secondaryValue, false));

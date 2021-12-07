@@ -50,7 +50,7 @@ public class ToushirouHitsugaya_Bankai extends AnimatorCard
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
 
         AtomicInteger i = new AtomicInteger();
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> {d.SetDamageEffect(
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE).forEach(d -> {d.SetDamageEffect(
                 (enemy, __) -> {
                     SFX.Play(SFX.ATTACK_IRON_1, 1.75f + (0.2f * MathUtils.cosDeg(i.get() * 90)));
                     GameEffects.List.Add(

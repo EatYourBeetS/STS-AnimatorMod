@@ -35,7 +35,7 @@ public class KyokoSakura extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SLASH_VERTICAL);
 
         if (IsStarter())
         {

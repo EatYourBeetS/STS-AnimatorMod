@@ -70,7 +70,7 @@ public class Ganyu extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new ClawEffect(m.hb.cX, m.hb.cY, Color.TEAL, Color.WHITE));
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.Player(), magicNumber);
         for (int i = 0; i < secondaryValue; i++) {
             GameActions.Bottom.MakeCardInDrawPile(new Status_Frostbite())

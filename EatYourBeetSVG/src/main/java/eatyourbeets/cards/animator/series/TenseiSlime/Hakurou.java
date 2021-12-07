@@ -61,7 +61,7 @@ public class Hakurou extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new DieDieDieEffect());
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE);
         for (int i = 0; i < hitCount; i++) {
             GameActions.Bottom.GainBlock(block);
         }

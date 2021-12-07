@@ -32,7 +32,7 @@ public class Dust extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(1).SetFilter(c -> c.rarity.equals(CardRarity.BASIC) || c.rarity.equals(CardRarity.COMMON), false);
 
         if (IsStarter() && TrySpendAffinity(Affinity.Red)) {

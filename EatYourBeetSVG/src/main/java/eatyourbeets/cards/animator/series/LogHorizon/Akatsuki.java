@@ -69,7 +69,7 @@ public class Akatsuki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL)
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL)
         .forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration));
 
         if (TrySpendAffinity(Affinity.Green)) {

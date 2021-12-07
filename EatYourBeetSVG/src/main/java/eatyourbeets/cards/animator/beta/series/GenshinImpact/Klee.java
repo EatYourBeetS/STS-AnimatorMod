@@ -34,7 +34,7 @@ public class Klee extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
         GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
         //GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, secondaryValue);
 

@@ -32,7 +32,7 @@ public class IchigoKurosaki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
 
         GameActions.Bottom.AddAffinity(Affinity.Red, magicNumber);
 

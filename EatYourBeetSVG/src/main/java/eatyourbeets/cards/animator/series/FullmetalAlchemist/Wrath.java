@@ -34,7 +34,7 @@ public class Wrath extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamageToAll(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new WrathPower(p, secondaryValue));
 

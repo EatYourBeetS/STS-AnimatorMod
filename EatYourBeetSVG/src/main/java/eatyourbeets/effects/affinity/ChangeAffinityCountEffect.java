@@ -9,18 +9,27 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.ui.animator.combat.EYBCardAffinityRow;
+import eatyourbeets.ui.common.AffinityKeywordButton;
 
 public class ChangeAffinityCountEffect extends AbstractGameEffect
 {
-    private float x;
-    private float y;
     private static final float EFFECT_DUR = 2f;
+    private final float x;
+    private final float y;
     private float scale;
     private final Texture img;
 
-    public ChangeAffinityCountEffect(EYBCardAffinityRow affinityRow, boolean playSfx)
+    public ChangeAffinityCountEffect(AffinityKeywordButton button, boolean playSfx) {
+        this(button.Type.GetIcon(), button.background_button.hb.x, button.background_button.hb.y, playSfx);
+    }
+
+    public ChangeAffinityCountEffect(EYBCardAffinityRow affinityRow, boolean playSfx) {
+        this(affinityRow.Type.GetIcon(), affinityRow.image_affinity.hb.x, affinityRow.image_affinity.hb.y, playSfx);
+    }
+
+    public ChangeAffinityCountEffect(Texture icon, float x, float y, boolean playSfx)
     {
-        this.img = affinityRow.Type.GetIcon();
+        this.img = icon;
 
         if (playSfx)
         {
@@ -31,8 +40,8 @@ public class ChangeAffinityCountEffect extends AbstractGameEffect
         this.startingDuration = 2f;
         this.scale = Settings.scale;
         this.color = new Color(1f, 1f, 1f, 0.5f);
-        this.x = affinityRow.image_affinity.hb.x;
-        this.y = affinityRow.image_affinity.hb.y;
+        this.x = x;
+        this.y = y;
     }
 
     public void update()

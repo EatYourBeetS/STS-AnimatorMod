@@ -34,7 +34,7 @@ public class EulaLawrence extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
-        GameActions.Bottom.DealDamage(this,m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this,m, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new EulaLawrencePower(m, secondaryValue));
     }
 

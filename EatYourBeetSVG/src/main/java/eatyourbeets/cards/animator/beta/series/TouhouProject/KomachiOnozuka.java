@@ -48,7 +48,7 @@ public class KomachiOnozuka extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
         .AddCallback(enemy ->
         {
             if (GameUtilities.GetPowerAmount(enemy, VulnerablePower.POWER_ID) > 0) {

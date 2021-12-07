@@ -44,6 +44,6 @@ public class Sora_Strategy1 extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealCardDamage(this, m, AbstractGameAction.AttackEffect.NONE);
     }
 }

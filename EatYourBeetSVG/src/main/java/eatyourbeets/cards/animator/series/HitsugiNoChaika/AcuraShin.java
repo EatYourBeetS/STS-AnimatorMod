@@ -30,7 +30,7 @@ public class AcuraShin extends AnimatorCard implements Hidden
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         GameActions.Bottom.StackPower(new PoisonAffinityPower(p, 1));
     }
 }

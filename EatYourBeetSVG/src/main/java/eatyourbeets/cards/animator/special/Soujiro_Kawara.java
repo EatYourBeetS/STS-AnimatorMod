@@ -43,6 +43,6 @@ public class Soujiro_Kawara extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
     }
 }

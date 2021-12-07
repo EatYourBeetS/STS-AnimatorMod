@@ -52,7 +52,7 @@ public class Rumia extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DARK);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.DARK);
         AbstractOrb firstDark = GameUtilities.GetFirstOrb(Dark.ORB_ID);
         if (firstDark != null) {
             int times = secondaryValue;

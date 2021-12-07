@@ -60,7 +60,7 @@ public class HeavyWarrior extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb).SetColor(Color.LIGHT_GRAY));
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY).forEach(d -> d
         .SetVFXColor(Color.DARK_GRAY));
 
         if (m.type == AbstractMonster.EnemyType.ELITE || m.type == AbstractMonster.EnemyType.BOSS)

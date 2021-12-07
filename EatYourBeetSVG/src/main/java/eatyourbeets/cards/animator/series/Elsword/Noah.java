@@ -86,7 +86,7 @@ public class Noah extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d
                 .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f));
         GameActions.Bottom.StackAffinityPower(auxiliaryData.form == 1 ? Affinity.Light : Affinity.Dark , magicNumber, true);
 

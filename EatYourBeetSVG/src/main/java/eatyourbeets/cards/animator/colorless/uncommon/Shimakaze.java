@@ -36,7 +36,7 @@ public class Shimakaze extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
         GameActions.Bottom.AddAffinity(JUtils.Random(Affinity.Extended()), secondaryValue);
         GameActions.Bottom.Draw(magicNumber);

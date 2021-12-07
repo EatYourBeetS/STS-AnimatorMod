@@ -209,16 +209,16 @@ public class EYBCardText
         }
 
         // Render card footers
-        if (!GameUtilities.InBattle() || card.isPopup || (player != null && player.masterDeck.contains(card))) {
+        if (card.isPopup || (player != null && player.masterDeck.contains(card))) {
             offset_y = 0;
             if (card.hasTag(GR.Enums.CardTags.UNIQUE)) {
-                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), offset_y, Color.BLACK, null);
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Unique_L.Texture() : ICONS.Unique.Texture(), offset_y, Color.WHITE, null);
             }
             else if (card.cardData.CanToggleFromPopup && (card.upgraded || card.cardData.UnUpgradedCanToggleForms)) {
-                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), offset_y, Color.BLACK, null);
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.Multiform_L.Texture() : ICONS.Multiform.Texture(), offset_y, card.auxiliaryData.form != 0 ? Color.WHITE : Color.DARK_GRAY, null);
             }
             else if (card.hasTag(GR.Enums.CardTags.EXPANDED) || card.cardData.CanToggleOnUpgrade) {
-                offset_y += RenderFooter(sb, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), offset_y, Color.BLACK, null);
+                offset_y += RenderFooter(sb, card.isPopup ? ICONS.BranchUpgrade_L.Texture() : ICONS.BranchUpgrade.Texture(), offset_y, card.auxiliaryData.form != 0 ? Color.WHITE : Color.DARK_GRAY, null);
             }
         }
 
@@ -293,14 +293,14 @@ public class EYBCardText
         return 38;
     }
 
-    private float RenderFooter(SpriteBatch sb, Texture texture, float y, Color backgroundColor, String text)
+    private float RenderFooter(SpriteBatch sb, Texture texture, float y, Color iconColor, String text)
     {
         final float offset_x = -AbstractCard.RAW_W * 0.4595f;
         final float offset_y = y - AbstractCard.RAW_H * 0.46f;
         final float alpha = card.transparency;
 
-        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(),  new Vector2(offset_x, offset_y), 40, 40, backgroundColor, alpha * 0.4f, 0.8f);
-        RenderHelpers.DrawOnCardAuto(sb, card, texture,  new Vector2(offset_x, offset_y), 40, 40, Color.WHITE, alpha, 0.8f);
+        RenderHelpers.DrawOnCardAuto(sb, card, GR.Common.Images.Panel_Elliptical.Texture(),  new Vector2(offset_x, offset_y), 40, 40, Color.BLACK, alpha * 0.4f, 0.8f);
+        RenderHelpers.DrawOnCardAuto(sb, card, texture,  new Vector2(offset_x, offset_y), 40, 40, iconColor, alpha, 0.8f);
 
         if (text != null)
         {

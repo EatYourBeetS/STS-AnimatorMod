@@ -54,7 +54,7 @@ public class Xingqiu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> d
                 .SetDamageEffect(enemy ->
                 {
                     float wait = GameEffects.List.Add(new AnimatedSlashEffect(enemy.hb.cX, enemy.hb.cY - 30f * Settings.scale,

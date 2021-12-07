@@ -41,7 +41,7 @@ public class Sloth extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block).SetVFX(false, true);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY).forEach(d -> d
         .SetDamageEffect(__ ->
         {
             CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.MED,false);

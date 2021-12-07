@@ -54,7 +54,7 @@ public class Midou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.FIRE);
 
         GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.MakeCardInHand(new Status_Burn());

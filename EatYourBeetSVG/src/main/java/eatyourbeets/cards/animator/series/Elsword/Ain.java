@@ -86,7 +86,7 @@ public class Ain extends AnimatorCard
             }
         });
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false));
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE).forEach(d -> d.SetVFX(true, false));
 
         if (CheckSpecialCondition(true))
         {

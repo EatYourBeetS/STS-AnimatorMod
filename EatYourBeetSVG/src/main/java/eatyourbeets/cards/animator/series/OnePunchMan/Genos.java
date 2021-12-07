@@ -59,7 +59,7 @@ public class Genos extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
         GameActions.Bottom.ApplyBurning(p, p, magicNumber);
         GameActions.Bottom.ApplyBurning(p, m, magicNumber);
     }

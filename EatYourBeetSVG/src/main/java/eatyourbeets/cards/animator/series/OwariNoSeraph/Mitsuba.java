@@ -49,6 +49,6 @@ public class Mitsuba extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
     }
 }

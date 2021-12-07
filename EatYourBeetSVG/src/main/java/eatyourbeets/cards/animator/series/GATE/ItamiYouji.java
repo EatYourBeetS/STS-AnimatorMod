@@ -55,7 +55,7 @@ public class ItamiYouji extends AnimatorCard
                 for (int i = 0; i < cards.size(); i++) {
                     if (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy))
                     {
-                        GameActions.Bottom.DealDamage(this, enemy, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(1.3f, 1.5f));
+                        GameActions.Bottom.DealCardDamage(this, enemy, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(1.3f, 1.5f));
                     }
                 }
             });

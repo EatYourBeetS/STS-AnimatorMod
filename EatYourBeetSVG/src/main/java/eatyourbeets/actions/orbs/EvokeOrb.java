@@ -25,6 +25,7 @@ public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
     protected GenericCondition<AbstractOrb> filter;
     protected AbstractOrb orb;
     protected Mode mode;
+    protected int additionalFocus;
 
     public EvokeOrb(int times)
     {
@@ -65,6 +66,14 @@ public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
         return this;
     }
 
+    public <S> EvokeOrb AddFocus(int focus)
+    {
+        this.additionalFocus = focus;
+
+        return this;
+    }
+
+
     @Override
     protected void FirstUpdate()
     {
@@ -94,6 +103,8 @@ public class EvokeOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
             {
                 for (int j = 0; j < (amount - 1); j++)
                 {
+                    orb.passiveAmount += additionalFocus;
+                    orb.evokeAmount += additionalFocus;
                     orb.onEvoke();
                     orbs.add(orb);
                 }

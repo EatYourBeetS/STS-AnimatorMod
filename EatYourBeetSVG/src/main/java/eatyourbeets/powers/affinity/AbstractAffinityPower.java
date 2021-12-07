@@ -83,6 +83,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         this.effectMultiplier = 1;
         this.gainMultiplier = 1;
         this.scalingMultiplier = 1;
+        this.maxAmount = baseMaxAmount;
 
         Initialize(0, PowerType.BUFF, true);
     }

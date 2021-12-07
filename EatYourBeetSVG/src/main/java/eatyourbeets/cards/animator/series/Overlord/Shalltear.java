@@ -36,7 +36,7 @@ public class Shalltear extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE).forEach(d -> d
         .SetDamageEffect((enemy, __) -> GameEffects.List.Add(VFX.Hemokinesis(player.hb, enemy.hb)))
         .AddCallback(enemies ->
         {

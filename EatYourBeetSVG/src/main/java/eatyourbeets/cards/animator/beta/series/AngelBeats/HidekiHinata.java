@@ -47,7 +47,7 @@ public class HidekiHinata extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
 
         if (! GameUtilities.IsAttacking(m.intent)) {
             GameActions.Bottom.GainSupportDamage(secondaryValue);

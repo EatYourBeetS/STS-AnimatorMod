@@ -60,7 +60,7 @@ public class Saber extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainRandomAffinityPower(1,false, Affinity.Light,Affinity.Red);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         if (block > 0) {
             GameActions.Bottom.GainBlock(block);
         }

@@ -65,7 +65,7 @@ public class GoblinSlayer extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
 
         GameActions.Bottom.MoveCards(p.hand, p.exhaustPile)
         .SetFilter(GameUtilities::IsHindrance)

@@ -41,7 +41,7 @@ public class CZDelta extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d
                 .SetDamageEffect(c ->
                 {
                     SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f, 0.95f);

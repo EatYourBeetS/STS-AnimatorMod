@@ -36,7 +36,7 @@ public class ArseneLupin extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.GUNSHOT);
         GameActions.Last.Reload(name, cards ->
         {
             if (cards.size() > 0)

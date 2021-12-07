@@ -36,7 +36,7 @@ public class Yuuichirou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.Draw(1).AddCallback(cards -> {
             for (AbstractCard c : cards) {
                 if (GameUtilities.IsHindrance(c)) {

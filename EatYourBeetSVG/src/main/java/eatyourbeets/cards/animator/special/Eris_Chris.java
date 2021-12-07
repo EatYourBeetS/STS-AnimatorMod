@@ -39,6 +39,6 @@ public class Eris_Chris extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.StealGold(magicNumber));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.StealGold(magicNumber));
     }
 }

@@ -30,7 +30,7 @@ public class Xiangling extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HORIZONTAL).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
 
         for (AbstractMonster enemy : GameUtilities.GetEnemies(true)) {
             if (GameUtilities.GetPowerAmount(enemy, BurningPower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) > 0) {

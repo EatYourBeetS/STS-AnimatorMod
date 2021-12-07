@@ -55,7 +55,7 @@ public class Kuribayashi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.6f, 0.8f));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT).forEach(d -> d.SetSoundPitch(0.6f, 0.8f));
         TrySpendAffinity(Affinity.Green);
 
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);

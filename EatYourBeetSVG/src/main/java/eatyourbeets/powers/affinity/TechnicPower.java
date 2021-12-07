@@ -1,5 +1,6 @@
 package eatyourbeets.powers.affinity;
 
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.powers.common.GenesisPower;
@@ -13,6 +14,11 @@ public class TechnicPower extends AbstractAffinityPower
     public TechnicPower()
     {
         super(AFFINITY_TYPE, POWER_ID);
+    }
+
+    public void Initialize(AbstractCreature owner)
+    {
+        super.Initialize(owner);
         SetPayCost(6);
     }
 

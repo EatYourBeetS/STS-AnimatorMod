@@ -99,12 +99,12 @@ public class ThrowingKnife extends AnimatorCard
     {
         if (m == null || GameUtilities.IsDeadOrEscaped(m))
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d
+            GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d
             .SetDamageEffect(this::OnDamage));
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> d
             .SetDamageEffect(this::OnDamage));
         }
     }

@@ -24,7 +24,7 @@ public class Melzalgald_3 extends MelzalgaldAlt
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.RecoverHP(secondaryValue);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.GainVelocity(magicNumber);
     }
 }

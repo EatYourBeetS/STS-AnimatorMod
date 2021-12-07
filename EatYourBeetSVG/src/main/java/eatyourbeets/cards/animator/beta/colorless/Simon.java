@@ -41,7 +41,7 @@ public class Simon extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH).forEach(d -> d.AddCallback(e -> {
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH).forEach(d -> d.AddCallback(e -> {
             GameActions.Bottom.StackPower(new VigorPower(player, e.lastDamageTaken / 2));
         }));
 

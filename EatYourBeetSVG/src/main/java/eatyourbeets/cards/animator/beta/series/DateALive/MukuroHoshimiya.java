@@ -43,7 +43,7 @@ public class MukuroHoshimiya extends AnimatorCard implements StartupCard, OnShuf
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.AddCallback(() ->
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.AddCallback(() ->
                 GameActions.Bottom.Scry(secondaryValue).AddCallback(cards ->
                         {
                             for (AbstractCard card : cards) {

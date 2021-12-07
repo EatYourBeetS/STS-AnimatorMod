@@ -35,7 +35,7 @@ public class MetalKnight extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainMetallicize(magicNumber);
         GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.DecreaseMagicNumber(c, 1, false));

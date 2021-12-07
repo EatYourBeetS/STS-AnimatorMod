@@ -71,7 +71,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
             for (AbstractMonster m : GameUtilities.GetEnemies(true)) {
                 if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0) {
                     this.calculateCardDamage(m);
-                    GameActions.Bottom.DealDamage(this, m, AttackEffects.PSYCHOKINESIS);
+                    GameActions.Bottom.DealCardDamage(this, m, AttackEffects.PSYCHOKINESIS);
                 }
             }
             GameUtilities.UsePenNib();

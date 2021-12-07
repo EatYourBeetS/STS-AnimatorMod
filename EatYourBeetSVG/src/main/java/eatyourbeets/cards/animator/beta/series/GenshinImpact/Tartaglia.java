@@ -43,7 +43,7 @@ public class Tartaglia extends AnimatorCard {
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.BLUNT_LIGHT).forEach(d -> d
                 .AddCallback((targets) ->
                 {
                     for (AbstractCreature t : targets) {

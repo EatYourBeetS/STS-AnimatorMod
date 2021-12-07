@@ -26,7 +26,7 @@ public class YoshinoHaruhiko extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
 
         GameActions.Bottom.ChangeStance(MightStance.STANCE_ID);
 

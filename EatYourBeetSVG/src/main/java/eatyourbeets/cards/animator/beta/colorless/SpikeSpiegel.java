@@ -36,7 +36,7 @@ public class SpikeSpiegel extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
 
         RandomizedList<AbstractCard> randomizedList = new RandomizedList<>();
         for (AbstractCard c : player.drawPile.group)

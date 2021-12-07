@@ -29,7 +29,7 @@ public class SuikaIbuki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         AtomicBoolean shouldDrawLess = new AtomicBoolean(true);
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.GainBlock(block);
 
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);

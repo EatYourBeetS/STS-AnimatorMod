@@ -34,14 +34,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     public static final int SCALING_DIVISION = 1;
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
     public AffinityCounts AffinityCounts = new AffinityCounts();
+    public EYBAffinityMeter AffinityMeter;
 
     protected final DraggableHitbox hb;
-    protected final GUI_Image dragPanel_image;
+    protected final GUI_Image dragAmount_image;
     protected final GUI_Image draggable_icon;
     protected final GUI_Button info_icon;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
     protected EYBCardTooltip tooltip;
-    protected Vector2 savedPosition;
+    protected Vector2 amountsSavedPosition;
 
     protected AbstractCard currentSynergy = null;
     protected AnimatorCard lastCardPlayed = null;
@@ -59,7 +60,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
-        dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
+        dragAmount_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
 
         draggable_icon = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(40f), Scale(20f), false))
@@ -80,6 +81,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         //rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
+
+        AffinityMeter = new EYBAffinityMeter(this);
     }
 
     public AffinityCounts AddAffinity(Affinity affinity, int amount)
@@ -195,6 +198,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             row.OnStartOfTurn();
         }
+        AffinityMeter.OnStartOfTurn();
     }
 
     public int GetLastAffinityLevel(Affinity affinity)
@@ -248,6 +252,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void OnSynergy(AnimatorCard card)
     {
+        AffinityMeter.OnMatch(card);
         int star = card.affinities.Star != null ? card.affinities.Star.level : 0;
         for (EYBCardAffinity affinity : card.affinities.List)
         {
@@ -270,7 +275,11 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean WouldSynergize(AbstractCard card)
     {
-        return WouldSynergize(card, lastCardPlayed);
+        final EYBCard a = JUtils.SafeCast(card, EYBCard.class);
+        if (a != null) {
+            return AffinityMeter.HasMatch(a);
+        }
+        return false;
     }
 
     public boolean WouldSynergize(AbstractCard card, AbstractCard other)
@@ -395,15 +404,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         AffinityCounts = new AffinityCounts();
         CombatStats.onStartOfTurn.Subscribe(this);
 
-        if (savedPosition != null)
+        if (amountsSavedPosition != null)
         {
-            final DraggableHitbox hb = (DraggableHitbox) dragPanel_image.hb;
-            savedPosition.x = hb.target_cX / (float) Settings.WIDTH;
-            savedPosition.y = hb.target_cY / (float) Settings.HEIGHT;
-            if (savedPosition.dst2(GR.Animator.Config.AffinitySystemPosition.Get()) > Mathf.Epsilon)
+            final DraggableHitbox hb = (DraggableHitbox) dragAmount_image.hb;
+            amountsSavedPosition.x = hb.target_cX / (float) Settings.WIDTH;
+            amountsSavedPosition.y = hb.target_cY / (float) Settings.HEIGHT;
+            if (amountsSavedPosition.dst2(GR.Animator.Config.AffinitySystemPosition.Get()) > Mathf.Epsilon)
             {
                 JUtils.LogInfo(this, "Saved affinity panel position.");
-                GR.Animator.Config.AffinitySystemPosition.Set(savedPosition.cpy(), true);
+                GR.Animator.Config.AffinitySystemPosition.Set(amountsSavedPosition.cpy(), true);
             }
         }
 
@@ -411,6 +420,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             row.Initialize();
         }
+
+        AffinityMeter.Initialize();
     }
 
     public void Update()
@@ -420,10 +431,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             return;
         }
 
-        if (savedPosition == null)
+        if (amountsSavedPosition == null)
         {
-            savedPosition = GR.Animator.Config.AffinitySystemPosition.Get(new Vector2(0.0522f, 0.43f)).cpy();
-            hb.SetPosition(ScreenW(savedPosition.x), ScreenH(savedPosition.y));
+            amountsSavedPosition = GR.Animator.Config.AffinitySystemPosition.Get(new Vector2(0.0522f, 0.43f)).cpy();
+            hb.SetPosition(ScreenW(amountsSavedPosition.x), ScreenH(amountsSavedPosition.y));
         }
 
         boolean draggingCard = false;
@@ -447,12 +458,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             row.Update(previewAffinities, hoveredCard, synergies, draggingCard);
         }
 
+        AffinityMeter.Update();
+
         for (int i = 0; i < Powers.size(); i++)
         {
             Powers.get(i).update(i);
         }
 
-        dragPanel_image.Update();
+        dragAmount_image.Update();
         draggable_icon.Update();
         info_icon.Update();
 
@@ -469,7 +482,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             return;
         }
 
-        dragPanel_image.Render(sb);
+        dragAmount_image.Render(sb);
         draggable_icon.Render(sb);
         info_icon.Render(sb);
 
@@ -477,6 +490,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             t.Render(sb);
         }
+
+        AffinityMeter.Render(sb);
     }
 
     public static class AffinityCounts {

@@ -250,7 +250,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
                 break;
             case Regret:
                 for (int i = 0; i < player.hand.size(); i++) {
-                    GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.FIRE);
+                    GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.FIRE);
                 }
                 break;
             case Shame:

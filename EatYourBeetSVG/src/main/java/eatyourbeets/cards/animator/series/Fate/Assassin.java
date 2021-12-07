@@ -79,7 +79,7 @@ public class Assassin extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         AtomicInteger i = new AtomicInteger();
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> {d.SetDamageEffect(e -> DamageEffect(e, i.get()));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> {d.SetDamageEffect(e -> DamageEffect(e, i.get()));
         i.getAndIncrement();});
     }
 

@@ -16,6 +16,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     public static final EYBCardData DATA = Register(Emilia.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
+            .SetMultiformData(2, false)
             .SetSeries(CardSeries.ReZero);
 
     public Emilia()
@@ -27,11 +28,29 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
 
         SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
-        //SetCostUpgrade(-1);
 
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            if (form == 1) {
+                Initialize(0, 1, 2, 0);
+                SetUpgrade(0, 0, 0, 0);
+                SetCostUpgrade(-1);
+                this.cardText.OverrideDescription(cardData.Strings.DESCRIPTION, true);
+            }
+            else {
+                Initialize(0, 1, 2, 0);
+                SetUpgrade(0, 0, 0, 2);
+                SetCostUpgrade(0);
+                this.cardText.OverrideDescription(null, true);
+            }
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     protected void OnUpgrade()
@@ -43,7 +62,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential).AddCallback(() -> {
+        GameActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential).AddFocus(secondaryValue).AddCallback(() -> {
             GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         });
         CombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());

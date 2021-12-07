@@ -107,14 +107,14 @@ public class Gilgamesh extends AnimatorCard implements OnRelicObtainedSubscriber
             GameActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
 
             GameActions.Bottom.SFX(SFX.ATTACK_HEAVY);
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.SPEAR)
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SPEAR)
                     .forEach(d -> d.SetSoundPitch(1.3f, 1.4f).SetVFXColor(Color.YELLOW)
                             .SetDamageEffect((c, __) -> GameEffects.Queue.Add(VFX.IronWave(player.hb, c.hb))));
             GameActions.Bottom.VFX(new CleaveEffect());
         }
         else
         {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.SPEAR).forEach(d -> d
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SPEAR).forEach(d -> d
                     .SetSoundPitch(1.3f, 1.4f).SetVFXColor(Color.YELLOW));
         }
 

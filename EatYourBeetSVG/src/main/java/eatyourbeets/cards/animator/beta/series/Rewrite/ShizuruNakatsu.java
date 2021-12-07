@@ -39,7 +39,7 @@ public class ShizuruNakatsu extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.GUNSHOT);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.GUNSHOT);
         GameActions.Bottom.GainBlock(block);
 
         if (!player.stance.ID.equals(VelocityStance.STANCE_ID))

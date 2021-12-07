@@ -77,7 +77,7 @@ public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         DamageModifiers.For(this).Set(0);
     }
 }

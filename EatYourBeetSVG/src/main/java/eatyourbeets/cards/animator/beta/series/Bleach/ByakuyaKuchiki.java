@@ -30,9 +30,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.Callback(m, (enemy, __) -> {
-            ChooseAction(enemy);
-        });
+        GameActions.Bottom.Callback(m, (enemy, __) -> ChooseAction(enemy));
 
         if (MightStance.IsActive() || VelocityStance.IsActive()) {
             GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
@@ -81,7 +79,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
     }
 
     private void DamageEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {

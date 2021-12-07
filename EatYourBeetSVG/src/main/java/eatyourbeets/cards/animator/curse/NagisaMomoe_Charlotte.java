@@ -54,7 +54,7 @@ public class NagisaMomoe_Charlotte extends AnimatorCard_Curse implements OnPurge
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BITE);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.BITE);
         GameActions.Bottom.ApplyVulnerable(TargetHelper.AllCharacters(),magicNumber);
     }
 

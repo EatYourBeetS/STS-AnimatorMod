@@ -41,7 +41,7 @@ public class UtsuhoReiuji extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SMALL_EXPLOSION).forEach(d -> d.SetVFXColor(Color.GOLDENROD));
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SMALL_EXPLOSION).forEach(d -> d.SetVFXColor(Color.GOLDENROD));
 
         GameActions.Bottom.SelectFromPile(name, magicNumber, upgraded ? new CardGroup[] {p.hand, p.discardPile, p.drawPile} : new CardGroup[] {p.hand})
                 .SetOptions(false, true)

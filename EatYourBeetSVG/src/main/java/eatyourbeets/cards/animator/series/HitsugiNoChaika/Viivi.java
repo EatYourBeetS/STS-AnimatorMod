@@ -56,7 +56,7 @@ public class Viivi extends AnimatorCard implements Hidden
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE).forEach(d -> d
                 .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration));
 
         if (IsStarter())

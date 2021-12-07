@@ -30,7 +30,7 @@ public class ReimuHakurei extends AnimatorCard
     {
         int amount = TrySpendAffinity(Affinity.Light) ? magicNumber + 1 : magicNumber;
 
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.ApplyVulnerable(p, m, amount);
         GameActions.Bottom.ApplyWeak(p, m, amount);
         if (IsStarter())

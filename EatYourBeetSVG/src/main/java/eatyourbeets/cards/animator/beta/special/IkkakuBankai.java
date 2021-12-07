@@ -25,7 +25,7 @@ public class IkkakuBankai extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
 
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(true, true, true)
@@ -33,7 +33,7 @@ public class IkkakuBankai extends AnimatorCard
         {
             for (AbstractCard card : cards)
             {
-                GameActions.Top.DealDamageToAll(this, AttackEffects.SLASH_DIAGONAL).forEach(d -> d
+                GameActions.Top.DealCardDamageToAll(this, AttackEffects.SLASH_DIAGONAL).forEach(d -> d
                         .SetVFX(false, true));
             }
         });

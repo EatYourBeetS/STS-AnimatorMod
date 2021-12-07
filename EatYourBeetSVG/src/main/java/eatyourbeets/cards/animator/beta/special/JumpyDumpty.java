@@ -44,7 +44,7 @@ public class JumpyDumpty extends AnimatorCard {
             this.Refresh(priorityTarget);
             GameActions.Bottom.VFX(new ExplosionSmallEffect(priorityTarget.hb.cX, priorityTarget.hb.cY), 0.1F);
             AbstractMonster finalPriorityTarget = priorityTarget;
-            GameActions.Bottom.DealDamage(this, priorityTarget, AttackEffects.NONE).forEach(d -> d
+            GameActions.Bottom.DealCardDamage(this, priorityTarget, AttackEffects.NONE).forEach(d -> d
                     .AddCallback(finalPriorityTarget.currentBlock, (initialBlock, target) ->
                     {
                         if (GameUtilities.IsDeadOrEscaped(target) || (initialBlock > 0 && target.currentBlock <= 0)) {

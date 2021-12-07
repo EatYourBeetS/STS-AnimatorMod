@@ -59,7 +59,7 @@ public class FlandreScarlet_RemiliaScarlet extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BITE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BITE);
         if (CalculateHeal() > 0)
         {
             GameActions.Bottom.RecoverHP(heal);

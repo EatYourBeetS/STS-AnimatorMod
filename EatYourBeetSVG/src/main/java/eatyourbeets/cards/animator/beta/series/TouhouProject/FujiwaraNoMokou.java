@@ -40,7 +40,7 @@ public class FujiwaraNoMokou extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.TriggerOrbPassive(magicNumber, false, true).SetFilter(o -> Fire.ORB_ID.equals(o.ID)).AddCallback(orbs -> {
             if (orbs.size() > 0) {
                 GameActions.Bottom.StackPower(new VigorPower(player, orbs.size()));

@@ -61,11 +61,11 @@ public class Canti extends AnimatorCard
             //GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY));
             //GameActions.Bottom.Wait(0.8f);
             GameActions.Bottom.VFX(new ViolentAttackEffect(m.hb.cX, m.hb.cY, Color.SKY));
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE);
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         }
     }
 }

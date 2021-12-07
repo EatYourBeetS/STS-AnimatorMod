@@ -31,7 +31,7 @@ public class ZankiKiguchi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
         if (CheckPrimaryCondition(true))
         {

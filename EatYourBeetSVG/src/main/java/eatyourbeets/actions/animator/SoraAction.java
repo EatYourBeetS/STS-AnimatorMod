@@ -212,7 +212,7 @@ public class SoraAction extends EYBAction
                 {
                     return effect.GenerateInternal((c, p, m) ->
                     {
-                        GameActions.Bottom.DealDamageToAll(c, AttackEffect.SMASH);
+                        GameActions.Bottom.DealCardDamageToAll(c, AttackEffect.SMASH);
                         GameUtilities.UsePenNib();
                     });
                 }
@@ -264,7 +264,7 @@ public class SoraAction extends EYBAction
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            GameActions.Bottom.DealDamageToRandomEnemy(c, AttackEffects.BLUNT_LIGHT);
+                            GameActions.Bottom.DealCardDamageToRandomEnemy(c, AttackEffects.BLUNT_LIGHT);
                         }
                         GameUtilities.UsePenNib();
                     });

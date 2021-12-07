@@ -789,7 +789,7 @@
 		},
 		"animator:AyakaKamisato":
 		{
-			"DESCRIPTION": "If this ends the battle: Lose !S! [HP]. Otherwise, Gain !M! [Self-Immolation]. ** <LIM>. If you have {0} [Delayed Damage] any time this turn: Play {Sheer Cold}.",
+			"DESCRIPTION": "Gain !M! [Self-Immolation]. If this card ends the battle: Lose !S! [HP]. ** <LIM>. If you have {0} [Delayed Damage] any time this turn: Play {Sheer Cold}.",
 			"EXTENDED_DESCRIPTION": ["If you gain [Self-Immolation] and [Delayed Damage] any time this turn: Play #ySheer #yCold"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
 			"NAME": "Ayaka Kamisato"
 		},
@@ -895,6 +895,11 @@
 			"EXTENDED_DESCRIPTION": ["Play {Water Core}. [Water] has +!M! [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water]."],
 			"NAME": "Kokomi Sangonomiya"
 		},
+		"animator:Kreideprinz":
+        {
+        	"DESCRIPTION": "Obtain [Grief Seed]. Transform ALL Orbs into [Earth]. If any of them were: ** [Frost] -> Apply !S! [Freezing] to ALL enemies. ** [Earth] -> Gain [Inspiration].",
+        	"NAME": "Kreideprinz"
+        },
 		"animator:KujouSara":
 		{
 			"DESCRIPTION": "Discard ALL cards in hand and give them +1 <GSC>. Apply !M! [Electrified] to ALL enemies for each. ** <LIM>. <ST>. [Electrified] gains +!S!% effect bonus.",
@@ -1372,7 +1377,7 @@
 		},
 		"animator:HououinKyouma":
 		{
-			"DESCRIPTION": "Add a copy of !M! card(s) played this combat your draw pile. || <LIM>. When drawn: Retain this, Gain !S! [S], and add {Time Paradox} to your discard pile.",
+			"DESCRIPTION": "Add a copy of !M! card(s) played this combat your draw pile. || <LIM>. When drawn: Gain !S! [S] and add {Time Paradox} to your discard pile.",
 			"NAME": "Hououin Kyouma"
 		},
 		"animator:Kira":
@@ -2248,12 +2253,12 @@
 		},
 		"animator:Kazuma":
 		{
-			"DESCRIPTION": "This gains +!M! damage. || Synergy with {Same-Series}: The last card played gains +!S! [Block].",
+			"DESCRIPTION": "This gains +!M! damage. || Synergy: Also gains +!S! [Block].",
 			"NAME": "Kazuma Satou"
 		},
 		"animator:Lean":
 		{
-			"DESCRIPTION": "Gain !S! [Support Damage] for every {Synergic} card in hand (!X!). || Pay !A! <G> and/or Pay !A! <B>: Channel a random {Common Orb}.",
+			"DESCRIPTION": "Gain !S! [Support Damage] for each <B> card in hand (!X!). || Pay !A! <G> and/or Pay !A! <B>: Channel a random {Common Orb}.",
 			"NAME": "Lean"
 		},
 		"animator:Megumin":

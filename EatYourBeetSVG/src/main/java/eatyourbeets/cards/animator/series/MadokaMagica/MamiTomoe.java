@@ -77,7 +77,7 @@ public class MamiTomoe extends AnimatorCard
         GameActions.Bottom.SFX("ATTACK_HEAVY");
         GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
         GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));

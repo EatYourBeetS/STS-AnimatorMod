@@ -51,7 +51,7 @@ public class HiiragiKureto extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY).forEach(d -> d
                 .SetVFXColor(Color.GOLDENROD)
                 .AddCallback(e -> {
             if (e.lastDamageTaken > 0) {

@@ -41,7 +41,7 @@ public class Raven extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
         if (GameUtilities.IsAttacking(m.intent))
         {

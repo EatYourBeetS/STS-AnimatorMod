@@ -29,6 +29,7 @@ public class AnimatorConfig
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
     private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
+    private static final String AFFINITY_METER_POSITION =  "TheAnimator-AffinityMeterPosition";
     private static final String AFFINITY_SYSTEM_POSITION =  "TheAnimator-AffinitySystemPosition";
     private static final String VERSION =  "TheAnimator-Version";
     private static final String SELECTEDSERIES =  "TheAnimator-SelectedSeries";
@@ -46,6 +47,7 @@ public class AnimatorConfig
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
     public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
+    public ConfigOption_Vector2 AffinityMeterPosition = new ConfigOption_Vector2(AFFINITY_METER_POSITION, null);
     public ConfigOption_Integer MajorVersion = new ConfigOption_Integer(VERSION, null);
     public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTEDSERIES, null);
     public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDEDSERIES, new ArrayList<>());
@@ -80,6 +82,7 @@ public class AnimatorConfig
             CropCardImages.SetConfig(config);
             DisplayBetaSeries.SetConfig(config);
             EnableEventsForOtherCharacters.SetConfig(config);
+            AffinityMeterPosition.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
             SelectedSeries.SetConfig(config);
             ExpandedSeries.SetConfig(config);

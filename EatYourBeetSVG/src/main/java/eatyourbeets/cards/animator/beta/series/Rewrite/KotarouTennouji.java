@@ -35,7 +35,7 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
 
         if (choices.TryInitialize(this))
         {

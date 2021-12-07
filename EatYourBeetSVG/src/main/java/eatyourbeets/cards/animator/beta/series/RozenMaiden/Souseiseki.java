@@ -42,7 +42,7 @@ public class Souseiseki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.ExhaustFromHand(name, 1, false)

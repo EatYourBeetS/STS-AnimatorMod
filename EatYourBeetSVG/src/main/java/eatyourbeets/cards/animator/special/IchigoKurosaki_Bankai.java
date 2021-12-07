@@ -59,7 +59,7 @@ public class IchigoKurosaki_Bankai extends AnimatorCard
         {
             GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.LIGHT_GRAY));
             GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.LIGHT_GRAY, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75f);
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
         }
     }
 }

@@ -54,7 +54,7 @@ public class CrowleyEusford extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SLASH_HEAVY);
 
         if (CheckSpecialCondition(true))
         {

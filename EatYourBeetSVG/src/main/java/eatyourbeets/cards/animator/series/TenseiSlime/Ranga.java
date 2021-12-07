@@ -47,11 +47,11 @@ public class Ranga extends AnimatorCard implements OnAttackSubscriber
     {
         if (upgraded)
         {
-            GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
+            GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.LIGHTNING);
         }
         else
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.LIGHTNING);
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.LIGHTNING);
         }
 
         cooldown.ProgressCooldownAndTrigger(m);

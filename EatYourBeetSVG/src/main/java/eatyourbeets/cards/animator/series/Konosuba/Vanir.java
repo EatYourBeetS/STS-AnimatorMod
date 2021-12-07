@@ -55,13 +55,13 @@ public class Vanir extends AnimatorCard
         {
             GameActions.Bottom.SFX(SFX.ATTACK_DEFECT_BEAM);
             GameActions.Bottom.VFX(VFX.SmallLaser(p.hb, m.hb, Color.RED));
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE).forEach(d -> d
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE).forEach(d -> d
             .SetDamageEffect(c -> GameEffects.List.Add(VFX.SmallExplosion(c.hb)).duration * 0.1f));
         }
         else
         {
             GameActions.Bottom.Wait(0.25f);
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH);
         }
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
     }

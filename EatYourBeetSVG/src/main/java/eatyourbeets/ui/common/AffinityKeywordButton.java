@@ -1,67 +1,63 @@
 package eatyourbeets.ui.common;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.effects.affinity.ChangeAffinityCountEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
-import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.RenderHelpers;
 
 public class AffinityKeywordButton extends GUIElement
 {
     public static final float ICON_SIZE = Scale(48);
-    private static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
-    private ActionT1<AffinityKeywordButton> onClick;
+    protected static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
+    protected ActionT1<AffinityKeywordButton> onClick;
+    protected Texture borderTexture;
+    protected Texture borderBGTexture;
+    protected Texture borderFGTexture;
 
-    public final Affinity Type;
+    public Affinity Type;
 
     public GUI_Button background_button;
-    public final GUI_Image LV1_image;
-    public final GUI_Image LV2_image;
     public int currentLevel;
+    public float borderRotation;
 
-    public AffinityKeywordButton(Hitbox hb, Affinity affinity, int initialAmount)
+    public AffinityKeywordButton(Hitbox hb, Affinity affinity) {
+        this(hb, affinity, ICON_SIZE);
+    }
+
+    public AffinityKeywordButton(Hitbox hb, Affinity affinity, float iconSize)
     {
-        final float offset = -0.5f * (ICON_SIZE / hb.width);
-
         Type = affinity;
-        currentLevel = initialAmount;
 
-        background_button = new GUI_Button(affinity.GetIcon(), new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.5f, offset, true)
+        background_button = new GUI_Button(affinity.GetIcon(), new RelativeHitbox(hb, iconSize, iconSize, 0f, 0f, true)
                 .SetIsPopupCompatible(true))
                 .SetText("")
                 .SetColor(currentLevel == 0 ? PANEL_COLOR : Color.WHITE)
                 .SetOnClick(() -> {
-                    currentLevel = (currentLevel + 1) % 3;
-                    background_button.SetColor(currentLevel == 0 ? PANEL_COLOR : Color.WHITE);
-
                     if (this.onClick != null) {
                         this.onClick.Invoke(this);
                     }
                 });
-
-        LV1_image = RenderHelpers.ForTexture(GR.Common.Images.Affinities.Border_Weak.Texture())
-                .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.01f, offset, true));
-
-        LV2_image = RenderHelpers.ForTexture(GR.Common.Images.Affinities.Border.Texture())
-                .SetBackgroundTexture(GR.Common.Images.Affinities.BorderBG.Texture())
-                .SetForegroundTexture(GR.Common.Images.Affinities.BorderFG.Texture())
-                .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.01f, offset, true));
     }
 
-    public AffinityKeywordButton SetIndex(int index)
+    public AffinityKeywordButton SetAffinity(Affinity affinity)
     {
-        float x = 0.5f + (index * 1.05f);
-        RelativeHitbox.SetPercentageOffset(background_button.hb, x, null);
-        RelativeHitbox.SetPercentageOffset(LV1_image.hb, x, null);
-        RelativeHitbox.SetPercentageOffset(LV2_image.hb, x, null);
+        Type = affinity;
+        background_button.SetBackground(affinity.GetIcon());
 
+        return this;
+    }
+
+    public AffinityKeywordButton SetOffsets(float xOffset, float yOffset)
+    {
+        RelativeHitbox.SetPercentageOffset(background_button.hb, xOffset, yOffset);
         return this;
     }
 
@@ -69,6 +65,33 @@ public class AffinityKeywordButton extends GUIElement
     {
         this.onClick = onClick;
 
+        return this;
+    }
+
+    public AffinityKeywordButton SetLevel(int level) {
+        currentLevel = level;
+        background_button.SetColor(currentLevel == 0 ? PANEL_COLOR : Color.WHITE);
+        switch (currentLevel) {
+            case 1:
+                borderTexture = GR.Common.Images.Affinities.Border_Weak.Texture();
+                borderBGTexture = null;
+                borderFGTexture = null;
+                break;
+            case 2:
+                borderTexture = GR.Common.Images.Affinities.Border_Weak.Texture();
+                borderBGTexture = GR.Common.Images.Affinities.BorderBG.Texture();
+                borderFGTexture = null;
+                break;
+            case 3:
+                borderTexture = GR.Common.Images.Affinities.Border.Texture();
+                borderBGTexture = GR.Common.Images.Affinities.BorderBG.Texture();
+                borderFGTexture = GR.Common.Images.Affinities.BorderFG.Texture();
+                break;
+            default:
+                borderTexture = null;
+                borderBGTexture = null;
+                borderFGTexture = null;
+        }
         return this;
     }
 
@@ -80,23 +103,53 @@ public class AffinityKeywordButton extends GUIElement
         }
     }
 
+    public void Flash() {
+        GameEffects.List.Add(new ChangeAffinityCountEffect(this, true));
+    }
+
     @Override
     public void Update()
     {
         background_button.SetInteractable(GameEffects.IsEmpty()).Update();
-        LV1_image.Update();
-        LV2_image.Update();
+        if (currentLevel > 2) {
+            borderRotation = GR.UI.Time_Multi(-20);
+        }
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
         background_button.Render(sb);
-        if (currentLevel == 1) {
-            LV1_image.Render(sb);
+        sb.setColor(Color.WHITE.cpy());
+        if (borderBGTexture != null) {
+            sb.draw(borderBGTexture,
+                    background_button.hb.x, background_button.hb.y,
+                    background_button.hb.width/2f, background_button.hb.height/2f,
+                    background_button.hb.width, background_button.hb.height,
+                    background_button.background.scaleX, background_button.background.scaleY,
+                    0, 0,0,
+                    borderBGTexture.getWidth(), borderBGTexture.getHeight(), false, false
+                    );
         }
-        else if (currentLevel == 2) {
-            LV2_image.Render(sb);
+        if (borderTexture != null) {
+            sb.draw(borderTexture,
+                    background_button.hb.x, background_button.hb.y,
+                    background_button.hb.width/2f, background_button.hb.height/2f,
+                    background_button.hb.width, background_button.hb.height,
+                    background_button.background.scaleX, background_button.background.scaleY,
+                    borderRotation, 0,0,
+                    borderTexture.getWidth(), borderTexture.getHeight(), false, false
+            );
+        }
+        if (borderFGTexture != null) {
+            sb.draw(borderFGTexture,
+                    background_button.hb.x, background_button.hb.y,
+                    background_button.hb.width/2f, background_button.hb.height/2f,
+                    background_button.hb.width, background_button.hb.height,
+                    background_button.background.scaleX, background_button.background.scaleY,
+                    -borderRotation, 0,0,
+                    borderFGTexture.getWidth(), borderFGTexture.getHeight(), false, false
+            );
         }
     }
 }

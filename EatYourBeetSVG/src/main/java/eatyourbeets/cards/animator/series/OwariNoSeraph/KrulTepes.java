@@ -73,7 +73,7 @@ public class KrulTepes extends AnimatorCard
     {
         if (m != null)
         {
-            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+            GameActions.Bottom.DealCardDamage(this, m, AttackEffects.NONE)
                     .forEach(d -> d.SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.SCARLET)).duration)
             .AddCallback(enemy ->
             {

@@ -34,7 +34,7 @@ public class MarisaKirisame extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.LIGHTNING);
 
         if (info.IsSynergizing)
         {

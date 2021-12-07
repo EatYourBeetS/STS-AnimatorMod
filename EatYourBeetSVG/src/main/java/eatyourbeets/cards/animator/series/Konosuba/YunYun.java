@@ -67,7 +67,7 @@ public class YunYun extends AnimatorCard
             GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
         }
 
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE);
 
         GameActions.Bottom.Cycle(name, costForTurn);
     }

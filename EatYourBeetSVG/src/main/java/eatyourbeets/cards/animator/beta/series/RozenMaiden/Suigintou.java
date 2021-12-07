@@ -57,7 +57,7 @@ public class Suigintou extends AnimatorCard implements OnPurgeSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.DARKNESS);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.DARKNESS);
 
         GameActions.Bottom.ChannelOrbs(Dark::new, secondaryValue).AddCallback(() -> {
             for (AbstractOrb orb : player.orbs) {

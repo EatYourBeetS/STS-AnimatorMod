@@ -25,7 +25,7 @@ public class Bennett extends AnimatorCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.StackPower(new VigorPower(player, magicNumber));
         if (GameUtilities.GetHealthPercentage(player) < 0.2f) {
             GameActions.Bottom.StackPower(new VigorPower(player, secondaryValue));

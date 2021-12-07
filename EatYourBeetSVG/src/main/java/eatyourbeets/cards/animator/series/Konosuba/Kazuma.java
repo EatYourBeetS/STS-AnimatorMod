@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Kazuma extends AnimatorCard
 {
@@ -32,13 +31,13 @@ public class Kazuma extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealCardDamage(this,m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
         GameActions.Bottom.GainBlock(block);
 
         this.baseDamage += magicNumber;
 
-        if (info.IsSynergizing && GameUtilities.IsSameSeries(this, info.PreviousCard) && info.PreviousCard.baseBlock > 0) {
-            info.PreviousCard.baseBlock += secondaryValue;
+        if (info.IsSynergizing) {
+            this.baseBlock += secondaryValue;
         };
     }
 }

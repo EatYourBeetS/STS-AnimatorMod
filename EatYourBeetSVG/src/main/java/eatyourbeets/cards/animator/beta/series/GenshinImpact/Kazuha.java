@@ -31,7 +31,7 @@ public class Kazuha extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_DIAGONAL).forEach(d -> d
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_DIAGONAL).forEach(d -> d
                 .SetDamageEffect((c, __) -> GameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 1.4f, 1.6f)));
         AbstractMonster mo = GameUtilities.GetRandomEnemy(true);
         if (mo != null) {

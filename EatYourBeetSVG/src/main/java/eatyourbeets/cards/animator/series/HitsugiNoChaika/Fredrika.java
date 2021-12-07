@@ -163,7 +163,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber, Hid
 
             case Dominica:
             {
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+                GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.ApplyWeak(p, m, 1);
                 GameActions.Bottom.ApplyVulnerable(p, m, 1);
                 break;
@@ -171,7 +171,7 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber, Hid
 
             case Dragoon:
             {
-                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+                GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
                 GameActions.Bottom.GainMetallicize(2);
                 break;
             }

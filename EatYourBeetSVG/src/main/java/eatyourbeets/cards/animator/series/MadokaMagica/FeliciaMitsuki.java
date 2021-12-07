@@ -44,7 +44,7 @@ public class FeliciaMitsuki extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
         if (CheckAffinity(Affinity.Orange)) {
             GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetFilter(GameUtilities::IsHindrance).AddCallback(cards -> {

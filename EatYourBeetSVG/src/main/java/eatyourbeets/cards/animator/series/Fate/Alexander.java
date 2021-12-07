@@ -35,7 +35,7 @@ public class Alexander extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
         if (MightStance.IsActive())
         {
             GameActions.Bottom.Draw(1);

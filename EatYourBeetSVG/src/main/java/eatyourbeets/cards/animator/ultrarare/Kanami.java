@@ -38,7 +38,7 @@ public class Kanami extends AnimatorCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamageToAll(this, AttackEffects.SLASH_HORIZONTAL)
+        GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HORIZONTAL)
                 .forEach(d -> d.SetVFX(true, false)
         .AddCallback(enemies ->
         {

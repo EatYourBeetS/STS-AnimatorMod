@@ -105,7 +105,7 @@ public class Patchouli extends AnimatorCard
             });
         }
 
-        GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d.SetOptions(true, false).SetDamageEffect(actions.Retrieve(rng)));
+        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d.SetOptions(true, false).SetDamageEffect(actions.Retrieve(rng)));
 
         if (TrySpendAffinity(Affinity.Blue) && info.TryActivateLimited())
         {

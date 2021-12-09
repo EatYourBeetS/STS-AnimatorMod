@@ -24,7 +24,7 @@ public class Keqing extends AnimatorCard
         Initialize(2, 0, 3);
         SetUpgrade(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Dark(0, 0, 1);
 
 

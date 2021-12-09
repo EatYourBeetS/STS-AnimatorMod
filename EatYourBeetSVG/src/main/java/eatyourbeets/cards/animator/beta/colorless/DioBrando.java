@@ -24,8 +24,8 @@ public class DioBrando extends AnimatorCard
         Initialize(18, 0, 3, 3);
         SetUpgrade(4, 0, 0, 0);
 
-        SetAffinity_Red(2,0,2);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Red(1,0,2);
+        SetAffinity_Dark(1, 0, 1);
 
         SetSoul(7, 0, DioBrando_TheWorld::new);
     }

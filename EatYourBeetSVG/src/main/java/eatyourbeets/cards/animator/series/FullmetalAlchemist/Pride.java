@@ -28,12 +28,12 @@ public class Pride extends AnimatorCard
 
         Initialize(0, 1, 1, 2);
 
-        SetAffinity_Star(2);
-        SetAffinity_Dark(0,0,1);
+        SetAffinity_Dark(1,0,1);
 
         SetEvokeOrbCount(magicNumber);
         SetEthereal(true);
         SetExhaust(true);
+        SetHarmonic(true);
     }
 
     @Override

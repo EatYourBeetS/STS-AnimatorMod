@@ -3,11 +3,11 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.HomuraAkemi_Homulily;
+import eatyourbeets.cards.animator.special.HomuraAkemi_Homulily;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.modifiers.CostModifiers;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HomuraAkemi extends AnimatorCard
 {
@@ -27,7 +27,7 @@ public class HomuraAkemi extends AnimatorCard
         Initialize(0, 2, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
         SetAffinity_Dark(1, 0, 1);
         SetAffinity_Light(0,0,1);
 
@@ -35,7 +35,7 @@ public class HomuraAkemi extends AnimatorCard
         SetExhaust(true);
 
         SetAffinityRequirement(Affinity.Light, 6);
-        SetSoul(1, 1, HomuraAkemi_Homulily::new);
+        SetSoul(2, 0, HomuraAkemi_Homulily::new);
     }
 
     @Override
@@ -78,10 +78,7 @@ public class HomuraAkemi extends AnimatorCard
             GameActions.Bottom.SelectFromPile(name, 1, player.masterDeck)
                     .SetFilter(c -> !c.cardID.equals(sourceCard.cardID))
                     .SetOptions(false, false)
-                    .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(ca -> {
-                        ca.purgeOnUse = true;
-                        CostModifiers.For(ca).Set(-1);
-                    }));
+                    .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(cards.get(0))));
         }
 
         @Override

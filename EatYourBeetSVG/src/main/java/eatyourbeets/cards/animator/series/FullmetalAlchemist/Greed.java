@@ -40,8 +40,8 @@ public class Greed extends AnimatorCard
         SetUpgrade(0,0, 1, 1);
 
         SetAffinity_Red(1);
-        SetAffinity_Orange(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Orange(1);
+        SetAffinity_Dark(1);
 
         SetObtainableInCombat(false);
     }

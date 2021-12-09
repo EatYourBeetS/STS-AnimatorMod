@@ -18,6 +18,7 @@ public class AnimatorStrings
     public Actions Actions;
     public Trophies Trophies;
     public Tutorial Tutorial;
+    public Combat Combat;
     public CardMods CardMods;
 
     public void Initialize()
@@ -33,6 +34,7 @@ public class AnimatorStrings
         SeriesSelection = new SeriesSelection();
         SeriesSelectionButtons = new SeriesSelectionButtons();
         SingleCardPopupButtons = new SingleCardPopupButtons();
+        Combat = new Combat();
         CardMods = new CardMods();
     }
 
@@ -264,6 +266,16 @@ public class AnimatorStrings
         public final String CurrentCopies = Strings.TEXT[4];
         public final String MaxCopies = Strings.TEXT[5];
         public final String MaxCopiesTooltip = Strings.TEXT[6];
+    }
+
+    public class Combat
+    {
+        private final UIStrings Strings = GetUIStrings("Combat");
+
+        public final String Current = Strings.TEXT[0];
+        public final String Next = Strings.TEXT[1];
+        public final String Uses = Strings.TEXT[2];
+        public final String Rerolls = Strings.TEXT[3];
     }
 
     public class CardMods

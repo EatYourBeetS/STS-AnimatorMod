@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.Konosuba;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
@@ -26,8 +25,8 @@ public class Verdia extends AnimatorCard
         Initialize(1, 20, 1);
         SetUpgrade(1, 1, 0);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 4);
         SetAffinityRequirement(Affinity.Dark, 4);
@@ -38,12 +37,10 @@ public class Verdia extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        CardGroup[] groups = upgraded ? new CardGroup[]{player.hand, player.drawPile, player.discardPile} : new CardGroup[]{player.hand};
-
-        GameActions.Bottom.SelectFromPile(name, 1, groups)
+        GameActions.Bottom.SelectFromPile(name, 1, player.hand)
                 .SetOptions(false, false)
                 .SetMessage(DATA.Strings.EXTENDED_DESCRIPTION[0])
-                .SetFilter(c -> GameUtilities.IsSameSeries(this, c) && (c.baseDamage >= 0 || c.baseBlock >= 0))
+                .SetFilter(c -> (upgraded || GameUtilities.HasRedAffinity(c) || GameUtilities.HasDarkAffinity(c)) && (c.baseDamage >= 0 || c.baseBlock >= 0))
                 .AddCallback(cards ->
                 {
                     for (AbstractCard c : cards)

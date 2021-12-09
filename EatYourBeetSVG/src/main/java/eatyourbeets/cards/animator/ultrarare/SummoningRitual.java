@@ -29,7 +29,7 @@ public class SummoningRitual extends AnimatorCard_UltraRare
         Initialize(0, 0, 3, 3);
         SetUpgrade(0, 0, 0, -1);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetRetain(true);
         SetPurge(true, false);

@@ -20,7 +20,7 @@ public class Tatsumaki extends AnimatorCard
         Initialize(0, 3, 2);
         SetUpgrade(0, 1, 1);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Light(1);
         SetAffinity_Green(0,0,1);
 

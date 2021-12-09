@@ -37,7 +37,7 @@
 	},
 	"animator:BozesPower":
 	{
-		"DESCRIPTIONS": ["When a card #ySynergizes, gain #b{0} #ySupport #yDamage."],
+		"DESCRIPTIONS": ["When a card #yMatches, gain #b{0} #ySupport #yDamage."],
 		"NAME": "Bozes Co Palesti"
 	},
 	"animator:BurningWeaponPower":
@@ -212,7 +212,7 @@
 	},
 	"animator:IonizingStormPower":
 	{
-	  "DESCRIPTIONS": ["[Lightning] applies #b{0} [Electrified] once to a random enemy when Triggered and twice to all enemies when Evoked. NL [Lightning] gains #b1 [Focus] for every #b5 [L] #yCharge."],
+	  "DESCRIPTIONS": ["[Lightning] applies #b{0}% of [Focus] as [Electrified] to a random enemy when #yTriggered and to ALL enemies when #yEvoked. NL At the start of turn: Gain #b{1} [L] for each enemy with [Electrified]."],
 	  "NAME": "Ionizing Storm"
 	},
 	"animator:KaijinPower":

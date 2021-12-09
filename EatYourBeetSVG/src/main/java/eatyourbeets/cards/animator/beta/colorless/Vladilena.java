@@ -40,8 +40,8 @@ public class Vladilena extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         SetUpgrade(0,0,1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 1, 0);
-        SetAffinity_Silver(2);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Silver(1);
 
         SetDrawPileCardPreview(this::FindCards);
         SetExhaust(true);

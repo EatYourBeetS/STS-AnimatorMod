@@ -22,6 +22,7 @@ public class SFX
         BaseMod.addAudio(ANIMATOR_SPEAR_1, "audio/animator/sound/SPEAR_1.ogg");
         BaseMod.addAudio(ANIMATOR_SPEAR_2, "audio/animator/sound/SPEAR_2.ogg");
         BaseMod.addAudio(ANIMATOR_ARROW, "audio/animator/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(ANIMATOR_BOOST, "audio/animator/sound/EE01_12_Encourage.ogg");
         BaseMod.addAudio(ANIMATOR_GUNSHOT, "audio/animator/sound/FIRING_BULLET.ogg");
         BaseMod.addAudio(ANIMATOR_PSI, "audio/animator/sound/PSI.ogg");
         BaseMod.addAudio(ANIMATOR_PUNCH, "audio/animator/sound/PUNCH.ogg");
@@ -45,6 +46,7 @@ public class SFX
     }
 
     public static final String ANIMATOR_ARROW = "ANIMATOR_ARROW";
+    public static final String ANIMATOR_BOOST = "ANIMATOR_BOOST";
     public static final String ANIMATOR_DARKNESS = "ANIMATOR_DARKNESS";
     public static final String ANIMATOR_GUNSHOT = "ANIMATOR_GUNSHOT";
     public static final String ANIMATOR_SPEAR_1 = "ANIMATOR_SPEAR_1";

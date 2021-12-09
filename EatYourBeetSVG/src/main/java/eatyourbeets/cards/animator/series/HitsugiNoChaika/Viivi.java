@@ -30,7 +30,7 @@ public class Viivi extends AnimatorCard implements Hidden
         Initialize(3, 0, 3);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Green, 3);

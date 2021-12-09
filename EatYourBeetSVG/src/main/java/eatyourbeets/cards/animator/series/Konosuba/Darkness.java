@@ -42,8 +42,6 @@ public class Darkness extends AnimatorCard
 
     public class DarknessPower extends AnimatorPower
     {
-        private int damageTaken;
-
         public DarknessPower(AbstractPlayer owner, int amount)
         {
             super(owner, Darkness.DATA);
@@ -58,12 +56,9 @@ public class Darkness extends AnimatorCard
 
             if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
             {
-                damageTaken += damageAmount;
-                if (damageTaken >= 5) {
-                    GameActions.Bottom.GainPlatedArmor(amount);
-                    RemovePower();
-                    this.flash();
-                }
+                GameActions.Bottom.GainPlatedArmor(amount);
+                RemovePower();
+                this.flash();
             }
         }
 

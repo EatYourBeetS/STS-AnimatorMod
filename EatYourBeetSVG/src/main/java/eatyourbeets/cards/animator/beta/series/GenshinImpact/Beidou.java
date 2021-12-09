@@ -28,8 +28,8 @@ public class Beidou extends AnimatorCard
 
         Initialize(3, 16, 3, 1);
         SetUpgrade(1, 2, 0, 0);
-        SetAffinity_Red(1,1,1);
-        SetAffinity_Orange(1,0,1);
+        SetAffinity_Red(1, 0 ,1);
+        SetAffinity_Orange(1, 0 ,1);
     }
 
     @Override

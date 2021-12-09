@@ -20,11 +20,11 @@ public class OrikoMikuni extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 4);
+        Initialize(0, 1, 3, 4);
         SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Blue, 6);
     }
@@ -32,11 +32,7 @@ public class OrikoMikuni extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.PurgeFromPile(name,1,player.exhaustPile).SetOptions(false,true).AddCallback(cards -> {
-            if (cards.size() > 0) {
-                GameActions.Bottom.GainWisdom(2, false);
-            }
-        });
+        GameActions.Bottom.GainBlock(block);
 
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));

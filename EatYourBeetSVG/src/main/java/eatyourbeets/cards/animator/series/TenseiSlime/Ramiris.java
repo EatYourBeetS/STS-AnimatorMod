@@ -28,8 +28,8 @@ public class Ramiris extends AnimatorCard
         Initialize(0, 0, 1, 4);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Light(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Light(1);
+        SetAffinity_Blue(1);
         SetAffinity_Green(1);
 
         SetExhaust(true);

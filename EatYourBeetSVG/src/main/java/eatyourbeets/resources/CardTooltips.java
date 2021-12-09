@@ -39,6 +39,7 @@ public class CardTooltips
     public EYBCardTooltip Evoke = FindByID("Evoke").ShowText(false);
     public EYBCardTooltip Exhaust = FindByID("Exhaust").ShowText(false);
     public EYBCardTooltip Health = FindByID("Health").ShowText(false);
+    public EYBCardTooltip Series = FindByID("Series").ShowText(false);
     public EYBCardTooltip Stance = FindByID("Stance").ShowText(false);
     public EYBCardTooltip Trigger = FindByID("Trigger").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
@@ -170,7 +171,6 @@ public class CardTooltips
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
-    public EYBCardTooltip Affinity_Count = FindByID("Affinity Count");
     public EYBCardTooltip RandomOrb = new EYBCardTooltip("Random Orb", null);
     public EYBCardTooltip ThrowingKnife = new EYBCardTooltip(eatyourbeets.cards.animator.special.ThrowingKnife.DATA.Strings.NAME, null);
     public EYBCardTooltip GriefSeed = new EYBCardTooltip(Curse_GriefSeed.DATA.Strings.NAME, null);

@@ -32,7 +32,7 @@ public class KaeyaAlberich extends AnimatorCard {
 
         GameActions.Bottom.GainBlock(block);
 
-        if ((info.IsSynergizing || TrySpendAffinity(Affinity.Green)) && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (TrySpendAffinity(Affinity.Green) && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
         }
 

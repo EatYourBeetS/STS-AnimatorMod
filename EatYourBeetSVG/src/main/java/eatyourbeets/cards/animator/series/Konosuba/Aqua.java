@@ -32,7 +32,7 @@ public class Aqua extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
         SetAffinity_Blue(1);
 
         SetHealing(true);

@@ -33,7 +33,7 @@ public class KoishiKomeiji extends AnimatorCard
 
         Initialize(0, 0, CHOICES, COST);
         SetUpgrade(0, 0, 0, 0);
-        SetAffinity_Star(1,1,0);
+        SetAffinity_Star(1, 0 ,0);
         SetEthereal(true);
     }
 

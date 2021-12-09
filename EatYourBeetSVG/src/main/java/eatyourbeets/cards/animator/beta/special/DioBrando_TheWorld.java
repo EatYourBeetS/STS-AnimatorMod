@@ -26,7 +26,7 @@ public class DioBrando_TheWorld extends AnimatorCard
 
         Initialize(0, 0, 2, COST);
         SetUpgrade(0,0,1,0);
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
         SetInnate(true);
     }
 

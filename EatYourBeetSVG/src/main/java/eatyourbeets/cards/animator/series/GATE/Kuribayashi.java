@@ -22,8 +22,8 @@ public class Kuribayashi extends AnimatorCard
         Initialize(7, 0, 2, 3);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1, 1, 1);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Silver(1);
 
         SetAffinityRequirement(Affinity.Red, 3);

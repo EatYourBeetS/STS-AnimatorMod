@@ -22,7 +22,7 @@ public class Kazuha extends AnimatorCard
 
         Initialize(5, 0, 3, 0);
         SetUpgrade(2, 0, 1, 0);
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Blue(0, 0, 1);
 
         SetExhaust(true);

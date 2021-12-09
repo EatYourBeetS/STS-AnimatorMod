@@ -1,26 +1,22 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.GraveField;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Kyubey extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Kyubey.class)
             .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(1)
-            .SetSeriesFromClassPackage();
-    public static final int SOUL_COST = 3;
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public Kyubey()
     {
@@ -29,11 +25,12 @@ public class Kyubey extends AnimatorCard
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
         SetAffinity_Silver(1);
 
-        SetEthereal(true);
+        SetPurge(true);
+        GraveField.grave.set(this, true);
     }
 
     @Override
@@ -42,24 +39,17 @@ public class Kyubey extends AnimatorCard
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.GainEnergy(secondaryValue);
 
-        AtomicInteger soul = new AtomicInteger();
-        for (int i = 0; i < SOUL_COST; i++) {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-                    .SetFilter(GameUtilities::IsSoul)
-                    .AddCallback(cards -> {
-                        for (AbstractCard c : cards) {
-                            if (c instanceof AnimatorCard) {
-                                ((AnimatorCard) c).cooldown.ProgressCooldown(1);
-                                c.flash();
-                                soul.addAndGet(1);
-                            }
+        GameActions.Bottom.SelectFromPile(name, 999, player.hand, player.drawPile, player.discardPile)
+                .SetOptions(true, true)
+                .SetFilter(GameUtilities::HasCooldown)
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        if (GameUtilities.HasCooldown(c)) {
+                            ((EYBCard) c).cooldown.ResetCooldown();
+                            c.flash();
                         }
-            });
-        }
-        if (soul.get() < secondaryValue) {
-            GameActions.Bottom.Purge(this).ShowEffect(true);
-            GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, player.hand));
-        }
+                    }
+                });
     }
 
     @Override
@@ -70,7 +60,7 @@ public class Kyubey extends AnimatorCard
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.GainDesecration(secondaryValue);
+            GameActions.Bottom.CreateGriefSeeds(secondaryValue);
         }
     }
 }

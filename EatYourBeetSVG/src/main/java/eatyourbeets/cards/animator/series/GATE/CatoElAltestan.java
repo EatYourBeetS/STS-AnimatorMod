@@ -27,7 +27,7 @@ public class CatoElAltestan extends AnimatorCard
         Initialize(0, 1, 2, 3);
         SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(1, 0, 2);
 
         SetExhaust(true);
 

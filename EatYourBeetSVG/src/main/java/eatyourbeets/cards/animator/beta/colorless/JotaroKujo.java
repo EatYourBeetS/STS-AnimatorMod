@@ -22,7 +22,7 @@ public class JotaroKujo extends AnimatorCard
         Initialize(0, 17, 0, 0);
         SetUpgrade(0, 2, 0, 0);
 
-        SetAffinity_Red(2,0,2);
+        SetAffinity_Red(1,0,2);
         SetAffinity_Light(1, 0, 1);
 
         SetSoul(7, 0, JotaroKujo_StarPlatinum::new);

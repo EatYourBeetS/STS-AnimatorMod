@@ -27,7 +27,7 @@ public class YoshinoHimekawa extends AnimatorCard {
         super(DATA);
 
         Initialize(0, 2, 5, 2);
-        SetAffinity_Green(2, 0, 0);
+        SetAffinity_Green(1, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Star(0,0,1);
 
@@ -54,14 +54,6 @@ public class YoshinoHimekawa extends AnimatorCard {
     }
 
     @Override
-    public void triggerOnExhaust() {
-        if (!transformed && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Bottom.GainBlur(secondaryValue);
-            GameActions.Top.MakeCardInDiscardPile(new Zadkiel()).SetUpgrade(upgraded, false);
-        }
-    }
-
-    @Override
     public void triggerWhenDrawn() {
         if (!transformed) {
             GameActions.Top.Discard(this, player.hand).ShowEffect(true, true)
@@ -79,6 +71,12 @@ public class YoshinoHimekawa extends AnimatorCard {
         if (transformed) {
             GameActions.Bottom.GainBlur(secondaryValue);
             GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), magicNumber).ShowEffect(true, true);
+        }
+        else {
+            GameActions.Bottom.GainBlur(secondaryValue);
+            if (CombatStats.TryActivateLimited(cardID)) {
+                GameActions.Top.MakeCardInDiscardPile(new Zadkiel()).SetUpgrade(upgraded, false);
+            }
         }
     }
 

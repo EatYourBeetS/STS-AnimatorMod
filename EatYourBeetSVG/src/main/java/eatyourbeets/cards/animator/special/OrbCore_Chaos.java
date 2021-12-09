@@ -16,7 +16,7 @@ public class OrbCore_Chaos extends OrbCore
     {
         super(DATA, 1, 9);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
     }
 
     @Override

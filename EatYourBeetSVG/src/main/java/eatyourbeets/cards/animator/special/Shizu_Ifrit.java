@@ -32,8 +32,8 @@ public class Shizu_Ifrit extends AnimatorCard
         Initialize(0, 0, 40, 11);
         SetUpgrade(0, 0, 0, 4);
 
-        SetAffinity_Red(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Red(1);
+        SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Dark, 6);
 

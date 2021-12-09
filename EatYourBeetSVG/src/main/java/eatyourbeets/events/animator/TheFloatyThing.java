@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import eatyourbeets.cards.animator.beta.special.BlazingHeat;
-import eatyourbeets.cards.animator.beta.special.Ganyu;
+import eatyourbeets.cards.animator.beta.special.IonizingStorm;
 import eatyourbeets.cards.animator.beta.special.SheerCold;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
@@ -161,7 +161,7 @@ public class TheFloatyThing extends EYBEvent
             rewardItem.cards.clear();
             rewardItem.cards.add(new SheerCold());
             rewardItem.cards.add(new BlazingHeat());
-            rewardItem.cards.add(new Ganyu());
+            rewardItem.cards.add(new IonizingStorm());
 
             room.addCardReward(rewardItem);
             AbstractDungeon.combatRewardScreen.open();

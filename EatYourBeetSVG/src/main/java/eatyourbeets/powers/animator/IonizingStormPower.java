@@ -5,18 +5,21 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.common.ElectrifiedPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber, OnOrbApplyFocusSubscriber
+import static eatyourbeets.cards.animator.beta.special.IonizingStorm.LIGHTNING_BONUS;
+
+public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEffectSubscriber
 {
-    public static final int PER_CHARGE = 3;
+    public static final int PER_CHARGE = 1;
     public static final String POWER_ID = CreateFullID(IonizingStormPower.class);
 
     public IonizingStormPower(AbstractPlayer owner, int amount)
@@ -40,6 +43,12 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
         super.onRemove();
 
         CombatStats.onOrbPassiveEffect.Unsubscribe(this);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        description = FormatDescription(0, LIGHTNING_BONUS * amount, PER_CHARGE);
     }
 
     @Override
@@ -82,16 +91,18 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
         this.applyPower(target, orb, applyAmount);
     }
 
-    private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
-        if (target != null) {
-            GameActions.Bottom.ApplyElectrified(owner, target, applyAmount).CanStack(true);
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+        int count = JUtils.Count(GameUtilities.GetEnemies(true), e -> e.hasPower(ElectrifiedPower.POWER_ID));
+        if (count > 0) {
+            GameActions.Bottom.GainSupercharge(PER_CHARGE * count);
         }
     }
 
-    @Override
-    public void OnApplyFocus(AbstractOrb orb) {
-        if (Lightning.ORB_ID.equals(orb.ID)) {
-            GameActions.Bottom.GainSupercharge(PER_CHARGE);
+    private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
+        if (target != null) {
+            GameActions.Bottom.ApplyElectrified(owner, target, applyAmount).CanStack(true);
         }
     }
 }

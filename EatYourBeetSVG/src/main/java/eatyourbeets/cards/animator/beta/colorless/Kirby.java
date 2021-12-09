@@ -39,8 +39,9 @@ public class Kirby extends AnimatorCard implements
     public Kirby() {
         super(DATA);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
         SetObtainableInCombat(false);
+        SetHarmonic(true);
         SetVolatile(true);
         SetUnique(true, true);
         hasAttackOrSkill = false;
@@ -142,7 +143,6 @@ public class Kirby extends AnimatorCard implements
             if (card instanceof AnimatorCard) {
                 ((AnimatorCard) card).OnUse(p, m, info);
                 ((AnimatorCard) card).OnLateUse(p, m, info);
-                CombatStats.Affinities.AddAffinities(((AnimatorCard) card).affinities);
             } else {
                 card.use(p, m);
             }
@@ -389,10 +389,6 @@ public class Kirby extends AnimatorCard implements
             AfterLifeMod.Add(this);
         }
         if (card.hasTag(AUTOPLAY)) {
-            SetAutoplay(true);
-        }
-
-        if (card.hasTag(HARMONIC)) {
             SetAutoplay(true);
         }
     }

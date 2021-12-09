@@ -19,8 +19,8 @@ public class Curse_Destroyer extends AnimatorCard_Curse
     {
         super(DATA, true);
         Initialize(0,0,5,0);
-        SetAffinity_Red(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Red(1);
+        SetAffinity_Dark(1);
 
         SetUnique(true, false);
         SetUnplayable(true);

@@ -9,6 +9,7 @@ import eatyourbeets.effects.affinity.ChangeAffinityCountEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.TextureCache;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.GameEffects;
@@ -17,6 +18,7 @@ public class AffinityKeywordButton extends GUIElement
 {
     public static final float ICON_SIZE = Scale(48);
     protected static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
+    protected static final TextureCache STAR_TEXTURE = GR.Common.Images.Affinities.Star_FG;
     protected ActionT1<AffinityKeywordButton> onClick;
     protected Texture borderTexture;
     protected Texture borderBGTexture;
@@ -149,6 +151,17 @@ public class AffinityKeywordButton extends GUIElement
                     background_button.background.scaleX, background_button.background.scaleY,
                     -borderRotation, 0,0,
                     borderFGTexture.getWidth(), borderFGTexture.getHeight(), false, false
+            );
+        }
+        if (Type  == Affinity.Star) {
+            Texture star = STAR_TEXTURE.Texture();
+            sb.draw(star,
+                    background_button.hb.x, background_button.hb.y,
+                    background_button.hb.width/2f, background_button.hb.height/2f,
+                    background_button.hb.width, background_button.hb.height,
+                    background_button.background.scaleX, background_button.background.scaleY,
+                    0, 0,0,
+                    star.getWidth(), star.getHeight(), false, false
             );
         }
     }

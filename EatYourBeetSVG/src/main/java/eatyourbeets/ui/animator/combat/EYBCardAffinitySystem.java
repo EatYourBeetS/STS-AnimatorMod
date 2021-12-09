@@ -74,7 +74,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                         Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);})
         ;
 
-        final Affinity[] types = Affinity.All();
+        final Affinity[] types = Affinity.Extended();
         for (int i = 0; i < types.length; i++)
         {
             rows.add(new EYBCardAffinityRow(this, types[i], i));
@@ -119,8 +119,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     }
 
     public int GetAffinityLevel(Affinity affinity, boolean addStar) {
-        int base = AffinityCounts.GetAmount(affinity, addStar);
-        return CombatStats.OnTrySpendAffinity(affinity, base, addStar, false);
+        int base = AffinityCounts.GetAmount(affinity);
+        return CombatStats.OnTrySpendAffinity(affinity, base, false);
     }
 
     public EYBCardAffinities GetCardAffinities(Iterable<AbstractCard> cards, AbstractCard ignored)
@@ -218,7 +218,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean TrySynergize(AbstractCard card)
     {
-        if (WouldSynergize(card))
+        if (WouldMatch(card))
         {
             currentSynergy = card;
             return true;
@@ -228,11 +228,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return false;
     }
 
-    public boolean CanActivateSynergyBonus(EYBCardAffinity affinity, int star)
-    {
-        return affinity != null && affinity.level + star > 0 && CanActivateSynergyBonus(affinity.type);
-    }
-
     public boolean CanActivateSynergyBonus(EYBCardAffinity affinity)
     {
         return affinity != null && affinity.level > 0 && CanActivateSynergyBonus(affinity.type);
@@ -240,31 +235,35 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean CanActivateSynergyBonus(Affinity affinity)
     {
-        return affinity.ID >= 0 && GetRow(affinity).AvailableActivations > 0;
-    }
-
-    public void AddMaxActivationsPerTurn(Affinity affinity, int amount)
-    {
-        final EYBCardAffinityRow row = GetRow(affinity);
-        row.MaxActivationsPerTurn = Math.max(0, row.MaxActivationsPerTurn + amount);
-        row.AvailableActivations = Math.max(0, row.AvailableActivations + amount);
+        return affinity.ID >= 0 && GetRow(affinity).Power.IsEnabled();
     }
 
     public void OnSynergy(AnimatorCard card)
     {
         AffinityMeter.OnMatch(card);
         int star = card.affinities.Star != null ? card.affinities.Star.level : 0;
-        for (EYBCardAffinity affinity : card.affinities.List)
-        {
-            if (CanActivateSynergyBonus(affinity, star))
+        if (star > 0) {
+            for (EYBCardAffinityRow row : rows)
             {
-                final EYBCardAffinityRow row = GetRow(affinity.type);
-                if (row != null)
-                {
+                if (CanActivateSynergyBonus(row.Type)) {
                     row.ActivateSynergyBonus(card);
                 }
             }
         }
+        else {
+            for (EYBCardAffinity affinity : card.affinities.List)
+            {
+                if (CanActivateSynergyBonus(affinity))
+                {
+                    final EYBCardAffinityRow row = GetRow(affinity.type);
+                    if (row != null)
+                    {
+                        row.ActivateSynergyBonus(card);
+                    }
+                }
+            }
+        }
+
     }
 
     public void SetLastCardPlayed(AbstractCard card)
@@ -273,7 +272,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         currentSynergy = null;
     }
 
-    public boolean WouldSynergize(AbstractCard card)
+    public boolean WouldMatch(AbstractCard card)
     {
         final EYBCard a = JUtils.SafeCast(card, EYBCard.class);
         if (a != null) {
@@ -452,10 +451,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         final AffinityCounts previewAffinities = new AffinityCounts(AffinityCounts);
-        final EYBCardAffinities synergies = GetSynergies(hoveredCard, lastCardPlayed);
+        //final EYBCardAffinities synergies = GetSynergies(hoveredCard, lastCardPlayed);
         for (EYBCardAffinityRow row : rows)
         {
-            row.Update(previewAffinities, hoveredCard, synergies, draggingCard);
+            row.Update(previewAffinities, hoveredCard, null, draggingCard);
         }
 
         AffinityMeter.Update();
@@ -496,29 +495,34 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public static class AffinityCounts {
         public int[] Counts = new int[Affinity.Extended().length];
-        public int Star;
 
         public AffinityCounts() {
         }
 
         public AffinityCounts(AffinityCounts counts) {
             Counts = counts.Counts.clone();
-            Star = counts.Star;
         }
 
         public AffinityCounts(EYBCardAffinities affinities) {
-            for (EYBCardAffinity affinity : affinities.List) {
-                Counts[affinity.type.ID] = affinity.level;
-            }
             if (affinities.Star != null) {
-                Star = affinities.Star.level;
+                for (Affinity a : Affinity.Extended()) {
+                    Counts[a.ID] = affinities.Star.level;
+                }
             }
+            else {
+                for (EYBCardAffinity affinity : affinities.List) {
+                    Counts[affinity.type.ID] = affinity.level;
+                }
+            }
+
         }
 
         public AffinityCounts Add(Affinity affinity, int amount) {
             int actualAmount = CombatStats.OnGainAffinity(affinity, amount, true);
             if (Affinity.Star.equals(affinity) || Affinity.General.equals(affinity)) {
-                Star += actualAmount;
+                for (Affinity a : Affinity.Extended()) {
+                    Counts[a.ID] += actualAmount;
+                }
             }
             else {
                 Counts[affinity.ID] += actualAmount;
@@ -530,38 +534,49 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             for (int i = 0; i < Counts.length; i++) {
                 Counts[i] += CombatStats.OnGainAffinity(Affinity.Extended()[i], counts.Counts[i], true);
             }
-            Star += counts.Star;
             return this;
         }
 
         public AffinityCounts Add(EYBCardAffinities affinities) {
-            for (EYBCardAffinity affinity : affinities.List) {
-                Counts[affinity.type.ID] += CombatStats.OnGainAffinity(affinity.type, affinity.level, true);
-            }
             if (affinities.Star != null) {
                 int actualAmount = CombatStats.OnGainAffinity(Affinity.Star, affinities.Star.level, true);
-                Star += actualAmount;
+                for (Affinity a : Affinity.Extended()) {
+                    Counts[a.ID] += actualAmount;
+                }
             }
+            else {
+                for (EYBCardAffinity affinity : affinities.List) {
+                    Counts[affinity.type.ID] += CombatStats.OnGainAffinity(affinity.type, affinity.level, true);
+                }
+            }
+
             return this;
         }
 
         public AffinityCounts Add(EYBCardAffinities affinities, int amount) {
-            for (EYBCardAffinity affinity : affinities.List) {
-                int actualAmount = CombatStats.OnGainAffinity(affinity.type, amount, true);
-                Counts[affinity.type.ID] += actualAmount;
-            }
             if (affinities.Star != null) {
                 int actualAmount = CombatStats.OnGainAffinity(Affinity.Star, amount, true);
-                Star += actualAmount;
+                for (Affinity a : Affinity.Extended()) {
+                    Counts[a.ID] += actualAmount;
+                }
             }
+            else {
+                for (EYBCardAffinity affinity : affinities.List) {
+                    int actualAmount = CombatStats.OnGainAffinity(affinity.type, amount, true);
+                    Counts[affinity.type.ID] += actualAmount;
+                }
+            }
+
             return this;
         }
 
         public AffinityCounts Spend(Affinity affinity, int amount) {
             if (Affinity.Star.equals(affinity) || Affinity.General.equals(affinity)) {
-                Star -= amount;
-                if (Star < 0) {
-                    Star = 0;
+                for (Affinity a : Affinity.Extended()) {
+                    Counts[a.ID] -= amount;
+                    if (Counts[a.ID] < 0) {
+                        Counts[a.ID] = 0;
+                    }
                 }
             }
             else {
@@ -575,22 +590,17 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         public int GetAmount(Affinity affinity)
         {
-            return GetAmount(affinity,true);
-        }
-
-        public int GetAmount(Affinity affinity, boolean addStar)
-        {
             if (Affinity.Star.equals(affinity))
             {
-                return Star;
+                return Arrays.stream(Counts).min().getAsInt();
             }
             else if (Affinity.General.equals(affinity))
             {
-                return Arrays.stream(Counts).max().getAsInt() + (addStar ? Star : 0);
+                return Arrays.stream(Counts).max().getAsInt();
             }
             else
             {
-                return Counts[affinity.ID] + (addStar ? Star : 0);
+                return Counts[affinity.ID];
             }
         }
     }

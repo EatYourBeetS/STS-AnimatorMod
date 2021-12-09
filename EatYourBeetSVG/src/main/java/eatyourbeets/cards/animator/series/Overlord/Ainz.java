@@ -32,12 +32,11 @@ public class Ainz extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
-        SetAffinity_Blue(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
         SetCostUpgrade(-1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

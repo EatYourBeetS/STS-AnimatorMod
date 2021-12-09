@@ -24,7 +24,7 @@ public class Wrath extends AnimatorCard
         Initialize(10, 12, 3,2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 3);
+        SetAffinity_Red(1, 0, 3);
         SetAffinity_Orange(1, 0, 2);
         SetAffinity_Dark(1);
 

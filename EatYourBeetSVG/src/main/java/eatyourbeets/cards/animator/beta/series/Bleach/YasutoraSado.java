@@ -5,8 +5,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.stances.MightStance;
+import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class YasutoraSado extends AnimatorCard
 
         Initialize(7, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }
 

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.NagisaMomoe_Charlotte;
+import eatyourbeets.cards.animator.special.NagisaMomoe_Charlotte;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,6 +28,7 @@ public class NagisaMomoe extends AnimatorCard
 
         SetAffinity_Star(1);
 
+        SetHealing(true);
         SetEthereal(true);
         SetExhaust(true);
         SetSoul(1, 0, NagisaMomoe_Charlotte::new);
@@ -64,7 +65,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         super.triggerOnOtherCardPlayed(c);
 
-        if (player.hand.contains(this) && (GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2 || GameUtilities.GetAffinityLevel(c, Affinity.Light, true) >= 2))
+        if (player.hand.contains(this) && GameUtilities.HasLightAffinity(c))
         {
             GameActions.Bottom.GainTemporaryHP(secondaryValue);
             GameActions.Bottom.Flash(this);

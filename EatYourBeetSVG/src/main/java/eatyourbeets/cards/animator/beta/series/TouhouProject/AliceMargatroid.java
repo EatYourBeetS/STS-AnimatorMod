@@ -24,8 +24,8 @@ public class AliceMargatroid extends AnimatorCard
 
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 0, 1);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Light(2,0,0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1,0,0);
 
         SetEthereal(true);
     }
@@ -93,7 +93,7 @@ public class AliceMargatroid extends AnimatorCard
         }
 
         @Override
-        public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
+        public int OnTrySpendAffinity(Affinity affinity, int amount, boolean isActuallySpending) {
             if (isActuallySpending) {
                 GameActions.Bottom.GainBlock(secondaryValue);
             }

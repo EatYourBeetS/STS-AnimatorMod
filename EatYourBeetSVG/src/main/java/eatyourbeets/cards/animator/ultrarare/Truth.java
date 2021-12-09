@@ -27,9 +27,9 @@ public class Truth extends AnimatorCard_UltraRare
         Initialize(0, 0, 4, 3);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Light(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetPurge(true);
     }

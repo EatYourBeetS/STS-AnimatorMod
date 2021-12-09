@@ -32,8 +32,6 @@ public class EYBCardAffinityRow extends GUIElement
     public final EYBCardAffinitySystem System;
     public final AbstractAffinityPower Power;
 
-    public int MaxActivationsPerTurn;
-    public int AvailableActivations;
     public int ActivationPowerAmount;
     public int Level;
     public int Total;
@@ -78,15 +76,12 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void ActivateSynergyBonus(AbstractCard card)
     {
-        AvailableActivations -= 1;
         GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount, false);
         CombatStats.OnSynergyBonus(card, Type);
     }
 
     public void OnStartOfTurn()
     {
-        AvailableActivations = MaxActivationsPerTurn;
-
         if (Power != null)
         {
             Power.atStartOfTurn();
@@ -95,7 +90,6 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void Initialize()
     {
-        AvailableActivations = MaxActivationsPerTurn = 1;
         ActivationPowerAmount = SYNERGY_MULTIPLIER;
 
         if (Power != null)
@@ -112,38 +106,31 @@ public class EYBCardAffinityRow extends GUIElement
     public void Update(EYBCardAffinitySystem.AffinityCounts previewAffinities, EYBCard hoveredCard, EYBCardAffinities synergies, boolean draggingCard)
     {
         image_background.SetColor(COLOR_DEFAULT);
-        image_synergy.color.a = (AvailableActivations > 0) ? 1f : 0.25f;
+        image_synergy.color.a = Power.enabled ? 1f : 0.25f;
         boolean isTriggering = false;
 
         if (Type == Affinity.General)
         {
             int am = previewAffinities.GetAmount(Affinity.General);
-            Level = previewAffinities.GetAmount(Type, false) + am;
+            Level = previewAffinities.GetAmount(Type) + am;
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
                 final int best = previewAffinities.GetAmount(Affinity.General);
                 for (Affinity affinity : Affinity.Extended()) {
                     if (previewAffinities.GetAmount(affinity) == best) {
-                        for (AbstractCard c : AbstractDungeon.player.hand.group)
-                        {
-                            final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
-                            if (temp == null || (temp.affinities.GetLevel(affinity) == 0 && temp.affinities.GetDirectLevel(Affinity.General) == 0))
-                            {
-                                c.transparency = 0.35f;
-                            }
-                        }
+                        GameUtilities.HighlightMatchingCards(affinity);
                     }
                 }
             }
         }
         else
         {
-            Level = previewAffinities.GetAmount(Type, false);
+            Level = previewAffinities.GetAmount(Type);
 
             if (hoveredCard != null)
             {
-                if ((hoveredCard.affinities.GetLevel(Type,false) > 0 || (hoveredCard.affinities.GetLevel(Affinity.Star,false) > 0 && System.GetLastAffinityLevel(Type) > 0)) && hoveredCard.cardData.CanGrantAffinity) {
+                if ((hoveredCard.affinities.GetLevel(Type,true) > 0 || (hoveredCard.affinities.GetLevel(Affinity.Star,true) > 0 && System.GetLastAffinityLevel(Type) > 0)) && hoveredCard.cardData.CanGrantAffinity) {
                     Level += 1;
                     Total += 1;
                 }
@@ -166,14 +153,7 @@ public class EYBCardAffinityRow extends GUIElement
 
             if (!draggingCard && image_background.hb.hovered && !System.hb.IsDragging())
             {
-                for (AbstractCard c : AbstractDungeon.player.hand.group)
-                {
-                    final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
-                    if (temp == null || (temp.affinities.GetLevel(Type) == 0))
-                    {
-                        c.transparency = 0.35f;
-                    }
-                }
+                GameUtilities.HighlightMatchingCards(Type);
             }
         }
 

@@ -26,7 +26,7 @@ public class Shion extends AnimatorCard
         Initialize(15, 0, 6, 0);
         SetUpgrade(3, 0, 1);
 
-        SetAffinity_Red(1, 1, 2);
+        SetAffinity_Red(1, 0, 2);
 
         SetAffinityRequirement(Affinity.Orange, 4);
     }

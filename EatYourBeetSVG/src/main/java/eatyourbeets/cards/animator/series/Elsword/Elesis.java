@@ -212,7 +212,7 @@ public class Elesis extends AnimatorCard
                 affinities.Clear();
                 SetAffinity_Red(1, 0, 1);
                 SetAffinity_Green(1);
-                SetAffinity_Light(2, 0, 3);
+                SetAffinity_Light(1, 0, 3);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -230,7 +230,7 @@ public class Elesis extends AnimatorCard
 
                 affinities.Clear();
                 SetAffinity_Red(1, 0, 2);
-                SetAffinity_Green(2, 0, 1);
+                SetAffinity_Green(1, 0, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;
@@ -247,8 +247,8 @@ public class Elesis extends AnimatorCard
                 SetUpgrade(2, 0, 4);
 
                 affinities.Clear();
-                SetAffinity_Red(2, 0, 2);
-                SetAffinity_Dark(2, 0, 2);
+                SetAffinity_Red(1, 0, 2);
+                SetAffinity_Dark(1, 0, 2);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

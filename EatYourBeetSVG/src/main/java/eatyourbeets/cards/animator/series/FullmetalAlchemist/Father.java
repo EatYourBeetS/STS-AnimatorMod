@@ -33,8 +33,8 @@ public class Father extends AnimatorCard implements OnAddToDeckListener, OnAddin
         Initialize(0, 0, 0, 46);
         SetCostUpgrade(-1);
 
-        SetAffinity_Dark(2);
-        SetAffinity_Silver(2);
+        SetAffinity_Dark(1);
+        SetAffinity_Silver(1);
 
         SetUnique(true, false);
         SetPurge(true, false);

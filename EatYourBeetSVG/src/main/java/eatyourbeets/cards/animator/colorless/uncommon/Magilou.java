@@ -26,7 +26,7 @@ public class Magilou extends AnimatorCard
 
         Initialize(0, 0, 0);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
 
         SetExhaust(true);
     }

@@ -25,7 +25,7 @@ public class MariKurokawa extends AnimatorCard
 
         SetAffinity_Light(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 1, 1);
+        SetAffinity_Orange(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Green, 2);

@@ -28,7 +28,7 @@ public class MegurineLuka extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)
                 .SetOptions(false, false, false)
                 .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])

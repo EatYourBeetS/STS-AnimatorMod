@@ -31,7 +31,7 @@ public class FlandreScarlet extends AnimatorCard
         SetUpgrade(3, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetAffinityRequirement(Affinity.Dark, 8);
 

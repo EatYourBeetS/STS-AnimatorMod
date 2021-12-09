@@ -17,7 +17,7 @@ public class GirlDeMo extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 4);
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
         SetHarmonic(true);
         SetExhaust(true);
         SetEthereal(true);

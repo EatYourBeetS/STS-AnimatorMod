@@ -27,7 +27,7 @@ public class JeanneDArc extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Light(1, 0, 2);
         SetCostUpgrade(-1);
 
         SetLoyal(true);

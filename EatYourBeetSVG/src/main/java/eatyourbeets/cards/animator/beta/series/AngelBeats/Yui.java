@@ -22,7 +22,7 @@ public class Yui extends AnimatorCard
 
         Initialize(0, 0, 2, 2);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(2, 0, 1);
+        SetAffinity_Light(1, 0, 1);
         SetHarmonic(true);
         SetExhaust(true);
         SetCostUpgrade(-1);

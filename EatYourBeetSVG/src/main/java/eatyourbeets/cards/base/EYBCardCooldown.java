@@ -141,6 +141,14 @@ public class EYBCardCooldown
         return activate;
     }
 
+    public void ResetCooldown() {
+        for (AbstractCard c : GameUtilities.GetAllInBattleInstances(card.uuid))
+        {
+            ((EYBCard) c).cooldownValue = GetBase();
+            ((EYBCard) c).Refresh(null);
+        }
+    }
+
     public int GetCurrent()
     {
         return card.cooldownValue;

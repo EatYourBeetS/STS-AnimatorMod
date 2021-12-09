@@ -20,9 +20,9 @@ public class NiaHonjou extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 1);
-        SetUpgrade(0,0,0,1);
-        SetAffinity_Light(1, 1, 2);
+        Initialize(0, 1, 2, 2);
+        SetUpgrade(0,0,0,0);
+        SetAffinity_Light(1, 0, 2);
         SetAffinity_Blue(1, 0, 0);
     }
 
@@ -44,9 +44,7 @@ public class NiaHonjou extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        if (CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Top.GainSupercharge(secondaryValue);
-        }
+        GameActions.Top.GainTemporaryHP(secondaryValue);
     }
 
     public static class NiaHonjouPower extends AnimatorPower implements OnSynergySubscriber
@@ -106,7 +104,7 @@ public class NiaHonjou extends AnimatorCard
 
         @Override
         public void OnSynergy(AbstractCard card) {
-            GameActions.Bottom.GainBlock(amount * 2);
+            GameActions.Bottom.GainBlock(amount);
         }
     }
 }

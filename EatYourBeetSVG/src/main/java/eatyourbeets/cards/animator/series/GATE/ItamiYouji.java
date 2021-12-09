@@ -28,7 +28,6 @@ public class ItamiYouji extends AnimatorCard
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override
@@ -61,7 +60,7 @@ public class ItamiYouji extends AnimatorCard
             });
         });
 
-        if (info.IsSynergizing || TrySpendAffinity(Affinity.Orange))
+        if (TrySpendAffinity(Affinity.Orange))
         {
             GameActions.Bottom.GainSupportDamage(GetXValue());
         }

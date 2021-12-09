@@ -17,7 +17,7 @@ public class IkkakuBankai extends AnimatorCard
 
         Initialize(1, 0, 4);
         SetUpgrade(2, 0, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Green(1, 0, 2);
         SetExhaust(true);
     }

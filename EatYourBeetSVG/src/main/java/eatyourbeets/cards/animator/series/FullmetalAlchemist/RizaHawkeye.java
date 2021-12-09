@@ -3,13 +3,11 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.LockOnPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.stances.EnduranceStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -24,10 +22,10 @@ public class RizaHawkeye extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2, 0);
+        Initialize(8, 0, 2, 2);
         SetUpgrade(3, 0, 1);
 
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(1);
 
@@ -47,13 +45,11 @@ public class RizaHawkeye extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
-        if (GameUtilities.GetPowerAmount(m, VulnerablePower.POWER_ID) > 0 || GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0 ) {
-            GameActions.Delayed.ExhaustFromPile(name, 1, player.drawPile).AddCallback(cards -> {if (cards.size() > 0)
-                GameActions.Bottom.ChangeStance(EnduranceStance.STANCE_ID);
-            });
+        if (GameUtilities.GetPowerAmount(m, LockOnPower.POWER_ID) > 0 ) {
+            GameActions.Bottom.ApplyWeak(TargetHelper.Normal(m), secondaryValue);
         }
         if (IsStarter()) {
-            GameActions.Bottom.ApplyLockOn(TargetHelper.Normal(m), magicNumber);
+            GameActions.Bottom.ApplyLockOn(TargetHelper.Normal(m), secondaryValue);
         }
     }
 }

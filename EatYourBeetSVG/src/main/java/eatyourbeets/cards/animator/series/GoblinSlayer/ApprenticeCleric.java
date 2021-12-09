@@ -27,7 +27,7 @@ public class ApprenticeCleric extends AnimatorCard
         Initialize(0, 5, 2, 2);
         SetUpgrade(0, 3, 1, 0);
 
-        SetAffinity_Light(2, 0, 1);
+        SetAffinity_Light(1, 0, 1);
         SetAffinity_Blue(1);
     }
 

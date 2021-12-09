@@ -25,7 +25,6 @@ public class Kazuma extends AnimatorCard
         SetAffinity_Green(1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

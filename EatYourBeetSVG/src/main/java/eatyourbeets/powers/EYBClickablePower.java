@@ -121,15 +121,15 @@ public abstract class EYBClickablePower extends EYBPower
     }
 
     @Override
-    public final void updateDescription()
+    public void updateDescription()
     {
         tooltip.description = description = GetUpdatedDescription();
 
         int uses = triggerCondition.uses;
-        if (uses >= 0)
+        if (uses >= 0 && GR.IsLoaded)
         {
             tooltip.subText.color = uses == 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-            tooltip.subText.text = uses + "/" + triggerCondition.baseUses + " uses";
+            tooltip.subText.text = uses + "/" + triggerCondition.baseUses + " " + GR.Animator.Strings.Combat.Uses;
         }
     }
 

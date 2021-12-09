@@ -35,20 +35,18 @@ public class KaedeAkamatsu extends AnimatorCard
     {
         GameActions.Bottom.StackPower(new KaedeAkamatsuPower(p, magicNumber));
 
-        if (info.IsSynergizing && info.Synergies.GetLevel(Affinity.Light, true) > 0)
-        {
-            GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
-                    .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)
-                    .SetOptions(false, true)
-                    .AddCallback(cards ->
+        GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
+                .SetFilter(GameUtilities::HasBlueAffinity)
+                .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)
+                .SetOptions(false, true)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard c : cards)
                     {
-                        for (AbstractCard c : cards)
-                        {
-                            GameActions.Top.MoveCard(c, player.exhaustPile, player.hand)
-                                    .ShowEffect(true, true);
-                        }
-                    });
-        }
+                        GameActions.Top.MoveCard(c, player.exhaustPile, player.hand)
+                                .ShowEffect(true, true);
+                    }
+                });
     }
 
     public static class KaedeAkamatsuPower extends AnimatorPower implements OnCardCreatedSubscriber

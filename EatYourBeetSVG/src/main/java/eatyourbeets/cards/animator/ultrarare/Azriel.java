@@ -31,7 +31,7 @@ public class Azriel extends AnimatorCard_UltraRare
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
-        SetAffinity_Silver(2);
+        SetAffinity_Silver(1);
 
         SetEthereal(true);
     }

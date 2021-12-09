@@ -44,13 +44,12 @@ public class ChaikaTrabant extends AnimatorCard implements OnStartOfTurnPostDraw
         Initialize(0, 0, 6, 2);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Light(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Green, 8);
 
         SetProtagonist(true);
-        SetHarmonic(true);
         SetExhaust(true);
     }
 

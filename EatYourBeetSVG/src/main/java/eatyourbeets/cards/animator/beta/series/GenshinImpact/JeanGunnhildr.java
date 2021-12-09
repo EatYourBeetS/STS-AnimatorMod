@@ -24,7 +24,7 @@ public class JeanGunnhildr extends AnimatorCard
         SetUpgrade(3, 1, 0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Light(2, 0, 1);
+        SetAffinity_Light(1, 0, 1);
 
         SetLoyal(true);
     }

@@ -26,7 +26,7 @@ public class Suigintou_BlackFeather extends AnimatorCard_Curse implements OnStar
         Initialize(0, 0, 2, 5);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Dark(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetPurge(true);
         SetRetain(true);

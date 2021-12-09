@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.RandomizedList;
 
 public class SnowballParticleEffect extends EYBEffect
@@ -18,6 +21,7 @@ public class SnowballParticleEffect extends EYBEffect
     protected static final float GRAVITY = 180f * Settings.scale;
     protected static final int SIZE = 96;
 
+    protected float vfxFrequency = 0.75f;
     protected Texture img;
     protected float floor;
     protected float x;
@@ -25,8 +29,10 @@ public class SnowballParticleEffect extends EYBEffect
     protected float vX;
     protected float vY;
     protected float vR;
+    protected float vfxTimer;
     protected boolean flip;
     protected boolean enableFloor = true;
+    protected boolean hasTrail = false;
 
     public SnowballParticleEffect(float x, float y, Color color)
     {
@@ -81,6 +87,12 @@ public class SnowballParticleEffect extends EYBEffect
         return this;
     }
 
+    public SnowballParticleEffect EnableTrail()
+    {
+        hasTrail = true;
+        return this;
+    }
+
     @Override
     protected void UpdateInternal(float deltaTime)
     {
@@ -107,6 +119,17 @@ public class SnowballParticleEffect extends EYBEffect
         else
         {
             color.a = Interpolation.pow2Out.apply(0f, 1f, duration);
+        }
+
+        if (hasTrail) {
+            vfxTimer -= deltaTime;
+            if (vfxTimer < 0f)
+            {
+                if (MathUtils.randomBoolean()) {
+                    GameEffects.Queue.Add(new LightFlareParticleEffect(x, y, color));
+                }
+                vfxTimer = vfxFrequency;
+            }
         }
 
         super.UpdateInternal(deltaTime);

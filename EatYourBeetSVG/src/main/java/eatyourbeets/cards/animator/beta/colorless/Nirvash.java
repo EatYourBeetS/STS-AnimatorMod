@@ -47,7 +47,7 @@ public class Nirvash extends AnimatorCard
 
         if ((this.effect = effect) == 0)
         {
-            SetAffinity_Silver(2);
+            SetAffinity_Silver(1);
             SetAffinity_Green(1);
 
             SetPurge(true);

@@ -20,7 +20,7 @@ public class Wiz extends AnimatorCard
         Initialize(0, 0);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
         SetAffinity_Dark(1);
         SetAffinity_Orange(1);
 
@@ -34,7 +34,7 @@ public class Wiz extends AnimatorCard
 
         if (CombatStats.CanActivateLimited(cardID))
         {
-            SetPurge(!(CombatStats.Affinities.WouldSynergize(this)));
+            SetPurge(!(CombatStats.Affinities.WouldMatch(this)));
         }
     }
 

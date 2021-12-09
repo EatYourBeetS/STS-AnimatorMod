@@ -23,7 +23,7 @@ public class MetalKnight extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Silver(2, 0, 1);
+        SetAffinity_Silver(1, 0, 1);
         SetAffinity_Dark(1);
         SetAffinity_Blue(0,0,1);
 

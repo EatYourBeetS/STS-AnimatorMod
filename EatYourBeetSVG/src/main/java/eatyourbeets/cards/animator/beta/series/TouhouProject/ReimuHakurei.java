@@ -20,7 +20,6 @@ public class ReimuHakurei extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
 
         SetProtagonist(true);
-        SetHarmonic(true);
 
         SetAffinityRequirement(Affinity.Light, 3);
     }

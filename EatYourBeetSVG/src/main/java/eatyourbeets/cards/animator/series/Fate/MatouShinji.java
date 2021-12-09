@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.animator.special.MatouShinji_CommandSpell;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -27,11 +24,13 @@ public class MatouShinji extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 3, 4, 5);
+        Initialize(0, 3, 4, 4);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Orange(1);
         SetAffinity_Dark(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Dark, 5);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class MatouShinji extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing  && info.PreviousCard != null && GameUtilities.IsHighCost(info.PreviousCard) && info.TryActivateSemiLimited())
+        if (info.CanActivateSemiLimited && TrySpendAffinity(Affinity.Dark) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue, AttackEffects.DARK);
             GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell());

@@ -29,7 +29,7 @@ public class Cthulhu extends AnimatorCard_UltraRare //TODO make this play random
 
         Initialize(800, 0, 120);
 
-        SetAffinity_Dark(2, 0, 32);
+        SetAffinity_Dark(1, 0, 32);
     }
 
     @Override

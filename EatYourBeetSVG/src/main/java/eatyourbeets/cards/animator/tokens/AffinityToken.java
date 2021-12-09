@@ -159,7 +159,7 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     }
 
     @Override
-    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
+    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean isActuallySpending) {
         if (isActuallySpending && affinity.equals(this.affinity) && player.hand.contains(this)) {
             CombatStats.onTrySpendAffinity.Unsubscribe(this);
             GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());

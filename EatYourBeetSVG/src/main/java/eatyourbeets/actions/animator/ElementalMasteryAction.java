@@ -1,6 +1,7 @@
 package eatyourbeets.actions.animator;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.actions.EYBAction;
@@ -27,7 +28,7 @@ public class ElementalMasteryAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        GameActions.Top.VFX(new ShootingStarsEffect(-170, player.hb.cY).SetSpread(0,180));
+        GameActions.Top.VFX(new ShootingStarsEffect(-100 * Settings.scale, player.hb.cY).SetSpread(0,180));
         GameActions.Top.SFX(SFX.ANIMATOR_STAR, 0.9f, 1.1f);
         GameEffects.List.Add(new BorderFlashEffect(Color.CORAL));
 

@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscriber
@@ -22,9 +22,11 @@ public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscr
     {
         super(DATA, false);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 2, 1);
+        SetCostUpgrade(-1);
 
         SetAffinity_Dark(1);
+
         SetExhaust(true);
     }
 
@@ -36,9 +38,17 @@ public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscr
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue);
+        GameActions.Bottom.Flash(this);
+    }
+
+    @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
         if (card != null && this.uuid.equals(card.uuid)) {
-            GameActions.Bottom.WaitRealtime(0.3f);
             GameActions.Bottom.Callback(() ->
             {
                 RandomizedList<AbstractPower> powers = new RandomizedList<>();
@@ -60,23 +70,15 @@ public class Curse_GriefSeed extends AnimatorCard_Curse implements OnPurgeSubscr
     }
 
     @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        GameActions.Bottom.Callback(() ->
-        {
-            GameActions.Bottom.Flash(this);
-            GameActions.Bottom.TakeDamage(magicNumber, AttackEffects.FIRE);
-        });
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < secondaryValue; i++) {
-            GameActions.Bottom.SelectFromHand(name, 1, true).SetFilter(c -> c instanceof AnimatorCard && ((AnimatorCard) c).cooldown != null && ((AnimatorCard) c).cooldown.cardConstructor != null).AddCallback(cards -> {
+            GameActions.Bottom.SelectFromHand(name, 1, false)
+                    .SetFilter(GameUtilities::HasCooldown)
+                    .AddCallback(cards -> {
                 for (AbstractCard c : cards) {
-                    if (c instanceof AnimatorCard) {
-                        ((AnimatorCard) c).cooldown.ProgressCooldown(-1);
+                    if (GameUtilities.HasCooldown(c)) {
+                        ((EYBCard) c).cooldown.ProgressCooldown(magicNumber);
                         c.flash();
                     }
                 }

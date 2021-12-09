@@ -24,7 +24,7 @@ public class NarberalGamma extends AnimatorCard
 
         Initialize(0, 1, 1, 2);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
         SetAffinity_Light(0,0,1);
 
         SetEvokeOrbCount(1);

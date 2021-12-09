@@ -21,8 +21,8 @@ public class KokomiSangonomiya extends AnimatorCard
 
         Initialize(0, 0, 4, 9);
         SetUpgrade(0,0,0,-1);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Light(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
 
         SetEthereal(true);

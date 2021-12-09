@@ -24,7 +24,7 @@ public class MikuIzayoi extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, 4);
-        SetAffinity_Light(1, 1, 1);
+        SetAffinity_Light(1, 0, 1);
         SetEthereal(true);
         SetHarmonic(true);
     }
@@ -40,12 +40,12 @@ public class MikuIzayoi extends AnimatorCard
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetEthereal(true);
-                Initialize(0, 0, 3, 1);
+                Initialize(0, 0, 2, 4);
                 SetUpgrade(0,0,2,0);
             }
             else {
                 SetEthereal(false);
-                Initialize(0, 0, 3, 1);
+                Initialize(0, 0, 2, 4);
             }
         }
         return super.SetForm(form, timesUpgraded);

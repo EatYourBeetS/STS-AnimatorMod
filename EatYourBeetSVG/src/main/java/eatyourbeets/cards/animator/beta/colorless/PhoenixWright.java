@@ -25,8 +25,8 @@ public class PhoenixWright extends AnimatorCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
-        SetAffinity_Orange(2);
-        SetAffinity_Light(2);
+        SetAffinity_Orange(1);
+        SetAffinity_Light(1);
 
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);

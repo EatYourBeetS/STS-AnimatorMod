@@ -25,7 +25,7 @@ public class HeavyWarrior extends AnimatorCard
 
         Initialize(28, 0, 2, 4);
 
-        SetAffinity_Red(2, 0, 6);
+        SetAffinity_Red(1, 0, 6);
         SetAffinity_Orange(1, 0, 2);
 
         SetExhaust(true);

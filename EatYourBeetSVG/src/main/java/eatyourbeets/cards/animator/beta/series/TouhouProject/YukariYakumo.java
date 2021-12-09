@@ -20,7 +20,7 @@ public class YukariYakumo extends AnimatorCard
         Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Dark(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);
         SetAffinityRequirement(Affinity.Dark, 6);

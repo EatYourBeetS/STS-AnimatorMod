@@ -20,7 +20,7 @@ public class Simon extends AnimatorCard
         Initialize(5, 0, 5 , 0);
         SetUpgrade(1, 0, 0 , 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
 
         SetExhaust(true);
         SetUnique(true,true);

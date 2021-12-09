@@ -32,7 +32,7 @@ public class Godan extends AnimatorCard
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 0);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(1);
     }
 

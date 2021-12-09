@@ -15,7 +15,7 @@ public class OrbCore_Dark extends OrbCore
     {
         super(DATA, 3, 4);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

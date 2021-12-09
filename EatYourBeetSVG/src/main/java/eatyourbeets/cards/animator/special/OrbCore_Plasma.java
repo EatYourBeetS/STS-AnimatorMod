@@ -15,7 +15,7 @@ public class OrbCore_Plasma extends OrbCore
     {
         super(DATA, 1, 4);
 
-        SetAffinity_Silver(2);
+        SetAffinity_Silver(1);
         SetAffinity_Light(1);
     }
 

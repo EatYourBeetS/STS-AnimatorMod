@@ -19,7 +19,7 @@ public class Chongyun extends AnimatorCard
         Initialize(0, 5, 2);
         SetUpgrade(0, 1, 1);
         SetAffinity_Red(0,0,1);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Blue, 4);
     }

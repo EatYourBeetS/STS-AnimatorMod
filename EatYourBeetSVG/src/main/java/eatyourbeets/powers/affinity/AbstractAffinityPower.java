@@ -118,7 +118,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
 
     public void Stack(int amount, boolean maintain)
     {
-        if (!enabled && !forceEnableThisTurn)
+        if (!IsEnabled())
         {
             return;
         }
@@ -152,7 +152,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
     @Override
     public String GetUpdatedDescription()
     {
-        String newDesc = FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, this.triggerCondition.requiredAmount, GetMultiplierForDescription(), (!enabled && !forceEnableThisTurn) ? powerStrings.DESCRIPTIONS[1] : "");
+        String newDesc = FormatDescription(0, EYBCardAffinityRow.SYNERGY_MULTIPLIER, this.triggerCondition.requiredAmount, GetMultiplierForDescription(), !IsEnabled() ? powerStrings.DESCRIPTIONS[1] : "");
         this.tooltips.get(0).description = newDesc;
         return newDesc;
     }
@@ -161,8 +161,12 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         return (int) (GetEffectiveIncrease() * 100);
     }
 
+    public boolean IsEnabled() {
+        return enabled || forceEnableThisTurn;
+    }
+
     public boolean CanSpend(int amount) {
-        return enabled && this.amount >= amount;
+        return IsEnabled() && this.amount >= amount;
     }
 
     public boolean TrySpend(int amount)
@@ -212,7 +216,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         final float cY = hb.cY;
 
         Integer level = GetEffectiveLevel();
-        Color amountColor = !enabled && !forceEnableThisTurn ? Colors.Cream(0.6f) : amount >= this.triggerCondition.requiredAmount ? Colors.Gold(1).cpy() : Colors.White(1f);
+        Color amountColor = !IsEnabled() ? Colors.Cream(0.6f) : amount >= this.triggerCondition.requiredAmount ? Colors.Gold(1).cpy() : Colors.White(1f);
         Color levelColor = level > 0 ? Colors.Green(1).cpy() : Colors.Cream(0.6f);
         if (effectMultiplier > 1)
         {
@@ -224,7 +228,7 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
             RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
         }
 
-        final Color imgColor = Colors.White((enabled || forceEnableThisTurn) ? 1 : 0.5f);
+        final Color imgColor = Colors.White(IsEnabled() ? 1 : 0.5f);
         final Color borderColor = isActive ? ACTIVE_COLOR : (enabled && triggerCondition.CanUse()) ? imgColor : disabledColor;
 
         super.renderIconsImpl(sb, x + 16 * scale, cY + (3f * scale), borderColor, imgColor);

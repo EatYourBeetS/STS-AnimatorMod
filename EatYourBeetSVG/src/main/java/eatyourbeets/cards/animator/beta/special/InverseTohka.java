@@ -10,7 +10,7 @@ import eatyourbeets.utilities.GameActions;
 
 public class InverseTohka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(1, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeries(CardSeries.DateALive);
+    public static final EYBCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, EYBAttackType.Normal, EYBCardTarget.ALL).SetSeries(CardSeries.DateALive);
 
     public InverseTohka()
     {
@@ -18,7 +18,7 @@ public class InverseTohka extends AnimatorCard
 
         Initialize(8, 0, 2, 1);
         SetUpgrade(3, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Dark(1, 0, 0);
 
         SetAutoplay(true);
@@ -31,26 +31,17 @@ public class InverseTohka extends AnimatorCard
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.SpendEnergy(1,false).AddCallback(() -> {
-            GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
-                    .SetOptions(true, true)
-                    .SetFilter(c -> c instanceof AnimatorCard && this.series.equals(((AnimatorCard) c).series))
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard c : cards) {
-                            GameActions.Bottom.Motivate(c, 1);
-                        }
-                    });
-        });
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
+                .SetOptions(true, true)
+                .SetFilter(c -> c instanceof AnimatorCard && this.series.equals(((AnimatorCard) c).series))
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard c : cards) {
+                        GameActions.Bottom.Motivate(c, 1);
+                    }
+                });
     }
 }

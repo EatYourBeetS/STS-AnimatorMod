@@ -32,8 +32,8 @@ public class LaplacesDemon extends AnimatorCard
 
         Initialize(0, 10, 3, 2);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
-        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
 
         AfterLifeMod.Add(this);
         SetDelayed(true);

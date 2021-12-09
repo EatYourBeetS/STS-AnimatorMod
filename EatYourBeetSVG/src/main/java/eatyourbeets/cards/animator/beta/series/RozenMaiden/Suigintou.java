@@ -31,8 +31,8 @@ public class Suigintou extends AnimatorCard implements OnPurgeSubscriber
 
         Initialize(3, 0, 2, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);

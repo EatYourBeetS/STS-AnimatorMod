@@ -31,8 +31,8 @@ public class UtsuhoReiuji extends AnimatorCard
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 1, 0);
-        SetAffinity_Dark(2, 0, 0);
+        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
         SetAffinity_Light(0,0,3);
 
         SetAffinityRequirement(Affinity.Light, 5);

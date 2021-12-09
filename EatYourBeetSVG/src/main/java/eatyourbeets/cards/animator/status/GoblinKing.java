@@ -22,7 +22,7 @@ public class GoblinKing extends AnimatorCard_Status
 
         Initialize(0, 0);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

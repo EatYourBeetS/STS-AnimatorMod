@@ -24,7 +24,7 @@ public class ToushirouHitsugaya extends AnimatorCard
 
         Initialize(6, 3, 2, 1);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Blue(1, 0, 0);
     }
 

@@ -26,9 +26,9 @@ public class Hans extends AnimatorCard implements OnTrySpendAffinitySubscriber
         Initialize(0, 3, 5, 4);
         SetUpgrade(0, 0, 2, 0);
 
+        SetAffinity_Dark(1,0,2);
+
         SetExhaust(true);
-        SetAffinity_Star(2);
-        SetAffinity_Dark(0,0,2);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class Hans extends AnimatorCard implements OnTrySpendAffinitySubscriber
     }
 
     @Override
-    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean canUseStar, boolean isActuallySpending) {
+    public int OnTrySpendAffinity(Affinity affinity, int amount, boolean isActuallySpending) {
         if (isActuallySpending && amount >= 7 && player.exhaustPile.contains(this) && CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.PlayCard(this, GameUtilities.GetRandomEnemy(true)).AddCallback(() -> {
                 CombatStats.onTrySpendAffinity.Unsubscribe(this);

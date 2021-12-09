@@ -21,7 +21,7 @@ public class SuikaIbuki extends AnimatorCard
 
         Initialize(8, 8, 2, 2);
         SetUpgrade(1, 2, 1, 0);
-        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Blue(1, 0, 1);
     }
 

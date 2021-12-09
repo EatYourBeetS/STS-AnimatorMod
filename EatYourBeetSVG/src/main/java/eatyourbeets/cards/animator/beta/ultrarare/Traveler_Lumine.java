@@ -43,7 +43,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
 
         Initialize(0, 0, 20, 1);
         SetUpgrade(0, 0, 979, 1);
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
 
         SetEthereal(true);
         SetPurge(true);
@@ -66,7 +66,7 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
             GameActions.Bottom.MakeCardInDrawPile(new Curse_AbyssalVoid());
         }
 
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true);
         if (info.IsSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
         {
             GameActions.Bottom.GainWisdom(GetHandAffinity(Affinity.Dark) + secondaryValue, false);

@@ -28,8 +28,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Dark(1);
     }
 
     @Override
@@ -52,10 +52,8 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
         @Override
         public void OnUse(AbstractMonster m, int cost)
         {
-            GameActions.Bottom.SelectFromHand(name, 1, false).SetFilter(c -> c.type.equals(CardType.CURSE)).AddCallback(cards -> {
-                for (AbstractCard c : cards) {
-                    GameActions.Bottom.GainDesecration(2);
-                }
+            GameActions.Bottom.CreateGriefSeeds(amount).AddCallback(c -> {
+                GameActions.Bottom.Motivate(c, 1);
             });
         }
 
@@ -84,9 +82,7 @@ public class Walpurgisnacht extends AnimatorCard_UltraRare
 
         @Override
         public boolean OnCooldownTriggered(AbstractCard card, EYBCardCooldown cooldown) {
-            if (cooldown.cardConstructor != null) {
-                GameActions.Bottom.GainTemporaryHP(amount);
-            }
+            GameActions.Bottom.GainTemporaryHP(amount);
             return true;
         }
     }

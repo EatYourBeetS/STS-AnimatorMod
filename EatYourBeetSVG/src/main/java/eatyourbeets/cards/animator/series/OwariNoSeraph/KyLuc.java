@@ -27,8 +27,8 @@ public class KyLuc extends AnimatorCard
         Initialize(4, 0, 2, 3);
         SetUpgrade(4, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 2);
-        SetAffinity_Dark(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Dark(1, 0, 2);
     }
 
     @Override

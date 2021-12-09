@@ -26,7 +26,7 @@ public class Ushio extends AnimatorCard implements OnStartOfTurnPostDrawSubscrib
         Initialize(0, 0, 4, 6);
         SetUpgrade(0, 0, 1,0);
 
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
         SetEthereal(true);
         SetExhaust(true);
     }

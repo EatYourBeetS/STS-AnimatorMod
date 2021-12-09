@@ -26,7 +26,7 @@ public class LaughingMan extends AnimatorCard implements OnEndOfTurnSubscriber, 
         SetAutoplay(true);
         SetExhaust(true);
 
-        SetAffinity_Star(1, 1, 0);
+        SetAffinity_Star(1, 0, 0);
     }
 
     public void OnUpgrade() {

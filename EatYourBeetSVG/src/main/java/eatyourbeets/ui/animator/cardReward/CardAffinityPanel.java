@@ -11,14 +11,12 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.ArrayList;
 
@@ -32,22 +30,12 @@ public class CardAffinityPanel extends GUIElement
     private final ArrayList<CardAffinityCounter> counters = new ArrayList<>();
     private final EYBCardAffinityStatistics statistics;
     private final GUI_Toggle upgrade_toggle;
-    private final GUI_Image LV1_image;
-    private final GUI_Image LV2_image;
     private long lastFrame;
 
     public CardAffinityPanel()
     {
         statistics = new EYBCardAffinityStatistics();
         hb = new DraggableHitbox(ScreenW(0.025f), ScreenH(0.65f), Scale(140), Scale(50), false);
-
-        LV1_image = RenderHelpers.ForTexture(ICONS.Border_Weak.Texture())
-        .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.15f, 1f, true));
-
-        LV2_image = RenderHelpers.ForTexture(ICONS.Border.Texture())
-        .SetBackgroundTexture(ICONS.BorderBG.Texture())
-        .SetForegroundTexture(ICONS.BorderFG.Texture())
-        .SetHitbox(new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, 0.45f, 1f, true));
 
         for (Affinity t : Affinity.All())
         {
@@ -113,8 +101,6 @@ public class CardAffinityPanel extends GUIElement
     public void Update()
     {
         hb.update();
-        LV1_image.TryUpdate();
-        LV2_image.TryUpdate();
 
         for (CardAffinityCounter c : counters)
         {
@@ -142,8 +128,6 @@ public class CardAffinityPanel extends GUIElement
         }
 
         lastFrame = frame;
-        LV1_image.TryRender(sb);
-        LV2_image.TryRender(sb);
         for (CardAffinityCounter c : counters)
         {
             c.TryRender(sb);

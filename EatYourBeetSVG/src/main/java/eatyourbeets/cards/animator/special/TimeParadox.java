@@ -29,7 +29,7 @@ public class TimeParadox extends AnimatorCard_Curse implements OnStartOfTurnPost
 
         Initialize(0, 0, 1, 5);
 
-        SetAffinity_Silver(2);
+        SetAffinity_Silver(1);
 
         SetAutoplay(true);
         SetPurge(true);

@@ -42,14 +42,14 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
 
         if (IsStarter())
         {
-            GameActions.Bottom.MakeCardInHand(makeStatEquivalentCopy());
+            GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(this));
         }
     }
 
     @Override
     public void OnSynergy(AbstractCard card) {
-        if ((GameUtilities.HasRedAffinity(card) || GameUtilities.HasLightAffinity(card)) && CombatStats.TryActivateSemiLimited(cardID)) {
-            GameActions.Last.MoveCard(this,player.hand);
+        if (GameUtilities.HasLightAffinity(card) && CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Last.MoveCard(this,player.hand).ShowEffect(true, true);
         }
     }
 }

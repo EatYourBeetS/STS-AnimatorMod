@@ -71,7 +71,7 @@ public class HigakiRinne extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAttackType(EYBAttackType.Normal);
-        SetAffinity_Star(2, 0, 1);
+        SetAffinity_Star(1, 0, 1);
     }
 
     @Override

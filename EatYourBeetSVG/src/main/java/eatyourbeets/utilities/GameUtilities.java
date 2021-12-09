@@ -87,31 +87,40 @@ public class GameUtilities
     }
 
     public static boolean TrySpendAffinity(Affinity affinity, int amount) {
-        return TrySpendAffinity(affinity, amount, true, true);
+        return TrySpendAffinity(affinity, amount, true);
     }
 
-    public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar) {
-        return TrySpendAffinity(affinity, amount, canSpendStar, true);
-    }
-
-    public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean canSpendStar, boolean showEffect) {
+    public static boolean TrySpendAffinity(Affinity affinity, int amount, boolean showEffect) {
         if (affinity == null) {
             JUtils.LogWarning(null, "Tried to spend null affinity.");
             return false;
         }
-        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, canSpendStar, true);
+        int requiredAmount = CombatStats.OnTrySpendAffinity(affinity, amount, true);
         int baseAmount = CombatStats.Affinities.GetAffinityLevel(affinity, false);
-        int starAmount = canSpendStar ? CombatStats.Affinities.GetAffinityLevel(Affinity.Star, false) : 0;
-        if (baseAmount + starAmount >= requiredAmount) {
-            int baseDecrement = Math.min(baseAmount, requiredAmount);
-            SpendAffinity(affinity, baseDecrement, showEffect);
-            requiredAmount -= baseDecrement;
-            if (requiredAmount > 0 && starAmount >= requiredAmount) {
-                SpendAffinity(Affinity.Star, requiredAmount, showEffect);
-            }
+        if (baseAmount >= requiredAmount) {
+            SpendAffinity(affinity, requiredAmount, showEffect);
             return true;
         }
         return false;
+    }
+
+    public static void AddAffinityRerolls(int amount) {
+        if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
+            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.uses += amount;
+        }
+    }
+
+    public static void AddBaseAffinityRerolls(int amount) {
+        if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
+            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.baseUses += amount;
+            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.uses = CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.baseUses;
+        }
+    }
+
+    public static void SetCanChooseAffinityReroll(boolean value) {
+        if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
+            CombatStats.Affinities.AffinityMeter.Reroll.SetCanChoose(value);
+        }
     }
 
     public static void ApplyPowerInstantly(AbstractCreature target, PowerHelper powerHelper, int stacks)
@@ -1125,6 +1134,11 @@ public class GameUtilities
         return count;
     }
 
+    public static boolean HasCooldown(AbstractCard card)
+    {
+        return card instanceof EYBCard && ((EYBCard) card).cooldown != null;
+    }
+
     public static boolean HasRelic(String relicID)
     {
         return player != null && player.hasRelic(relicID);
@@ -1157,6 +1171,17 @@ public class GameUtilities
         }
 
         return false;
+    }
+
+    public static void HighlightMatchingCards(Affinity affinity) {
+        for (AbstractCard c : AbstractDungeon.player.hand.group)
+        {
+            final EYBCard temp = JUtils.SafeCast(c, EYBCard.class);
+            if (temp == null || (temp.affinities.GetLevel(affinity) == 0))
+            {
+                c.transparency = 0.35f;
+            }
+        }
     }
 
     public static void ChangeCardName(AbstractCard card, String newName)

@@ -30,11 +30,11 @@ public class Add extends AnimatorCard
         Initialize(0, 3, 2, 3);
         SetUpgrade(0, 1, 1, 0);
 
-        SetAffinity_Blue(1, 1, 1);
-        SetAffinity_Dark(2);
-        SetAffinity_Silver(2,0,1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Dark(1);
+        SetAffinity_Silver(1,0,1);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 5);
 
         SetExhaust(true);
     }
@@ -51,7 +51,7 @@ public class Add extends AnimatorCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue).AddCallback(() -> {
-            if (info.IsSynergizing || TrySpendAffinity(Affinity.Dark))
+            if (TrySpendAffinity(Affinity.Dark))
             {
                 GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
                         .AddCallback(this::OnCardChosen);

@@ -3,7 +3,7 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.IrohaTamaki_Giovanna;
+import eatyourbeets.cards.animator.special.IrohaTamaki_Giovanna;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
@@ -20,11 +20,11 @@ public class IrohaTamaki extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 5, 2, 1);
+        Initialize(3, 5, 2, 2);
         SetUpgrade(0, 2, 1 ,1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1,0,1);
+        SetAffinity_Light(1, 0 ,1);
 
         SetAffinityRequirement(Affinity.Light, 3);
 
@@ -37,20 +37,16 @@ public class IrohaTamaki extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
 
-        if (p.drawPile.size() > 0)
+        if (info.IsSynergizing)
         {
-            AbstractCard topCard = p.drawPile.getTopCard();
-            if (GameUtilities.IsHindrance(topCard))
-            {
-                GameActions.Bottom.Exhaust(topCard).AddCallback(() -> {
-                    GameActions.Bottom.StackAffinityPower(Affinity.Light, secondaryValue, true);
-                });
-            }
-        }
-
-        if (info.IsSynergizing || TrySpendAffinity(Affinity.Light))
-        {
-            GameActions.Bottom.Scry(magicNumber);
+            GameActions.Bottom.Scry(magicNumber).AddCallback(cards -> {
+                for (AbstractCard c : cards) {
+                    if (GameUtilities.IsHindrance(c)) {
+                        GameActions.Bottom.PlayCopy(c, m);
+                        GameActions.Last.Purge(c).ShowEffect(true);
+                    }
+                }
+            });
         }
     }
 }

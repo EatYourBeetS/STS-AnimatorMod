@@ -28,8 +28,8 @@ public class Biyorigo extends AnimatorCard
 
         Initialize(0, 0, 2, COST);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
 
         SetDelayed(true);
     }

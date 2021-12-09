@@ -25,8 +25,8 @@ public class Shichika_Kyotouryuu extends AnimatorCard
 
         Initialize(1, 0, 4);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);

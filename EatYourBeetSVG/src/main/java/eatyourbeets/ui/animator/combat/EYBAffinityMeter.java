@@ -5,59 +5,78 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.powers.common.RerollAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.common.AffinityKeywordButton;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.DraggableHitbox;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.HARMONIC;
 
 public class EYBAffinityMeter extends GUIElement
 {
+    public enum Target {
+        CurrentAffinity,
+        NextAffinity
+    }
+
     public static final int DEFAULT_REROLLS = 1;
-    public static final float ICON_SIZE = Scale(48);
+    public static final float ICON_SIZE = Scale(96);
+    public static final float LABEL_OFFSET = ICON_SIZE + Scale(20);
     public static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
-    public final EYBCardAffinitySystem System;
     public final DraggableHitbox hb;
-    protected final AffinityKeywordButton CurrentAffinity;
-    protected final AffinityKeywordButton NextAffinity;
-    protected final GUI_Image dragMeter_image;
+    public final EYBCardAffinitySystem System;
+    public final AffinityKeywordButton CurrentAffinity;
+    public final AffinityKeywordButton NextAffinity;
+    public RerollAffinityPower Reroll;
+    protected final GUI_Image draggable_panel;
     protected final GUI_Image draggable_icon;
     protected Vector2 meterSavedPosition;
-    protected int currentRerolls;
 
     public EYBAffinityMeter(EYBCardAffinitySystem system) {
         System = system;
 
-        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(40f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), ICON_SIZE / 2,  ICON_SIZE / 2, true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
-        dragMeter_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
+        draggable_panel = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
                 .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
-        draggable_icon = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(20f), Scale(20f), false))
-                .SetColor(Colors.White(0.75f));
+        draggable_icon = new GUI_Image(GR.Common.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), ICON_SIZE / 4, ICON_SIZE / 4, false))
+                .SetColor(Colors.White(0.25f));
 
-        //TODO add reroll functionality
-        CurrentAffinity = new AffinityKeywordButton(hb, Affinity.General, 96f)
+        CurrentAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(3)
-                .SetOffsets(2f, 0);
-        NextAffinity = new AffinityKeywordButton(hb, Affinity.General, 96f)
+                .SetOffsets(2f, 0.5f)
+                .SetOnClick(__ -> {
+                    if (Reroll != null) {
+                        Reroll.OnClick(Target.CurrentAffinity);
+                    }
+                });
+        NextAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(2)
-                .SetOffsets(4f, 0);
+                .SetOffsets(4f, 0.5f)
+                .SetOnClick(__ -> {
+                    if (Reroll != null) {
+                        Reroll.OnClick(Target.NextAffinity);
+                    }
+                });
     }
 
     public void Initialize() {
         //TODO add subscribers
         RandomizeCurrentAffinity();
         RandomizeNextAffinity();
+        Reroll = new RerollAffinityPower(DEFAULT_REROLLS);
 
         if (meterSavedPosition != null)
         {
-            final DraggableHitbox hb = (DraggableHitbox) dragMeter_image.hb;
+            final DraggableHitbox hb = (DraggableHitbox) draggable_panel.hb;
             meterSavedPosition.x = hb.target_cX / (float) Settings.WIDTH;
             meterSavedPosition.y = hb.target_cY / (float) Settings.HEIGHT;
             if (meterSavedPosition.dst2(GR.Animator.Config.AffinityMeterPosition.Get()) > Mathf.Epsilon)
@@ -69,8 +88,15 @@ public class EYBAffinityMeter extends GUIElement
     }
 
     public boolean HasMatch(AbstractCard card) {
+        return HasMatch(card, true);
+    }
+
+    public boolean HasMatch(AbstractCard card, boolean useHarmonic) {
         EYBCard eCard = JUtils.SafeCast(card, EYBCard.class);
         if (eCard != null) {
+            if (useHarmonic && eCard.hasTag(HARMONIC)) {
+                return true;
+            }
             if (CurrentAffinity.Type.equals(Affinity.Star)) {
                 return (eCard.affinities.GetLevel(Affinity.General, true) > 0);
             }
@@ -82,22 +108,45 @@ public class EYBAffinityMeter extends GUIElement
     public Affinity OnMatch(AbstractCard card) {
         //TODO add subscribers
         CurrentAffinity.Flash();
-        SetCurrentAffinity(NextAffinity.Type);
-        return SetNextAffinity(card);
+        if (card.hasTag(HARMONIC) && !HasMatch(card, false)) {
+            return GetCurrentAffinity();
+        }
+        else {
+            SetCurrentAffinity(NextAffinity.Type);
+            return SetNextAffinity(card);
+        }
     }
 
     public void OnStartOfTurn()
     {
+        if (Reroll != null) {
+            Reroll.atStartOfTurn();
+        }
         //TODO add subscribers
-        currentRerolls = DEFAULT_REROLLS;
+    }
+
+    public Affinity Randomize(Target target) {
+        return target == Target.CurrentAffinity ? RandomizeCurrentAffinity() : RandomizeNextAffinity();
     }
 
     public Affinity RandomizeCurrentAffinity() {
-        return SetCurrentAffinity(JUtils.Random(Affinity.Basic()));
+        return SetCurrentAffinity(GameUtilities.GetRandomElement(Affinity.Basic()));
     }
 
     public Affinity RandomizeNextAffinity() {
-        return SetNextAffinity(JUtils.Random(Affinity.Basic()));
+        return SetNextAffinity(GameUtilities.GetRandomElement(Affinity.Basic()));
+    }
+
+    public Affinity GetCurrentAffinity() {
+        return CurrentAffinity.Type;
+    }
+
+    public Affinity GetNextAffinity() {
+        return NextAffinity.Type;
+    }
+
+    public Affinity Set(Affinity affinity, Target target) {
+        return target == Target.CurrentAffinity ? SetCurrentAffinity(affinity) : SetNextAffinity(affinity);
     }
 
     public Affinity SetCurrentAffinity(Affinity affinity) {
@@ -113,12 +162,24 @@ public class EYBAffinityMeter extends GUIElement
     public Affinity SetNextAffinity(AbstractCard card) {
         EYBCard eCard = JUtils.SafeCast(card, EYBCard.class);
         if (eCard != null) {
+            if (eCard.affinities.HasStar()) {
+                return SetNextAffinity(Affinity.Star);
+            }
             Affinity affinity = JUtils.Random(eCard.affinities.GetAffinities());
             if (affinity != null) {
                 return SetNextAffinity(affinity);
             }
         }
         return RandomizeNextAffinity();
+    }
+
+    public void Flash(Target target) {
+        if (target == Target.CurrentAffinity) {
+            CurrentAffinity.Flash();
+        }
+        else {
+            NextAffinity.Flash();
+        }
     }
 
     @Override
@@ -130,20 +191,45 @@ public class EYBAffinityMeter extends GUIElement
         }
         hb.update();
 
-        dragMeter_image.TryUpdate();
+        draggable_panel.TryUpdate();
         draggable_icon.TryUpdate();
+
+        boolean isHovered = draggable_panel.hb.hovered || CurrentAffinity.background_button.hb.hovered || NextAffinity.background_button.hb.hovered;
+        draggable_panel.SetColor(0.05f, 0.05f, 0.05f, isHovered ? 0.5f : 0.05f);
+        draggable_icon.SetColor(Colors.White(isHovered ? 0.75f : 0.1f));
 
         CurrentAffinity.TryUpdate();
         NextAffinity.TryUpdate();
+
+        if (Reroll != null)
+        {
+            Reroll.updateDescription();
+            if (CurrentAffinity.background_button.hb.hovered || NextAffinity.background_button.hb.hovered) {
+                EYBCardTooltip.QueueTooltip(Reroll.tooltip);
+            }
+        }
+
+        if (CurrentAffinity.background_button.hb.hovered) {
+            GameUtilities.HighlightMatchingCards(CurrentAffinity.Type == Affinity.Star ? Affinity.General : CurrentAffinity.Type);
+        }
+
+        if (NextAffinity.background_button.hb.hovered) {
+            GameUtilities.HighlightMatchingCards(NextAffinity.Type == Affinity.Star ? Affinity.General : NextAffinity.Type);
+        }
     }
 
     @Override
     public void Render(SpriteBatch sb) {
-        dragMeter_image.Render(sb);
+        draggable_panel.Render(sb);
         draggable_icon.Render(sb);
 
         CurrentAffinity.TryRender(sb);
         NextAffinity.TryRender(sb);
         hb.render(sb);
+
+        FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
+                GR.Animator.Strings.Combat.Current, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
+        FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
+                GR.Animator.Strings.Combat.Next, NextAffinity.background_button.hb.cX, NextAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
     }
 }

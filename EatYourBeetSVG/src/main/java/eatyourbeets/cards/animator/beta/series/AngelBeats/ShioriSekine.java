@@ -22,7 +22,7 @@ public class ShioriSekine extends AnimatorCard
         Initialize(0, 0, 1, 1);
         SetUpgrade(0, 0, 0, 1);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Light(1, 0, 0);
         SetEthereal(true);
         SetExhaust(true);
         AfterLifeMod.Add(this);

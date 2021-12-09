@@ -32,7 +32,7 @@ public class Hitei extends AnimatorCard
         Initialize(0, 0, EXHAUST_SELECTION_SIZE, POWER_ACTIVATION_COST);
         SetCostUpgrade(-1);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
         SetAffinity_Dark(1);
     }
 

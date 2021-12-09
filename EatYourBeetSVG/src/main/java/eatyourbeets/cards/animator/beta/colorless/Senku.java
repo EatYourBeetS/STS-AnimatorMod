@@ -42,8 +42,8 @@ public class Senku extends AnimatorCard
         Initialize(4, 0, 0, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 1);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Silver(1, 0, 1);
 
         SetProtagonist(true);

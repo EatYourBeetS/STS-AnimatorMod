@@ -27,7 +27,7 @@ public class Eve_Drone extends AnimatorCard
         super(DATA);
 
         Initialize(3, 0, 1, 0);
-        SetAffinity_Silver(2, 0, 0);
+        SetAffinity_Silver(1, 0, 0);
         SetRetain(true);
         SetCooldown(4, 2, this::OnCooldownCompleted);
         SetForm(form, timesUpgraded);

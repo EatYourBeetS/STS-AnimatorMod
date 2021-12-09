@@ -24,7 +24,7 @@ public class KanamiAlt extends AnimatorCard_UltraRare implements Hidden
         Initialize(20, 2, 10);
         SetUpgrade(7, 0, 0);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Green(1);
         SetAffinity_Light(1);
     }

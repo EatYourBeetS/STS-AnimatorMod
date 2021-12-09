@@ -24,7 +24,7 @@ public class Shinku extends AnimatorCard
         SetUpgrade(3, 1);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
-        SetAffinity_Light(1, 1, 1);
+        SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Light, 7);
         SetAffinityRequirement(Affinity.Dark, 7);

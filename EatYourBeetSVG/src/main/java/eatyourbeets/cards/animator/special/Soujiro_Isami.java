@@ -22,7 +22,7 @@ public class Soujiro_Isami extends AnimatorCard
         Initialize(6, 0, 0);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
     }
 
     @Override

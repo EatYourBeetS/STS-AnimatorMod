@@ -19,7 +19,7 @@ public class Azekura extends AnimatorCard
         Initialize(0, 9, 2, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Red, 4);

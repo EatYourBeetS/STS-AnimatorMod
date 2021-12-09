@@ -26,7 +26,7 @@ public class Lancer extends AnimatorCard
         Initialize(6, 0, 1, VULNERABLE_MODIFIER);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 4);

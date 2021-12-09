@@ -29,8 +29,8 @@ public class NobleFencer extends AnimatorCard
 
         Initialize(0, 3, 3, 1);
 
-        SetAffinity_Green(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
         SetAffinity_Red(0,0,1);
 
         SetExhaust(true);

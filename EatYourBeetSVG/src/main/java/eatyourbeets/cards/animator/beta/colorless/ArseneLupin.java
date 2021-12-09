@@ -19,7 +19,7 @@ public class ArseneLupin extends AnimatorCard
         Initialize(4, 0, 2 , 50);
         SetUpgrade(0, 0, 1 , -10);
 
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Dark(1);
         SetAffinity_Green(0,0,1);
 

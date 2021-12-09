@@ -26,8 +26,8 @@ public class IchigoKurosaki_Bankai extends AnimatorCard
         Initialize(8, 0);
         SetUpgrade(3, 0);
 
-        SetAffinity_Green(2, 0, 1);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Red(1, 0, 1);
 
         SetExhaust(true);
         SetMultiDamage(true);

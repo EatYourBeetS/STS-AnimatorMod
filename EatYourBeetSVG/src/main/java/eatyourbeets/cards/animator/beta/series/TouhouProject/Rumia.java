@@ -23,8 +23,8 @@ public class Rumia extends AnimatorCard
 
         Initialize(4, 0, 3, 7);
         SetUpgrade(1, 0, 0, 2);
-        SetAffinity_Dark(2, 0, 2);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Dark(1, 0, 2);
+        SetAffinity_Blue(1, 0, 1);
 
         SetExhaust(true);
     }

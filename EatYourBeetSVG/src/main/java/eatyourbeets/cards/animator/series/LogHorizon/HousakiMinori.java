@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HousakiMinori extends AnimatorCard
 {
@@ -24,26 +25,26 @@ public class HousakiMinori extends AnimatorCard
         SetUpgrade(0, 1, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1, 1, 1);
+        SetAffinity_Light(1, 0, 1);
 
         SetCooldown(4, -1, this::OnCooldownCompleted);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return HousakiTohya.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing && info.GetPreviousCardID().equals(HousakiTohya.DATA.ID) ? 3 : 1, m);
+        cooldown.ProgressCooldownAndTrigger(info.GetPreviousCardID().equals(HousakiTohya.DATA.ID) ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         GameActions.Bottom.GainArtifact(magicNumber);
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true);
+        return last != null && HousakiTohya.DATA.ID.equals(last.cardID);
     }
 }

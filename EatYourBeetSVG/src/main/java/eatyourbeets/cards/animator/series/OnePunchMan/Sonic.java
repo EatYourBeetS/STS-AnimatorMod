@@ -28,7 +28,7 @@ public class Sonic extends AnimatorCard
         Initialize(0, 1, 2);
         SetUpgrade(0, 1, 0);
 
-        SetAffinity_Green(2,0,3);
+        SetAffinity_Green(1,0,3);
         SetAffinity_Dark(1);
 
         SetExhaust(true);

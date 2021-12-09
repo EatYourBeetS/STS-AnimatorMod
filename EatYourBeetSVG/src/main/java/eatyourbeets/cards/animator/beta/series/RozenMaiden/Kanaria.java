@@ -31,9 +31,9 @@ public class Kanaria extends AnimatorCard
 
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0);
-        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Light(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(1, 0, 0);
 
         SetCostUpgrade(-1);
         SetAffinityRequirement(Affinity.Blue, 5);

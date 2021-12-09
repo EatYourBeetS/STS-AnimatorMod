@@ -22,7 +22,7 @@ public class Lean extends AnimatorCard
 
         Initialize(0, 0, 2, 3);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Blue, 4);
@@ -54,7 +54,7 @@ public class Lean extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        return secondaryValue * JUtils.Count(player.hand.group, this::WouldSynergize);
+        return secondaryValue * JUtils.Count(player.hand.group, GameUtilities::HasBlueAffinity);
     }
 
     @Override

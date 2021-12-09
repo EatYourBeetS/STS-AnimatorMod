@@ -20,7 +20,7 @@ public class Curse_AbyssalVoid extends AnimatorCard_Curse
 
         Initialize(0, 0, 6, 3);
         SetUpgrade(0, 0, 0, 0);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetAutoplay(true);
         SetPurge(true);

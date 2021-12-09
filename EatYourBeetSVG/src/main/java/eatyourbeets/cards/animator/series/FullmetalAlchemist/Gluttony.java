@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
@@ -15,8 +17,8 @@ public class Gluttony extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
-    public static final int MINIMUM_CARDS = 4;
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Dark), true));
 
     public Gluttony()
     {
@@ -24,8 +26,8 @@ public class Gluttony extends AnimatorCard
 
         Initialize(0, 0, 2, 3);
 
-        SetAffinity_Red(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Red(1);
+        SetAffinity_Dark(1);
 
         SetExhaust(true);
     }
@@ -38,51 +40,33 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    protected String GetRawDescription(Object... args)
-    {
-        return super.GetRawDescription(MINIMUM_CARDS);
-    }
-
-    @Override
     protected void OnUpgrade()
     {
         SetRetain(true);
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        SetUnplayable(player.hand.size() < MINIMUM_CARDS);
-    }
-
-    @Override
     public int GetXValue() {
-        return player != null ? (magicNumber * (player.hand.size() - (player.hand.contains(this) ? 1 : 0))) : -1;
+        return player != null ? (magicNumber * (player.drawPile.size() - (player.hand.contains(this) ? 1 : 0))) : -1;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.ExhaustFromPile(name, secondaryValue, player.drawPile)
+                .SetOptions(CardSelection.Top, false)
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
+                        if (eCard != null && eCard.affinities != null) {
+                            CombatStats.Affinities.AddAffinities(eCard.affinities);
+                        }
+                        GameActions.Bottom.GainTemporaryHP(magicNumber);
 
-        if (p.hand.size() >= MINIMUM_CARDS)
-        {
-            for (AbstractCard c : player.hand.group) {
-                EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
-                if (eCard != null && eCard.affinities != null) {
-                    CombatStats.Affinities.AddAffinities(eCard.affinities);
-                }
-                GameActions.Bottom.GainTemporaryHP(magicNumber);
-            }
-            GameActions.Delayed.ModifyAffinityLevel(player.hand, player.hand.size(), Affinity.General,  -1, true).AddCallback(cards -> {
-                for (AbstractCard c : cards) {
-                    EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
-                    if (eCard == null || eCard.affinities.GetLevel(Affinity.General) <= 0) {
-                        GameActions.Last.Exhaust(c);
+                        if (c.type == CardType.CURSE && info.TryActivateLimited()) {
+                            GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
+                        }
                     }
-                }
-            });
-        }
+                });
     }
 }

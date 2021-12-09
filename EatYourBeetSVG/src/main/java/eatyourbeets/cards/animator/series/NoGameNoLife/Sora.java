@@ -35,7 +35,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
         Initialize(0, 0, 3, 2);
 
         SetAffinity_Blue(1, 0, 1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
 
         SetProtagonist(true);
         SetHarmonic(true);
@@ -73,7 +73,7 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
                     }
                 });
 
-        if (info.IsSynergizing && info.GetPreviousCardID().equals(Shiro.DATA.ID) && info.TryActivateLimited())
+        if (info.GetPreviousCardID().equals(Shiro.DATA.ID) && info.TryActivateLimited())
         {
             GameActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
         }
@@ -89,4 +89,9 @@ public class Sora extends AnimatorCard implements OnStartOfTurnPostDrawSubscribe
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        final AbstractCard last = GameUtilities.GetLastCardPlayed(true);
+        return last != null && Shiro.DATA.ID.equals(last.cardID);
+    }
 }

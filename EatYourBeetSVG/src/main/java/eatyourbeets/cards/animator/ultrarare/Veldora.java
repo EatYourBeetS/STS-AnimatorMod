@@ -30,9 +30,9 @@ public class Veldora extends AnimatorCard_UltraRare
         Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
     }
 
     @Override

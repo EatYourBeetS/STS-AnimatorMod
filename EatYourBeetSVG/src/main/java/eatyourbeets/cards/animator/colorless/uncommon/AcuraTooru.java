@@ -35,7 +35,6 @@ public class AcuraTooru extends AnimatorCard
         SetAffinity_Red(1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
 
         SetAffinityRequirement(Affinity.Green, 4);
         SetHitCount(2);

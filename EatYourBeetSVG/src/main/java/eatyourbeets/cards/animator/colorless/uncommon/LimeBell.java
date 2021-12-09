@@ -19,7 +19,7 @@ public class LimeBell extends AnimatorCard
         Initialize(0, 8, 4, 1);
         SetUpgrade(0, 2, 2, 0);
 
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
 
         SetExhaust(true);
     }

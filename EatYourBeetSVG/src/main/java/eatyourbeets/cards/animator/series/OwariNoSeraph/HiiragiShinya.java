@@ -24,7 +24,7 @@ public class HiiragiShinya extends AnimatorCard
         SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Orange(1, 1, 1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Green,3);
@@ -48,7 +48,7 @@ public class HiiragiShinya extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing || TrySpendAffinity(Affinity.Green))
+        if (TrySpendAffinity(Affinity.Green))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, magicNumber));
         }

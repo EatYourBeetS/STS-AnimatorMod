@@ -29,7 +29,7 @@ public class Entoma extends AnimatorCard
         Initialize(3, 0);
         SetUpgrade(1, 0);
 
-        SetAffinity_Dark(1, 1, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

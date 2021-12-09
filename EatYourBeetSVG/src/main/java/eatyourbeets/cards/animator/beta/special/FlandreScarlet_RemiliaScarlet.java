@@ -23,7 +23,7 @@ public class FlandreScarlet_RemiliaScarlet extends AnimatorCard
         Initialize(8, 0, 3, 2);
         SetUpgrade(1, 0, 0, 1);
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
 
         SetEthereal(true);

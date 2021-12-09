@@ -20,7 +20,7 @@ public class Lust extends AnimatorCard
         Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Dark, 5);

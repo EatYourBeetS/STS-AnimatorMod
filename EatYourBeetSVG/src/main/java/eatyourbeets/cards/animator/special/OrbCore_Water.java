@@ -15,7 +15,7 @@ public class OrbCore_Water extends OrbCore
     {
         super(DATA, 1, 8);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
     }
 
     @Override

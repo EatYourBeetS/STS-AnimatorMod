@@ -21,7 +21,7 @@ public class Barasuishou extends AnimatorCard
         Initialize(8, 0, 3, 1);
         SetUpgrade(3, 0, 1);
         SetAffinity_Blue(1, 0, 2);
-        SetAffinity_Dark(1, 1, 2);
+        SetAffinity_Dark(1, 0, 2);
 
         SetEthereal(true);
     }

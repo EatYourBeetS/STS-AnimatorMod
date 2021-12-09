@@ -15,7 +15,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard //TODO
+public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCard
 {
     public static final EYBCardData DATA = Register(YuyukoSaigyouji.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.TouhouProject);
 
@@ -26,7 +26,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare implements StartupCa
         Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Blue(1, 0, 0);
-        SetAffinity_Dark(2, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
         SetCostUpgrade(-1);
         SetInnate(true);
         GraveField.grave.set(this, true);

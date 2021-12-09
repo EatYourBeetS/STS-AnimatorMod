@@ -39,7 +39,7 @@ public class TheHaunt extends AnimatorCard_Status implements Hidden
 
         Initialize(0, 0, goldBonus);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetEthereal(true);
         SetExhaust(true);

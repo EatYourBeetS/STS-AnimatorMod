@@ -7,7 +7,6 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.FreezingPower;
@@ -16,9 +15,9 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class KotoriItsuka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Normal).SetSeriesFromClassPackage();
     public static final int THRESHOLD = 12;
-    public static final int BURNING_ATTACK_BONUS = 15;
+    public static final int BURNING_ATTACK_BONUS = 10;
 
     public KotoriItsuka()
     {
@@ -26,11 +25,9 @@ public class KotoriItsuka extends AnimatorCard
 
         Initialize(8, 0, 4, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(0, 0, 1);
-
-        SetHarmonic(true);
     }
 
     @Override
@@ -56,7 +53,7 @@ public class KotoriItsuka extends AnimatorCard
                 GameActions.Bottom.ApplyBurning(player, enemy, secondaryValue);
             }
 
-            if (info.IsSynergizing && CombatStats.TryActivateSemiLimited(cardID)) {
+            if (info.IsSynergizing) {
                 GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
             }
         }));

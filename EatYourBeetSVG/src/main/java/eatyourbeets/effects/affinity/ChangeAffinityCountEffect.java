@@ -17,10 +17,12 @@ public class ChangeAffinityCountEffect extends AbstractGameEffect
     private final float x;
     private final float y;
     private float scale;
+    private int size = 32;
     private final Texture img;
 
     public ChangeAffinityCountEffect(AffinityKeywordButton button, boolean playSfx) {
         this(button.Type.GetIcon(), button.background_button.hb.x, button.background_button.hb.y, playSfx);
+        size = 128;
     }
 
     public ChangeAffinityCountEffect(EYBCardAffinityRow affinityRow, boolean playSfx) {
@@ -36,8 +38,8 @@ public class ChangeAffinityCountEffect extends AbstractGameEffect
             CardCrawlGame.sound.play("BUFF_1");
         }
 
-        this.duration = 2f;
-        this.startingDuration = 2f;
+        this.duration = 1.5f;
+        this.startingDuration = 1.5f;
         this.scale = Settings.scale;
         this.color = new Color(1f, 1f, 1f, 0.5f);
         this.x = x;
@@ -62,7 +64,7 @@ public class ChangeAffinityCountEffect extends AbstractGameEffect
     {
         sb.setColor(this.color);
         sb.setBlendFunction(770, 1);
-        sb.draw(this.img, x - 16f, y - 16f, 16f, 16f, 32f, 32f, scale, scale, 0f, 0, 0, 32, 32, false, false);
+        sb.draw(this.img, x, y, size / 2f, size / 2f, size, size, scale, scale, 0f, 0, 0, size, size, false, false);
         sb.setBlendFunction(770, 771);
     }
 

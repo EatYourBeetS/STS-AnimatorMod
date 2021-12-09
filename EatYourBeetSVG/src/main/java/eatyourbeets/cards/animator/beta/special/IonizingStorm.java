@@ -1,21 +1,19 @@
 package eatyourbeets.cards.animator.beta.special;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.VFX;
+import eatyourbeets.effects.vfx.ScreenHexagonEffect;
 import eatyourbeets.powers.animator.IonizingStormPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 
 public class IonizingStorm extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(IonizingStorm.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
+    public static final int LIGHTNING_BONUS = 50;
 
     public IonizingStorm()
     {
@@ -23,8 +21,14 @@ public class IonizingStorm extends AnimatorCard
 
         Initialize(0, 0, 2, IonizingStormPower.PER_CHARGE);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
         SetAffinity_Silver(1);
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(LIGHTNING_BONUS);
     }
 
     @Override
@@ -32,10 +36,6 @@ public class IonizingStorm extends AnimatorCard
     {
         GameActions.Bottom.ChannelOrbs(Lightning::new, magicNumber);
         GameActions.Bottom.StackPower(new IonizingStormPower(p, 1));
-        GameEffects.Queue.Add(new BorderLongFlashEffect(Color.GOLDENROD, false));
-        for (int i = 0; i < secondaryValue; i++) {
-            GameEffects.Queue.Add(VFX.Lightning(p.hb));
-        }
-
+        GameActions.Bottom.VFX(new ScreenHexagonEffect());
     }
 }

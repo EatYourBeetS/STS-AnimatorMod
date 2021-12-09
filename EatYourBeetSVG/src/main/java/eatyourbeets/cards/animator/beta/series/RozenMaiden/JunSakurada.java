@@ -32,7 +32,6 @@ public class JunSakurada extends AnimatorCard
         SetEthereal(true);
 
         SetProtagonist(true);
-        SetHarmonic(true);
 
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }

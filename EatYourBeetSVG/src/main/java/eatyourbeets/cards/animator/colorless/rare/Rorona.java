@@ -36,7 +36,7 @@ public class Rorona extends AnimatorCard
         Initialize(0, 0, 32, UPGRADE_CARD_REQUIREMENT);
         SetUpgrade(0, 0, -6);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1);
 
         SetObtainableInCombat(false);

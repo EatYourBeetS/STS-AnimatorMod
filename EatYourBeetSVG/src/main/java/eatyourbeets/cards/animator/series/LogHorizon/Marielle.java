@@ -30,7 +30,7 @@ public class Marielle extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(0,0,1);
 
         SetAffinityRequirement(Affinity.General, 8);

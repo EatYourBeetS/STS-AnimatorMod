@@ -167,7 +167,7 @@
 	{
 		"TEXT":
 		[
-			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
+			"Only contains Cards from this Series. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 			"Bonus Relic",
 			"Cursed Relic",
 			"Reroll",
@@ -185,7 +185,7 @@
 	[
 	  "Contains {0} cards.",
 	  "Beta",
-	  "Selecting this series will not unlock trophies for the current run.",
+	  "Selecting this Series will not unlock trophies for the current run.",
 	  "Remove from Pool",
 	  "Add to Pool",
 	  "View Cards",
@@ -291,12 +291,23 @@
 		]
 	},
 
+	"animator:Combat":
+	{
+		"TEXT":
+		[
+			"Current",
+			"Next",
+			"Uses",
+			"Rerolls"
+		]
+	},
+
 	"animator:Tutorial":
 	{
 		"TEXT":
 		[
 			"Click this to learn more about #yAffinities.",
-			"Whenever you play a card, the counters of each of its #yAffinities will increase by 1. Spend counters to activate effects requiring them. NL Once per turn, when a card #ySynergizes, gain the power shown on the right. NL This power gains #b1 #yLevel for every #b100 cumulative #yAffinity gained this combat. Power gains from any source increase by #b+100% per #yLevel."
+			"Whenever you play a card, the counters of each of its #yAffinities will increase by 1. Spend counters to activate effects requiring them. NL Once per turn, when a card #yMatches, gain the power shown on the right."
 		]
 	},
 

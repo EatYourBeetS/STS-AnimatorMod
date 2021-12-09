@@ -24,11 +24,10 @@ public class Elsword extends AnimatorCard
         Initialize(8, 5, 2);
         SetUpgrade(2,  1, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Togame extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 1, 0);
+        SetAffinity_Orange(1, 0, 0);
 
         SetAffinityRequirement(Affinity.Green, 4);
     }

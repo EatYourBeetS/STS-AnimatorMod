@@ -28,14 +28,13 @@ public class Shichika extends AnimatorCard
         Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Red(2, 0, 2);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Red, 3);
         SetAffinityRequirement(Affinity.Green, 3);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

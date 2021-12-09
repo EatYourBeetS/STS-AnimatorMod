@@ -24,12 +24,11 @@ public class Shiroe extends AnimatorCard
         Initialize(0, 1, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(2,0,2);
-        SetAffinity_Orange(2,0,1);
+        SetAffinity_Blue(1,0,2);
+        SetAffinity_Orange(1,0,1);
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Fujimaki extends AnimatorCard
         SetUpgrade(3, 0, 1);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
-        SetAffinity_Red(1, 1, 2);
+        SetAffinity_Red(1, 0, 2);
 
         SetAffinityRequirement(Affinity.Green, 4);
     }

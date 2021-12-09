@@ -32,7 +32,7 @@ public class Hero extends AnimatorCard_UltraRare //TODO
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
-        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Light(1, 0, 2);
     }
 
     @Override

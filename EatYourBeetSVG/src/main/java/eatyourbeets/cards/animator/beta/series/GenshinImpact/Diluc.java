@@ -21,7 +21,7 @@ public class Diluc extends AnimatorCard
 
         Initialize(14, 0, 5, 3);
         SetUpgrade(2,0,1,0);
-        SetAffinity_Red(2, 0, 3);
+        SetAffinity_Red(1, 0, 3);
 
         SetAffinityRequirement(Affinity.Red, 7);
     }

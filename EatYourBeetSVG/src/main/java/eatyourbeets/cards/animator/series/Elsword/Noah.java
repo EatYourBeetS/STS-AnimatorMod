@@ -29,7 +29,7 @@ public class Noah extends AnimatorCard
         SetUpgrade(1, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
         SetHitCount(3);
     }
 
@@ -44,14 +44,14 @@ public class Noah extends AnimatorCard
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
-            SetAffinity_Light(2, 0, 1);
+            SetAffinity_Light(1, 0, 1);
             SetAffinity_Dark(1);
             LoadImage("_Light");
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
         }
         else {
             SetAffinity_Light(1);
-            SetAffinity_Dark(2, 0, 1);
+            SetAffinity_Dark(1, 0, 1);
             LoadImage(null);
             this.cardText.OverrideDescription(null, true);
         }

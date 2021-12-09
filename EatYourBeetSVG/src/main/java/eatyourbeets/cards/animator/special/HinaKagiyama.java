@@ -26,7 +26,7 @@ public class HinaKagiyama extends AnimatorCard
         Initialize(0, 0, HinaKagiyamaPower.CARD_DRAW_AMOUNT);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
     }
 
     @Override

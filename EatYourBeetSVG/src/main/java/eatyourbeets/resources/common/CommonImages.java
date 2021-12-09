@@ -198,6 +198,7 @@ public class CommonImages
         public final TextureCache FrostSnow2       = new TextureCache("images/animator/effects/FrostSnow2.png");
         public final TextureCache FrostSnow3       = new TextureCache("images/animator/effects/FrostSnow3.png");
         public final TextureCache FrostSnow4       = new TextureCache("images/animator/effects/FrostSnow4.png");
+        public final TextureCache Hexagon          = new TextureCache("images/animator/effects/Hexagon.png");
         public final TextureCache IceImpact        = new TextureCache("images/animator/effects/IceImpact.png");
         public final TextureCache Psi              = new TextureCache("images/animator/effects/Psi.png");
         public final TextureCache Punch            = new TextureCache("images/animator/effects/Punch.png");

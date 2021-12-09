@@ -23,7 +23,7 @@ public class EmirEins extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Silver(2);
+        SetAffinity_Silver(1);
 
         SetExhaust(true);
     }

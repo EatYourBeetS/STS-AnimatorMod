@@ -18,8 +18,8 @@ public class Alibaba_Aladdin extends AnimatorCard
 
         Initialize(0, 0, 2, 1);
         SetUpgrade(0,0,0,1);
-        SetAffinity_Blue(2);
-        SetAffinity_Light(2);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
     }
 
     @Override

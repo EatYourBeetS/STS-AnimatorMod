@@ -2,18 +2,18 @@ package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.KyokoSakura_Ophelia;
+import eatyourbeets.cards.animator.special.KyokoSakura_Ophelia;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class KyokoSakura extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KyokoSakura.class)
-            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
@@ -27,20 +27,16 @@ public class KyokoSakura extends AnimatorCard
         Initialize(9, 0, 1, 2);
         SetUpgrade(3, 0, 1);
 
-        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(0,0,1);
-        SetSoul(4, 1, KyokoSakura_Ophelia::new);
+        SetSoul(4, 0, KyokoSakura_Ophelia::new);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SLASH_VERTICAL);
-
-        if (IsStarter())
-        {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
+        GameActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
 
         GameActions.Bottom.Draw(magicNumber);
         GameActions.Bottom.SelectFromHand(name, magicNumber, false)

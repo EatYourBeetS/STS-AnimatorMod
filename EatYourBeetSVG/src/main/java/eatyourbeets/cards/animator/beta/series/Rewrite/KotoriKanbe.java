@@ -23,7 +23,7 @@ public class KotoriKanbe extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
-        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Light(1, 0, 2);
         SetAffinity_Blue(1, 0, 0);
     }
 

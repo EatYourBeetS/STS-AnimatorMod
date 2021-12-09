@@ -15,7 +15,7 @@ public class Amber extends AnimatorCard {
 
         Initialize(4, 1, 2, 2);
         SetUpgrade(2, 1, 0);
-        SetAffinity_Green(2, 0 ,1);
+        SetAffinity_Green(1, 0 ,1);
 
         SetAffinityRequirement(Affinity.Blue, 3);
     }

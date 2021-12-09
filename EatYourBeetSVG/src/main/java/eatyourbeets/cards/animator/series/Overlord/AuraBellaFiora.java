@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -38,25 +37,18 @@ public class AuraBellaFiora extends AnimatorCard
     }
 
     @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return MareBelloFiore.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(true, true, true).AddCallback(cards -> {
             if (cards.size() > 0) {
-                GameActions.Delayed.Motivate().SetFilter(GameUtilities::IsHighCost);
+                GameActions.Delayed.Motivate().SetFilter(GameUtilities::IsHighCost).AddCallback(c -> {
+                    if (MareBelloFiore.DATA.ID.equals(c.cardID) && info.TryActivateLimited()) {
+                        GameActions.Bottom.DrawNextTurn(secondaryValue);
+                    }
+                });
             }
         });
-
-        if (info.IsSynergizing && info.GetPreviousCardID().equals(MareBelloFiore.DATA.ID) && info.TryActivateLimited())
-        {
-            GameActions.Bottom.DrawNextTurn(secondaryValue);
-        }
     }
 }

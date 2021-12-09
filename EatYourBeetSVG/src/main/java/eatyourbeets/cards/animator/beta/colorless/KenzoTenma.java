@@ -20,7 +20,7 @@ public class KenzoTenma extends AnimatorCard
         Initialize(2, 0, 3 , 0);
         SetUpgrade(1, 0, 1 , 0);
 
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
 
         SetExhaust(true);
     }

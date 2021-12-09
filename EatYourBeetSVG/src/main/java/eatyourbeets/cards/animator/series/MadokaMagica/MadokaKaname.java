@@ -4,8 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.cards.animator.curse.MadokaKaname_Krimheild;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.animator.special.MadokaKaname_Krimheild;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.utilities.ColoredString;
@@ -28,20 +31,17 @@ public class MadokaKaname extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
 
         SetHealing(true);
         SetExhaust(true);
         SetProtagonist(true);
         SetHarmonic(true);
 
-        SetAffinityRequirement(Affinity.Light, 7);
-        SetAffinityRequirement(Affinity.Dark, 7);
-
-        SetSoul(4, 0, MadokaKaname_Krimheild::new);
+        SetSoul(2, 0, MadokaKaname_Krimheild::new);
     }
 
     @Override
@@ -70,8 +70,8 @@ public class MadokaKaname extends AnimatorCard
             if (cards.size() > 0)
             {
                 GameActions.Bottom.HealPlayerLimited(this, secondaryValue * cards.size());
-                if (CheckAffinity(Affinity.Light) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited()) {
-                    GameActions.Bottom.GainSupportDamage(secondaryValue * cards.size());
+                if (info.IsSynergizing) {
+                    GameActions.Bottom.GainSupportDamage(magicNumber * cards.size());
                 }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }

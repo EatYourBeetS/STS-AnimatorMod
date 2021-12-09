@@ -28,7 +28,7 @@ public class Mitsurugi extends AnimatorCard
         Initialize(8, 0, 2, 4);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
     }
 
     @Override

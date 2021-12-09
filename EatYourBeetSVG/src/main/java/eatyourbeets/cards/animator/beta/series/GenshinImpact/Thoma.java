@@ -23,7 +23,7 @@ public class Thoma extends AnimatorCard
 
         Initialize(0, 4, 3, 1);
         SetUpgrade(0, 2, 0, 1);
-        SetAffinity_Red(1,0,0);
+        SetAffinity_Red(1, 0 ,0);
         SetAffinity_Orange(1, 0, 2);
     }
 

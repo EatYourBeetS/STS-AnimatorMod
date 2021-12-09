@@ -25,8 +25,8 @@ public class Xiao extends AnimatorCard
 
         Initialize(6, 2, 2, 2);
         SetUpgrade(1, 0, 1, 0);
-        SetAffinity_Green(2, 0, 2);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Dark(1, 0, 1);
 
         SetHitCount(3);
         SetEthereal(true);

@@ -31,9 +31,9 @@ public class CZDelta extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
         super(DATA);
 
         Initialize(9, 0, 2);
-        SetUpgrade(0, 0, -1);
+        SetUpgrade(1, 0, -1);
 
-        SetAffinity_Green(1, 1, 2);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Orange(1, 0, 0);
 
     }
@@ -78,8 +78,7 @@ public class CZDelta extends AnimatorCard implements OnStartOfTurnPostDrawSubscr
             CombatStats.onAttack.Unsubscribe(this);
         }
         else if (!player.hand.contains(this) && GameUtilities.IsMonster(target) && GameUtilities.GetHealthPercentage(target) < 0.1f && CombatStats.TryActivateLimited(cardID)) {
-            GameActions.Last.MoveCard(this, player.hand)
-                    .AddCallback(c -> ((CZDelta)c).SetPurge(true, true));
+            GameActions.Last.MoveCard(this, player.hand);
             CombatStats.onAttack.Unsubscribe(this);
         }
     }

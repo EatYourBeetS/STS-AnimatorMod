@@ -7,7 +7,6 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TargetHelper;
 
 public class SuzuneAmano extends AnimatorCard
@@ -21,50 +20,47 @@ public class SuzuneAmano extends AnimatorCard
         super(DATA);
 
         Initialize(7, 0, 3, 6);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(3, 0, 1, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
-    protected float GetInitialDamage()
-    {
-        float damage = super.GetInitialDamage();
-        if (IsStarter())
-        {
-            damage += (JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)) * secondaryValue);
-        }
-
-        return damage;
+    public int GetXValue() {
+        return magicNumber + GameUtilities.GetOrbCount(Fire.ORB_ID);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (info.IsSynergizing) {
+            GameActions.Bottom.Draw(1);
+        }
+
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
 
         if (TrySpendAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.Draw(JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)));
+            GameActions.Bottom.ExhaustFromHand(name, 1, false)
+                    .ShowEffect(true, true)
+                    .SetOptions(false, false, false)
+                    .AddCallback(m, (enemy, cards) ->
+                    {
+                        if (cards != null && cards.size() > 0)
+                        {
+                            GameActions.Bottom.ApplyBurning(TargetHelper.Normal(enemy), GetXValue());
+                        }
+                    });
         }
     }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
-        .ShowEffect(true, true)
-        .SetOptions(false, false, false)
-        .AddCallback(m, (enemy, cards) ->
-        {
-            if (cards != null && cards.size() > 0)
-            {
-                GameActions.Bottom.ApplyBurning(TargetHelper.Normal(enemy), GameUtilities.IsHindrance(cards.get(0)) ? magicNumber + 1 : magicNumber);
-            }
-        });
+
     }
 }

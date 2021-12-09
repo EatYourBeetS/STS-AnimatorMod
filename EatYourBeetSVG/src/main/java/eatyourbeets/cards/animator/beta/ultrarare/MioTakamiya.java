@@ -21,7 +21,7 @@ public class MioTakamiya extends AnimatorCard_UltraRare
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetAffinity_Light(2, 0, 0);
+        SetAffinity_Light(1, 0, 0);
         SetEthereal(true);
     }
 

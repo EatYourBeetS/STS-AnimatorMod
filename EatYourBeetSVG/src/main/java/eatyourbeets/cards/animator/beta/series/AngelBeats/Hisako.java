@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
@@ -44,7 +43,7 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback((cards) -> {
             if (cards.size() > 0) {
-                Affinity af = AffinityToken.GetAffinityFromCardID(cards.get(0).cardID);
+                Affinity af = cards.get(0).Affinity;
 
                 final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                 final RandomizedList<AbstractCard> pile = new RandomizedList<>(player.drawPile.group);

@@ -27,7 +27,7 @@ public class HiiragiMahiru extends AnimatorCard_UltraRare
         SetUpgrade(0, 0, 10);
 
         SetAffinity_Light(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

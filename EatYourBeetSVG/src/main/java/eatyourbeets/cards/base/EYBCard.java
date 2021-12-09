@@ -805,20 +805,28 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     //@Formatter: Off
     protected void SetAffinity_Red(int base) { InitializeAffinity(Affinity.Red, base, 0, 0); }
+    protected void SetAffinity_Red(int base, int scaling) { InitializeAffinity(Affinity.Red, base, 0, scaling); }
     protected void SetAffinity_Red(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Red, base, upgrade, scaling); }
     protected void SetAffinity_Green(int base) { InitializeAffinity(Affinity.Green, base, 0, 0); }
+    protected void SetAffinity_Green(int base, int scaling) { InitializeAffinity(Affinity.Green, base, 0, scaling); }
     protected void SetAffinity_Green(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Green, base, upgrade, scaling); }
     protected void SetAffinity_Blue(int base) { InitializeAffinity(Affinity.Blue, base, 0, 0); }
+    protected void SetAffinity_Blue(int base, int scaling) { InitializeAffinity(Affinity.Blue, base, 0, scaling); }
     protected void SetAffinity_Blue(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Blue, base, upgrade, scaling); }
     protected void SetAffinity_Orange(int base) { InitializeAffinity(Affinity.Orange, base, 0, 0); }
+    protected void SetAffinity_Orange(int base, int scaling) { InitializeAffinity(Affinity.Orange, base, 0, scaling); }
     protected void SetAffinity_Orange(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Orange, base, upgrade, scaling); }
     protected void SetAffinity_Light(int base) { InitializeAffinity(Affinity.Light, base, 0, 0); }
+    protected void SetAffinity_Light(int base, int scaling) { InitializeAffinity(Affinity.Light, base, 0, scaling); }
     protected void SetAffinity_Light(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Light, base, upgrade, scaling); }
     protected void SetAffinity_Dark(int base) { InitializeAffinity(Affinity.Dark, base, 0, 0); }
+    protected void SetAffinity_Dark(int base, int scaling) { InitializeAffinity(Affinity.Dark, base, 0, scaling); }
     protected void SetAffinity_Dark(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Dark, base, upgrade, scaling); }
     protected void SetAffinity_Silver(int base) { InitializeAffinity(Affinity.Silver, base, 0, 0); }
+    protected void SetAffinity_Silver(int base, int scaling) { InitializeAffinity(Affinity.Silver, base, 0, scaling); }
     protected void SetAffinity_Silver(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Silver, base, upgrade, scaling); }
     protected void SetAffinity_Star(int base) { InitializeAffinity(Affinity.Star, base, 0, 0); }
+    protected void SetAffinity_Star(int base, int scaling) { InitializeAffinity(Affinity.Star, base, 0, scaling); }
     protected void SetAffinity_Star(int base, int upgrade, int scaling) { InitializeAffinity(Affinity.Star, base, upgrade, scaling); }
     protected void SetAffinity_General(int base) { InitializeAffinity(Affinity.General, base, 0, 0); }
     protected void InitializeAffinity(Affinity affinity, int base, int upgrade, int scaling) { affinities.Initialize(affinity, base, upgrade, scaling, 0); }
@@ -1061,10 +1069,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
     public EYBCardCooldown SetSoul(int baseCooldown, int cooldownUpgrade, FuncT0<EYBCard> cardConstructor)
     {
-        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, cardConstructor, false, false, true, false);
+        this.cooldown = new EYBCardCooldown(this, baseCooldown, cooldownUpgrade, cardConstructor, false, false, false, false);
         return this.cooldown;
     }
-
 
     public void OnDrag(AbstractMonster m)
     {

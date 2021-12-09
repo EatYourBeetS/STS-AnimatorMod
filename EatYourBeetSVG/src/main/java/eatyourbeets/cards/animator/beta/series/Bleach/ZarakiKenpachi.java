@@ -27,7 +27,7 @@ public class ZarakiKenpachi extends AnimatorCard
 
         Initialize(0, 0, 4, MODIFIER_INCREASE);
         SetUpgrade(0, 0, 2);
-        SetAffinity_Red(2, 0, 0);
+        SetAffinity_Red(1, 0, 0);
     }
 
     @Override

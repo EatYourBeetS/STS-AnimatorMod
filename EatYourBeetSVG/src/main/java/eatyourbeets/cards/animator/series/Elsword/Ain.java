@@ -30,7 +30,7 @@ public class Ain extends AnimatorCard
         SetUpgrade(1, 0, 0, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(1, 0, 2);
 
         SetAffinityRequirement(Affinity.Light, 5);
 
@@ -52,7 +52,7 @@ public class Ain extends AnimatorCard
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
             LoadImage("_Dark");
             affinities.Clear();
-            SetAffinity_Blue(2, 0, 2);
+            SetAffinity_Blue(1, 0, 2);
             SetAffinity_Dark(1);
             SetAffinity_Light(0);
             SetAffinityRequirement(Affinity.Dark, 4);
@@ -61,7 +61,7 @@ public class Ain extends AnimatorCard
         else {
             this.cardText.OverrideDescription(null, true);
             affinities.Clear();
-            SetAffinity_Blue(2, 0, 2);
+            SetAffinity_Blue(1, 0, 2);
             SetAffinity_Dark(0);
             SetAffinity_Light(1);
             SetAffinityRequirement(Affinity.Dark, 0);

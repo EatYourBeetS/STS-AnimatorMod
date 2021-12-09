@@ -15,7 +15,7 @@ public class LisaMinci extends AnimatorCard {
 
         Initialize(0, 1, 3, 2);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(1, 0, 2);
     }
 
     @Override

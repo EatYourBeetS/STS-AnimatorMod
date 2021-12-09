@@ -24,7 +24,7 @@ public class Shuna extends AnimatorCard
         SetUpgrade(0, 2, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1, 1, 1);
+        SetAffinity_Light(1, 0, 1);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class KurumiTokisaki extends AnimatorCard
 
         Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(1, 0, 1);
 
         SetAutoplay(true);

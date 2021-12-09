@@ -85,7 +85,7 @@ public abstract class AnimatorCard extends EYBCard
 
     public boolean WouldSynergize()
     {
-        return CombatStats.Affinities.WouldSynergize(this);
+        return CombatStats.Affinities.WouldMatch(this);
     }
 
     public boolean WouldSynergize(AbstractCard other)

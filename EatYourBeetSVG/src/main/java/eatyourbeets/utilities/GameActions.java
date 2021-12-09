@@ -25,9 +25,8 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
-import eatyourbeets.actions.affinity.ChangeAffinityCount;
-import eatyourbeets.actions.affinity.TryChooseGainAffinity;
-import eatyourbeets.actions.affinity.TryChooseSpendAffinity;
+import eatyourbeets.actions.affinity.*;
+import eatyourbeets.actions.animator.CreateGriefSeeds;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
 import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.actions.basic.*;
@@ -68,6 +67,7 @@ import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.common.EnergizedPower;
 import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.*;
+import eatyourbeets.ui.animator.combat.EYBAffinityMeter;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -389,6 +389,11 @@ public final class GameActions
     public ChannelOrb ChannelRandomOrbs(int amount)
     {
         return Add(new ChannelOrb(GameUtilities::GetRandomOrb, amount));
+    }
+
+    public CreateGriefSeeds CreateGriefSeeds(int amount)
+    {
+        return Add(new CreateGriefSeeds(amount));
     }
 
     public CreateThrowingKnives CreateThrowingKnives(int amount)
@@ -1076,6 +1081,11 @@ public final class GameActions
         return Add(new ReplaceCard(uuid, replacement));
     }
 
+    public RerollAffinity RerollAffinity(EYBAffinityMeter.Target target)
+    {
+        return Add(new RerollAffinity(target));
+    }
+
     public ReshuffleDiscardPile ReshuffleDiscardPile(boolean onlyIfEmpty)
     {
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
@@ -1216,6 +1226,26 @@ public final class GameActions
         return Add(new TriggerOrbPassiveAbility(orb, times));
     }
 
+    public TryChooseAffinity TryChooseAffinity(String sourceName)
+    {
+        return Add(new TryChooseAffinity(sourceName, 0));
+    }
+
+    public TryChooseAffinity TryChooseAffinity(String sourceName, Affinity... affinities)
+    {
+        return Add(new TryChooseAffinity(sourceName, 0, affinities));
+    }
+
+    public TryChooseAffinity TryChooseAffinity(String sourceName, int value)
+    {
+        return Add(new TryChooseAffinity(sourceName, value));
+    }
+
+    public TryChooseAffinity TryChooseAffinity(String sourceName, int gain, Affinity... affinities)
+    {
+        return Add(new TryChooseAffinity(sourceName, gain, affinities));
+    }
+
     public TryChooseGainAffinity TryChooseGainAffinity(String sourceName, int gain)
     {
         return Add(new TryChooseGainAffinity(sourceName, gain));
@@ -1228,12 +1258,12 @@ public final class GameActions
 
     public TryChooseSpendAffinity TryChooseSpendAffinity(EYBCard sourceCard)
     {
-        return Add(new TryChooseSpendAffinity(sourceCard.name, -1).SetSourceAffinities(sourceCard.affinities));
+        return (TryChooseSpendAffinity) Add(new TryChooseSpendAffinity(sourceCard.name, -1).SetSourceAffinities(sourceCard.affinities));
     }
 
     public TryChooseSpendAffinity TryChooseSpendAffinity(EYBCard sourceCard, Affinity... affinities)
     {
-        return Add(new TryChooseSpendAffinity(sourceCard.name, -1, affinities).SetSourceAffinities(sourceCard.affinities));
+        return (TryChooseSpendAffinity) Add(new TryChooseSpendAffinity(sourceCard.name, -1, affinities).SetSourceAffinities(sourceCard.affinities));
     }
 
     public TryChooseSpendAffinity TryChooseSpendAffinity(String sourceName, int cost)

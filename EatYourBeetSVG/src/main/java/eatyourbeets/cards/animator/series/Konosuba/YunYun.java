@@ -25,7 +25,7 @@ public class YunYun extends AnimatorCard
         Initialize(7, 0);
         SetUpgrade(4, 0);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
     }
 

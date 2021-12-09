@@ -26,8 +26,8 @@ public class TohkaYatogami extends AnimatorCard
         super(DATA);
 
         Initialize(14, 0, 6, 2);
-        SetAffinity_Red(2, 0, 0);
-        SetAffinity_Orange(1, 1, 1);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Orange(1, 0, 1);
     }
 
     @Override
@@ -62,7 +62,8 @@ public class TohkaYatogami extends AnimatorCard
         if (AbstractDungeon.player != null && !transformed && CheckSpecialCondition(true))
         {
             transformed = true;
-            GameActions.Last.ReplaceCard(uuid, new InverseTohka()).SetUpgrade(upgraded);
+            GameActions.Bottom.MakeCardInHand(new InverseTohka()).SetUpgrade(upgraded, false);
+            GameActions.Last.Exhaust(this);
         }
     }
 

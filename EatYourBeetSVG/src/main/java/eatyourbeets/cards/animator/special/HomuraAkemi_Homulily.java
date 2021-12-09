@@ -1,31 +1,31 @@
-package eatyourbeets.cards.animator.curse;
+package eatyourbeets.cards.animator.special;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
 import eatyourbeets.cards.animator.series.MadokaMagica.SayakaMiki;
-import eatyourbeets.cards.base.AnimatorCard_Curse;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 
-public class HomuraAkemi_Homulily extends AnimatorCard_Curse
+public class HomuraAkemi_Homulily extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HomuraAkemi_Homulily.class)
-            .SetCurse(-2, EYBCardTarget.None, true)
+            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
             .SetSeries(SayakaMiki.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 
     public HomuraAkemi_Homulily()
     {
-        super(DATA, true);
+        super(DATA);
 
-        Initialize(0, 0, 3, 0);
+        Initialize(0, 0, 3, 7);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Dark(2);
-        SetUnplayable(true);
+        SetAffinity_Dark(1);
+        SetPurge(true);
     }
 
     @Override
@@ -37,16 +37,9 @@ public class HomuraAkemi_Homulily extends AnimatorCard_Curse
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, MathUtils.ceil(player.maxHealth * 0.25f));
-        GameActions.Bottom.GainEnergyNextTurn(magicNumber);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, secondaryValue);
+        GameActions.Bottom.GainEnergyNextTurn(magicNumber);
     }
 }

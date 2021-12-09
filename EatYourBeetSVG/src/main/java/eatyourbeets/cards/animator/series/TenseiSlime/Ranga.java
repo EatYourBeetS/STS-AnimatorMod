@@ -26,7 +26,7 @@ public class Ranga extends AnimatorCard implements OnAttackSubscriber
 
         Initialize(4, 0, 2);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 

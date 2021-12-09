@@ -23,7 +23,7 @@ public class HatsuneMiku extends AnimatorCard
         SetRetain(true);
         SetHarmonic(true);
 
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
         SetAffinity_Silver(1);
     }
 

@@ -28,7 +28,7 @@ public class Venti extends AnimatorCard
 
         Initialize(0, 1, 2, 2);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Star(2, 0, 0);
+        SetAffinity_Star(1, 0, 0);
         SetAffinity_Green(0,0,2);
 
         SetEthereal(true);

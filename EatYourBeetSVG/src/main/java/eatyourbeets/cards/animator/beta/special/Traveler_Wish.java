@@ -19,7 +19,7 @@ public class Traveler_Wish extends AnimatorCard
 
         Initialize(0, 0, 15, 5);
         SetUpgrade(0, 0, 10, 0);
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
         SetPermanentHaste(true);
         SetRetainOnce(true);
         SetPurge(true);

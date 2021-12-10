@@ -40,7 +40,7 @@ public class MadokaKaname_Krimheild extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (info.TryActivateLimited()) {
-            GameUtilities.SetAffinityPowerLevel(Affinity.Blue, magicNumber, true);
+            GameUtilities.AddAffinityPowerLevel(Affinity.Blue, magicNumber);
             GameActions.Bottom.GainFocus(magicNumber);
             GameActions.Bottom.GainResistance(-secondaryValue);
         }

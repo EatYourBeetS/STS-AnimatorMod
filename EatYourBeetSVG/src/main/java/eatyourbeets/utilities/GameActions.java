@@ -562,14 +562,14 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
-    public ApplyAffinityPower GainSupercharge(int amount)
+    public ApplyAffinityPower GainInvocation(int amount)
     {
-        return GainSupercharge(amount, false);
+        return GainInvocation(amount, false);
     }
 
-    public ApplyAffinityPower GainSupercharge(int amount, boolean maintain)
+    public ApplyAffinityPower GainInvocation(int amount, boolean maintain)
     {
-        return StackAffinityPower(SuperchargePower.AFFINITY_TYPE, amount, maintain);
+        return StackAffinityPower(InvocationPower.AFFINITY_TYPE, amount, maintain);
     }
 
     public GainBlock GainBlock(int amount)

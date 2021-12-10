@@ -33,7 +33,7 @@ public class YuiTsuruno extends AnimatorCard
         super.triggerOnExhaust();
 
         GameActions.Bottom.ChannelOrb(new Fire());
-        GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
+        GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class YuiTsuruno extends AnimatorCard
         .SetOrigin(CardSelection.Random);
         if (info.IsSynergizing) {
             GameActions.Bottom.ChannelOrb(new Fire());
-            GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
+            GameActions.Bottom.MakeCardInDrawPile(new Curse_GriefSeed());
         }
     }
 }

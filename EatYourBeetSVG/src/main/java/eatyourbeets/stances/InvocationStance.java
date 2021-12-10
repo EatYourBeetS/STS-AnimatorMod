@@ -3,20 +3,20 @@ package eatyourbeets.stances;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.powers.affinity.SuperchargePower;
+import eatyourbeets.powers.affinity.InvocationPower;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SuperchargeStance extends EYBStance
+public class InvocationStance extends EYBStance
 {
-    public static final Affinity AFFINITY = SuperchargePower.AFFINITY_TYPE;
-    public static final String STANCE_ID = CreateFullID(SuperchargeStance.class);
+    public static final Affinity AFFINITY = InvocationPower.AFFINITY_TYPE;
+    public static final String STANCE_ID = CreateFullID(InvocationStance.class);
 
     public static boolean IsActive()
     {
         return GameUtilities.InStance(STANCE_ID);
     }
 
-    public SuperchargeStance()
+    public InvocationStance()
     {
         super(STANCE_ID, AFFINITY, AbstractDungeon.player);
     }

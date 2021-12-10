@@ -16,7 +16,9 @@ import java.util.UUID;
 
 public class DioBrando_TheWorld extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DioBrando_TheWorld.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.Jojo);
+    public static final EYBCardData DATA = Register(DioBrando_TheWorld.class).SetPower(2, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Jojo);
     public static final int COST = 3;
     protected static HashSet<UUID> buffs;
 

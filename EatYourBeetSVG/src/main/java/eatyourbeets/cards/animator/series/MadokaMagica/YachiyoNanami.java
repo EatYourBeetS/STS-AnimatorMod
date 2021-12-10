@@ -15,7 +15,7 @@ public class YachiyoNanami extends AnimatorCard
     public static final EYBCardData DATA = Register(YachiyoNanami.class)
             .SetPower(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int DISCARD_AMOUNT = 5;
+    public static final int DISCARD_AMOUNT = 6;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -23,7 +23,7 @@ public class YachiyoNanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 4);
+        Initialize(0, 0, 1, 5);
         SetEthereal(true);
 
         SetAffinity_Blue(1);
@@ -66,6 +66,7 @@ public class YachiyoNanami extends AnimatorCard
         public void OnUse(AbstractMonster m, int cost)
         {
             GameActions.Bottom.GainBlock(secondaryAmount);
+            GameActions.Bottom.CreateGriefSeeds(1);
         }
 
         @Override

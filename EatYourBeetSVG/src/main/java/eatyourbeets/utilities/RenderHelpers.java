@@ -805,7 +805,7 @@ public class RenderHelpers
             case "O":
                 return GR.Tooltips.Endurance.icon;
             case "L":
-                return GR.Tooltips.Supercharge.icon;
+                return GR.Tooltips.Invocation.icon;
             case "D":
                 return GR.Tooltips.Desecration.icon;
             case "S":

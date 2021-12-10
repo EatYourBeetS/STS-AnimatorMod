@@ -29,7 +29,7 @@ public class PowerHelper
     public static final PowerHelper Blinded = new PowerHelper(BlindedPower.POWER_ID, GR.Tooltips.Blinded, BlindedPower::new, Behavior.TurnBased, true);
     public static final PowerHelper Burning = new PowerHelper(BurningPower.POWER_ID, GR.Tooltips.Burning, BurningPower::new, Behavior.TurnBased,true);
     public static final PowerHelper Constricted = new PowerHelper(ConstrictedPower.POWER_ID, GR.Tooltips.Constricted, AnimatorConstrictedPower::new, Behavior.Permanent,true);
-    public static final PowerHelper Electrified = new PowerHelper(ElectrifiedPower.POWER_ID, GR.Tooltips.Freezing, ElectrifiedPower::new, Behavior.TurnBased,true);
+    public static final PowerHelper Electrified = new PowerHelper(ElectrifiedPower.POWER_ID, GR.Tooltips.Electrified, ElectrifiedPower::new, Behavior.TurnBased,true);
     public static final PowerHelper Freezing = new PowerHelper(FreezingPower.POWER_ID, GR.Tooltips.Freezing, FreezingPower::new, Behavior.TurnBased,true);
     public static final PowerHelper LockOn = new PowerHelper(LockOnPower.POWER_ID, GR.Tooltips.LockOn, AnimatorLockOnPower::new, Behavior.TurnBased,true);
     public static final PowerHelper Poison = new PowerHelper(PoisonPower.POWER_ID, GR.Tooltips.Poison, PoisonPower::new, Behavior.TurnBased,true);

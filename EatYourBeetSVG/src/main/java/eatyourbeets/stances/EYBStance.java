@@ -29,6 +29,7 @@ public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<EYBStance>> stances = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final int GAIN = EYBCardAffinityRow.SYNERGY_MULTIPLIER * 2;
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
     protected final StanceStrings strings;
@@ -41,7 +42,7 @@ public abstract class EYBStance extends AbstractStance
         stances.put(WisdomStance.STANCE_ID, WisdomStance::new);
         stances.put(VelocityStance.STANCE_ID, VelocityStance::new);
         stances.put(EnduranceStance.STANCE_ID, EnduranceStance::new);
-        stances.put(SuperchargeStance.STANCE_ID, SuperchargeStance::new);
+        stances.put(InvocationStance.STANCE_ID, InvocationStance::new);
         stances.put(DesecrationStance.STANCE_ID, DesecrationStance::new);
 
         tooltips.clear();
@@ -49,7 +50,7 @@ public abstract class EYBStance extends AbstractStance
         tooltips.put(VelocityStance.STANCE_ID, GR.Tooltips.VelocityStance);
         tooltips.put(WisdomStance.STANCE_ID, GR.Tooltips.WisdomStance);
         tooltips.put(EnduranceStance.STANCE_ID, GR.Tooltips.EnduranceStance);
-        tooltips.put(SuperchargeStance.STANCE_ID, GR.Tooltips.SuperchargeStance);
+        tooltips.put(InvocationStance.STANCE_ID, GR.Tooltips.InvocationStance);
         tooltips.put(DesecrationStance.STANCE_ID, GR.Tooltips.DesecrationStance);
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
@@ -100,7 +101,7 @@ public abstract class EYBStance extends AbstractStance
     @Override
     public void updateDescription()
     {
-        description = JUtils.Format(strings.DESCRIPTION[0], EYBCardAffinityRow.SYNERGY_MULTIPLIER);
+        description = JUtils.Format(strings.DESCRIPTION[0], GAIN);
     }
 
     @Override
@@ -142,7 +143,7 @@ public abstract class EYBStance extends AbstractStance
 
         if (po != null && TryApplyStance(ID))
         {
-            po.SetScalingMultiplier(po.scalingMultiplier + 1);
+            po.SetEffectMultiplier(po.effectMultiplier + 0.5f);
         }
     }
 
@@ -156,14 +157,14 @@ public abstract class EYBStance extends AbstractStance
         AbstractAffinityPower po = CombatStats.Affinities.GetPower(affinity);
         if (po != null && TryApplyStance(null))
         {
-            po.SetScalingMultiplier(po.scalingMultiplier - 1);
-            GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
+            po.SetEffectMultiplier(po.effectMultiplier - 0.5f);
+            GameActions.Bottom.StackAffinityPower(affinity, GAIN);
         }
     }
 
     public void onRefreshStance()
     {
-        GameActions.Bottom.StackAffinityPower(affinity, EYBCardAffinityRow.SYNERGY_MULTIPLIER);
+        GameActions.Bottom.StackAffinityPower(affinity, GAIN);
     }
 
     @Override

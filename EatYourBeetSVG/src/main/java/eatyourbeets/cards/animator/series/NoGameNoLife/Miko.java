@@ -36,7 +36,7 @@ public class Miko extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (info.TryActivateLimited()) {
-            GameUtilities.SetAffinityPowerLevel(Affinity.Light, secondaryValue, true);
+            GameUtilities.AddAffinityPowerLevel(Affinity.Light, secondaryValue);
         }
         GameActions.Bottom.ChannelOrb(new Plasma());
         GameActions.Bottom.StackPower(new MikoPower(p, magicNumber));
@@ -70,7 +70,7 @@ public class Miko extends AnimatorCard
         @Override
         public void OnOrbPassiveEffect(AbstractOrb orb) {
             if (Plasma.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.GainSupercharge(amount * orb.passiveAmount);
+                GameActions.Bottom.GainInvocation(amount * orb.passiveAmount);
                 flash();
             }
         }
@@ -81,7 +81,7 @@ public class Miko extends AnimatorCard
             super.onEvokeOrb(orb);
 
             if (Plasma.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.GainSupercharge(amount * orb.evokeAmount);
+                GameActions.Bottom.GainInvocation(amount * orb.evokeAmount);
                 flash();
             }
         }

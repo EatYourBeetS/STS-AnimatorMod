@@ -276,6 +276,7 @@ public class AnimatorStrings
         public final String Next = Strings.TEXT[1];
         public final String Uses = Strings.TEXT[2];
         public final String Rerolls = Strings.TEXT[3];
+        public final String Experience = Strings.TEXT[4];
     }
 
     public class CardMods

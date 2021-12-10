@@ -233,6 +233,9 @@ public class AnimatorCardSlot
             }
 
             current_max = Math.min(max, selected.data.MaxCopies >= min ? selected.data.MaxCopies : max);
+            if (current_max <= 0) {
+                current_max = MAX_LIMIT;
+            }
             this.amount = MathUtils.clamp(amount, min, current_max);
         }
 

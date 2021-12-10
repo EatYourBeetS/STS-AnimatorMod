@@ -42,7 +42,7 @@ public class KotarouTennouji extends AnimatorCard implements OnStanceChangedSubs
             choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
         }
 

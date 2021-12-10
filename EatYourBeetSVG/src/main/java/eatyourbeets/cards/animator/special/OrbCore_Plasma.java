@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.special;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Plasma;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.GR;
 
@@ -17,6 +18,11 @@ public class OrbCore_Plasma extends OrbCore
 
         SetAffinity_Silver(1);
         SetAffinity_Light(1);
+    }
+
+    @Override
+    public Affinity GetAffinity() {
+        return Affinity.Silver;
     }
 
     @Override

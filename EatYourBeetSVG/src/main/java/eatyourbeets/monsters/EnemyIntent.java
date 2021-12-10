@@ -42,7 +42,7 @@ public class EnemyIntent
         private static final FreezingPower FREEZING = new FreezingPower(null, null, 0);
         private static final BlindedPower BLINDED = new BlindedPower(null, null, 0);
         private static final FrailPower FRAIL = new AnimatorFrailPower(null, 0, false);
-        private static final TaintedPower TAINTED = new TaintedPower(null, 0);
+        private static final DesecratedPower DESECRATED = new DesecratedPower(null, 0);
 
         private static final ArrayList<AbstractPower> PLAYER_POWERS = new ArrayList<>();
         private static final ArrayList<AbstractPower> ENEMY_POWERS = new ArrayList<>();
@@ -57,7 +57,7 @@ public class EnemyIntent
             DEFAULT_ENEMY_POWERS.add(FREEZING);
             DEFAULT_ENEMY_POWERS.add(BLINDED);
             DEFAULT_ENEMY_POWERS.add(FRAIL);
-            DEFAULT_ENEMY_POWERS.add(TAINTED);
+            DEFAULT_ENEMY_POWERS.add(DESECRATED);
         }
 
         protected static void Load(AbstractPlayer player, AbstractMonster enemy, HashMap<String, Integer> modifiers)
@@ -248,9 +248,9 @@ public class EnemyIntent
         return AddModifier(BlindedPower.POWER_ID, 1);
     }
 
-    public EnemyIntent AddTainted()
+    public EnemyIntent AddDesecrated()
     {
-        return AddModifier(TaintedPower.POWER_ID, 1);
+        return AddModifier(DesecratedPower.POWER_ID, 1);
     }
 
     public EnemyIntent AddModifier(String powerID, int amount)

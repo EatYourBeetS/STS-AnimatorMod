@@ -7,6 +7,7 @@ import eatyourbeets.cards.animator.beta.special.JotaroKujo_StarPlatinum;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class JotaroKujo extends AnimatorCard
 {
@@ -25,7 +26,7 @@ public class JotaroKujo extends AnimatorCard
         SetAffinity_Red(1,0,2);
         SetAffinity_Light(1, 0, 1);
 
-        SetSoul(7, 0, JotaroKujo_StarPlatinum::new);
+        SetSoul(5, 0, JotaroKujo_StarPlatinum::new);
     }
 
     @Override
@@ -42,23 +43,23 @@ public class JotaroKujo extends AnimatorCard
 
         GameActions.Bottom.FetchFromPile(name, 1, player.drawPile)
         .SetOptions(true, false)
-            .SetFilter(c -> c.type.equals(CardType.POWER))
+            .SetFilter(c -> c.cost >= 2)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)
                 {
                     GameUtilities.Retain(c);
-                    final int powerCost = Math.max(0, c.costForTurn);
-                    if (powerCost > 0)
+                    EYBCard eCard = JUtils.SafeCast(c, EYBCard.class);
+                    if (eCard != null && GameUtilities.GetAffinityLevel(eCard, Affinity.General, true) > 0)
                     {
-                        cooldown.ProgressCooldownAndTrigger(powerCost, m);
                         GameActions.Top.SelectFromHand(name, 1, false)
+                                .SetFilter(ca -> eCard != ca)
                                 .AddCallback(cards2 ->
                                 {
                                     for (AbstractCard c2 : cards2)
                                     {
-                                        for (int i = 0; i < powerCost; i++) {
-                                            GameActions.Top.IncreaseScaling(c, null, 1);
+                                        for (EYBCardAffinity cardAffinity : eCard.affinities.List) {
+                                            GameActions.Top.IncreaseScaling(c, cardAffinity.type, cardAffinity.scaling);
                                         }
                                     }
                                 });

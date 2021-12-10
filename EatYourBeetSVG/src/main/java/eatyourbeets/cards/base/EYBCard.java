@@ -1162,6 +1162,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         boolean applyEnemyPowers = (enemy != null && !GameUtilities.IsDeadOrEscaped(enemy));
         float tempBlock = GetInitialBlock();
         float tempDamage = GetInitialDamage();
+        int applyCount = attackType == EYBAttackType.Brutal ? 2 : 1;
 
         for (AbstractRelic r : player.relics)
         {
@@ -1174,7 +1175,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         for (AbstractPower p : player.powers)
         {
             tempBlock = p.modifyBlock(tempBlock, this);
-            tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
+            for (int i = 0; i < applyCount; i++) {
+                tempDamage = p.atDamageGive(tempDamage, damageTypeForTurn, this);
+            }
 
         }
 
@@ -1192,9 +1195,6 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         tempDamage = ModifyDamage(enemy, tempDamage);
 
-        if (attackType == EYBAttackType.Brutal && enemy != null && enemy.currentHealth < enemy.maxHealth / 2) {
-            tempDamage *= 1.4f;
-        }
         if (applyEnemyPowers)
         {
             if (attackType == EYBAttackType.Elemental)
@@ -1229,7 +1229,9 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
             for (AbstractPower p : enemy.powers)
             {
-                tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+                for (int i = 0; i < applyCount; i++) {
+                    tempDamage = p.atDamageReceive(tempDamage, damageTypeForTurn, this);
+                }
             }
         }
 
@@ -1237,14 +1239,18 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
 
         for (AbstractPower p : player.powers)
         {
-            tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
+            for (int i = 0; i < applyCount; i++) {
+                tempDamage = p.atDamageFinalGive(tempDamage, damageTypeForTurn, this);
+            }
         }
 
         if (applyEnemyPowers)
         {
             for (AbstractPower p : enemy.powers)
             {
-                tempDamage = p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+                for (int i = 0; i < applyCount; i++) {
+                    tempDamage = p.atDamageFinalReceive(tempDamage, damageTypeForTurn, this);
+                }
             }
             tempDamage = CombatStats.OnDamageOverride(enemy, damageTypeForTurn, tempDamage, this);
         }

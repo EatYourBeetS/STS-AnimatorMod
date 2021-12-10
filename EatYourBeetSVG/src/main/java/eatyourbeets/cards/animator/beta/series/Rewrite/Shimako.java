@@ -35,7 +35,7 @@ public class Shimako extends AnimatorCard
 
         AbstractOrb orb;
         String curStance = player.stance.ID;
-        if (curStance.equals(MightStance.STANCE_ID) || curStance.equals(SuperchargeStance.STANCE_ID))
+        if (curStance.equals(MightStance.STANCE_ID) || curStance.equals(InvocationStance.STANCE_ID))
         {
             orb = new Fire();
         }

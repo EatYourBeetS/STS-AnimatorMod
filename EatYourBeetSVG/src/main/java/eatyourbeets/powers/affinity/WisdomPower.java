@@ -18,7 +18,6 @@ public class WisdomPower extends AbstractAffinityPower
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
-        this.SetMaxAmount(maxAmount + 1);
         AbstractOrb orb = GameUtilities.GetFirstOrb(null);
         if (GameUtilities.IsValidOrb(orb)) {
             int increase = (int) GetEffectiveIncrease();
@@ -35,6 +34,6 @@ public class WisdomPower extends AbstractAffinityPower
 
     @Override
     protected float GetEffectiveIncrease() {
-        return super.GetEffectiveIncrease() * 7;
+        return super.GetEffectiveIncrease() * 6;
     }
 }

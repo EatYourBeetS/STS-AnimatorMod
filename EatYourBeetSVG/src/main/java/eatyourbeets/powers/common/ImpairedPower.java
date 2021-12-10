@@ -2,9 +2,11 @@ package eatyourbeets.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.orbs.animator.Chaos;
+import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameUtilities;
@@ -95,7 +97,9 @@ public class ImpairedPower extends CommonPower implements OnOrbApplyFocusSubscri
     public void OnApplyFocus(AbstractOrb orb) {
         if (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID)) {
             orb.passiveAmount *= Math.max(0,GetOrbMultiplier() / 100f);
-            orb.evokeAmount *= Math.max(0,GetOrbMultiplier() / 100f);
+            if (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID)) {
+                orb.evokeAmount *= Math.max(0,GetOrbMultiplier() / 100f);
+            }
         }
     }
 }

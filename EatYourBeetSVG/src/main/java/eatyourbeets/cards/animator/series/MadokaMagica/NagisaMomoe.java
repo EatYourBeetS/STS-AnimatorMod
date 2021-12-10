@@ -51,7 +51,7 @@ public class NagisaMomoe extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainWisdom(secondaryValue);
-        GameActions.Bottom.GainSupercharge(secondaryValue);
+        GameActions.Bottom.GainInvocation(secondaryValue);
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Green, Affinity.Blue, Affinity.Light);

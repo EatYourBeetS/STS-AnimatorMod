@@ -65,14 +65,14 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
     @Override
     public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
         if (player.hand.contains(this)) {
-            GameActions.Bottom.GainSupercharge(secondaryValue);
+            GameActions.Bottom.GainInvocation(secondaryValue);
         }
     }
 
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
         if (player.hand.contains(this)) {
-            GameActions.Bottom.GainSupercharge(secondaryValue);
+            GameActions.Bottom.GainInvocation(secondaryValue);
         }
     }
 

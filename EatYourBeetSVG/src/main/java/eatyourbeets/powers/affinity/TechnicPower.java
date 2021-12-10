@@ -19,13 +19,12 @@ public class TechnicPower extends AbstractAffinityPower
     public void Initialize(AbstractCreature owner)
     {
         super.Initialize(owner);
-        SetPayCost(6);
+        SetThreshold(10);
     }
 
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
-        this.SetMaxAmount(maxAmount + 1);
         GameActions.Bottom.StackPower(new GenesisPower(player, (int) GetEffectiveIncrease()));
         flash();
     }

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.common.TemporaryElectroPower;
-import eatyourbeets.stances.SuperchargeStance;
+import eatyourbeets.stances.InvocationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -51,7 +51,7 @@ public class NarberalGamma extends AnimatorCard
             GameActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
 
-        if (SuperchargeStance.IsActive() && info.TryActivateSemiLimited()) {
+        if (InvocationStance.IsActive() && info.TryActivateSemiLimited()) {
             for (int i = 0; i < GetXValue(); i++) {
                 GameActions.Bottom.ApplyElectrified(TargetHelper.RandomEnemy(), secondaryValue);
             }

@@ -3,21 +3,22 @@ package eatyourbeets.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import eatyourbeets.powers.affinity.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.JUtils;
 
 public enum Affinity implements Comparable<Affinity>
 {
-    Red(0, "Red", "R", GR.Common.Images.Affinities.Red),
-    Green(1, "Green", "G", GR.Common.Images.Affinities.Green),
-    Blue(2, "Blue", "B", GR.Common.Images.Affinities.Blue),
-    Orange(3, "Orange", "O", GR.Common.Images.Affinities.Orange),
-    Light(4, "Light", "L", GR.Common.Images.Affinities.Light),
-    Dark(5, "Dark", "D", GR.Common.Images.Affinities.Dark),
-    Silver(6, "Silver", "S", GR.Common.Images.Affinities.Silver),
-    Star(-1, "Star", "A", GR.Common.Images.Affinities.Star),
-    General(-2, "Gen", "W", GR.Common.Images.Affinities.General);// Don't use directly
+    Red(0, "Red", "Might", "R", GR.Common.Images.Affinities.Red),
+    Green(1, "Green", "Velocity", "G", GR.Common.Images.Affinities.Green),
+    Blue(2, "Blue", "Wisdom", "B", GR.Common.Images.Affinities.Blue),
+    Orange(3, "Orange", "Endurance", "O", GR.Common.Images.Affinities.Orange),
+    Light(4, "Light", "Invocation", "L", GR.Common.Images.Affinities.Light),
+    Dark(5, "Dark", "Desecration", "D", GR.Common.Images.Affinities.Dark),
+    Silver(6, "Silver", "Technic", "S", GR.Common.Images.Affinities.Silver),
+    Star(-1, "Star", "Multicolor", "A", GR.Common.Images.Affinities.Star),
+    General(-2, "Gen", "Multicolor","W", GR.Common.Images.Affinities.General);// Don't use directly
 
     public static final int MAX_ID = 4;
 
@@ -59,13 +60,15 @@ public enum Affinity implements Comparable<Affinity>
     public final int ID;
     public final TextureCache Icon;
     public final String Name;
+    public final String PowerName;
     public final String PowerSymbol;
 
-    Affinity(int id, String name, String powerSymbol, TextureCache icon)
+    Affinity(int id, String name, String powerName, String powerSymbol, TextureCache icon)
     {
         this.ID = id;
         this.Icon = icon;
         this.Name = name;
+        this.PowerName = powerName;
         this.PowerSymbol = powerSymbol;
     }
 
@@ -87,6 +90,20 @@ public enum Affinity implements Comparable<Affinity>
     public Texture GetForeground(int level)
     {
         return /*this == Star ? null : */(level > 1 ? BorderFG.Texture() : null);
+    }
+
+    public AbstractAffinityPower GetPower() {
+        switch (this)
+        {
+            case Red: return new MightPower();
+            case Green: return new VelocityPower();
+            case Blue: return new WisdomPower();
+            case Orange: return new EndurancePower();
+            case Light: return new InvocationPower();
+            case Dark: return new DesecrationPower();
+            case Silver: return new TechnicPower();
+            default: return null;
+        }
     }
 
     public TextureRegion GetPowerIcon()
@@ -115,7 +132,7 @@ public enum Affinity implements Comparable<Affinity>
 
             case Dark: return new Color(0.55f, 0.1f, 0.85f, 1);//0.7f, 0.55f, 0.7f, 1f);
 
-            case Silver: return new Color(0.6f, 0.6f, 0.6f, 1f);
+            case Silver: return new Color(0.5f, 0.5f, 0.5f, 1f);
 
             case Star: default: return new Color(0.95f, 0.95f, 0.95f, 1f);
         }
@@ -131,6 +148,14 @@ public enum Affinity implements Comparable<Affinity>
 
     public String GetFormattedPowerSymbol() {
         return JUtils.Format("[{0}]", PowerSymbol);
+    }
+
+    public String GetScalingTooltipID() {
+        return JUtils.Format("{0} Scaling", PowerName);
+    }
+
+    public String GetStanceTooltipID() {
+        return JUtils.Format("{0} Stance", PowerName);
     }
 
     public static Affinity FromTooltip(EYBCardTooltip tooltip)
@@ -172,7 +197,7 @@ public enum Affinity implements Comparable<Affinity>
             case Green: return GR.Tooltips.Velocity;
             case Blue: return GR.Tooltips.Wisdom;
             case Orange: return GR.Tooltips.Endurance;
-            case Light: return GR.Tooltips.Supercharge;
+            case Light: return GR.Tooltips.Invocation;
             case Dark: return GR.Tooltips.Desecration;
             case Silver: return GR.Tooltips.Technic;
             case Star:

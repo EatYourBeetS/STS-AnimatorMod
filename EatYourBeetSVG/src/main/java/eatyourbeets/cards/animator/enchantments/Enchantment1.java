@@ -72,7 +72,7 @@ public class Enchantment1 extends Enchantment
                 choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
             }
 
@@ -112,7 +112,7 @@ public class Enchantment1 extends Enchantment
             case 4:
                 return EnduranceStance.STANCE_ID;
             case 5:
-                return SuperchargeStance.STANCE_ID;
+                return InvocationStance.STANCE_ID;
             case 6:
                 return DesecrationStance.STANCE_ID;
         }

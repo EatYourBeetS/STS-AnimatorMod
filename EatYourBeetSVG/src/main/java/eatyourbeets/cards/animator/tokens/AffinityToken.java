@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnTrySpendAffinitySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.animator.combat.EYBAffinityMeter;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
@@ -148,7 +149,9 @@ public abstract class AffinityToken extends AnimatorCard implements OnTrySpendAf
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.AddAffinity(this.affinity, magicNumber);
+        GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.CurrentAffinity)
+                .SetAffinityChoices(this.affinity)
+                .SetOptions(true, true);
     }
 
     @Override

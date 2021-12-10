@@ -104,6 +104,17 @@ public class GameUtilities
         return false;
     }
 
+    public static AbstractAffinityPower AddAffinityPowerLevel(Affinity affinity, int amount)
+    {
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
+        if (power != null)
+        {
+            power.AddLevel(amount);
+        }
+
+        return power;
+    }
+
     public static void AddAffinityRerolls(int amount) {
         if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
             CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.uses += amount;
@@ -1772,17 +1783,6 @@ public class GameUtilities
         {
             p.Maintain();
         }
-    }
-
-    public static AbstractAffinityPower SetAffinityPowerLevel(Affinity affinity, int amount, boolean relative)
-    {
-        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
-        if (power != null)
-        {
-            power.SetMaxAmount(relative ? power.maxAmount + amount : amount);
-        }
-
-        return power;
     }
 
     public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)

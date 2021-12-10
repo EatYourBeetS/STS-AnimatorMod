@@ -26,7 +26,7 @@ public class SuzuneAmano extends AnimatorCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1);
 
-        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SuzuneAmano extends AnimatorCard
 
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
 
-        if (TrySpendAffinity(Affinity.Blue))
+        if (TrySpendAffinity(Affinity.Red))
         {
             GameActions.Bottom.ExhaustFromHand(name, 1, false)
                     .ShowEffect(true, true)

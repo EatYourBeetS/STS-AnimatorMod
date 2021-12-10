@@ -64,7 +64,7 @@ public class Henrietta extends AnimatorCard
 
             GameActions.Bottom.TryChooseAffinity(name).AddConditionalCallback(choices -> {
                if (choices.size() > 0) {
-                   GameUtilities.SetAffinityPowerLevel(choices.get(0).Affinity, amount, true);
+                   GameUtilities.AddAffinityPowerLevel(choices.get(0).Affinity, amount);
                }
             });
         }

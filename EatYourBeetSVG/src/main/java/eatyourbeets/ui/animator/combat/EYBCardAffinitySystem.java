@@ -6,13 +6,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Button;
@@ -49,13 +50,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinitySystem()
     {
-        Powers.add(new MightPower());
-        Powers.add(new VelocityPower());
-        Powers.add(new WisdomPower());
-        Powers.add(new EndurancePower());
-        Powers.add(new SuperchargePower());
-        Powers.add(new DesecrationPower());
-        Powers.add(new TechnicPower());
+        for (Affinity affinity : Affinity.Extended()) {
+            Powers.add(affinity.GetPower());
+        }
 
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
@@ -92,7 +89,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public AffinityCounts AddAffinities(EYBCardAffinities affinities)
     {
-        return AffinityCounts.Add(affinities, 1);
+        return AffinityCounts.Add(affinities);
     }
 
     public boolean CheckAffinityLevels(Affinity[] affinities, int amount, boolean addStar) {
@@ -484,6 +481,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         dragAmount_image.Render(sb);
         draggable_icon.Render(sb);
         info_icon.Render(sb);
+
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.Animator.Strings.Combat.Experience, info_icon.hb.cX + Scale(80), info_icon.hb.y, 1f, Colors.Blue(1f));
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.Animator.Strings.Combat.Uses, info_icon.hb.cX + Scale(144), info_icon.hb.y, 1f, Colors.Blue(1f));
 
         for (EYBCardAffinityRow t : rows)
         {

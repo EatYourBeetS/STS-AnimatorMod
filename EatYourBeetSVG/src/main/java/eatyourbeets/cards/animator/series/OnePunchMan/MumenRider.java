@@ -6,12 +6,11 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final EYBCardData DATA = Register(MumenRider.class)
-            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal, false, false, false)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Normal, EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     private int turns;
@@ -35,9 +34,6 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH);
-        for (Affinity affinity : Affinity.Extended()) {
-            GameUtilities.MaintainPower(affinity);
-        }
         GameActions.Bottom.Cycle(name, 1);
     }
 

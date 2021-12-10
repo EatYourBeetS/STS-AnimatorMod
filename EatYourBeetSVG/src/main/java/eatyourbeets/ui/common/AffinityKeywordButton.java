@@ -122,7 +122,7 @@ public class AffinityKeywordButton extends GUIElement
     public void Render(SpriteBatch sb)
     {
         background_button.Render(sb);
-        sb.setColor(Color.WHITE.cpy());
+        //sb.setColor(Color.WHITE.cpy());
         if (borderBGTexture != null) {
             sb.draw(borderBGTexture,
                     background_button.hb.x, background_button.hb.y,

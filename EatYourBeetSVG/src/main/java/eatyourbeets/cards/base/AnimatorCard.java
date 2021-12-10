@@ -258,7 +258,7 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected AdvancedTexture GetCardBanner()
     {
-        return new AdvancedTexture((isPopup ? IMAGES.CARD_BANNER_GENERIC_L : IMAGES.CARD_BANNER_GENERIC).Texture(), GetRarityColor(false));
+        return new AdvancedTexture((isPopup ? IMAGES.CARD_BANNER_L : IMAGES.CARD_BANNER).Texture(), GetRarityColor(false));
     }
 
     @Override

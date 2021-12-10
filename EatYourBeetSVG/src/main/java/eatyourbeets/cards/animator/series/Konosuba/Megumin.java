@@ -35,7 +35,7 @@ public class Megumin extends AnimatorCard
         Initialize(15, 0, 5, ATTACK_TURNS);
         SetUpgrade( 2, 0);
 
-        SetAffinity_Blue(1, 0, 4);
+        SetAffinity_Blue(2, 0, 4);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Light(0,0,1);
 

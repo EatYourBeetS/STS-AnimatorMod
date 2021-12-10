@@ -26,7 +26,8 @@ public class CardAffinityCounter extends GUIElement
 
     public GUI_Button background_button;
     public GUI_Image affinity_image;
-    public GUI_Label counter_text;
+    public GUI_Label counterWeak_text;
+    public GUI_Label counterNormal_text;
     public GUI_Label counterPercentage_text;
 
     public CardAffinityCounter(Hitbox hb, Affinity affinity)
@@ -42,13 +43,18 @@ public class CardAffinityCounter extends GUIElement
         affinity_image = RenderHelpers.ForTexture(affinity.GetIcon())
         .SetHitbox(new RelativeHitbox(hb, iconSize, iconSize, -0.5f * (iconSize / hb.width), 0, true));
 
-        counter_text = new GUI_Label(EYBFontHelper.CardTooltipFont,
+        counterWeak_text = new GUI_Label(EYBFontHelper.CardTooltipFont,
         new RelativeHitbox(hb, 0.28f, 1, 0.15f, 0f))
         .SetAlignment(0.5f, 0.5f) // 0.1f
         .SetText("-");
 
-        counterPercentage_text = new GUI_Label(EYBFontHelper.CardDescriptionFont_Normal,
+        counterNormal_text = new GUI_Label(EYBFontHelper.CardTooltipFont,
         new RelativeHitbox(hb, 0.28f, 1, 0.45f, 0f))
+        .SetAlignment(0.5f, 0.5f) // 0.1f
+        .SetText("-");
+
+        counterPercentage_text = new GUI_Label(EYBFontHelper.CardDescriptionFont_Normal,
+        new RelativeHitbox(hb, 0.38f, 1, 0.8f, 0f))
         .SetAlignment(0.5f, 0.5f) // 0.1f
         .SetText("0%");
     }
@@ -62,7 +68,8 @@ public class CardAffinityCounter extends GUIElement
     {
         float y = -index * 1.05f;
         RelativeHitbox.SetPercentageOffset(background_button.hb, null, y);
-        RelativeHitbox.SetPercentageOffset(counter_text.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(counterNormal_text.hb, null, y);
+        RelativeHitbox.SetPercentageOffset(counterWeak_text.hb, null, y);
         RelativeHitbox.SetPercentageOffset(counterPercentage_text.hb, null, y);
         RelativeHitbox.SetPercentageOffset(affinity_image.hb, null, y);
 
@@ -84,7 +91,8 @@ public class CardAffinityCounter extends GUIElement
         final int lv2 = AffinityGroup.GetTotal(2);
 
         background_button.SetInteractable(GameEffects.IsEmpty()).Update();
-        counter_text.SetText(lv1 == 0 ? "-" : lv1).Update();
+        counterWeak_text.SetText(lv1 == 0 ? "-" : lv1).Update();
+        counterNormal_text.SetText(lv2 == 0 ? "-" : lv2).Update();
         counterPercentage_text.SetText(AffinityGroup.GetPercentageString(0)).Update();
         affinity_image.Update();
     }
@@ -94,7 +102,8 @@ public class CardAffinityCounter extends GUIElement
     {
         background_button.Render(sb);
         counterPercentage_text.Render(sb);
-        counter_text.Render(sb);
+        counterNormal_text.Render(sb);
+        counterWeak_text.Render(sb);
         affinity_image.Render(sb);
     }
 }

@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class KanadeTachibana extends AnimatorCard
@@ -22,7 +23,7 @@ public class KanadeTachibana extends AnimatorCard
 
         SetPurge(true);
         SetAffinity_Blue(1, 0, 1);
-        SetAffinity_Light(1, 0, 2);
+        SetAffinity_Light(2, 0, 2);
         SetAffinity_Green(0,0,1);
     }
 
@@ -39,9 +40,10 @@ public class KanadeTachibana extends AnimatorCard
 
                     for (AbstractCard c : cards) {
                         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-                        if (card != null)
+                        int lightLevel = GameUtilities.GetAffinityLevel(card, Affinity.Light, true);
+                        if (card != null && lightLevel < 2)
                         {
-                            card.affinities.Set(Affinity.Light, 1);
+                            card.affinities.Set(Affinity.Light, lightLevel + 1);
                             card.flash();
                         }
 

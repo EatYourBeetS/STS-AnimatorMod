@@ -59,7 +59,7 @@ public class AsukaLangley extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (upgraded) {
+        if (upgraded && auxiliaryData.form == 1) {
             GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.GUNSHOT).forEach(d -> d.SetVFXColor(Color.ORANGE).SetSoundPitch(0.5f, 0.6f));
         }
         else {

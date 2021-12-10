@@ -36,7 +36,7 @@ public class Jibril extends AnimatorCard implements OnClickablePowerUsed
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
         SetAffinity_Silver(1);

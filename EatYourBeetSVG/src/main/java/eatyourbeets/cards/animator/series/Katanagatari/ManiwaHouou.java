@@ -32,7 +32,7 @@ public class ManiwaHouou extends AnimatorCard
         Initialize(0, 0, 2, 2);
         SetUpgrade(0, 0, 0);
 
-        SetAffinity_Green(1);
+        SetAffinity_Green(2);
         SetAffinity_Dark(1);
 
         SetEthereal(true);

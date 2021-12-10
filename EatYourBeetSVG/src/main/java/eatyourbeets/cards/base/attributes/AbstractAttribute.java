@@ -178,7 +178,7 @@ public abstract class AbstractAttribute
         if (result == null)
         {
             result = new AdvancedTexture((card.isPopup ?
-            GR.Common.Images.Panel_Skewed_L: GR.Common.Images.Panel_Skewed).Texture(),
+            GR.Animator.Images.CARD_BANNER_ATTRIBUTE_L: GR.Animator.Images.CARD_BANNER_ATTRIBUTE).Texture(),
             Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
             map.put(card.rarity, result);
         }

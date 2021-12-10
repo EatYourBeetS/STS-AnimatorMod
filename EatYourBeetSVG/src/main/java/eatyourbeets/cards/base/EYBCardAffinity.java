@@ -52,7 +52,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
 
     public void RenderOnCard(SpriteBatch sb, EYBCard card, float x, float y, float size, boolean highlight)
     {
-        float rotation = 0f;
         float borderScale = 1f;
         final Color color = Color.WHITE.cpy();
         Color backgroundColor = color.cpy();
@@ -62,11 +61,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
             borderColor = Settings.GREEN_RELIC_COLOR.cpy();
             borderColor.a = color.a;
             borderScale += GR.UI.Time_Sin(0.015f, 2.5f);
-        }
-
-        if (level > 1)
-        {
-            rotation = GR.UI.Time_Multi(-(card.isPopup ? 20 : 40));
         }
 
         Texture background = type.GetBackground(level, upgrade);
@@ -80,13 +74,7 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         Texture border = type.GetBorder(level);
         if (border != null)
         {
-            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, borderScale, rotation);
-        }
-
-        Texture foreground = type.GetForeground(level);
-        if (foreground != null)
-        {
-            RenderHelpers.DrawOnCardAuto(sb, card, foreground, new Vector2(x, y), size, size, borderColor, 1f, borderScale, -rotation);
+            RenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, borderScale, 0f);
         }
 
         if (type == Affinity.Star)
@@ -110,12 +98,6 @@ public class EYBCardAffinity implements Comparable<EYBCardAffinity>
         if (border != null)
         {
             RenderHelpers.DrawCentered(sb, color, border, cX, cY, size, size, 1, 0);
-        }
-
-        Texture foreground = type.GetForeground(level);
-        if (foreground != null)
-        {
-            RenderHelpers.DrawCentered(sb, color, foreground, cX, cY, size, size, 1, 0);
         }
 
         if (type == Affinity.Star)

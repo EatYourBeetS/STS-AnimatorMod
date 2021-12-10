@@ -23,7 +23,7 @@ public class HighElfArcher extends AnimatorCard
         Initialize(2, 0, 2, 1);
         SetUpgrade(1, 0);
 
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Green, 3);
     }

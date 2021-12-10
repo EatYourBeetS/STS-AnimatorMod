@@ -244,12 +244,6 @@ public class MissingPieceReward extends AnimatorReward
             {
                 RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
             }
-
-            texture = affinity.GetForeground(level);
-            if (texture != null)
-            {
-                RenderHelpers.DrawCentered(sb, Color.WHITE, texture, cX, cY, size, size, 1, 0);
-            }
         }
         RenderHelpers.WriteCentered(sb, font, group.GetPercentageString(0), cX + (size * 0.1f * Settings.scale), cY - (size * 0.65f * Settings.scale), Color.WHITE);
         RenderHelpers.ResetFont(font);

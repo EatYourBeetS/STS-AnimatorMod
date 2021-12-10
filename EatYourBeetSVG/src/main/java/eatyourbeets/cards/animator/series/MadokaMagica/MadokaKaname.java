@@ -34,7 +34,7 @@ public class MadokaKaname extends AnimatorCard
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
 
         SetHealing(true);
         SetExhaust(true);

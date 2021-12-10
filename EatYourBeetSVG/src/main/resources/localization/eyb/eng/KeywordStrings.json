@@ -162,9 +162,15 @@
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
 	},
+	"Desecrated":
+	{
+		"DESCRIPTION": "Take additional damage from any source. Deal less damage with attacks. Removed at the end of turn. Ignores [Artifact].",
+		"NAMES": ["desecrated"],
+		"PROPER_NAME": "Desecrated"
+	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL Spend #b3 stacks to decrease a single enemy's #yAttack damage and damage resistance. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
@@ -176,7 +182,7 @@
 	},
 	"Desecration Stance":
 	{
-	  "DESCRIPTION": "Stance: [D] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Dark].",
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Dark].",
 	  "NAMES": ["[d] stance", "desecration stance"],
 	  "PROPER_NAME": "Desecration Stance"
 	},
@@ -188,7 +194,7 @@
 	},
 	"Electrified Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Tainted]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Tainted].",
+	  "DESCRIPTION": "Deal double damage against enemies with [Poison]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Poison].",
 	  "NAMES": ["electrified weapon"],
 	  "PROPER_NAME": "Electrified Weapon"
 	},
@@ -212,7 +218,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL Spend #b3 stacks to increase the [Block] of the next [Block] card by #b+100%. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},
@@ -224,7 +230,7 @@
 	},
 	"Endurance Stance":
 	{
-	  "DESCRIPTION": "Stance: [O] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Orange].",
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Orange].",
 	  "NAMES": ["[o] stance", "endurance stance"],
 	  "PROPER_NAME": "Endurance Stance"
 	},
@@ -366,6 +372,24 @@
 		"NAMES": ["interact", "interactable", "interactables"],
 		"PROPER_NAME": "Interactable"
 	},
+	"Invocation":
+	{
+	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b+200%.",
+	  "NAMES": ["Invocation"],
+	  "PROPER_NAME": "Invocation"
+	},
+	"Invocation Scaling":
+	{
+	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
+	  "NAMES": ["[l] scaling", "invocation scaling"],
+	  "PROPER_NAME": "Invocation Scaling"
+	},
+	"Invocation Stance":
+	{
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Light].",
+	  "NAMES": ["[l] stance", "invocation stance"],
+	  "PROPER_NAME": "Invocation Stance"
+	},
 	"Juggernaut":
 	{
 		"DESCRIPTION": "Whenever you gain #yBlock, deal damage to a random enemy.",
@@ -416,7 +440,7 @@
 	},
 	"Might":
 	{
-	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. Spend #b3 stacks to increase the damage of the next #yAttack by #b+100%. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
 	  "NAMES": ["might"],
 	  "PROPER_NAME": "Might"
 	},
@@ -428,7 +452,7 @@
 	},
 	"Might Stance":
 	{
-		"DESCRIPTION": "Stance: [R] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Red]",
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [R] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Red]",
 		"NAMES": ["[r] stance", "might stance"],
 		"PROPER_NAME": "Might Stance"
 	},
@@ -570,24 +594,6 @@
 		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPER_NAME": "Stun"
 	},
-	"Supercharge":
-	{
-	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Spend #b3 stacks to increase the amount of the next #yCommon #yBuff gained by #b+200%. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
-	  "NAMES": ["Supercharge"],
-	  "PROPER_NAME": "Supercharge"
-	},
-	"Supercharge Scaling":
-	{
-	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
-	  "NAMES": ["[l] scaling", "supercharge scaling"],
-	  "PROPER_NAME": "Supercharge Scaling"
-	},
-	"Supercharge Stance":
-	{
-	  "DESCRIPTION": "Stance: [L] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Light].",
-	  "NAMES": ["[l] stance", "supercharge stance"],
-	  "PROPER_NAME": "Supercharge Stance"
-	},
 	"Support Damage":
 	{
 		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
@@ -600,12 +606,6 @@
 		"NAMES": ["swirled"],
 		"PROPER_NAME": "Swirled"
 	},
-	"Tainted":
-	{
-		"DESCRIPTION": "Take additional damage from any source. Deal less damage with attacks. Reduced by 1 each turn. Ignores [Artifact].",
-		"NAMES": ["tainted"],
-		"PROPER_NAME": "Tainted"
-	},
 	"Teamwork":
 	{
 		"DESCRIPTION": "Teamwork is equal to the number of cards in hand that have the most common #yAffinity amongst your hand.",
@@ -614,7 +614,7 @@
 	},
 	"Technic":
 	{
-		"DESCRIPTION": "Gain [S] when a [A-Silver] card #yMatches. NL Spend #b6 stacks to gain [Genesis], granting you #b1 extra [E] per turn. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+		"DESCRIPTION": "Gain [S] when a [A-Silver] card #yMatches. NL Gains #b1 #yLevel for every #b10 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to gain [Genesis], granting you #b1 extra [E] per turn.",
 		"NAMES": ["technic"],
 		"PROPER_NAME": "Technic"
 	},
@@ -626,7 +626,7 @@
 	},
 	"Technic Stance":
 	{
-		"DESCRIPTION": "Stance: [S] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Silver].",
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [S] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Silver].",
 		"NAMES": ["[s] stance", "technic stance"],
 		"PROPER_NAME": "Technic Stance"
 	},
@@ -650,7 +650,7 @@
 	},
 	"Velocity":
 	{
-	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL Spend #b3 stacks to draw #b2 cards. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to draw #b2 cards.",
 	  "NAMES": ["velocity"],
 	  "PROPER_NAME": "Velocity"
 	},
@@ -662,7 +662,7 @@
 	},
 	"Velocity Stance":
 	{
-		"DESCRIPTION": "Stance: [G] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Green].",
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [G] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Green].",
 		"NAMES": ["[g] stance", "velocity stance"],
 		"PROPER_NAME": "Velocity Stance"
 	},
@@ -686,7 +686,7 @@
 	},
 	"Wisdom":
 	{
-	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL Spend #b3 stacks to increase the [Focus] of the next #yOrb #yChanneled by #b4. Then, #yLevel up this #yPower, increasing its maximum stacks by #b1.",
+	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Focus] of the next #yOrb #yChanneled by #b4.",
 	  "NAMES": ["wisdom"],
 	  "PROPER_NAME": "Wisdom"
 	},
@@ -698,7 +698,7 @@
 	},
 	"Wisdom Stance":
 	{
-		"DESCRIPTION": "Stance: [B] #yScaling is twice as effective. NL When exited or re-entered: Gain #b3 [A-Blue].",
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [B] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Blue].",
 		"NAMES": ["[b] stance", "wisdom stance"],
 		"PROPER_NAME": "Wisdom Stance"
 	},
@@ -716,7 +716,7 @@
 	},
 	"~Brutal":
 	{
-		"DESCRIPTION": "Deal #b40% additional damage if the enemy has less than #b50% health.",
+		"DESCRIPTION": "Affected twice by damage modifiers, excluding #yAffinity #yPowers and #yScaling.",
 		"NAMES": ["~brutal"],
 		"PROPER_NAME": "Brutal Damage"
 	},

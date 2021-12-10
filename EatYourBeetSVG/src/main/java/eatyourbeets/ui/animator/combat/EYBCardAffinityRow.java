@@ -7,10 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardAffinities;
-import eatyourbeets.cards.base.EYBCardAffinity;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.affinity.ChangeAffinityCountEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
@@ -76,7 +73,12 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void ActivateSynergyBonus(AbstractCard card)
     {
-        GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount, false);
+        final AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
+        if (c != null && c.cardData != null && !c.cardData.CanGrantAffinity) {
+            return;
+        }
+        int addLevel = GameUtilities.GetAffinityLevel(card, Type, true);
+        GameActions.Bottom.StackAffinityPower(Type, ActivationPowerAmount * addLevel, false);
         CombatStats.OnSynergyBonus(card, Type);
     }
 
@@ -130,16 +132,17 @@ public class EYBCardAffinityRow extends GUIElement
 
             if (hoveredCard != null)
             {
-                if ((hoveredCard.affinities.GetLevel(Type,true) > 0 || (hoveredCard.affinities.GetLevel(Affinity.Star,true) > 0 && System.GetLastAffinityLevel(Type) > 0)) && hoveredCard.cardData.CanGrantAffinity) {
-                    Level += 1;
-                    Total += 1;
+                int addLevel = hoveredCard.affinities.GetLevel(Type,true);
+                if (addLevel > 0 && hoveredCard.cardData.CanGrantAffinity) {
+                    Level += addLevel;
+                    Total += addLevel;
                 }
                 final EYBCardAffinity a = (synergies != null && synergies.GetLevel(Affinity.Star) == 0) ? synergies.Get(Type) : null;
                 if (System.CanActivateSynergyBonus(a))
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_STRONG);
                 }
-                else if (hoveredCard.affinities.GetLevel(Type, true) > 0)
+                else if (addLevel > 0)
                 {
                     image_background.SetColor(COLOR_HIGHLIGHT_WEAK);
                 }

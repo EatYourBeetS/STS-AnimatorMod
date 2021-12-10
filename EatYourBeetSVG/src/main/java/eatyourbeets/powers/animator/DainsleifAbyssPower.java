@@ -207,7 +207,7 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
         NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
         NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Supercharge, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainSupercharge(3, false)),
+        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Invocation, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainInvocation(3, false)),
         GainCorruption(ACTIONS.GainAmount(12, GR.Tooltips.Desecration, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainDesecration(4, false)),
         GainIntellect(ACTIONS.GainAmount(9, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainWisdom(3, false)),
         GainStrength(ACTIONS.GainAmount(2, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainStrength(2)),

@@ -51,7 +51,7 @@ public class TK extends AnimatorCard_UltraRare implements OnLoseHpSubscriber
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_LIGHT);
 
-        GameActions.Bottom.GainSupercharge(magicNumber, true);
+        GameActions.Bottom.GainInvocation(magicNumber, true);
     }
 
     @Override

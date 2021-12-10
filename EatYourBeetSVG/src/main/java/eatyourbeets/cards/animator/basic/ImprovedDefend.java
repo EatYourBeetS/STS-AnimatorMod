@@ -22,7 +22,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
             list.add(Defend_Orange.DATA);
             list.add(Defend_Light.DATA);
             list.add(Defend_Dark.DATA);
-            list.add(Defend_Star.DATA);
+            list.add(Defend_Silver.DATA);
         }
 
         return list;

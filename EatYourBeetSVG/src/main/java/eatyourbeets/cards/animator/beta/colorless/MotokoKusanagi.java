@@ -19,7 +19,7 @@ public class MotokoKusanagi extends AnimatorCard
 
         Initialize(3, 0, 2);
         SetUpgrade(2, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Silver(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
 
@@ -41,6 +41,7 @@ public class MotokoKusanagi extends AnimatorCard
     {
         super.triggerOnExhaust();
         GameActions.Bottom.GainBlur(magicNumber);
+        GameActions.Bottom.GainSupportDamage(magicNumber);
     }
 
     @Override

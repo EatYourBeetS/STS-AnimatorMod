@@ -38,6 +38,6 @@ public class LimeBell extends AnimatorCard
             }
         });
 
-        GameActions.Bottom.Reload(name, cards -> GameActions.Bottom.GainSupercharge(cards.size() * secondaryValue));
+        GameActions.Bottom.Reload(name, cards -> GameActions.Bottom.GainInvocation(cards.size() * secondaryValue));
     }
 }

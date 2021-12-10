@@ -21,7 +21,7 @@ public class HomuraAkemi_Homulily extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 7);
+        Initialize(0, 0, 4, 7);
         SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Dark(1);

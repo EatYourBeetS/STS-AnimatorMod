@@ -99,7 +99,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     {
         int val = GetXValue();
         if (val > 0) {
-            GameActions.Bottom.GainSupercharge(val);
+            GameActions.Bottom.GainInvocation(val);
         }
         GameActions.Bottom.HealPlayerLimited(this, magicNumber);
         TrySpendAffinity(Affinity.Light, CombatStats.Affinities.GetAffinityLevel(Affinity.Light, true));

@@ -50,7 +50,6 @@ public class EYBCardData
     public EYBCard tempCard = null;
     public boolean BlockScalingAttack;
     public boolean CanScaleMagicNumber = false;
-    public boolean CanTriggerSupercharge = true;
     public boolean CanGrantAffinity = true;
     public boolean IsExpansionCard;
 
@@ -257,25 +256,25 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false, true, false);
+        return SetAttack(cost, rarity, EYBAttackType.Normal, EYBCardTarget.Normal, false, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType)
     {
-        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, true, false);
+        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
-        return SetAttack(cost, rarity, attackType, target, false, true, false);
+        return SetAttack(cost, rarity, attackType, target, false, false);
     }
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling)
     {
-        return SetAttack(cost, rarity, attackType, target, isBlockScaling, true, false);
+        return SetAttack(cost, rarity, attackType, target, isBlockScaling, false);
     }
 
-    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canTriggerSupercharge, boolean canScaleMagicNumber)
+    public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canScaleMagicNumber)
     {
         SetRarity(rarity);
 
@@ -285,7 +284,6 @@ public class EYBCardData
         BaseCost = cost;
         BlockScalingAttack = isBlockScaling;
         CanScaleMagicNumber = canScaleMagicNumber;
-        CanTriggerSupercharge = canTriggerSupercharge;
 
         return this;
     }

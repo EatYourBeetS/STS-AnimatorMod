@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.stances.SuperchargeStance;
+import eatyourbeets.stances.InvocationStance;
 import eatyourbeets.utilities.GameActions;
 
 public class OrihimeInoue extends AnimatorCard
@@ -35,7 +35,7 @@ public class OrihimeInoue extends AnimatorCard
         GameActions.Bottom.StackPower(new OrihimeInouePower(p, magicNumber));
 
         if (TrySpendAffinity(Affinity.Red, Affinity.Light)) {
-            GameActions.Bottom.ChangeStance(SuperchargeStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(InvocationStance.STANCE_ID);
         }
     }
 

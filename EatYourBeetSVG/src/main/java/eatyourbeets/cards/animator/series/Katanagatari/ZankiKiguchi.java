@@ -3,13 +3,11 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ZankiKiguchi extends AnimatorCard
 {
@@ -33,7 +31,7 @@ public class ZankiKiguchi extends AnimatorCard
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
-        if (CheckPrimaryCondition(true))
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.GainVelocity(secondaryValue);
         }
@@ -49,11 +47,5 @@ public class ZankiKiguchi extends AnimatorCard
                 }
             });
         }
-    }
-
-    @Override
-    public boolean CheckPrimaryCondition(boolean tryUse)
-    {
-        return GameUtilities.GetPowerAmount(Affinity.Green) == 0;
     }
 }

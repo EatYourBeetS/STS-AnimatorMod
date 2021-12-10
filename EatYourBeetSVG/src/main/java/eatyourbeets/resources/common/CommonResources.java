@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.localization.Keyword;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
@@ -17,7 +16,7 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.replacement.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
@@ -103,13 +102,9 @@ public class CommonResources extends AbstractResources
 
         LoadKeywords();
 
-        AddPowerTooltip(Affinity.Red.GetFormattedPowerSymbol(), "Might", new MightPower());
-        AddPowerTooltip(Affinity.Green.GetFormattedPowerSymbol(), "Velocity", new VelocityPower());
-        AddPowerTooltip(Affinity.Blue.GetFormattedPowerSymbol(), "Wisdom", new WisdomPower());
-        AddPowerTooltip(Affinity.Orange.GetFormattedPowerSymbol(), "Endurance", new EndurancePower());
-        AddPowerTooltip(Affinity.Light.GetFormattedPowerSymbol(), "Supercharge", new SuperchargePower());
-        AddPowerTooltip(Affinity.Dark.GetFormattedPowerSymbol(), "Desecration", new DesecrationPower());
-        AddPowerTooltip(Affinity.Silver.GetFormattedPowerSymbol(), "Technic", new TechnicPower());
+        for (Affinity affinity : Affinity.Extended()) {
+            AddAffinityTooltip(affinity);
+        }
 //        AddEnergyTooltip("[R]", AbstractCard.orb_red);
 //        AddEnergyTooltip("[G]", AbstractCard.orb_green);
 //        AddEnergyTooltip("[L]", AbstractCard.orb_blue);
@@ -153,12 +148,16 @@ public class CommonResources extends AbstractResources
         CardTooltips.RegisterName(symbol, tooltip);
     }
 
-    private static void AddPowerTooltip(String symbol, String id, AbstractPower power)
+    private static void AddAffinityTooltip(Affinity affinity)
     {
-        if (power.img == null)
+        String symbol = affinity.GetFormattedPowerSymbol();
+        String id = affinity.PowerName;
+        AbstractAffinityPower power = affinity.GetPower();
+
+        if (power == null || power.img == null)
         {
-            JUtils.LogError(CommonResources.class, "Could not find image: Symbol: {0}, ID: {1}, Power: {2} ",
-                    symbol, id, power.name);
+            JUtils.LogError(CommonResources.class, "Could not find image: Symbol: {0}, ID: {1}",
+                    symbol, id);
             return;
         }
         int size = power.img.getWidth(); // width should always be equal to height
@@ -174,10 +173,16 @@ public class CommonResources extends AbstractResources
         tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 3, 5, size-6, size-6);
         //tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
-        EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
+        EYBCardTooltip stance = CardTooltips.FindByID(affinity.GetStanceTooltipID());
         if (stance != null)
         {
             stance.icon = tooltip.icon;
+        }
+
+        EYBCardTooltip scaling = CardTooltips.FindByID(affinity.GetScalingTooltipID());
+        if (scaling != null)
+        {
+            scaling.icon = tooltip.icon;
         }
 
         CardTooltips.RegisterName(symbol, tooltip);

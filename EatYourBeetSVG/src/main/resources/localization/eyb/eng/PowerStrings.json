@@ -42,7 +42,7 @@
 	},
 	"eyb:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When a [A-Dark] card #yMatches: Gain #b{0} [D]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and apply {2} [Tainted] to one enemy.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["When a [A-Dark] card #yMatches: Gain #b{0} [D]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to reduce a single enemy's Attack damage by #b{2}% and damage resistance by #b{3}%.{4}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Desecration"
 	},
 	"eyb:ElectrifiedPower":
@@ -57,7 +57,7 @@
 	},
 	"eyb:EndurancePower":
 	{
-	  "DESCRIPTIONS": ["When a [A-Orange] card #yMatches: Gain #b{0} [O]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["When a [A-Orange] card #yMatches: Gain #b{0} [O]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Endurance"
 	},
 	"eyb:EnergizedPower":
@@ -115,6 +115,11 @@
 		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [B] scaling.", "At #b{0} [B]: Gain #b{1} [Focus]."],
 		"NAME": "Intellect"
 	},
+	"eyb:InvocationPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Invocation"
+	},
 	"eyb:IceElementPower":
 	{
 	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],
@@ -132,7 +137,7 @@
 	},
 	"eyb:MightPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Red] card #yMatches: Gain #b{0} [R]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase its damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When a [A-Red] card #yMatches: Gain #b{0} [R]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Might"
 	},
 	"eyb:PhasingPower":
@@ -162,7 +167,7 @@
 	},
 	"eyb:SuperchargePower":
 	{
-		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Supercharge"
 	},
 	"eyb:SupportDamagePower":
@@ -175,14 +180,14 @@
 	  "DESCRIPTIONS": ["If the target has [Burning], [Freezing], or [Electrified]: Apply #b1 of each to ALL other enemies, then reduce this by #b1. If there are no other enemies: Increase stacks of those powers by #b1."],
 	  "NAME": "Swirled"
 	},
-	"eyb:TaintedPower":
+	"eyb:DesecratedPower":
 	{
-		"DESCRIPTIONS": ["Take #b{0}% more damage from any source. Deal #b{1}% less damage with #yAttacks."],
-		"NAME": "Tainted"
+		"DESCRIPTIONS": ["Take #b{0}% more damage from any source. Deal #b{1}% less damage with #yAttacks. Ignores [Artifact]. Removed at the end of turn."],
+		"NAME": "Desecrated"
 	},
 	"eyb:TechnicPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Silver] card #yMatches: Gain #b{0} [S]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and gain #b{2} [Genesis].{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When a [A-Silver] card #yMatches: Gain #b{0} [S]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to gain #b{2} additional [E] each turn.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Technic"
 	},
 	"eyb:TemporaryDesecrationPower":
@@ -217,7 +222,7 @@
 	},
 	"eyb:VelocityPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Green] card #yMatches: Gain #b{0} [G]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When a [A-Green] card #yMatches: Gain #b{0} [G]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Velocity"
 	},
 	"eyb:VitalityPower":
@@ -242,7 +247,7 @@
 	},
 	"eyb:WisdomPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Blue] card #yMatches: Gain #b{0} [B]. When this #yPower is clicked, spend #b{1} stacks to increase its #yLevel by #b1 and increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["When a [A-Blue] card #yMatches: Gain #b{0} [B]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Wisdom"
 	}
 }

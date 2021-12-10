@@ -13,12 +13,12 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SuperchargePower extends AbstractAffinityPower implements OnApplyPowerSubscriber
+public class InvocationPower extends AbstractAffinityPower implements OnApplyPowerSubscriber
 {
-    public static final String POWER_ID = CreateFullID(SuperchargePower.class);
+    public static final String POWER_ID = CreateFullID(InvocationPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Light;
 
-    public SuperchargePower()
+    public InvocationPower()
     {
         super(AFFINITY_TYPE, POWER_ID);
     }
@@ -42,7 +42,7 @@ public class SuperchargePower extends AbstractAffinityPower implements OnApplyPo
             GameActions.Last.Callback(() -> {
                 AbstractPower po = GameUtilities.GetPower(power.owner, power.ID);
                 if (po != null) {
-                    po.amount += applyAmount;
+                    po.stackPower(applyAmount);
                     po.flash();
                     po.updateDescription();
                 }

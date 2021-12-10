@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.stances.SuperchargeStance;
+import eatyourbeets.stances.InvocationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -42,7 +42,7 @@ public class MitsuKusabue extends AnimatorCard
                     for (AbstractCard card : cards) {
                         GameUtilities.ModifyCostForTurn(card, 1, true);
                         GameUtilities.Retain(card);
-                        if (SuperchargeStance.IsActive() && GameUtilities.HasLightAffinity(card)) {
+                        if (InvocationStance.IsActive() && GameUtilities.HasLightAffinity(card)) {
                             GameActions.Bottom.GainTemporaryHP(secondaryValue);
                         }
                     }

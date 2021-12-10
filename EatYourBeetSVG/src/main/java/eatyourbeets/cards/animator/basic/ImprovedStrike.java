@@ -26,7 +26,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
             list.add(Strike_Orange.DATA);
             list.add(Strike_Light.DATA);
             list.add(Strike_Dark.DATA);
-            list.add(Strike_Star.DATA);
+            list.add(Strike_Silver.DATA);
         }
 
         return list;

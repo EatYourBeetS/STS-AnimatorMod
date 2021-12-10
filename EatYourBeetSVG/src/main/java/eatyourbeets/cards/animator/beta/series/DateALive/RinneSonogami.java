@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.SuperchargeStance;
+import eatyourbeets.stances.InvocationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -47,7 +47,7 @@ public class RinneSonogami extends AnimatorCard
                             aC.affinities.Set(Affinity.Blue, 1);
                             aC.flash();
                         }
-                        if ((SuperchargeStance.IsActive() || info.IsSynergizing) && CombatStats.TryActivateSemiLimited(cardID)) {
+                        if ((InvocationStance.IsActive() || info.IsSynergizing) && CombatStats.TryActivateSemiLimited(cardID)) {
                             if (card.baseDamage > 0) {
                                 GameUtilities.IncreaseDamage(card, magicNumber, false);
                             }

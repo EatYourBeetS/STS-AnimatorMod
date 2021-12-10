@@ -24,8 +24,8 @@ public class MetalBat extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(1, 0, 1, 2);
-        SetUpgrade(1, 0, 1, 0);
+        Initialize(1, 0, 4, 2);
+        SetUpgrade(2, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);

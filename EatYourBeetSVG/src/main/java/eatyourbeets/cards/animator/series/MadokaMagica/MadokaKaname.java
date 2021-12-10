@@ -59,6 +59,14 @@ public class MadokaKaname extends AnimatorCard
     }
 
     @Override
+    public void triggerWhenDrawn()
+    {
+        super.triggerWhenDrawn();
+
+        GameActions.Bottom.RecoverHP(1);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.PurgeFromPile(name, magicNumber, p.exhaustPile, player.hand, player.discardPile, player.drawPile)
@@ -70,9 +78,6 @@ public class MadokaKaname extends AnimatorCard
             if (cards.size() > 0)
             {
                 GameActions.Bottom.HealPlayerLimited(this, secondaryValue * cards.size());
-                if (info.IsSynergizing) {
-                    GameActions.Bottom.GainSupportDamage(magicNumber * cards.size());
-                }
                 GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }
         });

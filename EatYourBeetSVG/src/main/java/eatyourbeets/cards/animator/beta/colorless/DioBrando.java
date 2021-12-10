@@ -8,7 +8,6 @@ import eatyourbeets.cards.animator.beta.special.DioBrando_TheWorld;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class DioBrando extends AnimatorCard
 {
@@ -27,7 +26,7 @@ public class DioBrando extends AnimatorCard
         SetAffinity_Red(1,0,2);
         SetAffinity_Dark(1, 0, 1);
 
-        SetSoul(7, 0, DioBrando_TheWorld::new);
+        SetSoul(5, 0, DioBrando_TheWorld::new);
     }
 
     @Override
@@ -43,8 +42,6 @@ public class DioBrando extends AnimatorCard
         GameActions.Bottom.DealCardDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY).forEach(d -> d.SetVFXColor(Color.GOLDENROD, Color.GOLDENROD).SetSoundPitch(0.5f, 1.5f));
 
         GameActions.Bottom.Draw(magicNumber).AddCallback(() -> {
-           int attackCount = JUtils.Count(player.hand.group, c -> c.type == CardType.ATTACK);
-           GameActions.Top.RecoverHP(secondaryValue * attackCount);
            GameActions.Bottom.SelectFromHand(name, player.hand.size(), false)
                     .SetOptions(true,true,true)
                     .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
@@ -54,8 +51,8 @@ public class DioBrando extends AnimatorCard
                         {
                             GameActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile);
                         }
+                        GameActions.Top.RecoverHP(secondaryValue * cards.size());
                     });
-           cooldown.ProgressCooldownAndTrigger(attackCount, m);
         });
 
         cooldown.ProgressCooldownAndTrigger(m);

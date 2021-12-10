@@ -21,7 +21,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
     public SakuraKashima() {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 5);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
     }
@@ -38,7 +38,7 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
                 choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(SuperchargeStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
                 choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
             }
 
@@ -79,14 +79,14 @@ public class SakuraKashima extends AnimatorCard_UltraRare {
             if (eOldStance != null) {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eOldStance.affinity);
                 if (p != null) {
-                    GameActions.Bottom.StackAffinityPower(eOldStance.affinity, p.maxAmount);
-                    p.SetEffectMultiplier(p.effectMultiplier - 1);
+                    GameActions.Bottom.StackAffinityPower(eOldStance.affinity, amount);
+                    p.SetScalingMultiplier(p.scalingMultiplier - 2);
                 }
             }
             if (eNewStance != null) {
                 final AbstractAffinityPower p = CombatStats.Affinities.GetPower(eNewStance.affinity);
                 if (p != null) {
-                    p.SetEffectMultiplier(p.effectMultiplier + 1);
+                    p.SetScalingMultiplier(p.scalingMultiplier + 2);
                 }
             }
 

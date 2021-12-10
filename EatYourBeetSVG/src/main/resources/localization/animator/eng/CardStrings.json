@@ -378,7 +378,7 @@
     	},
 		"animator:DioBrando":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {The World}. || <DRW-M>. For each Attack in hand, Spend 1 {Soul}: Recover !S! [HP]. Then, move any number of cards in hand to your draw pile.",
+			"DESCRIPTION": "<CDN>: Exhaust and Obtain {The World}. || <DRW-M>. Move any number of cards in hand to your draw pile and Recover !S! [HP] for each.",
 			"NAME": "Dio Brando"
 		},
 		"animator:DioBrando_TheWorld":
@@ -428,7 +428,7 @@
 		},
 		"animator:JotaroKujo":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Star Platinum}. || Draw a {Power} and Retain it. Spend {Soul} equal to its cost: Give a card +1 of a random Scaling that many times.",
+			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Star Platinum}. || Draw a 2+ Cost card and Retain it. Give its Scaling to another card in hand.",
 			"NAME": "Jotaro Kujo"
 		},
 		"animator:JotaroKujo_StarPlatinum":
@@ -518,7 +518,7 @@
 		},
 		"animator:MotokoKusanagi":
 		{
-			"DESCRIPTION": "<RCT>: Moves to your draw pile. Reduced by 1 for every 150 Gold you have (minimum 1). || On Exhaust: Gain !M! [Blur] and [Counter-Attack].",
+			"DESCRIPTION": "On Exhaust: Gain !M! [Blur] and [Support Damage]. Returns to your draw pile in !C! turns, reduced by 1 per 150 [Gold] (min. 1).",
 			"NAME": "Motoko Kusanagi"
 		},
 		"animator:MS06ZakuII":
@@ -709,7 +709,7 @@
 		},
 		"animator:Mayuri":
 		{
-		  "DESCRIPTION": "Gain !M! [Vulnerable] and !S! Temp. [Malleable]. || <LIM>. If any enemy intends to deal damage exceeding 50% of your Max. [HP]: Play {Ionizing Storm}.",
+		  "DESCRIPTION": "Apply !M! [Electrified] to ALL enemies. || Gain !M! [Vulnerable]. Then, if any enemy intends to deal damage exceeding 25% of your Max. [HP]: [Electrified] gains +!S!% effect bonus.",
 		  "NAME": "Mayuri"
 		},
 		"animator:MukuroHoshimiya":
@@ -881,7 +881,7 @@
 		},
 		"animator:Keqing":
 		{
-			"DESCRIPTION": "<RCT>: Moves to your draw pile and gains [~Haste]. || When drawn with [~Haste]: Channel [Lightning] and apply !M! [Electrified] to ALL enemies.",
+			"DESCRIPTION": "On Exhaust: Moves to your draw pile and gains [~Haste] in !C! turns. || When drawn with [~Haste]: Channel [Lightning] and apply !M! [Electrified] to ALL enemies.",
 			"NAME": "Keqing"
 		},
 		"animator:Klee":
@@ -891,7 +891,7 @@
 		},
 		"animator:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "[Water] has +!M! [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water].",
+			"DESCRIPTION": "[Water] has +!M! [Focus] and reflects unblocked attack damage. ALL cards give 0 [Block]. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water].",
 			"EXTENDED_DESCRIPTION": ["Play {Water Core}. [Water] has +!M! [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. || If you have no [Water] at the end of turn: Take !S! damage and channel [Water]."],
 			"NAME": "Kokomi Sangonomiya"
 		},
@@ -927,8 +927,8 @@
 		},
 		"animator:Oz":
 		{
-			"DESCRIPTION": "Gain 1 [Orb Slot]. || The first time you play a LV2 <B> or <D> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
-			"EXTENDED_DESCRIPTION": ["The first #b{0} LV.2 #yBlue or LV.2 #yDark card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} LV.2 #yBlue and LV.2 #yDark card(s)."],
+			"DESCRIPTION": "Gain 1 [Orb Slot]. || The first time you play a <B> card each turn: Randomly Channel 1 [Lightning] or [Dark].",
+			"EXTENDED_DESCRIPTION": ["The first #b{0} [A-Blue] card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} [A-Blue] card(s)."],
 			"NAME": "Oz"
 		},
 		"animator:RaidenShogun":
@@ -1057,8 +1057,8 @@
 		},
 		"animator:SakuraKashima":
 		{
-			"DESCRIPTION": "Stances double the effect of their {<W> Power}'s activation effect. Upon leaving a Stance: Set its {<W> Power} to its {Threshold}. || Startup: Enter any Stance.",
-		 	"EXTENDED_DESCRIPTION": ["Stances double the effect of their [A-Gen] #yPower's activation effect. Upon leaving a Stance: Set its [A-Gen] #yPower to its #yThreshold."],
+			"DESCRIPTION": "Stances triple the effect of their {<W> Power}'s Scaling. Upon leaving a Stance: Gain !M! of its {<W> Power}. || Startup: Enter any Stance.",
+		 	"EXTENDED_DESCRIPTION": ["Stances triple the effect of their [A-Gen] #yPower's #yScaling. Upon leaving a Stance: Gain #b{0} of its [A-Gen] #yPower."],
 			"NAME": "Sakura Kashima"
 		},
 		"animator:SakuyaOhtori":
@@ -1096,7 +1096,7 @@
 	{
 		"animator:Barasuishou":
 		{
-			"DESCRIPTION": "Deal +!M! damage for every {Curse} in play. || Exhausts if you play another card with this in your hand. || On Exhaust: Apply !S! [Blinded] to ALL enemies.",
+			"DESCRIPTION": "Deal +!M! damage for every {Curse} in play. || If you play another card with this in your hand: Exhaust and Apply !S! [Blinded] to ALL enemies.",
 			"NAME": "Barasuishou"
 		},
 		"animator:Curse_JunTormented":
@@ -1794,7 +1794,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have no [B]: ** Gain !S! [B]. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
+			"DESCRIPTION": "Match: Gain !S! [B]. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -2194,7 +2194,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "If you have no [G]: ** Gain !S! [G]. || <slm>. Exit your ** Stance to gain 1 [Inspiration].",
+			"DESCRIPTION": "Match: Gain !S! [G]. || <slm>. Exit your ** Stance to gain 1 [Inspiration].",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -2452,7 +2452,7 @@
 		},
 		"animator:MadokaKaname":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Krimheild} || Purge !M! {Curses} anywhere. Heal !S! [HP] for each. ** Match: Also gain !M! [Support Damage] for each.",
+			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Krimheild}. || Purge !M! {Curses} anywhere. Heal !S! [HP] for each. || When drawn: Recover 1 [HP].",
 			"NAME": "Madoka Kaname"
 		},
 		"animator:MadokaKaname_Krimheild":
@@ -2505,18 +2505,18 @@
 		},
 		"animator:SuzuneAmano":
 		{
-			"DESCRIPTION": "Match: <DRW>. || Pay !A! <B>: Exhaust a card, then apply [Burning] equal to !M! + your [Fire] count (!X!).",
+			"DESCRIPTION": "Match: <DRW>. || Pay !A! <R>: Exhaust a card, then apply [Burning] equal to !M! + your [Fire] count (!X!).",
 			"NAME": "Suzune Amano"
 		},
 		"animator:YachiyoNanami":
 		{
-			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: Gain +!M! <B> and <L>. || Once per turn, Pay 5 <W>: Gain !S! [Block].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen] to gain #b{1} [Block]. NL Whenever you Exhaust or Purge a Curse: Gain #b+{2} [A-Blue] and [A-Light]."],
+			"DESCRIPTION": "Whenever you Exhaust or Purge a Curse: Gain ** +!M! <B> and <L>. || Once per turn, Pay 6 <W>: Gain ** !S! [Block] and Obtain [Grief Seed].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Gen] to gain #b{1} [Block] and Obtain [Grief Seed]. NL Whenever you Exhaust or Purge a Curse: Gain #b+{2} [A-Blue] and [A-Light]."],
 			"NAME": "Yachiyo Nanami"
 		},
 		"animator:YuiTsuruno":
 		{
-			"DESCRIPTION": "Discard a random card in your draw pile. || On Exhaust or ** Match: Channel 1 [Fire] ** and Obtain [Grief Seed].",
+			"DESCRIPTION": "Discard a random card in your draw pile. || On Exhaust or ** Match: Channel 1 [Fire] ** and add [Grief Seed] to your draw pile.",
 			"NAME": "Yui Tsuruno"
 		}
 	},
@@ -2703,7 +2703,7 @@
 		},
 		"animator:MumenRider":
 		{
-			"DESCRIPTION": "Cycle a card. {<W> Powers} will be not spent this turn. || <RCT>: {Fetch} this card.",
+			"DESCRIPTION": "Cycle a card. || On Exhaust: Fetch this card in !C! turn(s).",
 			"NAME": "Mumen Rider"
 		},
 		"animator:Saitama":
@@ -3072,7 +3072,7 @@
 
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain +1 {0}. || While in hand: If you would spend {0}, ** Purge this instead.",
+			"DESCRIPTION": "Set the {Current Affinity} to {0}. || While in hand: If you would spend {0}, ** Purge this instead.",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
@@ -3199,7 +3199,7 @@
 		},
 		"animator:ThrowingKnife":
 		{
-			"DESCRIPTION": "{0} || Does not give <W>. || On Discard: Play this on a random enemy.",
+			"DESCRIPTION": "{0} || Does not give <W> or <W> Powers. || On Discard: Play this on a random enemy.",
 			"EXTENDED_DESCRIPTION": ["Apply a Debuff.", "Apply !M! [Weak].", "Apply !M! [Vulnerable].", "Apply !S! [Poison]."],
 			"NAME": "Throwing-Knife"
 		}

@@ -7,6 +7,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.animator.combat.EYBAffinityMeter;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class RerollAffinity extends EYBActionWithCallback<Affinity>
 {
@@ -68,6 +69,6 @@ public class RerollAffinity extends EYBActionWithCallback<Affinity>
     }
 
     protected Affinity[] GetAffinityChoices() {
-        return affinityChoices != null ? affinityChoices : isRandom ? Affinity.Basic() : Affinity.Extended();
+        return affinityChoices != null ? affinityChoices : isRandom ? JUtils.Filter(Affinity.Basic(), a -> CombatStats.Affinities.AffinityMeter.CurrentAffinity.Type != a).toArray(new Affinity[]{}) : Affinity.Extended();
     }
 }

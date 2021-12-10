@@ -11,7 +11,9 @@ import eatyourbeets.utilities.TargetHelper;
 
 public class JotaroKujo_StarPlatinum extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(JotaroKujo_StarPlatinum.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.Jojo);
+    public static final EYBCardData DATA = Register(JotaroKujo_StarPlatinum.class).SetPower(2, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Jojo);
 
     public JotaroKujo_StarPlatinum()
     {

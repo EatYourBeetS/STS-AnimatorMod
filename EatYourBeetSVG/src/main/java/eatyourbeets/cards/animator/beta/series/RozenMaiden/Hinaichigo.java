@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.stances.SuperchargeStance;
+import eatyourbeets.stances.InvocationStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -54,7 +54,7 @@ public class Hinaichigo extends AnimatorCard
         }
 
         if (IsStarter() && TrySpendAffinity(Affinity.Blue)) {
-            GameActions.Bottom.ChangeStance(SuperchargeStance.STANCE_ID);
+            GameActions.Bottom.ChangeStance(InvocationStance.STANCE_ID);
         }
     }
 }

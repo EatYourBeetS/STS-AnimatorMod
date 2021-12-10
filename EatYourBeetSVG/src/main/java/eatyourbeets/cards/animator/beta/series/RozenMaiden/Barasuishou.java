@@ -42,14 +42,6 @@ public class Barasuishou extends AnimatorCard
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.DARK);
     }
 
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), secondaryValue);
-    }
-
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c)
@@ -57,6 +49,7 @@ public class Barasuishou extends AnimatorCard
         super.triggerOnOtherCardPlayed(c);
 
         if (player.hand.contains(this)) {
+            GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), secondaryValue);
             GameActions.Last.Exhaust(this);
         }
     }

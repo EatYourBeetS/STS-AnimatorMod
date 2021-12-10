@@ -96,7 +96,7 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
         super.atStartOfTurn();
         int count = JUtils.Count(GameUtilities.GetEnemies(true), e -> e.hasPower(ElectrifiedPower.POWER_ID));
         if (count > 0) {
-            GameActions.Bottom.GainSupercharge(PER_CHARGE * count);
+            GameActions.Bottom.GainInvocation(PER_CHARGE * count);
         }
     }
 

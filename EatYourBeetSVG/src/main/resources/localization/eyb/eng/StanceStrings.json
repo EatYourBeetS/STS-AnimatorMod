@@ -5,7 +5,7 @@
 		"NAME": "Might Stance",
 		"DESCRIPTION": 
 		[
-			"[R] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Red]"
+			"The #yInteractable #yPower of [R] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Red]"
 		]
 	},
 	"eyb:VelocityStance":
@@ -13,7 +13,7 @@
 		"NAME": "Velocity Stance",
 		"DESCRIPTION": 
 		[
-			"[G] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Green]"
+			"The #yInteractable #yPower of [G] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Green]"
 		]
 	},
 	"eyb:WisdomStance":
@@ -21,7 +21,7 @@
 		"NAME": "Wisdom Stance",
 		"DESCRIPTION": 
 		[
-			"[B] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Blue]"
+			"The #yInteractable #yPower of [B] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Blue]"
 		]
 	},
 	"eyb:EnduranceStance":
@@ -29,15 +29,15 @@
 		"NAME": "Endurance Stance",
 		"DESCRIPTION":
 		[
-			"[O] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Orange]"
+			"The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Orange]"
 		]
 	},
-	"eyb:SuperchargeStance":
+	"eyb:InvocationStance":
 	{
-		"NAME": "Supercharge Stance",
+		"NAME": "Invocation Stance",
 		"DESCRIPTION":
 		[
-			"[L] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Light]"
+			"The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Light]"
 		]
 	},
 	"eyb:DesecrationStance":
@@ -45,7 +45,7 @@
 		"NAME": "Desecration Stance",
 		"DESCRIPTION":
 		[
-			"[D] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Dark]"
+			"The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Dark]"
 		]
 	},
 	"eyb:TechnicStance":
@@ -53,7 +53,7 @@
     	"NAME": "Technic Stance",
     	"DESCRIPTION":
     	[
-    		"[S] #yScaling is twice as effective. NL When exited or re-entered: Gain {0} [A-Silver]"
+    		"The #yInteractable #yPower of [S] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Silver]"
     	]
     }
 }

@@ -17,7 +17,7 @@ public class Simon extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 5 , 0);
+        Initialize(5, 0, 12 , 0);
         SetUpgrade(1, 0, 0 , 0);
 
         SetAffinity_Red(1, 0, 1);

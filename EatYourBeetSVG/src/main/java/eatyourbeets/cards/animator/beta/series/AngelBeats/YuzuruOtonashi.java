@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -53,7 +50,7 @@ public class YuzuruOtonashi extends AnimatorCard
                 }
                 else if (GameUtilities.IsHindrance(card))
                 {
-                    GameActions.Bottom.GainInspiration(1);
+                    GameActions.Bottom.AddAffinity(Affinity.Orange, 2);
                 }
             }
         });

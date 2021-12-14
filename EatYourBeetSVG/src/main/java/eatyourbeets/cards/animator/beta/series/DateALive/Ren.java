@@ -40,18 +40,20 @@ public class Ren extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.Callback(() -> {
            if (GameUtilities.GetOrbCount(Dark.ORB_ID) == 0) {
-               GameActions.Bottom.ChannelOrb(new Dark());
+               GameActions.Bottom.ChannelOrb(new Dark()).AddCallback(() -> DoAction(m));
            }
            else {
-               GameActions.Bottom.TriggerOrbPassive(1, false, false).SetFilter(o -> Dark.ORB_ID.equals(o.ID));
+               GameActions.Bottom.TriggerOrbPassive(1, false, false).SetFilter(o -> Dark.ORB_ID.equals(o.ID)).AddCallback(() -> DoAction(m));
            }
-        }).AddCallback(m, (enemy, __) -> {
-            int darkCount = GameUtilities.GetOrbCount(Dark.ORB_ID);
-            GameActions.Bottom.ApplyPoison(TargetHelper.Normal(enemy), darkCount * magicNumber);
-
-            if (darkCount >= THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {
-                GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
-            }
         });
+    }
+
+    protected void DoAction(AbstractMonster m) {
+        int darkCount = GameUtilities.GetOrbCount(Dark.ORB_ID);
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), darkCount * magicNumber);
+
+        if (darkCount >= THRESHOLD && CombatStats.TryActivateSemiLimited(cardID)) {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Dark, upgraded);
+        }
     }
 }

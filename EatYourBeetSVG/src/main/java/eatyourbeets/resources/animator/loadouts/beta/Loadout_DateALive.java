@@ -21,10 +21,10 @@ public class Loadout_DateALive extends AnimatorLoadout {
     public void AddStarterCards()
     {
         AddStarterCard(YamaiSisters.DATA, 4);
-        AddStarterCard(ShidoItsuka.DATA, 5);
-        AddStarterCard(Mayuri.DATA, 5);
+        AddStarterCard(KotoriItsuka.DATA, 6);
+        AddStarterCard(ShidoItsuka.DATA, 7);
         AddStarterCard(NiaHonjou.DATA, 9);
-        AddStarterCard(KotoriItsuka.DATA, 9);
+        AddStarterCard(RinneSonogami.DATA, 9);
         AddStarterCard(ReineMurasame.DATA, 11);
         AddStarterCard(Curse_Depression.DATA, -6);
         AddStarterCard(Curse_Clumsy.DATA, -3);

@@ -18,7 +18,6 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class Water extends AnimatorOrb
@@ -54,10 +53,9 @@ public class Water extends AnimatorOrb
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
-    public void updateDescription()
+    public String GetUpdatedDescription()
     {
-        this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, this.evokeAmount, this.turns);
+        return FormatDescription(0, this.passiveAmount, this.evokeAmount, this.turns, HP_HEAL);
     }
 
     @Override
@@ -185,7 +183,7 @@ public class Water extends AnimatorOrb
         CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
 
-        if (CombatStats.TryActivateLimited(ID))
+        if (CombatStats.TryActivateLimited(ID, 2))
         {
             GameActions.Bottom.Heal(HP_HEAL);
         }

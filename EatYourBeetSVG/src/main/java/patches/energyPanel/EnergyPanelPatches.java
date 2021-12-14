@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.ui.common.ControllableCardPile;
+import eatyourbeets.utilities.GameUtilities;
 
 public class EnergyPanelPatches
 {
@@ -16,7 +17,7 @@ public class EnergyPanelPatches
         @SpirePostfixPatch
         public static void Method(EnergyPanel __instance)
         {
-            if (Pile != null)
+            if (GameUtilities.InBattle() && Pile != null)
             {
                 Pile.Update(__instance);
             }
@@ -29,7 +30,7 @@ public class EnergyPanelPatches
         @SpirePostfixPatch
         public static void Method(EnergyPanel __instance, SpriteBatch sb)
         {
-            if (Pile != null)
+            if (GameUtilities.InBattle() && Pile != null)
             {
                 Pile.Render(__instance, sb);
             }

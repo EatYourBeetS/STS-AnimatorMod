@@ -5,6 +5,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
@@ -14,14 +16,14 @@ import eatyourbeets.utilities.GameUtilities;
 public class KaedeAkamatsu extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KaedeAkamatsu.class).SetColor(CardColor.COLORLESS)
-    		.SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None).SetSeries(CardSeries.Danganronpa);
+    		.SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None, true).SetSeries(CardSeries.Danganronpa);
 
     public KaedeAkamatsu()
     {
         super(DATA);
 
         Initialize(0, 0, 3, 1);
-        SetAffinity_Light(1, 0, 0);
+        SetAffinity_Light(1, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -29,10 +31,16 @@ public class KaedeAkamatsu extends AnimatorCard
         SetHarmonic(true);
     }
 
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainTemporaryHP(magicNumber);
         GameActions.Bottom.StackPower(new KaedeAkamatsuPower(p, magicNumber));
 
         GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
@@ -72,6 +80,7 @@ public class KaedeAkamatsu extends AnimatorCard
                     card.modifyCostForCombat(-1);
                     card.flash();
                     card.update();
+                    flash();
 
                     if (this.amount == 0)
                     {

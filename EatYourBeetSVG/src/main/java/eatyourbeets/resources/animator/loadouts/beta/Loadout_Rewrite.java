@@ -2,8 +2,8 @@ package eatyourbeets.resources.animator.loadouts.beta;
 
 import eatyourbeets.cards.animator.beta.series.Rewrite.*;
 import eatyourbeets.cards.animator.beta.ultrarare.SakuraKashima;
-import eatyourbeets.cards.animator.curse.Curse_Clumsy;
 import eatyourbeets.cards.animator.curse.Curse_Injury;
+import eatyourbeets.cards.animator.curse.Curse_Pain;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -28,7 +28,7 @@ public class Loadout_Rewrite extends AnimatorLoadout
         AddStarterCard(SakuyaOhtori.DATA, 11);
         AddStarterCard(KotarouTennouji.DATA, 16);
         AddStarterCard(Curse_Injury.DATA, -4);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
+        AddStarterCard(Curse_Pain.DATA, -9);
     }
 
     @Override

@@ -115,16 +115,27 @@ public class GameUtilities
         return power;
     }
 
+    public static AbstractAffinityPower AddAffinityPowerUse(Affinity affinity, int amount)
+    {
+        final AbstractAffinityPower power = CombatStats.Affinities.GetPower(affinity);
+        if (power != null)
+        {
+            power.AddUse(amount);
+        }
+
+        return power;
+    }
+
     public static void AddAffinityRerolls(int amount) {
         if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
             CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.uses += amount;
+            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.Refresh(false);
         }
     }
 
     public static void AddBaseAffinityRerolls(int amount) {
         if (CombatStats.Affinities.AffinityMeter.Reroll != null) {
-            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.baseUses += amount;
-            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.uses = CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.baseUses;
+            CombatStats.Affinities.AffinityMeter.Reroll.triggerCondition.AddUses(amount);
         }
     }
 
@@ -206,6 +217,14 @@ public class GameUtilities
         }
 
         return canApply;
+    }
+
+    public static boolean CanOrbApplyFocus(AbstractOrb orb) {
+        return (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID));
+    }
+
+    public static boolean CanOrbApplyFocusToEvoke(AbstractOrb orb) {
+        return (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID));
     }
 
     public static boolean CanPlayTwice(AbstractCard card)
@@ -1325,6 +1344,13 @@ public class GameUtilities
         return IsValidOrb(orb) && (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID) || Dark.ORB_ID.equals(orb.ID));
     }
 
+    public static boolean IsDebuffing(AbstractMonster.Intent intent)
+    {
+        return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEBUFF ||
+                intent == AbstractMonster.Intent.DEFEND_DEBUFF || intent == AbstractMonster.Intent.STRONG_DEBUFF);
+    }
+
+
     public static boolean IsHindrance(AbstractCard card)
     {
         return card.type == AbstractCard.CardType.CURSE || card.type == AbstractCard.CardType.STATUS;
@@ -1680,14 +1706,21 @@ public class GameUtilities
     }
 
     public static void ModifyOrbBaseEvokeAmount(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
-        if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
+        if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
             ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
         }
 
     }
 
     public static void ModifyOrbBasePassiveAmount(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
-        if (canModifyNonFocusOrb || (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID))) {
+        if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
+            ModifyOrbField(orb, "basePassiveAmount", amount, isRelative);
+        }
+    }
+
+    public static void ModifyOrbFocus(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
+        if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
+            ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
             ModifyOrbField(orb, "basePassiveAmount", amount, isRelative);
         }
     }

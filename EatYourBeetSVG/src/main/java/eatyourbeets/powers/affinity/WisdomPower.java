@@ -21,8 +21,7 @@ public class WisdomPower extends AbstractAffinityPower
         AbstractOrb orb = GameUtilities.GetFirstOrb(null);
         if (GameUtilities.IsValidOrb(orb)) {
             int increase = (int) GetEffectiveIncrease();
-            GameUtilities.ModifyOrbBaseEvokeAmount(orb, increase, true, false);
-            GameUtilities.ModifyOrbBasePassiveAmount(orb, increase, true, false);
+            GameUtilities.ModifyOrbFocus(orb, increase, true, false);
             flash();
         }
     }

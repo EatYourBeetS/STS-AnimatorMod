@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -9,7 +8,6 @@ import eatyourbeets.misc.GenericEffects.GenericEffect_ChannelOrb;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class CatoElAltestan extends AnimatorCard
@@ -24,10 +22,10 @@ public class CatoElAltestan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 3);
+        Initialize(0, 1, 4, 3);
         SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Blue(1, 0, 2);
+        SetAffinity_Blue(2, 0, 2);
 
         SetExhaust(true);
 
@@ -41,16 +39,7 @@ public class CatoElAltestan extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.FetchFromPile(name, magicNumber, player.drawPile)
-        .SetOptions(false, true)
-        .SetFilter(GameUtilities::HasBlueAffinity)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard c : cards)
-            {
-                GameActions.Bottom.IncreaseScaling(c, Affinity.Blue, 1);
-            }
-        });
+        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, magicNumber);
 
         choices.Initialize(this, true);
         if (TrySpendAffinity(Affinity.Blue))

@@ -29,10 +29,10 @@ public class Godan extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 2, 2, 3);
         SetUpgrade(0, 0, 0, 0);
 
-        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Orange(1);
     }
 
@@ -48,6 +48,7 @@ public class Godan extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.StackPower(new GodanPower(p, magicNumber, secondaryValue));
     }
 

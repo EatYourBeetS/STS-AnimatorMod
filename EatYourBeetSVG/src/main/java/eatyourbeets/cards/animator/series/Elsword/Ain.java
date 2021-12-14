@@ -10,10 +10,12 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Ain extends AnimatorCard
 {
@@ -26,11 +28,11 @@ public class Ain extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 1, 3);
-        SetUpgrade(1, 0, 0, 0);
+        Initialize(2, 0, 2, 3);
+        SetUpgrade(1, 0, 1, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Blue(1, 0, 2);
+        SetAffinity_Blue(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Light, 5);
 
@@ -95,7 +97,7 @@ public class Ain extends AnimatorCard
 
         if ((auxiliaryData.form == 1 && TrySpendAffinity(Affinity.Dark)) || (auxiliaryData.form == 0 && TrySpendAffinity(Affinity.Light)))
         {
-            GameActions.Bottom.GainFocus(secondaryValue, true);
+            GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, secondaryValue);
         }
     }
 

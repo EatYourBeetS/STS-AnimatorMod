@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
+import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
@@ -597,6 +598,10 @@ public final class GameActions
         return StackPower(new BlurPower(player, amount));
     }
 
+    public ApplyPower GainCounterAttack(int amount)
+    {
+        return StackPower(new CounterAttackPower(player, amount));
+    }
 
     public ApplyAffinityPower GainDesecration(int amount)
     {
@@ -708,6 +713,11 @@ public final class GameActions
         return StackPower(new StrengthPower(player, amount));
     }
 
+    public ApplyPower GainSorcery(int amount)
+    {
+        return StackPower(new SorceryPower(player, amount));
+    }
+
     public ApplyPower GainSupportDamage(int amount)
     {
         return StackPower(new SupportDamagePower(player, amount));
@@ -741,6 +751,11 @@ public final class GameActions
     public ApplyPower GainThorns(int amount)
     {
         return StackPower(new ThornsPower(player, amount));
+    }
+
+    public ApplyPower GainVigor(int amount)
+    {
+        return StackPower(new VigorPower(player, amount));
     }
 
     public ApplyPower GainVitality(int amount)

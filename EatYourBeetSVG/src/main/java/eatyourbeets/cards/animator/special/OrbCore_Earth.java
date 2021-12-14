@@ -15,7 +15,7 @@ public class OrbCore_Earth extends OrbCore
     {
         super(DATA, 1, 6);
 
-        SetAffinity_Orange(1);
+        SetAffinity_Orange(2);
     }
 
     @Override

@@ -46,13 +46,13 @@ public class Cecily extends AnimatorCard
             GameActions.Last.SelectFromHand(name, secondaryValue, false)
                     .SetOptions(false, false, false)
                     .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-                    .SetFilter(c -> c instanceof AnimatorCard && !(GameUtilities.GetAffinityLevel(c, a, true) > 0))
+                    .SetFilter(c -> c instanceof AnimatorCard && !(GameUtilities.GetAffinityLevel(c, a, true) > 1))
                     .AddCallback(cards ->
                     {
                         AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
                         if (card != null)
                         {
-                            card.affinities.Set(a, 1);
+                            card.affinities.Add(a, 1);
                             card.flash();
                         }
                     });

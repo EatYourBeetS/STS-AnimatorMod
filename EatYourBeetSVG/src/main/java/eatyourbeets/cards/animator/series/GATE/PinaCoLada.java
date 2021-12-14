@@ -20,17 +20,17 @@ public class PinaCoLada extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    public static final int DISCARD_AMOUNT = 8;
+    public static final int DISCARD_AMOUNT = 6;
 
     public PinaCoLada()
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, DISCARD_AMOUNT);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Light(1, 0, 0);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Orange(2, 0, 0);
     }
 
     @Override

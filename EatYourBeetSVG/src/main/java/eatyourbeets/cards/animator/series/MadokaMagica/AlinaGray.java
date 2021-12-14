@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.ListSelection;
 
 public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
@@ -22,7 +21,7 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 0, 1, 2);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Green(1);
@@ -39,7 +38,7 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameUtilities.AddAffinityRerolls(magicNumber);
+        GameActions.Bottom.Cycle(name, magicNumber);
         GameActions.Bottom.EvokeOrb(1).AddCallback(orbs -> {
             for (AbstractOrb o : orbs) {
                 GameActions.Bottom.ChannelOrb(o);
@@ -47,7 +46,7 @@ public class AlinaGray extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         });
 
         if (info.IsSynergizing && info.TryActivateSemiLimited()) {
-            GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1).SetFilter(GameUtilities::IsCommonDebuff);
+            GameUtilities.AddAffinityRerolls(1);
         }
     }
 }

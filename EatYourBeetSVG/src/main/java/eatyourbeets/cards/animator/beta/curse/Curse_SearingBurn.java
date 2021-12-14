@@ -1,9 +1,9 @@
-package eatyourbeets.cards.animator.beta.status;
+package eatyourbeets.cards.animator.beta.curse;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_Status;
+import eatyourbeets.cards.base.AnimatorCard_Curse;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
@@ -11,11 +11,11 @@ import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class SearingBurn extends AnimatorCard_Status
+public class Curse_SearingBurn extends AnimatorCard_Curse
 {
-    public static final EYBCardData DATA = Register(SearingBurn.class).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Curse_SearingBurn.class).SetCurse(-2, EYBCardTarget.ALL, false);
 
-    public SearingBurn()
+    public Curse_SearingBurn()
     {
         super(DATA, false);
 

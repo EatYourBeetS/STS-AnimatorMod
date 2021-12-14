@@ -100,6 +100,9 @@ public class CommonImages
         public final TextureCache Border                = new TextureCache("images/eyb/cardui/affinities/Border.png", false);
         public final TextureCache BorderFG              = new TextureCache("images/eyb/cardui/affinities/Border_FG.png", false);
         public final TextureCache BorderBG              = new TextureCache("images/eyb/cardui/affinities/Border_BG.png", true);
+        public final TextureCache BorderBG2              = new TextureCache("images/eyb/cardui/affinities/Border_BG2.png", true);
+        public final TextureCache BorderBG3              = new TextureCache("images/eyb/cardui/affinities/Border_BG3.png", true);
+        public final TextureCache Border_Strong         = new TextureCache("images/eyb/cardui/affinities/Border_Strong.png", true);
         public final TextureCache Border_Weak           = new TextureCache("images/eyb/cardui/affinities/Border_Weak.png", true);
     }
 

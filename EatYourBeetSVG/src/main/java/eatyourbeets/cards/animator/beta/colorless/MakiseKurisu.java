@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import eatyourbeets.cards.animator.special.TimeParadox;
+import eatyourbeets.cards.animator.beta.special.TimeParadox;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 

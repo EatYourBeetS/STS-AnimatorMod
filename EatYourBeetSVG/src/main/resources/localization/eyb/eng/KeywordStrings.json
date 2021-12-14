@@ -374,7 +374,7 @@
 	},
 	"Invocation":
 	{
-	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b+200%.",
+	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
 	  "NAMES": ["Invocation"],
 	  "PROPER_NAME": "Invocation"
 	},
@@ -542,13 +542,13 @@
 	},
 	"Resistance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Vulnerable], and [Weak] on you.",
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Weak], [Vulnerable], and [Impaired] on you.",
 	  "NAMES": ["resistance"],
 	  "PROPER_NAME": "Resistance"
 	},
 	"Self-Immolation":
 	{
-	  "DESCRIPTION": "When you play a card with [Block], ALL characters take [Delayed Damage] equal to twice its [Block].",
+	  "DESCRIPTION": "When you play a card with [Block], ALL characters take [Delayed Damage] equal to its [Block] times this power's stacks.",
 	  "NAMES": ["self-immolation"],
 	  "PROPER_NAME": "Self-Immolation"
 	},
@@ -575,6 +575,12 @@
 		"DESCRIPTION": "For every card you have played this turn, take #b10% more damage from #yAttacks.",
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
+	},
+	"Sorcery":
+	{
+		"DESCRIPTION": "The next Orb #yChanneled has additional [Focus].",
+		"NAMES": ["sorcery"],
+		"PROPER_NAME": "Sorcery"
 	},
 	"Starter":
 	{
@@ -647,6 +653,12 @@
 		"DESCRIPTION": "",
 		"NAMES": ["trigger","triggered","triggers"],
 		"PROPER_NAME": "Trigger"
+	},
+	"Triggerable Debuff":
+	{
+		"DESCRIPTION": "[Burning], [Freezing], [Electrified].",
+		"NAMES": ["triggerable debuff", "triggerable debuffs"],
+		"PROPER_NAME": "Triggerable Debuff"
 	},
 	"Velocity":
 	{

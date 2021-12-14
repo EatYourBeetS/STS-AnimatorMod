@@ -16,14 +16,15 @@ public class OrigamiTobiichi extends AnimatorCard
     public static final EYBCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage()
             .SetMultiformData(2)
             .PostInitialize(data -> data.AddPreview(new InverseOrigami(), false));
+    private static final int THRESHOLD = 10;
 
     public OrigamiTobiichi()
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 10);
+        Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(2, 0, 0);
         SetAffinity_Light(1, 0, 0);
     }
 
@@ -36,21 +37,26 @@ public class OrigamiTobiichi extends AnimatorCard
     };
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(THRESHOLD);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber, secondaryValue));
+        GameActions.Bottom.GainVitality(1);
+        GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber));
     }
 
     public static class OrigamiTobiichiPower extends AnimatorPower
     {
-        private final int supportDamageLimit;
 
-        public OrigamiTobiichiPower(AbstractPlayer owner, int amount, int limit)
+        public OrigamiTobiichiPower(AbstractPlayer owner, int amount)
         {
             super(owner, OrigamiTobiichi.DATA);
 
             this.amount = amount;
-            this.supportDamageLimit = limit;
 
             updateDescription();
         }
@@ -66,7 +72,7 @@ public class OrigamiTobiichi extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, supportDamageLimit);
+            description = FormatDescription(0, amount, THRESHOLD);
         }
 
         @Override
@@ -86,7 +92,7 @@ public class OrigamiTobiichi extends AnimatorCard
 
         private void InverseOrigamiCheck()
         {
-            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) > (supportDamageLimit))
+            if (GameUtilities.GetPowerAmount(SupportDamagePower.POWER_ID) >= (THRESHOLD))
             {
                 GameActions.Bottom.MakeCardInDrawPile(new InverseOrigami()).SetUpgrade(false, false);
                 GameActions.Bottom.RemovePower(player, player, this);

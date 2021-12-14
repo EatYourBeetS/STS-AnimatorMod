@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.beta.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -23,40 +22,37 @@ public class AkaneSenri extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0, 0, 0);
         SetEthereal(true);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+        SetEthereal(false);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new AkaneSenriPower(p, secondaryValue, magicNumber));
+        GameActions.Bottom.StackPower(new AkaneSenriPower(p, magicNumber, secondaryValue));
         GameActions.Bottom.ModifyTag(player.drawPile, magicNumber, HASTE, true);
     }
 
     public static class AkaneSenriPower extends AnimatorClickablePower implements OnShuffleSubscriber
     {
         private static final int BLESSING_COST = 7;
+        protected int secondaryAmount;
 
         public AkaneSenriPower(AbstractPlayer owner, int amount, int secondaryAmount)
         {
             super(owner, AkaneSenri.DATA, PowerTriggerConditionType.Affinity, BLESSING_COST, null, null, Affinity.Light);
+            this.secondaryAmount = secondaryAmount;
             Initialize(amount);
-        }
-
-        @Override
-        public void onCardDraw(AbstractCard card)
-        {
-            super.onCardDraw(card);
-
-            if (card.hasTag(HASTE)) {
-                GameActions.Bottom.GainVelocity(1);
-                amount -= 1;
-            }
-
         }
 
         @Override
@@ -81,17 +77,10 @@ public class AkaneSenri extends AnimatorCard
             GameActions.Bottom.TriggerOrbPassive(darkOrb,player.hand.size());
         }
 
-        public void atStartOfTurn()
-        {
-            super.atStartOfTurn();
-
-            ResetAmount();
-        }
-
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, amount, BLESSING_COST);
+            return FormatDescription(0, amount, secondaryAmount, BLESSING_COST);
         }
 
         @Override
@@ -103,6 +92,7 @@ public class AkaneSenri extends AnimatorCard
             }
 
             GameActions.Bottom.ModifyTag(player.drawPile, amount, HASTE, true);
+            GameActions.Bottom.GainVelocity(secondaryAmount);
         }
     }
 }

@@ -25,6 +25,7 @@ public class Klee extends AnimatorCard
         SetAffinity_Light(0,0,1);
 
         SetAffinityRequirement(Affinity.Red, 6);
+        SetAffinityRequirement(Affinity.Light, 6);
 
         SetExhaust(true);
     }
@@ -36,15 +37,13 @@ public class Klee extends AnimatorCard
 
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
         GameActions.Bottom.Callback(() -> CommonTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
-        //GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Burning, secondaryValue);
 
-        int cardCount = secondaryValue;
-        if (TrySpendAffinity(Affinity.Red)) {
-            cardCount += 1;
-        }
-        for (int i = 0; i < cardCount; i++)
+        for (int i = 0; i < secondaryValue; i++)
         {
             GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);
         }
+        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red, Affinity.Light).AddConditionalCallback(() -> {
+            GameActions.Bottom.MakeCardInDrawPile(new JumpyDumpty()).SetUpgrade(upgraded, false);
+        });
     }
 }

@@ -9,11 +9,14 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.powers.ApplyPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.interfaces.subscribers.OnGainTempHPSubscriber;
+import eatyourbeets.interfaces.subscribers.OnGainTriggerablePowerBonusSubscriber;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.CommonTriggerablePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class InvocationPower extends AbstractAffinityPower implements OnApplyPowerSubscriber
+public class InvocationPower extends AbstractAffinityPower implements OnApplyPowerSubscriber, OnGainTempHPSubscriber, OnGainTriggerablePowerBonusSubscriber
 {
     public static final String POWER_ID = CreateFullID(InvocationPower.class);
     public static final Affinity AFFINITY_TYPE = Affinity.Light;
@@ -28,12 +31,16 @@ public class InvocationPower extends AbstractAffinityPower implements OnApplyPow
     {
         super.OnUse(m, cost);
         CombatStats.onApplyPower.Subscribe(this);
+        CombatStats.onGainTempHP.Subscribe(this);
+        CombatStats.onGainTriggerablePowerBonus.Subscribe(this);
     }
 
     @Override
     public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
         if (!isActive) {
             CombatStats.onApplyPower.Unsubscribe(this);
+            CombatStats.onGainTempHP.Unsubscribe(this);
+            CombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
             return;
         }
         int applyAmount = (int) (power.amount * (GetEffectiveMultiplier() - 1));
@@ -59,9 +66,29 @@ public class InvocationPower extends AbstractAffinityPower implements OnApplyPow
         }
     }
 
+    @Override
+    public int OnGainTempHP(int amount) {
+        CombatStats.onApplyPower.Unsubscribe(this);
+        CombatStats.onGainTempHP.Unsubscribe(this);
+        CombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
+        if (!isActive) {
+            return amount;
+        }
+        isActive = false;
+        flash();
+        return amount *= GetEffectiveMultiplier();
+    }
 
     @Override
-    protected float GetEffectiveIncrease() {
-        return super.GetEffectiveIncrease() * 2;
+    public int OnGainTriggerablePowerBonus(String powerID, CommonTriggerablePower.Type gainType, int amount) {
+        CombatStats.onApplyPower.Unsubscribe(this);
+        CombatStats.onGainTempHP.Unsubscribe(this);
+        CombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
+        if (!isActive) {
+            return amount;
+        }
+        isActive = false;
+        flash();
+        return amount *= GetEffectiveMultiplier();
     }
 }

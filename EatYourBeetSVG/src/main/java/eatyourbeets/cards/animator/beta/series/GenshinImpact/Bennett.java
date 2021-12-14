@@ -18,7 +18,7 @@ public class Bennett extends AnimatorCard {
     public Bennett() {
         super(DATA);
 
-        Initialize(10, 0, 4, 2);
+        Initialize(10, 0, 5, 2);
         SetUpgrade(4, 0, 0);
         SetAffinity_Red(1, 0 ,1);
     }
@@ -33,6 +33,6 @@ public class Bennett extends AnimatorCard {
         if (info.IsSynergizing) {
             GameActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
         }
-        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamageAtEndOfTurn(player, player, SELF_DAMAGE, AttackEffects.BLUNT_HEAVY);
     }
 }

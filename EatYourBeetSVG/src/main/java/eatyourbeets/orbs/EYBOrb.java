@@ -4,24 +4,25 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.OrbStrings;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.FocusPower;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.vfx.OrbEvokeParticle;
 import eatyourbeets.effects.vfx.megacritCopy.OrbFlareEffect2;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.*;
 
 import java.lang.reflect.InvocationTargetException;
 
 public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final int IMAGE_SIZE = 96;
+    public EYBCardTooltip tooltip;
 
     public enum Timing
     {
@@ -39,6 +40,8 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
         this.ID = id;
         this.name = orbStrings.NAME;
         this.passiveEffectTiming = passiveEffectTiming;
+        tooltip = new EYBCardTooltip(name, description);
+        tooltip.subText = new ColoredString();
     }
 
     @Override
@@ -168,5 +171,37 @@ public abstract class EYBOrb extends AbstractOrb implements OnStartOfTurnPostDra
         this.baseEvokeAmount += amount;
         applyFocus();
         this.updateDescription();
+    }
+
+    protected String FormatDescription(int index, Object... args)
+    {
+        if (orbStrings.DESCRIPTION == null || orbStrings.DESCRIPTION.length <= index) {
+            JUtils.LogError(this, "orbStrings.Description does not exist, " + this.name);
+            return "";
+        }
+        return JUtils.Format(orbStrings.DESCRIPTION[index], args);
+    }
+
+    public String GetUpdatedDescription()
+    {
+        return FormatDescription(0);
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.applyFocus();
+        tooltip.description = this.description = GetUpdatedDescription();
+    }
+
+    @Override
+    public void update()
+    {
+        hb.update();
+        if (hb.hovered)
+        {
+            EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f));
+        }
+        this.fontScale = MathHelper.scaleLerpSnap(this.fontScale, 0.7F);
     }
 }

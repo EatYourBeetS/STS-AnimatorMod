@@ -22,32 +22,15 @@ public class YasutoraSado extends AnimatorCard
 
         Initialize(7, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Red(2, 0, 2);
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }
 
-    @Override
-    public boolean cardPlayable(AbstractMonster m)
-    {
-        if (super.cardPlayable(m))
-        {
-            if (m == null)
-            {
-                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
-                {
-                    if (enemy.currentBlock > 0 || IsInflictingNegativeEffect(enemy.intent))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                return m.currentBlock > 0 || IsInflictingNegativeEffect(m.intent);
-            }
-        }
 
-        return false;
+    @Override
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    {
+        return super.ModifyDamage(enemy, (enemy.currentBlock > 0 || GameUtilities.IsDebuffing(enemy.intent)) ? (amount + magicNumber) : amount);
     }
 
     @Override
@@ -70,11 +53,5 @@ public class YasutoraSado extends AnimatorCard
                 .CancellableFromPlayer(true);
 
         GameActions.Last.Exhaust(this);
-    }
-
-    private boolean IsInflictingNegativeEffect(AbstractMonster.Intent intent)
-    {
-        return (intent == AbstractMonster.Intent.ATTACK_DEBUFF || intent == AbstractMonster.Intent.DEBUFF ||
-                intent == AbstractMonster.Intent.DEFEND_DEBUFF || intent == AbstractMonster.Intent.STRONG_DEBUFF);
     }
 }

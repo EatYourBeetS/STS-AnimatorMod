@@ -21,7 +21,7 @@ public class RinneSonogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 8, 2, 1);
+        Initialize(0, 9, 3, 1);
         SetUpgrade(0, 1, 0);
         SetAffinity_Light(1, 0, 2);
     }
@@ -42,9 +42,10 @@ public class RinneSonogami extends AnimatorCard
                         AbstractCard card = cards.get(0);
                         GameUtilities.Retain(card);
                         AnimatorCard aC = JUtils.SafeCast(card, AnimatorCard.class);
-                        if (aC != null)
+                        Affinity next = CombatStats.Affinities.AffinityMeter.GetNextAffinity();
+                        if (aC != null && GameUtilities.GetAffinityLevel(aC, CombatStats.Affinities.AffinityMeter.GetNextAffinity(), true) < 2)
                         {
-                            aC.affinities.Set(Affinity.Blue, 1);
+                            aC.affinities.Add(next, 1);
                             aC.flash();
                         }
                         if ((InvocationStance.IsActive() || info.IsSynergizing) && CombatStats.TryActivateSemiLimited(cardID)) {

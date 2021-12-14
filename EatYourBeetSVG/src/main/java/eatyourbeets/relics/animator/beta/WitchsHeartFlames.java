@@ -3,7 +3,7 @@ package eatyourbeets.relics.animator.beta;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.core.Settings;
-import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.beta.curse.Curse_SearingBurn;
 import eatyourbeets.cards.animator.status.Status_Burn;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -40,7 +40,7 @@ public class WitchsHeartFlames extends AnimatorRelic implements OnCardCreatedSub
         for (AbstractCard c : player.masterDeck.group) {
             if (Burn.ID.equals(c.cardID) || Status_Burn.DATA.ID.equals(c.cardID)) {
                 player.masterDeck.group.remove(c);
-                GameEffects.TopLevelQueue.ShowAndObtain(new SearingBurn(), Settings.WIDTH / 2f, Settings.HEIGHT / 2f, false);
+                GameEffects.TopLevelQueue.ShowAndObtain(new Curse_SearingBurn(), Settings.WIDTH / 2f, Settings.HEIGHT / 2f, false);
             }
         }
     }
@@ -50,7 +50,7 @@ public class WitchsHeartFlames extends AnimatorRelic implements OnCardCreatedSub
     {
         if (Burn.ID.equals(card.cardID) || Status_Burn.DATA.ID.equals(card.cardID))
         {
-            GameActions.Last.ReplaceCard(card.uuid, new SearingBurn());
+            GameActions.Last.ReplaceCard(card.uuid, new Curse_SearingBurn());
             flash();
         }
     }

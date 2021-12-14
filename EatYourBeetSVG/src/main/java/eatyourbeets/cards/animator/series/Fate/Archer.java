@@ -28,10 +28,15 @@ public class Archer extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 2, 0);
+        SetUpgrade(0, 1, 0);
 
         SetAffinity_Green(1, 0, 0);
     }
+
+    public void OnUpgrade() {
+        SetRetainOnce(true);
+    }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

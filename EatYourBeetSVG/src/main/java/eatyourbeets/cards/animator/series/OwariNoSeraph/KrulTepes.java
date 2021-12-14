@@ -40,7 +40,7 @@ public class KrulTepes extends AnimatorCard
         SetUpgrade(4, 0, 0, 1);
 
         SetAffinity_Red(1);
-        SetAffinity_Dark(1, 0, 2);
+        SetAffinity_Dark(2, 0, 2);
     }
 
     @Override
@@ -109,11 +109,7 @@ public class KrulTepes extends AnimatorCard
             }
         }
 
-        if (totalRelics >= 5)
-        {
-            GameUtilities.GetCurrentRoom(true).addRelicToRewards(new ExquisiteBloodVial());
-        }
-        else if (UnnamedReignRelic.IsEquipped())
+        if (UnnamedReignRelic.IsEquipped())
         {
             GameUtilities.GetCurrentRoom(true).addRelicToRewards(new AncientMedallion());
         }

@@ -4,7 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.NagisaMomoe_Charlotte;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -23,7 +26,7 @@ public class NagisaMomoe extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 5, 1);
+        Initialize(0, 0, 5, 2);
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Star(1);
@@ -37,12 +40,12 @@ public class NagisaMomoe extends AnimatorCard
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
-            Initialize(0, 0, 5, 1);
-            SetUpgrade(0, 0, 0, 1);
+            Initialize(0, 0, 1, 3);
+            SetUpgrade(0, 0, 0, 0);
         }
         else {
-            Initialize(0, 0, 5, 1);
-            SetUpgrade(0, 0, 2, 0);
+            Initialize(0, 0, 2, 2);
+            SetUpgrade(0, 0, 0, 0);
         }
         return super.SetForm(form, timesUpgraded);
     };
@@ -50,12 +53,8 @@ public class NagisaMomoe extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainWisdom(secondaryValue);
-        GameActions.Bottom.GainInvocation(secondaryValue);
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.GainRandomAffinityPower(1, upgraded, Affinity.Green, Affinity.Blue, Affinity.Light);
-        }
+        GameActions.Bottom.GainWisdom(magicNumber);
+        GameActions.Bottom.GainInvocation(magicNumber);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

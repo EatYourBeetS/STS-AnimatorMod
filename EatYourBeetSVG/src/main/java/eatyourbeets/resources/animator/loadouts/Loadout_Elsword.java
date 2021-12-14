@@ -1,6 +1,7 @@
 package eatyourbeets.resources.animator.loadouts;
 
 import eatyourbeets.cards.animator.curse.Curse_Doubt;
+import eatyourbeets.cards.animator.curse.Curse_Injury;
 import eatyourbeets.cards.animator.series.Elsword.*;
 import eatyourbeets.cards.animator.ultrarare.Rose;
 import eatyourbeets.cards.base.CardSeries;
@@ -24,6 +25,7 @@ public class Loadout_Elsword extends AnimatorLoadout
         AddStarterCard(Ciel.DATA, 7);
         AddStarterCard(Ara.DATA, 8);
         AddStarterCard(Rena.DATA, 11);
+        AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_Doubt.DATA, -7);
     }
 

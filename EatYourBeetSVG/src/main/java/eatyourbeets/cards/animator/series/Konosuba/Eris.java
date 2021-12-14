@@ -26,7 +26,7 @@ public class Eris extends AnimatorCard implements OnLoseHpSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 3);
+        Initialize(0, 0, 4, 2);
         SetUpgrade(0, 0, 3, 0);
 
         SetAffinity_Blue(1);

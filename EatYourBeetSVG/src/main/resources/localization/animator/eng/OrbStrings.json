@@ -13,7 +13,7 @@
 		"NAME": "Earth",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn: Gain #g{0} projectiles (Max. #b{1}). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL When you are attacked: Lose #b1 projectile to gain #b{2} #yBlock and deal #b{3} damage back to the attacker. NL After #b{4} turns: #yEvoke this Orb."
+			"#yPassive: At the end of turn: Gain #g{0} projectiles (Max. #b{1}). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL When you are attacked: Lose #b1 projectile to gain #b{2} [Block] and deal #b{3} damage back to the attacker. NL After #b{4} turns: #yEvoke this Orb."
 		]
 	},
 	"animator:Air":
@@ -37,7 +37,7 @@
 	  "NAME": "Water",
 	  "DESCRIPTION":
 	  [
-		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Gain #b{1} #yTemporary #yHP and remove your #yBurning. NL After #b{2} turns have passed, automatically #yEvoke this Orb."
+		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Gain #b{1} [THP] and remove [Burning]. NL After #b{2} turns: #yEvoke this Orb. NL The first #b2 times you #yEvoke [Water] this combat: Heal #b{3} HP."
 	  ]
 	}
 }

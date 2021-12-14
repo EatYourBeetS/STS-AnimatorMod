@@ -1,14 +1,15 @@
 package eatyourbeets.cards.animator.beta.series.DateALive;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.EYBClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class MikuIzayoi extends AnimatorCard
 {
@@ -60,13 +61,20 @@ public class MikuIzayoi extends AnimatorCard
             GameActions.Bottom.GainInspiration(1);
         }
 
-        if (info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
+        if (CombatStats.Affinities.GetLastAffinitySynergy() == Affinity.Light && info.IsSynergizing && GameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
             GameActions.Bottom.Motivate(1);
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return JUtils.Count(player.powers, po -> po instanceof EYBClickablePower) >= secondaryValue;
+        for (AbstractCard card : AbstractDungeon.actionManager.cardsPlayedThisTurn)
+        {
+            if (card.type == CardType.POWER)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

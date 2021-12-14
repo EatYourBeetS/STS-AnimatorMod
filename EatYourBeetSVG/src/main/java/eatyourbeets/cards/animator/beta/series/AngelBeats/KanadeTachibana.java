@@ -40,10 +40,9 @@ public class KanadeTachibana extends AnimatorCard
 
                     for (AbstractCard c : cards) {
                         AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-                        int lightLevel = GameUtilities.GetAffinityLevel(card, Affinity.Light, true);
-                        if (card != null && lightLevel < 2)
+                        if (card != null && GameUtilities.GetAffinityLevel(card, Affinity.Light, true) < 2)
                         {
-                            card.affinities.Set(Affinity.Light, lightLevel + 1);
+                            card.affinities.Add(Affinity.Light, 1);
                             card.flash();
                         }
 

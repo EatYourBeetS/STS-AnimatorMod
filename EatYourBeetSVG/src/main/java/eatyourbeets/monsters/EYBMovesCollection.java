@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class EYBMovesCollection
 {
+
     public final ArrayList<EYBAbstractMove> rotation = new ArrayList<>();
     public final EYBMoveset moveset;
     public final boolean isSpecial;

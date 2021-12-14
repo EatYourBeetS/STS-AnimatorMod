@@ -23,7 +23,7 @@ public class GoblinSlayer extends AnimatorCard
         super(DATA);
 
         Initialize(4, 4, 3);
-        SetUpgrade(3, 3);
+        SetUpgrade(3, 1);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(0,0,1);

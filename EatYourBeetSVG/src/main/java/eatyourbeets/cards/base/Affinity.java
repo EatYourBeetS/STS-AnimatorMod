@@ -24,7 +24,7 @@ public enum Affinity implements Comparable<Affinity>
 
     protected static final TextureCache BorderBG = GR.Common.Images.Affinities.BorderBG;
     protected static final TextureCache BorderFG = GR.Common.Images.Affinities.BorderFG;
-    protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border;
+    protected static final TextureCache BorderLV2 = GR.Common.Images.Affinities.Border_Strong;
     protected static final TextureCache BorderLV1 = GR.Common.Images.Affinities.Border_Weak;
     protected static final Affinity[] BASIC_TYPES = new Affinity[6];
     protected static final Affinity[] EXTENDED_TYPES = new Affinity[7];

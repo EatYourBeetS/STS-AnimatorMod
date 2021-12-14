@@ -145,6 +145,7 @@ public class CardTooltips
     public EYBCardTooltip SelfImmolation = FindByID("Self-Immolation");
     public EYBCardTooltip SemiLimited = FindByID("Semi-Limited");
     public EYBCardTooltip Shackles = FindByID("Shackles");
+    public EYBCardTooltip Sorcery = FindByID("Sorcery");
     public EYBCardTooltip Slow = FindByID("Slow");
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Strength = FindByID("Strength");
@@ -260,8 +261,8 @@ public class CardTooltips
         Elemental.SetIcon(icons.Elemental.Texture(), 6);
         Piercing.SetIcon(icons.Piercing.Texture(), 6);
         Brutal.SetIcon(icons.Brutal.Texture(), 6);
-        TempHP.SetIcon(icons.TempHP.Texture(), 6).SetIconSizeMulti(0.85f, 0.85f);
-        Health.SetIcon(icons.HP.Texture(), 6).SetIconSizeMulti(0.85f, 0.85f);
+        TempHP.SetIcon(icons.TempHP.Texture(), 6).SetIconSizeMulti(0.75f, 0.75f);
+        Health.SetIcon(icons.HP.Texture(), 6).SetIconSizeMulti(0.75f, 0.75f);
         Block.SetIcon(icons.Block.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         BlockScaling.SetIcon(icons.BlockScaling.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
         Damage.SetIcon(icons.Damage.Texture(), 10).SetIconSizeMulti(1f, 0.9f);
@@ -335,6 +336,7 @@ public class CardTooltips
         LoadFromPower(SelfImmolation, new SelfImmolationPower(FakeCharacter.Instance, 0));
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Slow, new AntiArtifactSlowPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Sorcery, new SorceryPower(FakeCharacter.Instance, 0));
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(Swirled, new SwirledPower(FakeCharacter.Instance, 0));

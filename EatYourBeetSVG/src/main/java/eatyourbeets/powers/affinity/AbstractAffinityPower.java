@@ -101,6 +101,14 @@ public abstract class AbstractAffinityPower extends EYBClickablePower
         }
     }
 
+    public void AddUse(int uses) {
+        if (triggerCondition.uses + uses < triggerCondition.baseUses) {
+            triggerCondition.uses += uses;
+            triggerCondition.Refresh(false);
+            flash();
+        }
+    }
+
     public void SetThreshold(int threshold) {
         this.threshold = threshold;
     }

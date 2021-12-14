@@ -23,35 +23,22 @@ public class Chung extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(1, 2, 13, 7);
-        SetUpgrade(0, 2, 2, 0);
+        Initialize(7, 4, 5, 2);
+        SetUpgrade(2, 0, 2, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Orange(1);
         SetAffinity_Blue(0,0,2);
-    }
 
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        if (GameUtilities.GetFirstOrb(Frost.ORB_ID) == null)
-        {
-            amount += secondaryValue;
-        }
-
-        return super.ModifyBlock(enemy, amount);
+        SetExhaust(true);
     }
 
 
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float damage)
     {
-        if (GameUtilities.GetFirstOrb(Frost.ORB_ID) != null) {
-            damage += magicNumber;
-        }
-        return super.ModifyDamage(enemy, damage);
+        return super.ModifyDamage(enemy, damage + magicNumber * GameUtilities.GetOrbCount(Frost.ORB_ID));
     }
-
 
     @Override
     public void triggerOnExhaust()
@@ -67,12 +54,17 @@ public class Chung extends AnimatorCard
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.ICE);
         GameActions.Bottom.GainBlock(block);
 
-        AbstractOrb orb = GameUtilities.GetFirstOrb(Frost.ORB_ID);
-        if (orb != null) {
-            GameActions.Bottom.Add(new RemoveOrb(orb));
-        }
-        else {
-            GameActions.Last.Exhaust(this);
+        boolean shouldEvoke = upgraded && auxiliaryData.form == 1;
+        for (AbstractOrb orb : player.orbs) {
+            if (orb != null && Frost.ORB_ID.equals(orb.ID)) {
+                if (shouldEvoke) {
+                    GameActions.Bottom.EvokeOrb(1, orb);
+                }
+                else {
+                    GameActions.Bottom.Add(new RemoveOrb(orb));
+                }
+
+            }
         }
     }
 }

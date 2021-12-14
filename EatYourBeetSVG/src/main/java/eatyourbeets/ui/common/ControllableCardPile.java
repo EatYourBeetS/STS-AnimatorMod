@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -13,11 +14,14 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.interfaces.subscribers.OnCardMovedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
 import eatyourbeets.ui.controls.GUI_Image;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 // TODO: Move to a different folder, make this a Screen
-public class ControllableCardPile implements OnPhaseChangedSubscriber
+public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSubscriber, OnCardMovedSubscriber
 {
     // TODO: Use better textures
     private static final Texture Orb_BG = GR.GetTexture("images/unnamed/characters/energy2/Orb_BG.png");
@@ -70,7 +74,10 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
     public void Clear()
     {
         CombatStats.onPhaseChanged.Subscribe(this);
+        CombatStats.onPurge.Subscribe(this);
+        CombatStats.onCardMoved.Subscribe(this);
         EnergyPanelPatches.Pile = this;
+        cardGrid.Clear();
         controllers.clear();
     }
 
@@ -119,13 +126,8 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public void Update(EnergyPanel panel)
     {
-        timer = Math.max(0, timer - Gdx.graphics.getRawDeltaTime());
-        isHidden = !GameUtilities.InBattle() || cardGrid.cards.isEmpty();
-
-        if (isHidden)
-        {
-            return;
-        }
+        timer = timer - Gdx.graphics.getRawDeltaTime();
+        isHidden = !GameUtilities.InBattle() || controllers.size() == 0;
 
         for (ControllableCard c : controllers)
         {
@@ -152,17 +154,15 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
 
     public void Render(EnergyPanel panel, SpriteBatch sb)
     {
-        if (isHidden)
+        if (!isHidden)
         {
-            return;
+            sb.setColor(Color.WHITE);
+            sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
+            sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, timer * -7f % 360f, 0, 0, 128, 128, false, false);
+            sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, timer * 6f % 360f, 0, 0, 128, 128, false, false);
+            sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
+            FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(cardGrid.cards.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
         }
-
-        sb.setColor(Color.WHITE);
-        sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
-        sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, timer * -7f % 360f, 0, 0, 128, 128, false, false);
-        sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, timer * 6f % 360f, 0, 0, 128, 128, false, false);
-        sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
-        FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(cardGrid.cards.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
     }
 
     public void RefreshCards()
@@ -212,7 +212,6 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         {
             RefreshCards();
         }
-
         timer = HOVER_TIME_OUT;
     }
 
@@ -244,5 +243,15 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber
         }
 
         return false;
+    }
+
+    @Override
+    public void OnCardMoved(AbstractCard card, CardGroup source, CardGroup destination) {
+        GameActions.Last.Callback(this::RefreshCards);
+    }
+
+    @Override
+    public void OnPurge(AbstractCard card, CardGroup source) {
+        GameActions.Last.Callback(this::RefreshCards);
     }
 }

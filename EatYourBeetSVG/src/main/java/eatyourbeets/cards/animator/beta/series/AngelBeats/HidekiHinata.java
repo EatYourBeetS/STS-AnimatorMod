@@ -10,15 +10,12 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HidekiHinata extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged).SetSeriesFromClassPackage();
-    private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
-    private boolean showDamage = false;
 
     public HidekiHinata()
     {
@@ -34,14 +31,13 @@ public class HidekiHinata extends AnimatorCard
     }
 
     @Override
-    public void update()
+    protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        super.update();
-
-        targetEffectPreview.Update();
-        if (showDamage) {
-            GameUtilities.IncreaseHitCount(this, 1, true);
+        if (enemy != null && GameUtilities.IsAttacking(enemy.intent))
+        {
+            return super.ModifyDamage(enemy, amount * 2);
         }
+        return super.ModifyDamage(enemy, amount);
     }
 
     @Override
@@ -49,17 +45,12 @@ public class HidekiHinata extends AnimatorCard
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
 
-        if (! GameUtilities.IsAttacking(m.intent)) {
+        if (!GameUtilities.IsAttacking(m.intent)) {
             GameActions.Bottom.GainSupportDamage(secondaryValue);
         }
 
         if (CombatStats.ControlPile.Contains(this)) {
             GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
         }
-    }
-
-    private void OnTargetChanged(AbstractMonster monster)
-    {
-        showDamage = (monster == null || !GameUtilities.IsAttacking(monster.intent));
     }
 }

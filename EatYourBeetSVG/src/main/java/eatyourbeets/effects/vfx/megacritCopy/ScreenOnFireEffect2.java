@@ -3,14 +3,20 @@ package eatyourbeets.effects.vfx.megacritCopy;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.GiantFireEffect;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.JUtils;
 
 public class ScreenOnFireEffect2 extends EYBEffect
 {
+    protected static final FieldInfo<Color> _color = JUtils.GetField("color", GiantFireEffect.class);
+    protected int times = 8;
     private float timer = 0.0F;
     private static final float INTERVAL = 0.05F;
 
@@ -28,14 +34,11 @@ public class ScreenOnFireEffect2 extends EYBEffect
         this.duration -= Gdx.graphics.getDeltaTime();
         this.timer -= Gdx.graphics.getDeltaTime();
         if (this.timer < 0.0F) {
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
-            AbstractDungeon.effectsQueue.add(new GiantFireEffect());
+            for (int i = 0; i < times; i++) {
+                GiantFireEffect f = new GiantFireEffect();
+                _color.Set(f,new Color(1.0f, MathUtils.random(0.3f, 1f), MathUtils.random(0.3f, 1f), 0f));
+                GameEffects.Queue.Add(new GiantFireEffect());
+            }
             this.timer = 0.05F;
         }
 

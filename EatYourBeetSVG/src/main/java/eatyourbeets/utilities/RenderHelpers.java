@@ -83,7 +83,7 @@ public class RenderHelpers
         return result;
     }
 
-    public static BitmapFont GetSmallAttributeFont(EYBCard card)
+    public static BitmapFont GetSmallAttributeFont(EYBCardBase card)
     {
         BitmapFont result;
         if (card.isPopup)

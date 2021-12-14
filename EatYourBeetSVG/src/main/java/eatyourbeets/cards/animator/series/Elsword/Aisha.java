@@ -17,17 +17,16 @@ public class Aisha extends AnimatorCard
             .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
             .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword);
-    public static final int ORB_LIMIT = 5;
 
 
     public Aisha()
     {
         super(DATA);
 
-        Initialize(1, 0, 2, 1);
-        SetUpgrade(1, 0, 0, 1);
+        Initialize(2, 0, 1, 1);
+        SetUpgrade(2, 0, 0, 0);
 
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(2, 0, 1);
         SetHitCount(2);
     }
 
@@ -45,7 +44,7 @@ public class Aisha extends AnimatorCard
     @Override
     protected float GetInitialDamage()
     {
-        return super.GetInitialDamage() + (Math.min(ORB_LIMIT, player.filledOrbCount()) * secondaryValue);
+        return super.GetInitialDamage() + (player.filledOrbCount() * secondaryValue);
     }
 
     @Override

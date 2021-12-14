@@ -20,8 +20,8 @@ public class ByakuyaBankai extends AnimatorCard {
     public ByakuyaBankai() {
         super(DATA);
 
-        Initialize(7, 5);
-        SetUpgrade(2, 2);
+        Initialize(6, 5, 1);
+        SetUpgrade(2, 2, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
 
@@ -53,8 +53,8 @@ public class ByakuyaBankai extends AnimatorCard {
     }
 
     private void ChooseAction(AbstractMonster m) {
-        AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect).Build();
-        AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect).Build();
+        AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect, GR.Animator.Strings.Actions.GainAmount(magicNumber, GR.Tooltips.Might, true)).Build();
+        AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect, GR.Animator.Strings.Actions.GainAmount(magicNumber, GR.Tooltips.Velocity, true)).Build();
 
         CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         choices.addToTop(damage);
@@ -63,17 +63,17 @@ public class ByakuyaBankai extends AnimatorCard {
         Execute(choices, m);
     }
 
-    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction) {
+    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction, String description) {
         AnimatorCardBuilder builder = new AnimatorCardBuilder(ByakuyaBankai.DATA.ID);
-        builder.SetText(name, "", "");
+        builder.SetText(name, description, "");
         builder.SetProperties(type, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, CardTarget.ENEMY);
         builder.SetOnUse(onUseAction);
 
         if (type.equals(CardType.ATTACK)) {
             builder.SetAttackType(EYBAttackType.Ranged, EYBCardTarget.ALL);
-            builder.SetNumbers(damage, 0, 0, 0, 1);
+            builder.SetNumbers(damage, 0, magicNumber, 0, 1);
         } else {
-            builder.SetNumbers(0, block, 0, 0, 1);
+            builder.SetNumbers(0, block, magicNumber, 0, 1);
         }
 
         return builder;
@@ -96,9 +96,11 @@ public class ByakuyaBankai extends AnimatorCard {
         GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.WHITE, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.75f);
 
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
+        GameActions.Bottom.GainMight(magicNumber);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainVelocity(magicNumber);
     }
 }

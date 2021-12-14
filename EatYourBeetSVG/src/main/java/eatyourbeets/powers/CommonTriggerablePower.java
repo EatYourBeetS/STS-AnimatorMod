@@ -1,5 +1,6 @@
 package eatyourbeets.powers;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -7,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.damage.LoseHP;
 import eatyourbeets.powers.animator.ElementalExposurePower;
 import eatyourbeets.ui.animator.combat.CombatHelper;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,6 +17,11 @@ import java.util.UUID;
 
 public abstract class CommonTriggerablePower extends CommonPower implements HealthBarRenderPower
 {
+    public enum Type {
+        Effect,
+        PassiveDamage
+    }
+
     protected static UUID battleID;
     protected static final HashMap<String, Integer> EFFECT_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> PASSIVE_DAMAGE_BONUSES = new HashMap<>();
@@ -33,6 +40,7 @@ public abstract class CommonTriggerablePower extends CommonPower implements Heal
     public static void AddEffectBonus(String powerID, int multiplier)
     {
         CheckForNewBattle();
+        multiplier = CombatStats.OnGainTriggerablePowerBonus(powerID, Type.Effect, multiplier);
 
         if (multiplier > 0)
         {
@@ -45,6 +53,7 @@ public abstract class CommonTriggerablePower extends CommonPower implements Heal
     public static void AddPlayerDamageBonus(String powerID, int multiplier)
     {
         CheckForNewBattle();
+        multiplier = CombatStats.OnGainTriggerablePowerBonus(powerID, Type.PassiveDamage, multiplier);
 
         if (multiplier > 0)
         {
@@ -84,6 +93,13 @@ public abstract class CommonTriggerablePower extends CommonPower implements Heal
     {
         this.description = FormatDescription(0, GetPassiveDamage(), GetEffectMultiplier());
     }
+
+    @Override
+    protected ColoredString GetSecondaryAmount(Color c)
+    {
+        return new ColoredString((int) GetEffectMultiplier(), Color.RED, c.a);
+    }
+
 
     @Override
     public int getHealthBarAmount()

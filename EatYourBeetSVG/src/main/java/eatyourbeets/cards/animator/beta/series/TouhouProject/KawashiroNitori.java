@@ -8,10 +8,12 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnClickablePowerUsed;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
@@ -46,7 +48,7 @@ public class KawashiroNitori extends AnimatorCard
         GameActions.Bottom.StackPower(new KawashiroNitoriPower(p, 1, magicNumber));
     }
 
-    public static class KawashiroNitoriPower extends AnimatorClickablePower implements OnTagChangedSubscriber
+    public static class KawashiroNitoriPower extends AnimatorClickablePower implements OnClickablePowerUsed
     {
         protected int secondaryAmount;
 
@@ -64,7 +66,7 @@ public class KawashiroNitori extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.onTagChanged.Subscribe(this);
+            CombatStats.onClickablePowerUsed.Subscribe(this);
         }
 
         @Override
@@ -72,7 +74,7 @@ public class KawashiroNitori extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.onTagChanged.Unsubscribe(this);
+            CombatStats.onClickablePowerUsed.Unsubscribe(this);
         }
 
         @Override
@@ -98,18 +100,19 @@ public class KawashiroNitori extends AnimatorCard
         }
 
         @Override
-        public void OnTagChanged(AbstractCard card, CardTags tag, boolean value) {
-            if (amount > 0) {
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, amount, secondaryAmount);
+        }
+
+        @Override
+        public boolean OnClickablePowerUsed(EYBClickablePower power, AbstractMonster target) {
+            if (amount > 0 && power instanceof AbstractAffinityPower) {
                 GameActions.Bottom.AddAffinity(JUtils.Random(Affinity.Extended()), secondaryAmount);
                 amount -= 1;
                 flash();
             }
-        }
-
-        @Override
-        public String GetUpdatedDescription()
-        {
-            return FormatDescription(0, amount, secondaryAmount);
+            return true;
         }
     }
 }

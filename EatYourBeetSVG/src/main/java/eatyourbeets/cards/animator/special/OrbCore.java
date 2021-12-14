@@ -1,13 +1,11 @@
 package eatyourbeets.cards.animator.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.random.Random;
@@ -15,8 +13,6 @@ import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
-import eatyourbeets.orbs.animator.Chaos;
-import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -95,9 +91,9 @@ public abstract class OrbCore extends AnimatorCard
             cores2.Add(new OrbCore_Chaos());
             cores2.Add(new OrbCore_Water());
 
-            cores.AddAll(cores0.GetInnerList(),10);
-            cores.AddAll(cores1.GetInnerList(), 6);
-            cores.AddAll(cores2.GetInnerList(), 2);
+            cores.AddAll(cores0.GetInnerList(),11);
+            cores.AddAll(cores1.GetInnerList(), 7);
+            cores.AddAll(cores2.GetInnerList(), 1);
         }
     }
 
@@ -140,6 +136,9 @@ public abstract class OrbCore extends AnimatorCard
         Affinity af = GetAffinity();
         return (af == Affinity.Star ? Affinity.General.GetTooltip() : af.GetTooltip());
     }
+
+    public boolean EvokeEffect(OrbCorePower power) {return false;}
+    public boolean PassiveEffect(OrbCorePower power) {return false;}
 
     public abstract Class<? extends AbstractOrb> GetOrb();
 
@@ -206,10 +205,10 @@ public abstract class OrbCore extends AnimatorCard
                     orb.passiveAmount += 1;
                     orb.evokeAmount += 1;
                 }
-                else if (Dark.class.equals(card.GetOrb()) || Water.class.equals(card.GetOrb())) {
+                else if (!GameUtilities.CanOrbApplyFocusToEvoke(orb)) {
                     orb.passiveAmount += GetScaledIncrease();
                 }
-                else if (!Chaos.class.equals(card.GetOrb())){
+                else if (GameUtilities.CanOrbApplyFocus(orb)){
                     orb.passiveAmount += GetScaledIncrease();
                     orb.evokeAmount += GetScaledIncrease();
                 }
@@ -218,18 +217,25 @@ public abstract class OrbCore extends AnimatorCard
 
         @Override
         public void OnOrbPassiveEffect(AbstractOrb orb) {
-            if (Chaos.class.equals(card.GetOrb()) && Chaos.ORB_ID.equals(orb.ID)) {
-                AbstractCard c = GameUtilities.GetCardPoolInCombat(CardRarity.COMMON).Retrieve(rng);
-                if (c != null)
-                {
-                    GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
+            if (orb != null && orb.getClass().equals(card.GetOrb())) {
+                if (card.PassiveEffect(this)) {
+                    flash();
                 }
-                flash();
+            }
+        }
+
+        @Override
+        public void onEvokeOrb(AbstractOrb orb) {
+            super.onEvokeOrb(orb);
+            if (orb != null && orb.getClass().equals(card.GetOrb())) {
+                if (card.EvokeEffect(this)) {
+                    flash();
+                }
             }
         }
 
         private float GetScaledIncrease() {
-            return CombatStats.Affinities.GetPowerAmount(card.GetAffinity()) * amount;
+            return CombatStats.Affinities.GetPowerLevel(card.GetAffinity()) * amount;
         }
 
         private void refreshOrbs() {

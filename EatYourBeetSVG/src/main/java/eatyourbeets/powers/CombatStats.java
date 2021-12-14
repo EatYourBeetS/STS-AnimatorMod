@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.BlueCandle;
 import com.megacrit.cardcrawl.relics.Calipers;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
@@ -77,6 +78,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnGainAffinitySubscriber> onGainAffinity = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnGainTempHPSubscriber> onGainTempHP = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnGainTriggerablePowerBonusSubscriber> onGainTriggerablePowerBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
@@ -517,6 +520,27 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
+    public static int OnGainTriggerablePowerBonus(String powerID, CommonTriggerablePower.Type gainType, int amount)
+    {
+        for (OnGainTriggerablePowerBonusSubscriber s : onGainTriggerablePowerBonus.GetSubscribers())
+        {
+            amount = s.OnGainTriggerablePowerBonus(powerID, gainType, amount);
+        }
+        return amount;
+    }
+
+    public static int OnGainTempHP(int amount)
+    {
+        if (onGainTempHP.Count() > 0)
+        {
+            for (OnGainTempHPSubscriber s : onGainTempHP.GetSubscribers())
+            {
+                amount = s.OnGainTempHP(amount);
+            }
+        }
+        return amount;
+    }
+
     public static int OnGainAffinity(Affinity affinity, int amount, boolean isActuallyGaining)
     {
         for (OnGainAffinitySubscriber s : onGainAffinity.GetSubscribers())
@@ -542,6 +566,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         if (unplayableCards.contains(card.uuid))
         {
             return false;
+        }
+
+        if (GameUtilities.HasRelicEffect(BlueCandle.ID) && card.type == AbstractCard.CardType.CURSE) {
+            canPlay = true;
         }
 
         for (OnTryUsingCardSubscriber s : onTryUsingCard.GetSubscribers())
@@ -915,6 +943,12 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             s.OnEndOfTurn(isPlayer);
         }
+    }
+
+    @Override
+    public void atEndOfRound()
+    {
+        super.atEndOfRound();
 
         turnData.clear();
         cardsExhaustedThisTurn.clear();

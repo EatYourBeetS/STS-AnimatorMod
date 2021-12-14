@@ -69,7 +69,7 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
     }
 
     private void makeMove(AbstractOrb orb, int applyAmount) {
-        AbstractCreature target = player;
+        AbstractCreature target = null;
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
         if (owner.isPlayer && enemies.size() > 0) {
             int highestAttack = Integer.MIN_VALUE;
@@ -88,7 +88,9 @@ public class IonizingStormPower extends AnimatorPower implements OnOrbPassiveEff
                 }
             }
         }
-        this.applyPower(target, orb, applyAmount);
+        if (target != null) {
+            this.applyPower(target, orb, applyAmount);
+        }
     }
 
     public void atStartOfTurn()

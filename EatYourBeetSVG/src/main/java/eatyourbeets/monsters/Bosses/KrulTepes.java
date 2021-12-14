@@ -34,8 +34,7 @@ public class KrulTepes extends EYBMonster
 
         moveset.mode = EYBMoveset.Mode.Sequential;
 
-        moveset.Normal.DefendBuff(18, PowerHelper.Regen, 5)
-        .AddPower(PowerHelper.Thorns, 1)
+        moveset.Normal.DefendBuff(18, PowerHelper.Thorns, 5)
         .SetCanUse((m, __) -> GameUtilities.GetPowerAmount(this, RegenPower.POWER_ID) <= 18)
         .SetMiscBonus(8, 1)
         .SetBlockScaling(0.2f);

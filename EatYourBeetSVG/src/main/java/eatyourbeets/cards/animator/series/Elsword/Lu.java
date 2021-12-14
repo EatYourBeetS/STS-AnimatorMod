@@ -11,11 +11,16 @@ import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.misc.GenericEffects.GenericEffect;
+import eatyourbeets.misc.GenericEffects.GenericEffect_StackPower;
+import eatyourbeets.powers.PowerHelper;
+import eatyourbeets.resources.GR;
 import eatyourbeets.stances.DesecrationStance;
 import eatyourbeets.stances.WisdomStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Lu extends AnimatorCard
 {
@@ -24,6 +29,7 @@ public class Lu extends AnimatorCard
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Ciel(), false));
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Lu()
     {
@@ -72,13 +78,37 @@ public class Lu extends AnimatorCard
                     {
                         if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID))
                         {
-                            GameActions.Bottom.ModifyAllCopies(Ciel.DATA.ID)
-                                    .AddCallback(c ->
-                                    {
-                                        GameUtilities.IncreaseBlock(c, magicNumber, false);
-                                        c.flash();
-                                    });
+                            choices.Initialize(this, true);
+                            choices.AddEffect(new GenericEffect_Ciel(magicNumber));
+                            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
+                            choices.Select(1, m);
                         }
+                    });
+        }
+    }
+
+    protected static class GenericEffect_Ciel extends GenericEffect
+    {
+
+        public GenericEffect_Ciel(int amount)
+        {
+            this.amount = amount;
+        }
+
+        @Override
+        public String GetText()
+        {
+            return JUtils.Format(Lu.DATA.Strings.EXTENDED_DESCRIPTION[0]);
+        }
+
+        @Override
+        public void Use(AnimatorCard card, AbstractPlayer p, AbstractMonster m)
+        {
+            GameActions.Bottom.ModifyAllCopies(Ciel.DATA.ID)
+                    .AddCallback(c ->
+                    {
+                        GameUtilities.IncreaseBlock(c, amount, false);
+                        c.flash();
                     });
         }
     }

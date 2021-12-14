@@ -18,7 +18,6 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class Air extends AnimatorOrb
@@ -47,11 +46,9 @@ public class Air extends AnimatorOrb
         this.channelAnimTimer = 0.5f;
     }
 
-    @Override
-    public void updateDescription()
+    public String GetUpdatedDescription()
     {
-        this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, GetEvokeDamage(), this.evokeAmount);
+        return FormatDescription(0, this.passiveAmount, GetEvokeDamage(), this.evokeAmount);
     }
 
     @Override

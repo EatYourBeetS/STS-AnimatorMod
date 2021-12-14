@@ -18,11 +18,11 @@ public class Millim extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 5, 2);
+        Initialize(6, 0, 3, 2);
 
         SetAffinity_Star(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 5);
+        SetAffinityRequirement(Affinity.General, 6);
         SetUnique(true, true);
     }
 
@@ -53,11 +53,8 @@ public class Millim extends AnimatorCard
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
-                .ShowEffect(true, true);
-        GameActions.Bottom.StackPower(TargetHelper.Normal(m), GameUtilities.GetRandomElement(GameUtilities.GetCommonDebuffs()), secondaryValue)
-                .ShowEffect(true, true);
-
+        GameActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), secondaryValue);
 
         GameActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             for (int i = 0; i < magicNumber; i++)

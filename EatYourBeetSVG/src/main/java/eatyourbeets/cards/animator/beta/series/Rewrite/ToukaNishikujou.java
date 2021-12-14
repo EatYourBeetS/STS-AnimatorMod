@@ -2,7 +2,10 @@ package eatyourbeets.cards.animator.beta.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
@@ -35,19 +38,8 @@ public class ToukaNishikujou extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
-                if (CheckPrimaryCondition(false)) {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Light, secondaryValue);
-                }
-                else {
-                    GameActions.Bottom.IncreaseScaling(card, Affinity.Orange, secondaryValue);
-                }
+                GameActions.Bottom.IncreaseScaling(card, CombatStats.Affinities.AffinityMeter.GetCurrentAffinity(), secondaryValue);
             }
         });
-    }
-
-    @Override
-    public boolean CheckPrimaryCondition(boolean tryUse)
-    {
-        return CombatStats.Affinities.GetPowerAmount(Affinity.Light) > 0;
     }
 }

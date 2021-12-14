@@ -3,12 +3,15 @@ package eatyourbeets.cards.animator.beta.colorless;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class UruhaRushia extends AnimatorCard
+public class UruhaRushia extends AnimatorCard implements OnOrbApplyFocusSubscriber
 {
     public static final EYBCardData DATA = Register(UruhaRushia.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Hololive);
 
@@ -16,7 +19,7 @@ public class UruhaRushia extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 0);
+        Initialize(0, 0, 2, 1);
         SetRetainOnce(true);
         SetExhaust(true);
 
@@ -29,9 +32,25 @@ public class UruhaRushia extends AnimatorCard
     }
 
     @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onOrbApplyFocus.Subscribe(this);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new UruhaRushiaPower(p, this.magicNumber));
+        GameActions.Bottom.StackPower(new UruhaRushiaPower(p, this.secondaryValue));
+    }
+
+    @Override
+    public void OnApplyFocus(AbstractOrb orb) {
+        if (player.hand.contains(this) && orb != null && orb == GameUtilities.GetFirstOrb(null)) {
+            orb.passiveAmount += magicNumber;
+            orb.evokeAmount += magicNumber;
+        }
     }
 
     public static class UruhaRushiaPower extends AnimatorPower

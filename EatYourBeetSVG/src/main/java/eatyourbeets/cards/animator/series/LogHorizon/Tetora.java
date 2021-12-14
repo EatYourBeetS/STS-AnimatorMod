@@ -45,7 +45,7 @@ public class Tetora extends AnimatorCard
     protected void OnUpgrade()
     {
         SetHaste(true);
-        SetAffinityRequirement(Affinity.General, 9);
+        SetAffinityRequirement(Affinity.General, 6);
     }
 
     @Override

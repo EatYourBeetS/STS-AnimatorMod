@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.CounterAttackPower;
+import eatyourbeets.powers.replacement.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -25,7 +26,7 @@ public class Nanami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 6, 2, 4);
+        Initialize(0, 7, 2, 4);
         SetUpgrade(0, 2, 1);
 
         SetAffinity_Red(1);
@@ -44,7 +45,7 @@ public class Nanami extends AnimatorCard
             GameActions.Bottom.Cycle(name, 1).AddCallback(cards -> {
                for (AbstractCard c : cards) {
                    if (GameUtilities.HasGreenAffinity(c)) {
-                       GameActions.Bottom.StackPower(new CounterAttackPower(player, magicNumber));
+                       GameActions.Bottom.StackPower(new TemporaryEnvenomPower(player, 1));
                    }
                }
             });

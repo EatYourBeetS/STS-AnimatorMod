@@ -15,7 +15,7 @@ public class OrbCore_Fire extends OrbCore
     {
         super(DATA, 1, 4);
 
-        SetAffinity_Red(1);
+        SetAffinity_Red(2);
     }
 
     @Override

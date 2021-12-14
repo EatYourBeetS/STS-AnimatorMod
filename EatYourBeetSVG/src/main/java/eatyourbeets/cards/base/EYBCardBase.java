@@ -253,10 +253,10 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderType(SpriteBatch sb)
     {
-        BitmapFont font = EYBFontHelper.CardTypeFont;// FontHelper.cardTypeFont;
-        Color color = Color.DARK_GRAY.cpy();//_typeColor.Get(this);
+        BitmapFont font = EYBFontHelper.CardIconFont_Small;
+        Color color = Color.WHITE.cpy();//_typeColor.Get(this);
         color.a = _renderColor.Get(this).a;
-        font.getData().setScale(drawScale);
+        font.getData().setScale(drawScale * 0.9f);
         FontHelper.renderRotatedText(sb, font, GetTypeText(), current_x, current_y - 22.0f * drawScale * Settings.scale, 0.0F, -1.0F * this.drawScale * Settings.scale, angle, false, color);
     }
 

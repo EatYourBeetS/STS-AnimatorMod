@@ -16,6 +16,7 @@ import eatyourbeets.effects.VFX;
 import eatyourbeets.interfaces.subscribers.OnClickablePowerUsed;
 import eatyourbeets.orbs.animator.Air;
 import eatyourbeets.orbs.animator.Earth;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
@@ -62,6 +63,13 @@ public class Jibril extends AnimatorCard implements OnClickablePowerUsed
             costReduction -= 1;
         }
         GameActions.Bottom.Callback(this::RefreshCost);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+        CombatStats.onClickablePowerUsed.Subscribe(this);
     }
 
     @Override

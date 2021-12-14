@@ -21,14 +21,14 @@ public class Keqing extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(3, 0, 2, 2);
         SetUpgrade(1, 0, 1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
         SetAffinity_Dark(0, 0, 1);
 
 
-        SetRicochet(3, 0, this::OnCooldownCompleted);
+        SetRicochet(4, 0, this::OnCooldownCompleted);
 
         SetHaste(true);
         SetExhaust(true);
@@ -38,7 +38,7 @@ public class Keqing extends AnimatorCard
     @Override
     public void triggerWhenDrawn() {
         if (this.hasTag(HASTE)) {
-            GameActions.Top.ChannelOrb(new Lightning());
+            GameActions.Top.ChannelOrbs(Lightning::new, secondaryValue);
             GameActions.Top.ApplyElectrified(TargetHelper.Enemies(), magicNumber);
         }
     }
@@ -46,7 +46,7 @@ public class Keqing extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration));
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.SetDamageEffect(c -> GameEffects.List.Add(new DieDieDieEffect()).duration * 0.5f));
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

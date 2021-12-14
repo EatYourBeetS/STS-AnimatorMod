@@ -23,7 +23,7 @@ public class Yuuichirou_Asuramaru extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(2);
 
         SetAffinityRequirement(Affinity.Dark, 3);
 

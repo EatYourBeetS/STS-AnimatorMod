@@ -19,8 +19,8 @@ public class MadokaKaname_Krimheild extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
-        SetUpgrade(0, 0, 0, -2);
+        Initialize(0, 0, 4, 3);
+        SetUpgrade(0, 0, 1, 0);
         SetPurge(true);
 
         SetAffinity_Blue(1);
@@ -39,13 +39,10 @@ public class MadokaKaname_Krimheild extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainSorcery(magicNumber);
         if (info.TryActivateLimited()) {
-            GameUtilities.AddAffinityPowerLevel(Affinity.Blue, magicNumber);
-            GameActions.Bottom.GainFocus(magicNumber);
+            GameUtilities.AddAffinityPowerLevel(Affinity.Blue, secondaryValue);
             GameActions.Bottom.GainResistance(-secondaryValue);
-        }
-        else {
-            GameActions.Bottom.GainEnergy(costForTurn);
         }
     }
 }

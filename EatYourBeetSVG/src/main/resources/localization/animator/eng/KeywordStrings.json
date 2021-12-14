@@ -93,7 +93,7 @@
 	},
 	"Water":
 	{
-	  "DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP. Heal #b2 HP the first time Water is #yEvoked this combat. ",
+	  "DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP. Heal #b2 HP the first #b2 times Water is #yEvoked this combat.",
 	  "NAMES": ["water", "water+"],
 	  "PROPER_NAME": "Water"
 	},

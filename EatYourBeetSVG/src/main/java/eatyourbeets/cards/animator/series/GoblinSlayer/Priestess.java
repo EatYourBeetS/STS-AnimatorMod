@@ -26,7 +26,7 @@ public class Priestess extends AnimatorCard
         SetUpgrade(0, 0, 2, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Light(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Orange, 8);
     }

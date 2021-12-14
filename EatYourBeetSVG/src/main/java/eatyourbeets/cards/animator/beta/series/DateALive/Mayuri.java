@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
-import eatyourbeets.cards.animator.beta.special.IonizingStorm;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.monsters.EnemyIntent;
@@ -19,14 +18,13 @@ public class Mayuri extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Mayuri.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new IonizingStorm(), false));
+            .SetSeriesFromClassPackage();
 
     public Mayuri()
     {
         super(DATA);
 
-        Initialize(4, 23, 2, 15);
+        Initialize(4, 23, 3, 15);
         SetUpgrade(2, 2, 0);
         SetAffinity_Light(1, 0, 2);
 

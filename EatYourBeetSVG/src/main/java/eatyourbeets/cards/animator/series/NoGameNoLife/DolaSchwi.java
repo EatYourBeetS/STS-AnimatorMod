@@ -31,7 +31,7 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
     {
         super(DATA);
 
-        Initialize(12, 0, 2, 1);
+        Initialize(12, 0, 2, 4);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1, 0, 3);
@@ -46,11 +46,12 @@ public class DolaSchwi extends AnimatorCard implements OnStartOfTurnPostDrawSubs
         GameActions.Bottom.ChannelOrb(new Lightning());
         GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
 
-        if (!cooldown.ProgressCooldownAndTrigger(m)) {
-            DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
-            other.turns = secondaryValue;
-            CombatStats.onStartOfTurnPostDraw.Subscribe(other);
-        };
+        DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
+        other.turns = 1;
+        if (cooldown.ProgressCooldownAndTrigger(m)) {
+            other.baseDamage += secondaryValue;
+        }
+        CombatStats.onStartOfTurnPostDraw.Subscribe(other);
     }
 
     @Override

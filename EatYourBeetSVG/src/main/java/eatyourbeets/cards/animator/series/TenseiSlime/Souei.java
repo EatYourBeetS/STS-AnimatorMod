@@ -44,6 +44,7 @@ public class Souei extends AnimatorCard
                                 {
                                     if (GameUtilities.IsFatal(action.target, true))
                                     {
+                                        GameActions.Bottom.GainBlur(1);
                                         GameActions.Bottom.ApplyPoison(TargetHelper.Enemies(), basePoison.amount);
                                     }
                                 });

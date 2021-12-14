@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameEffects;
 
 public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
@@ -26,12 +27,14 @@ public class GainTemporaryHP extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
+
         if (!target.isDying && !target.isDead)
         {
-            TempHPField.tempHp.set(target, TempHPField.tempHp.get(target) + amount);
-            if (amount > 0)
+            int gainAmount = CombatStats.OnGainTempHP(amount);
+            TempHPField.tempHp.set(target, TempHPField.tempHp.get(target) + gainAmount);
+            if (gainAmount > 0)
             {
-                GameEffects.Queue.Add(new HealEffect(target.hb.cX - target.animX, target.hb.cY, amount));
+                GameEffects.Queue.Add(new HealEffect(target.hb.cX - target.animX, target.hb.cY, gainAmount));
                 target.healthBarUpdatedEvent();
             }
         }

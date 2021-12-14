@@ -1,7 +1,8 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.beta.curse.Curse_SearingBurn;
+import eatyourbeets.cards.animator.curse.Curse_Clumsy;
 import eatyourbeets.cards.animator.series.TenseiSlime.*;
-import eatyourbeets.cards.animator.status.Status_Slimed;
 import eatyourbeets.cards.animator.ultrarare.Veldora;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
@@ -25,7 +26,8 @@ public class Loadout_TenseiSlime extends AnimatorLoadout
         AddStarterCard(Hakurou.DATA, 7);
         AddStarterCard(Ranga.DATA, 11);
         AddStarterCard(Rimuru.DATA, 16);
-        AddStarterCard(Status_Slimed.DATA, -3);
+        AddStarterCard(Curse_Clumsy.DATA, -3);
+        AddStarterCard(Curse_SearingBurn.DATA, -6);
     }
 
     @Override

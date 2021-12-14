@@ -1,4 +1,4 @@
-package eatyourbeets.cards.animator.special;
+package eatyourbeets.cards.animator.beta.special;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;

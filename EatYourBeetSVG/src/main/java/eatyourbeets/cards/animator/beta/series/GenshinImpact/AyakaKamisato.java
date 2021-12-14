@@ -31,12 +31,12 @@ public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Brutal).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 14;
+    public static final int THRESHOLD = 15;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, 7);
+        Initialize(20, 0, 3, 8);
         SetUpgrade(5, 0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 0);

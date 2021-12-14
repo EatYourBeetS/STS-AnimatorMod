@@ -1,8 +1,9 @@
 package eatyourbeets.resources.animator.loadouts.beta;
 
+import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.animator.beta.series.AngelBeats.*;
 import eatyourbeets.cards.animator.beta.ultrarare.TK;
-import eatyourbeets.cards.animator.status.Status_Dazed;
+import eatyourbeets.cards.animator.curse.Curse_Clumsy;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -25,7 +26,8 @@ public class Loadout_AngelBeats extends AnimatorLoadout
         AddStarterCard(Noda.DATA, 5);
         AddStarterCard(YuzuruOtonashi.DATA, 6);
         AddStarterCard(YuriNakamura.DATA, 18);
-        AddStarterCard(Status_Dazed.DATA, -3);
+        AddStarterCard(Curse_Clumsy.DATA, -3);
+        AddStarterCard(Curse_Depression.DATA, -6);
     }
 
     @Override

@@ -13,6 +13,7 @@ import eatyourbeets.ui.TextureCache;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class AffinityKeywordButton extends GUIElement
 {
@@ -23,6 +24,7 @@ public class AffinityKeywordButton extends GUIElement
     protected Texture borderTexture;
     protected Texture borderBGTexture;
     protected Texture borderFGTexture;
+    protected float radiusBG;
 
     public Affinity Type;
 
@@ -47,6 +49,8 @@ public class AffinityKeywordButton extends GUIElement
                         this.onClick.Invoke(this);
                     }
                 });
+        radiusBG = background_button.hb.width;
+
     }
 
     public AffinityKeywordButton SetAffinity(Affinity affinity)
@@ -78,21 +82,25 @@ public class AffinityKeywordButton extends GUIElement
                 borderTexture = GR.Common.Images.Affinities.Border_Weak.Texture();
                 borderBGTexture = null;
                 borderFGTexture = null;
+                radiusBG = background_button.hb.width;
                 break;
             case 2:
-                borderTexture = GR.Common.Images.Affinities.Border_Weak.Texture();
-                borderBGTexture = GR.Common.Images.Affinities.BorderBG.Texture();
+                borderTexture = GR.Common.Images.Affinities.Border_Strong.Texture();
+                borderBGTexture = GR.Common.Images.Affinities.BorderBG3.Texture();
                 borderFGTexture = null;
+                radiusBG = background_button.hb.width;
                 break;
             case 3:
                 borderTexture = GR.Common.Images.Affinities.Border.Texture();
-                borderBGTexture = GR.Common.Images.Affinities.BorderBG.Texture();
+                borderBGTexture = GR.Common.Images.Affinities.BorderBG2.Texture();
                 borderFGTexture = GR.Common.Images.Affinities.BorderFG.Texture();
+                radiusBG = background_button.hb.width * 1.125f;
                 break;
             default:
                 borderTexture = null;
                 borderBGTexture = null;
                 borderFGTexture = null;
+                radiusBG = background_button.hb.width;
         }
         return this;
     }
@@ -121,18 +129,20 @@ public class AffinityKeywordButton extends GUIElement
     @Override
     public void Render(SpriteBatch sb)
     {
-        background_button.Render(sb);
-        //sb.setColor(Color.WHITE.cpy());
+        sb.setColor(background_button.buttonColor);
         if (borderBGTexture != null) {
-            sb.draw(borderBGTexture,
-                    background_button.hb.x, background_button.hb.y,
-                    background_button.hb.width/2f, background_button.hb.height/2f,
-                    background_button.hb.width, background_button.hb.height,
-                    background_button.background.scaleX, background_button.background.scaleY,
-                    0, 0,0,
-                    borderBGTexture.getWidth(), borderBGTexture.getHeight(), false, false
-                    );
+            RenderHelpers.DrawCentered(sb,
+                    background_button.buttonColor,
+                    borderBGTexture,
+                    background_button.hb.cX,
+                    background_button.hb.cY,
+                    radiusBG,
+                    radiusBG,
+                    0.78f,
+                    borderRotation);
         }
+        background_button.Render(sb);
+        sb.setColor(background_button.buttonColor);
         if (borderTexture != null) {
             sb.draw(borderTexture,
                     background_button.hb.x, background_button.hb.y,

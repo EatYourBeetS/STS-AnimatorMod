@@ -89,6 +89,8 @@ public class AfterLifeMod extends AbstractCardModifier
                         action.AddCallback(playedCard -> playedCard.exhaust = true);
                         CombatStats.OnPurge(copy, player.exhaustPile);
                         CombatStats.OnAfterlife(state.card, copy);
+                        control.Delete();
+                        CombatStats.ControlPile.RefreshCards();
                     }
                 });
             }

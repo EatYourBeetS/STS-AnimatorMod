@@ -26,6 +26,7 @@ public class Cocytus extends AnimatorCard
         SetUpgrade(3, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 3);
+        SetAffinity_Orange(1,0,0);
 
         SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Blue, 2);

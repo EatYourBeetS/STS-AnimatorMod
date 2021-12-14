@@ -35,7 +35,7 @@ public class Yoimiya extends AnimatorCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
 
         SetExhaust(true);
         SetHitCount(4, 0);

@@ -20,8 +20,8 @@ public class JotaroKujo extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 17, 0, 0);
-        SetUpgrade(0, 2, 0, 0);
+        Initialize(0, 16, 0, 0);
+        SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Red(1,0,2);
         SetAffinity_Light(1, 0, 1);

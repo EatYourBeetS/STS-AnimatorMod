@@ -62,8 +62,7 @@ public class Suigintou extends AnimatorCard implements OnPurgeSubscriber
         GameActions.Bottom.ChannelOrbs(Dark::new, secondaryValue).AddCallback(() -> {
             for (AbstractOrb orb : player.orbs) {
                 if (Dark.ORB_ID.equals(orb.ID)) {
-                    GameUtilities.ModifyOrbBaseEvokeAmount(orb, magicNumber + GameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);
-                    GameUtilities.ModifyOrbBasePassiveAmount(orb, magicNumber + GameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);
+                    GameUtilities.ModifyOrbFocus(orb, magicNumber + GameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);
                 }
             }
             GameActions.Bottom.TriggerOrbPassive(JUtils.Count(player.hand.group, GameUtilities::IsHindrance)).SetFilter(o -> Dark.ORB_ID.equals(o.ID));

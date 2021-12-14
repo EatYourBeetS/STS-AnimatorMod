@@ -119,7 +119,7 @@ public abstract class AnimatorLoadout
             // Hindrance level is determined by the proportion of your deck that is "bad"
             // Strikes/Defends and harmless hindrances have a weaker influence
             // Curses and damaging hindrances have a stronger influence
-            int strongHindranceLevel = Math.max(0, (21 * strongHindrances * strongHindrances / CardsCount.V1));
+            int strongHindranceLevel = (int) Math.max(0, (30 * Math.pow(strongHindrances, 1.5) / CardsCount.V1) - 7);
             int weakHindranceLevel = Math.max(0, (30 * (weakHindrances + strongHindrances) / CardsCount.V1) - 20);
             HindranceLevel = -strongHindranceLevel -weakHindranceLevel;
 

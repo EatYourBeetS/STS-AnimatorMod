@@ -13,7 +13,7 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.stances.MightStance;
 import eatyourbeets.stances.VelocityStance;
 import eatyourbeets.utilities.GameActions;
-//TODO Choose 1: Gain +M damage and Red, or Gain +M Block and Green
+
 public class ByakuyaKuchiki extends AnimatorCard {
     public static final EYBCardData DATA = Register(ByakuyaKuchiki.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Piercing).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ByakuyaBankai(), false));
@@ -22,7 +22,7 @@ public class ByakuyaKuchiki extends AnimatorCard {
     public ByakuyaKuchiki() {
         super(DATA);
 
-        Initialize(23, 15, 0);
+        Initialize(19, 15, 2);
         SetUpgrade(3, 3, 0);
         SetAffinity_Red(1, 0, 2);
         SetAffinity_Green(1, 0, 2);
@@ -40,8 +40,8 @@ public class ByakuyaKuchiki extends AnimatorCard {
     }
 
     private void ChooseAction(AbstractMonster m) {
-        AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect).Build();
-        AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect).Build();
+        AnimatorCard damage = GenerateInternal(CardType.ATTACK, this::DamageEffect, GR.Animator.Strings.Actions.GainAmount(magicNumber, GR.Tooltips.Might, true)).Build();
+        AnimatorCard block = GenerateInternal(CardType.SKILL, this::BlockEffect, GR.Animator.Strings.Actions.GainAmount(magicNumber, GR.Tooltips.Velocity, true)).Build();
 
         CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         choices.addToTop(damage);
@@ -50,17 +50,17 @@ public class ByakuyaKuchiki extends AnimatorCard {
         Execute(choices, m);
     }
 
-    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction) {
+    private AnimatorCardBuilder GenerateInternal(AbstractCard.CardType type, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction, String description) {
         AnimatorCardBuilder builder = new AnimatorCardBuilder(ByakuyaKuchiki.DATA.ID);
-        builder.SetText(name, "", "");
+        builder.SetText(name, description, "");
         builder.SetProperties(type, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, CardTarget.ENEMY);
         builder.SetOnUse(onUseAction);
 
         if (type.equals(CardType.ATTACK)) {
             builder.SetAttackType(EYBAttackType.Piercing, EYBCardTarget.Normal);
-            builder.SetNumbers(damage, 0, 0, 0, 1);
+            builder.SetNumbers(damage, 0, magicNumber, 0, 1);
         } else {
-            builder.SetNumbers(0, block, 0, 0, 1);
+            builder.SetNumbers(0, block, magicNumber, 0, 1);
         }
 
         return builder;
@@ -80,9 +80,11 @@ public class ByakuyaKuchiki extends AnimatorCard {
 
     private void DamageEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH);
+        GameActions.Bottom.GainMight(magicNumber);
     }
 
     private void BlockEffect(AbstractCard card, AbstractPlayer p, AbstractMonster m) {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.GainVelocity(magicNumber);
     }
 }

@@ -68,8 +68,7 @@ public class YunYun extends AnimatorCard
         }
 
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE);
-
-        GameActions.Bottom.Cycle(name, costForTurn);
+        GameActions.Bottom.DrawNextTurn(costForTurn);
     }
 
     public void RefreshCost()

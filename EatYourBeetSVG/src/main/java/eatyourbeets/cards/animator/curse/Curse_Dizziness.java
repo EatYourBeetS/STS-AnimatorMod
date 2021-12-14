@@ -1,8 +1,8 @@
 package eatyourbeets.cards.animator.curse;
 
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
@@ -12,7 +12,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
             .SetCurse(-2, EYBCardTarget.None, true)
             .SetRarity(CardRarity.SPECIAL)
             .SetSeries(CardSeries.TouhouProject)
-            .PostInitialize(data -> data.AddPreview(new FakeAbstractCard(new Dazed()), false));
+            .PostInitialize(data -> data.AddPreview(new Status_Dazed(), false));
 
     public Curse_Dizziness()
     {
@@ -27,7 +27,7 @@ public class Curse_Dizziness extends AnimatorCard_Curse
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed());
+        GameActions.Bottom.MakeCardInDrawPile(new Status_Dazed());
         GameActions.Bottom.Flash(this);
     }
 

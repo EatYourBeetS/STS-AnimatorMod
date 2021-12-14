@@ -44,7 +44,7 @@ public class ShuichiSaihara extends AnimatorCard
                     {
                         AbstractCard card = cards.get(0);
                         GameActions.Bottom.Add(new RefreshHandLayout());
-                        GameActions.Bottom.StackPower(new ShuichiSaiharaPower(p, card));
+                        GameActions.Bottom.ApplyPower(new ShuichiSaiharaPower(p, card)).AllowDuplicates(true);
 
                         if (GameUtilities.IsHindrance(card) && info.TryActivateLimited()) {
                             GameActions.Bottom.MakeCardInHand(new KaedeAkamatsu());

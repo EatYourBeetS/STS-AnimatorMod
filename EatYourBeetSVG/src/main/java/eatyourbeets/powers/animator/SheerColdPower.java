@@ -72,7 +72,7 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
     }
 
     private void makeMove(AbstractOrb orb, int damageAmount) {
-        AbstractCreature target = player;
+        AbstractCreature target = null;
         ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
         if (owner.isPlayer && enemies.size() > 0) {
             int highestAttack = Integer.MIN_VALUE;
@@ -91,7 +91,9 @@ public class SheerColdPower extends AnimatorPower implements OnOrbPassiveEffectS
                 }
             }
         }
-        this.applyPower(target, orb, damageAmount);
+        if (target != null) {
+            this.applyPower(target, orb, damageAmount);
+        }
     }
 
     private void applyPower(AbstractCreature target, AbstractOrb orb, int damageAmount) {

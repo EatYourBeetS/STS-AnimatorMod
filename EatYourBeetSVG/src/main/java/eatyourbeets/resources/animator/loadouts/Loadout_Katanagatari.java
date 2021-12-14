@@ -1,5 +1,6 @@
 package eatyourbeets.resources.animator.loadouts;
 
+import eatyourbeets.cards.animator.curse.Curse_Injury;
 import eatyourbeets.cards.animator.curse.Curse_Pain;
 import eatyourbeets.cards.animator.series.Katanagatari.*;
 import eatyourbeets.cards.animator.ultrarare.ShikizakiKiki;
@@ -25,7 +26,8 @@ public class Loadout_Katanagatari extends AnimatorLoadout
         AddStarterCard(UneriGinkaku.DATA, 7);
         AddStarterCard(Shichika.DATA, 14);
         AddStarterCard(Togame.DATA, 10);
-        AddStarterCard(Curse_Pain.DATA, -8);
+        AddStarterCard(Curse_Injury.DATA, -4);
+        AddStarterCard(Curse_Pain.DATA, -9);
     }
 
     @Override

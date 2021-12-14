@@ -15,6 +15,8 @@ import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.actions.animator.CreateRandomCurses;
+import eatyourbeets.cards.animator.beta.colorless.Yoimiya;
+import eatyourbeets.cards.animator.beta.special.Ganyu;
 import eatyourbeets.cards.animator.beta.special.Traveler_Wish;
 import eatyourbeets.cards.animator.beta.ultrarare.Dainsleif;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
@@ -27,7 +29,10 @@ import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.powers.replacement.TemporaryDrawReductionPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.TargetHelper;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,6 +89,8 @@ public class DainsleifAbyssPower extends AnimatorPower {
                     genshinCards.Add(c);
                 }
             }
+            genshinCards.Add(new Ganyu());
+            genshinCards.Add(new Yoimiya());
         }
 
         if (negativeEffectList.size() == 0) {
@@ -160,19 +167,18 @@ public class DainsleifAbyssPower extends AnimatorPower {
 
     private enum AbyssNegativeEffect {
         DrawLessNextTurn(ACTIONS.NextTurnDrawLess(1, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(new TemporaryDrawReductionPower(p, 1))),
-        EnemiesGainBlock(ACTIONS.GiveAllEnemies(10, GR.Tooltips.Block, true), 1, (c, p, m) -> {
-            for (AbstractMonster mo : GameUtilities.GetEnemies(true)) GameActions.Bottom.GainBlock(mo, 10);
-        }),
+        EnemiesGainPlatedArmor(ACTIONS.GiveAllEnemies(1, GR.Tooltips.PlatedArmor, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.PlatedArmor, 1)),
         EnemiesGainStrength(ACTIONS.GiveAllEnemies(2, GR.Tooltips.Strength, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Strength, 2)),
         EnemiesGainStrength2(ACTIONS.GiveAllEnemies(4, GR.Tooltips.Strength, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Strength, 4)),
-        EnemiesGainTemporaryThorns(ACTIONS.GiveAllEnemies(5, GR.Tooltips.TemporaryThorns, true), 1, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.TemporaryThorns, 5)),
+        EnemiesGainThorns(ACTIONS.GiveAllEnemies(5, GR.Tooltips.Thorns, true), 2, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Thorns, 2)),
         PlayerGainBurning(ACTIONS.GainAmount(4, GR.Tooltips.Burning, true), 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(null, p, 4)),
+        PlayerGainElectrified(ACTIONS.GainAmount(4, GR.Tooltips.Electrified, true), 1, (c, p, m) -> GameActions.Bottom.ApplyElectrified(null, p, 4)),
         PlayerGainFrail(ACTIONS.GainAmount(2, GR.Tooltips.Frail, true), 1, (c, p, m) -> GameActions.Bottom.ApplyFrail(null, p, 2)),
         PlayerGainFreezing(ACTIONS.GainAmount(4, GR.Tooltips.Freezing, true), 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(null, p, 4)),
         PlayerGainVulnerable(ACTIONS.GainAmount(2, GR.Tooltips.Vulnerable, true), 1, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(null, p, 2)),
-        PlayerGainVulnerable2(ACTIONS.GainAmount(3, GR.Tooltips.Vulnerable, true), 3, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(null, p, 3)),
+        PlayerGainVulnerable2(ACTIONS.GainAmount(3, GR.Tooltips.Vulnerable, true), 2, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(null, p, 3)),
         PlayerGainWeak(ACTIONS.GainAmount(2, GR.Tooltips.Weak, true), 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 2)),
-        PlayerGainWeak2(ACTIONS.GainAmount(3, GR.Tooltips.Weak, true), 3, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 3)),
+        PlayerGainWeak2(ACTIONS.GainAmount(3, GR.Tooltips.Weak, true), 2, (c, p, m) -> GameActions.Bottom.ApplyWeak(null, p, 3)),
         PlayerLoseBalance(ACTIONS.LosePower(1, GR.Tooltips.Resistance, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -1)),
         PlayerLoseDexterity(ACTIONS.LosePower(1, GR.Tooltips.Dexterity, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Dexterity, -1)),
         PlayerLoseFocus(ACTIONS.LosePower(1, GR.Tooltips.Focus, true), 3, (c, p, m) -> GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Focus, -1)),
@@ -201,16 +207,18 @@ public class DainsleifAbyssPower extends AnimatorPower {
         ApplyBlinded(ACTIONS.ApplyToALL(3, GR.Tooltips.Blinded, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), 2)),
         ApplyBurning(ACTIONS.ApplyToALL(5, GR.Tooltips.Burning, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyBurning(TargetHelper.Enemies(), 4)),
         ApplyFreezing(ACTIONS.ApplyToALL(5, GR.Tooltips.Freezing, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), 4)),
+        ApplyElectrified(ACTIONS.ApplyToALL(5, GR.Tooltips.Electrified, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyElectrified(TargetHelper.Enemies(), 4)),
         ApplyVulnerable(ACTIONS.ApplyToALL(3, GR.Tooltips.Vulnerable, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 3)),
         ApplyWeak(ACTIONS.ApplyToALL(3, GR.Tooltips.Weak, true), 10, 1, (c, p, m) -> GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3)),
-        ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(2)),
+        ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 2, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(2)),
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> GameActions.Bottom.ChannelRandomOrbs(4)),
-        NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
-        NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 1, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
-        GainBlessing(ACTIONS.GainAmount(9, GR.Tooltips.Invocation, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainInvocation(3, false)),
-        GainCorruption(ACTIONS.GainAmount(12, GR.Tooltips.Desecration, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainDesecration(4, false)),
-        GainIntellect(ACTIONS.GainAmount(9, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainWisdom(3, false)),
-        GainStrength(ACTIONS.GainAmount(2, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainStrength(2)),
+        NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 2, (c, p, m) -> GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
+        NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 2, (c, p, m) -> GameActions.Bottom.StackPower(new EnergizedPower(p, 2))),
+        GainBlessing(ACTIONS.GainAmount(6, GR.Tooltips.Invocation, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainInvocation(6, false)),
+        GainCorruption(ACTIONS.GainAmount(9, GR.Tooltips.Desecration, true), 7, 3, (c, p, m) -> GameActions.Bottom.GainDesecration(9, false)),
+        GainIntellect(ACTIONS.GainAmount(6, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> GameActions.Bottom.GainWisdom(6, false)),
+        GainStrength(ACTIONS.GainAmount(4, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainStrength(4)),
+        GainFocus(ACTIONS.GainAmount(3, GR.Tooltips.Focus, true), 8, 4, (c, p, m) -> GameActions.Bottom.GainFocus(3)),
         ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 9, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());

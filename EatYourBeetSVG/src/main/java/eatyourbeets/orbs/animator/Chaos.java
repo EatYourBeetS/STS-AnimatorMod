@@ -94,12 +94,6 @@ public class Chaos extends AnimatorOrb implements OnEndOfTurnSubscriber, OnAfter
         CombatStats.onAfterCardPlayed.Unsubscribe(this);
     }
 
-    @Override
-    public void updateDescription()
-    {
-        this.applyFocus();
-        this.description = orbStrings.DESCRIPTION[0];
-    }
 
     @Override
     public void updateAnimation()

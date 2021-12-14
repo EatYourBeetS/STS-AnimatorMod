@@ -3,7 +3,6 @@ package eatyourbeets.cards.animator.beta.ultrarare;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
@@ -24,7 +23,6 @@ import eatyourbeets.orbs.animator.Water;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
@@ -58,6 +56,11 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
     }
 
     @Override
+    public int GetXValue() {
+        return CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true) / 2;
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
@@ -66,11 +69,11 @@ public class Traveler_Lumine extends AnimatorCard_UltraRare implements OnStartOf
             GameActions.Bottom.MakeCardInDrawPile(new Curse_AbyssalVoid());
         }
 
-        final AbstractCard last = GameUtilities.GetLastCardPlayed(true);
-        if (info.IsSynergizing && last != null && GameUtilities.HasDarkAffinity(last))
-        {
-            GameActions.Bottom.GainWisdom(GetHandAffinity(Affinity.Dark) + secondaryValue, false);
+        int val = GetXValue();
+        if (val > 0) {
+            GameActions.Bottom.GainInvocation(val);
         }
+        TrySpendAffinity(Affinity.Dark, CombatStats.Affinities.GetAffinityLevel(Affinity.Dark, true));
 
         Traveler_Lumine other = (Traveler_Lumine) makeStatEquivalentCopy();
         CombatStats.onStartOfTurnPostDraw.Subscribe(other);

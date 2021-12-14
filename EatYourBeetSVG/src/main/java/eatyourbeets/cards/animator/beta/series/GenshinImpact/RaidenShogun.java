@@ -14,7 +14,6 @@ import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.animator.Amplification_DarkPower;
 import eatyourbeets.powers.animator.Amplification_LightningPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class RaidenShogun extends AnimatorCard
@@ -28,8 +27,8 @@ public class RaidenShogun extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetDelayed(true);
@@ -38,12 +37,8 @@ public class RaidenShogun extends AnimatorCard
     @Override
     protected void OnUpgrade()
     {
-        if (auxiliaryData.form == 0) {
-            SetDelayed(false);
-        }
-        else {
-            SetDelayed(true);
-        }
+        SetDelayed(auxiliaryData.form != 0);
+        SetInnate(auxiliaryData.form == 0);
     }
 
     @Override
@@ -76,10 +71,8 @@ public class RaidenShogun extends AnimatorCard
         public void atStartOfTurn()
         {
             super.atStartOfTurn();
-            if (GameUtilities.GetOrbCount(Lightning.ORB_ID) == 0) {
-                GameActions.Bottom.ChannelOrb(new Lightning());
-                GameActions.Bottom.ApplyElectrified(TargetHelper.AllCharacters(), amount);
-            }
+            GameActions.Bottom.ChannelOrb(new Lightning());
+            GameActions.Bottom.ApplyElectrified(TargetHelper.AllCharacters(), amount);
         }
 
 
@@ -89,7 +82,7 @@ public class RaidenShogun extends AnimatorCard
             super.onEvokeOrb(orb);
 
             if (Dark.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID)) {
-                GameActions.Bottom.AddAffinity(Affinity.Dark, amount);
+                GameActions.Bottom.StackAffinityPower(Affinity.Dark, amount);
                 flash();
             }
         }

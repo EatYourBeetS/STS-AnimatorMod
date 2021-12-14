@@ -16,7 +16,9 @@ public class Curse_Depression extends AnimatorCard_Curse
 
     public Curse_Depression()
     {
-        super(DATA, true);
+        super(DATA, false);
+        Initialize(0,0,1,0);
+        SetEthereal(true);
         SetUnplayable(true);
     }
 
@@ -37,7 +39,7 @@ public class Curse_Depression extends AnimatorCard_Curse
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        GameActions.Bottom.GainWisdom(1);
+        GameActions.Bottom.GainWisdom(magicNumber);
     }
 
 

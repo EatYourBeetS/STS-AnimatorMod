@@ -3,10 +3,9 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TargetHelper;
 
 public class SuwakoMoriya extends AnimatorCard {
@@ -18,10 +17,12 @@ public class SuwakoMoriya extends AnimatorCard {
     public SuwakoMoriya() {
         super(DATA);
 
-        Initialize(0, 1, 7, 5);
-        SetUpgrade(0, 0, 2, 2);
+        Initialize(0, 2, 7, 4);
+        SetUpgrade(0, 0, 2, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Red, 4);
 
         SetExhaust(true);
     }
@@ -32,25 +33,18 @@ public class SuwakoMoriya extends AnimatorCard {
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        GameActions.Bottom.GainBlock(block);
-
-        if (CheckPrimaryCondition(true)) {
-            GameActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), secondaryValue);
-        }
-        else {
-            GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), magicNumber);
-        }
-
-        if (GameUtilities.GetOrbCount(Earth.ORB_ID) >= MALLEABLE && info.TryActivateLimited()) {
-            GameActions.Bottom.GainMalleable(MALLEABLE);
-        }
+    public int GetXValue() {
+        return magicNumber + JUtils.Min(Affinity.Basic(), af -> CombatStats.Affinities.GetAffinityLevel((Affinity) af,true));
     }
 
     @Override
-    public boolean CheckPrimaryCondition(boolean tryUse)
-    {
-        return CombatStats.Affinities.GetAffinityLevel(Affinity.Red, true) > CombatStats.Affinities.GetAffinityLevel(Affinity.Green, true);
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
+        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.ApplyPoison(TargetHelper.Normal(m), GetXValue());
+
+        if (TrySpendAffinity(Affinity.Red)) {
+            GameActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), secondaryValue);
+        }
     }
 }
 

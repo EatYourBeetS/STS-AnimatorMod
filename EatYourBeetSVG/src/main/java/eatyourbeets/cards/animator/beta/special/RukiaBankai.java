@@ -19,7 +19,7 @@ public class RukiaBankai extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 1, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(1, 0, 0);

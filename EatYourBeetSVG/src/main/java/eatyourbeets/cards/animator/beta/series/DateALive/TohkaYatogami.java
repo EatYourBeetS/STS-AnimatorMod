@@ -25,7 +25,7 @@ public class TohkaYatogami extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 6, 2);
+        Initialize(12, 0, 7, 1);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
     }
@@ -41,12 +41,12 @@ public class TohkaYatogami extends AnimatorCard
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetHaste(false);
-                Initialize(14, 0, 6, 2);
-                SetUpgrade(0,0,0, -1);
+                Initialize(14, 0, 7, 1);
+                SetUpgrade(0,0,0, 0);
             }
             else {
                 SetHaste(true);
-                Initialize(14, 0, 6, 2);
+                Initialize(12, 0, 6, 1);
                 SetUpgrade(0,0,0);
             }
         }
@@ -55,22 +55,15 @@ public class TohkaYatogami extends AnimatorCard
 
 
     @Override
-    public void update()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.update();
-
+        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         if (AbstractDungeon.player != null && !transformed && CheckSpecialCondition(true))
         {
             transformed = true;
             GameActions.Bottom.MakeCardInHand(new InverseTohka()).SetUpgrade(upgraded, false);
             GameActions.Last.Exhaust(this);
         }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
     }
 
     @Override

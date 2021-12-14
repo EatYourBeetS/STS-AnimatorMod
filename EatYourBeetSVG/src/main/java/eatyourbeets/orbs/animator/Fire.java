@@ -14,7 +14,10 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.RenderHelpers;
 
 public class Fire extends AnimatorOrb {
     public static final String ORB_ID = CreateFullID(Fire.class);
@@ -49,9 +52,9 @@ public class Fire extends AnimatorOrb {
         this.channelAnimTimer = 0.5f;
     }
 
-    public void updateDescription() {
-        this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], this.passiveAmount, BURNING_AMOUNT, this.evokeAmount, this.evokeAmount / 2);
+    public String GetUpdatedDescription()
+    {
+        return FormatDescription(0, this.passiveAmount, BURNING_AMOUNT, this.evokeAmount, this.evokeAmount / 2);
     }
 
     @Override

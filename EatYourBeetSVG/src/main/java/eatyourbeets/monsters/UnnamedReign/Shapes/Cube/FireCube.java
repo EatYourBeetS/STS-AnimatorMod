@@ -21,7 +21,7 @@ public class FireCube extends Cube
         moveset.Normal.Defend(tier.Add(4, 3))
         .SetBlockScaling(0.2f);
 
-        moveset.Normal.Buff(PowerHelper.Regen, tier.Add(3, 2));
+        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(3, 2));
     }
 
     @Override

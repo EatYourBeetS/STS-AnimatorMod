@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.beta.curse.Curse_SearingBurn;
 import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.animator.status.Crystallize;
 import eatyourbeets.cards.animator.status.Status_Burn;
@@ -47,7 +47,7 @@ public class LestKarr extends AnimatorCard
     {
         final RandomizedList<AbstractCard> pool = GameUtilities.GetCardPoolInCombat(CardRarity.CURSE);
         pool.Add(new Status_Frostbite());
-        pool.Add(new SearingBurn());
+        pool.Add(new Curse_SearingBurn());
         pool.Add(new Status_Burn());
         pool.Add(new Status_Wound());
         pool.Add(new Status_Slimed());

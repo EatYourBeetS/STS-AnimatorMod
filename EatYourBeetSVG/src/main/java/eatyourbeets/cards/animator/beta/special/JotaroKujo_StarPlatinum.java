@@ -3,11 +3,10 @@ package eatyourbeets.cards.animator.beta.special;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.TargetHelper;
 
 public class JotaroKujo_StarPlatinum extends AnimatorCard
 {
@@ -28,7 +27,7 @@ public class JotaroKujo_StarPlatinum extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Intangible, magicNumber);
+        GameActions.Bottom.StackPower(new IntangiblePlayerPower(p, magicNumber));
         GameActions.Bottom.StackPower(new StarPlatinumPower(p, this.secondaryValue));
     }
 

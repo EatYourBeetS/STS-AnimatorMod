@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.beta.series.DateALive;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -48,7 +45,7 @@ public class YamaiSisters extends AnimatorCard implements OnSynergySubscriber
 
     @Override
     public void OnSynergy(AbstractCard card) {
-        if (GameUtilities.HasLightAffinity(card) && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (CombatStats.Affinities.GetLastAffinitySynergy() == Affinity.Red && CombatStats.TryActivateSemiLimited(cardID)) {
             GameActions.Last.MoveCard(this,player.hand).ShowEffect(true, true);
         }
     }

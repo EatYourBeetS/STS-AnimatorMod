@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -7,7 +8,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -68,26 +68,20 @@ public class Iris extends AnimatorCard
         .AddCallback((cards) ->
         { //
             for (AbstractCard c : cards) {
-                if (c instanceof EYBCard && ((EYBCard) c).attackType.equals(EYBAttackType.Normal)) {
-                    GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
-                    GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
-                }
-                else {
-                    GameActions.Bottom.SelectFromHand(name, 1, false)
-                            .SetOptions(false, false, false)
-                            .SetMessage(GR.Common.Strings.HandSelection.GenericBuff)
-                            .SetFilter(c2 -> c2 instanceof EYBCard && !GameUtilities.IsHindrance(c2) && buffs.getOrDefault(c2.uuid, 0) < secondaryValue && (c2.baseDamage >= 0 || c2.baseBlock >= 0))
+                GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
+                GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(c));
+                GameActions.Last.Callback(() -> {
+                    int amount = Math.min(secondaryValue,c.costForTurn + 1);
+                    GameActions.Bottom.IncreaseScaling(p.hand, BaseMod.MAX_HAND_SIZE, Affinity.Light, amount)
+                            .SetFilter(ca ->  buffs.getOrDefault(c.uuid, 0) < magicNumber)
                             .AddCallback(cards2 ->
                             {
                                 for (AbstractCard c2 : cards2)
                                 {
-                                    int amount = Math.min(secondaryValue,c.costForTurn + 1);
-                                    GameActions.Bottom.IncreaseScaling(c2, Affinity.Light, amount);
                                     JUtils.IncrementMapElement(buffs, c2.uuid, amount);
-                                    c2.flash();
                                 }
                             });
-                }
+                });
             }
         });
     }

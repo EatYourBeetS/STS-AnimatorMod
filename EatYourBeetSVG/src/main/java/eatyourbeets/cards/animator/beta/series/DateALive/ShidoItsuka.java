@@ -10,15 +10,13 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
-
-import java.util.ArrayList;
+import eatyourbeets.utilities.WeightedList;
 
 public class ShidoItsuka extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(ShidoItsuka.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
 
-    protected final static ArrayList<AbstractCard> dateALiveCards = new ArrayList<>();
+    protected final static WeightedList<AbstractCard> dateALiveCards = new WeightedList<>();
 
     public ShidoItsuka()
     {
@@ -43,9 +41,9 @@ public class ShidoItsuka extends AnimatorCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         InitializeSynergicCards();
-        boolean giveHarmonic = IsStarter() && info.TryActivateLimited();
+        boolean giveHarmonic = info.IsSynergizing && CombatStats.Affinities.GetLastAffinitySynergy() == Affinity.Blue && info.TryActivateLimited();
 
-        RandomizedList<AbstractCard> randomizedDALCards = new RandomizedList<>(dateALiveCards);
+        WeightedList<AbstractCard> randomizedDALCards = new WeightedList<>(dateALiveCards);
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         for (int i = 0; i < magicNumber; i++)
         {
@@ -74,27 +72,16 @@ public class ShidoItsuka extends AnimatorCard
                 {
                     if (cards.size() > 0)
                     {
-                        if (info.IsSynergizing) {
-                            GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
-                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                        }
-                        else {
-                            GameActions.Bottom.MakeCardInDiscardPile(cards.get(0))
-                                    .SetDuration(Settings.ACTION_DUR_FASTER, true);
-                        }
+                        GameActions.Bottom.MakeCardInDrawPile(cards.get(0))
+                                .SetDuration(Settings.ACTION_DUR_FASTER, true);
 
                     }
                 });
-
-        if (info.IsSynergizing && CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Last.ModifyAllInstances(uuid, c -> ((EYBCard) c).SetExhaust(true));
-        }
     }
 
     private void InitializeSynergicCards()
     {
-        dateALiveCards.clear();
+        dateALiveCards.Clear();
 
         for (AbstractCard c : CardLibrary.getAllCards())
         {
@@ -103,7 +90,7 @@ public class ShidoItsuka extends AnimatorCard
             && c.rarity != AbstractCard.CardRarity.SPECIAL
             && c.rarity != AbstractCard.CardRarity.BASIC)
             {
-                dateALiveCards.add(c);
+                dateALiveCards.Add(c, c.rarity == CardRarity.COMMON ? 10 : c.rarity == CardRarity.UNCOMMON ? 7 : 4);
             }
         }
     }

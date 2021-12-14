@@ -38,15 +38,15 @@ public class GUI_Button extends GUIElement
     public GenericCallback<GUI_Button> onLeftClick;
     public GenericCallback<GUI_Button> onRightClick;
     public String text;
+    public Color textColor = Color.WHITE.cpy();
+    public Color buttonColor;
+    public Color disabledButtonColor;
 
     protected boolean darkenNonInteractableButton;
     protected BitmapFont font;
     protected GUI_Label label;
     protected float fontScale;
     protected float currentClickDelay = 0f;
-    protected Color textColor = Color.WHITE.cpy();
-    protected Color buttonColor;
-    protected Color disabledButtonColor;
 
     public GUI_Button(Texture buttonTexture, float x, float y)
     {

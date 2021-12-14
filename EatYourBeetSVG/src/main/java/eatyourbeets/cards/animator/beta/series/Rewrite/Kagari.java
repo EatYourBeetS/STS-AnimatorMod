@@ -23,7 +23,7 @@ public class Kagari extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(1, 0, 0);
@@ -39,20 +39,18 @@ public class Kagari extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainResistance(secondaryValue);
-        GameActions.Bottom.StackPower(new KagariPower(p, magicNumber, secondaryValue, secondaryValue));
+        GameActions.Bottom.GainResistance(magicNumber);
+        GameActions.Bottom.StackPower(new KagariPower(p, 1, secondaryValue));
     }
 
     public static class KagariPower extends AnimatorPower implements OnChannelOrbSubscriber
     {
-        private final int willpowerAmount;
-        private final int shacklesAmount;
-        public KagariPower(AbstractPlayer owner, int amount, int willpowerAmount, int shacklesAmount)
+        private final int secondaryAmount;
+        public KagariPower(AbstractPlayer owner, int amount, int secondaryAmount)
         {
             super(owner, Kagari.DATA);
 
-            this.willpowerAmount = willpowerAmount;
-            this.shacklesAmount = shacklesAmount;
+            this.secondaryAmount = secondaryAmount;
 
             Initialize(amount);
             updateDescription();
@@ -61,7 +59,7 @@ public class Kagari extends AnimatorCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, amount, willpowerAmount, shacklesAmount);
+            description = FormatDescription(0, amount, GetEndurance(), secondaryAmount);
         }
 
         @Override
@@ -91,12 +89,16 @@ public class Kagari extends AnimatorCard
         @Override
         public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
-                GameActions.Bottom.GainEndurance(willpowerAmount + (player.stance.ID.equals(EnduranceStance.STANCE_ID) ? 1 : 0), player.stance.ID.equals(EnduranceStance.STANCE_ID));
-                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, shacklesAmount);
+                GameActions.Bottom.GainEndurance(GetEndurance(), player.stance.ID.equals(EnduranceStance.STANCE_ID));
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, secondaryAmount);
                 this.amount -= 1;
                 updateDescription();
                 flash();
             }
+        }
+
+        protected int GetEndurance() {
+            return player.stance.ID.equals(EnduranceStance.STANCE_ID) ? 1 + secondaryAmount : secondaryAmount;
         }
     }
 }

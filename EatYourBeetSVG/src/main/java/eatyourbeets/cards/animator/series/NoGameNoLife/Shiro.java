@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.orbs.EvokeOrb;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
@@ -20,10 +19,10 @@ public class Shiro extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 3, 3);
         SetCostUpgrade(-1);
 
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(2, 0, 1);
         SetAffinity_Light(1);
 
         SetProtagonist(true);
@@ -46,8 +45,8 @@ public class Shiro extends AnimatorCard
                         GameActions.Bottom.TriggerOrbPassive(cards.size(), true, false);
                     }
 
-                    if (GameUtilities.TrySpendAffinityPower(Affinity.Light, CHARGE_COST)) {
-                        GameActions.Bottom.EvokeOrb(secondaryValue, EvokeOrb.Mode.SameOrb);
+                    if (GameUtilities.GetAffinityPowerLevel(Affinity.Blue) > 0 && GameUtilities.TrySpendAffinityPower(Affinity.Light, secondaryValue)) {
+                        GameUtilities.AddAffinityPowerUse(Affinity.Blue, 1);
                     }
                 }
         );

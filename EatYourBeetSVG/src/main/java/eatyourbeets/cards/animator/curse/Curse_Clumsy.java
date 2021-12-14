@@ -14,7 +14,7 @@ public class Curse_Clumsy extends AnimatorCard_Curse
 
     public Curse_Clumsy()
     {
-        super(DATA, true);
+        super(DATA, false);
 
         Initialize(0, 0, 1);
 

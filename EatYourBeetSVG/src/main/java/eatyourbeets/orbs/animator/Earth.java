@@ -22,7 +22,10 @@ import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
@@ -104,11 +107,9 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
         CombatStats.onRawDamageReceived.Subscribe(this);
     }
 
-    @Override
-    public void updateDescription()
+    public String GetUpdatedDescription()
     {
-        this.applyFocus();
-        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], passiveAmount, MAX_PROJECTILES, evokeAmount, evokeAmount, turns);
+        return FormatDescription(0, passiveAmount, MAX_PROJECTILES, evokeAmount, evokeAmount, turns);
     }
 
     @Override

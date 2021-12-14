@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBAttackType;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.effects.AttackEffects;
@@ -17,14 +20,14 @@ import eatyourbeets.utilities.GameUtilities;
 public class KyLuc extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(KyLuc.class)
-            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal, EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Normal)
             .SetSeriesFromClassPackage();
 
     public KyLuc()
     {
         super(DATA);
 
-        Initialize(4, 0, 2, 3);
+        Initialize(7, 0, 3, 3);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 2);

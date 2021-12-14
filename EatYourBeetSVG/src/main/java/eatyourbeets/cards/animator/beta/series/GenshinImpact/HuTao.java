@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.beta.curse.Curse_SearingBurn;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -15,16 +15,18 @@ import eatyourbeets.utilities.GameActions;
 
 public class HuTao extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Piercing).SetSeriesFromClassPackage()
+    public static final EYBCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage()
             .SetMaxCopies(2)
-            .PostInitialize(data -> data.AddPreview(new SearingBurn(), false));
+            .SetMultiformData(2)
+            .PostInitialize(data -> data.AddPreview(new Curse_SearingBurn(), false));
 
     public HuTao()
     {
         super(DATA);
 
         Initialize(2, 0, 4, 2);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(2, 0, 0, 0);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(1, 0, 8);
 
@@ -33,13 +35,21 @@ public class HuTao extends AnimatorCard
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form != 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
 
         for (int i = 0; i < secondaryValue; i++)
         {
-            GameActions.Bottom.MakeCardInHand(new SearingBurn())
+            GameActions.Bottom.MakeCardInHand(new Curse_SearingBurn())
                     .SetDuration(Settings.ACTION_DUR_XFAST, true);
         }
     }
@@ -60,7 +70,7 @@ public class HuTao extends AnimatorCard
                     {
                         GameActions.Bottom.Exhaust(card)
                                 .ShowEffect(true, true)
-                                .AddCallback(() -> GameActions.Bottom.MakeCardInHand(new SearingBurn()));
+                                .AddCallback(() -> GameActions.Bottom.MakeCardInHand(new Curse_SearingBurn()));
                     }
 
                     if (cards.size() > 0) {

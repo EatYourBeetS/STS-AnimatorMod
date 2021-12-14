@@ -101,7 +101,7 @@ public abstract class Amplification_AbstractPower extends AnimatorPower implemen
     }
 
     protected float GetScaledIncrease() {
-        return JUtils.Sum(affinities,affinity -> Float.valueOf(CombatStats.Affinities.GetPowerAmount(affinity) * amount));
+        return JUtils.Sum(affinities,affinity -> Float.valueOf(CombatStats.Affinities.GetPowerLevel(affinity) * amount));
     }
 
     protected void UpdateCachedName() {

@@ -23,16 +23,16 @@ public class GinIchimaru extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 0);
-        SetUpgrade(1, 0, 0, 0);
+        Initialize(4, 0, 2, 0);
+        SetUpgrade(0, 0, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(0,0,1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Green, 3);
-        SetHitCount(2);
+        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
+        SetHitCount(2, 1);
     }
 
     @Override

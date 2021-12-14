@@ -71,7 +71,7 @@ public class BlazingHeatPower extends AnimatorPower implements OnOrbPassiveEffec
     }
 
     private void makeMove(AbstractOrb orb, int applyAmount, boolean showTrail) {
-        AbstractCreature target = player;
+        AbstractCreature target = null;
         int maxHealth = Integer.MIN_VALUE;
 
         if (owner.isPlayer) {
@@ -85,16 +85,15 @@ public class BlazingHeatPower extends AnimatorPower implements OnOrbPassiveEffec
             }
         }
 
-        int actualDamage = AbstractOrb.applyLockOn(target, applyAmount);
-        if (actualDamage > 0)
-        {
-            GameActions.Bottom.DealDamage(source, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION);
-            if (showTrail) {
-                GameActions.Bottom.VFX(VFX.SmallExplosion(target.hb));
+        if (target != null) {
+            int actualDamage = AbstractOrb.applyLockOn(target, applyAmount);
+            if (actualDamage > 0)
+            {
+                GameActions.Bottom.DealDamage(source, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION);
+                if (showTrail) {
+                    GameActions.Bottom.VFX(VFX.SmallExplosion(target.hb));
+                }
             }
         }
-
-
-
     }
 }

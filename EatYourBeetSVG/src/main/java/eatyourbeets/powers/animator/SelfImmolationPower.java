@@ -55,7 +55,7 @@ public class SelfImmolationPower extends AnimatorPower
     {
         super.onPlayCard(card,m);
         if (card.block > 0) {
-            ApplyDebuff(card.block * 2);
+            ApplyDebuff(card.block * amount);
             this.flash();
         }
     }

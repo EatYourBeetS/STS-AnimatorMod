@@ -16,9 +16,8 @@ public class SilencedPower extends AnimatorPower implements OnTryApplyPowerListe
     public SilencedPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
-        this.amount = amount;
-        this.isTurnBased = true;
         this.priority = 99;
+        Initialize(amount, PowerType.DEBUFF, true);
         updateDescription();
     }
 

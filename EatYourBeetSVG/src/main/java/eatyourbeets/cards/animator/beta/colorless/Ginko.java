@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.beta.status.SearingBurn;
+import eatyourbeets.cards.animator.beta.curse.Curse_SearingBurn;
 import eatyourbeets.cards.animator.beta.status.Status_Frostbite;
 import eatyourbeets.cards.animator.status.*;
 import eatyourbeets.cards.base.*;
@@ -49,9 +49,9 @@ public class Ginko extends AnimatorCard
 
     private void TransformCard(AbstractCard c) {
         if (c instanceof Burn || c instanceof Status_Burn) {
-            GameActions.Last.ReplaceCard(c.uuid, new SearingBurn());
+            GameActions.Last.ReplaceCard(c.uuid, new Curse_SearingBurn());
         }
-        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed || c instanceof Status_Wound || c instanceof Status_Void || c instanceof Status_Dazed || c instanceof SearingBurn) {
+        else if (c instanceof Status_Frostbite || c instanceof Status_Slimed || c instanceof Status_Wound || c instanceof Status_Void || c instanceof Status_Dazed || c instanceof Curse_SearingBurn) {
             ((EYBCard) c).SetForm(1,c.timesUpgraded);
         }
         else {

@@ -10,7 +10,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Thoma extends AnimatorCard
@@ -21,8 +20,8 @@ public class Thoma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 3, 1);
-        SetUpgrade(0, 2, 0, 1);
+        Initialize(0, 4, 6, 1);
+        SetUpgrade(0, 3, 0, 0);
         SetAffinity_Red(1, 0 ,0);
         SetAffinity_Orange(1, 0, 2);
     }
@@ -30,7 +29,7 @@ public class Thoma extends AnimatorCard
     @Override
     protected float GetInitialBlock()
     {
-        return super.GetInitialBlock() + magicNumber * (GameUtilities.GetPowerAmount(player, BurningPower.POWER_ID) + GameUtilities.GetPowerAmount(player, VulnerablePower.POWER_ID));
+        return  (player.hasPower(BurningPower.POWER_ID) || player.hasPower(VulnerablePower.POWER_ID) ? super.GetInitialBlock() + magicNumber : super.GetInitialBlock());
     }
 
     @Override

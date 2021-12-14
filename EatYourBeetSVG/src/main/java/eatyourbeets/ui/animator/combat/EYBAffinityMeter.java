@@ -52,7 +52,7 @@ public class EYBAffinityMeter extends GUIElement
 
         CurrentAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(3)
-                .SetOffsets(2f, 0.5f)
+                .SetOffsets(2.2f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
                         Reroll.OnClick(Target.CurrentAffinity);
@@ -60,7 +60,7 @@ public class EYBAffinityMeter extends GUIElement
                 });
         NextAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(2)
-                .SetOffsets(4f, 0.5f)
+                .SetOffsets(4.4f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
                         Reroll.OnClick(Target.NextAffinity);

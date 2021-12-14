@@ -1,6 +1,5 @@
 package eatyourbeets.powers.common;
 
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.powers.replacement.AnimatorFrailPower;
@@ -12,19 +11,14 @@ public class ResistancePower extends CommonPower
     public static final String POWER_ID = CreateFullID(ResistancePower.class);
     public static final int MULTIPLIER = 5;
     public static final int MULTIPLIER2 = 3;
-    public static final int DEFENSE_MULTIPLIER = 4;
     private int totalMultiplier = 0;
     private int totalMultiplier2 = 0;
-
-    public static float CalculatePercentage(int amount)
-    {
-        return Math.max(0.1f, 1f - amount * DEFENSE_MULTIPLIER / 100f);
-    }
 
     public ResistancePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         Initialize(amount);
+        this.canGoNegative = true;
     }
 
     @Override
@@ -38,7 +32,7 @@ public class ResistancePower extends CommonPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(amount >= 0 ? 0 : 1, totalMultiplier, totalMultiplier2, amount * DEFENSE_MULTIPLIER);
+        this.description = FormatDescription(amount >= 0 ? 0 : 1, Math.abs(totalMultiplier), Math.abs(totalMultiplier2));
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -71,17 +65,6 @@ public class ResistancePower extends CommonPower
     }
 
     @Override
-    public float atDamageReceive(float damage, DamageInfo.DamageType type)
-    {
-        if (type == DamageInfo.DamageType.NORMAL)
-        {
-            damage *= CalculatePercentage(amount);
-        }
-
-        return super.atDamageReceive(damage, type);
-    }
-
-    @Override
     protected void onAmountChanged(int previousAmount, int difference)
     {
         super.onAmountChanged(previousAmount, difference);
@@ -94,6 +77,7 @@ public class ResistancePower extends CommonPower
     public void UpdatePercentage()
     {
         //Undo the previous changes made by this power
+        ImpairedPower.AddPlayerModifier(this.totalMultiplier);
         AnimatorVulnerablePower.AddPlayerModifier(this.totalMultiplier);
         AnimatorWeakPower.AddPlayerModifier(this.totalMultiplier2);
         AnimatorFrailPower.AddPlayerModifier(this.totalMultiplier2);
@@ -101,6 +85,7 @@ public class ResistancePower extends CommonPower
         this.totalMultiplier = MULTIPLIER * this.amount;
         this.totalMultiplier2 = MULTIPLIER2 * this.amount;
 
+        ImpairedPower.AddPlayerModifier(-this.totalMultiplier);
         AnimatorVulnerablePower.AddPlayerModifier(-this.totalMultiplier);
         AnimatorWeakPower.AddPlayerModifier(-this.totalMultiplier2);
         AnimatorFrailPower.AddPlayerModifier(-this.totalMultiplier2);

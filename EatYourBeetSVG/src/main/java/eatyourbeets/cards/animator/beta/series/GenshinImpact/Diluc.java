@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.animator.BurningWeaponPower;
@@ -19,7 +20,7 @@ public class Diluc extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 0, 5, 3);
+        Initialize(14, 0, 3, 3);
         SetUpgrade(2,0,1,0);
         SetAffinity_Red(1, 0, 3);
 
@@ -27,22 +28,19 @@ public class Diluc extends AnimatorCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        if (enemy != null)
-        {
-            return super.ModifyDamage(enemy, amount + GameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) * magicNumber);
-        }
-        return super.ModifyDamage(enemy, amount);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY).forEach(d -> d.SetVFXColor(Color.FIREBRICK));
 
+        int amount = 0;
         for (AbstractCreature c : GameUtilities.GetEnemies(true)) {
-            GameActions.Bottom.RemovePower(p, c, FreezingPower.POWER_ID);
+            if (c.hasPower(FreezingPower.POWER_ID)) {
+                GameActions.Bottom.RemovePower(p, c, FreezingPower.POWER_ID);
+                amount += magicNumber;
+            }
+        }
+        if (amount > 0) {
+            GameActions.Bottom.StackPower(new NextTurnBlockPower(p, amount));
         }
 
         if (TrySpendAffinity(Affinity.Red)) {

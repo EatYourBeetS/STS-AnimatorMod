@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.GATE;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,6 +9,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.subscribers.OnSynergyBonusSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
@@ -27,25 +29,27 @@ public class Arpeggio extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, TRIGGER_LIMIT);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    protected String GetRawDescription(Object... args)
     {
-        if (magicNumber > 0)
-        {
-            GameActions.Bottom.GainOrbSlots(magicNumber);
-        }
-
-        GameActions.Bottom.StackPower(new ArpeggioPower(p, secondaryValue));
+        return super.GetRawDescription(POWER_ENERGY_COST);
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainOrbSlots(magicNumber);
+        GameActions.Bottom.StackPower(new ArpeggioPower(p, magicNumber));
+    }
+
+    public static class ArpeggioPower extends AnimatorClickablePower implements OnSynergyBonusSubscriber
     {
         private static final int MAX_BONUS = 6;
         private static final int EARTH_BONUS = 1;
@@ -67,12 +71,30 @@ public class Arpeggio extends AnimatorCard
         }
 
         @Override
-        protected void onAmountChanged(int previousAmount, int difference)
+        public void onInitialApplication()
         {
-            intellectBonus = Math.min(MAX_BONUS, amount);
-            CombatStats.Affinities.GetRow(Affinity.Blue).ActivationPowerAmount += intellectBonus - Math.min(MAX_BONUS, previousAmount);
+            super.onInitialApplication();
 
-            super.onAmountChanged(previousAmount, difference);
+            CombatStats.onSynergyBonus.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onSynergyBonus.Unsubscribe(this);
+        }
+
+
+        @Override
+        public void OnSynergyBonus(AbstractCard card, Affinity affinity)
+        {
+            if (Affinity.Blue.equals(affinity))
+            {
+                GameActions.Bottom.GainWisdom(amount);
+                this.flashWithoutSound();
+            }
         }
 
         @Override

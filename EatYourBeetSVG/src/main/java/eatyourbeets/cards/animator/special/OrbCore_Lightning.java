@@ -15,7 +15,7 @@ public class OrbCore_Lightning extends OrbCore
     {
         super(DATA, 2, 4);
 
-        SetAffinity_Light(1);
+        SetAffinity_Light(2);
     }
 
     @Override

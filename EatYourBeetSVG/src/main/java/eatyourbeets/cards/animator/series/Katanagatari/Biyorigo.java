@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,11 +8,10 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnSynergyBonusSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Biyorigo extends AnimatorCard
 {
@@ -35,6 +34,12 @@ public class Biyorigo extends AnimatorCard
     }
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(COST);
+    }
+
+    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetDelayed(form == 1);
@@ -45,13 +50,12 @@ public class Biyorigo extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainArtifact(1);
+        GameActions.Bottom.GainMalleable(magicNumber);
         GameActions.Bottom.StackPower(new BiyorigoPower(p, magicNumber));
     }
 
-    public static class BiyorigoPower extends AnimatorClickablePower implements OnSynergyBonusSubscriber
+    public static class BiyorigoPower extends AnimatorClickablePower
     {
-        public static final int MAX_METALLICIZE = 4;
 
         public BiyorigoPower(AbstractCreature owner, int amount)
         {
@@ -63,37 +67,21 @@ public class Biyorigo extends AnimatorCard
         }
 
         @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onSynergyBonus.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onSynergyBonus.Unsubscribe(this);
-        }
-
-        @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, COST, amount, MAX_METALLICIZE);
+            return FormatDescription(0, COST, amount);
         }
 
         @Override
-        public void OnSynergyBonus(AbstractCard card, Affinity affinity)
+        public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (Affinity.Red.equals(affinity))
+            if (info.type == DamageInfo.DamageType.NORMAL && damageAmount < info.output)
             {
-                GameActions.Bottom.GainMetallicize(Math.min(MAX_METALLICIZE, amount));
-                this.flashWithoutSound();
+                GameActions.Bottom.ApplyPoison(TargetHelper.Normal(info.owner), amount);
             }
-        }
 
+            return super.onAttacked(info, damageAmount);
+        }
         @Override
         public void OnUse(AbstractMonster m, int cost)
         {

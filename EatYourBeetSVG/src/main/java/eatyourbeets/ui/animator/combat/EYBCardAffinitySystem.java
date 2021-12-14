@@ -45,6 +45,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     protected EYBCardTooltip tooltip;
     protected Vector2 amountsSavedPosition;
 
+    protected Affinity currentAffinitySynergy = null;
     protected AbstractCard currentSynergy = null;
     protected AnimatorCard lastCardPlayed = null;
 
@@ -158,6 +159,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return null;
     }
 
+    public Affinity GetLastAffinitySynergy() {
+        return currentSynergy != null ? currentAffinitySynergy : null;
+    }
+
     public boolean IsSynergizing(AbstractCard card)
     {
         return card != null && currentSynergy != null && currentSynergy.uuid == card.uuid;
@@ -218,10 +223,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         if (WouldMatch(card))
         {
             currentSynergy = card;
+            currentAffinitySynergy = AffinityMeter.CurrentAffinity.Type;
             return true;
         }
 
         currentSynergy = null;
+        currentAffinitySynergy = null;
         return false;
     }
 
@@ -267,6 +274,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     {
         lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
         currentSynergy = null;
+        currentAffinitySynergy = null;
     }
 
     public boolean WouldMatch(AbstractCard card)

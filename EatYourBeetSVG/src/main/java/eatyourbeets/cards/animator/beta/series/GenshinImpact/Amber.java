@@ -17,7 +17,7 @@ public class Amber extends AnimatorCard {
         SetUpgrade(2, 1, 0);
         SetAffinity_Green(1, 0 ,1);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Amber extends AnimatorCard {
             GameActions.Bottom.ChannelOrb(new Fire());
         }
 
-        if (info.IsSynergizing || TrySpendAffinity(Affinity.Blue))
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.ApplyLockOn(p,m,magicNumber);
         }

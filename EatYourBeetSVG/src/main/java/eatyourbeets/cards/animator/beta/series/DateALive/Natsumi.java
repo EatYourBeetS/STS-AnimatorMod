@@ -4,36 +4,29 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.animator.beta.curse.Curse_Depression;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Natsumi extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Natsumi.class)
             .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.Random)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Curse_Depression(), false));
-
-    private static HashMap<Integer, ArrayList<AbstractCard>> cardPool;
+            .SetSeriesFromClassPackage();
 
     public Natsumi()
     {
         super(DATA);
 
         Initialize(2, 0, 2, 2);
-        SetUpgrade(0,0, 1, 1);
+        SetUpgrade(1,0, 1, 0);
         SetAffinity_Blue(1, 0, 2);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Blue, 6);
-        SetAffinityRequirement(Affinity.Light, 6);
+        SetAffinityRequirement(Affinity.Blue, 7);
     }
 
     @Override
@@ -51,22 +44,23 @@ public class Natsumi extends AnimatorCard
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
         .AddCallback(cards ->
         {
+            boolean upgrade = TrySpendAffinity(Affinity.Blue);
+            int gainAmount = 0;
             for (AbstractCard card : cards)
             {
-                GameActions.Bottom.ReplaceCard(card.uuid, AbstractDungeon.getCard(CardRarity.UNCOMMON).makeCopy());
+                if (!GameUtilities.IsHindrance(card)) {
+                    gainAmount += secondaryValue;
+                }
+                AbstractCard replacement = AbstractDungeon.getCard(CardRarity.UNCOMMON);
+                if (upgrade) {
+                    replacement.upgrade();
+                }
+                GameActions.Bottom.ReplaceCard(card.uuid, replacement);
+            }
+            if (gainAmount > 0) {
+                GameActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, gainAmount);
             }
         });
-
-        if (player.filledOrbCount() > 0) {
-            GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Blue, Affinity.Light).AddConditionalCallback(() -> {
-                for (int i = 0; i < Math.min(secondaryValue, player.filledOrbCount()); i++) {
-                    AbstractOrb orb = player.orbs.get(0);
-                    GameUtilities.ModifyOrbBasePassiveAmount(orb, GameUtilities.GetOrbBasePassiveAmount(orb) * 2, false, false);
-                    GameUtilities.ModifyOrbBaseEvokeAmount(orb, GameUtilities.GetOrbBaseEvokeAmount(orb) * 2, false, false);
-                    GameActions.Bottom.MakeCardInDrawPile(new Curse_Depression());
-                }
-            });
-        }
 
     }
 }

@@ -28,7 +28,7 @@ public class LuciaKonohana extends AnimatorCard
         SetUpgrade(0, 0, 1);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Green(0,0,1);
+        SetAffinity_Green(1,0,1);
 
         SetExhaust(true);
     }

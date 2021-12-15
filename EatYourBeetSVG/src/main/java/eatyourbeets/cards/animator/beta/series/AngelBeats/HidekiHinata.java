@@ -21,11 +21,12 @@ public class HidekiHinata extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 1, 3);
+        Initialize(6, 0, 2, 3);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(1, 0, 0);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Orange(0,0,1);
         SetExhaust(true);
         AfterLifeMod.Add(this);
     }
@@ -46,7 +47,7 @@ public class HidekiHinata extends AnimatorCard
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
 
         if (!GameUtilities.IsAttacking(m.intent)) {
-            GameActions.Bottom.GainSupportDamage(secondaryValue);
+            GameActions.Bottom.GainSupportDamage(magicNumber);
         }
 
         if (CombatStats.ControlPile.Contains(this)) {

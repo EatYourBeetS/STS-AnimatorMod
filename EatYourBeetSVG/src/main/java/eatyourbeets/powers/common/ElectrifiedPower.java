@@ -20,9 +20,10 @@ public class ElectrifiedPower extends CommonTriggerablePower
     public static final String POWER_ID = CreateFullID(ElectrifiedPower.class);
     public static final int SPLASH_MULTIPLIER = 25;
 
-    public static float CalculateDamage(float damage, float multiplier)
+    public static float CalculateDamage(DamageInfo info, float multiplier)
     {
-        return Mathf.Max(1, damage * (multiplier / 100f));
+        float newDamage = Mathf.Max(1, info.output * (multiplier / 100f));
+        return GameUtilities.IsPlayer(info.owner) ? Math.min(GameUtilities.GetHP(info.owner, true, true) - 1, newDamage) : newDamage;
     }
 
     public ElectrifiedPower(AbstractCreature owner, AbstractCreature source, int amount)
@@ -45,17 +46,23 @@ public class ElectrifiedPower extends CommonTriggerablePower
         if (info.output > 0 && target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
             if (GameUtilities.IsPlayer(owner) || enemies.size() == 1) {
-                GameActions.Bottom.DealDamage(owner, owner, (int) CalculateDamage(info.output, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
+                GameActions.Bottom.DealDamage(owner, owner, (int) CalculateDamage(info, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
             }
             else {
                 for (AbstractMonster enemy : enemies) {
                     if (enemy != owner) {
-                        GameActions.Bottom.DealDamage(owner, enemy, (int) CalculateDamage(info.output, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
+                        GameActions.Bottom.DealDamage(owner, enemy, (int) CalculateDamage(info, GetEffectMultiplier()), DamageInfo.DamageType.THORNS, AttackEffects.SPARK);
                     }
                 }
             }
             this.flash();
         }
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        this.description = FormatDescription(owner.isPlayer ? 1 : 0, GetPassiveDamage(), GetEffectMultiplier());
     }
 
     @Override

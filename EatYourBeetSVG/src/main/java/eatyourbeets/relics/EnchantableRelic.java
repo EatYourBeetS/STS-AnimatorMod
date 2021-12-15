@@ -81,7 +81,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     public void ApplyEnchantment(Enchantment enchantment)
     {
         this.enchantment = enchantment;
-        RefreshTexture();
+        //RefreshTexture();
     }
 
     public CardGroup CreateUpgradeGroup()
@@ -161,8 +161,12 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
     {
         super.update();
 
-        if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
+        if (hb.hovered && InputManager.RightClick.IsJustPressed())
         {
+            if (AbstractDungeon.isScreenUp) {
+                AbstractDungeon.dynamicBanner.hide();
+                AbstractDungeon.previousScreen = AbstractDungeon.screen;
+            }
             stopPulse();
             Use();
         }
@@ -174,7 +178,7 @@ public abstract class EnchantableRelic extends AnimatorRelic// implements Custom
         {
             GameEffects.Queue.Callback(new SelectFromPile(name, 1, CreateUpgradeGroup())
                     .HideTopPanel(true)
-                    .CancellableFromPlayer(true)
+                    .CancellableFromPlayer(false)
                     .AddCallback(selection -> {
                         if (selection.size() > 0) {
                             Enchantment e = (Enchantment) selection.get(0);

@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.HomuraAkemi_Homulily;
@@ -24,8 +25,8 @@ public class HomuraAkemi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 2);
-        SetUpgrade(0, 3, 0, 1);
+        Initialize(0, 2, 2, 3);
+        SetUpgrade(0, 2, 0, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Dark(1, 0, 1);
@@ -34,15 +35,16 @@ public class HomuraAkemi extends AnimatorCard
         SetDelayed(true);
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light, 6);
+        SetAffinityRequirement(Affinity.Light, 8);
         SetSoul(2, 0, HomuraAkemi_Homulily::new);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        final CardGroup[] choices = upgraded ? new CardGroup[] {player.hand,player.drawPile,player.discardPile,player.exhaustPile} : new CardGroup[] {player.hand,player.drawPile,player.discardPile};
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.PurgeFromPile(name,1,player.hand,player.drawPile,player.discardPile).SetFilter(c -> CardType.CURSE.equals(c.type)).AddCallback(
+        GameActions.Bottom.PurgeFromPile(name,1,choices).SetFilter(c -> CardType.CURSE.equals(c.type)).AddCallback(
                 pc -> {
                     if (pc.size() > 0) {
                         GameActions.Bottom.ApplyPower(new HomuraAkemiPower(player, this, magicNumber));

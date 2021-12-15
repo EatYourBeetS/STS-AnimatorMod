@@ -32,7 +32,7 @@ public class Enchantment3 extends Enchantment
     {
         if (auxiliaryData.form == 3 || auxiliaryData.form == 4)
         {
-            upgradeSecondaryValue(1);
+            upgradeSecondaryValue(2);
         }
         else if (auxiliaryData.form == 5)
         {

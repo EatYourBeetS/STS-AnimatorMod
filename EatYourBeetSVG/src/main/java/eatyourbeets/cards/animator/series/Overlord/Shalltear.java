@@ -25,7 +25,6 @@ public class Shalltear extends AnimatorCard
         Initialize(2, 0, 2, 5);
         SetUpgrade(1, 0, 1);
 
-        SetAffinity_Red(1);
         SetAffinity_Blue(1, 0, 3);
         SetAffinity_Dark(2, 0, 3);
 

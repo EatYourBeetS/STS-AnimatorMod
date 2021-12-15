@@ -9,7 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EnchantableRelic;
-import eatyourbeets.relics.animator.LivingPicture;
+import eatyourbeets.relics.animator.UsefulBox;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.JUtils;
@@ -40,6 +40,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
             cards.add(new Enchantment2());
             cards.add(new Enchantment3());
             cards.add(new Enchantment4());
+            cards.add(new Enchantment5());
 
             for (Enchantment a : cards)
             {
@@ -80,9 +81,7 @@ public abstract class Enchantment extends AnimatorCard implements Hidden
         this.index = index;
         this.borderColor = new Color(0.7f, 0.8f, 0.9f, 1f);
         this.cropPortrait = false;
-        this.relic = new LivingPicture(this);
-        this.portraitForeground = new AdvancedTexture(relic.img, null);
-        this.portraitForeground.pos.scale = 2;
+        this.relic = new UsefulBox(this);
         this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true));
     }
 

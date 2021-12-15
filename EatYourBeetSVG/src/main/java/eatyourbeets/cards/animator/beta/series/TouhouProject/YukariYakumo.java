@@ -23,7 +23,7 @@ public class YukariYakumo extends AnimatorCard
         SetAffinity_Dark(1, 0, 0);
 
         SetExhaust(true);
-        SetAffinityRequirement(Affinity.Dark, 6);
+        SetAffinityRequirement(Affinity.Dark, 7);
     }
 
     @Override

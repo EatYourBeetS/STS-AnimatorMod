@@ -288,6 +288,18 @@
 		"FLAVOR": "What's your favorite thing about space? Mine is space.",
 		"NAME": "Model Spaceship"
 	},
+	"animator:UsefulBox":
+	{
+		"DESCRIPTIONS": ["On your first #yMatch each turn, draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"FLAVOR": "A box that is useful.",
+		"NAME": "Useful Box"
+	},
+	"animator:VeryUsefulBox":
+	{
+		"DESCRIPTIONS": ["Replaces #yUseful #yBox. NL On your first #yMatch each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"FLAVOR": "A box that is very useful.",
+		"NAME": "Very-Useful Box"
+	},
 	"animator:VividPicture":
 	{
 		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL On your first #ySynergy each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],

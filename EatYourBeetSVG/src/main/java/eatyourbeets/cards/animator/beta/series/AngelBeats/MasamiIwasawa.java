@@ -22,7 +22,7 @@ public class MasamiIwasawa extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 11, 1, 2);
+        Initialize(0, 12, 1, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Orange(1, 0, 0);

@@ -20,6 +20,7 @@ public class KujouSara extends AnimatorCard
         SetUpgrade(0, 0, 1);
         SetAffinity_Green(1, 0 ,2);
         SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Dark(1);
 
         SetExhaust(true);
     }

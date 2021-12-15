@@ -22,7 +22,7 @@ public class IkkakuMadarame extends AnimatorCard{
         Initialize(6, 1, 2, 5);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(0, 0, 1);
     }
 
     @Override

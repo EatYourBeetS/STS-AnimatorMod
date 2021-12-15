@@ -2,15 +2,15 @@ package eatyourbeets.cards.animator.beta.series.TouhouProject;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.purple.MentalFortress;
+import com.megacrit.cardcrawl.cards.purple.Nirvana;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.watcher.MentalFortressPower;
 import com.megacrit.cardcrawl.powers.watcher.NirvanaPower;
 import com.megacrit.cardcrawl.relics.FrozenEye;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -18,7 +18,15 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class SatoriKomeiji extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SatoriKomeiji.class).SetPower(3, CardRarity.RARE).SetSeriesFromClassPackage();
+    public static final EYBCardData DATA = Register(SatoriKomeiji.class)
+            .SetPower(3, CardRarity.RARE)
+            .SetMultiformData(2, false)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new FakeAbstractCard(new Nirvana()), false);
+            });
+    public static final EYBCardPreview MENTAL_FORTRESS = new EYBCardPreview(new FakeAbstractCard(new MentalFortress()), false);
 
     public SatoriKomeiji()
     {
@@ -35,11 +43,30 @@ public class SatoriKomeiji extends AnimatorCard
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            this.cardText.OverrideDescription(form == 0 ? cardData.Strings.DESCRIPTION : null, true);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
+    public EYBCardPreview GetCardPreview()
+    {
+        return auxiliaryData.form == 1 ? MENTAL_FORTRESS : super.GetCardPreview();
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new SatoriPower(p, magicNumber));
         if (CheckAffinity(Affinity.General) && info.TryActivateLimited()) {
-            GameActions.Bottom.StackPower(new NirvanaPower(p, secondaryValue));
+            if (auxiliaryData.form == 1) {
+                GameActions.Bottom.StackPower(new MentalFortressPower(p, 4));
+            }
+            else {
+                GameActions.Bottom.StackPower(new NirvanaPower(p, 3));
+            }
         }
     }
 

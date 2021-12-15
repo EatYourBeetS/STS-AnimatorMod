@@ -22,7 +22,8 @@ public class RinneSonogami extends AnimatorCard
         super(DATA);
 
         Initialize(0, 9, 3, 1);
-        SetUpgrade(0, 1, 0);
+        SetUpgrade(0, 2, 2);
+        SetAffinity_Blue(1);
         SetAffinity_Light(1, 0, 2);
     }
 

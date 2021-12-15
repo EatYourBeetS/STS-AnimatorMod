@@ -6,13 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
-import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterlifeSubscriber
+public class Hisako extends AnimatorCard implements OnAfterlifeSubscriber
 {
     public static final EYBCardData DATA = Register(Hisako.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
 
@@ -70,17 +69,9 @@ public class Hisako extends AnimatorCard implements OnPurgeSubscriber, OnAfterli
     }
 
     @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (player.hand.contains(this)) {
-            GameActions.Bottom.GainInvocation(secondaryValue);
-        }
-    }
-
-    @Override
     public void triggerWhenCreated(boolean startOfBattle)
     {
         super.triggerWhenCreated(startOfBattle);
         CombatStats.onAfterlife.Subscribe(this);
-        CombatStats.onPurge.Subscribe(this);
     }
 }

@@ -22,7 +22,7 @@ public class ShidoItsuka extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 7, 3);
+        Initialize(0, 6, 3);
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 1);
 

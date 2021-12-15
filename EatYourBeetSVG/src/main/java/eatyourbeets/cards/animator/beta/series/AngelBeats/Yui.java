@@ -25,10 +25,15 @@ public class Yui extends AnimatorCard
         SetAffinity_Light(1, 0, 1);
         SetHarmonic(true);
         SetExhaust(true);
-        SetCostUpgrade(-1);
         AfterLifeMod.Add(this);
 
         SetAffinityRequirement(Affinity.General, 8);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetAffinityRequirement(Affinity.General, 6);
     }
 
     @Override

@@ -31,6 +31,7 @@ public class HououinKyouma extends AnimatorCard
 
         SetAffinity_Blue(1);
         SetAffinity_Silver(1);
+        SetCostUpgrade(-1);
 
         SetRetainOnce(true);
         SetPurge(true);
@@ -52,8 +53,7 @@ public class HououinKyouma extends AnimatorCard
         if (CombatStats.TryActivateLimited(cardID))
         {
             GameActions.Bottom.GainTechnic(secondaryValue);
-            GameActions.Bottom.MakeCardInDiscardPile(new TimeParadox());
-            GameUtilities.Retain(this);
+            GameActions.Bottom.MakeCardInDrawPile(new TimeParadox());
         }
     }
 

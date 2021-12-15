@@ -1,6 +1,7 @@
 package eatyourbeets.ui.animator.combat;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -52,7 +53,7 @@ public class EYBAffinityMeter extends GUIElement
 
         CurrentAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(3)
-                .SetOffsets(2.2f, 0.5f)
+                .SetOffsets(2.3f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
                         Reroll.OnClick(Target.CurrentAffinity);
@@ -60,7 +61,7 @@ public class EYBAffinityMeter extends GUIElement
                 });
         NextAffinity = new AffinityKeywordButton(hb, Affinity.General, ICON_SIZE)
                 .SetLevel(2)
-                .SetOffsets(4.4f, 0.5f)
+                .SetOffsets(4.6f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
                         Reroll.OnClick(Target.NextAffinity);
@@ -231,5 +232,18 @@ public class EYBAffinityMeter extends GUIElement
                 GR.Animator.Strings.Combat.Current, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
         FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
                 GR.Animator.Strings.Combat.Next, NextAffinity.background_button.hb.cX, NextAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
+
+        if (Reroll != null) {
+            final BitmapFont rerollFont = EYBFontHelper.CardTitleFont_Small;
+            rerollFont.getData().setScale(0.8f);
+            RenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
+                    (CurrentAffinity.background_button.hb.cX + NextAffinity.background_button.hb.cX) / 2, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 2.5f,
+                    CurrentAffinity.background_button.hb.width * 1.35f, CurrentAffinity.background_button.hb.height * 0.7f, 1, 0);
+            FontHelper.renderFontLeftTopAligned(sb, rerollFont,
+                    GR.Animator.Strings.Combat.Rerolls + ": " + Reroll.triggerCondition.uses + "/" + Reroll.triggerCondition.baseUses,
+                    CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3f,
+                    Reroll.triggerCondition.uses > 0 ? Settings.BLUE_TEXT_COLOR : Settings.RED_TEXT_COLOR);
+            RenderHelpers.ResetFont(rerollFont);
+        }
     }
 }

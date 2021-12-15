@@ -17,7 +17,7 @@ public class KenzoTenma extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3 , 0);
+        Initialize(4, 0, 3 , 2);
         SetUpgrade(1, 0, 1 , 0);
 
         SetAffinity_Orange(1, 0, 1);
@@ -27,14 +27,13 @@ public class KenzoTenma extends AnimatorCard
 
     @Override
     public int GetXValue() {
-        int increase = Math.min(CombatStats.Affinities.GetAffinityLevel(Affinity.Blue,true), CombatStats.Affinities.GetAffinityLevel(Affinity.Orange,true));
-        return secondaryValue + increase;
+        return secondaryValue * CombatStats.Affinities.GetAffinityLevel(Affinity.Orange,true);
     }
 
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
-        return super.ModifyDamage(enemy, amount * GetXValue());
+        return super.ModifyDamage(enemy, amount + GetXValue());
     }
 
     @Override

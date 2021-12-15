@@ -23,7 +23,7 @@ public class Scar extends AnimatorCard
         SetUpgrade(4, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(2, 0, 2);
 
         SetAffinityRequirement(Affinity.Orange, 6);
     }

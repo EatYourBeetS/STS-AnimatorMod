@@ -57,10 +57,6 @@ public class MeguKakizaki extends AnimatorCard
             if (mo != null && toTransfer > 0) {
                 GameActions.Bottom.DealDamageAtEndOfTurn(player, mo, toTransfer, AttackEffects.CLAW);
             }
-            else if (toTransfer == 0) {
-                GameActions.Bottom.RecoverHP(heal);
-                GameActions.Bottom.Exhaust(this);
-            }
         });
     }
 }

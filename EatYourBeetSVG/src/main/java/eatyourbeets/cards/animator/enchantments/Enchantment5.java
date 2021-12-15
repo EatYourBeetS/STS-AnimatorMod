@@ -4,21 +4,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.ui.animator.combat.EYBAffinityMeter;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class Enchantment4 extends Enchantment
+public class Enchantment5 extends Enchantment
 {
-    public static final EYBCardData DATA = RegisterInternal(Enchantment4.class);
-    public static final int INDEX = 4;
+    public static final EYBCardData DATA = RegisterInternal(Enchantment5.class);
+    public static final int INDEX = 5;
     public Affinity currentAffinity;
 
-    public Enchantment4()
+    public Enchantment5()
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 0, 1, 4);
     }
 
     @Override
@@ -60,19 +61,32 @@ public class Enchantment4 extends Enchantment
     {
         if (!upgraded)
         {
-            GameActions.Bottom.GainRandomAffinityPower(magicNumber, true);
+            GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.CurrentAffinity)
+                    .SetOptions(true, true);
+            GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.NextAffinity)
+                    .SetOptions(true, true);
             return;
         }
 
         currentAffinity = GetAffinity();
         if (currentAffinity != null) {
-            final AbstractAffinityPower p = CombatStats.Affinities.GetPower(currentAffinity);
-            if (p != null) {
-                GameActions.Bottom.StackAffinityPower(currentAffinity, magicNumber);
-            }
-            else {
-                GameActions.Bottom.GainEnergyNextTurn(magicNumber);
-            }
+            GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.CurrentAffinity)
+                    .SetAffinityChoices(this.currentAffinity)
+                    .SetOptions(true, true);
+            GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.NextAffinity)
+                    .SetAffinityChoices(this.currentAffinity)
+                    .SetOptions(true, true);
+        }
+        else {
+            Affinity af1 = JUtils.Random(Affinity.Basic());
+            Affinity af2 = JUtils.Random(JUtils.Filter(Affinity.Extended(), a -> a != af1));
+            GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.CurrentAffinity)
+                    .SetAffinityChoices(af1, af2)
+                    .SetOptions(false, true).AddCallback(newAf -> {
+                        GameActions.Bottom.RerollAffinity(EYBAffinityMeter.Target.NextAffinity)
+                                .SetAffinityChoices(newAf)
+                                .SetOptions(true, true);
+                    });
         }
     }
 

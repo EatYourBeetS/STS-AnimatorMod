@@ -13,9 +13,9 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.EYBRelic;
-import eatyourbeets.relics.animator.LivingPicture;
 import eatyourbeets.relics.animator.RollingCubes;
 import eatyourbeets.relics.animator.TheMissingPiece;
+import eatyourbeets.relics.animator.UsefulBox;
 import eatyourbeets.relics.animator.beta.PolychromePaintbrush;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.animator.characterSelection.AnimatorBaseStatEditor;
@@ -312,11 +312,11 @@ public abstract class AnimatorLoadout
     {
         final ArrayList<String> res = new ArrayList<>();
 
-        if (!UnlockTracker.isRelicSeen(LivingPicture.ID))
+        if (!UnlockTracker.isRelicSeen(UsefulBox.ID))
         {
-            UnlockTracker.markRelicAsSeen(LivingPicture.ID);
+            UnlockTracker.markRelicAsSeen(UsefulBox.ID);
         }
-        res.add(LivingPicture.ID);
+        res.add(UsefulBox.ID);
 
         if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
         {

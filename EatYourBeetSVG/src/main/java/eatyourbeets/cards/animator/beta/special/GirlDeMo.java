@@ -33,7 +33,7 @@ public class GirlDeMo extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Draw(1).AddCallback(() -> {
-            GameActions.Bottom.SelectFromHand(name, player.hand.size(), true).AddCallback(cards -> {
+            GameActions.Bottom.SelectFromHand(name, player.hand.size() - 1, true).AddCallback(cards -> {
                 for (AbstractCard c : cards)
                 {
                     GameActions.Top.Motivate(c, 1);
@@ -41,9 +41,9 @@ public class GirlDeMo extends AnimatorCard
             });
         });
 
-        for (int i = 0; i < secondaryValue; i++) {
+        for (int i = 0; i < magicNumber; i++) {
             Affinity lowest = JUtils.FindMin(Affinity.Basic(), CombatStats.Affinities::GetPowerAmount);
-            GameActions.Bottom.StackAffinityPower(lowest, magicNumber, false);
+            GameActions.Bottom.StackAffinityPower(lowest, 1, false);
         }
     }
 }

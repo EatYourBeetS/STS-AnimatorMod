@@ -20,7 +20,7 @@ public class YasutoraSado extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2);
+        Initialize(2, 0, 5);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(2, 0, 2);
         SetCooldown(2, 0, this::OnCooldownCompleted);
@@ -30,6 +30,9 @@ public class YasutoraSado extends AnimatorCard
     @Override
     protected float ModifyDamage(AbstractMonster enemy, float amount)
     {
+        if (enemy == null || enemy.intent == null) {
+            return super.ModifyDamage(enemy, amount);
+        }
         return super.ModifyDamage(enemy, (enemy.currentBlock > 0 || GameUtilities.IsDebuffing(enemy.intent)) ? (amount + magicNumber) : amount);
     }
 

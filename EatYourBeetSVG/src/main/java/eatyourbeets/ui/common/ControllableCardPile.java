@@ -42,10 +42,10 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
     public static final float HOVER_TIME_OUT = 0.4F;
 
     public final ArrayList<ControllableCard> controllers = new ArrayList<>();
+    public final GUI_DynamicCardGrid cardGrid;
     public boolean isHidden = false;
 
     private final Hitbox hb = new Hitbox(128f * Settings.scale, 248f * Settings.scale, 147.2f * Settings.scale, 147.2f * Settings.scale);
-    private final GUI_DynamicCardGrid cardGrid;
     private final GUI_Image background;
     private float timer = 0f;
 

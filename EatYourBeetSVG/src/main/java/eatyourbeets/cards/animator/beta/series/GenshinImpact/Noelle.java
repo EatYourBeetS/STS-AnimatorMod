@@ -44,19 +44,21 @@ public class Noelle extends AnimatorCard
                     });
         }
 
-        GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() ->
-        {
-            GameActions.Bottom.SelectFromHand(name, magicNumber, false)
-                    .SetOptions(true, true, true)
-                    .SetMessage(RetainCardsAction.TEXT[0])
-                    .AddCallback(cards ->
-                    {
-                        if (cards.size() > 0)
+        if (player.hand.size() > 0) {
+            GameActions.Bottom.TryChooseSpendAffinity(this, Affinity.Red,Affinity.Orange).AddConditionalCallback(() ->
+            {
+                GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+                        .SetOptions(true, true, true)
+                        .SetMessage(RetainCardsAction.TEXT[0])
+                        .AddCallback(cards ->
                         {
-                            AbstractCard card = cards.get(0);
-                            GameUtilities.Retain(card);
-                        }
-                    });
-        });
+                            if (cards.size() > 0)
+                            {
+                                AbstractCard card = cards.get(0);
+                                GameUtilities.Retain(card);
+                            }
+                        });
+            });
+        }
     }
 }

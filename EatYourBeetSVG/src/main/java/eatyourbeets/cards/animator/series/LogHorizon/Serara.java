@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -42,7 +43,15 @@ public class Serara extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.MoveCards(player.hand, player.drawPile, 1);
+        GameActions.Bottom.SelectFromHand(name, magicNumber, false)
+                .SetMessage(GR.Common.Strings.HandSelection.MoveToDrawPile)
+                .AddCallback(selected ->
+                {
+                    for (AbstractCard c : selected)
+                    {
+                        GameActions.Top.MoveCard(c, player.hand, player.drawPile).SetDestination(CardSelection.Top);
+                    }
+                });
     }
 
     @Override

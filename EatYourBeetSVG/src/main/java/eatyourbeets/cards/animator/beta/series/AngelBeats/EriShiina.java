@@ -24,7 +24,7 @@ public class EriShiina extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 1);
+        Initialize(6, 1, 2, 1);
         SetUpgrade(2, 0, 0, 0);
 
         SetAffinity_Green(1, 0, 2);
@@ -41,6 +41,7 @@ public class EriShiina extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_LIGHT);
+        GameActions.Bottom.GainBlock(block);
 
         if (CombatStats.ControlPile.Contains(this) || VelocityStance.IsActive())
         {

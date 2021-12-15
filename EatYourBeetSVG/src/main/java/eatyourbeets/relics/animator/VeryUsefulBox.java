@@ -12,16 +12,16 @@ import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class VividPicture extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
+public class VeryUsefulBox extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
 {
-    public static final String ID = CreateFullID(VividPicture.class);
+    public static final String ID = CreateFullID(VeryUsefulBox.class);
 
-    public VividPicture()
+    public VeryUsefulBox()
     {
         this(null);
     }
 
-    public VividPicture(Enchantment enchantment)
+    public VeryUsefulBox(Enchantment enchantment)
     {
         super(ID, RelicTier.BOSS, LandingSound.MAGICAL, enchantment);
     }
@@ -58,7 +58,7 @@ public class VividPicture extends EnchantableRelic implements OnSynergySubscribe
         ArrayList<AbstractRelic> relics = player.relics;
         for (int i = 0; i < relics.size(); i++)
         {
-            LivingPicture relic = JUtils.SafeCast(relics.get(i), LivingPicture.class);
+            UsefulBox relic = JUtils.SafeCast(relics.get(i), UsefulBox.class);
             if (relic != null)
             {
                 ApplyEnchantment(relic.enchantment);
@@ -74,6 +74,6 @@ public class VividPicture extends EnchantableRelic implements OnSynergySubscribe
     @Override
     public boolean canSpawn()
     {
-        return super.canSpawn() && player.hasRelic(LivingPicture.ID);
+        return super.canSpawn() && player.hasRelic(UsefulBox.ID);
     }
 }

@@ -8,16 +8,16 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.utilities.GameActions;
 
-public class LivingPicture extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
+public class UsefulBox extends EnchantableRelic implements OnSynergySubscriber, CustomSavable<Integer>
 {
-    public static final String ID = CreateFullID(LivingPicture.class);
+    public static final String ID = CreateFullID(UsefulBox.class);
 
-    public LivingPicture()
+    public UsefulBox()
     {
         this(null);
     }
 
-    public LivingPicture(Enchantment enchantment)
+    public UsefulBox(Enchantment enchantment)
     {
         super(ID, RelicTier.STARTER, LandingSound.MAGICAL, enchantment);
     }

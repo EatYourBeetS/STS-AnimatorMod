@@ -31,7 +31,9 @@ public class OrigamiTobiichi extends AnimatorCard
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
-            SetInnate(form == 0);
+            SetInnate(form == 1);
+            SetRetainOnce(form == 1);
+            this.cardText.OverrideDescription(form == 1 ? cardData.Strings.DESCRIPTION : null, true);
         }
         return super.SetForm(form, timesUpgraded);
     };
@@ -45,7 +47,10 @@ public class OrigamiTobiichi extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainVitality(1);
+        GameActions.Bottom.GainVitality(secondaryValue);
+        if (upgraded) {
+            GameActions.Bottom.GainOrbSlots(secondaryValue);
+        }
         GameActions.Bottom.StackPower(new OrigamiTobiichiPower(p, magicNumber));
     }
 

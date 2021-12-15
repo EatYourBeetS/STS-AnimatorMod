@@ -26,8 +26,8 @@ public class PuriPuriPrisoner extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(5, 0, 4);
-        SetUpgrade(3, 0, 2);
+        Initialize(5, 0, 5);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(2);
 

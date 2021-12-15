@@ -146,7 +146,7 @@
 		},
 		"animator:GirlDeMo":
 		{
-			"DESCRIPTION": "<DRW>, then Motivate ALL cards in hand. || Gain !S! of your leftmost lowest <W> Power !M! time(s), excluding [S].",
+			"DESCRIPTION": "<DRW>, then Motivate ALL cards in hand. || Gain 1 of your leftmost lowest <W> Power !M! time(s), excluding [S].",
 			"NAME": "Girls Dead Monster"
 		},
 		"animator:Godan":
@@ -162,7 +162,7 @@
 		},
 		"animator:Hisako":
 		{
-			"DESCRIPTION": "Pay !A! <W>: Fetch 1 of !M! cards in your draw pile with that <W>. || When you Exhaust or Purge a card with this card in hand: Gain [L].",
+			"DESCRIPTION": "Pay !A! <W>: Fetch 1 of !M! cards in your draw pile with that <W>. || When you play a card from {Afterlife} with this card in hand: Gain [L].",
 			"NAME": "Hisako"
 		},
 		"animator:IrieMiyuki":
@@ -489,7 +489,7 @@
         },
 		"animator:KenzoTenma":
 		{
-			"DESCRIPTION": "Multiply this card's damage by <B> or <O> (whichever is lower). || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
+			"DESCRIPTION": "Deal +!S! damage per <O> you have (!X!). || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
 			"NAME": "Kenzo Tenma"
 		},
 		"animator:Kirby":
@@ -743,7 +743,8 @@
 		{
 			"DESCRIPTION": "Gain !S! [Vitality]. ** At end of turn: Gain !M! [Support Damage]. || {0}+ [Support Damage]: Remove this and add {Inverse Origami} to ** your draw pile.",
 			"EXTENDED_DESCRIPTION": ["At end of turn: gain #b{0} Support Damage. If you have at least #b{1} Support Damage, remove this power and add #yInverse #yOrigami to your draw pile."],
-			"NAME": "Origami Tobiichi"
+			"NAME": "Origami Tobiichi",
+			"UPGRADE_DESCRIPTION": "Gain !S! [Vitality] and [Orb Slot]. ** At end of turn: Gain !M! [Support Damage]. || {0}+ [Support Damage]: Remove this and add {Inverse Origami} to ** your draw pile."
 		},
 		"animator:ReineMurasame":
 		{
@@ -799,7 +800,7 @@
 		"animator:AyakaKamisato":
 		{
 			"DESCRIPTION": "Gain !M! [Self-Immolation]. If this card ends the battle: Lose !S! [HP]. ** <LIM>. If you have {0} [Delayed Damage] any time this turn: Play {Sheer Cold}.",
-			"EXTENDED_DESCRIPTION": ["If you gain [Self-Immolation] and at least #b{0} [Delayed Damage] any time this turn: Play #ySheer #yCold"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
+			"EXTENDED_DESCRIPTION": ["If you gain at least #b{0} [Delayed Damage] any time this turn: Play #ySheer #yCold"," NL If you have [Self-Immolation] and at least #b{0} [Delayed Damage] at any time this turn: Play #ySheer #yCold."],
 			"NAME": "Ayaka Kamisato"
 		},
 		"animator:BarbaraPegg":
@@ -958,7 +959,7 @@
 		},
 		"animator:Thoma":
 		{
-			"DESCRIPTION": "Gain +!M! [Block] if you have [Burning] or [Vulnerable]. || <SLM>. When drawn: Apply !S! [Burning] to ALL enemies.",
+			"DESCRIPTION": "Gain +!M! [Block] if you ** have [Burning] or [Vulnerable]. || <SLM>. When drawn: Apply !S! [Burning] to ALL enemies.",
 			"NAME": "Thoma"
 		},
 		"animator:Traveler_Aether":
@@ -1021,7 +1022,7 @@
 	{
 		"animator:AkaneSenri":
 		{
-			"DESCRIPTION": "!M! random cards gain [~Haste]. Whenever you Shuffle your deck: repeat this and gain !S! [G]. || Once per turn, pay 7 <L>: Channel [Dark]. Trigger it once for every card in hand.",
+			"DESCRIPTION": "!M! random cards gain [~Haste]. Whenever you Shuffle your deck: Repeat this and gain !S! [G]. || Once per turn, pay 7 <L>: Channel [Dark]. Trigger it once for every card in hand.",
 			"EXTENDED_DESCRIPTION": [" Whenever you shuffle your deck: Give [~Haste] to #b{0} random cards and gain #b{1} [G]. || Pay #b{2} [A-Light]: Channel 1 [Dark]. Trigger it once for every card in hand."],
 			"NAME": "Akane Senri"
 		},
@@ -1092,7 +1093,7 @@
 		},
 		"animator:ToukaNishikujou":
 		{
-			"DESCRIPTION": "Obtain !M! [T-Knife]. Give them +1 Scaling of the {Current Affinity}. || On Discard: Cycle !S! card(s).",
+			"DESCRIPTION": "Obtain !M! [T-Knife]. Give them +1 Scaling of the {Current Affinity}. || On Discard: Cycle !S! card.",
 			"NAME": "Touka Nishikujou"
 		},
 		"animator:YoshinoHaruhiko":
@@ -1155,7 +1156,7 @@
 		},
 		"animator:MeguKakizaki":
 		{
-			"DESCRIPTION": "Transfer !M! [Delayed Damage] from you to a random enemy. If you had none: Recover !B! [HP] and Exhaust. || !A! <D>. On Exhaust: Apply !S! [Vulnerable] to ALL enemies.",
+			"DESCRIPTION": "Transfer !M! [Delayed Damage] from you to a random enemy. || !A! <D>. On Exhaust: Apply !S! [Vulnerable] to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["Exhaust a curse to recover HP."],
 			"NAME": "Megu Kakizaki"
 		},
@@ -1323,9 +1324,10 @@
 		},
 		"animator:SatoriKomeiji":
 		{
-			"DESCRIPTION": "Your draw pile is viewed in order. At the start of turn: Move !M! card(s) in your draw pile to the top. || <LIM>. !A! <W>: Gain !S! {Nirvana}.",
+			"DESCRIPTION": "Your draw pile is viewed in order. At the start of turn: Move !M! card(s) in your draw pile to the top. || <LIM>. !A! <W>: Play {Nirvana}.",
 			"EXTENDED_DESCRIPTION": ["At the start of your turn, move #b{0} card(s) in your draw pile to the top. Your draw pile is viewed in order."],
-			"NAME": "Satori Komeiji"
+			"NAME": "Satori Komeiji",
+			"UPGRADE_DESCRIPTION": "Your draw pile is viewed in order. At the start of turn: Move !M! card(s) in your draw pile to the top. || <LIM>. !A! <W>: Play {Mental Fortress}."
 		},
 		"animator:SuikaIbuki":
 		{
@@ -1381,7 +1383,7 @@
 		},
 		"animator:HououinKyouma":
 		{
-			"DESCRIPTION": "Add a copy of !M! card(s) played this combat your draw pile. || <LIM>. When drawn: Gain !S! [S] and add {Time Paradox} to your discard pile.",
+			"DESCRIPTION": "Add a copy of a card played this combat your draw pile. || <LIM>. When drawn: Gain !S! [S] and add {Time Paradox} to your draw pile.",
 			"NAME": "Hououin Kyouma"
 		},
 		"animator:Kira":
@@ -1433,7 +1435,7 @@
 	{
 		"animator:Canti":
 		{
-			"DESCRIPTION": "Deal additional damage equal to the enemy's current attack damage. || <slm>. If the enemy is not attacking: Gain !M! [T].",
+			"DESCRIPTION": "Deal additional damage equal to the enemy's current attack damage. || <slm>. If the enemy is not attacking: Gain !M! [S].",
 			"NAME": "Canti"
 		},
 		"animator:Kuroyukihime":
@@ -1761,7 +1763,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "Apply 1 [Vulnerable]. || <RS>: Gain +!M! <G>. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Apply 1 [Vulnerable]. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -2436,9 +2438,10 @@
 		},
 		"animator:HomuraAkemi":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Homulily} || Purge any Curse in play to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
+			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Homulily} || Purge a Curse in play to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
 			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), Obtain #b1 of #b2 cards from your deck. It costs #b1 less and #yPurges on use."],
-			"NAME": "Homura Akemi"
+			"NAME": "Homura Akemi",
+			"UPGRADE_DESCRIPTION": "<CDN>: Exhaust and Obtain {Homulily} || Purge a Curse anywhere to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact]."
 		},
 		"animator:HomuraAkemi_Homulily":
 		{
@@ -2581,7 +2584,7 @@
 		},
 		"animator:FielNirvalen":
 		{
-			"DESCRIPTION": "On your first Match each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose 1 of !S! {<W> Tokens} to add to your draw pile.",
+			"DESCRIPTION": "On your first Match each turn: ** Scry 1. || Once per turn, when you shuffle your draw pile: Choose 1 of !S! {<W> Tokens} to add to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["On your first #b{0} #yMatches each turn: Scry 1. || Once per turn, when you shuffle your draw pile: Choose #b{0} of 3 <W> #yTokens to add to your draw pile."],
 			"NAME": "Fiel Nirvalen"
 		},
@@ -2724,7 +2727,7 @@
 		},
 		"animator:MumenRider":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). ** Next turn: Gain !S! [Block]. || On Exhaust: Fetch this in !C! turn(s).",
+			"DESCRIPTION": "Cycle !M! card(s). ** Next turn: Gain !S! [Block]. || On Exhaust: Fetch this in !C! turns.",
 			"NAME": "Mumen Rider"
 		},
 		"animator:Saitama":
@@ -3044,7 +3047,7 @@
 		},
 		"animator:Enchantment2":
 		{
-			"DESCRIPTION": "Once per turn, pay !S! [E]: A random {Affinity} ** gains +!M!.",
+			"DESCRIPTION": "Once per turn, Pay !S! [E]: A random {Affinity} ** gains +!M!.",
 			"EXTENDED_DESCRIPTION":
 			[
 				"Once per turn, Pay !S! [E]: ** Gain +!M! <R>.",
@@ -3053,17 +3056,17 @@
 				"Once per turn, Pay !S! [E]: ** Gain +!M! <O>.",
 				"Once per turn, Pay !S! [E]: ** Gain +!M! <L>.",
 				"Once per turn, Pay !S! [E]: ** Gain +!M! <D>.",
-				"Once per turn, Pay !S! [E]: ** Two random {Affinities} ** gain +!M!."
+				"Once per turn, Pay !S! [E]: ** Two random <W> gain +!M!."
 			],
 			"NAME": "Affinities"
 		},
 		"animator:Enchantment3":
 		{
-			"DESCRIPTION": "Once per turn, Pay !S! <W>: Reduce your leftmost {Common Debuff} by !M! (double this for [Delayed Damage]).",
+			"DESCRIPTION": "Once per turn, Pay !S! <W>: Reduce your leftmost {Common Debuff} by !M!.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per turn, Pay !S! <W>: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy (double this for [Delayed Damage]).",
-				"Once per turn, Pay !S! <W>: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy (double this for [Delayed Damage]).",
+				"Once per turn, Pay !S! <W>: ** Transfer !M! of your leftmost {Common Debuff} to a random enemy.",
+				"Once per turn, Pay !S! <W>: ** Transfer !M! of your rightmost {Common Debuff} to a random enemy.",
 				"Once per turn, Pay !S! <W>: Remove your leftmost {Common Debuff}.",
 				"Once per turn, Pay !S! <W>: Remove your rightmost {Common Debuff}.",
 				"Once per turn, Pay !S! <W> and lose {0} [Block]: Reduce your highest debuff by !M!.",
@@ -3084,6 +3087,21 @@
 				"Once per turn, pay !S! <D>: Gain !M! [D]."
 			],
 			"NAME": "Powers"
+		},
+		"animator:Enchantment5":
+		{
+			"DESCRIPTION": "Once per turn, Pay !S! <W>: ** Reroll the {Current} and {Next Affinities}.",
+			"EXTENDED_DESCRIPTION":
+			[
+				"Once per turn, pay !S! <R>: ** Set the {Current} and {Next Affinities} to <R>.",
+				"Once per turn, pay !S! <G>: ** Set the {Current} and {Next Affinities} to <G>.",
+				"Once per turn, pay !S! <B>: ** Set the {Current} and {Next Affinities} to <B>.",
+				"Once per turn, pay !S! <O>: ** Set the {Current} and {Next Affinities} to <O>.",
+				"Once per turn, pay !S! <L>: ** Set the {Current} and {Next Affinities} to <L>.",
+				"Once per turn, pay !S! <D>: ** Set the {Current} and {Next Affinities} to <D>.",
+				"Once per turn, Pay !S! <W>: ** Set the {Current} and {Next Affinities} to 1 of 2 <W>."
+			],
+			"NAME": "Matches"
 		}
 	},
 

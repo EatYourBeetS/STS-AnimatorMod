@@ -22,8 +22,8 @@ import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.ColorlessFragment;
-import eatyourbeets.relics.animator.LivingPicture;
-import eatyourbeets.relics.animator.VividPicture;
+import eatyourbeets.relics.animator.UsefulBox;
+import eatyourbeets.relics.animator.VeryUsefulBox;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.TheEgnaroPiece;
 import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
@@ -128,13 +128,13 @@ public class TheMaskedTraveler2 extends EYBEvent
                 {
                     event.startingRelicsCache.add(relic);
                 }
-                else if (relic instanceof VividPicture)
+                else if (relic instanceof VeryUsefulBox)
                 {
-                    event.startingRelicsCache.add(new VividPicture(((VividPicture) relic).enchantment));
+                    event.startingRelicsCache.add(new VeryUsefulBox(((VeryUsefulBox) relic).enchantment));
                 }
-                else if (relic instanceof LivingPicture)
+                else if (relic instanceof UsefulBox)
                 {
-                    event.startingRelicsCache.add(new LivingPicture(((LivingPicture) relic).enchantment));
+                    event.startingRelicsCache.add(new UsefulBox(((UsefulBox) relic).enchantment));
                 }
             }
 

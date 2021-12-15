@@ -31,7 +31,7 @@ public class AyakaKamisato extends AnimatorCard {
     public static final EYBCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, EYBAttackType.Brutal).SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 15;
+    public static final int THRESHOLD = 20;
 
     public AyakaKamisato() {
         super(DATA);
@@ -89,7 +89,7 @@ public class AyakaKamisato extends AnimatorCard {
             }
             else {
                 GameActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
-                if (info.CanActivateLimited) {
+                if (info.CanActivateLimited && !CheckCondition(0)) {
                     GameActions.Bottom.StackPower(new AyakaKamisatoPower(p, 1));
                 }
             }
@@ -109,7 +109,7 @@ public class AyakaKamisato extends AnimatorCard {
         public void onInitialApplication()
         {
             super.onInitialApplication();
-            CheckCondition();
+            CheckCondition(0);
         }
 
 
@@ -125,21 +125,7 @@ public class AyakaKamisato extends AnimatorCard {
         {
             super.onApplyPower(power, target, source);
 
-            CheckCondition();
-        }
-
-        private void CheckCondition() {
-            if (GameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID) > 0 && CombatStats.TryActivateLimited(AyakaKamisato.DATA.ID))
-            {
-                AbstractCard c = new SheerCold();
-                c.applyPowers();
-                if (GameUtilities.IsPlayerTurn()) {
-                    GameActions.Bottom.PlayCopy(c, null);
-                }
-                else {
-                    c.use(player, null);
-                }
-            }
+            CheckCondition(power.owner == player && DelayedDamagePower.POWER_ID.equals(power.ID) ? power.amount : 0);
         }
 
         @Override
@@ -147,5 +133,21 @@ public class AyakaKamisato extends AnimatorCard {
         {
             description = FormatDescription(0, THRESHOLD);
         }
+    }
+
+    protected static boolean CheckCondition(int extraAmount) {
+        if (GameUtilities.GetPowerAmount(player, DelayedDamagePower.POWER_ID) + extraAmount >= THRESHOLD && CombatStats.TryActivateLimited(AyakaKamisato.DATA.ID))
+        {
+            AbstractCard c = new SheerCold();
+            c.applyPowers();
+            if (GameUtilities.IsPlayerTurn()) {
+                GameActions.Bottom.PlayCopy(c, null);
+            }
+            else {
+                c.use(player, null);
+            }
+            return true;
+        }
+        return false;
     }
 }

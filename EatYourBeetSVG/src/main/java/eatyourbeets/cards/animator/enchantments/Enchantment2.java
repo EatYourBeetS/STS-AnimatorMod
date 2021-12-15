@@ -16,7 +16,12 @@ public class Enchantment2 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 3, 1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
     }
 
     @Override
@@ -30,7 +35,7 @@ public class Enchantment2 extends Enchantment
     {
         currentAffinity = GetAffinity();
         if (currentAffinity == null) {
-            currentAffinity = GameUtilities.GetRandomElement(Affinity.Extended());
+            currentAffinity = GameUtilities.GetRandomElement(Affinity.Basic());
         }
         GameActions.Bottom.AddAffinity(currentAffinity, magicNumber);
 

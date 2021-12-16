@@ -21,8 +21,10 @@ public class AnimatorRuntimeLoadout
     public final int ID;
     public final boolean IsBeta;
     public final AnimatorLoadout Loadout;
+    public final AnimatorTrophies Trophies;
     public final Map<String, AbstractCard> BaseCards = new HashMap<>();
     public final Map<String, AbstractCard> ExpandedCards = new HashMap<>();
+    public final EYBCardTooltip TrophyTooltip;
     public final EYBCardTooltip UnlockTooltip;
 
     public int bonus;
@@ -52,7 +54,10 @@ public class AnimatorRuntimeLoadout
         this.IsBeta = loadout.IsBeta;
         this.Loadout = loadout;
         this.canEnableExpansion = loadout.CanEnableExpansion();
+        this.Trophies = Loadout.GetTrophies();
+
         this.expansionEnabled = GR.Animator.Config.ExpandedSeries.Get().contains(loadout.Series);
+        this.TrophyTooltip = new EYBCardTooltip(GR.Animator.Strings.Trophies.Bronze, Trophies != null && Trophies.Trophy1 >= 0 ? GR.Animator.Strings.Trophies.BronzeFormatted(Trophies.Trophy1) : GR.Animator.Strings.Trophies.BronzeLocked);
         this.UnlockTooltip = new EYBCardTooltip(GR.Animator.Strings.CharSelect.RightText, GR.Animator.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, GR.Animator.GetUnlockLevel()));
         InitializeCards(loadout.Series);
 
@@ -140,11 +145,13 @@ public class AnimatorRuntimeLoadout
         }
         else
         {
+            String trophyString = (Trophies.Trophy1 > -1 ? Trophies.Trophy1 : "--") + "/" + AnimatorTrophies.MAXIMUM_TROPHY;
             card = builder
             .SetText(Loadout.Name,
-                    GR.Animator.Strings.SeriesSelection.ContainsNCards("!M!"),
-                    GR.Animator.Strings.SeriesSelection.ContainsNCards("!S!"))
+                    GR.Animator.Strings.SeriesSelection.ContainsNCards_Full("!M!", trophyString),
+                    GR.Animator.Strings.SeriesSelection.ContainsNCards_Full("!S!", trophyString))
             .SetProperties(temp.type, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE).Build();
+            card.tooltips.add(TrophyTooltip);
         }
 
         if (canEnableExpansion) {

@@ -5,8 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.utilities.GameActions;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class YuriNakamura extends AnimatorCard
 {
@@ -38,8 +39,9 @@ public class YuriNakamura extends AnimatorCard
         });
 
         if (player.exhaustPile.size() > 0 && (info.IsSynergizing || TrySpendAffinity(Affinity.Light))) {
-            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
-            GameActions.Last.Motivate(player.exhaustPile).SetFilter(AfterLifeMod::IsAdded);
+            for (int i = 0; i < magicNumber; i++) {
+                GameActions.Last.Motivate(player.exhaustPile).SetFilter(c -> c.hasTag(AFTERLIFE));
+            }
         }
     }
 }

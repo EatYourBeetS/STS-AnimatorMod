@@ -9,9 +9,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
@@ -19,6 +17,8 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class Godan extends AnimatorCard
 {
@@ -52,7 +52,7 @@ public class Godan extends AnimatorCard
         GameActions.Bottom.StackPower(new GodanPower(p, magicNumber, secondaryValue));
     }
 
-    public static class GodanPower extends AnimatorClickablePower implements OnAfterlifeSubscriber, OnPurgeSubscriber
+    public static class GodanPower extends AnimatorClickablePower implements OnPurgeSubscriber
     {
         public int secondaryValue;
 
@@ -70,7 +70,6 @@ public class Godan extends AnimatorCard
         {
             super.onInitialApplication();
 
-            CombatStats.onAfterlife.Subscribe(this);
             CombatStats.onPurge.Subscribe(this);
         }
 
@@ -86,7 +85,6 @@ public class Godan extends AnimatorCard
         {
             super.onRemove();
 
-            CombatStats.onAfterlife.Unsubscribe(this);
             CombatStats.onPurge.Subscribe(this);
         }
 
@@ -95,7 +93,7 @@ public class Godan extends AnimatorCard
         {
             final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
-            RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>(JUtils.Filter(AbstractDungeon.commonCardPool.group, AfterLifeMod::IsAdded));
+            RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>(JUtils.Filter(AbstractDungeon.commonCardPool.group, c -> c.hasTag(AFTERLIFE)));
             for (int i = 0; i < secondaryValue; i++)
             {
                 final AbstractCard card = possiblePicks.Retrieve(rng);
@@ -120,14 +118,7 @@ public class Godan extends AnimatorCard
 
         @Override
         public void OnPurge(AbstractCard card, CardGroup source) {
-            if (source == player.exhaustPile) {
-                GameActions.Bottom.GainBlock(amount);
-            }
-        }
-
-        @Override
-        public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
-            GameActions.Bottom.GainBlock(amount * 2);
+            GameActions.Bottom.GainBlock(amount);
         }
     }
 }

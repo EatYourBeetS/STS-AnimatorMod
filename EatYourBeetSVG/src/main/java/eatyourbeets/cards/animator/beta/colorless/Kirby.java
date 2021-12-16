@@ -15,15 +15,13 @@ import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.subscribers.OnCostChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnTagChangedSubscriber;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class Kirby extends AnimatorCard implements
         OnAddToDeckListener,
@@ -385,8 +383,8 @@ public class Kirby extends AnimatorCard implements
         } else if (card.exhaust || card.exhaustOnUseOnce) {
             SetExhaust(true);
         }
-        if (AfterLifeMod.IsAdded(card) && !card.hasTag(GR.Enums.CardTags.PURGE)) {
-            AfterLifeMod.Add(this);
+        if (card.hasTag(AFTERLIFE) && !card.hasTag(GR.Enums.CardTags.PURGE)) {
+            SetAfterlife(true, GameUtilities.InGame() && GameUtilities.InBattle());
         }
         if (card.hasTag(AUTOPLAY)) {
             SetAutoplay(true);

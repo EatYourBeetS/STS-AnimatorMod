@@ -73,6 +73,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnClickablePowerUsed> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCooldownTriggeredSubscriber> onCooldownTriggered = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCostChangedSubscriber> onCostChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnDamageActionSubscriber> onDamageAction = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEndOfTurnSubscriber> onEndOfTurn = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
@@ -82,6 +83,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnGainTriggerablePowerBonusSubscriber> onGainTriggerablePowerBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnLoseHpSubscriber> onLoseHp = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnOrbApplyLockOnSubscriber> onOrbApplyLockOn = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnPurgeSubscriber> onPurge = RegisterEvent(new GameEvent<>());
@@ -277,6 +279,22 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         return damage;
+    }
+
+    public static void OnDamageAction(AbstractGameAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect)
+    {
+        for (OnDamageActionSubscriber s : onDamageAction.GetSubscribers())
+        {
+            s.OnDamageAction(action, target, info, effect);
+        }
+    }
+
+    public static void OnApplyPowerAction(AbstractGameAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect)
+    {
+        for (OnDamageActionSubscriber s : onDamageAction.GetSubscribers())
+        {
+            s.OnDamageAction(action, target, info, effect);
+        }
     }
 
     public static void OnCardReset(AbstractCard card)
@@ -628,6 +646,15 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
     }
 
+    public static int OnOrbApplyLockOn(int retVal, AbstractCreature target, int dmg)
+    {
+        for (OnOrbApplyLockOnSubscriber s : onOrbApplyLockOn.GetSubscribers())
+        {
+            retVal = s.OnOrbApplyLockOn(retVal, target, dmg);
+        }
+        return retVal;
+    }
+
     public static void OnOrbPassiveEffect(AbstractOrb orb)
     {
         for (OnOrbPassiveEffectSubscriber s : onOrbPassiveEffect.GetSubscribers())
@@ -906,6 +933,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             p.OnApplyPower(power, target, source);
         }
     }
+
 
     @Override
     public void updateDescription()

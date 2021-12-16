@@ -156,7 +156,7 @@ public class AnimatorLoadoutEditor extends AbstractScreen
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
         .SetText(GR.Animator.Strings.CharSelect.UnlocksAtAscension(AnimatorLoadout.GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED))
         .SetAlignment(0.5f, 0.5f)
-        .SetPosition(ScreenW(0.666f), ScreenH(0.37f))
+        .SetPosition(ScreenW(0.82f), ScreenH(0.78f))
         .SetFont(FontHelper.charDescFont, 0.9f);
     }
 

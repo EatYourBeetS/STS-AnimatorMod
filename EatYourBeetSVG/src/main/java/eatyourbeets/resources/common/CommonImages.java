@@ -16,6 +16,8 @@ public class CommonImages
     public final TextureCache CampfireOption_Enchant      = new TextureCache("images/animator/ui/campfire/Enchant.png");
     public final TextureCache CampfireOption_Kirby        = new TextureCache("images/animator/ui/campfire/Kirby.png");
     public final TextureCache Circle                      = new TextureCache("images/eyb/ui/topPanel/Circle.png");
+    public final TextureCache ControllableCardPile        = new TextureCache("images/eyb/ui/topPanel/ControllableCardPile.png");
+    public final TextureCache ControllableCardPileBorder  = new TextureCache("images/eyb/ui/topPanel/ControllableCardPileBorder.png");
     public final TextureCache Discord                     = new TextureCache("images/eyb/ui/topPanel/Discord.png");
     public final TextureCache Draggable                   = new TextureCache("images/eyb/ui/topPanel/Draggable.png");
     public final TextureCache Edit                        = new TextureCache("images/eyb/ui/topPanel/Edit.png");

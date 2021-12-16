@@ -44,6 +44,7 @@ public class CardTooltips
     public EYBCardTooltip Trigger = FindByID("Trigger").ShowText(false);
     public EYBCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public EYBCardTooltip Void = FindByID("Void").ShowText(false);
+    public EYBCardTooltip Trophy = FindByID("Ascension Trophy").ShowText(false);
 
     public EYBCardTooltip Desecration = FindByID(Affinity.Dark.PowerName);
     public EYBCardTooltip DesecrationScaling = FindByID(Affinity.Dark.GetScalingTooltipID());
@@ -350,6 +351,8 @@ public class CardTooltips
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
         LoadFromPower(Frail, new FrailPower(null, 0, false));
+
+        Trophy.SetIcon(GR.Animator.Images.BRONZE_TROPHY.Texture());
 
         //Common Debuff/Buff require loading powers for existing tooltips
         CommonBuff.description = JUtils.JoinStrings(", ", new HashSet<>(JUtils.Map(GameUtilities.GetCommonBuffs(), ph -> "[" + ph.Tooltip.id + "]")));

@@ -14,7 +14,6 @@ import eatyourbeets.cards.animator.series.MadokaMagica.*;
 import eatyourbeets.cards.animator.special.*;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.InvertPower;
@@ -235,7 +234,7 @@ public class TakashiNatsume_Circle extends AnimatorCard
                                 for (AbstractCard card : cards) {
                                     GameActions.Bottom.MoveCard(card,player.drawPile).AddCallback(cCard -> {
                                         GameActions.Bottom.Motivate(card, 1);
-                                        AfterLifeMod.Add(card);
+                                        ((TakashiNatsume) card).SetAfterlife(true, true);
                                     });
                                 }
                             }

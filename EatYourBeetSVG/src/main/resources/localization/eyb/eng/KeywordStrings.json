@@ -42,6 +42,12 @@
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
+	"Ascension Trophy":
+	{
+		"DESCRIPTION": "The highest Ascension level at which Act 3 was cleared with this series.",
+		"NAMES": ["ascension trophy"],
+		"PROPER_NAME": "Ascension Trophy"
+	},
 	"Autoplay":
 	{
 		"DESCRIPTION": "Automatically played. Still uses [E].",
@@ -308,7 +314,7 @@
 	},
 	"Harmonic":
 	{
-	  "DESCRIPTION": "Will always #yMatch. This card will not change the #yCurrent and #yNext #yAffinities unless it would have #yMatched without #yHarmonic.",
+	  "DESCRIPTION": "Will always #yMatch.",
 	  "NAMES": ["harmonic"],
 	  "PROPER_NAME": "Harmonic"
 	},

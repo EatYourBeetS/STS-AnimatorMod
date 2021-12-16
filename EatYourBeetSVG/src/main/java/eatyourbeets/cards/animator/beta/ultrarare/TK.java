@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.subscribers.OnLoseHpSubscriber;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.*;
 
@@ -27,7 +26,7 @@ public class TK extends AnimatorCard_UltraRare implements OnLoseHpSubscriber
         SetAffinity_Red(1, 0, 2);
         SetAffinity_Light(1, 0, 2);
 
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
     }
 
     @Override
@@ -79,7 +78,7 @@ public class TK extends AnimatorCard_UltraRare implements OnLoseHpSubscriber
                         EYBCard eybCard = JUtils.SafeCast(copyOfCard, EYBCard.class);
                         if (eybCard != null) {
                             eybCard.auxiliaryData.modifiedTags.add(AFTERLIFE);
-                            AfterLifeMod.Add(eybCard);
+                            eybCard.SetAfterlife(true);
                         }
                     })
                             .IncludeMasterDeck(true)

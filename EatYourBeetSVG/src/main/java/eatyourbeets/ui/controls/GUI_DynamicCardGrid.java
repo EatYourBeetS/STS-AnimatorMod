@@ -8,15 +8,14 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import eatyourbeets.resources.GR;
 import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+// TODO make this extend GUI_CardGrid and make this take in non-AbstractCard items
 // This class is incomplete
 public class GUI_DynamicCardGrid extends GUIElement
 {

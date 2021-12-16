@@ -20,7 +20,6 @@ import java.net.URI;
 public class AnimatorCharacterSelectScreen
 {
     protected static final AnimatorLoadoutRenderer LoadoutRenderer = new AnimatorLoadoutRenderer();
-    protected static final AnimatorTrophiesRenderer TrophiesRenderer = new AnimatorTrophiesRenderer();
     protected static final AnimatorSpecialTrophiesRenderer SpecialTrophiesRenderer = new AnimatorSpecialTrophiesRenderer();
     protected static CharacterOption selectedOption;
     protected static GUI_Button DiscordButton;
@@ -100,7 +99,6 @@ public class AnimatorCharacterSelectScreen
     public static void RenderOption(CharacterOption instance, SpriteBatch sb)
     {
         LoadoutRenderer.Render(sb);
-        TrophiesRenderer.Render(sb);
         SpecialTrophiesRenderer.Render(sb);
         DiscordButton.TryRender(sb);
         SteamButton.TryRender(sb);
@@ -110,7 +108,6 @@ public class AnimatorCharacterSelectScreen
     public static void UpdateOption(CharacterOption instance)
     {
         LoadoutRenderer.Update();
-        TrophiesRenderer.Update();
         SpecialTrophiesRenderer.Update();
         DiscordButton.TryUpdate();
         SteamButton.TryUpdate();

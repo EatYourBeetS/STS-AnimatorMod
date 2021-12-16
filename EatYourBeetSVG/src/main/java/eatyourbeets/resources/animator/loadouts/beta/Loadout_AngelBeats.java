@@ -19,11 +19,11 @@ public class Loadout_AngelBeats extends AnimatorLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(HidekiHinata.DATA, 4);
         AddStarterCard(Fujimaki.DATA, 4);
+        AddStarterCard(HidekiHinata.DATA, 5);
+        AddStarterCard(Noda.DATA, 5);
         AddStarterCard(MasamiIwasawa.DATA, 5);
         AddStarterCard(Yusa.DATA, 6);
-        AddStarterCard(Noda.DATA, 5);
         AddStarterCard(YuzuruOtonashi.DATA, 6);
         AddStarterCard(YuriNakamura.DATA, 18);
         AddStarterCard(Curse_Clumsy.DATA, -3);

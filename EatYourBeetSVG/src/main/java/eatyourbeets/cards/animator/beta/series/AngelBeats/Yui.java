@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.beta.series.AngelBeats;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.beta.special.GirlDeMo;
@@ -7,11 +8,11 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
+import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class Yui extends AnimatorCard
+public class Yui extends AnimatorCard implements OnAfterlifeSubscriber
 {
     public static final EYBCardData DATA = Register(Yui.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None, true).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new GirlDeMo(), false));
@@ -25,9 +26,16 @@ public class Yui extends AnimatorCard
         SetAffinity_Light(1, 0, 1);
         SetHarmonic(true);
         SetExhaust(true);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
 
         SetAffinityRequirement(Affinity.General, 8);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+        CombatStats.onAfterlife.Subscribe(this);
     }
 
     @Override
@@ -51,8 +59,11 @@ public class Yui extends AnimatorCard
                     GameActions.Bottom.Motivate(secondaryValue);
                 }
         );
+    }
 
-        if (CheckAffinity(Affinity.General) && CombatStats.ControlPile.Contains(this))
+    @Override
+    public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
+        if (playedCard == this && CheckAffinity(Affinity.General))
         {
             GameActions.Bottom.MakeCardInDrawPile(new GirlDeMo());
         }

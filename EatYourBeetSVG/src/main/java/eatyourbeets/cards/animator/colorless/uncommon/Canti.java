@@ -23,7 +23,7 @@ public class Canti extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(2, 3, 3);
+        Initialize(2, 3, 2);
 
         SetAffinity_Orange(1);
         SetAffinity_Light(1);

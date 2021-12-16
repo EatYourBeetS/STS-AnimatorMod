@@ -7,9 +7,10 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class ShioriSekine extends AnimatorCard
 {
@@ -25,7 +26,7 @@ public class ShioriSekine extends AnimatorCard
         SetAffinity_Light(1, 0, 0);
         SetEthereal(true);
         SetExhaust(true);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
     }
 
     @Override
@@ -49,9 +50,9 @@ public class ShioriSekine extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.PlayFromPile(name, magicNumber, m, p.exhaustPile).SetOptions(true, false).SetFilter(AfterLifeMod::IsAdded).AddCallback(cards -> {
+        GameActions.Top.PlayFromPile(name, magicNumber, m, p.exhaustPile).SetOptions(true, false).SetFilter(c -> c.hasTag(AFTERLIFE)).AddCallback(cards -> {
             for (AbstractCard c : cards) {
-                GameActions.Last.Purge(c);
+                GameActions.Top.Purge(c);
             }
         });
     }

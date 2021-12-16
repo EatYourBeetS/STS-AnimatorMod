@@ -198,7 +198,6 @@ public class AnimatorLoadoutRenderer extends GUIElement
         RefreshInternal(true);
 
         SeriesButton.SetActive(availableLoadouts.size() > 1);
-        AnimatorCharacterSelectScreen.TrophiesRenderer.Refresh(loadout);
         AnimatorCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
     }
 

@@ -4,28 +4,32 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.markers.DynamicGridObject;
 import eatyourbeets.utilities.GenericCallback;
 
-public class ControllableCard
+public class ControllableCard implements DynamicGridObject
 {
-    public enum State
-    {
-        Deleted,
-        Enabled,
-        Disabled
-    }
-
+    public ControllableCardPile SourcePile;
     public final AbstractCard card;
-    public State state;
 
+    protected boolean enabled;
+    protected FuncT1<Boolean, ControllableCard> useCondition;
     protected GenericCallback<ControllableCard> onUpdate;
     protected GenericCallback<ControllableCard> onSelect;
     protected GenericCallback<ControllableCard> onDelete;
 
-    public ControllableCard(AbstractCard card)
+    public ControllableCard(ControllableCardPile sourcePile, AbstractCard card)
     {
+        this.SourcePile = sourcePile;
         this.card = card;
-        this.state = State.Enabled;
+        this.enabled = true;
+    }
+
+    public ControllableCard SetUseCondition(FuncT1<Boolean, ControllableCard> useCondition) {
+        this.useCondition = useCondition;
+
+        return this;
     }
 
     public <S> ControllableCard OnUpdate(S state, ActionT2<S, ControllableCard> onCompletion)
@@ -70,27 +74,24 @@ public class ControllableCard
         return this;
     }
 
-    public boolean IsEnabled()
-    {
-        return state == State.Enabled;
+    public boolean CanUse() {
+        return enabled && card != null && (useCondition == null || useCondition.Invoke(this));
     }
 
-    public boolean IsDeleted()
+    public boolean IsEnabled()
     {
-        return state == State.Deleted;
+        return enabled;
     }
+
 
     public void SetEnabled(boolean enabled)
     {
-        if (!IsDeleted())
-        {
-            state = (enabled ? State.Enabled : State.Disabled);
-        }
+        this.enabled = enabled;
     }
 
     public void Delete()
     {
-        state = State.Deleted;
+        SourcePile.Remove(this);
 
         if (onDelete != null)
         {
@@ -117,15 +118,15 @@ public class ControllableCard
     public void Update(ControllableCardPile pile)
     {
         card.update();
-
-        if (card.hb.hovered)
-        {
-            pile.RefreshTimer();
-        }
     }
 
-    public void Render(SpriteBatch sb, ControllableCardPile pile)
+    public void Render(SpriteBatch sb)
     {
         card.render(sb);
+    }
+
+    @Override
+    public AbstractCard GetCard() {
+        return card;
     }
 }

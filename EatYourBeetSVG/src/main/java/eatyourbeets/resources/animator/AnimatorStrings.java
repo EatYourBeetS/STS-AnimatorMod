@@ -218,14 +218,14 @@ public class AnimatorStrings
             return JUtils.Format(Strings.TEXT[0], cardCount);
         }
 
-        public final String ContainsNCards_Promoted(Object cardCount)
+        public final String ContainsNCards_Full(Object cardCount, Object ascensionLevel)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1] + ".";
+            return ContainsNCards(cardCount) + " NL  NL " + GR.Tooltips.Trophy + ": " + ascensionLevel;
         }
 
         public final String ContainsNCards_Beta(Object cardCount)
         {
-            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[2] + ".";
+            return ContainsNCards(cardCount) + " NL " + Strings.TEXT[1] + ".";
         }
 
         public final String SeriesSelected(Object cardCount)
@@ -245,9 +245,10 @@ public class AnimatorStrings
         public final String ShowCardPool = Strings.TEXT[4];
         public final String Save = Strings.TEXT[5];
         public final String EnableExpansion = Strings.TEXT[6];
-        public final String AllExpansionEnable = Strings.TEXT[7];
-        public final String AllExpansionDisable = Strings.TEXT[8];
-        public final String Cancel = Strings.TEXT[9];
+        public final String DisableExpansion = Strings.TEXT[7];
+        public final String AllExpansionEnable = Strings.TEXT[8];
+        public final String AllExpansionDisable = Strings.TEXT[9];
+        public final String Cancel = Strings.TEXT[10];
 
         public final String SelectRandom(int cards)
         {
@@ -277,6 +278,8 @@ public class AnimatorStrings
         public final String Uses = Strings.TEXT[2];
         public final String Rerolls = Strings.TEXT[3];
         public final String Experience = Strings.TEXT[4];
+        public final String ControlPile = Strings.TEXT[5];
+        public final String ControlPileDescription = Strings.TEXT[6];
     }
 
     public class CardMods
@@ -561,13 +564,18 @@ public class AnimatorStrings
         public final String BronzeDescription = Strings.TEXT[3];
         public final String SilverDescription = Strings.TEXT[4];
         public final String GoldDescription = Strings.TEXT[5];
-        public final String SilverKancolle = Strings.TEXT[6];
-        public final String GoldKancolle = Strings.TEXT[7];
-        public final String SilverAccelWorld = Strings.TEXT[8];
+        public final String BronzeLocked = Strings.TEXT[6];
+        public final String SilverLocked = Strings.TEXT[7];
+        public final String GoldLocked = Strings.TEXT[8];
         public final String GoldAccelWorld = Strings.TEXT[9];
         public final String PlatinumHint = Strings.TEXT[10];
         public final String PlatinumDescription = Strings.TEXT[11];
         public final String Platinum = Strings.TEXT[12];
+
+        public final String BronzeFormatted(int ascension)
+        {
+            return JUtils.Format(BronzeDescription, ascension);
+        }
     }
 
     public class Tutorial

@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
@@ -23,7 +24,7 @@ public class AuraBellaFiora extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 2, 3);
+        Initialize(0, 4, 3, 3);
         SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1, 0, 1);
@@ -40,14 +41,13 @@ public class AuraBellaFiora extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.Motivate().SetFilter(GameUtilities::IsHighCost);
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(true, true, true).AddCallback(cards -> {
-            if (cards.size() > 0) {
-                GameActions.Delayed.Motivate().SetFilter(GameUtilities::IsHighCost).AddCallback(c -> {
-                    if (MareBelloFiore.DATA.ID.equals(c.cardID) && info.TryActivateLimited()) {
-                        GameActions.Bottom.DrawNextTurn(secondaryValue);
-                    }
-                });
+            for (AbstractCard c : cards) {
+                if (MareBelloFiore.DATA.ID.equals(c.cardID)) {
+                    GameActions.Last.PlayCard(c, player.discardPile, m);
+                }
             }
         });
     }

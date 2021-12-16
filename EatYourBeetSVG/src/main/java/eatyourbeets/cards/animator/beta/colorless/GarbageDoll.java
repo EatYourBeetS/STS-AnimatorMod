@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -31,7 +30,7 @@ public class GarbageDoll extends AnimatorCard
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Silver(1);
         SetExhaust(true);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
     }
 
 
@@ -57,8 +56,7 @@ public class GarbageDoll extends AnimatorCard
                 {
                     CombatStats.TryActivateLimited(this.cardID);
                     GameEffects.Queue.ShowCardBriefly(card.makeStatEquivalentCopy());
-                    AfterLifeMod.Add(card);
-                    AfterLifeMod.AfterlifeAddToControlPile(card);
+                    ((Ushio) card).SetAfterlife(true, true);
                 }
                 else
                 {

@@ -2,12 +2,14 @@ package eatyourbeets.powers.animator;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.orbs.*;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
@@ -15,8 +17,11 @@ import eatyourbeets.cards.base.EYBCardAffinities;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
+import eatyourbeets.interfaces.subscribers.OnDamageActionSubscriber;
 import eatyourbeets.orbs.animator.*;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.resources.GR;
@@ -31,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class MindControlPower extends AnimatorClickablePower
+public class MindControlPower extends AnimatorClickablePower implements OnDamageActionSubscriber, OnTryApplyPowerListener
 {
     public static final String POWER_ID = CreateFullID(MindControlPower.class);
     public static final Color ACTIVE_COLOR = new Color(0.5f, 1f, 0.5f, 1f);
@@ -139,9 +144,17 @@ public class MindControlPower extends AnimatorClickablePower
     }
 
     @Override
+    public void onInitialApplication()
+    {
+        super.onInitialApplication();
+        CombatStats.onDamageAction.Subscribe(this);
+    }
+
+    @Override
     public void onRemove()
     {
         super.onRemove();
+        CombatStats.onDamageAction.Unsubscribe(this);
 
         GameActions.Last.Callback(() ->
         {
@@ -430,7 +443,7 @@ public class MindControlPower extends AnimatorClickablePower
 
     }
 
-    private int GetBaseDamage() {
+    protected int GetBaseDamage() {
         final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null) {
             try {
@@ -450,6 +463,47 @@ public class MindControlPower extends AnimatorClickablePower
             }
         }
         return 1;
+    }
+
+
+
+    @Override
+    public void OnDamageAction(AbstractGameAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
+        if (active) {
+            boolean isOwner = action.source.powers.contains(this);
+            if (isOwner && canRedirect) {
+                AbstractCreature newT = GameUtilities.GetRandomEnemy(true);
+                if (newT == null) {
+                    newT = action.source;
+                }
+                info.applyPowers(action.source, newT);
+                action.target = newT;
+            }
+            else if (!isOwner && canIntercept) {
+                info.applyPowers(action.source, owner);
+                action.target = owner;
+            }
+        }
+    }
+
+    @Override
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action) {
+        if (active) {
+            boolean isOwner = action.source.powers.contains(this);
+            if (isOwner && canRedirect) {
+                AbstractCreature newT = GameUtilities.GetRandomEnemy(true);
+                if (newT == null) {
+                    newT = action.source;
+                }
+                power.owner = newT;
+                action.target = newT;
+            }
+            else if (!isOwner && canIntercept) {
+                power.owner = owner;
+                action.target = owner;
+            }
+        }
+        return true;
     }
 
     private static class OrbConstructor {

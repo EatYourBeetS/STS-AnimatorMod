@@ -4,10 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.interfaces.subscribers.OnDamageOverrideSubscriber;
+import eatyourbeets.interfaces.subscribers.OnOrbApplyLockOnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.CommonPower;
 
-public class DesecratedPower extends CommonPower implements OnDamageOverrideSubscriber
+public class DesecratedPower extends CommonPower implements OnDamageOverrideSubscriber, OnOrbApplyLockOnSubscriber
 {
     public static final String POWER_ID = CreateFullID(DesecratedPower.class);
 
@@ -31,6 +32,7 @@ public class DesecratedPower extends CommonPower implements OnDamageOverrideSubs
     {
         super.onInitialApplication();
 
+        CombatStats.onOrbApplyLockOn.Subscribe(this);
         CombatStats.onDamageOverride.Subscribe(this);
     }
 
@@ -39,6 +41,7 @@ public class DesecratedPower extends CommonPower implements OnDamageOverrideSubs
     {
         super.onRemove();
 
+        CombatStats.onOrbApplyLockOn.Unsubscribe(this);
         CombatStats.onDamageOverride.Unsubscribe(this);
     }
 
@@ -70,5 +73,14 @@ public class DesecratedPower extends CommonPower implements OnDamageOverrideSubs
     public void updateDescription()
     {
         this.description = FormatDescription(0, GetDamageReceivedIncrease(amount) * 100, GetDamageDealtDecrease(amount) * 100);
+    }
+
+    @Override
+    public int OnOrbApplyLockOn(int retVal, AbstractCreature target, int dmg) {
+        if (target == owner) {
+            return (int) (retVal * (1f + GetDamageReceivedIncrease(amount)));
+        }
+
+        return retVal;
     }
 }

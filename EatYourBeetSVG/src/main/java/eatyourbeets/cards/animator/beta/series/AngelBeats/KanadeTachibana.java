@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -44,10 +43,10 @@ public class KanadeTachibana extends AnimatorCard
                         {
                             card.affinities.Add(Affinity.Light, 1);
                             card.flash();
-                        }
 
-                        if (canGiveAfterlife) {
-                            AfterLifeMod.Add(card);
+                            if (canGiveAfterlife) {
+                                card.SetAfterlife(true, true);
+                            }
                         }
                     }
                 }

@@ -7,8 +7,6 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
@@ -23,13 +21,13 @@ public class MasamiIwasawa extends AnimatorCard
         super(DATA);
 
         Initialize(0, 12, 1, 2);
-        SetUpgrade(0, 3, 0, 0);
+        SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 0, 2);
 
         SetEthereal(true);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
     }
 
     @Override
@@ -42,7 +40,7 @@ public class MasamiIwasawa extends AnimatorCard
 
         if (IsStarter())
         {
-            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), CombatStats.ControlPile.Contains(this) ? secondaryValue : magicNumber);
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
     }
 }

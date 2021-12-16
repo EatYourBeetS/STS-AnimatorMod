@@ -14,12 +14,13 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.cardTextParsing.CTContext;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.common.CommonImages;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
+
+import static eatyourbeets.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class EYBCardText
 {
@@ -149,7 +150,7 @@ public class EYBCardText
         final float alpha = UpdateBadgeAlpha();
 
         int offset_y = 0;
-        if (AfterLifeMod.IsAdded(card))
+        if (card.hasTag(AFTERLIFE))
         {
             offset_y -= RenderBadge(sb, BADGES.Afterlife.Texture(), Colors.COLOR_AFTERLIFE, offset_y, alpha, null);
         }

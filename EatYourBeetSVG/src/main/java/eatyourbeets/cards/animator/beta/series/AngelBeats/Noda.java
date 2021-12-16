@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.common.CounterAttackPower;
 import eatyourbeets.utilities.GameActions;
@@ -23,7 +22,7 @@ public class Noda extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
 
         SetAffinityRequirement(Affinity.Red, 3);
     }

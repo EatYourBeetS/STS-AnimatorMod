@@ -2,18 +2,21 @@ package eatyourbeets.powers.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
+import eatyourbeets.interfaces.subscribers.OnDamageActionSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.Collections;
 
-public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
+public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener, OnDamageActionSubscriber
 {
     public static final String POWER_ID = CreateFullID(GeassPower.class);
 
@@ -34,6 +37,7 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     public void onRemove()
     {
         super.onRemove();
+        CombatStats.onDamageAction.Unsubscribe(this);
 
         GameActions.Last.Callback(() ->
         {
@@ -49,6 +53,7 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
     public void onInitialApplication()
     {
         super.onInitialApplication();
+        CombatStats.onDamageAction.Subscribe(this);
 
         final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && !GameUtilities.IsAttacking(monster.intent))
@@ -68,5 +73,13 @@ public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
         super.atEndOfTurn(isPlayer);
 
         SetEnabled(false);
+    }
+
+    @Override
+    public void OnDamageAction(AbstractGameAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect) {
+        if (action.source.powers.contains(this) && enabled) {
+            info.applyPowers(action.source, action.source);
+            action.target = action.source;
+        }
     }
 }

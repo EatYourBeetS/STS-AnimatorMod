@@ -4,6 +4,7 @@ import eatyourbeets.utilities.JUtils;
 
 public class AnimatorTrophies
 {
+    public static final int MAXIMUM_TROPHY = 20;
     public int ID;
     public int Trophy1 = -1;
     public int Trophy2 = -1;

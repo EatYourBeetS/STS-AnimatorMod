@@ -515,5 +515,6 @@ public abstract class AnimatorLoadout
     protected void AddStarterCard(EYBCardData data, Integer value)
     {
         starterCards.add(new TupleT2<>(data, value));
+        data.MarkSeen();
     }
 }

@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -210,12 +209,6 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                         return;
                     }
             }
-        }
-
-        // TODO: Remove this from here
-        if (CombatStats.ControlPile.Contains(card))
-        {
-            CombatStats.ControlPile.RefreshTimer();
         }
 
         GR.UI.AddPostRender(this::Render);

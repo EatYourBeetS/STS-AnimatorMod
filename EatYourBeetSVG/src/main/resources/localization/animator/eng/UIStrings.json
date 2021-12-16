@@ -150,12 +150,12 @@
 	  "Bronze",
 	  "Silver",
 	  "Gold",
-	  "Choose this starting deck and complete act 3.",
-	  "Complete act 3 with at least #yhalf of the cards in your deck being from this series.",
-	  "Complete act 3 with at least #b8 #ydifferent cards from this series in your deck.",
-	  "Complete act 3 with at least #b7 #ydifferent card series in your deck. (Colorless cards will not count)",
-	  "Complete act 3 with at least #b10 #ydifferent card series in your deck. (Colorless cards will not count)",
-	  "Complete act 3 with at least #b20 cards in your deck, and without any duplicate.",
+	  "Act 3 was cleared at Ascension Level {0}.",
+	  "Act 4 was cleared at Ascension Level {0}.",
+	  "Act 5 was cleared at Ascension Level {0}.",
+	  "Complete Act 3 with this series.",
+	  "Complete Act 4 with this series.",
+	  "Complete Act 5 with this series.",
 	  "Complete act 3 with at least #b30 cards in your deck, and without any duplicate.",
 	  "This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
 	  "Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension increases this bonus by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
@@ -183,7 +183,7 @@
   {
 	"TEXT":
 	[
-	  "Contains {0} cards.",
+	  "{0} cards",
 	  "Beta",
 	  "Selecting this Series will not unlock trophies for the current run.",
 	  "Remove from Pool",
@@ -193,7 +193,7 @@
 	  "Expansion",
 	  "This series has additional cards that may be enabled by holding #p'CTRL' and clicking on this card.",
 	  "Additional cards for this series can now be enabled on the series select screen.",
-	  "Additional cards for this series are unlocked by obtaining a Bronze trophy at Ascension {0} or higher.",
+	  "Additional cards for this series are unlocked by clearing Ascension {0} or higher with this series.",
 	  "Pool Size",
 	  "This determines the number of series that will be randomly chosen from the available series to be available in a run.",
 	  "{0} Series selected.",
@@ -212,6 +212,7 @@
 	  "Show card pool",
 	  "Save Changes",
 	  "Enable Expansion",
+	  "Disable Expansion",
 	  "Enable Expansions",
 	  "Disable Expansions",
 	  "Cancel"
@@ -299,7 +300,9 @@
 			"Next",
 			"Uses",
 			"Rerolls",
-			"Exp."
+			"Exp.",
+			"Control Pile",
+			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #pCTRL to cycle through playable cards."
 		]
 	},
 

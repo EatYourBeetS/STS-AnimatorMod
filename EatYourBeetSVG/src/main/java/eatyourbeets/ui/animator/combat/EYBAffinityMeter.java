@@ -109,13 +109,8 @@ public class EYBAffinityMeter extends GUIElement
     public Affinity OnMatch(AbstractCard card) {
         //TODO add subscribers
         CurrentAffinity.Flash();
-        if (card.hasTag(HARMONIC) && !HasMatch(card, false)) {
-            return GetCurrentAffinity();
-        }
-        else {
-            SetCurrentAffinity(NextAffinity.Type);
-            return SetNextAffinity(card);
-        }
+        SetCurrentAffinity(NextAffinity.Type);
+        return SetNextAffinity(card);
     }
 
     public void OnStartOfTurn()

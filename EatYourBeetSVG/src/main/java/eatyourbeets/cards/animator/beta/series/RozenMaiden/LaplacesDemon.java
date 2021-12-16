@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -35,7 +34,7 @@ public class LaplacesDemon extends AnimatorCard
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
 
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
         SetDelayed(true);
         SetExhaust(true);
         SetForm(form, timesUpgraded);

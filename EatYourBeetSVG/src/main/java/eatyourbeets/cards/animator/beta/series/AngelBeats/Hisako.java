@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAfterlifeSubscriber;
-import eatyourbeets.misc.CardMods.AfterLifeMod;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
@@ -26,7 +25,7 @@ public class Hisako extends AnimatorCard implements OnAfterlifeSubscriber
 
         SetAffinityRequirement(Affinity.General, 3);
         SetExhaust(true);
-        AfterLifeMod.Add(this);
+        SetAfterlife(true);
     }
 
     @Override

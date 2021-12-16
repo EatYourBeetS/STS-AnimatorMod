@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.InputManager;
@@ -30,12 +31,16 @@ public class GUI_CardGrid extends GUIElement
     public final ArrayList<AbstractCard> cards;
     public boolean autoShowScrollbar;
     public boolean draggingScreen;
+    public boolean shouldEnlargeHovered = true;
     public AbstractCard hoveredCard = null;
     public String message = null;
+    public float pad_x = PAD_X;
+    public float pad_y = PAD_Y;
 
     protected ActionT1<AbstractCard> onCardClick;
     protected ActionT1<AbstractCard> onCardRightClick;
     protected ActionT1<AbstractCard> onCardHovered;
+    protected ActionT2<SpriteBatch, AbstractCard> onCardRender;
     protected boolean canDragScreen = true;
     protected float draw_x;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
@@ -64,6 +69,20 @@ public class GUI_CardGrid extends GUIElement
         SetHorizontalAlignment(horizontalAlignment);
     }
 
+    public GUI_CardGrid AddPadX(float padX)
+    {
+        this.pad_x += padX;
+
+        return this;
+    }
+
+    public GUI_CardGrid AddPadY(float padY)
+    {
+        this.pad_y += padY;
+
+        return this;
+    }
+
     public GUI_CardGrid SetOnCardHover(ActionT1<AbstractCard> onCardHovered)
     {
         this.onCardHovered = onCardHovered;
@@ -81,6 +100,29 @@ public class GUI_CardGrid extends GUIElement
     public GUI_CardGrid SetOnCardRightClick(ActionT1<AbstractCard> onCardRightClicked)
     {
         this.onCardRightClick = onCardRightClicked;
+
+        return this;
+    }
+
+    public GUI_CardGrid SetOnCardRender(ActionT2<SpriteBatch, AbstractCard> onCardRender)
+    {
+        this.onCardRender = onCardRender;
+
+        return this;
+    }
+
+    public GUI_CardGrid SetOptions(boolean canDrag, boolean shouldEnlargeHovered, boolean showScrollbar)
+    {
+        this.canDragScreen = canDrag;
+        this.shouldEnlargeHovered = shouldEnlargeHovered;
+        this.autoShowScrollbar = showScrollbar;
+
+        return this;
+    }
+
+    public GUI_CardGrid SetEnlargeOnHover(boolean shouldEnlargeHovered)
+    {
+        this.shouldEnlargeHovered = shouldEnlargeHovered;
 
         return this;
     }
@@ -152,14 +194,14 @@ public class GUI_CardGrid extends GUIElement
         {
             if (card != hoveredCard)
             {
-                card.render(sb);
+                RenderCard(sb, card);
             }
         }
 
         if (hoveredCard != null)
         {
             hoveredCard.renderHoverShadow(sb);
-            hoveredCard.render(sb);
+            RenderCard(sb, hoveredCard);
             hoveredCard.renderCardTip(sb);
         }
 
@@ -184,7 +226,7 @@ public class GUI_CardGrid extends GUIElement
 
         UpdateCards();
 
-        if (hoveredCard != null)
+        if (hoveredCard != null && GR.UI.TryHover(hoveredCard.hb))
         {
             if (InputManager.RightClick.IsJustPressed() && onCardRightClick != null)
             {
@@ -218,7 +260,7 @@ public class GUI_CardGrid extends GUIElement
         for (AbstractCard card : cards)
         {
             card.target_x = (DRAW_START_X * draw_x) + (column * PAD_X);
-            card.target_y = DRAW_START_Y + scrollDelta - (row * PAD_Y);
+            card.target_y = DRAW_START_Y + scrollDelta - (row * pad_y);
             card.fadingOut = false;
             card.update();
             card.updateHoverLogic();
@@ -226,6 +268,9 @@ public class GUI_CardGrid extends GUIElement
             if (card.hb.hovered)
             {
                 hoveredCard = card;
+                if (!shouldEnlargeHovered) {
+                    card.drawScale = card.targetDrawScale = 0.8f;
+                }
             }
 
             column += 1;
@@ -234,6 +279,16 @@ public class GUI_CardGrid extends GUIElement
                 column = 0;
                 row += 1;
             }
+        }
+    }
+
+    protected void RenderCard(SpriteBatch sb, AbstractCard card)
+    {
+        card.render(sb);
+
+        if (onCardRender != null)
+        {
+            onCardRender.Invoke(sb, card);
         }
     }
 

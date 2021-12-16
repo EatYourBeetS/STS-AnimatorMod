@@ -297,6 +297,10 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
         if (cooldown != null && cooldown.canProgressFromExhaustPile) {
             CombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }
+
+        if (hasTag(AFTERLIFE)) {
+            AfterLifeMod.Add(this);
+        }
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
@@ -462,7 +466,7 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
             }
         }
 
-        if (AfterLifeMod.IsAdded(this))
+        if (hasTag(AFTERLIFE))
         {
             dynamicTooltips.add(GR.Tooltips.Afterlife);
         }
@@ -638,6 +642,20 @@ public abstract class EYBCard extends EYBCardBase implements OnStartOfTurnSubscr
     public void SetRetainOnce(boolean value)
     {
         this.retain = value;
+    }
+
+    public void SetAfterlife(boolean value) {
+        SetAfterlife(value, false);
+    }
+
+    public void SetAfterlife(boolean value, boolean inCombat)
+    {
+        SetTag(AFTERLIFE, value);
+
+        if (inCombat && value)
+        {
+            SetAfterlife(true);
+        }
     }
 
     public void SetInnate(boolean value)

@@ -10,17 +10,16 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorCardSlot;
 import eatyourbeets.rooms.FakeEventRoom;
-import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
+import eatyourbeets.ui.controls.GUI_CardGrid;
 import eatyourbeets.ui.controls.GUI_TextBox;
-import eatyourbeets.utilities.InputManager;
 
 import java.util.ArrayList;
 
-public class AnimatorCardSlotSelectionEffect extends EYBEffect
+public class AnimatorCardSlotSelectionEffect extends EYBEffectWithCallback<Object>
 {
     private static final GUI_TextBox cardValue_text = new
     GUI_TextBox(GR.Common.Images.Panel_Rounded_Half_H.Texture(), new Hitbox(AbstractCard.IMG_WIDTH * 0.6f, AbstractCard.IMG_HEIGHT * 0.15f))
@@ -33,7 +32,7 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
     private final ArrayList<EYBCard> cards;
     private boolean draggingScreen = false;
     private EYBCard selectedCard;
-    private GUI_DynamicCardGrid grid;
+    private GUI_CardGrid grid;
 
     public AnimatorCardSlotSelectionEffect(AnimatorCardSlot slot)
     {
@@ -54,9 +53,9 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
             return;
         }
 
-        this.grid = new GUI_DynamicCardGrid()
-        .UseScrollbar(true)
+        this.grid = new GUI_CardGrid()
         .AddPadY(AbstractCard.IMG_HEIGHT * 0.15f)
+        .SetEnlargeOnHover(false)
         .SetOnCardClick(c -> OnCardClicked((EYBCard) c))
         .SetOnCardRender((sb, c) -> OnCardRender(sb, (EYBCard) c));
 
@@ -102,24 +101,6 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
     protected void UpdateInternal(float deltaTime)
     {
         grid.TryUpdate();
-
-        if (grid.draggingScreen)
-        {
-            duration = startingDuration;
-            isDone = false;
-            return;
-        }
-
-        if (TickDuration(deltaTime))
-        {
-            if (InputManager.LeftClick.IsJustReleased() && GR.UI.TryHover(null))
-            {
-                Complete();
-                return;
-            }
-
-            isDone = false;
-        }
     }
 
     @Override
@@ -155,19 +136,13 @@ public class AnimatorCardSlotSelectionEffect extends EYBEffect
             if (selectedCard != null)
             {
                 selectedCard.stopGlowing();
-
-                if (selectedCard == card)
-                {
-                    slot.Select(null);
-                    selectedCard = null;
-                    return;
-                }
             }
 
             selectedCard = card;
             CardCrawlGame.sound.play("CARD_SELECT");
             slot.Select(card.cardData, 1);
             card.beginGlowing();
+            Complete();
         }
     }
 

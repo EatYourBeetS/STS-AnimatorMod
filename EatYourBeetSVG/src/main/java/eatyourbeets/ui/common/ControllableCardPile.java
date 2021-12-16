@@ -1,8 +1,8 @@
 package eatyourbeets.ui.common;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -11,20 +11,17 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.subscribers.OnCardMovedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnPurgeSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
-import eatyourbeets.ui.controls.GUI_DynamicCardGrid;
-import eatyourbeets.ui.controls.GUI_Image;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RenderHelpers;
 import patches.energyPanel.EnergyPanelPatches;
 
 import java.util.ArrayList;
@@ -33,42 +30,56 @@ import java.util.Iterator;
 // TODO: Move to a different folder, make this a Screen
 public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSubscriber, OnCardMovedSubscriber
 {
-    // TODO: Use better textures
-    private static final Texture Orb_BG = GR.GetTexture("images/unnamed/characters/energy2/Orb_BG.png");
-    private static final Texture Orb_FG = GR.GetTexture("images/unnamed/characters/energy2/Orb_FG.png");
-    private static final Texture Orb_VFX1 = GR.GetTexture("images/unnamed/characters/energy2/Orb_VFX1.png");
-    private static final Texture Orb_VFX2 = GR.GetTexture("images/unnamed/characters/energy2/Orb_VFX2.png");
-
+    public static EYBCardTooltip TOOLTIP;
+    public static final float OFFSET_X = AbstractCard.IMG_WIDTH * 0.85f;
+    public static final float OFFSET_Y = -AbstractCard.IMG_WIDTH * 0.1f;
+    public static final float TOOLTIP_OFFSET_Y = AbstractCard.IMG_HEIGHT * 0.75f;
+    public static final float SCALE = 0.65f;
     public static final float HOVER_TIME_OUT = 0.4F;
 
-    public final ArrayList<ControllableCard> controllers = new ArrayList<>();
-    public final GUI_DynamicCardGrid cardGrid;
+    public final ArrayList<ControllableCard> subscribers = new ArrayList<>();
     public boolean isHidden = false;
 
-    private final Hitbox hb = new Hitbox(128f * Settings.scale, 248f * Settings.scale, 147.2f * Settings.scale, 147.2f * Settings.scale);
-    private final GUI_Image background;
-    private float timer = 0f;
+    protected ControllableCard currentCard;
+    protected boolean showPreview;
+    protected final GUI_Button cardButton;
+    private final Hitbox hb = new Hitbox(144f * Settings.scale, 288 * Settings.scale, 96 * Settings.scale, 96f * Settings.scale);
 
     public ControllableCardPile()
     {
-        background = RenderHelpers.ForTexture(ImageMaster.WHITE_SQUARE_IMG)
-        .SetHitbox(new Hitbox(0, 0))
-        .SetColor(0, 0, 0, 0.8f);
-
-        cardGrid = new GUI_DynamicCardGrid().SetScale(0.5f)
-        .SetDrawStart(Settings.WIDTH * 0.2f, Settings.HEIGHT * 0.4f)
-        .SetOnCardHover(__ -> RefreshTimer())
-        .SetOnCardClick(card ->
-        {
-            for (ControllableCard c : controllers)
-            {
-                if (c.card == card)
-                {
-                    c.Select();
-                    return;
-                }
-            }
-        });
+        TOOLTIP = new EYBCardTooltip(GR.Animator.Strings.Combat.ControlPile, GR.Animator.Strings.Combat.ControlPileDescription);
+        cardButton = new GUI_Button(GR.Common.Images.ControllableCardPile.Texture(), hb)
+                .SetBorder(GR.Common.Images.ControllableCardPileBorder.Texture(), Color.WHITE)
+                .SetText("")
+                .SetFont(FontHelper.energyNumFontBlue, 1f)
+                .SetOnClick(() -> {
+                    if (currentCard != null && currentCard.CanUse()) {
+                        currentCard.Select();
+                    }
+                })
+                .SetOnRightClick(() -> {
+                   if (GameUtilities.InBattle()) {
+                       CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+                       for (ControllableCard c : subscribers) {
+                           if (c.CanUse()) {
+                               cardGroup.addToBottom(c.card);
+                           }
+                       }
+                       if (cardGroup.size() > 0) {
+                           GameActions.Top.SelectFromPile("", 1, cardGroup)
+                                   .SetOptions(false, false)
+                                   .AddCallback(cards -> {
+                                       if (cards.size() > 0) {
+                                           ControllableCard co = JUtils.Find(subscribers, c -> c.card == cards.get(0));
+                                           if (co != null) {
+                                               SetCurrentCard(co);
+                                           }
+                                       }
+                                   });
+                       }
+                   }
+                });
+        ;
     }
 
     public void Clear()
@@ -77,45 +88,56 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
         CombatStats.onPurge.Subscribe(this);
         CombatStats.onCardMoved.Subscribe(this);
         EnergyPanelPatches.Pile = this;
-        cardGrid.Clear();
-        controllers.clear();
-    }
-
-    public ControllableCard Add(ControllableCard controller)
-    {
-        controllers.add(controller);
-
-        AnimatorCard c = JUtils.SafeCast(controller.card, AnimatorCard.class);
-        if (c != null && c.cropPortrait)
-        {
-            c.cropPortrait = false;
-            controller.OnDelete(temp -> ((AnimatorCard)temp.card).cropPortrait = true);
-        }
-
-        if (RefreshCard(controller))
-        {
-            cardGrid.AddCard(controller.card);
-        }
-
-        return controller;
+        subscribers.clear();
+        currentCard = null;
     }
 
     public ControllableCard Add(AbstractCard card)
     {
-        return Add(new ControllableCard(card));
+        ControllableCard controller = new ControllableCard(this, card);
+        subscribers.add(controller);
+        RefreshCard(controller);
+        return controller;
+    }
+
+    public void Remove(ControllableCard controller) {
+        subscribers.remove(controller);
+        RefreshCards();
+    }
+
+    public boolean SetCurrentCard(ControllableCard controller) {
+        if (controller != null && controller.CanUse()) {
+            currentCard = controller;
+            return true;
+        }
+        return false;
+    }
+
+    public void SelectNextCard() {
+        RefreshCards();
+        if (currentCard != null) {
+            int startingIndex = subscribers.indexOf(currentCard);
+            int index = startingIndex;
+            index = (index + 1) % subscribers.size();
+            while (index != startingIndex && !SetCurrentCard(subscribers.get(index))) {
+                index = (index + 1) % subscribers.size();
+            }
+        }
+    }
+
+    public boolean CanUse(AbstractCard card)
+    {
+        ControllableCard chosen = JUtils.Find(subscribers, c -> c.card == card);
+        return chosen != null && chosen.CanUse();
     }
 
     public boolean Contains(AbstractCard card)
     {
-        for (ControllableCard controllableCard : controllers)
-        {
-            if (controllableCard.card == card)
-            {
-                return !controllableCard.IsDeleted();
-            }
-        }
+        return card != null && JUtils.Find(subscribers, c -> c.card == card) != null;
+    }
 
-        return false;
+    public int GetUsableCount() {
+        return JUtils.Count(subscribers, ControllableCard::CanUse);
     }
 
     @Override
@@ -126,29 +148,25 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
 
     public void Update(EnergyPanel panel)
     {
-        timer = timer - Gdx.graphics.getRawDeltaTime();
-        isHidden = !GameUtilities.InBattle() || controllers.size() == 0;
-
-        for (ControllableCard c : controllers)
-        {
-            AbstractCard card = c.card;
-            if (IsHovering() && card.hb.hovered)
-            {
-                RefreshTimer();
-            }
-        }
-
+        isHidden = !GameUtilities.InBattle() && subscribers.size() == 0;
         hb.update();
-        cardGrid.Update();
-        background.Update();
-        if (hb.hovered && GameUtilities.InBattle() && !AbstractDungeon.isScreenUp)
-        {
-            RefreshTimer();
-        }
+        if (!isHidden) {
+            RefreshCards();
+            cardButton.SetText(String.valueOf(GetUsableCount()));
+            cardButton.Update();
+            showPreview = hb.hovered && !AbstractDungeon.isScreenUp;
 
-        if (IsHovering())
-        {
-            GR.UI.AddPostRender(this::PostRender);
+            if (showPreview)
+            {
+                GR.UI.AddPostRender(this::PostRender);
+                if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT)) {
+                    SelectNextCard();
+                }
+
+                if (TOOLTIP != null) {
+                    EYBCardTooltip.QueueTooltip(TOOLTIP, hb.x, hb.y + TOOLTIP_OFFSET_Y);
+                }
+            }
         }
     }
 
@@ -157,76 +175,56 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
         if (!isHidden)
         {
             sb.setColor(Color.WHITE);
-            sb.draw(Orb_BG, hb.x, hb.y, hb.width, hb.height);
-            sb.draw(Orb_VFX2, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1.2f, 1.2f, timer * -7f % 360f, 0, 0, 128, 128, false, false);
-            sb.draw(Orb_VFX1, hb.x, hb.y, hb.width / 2f, hb.height / 2f, hb.width, hb.height, 1f, 1f, timer * 6f % 360f, 0, 0, 128, 128, false, false);
-            sb.draw(Orb_FG, hb.x, hb.y, hb.width, hb.height);
-            FontHelper.renderFontCentered(sb, FontHelper.energyNumFontBlue, String.valueOf(cardGrid.cards.size()), 201.6f * Settings.scale, 321.6f * Settings.scale, Color.WHITE.cpy());
+            cardButton.Render(sb);
         }
     }
 
     public void RefreshCards()
     {
-        cardGrid.Clear();
-
-        Iterator<ControllableCard> i = controllers.iterator();
-        while (i.hasNext())
-        {
-            ControllableCard c = i.next();
-
-            if (RefreshCard(c))
-            {
-                cardGrid.AddCard(c.card);
-            }
-            else if (c.IsDeleted())
-            {
+        Iterator<ControllableCard> i = subscribers.iterator();
+        while (i.hasNext()) {
+            ControllableCard controller = i.next();
+            if (!RefreshCard(controller)) {
+                if (currentCard == controller) {
+                    currentCard = null;
+                }
                 i.remove();
+            }
+            else if (!controller.CanUse() && currentCard == controller) {
+                currentCard = null;
             }
         }
 
-        final int size = cardGrid.cards.size();
-        final int rowSize = (size <= 10) ? 5 : (size <= 16) ? 8 : 10;
+        if (currentCard == null && subscribers.size() > 0) {
+            SetCurrentCard(JUtils.Find(subscribers, ControllableCard::CanUse));
+        }
 
-        background.Resize(30 + 135 * Math.min(size, rowSize), -200 * (1 + Math.floorDiv(size, rowSize)), Settings.scale);
-        //We set scale to be a constant 0.5f because any smaller and the enlarged cards on hover begin to
-        //cover up their neighbors, making it difficult for the player to hover some cards.
-        //However this causes problems if there is a large number cards in the pile.
-        cardGrid.SetRowSize(rowSize).SetScale(0.5f);
-        background.Translate(cardGrid.drawStart_x - (Settings.scale * 80), cardGrid.drawStart_y + (Settings.scale * 100));
+        if (currentCard != null) {
+            currentCard.card.target_x = hb.x + OFFSET_X;
+            currentCard.card.target_y = hb.y + OFFSET_Y;
+            currentCard.card.drawScale = currentCard.card.targetDrawScale = SCALE;
+            currentCard.card.fadingOut = false;
+        }
     }
 
     public void PostRender(SpriteBatch sb)
     {
-        if (isHidden)
+        if (!isHidden && currentCard != null)
         {
-            return;
+            currentCard.Render(sb);
         }
-
-        background.Render(sb);
-        cardGrid.Render(sb);
     }
 
-    public void RefreshTimer()
-    {
-        if (!IsHovering())
-        {
-            RefreshCards();
-        }
-        timer = HOVER_TIME_OUT;
-    }
-
-    public boolean IsHovering()
-    {
-        return timer > 0;
-    }
 
     protected boolean RefreshCard(ControllableCard c)
     {
         final AbstractCard card = c.card;
+        if (card == null) {
+            return false;
+        }
 
         c.Update();
-
-        if (c.IsEnabled())
+        if (c.CanUse())
         {
             if (card.canUse(AbstractDungeon.player, null) && !AbstractDungeon.isScreenUp)
             {
@@ -239,10 +237,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
 
             card.triggerOnGlowCheck();
             card.applyPowers();
-            return true;
         }
 
-        return false;
+        return true;
     }
 
     @Override

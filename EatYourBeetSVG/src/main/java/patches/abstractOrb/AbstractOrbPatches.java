@@ -61,11 +61,12 @@ public class AbstractOrbPatches
         @SpirePostfixPatch
         public static int Postfix(int retVal, AbstractCreature target, int dmg)
         {
+            // This needs to be hardcoded so that Lock-On bonuses affect the vanilla Lock-On power as well
             if (GameUtilities.GetPowerAmount(target, LockOnPower.POWER_ID) >= 1)
             {
                 retVal = AnimatorLockOnPower.ENEMY_MODIFIER > 0 ? (int) (dmg * ((retVal / dmg) + AnimatorLockOnPower.ENEMY_MODIFIER)) : retVal;
             }
-            return retVal;
+            return CombatStats.OnOrbApplyLockOn(retVal, target, dmg);
         }
     }
 

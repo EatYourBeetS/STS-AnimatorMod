@@ -136,7 +136,7 @@
 		},
 		"animator:EriShiina":
 		{
-			"DESCRIPTION": "In {Afterlife} or <GS>: Obtain !M! [T-Knife]. || Pay !A! <B>: Gain !S! [Blur].",
+			"DESCRIPTION": "In {Afterlife} and/or <GS>: Obtain !M! [T-Knife]. || Pay !A! <B>: Gain !S! [Blur].",
 			"NAME": "Eri Shiina"
 		},
 		"animator:Fujimaki":
@@ -151,8 +151,8 @@
 		},
 		"animator:Godan":
 		{
-			"DESCRIPTION": "Whenever you Purge a card in your Exhaust pile: Gain !M! [Block]. || Once per turn, pay 7 <W>: Add 1 of !S! Motivated Common {Afterlife} cards to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged from your Exhaust pile: Gain #b{0} [Block]. || Once per turn, pay 7 [A-Gen]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile."],
+			"DESCRIPTION": "Whenever you Purge a card: Gain !M! [Block]. || Once per turn, pay 7 <W>: Add 1 of !S! Motivated Common {Afterlife} cards to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Whenever a card is Purged: Gain #b{0} [Block]. || Once per turn, pay 7 [A-Gen]: Add 1 of #b{1} Motivated Common #yAfterlife cards to your draw pile."],
 			"NAME": "Matsushita Godan"
 		},
 		"animator:HidekiHinata":
@@ -178,7 +178,7 @@
 		},
 		"animator:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** (!S! in {Afterlife}) to ALL enemies. || Add !S! {Dazed} to ** your draw pile.",
+			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** to ALL enemies. || Add !S! {Dazed} to ** your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"animator:Noda":
@@ -489,7 +489,7 @@
         },
 		"animator:KenzoTenma":
 		{
-			"DESCRIPTION": "Deal +!S! damage per <O> you have (!X!). || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
+			"DESCRIPTION": "Multiply this card's damage by your <O>. || Remove ALL Debuff stacks on the enemy. Recover !M! [HP] for each.",
 			"NAME": "Kenzo Tenma"
 		},
 		"animator:Kirby":
@@ -1722,7 +1722,7 @@
 		},
 		"animator:Archer":
 		{
-			"DESCRIPTION": "At the end of turn: ALL enemies take !M! for each of their {Debuffs}. || Once per turn, Pay !S! <G>: Apply 1 [Vulnerable] to ALL enemies.",
+			"DESCRIPTION": "At the end of turn: ALL enemies take !M! for each of their {Debuffs}. || Once per turn, Pay {0} <G>: Apply 1 [Vulnerable] to ALL enemies.",
 			"EXTENDED_DESCRIPTION": ["At the end of your turn, deal #b{0} damage to all enemies for each Debuff they have. || Pay #b{1} [A-Green] to Apply #b1 [Vulnerable] to ALL enemies."],
 			"NAME": "Archer"
 		},
@@ -2822,7 +2822,7 @@
 		},
 		"animator:AuraBellaFiora":
 		{
-			"DESCRIPTION": "Starter: Gain +!S! [Block]. || Discard a card to Motivate a 2+ Cost card. ** <LIM>. If you Motivated {Mare Bello Fiore}: Next turn, <DRW-M>.",
+			"DESCRIPTION": "Starter: Gain +!M! [Block] and Motivate a 2-Cost card. || Discard a card. If it was {Mare Bello Fiore}: Play it.",
 			"NAME": "Aura Bella Fiora"
 		},
 		"animator:MareBelloFiore":
@@ -3246,7 +3246,7 @@
 	{
 		"animator:Crystallize":
 		{
-			"DESCRIPTION": "Lose !S! HP twice. || Gain !M! [Metallicize] and 2 [S].",
+			"DESCRIPTION": "Lose !S! HP twice. || Gain [S] and !M! [Metallicize].",
 			"NAME": "Crystallize"
 		},
 		"animator:GoblinChampion":

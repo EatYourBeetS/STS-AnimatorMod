@@ -21,7 +21,7 @@ public class Archer extends AnimatorCard
     public static final EYBCardData DATA = Register(Archer.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
-    public static final int COST = 7;
+    public static final int COST = 6;
 
     public Archer()
     {
@@ -37,6 +37,11 @@ public class Archer extends AnimatorCard
         SetRetainOnce(true);
     }
 
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(COST);
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

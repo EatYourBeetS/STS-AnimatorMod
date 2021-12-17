@@ -1,0 +1,90 @@
+
+animator.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+46_shadow
+  rotate: false
+  xy: 8, 334
+  size: 120, 48
+  orig: 128, 64
+  offset: 3, 6
+  index: -1
+46_R_leg
+  rotate: false
+  xy: 217, 8
+  size: 30, 74
+  orig: 32, 77
+  offset: 2, 2
+  index: -1
+46_R_foot
+  rotate: false
+  xy: 144, 334
+  size: 41, 81
+  orig: 44, 84
+  offset: 2, 2
+  index: -1
+46_L_leg
+  rotate: false
+  xy: 72, 398
+  size: 35, 79
+  orig: 35, 79
+  offset: 0, 0
+  index: -1
+46_L_foot
+  rotate: false
+  xy: 217, 98
+  size: 27, 67
+  orig: 29, 70
+  offset: 2, 2
+  index: -1
+46_spine
+  rotate: false
+  xy: 8, 196
+  size: 113, 89
+  orig: 116, 92
+  offset: 2, 2
+  index: -1
+46_L_arm
+  rotate: false
+  xy: 201, 334
+  size: 32, 52
+  orig: 35, 55
+  offset: 2, 2
+  index: -1
+46_L_Uparm
+  rotate: false
+  xy: 223, 181
+  size: 22, 38
+  orig: 25, 41
+  offset: 2, 2
+  index: -1
+46_body
+  rotate: false
+  xy: 137, 196
+  size: 70, 122
+  orig: 73, 125
+  offset: 2, 2
+  index: -1
+46_R_Uparm
+  rotate: false
+  xy: 201, 402
+  size: 28, 48
+  orig: 30, 50
+  offset: 2, 2
+  index: -1
+46_R_arm
+  rotate: false
+  xy: 8, 398
+  size: 48, 64
+  orig: 50, 67
+  offset: 2, 2
+  index: -1
+46_head
+  rotate: false
+  xy: 8, 8
+  size: 193, 172
+  orig: 199, 178
+  offset: 4, 4
+  index: -1

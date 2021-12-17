@@ -1,0 +1,11 @@
+
+{
+	"pcl:GrowthPotion":
+	{
+		"NAME": "Exp. Potion",
+		"DESCRIPTIONS":
+		[
+			"Gain #b{0} #yForce, #yIntellect and #yAgility."
+		]
+	}
+}

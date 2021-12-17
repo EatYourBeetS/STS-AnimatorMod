@@ -1,0 +1,934 @@
+
+{
+	"Affinity":
+	{
+		"DESCRIPTION": "#yAffinity can be of any color between NL [A-Red], [A-Green], [A-Blue], [A-Orange], [A-Light], [A-Dark], [A-Silver]. NL [A-Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"NAMES": ["affinity"],
+		"PROPER_NAME": "Affinity"
+	},
+	"Affinity Count":
+	{
+		"DESCRIPTION": "#yAffinity #yCounters are spent to activate card effects requiring them.",
+		"NAMES": ["affinity count", "[a-gen] count"],
+		"PROPER_NAME": "Affinity Count"
+	},
+	"Affinity Level":
+	{
+		"DESCRIPTION": "Increases a [A-Gen] #yPower's maximum stacks and the effectiveness of its #yScaling by #b1 per #yLevel.",
+		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels", "level", "levels"],
+		"PROPER_NAME": "Affinity Level"
+	},
+	"Affinity Power":
+	{
+		"DESCRIPTION": "[A-Red] -> [R], [A-Green] -> [G], [A-Blue] -> [B], NL [A-Orange] -> [O], [A-Light] -> [L], [A-Dark] -> [D], NL [A-Silver] -> [S]",
+		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
+		"PROPER_NAME": "Affinity Power"
+	},
+	"Affinity Reroll":
+	{
+		"DESCRIPTION": "Once per turn: You may reroll the #yCurrent or #yNext #yAffinities by clicking on them.",
+		"NAMES": ["affinity reroll, affinity rerolls, reroll, rerolls, [a-gen] reroll, [a-gen] rerolls"],
+		"PROPER_NAME": "Affinity Reroll"
+	},
+	"Affinity Token":
+	{
+		"DESCRIPTION": "A card that can be substituted for a single #yAffinity payment while in hand.",
+		"NAMES": ["[a-gen] token", "[a-gen] tokens", "affinity token", "affinity tokens"],
+		"PROPER_NAME": "Affinity Token"
+	},
+	"Agility":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [G] up to #b50.",
+		"NAMES": ["agility"],
+		"PROPER_NAME": "Agility"
+	},
+	"Ascension Trophy":
+	{
+		"DESCRIPTION": "The highest Ascension level at which Act 3 was cleared with this series.",
+		"NAMES": ["ascension trophy"],
+		"PROPER_NAME": "Ascension Trophy"
+	},
+	"Autoplay":
+	{
+		"DESCRIPTION": "Automatically played. Still uses [E].",
+		"NAMES": ["autoplay", "autoplayed"],
+		"PROPER_NAME": "Autoplay"
+	},
+	"Blessing":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [L] for every #b10 [L] up to #b50.",
+		"NAMES": ["blessing"],
+		"PROPER_NAME": "Blessing"
+	},
+	"Blinded":
+	{
+	  "DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Dark] is #yChanneled. At the end of turn, reduce [Blinded] by #b1.",
+	  "NAMES": ["blinded"],
+	  "PROPER_NAME": "Blinded"
+	},
+	"Blur":
+	{
+		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
+		"NAMES": ["blur"],
+		"PROPER_NAME": "Blur"
+	},
+	"Boost":
+	{
+		"DESCRIPTION": "Gain the specified power, even if it was disabled due to a Stance.",
+		"NAMES": ["boost"],
+		"PROPER_NAME": "Boost"
+	},
+	"Burning":
+	{
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to #b50% of [Burning] and reduce [Burning] by #b1.",
+		"NAMES": ["burning"],
+		"PROPER_NAME": "Burning"
+	},
+	"Burning Weapon":
+	{
+	  "DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Burning] and remove [Freezing].",
+	  "NAMES": ["burning weapon"],
+	  "PROPER_NAME": "Burning Weapon"
+	},
+	"Choked":
+	{
+		"DESCRIPTION": "Whenever you play a card this turn, the target loses 1 HP.",
+		"NAMES": ["choked"],
+		"PROPER_NAME": "Choked"
+	},
+	"Common Buff":
+	{
+		"DESCRIPTION": "Buffs that are not prefixed with the name of a card.",
+		"NAMES": ["common buff", "common buffs"],
+		"PROPER_NAME": "Common Buff"
+	},
+	"Common Debuff":
+	{
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Freezing], [Shackles], [Delayed Damage].",
+		"NAMES": ["common debuff", "common debuffs"],
+		"PROPER_NAME": "Common Debuff"
+	},
+	"Common Orb":
+	{
+		"DESCRIPTION": "[Fire], [Frost], [Lightning], [Dark].",
+		"NAMES": ["common orb", "common orbs"],
+		"PROPER_NAME": "Common Orb"
+	},
+	"Constricted":
+	{
+		"DESCRIPTION": "Take damage at the end of each turn.",
+		"NAMES": ["constricted"],
+		"PROPER_NAME": "Constricted"
+	},
+	"Cooldown":
+	{
+		"DESCRIPTION": "Whenever you play this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect instead.",
+		"NAMES": ["cooldown", "cdn"],
+		"PROPER_NAME": "Cooldown"
+	},
+	"Corruption":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [D] for every #b10 [D] up to #b50.",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
+	},
+	"Counter-Attack":
+	{
+		"DESCRIPTION": "Whenever you block damage this turn, deal damage to ALL enemies and reduce stacks by #b1. Affected by damage modifiers.",
+		"NAMES": ["counter-attack"],
+		"PROPER_NAME": "Counter-Attack"
+	},
+	"Counterattack":
+	{
+		"DESCRIPTION": "Whenever you block damage this turn, deal damage to ALL enemies.",
+		"NAMES": ["counter attack", "counter-attack", "Counter Attack", "counterattack"],
+		"PROPER_NAME": "Counterattack"
+	},
+	"Current Affinity":
+	{
+		"DESCRIPTION": "Cards with the [A-Gen] of the #yCurrent #yAffinity will #yMatch when played.",
+		"NAMES": ["current affinity"],
+		"PROPER_NAME": "Current Affinity"
+	},
+	"Cycle":
+	{
+		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
+		"NAMES": ["cycle"],
+		"PROPER_NAME": "Cycle"
+	},
+	"Delayed Damage":
+	{
+		"DESCRIPTION": "Take damage at the end of your turn. Only enemies can die from this damage.",
+		"NAMES": ["delayed damage"],
+		"PROPER_NAME": "Delayed Damage"
+	},
+	"Demon Form":
+	{
+		"DESCRIPTION": "Gain #yStrength at the start of each turn.",
+		"NAMES": ["demon form", "demon_form"],
+		"PROPER_NAME": "Demon Form"
+	},
+	"Desecrated":
+	{
+		"DESCRIPTION": "Take additional damage from any source. Deal less damage with attacks. Removed at the end of turn. Ignores [Artifact].",
+		"NAMES": ["desecrated"],
+		"PROPER_NAME": "Desecrated"
+	},
+	"Desecration":
+	{
+	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
+	  "NAMES": ["desecration"],
+	  "PROPER_NAME": "Desecration"
+	},
+	"Desecration Scaling":
+	{
+	  "DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [D].",
+	  "NAMES": ["[d] scaling", "desecration scaling"],
+	  "PROPER_NAME": "Desecration Scaling"
+	},
+	"Desecration Stance":
+	{
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Dark].",
+	  "NAMES": ["[d] stance", "desecration stance"],
+	  "PROPER_NAME": "Desecration Stance"
+	},
+	"Electrified":
+	{
+		"DESCRIPTION": "When #yAttacking, deal #b25% of damage dealt to ALL allies, or to yourself if you have no allies (min. #b1). This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Electrified] and reduce [Electrified] by #b1.",
+		"NAMES": ["electrified"],
+		"PROPER_NAME": "Electrified"
+	},
+	"Electrified Weapon":
+	{
+	  "DESCRIPTION": "Deal double damage against enemies with [Poison]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Poison].",
+	  "NAMES": ["electrified weapon"],
+	  "PROPER_NAME": "Electrified Weapon"
+	},
+	"Elemental Exposure":
+	{
+        "DESCRIPTION": "Amplifies the effects of [Burning], [Freezing], and [Electrified]. Lasts for 2 turns.",
+        "NAMES": ["elemental exposure"],
+        "PROPER_NAME": "Elemental Exposure"
+	},
+	"Elemental Mastery":
+	{
+        "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Induced.",
+        "NAMES": ["elemental mastery"],
+        "PROPER_NAME": "Elemental Mastery"
+	},
+	"Enchanted Armor":
+	{
+		"DESCRIPTION": "Take less damage from #yAttacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
+		"NAMES": ["enchanted armor", "ench. armor"],
+		"PROPER_NAME": "Enchanted Armor"
+	},
+	"Endurance":
+	{
+	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
+	  "NAMES": ["endurance"],
+	  "PROPER_NAME": "Endurance"
+	},
+	"Endurance Scaling":
+	{
+	  "DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [O].",
+	  "NAMES": ["[o] scaling", "endurance scaling"],
+	  "PROPER_NAME": "Endurance Scaling"
+	},
+	"Endurance Stance":
+	{
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Orange].",
+	  "NAMES": ["[o] stance", "endurance stance"],
+	  "PROPER_NAME": "Endurance Stance"
+	},
+	"Energized":
+	{
+		"DESCRIPTION": "Gain [E] at the start of next turn.",
+		"NAMES": ["energized"],
+		"PROPER_NAME": "Energized"
+	},
+	"Enhance":
+	{
+		"DESCRIPTION": "Increase the stat of a card for the rest of this combat.",
+		"NAMES": ["enhance", "enhanced", "enhancement"],
+		"PROPER_NAME": "Enhance"
+	},
+	"Envenom":
+	{
+		"DESCRIPTION": "Whenever an attack deals unblocked damage, apply [Poison].",
+		"NAMES": ["envenom"],
+		"PROPER_NAME": "Envenom"
+	},
+	"Eternal":
+	{
+	  "DESCRIPTION": "Cannot be removed from your deck. When exhausted, returns to your draw pile and changes form if it has multiple forms.",
+	  "NAMES": ["eternal"],
+	  "PROPER_NAME": "Eternal"
+	},
+	"Exchange":
+	{
+		"DESCRIPTION": "Fetch cards from a pile, then move the same number of cards from your hand to the top of that pile.",
+		"NAMES": ["exchange"],
+		"PROPER_NAME": "Exchange"
+	},
+	"Fetch":
+	{
+		"DESCRIPTION": "Choose a card and move it to your hand.",
+		"NAMES": ["fetch"],
+		"PROPER_NAME": "Fetch"
+	},
+	"Flame Barrier":
+	{
+		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
+		"NAMES": ["flame barrier", "flame_barrier"],
+		"PROPER_NAME": "Flame Barrier"
+	},
+	"Flight":
+	{
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose #b1 stack until end of turn when taking damage, the power is cancelled at #b0 stacks.",
+		"NAMES": ["flight"],
+		"PROPER_NAME": "Flight"
+	},
+	"Force":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Strength] for every #b10 [R] up to #b50.",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
+	},
+	"Freezing":
+	{
+		"DESCRIPTION": "Reduces outgoing #yAttack damage by #b10% (can go up to #b50%, min. #b1 less damage). NL At the start of turn, lose HP equal to #b50% of [Freezing] and reduce [Freezing] by #b1.",
+		"NAMES": ["freezing"],
+		"PROPER_NAME": "Freezing"
+	},
+	"Freezing Weapon":
+	{
+	  "DESCRIPTION": "Deal double damage against enemies with [Burning]. Whenever an attack deals unblocked damage, apply #b2 [Freezing] and remove [Burning].",
+	  "NAMES": ["freezing weapon"],
+	  "PROPER_NAME": "Freezing Weapon"
+	},
+	"Genesis":
+	{
+		"DESCRIPTION": "Gain additional [E] at the start of each turn.",
+		"NAMES": ["genesis"],
+		"PROPER_NAME": "Genesis"
+	},
+	"Harmonic":
+	{
+	  "DESCRIPTION": "Will always #yMatch.",
+	  "NAMES": ["harmonic"],
+	  "PROPER_NAME": "Harmonic"
+	},
+	"Health":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~hp", "health"],
+		"PROPER_NAME": "Health"
+	},
+	"High-Cost":
+	{
+		"DESCRIPTION": "Card which cost #b2 or more [E].",
+		"NAMES": ["high-cost", "high cost"],
+		"PROPER_NAME": "High-Cost Card"
+	},
+	"Hindrance":
+	{
+		"DESCRIPTION": "A #yStatus or #yCurse card.",
+		"NAMES": ["hindrance", "hindrances"],
+		"PROPER_NAME": "Hindrance"
+	},
+	"Imitate":
+	{
+		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
+		"NAMES": ["imitate", "imitation"],
+		"PROPER_NAME": "Imitate"
+	},
+	"Impaired":
+	{
+	  "DESCRIPTION": "Reduces the effectiveness of your Orbs.",
+	  "NAMES": ["impaired"],
+	  "PROPER_NAME": "Impaired"
+	},
+	"Induce":
+	{
+	  "DESCRIPTION": "Evokes a copy of an Orb without Channeling it.",
+	  "NAMES": ["induce"],
+	  "PROPER_NAME": "Induce"
+	},
+	"Inspiration":
+	{
+		"DESCRIPTION": "Ignore the costs of the next #yInteractable Power used.",
+		"NAMES": ["inspiration"],
+		"PROPER_NAME": "Inspiration"
+	},
+	"Intangible":
+	{
+		"DESCRIPTION": "Set all incoming damage to 1.",
+		"NAMES": ["intangible"],
+		"PROPER_NAME": "Intangible"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Focus] for every #b10 [B] up to #b50.",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
+	},
+	"Interactable":
+	{
+		"DESCRIPTION": "Once played, you may activate this effect at any time by clicking on the icon of this power, provided that you can pay the required cost.",
+		"NAMES": ["interact", "interactable", "interactables"],
+		"PROPER_NAME": "Interactable"
+	},
+	"Invocation":
+	{
+	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
+	  "NAMES": ["Invocation"],
+	  "PROPER_NAME": "Invocation"
+	},
+	"Invocation Scaling":
+	{
+	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
+	  "NAMES": ["[l] scaling", "invocation scaling"],
+	  "PROPER_NAME": "Invocation Scaling"
+	},
+	"Invocation Stance":
+	{
+	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Light].",
+	  "NAMES": ["[l] stance", "invocation stance"],
+	  "PROPER_NAME": "Invocation Stance"
+	},
+	"Juggernaut":
+	{
+		"DESCRIPTION": "Whenever you gain #yBlock, deal damage to a random enemy.",
+		"NAMES": ["juggernaut"],
+		"PROPER_NAME": "Juggernaut"
+	},
+	"Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per combat, across all copies of this card.",
+		"NAMES": ["limited"],
+		"PROPER_NAME": "Limited"
+	},
+	"Low-Cost":
+	{
+		"DESCRIPTION": "Card which costs less than #b2 [E].",
+		"NAMES": ["low-cost", "low cost"],
+		"PROPER_NAME": "Low-Cost Card"
+	},
+	"Loyal":
+	{
+		"DESCRIPTION": "If this would enter your discard pile, move it to your draw pile instead.",
+		"NAMES": ["loyal"],
+		"PROPER_NAME": "Loyal"
+	},
+	"Maintain":
+	{
+		"DESCRIPTION": "This turn, an #yAffinity #yPower that was disabled due to a Stance can be gained.",
+		"NAMES": ["maintain"],
+		"PROPER_NAME": "Maintain"
+	},
+	"Malleable":
+	{
+		"DESCRIPTION": "Upon receiving damage, gain #yBlock. #yBlock gain increases as this power is triggered. Resets at the start of turn.",
+		"NAMES": ["malleable"],
+		"PROPER_NAME": "Malleable"
+	},
+	"Match":
+	{
+		"DESCRIPTION": "A card #yMatches if it has the #yAffinity of the #yCurrent #yAffinity.",
+		"NAMES": ["match", "matches", "matching", "matched"],
+		"PROPER_NAME": "Match"
+	},
+	"Metallicize":
+	{
+		"DESCRIPTION": "Gain #yBlock at the start of your turn.",
+		"NAMES": ["metallicize"],
+		"PROPER_NAME": "Metallicize"
+	},
+	"Might":
+	{
+	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
+	  "NAMES": ["might"],
+	  "PROPER_NAME": "Might"
+	},
+	"Might Scaling":
+	{
+	  "DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [R].",
+	  "NAMES": ["[r] scaling", "might scaling"],
+	  "PROPER_NAME": "Might Scaling"
+	},
+	"Might Stance":
+	{
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [R] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Red]",
+		"NAMES": ["[r] stance", "might stance"],
+		"PROPER_NAME": "Might Stance"
+	},
+	"Multicolor":
+	{
+		"DESCRIPTION": "Cards with #yMulticolor always #yMatch. When the #yCurrent #yAffinity is #yMulticolor, all cards with [A-Gen] will #yMatch.",
+		"NAMES": ["multicolor"],
+		"PROPER_NAME": "Multicolor"
+	},
+	"Multicolor Scaling":
+	{
+		"DESCRIPTION": "For each point of [A-Star] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of any [A-Gen] #yPower.",
+		"NAMES": ["[a-star] scaling", "multicolor scaling"],
+		"PROPER_NAME": "Multicolor Scaling"
+	},
+	"Neutral Stance":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["neutral stance"],
+		"PROPER_NAME": "Neutral Stance"
+	},
+	"Next Affinity":
+	{
+		"DESCRIPTION": "After making a #yMatch, replace the #yCurrent #yAffinity with this.",
+		"NAMES": ["next affinity"],
+		"PROPER_NAME": "Next Affinity"
+	},
+	"Next Turn Block":
+	{
+		"DESCRIPTION": "Gain [Block] at the start of next turn.",
+		"NAMES": ["next turn block"],
+		"PROPER_NAME": "Next Turn Block"
+	},
+	"Next Turn Draw":
+	{
+		"DESCRIPTION": "Draw additional cards at the start of next turn.",
+		"NAMES": ["next turn draw"],
+		"PROPER_NAME": "Next Turn Draw"
+	},
+	"Orb Slot":
+	{
+	  "DESCRIPTION": "#yOrb #ySlots allow you to channel additional Orbs.",
+	  "NAMES": ["orb slot"],
+	  "PROPER_NAME": "Orb Slot"
+	},
+	"Phasing":
+	{
+		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
+		"NAMES": ["phasing"],
+		"PROPER_NAME": "Phasing"
+	},
+	"Plated Armor":
+	{
+		"DESCRIPTION": "Gain #yBlock at the end of your turn. Reduced by #b1 when receiving damage.",
+		"NAMES": ["plated armor", "plat. armor"],
+		"PROPER_NAME": "Plated Armor"
+	},
+	"Purge":
+	{
+		"DESCRIPTION": "Removed from combat.",
+		"NAMES": ["purge", "purged", "purges"],
+		"PROPER_NAME": "Purge"
+	},
+	"Rebound":
+	{
+		"DESCRIPTION": "Put the next card you play this turn on top of your draw pile.",
+		"NAMES": ["rebound"],
+		"PROPER_NAME": "Rebound"
+	},
+	"Recover":
+	{
+		"DESCRIPTION": "Gain [HP] up to the amount you had at the end of your last turn.",
+		"NAMES": ["recover"],
+		"PROPER_NAME": "Recover"
+	},
+	"Regeneration":
+	{
+	  "DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",
+	  "NAMES": ["regeneration"],
+	  "PROPER_NAME": "Regeneration"
+	},
+	"Rejuvenation":
+	{
+	  "DESCRIPTION": "Heal HP at the start of the turn.",
+	  "NAMES": ["rejuvenation"],
+	  "PROPER_NAME": "Rejuvenation"
+	},
+	"Resistance":
+	{
+	  "DESCRIPTION": "Reduces the effects of [Frail], [Weak], [Vulnerable], and [Impaired] on you.",
+	  "NAMES": ["resistance"],
+	  "PROPER_NAME": "Resistance"
+	},
+	"Self-Immolation":
+	{
+	  "DESCRIPTION": "When you play a card with [Block], ALL characters take [Delayed Damage] equal to its [Block] times this power's stacks.",
+	  "NAMES": ["self-immolation"],
+	  "PROPER_NAME": "Self-Immolation"
+	},
+	"Semi-Limited":
+	{
+		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
+		"NAMES": ["semi-limited", "semi-lim"],
+		"PROPER_NAME": "Semi-Limited"
+	},
+	"Series":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["series"],
+		"PROPER_NAME": "Series"
+	},
+	"Shackles":
+	{
+		"DESCRIPTION": "Reduce [Strength] until end of turn.",
+		"NAMES": ["shackles"],
+		"PROPER_NAME": "Shackles"
+	},
+	"Slow":
+	{
+		"DESCRIPTION": "For every card you have played this turn, take #b10% more damage from #yAttacks.",
+		"NAMES": ["slow"],
+		"PROPER_NAME": "Slow"
+	},
+	"Sorcery":
+	{
+		"DESCRIPTION": "The next Orb #yChanneled has additional [Focus].",
+		"NAMES": ["sorcery"],
+		"PROPER_NAME": "Sorcery"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn.",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
+	},
+	"Startup":
+	{
+		"DESCRIPTION": "Play this effect at the start of combat.",
+		"NAMES": ["startup"],
+		"PROPER_NAME": "Startup"
+	},
+	"Stun":
+	{
+		"DESCRIPTION": "Cannot act for #b1 turn.",
+		"NAMES": ["stun", "stunned", "stslib:stunned"],
+		"PROPER_NAME": "Stun"
+	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "Deal damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
+		"NAMES": ["support damage", "supp. damage"],
+		"PROPER_NAME": "Support Damage"
+	},
+	"Swirled":
+	{
+		"DESCRIPTION": "If the target has [Burning], [Freezing], or [Electrified]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
+		"NAMES": ["swirled"],
+		"PROPER_NAME": "Swirled"
+	},
+	"Teamwork":
+	{
+		"DESCRIPTION": "Teamwork is equal to the number of cards in hand that have the most common #yAffinity amongst your hand.",
+		"NAMES": ["teamwork"],
+		"PROPER_NAME": "Teamwork"
+	},
+	"Technic":
+	{
+		"DESCRIPTION": "Gain [S] when a [A-Silver] card #yMatches. NL Gains #b1 #yLevel for every #b10 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to gain [Genesis], granting you #b1 extra [E] per turn.",
+		"NAMES": ["technic"],
+		"PROPER_NAME": "Technic"
+	},
+	"Technic Scaling":
+	{
+	  "DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [S].",
+	  "NAMES": ["[s] scaling", "technic scaling"],
+	  "PROPER_NAME": "Technic Scaling"
+	},
+	"Technic Stance":
+	{
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [S] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Silver].",
+		"NAMES": ["[s] stance", "technic stance"],
+		"PROPER_NAME": "Technic Stance"
+	},
+	"Temporary HP":
+    {
+    	"DESCRIPTION": "Temporary HP lasts until end of combat.",
+    	"NAMES": ["temporary hp", "temp. hp"],
+    	"PROPER_NAME": "Temporary HP"
+    },
+	"Temporary Thorns":
+	{
+		"DESCRIPTION": "When attacked, deal damage to the attacker. Removed at the end of turn.",
+		"NAMES": ["temporary thorns", "temp. thorns"],
+		"PROPER_NAME": "Temporary Thorns"
+	},
+	"Trigger":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["trigger","triggered","triggers"],
+		"PROPER_NAME": "Trigger"
+	},
+	"Triggerable Debuff":
+	{
+		"DESCRIPTION": "[Burning], [Freezing], [Electrified].",
+		"NAMES": ["triggerable debuff", "triggerable debuffs"],
+		"PROPER_NAME": "Triggerable Debuff"
+	},
+	"Velocity":
+	{
+	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to draw #b2 cards.",
+	  "NAMES": ["velocity"],
+	  "PROPER_NAME": "Velocity"
+	},
+	"Velocity Scaling":
+	{
+	  "DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [G].",
+	  "NAMES": ["[g] scaling", "velocity scaling"],
+	  "PROPER_NAME": "Velocity Scaling"
+	},
+	"Velocity Stance":
+	{
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [G] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Green].",
+		"NAMES": ["[g] stance", "velocity stance"],
+		"PROPER_NAME": "Velocity Stance"
+	},
+	"Vigor":
+	{
+		"DESCRIPTION": "The next Attack played deals additional damage per hit.",
+		"NAMES": ["vigor"],
+		"PROPER_NAME": "Vigor"
+	},
+	"Vitality":
+	{
+		"DESCRIPTION": "At the start of each turn, gain [Temporary HP].",
+		"NAMES": ["vitality"],
+		"PROPER_NAME": "Vitality"
+	},
+	"Willpower":
+	{
+	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [O] up to #b50.",
+	  "NAMES": ["willpower"],
+	  "PROPER_NAME": "Willpower"
+	},
+	"Wisdom":
+	{
+	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Focus] of the next #yOrb #yChanneled by #b4.",
+	  "NAMES": ["wisdom"],
+	  "PROPER_NAME": "Wisdom"
+	},
+	"Wisdom Scaling":
+	{
+	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [B].",
+	  "NAMES": ["[b] scaling", "wisdom scaling"],
+	  "PROPER_NAME": "Wisdom Scaling"
+	},
+	"Wisdom Stance":
+	{
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [B] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Blue].",
+		"NAMES": ["[b] stance", "wisdom stance"],
+		"PROPER_NAME": "Wisdom Stance"
+	},
+	"~Block Scaling":
+	{
+		"DESCRIPTION": "This #yAttack's scaling applies both to its damage and its #yBlock.",
+		"NAMES": ["~blockscaling, ~block scaling"],
+		"PROPER_NAME": "Dual Scaling"
+	},
+	"~Branch Upgrade":
+	{
+		"DESCRIPTION": "When you upgrade this card, you may choose #b1 of #b2 upgrade paths for this card.",
+		"NAMES": ["~branchupgrade, ~branch upgrade"],
+		"PROPER_NAME": "Branch Upgrade"
+	},
+	"~Brutal":
+	{
+		"DESCRIPTION": "Affected twice by damage modifiers, excluding #yAffinity #yPowers and #yScaling.",
+		"NAMES": ["~brutal"],
+		"PROPER_NAME": "Brutal Damage"
+	},
+	"~Crystallize":
+	{
+		"DESCRIPTION": "A Status card that gives [Metallicize] at the cost of HP and [E].",
+		"NAMES": ["~crystallize"],
+		"PROPER_NAME": "Crystallize"
+	},
+	"~Damage":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~damage"],
+		"PROPER_NAME": "Normal Damage"
+	},
+	"~Delayed":
+	{
+		"DESCRIPTION": "Whenever you shuffle your draw pile, place this card on the bottom.",
+		"NAMES": ["~delayed"],
+		"PROPER_NAME": "Delayed"
+	},
+	"~Elemental":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Deal #b30% additional damage if the enemy has #yBlock.",
+		"NAMES": ["~elemental"],
+		"PROPER_NAME": "Elemental Damage"
+	},
+	"~Ethereal":
+	{
+		"DESCRIPTION": "#yExhausted if in hand at the end of turn.",
+		"NAMES": ["~ethereal"],
+		"PROPER_NAME": "Ethereal"
+	},
+	"~Haste":
+	{
+		"DESCRIPTION": "When drawn, draw 1 card.",
+		"NAMES": ["~haste"],
+		"PROPER_NAME": "Haste"
+	},
+	"~HasteInfinite":
+	{
+	  "DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #ycan #yactivate #yonce #yper #yturn.",
+	  "NAMES": ["~haste infinite"],
+	  "PROPER_NAME": "Haste"
+	},
+	"~HasteOnce":
+	{
+	  "DESCRIPTION": "When drawn, draw 1 card. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+	  "NAMES": ["~haste once"],
+	  "PROPER_NAME": "Haste"
+	},
+	"~Innate":
+	{
+		"DESCRIPTION": "Start each combat with this card in hand. Whenever you shuffle your draw pile, place this card on the top.",
+		"NAMES": ["~innate"],
+		"PROPER_NAME": "Innate"
+	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #b25% from #yRanged attacks.",
+		"NAMES": ["~lock-on"],
+		"PROPER_NAME": "Lock-On"
+	},
+	"~Multiform":
+	{
+		"DESCRIPTION": "You may change this card's form in the pop-up viewer from your master deck outside of combat.",
+		"NAMES": ["~multiform"],
+		"PROPER_NAME": "Multiform"
+	},
+	"~Piercing":
+	{
+		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
+		"NAMES": ["~piercing"],
+		"PROPER_NAME": "Piercing Damage"
+	},
+	"~Ranged":
+	{
+		"DESCRIPTION": "Ignores #yThorns and #yFlight.",
+		"NAMES": ["~ranged"],
+		"PROPER_NAME": "Ranged Damage"
+	},
+	"~Retain":
+	{
+		"DESCRIPTION": "Retained cards are not discarded at the end of turn.",
+		"NAMES": ["~retain"],
+		"PROPER_NAME": "Retain"
+	},
+	"~RetainInfinite":
+	{
+	  "DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
+	  "NAMES": ["~retain infinite"],
+	  "PROPER_NAME": "Retain"
+	},
+	"~RetainOnce":
+	{
+		"DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+		"NAMES": ["~retain once"],
+		"PROPER_NAME": "Retain"
+	},
+	"~Steal":
+	{
+		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
+		"NAMES": ["~steal"],
+		"PROPER_NAME": "Steal"
+	},
+	"~Unique":
+	{
+		"DESCRIPTION": "Can be #yUpgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
+		"NAMES": ["~unique"],
+		"PROPER_NAME": "Unique"
+	},
+		"Air":
+    	{
+    		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When #yEvoked: #yCycle #b1 card.",
+    		"NAMES": ["aether", "aether+", "air", "air+"],
+    		"PROPER_NAME": "Air"
+    	},
+    	"Afterlife": {
+    	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
+    	  "NAMES": [
+    		"afterlife"
+    	  ],
+    	  "PROPER_NAME": "Afterlife"
+    	},
+    	"Aura":
+    	{
+    		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
+    		"NAMES": ["aura", "auras"],
+    		"PROPER_NAME": "Aura"
+    	},
+    	"Chaos":
+    	{
+    		"DESCRIPTION": "Orb: Reduces the cost of a random card by #b1, and increases the cost of another random card by #b1.",
+    		"NAMES": ["chaos", "chaos+"],
+    		"PROPER_NAME": "Chaos"
+    	},
+    	"Earth":
+    	{
+    		"DESCRIPTION": "Orb: Gains projectiles when #yTriggered. When you are attacked: Remove #b1 projectile to gain [Block] and deal damage back to the attacker. When #yEvoked: Each projectile deals damage to a random enemy. Automatically #yEvoked after #b3 turns.",
+    		"NAMES": ["earth", "earth+"],
+    		"PROPER_NAME": "Earth"
+    	},
+    	"Fire":
+    	{
+    		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
+    		"NAMES": ["fire", "fire+"],
+    		"PROPER_NAME": "Fire"
+    	},
+    	"Motivate":
+    	{
+    		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
+    		"NAMES": ["motivate"],
+    		"PROPER_NAME": "Motivate"
+    	},
+    	"Reload":
+    	{
+    		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
+    		"NAMES": ["reload"],
+    		"PROPER_NAME": "Reload"
+    	},
+    	"Ricochet":
+    	{
+    	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, activate this effect instead.",
+    	  "NAMES": ["ricochet"],
+    	  "PROPER_NAME": "Ricochet"
+    	},
+    	"Soul":
+    	{
+    	  "DESCRIPTION": "When played, reduce #ySoul by #b1. If it is at #b0, #yExhaust this and add the specified card to your discard pile.",
+    	  "NAMES": ["soul"],
+    	  "PROPER_NAME": "Soul"
+    	},
+    	"Spellcaster":
+    	{
+    		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
+    		"NAMES": ["spellcaster"],
+    		"PROPER_NAME": "Spellcaster"
+    	},
+    	"Synergy":
+    	{
+    		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
+    		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
+    		"PROPER_NAME": "Synergy"
+    	},
+    	"Water":
+    	{
+    	  "DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP. Heal #b2 HP the first #b2 times Water is #yEvoked this combat.",
+    	  "NAMES": ["water", "water+"],
+    	  "PROPER_NAME": "Water"
+    	},
+    	"~Orb Core":
+    	{
+    		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+    		"NAMES": ["~orb core", "~orb cores"],
+    		"PROPER_NAME": "Orb Core"
+    	}
+}

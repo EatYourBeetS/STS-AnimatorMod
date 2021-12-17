@@ -1,0 +1,43 @@
+
+{
+	"pcl:Chaos":
+	{
+		"NAME": "Chaos",
+		"DESCRIPTION":
+		[
+			"At the start of turn or on #yEvoke: Reduce the cost of a random card by #b1, and increase the cost of another random card by #b1."
+		]
+	},
+	"pcl:Earth":
+	{
+		"NAME": "Earth",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn: Gain #g{0} projectiles (Max. #b{1}). NL #yEvoke: Each projectile deals #b{2} damage to a random enemy. NL When you are attacked: Lose #b1 projectile to gain #b{2} [Block] and deal #b{3} damage back to the attacker. NL After #b{4} turns: #yEvoke this Orb."
+		]
+	},
+	"pcl:Air":
+	{
+		"NAME": "Air",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, deal #g{0} #yPiercing damage to ALL enemies. NL #yEvoke: Deal #g{1} #yPiercing damage to ALL enemies #g{2} times and #yCycle #b1 card."
+		]
+	},
+	"pcl:Fire":
+	{
+		"NAME": "Fire",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, deal #g{0} damage to the highest health enemy and apply #b{1} #yBurning. NL #yEvoke: Deal #g{2} damage to the highest health enemy and apply #b{3} #yBurning."
+		]
+	},
+	"pcl:Water":
+	{
+	  "NAME": "Water",
+	  "DESCRIPTION":
+	  [
+		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Gain #b{1} [THP] and remove [Burning]. NL After #b{2} turns: #yEvoke this Orb. NL The first #b2 times you #yEvoke [Water] this combat: Heal #b{3} HP."
+	  ]
+	}
+}

@@ -1,0 +1,8 @@
+
+{
+	"pcl:UpgradedHand":
+	{
+	  "NAME": "Upgraded Hand",
+	  "DESCRIPTION": ["Your maximum hand size is increased by #b{0}."]
+	}
+}

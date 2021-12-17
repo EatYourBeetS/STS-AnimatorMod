@@ -1,0 +1,683 @@
+
+{
+	"pcl:AbstractTemporaryPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} #b{1} at the start of your next turn.","Gain #b{0} #b{1} at the start of your next turn.","Temporary {0}"],
+		"NAME": "Temporary Power"
+    },
+	"pcl:AgilityPower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [G] scaling.", "At #b{0} [G]: Gain #b{1} [Dexterity]."],
+		"NAME": "Agility"
+	},
+	"pcl:BlindedPower":
+	{
+	  "DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
+	  "NAME": "Blinded"
+	},
+	"pcl:BlessingPower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [L] scaling.", "At #b{0} [L]: Gain #b{1} [L]."],
+		"NAME": "Blessing"
+	},
+	"pcl:BurningPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
+		"NAME": "Burning"
+	},
+	"pcl:CounterAttackPower":
+	{
+		"DESCRIPTIONS": ["Whenever you block damage this turn: Deal #b{0} damage to ALL enemies, then reduce stacks by 1."],
+		"NAME": "Counter-Attack"
+	},
+	"pcl:CorruptionPower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [D] scaling.", "At #b{0} [D]: Gain #b{1} [D]."],
+		"NAME": "Corruption"
+	},
+	"pcl:DelayedDamagePower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn.{1}", " If this effect would kill you, survive with #b1 HP."],
+		"NAME": "Delayed Damage"
+	},
+	"pcl:DesecrationPower":
+	{
+	  "DESCRIPTIONS": ["When a [A-Dark] card #yMatches: Gain #b{0} [D]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to reduce a single enemy's Attack damage by #b{2}% and damage resistance by #b{3}%.{4}","NL #rThis #rpower #ris #rdisabled."],
+	  "NAME": "Desecration"
+	},
+	"pcl:ElectrifiedPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt is dealt to ALL allies, or to itself if it has no allies (min. #b1).","At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt with #yAttacks is dealt to yourself (this cannot kill you)."],
+		"NAME": "Electrified"
+	},
+	"pcl:EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0}% less #yAttack damage."],
+		"NAME": "Enchanted Armor"
+	},
+	"pcl:EndurancePower":
+	{
+	  "DESCRIPTIONS": ["When a [A-Orange] card #yMatches: Gain #b{0} [O]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "NAME": "Endurance"
+	},
+	"pcl:EnergizedPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],
+		"NAME": "Energized"
+	},
+	"pcl:ExitStanceNextTurnPower":
+    {
+		"DESCRIPTIONS": ["Exit your current stance at the start of your next turn."],
+		"NAME": "Exit Stance Next Turn"
+    },
+	"pcl:ExitStancePower":
+	{
+		"DESCRIPTIONS": ["Exit your Stance."],
+		"NAME": "Exit Stance"
+	},
+	"pcl:FireElementPower":
+	{
+	  "DESCRIPTIONS": ["Immune to Burning. Freezing is twice as effective."],
+	  "NAME": "Fire Element"
+	},
+	"pcl:ForcePower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [R] scaling.", "At #b{0} [R]: Gain #b{1} [Strength]."],
+		"NAME": "Force"
+	},
+	"pcl:FrailPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0}% less #yBlock from cards for #b{1} {2}.","turn","turns"],
+		"NAME": "Frail"
+	},
+	"pcl:FreezingPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
+		"NAME": "Freezing"
+	},
+	"pcl:GenesisPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0} additional [E] each turn."],
+		"NAME": "Genesis"
+	},
+	"pcl:ImpairedPower":
+	{
+		"DESCRIPTIONS": ["Orbs are #b{0}% as effective for #b{1} {2}.","turn","turns"],
+		"NAME": "Impaired"
+	},
+	"pcl:InspirationPower":
+	{
+		"DESCRIPTIONS": ["Ignore the costs of the next #b{0} #yInteractable #yPower(s) used."],
+		"NAME": "Inspiration"
+	},
+	"pcl:IntellectPower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [B] scaling.", "At #b{0} [B]: Gain #b{1} [Focus]."],
+		"NAME": "Intellect"
+	},
+	"pcl:InvocationPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Invocation"
+	},
+	"pcl:IceElementPower":
+	{
+	  "DESCRIPTIONS": ["Immune to Freezing. Burning is twice as effective."],
+	  "NAME": "Fire Element"
+	},
+	"pcl:LockonPower":
+	{
+		"DESCRIPTIONS": ["Receive #b{0}% more damage from Orbs and #b{1}% more damage from Ranged attacks for #b{2} {3}.","turn","turns"],
+		"NAME": "Lock-On"
+	},
+	"pcl:MarkedPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
+		"NAME": "Marked"
+	},
+	"pcl:MightPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Red] card #yMatches: Gain #b{0} [R]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Might"
+	},
+	"pcl:PhasingPower":
+	{
+		"DESCRIPTIONS": ["You have a #b{0}% chance to dodge each attack.", " This chance starts decaying in #b{0} turn(s).", " Reduce this chance by #b{0}% each turn."],
+		"NAME": "Phasing"
+	},
+	"pcl:PoisonPlayerPower":
+	{
+		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
+		"NAME": "Poison"
+	},
+	"pcl:ResistancePower":
+    {
+      "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%.", "Increase the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%."],
+      "NAME": "Resistance"
+    },
+	"pcl:RerollAffinityPower":
+	{
+		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL NL Make a [{0}] #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
+		"NAME": "Reroll Match"
+	},
+	"pcl:ShacklesPower":
+	{
+		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
+		"NAME": "Shackles"
+	},
+	"pcl:SorceryPower":
+	{
+		"DESCRIPTIONS": ["The next #yOrb #yChanneled has #b{0} additional [Focus]."],
+		"NAME": "Sorcery"
+	},
+	"pcl:SuperchargePower":
+	{
+		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Supercharge"
+	},
+	"pcl:SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
+		"NAME": "Support Damage"
+	},
+	"pcl:SwirledPower":
+	{
+	  "DESCRIPTIONS": ["If the target has [Burning], [Freezing], or [Electrified]: Apply #b1 of each to ALL other enemies, then reduce this by #b1. If there are no other enemies: Increase stacks of those powers by #b1."],
+	  "NAME": "Swirled"
+	},
+	"pcl:DesecratedPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0}% more damage from any source. Deal #b{1}% less damage with #yAttacks. Ignores [Artifact]. Removed at the end of turn."],
+		"NAME": "Desecrated"
+	},
+	"pcl:TechnicPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Silver] card #yMatches: Gain #b{0} [S]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to gain #b{2} additional [E] each turn.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Technic"
+	},
+	"pcl:TemporaryDesecrationPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [D] at the start of your next turn."],
+		"NAME": "Temporary Desecration"
+    },
+	"pcl:TemporaryDexterityPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Dexterity] at the start of your next turn."],
+		"NAME": "Temporary Dexterity"
+    },
+	"pcl:TemporaryEndurancePower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Endurance] at the start of your next turn."],
+		"NAME": "Temporary Endurance"
+    },
+	"pcl:TemporaryFocusPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Focus] at the start of your next turn."],
+		"NAME": "Temporary Focus"
+    },
+	"pcl:TemporaryStrengthPower":
+    {
+		"DESCRIPTIONS": ["Lose #b{0} [Strength] at the start of your next turn."],
+		"NAME": "Temporary Strength"
+    },
+	"pcl:TemporaryThornsPower":
+	{
+		"DESCRIPTIONS": ["When attacked, deal #b{0} damage to the attacker. Removed at the end of turn."],
+		"NAME": "Temporary Thorns"
+	},
+	"pcl:VelocityPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Green] card #yMatches: Gain #b{0} [G]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Velocity"
+	},
+	"pcl:VitalityPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
+		"NAME": "Vitality"
+	},
+	"pcl:VulnerablePower":
+	{
+		"DESCRIPTIONS": ["Receive #b{0}% more damage from #yAttacks for #b{1} turn(s)."],
+		"NAME": "Vulnerable"
+	},
+	"pcl:WeakPower":
+	{
+		"DESCRIPTIONS": ["Attack deal #b{0}% less damage for #b{1} turn(s)."],
+		"NAME": "Weakened"
+	},
+	"pcl:WillpowerPower":
+	{
+		"DESCRIPTIONS": ["Cards have +{0} #yDamage or [Block] for every point of [O] scaling.", "At #b{0} [O], gain #b{1} [Endurance]."],
+		"NAME": "Willpower"
+	},
+	"pcl:WisdomPower":
+	{
+		"DESCRIPTIONS": ["When a [A-Blue] card #yMatches: Gain #b{0} [B]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Wisdom"
+	},
+		"pcl:AinzPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your turn activate 1 of 4 random effects #b{0} time(s)."],
+    		"NAME": "Ainz Ooal Gown"
+    	},
+    	"pcl:Amplification_DarkPower":
+    	{
+    	  "DESCRIPTIONS": ["[Dark] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
+    	  "NAME": "Dark Amplification"
+    	},
+    	"pcl:Amplification_LightningPower":
+    	{
+    	  "DESCRIPTIONS": ["[Lightning] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
+    	  "NAME": "Lightning Amplification"
+    	},
+    	"pcl:ArcherPower":
+    	{
+    		"DESCRIPTIONS": ["At the end of your turn, deal #b{0} damage to all enemies for each Debuff they have."],
+    		"NAME": "Archer"
+    	},
+    	"pcl:AzrielPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever you apply a debuff, gain #b{0} Strength."],
+    		"NAME": "Azriel"
+    	},
+    	"pcl:BlazingHeatPower":
+    	{
+    	  "DESCRIPTIONS": ["[Fire] deals #b+{0}% damage on Trigger and #b+{1}% damage on Evoke to the highest health enemy."],
+    	  "NAME": "Blazing Heat"
+    	},
+    	"pcl:BorosPower":
+    	{
+    		"DESCRIPTIONS": ["All #yPowers are played twice."],
+    		"NAME": "Boros"
+    	},
+    	"pcl:BozesPower":
+    	{
+    		"DESCRIPTIONS": ["When a card #yMatches, gain #b{0} #ySupport #yDamage."],
+    		"NAME": "Bozes Co Palesti"
+    	},
+    	"pcl:BurningWeaponPower":
+    	{
+    		"DESCRIPTIONS": ["For #b{0} turns: Deal double damage to enemies with [Freezing]. Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning] and remove its [Freezing]."],
+    		"NAME": "Burning Weapon"
+    	},
+    	"pcl:ChlammyZellPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever you play alternating card types this turn, deal #b{0} damage to ALL enemies and #yCycle #b1 card. NL NL Last Type played: #y{1}."],
+    		"NAME": "Kurami"
+    	},
+    	"pcl:CursedStabsPower":
+    	{
+    		"DESCRIPTIONS": ["Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
+    		"NAME": "Cursed Stabs"
+    	},
+    	"pcl:DainsleifAbyssPower":
+    	{
+    	  "DESCRIPTIONS": ["Whenever you play a card, gains stacks equal to the card's cost + 1. Whenever this reaches #b{0} stacks, remove #b{0} stacks, end your turn, and choose 1 out of 3 random effects with positive and negative effects."],
+    	  "NAME": "Phase of the Abyssal Moon"
+    	},
+    	"pcl:DarkCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["When targeted by a card, apply #b{0} #yConstricted to ALL other characters."],
+    		"NAME": "Dark Crystal"
+    	},
+    	"pcl:DarkCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, apply #b{0} #yConstricted to the enemy."],
+    		"NAME": "Dark Cube"
+    	},
+    	"pcl:DarkWispPower":
+    	{
+    		"DESCRIPTIONS": ["On death, apply #b{0} #yConstricted to ALL characters."],
+    		"NAME": "Dark Wisp"
+    	},
+    	"pcl:DarknessPower":
+    	{
+    		"DESCRIPTIONS": ["The next time you take damage, add #b1 #yAdrenaline to your draw pile."],
+    		"NAME": "Dustiness Ford Lalatina"
+    	},
+    	"pcl:DelayedHealPower":
+    	{
+    		"DESCRIPTIONS": ["Heal #g{0} HP at the start of your next turn."],
+    		"NAME": "Delayed Heal"
+    	},
+    	"pcl:EarthenThornsPower":
+    	{
+    		"DESCRIPTIONS": ["When attacked, apply #b{0} [Poison] to the attacker."],
+    		"NAME": "Poisoned Thorns"
+    	},
+    	"pcl:ElementalExposurePower":
+    	{
+    	  "DESCRIPTIONS": ["The effects and damage of [Burning], [Freezing], and [Electrified] are multiplied by #b{0}%. Receives #b{1}% more damage from #yElemental attacks. Removed in #b{2} turn(s)."],
+    	  "NAME": "Elemental Exposure"
+    	},
+    	"pcl:ElementalMasteryPower":
+    	{
+    	  "DESCRIPTIONS": ["For #b{0} turn(s): At the end of the turn, apply [Elemental Exposure] to all enemies, ignoring Artifact. Increase this amount by #b{1} whenever an Orb is Channeled or Evoked."],
+    	  "NAME": "Elemental Mastery"
+    	},
+    	"pcl:EmiyaShirouPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever an enemy loses its block this turn, gain #b1 energy and draw #b1 random #yAttack."],
+    		"NAME": "Unlimited Blade Works"
+    	},
+    	"pcl:EntouJyuuPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
+    		"NAME": "Entou Jyuu"
+    	},
+    	"pcl:FeridBathoryPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever a card is Exhausted, a random enemy loses #b{0} HP and you gain #b{0} #yTemporary #yHp."],
+    		"NAME": "Ferid Bathory"
+    	},
+    	"pcl:FireCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["When targeted by a card, ALL other characters gain #b{0} #yStrength and #yBurning."],
+    		"NAME": "Fire Crystal"
+    	},
+    	"pcl:FireCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, ALL allies gain #b{0} #yStrength and #b{1} #yBurning."],
+    		"NAME": "Fire Cube"
+    	},
+    	"pcl:FireWispPower":
+    	{
+    		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength and #yBurning."],
+    		"NAME": "Fire Wisp"
+    	},
+    	"pcl:FrostCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["When targeted by a card, ALL other characters gain #b{0} #yPlated #yArmor."],
+    		"NAME": "Frost Crystal"
+    	},
+    	"pcl:FrostCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, ALL allies gain #b{0} #yPlated #yArmor."],
+    		"NAME": "Frost Cube"
+    	},
+    	"pcl:FrostWispPower":
+    	{
+    		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yPlated #yArmor."],
+    		"NAME": "Frost Wisp"
+    	},
+    	"pcl:GazelDwargonPower":
+    	{
+    		"DESCRIPTIONS": ["Maintain up to #b{0} #yBlock at the start of each turn."],
+    		"NAME": "Gazel Dwargon"
+    	},
+    	"pcl:GeassPower":
+    	{
+    		"DESCRIPTIONS": ["Will attack itself or be stunned once. This power can only affect the same character once."],
+    		"NAME": "Geass"
+    	},
+    	"pcl:GuildGirlPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your turn Cycle #b{0} cards."],
+    		"NAME": "Guild Girl"
+    	},
+    	"pcl:HandSizePower":
+    	{
+    		"DESCRIPTIONS": ["Your current maximum hand size is #b{0}."],
+    		"NAME": "Hand Size"
+    	},
+    	"pcl:HealingCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["When targeted by a card, ALL other characters heal #b{0} HP."],
+    		"NAME": "Healing Crystal"
+    	},
+    	"pcl:HealingCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, ALL allies heal #b{0} HP."],
+    		"NAME": "Healing Cube"
+    	},
+    	"pcl:HealingWispPower":
+    	{
+    		"DESCRIPTIONS": ["On death, ALL characters heal #b{0} HP."],
+    		"NAME": "Healing Wisp"
+    	},
+    	"pcl:HigakiRinnePower":
+    	{
+    		"DESCRIPTIONS": ["???"],
+    		"NAME": "???"
+    	},
+    	"pcl:HiteiPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your turn, choose and Exhaust #b{0} card(s) in your deck."],
+    		"NAME": "Princess Hitei"
+    	},
+    	"pcl:HornedBat_PurplePower":
+    	{
+    		"DESCRIPTIONS": ["Immune to #yPoison. NL Dies upon losing #yFlight."],
+    		"NAME": "Horned Bat (P)"
+    	},
+    	"pcl:HornedBat_RedPower":
+    	{
+    		"DESCRIPTIONS": ["Immune to #yBurning. NL Dies upon losing #yFlight."],
+    		"NAME": "Horned Bat (R)"
+    	},
+    	"pcl:InvertPower":
+    	{
+    	  "DESCRIPTIONS": ["The effects of [Weak], [Vulnerable], [Frail], and [Impaired] on you are inverted for #b{0} turn(s)."],
+    	  "NAME": "Inversion"
+    	},
+    	"pcl:IonizingStormPower":
+    	{
+    	  "DESCRIPTIONS": ["[Lightning] applies #b{0}% of [Focus] as [Electrified] to a random enemy when #yTriggered and to ALL enemies when #yEvoked. NL At the start of turn: Gain #b{1} [L] for each enemy with [Electrified]."],
+    	  "NAME": "Ionizing Storm"
+    	},
+    	"pcl:KaijinPower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, #yRetain a card and increase its damage and #yBlock by #b{0} this combat."],
+    		"NAME": "Kaijin"
+    	},
+    	"pcl:KuragesOathPower":
+    	{
+    		"DESCRIPTIONS": ["[Water] has #b+{0} [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. If you have no [Water] at the end of turn: Take #b{1} damage and channel [Water]."],
+    		"NAME": "Kurage's Oath"
+    	},
+    	"pcl:LightningCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["When targeted by a card, ALL other characters take #b{0} #yPiercing damage."],
+    		"NAME": "Lightning Crystal"
+    	},
+    	"pcl:LightningCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, deal #b{0} #yPiercing damage to the enemy."],
+    		"NAME": "Lightning Cube"
+    	},
+    	"pcl:LightningWispPower":
+    	{
+    		"DESCRIPTIONS": ["On death, ALL characters take #b{0} #yPiercing damage."],
+    		"NAME": "Lightning Wisp"
+    	},
+    	"pcl:MagusForm":
+    	{
+    		"DESCRIPTIONS": ["At the start of turn: Gain #b{0} [Focus] and lose #b{1} [Strength] and [Dexterity]."],
+    		"NAME": "Magus Form"
+    	},
+    	"pcl:MarkOfPoisonPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever you receive damage also receive #b{0} #yPoison."],
+    		"NAME": "Mark of Poison"
+    	},
+    	"pcl:MindControlPower":
+    	{
+    	  "DESCRIPTIONS": ["Applied Card: #y{0}. NL When this creature dies: Return this card to your hand. NL NL Pay #b{1} {2}: This creature will {3}.{4}", "deal #b{0} damage to a random enemy", "apply {0} {1} to a random enemy", "grant you {0} {1}", "target a random enemy", "be the target of ALL enemy intents", " NL #gThis #gPower #gis #gactive.", " NL #rAnother #rMind #rControl #rPower #ris #ralready #ractive."],
+    	  "NAME": "Mind Control"
+    	},
+    	"pcl:NextTurnDexterityPower":
+    	{
+    		"DESCRIPTIONS": ["Next turn, gain #b{0} #yTemporary #yDexterity."],
+    		"NAME": "Next Turn Dexterity"
+    	},
+    	"pcl:NightVisionPower":
+    	{
+    		"DESCRIPTIONS": ["Reduces the #yStrength reduction of #yBlinded to #b1."],
+    		"NAME": "Night Vision"
+    	},
+    	"pcl:OrbCore_AirPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, draw #b{1} cards, then discard 1 card."],
+    		"NAME": "Air Core"
+    	},
+    	"pcl:OrbCore_ChaosPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, #yDiscover #b{1} card(s)."],
+    		"NAME": "Chaos Core"
+    	},
+    	"pcl:OrbCore_DarkPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, apply #b{1} #yWeak and #yVulnerable to a random enemy."],
+    		"NAME": "Dark Core"
+    	},
+    	"pcl:OrbCore_EarthPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, gain #b{1} Temporary #yThorns."],
+    		"NAME": "Earth Core"
+    	},
+    	"pcl:OrbCore_FirePower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, apply #b{1} #yBurning to ALL enemies."],
+    		"NAME": "Fire Core"
+    	},
+    	"pcl:OrbCore_FrostPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, gain #b{1} #yPlated #yArmor."],
+    		"NAME": "Frost Core"
+    	},
+    	"pcl:OrbCore_LightningPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, deal #b{1} damage to ALL enemies."],
+    		"NAME": "Lightning Core"
+    	},
+    	"pcl:OrbCore_PlasmaPower":
+    	{
+    		"DESCRIPTIONS": ["On your next #b{0} #ySynergies this turn, gain #b{1} #yTemporary #yHP."],
+    		"NAME": "Plasma Core"
+    	},
+    	"pcl:PinaCoLadaPower":
+    	{
+    		"DESCRIPTIONS": ["Your next #b{0} #y0-Cost card(s) are played twice."],
+    		"NAME": "Piña Co Lada"
+    	},
+    	"pcl:PoisonAffinityPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever you apply #yPoison, apply #b{0} additional #yPoison."],
+    		"NAME": "Poison Affinity"
+    	},
+    	"pcl:PridePower":
+    	{
+    		"DESCRIPTIONS": ["Until your next turn, when you would take unblocked damage, your rightmost #yDark Orb loses that much damage instead."],
+    		"NAME": "Pride"
+    	},
+    	"pcl:ProvokedPower":
+    	{
+    		"DESCRIPTIONS": ["Takes #b{0}% more damage from #yAttacks. Will always #yAttack this turn."],
+    		"NAME": "Provoked"
+    	},
+    	"pcl:RejuvenationPower":
+    	{
+    	  "DESCRIPTIONS": ["At the end of each turn, heal #b{0} HP."],
+    	  "NAME": "Rejuvenation"
+    	},
+    	"pcl:RoryMercuryPower":
+    	{
+    		"DESCRIPTIONS": ["Your #yAttacks this turn deal #b{0}% more damage."],
+    		"NAME": "Rory Mercury"
+    	},
+    	"pcl:SelfImmolationPower":
+    	{
+    	  "DESCRIPTIONS": ["When you play a card that gives [Block]: ALL characters take [Delayed Damage] equal to #b{0} times its [Block]."],
+    	  "NAME": "Self-Immolation"
+    	},
+    	"pcl:SheerColdPower":
+    	{
+    	  "DESCRIPTIONS": ["[Frost] deals damage (#b{0}% of [Focus] on #yTrigger and #b{1}% on #yEvoke) and applies half that much [Freezing] to the enemy with the highest damage."],
+    	  "NAME": "Sheer Cold"
+    	},
+    	"pcl:ShikizakiKikiPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your turn, choose and Obtain #b{0} #yAttack(s). Gain #yForce equal to their cost."],
+    		"NAME": "Shikizaki Kiki"
+    	},
+    	"pcl:ShiroPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your turn, gain #b{0} energy."],
+    		"NAME": "Shiro"
+    	},
+    	"pcl:SilencedPower":
+    	{
+    	  "DESCRIPTIONS": ["You cannot gain #yCommon #yBuffs."],
+    	  "NAME": "Silenced"
+    	},
+    	"pcl:SonicPower":
+    	{
+    		"DESCRIPTIONS": ["At the start of your next #b{0} turns, gain #b1 #yDexterity and add #b1 #yThrowing-Knives to your hand."],
+    		"NAME": "Speed-o'-Sound Sonic"
+    	},
+    	"pcl:SpectralPower":
+    	{
+    		"DESCRIPTIONS": ["Reduces the #ydamage of incoming #yNormal and #yRanged attacks by #b90%."],
+    		"NAME": "Spectral"
+    	},
+    	"pcl:StolenGoldPower":
+    	{
+    		"DESCRIPTIONS": ["You stole #b{0} Gold. You can steal #b{1} more Gold."],
+    		"NAME": "Stolen Gold"
+    	},
+    	"pcl:StrategicInformationPower":
+    	{
+    		"DESCRIPTIONS": ["The next #b{0} time(s) you discard a card, gain #b{1} #yBlock and deal #b{2} damage to the lowest health enemy."],
+    		"NAME": "Strategic Information"
+    	},
+    	"pcl:SwordfishIIPower":
+    	{
+    	  "DESCRIPTIONS": ["At the end of your turn, deal #b{0} #yDamage for each Strike played this turn. You have played #b{1} Strike(s)."],
+    	  "NAME": "Swordfish II"
+    	},
+    	"pcl:TemporaryThousandCutsPower":
+        {
+            "DESCRIPTIONS": ["This turn, deal #b{0} damage to ALL enemies whenever you play a card."],
+            "NAME": "A Thousand Cuts"
+        },
+    	"pcl:TheUnnamedPower":
+    	{
+    		"DESCRIPTIONS": ["Before taking unblocked damage: Gains that much #yEnchanted #yArmor. NL When receiving a debuff: Gains that much #yRegeneration. NL When the enemy receives a buff: Gains that much #yStrength. NL Loses half of these stats at the end of each turn.", "Phase 2 (Ascension {0}+)", "At the end of turn, reduce all #yDebuffs by #b1. NL When receiving multiple #yAttacks from the same card or copies of it, halve all damage beyond the first hit."],
+    		"NAME": "Infinite Power"
+    	},
+    	"pcl:TheUnnamedCultistPower":
+    	{
+    		"DESCRIPTIONS": ["While there are other allies alive, gains #b{0} Enchanted Armor for each."],
+    		"NAME": "Unnamed Cultist"
+    	},
+    	"pcl:TheUnnamedHatPower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, all allies heal #b{0} HP. NL NL On death, apply #yEntangle to the opponent."],
+    		"NAME": "H4T"
+    	},
+    	"pcl:UltimateCrystalPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever a card is played, gains #b{0} #yStrength. NL NL After #b{1} turn(s), summons a copy of itself."],
+    		"NAME": "Ultimate Crystal"
+    	},
+    	"pcl:UltimateCubePower":
+    	{
+    		"DESCRIPTIONS": ["At the end of each turn, gains #b{0} random Buff. NL NL Explodes after #b{1} turns, dealing #b{2} damage. NL (hits multiple times)"],
+    		"NAME": "Ultimate Cube"
+    	},
+    	"pcl:UltimateWispPower":
+    	{
+    		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add #b1 #yBurn to your discard pile. NL NL The first card played each turn is #yExhausted."],
+    		"NAME": "Ultimate Wisp"
+    	},
+    	"pcl:UnnamedDollPower":
+    	{
+    		"DESCRIPTIONS": ["On death, ALL characters gain #b{0} #yStrength. Once per turn, when the owner deals unblocked damage, add #b1 #yPain to the draw pile."],
+    		"NAME": "Unnamed Doll"
+    	},
+    	"pcl:YukoShionjiPower":
+    	{
+    		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it (#b{0} use(s)), or #pRight-Click to discard it (#b{1} use(s))."],
+    		"NAME": "Yuko Shionji"
+    	}
+}

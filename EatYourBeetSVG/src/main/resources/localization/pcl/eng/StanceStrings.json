@@ -1,0 +1,59 @@
+
+{
+	"pcl:MightStance":
+	{
+		"NAME": "Might Stance",
+		"DESCRIPTION": 
+		[
+			"The #yInteractable #yPower of [R] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Red]"
+		]
+	},
+	"pcl:VelocityStance":
+	{
+		"NAME": "Velocity Stance",
+		"DESCRIPTION": 
+		[
+			"The #yInteractable #yPower of [G] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Green]"
+		]
+	},
+	"pcl:WisdomStance":
+	{
+		"NAME": "Wisdom Stance",
+		"DESCRIPTION": 
+		[
+			"The #yInteractable #yPower of [B] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Blue]"
+		]
+	},
+	"pcl:EnduranceStance":
+	{
+		"NAME": "Endurance Stance",
+		"DESCRIPTION":
+		[
+			"The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Orange]"
+		]
+	},
+	"pcl:InvocationStance":
+	{
+		"NAME": "Invocation Stance",
+		"DESCRIPTION":
+		[
+			"The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Light]"
+		]
+	},
+	"pcl:DesecrationStance":
+	{
+		"NAME": "Desecration Stance",
+		"DESCRIPTION":
+		[
+			"The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Dark]"
+		]
+	},
+	"pcl:TechnicStance":
+    {
+    	"NAME": "Technic Stance",
+    	"DESCRIPTION":
+    	[
+    		"The #yInteractable #yPower of [S] is #b50% more effective. NL When exited or re-entered: Gain {0} [A-Silver]"
+    	]
+    }
+}

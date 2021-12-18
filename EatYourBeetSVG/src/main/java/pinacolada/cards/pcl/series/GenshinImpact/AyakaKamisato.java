@@ -75,8 +75,8 @@ public class AyakaKamisato extends PCLCard {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH)
                 .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy()).SetVFX(true, true).SetDamageEffect(c ->
                         {
-                            SFX.Play(SFX.ATTACK_BUTCHER, 0.75f, 0.85f, 1.1f);
-                            SFX.Play(SFX.ATTACK_WHIFF_2, 0.75f, 0.85f, 1.1f);
+                            SFX.Play(SFX.PCL_DECAPITATION, 0.55f, 0.65f, 1.2f);
+                            SFX.Play(SFX.PCL_SPRAY, 0.55f, 0.65f, 1.3f);
                             return PCLGameEffects.Queue.Add(VFX.Bleed(c.hb)).duration;
                         }
 

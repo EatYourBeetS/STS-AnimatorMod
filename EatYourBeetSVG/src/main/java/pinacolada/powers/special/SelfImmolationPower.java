@@ -42,6 +42,7 @@ public class SelfImmolationPower extends PCLPower
         super.onInitialApplication();
 
         PCLGameEffects.Queue.Add(VFX.Bleed(owner.hb));
+        SFX.Play(SFX.PCL_SPRAY, 1f, 1.15f, 0.95f);
     }
 
     @Override

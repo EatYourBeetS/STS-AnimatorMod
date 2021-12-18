@@ -23,11 +23,11 @@ import pinacolada.utilities.PCLJUtils;
 public class CardLibraryScreenPatches
 {
     private static final FieldInfo<AbstractCard> hoveredCards = PCLJUtils.GetField("hoveredCard", CardLibraryScreen.class);
+    private static final FieldInfo<ColorTabBar> _colorBar = PCLJUtils.GetField("colorBar", CardLibraryScreen.class);
     private static GUI_Button openButton;
     @SpirePatch(clz = CardLibraryScreen.class, method = "open")
     public static class CardLibraryScreen_Open
     {
-        private static final FieldInfo<ColorTabBar> _colorBar = PCLJUtils.GetField("colorBar", CardLibraryScreen.class);
 
         @SpirePrefixPatch
         public static void Prefix(CardLibraryScreen screen)
@@ -91,7 +91,7 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Prefix(CardLibraryScreen __instance)
         {
-            if (openButton != null) {
+            if (openButton != null && !IsAnimator(__instance)) {
                 openButton.SetColor(GR.UI.CardFilters.isActive ? Color.WHITE : Color.GRAY).TryUpdate();
             }
             if (GR.UI.CardFilters.TryUpdate())
@@ -120,9 +120,14 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Postfix(CardLibraryScreen __instance, SpriteBatch sb)
         {
-            if (openButton != null) {
+            if (openButton != null && !IsAnimator(__instance)) {
                 openButton.TryRender(sb);
             }
         }
+    }
+
+    protected static boolean IsAnimator(CardLibraryScreen screen) {
+        ColorTabBar tabBar = _colorBar.Get(screen);
+        return tabBar != null && tabBar.curTab == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(eatyourbeets.resources.GR.Enums.Cards.THE_ANIMATOR);
     }
 }

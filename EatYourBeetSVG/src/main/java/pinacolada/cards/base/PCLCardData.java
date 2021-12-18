@@ -1,7 +1,5 @@
 package pinacolada.cards.base;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,6 +12,7 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RotatingList;
 import eatyourbeets.utilities.TupleT2;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -162,7 +161,7 @@ public class PCLCardData
         if (previews.Count() > 1)
         {
             EYBCardPreview preview;
-            if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT))
+            if (PCLHotkeys.cycle.isJustPressed())
             {
                 preview = previews.Next(true);
             }

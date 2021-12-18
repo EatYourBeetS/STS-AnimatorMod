@@ -91,6 +91,12 @@ public class HiiragiKureto extends PCLCard
         }
 
         @Override
+        public void updateDescription()
+        {
+            description = FormatDescription(0, amount, AMOUNT);
+        }
+
+        @Override
         public void onUseCard(AbstractCard card, UseCardAction action)
         {
             super.onUseCard(card, action);

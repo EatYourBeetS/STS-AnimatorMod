@@ -9,7 +9,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.ui.FtueTip;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
@@ -30,7 +29,7 @@ import java.util.Arrays;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
-public class PCLAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
+public class PCLAffinitySystem extends GUIElement
 {
     public static final int SCALING_DIVISION = 1;
     public final ArrayList<AbstractPCLAffinityPower> Powers = new ArrayList<>();
@@ -193,7 +192,6 @@ public class PCLAffinitySystem extends GUIElement implements OnStartOfTurnSubscr
         return p == null ? 0 : p.GetEffectiveLevel();
     }
 
-    @Override
     public void OnStartOfTurn()
     {
         for (PCLAffinityRow row : rows)
@@ -406,7 +404,8 @@ public class PCLAffinitySystem extends GUIElement implements OnStartOfTurnSubscr
     public void Initialize()
     {
         AffinityCounts = new AffinityCounts();
-        PCLCombatStats.onStartOfTurn.Subscribe(this);
+
+        PCLJUtils.LogInfo(this, "Initialized PCL Affinity System.");
 
         if (amountsSavedPosition != null)
         {
@@ -415,7 +414,7 @@ public class PCLAffinitySystem extends GUIElement implements OnStartOfTurnSubscr
             amountsSavedPosition.y = hb.target_cY / (float) Settings.HEIGHT;
             if (amountsSavedPosition.dst2(GR.PCL.Config.AffinitySystemPosition.Get()) > Mathf.Epsilon)
             {
-                PCLJUtils.LogInfo(this, "Saved affinity panel position.");
+                PCLJUtils.LogInfo(this, "Saved PCL affinity panel position.");
                 GR.PCL.Config.AffinitySystemPosition.Set(amountsSavedPosition.cpy(), true);
             }
         }

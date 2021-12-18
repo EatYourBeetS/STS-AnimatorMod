@@ -487,6 +487,11 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         PCLCombatStats.MatchingSystem.SetLastCardPlayed(null);
     }
 
+    public static void AtStartOfTurn()
+    {
+        PCLCombatStats.MatchingSystem.OnStartOfTurn();
+    }
+
     public static void OnDeath()
     {
         ClearPCLStats();

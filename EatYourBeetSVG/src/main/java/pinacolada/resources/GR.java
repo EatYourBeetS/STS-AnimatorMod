@@ -509,7 +509,6 @@ public class GR
             @SpireEnum public static AbstractGameAction.AttackEffect CLASH;
             @SpireEnum public static AbstractGameAction.AttackEffect DARKNESS;
             @SpireEnum public static AbstractGameAction.AttackEffect FIRE_EXPLOSION;
-            @SpireEnum public static AbstractGameAction.AttackEffect ICE;
             @SpireEnum public static AbstractGameAction.AttackEffect PSYCHOKINESIS;
             @SpireEnum public static AbstractGameAction.AttackEffect SMALL_EXPLOSION;
             @SpireEnum public static AbstractGameAction.AttackEffect SPARK;
@@ -519,6 +518,7 @@ public class GR
             public static AbstractGameAction.AttackEffect DAGGER = eatyourbeets.resources.GR.Enums.AttackEffect.DAGGER;
             public static AbstractGameAction.AttackEffect DARK = eatyourbeets.resources.GR.Enums.AttackEffect.DARK;
             public static AbstractGameAction.AttackEffect GUNSHOT = eatyourbeets.resources.GR.Enums.AttackEffect.GUNSHOT;
+            public static AbstractGameAction.AttackEffect ICE = eatyourbeets.resources.GR.Enums.AttackEffect.ICE;
             public static AbstractGameAction.AttackEffect PUNCH = eatyourbeets.resources.GR.Enums.AttackEffect.PUNCH;
             public static AbstractGameAction.AttackEffect SHIELD_FROST = eatyourbeets.resources.GR.Enums.AttackEffect.SHIELD_FROST;
             public static AbstractGameAction.AttackEffect SPEAR = eatyourbeets.resources.GR.Enums.AttackEffect.SPEAR;

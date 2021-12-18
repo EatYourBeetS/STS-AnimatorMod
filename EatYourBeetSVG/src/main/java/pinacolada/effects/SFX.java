@@ -22,6 +22,9 @@ public class SFX
         BaseMod.addAudio(PCL_SPEAR_1, "audio/pcl/sound/SPEAR_1.ogg");
         BaseMod.addAudio(PCL_SPEAR_2, "audio/pcl/sound/SPEAR_2.ogg");
         BaseMod.addAudio(PCL_ARROW, "audio/pcl/sound/FIRING_ARROW.ogg");
+        BaseMod.addAudio(PCL_DECAPITATION, "audio/pcl/sound/DECAPITATION.ogg");
+        BaseMod.addAudio(PCL_SPRAY, "audio/pcl/sound/SPRAY.ogg");
+        BaseMod.addAudio(PCL_DARKNESS, "audio/pcl/sound/DARKNESS.ogg");
         BaseMod.addAudio(PCL_BOOST, "audio/pcl/sound/EE01_12_Encourage.ogg");
         BaseMod.addAudio(PCL_GUNSHOT, "audio/pcl/sound/FIRING_BULLET.ogg");
         BaseMod.addAudio(PCL_PSI, "audio/pcl/sound/PSI.ogg");
@@ -46,8 +49,10 @@ public class SFX
     }
 
     public static final String PCL_ARROW = "PCL_ARROW";
+    public static final String PCL_SPRAY = "PCL_SPRAY";
     public static final String PCL_BOOST = "PCL_BOOST";
     public static final String PCL_DARKNESS = "PCL_DARKNESS";
+    public static final String PCL_DECAPITATION = "PCL_DECAPITATION";
     public static final String PCL_GUNSHOT = "PCL_GUNSHOT";
     public static final String PCL_SPEAR_1 = "PCL_SPEAR_1";
     public static final String PCL_SPEAR_2 = "PCL_SPEAR_2";

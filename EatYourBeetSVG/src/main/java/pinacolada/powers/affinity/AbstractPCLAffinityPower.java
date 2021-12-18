@@ -110,6 +110,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
 
     public void SetEffectMultiplier(float effectMultiplier) {
         this.effectMultiplier = effectMultiplier;
+        this.updateDescription();
     }
 
     public void SetGainMultiplier(int gainMultiplier) {

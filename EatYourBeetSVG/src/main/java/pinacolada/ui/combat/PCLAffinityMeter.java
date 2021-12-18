@@ -15,6 +15,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.powers.common.RerollAffinityPower;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.ui.GUIElement;
 import pinacolada.ui.common.AffinityKeywordButton;
 import pinacolada.ui.controls.GUI_Image;
@@ -206,6 +207,13 @@ public class PCLAffinityMeter extends GUIElement
             Reroll.updateDescription();
             if (CurrentAffinity.background_button.hb.hovered || NextAffinity.background_button.hb.hovered) {
                 PCLCardTooltip.QueueTooltip(Reroll.tooltip);
+            }
+
+            if (PCLHotkeys.rerollCurrent.isJustPressed()) {
+                Reroll.OnClick(Target.CurrentAffinity);
+            }
+            if (PCLHotkeys.rerollNext.isJustPressed()) {
+                Reroll.OnClick(Target.NextAffinity);
             }
         }
 

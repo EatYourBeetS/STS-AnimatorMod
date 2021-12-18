@@ -2,7 +2,6 @@ package pinacolada.resources.pcl;
 
 import basemod.BaseMod;
 import basemod.ModPanel;
-import com.badlogic.gdx.Input;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.powers.monsters.LightningCubePower;
 import pinacolada.characters.FoolCharacter;
@@ -15,14 +14,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 
 import static pinacolada.ui.seriesSelection.PCLLoadoutsContainer.MINIMUM_SERIES;
 
 public class PCLConfig
 {
-    public static final HashMap<Integer, Integer> EQUIVALENT_KEYS = new HashMap<>();
+    public static String CreateFullID(String name)
+    {
+        return GR.BASE_PREFIX.toUpperCase(Locale.ROOT) + "-" + name;
+    }
 
     private static final String TROPHY_DATA_KEY = "TDAL";
     private static final String LAST_SEED_KEY = "TSDL";
@@ -45,15 +47,6 @@ public class PCLConfig
     private static final String KEYMAP_CYCLE1 = "PCL-KeyMapCycle1";
     private static final String KEYMAP_CYCLE2 = "PCL-KeyMapCycle2";
     private static final String KEYMAP_REROLL = "PCL-KeyMapReroll";
-
-    static {
-        EQUIVALENT_KEYS.put(Input.Keys.ALT_LEFT, Input.Keys.ALT_RIGHT);
-        EQUIVALENT_KEYS.put(Input.Keys.ALT_RIGHT, Input.Keys.ALT_LEFT);
-        EQUIVALENT_KEYS.put(Input.Keys.CONTROL_LEFT, Input.Keys.CONTROL_RIGHT);
-        EQUIVALENT_KEYS.put(Input.Keys.CONTROL_RIGHT, Input.Keys.CONTROL_LEFT);
-        EQUIVALENT_KEYS.put(Input.Keys.SHIFT_LEFT, Input.Keys.SHIFT_RIGHT);
-        EQUIVALENT_KEYS.put(Input.Keys.SHIFT_RIGHT, Input.Keys.SHIFT_LEFT);
-    }
 
     private SpireConfig config;
     private HashSet<String> tips = null;

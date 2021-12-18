@@ -2867,7 +2867,7 @@
 		},
 		"pcl:HiiragiKureto":
 		{
-			"DESCRIPTION": "Exhaust a random card for each unblocked hit. ** For each: The next Attack played applies !M! [Electrified]. || Pay !A! <L>: [Electrified] gains +!S!% effect bonus.",
+			"DESCRIPTION": "Exhaust a random card for each unblocked hit. ** For each: The next Attack played applies !M! [Electrified] per hit. || Pay !A! <L>: [Electrified] gains +!S!% effect bonus.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} Attacks played apply #b{1} [Electrified]."],
 			"NAME": "Kureto Hiiragi"
 		},

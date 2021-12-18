@@ -1,7 +1,5 @@
 package pinacolada.ui.seriesSelection;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -21,12 +19,12 @@ import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.CardAffinityComparator;
 import pinacolada.cards.base.CardSeriesComparator;
 import pinacolada.effects.card.ShowCardPileEffect;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.resources.pcl.PCLStrings;
 import pinacolada.resources.pcl.misc.PCLRuntimeLoadout;
 import pinacolada.ui.AbstractScreen;
@@ -350,10 +348,9 @@ public class PCLSeriesSelectScreen extends AbstractScreen
 
     protected void OnCardClicked(AbstractCard card)
     {
-        JUtils.LogError(this, "I was left-clicked!");
         if (!isScreenDisabled) {
             PCLRuntimeLoadout c = container.Find(card);
-            if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Input.Keys.CONTROL_RIGHT) && c.canEnableExpansion) {
+            if (PCLHotkeys.cycle.isJustPressed() && c.canEnableExpansion) {
                 CardCrawlGame.sound.play("CARD_SELECT");
                 ToggleExpansion(card);
             }
@@ -369,7 +366,6 @@ public class PCLSeriesSelectScreen extends AbstractScreen
 
     public void OnCardRightClicked(AbstractCard card)
     {
-        JUtils.LogError(this, "I was right-clicked!");
         selectedCard = card;
         ArrayList<ContextOption> list = new ArrayList<>();
         list.add(ContextOption.ViewCards);

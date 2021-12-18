@@ -4,16 +4,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.actions.common.DarkOrbEvokeAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.LockOnPower;
+import pinacolada.actions.orbs.DarkOrbEvokeAction;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.replacement.PCLLockOnPower;
-import pinacolada.resources.GR;
+import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class AbstractOrbPatches
@@ -60,7 +58,7 @@ public class AbstractOrbPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(Dark __instance)
         {
-            AbstractDungeon.actionManager.addToTop(new DarkOrbEvokeAction(new DamageInfo(AbstractDungeon.player, __instance.evokeAmount, DamageInfo.DamageType.THORNS), GR.Enums.AttackEffect.DARK));
+            PCLActions.Top.Add(new DarkOrbEvokeAction(__instance.evokeAmount));
             return SpireReturn.Return(null);
         }
     }

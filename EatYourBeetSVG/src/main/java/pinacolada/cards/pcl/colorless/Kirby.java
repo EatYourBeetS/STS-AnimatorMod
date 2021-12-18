@@ -1,7 +1,5 @@
 package pinacolada.cards.pcl.colorless;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -18,6 +16,7 @@ import pinacolada.interfaces.subscribers.OnCostChangedSubscriber;
 import pinacolada.interfaces.subscribers.OnTagChangedSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -113,7 +112,7 @@ public class Kirby extends PCLCard implements
         }
         if (previews.Count() > 0) {
             EYBCardPreview currentPreview;
-            if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT)) {
+            if (PCLHotkeys.cycle.isJustPressed()) {
                 currentPreview = previews.Next(true);
             } else {
                 currentPreview = previews.Current();

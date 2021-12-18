@@ -24,19 +24,19 @@ public class WisdomStance extends PCLStance
     @Override
     protected Color GetParticleColor()
     {
-        return CreateColor(0.2f, 0.3f, 0.2f, 0.3f, 0.8f, 0.9f);
+        return CreateColor(0.2f, 0.3f, 0.3f, 0.4f, 0.8f, 0.9f);
     }
 
     @Override
     protected Color GetAuraColor()
     {
-        return CreateColor(0.2f, 0.3f, 0.1f, 0.2f, 0.6f, 0.7f);
+        return CreateColor(0.2f, 0.3f, 0.2f, 0.3f, 0.8f, 0.9f);
     }
 
     @Override
     protected Color GetMainColor()
     {
-        return new Color(0.2f, 0.2f, 1f, 1f);
+        return new Color(0.2f, 0.25f, 1f, 1f);
     }
 
 }

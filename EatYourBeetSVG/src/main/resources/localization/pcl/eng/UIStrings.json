@@ -272,7 +272,7 @@
 			"No cards match the current filters.",
 			"Dynamic Portraits",
 			"Dynamic card portraits",
-			"'CTRL' to cycle",
+			"{0} to cycle",
 			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
 			"Display Beta Series",
 			"Translation",
@@ -293,15 +293,15 @@
 		]
 	},
 
-	"pcl:Keymapping":
+	"pcl:Hotkeys":
 	{
 		"TEXT":
 		[
+			"Change Control Pile",
+			"Select Control Pile",
 			"Cycle Previews",
 			"Reroll Current Affinity",
-			"Reroll Next Affinity",
-			"Select Control Pile",
-			"Change Control Pile"
+			"Reroll Next Affinity"
 		]
 	},
 
@@ -315,7 +315,7 @@
 			"Rerolls",
 			"Exp.",
 			"Control Pile",
-			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #pCTRL to cycle through playable cards."
+			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #p{0} to cycle through playable cards."
 		]
 	},
 

@@ -1,7 +1,5 @@
 package pinacolada.ui.common;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -19,6 +17,7 @@ import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.patches.energyPanel.EnergyPanelPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -148,7 +147,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
 
     public void Update(EnergyPanel panel)
     {
-        isHidden = !PCLGameUtilities.InBattle() && subscribers.size() == 0;
+        isHidden = !PCLGameUtilities.InBattle() || subscribers.size() == 0;
         hb.update();
         if (!isHidden) {
             RefreshCards();
@@ -159,13 +158,21 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
             if (showPreview)
             {
                 GR.UI.AddPostRender(this::PostRender);
-                if (Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_LEFT) || Gdx.input.isKeyJustPressed(Input.Keys.CONTROL_RIGHT)) {
+                if (PCLHotkeys.cycle.isJustPressed()) {
                     SelectNextCard();
                 }
 
                 if (TOOLTIP != null) {
+                    TOOLTIP.description = GR.PCL.Strings.Combat.ControlPileDescriptionFull(PCLHotkeys.cycle.getKeyString());
                     PCLCardTooltip.QueueTooltip(TOOLTIP, hb.x, hb.y + TOOLTIP_OFFSET_Y);
                 }
+            }
+
+            if (PCLHotkeys.controlPileSelect.isJustPressed()) {
+                cardButton.onLeftClick.Complete(cardButton);
+            }
+            else if (PCLHotkeys.controlPileChange.isJustPressed()) {
+                cardButton.onRightClick.Complete(cardButton);
             }
         }
     }

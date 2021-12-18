@@ -20,6 +20,16 @@ public class CombatStatsPatches
         }
     }
 
+    @SpirePatch(clz = CombatStats.class, method = "atStartOfTurn")
+    public static class CombatStatsPatches_AtStartOfTurn
+    {
+        @SpirePrefixPatch
+        public static void Postfix(CombatStats __instance)
+        {
+            PCLCombatStats.AtStartOfTurn();
+        }
+    }
+
     @SpirePatch(clz = CombatStats.class, method = "onAfterCardPlayed")
     public static class CombatStatsPatches_OnAfterCardPlayed
     {

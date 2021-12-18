@@ -24,6 +24,7 @@ public class PCLStrings
     public Trophies Trophies;
     public Tutorial Tutorial;
     public Combat Combat;
+    public Hotkeys Hotkeys;
     public CardMods CardMods;
     public TheUnnamedReign TheUnnamedReign;
     public HandSelection HandSelection;
@@ -42,6 +43,7 @@ public class PCLStrings
         SeriesSelection = new SeriesSelection();
         SeriesSelectionButtons = new SeriesSelectionButtons();
         SingleCardPopupButtons = new SingleCardPopupButtons();
+        Hotkeys = new Hotkeys();
         Combat = new Combat();
         CardMods = new CardMods();
         TheUnnamedReign = new TheUnnamedReign();
@@ -114,7 +116,7 @@ public class PCLStrings
         public final String NotEnoughCards = Strings.TEXT[4];
         public final String DynamicPortraits = Strings.TEXT[5];
         public final String UseCardHoveringAnimation = Strings.TEXT[6];
-        public final String PressControlToCycle = Strings.TEXT[7];
+        public final String PressToCycle = Strings.TEXT[7];
         public final String LocalizationHelp = Strings.TEXT[8];
         public final String DisplayBetaSeries = Strings.TEXT[9];
         public final String LocalizationHelpHeader = Strings.TEXT[10];
@@ -146,6 +148,10 @@ public class PCLStrings
         public final String MaxBlock(int block)
         {
             return PCLJUtils.Format(MaxBlock_F1, block);
+        }
+
+        public final String PressKeyToCycle(String keyName) {
+            return PCLJUtils.Format(PressToCycle, keyName);
         }
     }
 
@@ -281,6 +287,17 @@ public class PCLStrings
         public final String MaxCopiesTooltip = Strings.TEXT[6];
     }
 
+    public class Hotkeys
+    {
+        private final UIStrings Strings = GetUIStrings("Hotkeys");
+
+        public final String ControlPileChange = Strings.TEXT[0];
+        public final String ControlPileSelect = Strings.TEXT[1];
+        public final String Cycle = Strings.TEXT[2];
+        public final String RerollCurrent = Strings.TEXT[3];
+        public final String RerollNext = Strings.TEXT[4];
+    }
+
     public class Combat
     {
         private final UIStrings Strings = GetUIStrings("Combat");
@@ -292,6 +309,10 @@ public class PCLStrings
         public final String Experience = Strings.TEXT[4];
         public final String ControlPile = Strings.TEXT[5];
         public final String ControlPileDescription = Strings.TEXT[6];
+
+        public final String ControlPileDescriptionFull(String keyName) {
+            return PCLJUtils.Format(ControlPileDescription, keyName);
+        }
     }
 
     public class CardMods

@@ -5,7 +5,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import patches.cardLibrary.CardLibraryPatches;
+import pinacolada.patches.cardLibrary.CardLibraryPatches;
 
 public class MakeTempCardInDiscardActionPatches
 {

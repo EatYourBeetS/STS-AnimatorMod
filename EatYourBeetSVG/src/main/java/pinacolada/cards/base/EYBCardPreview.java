@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class EYBCardPreview
@@ -59,7 +60,7 @@ public class EYBCardPreview
 
         if (isMultiPreview)
         {
-            String cyclePreviewText = GR.PCL.Strings.Misc.PressControlToCycle;
+            String cyclePreviewText = GR.PCL.Strings.Misc.PressKeyToCycle(PCLHotkeys.cycle.getKeyString());
             BitmapFont font = pinacolada.utilities.PCLRenderHelpers.GetDescriptionFont(preview, 0.9f);
             pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, preview, GR.PCL.Images.Panel.Texture(), new Vector2(0, -AbstractCard.RAW_H * 0.55f),
             AbstractCard.IMG_WIDTH * 0.6f, font.getLineHeight() * 1.8f, Color.DARK_GRAY, 0.75f, 1);

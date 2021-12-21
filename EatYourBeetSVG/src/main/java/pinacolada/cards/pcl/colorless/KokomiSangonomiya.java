@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class KokomiSangonomiya extends PCLCard
 {
     public static final PCLCardData DATA = Register(KokomiSangonomiya.class).SetPower(2, CardRarity.RARE).SetMaxCopies(1).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact).SetMultiformData(2, false);
-    public static final EYBCardPreview CORE_PREVIEW = new EYBCardPreview(new OrbCore_Water(), false);
+    public static final PCLCardPreview CORE_PREVIEW = new PCLCardPreview(new OrbCore_Water(), false);
 
     public KokomiSangonomiya()
     {
@@ -49,7 +49,7 @@ public class KokomiSangonomiya extends PCLCard
     };
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return upgraded && auxiliaryData.form == 1 ? CORE_PREVIEW : super.GetCardPreview();
     }

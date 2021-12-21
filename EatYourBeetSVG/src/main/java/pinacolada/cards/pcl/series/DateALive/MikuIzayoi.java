@@ -4,10 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardEffectChoice;
+import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -61,7 +63,7 @@ public class MikuIzayoi extends PCLCard
             PCLActions.Bottom.GainInspiration(1);
         }
 
-        if (PCLCombatStats.MatchingSystem.GetLastAffinitySynergy() == PCLAffinity.Light && info.IsSynergizing && PCLGameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue && info.IsSynergizing && PCLGameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
             PCLActions.Bottom.Motivate(1);
         }
     }

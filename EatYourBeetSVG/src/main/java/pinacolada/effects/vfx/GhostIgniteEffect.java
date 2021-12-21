@@ -1,10 +1,10 @@
 package pinacolada.effects.vfx;
 
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class GhostIgniteEffect extends PCLEffect
+public class GhostIgniteEffect extends EYBEffect
 {
     protected float x;
     protected float y;

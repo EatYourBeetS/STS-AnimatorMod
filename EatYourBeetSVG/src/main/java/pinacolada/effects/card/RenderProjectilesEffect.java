@@ -1,12 +1,12 @@
 package pinacolada.effects.card;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.Projectile;
 
 import java.util.ArrayList;
 
-public class RenderProjectilesEffect extends PCLEffect
+public class RenderProjectilesEffect extends EYBEffect
 {
     private final ArrayList<Projectile> projectiles;
 

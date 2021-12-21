@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
-import pinacolada.effects.PCLEffect;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
 import pinacolada.orbs.pcl.Earth;
 import pinacolada.utilities.PCLGameEffects;
 
-public class RockBurstEffect extends PCLEffect
+public class RockBurstEffect extends EYBEffect
 {
     public static final int PROJECTILES = 25;
     public static final float RADIUS = 240;

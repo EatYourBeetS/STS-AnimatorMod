@@ -1,11 +1,11 @@
 package pinacolada.effects.vfx;
 
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class TornadoEffect extends PCLEffect
+public class TornadoEffect extends EYBEffect
 {
     protected float x;
     protected float y;

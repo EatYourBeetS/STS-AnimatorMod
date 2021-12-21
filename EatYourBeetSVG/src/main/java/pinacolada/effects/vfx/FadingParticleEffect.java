@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import pinacolada.effects.PCLEffect;
 import pinacolada.effects.Projectile;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class FadingParticleEffect extends PCLEffect
+public class FadingParticleEffect extends EYBEffect
 {
     protected Projectile projectile;
     protected float x;

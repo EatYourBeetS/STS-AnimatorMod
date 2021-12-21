@@ -31,7 +31,8 @@ public class RerollAffinityPower extends PCLClickablePower
     {
         return FormatDescription(0,
                 PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity().GetAffinitySymbol(),
-                PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity().GetAffinitySymbol());
+                PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity().GetAffinitySymbol(),
+                PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentMatchCombo());
     }
 
     @Override

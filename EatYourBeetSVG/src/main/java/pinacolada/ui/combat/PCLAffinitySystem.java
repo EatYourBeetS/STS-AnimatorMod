@@ -221,7 +221,7 @@ public class PCLAffinitySystem extends GUIElement
         if (WouldMatch(card))
         {
             currentSynergy = card;
-            currentAffinitySynergy = AffinityMeter.CurrentAffinity.Type;
+            currentAffinitySynergy = AffinityMeter.GetCurrentAffinity();
             return true;
         }
 
@@ -238,6 +238,10 @@ public class PCLAffinitySystem extends GUIElement
     public boolean CanActivateSynergyBonus(PCLAffinity affinity)
     {
         return affinity.ID >= 0 && GetRow(affinity).Power.IsEnabled();
+    }
+
+    public void OnNotSynergy(PCLCard card) {
+        AffinityMeter.OnNotMatch(card);
     }
 
     public void OnSynergy(PCLCard card)

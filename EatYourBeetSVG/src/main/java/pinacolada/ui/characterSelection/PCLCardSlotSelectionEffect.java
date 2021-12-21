@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.rooms.FakeEventRoom;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLCardSlot;
 import pinacolada.ui.controls.GUI_CardGrid;
@@ -19,7 +19,7 @@ import pinacolada.ui.controls.GUI_TextBox;
 
 import java.util.ArrayList;
 
-public class PCLCardSlotSelectionEffect extends PCLEffectWithCallback<Object>
+public class PCLCardSlotSelectionEffect extends EYBEffectWithCallback<Object>
 {
     private static final GUI_TextBox cardValue_text = new
     GUI_TextBox(GR.PCL.Images.Panel_Rounded_Half_H.Texture(), new Hitbox(AbstractCard.IMG_WIDTH * 0.6f, AbstractCard.IMG_HEIGHT * 0.15f))

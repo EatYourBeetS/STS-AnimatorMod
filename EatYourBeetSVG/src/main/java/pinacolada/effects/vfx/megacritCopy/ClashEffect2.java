@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.UpgradeShineParticleEffect;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
 import pinacolada.utilities.PCLGameEffects;
 
-public class ClashEffect2 extends PCLEffect
+public class ClashEffect2 extends EYBEffect
 {
     private float x;
     private float y;

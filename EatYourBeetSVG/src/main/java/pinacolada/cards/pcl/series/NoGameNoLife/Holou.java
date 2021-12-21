@@ -107,7 +107,7 @@ public class Holou extends PCLCard
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle) {
             if (PCLGameUtilities.IsHindrance(card) && card instanceof PCLCard) {
-                ((PCLCard) card).SetUnplayable(false);
+                PCLActions.Last.ModifyAllInstances(card.uuid, c -> ((PCLCard)c).SetUnplayable(false));
             }
         }
     }

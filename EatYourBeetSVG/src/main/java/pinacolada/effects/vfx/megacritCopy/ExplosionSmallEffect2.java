@@ -7,9 +7,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class ExplosionSmallEffect2 extends PCLEffect
+public class ExplosionSmallEffect2 extends EYBEffect
 {
     private static final int EMBER_COUNT = 12;
     private float x;

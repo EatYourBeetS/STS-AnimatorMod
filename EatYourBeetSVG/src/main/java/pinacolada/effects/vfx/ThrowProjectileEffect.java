@@ -3,16 +3,16 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
 import eatyourbeets.utilities.Position2D;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.effects.Projectile;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
-public class ThrowProjectileEffect extends PCLEffectWithCallback<Hitbox>
+public class ThrowProjectileEffect extends EYBEffectWithCallback<Hitbox>
 {
     protected final ArrayList<Position2D> trailPositions = new ArrayList<>(); // z = scale
     protected boolean addTrailPosition;

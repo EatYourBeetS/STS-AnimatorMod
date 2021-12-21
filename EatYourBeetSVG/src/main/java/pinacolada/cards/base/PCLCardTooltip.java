@@ -289,7 +289,7 @@ public class PCLCardTooltip extends EYBCardTooltip
             y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
         }
 
-        EYBCardPreview preview = card.GetCardPreview();
+        PCLCardPreview preview = card.GetCardPreview();
         if (preview != null)
         {
             preview.Render(sb, card, card.upgraded || PCLGameUtilities.CanShowUpgrades(false));

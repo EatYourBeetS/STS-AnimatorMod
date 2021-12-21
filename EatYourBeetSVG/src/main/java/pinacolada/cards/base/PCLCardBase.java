@@ -15,12 +15,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.EYBFontHelper;
-import pinacolada.cards.pcl.colorless.uncommon.QuestionMark;
+import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.effects.card.PCLCardGlowBorderEffect;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
@@ -33,7 +32,7 @@ public abstract class PCLCardBase extends EYBCardBase
     protected static final Color HOVER_IMG_COLOR = new Color(1f, 0.815f, 0.314f, 0.8f);
     protected static final Color SELECTED_CARD_COLOR = new Color(0.5f, 0.9f, 0.9f, 1f);
     protected static final float SHADOW_OFFSET_X = 18f * Settings.scale;
-    protected static final float SHADOW_OFFSET_Y = 14f * Settings.scale;
+    protected static final float SHADOW_OFFSET_Y = EYBCardBase.SHADOW_OFFSET_Y;
 
     protected static final Color COLOR_COMMON = new Color(0.65f, 0.65f, 0.65f, 1f);
     protected static final Color COLOR_UNCOMMON = new Color(0.5f, 0.85f, 0.95f, 1f);
@@ -42,7 +41,6 @@ public abstract class PCLCardBase extends EYBCardBase
 
     public static boolean canCropPortraits = true;
     public static AbstractPlayer player = null;
-    public static Random rng = null;
 
     public float hoverDuration;
     public boolean renderTip;
@@ -106,49 +104,6 @@ public abstract class PCLCardBase extends EYBCardBase
             this.hovered = false;
             this.renderTip = false;
         }
-    }
-
-    @Override
-    public void updateHoverLogic()
-    {
-        this.hb.update();
-
-        if (this.hb.hovered)
-        {
-            hover();
-
-            this.hoverDuration += GR.UI.Delta();
-            this.renderTip = (this.hoverDuration > 0.2f && !Settings.hideCards);
-        }
-        else
-        {
-            unhover();
-        }
-    }
-
-    @Override
-    public void unhover()
-    {
-        if (hovered)
-        {
-            this.hoverDuration = 0f;
-            this.targetDrawScale = 0.75f;
-        }
-
-        this.hovered = false;
-        this.renderTip = false;
-    }
-
-    @Override
-    public void hover()
-    {
-        if (!hovered)
-        {
-            this.drawScale = 1f;
-            this.targetDrawScale = 1f;
-        }
-
-        this.hovered = true;
     }
 
     @Override
@@ -242,7 +197,7 @@ public abstract class PCLCardBase extends EYBCardBase
             newValue -= Gdx.graphics.getDeltaTime();
             if (newValue < 0.0F) {
                 glowList.add(new PCLCardGlowBorderEffect(this, this.glowColor));
-                newValue = 0.3F;
+                newValue = 0.5F;
             }
             _glowTimer.Set(this,newValue);
         }
@@ -481,6 +436,11 @@ public abstract class PCLCardBase extends EYBCardBase
                 pinacolada.utilities.PCLRenderHelpers.ResetFont(font);
             }
         }
+    }
+
+    public AdvancedTexture GetCardAttributeBanner()
+    {
+        return null;
     }
 
     protected AdvancedTexture GetPortraitImage()

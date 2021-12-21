@@ -9,17 +9,17 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
-public class GenericChooseCardsToObtainEffect extends PCLEffectWithCallback<GenericChooseCardsToObtainEffect>
+public class GenericChooseCardsToObtainEffect extends EYBEffectWithCallback<GenericChooseCardsToObtainEffect>
 {
     private final CardGroup[] groups;
     private final GenericCondition<AbstractCard> filter;

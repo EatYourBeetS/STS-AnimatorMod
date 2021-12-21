@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class StanceAura extends PCLEffect
+public class StanceAura extends EYBEffect
 {
     protected static boolean switcher = true;
     protected TextureAtlas.AtlasRegion img;

@@ -3,7 +3,7 @@ package pinacolada.cards.base;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import pinacolada.cards.pcl.colorless.uncommon.QuestionMark;
+import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 
 public class AffinityChoiceBuilder extends PCLCardBuilder

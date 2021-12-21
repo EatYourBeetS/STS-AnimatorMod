@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public abstract class PCLClickablePower extends PCLPower
 {
-    public PowerTriggerCondition triggerCondition;
+    public PCLPowerTriggerCondition triggerCondition;
     public PCLCardTooltip tooltip;
     public boolean clickable;
 
@@ -59,63 +59,63 @@ public abstract class PCLClickablePower extends PCLPower
     {
         this(owner, null, relic);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount);
     }
 
     public PCLClickablePower(AbstractCreature owner, PCLRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
         this(owner, null, relic);
 
-        triggerCondition = new PowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
+        triggerCondition = new PCLPowerTriggerCondition(this, requiredAmount, checkCondition, payCost);
     }
 
     public PCLClickablePower(AbstractCreature owner, PCLRelic relic, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, PCLAffinity... affinities)
     {
         this(owner, null, relic);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
 
     public PCLClickablePower(AbstractCreature owner, PCLCardData cardData, PowerTriggerConditionType type, int requiredAmount)
     {
         this(owner, cardData, null);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount);
     }
 
     public PCLClickablePower(AbstractCreature owner, PCLCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
         this(owner, cardData, null);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
     }
 
     public PCLClickablePower(AbstractCreature owner, PCLCardData cardData, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, PCLAffinity... affinities)
     {
         this(owner, cardData, null);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
 
     public PCLClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount)
     {
         this(owner, null, null, originalID);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount);
     }
 
     public PCLClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost)
     {
         this(owner, null, null, originalID);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost);
     }
 
     public PCLClickablePower(AbstractCreature owner, String originalID, PowerTriggerConditionType type, int requiredAmount, FuncT1<Boolean, Integer> checkCondition, ActionT1<Integer> payCost, PCLAffinity... affinities)
     {
         this(owner, null, null, originalID);
 
-        triggerCondition = new PowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
+        triggerCondition = new PCLPowerTriggerCondition(this, type, requiredAmount, checkCondition, payCost, affinities);
     }
 
     public String GetUpdatedDescription()

@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.AdvancedTexture;
-import pinacolada.cards.base.EYBCardPreview;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardPreview;
 import pinacolada.relics.PCLEnchantableRelic;
 import pinacolada.relics.pcl.UsefulBox;
 import pinacolada.resources.GR;
@@ -119,7 +119,7 @@ public abstract class Enchantment extends PCLCard implements Hidden
     public void AtEndOfTurnEffect(boolean isPlayer) {}
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return upgraded ? null : super.GetCardPreview();
     }

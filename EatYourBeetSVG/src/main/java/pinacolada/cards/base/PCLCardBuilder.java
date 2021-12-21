@@ -11,7 +11,7 @@ import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.AdvancedTexture;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.pcl.colorless.uncommon.QuestionMark;
+import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.resources.GR;
 
 public class PCLCardBuilder extends DynamicCardBuilder

@@ -2,9 +2,9 @@ package pinacolada.effects.card;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class RenderCardEffect extends PCLEffect
+public class RenderCardEffect extends EYBEffect
 {
     private final AbstractCard card;
 

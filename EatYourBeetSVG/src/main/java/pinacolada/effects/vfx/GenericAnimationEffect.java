@@ -5,14 +5,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import pinacolada.effects.AnimatedProjectile;
-import pinacolada.effects.PCLEffect;
 import pinacolada.effects.Projectile;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class GenericAnimationEffect extends PCLEffect
+public class GenericAnimationEffect extends EYBEffect
 {
     public final AnimatedProjectile projectile;
 

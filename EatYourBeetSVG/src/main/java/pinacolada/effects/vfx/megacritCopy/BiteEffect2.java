@@ -8,10 +8,10 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
 
-public class BiteEffect2 extends PCLEffect
+public class BiteEffect2 extends EYBEffect
 {
     private static AtlasRegion top;
     private static AtlasRegion bot;

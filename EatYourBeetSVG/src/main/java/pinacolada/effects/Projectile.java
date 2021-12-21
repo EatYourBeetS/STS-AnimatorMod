@@ -268,7 +268,7 @@ public class Projectile extends AdvancedTexture
             sb.setBlendFunction(770, 771);
         }
         else {
-            pinacolada.utilities.PCLRenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
+            PCLRenderHelpers.DrawCentered(sb, color, texture, cX, cY, width, height, scale, GetRotation(true), flipX, flipY);
         }
     }
 

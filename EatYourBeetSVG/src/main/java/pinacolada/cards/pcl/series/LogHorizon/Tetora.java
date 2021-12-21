@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.ColoredString;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
@@ -15,7 +14,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PowerTriggerConditionType;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class Tetora extends PCLCard
@@ -24,7 +22,7 @@ public class Tetora extends PCLCard
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_CARD_COST = 4;
+    private static final int POWER_CARD_COST = 8;
     private static final int USE_COST = 7;
     private static final int SYNERGY_TIMES = 2;
 
@@ -100,19 +98,7 @@ public class Tetora extends PCLCard
         public void OnUse(AbstractMonster m, int cost)
         {
             super.OnUse(m, cost);
-            PCLActions.Bottom.Draw(1).AddCallback(() -> {
-                PCLActions.Bottom.SelectFromHand(name, 1, false)
-                        .SetOptions(true,true,true)
-                        .SetMessage(GR.PCL.Strings.HandSelection.MoveToDrawPile)
-                        .AddCallback(cards ->
-                        {
-                            for (int i = cards.size() - 1; i >= 0; i--)
-                            {
-                                PCLActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile)
-                                        .SetDestination(CardSelection.Top);
-                            }
-                        });
-            });
+            PCLActions.Bottom.Exchange(name, amount);
         }
 
         @Override

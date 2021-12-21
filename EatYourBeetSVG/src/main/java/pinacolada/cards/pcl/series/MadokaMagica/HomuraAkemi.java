@@ -34,6 +34,7 @@ public class HomuraAkemi extends PCLCard
         SetAffinity_Blue(1);
         SetAffinity_Dark(1, 0, 1);
         SetAffinity_Light(0,0,1);
+        SetAffinity_Silver(1, 0, 0);
 
         SetDelayed(true);
         SetExhaust(true);

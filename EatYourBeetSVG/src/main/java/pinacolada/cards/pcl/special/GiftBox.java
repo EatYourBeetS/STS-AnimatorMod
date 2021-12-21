@@ -2,6 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import pinacolada.cards.base.CardUseInfo;
@@ -52,6 +53,8 @@ public class GiftBox extends PCLCard
     {
         //TODO: Make this into an actual card and not something for testing
         UnlockTracker.addScore(GR.Enums.Characters.THE_FOOL, 9999);
+        AbstractDungeon.isAscensionMode = true;
+        AbstractDungeon.ascensionLevel = 18;
 
         for (PCLAffinity af : PCLAffinity.Extended()) {
             PCLActions.Bottom.AddAffinity(af, 99);

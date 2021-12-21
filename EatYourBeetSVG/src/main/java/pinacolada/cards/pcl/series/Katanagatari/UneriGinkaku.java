@@ -29,7 +29,8 @@ public class UneriGinkaku extends PCLCard
         Initialize(13, 0, 3);
         SetUpgrade(4, 0, 1);
 
-        SetAffinity_Green(1, 0, 5);
+        SetAffinity_Green(1, 0, 3);
+        SetAffinity_Dark(1, 0, 2);
 
         SetEthereal(true);
     }

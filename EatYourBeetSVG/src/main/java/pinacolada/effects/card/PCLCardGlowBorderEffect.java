@@ -8,15 +8,15 @@ import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.patches.CardGlowBorderPatches;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class PCLCardGlowBorderEffect extends PCLEffect {
+public class PCLCardGlowBorderEffect extends EYBEffect {
 
     public static final Color FALLBACK_COLOR = Color.valueOf("30c8dcff");
     protected AbstractCard card;
-    protected AtlasRegion img;
+    protected AtlasRegion img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
     protected float scale;
 
     public PCLCardGlowBorderEffect(AbstractCard card) {
@@ -25,16 +25,7 @@ public class PCLCardGlowBorderEffect extends PCLEffect {
 
     public PCLCardGlowBorderEffect(AbstractCard card, Color gColor) {
         this.card = card;
-        switch(card.type) {
-            case POWER:
-                this.img = ImageMaster.CARD_POWER_BG_SILHOUETTE;
-                break;
-            case ATTACK:
-                this.img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
-                break;
-            default:
-                this.img = ImageMaster.CARD_SKILL_BG_SILHOUETTE;
-        }
+        this.img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
 
         this.duration = 1.2F;
         if (PCLGameUtilities.InBattle(false)) {

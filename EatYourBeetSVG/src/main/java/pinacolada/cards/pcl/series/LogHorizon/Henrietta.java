@@ -17,13 +17,13 @@ public class Henrietta extends PCLCard
             .SetMultiformData(2)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
-    private static final int POWER_COST = 10;
+    private static final int POWER_COST = 9;
 
     public Henrietta()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, POWER_COST);
+        Initialize(0, 0, 3, POWER_COST);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);
@@ -64,7 +64,7 @@ public class Henrietta extends PCLCard
 
             PCLActions.Bottom.TryChooseAffinity(name).AddConditionalCallback(choices -> {
                if (choices.size() > 0) {
-                   PCLGameUtilities.AddAffinityPowerLevel(choices.get(0).Affinity, amount);
+                   PCLActions.Top.StackAffinityPower(choices.get(0).Affinity, amount);
                }
             });
         }

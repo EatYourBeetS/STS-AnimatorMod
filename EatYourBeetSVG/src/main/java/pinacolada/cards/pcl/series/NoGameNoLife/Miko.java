@@ -26,7 +26,7 @@ public class Miko extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1, 10);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
@@ -36,7 +36,7 @@ public class Miko extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (info.TryActivateLimited()) {
-            PCLGameUtilities.AddAffinityPowerLevel(PCLAffinity.Light, secondaryValue);
+            PCLActions.Bottom.GainInvocation(secondaryValue);
         }
         PCLActions.Bottom.ChannelOrb(new Plasma());
         PCLActions.Bottom.StackPower(new MikoPower(p, magicNumber));

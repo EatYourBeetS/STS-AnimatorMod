@@ -10,12 +10,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.DamageImpactLineEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLGameEffects;
 
 import java.util.ArrayList;
 
-public class HemokinesisParticleEffect extends PCLEffect
+public class HemokinesisParticleEffect extends EYBEffect
 {
     protected static final float MAX_VELOCITY = 4000f * Settings.scale;
     protected static final float VELOCITY_RAMP_RATE = 3000f * Settings.scale;

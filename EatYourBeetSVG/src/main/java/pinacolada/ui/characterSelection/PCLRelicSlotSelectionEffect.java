@@ -9,8 +9,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.rooms.FakeEventRoom;
-import pinacolada.effects.PCLEffect;
 import pinacolada.relics.PCLRelic;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLRelicSlot;
@@ -22,7 +22,7 @@ import pinacolada.utilities.PCLInputManager;
 
 import java.util.ArrayList;
 
-public class PCLRelicSlotSelectionEffect extends PCLEffect
+public class PCLRelicSlotSelectionEffect extends EYBEffect
 {
     public static final float TARGET_X = Settings.WIDTH * 0.25f;
     public static final float START_XY = Settings.WIDTH * 0.5f;

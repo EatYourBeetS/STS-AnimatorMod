@@ -2,9 +2,9 @@ package pinacolada.effects.card;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class UnfadeOutEffect extends PCLEffect
+public class UnfadeOutEffect extends EYBEffect
 {
     private final AbstractCard card;
 

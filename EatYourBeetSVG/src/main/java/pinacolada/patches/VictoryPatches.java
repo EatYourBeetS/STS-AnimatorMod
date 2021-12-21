@@ -1,8 +1,6 @@
 package pinacolada.patches;
 
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
@@ -18,6 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 import java.util.ArrayList;
 
 // Act 5 and Act 3 victory logic
+// TODO add longest combo bonus here
 public class VictoryPatches
 {
     private static final FieldInfo<ArrayList<GameOverStat>> _stats = PCLJUtils.GetField("stats", GameOverScreen.class);
@@ -27,6 +26,11 @@ public class VictoryPatches
     private static GameOverStat GetUnnamedGameOverStats()
     {
         return new GameOverStat(data.strings.NAME, data.strings.DIALOG[28], String.valueOf(GetUnnamedScoreBonus()));
+    }
+
+    private static GameOverStat GetLongestComboStats()
+    {
+        return new GameOverStat(GR.PCL.Strings.Combat.Rerolls, (String)null, String.valueOf(GR.PCL.Dungeon.GetLongestMatchCombo()));
     }
 
     private static int GetUnnamedScoreBonus()
@@ -54,10 +58,11 @@ public class VictoryPatches
         @SpirePostfixPatch
         public static void Method(VictoryScreen __instance)
         {
+            ArrayList<GameOverStat> stats = _stats.Get(__instance);
+            stats.add(Math.max(0, stats.size() - 2), GetLongestComboStats());
             if (GR.PCL.Dungeon.IsUnnamedReign())
             {
                 _bossPoints.Set(__instance, _bossPoints.Get(__instance) + GetUnnamedScoreBonus());
-                ArrayList<GameOverStat> stats = _stats.Get(__instance);
                 stats.add(Math.max(0, stats.size() - 2), GetUnnamedGameOverStats());
             }
 
@@ -68,18 +73,14 @@ public class VictoryPatches
         }
     }
 
-//    Note: Using _bossPoints instead.
-//
-//    @SpirePatch(clz = VictoryScreen.class, method = "checkScoreBonus", paramtypez = {boolean.class})
-//    public static class VictoryScreenPatches_checkScoreBonus
-//    {
-//        @SpireInsertPatch(rloc = 1, localvars = {"points"})
-//        public static void Method(boolean isVictory, @ByRef int[] points)
-//        {
-//            if (GR.PCL.Dungeon.IsUnnamedReign())
-//            {
-//                points[0] += GetUnnamedScoreBonus();
-//            }
-//        }
-//    }
+
+   @SpirePatch(clz = GameOverScreen.class, method = "checkScoreBonus", paramtypez = {boolean.class})
+    public static class GameOverScreenPatches_checkScoreBonus
+    {
+        @SpireInsertPatch(rloc = 1, localvars = {"points"})
+        public static void Method(boolean isVictory, @ByRef int[] points)
+        {
+            points[0] += GR.PCL.Dungeon.GetLongestMatchCombo();
+        }
+   }
 }

@@ -157,7 +157,7 @@
     },
 	"pcl:RerollAffinityPower":
 	{
-		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL NL Make a [{0}] #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
+		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL #pMatch Combo: {2} NL NL Make a #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
 		"NAME": "Reroll Match"
 	},
 	"pcl:ShacklesPower":

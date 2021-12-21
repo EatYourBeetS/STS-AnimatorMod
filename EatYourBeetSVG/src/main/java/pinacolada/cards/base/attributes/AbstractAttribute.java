@@ -177,10 +177,11 @@ public abstract class AbstractAttribute
         AdvancedTexture result = map.getOrDefault(card.rarity, null);
         if (result == null)
         {
-            result = new AdvancedTexture((card.isPopup ?
-            GR.PCL.Images.CARD_BANNER_ATTRIBUTE_L: GR.PCL.Images.CARD_BANNER_ATTRIBUTE).Texture(),
-            Color.WHITE.cpy().lerp(card.GetRarityColor(true), 0.25f));
-            map.put(card.rarity, result);
+            result = card.GetCardAttributeBanner();
+            if (result != null) {
+                map.put(card.rarity, result);
+            }
+
         }
 
         return result;

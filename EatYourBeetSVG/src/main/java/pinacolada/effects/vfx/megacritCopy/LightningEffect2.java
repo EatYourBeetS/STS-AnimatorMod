@@ -13,9 +13,9 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake.ShakeDur;
 import com.megacrit.cardcrawl.helpers.ScreenShake.ShakeIntensity;
 import com.megacrit.cardcrawl.vfx.combat.ImpactSparkEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class LightningEffect2 extends PCLEffect
+public class LightningEffect2 extends EYBEffect
 {
     private float x;
     private float y;

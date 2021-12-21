@@ -9,10 +9,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class ColoredSweepingBeamEffect extends PCLEffect
+public class ColoredSweepingBeamEffect extends EYBEffect
 {
     private final float sX;
     private final float sY;

@@ -68,7 +68,7 @@ public class Nirvash extends PCLCard
     }
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return effect > 0 ? null : super.GetCardPreview();
     }

@@ -36,11 +36,11 @@ public class AyakaKamisato extends PCLCard {
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, 8);
+        Initialize(20, 0, 3, 7);
         SetUpgrade(5, 0, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Dark(0, 0, 3);
+        SetAffinity_Dark(1, 0, 3);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -76,7 +76,7 @@ public class AyakaKamisato extends PCLCard {
                 .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy()).SetVFX(true, true).SetDamageEffect(c ->
                         {
                             SFX.Play(SFX.PCL_DECAPITATION, 0.55f, 0.65f, 1.2f);
-                            SFX.Play(SFX.PCL_SPRAY, 0.55f, 0.65f, 1.3f);
+                            SFX.Play(SFX.PCL_SPRAY, 1.1f, 1.25f, 1.3f);
                             return PCLGameEffects.Queue.Add(VFX.Bleed(c.hb)).duration;
                         }
 
@@ -85,7 +85,7 @@ public class AyakaKamisato extends PCLCard {
         PCLActions.Last.Callback(() -> {
             if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
             {
-                PCLActions.Bottom.LoseHP(secondaryValue, AttackEffects.NONE).IsCancellable(false);
+                PCLActions.Bottom.LoseHP(secondaryValue, AttackEffects.NONE).CanKill(false).IsCancellable(false);
             }
             else {
                 PCLActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));

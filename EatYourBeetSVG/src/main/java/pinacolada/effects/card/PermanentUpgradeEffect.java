@@ -5,18 +5,18 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.ListSelection;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
-public class PermanentUpgradeEffect extends PCLEffectWithCallback<AbstractCard>
+public class PermanentUpgradeEffect extends EYBEffectWithCallback<AbstractCard>
 {
     private GenericCondition<AbstractCard> filter;
     private ListSelection<AbstractCard> selection;

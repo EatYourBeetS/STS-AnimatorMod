@@ -1,10 +1,10 @@
 package pinacolada.effects.vfx;
 
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class ShootingStarsEffect extends PCLEffect
+public class ShootingStarsEffect extends EYBEffect
 {
     protected float x;
     protected float y;

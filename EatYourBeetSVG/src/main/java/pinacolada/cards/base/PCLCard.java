@@ -329,7 +329,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         return copy;
     }
 
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return cardData.GetCardPreview();
     }
@@ -1575,6 +1575,12 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         }
 
         return super.GetCardBackground();
+    }
+
+    @Override
+    public AdvancedTexture GetCardAttributeBanner()
+    {
+        return new AdvancedTexture((isPopup ? PCLCard.IMAGES.CARD_BANNER_ATTRIBUTE_L : PCLCard.IMAGES.CARD_BANNER_ATTRIBUTE).Texture(), GetRarityColor(false));
     }
 
     @Override

@@ -4,7 +4,8 @@ import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.WeakPower;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.interfaces.subscribers.OnLosingHPSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.CardSeries;
@@ -21,7 +22,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Kamina extends PCLCard implements OnLosingHPSubscriber, OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Kamina.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GurrenLagann);
-    public static int ATTACK_DELAY = 2;
+    public static int ATTACK_DELAY = 1;
     private int counter;
     private AbstractMonster enemy;
 
@@ -29,10 +30,11 @@ public class Kamina extends PCLCard implements OnLosingHPSubscriber, OnStartOfTu
     {
         super(DATA);
 
-        Initialize(50, 0, ATTACK_DELAY, 3);
-        SetUpgrade(10, 0, 0 , 0);
+        Initialize(35, 0, ATTACK_DELAY, 3);
+        SetUpgrade(8, 0, 0 , 0);
 
         SetAffinity_Red(1, 0, 6);
+        SetExhaust(true);
     }
 
     @Override
@@ -67,7 +69,8 @@ public class Kamina extends PCLCard implements OnLosingHPSubscriber, OnStartOfTu
                     }
                 }
                 PCLGameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
-                PCLActions.Top.RemovePower(player,player, WeakPower.POWER_ID);
+                PCLActions.Top.RemovePower(player,player, VulnerablePower.POWER_ID);
+                PCLActions.Top.RemovePower(player,player, FrailPower.POWER_ID);
                 this.applyPowers();
                 this.calculateCardDamage(enemy);
 

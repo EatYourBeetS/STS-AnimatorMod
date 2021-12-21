@@ -266,7 +266,7 @@
 	},
 	"Exchange":
 	{
-		"DESCRIPTION": "Fetch cards from a pile, then move the same number of cards from your hand to the top of that pile.",
+		"DESCRIPTION": "Draw a certain number of cards, then move the same number of cards from your hand to the top of your draw pile.",
 		"NAMES": ["exchange"],
 		"PROPER_NAME": "Exchange"
 	},
@@ -437,6 +437,12 @@
 		"DESCRIPTION": "A card #yMatches if it has the #yAffinity of the #yCurrent #yAffinity.",
 		"NAMES": ["match", "matches", "matching", "matched"],
 		"PROPER_NAME": "Match"
+	},
+	"Match Combo":
+	{
+		"DESCRIPTION": "The number of consecutive #yMatches made.",
+		"NAMES": ["match combo"],
+		"PROPER_NAME": "Match Combo"
 	},
 	"Metallicize":
 	{

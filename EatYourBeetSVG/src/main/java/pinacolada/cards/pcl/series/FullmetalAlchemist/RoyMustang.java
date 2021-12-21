@@ -27,7 +27,6 @@ public class RoyMustang extends PCLCard
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
-        SetAffinity_Light(1);
 
         SetEvokeOrbCount(1);
 

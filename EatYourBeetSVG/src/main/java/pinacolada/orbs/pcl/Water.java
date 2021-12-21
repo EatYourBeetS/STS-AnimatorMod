@@ -116,7 +116,7 @@ public class Water extends PCLOrb
                             .SetSpeed(MathUtils.random(50f, 100f), MathUtils.random(50f, 100f), MathUtils.random(150f, 360f),0f)
                             .SetAcceleration(MathUtils.random(0f, 3f), MathUtils.random(0f, 3f), null, null, null)
                             .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false))
-                    .SetRenderBehind(true);
+                    .renderBehind = true;
             this.vfxTimer = MathUtils.random(0.2f, 0.5f);
         }
     }

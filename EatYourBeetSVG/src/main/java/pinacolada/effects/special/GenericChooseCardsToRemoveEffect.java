@@ -9,14 +9,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.GenericCondition;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.resources.GR;
 
 import java.util.ArrayList;
 
-public class GenericChooseCardsToRemoveEffect extends PCLEffectWithCallback<GenericChooseCardsToRemoveEffect>
+public class GenericChooseCardsToRemoveEffect extends EYBEffectWithCallback<GenericChooseCardsToRemoveEffect>
 {
     private static final int GROUP_SIZE = 3;
     private final GenericCondition<AbstractCard> filter;

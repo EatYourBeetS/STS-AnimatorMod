@@ -33,7 +33,7 @@ public class Kirby extends PCLCard implements
         StartupCard {
     public static final PCLCardData DATA = Register(Kirby.class).SetSkill(-2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.Normal, true).SetColor(CardColor.COLORLESS).SetMaxCopies(1).SetSeries(CardSeries.Kirby).SetMaxCopies(1);
     public static final int COPIED_CARDS = 2;
-    protected final RotatingList<EYBCardPreview> previews = new RotatingList<>();
+    protected final RotatingList<PCLCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);
     protected boolean hasAttackOrSkill;
 
@@ -104,14 +104,14 @@ public class Kirby extends PCLCard implements
     }
 
     @Override
-    public EYBCardPreview GetCardPreview() {
+    public PCLCardPreview GetCardPreview() {
         if (previews.Count() == 0) {
             for (AbstractCard card : inheritedCards) {
                 previews.Add(GeneratePreviewCard(card));
             }
         }
         if (previews.Count() > 0) {
-            EYBCardPreview currentPreview;
+            PCLCardPreview currentPreview;
             if (PCLHotkeys.cycle.isJustPressed()) {
                 currentPreview = previews.Next(true);
             } else {
@@ -328,8 +328,8 @@ public class Kirby extends PCLCard implements
 
     }
 
-    protected EYBCardPreview GeneratePreviewCard(AbstractCard card) {
-        return (card instanceof PCLCardBase) ? new EYBCardPreview((PCLCardBase) card, false) : new EYBCardPreview(new FakeAbstractCard(card), false);
+    protected PCLCardPreview GeneratePreviewCard(AbstractCard card) {
+        return (card instanceof PCLCardBase) ? new PCLCardPreview((PCLCardBase) card, false) : new PCLCardPreview(new FakeAbstractCard(card), false);
     }
 
     protected void addCardProperties(AbstractCard card) {

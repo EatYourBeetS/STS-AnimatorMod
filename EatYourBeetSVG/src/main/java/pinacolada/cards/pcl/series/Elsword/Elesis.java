@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.EYBCardPreview;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardPreview;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.utilities.PCLActions;
@@ -44,7 +44,7 @@ public class Elesis extends PCLCard
     }
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return auxiliaryData.form != FORM_NONE ? null : super.GetCardPreview();
     }

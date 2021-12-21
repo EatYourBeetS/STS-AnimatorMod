@@ -14,12 +14,12 @@ public class HataNoKokoro extends PCLCard {
     public HataNoKokoro() {
         super(DATA);
 
-        Initialize(0, 2, 7, 2);
+        Initialize(0, 2, 3, 2);
         SetUpgrade(0, 0, 2, 0);
-        SetAffinity_Green(1, 0, 1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.General, 4);
+        SetAffinityRequirement(PCLAffinity.General, 5);
 
         SetEthereal(true);
         SetExhaust(true);

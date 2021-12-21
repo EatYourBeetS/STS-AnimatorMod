@@ -7,13 +7,14 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLJUtils;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class StarParticleEffect extends PCLEffect
 {
-    protected static final TextureCache[] images = { IMAGES.Sparkle1, IMAGES.Sparkle2, IMAGES.Sparkle3, IMAGES.Sparkle4 };
+    protected static final TextureCache[] images = { VFX.IMAGES.Sparkle1, VFX.IMAGES.Sparkle2, VFX.IMAGES.Sparkle3, VFX.IMAGES.Sparkle4 };
 
     protected float x;
     protected float y;
@@ -21,6 +22,7 @@ public class StarParticleEffect extends PCLEffect
     protected float verticalSpeed;
     protected float rotationSpeed;
     protected float alpha;
+    protected float halfDuration;
     protected boolean flipX;
     protected boolean translucent;
     protected Texture image;
@@ -48,6 +50,7 @@ public class StarParticleEffect extends PCLEffect
         this.rotation = Random(-10f, 10f);
         this.rotationSpeed = Random(-12f, 12f);
         this.translucent = RandomBoolean();
+        this.halfDuration = startingDuration * 0.5f;
     }
 
     @Override
@@ -56,7 +59,6 @@ public class StarParticleEffect extends PCLEffect
         super.UpdateInternal(deltaTime);
 
         this.rotation += this.rotationSpeed;
-        final float halfDuration = startingDuration * 0.5f;
         if (this.duration < halfDuration)
         {
             this.color.a = Interpolation.exp5In.apply(0.0F, this.alpha, this.duration / halfDuration);

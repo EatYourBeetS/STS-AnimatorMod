@@ -2,7 +2,6 @@ package pinacolada.cards.pcl.colorless;
 
 import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.colorless.uncommon.QuestionMark;
 
 public class MysteryCard2 extends AbstractMysteryCard
 {

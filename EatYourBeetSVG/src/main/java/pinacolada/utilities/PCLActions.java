@@ -32,6 +32,7 @@ import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.ListSelection;
 import eatyourbeets.utilities.TargetHelper;
@@ -66,6 +67,7 @@ import pinacolada.powers.affinity.*;
 import pinacolada.powers.common.EnergizedPower;
 import pinacolada.powers.common.*;
 import pinacolada.powers.replacement.*;
+import pinacolada.resources.GR;
 import pinacolada.ui.combat.PCLAffinityMeter;
 
 import java.util.ArrayList;
@@ -443,6 +445,20 @@ public final class PCLActions
     public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
     {
         return Add(new EvokeOrb(times, mode));
+    }
+
+    public SelectFromHand Exchange(String sourceName, int amount)
+    {
+        SelectFromHand select = (SelectFromHand) new SelectFromHand(sourceName, amount, false)
+                .SetMessage(GR.PCL.Strings.HandSelection.MoveToDrawPile)
+                .AddCallback(selected ->
+                {
+                    for (AbstractCard c : selected) {
+                        PCLActions.Top.MoveCard(c, player.hand, player.drawPile).SetDestination(CardSelection.Top);
+                    }
+                });
+        Add(new DrawCards(amount).AddCallback(() -> PCLActions.Top.Add(select)));
+        return select;
     }
 
     public MoveCard Exhaust(AbstractCard card)

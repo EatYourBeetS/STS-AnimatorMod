@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.FieldInfo;
 import pinacolada.effects.vfx.GenericRenderEffect;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLImages;
@@ -19,11 +19,9 @@ import java.util.HashMap;
 
 import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 
-public class AttackEffects
+public class AttackEffects extends eatyourbeets.effects.AttackEffects
 {
-    private static final FieldInfo<HashMap<AttackEffect, AttackEffectData>> _map = PCLJUtils.GetField("map", eatyourbeets.effects.AttackEffects.class);
-
-    private static final HashMap<AttackEffect, AttackEffectData> map = _map.Get(null);
+    private static final HashMap<AttackEffect, AttackEffectData> map = new HashMap();
     private static final PCLImages.Effects IMAGES = GR.PCL.Images.Effects;
     private static final ArrayList<AttackEffect> melee = new ArrayList<>();
     private static final ArrayList<AttackEffect> magic = new ArrayList<>();
@@ -58,7 +56,7 @@ public class AttackEffects
    public static final AttackEffect WATER = GR.Enums.AttackEffect.WATER;
    public static final AttackEffect BITE = GR.Enums.AttackEffect.BITE;
 
-    public static PCLEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
+    public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
     {
         if (effect != null && effect != NONE)
         {
@@ -228,12 +226,12 @@ public class AttackEffects
               .SetDamageTint(Color.BLUE);
    }
 
-    private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)
+    protected static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)
     {
         return Add(category, effect, null);
     }
 
-    private static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect, TextureRegion texture)
+    protected static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect, TextureRegion texture)
     {
         AttackEffectData data = new AttackEffectData();
         data.texture = texture;
@@ -242,63 +240,63 @@ public class AttackEffects
         return data;
     }
 
-    private static class AttackEffectData
+    protected static class AttackEffectData extends eatyourbeets.effects.AttackEffects.AttackEffectData
     {
         private String[] sounds;
-        private FuncT2<PCLEffect, Float, Float> createVFX;
-        private FuncT3<PCLEffect, AbstractCreature, Float, Float> createVFX2;
+        private FuncT2<EYBEffect, Float, Float> createVFX;
+        private FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2;
         private TextureRegion texture;
         private float damageDelay;
         private Color damageTint;
 
-        private AttackEffectData SetSFX(String... sounds)
+        protected AttackEffectData SetSFX(String... sounds)
         {
             this.sounds = sounds;
 
             return this;
         }
 
-        private AttackEffectData SetTexture(TextureRegion texture)
+        protected AttackEffectData SetTexture(TextureRegion texture)
         {
             this.texture = texture;
 
             return this;
         }
 
-        private AttackEffectData SetVFX(FuncT2<PCLEffect, Float, Float> createVFX)
+        protected AttackEffectData SetVFX(FuncT2<EYBEffect, Float, Float> createVFX)
         {
             this.createVFX = createVFX;
 
             return this;
         }
 
-        private AttackEffectData SetVFX2(FuncT3<PCLEffect, AbstractCreature, Float, Float> createVFX2)
+        protected AttackEffectData SetVFX2(FuncT3<EYBEffect, AbstractCreature, Float, Float> createVFX2)
         {
             this.createVFX2 = createVFX2;
 
             return this;
         }
 
-        private AttackEffectData SetDamageDelay(float delay)
+        protected AttackEffectData SetDamageDelay(float delay)
         {
             this.damageDelay = delay;
 
             return this;
         }
 
-        private AttackEffectData SetDamageTint(Color color)
+        protected AttackEffectData SetDamageTint(Color color)
         {
             this.damageTint = color.cpy();
 
             return this;
         }
 
-        private TextureRegion GetTexture()
+        protected TextureRegion GetTexture()
         {
             return texture;
         }
 
-        private String GetSound()
+        protected String GetSound()
         {
             return sounds.length == 0 ? null : sounds.length == 1 ? sounds[0] : PCLJUtils.Random(sounds);
         }

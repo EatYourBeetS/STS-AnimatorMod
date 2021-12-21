@@ -315,7 +315,10 @@
 			"Rerolls",
 			"Exp.",
 			"Control Pile",
-			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #p{0} to cycle through playable cards."
+			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #p{0} to cycle through playable cards.",
+			"Total Matches",
+			"Combo",
+			"Longest Match Combo"
 		]
 	},
 

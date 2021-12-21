@@ -6,14 +6,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLJUtils;
 
-public class RazorWindParticleEffect extends PCLEffect
+public class RazorWindParticleEffect extends EYBEffect
 {
     protected static final int SIZE = 96;
-    protected static final TextureCache[] images = {IMAGES.AirTrail1,IMAGES.AirTrail2,IMAGES.AirTrail3};
+    protected static final TextureCache[] images = {VFX.IMAGES.AirTrail1,VFX.IMAGES.AirTrail2,VFX.IMAGES.AirTrail3};
 
     protected float x;
     protected float y;

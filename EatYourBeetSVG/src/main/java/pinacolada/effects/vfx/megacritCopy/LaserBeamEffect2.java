@@ -8,11 +8,11 @@ import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
 import pinacolada.utilities.PCLGameEffects;
 
-public class LaserBeamEffect2 extends PCLEffect
+public class LaserBeamEffect2 extends EYBEffect
 {
     private final float x;
     private final float y;

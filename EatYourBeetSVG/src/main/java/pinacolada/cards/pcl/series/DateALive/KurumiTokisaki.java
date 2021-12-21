@@ -28,6 +28,7 @@ public class KurumiTokisaki extends PCLCard
         SetUpgrade(0,0,1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Silver(1, 0, 0);
 
         SetAutoplay(true);
         SetEthereal(true);

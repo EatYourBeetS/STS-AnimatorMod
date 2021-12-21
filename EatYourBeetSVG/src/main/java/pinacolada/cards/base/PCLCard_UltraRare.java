@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.utilities.AdvancedTexture;
 import pinacolada.cards.pcl.ultrarare.Cthulhu;
 import pinacolada.cards.pcl.ultrarare.HolyGrail;
 import pinacolada.cards.pcl.ultrarare.SummoningRitual;
@@ -89,9 +90,11 @@ public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
             return true;});
     }
 
-//    @Override
-//    protected ColoredTexture GetCardBanner()
-//    {
-//        return new ColoredTexture(IMAGES.CARD_BANNER_ULTRARARE.Texture());
-//    }
+    @Override
+    protected AdvancedTexture GetCardBanner()
+    {
+        return new AdvancedTexture((isPopup ?
+                GR.PCL.Images.CARD_BANNER_ATTRIBUTE_L: GR.PCL.Images.CARD_BANNER_ATTRIBUTE).Texture(),
+                Color.WHITE.cpy());
+    }
 }

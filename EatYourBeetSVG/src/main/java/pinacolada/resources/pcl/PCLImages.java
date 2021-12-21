@@ -22,11 +22,6 @@ public class PCLImages
     public final String CHAR_BUTTON_PNG = "images/pcl/ui/charselect/animator_button.png";
     public final String CHAR_PORTRAIT_JPG = "images/pcl/ui/charselect/animator_portrait.jpg";
 
-    public final String BANNER_SPECIAL_P_PNG = "images/pcl/cardui/1024/banner_special.png";
-    public final String BANNER_SPECIAL2_P_PNG = "images/pcl/cardui/1024/banner_special2.png";
-
-    public final String BANNER_SPECIAL_PNG = "images/pcl/cardui/512/banner_special.png";
-
     public final String ORB_VFX_PNG = "images/pcl/ui/topPanel/canvas/orbVfx.png";
     public final String[] ORB_TEXTURES =
     {
@@ -49,13 +44,17 @@ public class PCLImages
     public final TextureCache CARD_BACKGROUND_SKILL       = new TextureCache("images/pcl/cardui/512/bg_skill_canvas.png");
     public final TextureCache CARD_BACKGROUND_POWER       = new TextureCache("images/pcl/cardui/512/bg_power_canvas.png");
     public final TextureCache CARD_BANNER                 = new TextureCache("images/pcl/cardui/512/banner.png");
+    public final TextureCache CARD_BANNER2                = new TextureCache("images/pcl/cardui/512/banner2.png");
     public final TextureCache CARD_BANNER_ATTRIBUTE       = new TextureCache("images/pcl/cardui/512/banner_attribute.png");
+    public final TextureCache CARD_BANNER_ATTRIBUTE2      = new TextureCache("images/pcl/cardui/512/banner_attribute2.png");
     public final TextureCache CARD_BORDER_INDICATOR       = new TextureCache("images/pcl/cardui/512/border_indicator.png");
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL   = new TextureCache("images/pcl/cardui/512/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL    = new TextureCache("images/pcl/cardui/512/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL    = new TextureCache("images/pcl/cardui/512/frame_power_special.png");
     public final TextureCache CARD_BANNER_L               = new TextureCache("images/pcl/cardui/1024/banner.png");
+    public final TextureCache CARD_BANNER2_L              = new TextureCache("images/pcl/cardui/1024/banner2.png");
     public final TextureCache CARD_BANNER_ATTRIBUTE_L     = new TextureCache("images/pcl/cardui/1024/banner_attribute.png");
+    public final TextureCache CARD_BANNER_ATTRIBUTE2_L    = new TextureCache("images/pcl/cardui/1024/banner_attribute2.png");
     public final TextureCache CARD_FRAME_ATTACK_SPECIAL_L = new TextureCache("images/pcl/cardui/1024/frame_attack_special.png");
     public final TextureCache CARD_FRAME_SKILL_SPECIAL_L  = new TextureCache("images/pcl/cardui/1024/frame_skill_special.png");
     public final TextureCache CARD_FRAME_POWER_SPECIAL_L  = new TextureCache("images/pcl/cardui/1024/frame_power_special.png");
@@ -112,8 +111,6 @@ public class PCLImages
     public final TextureCache Panel_Elliptical_Half_H     = new TextureCache("images/pcl/ui/topPanel/Panel_Elliptical_Half_H.png");
     public final TextureCache Panel_Rounded               = new TextureCache("images/pcl/ui/topPanel/Panel_Rounded.png");
     public final TextureCache Panel_Rounded_Half_H        = new TextureCache("images/pcl/ui/topPanel/Panel_Rounded_Half_H.png");
-    public final TextureCache Panel_Skewed                = new TextureCache("images/pcl/ui/topPanel/Panel_Skewed.png");
-    public final TextureCache Panel_Skewed_L              = new TextureCache("images/pcl/ui/topPanel/Panel_Skewed_L.png");
     public final TextureCache Plus                        = new TextureCache("images/pcl/ui/topPanel/Plus.png");
     public final TextureCache Randomize                   = new TextureCache("images/pcl/ui/topPanel/Randomize.png");
     public final TextureCache RectangularButton           = new TextureCache("images/pcl/ui/topPanel/RectangularButton.png");
@@ -180,8 +177,9 @@ public class PCLImages
         public final TextureCache Border                = new TextureCache("images/pcl/cardui/affinities/Border.png", false);
         public final TextureCache BorderFG              = new TextureCache("images/pcl/cardui/affinities/Border_FG.png", false);
         public final TextureCache BorderBG              = new TextureCache("images/pcl/cardui/affinities/Border_BG.png", true);
-        public final TextureCache BorderBG2              = new TextureCache("images/pcl/cardui/affinities/Border_BG2.png", true);
-        public final TextureCache BorderBG3              = new TextureCache("images/pcl/cardui/affinities/Border_BG3.png", true);
+        public final TextureCache BorderBG2             = new TextureCache("images/pcl/cardui/affinities/Border_BG2.png", true);
+        public final TextureCache BorderBG3             = new TextureCache("images/pcl/cardui/affinities/Border_BG3.png", true);
+        public final TextureCache Border_Silhouette     = new TextureCache("images/pcl/cardui/affinities/Border_Silhouette.png", true);
         public final TextureCache Border_Strong         = new TextureCache("images/pcl/cardui/affinities/Border_Strong.png", true);
         public final TextureCache Border_Weak           = new TextureCache("images/pcl/cardui/affinities/Border_Weak.png", true);
     }

@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.colorless.rare.TanyaDegurechaff;
+import pinacolada.cards.pcl.colorless.TanyaDegurechaff;
 import pinacolada.utilities.PCLActions;
 
 public class TanyaDegurechaff_Type95 extends PCLCard

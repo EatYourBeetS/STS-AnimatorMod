@@ -40,15 +40,6 @@ public class Ain extends PCLCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        if (PCLGameUtilities.GetOrbCount(Frost.ORB_ID) > 0) {
-            return super.ModifyDamage(enemy, amount + magicNumber);
-        }
-        return super.ModifyDamage(enemy, amount);
-    }
-
-    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
             this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
@@ -104,6 +95,6 @@ public class Ain extends PCLCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return GameActionManager.totalDiscardedThisTurn > 0;
+        return GameActionManager.totalDiscardedThisTurn > 0 || PCLGameUtilities.GetOrbCount(Frost.ORB_ID) >= 2;
     }
 }

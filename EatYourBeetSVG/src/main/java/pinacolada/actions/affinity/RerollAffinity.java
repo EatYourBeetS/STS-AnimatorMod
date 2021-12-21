@@ -69,6 +69,6 @@ public class RerollAffinity extends EYBActionWithCallback<PCLAffinity>
     }
 
     protected PCLAffinity[] GetAffinityChoices() {
-        return affinityChoices != null ? affinityChoices : isRandom ? PCLJUtils.Filter(PCLAffinity.Basic(), a -> PCLCombatStats.MatchingSystem.AffinityMeter.CurrentAffinity.Type != a).toArray(new PCLAffinity[]{}) : PCLAffinity.Extended();
+        return affinityChoices != null ? affinityChoices : isRandom ? PCLJUtils.Filter(PCLAffinity.Basic(), a -> PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity() != a).toArray(new PCLAffinity[]{}) : PCLAffinity.Extended();
     }
 }

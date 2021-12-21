@@ -2,10 +2,10 @@ package pinacolada.effects.vfx;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class SnowballImpactEffect extends PCLEffect
+public class SnowballImpactEffect extends EYBEffect
 {
     protected int particles = 40;
     protected float x;

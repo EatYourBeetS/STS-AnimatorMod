@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.AttackEffects;
-import pinacolada.effects.PCLEffect;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class ShieldEffect extends PCLEffect
+public class ShieldEffect extends EYBEffect
 {
     public final TextureRegion image;
 

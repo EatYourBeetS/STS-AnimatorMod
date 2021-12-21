@@ -42,7 +42,7 @@ public class PCLCardData
     public boolean CanToggleFromAlternateForm = false;
     public boolean UnUpgradedCanToggleForms = false;
 
-    public final RotatingList<EYBCardPreview> previews = new RotatingList<>();
+    public final RotatingList<PCLCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
     public AbstractCard.CardColor CardColor;
     public EYBCardTarget CardTarget;
@@ -137,7 +137,7 @@ public class PCLCardData
 
     public PCLCardData AddPreview(PCLCardBase card, boolean showUpgrade)
     {
-        previews.Add(new EYBCardPreview(card, showUpgrade));
+        previews.Add(new PCLCardPreview(card, showUpgrade));
 
         return this;
     }
@@ -156,11 +156,11 @@ public class PCLCardData
         return cardIcon;
     }
 
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         if (previews.Count() > 1)
         {
-            EYBCardPreview preview;
+            PCLCardPreview preview;
             if (PCLHotkeys.cycle.isJustPressed())
             {
                 preview = previews.Next(true);

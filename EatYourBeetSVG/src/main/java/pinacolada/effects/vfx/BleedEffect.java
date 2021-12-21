@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class BleedEffect extends PCLEffect
+public class BleedEffect extends EYBEffect
 {
     private static final float RADIUS = 500 * Settings.scale;
 

@@ -6,12 +6,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.AdvancedTexture;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
+import pinacolada.powers.PowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -26,51 +28,64 @@ public class ThrowingKnife extends PCLCard
     public static final PCLCardData DATA = Register(ThrowingKnife.class)
             .SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Ranged)
             .SetColor(CardColor.COLORLESS)
-            .SetCanGrantAffinity(false);
-    public static final int INDEX_WEAK = 1;
-    public static final int INDEX_VULNERABLE = 2;
-    public static final int INDEX_POISON = 3;
+            .SetMultiformData(3, false, false, false, true);
+    public static final int INDEX_WEAK = 0;
+    public static final int INDEX_VULNERABLE = 1;
+    public static final int INDEX_POISON = 2;
 
-    protected Color color;
+    protected Color color = Color.WHITE.cpy();
 
     public static List<ThrowingKnife> GetAllCards()
     {
         List<ThrowingKnife> result = new ArrayList<>();
-        result.add(new ThrowingKnife(INDEX_WEAK));
-        result.add(new ThrowingKnife(INDEX_VULNERABLE));
-        result.add(new ThrowingKnife(INDEX_POISON));
+        result.add(new ThrowingKnife(INDEX_WEAK, 0));
+        result.add(new ThrowingKnife(INDEX_VULNERABLE, 0));
+        result.add(new ThrowingKnife(INDEX_POISON, 0));
         return result;
     }
 
-    public static AbstractCard GetRandomCard()
+    public static ThrowingKnife GetRandomCard()
     {
-        return new ThrowingKnife(rng.random(1, 3));
+        return new ThrowingKnife(rng.random(1, 3), 0);
     }
 
     public ThrowingKnife()
     {
-        this(0);
+        this(0, 0);
     }
 
-    private ThrowingKnife(int index)
+    private ThrowingKnife(int form, int timesUpgraded)
     {
-        super(DATA);
+        super(DATA, form, timesUpgraded);
 
         this.portraitForeground = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ThrowingKnife.DATA.ID + "FG"), true), null);
 
         Initialize(2, 0, 1, 2);
         SetUpgrade(2, 0);
 
-        SetAffinity_Green(1);
-
         SetPurge(true);
-        ChangeIndex(index);
     }
+
+    @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        this.cardText.OverrideDescription(PCLJUtils.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[form]), true);
+
+        switch (form) {
+            case INDEX_WEAK:
+                this.color = new Color(0.4f, 0.6f, 0.4f, 1f);
+            case INDEX_VULNERABLE:
+                this.color = new Color(0.8f, 0.2f, 0.2f, 1f);
+            case INDEX_POISON:
+                this.color = new Color(0.2f, 1.0f, 0.2f, 1f);
+        }
+
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public AbstractCard makeCopy()
     {
-        return (misc == 0 && PCLGameUtilities.InBattle()) ? GetRandomCard() : new ThrowingKnife(misc);
+        return (auxiliaryData.form == 0 && PCLGameUtilities.InBattle()) ? GetRandomCard() : super.makeCopy();
     }
 
     @Override
@@ -121,48 +136,18 @@ public class ThrowingKnife extends PCLCard
             return 0;
         }
 
-        if (INDEX_WEAK == misc)
-        {
-            PCLActions.Top.ApplyWeak(player, m, magicNumber);
+        PowerHelper ph = PowerHelper.Poison;
+        switch (auxiliaryData.form) {
+            case INDEX_WEAK:
+                ph = PowerHelper.Weak;
+                break;
+            case INDEX_VULNERABLE:
+                ph = PowerHelper.Vulnerable;
+                break;
         }
-        else if (INDEX_VULNERABLE == misc)
-        {
-            PCLActions.Top.ApplyVulnerable(player, m, magicNumber);
-        }
-        else if (INDEX_POISON == misc)
-        {
-            PCLActions.Top.ApplyPoison(player, m, secondaryValue);
-        }
-        else
-        {
-            throw new RuntimeException("Invalid index: " + misc);
-        }
+
+        PCLActions.Top.StackPower(TargetHelper.Normal(m), ph, magicNumber);
 
         return PCLGameEffects.List.Add(VFX.ThrowDagger(m.hb, 0.1f).SetColor(color)).duration * 0.33f;
-    }
-
-    private void ChangeIndex(int index)
-    {
-        this.misc = index;
-        this.cardText.OverrideDescription(PCLJUtils.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[index]), true);
-
-        if (INDEX_WEAK == misc)
-        {
-            this.color = new Color(0.4f, 0.6f, 0.4f, 1f);
-        }
-        else if (INDEX_VULNERABLE == misc)
-        {
-            this.color = new Color(0.8f, 0.2f, 0.2f, 1f);
-        }
-        else if (INDEX_POISON == misc)
-        {
-            this.color = new Color(0.2f, 1.0f, 0.2f, 1f);
-        }
-        else
-        {
-            this.color = Color.WHITE.cpy();
-        }
-
-        this.portraitForeground.color = color;// Colors.Lerp(color, Color.WHITE, 0.35f);
     }
 }

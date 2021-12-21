@@ -6,7 +6,7 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.colorless.uncommon.Magilou;
+import pinacolada.cards.pcl.colorless.Magilou;
 import pinacolada.utilities.PCLActions;
 
 public class Magilou_Bienfu extends PCLCard

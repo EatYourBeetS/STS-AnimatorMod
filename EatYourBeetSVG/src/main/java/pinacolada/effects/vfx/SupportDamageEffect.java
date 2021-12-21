@@ -3,18 +3,18 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
 import pinacolada.effects.Projectile;
 import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class SupportDamageEffect extends PCLEffect
+public class SupportDamageEffect extends EYBEffect
 {
-    private static final TextureCache image = IMAGES.Slice;
+    private static final TextureCache image = VFX.IMAGES.Slice;
     protected Hitbox sourceHb;
     protected Hitbox targetHb;
     protected int totalParticles = 5;

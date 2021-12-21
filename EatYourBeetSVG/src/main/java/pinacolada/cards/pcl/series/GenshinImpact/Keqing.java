@@ -21,7 +21,7 @@ public class Keqing extends PCLCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 2);
+        Initialize(2, 0, 2, 2);
         SetUpgrade(1, 0, 1);
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
@@ -38,7 +38,7 @@ public class Keqing extends PCLCard
     @Override
     public void triggerWhenDrawn() {
         if (this.hasTag(HASTE)) {
-            PCLActions.Top.ChannelOrbs(Lightning::new, secondaryValue);
+            PCLActions.Top.ChannelOrb(new Lightning());
             PCLActions.Top.ApplyElectrified(TargetHelper.Enemies(), magicNumber);
         }
     }

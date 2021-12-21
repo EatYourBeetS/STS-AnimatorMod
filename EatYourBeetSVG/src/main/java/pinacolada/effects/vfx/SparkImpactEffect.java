@@ -3,16 +3,17 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
-import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class SparkImpactEffect extends PCLEffect
+public class SparkImpactEffect extends EYBEffect
 {
-    private static final TextureCache[] images = {IMAGES.Spark1, IMAGES.Spark2};
+    private static final TextureCache[] images = {VFX.IMAGES.Spark1, VFX.IMAGES.Spark2};
     protected int particles = 60;
     protected float radius = 500;
     protected float x;

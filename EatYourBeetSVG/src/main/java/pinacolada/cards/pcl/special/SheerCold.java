@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class SheerCold extends PCLCard
 {
     public static final PCLCardData DATA = Register(SheerCold.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
-    public static final int FREEZING_REDUCTION_BONUS = 15;
+    public static final int FREEZING_REDUCTION_BONUS = 20;
     public static final int FROST_TRIGGER_BONUS = 50;
     public static final int FROST_EVOKE_BONUS = 100;
 

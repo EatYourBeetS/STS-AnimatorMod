@@ -2,11 +2,11 @@ package pinacolada.effects.vfx.megacritCopy;
 
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.vfx.HemokinesisParticleEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class HemokinesisEffect2 extends PCLEffect
+public class HemokinesisEffect2 extends EYBEffect
 {
     private final float x;
     private final float y;

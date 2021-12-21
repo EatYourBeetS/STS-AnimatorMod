@@ -5,13 +5,13 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.vfx.FireBurstParticleEffect;
 import pinacolada.effects.vfx.GhostIgniteEffect;
 import pinacolada.effects.vfx.GhostlyWeakFireEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class FireballEffect2 extends PCLEffect
+public class FireballEffect2 extends EYBEffect
 {
     protected Color secondaryColor;
     protected float x;

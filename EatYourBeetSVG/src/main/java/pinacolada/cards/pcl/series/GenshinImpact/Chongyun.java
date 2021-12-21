@@ -20,7 +20,7 @@ public class Chongyun extends PCLCard
         super(DATA);
 
         Initialize(0, 5, 2);
-        SetUpgrade(0, 1, 1);
+        SetUpgrade(0, 2, 1);
         SetAffinity_Red(0,0,1);
         SetAffinity_Blue(1, 0, 0);
 

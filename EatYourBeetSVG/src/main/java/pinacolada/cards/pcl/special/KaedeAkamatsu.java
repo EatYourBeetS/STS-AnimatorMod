@@ -4,14 +4,13 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
-import pinacolada.powers.PCLCombatStats;
+import pinacolada.cards.pcl.colorless.ShuichiSaihara;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -44,7 +43,6 @@ public class KaedeAkamatsu extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
-        PCLActions.Bottom.StackPower(new KaedeAkamatsuPower(p, magicNumber));
 
         PCLActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
                 .SetFilter(PCLGameUtilities::HasBlueAffinity)
@@ -56,11 +54,14 @@ public class KaedeAkamatsu extends PCLCard
                     {
                         PCLActions.Top.MoveCard(c, player.exhaustPile, player.hand)
                                 .ShowEffect(true, true);
+                        if (ShuichiSaihara.DATA.ID.equals(c.cardID)) {
+                            PCLActions.Bottom.StackPower(new KaedeAkamatsuPower(p, secondaryValue));
+                        }
                     }
                 });
     }
 
-    public static class KaedeAkamatsuPower extends PCLPower implements OnCardCreatedSubscriber
+    public static class KaedeAkamatsuPower extends PCLPower
     {
 
         public KaedeAkamatsuPower(AbstractCreature owner, int amount)
@@ -70,45 +71,6 @@ public class KaedeAkamatsu extends PCLCard
             this.amount = amount;
 
             updateDescription();
-            PCLCombatStats.onCardCreated.Subscribe(this);
-        }
-
-        @Override
-        public void OnCardCreated(AbstractCard card, boolean startOfBattle)
-        {
-            if (!PCLGameUtilities.IsHindrance(card) && PCLGameUtilities.IsHighCost(card))
-            {
-                if (this.TryActivate())
-                {
-                    card.modifyCostForCombat(-1);
-                    card.flash();
-                    card.update();
-                    flash();
-
-                    if (this.amount == 0)
-                    {
-                        this.CheckAndRemove();
-                    }
-                }
-            }
-        }
-
-        private void CheckAndRemove()
-        {
-            if (this.amount == 0)
-                this.RemovePower();
-        }
-
-        public boolean TryActivate()
-        {
-            if (this.amount >= 1)
-            {
-                this.amount --;
-
-                return true;
-            }
-
-            return false;
         }
     }
 }

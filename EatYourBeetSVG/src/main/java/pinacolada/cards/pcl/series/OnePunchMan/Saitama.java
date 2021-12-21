@@ -1,9 +1,7 @@
 package pinacolada.cards.pcl.series.OnePunchMan;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -133,22 +131,18 @@ public class Saitama extends PCLCard //TODO
 
             case 3:
             {
-                // Gain !M! Force. Gain !B! Block.
+                // Gain !M! Force.
+                PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
                 PCLActions.Bottom.GainMight(magicNumber);
-                PCLActions.Bottom.GainBlock(block);
+                PCLGameUtilities.AddAffinityPowerUse(PCLAffinity.Red, 1);
 
                 break;
             }
 
             case 4:
             {
-                // Deal !D! damage !M! times.
-                for (int i = 1; i < magicNumber; i++)
-                {
-                    PCLActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
-                }
-                PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
-
+                PCLActions.Bottom.GainVigor(magicNumber);
+                PCLGameUtilities.AddAffinityPowerUse(PCLAffinity.Red, 2);
                 break;
             }
 
@@ -204,7 +198,7 @@ public class Saitama extends PCLCard //TODO
                 // Draw !M! Cards. NL Gain !SV! Agility.
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
 
-                Initialize(0, 0, 3, 2);
+                Initialize(0, 0, 2, 2);
 
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
@@ -231,13 +225,17 @@ public class Saitama extends PCLCard //TODO
 
             case 3:
             {
-                // Gain !M! Force. Gain !B! Block
+                // Gain !M! Force. Deal !D! damage
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
 
-                Initialize(0, 9, 6, 0);
+                Initialize(10, 0, 5, 0);
 
-                this.target = CardTarget.SELF;
-                this.type = CardType.SKILL;
+                AddScaling(PCLAffinity.Red, 3);
+
+                this.attackType = PCLAttackType.Normal;
+                this.target = CardTarget.ENEMY;
+                this.type = CardType.ATTACK;
+
 
                 LoadImage("_2");
 
@@ -249,14 +247,10 @@ public class Saitama extends PCLCard //TODO
                 // Deal !D! damage !M! times.
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[3], true);
 
-                Initialize(6, 0, 8, 0);
+                Initialize(0, 0, 30, 0);
 
-                AddScaling(PCLAffinity.Red, 3);
-                AddScaling(PCLAffinity.Green, 1);
-
-                this.attackType = PCLAttackType.Normal;
-                this.target = CardTarget.ENEMY;
-                this.type = CardType.ATTACK;
+                this.target = CardTarget.SELF;
+                this.type = CardType.SKILL;
 
                 LoadImage("_3");
 

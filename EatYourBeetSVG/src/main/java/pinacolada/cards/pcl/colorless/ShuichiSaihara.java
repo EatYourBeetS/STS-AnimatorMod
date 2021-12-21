@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
@@ -81,6 +82,8 @@ public class ShuichiSaihara extends PCLCard
 
             if (card.uuid.equals(this.card.uuid) && !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
 
+                boolean shouldReduceCost = owner.hasPower(PCLPower.DeriveID(KaedeAkamatsu.DATA.ID));
+
                 CardRarity r;
                 switch (card.rarity) {
                     case UNCOMMON:
@@ -100,7 +103,11 @@ public class ShuichiSaihara extends PCLCard
                 {
                     AbstractCard temp = pool.Retrieve(rng);
                     if (!(temp.cardID.equals(card.cardID) || temp.tags.contains(AbstractCard.CardTags.HEALING) || temp.tags.contains(GR.Enums.CardTags.VOLATILE))) {
-                        choice.addToTop(temp.makeCopy());
+                        AbstractCard temp2 = temp.makeCopy();
+                        if (shouldReduceCost) {
+                            PCLGameUtilities.ModifyCostForCombat(temp2, -1, true);
+                        }
+                        choice.addToTop(temp2);
                     }
                 }
 
@@ -109,10 +116,13 @@ public class ShuichiSaihara extends PCLCard
                         .AddCallback(cards ->
                         {
                             PCLActions.Bottom.MakeCardInDrawPile(cards.get(0));
-                            PCLActions.Bottom.Add(new RefreshHandLayout());
                         });
+
                 flashWithoutSound();
                 this.RemovePower();
+                if (shouldReduceCost) {
+                    GameActions.Bottom.RemovePower(owner, owner, PCLPower.DeriveID(KaedeAkamatsu.DATA.ID));
+                }
             }
         }
 

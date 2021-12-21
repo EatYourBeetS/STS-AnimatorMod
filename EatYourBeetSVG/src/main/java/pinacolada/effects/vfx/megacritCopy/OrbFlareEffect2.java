@@ -9,9 +9,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class OrbFlareEffect2 extends PCLEffect
+public class OrbFlareEffect2 extends EYBEffect
 {
     private static AtlasRegion outer;
     private static AtlasRegion inner;

@@ -7,14 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class HexagonEffect extends PCLEffect
+public class HexagonEffect extends EYBEffect
 {
-    private static final TextureCache image = IMAGES.Hexagon;
+    private static final TextureCache image = VFX.IMAGES.Hexagon;
 
     protected static final int SIZE = 96;
 

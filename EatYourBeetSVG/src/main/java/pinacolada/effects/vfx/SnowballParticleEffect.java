@@ -8,14 +8,15 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 
-public class SnowballParticleEffect extends PCLEffect
+public class SnowballParticleEffect extends EYBEffect
 {
-    private static final TextureCache[] images = {IMAGES.FrostSnow1, IMAGES.FrostSnow2, IMAGES.FrostSnow3, IMAGES.FrostSnow4};
+    private static final TextureCache[] images = {VFX.IMAGES.FrostSnow1, VFX.IMAGES.FrostSnow2, VFX.IMAGES.FrostSnow3, VFX.IMAGES.FrostSnow4};
     private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
 
     protected static final float GRAVITY = 180f * Settings.scale;

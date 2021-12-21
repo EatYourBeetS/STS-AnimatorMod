@@ -42,10 +42,9 @@ import java.util.ArrayList;
 // Shared events are handled by the existing CombatStats class
 public class PCLCombatStats extends EYBPower implements InvisiblePower
 {
-    public static final String POWER_ID = GR.PCL.CreateID(CombatStats.class.getSimpleName());
-    public static final int PRIORITY = -3000;
-
+    protected static final int PRIORITY = -3000;
     private static final FieldInfo<ArrayList<GameEvent<?>>> _eventsGetter = PCLJUtils.GetField("events", CombatStats.class);
+    public static final String POWER_ID = GR.PCL.CreateID(CombatStats.class.getSimpleName());
 
     public static final ArrayList<GameEvent<?>> events = _eventsGetter.Get(null);
     public static final PCLAffinitySystem MatchingSystem = new PCLAffinitySystem();
@@ -310,6 +309,9 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         {
             MatchingSystem.OnSynergy(card);
         }
+        else {
+            MatchingSystem.OnNotSynergy(card);
+        }
 
         if (actions.isEmpty())
         {
@@ -499,6 +501,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static void OnVictory()
     {
+        GR.PCL.Dungeon.UpdateLongestMatchCombo(MatchingSystem.AffinityMeter.GetLongestMatchCombo());
         ClearPCLStats();
     }
 }

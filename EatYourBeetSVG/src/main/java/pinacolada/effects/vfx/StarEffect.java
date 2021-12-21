@@ -3,18 +3,19 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 
 import java.util.ArrayList;
 
-public class StarEffect extends PCLEffect
+public class StarEffect extends EYBEffect
 {
     protected static final ArrayList<Float> RGB = new ArrayList<>(3);
-    protected static final TextureCache image = IMAGES.Star;
+    protected static final TextureCache image = VFX.IMAGES.Star;
 
     protected float vfxFrequency = 0.015f;
     protected float horizontalSpeed;

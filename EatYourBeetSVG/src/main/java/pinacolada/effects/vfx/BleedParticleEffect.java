@@ -8,12 +8,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
+import pinacolada.effects.VFX;
 import pinacolada.utilities.PCLGameEffects;
 
-public class BleedParticleEffect extends PCLEffect
+public class BleedParticleEffect extends EYBEffect
 {
-    protected static final Texture IMAGE = IMAGES.Droplet.Texture();
+    protected static final Texture image = VFX.IMAGES.Droplet.Texture();
     protected static final int SIZE = 72;
     protected static final float INTERVAL = 0.01F;
 
@@ -67,7 +68,7 @@ public class BleedParticleEffect extends PCLEffect
         this.smokeTimer -= Gdx.graphics.getDeltaTime();
         if (this.smokeTimer < 0.0F) {
             this.smokeTimer = 0.01F;
-            PCLGameEffects.Queue.Add(new FadingParticleEffect(IMAGE, this.x, this.y)
+            PCLGameEffects.Queue.Add(new FadingParticleEffect(image, this.x, this.y)
                     .SetColor(new Color(1.0F, 0.1F, MathUtils.random(0.02F, 0.4F), 1.0F))
                     .Edit(p -> p
                             .SetScale(scale * MathUtils.random(0.45f, 1f)).SetTargetRotation(36000f,MathUtils.random(300f, 500f))
@@ -94,7 +95,7 @@ public class BleedParticleEffect extends PCLEffect
     public void render(SpriteBatch sb) {
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
         sb.setColor(this.color);
-        sb.draw(IMAGE, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, false, false);
+        sb.draw(image, x, y, SIZE * 0.5f, SIZE * 0.5f, SIZE, SIZE, scale, scale, rotation, 0, 0, SIZE, SIZE, false, false);
         sb.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     }
 

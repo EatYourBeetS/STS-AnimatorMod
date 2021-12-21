@@ -309,6 +309,9 @@ public class PCLStrings
         public final String Experience = Strings.TEXT[4];
         public final String ControlPile = Strings.TEXT[5];
         public final String ControlPileDescription = Strings.TEXT[6];
+        public final String TotalMatches = Strings.TEXT[7];
+        public final String CurrentMatchCombo = Strings.TEXT[8];
+        public final String LongestMatchCombo = Strings.TEXT[9];
 
         public final String ControlPileDescriptionFull(String keyName) {
             return PCLJUtils.Format(ControlPileDescription, keyName);

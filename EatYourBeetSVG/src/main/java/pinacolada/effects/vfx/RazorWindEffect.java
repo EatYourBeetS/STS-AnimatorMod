@@ -6,15 +6,16 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class RazorWindEffect extends PCLEffect
+public class RazorWindEffect extends EYBEffect
 {
-    public static final TextureCache image = IMAGES.AirSlice;
+    public static final TextureCache image = VFX.IMAGES.AirSlice;
     protected static final Color PARTICLE_COLOR = Color.LIME.cpy();
 
     protected float x;

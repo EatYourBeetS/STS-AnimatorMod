@@ -9,9 +9,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.utilities.EYBFontHelper;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLRuntimeLoadout;
 import pinacolada.ui.controls.GUI_CardGrid;
@@ -21,7 +21,7 @@ import pinacolada.utilities.PCLInputManager;
 
 import java.util.ArrayList;
 
-public class ShowCardPileEffect extends PCLEffectWithCallback<CardGroup>
+public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 {
     private static final float DUR = 1.5f;
     private static final GUI_Toggle upgradeToggle;

@@ -3,15 +3,15 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 
-public class StrongPunchEffect extends PCLEffect
+public class StrongPunchEffect extends EYBEffect
 {
-    public static final TextureCache image = IMAGES.Punch;
+    public static final TextureCache image = VFX.IMAGES.Punch;
 
     protected float x;
     protected float y;

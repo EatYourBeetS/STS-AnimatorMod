@@ -39,7 +39,7 @@ public class Eve extends PCLCard
                     data.AddPreview(core, false);
                 }
             });
-    public static final EYBCardPreview DRONE_PREVIEW_ALT = new EYBCardPreview(new Eve_Drone(1), false);
+    public static final PCLCardPreview DRONE_PREVIEW_ALT = new PCLCardPreview(new Eve_Drone(1), false);
     private static final int POWER_ENERGY_COST = 2;
     private static final int CHOICES = 3;
 
@@ -70,7 +70,7 @@ public class Eve extends PCLCard
     };
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return auxiliaryData.form == 1 && cardData.previews.GetIndex() == 0 ? DRONE_PREVIEW_ALT : super.GetCardPreview();
     }

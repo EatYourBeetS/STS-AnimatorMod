@@ -26,7 +26,7 @@ public class SatoriKomeiji extends PCLCard
             {
                 data.AddPreview(new FakeAbstractCard(new Nirvana()), false);
             });
-    public static final EYBCardPreview MENTAL_FORTRESS = new EYBCardPreview(new FakeAbstractCard(new MentalFortress()), false);
+    public static final PCLCardPreview MENTAL_FORTRESS = new PCLCardPreview(new FakeAbstractCard(new MentalFortress()), false);
 
     public SatoriKomeiji()
     {
@@ -36,6 +36,7 @@ public class SatoriKomeiji extends PCLCard
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Silver(1, 0, 0);
 
         SetCostUpgrade(-1);
 
@@ -51,7 +52,7 @@ public class SatoriKomeiji extends PCLCard
     };
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         return auxiliaryData.form == 1 ? MENTAL_FORTRESS : super.GetCardPreview();
     }

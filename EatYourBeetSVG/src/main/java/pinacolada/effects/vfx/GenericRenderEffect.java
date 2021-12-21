@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLRenderHelpers;
 
-public class GenericRenderEffect extends PCLEffect
+public class GenericRenderEffect extends EYBEffect
 {
     public final TextureRegion image;
 

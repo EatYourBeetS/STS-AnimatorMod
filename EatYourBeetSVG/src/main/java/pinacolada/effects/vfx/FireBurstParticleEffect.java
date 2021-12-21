@@ -7,9 +7,9 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
-public class FireBurstParticleEffect extends PCLEffect
+public class FireBurstParticleEffect extends EYBEffect
 {
    protected static final float GRAVITY = 180f * Settings.scale;
    protected AtlasRegion img;

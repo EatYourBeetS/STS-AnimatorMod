@@ -1,6 +1,5 @@
 package pinacolada.cards.pcl.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
@@ -11,7 +10,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class NoriSakurada extends PCLCard implements OnEndOfTurnSubscriber
 {
@@ -23,25 +21,28 @@ public class NoriSakurada extends PCLCard implements OnEndOfTurnSubscriber
         super(DATA);
 
         Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 0);
+        SetUpgrade(0, 0, 0, 0);
         SetAffinity_Light(1, 0, 0);
 
-        SetAffinityRequirement(PCLAffinity.Light, 8);
+        SetAffinityRequirement(PCLAffinity.Light, 3);
+
+        SetRetainOnce(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        PCLActions.Bottom.FetchFromPile(name, magicNumber, player.discardPile).SetOptions(true,true).AddCallback(cards -> {
-            if (CheckAffinity(PCLAffinity.Light)) {
-                for (AbstractCard c : cards) {
-                    PCLGameUtilities.Retain(c);
-                }
-            }
-        });
-        PCLActions.Bottom.DiscardFromHand(name, magicNumber, false)
-                .SetOptions(false, false, false);
 
-        PCLCombatStats.onEndOfTurn.SubscribeOnce(this);
+        PCLActions.Bottom.Exchange(name, magicNumber);
+
+        if (CheckAffinity(PCLAffinity.Light)) {
+            PCLCombatStats.onEndOfTurn.SubscribeOnce(this);
+        }
     }
 
     @Override

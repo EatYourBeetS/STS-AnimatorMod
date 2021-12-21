@@ -7,11 +7,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
+import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.utility.CombinedEffect;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.utility.CombinedEffect;
 import pinacolada.effects.vfx.*;
 import pinacolada.effects.vfx.megacritCopy.*;
 import pinacolada.orbs.pcl.Earth;
+import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLImages;
 import pinacolada.utilities.PCLColors;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
@@ -19,6 +22,8 @@ import pinacolada.utilities.PCLRenderHelpers;
 
 public class VFX
 {
+    public static final PCLImages.Effects IMAGES = GR.PCL.Images.Effects;
+
     public static float RandomX(Hitbox hb, float variance)
     {
         return hb.cX + (variance == 0 ? 0 : (MathUtils.random(-variance, variance) * hb.width));
@@ -103,7 +108,7 @@ public class VFX
 
     public static GenericAnimationEffect Darkness(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.Darkness.Texture(), cX, cY, 4, 5, 0.01f)
+        return new GenericAnimationEffect(IMAGES.Darkness.Texture(), cX, cY, 4, 5, 0.01f)
                 .SetColor(Color.WHITE)
                 .SetRotation(0f)
                 .SetScale(0f)
@@ -125,7 +130,7 @@ public class VFX
 
     public static GenericAnimationEffect FireBurst(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.FireBurst.Texture(), cX, cY, 8, 8, 0.01f);
+        return new GenericAnimationEffect(IMAGES.FireBurst.Texture(), cX, cY, 8, 8, 0.01f);
     }
 
     public static FlameBarrierEffect FlameBarrier(Hitbox source)
@@ -145,7 +150,7 @@ public class VFX
 
     public static GenericAnimationEffect Gunshot(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.Shot.Texture(), cX, cY, 4, 4).SetColor(Color.DARK_GRAY);
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Shot.Texture(), cX, cY, 4, 4).SetColor(Color.DARK_GRAY);
     }
 
     public static HemokinesisEffect2 Hemokinesis(Hitbox source, Hitbox target)
@@ -155,7 +160,7 @@ public class VFX
 
     public static GenericAnimationEffect IceImpact(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.IceImpact.Texture(), cX, cY, 5, 5)
+        return new GenericAnimationEffect(IMAGES.IceImpact.Texture(), cX, cY, 5, 5)
                 .SetScale(0f)
                 .SetTargetScale(1f,10f)
                 .SetMode(AnimatedProjectile.AnimationMode.Loop,25)
@@ -208,7 +213,7 @@ public class VFX
         final float x = cX + ((source.hb.cX > cX ? +80 : -80) * Settings.scale);
         final float rotation = Mathf.GetAngle(source.hb.cX, source.hb.cY, x, cY);
         PCLJUtils.LogInfo(VFX.class, "Rotation:" + rotation);
-        return new GenericRenderEffect(PCLEffect.IMAGES.Spear.Texture(), x, cY).SetRotation(rotation);
+        return new GenericRenderEffect(EYBEffect.IMAGES.Spear.Texture(), x, cY).SetRotation(rotation);
     }
 
     public static PsychokinesisEffect Psychokinesis(Hitbox target)
@@ -387,7 +392,7 @@ public class VFX
 
     public static FadingParticleEffect Water(float cX, float cY)
     {
-        return (FadingParticleEffect) new FadingParticleEffect(PCLEffect.IMAGES.WaterSplash1.Texture(), cX, cY).SetColor(Color.WHITE)
+        return (FadingParticleEffect) new FadingParticleEffect(IMAGES.WaterSplash1.Texture(), cX, cY).SetColor(Color.WHITE)
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000, 360f).SetSpeed(0f, 0f, MathUtils.random(500f, 750f), 5f).SetTargetScale(1f,5f))
                 .SetBlendingMode(PCLRenderHelpers.BlendingMode.Glowing)
                 .SetOpacity(MathUtils.random(0.7f,1f))
@@ -401,7 +406,7 @@ public class VFX
 
     public static FadingParticleEffect Water2(float cX, float cY)
     {
-        return (FadingParticleEffect) new FadingParticleEffect(PCLEffect.IMAGES.WaterSplash2.Texture(), cX, cY).SetColor(Color.WHITE)
+        return (FadingParticleEffect) new FadingParticleEffect(IMAGES.WaterSplash2.Texture(), cX, cY).SetColor(Color.WHITE)
                 .Edit(p -> p.SetRotation(MathUtils.random(100f,800f)).SetTargetRotation(36000, 360f).SetSpeed(0f, 0f, MathUtils.random(500f, 750f), 5f).SetTargetScale(1f,5f))
                 .SetBlendingMode(PCLRenderHelpers.BlendingMode.Glowing)
                 .SetOpacity(MathUtils.random(0.7f,1f))
@@ -411,7 +416,7 @@ public class VFX
 
     public static GenericAnimationEffect WaterDome(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.WaterDome.Texture(), cX, cY, 12, 5, 0.015f).SetScale(2f);
+        return new GenericAnimationEffect(IMAGES.WaterDome.Texture(), cX, cY, 12, 5, 0.015f).SetScale(2f);
     }
 
     public static GenericAnimationEffect Whack(Hitbox target, float spread)
@@ -421,7 +426,7 @@ public class VFX
 
     public static GenericAnimationEffect Whack(float cX, float cY)
     {
-        return new GenericAnimationEffect(PCLEffect.IMAGES.Whack.Texture(), cX, cY, 4, 4);
+        return new GenericAnimationEffect(EYBEffect.IMAGES.Whack.Texture(), cX, cY, 4, 4);
     }
 
     public static WhirlwindEffect Whirlwind()

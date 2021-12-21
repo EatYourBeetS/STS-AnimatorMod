@@ -54,6 +54,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
     protected Integer RNGCounter = 0;
     protected Boolean EnteredUnnamedReign = false;
     protected Boolean IsCheating = false;
+    protected Integer LongestMatchCombo = 0;
     public transient final ArrayList<PCLRuntimeLoadout> Loadouts = new ArrayList<>();
     public transient PCLLoadout StartingSeries = new _FakeLoadout();
     public HashSet<String> BannedCards = new HashSet<>();
@@ -105,6 +106,10 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         EnteredUnnamedReign = true;
     }
 
+    public void UpdateLongestMatchCombo(int newCombo) {
+        LongestMatchCombo = Math.max(LongestMatchCombo, newCombo);
+    }
+
     public boolean IsUnnamedReign()
     {
         return EnteredUnnamedReign;
@@ -114,6 +119,8 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
     {
         return IsCheating;
     }
+
+    public int GetLongestMatchCombo() { return LongestMatchCombo; }
 
     public PCLRuntimeLoadout GetLoadout(CardSeries series)
     {
@@ -482,12 +489,14 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             EnteredUnnamedReign = data.EnteredUnnamedReign;
             RNGCounter = data.RNGCounter;
             IsCheating = data.IsCheating;
+            LongestMatchCombo = data.LongestMatchCombo;
             rng = data.rng;
         }
         else
         {
             BaseMap = new HashMap<>();
             EnteredUnnamedReign = false;
+            LongestMatchCombo = 0;
             RNGCounter = 0;
             IsCheating = false;
             rng = null;
@@ -518,6 +527,10 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         if (EnteredUnnamedReign == null)
         {
             EnteredUnnamedReign = false;
+        }
+
+        if (LongestMatchCombo == null) {
+            LongestMatchCombo = 0;
         }
     }
 

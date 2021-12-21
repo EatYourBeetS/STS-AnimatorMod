@@ -3,13 +3,11 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.cards.pcl.series.MadokaMagica.MadokaKaname;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class MadokaKaname_Krimheild extends PCLCard
 {
@@ -22,7 +20,7 @@ public class MadokaKaname_Krimheild extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4, 3);
+        Initialize(0, 0, 4, 15);
         SetUpgrade(0, 0, 1, 0);
         SetPurge(true);
 
@@ -44,8 +42,8 @@ public class MadokaKaname_Krimheild extends PCLCard
     {
         PCLActions.Bottom.GainSorcery(magicNumber);
         if (info.TryActivateLimited()) {
-            PCLGameUtilities.AddAffinityPowerLevel(PCLAffinity.Blue, secondaryValue);
-            PCLActions.Bottom.GainResistance(-secondaryValue);
+            PCLActions.Bottom.GainWisdom(secondaryValue);
+            PCLActions.Bottom.GainResistance(-3);
         }
     }
 }

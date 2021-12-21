@@ -7,15 +7,16 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
+import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
-public class TornadoParticleEffect extends PCLEffect
+public class TornadoParticleEffect extends EYBEffect
 {
     protected static final int SIZE = 230;
-    protected static final TextureCache[] images = {IMAGES.AirTornado1,IMAGES.AirTornado2};
+    protected static final TextureCache[] images = {VFX.IMAGES.AirTornado1,VFX.IMAGES.AirTornado2};
     protected static final Color PARTICLE_COLOR = Color.LIME.cpy();
 
     protected float x;

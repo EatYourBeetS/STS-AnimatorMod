@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveParticle;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
 
-public class IronWaveEffect2 extends PCLEffect
+public class IronWaveEffect2 extends EYBEffect
 {
     private static final float BASE_STEP_X = 160f * Settings.scale;
     private static final float BASE_STEP_Y = 15f * Settings.scale;

@@ -7,11 +7,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
 import pinacolada.utilities.PCLGameEffects;
 
-public class ScreenFreezingEffect extends PCLEffect
+public class ScreenFreezingEffect extends EYBEffect
 {
     private float timer = 0.0F;
     private static final float INTERVAL = 0.05F;

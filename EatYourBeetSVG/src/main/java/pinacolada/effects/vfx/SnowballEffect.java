@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.FrostOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 import pinacolada.utilities.PCLGameEffects;
 
-public class SnowballEffect extends PCLEffect
+public class SnowballEffect extends EYBEffect
 {
     protected Color secondaryColor;
     protected float x;

@@ -4,13 +4,10 @@ import basemod.DevConsole;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.ui.AbstractScreen;
@@ -76,10 +73,7 @@ public class UIManager
         {
             PCLCombatStats.RefreshPCL();
 
-            if (Elapsed(1.2f) && CombatStats.BattleID != null && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
-            {
-                PCLGameUtilities.UpdatePowerDescriptions();
-            }
+            // Power description updates are handled by the base mod's GR
         }
     }
 

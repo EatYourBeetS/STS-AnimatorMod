@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import pinacolada.actions.damage.LoseHP;
+import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.special.ElementalExposurePower;
 import pinacolada.ui.combat.CombatHelper;
 import pinacolada.utilities.PCLActions;
@@ -46,6 +47,9 @@ public abstract class PCLTriggerablePower extends PCLPower implements HealthBarR
         if (multiplier > 0)
         {
             EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
+            if (BurningPower.POWER_ID.equals(powerID) || eatyourbeets.powers.common.BurningPower.POWER_ID.equals(powerID)) {
+                eatyourbeets.powers.common.BurningPower.AddPlayerAttackBonus(multiplier);
+            }
 
             PCLGameUtilities.UpdatePowerDescriptions();
         }

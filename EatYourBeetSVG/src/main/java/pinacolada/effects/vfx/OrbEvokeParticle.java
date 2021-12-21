@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
-import pinacolada.effects.PCLEffect;
 
-public class OrbEvokeParticle extends PCLEffect
+public class OrbEvokeParticle extends EYBEffect
 {
     private static final int W_HALF = 70;
     private static final int W = W_HALF * 2;

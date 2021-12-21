@@ -120,7 +120,7 @@ public class Aqua extends PCLCard
     }
 
     @Override
-    public EYBCardPreview GetCardPreview()
+    public PCLCardPreview GetCardPreview()
     {
         if (transformed)
         {

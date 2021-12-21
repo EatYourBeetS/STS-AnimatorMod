@@ -47,7 +47,8 @@ public class Guts extends PCLCard
             PCLActions.Top.Add(new VFXAction(new OfferingEffect(), Settings.FAST_MODE ? 0.1F : 0.5F));
 
             PCLActions.Bottom.VFX(VFX.VerticalImpact(mo.hb));
-            PCLActions.Bottom.DealDamageToRandomEnemy(inflictDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HEAVY).AddCallback(target -> {
+            PCLActions.Bottom.DealDamageToRandomEnemy(inflictDamage, DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.SLASH_HEAVY)
+                    .AddCallback(target -> {
                 if (PCLGameUtilities.IsDeadOrEscaped(target)) {
                     PCLActions.Bottom.TakeDamage(magicNumber, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
                     forceStacks.addAndGet(ExecuteAttack(m, inflictDamage + secondaryValue));

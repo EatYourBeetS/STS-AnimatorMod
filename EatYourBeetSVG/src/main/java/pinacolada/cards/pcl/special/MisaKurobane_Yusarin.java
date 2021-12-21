@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.colorless.uncommon.MisaKurobane;
+import pinacolada.cards.pcl.colorless.MisaKurobane;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.utilities.PCLActions;
 

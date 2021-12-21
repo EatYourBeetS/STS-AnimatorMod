@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PenNibPower;
-import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PenNib;
@@ -38,7 +37,6 @@ import pinacolada.stances.PCLStance;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -232,6 +230,11 @@ public class PCLGameUtilities extends GameUtilities
     public static void DecreaseSecondaryValue(PCLCard card, int amount, boolean temporary)
     {
         ModifySecondaryValue(card, Math.max(0, card.baseSecondaryValue - amount), temporary);
+    }
+
+    public static int GetCurrentMatchCombo()
+    {
+        return PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentMatchCombo();
     }
 
     public static AbstractOrb GetFirstOrb(String orbID)
@@ -442,33 +445,6 @@ public class PCLGameUtilities extends GameUtilities
 
     public static int GetPowerAmount(PCLAffinity affinity) {
         return PCLCombatStats.MatchingSystem.GetPowerAmount(affinity);
-    }
-
-    public static <T> T GetRandomElement(List<T> list)
-    {
-        return GetRandomElement(list, GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr)
-    {
-        return GetRandomElement(arr, GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr, Random rng)
-    {
-        int size = arr.length;
-        return (size > 0) ? arr[rng.random(arr.length - 1)] : null;
-    }
-
-    public static <T> T GetRandomElement(List<T> list, Random rng)
-    {
-        int size = list.size();
-        return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
-    }
-
-    public static AbstractMonster GetRandomEnemy(boolean aliveOnly)
-    {
-        return GetRandomElement(GetEnemies(aliveOnly), GetRNG());
     }
 
     public static AbstractOrb GetRandomCommonOrb() {
@@ -738,16 +714,6 @@ public class PCLGameUtilities extends GameUtilities
         return card instanceof PCLCard && ((PCLCard) card).cooldown != null && ((PCLCard) card).cooldown.cardConstructor != null;
     }
 
-    public static boolean IsHighCost(AbstractCard card)
-    {
-        return card.costForTurn >= 2;
-    }
-
-    public static boolean IsLowCost(AbstractCard card)
-    {
-        return card.costForTurn == 0 || card.costForTurn == 1;
-    }
-
     public static boolean IsCommonBuff(AbstractPower power)
     {
         return PCLJUtils.Any(PCLGameUtilities.GetPCLCommonBuffs(), ph -> ph.ID.equals(power.ID));
@@ -768,11 +734,6 @@ public class PCLGameUtilities extends GameUtilities
         PCLCard c1 = PCLJUtils.SafeCast(card1, PCLCard.class);
         PCLCard c2 = PCLJUtils.SafeCast(card2, PCLCard.class);
         return c1 != null && c2 != null && c1.series != null && c1.series.equals(c2.series);
-    }
-
-    public static boolean IsValidOrb(AbstractOrb orb)
-    {
-        return orb != null && !(orb instanceof EmptyOrbSlot);
     }
 
     public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)

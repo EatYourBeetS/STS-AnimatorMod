@@ -82,8 +82,7 @@ public class Air extends PCLOrb
                             .SetScale(scale * MathUtils.random(0.1f, 0.32f)).SetTargetRotation(36000f,200f)
                             .SetSpeed(MathUtils.random(25f, 50f), MathUtils.random(25f, 50f), MathUtils.random(150f, 250f),MathUtils.random(0.3f, 0.6f))
                             .SetAcceleration(MathUtils.random(1f, 5f), MathUtils.random(1f, 5f), null, null, null)
-                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false))
-                    .SetRenderBehind(true);
+                            .SetTargetPosition(hb.cX + RADIUS * MathUtils.cos(r), hb.cY + RADIUS * MathUtils.sin(r))).SetDuration(1f, false)).renderBehind = true;
             this.vfxTimer = MathUtils.random(0.1f, 0.25f);
         }
     }

@@ -101,8 +101,8 @@ public class SheerColdPower extends PCLPower implements OnOrbPassiveEffectSubscr
             int actualDamage = AbstractOrb.applyLockOn(target, damageAmount);
             PCLActions.Top.Wait(.15f);
             PCLActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
-                    .SetColor(Color.SKY, Color.CYAN).SetRealtime(true));
-            PCLActions.Bottom.DealDamage(owner, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+                    .SetColor(Color.SKY, Color.NAVY).SetRealtime(true));
+            PCLActions.Bottom.DealDamage(owner, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.ICE)
                     .SetVFX(true, true);
             PCLActions.Bottom.ApplyFreezing(owner, target, MathUtils.ceil(damageAmount / 2f)).CanStack(true);
         }

@@ -9,10 +9,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import pinacolada.effects.PCLEffect;
+import eatyourbeets.effects.EYBEffect;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class SmallLaserEffect2 extends PCLEffect
+public class SmallLaserEffect2 extends EYBEffect
 {
     private static AtlasRegion img;
     private final float sX;

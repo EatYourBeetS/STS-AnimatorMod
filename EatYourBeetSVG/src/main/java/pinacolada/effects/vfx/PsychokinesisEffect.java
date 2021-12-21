@@ -3,12 +3,13 @@ package pinacolada.effects.vfx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.PCLEffect;
+import pinacolada.effects.VFX;
 import pinacolada.utilities.PCLGameEffects;
 
-public class PsychokinesisEffect extends PCLEffect
+public class PsychokinesisEffect extends EYBEffect
 {
     protected float x;
     protected float y;
@@ -69,14 +70,14 @@ public class PsychokinesisEffect extends PCLEffect
             final float scale = Random(Math.max(0.05f,this.scaleLower),this.scaleUpper);
             final Color color = new Color(MathUtils.random(0.8f, 1f), MathUtils.random(0.7f, 1f), 1, 1);
             if (RandomBoolean(0.2f)) {
-                PCLGameEffects.Queue.Add(new FadingParticleEffect(PCLEffect.IMAGES.Circle.Texture(), x, y)
+                PCLGameEffects.Queue.Add(new FadingParticleEffect(VFX.IMAGES.Circle.Texture(), x, y)
                         .SetColor(Colors.Random(0.83f, 1f, false))
                         .SetScale(this.scaleLower * 0.05f)
                         .SetTargetScale(scale * 2, 5f))
                         .SetDuration(1.5f,true);
             }
             else {
-                PCLGameEffects.Queue.Add(new GenericAnimationEffect(PCLEffect.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f)
+                PCLGameEffects.Queue.Add(new GenericAnimationEffect(VFX.IMAGES.Psi.Texture(), x, y, 5, 5, 0.01f)
                         .SetColor(Colors.Random(0.83f, 1f, false))
                         .SetScale(this.scaleLower * 0.05f)
                         .SetTargetScale(scale, 5f));

@@ -33,6 +33,7 @@ public class EmirEins extends PCLCard
         super.triggerOnExhaust();
 
         PCLActions.Bottom.Add(new ShuffleAction(player.drawPile));
+        PCLActions.Last.Exchange(name, magicNumber);
     }
 
     @Override
@@ -40,6 +41,7 @@ public class EmirEins extends PCLCard
         super.triggerOnManualDiscard();
 
         PCLActions.Bottom.Add(new ShuffleAction(player.drawPile));
+        PCLActions.Last.Exchange(name, magicNumber);
     }
 
     @Override

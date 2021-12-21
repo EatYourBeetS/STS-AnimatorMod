@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.EYBCardPreview;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardPreview;
 import pinacolada.cards.pcl.special.Zadkiel;
 import pinacolada.utilities.PCLActions;
 
@@ -48,7 +48,7 @@ public class YoshinoHimekawa extends PCLCard {
     }
 
     @Override
-    public EYBCardPreview GetCardPreview() {
+    public PCLCardPreview GetCardPreview() {
         if (transformed) {
             return null;
         }

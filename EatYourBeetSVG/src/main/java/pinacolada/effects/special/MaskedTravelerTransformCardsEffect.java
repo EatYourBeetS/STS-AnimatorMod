@@ -11,13 +11,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon.CurrentScreen;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.relics.EmptyCage;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import eatyourbeets.effects.EYBEffectWithCallback;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.effects.PCLEffectWithCallback;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
-public class MaskedTravelerTransformCardsEffect extends PCLEffectWithCallback<Object>
+public class MaskedTravelerTransformCardsEffect extends EYBEffectWithCallback<Object>
 {
     private static final int GROUP_SIZE = 3;
     private final RandomizedList<AbstractCard> cards = new RandomizedList<>();

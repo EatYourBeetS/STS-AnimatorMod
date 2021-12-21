@@ -2,7 +2,6 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
@@ -10,7 +9,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.special.KyokoSakura_Ophelia;
 import pinacolada.effects.AttackEffects;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class KyokoSakura extends PCLCard
@@ -40,18 +38,7 @@ public class KyokoSakura extends PCLCard
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
-
-        PCLActions.Bottom.Draw(magicNumber);
-        PCLActions.Bottom.SelectFromHand(name, magicNumber, false)
-        .SetMessage(GR.PCL.Strings.HandSelection.MoveToDrawPile)
-        .AddCallback(cards ->
-        {
-            for (int i = cards.size() - 1; i >= 0; i--)
-            {
-                PCLActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile)
-                .SetDestination(CardSelection.Top);
-            }
-        });
+        PCLActions.Bottom.Exchange(name, magicNumber);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

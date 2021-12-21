@@ -5,7 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAttackType;
+import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -19,8 +22,8 @@ public class YamaiSisters extends PCLCard implements OnSynergySubscriber
     {
         super(DATA);
 
-        Initialize(1, 0 );
-        SetUpgrade(0, 0 );
+        Initialize(1, 0, 3);
+        SetUpgrade(0, 0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetHitCount(2,0);
@@ -46,7 +49,7 @@ public class YamaiSisters extends PCLCard implements OnSynergySubscriber
 
     @Override
     public void OnSynergy(AbstractCard card) {
-        if (PCLCombatStats.MatchingSystem.GetLastAffinitySynergy() == PCLAffinity.Red && CombatStats.TryActivateSemiLimited(cardID)) {
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && CombatStats.TryActivateSemiLimited(cardID)) {
             PCLActions.Last.MoveCard(this,player.hand).ShowEffect(true, true);
         }
     }

@@ -159,8 +159,8 @@ public class TheFloatyThing extends PCLEvent
 
             room.rewards.clear();
             rewardItem.cards.clear();
-            rewardItem.cards.add(new SheerCold());
             rewardItem.cards.add(new BlazingHeat());
+            rewardItem.cards.add(new SheerCold());
             rewardItem.cards.add(new IonizingStorm());
 
             room.addCardReward(rewardItem);

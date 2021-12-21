@@ -1,11 +1,15 @@
 package pinacolada.ui.combat;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -13,6 +17,7 @@ import eatyourbeets.utilities.Mathf;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
+import pinacolada.effects.affinity.AffinityGlowEffect;
 import pinacolada.powers.common.RerollAffinityPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLHotkeys;
@@ -21,8 +26,10 @@ import pinacolada.ui.common.AffinityKeywordButton;
 import pinacolada.ui.controls.GUI_Image;
 import pinacolada.ui.hitboxes.DraggableHitbox;
 import pinacolada.ui.hitboxes.RelativeHitbox;
+import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
+import pinacolada.utilities.PCLRenderHelpers;
 
 import static pinacolada.resources.GR.Enums.CardTags.HARMONIC;
 
@@ -35,15 +42,21 @@ public class PCLAffinityMeter extends GUIElement
 
     public static final int DEFAULT_REROLLS = 1;
     public static final float ICON_SIZE = Scale(96);
-    public static final float LABEL_OFFSET = ICON_SIZE + Scale(20);
+    public static final float LABEL_OFFSET = ICON_SIZE + Scale(30);
     public static final Color PANEL_COLOR = new Color(0.3f, 0.3f, 0.3f, 1f);
     public final DraggableHitbox hb;
     public final PCLAffinitySystem System;
-    public final AffinityKeywordButton CurrentAffinity;
-    public final AffinityKeywordButton NextAffinity;
     public RerollAffinityPower Reroll;
+    protected final AffinityKeywordButton CurrentAffinity;
+    protected final AffinityKeywordButton NextAffinity;
+    protected int matchesThisCombat;
+    protected int currentMatchCombo;
+    protected int longestMatchCombo;
     protected final GUI_Image draggable_panel;
     protected final GUI_Image draggable_icon;
+    protected float fontScale = 1.0F;
+    protected boolean isGlowing;
+    protected Texture glowImg;
     protected Vector2 meterSavedPosition;
 
     public PCLAffinityMeter(PCLAffinitySystem system) {
@@ -72,6 +85,7 @@ public class PCLAffinityMeter extends GUIElement
                         Reroll.OnClick(Target.NextAffinity);
                     }
                 });
+        glowImg = GR.PCL.Images.Affinities.Border_Silhouette.Texture();
     }
 
     public void Initialize() {
@@ -79,6 +93,9 @@ public class PCLAffinityMeter extends GUIElement
         RandomizeCurrentAffinity();
         RandomizeNextAffinity();
         Reroll = new RerollAffinityPower(DEFAULT_REROLLS);
+        matchesThisCombat = 0;
+        currentMatchCombo = 0;
+        longestMatchCombo = 0;
 
         if (meterSavedPosition != null)
         {
@@ -113,9 +130,29 @@ public class PCLAffinityMeter extends GUIElement
 
     public PCLAffinity OnMatch(AbstractCard card) {
         //TODO add subscribers
+
+        matchesThisCombat += 1;
+        currentMatchCombo += 1;
+        longestMatchCombo = Math.max(longestMatchCombo, currentMatchCombo);
+        this.fontScale = 4.0F;
+
         CurrentAffinity.Flash();
-        SetCurrentAffinity(NextAffinity.Type);
+        if (card.hasTag(HARMONIC) && PCLGameUtilities.HasMulticolorAffinity(card)) {
+            SetCurrentAffinity(PCLAffinity.Star);
+        }
+        else {
+            SetCurrentAffinity(NextAffinity.Type);
+        }
         return SetNextAffinity(card);
+    }
+
+    public PCLAffinity OnNotMatch(AbstractCard card) {
+        //TODO add subscribers
+
+        currentMatchCombo = 0;
+        this.fontScale = 1.5F;
+
+        return CurrentAffinity.Type;
     }
 
     public void OnStartOfTurn()
@@ -145,6 +182,12 @@ public class PCLAffinityMeter extends GUIElement
     public PCLAffinity GetNextAffinity() {
         return NextAffinity.Type;
     }
+
+    public int GetMatchesThisCombat() {return matchesThisCombat;}
+
+    public int GetCurrentMatchCombo() {return currentMatchCombo;}
+
+    public int GetLongestMatchCombo() {return longestMatchCombo;}
 
     public PCLAffinity Set(PCLAffinity affinity, Target target) {
         return target == Target.CurrentAffinity ? SetCurrentAffinity(affinity) : SetNextAffinity(affinity);
@@ -199,6 +242,13 @@ public class PCLAffinityMeter extends GUIElement
         draggable_panel.SetColor(0.05f, 0.05f, 0.05f, isHovered ? 0.5f : 0.05f);
         draggable_icon.SetColor(Colors.White(isHovered ? 0.75f : 0.1f));
 
+        if (this.fontScale != 1.0F) {
+            this.fontScale = MathUtils.lerp(this.fontScale, 1.0F, Gdx.graphics.getDeltaTime() * 10.0F);
+            if (this.fontScale - 1.0F < 0.05F) {
+                this.fontScale = 1.0F;
+            }
+        }
+
         CurrentAffinity.TryUpdate();
         NextAffinity.TryUpdate();
 
@@ -214,6 +264,11 @@ public class PCLAffinityMeter extends GUIElement
             }
             if (PCLHotkeys.rerollNext.isJustPressed()) {
                 Reroll.OnClick(Target.NextAffinity);
+            }
+
+            isGlowing = PCLJUtils.Find(AbstractDungeon.player.hand.group, c -> HasMatch(c, true)) == null && Reroll.triggerCondition.uses > 0;
+            if (isGlowing && GR.UI.Elapsed75()) {
+                PCLGameEffects.Queue.Add(new AffinityGlowEffect(CurrentAffinity));
             }
         }
 
@@ -231,26 +286,43 @@ public class PCLAffinityMeter extends GUIElement
         draggable_panel.Render(sb);
         draggable_icon.Render(sb);
 
+        if (Reroll != null) {
+            final BitmapFont rerollFont = EYBFontHelper.CardTitleFont_Small;
+            rerollFont.getData().setScale(0.8f);
+
+            if (isGlowing) {
+                PCLRenderHelpers.DrawCentered(sb, AffinityGlowEffect.FALLBACK_COLOR, glowImg, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.cY, CurrentAffinity.background_button.hb.width, CurrentAffinity.background_button.hb.height, 0.9f, 0, false, false);
+            }
+
+            pinacolada.utilities.PCLRenderHelpers.DrawCentered(sb, Colors.Black(0.5f), GR.PCL.Images.Panel_Elliptical_Half_H.Texture(),
+                    (CurrentAffinity.background_button.hb.cX + NextAffinity.background_button.hb.cX) / 2, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.2f,
+                    CurrentAffinity.background_button.hb.width * 1.25f, CurrentAffinity.background_button.hb.height * 0.7f, 1, 0);
+            FontHelper.renderFontLeftTopAligned(sb, rerollFont,
+                    GR.PCL.Strings.Combat.Rerolls + ": " + Reroll.triggerCondition.uses + "/" + Reroll.triggerCondition.baseUses,
+                    CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.7f,
+                    Reroll.triggerCondition.uses > 0 ? Settings.BLUE_TEXT_COLOR : Settings.RED_TEXT_COLOR);
+            pinacolada.utilities.PCLRenderHelpers.ResetFont(rerollFont);
+        }
+
+        final BitmapFont comboFont = EYBFontHelper.CardTitleFont_Large;
+        comboFont.getData().setScale(fontScale);
+        FontHelper.renderFontCentered(sb, comboFont,
+                "×" + currentMatchCombo,
+                NextAffinity.background_button.hb.cX + NextAffinity.background_button.hb.width * 1.25f, NextAffinity.background_button.hb.cY,
+                currentMatchCombo > 0 ? Colors.White(1f) : Colors.Cream(0.6f));
+        pinacolada.utilities.PCLRenderHelpers.ResetFont(comboFont);
+
         CurrentAffinity.TryRender(sb);
         NextAffinity.TryRender(sb);
         hb.render(sb);
+
+
 
         FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
                 GR.PCL.Strings.Combat.Current, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
         FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
                 GR.PCL.Strings.Combat.Next, NextAffinity.background_button.hb.cX, NextAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
-
-        if (Reroll != null) {
-            final BitmapFont rerollFont = EYBFontHelper.CardTitleFont_Small;
-            rerollFont.getData().setScale(0.8f);
-            pinacolada.utilities.PCLRenderHelpers.DrawCentered(sb, Colors.Black(0.6f), GR.PCL.Images.Panel_Elliptical_Half_H.Texture(),
-                    (CurrentAffinity.background_button.hb.cX + NextAffinity.background_button.hb.cX) / 2, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 2.5f,
-                    CurrentAffinity.background_button.hb.width * 1.35f, CurrentAffinity.background_button.hb.height * 0.7f, 1, 0);
-            FontHelper.renderFontLeftTopAligned(sb, rerollFont,
-                    GR.PCL.Strings.Combat.Rerolls + ": " + Reroll.triggerCondition.uses + "/" + Reroll.triggerCondition.baseUses,
-                    CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3f,
-                    Reroll.triggerCondition.uses > 0 ? Settings.BLUE_TEXT_COLOR : Settings.RED_TEXT_COLOR);
-            pinacolada.utilities.PCLRenderHelpers.ResetFont(rerollFont);
-        }
+        FontHelper.renderFontCentered(sb, EYBFontHelper.CardTitleFont_Small,
+                GR.PCL.Strings.Combat.CurrentMatchCombo, NextAffinity.background_button.hb.cX + NextAffinity.background_button.hb.width * 1.25f, NextAffinity.background_button.hb.y + LABEL_OFFSET, Colors.Cream(1f), 1f);
     }
 }

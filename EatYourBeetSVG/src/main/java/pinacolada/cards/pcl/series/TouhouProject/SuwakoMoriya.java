@@ -20,12 +20,12 @@ public class SuwakoMoriya extends PCLCard {
     public SuwakoMoriya() {
         super(DATA);
 
-        Initialize(0, 2, 7, 4);
+        Initialize(0, 2, 7, 3);
         SetUpgrade(0, 0, 2, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Red, 4);
+        SetAffinityRequirement(PCLAffinity.Red, 5);
 
         SetExhaust(true);
     }

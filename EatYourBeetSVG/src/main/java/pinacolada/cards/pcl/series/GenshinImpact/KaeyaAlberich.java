@@ -10,7 +10,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -36,7 +36,7 @@ public class KaeyaAlberich extends PCLCard {
         PCLActions.Bottom.GainBlock(block);
 
         if (TrySpendAffinity(PCLAffinity.Blue) && CombatStats.TryActivateSemiLimited(cardID)) {
-            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PCLPowerHelper.Shackles, magicNumber);
         }
 
         PCLActions.Bottom.ChannelOrb(new Frost()).AddCallback(() -> {

@@ -19,7 +19,7 @@ public class CowGirl extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0,0,2);
 
         SetAffinity_Orange(1);
@@ -54,7 +54,7 @@ public class CowGirl extends PCLCard
         .SetOptions(false, false)
         .SetFilter(c -> c.type == CardType.ATTACK && c instanceof PCLCard && ((PCLCard) c).attackType == PCLAttackType.Normal).AddCallback(cards -> {
             for (AbstractCard c : cards) {
-                PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Orange, 1);
+                PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Orange, secondaryValue);
             }
         });
     }

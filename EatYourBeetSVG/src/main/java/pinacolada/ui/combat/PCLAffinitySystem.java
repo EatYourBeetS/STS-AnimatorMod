@@ -8,14 +8,16 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.ui.FtueTip;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.RotatingList;
 import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.ui.controls.GUI_Ftue;
@@ -41,6 +43,9 @@ public class PCLAffinitySystem extends GUIElement
     protected final GUI_Image draggable_icon;
     protected final GUI_Button info_icon;
     protected final ArrayList<PCLAffinityRow> rows = new ArrayList<>();
+    protected final RotatingList<String> tooltipTitles = new RotatingList<>();
+    protected final RotatingList<String> tooltipDescriptions = new RotatingList<>();
+    protected GUI_Ftue ftue;
     protected PCLCardTooltip tooltip;
     protected Vector2 amountsSavedPosition;
 
@@ -57,19 +62,15 @@ public class PCLAffinitySystem extends GUIElement
         hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
+        AffinityMeter = new PCLAffinityMeter(this);
+
         dragAmount_image = new GUI_Image(GR.PCL.Images.Panel_Rounded.Texture(), hb)
         .SetColor(0.05f, 0.05f, 0.05f, 0.5f);
-
         draggable_icon = new GUI_Image(GR.PCL.Images.Draggable.Texture(), new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(40f), Scale(20f), false))
         .SetColor(Colors.White(0.75f));
-
-        tooltip = new PCLCardTooltip(GR.Tooltips.Affinity_General.title, GR.PCL.Strings.Tutorial.AffinityInfo);
         info_icon = new GUI_Button(ImageMaster.INTENT_UNKNOWN, new RelativeHitbox(hb, Scale(40f), Scale(40f), Scale(100f), Scale(20f), false))
-                .SetText("")
-                .SetOnClick(() ->
-                {AbstractDungeon.ftue = new GUI_Ftue(GR.Tooltips.Affinity_General.title, GR.PCL.Strings.Tutorial.AffinityTutorial1,
-                        Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);})
-        ;
+                .SetText("");
+        // TODO add FTUE with dropdown and images
 
         final PCLAffinity[] types = PCLAffinity.Extended();
         for (int i = 0; i < types.length; i++)
@@ -77,9 +78,9 @@ public class PCLAffinitySystem extends GUIElement
             rows.add(new PCLAffinityRow(this, types[i], i));
         }
 
-        //rows.add(new EYBCardAffinityRow(this, Affinity.General, types.length));
+        tooltip = new PCLCardTooltip("", "");
+        tooltip.subText = new ColoredString("", Settings.PURPLE_COLOR);
 
-        AffinityMeter = new PCLAffinityMeter(this);
     }
 
     public AffinityCounts AddAffinity(PCLAffinity affinity, int amount)
@@ -429,6 +430,18 @@ public class PCLAffinitySystem extends GUIElement
         }
 
         AffinityMeter.Initialize();
+
+        if (tooltipDescriptions.Count() == 0 || tooltipTitles.Count() == 0) {
+            for (String tip : GR.PCL.Strings.Tutorial.TutorialItems()) {
+                tooltipDescriptions.Add(tip);
+            }
+            tooltipTitles.Add(GR.Tooltips.Affinity_General.title);
+            tooltipTitles.Add(GR.Tooltips.Match.title);
+            tooltipTitles.Add(GR.Tooltips.Match.title);
+
+            SetTipIndex(0);
+        }
+
     }
 
     public void Update()
@@ -479,6 +492,9 @@ public class PCLAffinitySystem extends GUIElement
         if (!draggingCard && info_icon.hb.hovered)
         {
             PCLCardTooltip.QueueTooltip(tooltip);
+            if (PCLHotkeys.cycle.isJustPressed()) {
+                CycleTips();
+            }
         }
     }
 
@@ -502,6 +518,23 @@ public class PCLAffinitySystem extends GUIElement
         }
 
         AffinityMeter.Render(sb);
+    }
+
+    public void CycleTips() {
+        tooltipTitles.Next(true);
+        UpdateTipContent();
+    }
+
+    public void SetTipIndex(int index) {
+        tooltipTitles.SetIndex(index);
+        UpdateTipContent();
+    }
+
+    protected void UpdateTipContent() {
+        tooltipDescriptions.SetIndex(tooltipTitles.GetIndex());
+        tooltip.description = tooltipDescriptions.Current();
+        tooltip.title = tooltipTitles.Current();
+        tooltip.subText.SetText(GR.PCL.Strings.Misc.PressKeyToCycle(PCLHotkeys.cycle.getKeyString()) + " (" + (tooltipDescriptions.GetIndex() + 1) + "/" + tooltipDescriptions.Count() + ")");
     }
 
     public static class AffinityCounts {

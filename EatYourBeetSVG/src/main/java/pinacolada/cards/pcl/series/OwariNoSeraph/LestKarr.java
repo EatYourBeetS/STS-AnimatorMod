@@ -12,7 +12,7 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.status.*;
 import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -75,8 +75,8 @@ public class LestKarr extends PCLCard
 
                     if (choices.TryInitialize(this))
                     {
-                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, magicNumber, true));
-                        choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
+                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, magicNumber, true));
+                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
                     }
                     choices.Select(1, m);
                 });

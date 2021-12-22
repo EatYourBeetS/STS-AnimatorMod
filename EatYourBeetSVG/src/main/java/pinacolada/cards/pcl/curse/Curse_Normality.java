@@ -18,7 +18,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Curse;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -153,13 +153,13 @@ public class Curse_Normality extends PCLCard_Curse implements OnTryApplyPowerLis
                     HashMap<String, Integer> targetSet = POWERS.getOrDefault(owner, new HashMap<>());
                     for (String powerID : targetSet.keySet()) {
                         int amount = targetSet.getOrDefault(powerID, 0);
-                        PowerHelper ph = PowerHelper.ALL.get(powerID);
+                        PCLPowerHelper ph = PCLPowerHelper.ALL.get(powerID);
 
                         if (shouldProgress) {
-                            if (ph.EndTurnBehavior == PowerHelper.Behavior.TurnBased) {
+                            if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.TurnBased) {
                                 amount -= 1;
                             }
-                            else if (ph.EndTurnBehavior == PowerHelper.Behavior.Temporary) {
+                            else if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.Temporary) {
                                 amount = 0;
                             }
                         }

@@ -21,11 +21,11 @@ public class Wrath extends PCLCard
     {
         super(DATA);
 
-        Initialize(10, 12, 3,2);
+        Initialize(10, 11, 3,2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1, 0, 3);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Dark(1);
 
         SetExhaust(true);

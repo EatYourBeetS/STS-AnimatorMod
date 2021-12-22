@@ -54,6 +54,21 @@ public class CardKeywordFilters extends GUIElement
         }
     }
 
+    public enum OriginFilter
+    {
+        BaseGame("Base Game", "com.megacrit.cardcrawl"),
+        Animator("Animator","eatyourbeets"),
+        PCL("Fool","pinacolada");
+
+        public final String name;
+        public final String packagePrefix;
+
+        OriginFilter(String name, String packagePrefix) {
+            this.name = name;
+            this.packagePrefix = packagePrefix;
+        }
+    }
+
     private static final Color FADE_COLOR = new Color(0f, 0f, 0f, 0.84f);
     protected static final float SPACING = Settings.scale * 22.5f;
     protected static final float DRAW_START_X = (float) Settings.WIDTH * 0.15f;
@@ -63,6 +78,7 @@ public class CardKeywordFilters extends GUIElement
     protected static final float SCROLL_BAR_THRESHOLD = 500f * Settings.scale;
 
     public static final int ROW_SIZE = 8;
+    public static final HashSet<OriginFilter> CurrentOrigins = new HashSet<>();
     public static final HashSet<CardSeries> CurrentSeries = new HashSet<>();
     public static final HashSet<PCLCardTooltip> CurrentFilters = new HashSet<>();
     public static final HashSet<CostFilter> CurrentCosts = new HashSet<>();
@@ -78,6 +94,7 @@ public class CardKeywordFilters extends GUIElement
 
     protected boolean canDragScreen = false; //TODO allow toggle
     protected boolean invalidated;
+    protected boolean isColorless;
     protected float draw_x;
     protected float lowerScrollBound = -Settings.DEFAULT_SCROLL_LIMIT;
     protected float upperScrollBound = Settings.DEFAULT_SCROLL_LIMIT;
@@ -85,6 +102,7 @@ public class CardKeywordFilters extends GUIElement
     protected float scrollDelta;
     protected int filterSizeCache;
     protected final GUI_Dropdown<CardSeries> SeriesDropdown;
+    protected final GUI_Dropdown<OriginFilter> OriginsDropdown;
     protected final GUI_Dropdown<CostFilter> CostDropdown;
     protected final GUI_Dropdown<AbstractCard.CardRarity> RaritiesDropdown;
     protected final GUI_Dropdown<AbstractCard.CardType> TypesDropdown;
@@ -116,6 +134,20 @@ public class CardKeywordFilters extends GUIElement
 
     public static ArrayList<AbstractCard> ApplyFilters(ArrayList<AbstractCard> input) {
         return PCLJUtils.Filter(input, c -> {
+                    //Origin check
+                    if (!CurrentOrigins.isEmpty()) {
+                        boolean passes = false;
+                        for (OriginFilter of : CurrentOrigins) {
+                            if (c.getClass().getPackage().getName().startsWith(of.packagePrefix)) {
+                                passes = true;
+                                break;
+                            }
+                        }
+                        if (!passes) {
+                            return false;
+                        }
+                    }
+
                     //Series check
                     if (!CurrentSeries.isEmpty()) {
                         PCLCard aC = PCLJUtils.SafeCast(c, PCLCard.class);
@@ -167,7 +199,7 @@ public class CardKeywordFilters extends GUIElement
     }
 
     public static boolean AreFiltersEmpty() {
-        return CurrentFilters.isEmpty() && CurrentSeries.isEmpty() && CurrentCosts.isEmpty() && CurrentRarities.isEmpty() && CurrentTypes.isEmpty() && CurrentAffinities.IsEmpty();
+        return CurrentOrigins.isEmpty() && CurrentFilters.isEmpty() && CurrentSeries.isEmpty() && CurrentCosts.isEmpty() && CurrentRarities.isEmpty() && CurrentTypes.isEmpty() && CurrentAffinities.IsEmpty();
     }
 
     public CardKeywordFilters()
@@ -199,6 +231,32 @@ public class CardKeywordFilters extends GUIElement
                 .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.PCL.Strings.SeriesUI.SeriesUI)
                 .SetIsMultiSelect(true)
                 .SetCanAutosizeButton(true);
+
+        OriginsDropdown = new GUI_Dropdown<OriginFilter>(new AdvancedHitbox(SeriesDropdown.hb.x, SeriesDropdown.hb.y, Scale(240), Scale(48)), c -> c.name)
+                .SetOnOpenOrClose(isOpen -> {
+                    isScreenDisabled = isOpen;
+                    CardCrawlGame.isPopupOpen = this.isActive;
+                })
+                .SetOnChange(costs -> {
+                    CurrentOrigins.clear();
+                    CurrentOrigins.addAll(costs);
+                    if (onClick != null) {
+                        onClick.Invoke(null);
+                    }
+                })
+                .SetLabelFunctionForButton(items -> {
+                    if (items.size() == 0) {
+                        return GR.PCL.Strings.Misc.Any;
+                    }
+                    if (items.size() > 1) {
+                        return items.size() + " " + GR.PCL.Strings.SeriesUI.ItemsSelected;
+                    }
+                    return StringUtils.join(PCLJUtils.Map(items, item -> item.name), ", ");
+                }, null,false)
+                .SetHeader(EYBFontHelper.CardTitleFont_Small, 0.8f, Settings.GOLD_COLOR, GR.PCL.Strings.SeriesUI.Origins)
+                .SetIsMultiSelect(true)
+                .SetCanAutosizeButton(true)
+                .SetItems(OriginFilter.values());
 
         CostDropdown = new GUI_Dropdown<CostFilter>(new AdvancedHitbox(hb.x + SeriesDropdown.hb.width + SPACING * 3, hb.y + SPACING * 3, Scale(240), Scale(48)), c -> c.name)
                 .SetOnOpenOrClose(isOpen -> {
@@ -305,7 +363,8 @@ public class CardKeywordFilters extends GUIElement
 
     }
 
-    public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards) {
+    public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards, boolean isColorless) {
+        CurrentOrigins.clear();
         CurrentFilters.clear();
         CurrentSeries.clear();
         CurrentCosts.clear();
@@ -318,6 +377,7 @@ public class CardKeywordFilters extends GUIElement
         HashSet<CardSeries> availableSeries = new HashSet<>();
 
         this.onClick = onClick;
+        this.isColorless = isColorless;
         referenceCards = cards;
         if (referenceCards != null) {
             for (AbstractCard card : referenceCards) {
@@ -362,6 +422,7 @@ public class CardKeywordFilters extends GUIElement
 
 
     public void Clear(boolean shouldInvoke) {
+        CurrentOrigins.clear();
         CurrentFilters.clear();
         CurrentSeries.clear();
         CurrentCosts.clear();
@@ -424,7 +485,13 @@ public class CardKeywordFilters extends GUIElement
     public void Update() {
         hb.y = DRAW_START_Y + scrollDelta;
         SeriesDropdown.SetPosition(hb.x - SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
-        CostDropdown.SetPosition(SeriesDropdown.hb.x + SeriesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        OriginsDropdown.SetPosition(SeriesDropdown.hb.x, SeriesDropdown.hb.y);
+        if (isColorless) {
+            CostDropdown.SetPosition(OriginsDropdown.hb.x + OriginsDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        }
+        else {
+            CostDropdown.SetPosition(SeriesDropdown.hb.x + SeriesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
+        }
         RaritiesDropdown.SetPosition(CostDropdown.hb.x + CostDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
         TypesDropdown.SetPosition(RaritiesDropdown.hb.x + RaritiesDropdown.hb.width + SPACING * 3, DRAW_START_Y + scrollDelta + SPACING * 3);
         affinitiesSectionLabel.SetPosition(TypesDropdown.hb.x + TypesDropdown.hb.width + SPACING * 4, DRAW_START_Y + scrollDelta + SPACING * 6.1f).Update();
@@ -455,7 +522,12 @@ public class CardKeywordFilters extends GUIElement
             UpdateInput();
         }
 
-        SeriesDropdown.TryUpdate();
+        if (isColorless) {
+            OriginsDropdown.TryUpdate();
+        }
+        else {
+            SeriesDropdown.TryUpdate();
+        }
         CostDropdown.TryUpdate();
         RaritiesDropdown.TryUpdate();
         TypesDropdown.TryUpdate();
@@ -478,7 +550,12 @@ public class CardKeywordFilters extends GUIElement
         {
             c.TryRender(sb);
         }
-        SeriesDropdown.TryRender(sb);
+        if (isColorless) {
+            OriginsDropdown.TryRender(sb);
+        }
+        else {
+            SeriesDropdown.TryRender(sb);
+        }
         CostDropdown.TryRender(sb);
         RaritiesDropdown.TryRender(sb);
         TypesDropdown.TryRender(sb);
@@ -501,6 +578,7 @@ public class CardKeywordFilters extends GUIElement
         {
             if (clearButton.hb.hovered
                     || SeriesDropdown.AreAnyItemsHovered()
+                    || OriginsDropdown.AreAnyItemsHovered()
                     || CostDropdown.AreAnyItemsHovered()
                     || RaritiesDropdown.AreAnyItemsHovered()
                     || TypesDropdown.AreAnyItemsHovered()

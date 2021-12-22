@@ -86,7 +86,7 @@
 	},
 	"Burning Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Burning] and remove [Freezing].",
+	  "DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Burning] and remove #b4 [Freezing].",
 	  "NAMES": ["burning weapon"],
 	  "PROPER_NAME": "Burning Weapon"
 	},
@@ -554,7 +554,7 @@
 	},
 	"Resistance":
 	{
-	  "DESCRIPTION": "Reduces the effects of [Frail], [Weak], [Vulnerable], and [Impaired] on you.",
+	  "DESCRIPTION": "Reduces incoming #yAttack damage and the effects of [Frail], [Weak], [Vulnerable], and [Impaired].",
 	  "NAMES": ["resistance"],
 	  "PROPER_NAME": "Resistance"
 	},

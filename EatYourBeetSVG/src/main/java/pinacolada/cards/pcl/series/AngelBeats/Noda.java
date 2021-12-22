@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.CounterAttackPower;
 import pinacolada.utilities.PCLActions;
 
@@ -21,7 +21,7 @@ public class Noda extends PCLCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Orange(0, 0, 1);
+        SetAffinity_Orange(0, 0, 0);
         SetAfterlife(true);
 
         SetAffinityRequirement(PCLAffinity.Red, 3);
@@ -33,7 +33,7 @@ public class Noda extends PCLCard
         super.triggerOnManualDiscard();
 
         PCLActions.Bottom.Exhaust(this);
-        PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, magicNumber);
+        PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, magicNumber);
     }
 
     @Override

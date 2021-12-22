@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -209,7 +210,7 @@ public class PCLAffinityMeter extends GUIElement
             if (eCard.affinities.HasStar()) {
                 return SetNextAffinity(PCLAffinity.Star);
             }
-            PCLAffinity affinity = PCLJUtils.Random(eCard.affinities.GetAffinities());
+            PCLAffinity affinity = PCLGameUtilities.GetRandomElement(eCard.affinities.GetAffinities());
             if (affinity != null) {
                 return SetNextAffinity(affinity);
             }
@@ -266,7 +267,13 @@ public class PCLAffinityMeter extends GUIElement
                 Reroll.OnClick(Target.NextAffinity);
             }
 
-            isGlowing = PCLJUtils.Find(AbstractDungeon.player.hand.group, c -> HasMatch(c, true)) == null && Reroll.triggerCondition.uses > 0;
+            isGlowing = GR.PCL.Config.FlashForReroll.Get()
+                            && PCLGameUtilities.InBattle()
+                            && PCLGameUtilities.IsPlayerTurn()
+                            && AbstractDungeon.getCurrMapNode() != null
+                            && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER
+                            && PCLJUtils.Find(AbstractDungeon.player.hand.group, c -> HasMatch(c, true) && PCLGameUtilities.IsPlayable(c)) == null
+                            && Reroll.triggerCondition.uses > 0;
             if (isGlowing && GR.UI.Elapsed75()) {
                 PCLGameEffects.Queue.Add(new AffinityGlowEffect(CurrentAffinity));
             }

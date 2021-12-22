@@ -15,7 +15,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.series.Katanagatari.Emonzaemon;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class Emonzaemon_EntouJyuu extends PCLCard
@@ -39,7 +39,7 @@ public class Emonzaemon_EntouJyuu extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDexterity, magicNumber);
+        PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryDexterity, magicNumber);
         PCLActions.Bottom.StackPower(new Emonzaemon_EntouJyuuPower(p, secondaryValue));
     }
 

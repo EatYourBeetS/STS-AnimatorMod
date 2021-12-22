@@ -2,6 +2,7 @@ package pinacolada.cards.pcl.colorless;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameUtilities;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -18,7 +19,7 @@ public class Hibiki extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 1);
+        Initialize(2, 0, 1, 1);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Star(0, 0, 1);
@@ -39,6 +40,7 @@ public class Hibiki extends PCLCard
 
         if (info.IsSynergizing) {
             PCLActions.Bottom.AddAffinity(PCLAffinity.Star, magicNumber);
+            GameUtilities.IncreaseMagicNumber(this, 1, false);
         }
     }
 }

@@ -21,11 +21,16 @@ public class Loadout_Fate extends PCLLoadout
         AddStarterCard(Assassin.DATA, 4);
         AddStarterCard(Alexander.DATA, 6);
         AddStarterCard(Lancer.DATA, 7);
+        AddStarterCard(MatouShinji.DATA, 8);
         AddStarterCard(Rider.DATA, 8);
         AddStarterCard(RinTohsaka.DATA, 8);
         AddStarterCard(Berserker.DATA, 10);
+        AddStarterCard(MatouSakura.DATA, 10);
         AddStarterCard(EmiyaShirou.DATA, 11);
-        AddStarterCard(Saber.DATA, 24);
+        AddStarterCard(RinTohsaka.DATA, 13);
+        AddStarterCard(EmiyaKiritsugu.DATA, 16);
+        AddStarterCard(Caster.DATA, 17);
+        AddStarterCard(Saber.DATA, 25);
         AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_Parasite.DATA, -7);
     }

@@ -103,6 +103,7 @@ public class PCLStrings
         public final String Affinities = Strings.TEXT[6];
         public final String Scalings = Strings.TEXT[7];
         public final String Amount = Strings.TEXT[8];
+        public final String Origins = Strings.TEXT[9];
     }
 
     public class Misc
@@ -133,7 +134,9 @@ public class PCLStrings
         public final String UnofficialDisclaimer = Strings.TEXT[21];
         public final String Filters = Strings.TEXT[22];
         public final String Any = Strings.TEXT[23];
-        public final String ReplaceCards = Strings.TEXT[24];
+        public final String ReplaceCardsFool = Strings.TEXT[24];
+        public final String ReplaceCardsAnimator = Strings.TEXT[25];
+        public final String EnableFlashForReroll = Strings.TEXT[26];
 
         public final String MaxStacks(int stacks)
         {
@@ -620,6 +623,10 @@ public class PCLStrings
 
         public final String AffinityInfo = Strings.TEXT[0];
         public final String AffinityTutorial1 = Strings.TEXT[1];
+
+        public final String[] TutorialItems() {
+            return Strings.TEXT;
+        }
     }
 
     public class TheUnnamedReign

@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.loadouts.*;
-import pinacolada.resources.pcl.loadouts.beta.*;
 import pinacolada.resources.pcl.misc.*;
 import pinacolada.ui.characterSelection.PCLBaseStatEditor;
 import pinacolada.utilities.PCLJUtils;

@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.stances.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -88,7 +88,7 @@ public class Ain extends PCLCard
 
         if ((auxiliaryData.form == 1 && TrySpendAffinity(PCLAffinity.Dark)) || (auxiliaryData.form == 0 && TrySpendAffinity(PCLAffinity.Light)))
         {
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, secondaryValue);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Sorcery, secondaryValue);
         }
     }
 

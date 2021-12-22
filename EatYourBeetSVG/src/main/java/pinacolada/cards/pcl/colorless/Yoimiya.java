@@ -10,7 +10,7 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.BlazingHeat;
 import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -31,7 +31,7 @@ public class Yoimiya extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 0, 1, 5);
+        Initialize(2, 0, 1, 8);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -50,7 +50,7 @@ public class Yoimiya extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
             if (IsStarter() && e.lastDamageTaken > 0) {
                 PCLActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
             }
@@ -58,7 +58,7 @@ public class Yoimiya extends PCLCard
 
         int total = 0;
         for (AbstractPower debuff : player.powers) {
-            for (PowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
+            for (PCLPowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
                 if (commonDebuffHelper.ID.equals(debuff.ID)) {
                     int amount = PCLGameUtilities.GetPowerAmount(player, debuff.ID);
                     if (IsStarter()) {

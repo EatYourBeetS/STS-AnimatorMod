@@ -25,8 +25,8 @@ public class HeavyWarrior extends PCLCard
 
         Initialize(28, 0, 2, 4);
 
-        SetAffinity_Red(1, 0, 6);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Red(1, 0, 4);
+        SetAffinity_Orange(1, 0, 1);
 
         SetExhaust(true);
     }

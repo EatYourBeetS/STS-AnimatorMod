@@ -1,5 +1,6 @@
 package pinacolada.powers.common;
 
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.replacement.PCLFrailPower;
@@ -11,14 +12,21 @@ public class ResistancePower extends PCLPower
     public static final String POWER_ID = CreateFullID(ResistancePower.class);
     public static final int MULTIPLIER = 5;
     public static final int MULTIPLIER2 = 3;
+    public static final int DEFENSE_MULTIPLIER = 4;
     private int totalMultiplier = 0;
     private int totalMultiplier2 = 0;
+
+    public static float CalculatePercentage(int amount)
+    {
+        return Math.max(0.1f, 1f - amount * DEFENSE_MULTIPLIER / 100f);
+    }
 
     public ResistancePower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
         Initialize(amount);
         this.canGoNegative = true;
+        this.maxAmount = 12;
     }
 
     @Override
@@ -32,7 +40,7 @@ public class ResistancePower extends PCLPower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(amount >= 0 ? 0 : 1, Math.abs(totalMultiplier), Math.abs(totalMultiplier2));
+        this.description = FormatDescription(amount >= 0 ? 0 : 1, Math.abs(amount * DEFENSE_MULTIPLIER), Math.abs(totalMultiplier), Math.abs(totalMultiplier2), maxAmount);
         if (amount > 0)
         {
             this.type = PowerType.BUFF;
@@ -72,6 +80,17 @@ public class ResistancePower extends PCLPower
         if (amount == 0) {
             RemovePower();
         }
+    }
+
+    @Override
+    public float atDamageReceive(float damage, DamageInfo.DamageType type)
+    {
+        if (type == DamageInfo.DamageType.NORMAL)
+        {
+            damage *= CalculatePercentage(amount);
+        }
+
+        return super.atDamageReceive(damage, type);
     }
 
     public void UpdatePercentage()

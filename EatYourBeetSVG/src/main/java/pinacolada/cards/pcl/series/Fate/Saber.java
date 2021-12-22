@@ -25,7 +25,7 @@ public class Saber extends PCLCard
         Initialize(9, 1, 3, 2);
         SetUpgrade(2, 1, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 

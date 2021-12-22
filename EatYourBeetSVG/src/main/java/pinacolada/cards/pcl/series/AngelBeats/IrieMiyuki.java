@@ -61,7 +61,7 @@ public class IrieMiyuki extends PCLCard
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.GainTemporaryHP(GetXValue());
 
-        if (info.IsSynergizing && PCLGameUtilities.GetCurrentMatchCombo() >= MATCH_COMBO && info.TryActivateLimited()) {
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= MATCH_COMBO && info.TryActivateLimited()) {
             PCLActions.Bottom.Heal(secondaryValue);
         }
     }

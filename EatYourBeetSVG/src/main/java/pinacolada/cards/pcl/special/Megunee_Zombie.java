@@ -30,8 +30,8 @@ public class Megunee_Zombie extends PCLCard implements OnStartOfTurnPostDrawSubs
 
         Initialize(13, 0, 6, 10);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(0, 0, 3);
-        SetAffinity_Dark(1, 0, 0);
+        SetAffinity_Red(0, 0, 0);
+        SetAffinity_Dark(1, 0, 2);
 
         SetHealing(true);
         SetExhaust(true);

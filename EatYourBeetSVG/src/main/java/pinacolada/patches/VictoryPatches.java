@@ -16,7 +16,6 @@ import pinacolada.utilities.PCLJUtils;
 import java.util.ArrayList;
 
 // Act 5 and Act 3 victory logic
-// TODO add longest combo bonus here
 public class VictoryPatches
 {
     private static final FieldInfo<ArrayList<GameOverStat>> _stats = PCLJUtils.GetField("stats", GameOverScreen.class);

@@ -16,7 +16,10 @@ import pinacolada.utilities.PCLActions;
 
 public class AkaneSenri extends PCLCard
 {
-    public static final PCLCardData DATA = Register(AkaneSenri.class).SetPower(3, CardRarity.RARE).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(AkaneSenri.class)
+            .SetPower(3, CardRarity.RARE)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public AkaneSenri()
     {

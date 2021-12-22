@@ -18,7 +18,10 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class KurumiTokisaki extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KurumiTokisaki.class).SetAttack(3, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(KurumiTokisaki.class)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public KurumiTokisaki()
     {
@@ -33,7 +36,7 @@ public class KurumiTokisaki extends PCLCard
         SetAutoplay(true);
         SetEthereal(true);
 
-        SetCooldown(3, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted);
     }
 
     @Override

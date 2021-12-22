@@ -22,9 +22,13 @@ public class Loadout_Elsword extends PCLLoadout
         AddStarterCard(Raven.DATA, 5);
         AddStarterCard(Chung.DATA, 5);
         AddStarterCard(Elsword.DATA, 6);
-        AddStarterCard(Ciel.DATA, 7);
         AddStarterCard(Ara.DATA, 8);
+        AddStarterCard(Ciel.DATA, 9);
         AddStarterCard(Rena.DATA, 11);
+        AddStarterCard(Ain.DATA, 13);
+        AddStarterCard(Lu.DATA, 13);
+        AddStarterCard(Elesis.DATA, 22);
+        AddStarterCard(Noah.DATA, 25);
         AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_Doubt.DATA, -7);
     }

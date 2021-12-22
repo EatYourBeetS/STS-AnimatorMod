@@ -1,4 +1,4 @@
-package pinacolada.cards.pcl.special;
+package pinacolada.cards.pcl.replacement;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

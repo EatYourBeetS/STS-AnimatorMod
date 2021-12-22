@@ -20,7 +20,7 @@ public class PandorasActor extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 4, 4);
+        Initialize(0, 3, 4);
         SetUpgrade(0, 2, 2);
 
         SetAffinity_Star(1, 0, 0);

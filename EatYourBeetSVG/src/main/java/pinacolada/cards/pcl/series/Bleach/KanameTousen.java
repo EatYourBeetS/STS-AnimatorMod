@@ -14,7 +14,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BlindedPower;
 import pinacolada.powers.common.ResistancePower;
 import pinacolada.stances.WisdomStance;
@@ -81,7 +81,7 @@ public class KanameTousen extends PCLCard {
             super.onRemove();
 
             for (Map.Entry<String, Integer> entry : counts.entrySet()) {
-                PCLActions.Bottom.StackPower(TargetHelper.Source(), PowerHelper.ALL.get(entry.getKey()), entry.getValue());
+                PCLActions.Bottom.StackPower(TargetHelper.Source(), PCLPowerHelper.ALL.get(entry.getKey()), entry.getValue());
             }
         }
 

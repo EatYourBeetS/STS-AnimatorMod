@@ -18,7 +18,7 @@ public class Cthulhu extends PCLCard_UltraRare //TODO make this play random colo
 {
     public static final int COST = 12;
     public static final PCLCardData DATA = Register(Cthulhu.class)
-            .SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Brutal, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CallOfCthulhu)
             .PostInitialize(data -> data.AddPreview(new Cthulhu_Madness(), false));

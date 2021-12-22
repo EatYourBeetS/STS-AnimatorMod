@@ -26,6 +26,11 @@ public class Loadout_OwariNoSeraph extends PCLLoadout
         AddStarterCard(CrowleyEusford.DATA, 8);
         AddStarterCard(Mikaela.DATA, 8);
         AddStarterCard(Yuuichirou.DATA, 8);
+        AddStarterCard(LestKarr.DATA, 10);
+        AddStarterCard(HiiragiShinya.DATA, 13);
+        AddStarterCard(CrowleyEusford.DATA, 13);
+        AddStarterCard(HiiragiKureto.DATA, 20);
+        AddStarterCard(Guren.DATA, 32);
         AddStarterCard(Curse_Parasite.DATA, -7);
         AddStarterCard(Curse_Clumsy.DATA, -3);
     }

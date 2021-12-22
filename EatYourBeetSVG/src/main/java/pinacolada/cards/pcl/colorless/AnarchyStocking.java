@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.colorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.utilities.TargetHelper;
@@ -10,6 +11,7 @@ import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.effects.AttackEffects;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.powers.replacement.AntiArtifactSlowPower;
@@ -27,7 +29,7 @@ public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 4);
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Light(1);
@@ -39,29 +41,6 @@ public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
     @Override
     public void OnUpgrade() {
         SetHaste(true);
-    }
-
-    @Override
-    public void triggerOnEndOfTurnForPlayingCard()
-    {
-        super.triggerOnEndOfTurnForPlayingCard();
-        if (isEthereal) {
-            int amount = PCLGameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);
-            if (amount > 0) {
-                PCLActions.Bottom.RemovePower(player, player, DelayedDamagePower.POWER_ID);
-            }
-        }
-    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        int amount = PCLGameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);
-        if (amount > 0) {
-            PCLActions.Bottom.RemovePower(player, player, DelayedDamagePower.POWER_ID);
-        }
     }
 
     @Override
@@ -77,6 +56,14 @@ public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
             if (constricted > 0) {
                 PCLActions.Bottom.RemovePower(player, player, PCLConstrictedPower.POWER_ID);
                 PCLActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), constricted);
+            }
+
+            int dd = PCLGameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);
+            if (dd > 0) {
+                PCLActions.Bottom.RemovePower(player, player, DelayedDamagePower.POWER_ID);
+                for (AbstractCreature cr : PCLGameUtilities.GetAllCharacters(true)) {
+                    PCLActions.Bottom.DealDamageAtEndOfTurn(player, cr, dd, AttackEffects.CLAW);
+                }
             }
         }
     }

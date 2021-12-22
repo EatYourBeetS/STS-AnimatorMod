@@ -24,7 +24,7 @@ import pinacolada.interfaces.subscribers.OnDamageActionSubscriber;
 import pinacolada.orbs.pcl.*;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -53,8 +53,8 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
     public int damage;
     public ArrayList<PCLAffinity> affinityPowers = new ArrayList<>();
     public ArrayList<OrbConstructor> orbs = new ArrayList<>();
-    public ArrayList<PowerHelper> buffs = new ArrayList<>();
-    public ArrayList<PowerHelper> debuffs = new ArrayList<>();
+    public ArrayList<PCLPowerHelper> buffs = new ArrayList<>();
+    public ArrayList<PCLPowerHelper> debuffs = new ArrayList<>();
     protected byte moveByte;
     protected AbstractMonster.Intent moveIntent;
     protected EnemyMoveInfo move;
@@ -92,20 +92,20 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
         return affs;
     }
 
-    private static ArrayList<PowerHelper> GetCommonBuffs(AbstractCard card, int limit) {
+    private static ArrayList<PCLPowerHelper> GetCommonBuffs(AbstractCard card, int limit) {
         return GetCommonPowers(card, limit,  PCLGameUtilities.GetPCLCommonBuffs());
     }
 
-    private static ArrayList<PowerHelper> GetCommonDebuffs(AbstractCard card, int limit) {
+    private static ArrayList<PCLPowerHelper> GetCommonDebuffs(AbstractCard card, int limit) {
         return GetCommonPowers(card, limit,  PCLGameUtilities.GetPCLCommonDebuffs());
     }
 
-    private static ArrayList<PowerHelper> GetCommonPowers(AbstractCard card, int limit, ArrayList<PowerHelper> source) {
-        ArrayList<PowerHelper> powers = new ArrayList<>();
+    private static ArrayList<PCLPowerHelper> GetCommonPowers(AbstractCard card, int limit, ArrayList<PCLPowerHelper> source) {
+        ArrayList<PCLPowerHelper> powers = new ArrayList<>();
         if (card instanceof PCLCard) {
             for (PCLCardTooltip tip : ((PCLCard) card).tooltips)
             {
-                PowerHelper foundPower = PCLJUtils.Find(source, ph -> ph.Tooltip.id.equals(tip.id));
+                PCLPowerHelper foundPower = PCLJUtils.Find(source, ph -> ph.Tooltip.id.equals(tip.id));
                 if (foundPower != null) {
                     powers.add(foundPower);
                     if (powers.size() >= limit) {
@@ -344,10 +344,10 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
         for (PCLAffinity af : affinityPowers) {
             PCLActions.Bottom.StackAffinityPower(af, AFFINITY_GAIN, false);
         }
-        for (PowerHelper ph : buffs) {
+        for (PCLPowerHelper ph : buffs) {
             PCLActions.Bottom.ApplyPower(TargetHelper.Player(), ph, BUFF_DEBUFF_GAIN);
         }
-        for (PowerHelper ph : debuffs) {
+        for (PCLPowerHelper ph : debuffs) {
             PCLActions.Bottom.ApplyPower(TargetHelper.RandomEnemy(), ph, BUFF_DEBUFF_GAIN);
         }
         for (OrbConstructor o : orbs) {

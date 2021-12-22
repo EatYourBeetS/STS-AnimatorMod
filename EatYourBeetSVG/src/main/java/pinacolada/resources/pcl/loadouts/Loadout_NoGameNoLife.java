@@ -20,11 +20,15 @@ public class Loadout_NoGameNoLife extends PCLLoadout
     {
         AddStarterCard(DolaCouronne.DATA, 5);
         AddStarterCard(IzunaHatsuse.DATA, 5);
-        AddStarterCard(ChlammyZell.DATA, 7);
-        AddStarterCard(DolaSchwi.DATA, 9);
-        AddStarterCard(DolaStephanie.DATA, 10);
+        AddStarterCard(NinaClive.DATA, 7);
+        AddStarterCard(ChlammyZell.DATA, 8);
+        AddStarterCard(DolaStephanie.DATA, 9);
+        AddStarterCard(EmirEins.DATA, 11);
+        AddStarterCard(DolaSchwi.DATA, 11);
         AddStarterCard(Tet.DATA, 14);
-        AddStarterCard(Sora.DATA, 16);
+        AddStarterCard(Jibril.DATA, 20);
+        AddStarterCard(Sora.DATA, 21);
+        AddStarterCard(Shiro.DATA, 22);
         AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_Slumber.DATA, -7);
     }

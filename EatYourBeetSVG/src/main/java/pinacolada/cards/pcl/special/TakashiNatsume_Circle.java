@@ -233,7 +233,7 @@ public class TakashiNatsume_Circle extends PCLCard
                                 for (AbstractCard card : cards) {
                                     PCLActions.Bottom.MoveCard(card,player.drawPile).AddCallback(cCard -> {
                                         PCLActions.Bottom.Motivate(card, 1);
-                                        ((TakashiNatsume) card).SetAfterlife(true, true);
+                                        ((TakashiNatsume) card).SetAfterlife(true);
                                     });
                                 }
                             }

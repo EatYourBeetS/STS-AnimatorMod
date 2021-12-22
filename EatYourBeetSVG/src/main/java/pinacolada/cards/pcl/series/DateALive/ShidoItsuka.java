@@ -42,7 +42,7 @@ public class ShidoItsuka extends PCLCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         InitializeSynergicCards();
-        boolean giveHarmonic = info.IsSynergizing && PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && info.TryActivateLimited();
+        boolean giveHarmonic = PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && info.TryActivateLimited();
 
         WeightedList<AbstractCard> randomizedDALCards = new WeightedList<>(dateALiveCards);
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);

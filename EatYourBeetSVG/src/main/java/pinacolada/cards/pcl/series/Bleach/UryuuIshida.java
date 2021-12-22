@@ -23,7 +23,7 @@ public class UryuuIshida extends PCLCard {
         Initialize(4, 0, 1, 2);
         SetUpgrade(2, 0, 1);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Blue(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Silver(1, 0 ,0);
         SetAffinity_Orange(0, 0, 1);
     }

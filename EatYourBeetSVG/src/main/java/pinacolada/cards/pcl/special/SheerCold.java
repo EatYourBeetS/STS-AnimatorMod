@@ -25,7 +25,7 @@ public class SheerCold extends PCLCard
 
         Initialize(0, 0, 2, FREEZING_REDUCTION_BONUS);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(2);
     }
 
     @Override

@@ -13,6 +13,7 @@ public class BurningWeaponPower extends PCLPower implements OnDamageOverrideSubs
 {
     public static final String POWER_ID = CreateFullID(BurningWeaponPower.class);
     public static final int DEFAULT_VALUE = 2;
+    public static final int REMOVE_AMOUNT = 4;
     public int secondaryAmount = 2;
 
     public BurningWeaponPower(AbstractCreature owner, int amount) {
@@ -30,7 +31,7 @@ public class BurningWeaponPower extends PCLPower implements OnDamageOverrideSubs
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(0, amount, secondaryAmount);
+        description = FormatDescription(0, amount, secondaryAmount, REMOVE_AMOUNT);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class BurningWeaponPower extends PCLPower implements OnDamageOverrideSubs
         {
             PCLActions.Top.ApplyBurning(owner, target, secondaryAmount).ShowEffect(true, true);
             if (target.hasPower(FreezingPower.POWER_ID)) {
-                PCLActions.Bottom.RemovePower(target, target, FreezingPower.POWER_ID);
+                PCLActions.Bottom.ReducePower(target, target, FreezingPower.POWER_ID, REMOVE_AMOUNT);
             }
             this.flash();
         }

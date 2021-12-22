@@ -20,7 +20,7 @@ public class SougenEsaka extends PCLCard
 
         Initialize(2, 4, 1, 2);
         SetUpgrade(2, 1, 1);
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Red(0, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Orange, 5);

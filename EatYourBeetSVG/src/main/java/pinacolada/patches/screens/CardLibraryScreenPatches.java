@@ -3,10 +3,7 @@ package pinacolada.patches.screens;
 import basemod.patches.com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar.ColorTabBarFix;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -47,24 +44,26 @@ public class CardLibraryScreenPatches
         private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
         private static CardLibSortHeader defaultHeader;
 
-        @SpirePrefixPatch
-        public static void Prefix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection)
+        @SpireInsertPatch(rloc = 0)
+        public static void Insert(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection)
         {
-            CustomCardLibSortHeader.Screen = screen;
+            if (!IsAnimator(screen)) {
+                CustomCardLibSortHeader.Screen = screen;
 
-            Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
-            upgradeHitbox.width = 260 * Settings.scale;
-            if (_sortHeader.Get(screen) != customHeader)
-            {
-                _sortHeader.Set(screen, customHeader);
+                Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
+                upgradeHitbox.width = 260 * Settings.scale;
+                if (_sortHeader.Get(screen) != customHeader)
+                {
+                    _sortHeader.Set(screen, customHeader);
+                }
+
+                customHeader.SetupButtons(!(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_FOOL)));
             }
-
-            customHeader.SetupButtons(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_FOOL));
         }
 
         @SpirePostfixPatch
         public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
-            GR.UI.CardFilters.Initialize(__ -> customHeader.UpdateForFilters(), customHeader.originalGroup);
+            GR.UI.CardFilters.Initialize(__ -> customHeader.UpdateForFilters(), customHeader.originalGroup, customHeader.IsColorless());
             customHeader.UpdateForFilters();
             if (openButton == null) {
                 openButton = new GUI_Button(GR.PCL.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false).SetIsPopupCompatible(true))

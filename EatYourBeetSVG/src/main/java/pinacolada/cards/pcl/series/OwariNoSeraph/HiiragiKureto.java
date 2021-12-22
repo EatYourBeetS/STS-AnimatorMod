@@ -28,7 +28,7 @@ public class HiiragiKureto extends PCLCard
     {
         super(DATA);
 
-        Initialize(5, 0, AMOUNT, 15);
+        Initialize(6, 0, AMOUNT, 15);
         SetUpgrade(0, 0);
 
         SetAffinity_Red(1, 0, 1);

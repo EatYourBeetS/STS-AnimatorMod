@@ -26,6 +26,7 @@ public class EulaLawrence extends PCLCard
 
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
+        SetAffinity_Light(0, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.General, 4);
     }

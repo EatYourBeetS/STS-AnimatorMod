@@ -10,7 +10,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.misc.GenericEffects.GenericEffect_ApplyToAll;
 import pinacolada.misc.GenericEffects.GenericEffect_TriggerOrb;
 import pinacolada.orbs.pcl.Earth;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -49,7 +49,7 @@ public class Alibaba extends PCLCard
             if (e.lastDamageTaken > 0) {
                 if (choices.TryInitialize(this))
                 {
-                    choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Normal(e), PowerHelper.Burning, magicNumber));
+                    choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Normal(e), PCLPowerHelper.Burning, magicNumber));
                     choices.AddEffect(new GenericEffect_TriggerOrb(new Earth()));
                 }
                 choices.Select(1, m);

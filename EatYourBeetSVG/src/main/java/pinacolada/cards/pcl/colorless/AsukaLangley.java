@@ -13,7 +13,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.interfaces.subscribers.OnDamageOverrideSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
@@ -31,9 +31,9 @@ public class AsukaLangley extends PCLCard
         Initialize(13, 0, 1 );
         SetUpgrade(0, 0, 0 );
 
-        SetAffinity_Orange(1, 0, 2);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1);
-        SetAffinity_Silver(1);
+        SetAffinity_Silver(1, 0, 1);
 
         SetExhaust(true);
     }
@@ -70,7 +70,7 @@ public class AsukaLangley extends PCLCard
         {
             if (cards.size() > 0)
             {
-                PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.LockOn, magicNumber * cards.size());
+                PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PCLPowerHelper.LockOn, magicNumber * cards.size());
             }
         });
     }

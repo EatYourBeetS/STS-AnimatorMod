@@ -24,8 +24,12 @@ public class Loadout_TenseiSlime extends PCLLoadout
         AddStarterCard(Gabiru.DATA, 6);
         AddStarterCard(Shion.DATA, 6);
         AddStarterCard(Hakurou.DATA, 7);
+        AddStarterCard(Souei.DATA, 11);
         AddStarterCard(Ranga.DATA, 11);
-        AddStarterCard(Rimuru.DATA, 16);
+        AddStarterCard(Millim.DATA, 14);
+        AddStarterCard(Ramiris.DATA, 16);
+        AddStarterCard(Rimuru.DATA, 17);
+        AddStarterCard(Shizu.DATA, 21);
         AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_SearingBurn.DATA, -6);
     }

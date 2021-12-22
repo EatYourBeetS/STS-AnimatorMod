@@ -5,7 +5,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.orbs.pcl.Water;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
@@ -31,7 +31,7 @@ public class OrbCore_Water extends OrbCore
     @Override
     public boolean EvokeEffect(OrbCorePower power) {
         if (CombatStats.TryActivateLimited(cardID, 2)) {
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Vitality, power.amount);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Vitality, power.amount);
             return true;
         }
         return false;

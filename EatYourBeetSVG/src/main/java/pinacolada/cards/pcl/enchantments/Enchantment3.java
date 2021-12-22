@@ -7,7 +7,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -97,8 +97,8 @@ public class Enchantment3 extends Enchantment
                             applyAmount += magicNumber;
                         }
 
-                        PowerHelper debuffHelper = null;
-                        for (PowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
+                        PCLPowerHelper debuffHelper = null;
+                        for (PCLPowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
                             if (commonDebuffHelper.ID.equals(debuff.ID)) {
                                 debuffHelper = commonDebuffHelper;
                                 break;

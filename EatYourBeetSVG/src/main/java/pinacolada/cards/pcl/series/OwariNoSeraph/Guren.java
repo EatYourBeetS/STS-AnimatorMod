@@ -14,7 +14,7 @@ public class Guren extends PCLCard implements OnPhaseChangedSubscriber
 {
     public static final PCLCardData DATA = Register(Guren.class)
             .SetSkill(3, CardRarity.RARE)
-            .SetMaxCopies(2)
+            .SetMaxCopies(1)
             .SetSeries(CardSeries.OwariNoSeraph);
 
     private boolean alreadyPlayed = false;
@@ -25,9 +25,9 @@ public class Guren extends PCLCard implements OnPhaseChangedSubscriber
 
         Initialize(0, 1,3, 4);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Light, 5);
 

@@ -8,7 +8,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.series.MadokaMagica.IrohaTamaki;
 import pinacolada.cards.pcl.series.MadokaMagica.SayakaMiki;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class IrohaTamaki_Giovanna extends PCLCard
@@ -38,7 +38,7 @@ public class IrohaTamaki_Giovanna extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (IsStarter()) {
-            PCLActions.Bottom.StackPower(TargetHelper.AllCharacters(), PowerHelper.Shackles, magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.AllCharacters(), PCLPowerHelper.Shackles, magicNumber);
         }
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.FetchFromPile(name,1,player.exhaustPile).SetFilter(c -> IrohaTamaki.DATA.ID.equals(c.cardID));

@@ -20,11 +20,18 @@ public class Loadout_OnePunchMan extends PCLLoadout
     {
         AddStarterCard(SilverFang.DATA, 5);
         AddStarterCard(MetalBat.DATA, 5);
+        AddStarterCard(Zombieman.DATA, 5);
         AddStarterCard(MumenRider.DATA, 5);
         AddStarterCard(Genos.DATA, 6);
         AddStarterCard(King.DATA, 7);
+        AddStarterCard(PuriPuriPrisoner.DATA, 9);
+        AddStarterCard(Geryuganshoop.DATA, 9);
+        AddStarterCard(Tatsumaki.DATA, 11);
+        AddStarterCard(Sonic.DATA, 11);
         AddStarterCard(Melzalgald.DATA, 12);
+        AddStarterCard(MetalKnight.DATA, 16);
         AddStarterCard(Saitama.DATA, 16);
+        AddStarterCard(Garou.DATA, 22);
         AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_SearingBurn.DATA, -6);
     }

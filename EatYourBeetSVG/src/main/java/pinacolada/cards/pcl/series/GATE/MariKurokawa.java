@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -23,7 +23,7 @@ public class MariKurokawa extends PCLCard
         Initialize(5, 0, 2, 3);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Light(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 1);
 
@@ -38,7 +38,7 @@ public class MariKurokawa extends PCLCard
     {
         super.triggerWhenDrawn();
 
-        PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 1).IgnoreArtifact(true);
+        PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.LockOn, 1).IgnoreArtifact(true);
         PCLActions.Bottom.Flash(this);
     }
 

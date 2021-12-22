@@ -29,7 +29,7 @@ import pinacolada.cards.base.PCLCardAffinity;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.pcl.*;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.resources.GR;
 import pinacolada.stances.PCLStance;
@@ -44,8 +44,8 @@ import static pinacolada.resources.GR.Enums.CardTags.*;
 
 public class PCLGameUtilities extends GameUtilities
 {
-    private static final ArrayList<PowerHelper> commonBuffs = new ArrayList<>();
-    private static final ArrayList<PowerHelper> commonDebuffs = new ArrayList<>();
+    private static final ArrayList<PCLPowerHelper> commonBuffs = new ArrayList<>();
+    private static final ArrayList<PCLPowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
     public static void AddAffinity(PCLAffinity affinity, int amount) {
@@ -56,6 +56,15 @@ public class PCLGameUtilities extends GameUtilities
         PCLCombatStats.MatchingSystem.AddAffinity(affinity, amount);
         if (showEffect) {
             PCLCombatStats.MatchingSystem.Flash(affinity);
+        }
+    }
+
+    public static void AddAffinities(PCLCardAffinities affinities, boolean showEffect) {
+        PCLCombatStats.MatchingSystem.AddAffinities(affinities);
+        if (showEffect) {
+            for (PCLAffinity affinity : affinities.GetAffinities()) {
+                PCLCombatStats.MatchingSystem.Flash(affinity);
+            }
         }
     }
 
@@ -361,11 +370,11 @@ public class PCLGameUtilities extends GameUtilities
         }
     }
 
-    public static ArrayList<PowerHelper> GetPCLCommonBuffs()
+    public static ArrayList<PCLPowerHelper> GetPCLCommonBuffs()
     {
         if (commonBuffs.isEmpty())
         {
-            for (PowerHelper ph : PowerHelper.ALL.values()) {
+            for (PCLPowerHelper ph : PCLPowerHelper.ALL.values()) {
                 if (!ph.IsDebuff) {
                     commonBuffs.add(ph);
                 }
@@ -375,11 +384,11 @@ public class PCLGameUtilities extends GameUtilities
         return commonBuffs;
     }
 
-    public static ArrayList<PowerHelper> GetPCLCommonDebuffs()
+    public static ArrayList<PCLPowerHelper> GetPCLCommonDebuffs()
     {
         if (commonDebuffs.isEmpty())
         {
-            for (PowerHelper ph : PowerHelper.ALL.values()) {
+            for (PCLPowerHelper ph : PCLPowerHelper.ALL.values()) {
                 if (ph.IsDebuff) {
                     commonDebuffs.add(ph);
                 }
@@ -760,51 +769,54 @@ public class PCLGameUtilities extends GameUtilities
 
     public static void ModifyCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
     {
+        if (tag == null || card == null) {
+            return;
+        }
         PCLCard aCard = PCLJUtils.SafeCast(card, PCLCard.class);
         if (aCard != null) {
-            if (tag.equals(AUTOPLAY)) {
+            if (AUTOPLAY.equals(tag)) {
                 aCard.SetAutoplay(value);
             }
-            else if (tag.equals(AFTERLIFE)) {
-                aCard.SetAfterlife(value, true);
+            else if (AFTERLIFE.equals(tag)) {
+                aCard.SetAfterlife(value);
             }
-            else if (tag.equals(PCL_ETHEREAL)) {
+            else if (PCL_ETHEREAL.equals(tag)) {
                 aCard.SetEthereal(value);
             }
-            else if (tag.equals(PCL_EXHAUST)) {
+            else if (PCL_EXHAUST.equals(tag)) {
                 aCard.SetExhaust(value);
             }
-            else if (tag.equals(PCL_INNATE)) {
+            else if (PCL_INNATE.equals(tag)) {
                 aCard.SetInnate(value);
             }
-            else if (tag.equals(PCL_RETAIN)) {
+            else if (PCL_RETAIN.equals(tag)) {
                 aCard.SetRetain(value);
             }
-            else if (tag.equals(PCL_RETAIN_ONCE)) {
+            else if (PCL_RETAIN_ONCE.equals(tag)) {
                 aCard.SetRetainOnce(value);
             }
-            else if (tag.equals(PCL_UNPLAYABLE)) {
+            else if (PCL_UNPLAYABLE.equals(tag)) {
                 aCard.SetUnplayable(value);
             }
-            else if (tag.equals(DELAYED)) {
+            else if (DELAYED.equals(tag)) {
                 aCard.SetDelayed(value);
             }
-            else if (tag.equals(HARMONIC)) {
+            else if (HARMONIC.equals(tag)) {
                 aCard.SetHarmonic(value);
             }
-            else if (tag.equals(HASTE)) {
+            else if (HASTE.equals(tag)) {
                 aCard.SetHaste(value);
             }
-            else if (tag.equals(HASTE_INFINITE)) {
+            else if (HASTE_INFINITE.equals(tag)) {
                 aCard.SetPermanentHaste(value);
             }
-            else if (tag.equals(LOYAL)) {
+            else if (LOYAL.equals(tag)) {
                 aCard.SetLoyal(value);
             }
-            else if (tag.equals(PROTAGONIST)) {
+            else if (PROTAGONIST.equals(tag)) {
                 aCard.SetHarmonic(value);
             }
-            else if (tag.equals(PURGE)) {
+            else if (PURGE.equals(tag)) {
                 aCard.SetPurge(value);
             }
             else if (value) {

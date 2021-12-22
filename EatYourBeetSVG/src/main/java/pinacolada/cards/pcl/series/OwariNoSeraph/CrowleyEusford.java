@@ -26,7 +26,7 @@ public class CrowleyEusford extends PCLCard
         Initialize(16, 0, 2);
         SetUpgrade(2, 0, 1);
 
-        SetAffinity_Red(1, 0, 2);
+        SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(1);
     }

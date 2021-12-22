@@ -19,13 +19,15 @@ public class Loadout_Katanagatari extends PCLLoadout
     public void AddStarterCards()
     {
         AddStarterCard(Konayuki.DATA, 5);
-        AddStarterCard(TsurugaMeisai.DATA, 5);
-        AddStarterCard(ZankiKiguchi.DATA, 6);
+        AddStarterCard(ZankiKiguchi.DATA, 5);
+        AddStarterCard(TsurugaMeisai.DATA, 6);
         AddStarterCard(Emonzaemon.DATA, 6);
-        AddStarterCard(Azekura.DATA, 8);
         AddStarterCard(UneriGinkaku.DATA, 7);
-        AddStarterCard(Shichika.DATA, 14);
-        AddStarterCard(Togame.DATA, 10);
+        AddStarterCard(Azekura.DATA, 8);
+        AddStarterCard(ManiwaKoumori.DATA, 8);
+        AddStarterCard(Togame.DATA, 11);
+        AddStarterCard(Togame.DATA, 13);
+        AddStarterCard(Shichika.DATA, 13);
         AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_Pain.DATA, -9);
     }

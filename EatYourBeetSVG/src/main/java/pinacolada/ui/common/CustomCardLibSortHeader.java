@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import pinacolada.cards.base.CardAmountComparator;
 import pinacolada.cards.base.FakeLibraryCard;
-import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCard_UltraRare;
 import pinacolada.resources.GR;
 
@@ -20,7 +19,6 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
 {
     public static CardLibraryScreen Screen;
     public static CustomCardLibSortHeader Instance;
-    public static boolean ShowSpecial = GR.TEST_MODE;
     private static CardGroup falseGroup;
     private static FakeLibraryCard fakeLibraryCard;
 
@@ -33,7 +31,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     private SortHeaderButton costButton;
     private SortHeaderButton lastUsedButton;
     private boolean isAscending;
-    private boolean isAnimator;
+    private boolean isColorless;
 
     public static ArrayList<AbstractCard> GetFakeGroup() {
         if (fakeLibraryCard == null) {
@@ -56,7 +54,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
         }
     }
 
-    public void SetupButtons(boolean isAnimator)
+    public void SetupButtons(boolean isColorless)
     {
         if (override == null)
         {
@@ -98,7 +96,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             }
         }
 
-        this.isAnimator = isAnimator;
+        this.isColorless = isColorless;
         this.buttons = override;
     }
 
@@ -124,15 +122,10 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             fakeLibraryCard.current_y = group.group.get(0).current_y;
         }
 
-        if (!isAnimator)
+        if (isColorless)
         {
             super.setGroup(group);
             return;
-        }
-
-        if (!ShowSpecial)
-        {
-            group.group.removeIf(card -> card instanceof PCLCard && card.rarity == AbstractCard.CardRarity.SPECIAL);
         }
 
         for (PCLCard_UltraRare card : PCLCard_UltraRare.GetCards().values())
@@ -224,5 +217,9 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
             didChangeOrder(lastUsedButton, isAscending);
             GR.UI.CardFilters.Refresh(this.group.group);
         }
+    }
+
+    public boolean IsColorless() {
+        return isColorless;
     }
 }

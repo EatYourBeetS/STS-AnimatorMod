@@ -7,7 +7,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.misc.GenericEffects.GenericEffect_ApplyToAll;
 import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.stances.MightStance;
 import pinacolada.utilities.PCLActions;
 
@@ -48,8 +48,8 @@ public class IsshinKurosaki extends PCLCard
     private void makeChoice(AbstractMonster m) {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PowerHelper.Burning, magicNumber));
-            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.CounterAttack, secondaryValue));
+            choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PCLPowerHelper.Burning, magicNumber));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.CounterAttack, secondaryValue));
         }
         choices.Select(1, m);
     }

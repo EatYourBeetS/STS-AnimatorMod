@@ -11,7 +11,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.orbs.pcl.Earth;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.stances.EnduranceStance;
 import pinacolada.utilities.PCLActions;
 
@@ -90,7 +90,7 @@ public class Kagari extends PCLCard
         public void OnChannelOrb(AbstractOrb orb) {
             if (Earth.ORB_ID.equals(orb.ID) && amount > 0) {
                 PCLActions.Bottom.GainEndurance(GetEndurance(), player.stance.ID.equals(EnduranceStance.STANCE_ID));
-                PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, secondaryAmount);
+                PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PCLPowerHelper.Shackles, secondaryAmount);
                 this.amount -= 1;
                 updateDescription();
                 flash();

@@ -120,6 +120,7 @@ public class CardTooltips
     public PCLCardTooltip LockOn = FindByID("~Lock-On");
     public PCLCardTooltip Loyal = FindByID("Loyal");
     public PCLCardTooltip Malleable = FindByID("Malleable");
+    public PCLCardTooltip Match = FindByID("Match");
     public PCLCardTooltip Metallicize = FindByID("Metallicize");
     public PCLCardTooltip Multicolor = FindByID("Multicolor");
     public PCLCardTooltip MulticolorScaling = FindByID("Multicolor Scaling");

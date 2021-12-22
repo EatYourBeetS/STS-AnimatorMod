@@ -17,6 +17,7 @@ public class EmiyaKiritsugu extends PCLCard
 {
     public static final PCLCardData DATA = Register(EmiyaKiritsugu.class)
             .SetAttack(1, CardRarity.RARE, PCLAttackType.Ranged)
+            .SetMultiformData(2, false)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
@@ -28,16 +29,22 @@ public class EmiyaKiritsugu extends PCLCard
     {
         super(DATA);
 
-        Initialize(9, 7, 3, 2);
+        Initialize(9, 7, 3, 3);
         SetUpgrade(2, 2);
 
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Blue(0, 0, 1);
-        SetAffinity_Orange(0,0,3);
+        SetAffinity_Orange(1,0,3);
 
         SetExhaust(true);
         SetRetainOnce(true);
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form]);
     }
 
     @Override
@@ -53,6 +60,10 @@ public class EmiyaKiritsugu extends PCLCard
     {
         final RandomizedList<AbstractCard> uncommonCards = new RandomizedList<>();
         uncommonCards.AddAll(PCLJUtils.Filter(p.drawPile.group, c -> c.rarity == CardRarity.UNCOMMON));
+        if (upgraded && auxiliaryData.form == 1) {
+            uncommonCards.AddAll(PCLJUtils.Filter(p.discardPile.group, c -> c.rarity == CardRarity.UNCOMMON));
+            uncommonCards.AddAll(PCLJUtils.Filter(p.hand.group, c -> c.rarity == CardRarity.UNCOMMON));
+        }
         final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         while (group.size() < magicNumber && uncommonCards.Size() > 0) {
             group.addToBottom(uncommonCards.Retrieve(rng, true));
@@ -84,9 +95,9 @@ public class EmiyaKiritsugu extends PCLCard
                     {
                         PCLActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(PCLAffinity.Light, false));
                     }
-                    if (a.GetLevel(PCLAffinity.Blue, true) > 0)
+                    if (a.GetLevel(PCLAffinity.Silver, true) > 0)
                     {
-                        PCLActions.Bottom.GainEnergyNextTurn(1);
+                        PCLActions.Bottom.GainTechnic(secondaryValue);
                     }
                 }
             }

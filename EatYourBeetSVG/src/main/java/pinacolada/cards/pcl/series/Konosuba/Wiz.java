@@ -8,6 +8,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Wiz extends PCLCard
 {
@@ -20,7 +21,7 @@ public class Wiz extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 3);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1);
@@ -60,7 +61,7 @@ public class Wiz extends PCLCard
             });
         });
 
-        if (HasSynergy() && info.TryActivateLimited())
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && info.TryActivateLimited())
         {
             PCLActions.Last.ModifyAllInstances(uuid, c -> ((PCLCard)c).SetPurge(true));
         }

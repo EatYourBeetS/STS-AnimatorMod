@@ -37,6 +37,12 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     }
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form]);
+    }
+
+    @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {

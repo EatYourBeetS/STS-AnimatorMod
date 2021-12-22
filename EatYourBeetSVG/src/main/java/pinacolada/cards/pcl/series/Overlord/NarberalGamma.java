@@ -10,8 +10,6 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.common.TemporaryElectroPower;
-import pinacolada.stances.DesecrationStance;
-import pinacolada.stances.InvocationStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -30,14 +28,14 @@ public class NarberalGamma extends PCLCard
         SetUpgrade(0,3,0,0);
 
         SetAffinity_Dark(1, 0, 1);
-        SetAffinity_Light(1,0,1);
+        SetAffinity_Blue(1,0,1);
 
         SetEvokeOrbCount(1);
     }
 
     @Override
     public int GetXValue() {
-        return secondaryValue * PCLJUtils.Count(player.hand.group, c -> PCLGameUtilities.GetPCLAffinityLevel(c, PCLAffinity.Dark, true) > 0);
+        return secondaryValue * PCLJUtils.Count(player.hand.group, c -> PCLGameUtilities.GetPCLAffinityLevel(c, PCLAffinity.Dark, true) > 0 || PCLGameUtilities.GetPCLAffinityLevel(c, PCLAffinity.Light, true) > 0);
     }
 
     @Override
@@ -51,7 +49,7 @@ public class NarberalGamma extends PCLCard
             PCLActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
 
-        if ((InvocationStance.IsActive() || DesecrationStance.IsActive()) && info.TryActivateSemiLimited()) {
+        if (info.TryActivateSemiLimited()) {
             PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(m), GetXValue());
         }
     }

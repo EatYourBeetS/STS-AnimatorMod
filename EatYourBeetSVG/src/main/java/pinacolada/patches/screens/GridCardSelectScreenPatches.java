@@ -324,6 +324,7 @@ public class GridCardSelectScreenPatches
                 ((PCLCard)previewCard).SetForm(1, previewCard.timesUpgraded);
                 previewCard.upgrade();
                 previewCard.displayUpgrades();
+                previewCard.initializeDescription();
                 GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.set(__instance, previewCard);
                 GridCardSelectScreenPatches.BranchSelectFields.waitingForBranchUpgradeSelection.set(__instance, true);
             }

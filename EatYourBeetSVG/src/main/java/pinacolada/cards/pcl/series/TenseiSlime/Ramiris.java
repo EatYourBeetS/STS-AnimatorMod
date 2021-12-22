@@ -11,7 +11,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.monsters.PCLEnemyIntent;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -67,9 +67,9 @@ public class Ramiris extends PCLCard
 
         if (IsStarter())
         {
-            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Weak, magicNumber);
-            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.Shackles, secondaryValue);
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Shackles, SHACKLES);
+            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PCLPowerHelper.Weak, magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.Enemies(), PCLPowerHelper.Shackles, secondaryValue);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Shackles, SHACKLES);
         }
     }
 

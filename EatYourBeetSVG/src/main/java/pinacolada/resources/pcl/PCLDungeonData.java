@@ -24,6 +24,7 @@ import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCard;
@@ -424,6 +425,14 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         RemoveCardFromPools(card);
         BannedCards.add(card.cardID);
         Log("Banned " + card.cardID + ", Total: " + BannedCards.size());
+    }
+
+    public boolean CanObtainCopy(AbstractCard card) {
+        final PCLCard pclCard = (PCLCard) JUtils.SafeCast(card, PCLCard.class);
+        if (!Settings.isEndless && pclCard != null && pclCard.cardData.MaxCopies > 0) {
+            return PCLGameUtilities.GetAllCopies(pclCard.cardID, AbstractDungeon.player.masterDeck).size() < pclCard.cardData.MaxCopies;
+        }
+        return true;
     }
 
     private void RemoveExtraCopies(AbstractCard card)

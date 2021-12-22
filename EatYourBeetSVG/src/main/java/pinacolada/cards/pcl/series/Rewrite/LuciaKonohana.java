@@ -12,7 +12,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -88,7 +88,7 @@ public class LuciaKonohana extends PCLCard
 
             for (AbstractPower debuff : corpse.powers)
             {
-                for (PowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
+                for (PCLPowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
                     if (commonDebuffHelper.ID.equals(debuff.ID)) {
                         powAmount = PCLGameUtilities.GetPowerAmount(corpse, debuff.ID);
                         PCLActions.Bottom.ApplyPower(TargetHelper.Enemies(), commonDebuffHelper, powAmount);

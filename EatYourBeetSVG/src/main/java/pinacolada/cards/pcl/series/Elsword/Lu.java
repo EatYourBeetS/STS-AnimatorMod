@@ -13,7 +13,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.misc.GenericEffects.GenericEffect;
 import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.stances.DesecrationStance;
 import pinacolada.stances.WisdomStance;
@@ -80,7 +80,7 @@ public class Lu extends PCLCard
                         {
                             choices.Initialize(this, true);
                             choices.AddEffect(new GenericEffect_Ciel(magicNumber));
-                            choices.AddEffect(new GenericEffect_StackPower(PowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
+                            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
                             choices.Select(1, m);
                         }
                     });

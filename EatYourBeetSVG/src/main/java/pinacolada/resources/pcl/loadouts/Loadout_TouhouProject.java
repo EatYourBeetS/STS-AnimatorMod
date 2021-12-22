@@ -1,4 +1,4 @@
-package pinacolada.resources.pcl.loadouts.beta;
+package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
@@ -26,6 +26,8 @@ public class Loadout_TouhouProject extends PCLLoadout
         AddStarterCard(SuikaIbuki.DATA, 10);
         AddStarterCard(Cirno.DATA, 11);
         AddStarterCard(FlandreScarlet.DATA, 15);
+        AddStarterCard(KaguyaHouraisan.DATA, 20);
+        AddStarterCard(YukariYakumo.DATA, 26);
         AddStarterCard(Curse_Regret.DATA, -8);
         AddStarterCard(Curse_Clumsy.DATA, -3);
     }

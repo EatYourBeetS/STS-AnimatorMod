@@ -28,25 +28,23 @@ public class PCLConfig
 
     private static final String TROPHY_DATA_KEY = "TDAL";
     private static final String LAST_SEED_KEY = "TSDL";
-    private static final String CUSTOM_LOADOUTS_KEY =  "PCL-Loadouts";
-    private static final String CROP_CARD_PORTRAIT =  "PCL-UseCroppedPortrait";
-    private static final String DISPLAY_BETA_SERIES =  "PCL-DisplayBetaSeries";
-    private static final String ENABLE_EVENTS_FOR_OTHER_CHARACTERS =  "PCL-EnableEventsForOtherCharacters";
-    private static final String ENABLE_RELICS_FOR_OTHER_CHARACTERS =  "PCL-EnableRelicsForOtherCharacters";
-    private static final String FADE_CARDS_WITHOUT_SYNERGY =  "PCL-FadeNonSynergicCards";
-    private static final String HIDE_TIP_DESCRIPTION =  "PCL-HideTipDescription";
-    private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "PCL-HideBlockDamageBackground";
-    private static final String AFFINITY_METER_POSITION =  "PCL-AffinityMeterPosition";
-    private static final String AFFINITY_SYSTEM_POSITION =  "PCL-AffinitySystemPosition";
-    private static final String VERSION =  "PCL-Version";
-    private static final String SELECTEDSERIES =  "PCL-SelectedSeries";
-    private static final String EXPANDEDSERIES =  "PCL-ExpandedSeries";
-    private static final String SERIESSIZE =  "PCL-SeriesSize";
-    private static final String REPLACECARDS = "PCL-ReplaceCards";
-    private static final String KEYMAP_CONTROLPILE = "PCL-KeyMapControlPile";
-    private static final String KEYMAP_CYCLE1 = "PCL-KeyMapCycle1";
-    private static final String KEYMAP_CYCLE2 = "PCL-KeyMapCycle2";
-    private static final String KEYMAP_REROLL = "PCL-KeyMapReroll";
+    private static final String CUSTOM_LOADOUTS_KEY = PCLConfig.CreateFullID("Loadouts");
+    private static final String CROP_CARD_PORTRAIT = PCLConfig.CreateFullID("UseCroppedPortrait");
+    private static final String DISPLAY_BETA_SERIES = PCLConfig.CreateFullID("DisplayBetaSeries");
+    private static final String ENABLE_EVENTS_FOR_OTHER_CHARACTERS = PCLConfig.CreateFullID("EnableEventsForOtherCharacters");
+    private static final String ENABLE_RELICS_FOR_OTHER_CHARACTERS = PCLConfig.CreateFullID("EnableRelicsForOtherCharacters");
+    private static final String FADE_CARDS_WITHOUT_SYNERGY = PCLConfig.CreateFullID("FadeNonSynergicCards");
+    private static final String HIDE_TIP_DESCRIPTION = PCLConfig.CreateFullID("HideTipDescription");
+    private static final String HIDE_BLOCK_DAMAGE_BACKGROUND = PCLConfig.CreateFullID("HideBlockDamageBackground");
+    private static final String AFFINITY_METER_POSITION = PCLConfig.CreateFullID("AffinityMeterPosition");
+    private static final String AFFINITY_SYSTEM_POSITION = PCLConfig.CreateFullID("AffinitySystemPosition");
+    private static final String VERSION = PCLConfig.CreateFullID("Version");
+    private static final String SELECTED_SERIES = PCLConfig.CreateFullID("SelectedSeries");
+    private static final String EXPANDED_SERIES = PCLConfig.CreateFullID("ExpandedSeries");
+    private static final String SERIES_SIZE = PCLConfig.CreateFullID("SeriesSize");
+    private static final String REPLACE_CARDS_FOOL = PCLConfig.CreateFullID("ReplaceCards");
+    private static final String REPLACE_CARDS_ANIMATOR = PCLConfig.CreateFullID("ReplaceCardsAnimator");
+    private static final String FLASH_FOR_REROLL = PCLConfig.CreateFullID("FlashForReroll");
 
     private SpireConfig config;
     private HashSet<String> tips = null;
@@ -57,15 +55,17 @@ public class PCLConfig
     public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
     public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
-    public ConfigOption_Boolean ReplaceCards = new ConfigOption_Boolean(REPLACECARDS, true);
+    public ConfigOption_Boolean ReplaceCardsFool = new ConfigOption_Boolean(REPLACE_CARDS_FOOL, true);
+    public ConfigOption_Boolean ReplaceCardsAnimator = new ConfigOption_Boolean(REPLACE_CARDS_ANIMATOR, true);
+    public ConfigOption_Boolean FlashForReroll = new ConfigOption_Boolean(FLASH_FOR_REROLL, true);
     public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, false);
     public ConfigOption_Boolean EnableRelicsForOtherCharacters = new ConfigOption_Boolean(ENABLE_RELICS_FOR_OTHER_CHARACTERS, false);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
     public ConfigOption_Vector2 AffinityMeterPosition = new ConfigOption_Vector2(AFFINITY_METER_POSITION, null);
     public ConfigOption_Integer MajorVersion = new ConfigOption_Integer(VERSION, null);
-    public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTEDSERIES, null);
-    public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDEDSERIES, new ArrayList<>());
-    public ConfigOption_Integer SeriesSize = new ConfigOption_Integer(SERIESSIZE, MINIMUM_SERIES);
+    public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTED_SERIES, null);
+    public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDED_SERIES, new ArrayList<>());
+    public ConfigOption_Integer SeriesSize = new ConfigOption_Integer(SERIES_SIZE, MINIMUM_SERIES);
 
     public void Load(int slot)
     {
@@ -95,9 +95,11 @@ public class PCLConfig
             SimplifyCardUI.SetConfig(config);
             CropCardImages.SetConfig(config);
             DisplayBetaSeries.SetConfig(config);
-            ReplaceCards.SetConfig(config);
+            ReplaceCardsFool.SetConfig(config);
+            ReplaceCardsAnimator.SetConfig(config);
             EnableEventsForOtherCharacters.SetConfig(config);
             EnableRelicsForOtherCharacters.SetConfig(config);
+            FlashForReroll.SetConfig(config);
             AffinityMeterPosition.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
             SelectedSeries.SetConfig(config);
@@ -120,11 +122,13 @@ public class PCLConfig
         SimplifyCardUI.AddToPanel(panel, misc.SimplifyCardUI, 400, 600);
         EnableEventsForOtherCharacters.AddToPanel(panel, misc.EnableEventsForOtherCharacters, 400, 550);
         EnableRelicsForOtherCharacters.AddToPanel(panel, misc.EnableRelicsForOtherCharacters, 400, 500);
-        ReplaceCards.AddToPanel(panel, misc.EnableEventsForOtherCharacters, 400, 450);
+        FlashForReroll.AddToPanel(panel, misc.EnableFlashForReroll, 400, 450);
+        ReplaceCardsFool.AddToPanel(panel, misc.ReplaceCardsFool, 400, 400);
+        ReplaceCardsAnimator.AddToPanel(panel, misc.ReplaceCardsAnimator, 400, 350);
 
         if (GR.PCL.Data.BetaLoadouts.size() > 0)
         {
-            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 400);
+            DisplayBetaSeries.AddToPanel(panel, misc.DisplayBetaSeries, 400, 300);
         }
         else
         {

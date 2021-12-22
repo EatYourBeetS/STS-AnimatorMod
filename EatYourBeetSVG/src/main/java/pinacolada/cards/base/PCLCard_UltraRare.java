@@ -94,7 +94,15 @@ public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
     protected AdvancedTexture GetCardBanner()
     {
         return new AdvancedTexture((isPopup ?
-                GR.PCL.Images.CARD_BANNER_ATTRIBUTE_L: GR.PCL.Images.CARD_BANNER_ATTRIBUTE).Texture(),
+                GR.PCL.Images.CARD_BANNER2_L: GR.PCL.Images.CARD_BANNER2).Texture(),
+                Color.WHITE.cpy());
+    }
+
+    @Override
+    public AdvancedTexture GetCardAttributeBanner()
+    {
+        return new AdvancedTexture((isPopup ?
+                GR.PCL.Images.CARD_BANNER_ATTRIBUTE2_L: GR.PCL.Images.CARD_BANNER_ATTRIBUTE2).Texture(),
                 Color.WHITE.cpy());
     }
 }

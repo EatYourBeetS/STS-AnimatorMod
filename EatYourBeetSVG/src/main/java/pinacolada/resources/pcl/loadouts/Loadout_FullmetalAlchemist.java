@@ -20,11 +20,14 @@ public class Loadout_FullmetalAlchemist extends PCLLoadout
     {
         AddStarterCard(ElricAlphonse.DATA, 4);
         AddStarterCard(MaesHughes.DATA, 4);
-        AddStarterCard(ElricEdward.DATA, 5);
+        AddStarterCard(ElricEdward.DATA, 4);
+        AddStarterCard(RizaHawkeye.DATA, 5);
         AddStarterCard(Gluttony.DATA, 8);
+        AddStarterCard(Lust.DATA, 8);
         AddStarterCard(Sloth.DATA, 10);
         AddStarterCard(Pride.DATA, 11);
         AddStarterCard(RoyMustang.DATA, 12);
+        AddStarterCard(Scar.DATA, 12);
         AddStarterCard(Curse_Injury.DATA, -4);
         AddStarterCard(Curse_Decay.DATA, -7);
     }

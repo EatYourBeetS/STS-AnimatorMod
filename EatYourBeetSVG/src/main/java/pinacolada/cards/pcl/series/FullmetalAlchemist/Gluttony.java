@@ -12,9 +12,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.tokens.AffinityToken;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLJUtils;
 
 public class Gluttony extends PCLCard
 {
@@ -57,13 +55,11 @@ public class Gluttony extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.ExhaustFromPile(name, secondaryValue, player.drawPile)
+                .ShowEffect(true, true)
                 .SetOptions(CardSelection.Top, false)
                 .AddCallback(cards -> {
                     for (AbstractCard c : cards) {
-                        PCLCard eCard = PCLJUtils.SafeCast(c, PCLCard.class);
-                        if (eCard != null && eCard.affinities != null) {
-                            PCLCombatStats.MatchingSystem.AddAffinities(eCard.affinities);
-                        }
+                        PCLActions.Bottom.GainDesecration(1);
                         PCLActions.Bottom.GainTemporaryHP(magicNumber);
 
                         if (c.type == CardType.CURSE && info.TryActivateLimited()) {

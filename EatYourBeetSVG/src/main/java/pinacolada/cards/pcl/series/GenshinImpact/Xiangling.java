@@ -25,7 +25,7 @@ public class Xiangling extends PCLCard
 
         Initialize(6, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(0, 0, 1);
         SetAffinity_Green(0, 0, 0);
     }

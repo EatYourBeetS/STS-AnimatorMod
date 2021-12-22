@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.utilities.JUtils;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -23,8 +24,9 @@ public class AfterLifeMod extends AbstractCardModifier
 
     public static void Add(AbstractCard card)
     {
-        CardModifierManager.addModifier(card, new AfterLifeMod());
+        JUtils.LogError(card, "TESTING ADD");
         if (PCLGameUtilities.InGame() && PCLGameUtilities.InBattle()) {
+            CardModifierManager.addModifier(card, new AfterLifeMod());
             AfterlifeAddToControlPile(card);
         }
     }

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -22,7 +22,7 @@ public class Kuribayashi extends PCLCard
         Initialize(7, 0, 2, 3);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Silver(1);
 
@@ -62,7 +62,7 @@ public class Kuribayashi extends PCLCard
 
         if (TrySpendAffinity(PCLAffinity.Red))
         {
-            PCLActions.Bottom.StackPower(TargetHelper.Normal(m), PowerHelper.Shackles,secondaryValue);
+            PCLActions.Bottom.StackPower(TargetHelper.Normal(m), PCLPowerHelper.Shackles,secondaryValue);
         }
     }
 }

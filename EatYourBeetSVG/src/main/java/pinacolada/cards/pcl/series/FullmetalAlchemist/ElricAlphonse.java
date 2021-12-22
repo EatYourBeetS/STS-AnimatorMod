@@ -24,7 +24,8 @@ public class ElricAlphonse extends PCLCard
         SetUpgrade(0, 1, 4);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 0, 1);
+        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Light(0, 0, 1);
 
         SetEthereal(true);
     }

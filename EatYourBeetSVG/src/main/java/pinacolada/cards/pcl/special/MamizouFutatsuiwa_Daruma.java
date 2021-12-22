@@ -9,12 +9,12 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.pcl.colorless.MamizouFutatsuiwa;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLJUtils;
 
 public class MamizouFutatsuiwa_Daruma extends PCLCard
 {
     public static final PCLCardData DATA = Register(MamizouFutatsuiwa_Daruma.class)
             .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
             .SetMultiformData(3, false, false, false, true)
             .SetSeries(MamizouFutatsuiwa.DATA.Series);
     public static final int INDEX_BLOCK = 0;
@@ -43,8 +43,13 @@ public class MamizouFutatsuiwa_Daruma extends PCLCard
     }
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form]);
+    }
+
+    @Override
     public int SetForm(Integer form, int timesUpgraded) {
-        this.cardText.OverrideDescription(PCLJUtils.Format(rawDescription, cardData.Strings.EXTENDED_DESCRIPTION[form]), true);
         switch (auxiliaryData.form) {
             case INDEX_BLUR:
                 SetAffinity_Green(1);

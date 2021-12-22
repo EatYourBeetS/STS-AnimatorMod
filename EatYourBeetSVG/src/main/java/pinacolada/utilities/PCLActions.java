@@ -62,7 +62,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.affinity.*;
 import pinacolada.powers.common.EnergizedPower;
 import pinacolada.powers.common.*;
@@ -131,7 +131,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyBlinded(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Blinded, amount);
+        return StackPower(target, PCLPowerHelper.Blinded, amount);
     }
 
     public ApplyPower ApplyBurning(AbstractCreature source, AbstractCreature target, int amount)
@@ -141,7 +141,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyBurning(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Burning, amount);
+        return StackPower(target, PCLPowerHelper.Burning, amount);
     }
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
@@ -151,12 +151,12 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Constricted, amount);
+        return StackPower(target, PCLPowerHelper.Constricted, amount);
     }
 
     public ApplyPowerAuto ApplyElectrified(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Electrified, amount);
+        return StackPower(target, PCLPowerHelper.Electrified, amount);
     }
 
 
@@ -172,7 +172,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyFrail(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Frail, amount);
+        return StackPower(target, PCLPowerHelper.Frail, amount);
     }
 
     public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
@@ -182,7 +182,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyFreezing(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Freezing, amount);
+        return StackPower(target, PCLPowerHelper.Freezing, amount);
     }
 
     public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
@@ -192,7 +192,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyPoison(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Poison, amount);
+        return StackPower(target, PCLPowerHelper.Poison, amount);
     }
 
     public ApplyPower ApplyLockOn(AbstractCreature source, AbstractCreature target, int amount)
@@ -202,7 +202,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyLockOn(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.LockOn, amount);
+        return StackPower(target, PCLPowerHelper.LockOn, amount);
     }
 
     public ApplyPower ApplyPower(AbstractPower power)
@@ -210,12 +210,12 @@ public final class PCLActions
         return ApplyPower(power.owner, power.owner, power);
     }
 
-    public ApplyPowerAuto ApplyPower(TargetHelper target, PowerHelper power)
+    public ApplyPowerAuto ApplyPower(TargetHelper target, PCLPowerHelper power)
     {
         return Add(new ApplyPowerAuto(target, power, 1)).CanStack(false);
     }
 
-    public ApplyPowerAuto ApplyPower(TargetHelper target, PowerHelper power, int amount)
+    public ApplyPowerAuto ApplyPower(TargetHelper target, PCLPowerHelper power, int amount)
     {
         return Add(new ApplyPowerAuto(target, power, amount));
     }
@@ -233,7 +233,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyShackles(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Shackles, amount);
+        return StackPower(target, PCLPowerHelper.Shackles, amount);
     }
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
@@ -243,7 +243,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyVulnerable(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Vulnerable, amount);
+        return StackPower(target, PCLPowerHelper.Vulnerable, amount);
     }
 
     public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
@@ -253,7 +253,7 @@ public final class PCLActions
 
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
     {
-        return StackPower(target, PowerHelper.Weak, amount);
+        return StackPower(target, PCLPowerHelper.Weak, amount);
     }
 
     public PlayVFX BorderFlash(Color color)
@@ -1139,7 +1139,7 @@ public final class PCLActions
         return Add(new ApplyPower(source, power.owner, power, power.amount));
     }
 
-    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
+    public ApplyPowerAuto StackPower(TargetHelper target, PCLPowerHelper power, int stacks)
     {
         return Add(new ApplyPowerAuto(target, power, stacks));
     }

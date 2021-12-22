@@ -25,7 +25,7 @@ public class Cocytus extends PCLCard
         Initialize(13, 0, 2, 1);
         SetUpgrade(3, 0, 1, 0);
 
-        SetAffinity_Red(1, 0, 3);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Orange(1,0,0);
 
         SetAffinityRequirement(PCLAffinity.Red, 2);

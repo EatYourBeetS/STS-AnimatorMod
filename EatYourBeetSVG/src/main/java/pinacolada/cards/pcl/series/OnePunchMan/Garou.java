@@ -8,7 +8,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -48,8 +48,8 @@ public class Garou extends PCLCard
         PCLActions.Bottom.GainBlock(block);
         if (p.drawPile.size() >= 3)
         {
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, magicNumber);
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDexterity, magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryDexterity, magicNumber);
             PCLActions.Bottom.MoveCards(p.drawPile, p.exhaustPile, 3)
             .ShowEffect(true, true)
             .SetOrigin(CardSelection.Top);

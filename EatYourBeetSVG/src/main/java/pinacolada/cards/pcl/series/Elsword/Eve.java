@@ -47,7 +47,7 @@ public class Eve extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 0);
+        Initialize(0, 0, 2, 0);
         SetUpgrade(0,0,0,1);
 
         SetAffinity_Blue(2);

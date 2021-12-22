@@ -6,14 +6,15 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PowerTriggerConditionType;
-import pinacolada.powers.common.GenesisPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
@@ -46,7 +47,6 @@ public class KoishiKomeiji extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.StackPower(new GenesisPower(p, 1));
         PCLActions.Bottom.StackPower(new KoishiPower(p, 1));
     }
 
@@ -86,16 +86,16 @@ public class KoishiKomeiji extends PCLCard
                 this.flash();
                 PCLActions.Top.PlayCard(card, player.hand, null)
                 .SpendEnergy(true)
-                .AddCondition(AbstractCard::hasEnoughEnergy);
+                .AddCondition(AbstractCard::hasEnoughEnergy).AddCallback(() -> {
+                    GameActions.Top.ApplyConstricted(TargetHelper.Player(), card.costForTurn);
+                    GameActions.Top.GainEnergy(card.costForTurn);
+                });
             }
         }
 
         @Override
         public void OnUse(AbstractMonster m, int cost)
         {
-            PCLActions.Bottom.ReducePower(player, GenesisPower.POWER_ID, 1);
-            RemovePower();
-
             if (touhouCards.Size() == 0) {
                 for (AbstractCard c : CardLibrary.getAllCards()) {
                     if (c instanceof PCLCard && ((PCLCard) c).series != null && ((PCLCard) c).series.Equals(CardSeries.TouhouProject) &&
@@ -123,6 +123,8 @@ public class KoishiKomeiji extends PCLCard
                             PCLActions.Bottom.MakeCardInHand(cards.get(0));
                         }
                     });
+
+            RemovePower();
         }
 
         @Override

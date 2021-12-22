@@ -5,21 +5,21 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class GenericEffect_Apply extends GenericEffect
 {
     protected final TargetHelper target;
-    protected final PowerHelper power;
+    protected final PCLPowerHelper power;
 
-    public GenericEffect_Apply(TargetHelper target, PowerHelper power, int amount)
+    public GenericEffect_Apply(TargetHelper target, PCLPowerHelper power, int amount)
     {
         this(target, power, power.Tooltip, amount);
     }
 
-    public GenericEffect_Apply(TargetHelper target, PowerHelper power, PCLCardTooltip tooltip, int amount)
+    public GenericEffect_Apply(TargetHelper target, PCLPowerHelper power, PCLCardTooltip tooltip, int amount)
     {
         this.target = target;
         this.power = power;

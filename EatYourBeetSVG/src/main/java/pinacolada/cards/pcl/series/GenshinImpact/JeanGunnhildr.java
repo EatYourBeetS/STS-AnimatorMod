@@ -22,7 +22,7 @@ public class JeanGunnhildr extends PCLCard
 
         Initialize(8, 1, 2, 1);
         SetUpgrade(3, 1, 0);
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 

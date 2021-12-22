@@ -18,14 +18,20 @@ public class Loadout_Overlord extends PCLLoadout
     @Override
     public void AddStarterCards()
     {
-        AddStarterCard(PandorasActor.DATA, 4);
+
         AddStarterCard(Demiurge.DATA, 5);
         AddStarterCard(Cocytus.DATA, 6);
-        AddStarterCard(NarberalGamma.DATA, 7);
+        AddStarterCard(PandorasActor.DATA, 7);
         AddStarterCard(Sebas.DATA, 7);
         AddStarterCard(CZDelta.DATA, 8);
-        AddStarterCard(AuraBellaFiora.DATA, 11);
+        AddStarterCard(NarberalGamma.DATA, 8);
+        AddStarterCard(Entoma.DATA, 9);
+        AddStarterCard(AuraBellaFiora.DATA, 9);
+        AddStarterCard(Evileye.DATA, 10);
+        AddStarterCard(Gargantua.DATA, 12);
         AddStarterCard(MareBelloFiore.DATA, 12);
+        AddStarterCard(Victim.DATA, 17);
+        AddStarterCard(Shalltear.DATA, 21);
         AddStarterCard(Curse_Writhe.DATA, -5);
         AddStarterCard(Curse_Pain.DATA, -8);
     }

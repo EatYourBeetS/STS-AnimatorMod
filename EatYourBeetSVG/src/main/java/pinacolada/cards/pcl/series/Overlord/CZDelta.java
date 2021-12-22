@@ -17,7 +17,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -62,7 +62,7 @@ public class CZDelta extends PCLCard implements OnStartOfTurnPostDrawSubscriber,
         PCLActions.Bottom.Callback(() ->
         {
             PCLGameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDexterity, -magicNumber);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryDexterity, -magicNumber);
             PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         });
     }

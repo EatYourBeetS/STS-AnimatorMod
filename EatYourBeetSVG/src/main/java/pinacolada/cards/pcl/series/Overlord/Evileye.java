@@ -9,7 +9,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -52,7 +52,7 @@ public class Evileye extends PCLCard
                 if (totalToTransfer <= 0) {
                     break;
                 }
-                for (PowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
+                for (PCLPowerHelper commonDebuffHelper : PCLGameUtilities.GetPCLCommonDebuffs()) {
                     if (commonDebuffHelper.ID.equals(power.ID)) {
                         int toTransfer = Math.min(totalToTransfer, power.amount);
                         PCLActions.Top.ReducePower(power, toTransfer);

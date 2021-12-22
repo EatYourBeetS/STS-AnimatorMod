@@ -25,19 +25,17 @@ public class DolaSchwi extends PCLCard implements OnStartOfTurnPostDrawSubscribe
             .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
-    private int turns = 0;
-
     public DolaSchwi()
     {
         super(DATA);
 
-        Initialize(12, 0, 2, 4);
+        Initialize(9, 0, 2, 10);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1, 0, 3);
         SetAffinity_Silver(1);
 
-        SetCooldown(1, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, __ -> {});
     }
 
     @Override
@@ -47,7 +45,6 @@ public class DolaSchwi extends PCLCard implements OnStartOfTurnPostDrawSubscribe
         PCLActions.Bottom.ApplyLockOn(p,m,magicNumber);
 
         DolaSchwi other = (DolaSchwi) makeStatEquivalentCopy();
-        other.turns = 1;
         if (cooldown.ProgressCooldownAndTrigger(m)) {
             other.baseDamage += secondaryValue;
         }
@@ -77,10 +74,5 @@ public class DolaSchwi extends PCLCard implements OnStartOfTurnPostDrawSubscribe
             }
             PCLGameUtilities.UsePenNib();
         }
-    }
-
-    protected void OnCooldownCompleted(AbstractMonster m)
-    {
-        DoDamage();
     }
 }

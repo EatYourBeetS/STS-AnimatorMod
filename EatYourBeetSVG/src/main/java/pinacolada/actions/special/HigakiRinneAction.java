@@ -22,7 +22,7 @@ import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.cards.pcl.status.Status_Slimed;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.EnchantedArmorPower;
 import pinacolada.powers.deprecated.MarkOfPoisonPower;
 import pinacolada.utilities.PCLActions;
@@ -187,12 +187,12 @@ public class HigakiRinneAction extends EYBAction
     {
         switch (rng.random(5))
         {
-            case 0: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Poison, 3); break;
-            case 1: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Weak, 1); break;
-            case 2: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Vulnerable, 1); break;
-            case 3: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 2); break;
-            case 4: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Burning, 3); break;
-            case 5: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Constricted, 2); break;
+            case 0: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Poison, 3); break;
+            case 1: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Weak, 1); break;
+            case 2: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Vulnerable, 1); break;
+            case 3: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.LockOn, 2); break;
+            case 4: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Burning, 3); break;
+            case 5: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Constricted, 2); break;
         }
     }
 

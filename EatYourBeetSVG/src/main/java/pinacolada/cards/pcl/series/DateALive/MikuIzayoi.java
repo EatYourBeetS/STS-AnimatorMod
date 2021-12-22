@@ -63,7 +63,7 @@ public class MikuIzayoi extends PCLCard
             PCLActions.Bottom.GainInspiration(1);
         }
 
-        if (PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue && info.IsSynergizing && PCLGameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue && PCLGameUtilities.IsSameSeries(this,info.PreviousCard) && info.TryActivateSemiLimited()) {
             PCLActions.Bottom.Motivate(1);
         }
     }

@@ -3,7 +3,6 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DemonFormPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
@@ -11,6 +10,7 @@ import pinacolada.cards.pcl.series.TenseiSlime.Shizu;
 import pinacolada.misc.GenericEffects.GenericEffect;
 import pinacolada.powers.PCLTriggerablePower;
 import pinacolada.powers.common.BurningPower;
+import pinacolada.powers.special.BurningWeaponPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
@@ -21,18 +21,17 @@ public class Shizu_Ifrit extends PCLCard
             .SetSeries(Shizu.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));
     public static final int AMOUNT = 2;
-    public static final int SELF_BURNING = 4;
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Shizu_Ifrit()
     {
         super(DATA);
 
-        Initialize(0, 0, 40, 11);
-        SetUpgrade(0, 0, 0, 4);
+        Initialize(0, 10, 40, 10);
+        SetUpgrade(0, 0, 10, 0);
 
-        SetAffinity_Red(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Dark(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Dark, 6);
 
@@ -42,37 +41,38 @@ public class Shizu_Ifrit extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.ApplyBurning(TargetHelper.Player(),SELF_BURNING);
-        PCLActions.Bottom.ApplyBurning(TargetHelper.Enemies(),secondaryValue);
+        PCLActions.Bottom.GainBlock(block);
+        PCLActions.Bottom.ApplyBurning(TargetHelper.AllCharacters(),secondaryValue);
         PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
 
 
         if (info.CanActivateLimited && TrySpendAffinity(PCLAffinity.Dark) && CombatStats.TryActivateLimited(cardID)) {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_DemonForm());
+                choices.AddEffect(new GenericEffect_BurningWeapon(secondaryValue));
                 choices.AddEffect(new GenericEffect_BlazingHeat());
             }
             choices.Select(1, m);
         }
     }
 
-    protected static class GenericEffect_DemonForm extends GenericEffect
+    protected static class GenericEffect_BurningWeapon extends GenericEffect
     {
-        public GenericEffect_DemonForm()
+        public GenericEffect_BurningWeapon(int amount)
         {
+            this.amount = amount;
         }
 
         @Override
         public String GetText()
         {
-            return PCLJUtils.Format(Shizu_Ifrit.DATA.Strings.EXTENDED_DESCRIPTION[0]);
+            return PCLJUtils.Format(Shizu_Ifrit.DATA.Strings.EXTENDED_DESCRIPTION[0], amount);
         }
 
         @Override
         public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
         {
-            PCLActions.Bottom.StackPower(new DemonFormPower(p, AMOUNT));
+            PCLActions.Bottom.StackPower(new BurningWeaponPower(p, amount));
         }
     }
 

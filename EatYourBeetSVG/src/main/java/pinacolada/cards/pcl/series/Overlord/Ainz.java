@@ -3,26 +3,23 @@ package pinacolada.cards.pcl.series.Overlord;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.SFX;
-import pinacolada.orbs.pcl.Chaos;
-import pinacolada.powers.PCLClickablePower;
-import pinacolada.powers.PowerTriggerConditionType;
-import pinacolada.stances.DesecrationStance;
+import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
+import pinacolada.powers.PCLPower;
+import pinacolada.powers.PCLPowerHelper;
+import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Ainz extends PCLCard
 {
     public static final PCLCardData DATA = Register(Ainz.class)
-            .SetPower(7, CardRarity.RARE)
+            .SetPower(8, CardRarity.RARE)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
-    public static final int CHANNEL_AMOUNT = 3;
-    public static final int POWER_ENERGY_COST = 10;
     public static final PCLAffinity[] AFFINITIES = new PCLAffinity[] {PCLAffinity.Red, PCLAffinity.Blue, PCLAffinity.Orange, PCLAffinity.Dark};
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Ainz()
     {
@@ -40,45 +37,29 @@ public class Ainz extends PCLCard
     }
 
     @Override
-    protected String GetRawDescription(Object... args)
-    {
-        return super.GetRawDescription(POWER_ENERGY_COST, CHANNEL_AMOUNT);
-    }
-
-    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
 
         PCLActions.Bottom.Motivate(this, 1);
+        PCLActions.Bottom.GainDesecration(1);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (block > 0)
-        {
-            PCLActions.Bottom.GainBlock(block);
-        }
-
-        PCLActions.Bottom.StackPower(new AinzPower(p, magicNumber));
+        PCLActions.Bottom.StackPower(new AinzPower(p, this, magicNumber));
     }
 
-    public static class AinzPower extends PCLClickablePower
+    public static class AinzPower extends PCLPower
     {
-        public AinzPower(AbstractPlayer owner, int amount)
+        private final PCLCard source;
+
+        public AinzPower(AbstractPlayer owner, PCLCard source, int amount)
         {
-            super(owner, Ainz.DATA, PowerTriggerConditionType.Affinity, Ainz.POWER_ENERGY_COST, null, null, PCLAffinity.Dark);
-
-            triggerCondition.SetUses(-1, false, false);
-
+            super(owner, Ainz.DATA);
+            this.source = source;
             Initialize(amount);
-        }
-
-        @Override
-        public String GetUpdatedDescription()
-        {
-            return FormatDescription(0, triggerCondition.requiredAmount, Ainz.CHANNEL_AMOUNT, amount);
         }
 
         @Override
@@ -95,19 +76,16 @@ public class Ainz extends PCLCard
         public void atStartOfTurnPostDraw()
         {
             super.atStartOfTurnPostDraw();
+            PCLActions.Bottom.ObtainAffinityToken(PCLAffinity.Dark, false);
 
-            for (PCLAffinity a : AFFINITIES)
-            {
-                PCLActions.Bottom.StackAffinityPower(a, amount, DesecrationStance.IsActive());
-            }
+            final int amount = PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Dark);
+            choices.Initialize(source, true);
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryStrength, GR.Tooltips.Strength, amount, true));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, amount, true));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, amount, true));
+            choices.Select(1, null);
 
             this.flash();
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m, int cost)
-        {
-            PCLActions.Bottom.ChannelOrbs(Chaos::new, Ainz.CHANNEL_AMOUNT);
         }
     }
 }

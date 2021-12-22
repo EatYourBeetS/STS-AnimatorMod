@@ -56,7 +56,7 @@ public class GarbageDoll extends PCLCard
                 {
                     CombatStats.TryActivateLimited(this.cardID);
                     PCLGameEffects.Queue.ShowCardBriefly(card.makeStatEquivalentCopy());
-                    ((Ushio) card).SetAfterlife(true, true);
+                    ((Ushio) card).SetAfterlife(true);
                 }
                 else
                 {

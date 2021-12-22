@@ -19,7 +19,7 @@ public class MayuriKurotsuchi extends PCLCard {
     public MayuriKurotsuchi() {
         super(DATA);
 
-        Initialize(0, 1, 2, 3);
+        Initialize(0, 1, 4, 3);
         SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Silver(1, 0, 0);
@@ -30,7 +30,7 @@ public class MayuriKurotsuchi extends PCLCard {
 
     @Override
     public int GetXValue() {
-        return magicNumber * PCLCombatStats.MatchingSystem.GetPowerAmount(PCLAffinity.Green);
+        return magicNumber + secondaryValue * PCLCombatStats.MatchingSystem.GetPowerLevel(PCLAffinity.Green);
     }
 
     @Override

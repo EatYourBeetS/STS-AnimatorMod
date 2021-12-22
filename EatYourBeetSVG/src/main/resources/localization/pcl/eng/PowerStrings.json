@@ -152,12 +152,12 @@
 	},
 	"pcl:ResistancePower":
     {
-      "DESCRIPTIONS": ["Reduce the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%.", "Increase the effects of [Vulnerable] and [Impaired] on you by #b{0}% and of [Frail] and [Weak] on you by #b{1}%."],
+      "DESCRIPTIONS": ["Reduce incoming #yAttack damage by #b{0}%. Reduce the effects of [Vulnerable] and [Impaired] by #b{1}% and of [Frail] and [Weak] by #b{2}%. (Max. #b{3} stacks)", "Increase incoming #yAttack damage by #b{0}%. Increase the effects of [Vulnerable] and [Impaired] by #b{1}% and of [Frail] and [Weak] by #b{2}%."],
       "NAME": "Resistance"
     },
 	"pcl:RerollAffinityPower":
 	{
-		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL #pMatch Combo: {2} NL NL Make a #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
+		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL #pMatch #pCombo: {2} NL NL Make a #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
 		"NAME": "Reroll Match"
 	},
 	"pcl:ShacklesPower":
@@ -297,7 +297,7 @@
     	},
     	"pcl:BurningWeaponPower":
     	{
-    		"DESCRIPTIONS": ["For #b{0} turns: Deal double damage to enemies with [Freezing]. Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning] and remove its [Freezing]."],
+    		"DESCRIPTIONS": ["For #b{0} turns: Deal double damage to enemies with [Freezing]. Whenever you deal unblocked damage to an enemy, apply #b{1} [Burning] and remove #b{2} [Freezing]."],
     		"NAME": "Burning Weapon"
     	},
     	"pcl:ChlammyZellPower":

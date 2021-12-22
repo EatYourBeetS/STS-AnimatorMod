@@ -32,7 +32,7 @@ public class AyatoNaoi extends PCLCard implements OnAfterlifeSubscriber
         Initialize(0, 2, 2, 0);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Blue(1, 0, 2);
+        SetAffinity_Blue(1, 0, 3);
         SetAffinity_Dark(1, 0, 0);
         SetExhaust(true);
         SetAfterlife(true);

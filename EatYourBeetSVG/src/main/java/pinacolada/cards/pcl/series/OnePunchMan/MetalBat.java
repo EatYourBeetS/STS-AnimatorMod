@@ -10,7 +10,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class MetalBat extends PCLCard implements OnEndOfTurnSubscriber
@@ -41,7 +41,7 @@ public class MetalBat extends PCLCard implements OnEndOfTurnSubscriber
         PCLCombatStats.onEndOfTurn.Subscribe(this);
 
         if (TrySpendAffinity(PCLAffinity.Red)) {
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, secondaryValue);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, secondaryValue);
         }
     }
 

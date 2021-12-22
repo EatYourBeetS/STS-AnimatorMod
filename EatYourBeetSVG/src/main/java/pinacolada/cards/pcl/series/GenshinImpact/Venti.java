@@ -20,7 +20,10 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Venti extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Venti.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetMaxCopies(1).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(Venti.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Venti()
     {

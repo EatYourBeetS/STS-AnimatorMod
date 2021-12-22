@@ -7,7 +7,7 @@ import pinacolada.cards.base.*;
 import pinacolada.misc.GenericEffects.GenericEffect_Apply;
 import pinacolada.misc.GenericEffects.GenericEffect_ChannelOrb;
 import pinacolada.orbs.pcl.Air;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class CatoElAltestan extends PCLCard
@@ -39,16 +39,16 @@ public class CatoElAltestan extends PCLCard
     {
         PCLActions.Bottom.GainBlock(block);
 
-        PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, magicNumber);
+        PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Sorcery, magicNumber);
 
         choices.Initialize(this, true);
         if (TrySpendAffinity(PCLAffinity.Blue))
         {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Freezing, secondaryValue));
+            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PCLPowerHelper.Freezing, secondaryValue));
         }
         if (TrySpendAffinity(PCLAffinity.Red))
         {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PowerHelper.Burning, secondaryValue));
+            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PCLPowerHelper.Burning, secondaryValue));
         }
         if (TrySpendAffinity(PCLAffinity.Green))
         {

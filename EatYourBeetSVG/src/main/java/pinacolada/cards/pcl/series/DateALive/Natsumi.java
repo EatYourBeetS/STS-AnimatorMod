@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -58,7 +58,7 @@ public class Natsumi extends PCLCard
                 PCLActions.Bottom.ReplaceCard(card.uuid, replacement);
             }
             if (gainAmount > 0) {
-                PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Sorcery, gainAmount);
+                PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Sorcery, gainAmount);
             }
         });
 

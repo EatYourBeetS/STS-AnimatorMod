@@ -28,7 +28,7 @@ public class KyokoSakura extends PCLCard
         Initialize(9, 0, 1, 2);
         SetUpgrade(3, 0, 1);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(0,0,1);
         SetSoul(4, 0, KyokoSakura_Ophelia::new);
     }

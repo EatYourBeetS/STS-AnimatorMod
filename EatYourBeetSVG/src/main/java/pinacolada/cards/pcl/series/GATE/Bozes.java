@@ -25,7 +25,6 @@ public class Bozes extends PCLCard
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 0, 1);
-        SetAffinity_Orange(0,0,1);
 
         SetExhaust(true);
     }

@@ -1,6 +1,6 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
@@ -8,6 +8,7 @@ import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.series.NoGameNoLife.Sora;
+import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 
 public class Sora_Strategy1 extends PCLCard
@@ -47,6 +48,6 @@ public class Sora_Strategy1 extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.PSYCHOKINESIS).forEach(d -> d.SetVFXColor(Color.ORANGE));
     }
 }

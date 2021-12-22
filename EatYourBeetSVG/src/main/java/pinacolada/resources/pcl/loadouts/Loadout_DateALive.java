@@ -1,4 +1,4 @@
-package pinacolada.resources.pcl.loadouts.beta;
+package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
@@ -21,11 +21,18 @@ public class Loadout_DateALive extends PCLLoadout {
     public void AddStarterCards()
     {
         AddStarterCard(YamaiSisters.DATA, 4);
+        AddStarterCard(ShidoItsuka.DATA, 6);
         AddStarterCard(KotoriItsuka.DATA, 6);
-        AddStarterCard(ShidoItsuka.DATA, 7);
-        AddStarterCard(NiaHonjou.DATA, 9);
-        AddStarterCard(RinneSonogami.DATA, 9);
-        AddStarterCard(ReineMurasame.DATA, 11);
+        AddStarterCard(Ren.DATA, 9);
+        AddStarterCard(NiaHonjou.DATA, 11);
+        AddStarterCard(MikuIzayoi.DATA, 11);
+        AddStarterCard(ReineMurasame.DATA, 12);
+        AddStarterCard(Mayuri.DATA, 14);
+        AddStarterCard(RinneSonogami.DATA, 14);
+        AddStarterCard(YoshinoHimekawa.DATA, 15);
+        AddStarterCard(Natsumi.DATA, 15);
+        AddStarterCard(MukuroHoshimiya.DATA, 20);
+        AddStarterCard(KurumiTokisaki.DATA, 33);
         AddStarterCard(Curse_Depression.DATA, -6);
         AddStarterCard(Curse_Clumsy.DATA, -3);
     }

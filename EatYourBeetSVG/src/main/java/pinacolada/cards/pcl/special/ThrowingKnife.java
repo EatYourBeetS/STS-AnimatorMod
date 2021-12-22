@@ -13,7 +13,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -46,7 +46,7 @@ public class ThrowingKnife extends PCLCard
 
     public static ThrowingKnife GetRandomCard()
     {
-        return new ThrowingKnife(rng.random(1, 3), 0);
+        return new ThrowingKnife(rng.random(0, 2), 0);
     }
 
     public ThrowingKnife()
@@ -136,13 +136,13 @@ public class ThrowingKnife extends PCLCard
             return 0;
         }
 
-        PowerHelper ph = PowerHelper.Poison;
+        PCLPowerHelper ph = PCLPowerHelper.Poison;
         switch (auxiliaryData.form) {
             case INDEX_WEAK:
-                ph = PowerHelper.Weak;
+                ph = PCLPowerHelper.Weak;
                 break;
             case INDEX_VULNERABLE:
-                ph = PowerHelper.Vulnerable;
+                ph = PCLPowerHelper.Vulnerable;
                 break;
         }
 

@@ -3,7 +3,6 @@ package pinacolada.cards.pcl.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.replacement.PCLVulnerablePower;
@@ -22,7 +21,7 @@ public class RoryMercury extends PCLCard
     {
         super(DATA);
 
-        Initialize(8, 0, 5);
+        Initialize(8, 0, 5, 3);
         SetUpgrade(2, 0, 6);
 
         SetAffinity_Red(1, 0, 0);
@@ -50,8 +49,10 @@ public class RoryMercury extends PCLCard
         {
             if (PCLGameUtilities.IsDeadOrEscaped(t) && CombatStats.TryActivateLimited(cardID))
             {
-                PCLActions.Bottom.ApplyVulnerable(TargetHelper.Player(), 1);
-                PCLActions.Bottom.GainTemporaryHP(t.lastDamageTaken);
+                int gain = t.lastDamageTaken / secondaryValue;
+                if (gain > 0) {
+                    PCLActions.Bottom.GainTemporaryHP(gain);
+                }
                 PCLActions.Bottom.Exhaust(this);
             }
         }));

@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 import static com.megacrit.cardcrawl.actions.AbstractGameAction.AttackEffect;
 
-public class AttackEffects extends eatyourbeets.effects.AttackEffects
+public class AttackEffects
 {
     private static final HashMap<AttackEffect, AttackEffectData> map = new HashMap();
     private static final PCLImages.Effects IMAGES = GR.PCL.Images.Effects;
@@ -240,7 +240,7 @@ public class AttackEffects extends eatyourbeets.effects.AttackEffects
         return data;
     }
 
-    protected static class AttackEffectData extends eatyourbeets.effects.AttackEffects.AttackEffectData
+    protected static class AttackEffectData
     {
         private String[] sounds;
         private FuncT2<EYBEffect, Float, Float> createVFX;

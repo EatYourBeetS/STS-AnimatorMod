@@ -3,11 +3,13 @@ package pinacolada.resources.pcl.misc;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
+import eatyourbeets.utilities.JUtils;
 import pinacolada.cards.base.*;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,6 +109,10 @@ public class PCLRuntimeLoadout
 
     public Map<String, AbstractCard> GetCardPoolInPlay() {
         return canEnableExpansion && expansionEnabled ? ExpandedCards : BaseCards;
+    }
+
+    public ArrayList<AbstractCard> GetSeenCards(Map<String, AbstractCard> source) {
+        return JUtils.Filter(source.values(), c -> c.isSeen);
     }
 
     public AbstractCard BuildCard()

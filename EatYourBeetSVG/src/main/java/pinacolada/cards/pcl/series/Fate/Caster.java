@@ -8,7 +8,7 @@ import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.stances.DesecrationStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -65,7 +65,7 @@ public class Caster extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
-        PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.Resistance, -secondaryValue);
+        PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Resistance, -secondaryValue);
 
         if (DesecrationStance.IsActive() || info.IsSynergizing)
         {

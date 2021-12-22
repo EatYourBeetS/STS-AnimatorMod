@@ -22,7 +22,7 @@ public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscrib
     {
         super(DATA);
 
-        Initialize(0, 1, 1, 3);
+        Initialize(0, 1, 1, 2);
         SetUpgrade(0, 1, 0, 0);
 
         SetAffinity_Red(1);

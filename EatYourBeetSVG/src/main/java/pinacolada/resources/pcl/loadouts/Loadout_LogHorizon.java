@@ -23,9 +23,14 @@ public class Loadout_LogHorizon extends PCLLoadout
         AddStarterCard(Serara.DATA, 6);
         AddStarterCard(Marielle.DATA, 7);
         AddStarterCard(Naotsugu.DATA, 8);
+        AddStarterCard(IsuzuTonan.DATA, 9);
         AddStarterCard(RundelhausCode.DATA, 11);
         AddStarterCard(Nyanta.DATA, 11);
+        AddStarterCard(Rayneshia.DATA, 13);
         AddStarterCard(Shiroe.DATA, 20);
+        AddStarterCard(Akatsuki.DATA, 22);
+        AddStarterCard(Soujiro.DATA, 24);
+        AddStarterCard(Krusty.DATA, 25);
         AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_Shame.DATA, -7);
     }

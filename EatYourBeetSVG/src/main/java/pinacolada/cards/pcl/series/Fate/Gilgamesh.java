@@ -45,9 +45,9 @@ public class Gilgamesh extends PCLCard implements OnRelicObtainedSubscriber
         Initialize(3, 0, 1, 25);
         SetUpgrade(1, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
-        SetAffinity_Green(1);
+        SetAffinity_Green(1, 0, 1);
 
         SetUnique(true, true);
 

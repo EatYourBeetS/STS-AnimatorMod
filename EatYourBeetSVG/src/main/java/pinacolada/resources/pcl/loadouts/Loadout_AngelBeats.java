@@ -1,4 +1,4 @@
-package pinacolada.resources.pcl.loadouts.beta;
+package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
@@ -25,7 +25,13 @@ public class Loadout_AngelBeats extends PCLLoadout
         AddStarterCard(MasamiIwasawa.DATA, 5);
         AddStarterCard(Yusa.DATA, 6);
         AddStarterCard(YuzuruOtonashi.DATA, 6);
+        AddStarterCard(EriShiina.DATA, 11);
+        AddStarterCard(Hisako.DATA, 12);
+        AddStarterCard(ShioriSekine.DATA, 12);
+        AddStarterCard(Yui.DATA, 15);
         AddStarterCard(YuriNakamura.DATA, 18);
+        AddStarterCard(KanadeTachibana.DATA, 21);
+        AddStarterCard(AyatoNaoi.DATA, 26);
         AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_Depression.DATA, -6);
     }

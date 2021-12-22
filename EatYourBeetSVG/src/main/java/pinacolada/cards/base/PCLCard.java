@@ -479,6 +479,9 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         if (cooldown != null && cooldown.canProgressFromExhaustPile) {
             PCLCombatStats.onStartOfTurnPostDraw.Subscribe(this);
         }
+        if (hasTag(AFTERLIFE)) {
+            AfterLifeMod.Add(this);
+        }
         // Called at the start of a fight, or when a card is created by MakeTempCard.
     }
 
@@ -823,15 +826,8 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     }
 
     public void SetAfterlife(boolean value) {
-        SetAfterlife(value, true);
-    }
-
-    public void SetAfterlife(boolean value, boolean inCombat)
-    {
         SetTag(AFTERLIFE, value);
-
-        if (inCombat && value)
-        {
+        if (value) {
             AfterLifeMod.Add(this);
         }
     }

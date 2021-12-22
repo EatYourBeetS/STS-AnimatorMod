@@ -10,7 +10,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
-import pinacolada.cards.pcl.special.Miracle;
+import pinacolada.cards.pcl.replacement.Miracle;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 

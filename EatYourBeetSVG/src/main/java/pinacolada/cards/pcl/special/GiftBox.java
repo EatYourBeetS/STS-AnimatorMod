@@ -2,18 +2,17 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.screens.stats.CharStat;
+import eatyourbeets.utilities.FieldInfo;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.relics.PCLEnchantableRelic;
-import pinacolada.relics.pcl.AbstractMissingPiece;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
+import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
@@ -22,6 +21,7 @@ public class GiftBox extends PCLCard
     public static final PCLCardData DATA = Register(GiftBox.class)
             .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS);
+    private static final FieldInfo<Prefs> _prefs = PCLJUtils.GetField("pref", CharStat.class);
 
     public GiftBox()
     {
@@ -52,23 +52,9 @@ public class GiftBox extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         //TODO: Make this into an actual card and not something for testing
-        UnlockTracker.addScore(GR.Enums.Characters.THE_FOOL, 9999);
-        AbstractDungeon.isAscensionMode = true;
-        AbstractDungeon.ascensionLevel = 18;
-
         for (PCLAffinity af : PCLAffinity.Extended()) {
-            PCLActions.Bottom.AddAffinity(af, 99);
-            PCLActions.Bottom.StackAffinityPower(af, 99);
+            PCLActions.Bottom.AddAffinity(af, 77);
+            PCLActions.Bottom.StackAffinityPower(af, 10);
         }
-
-        PCLEnchantableRelic enchantable = PCLGameUtilities.GetRelic(PCLEnchantableRelic.class);
-        if (enchantable != null) {
-            enchantable.AddCounter(99);
-        }
-        AbstractMissingPiece mp = PCLGameUtilities.GetRelic(AbstractMissingPiece.class);
-        if (mp != null) {
-            mp.AddCounter(99);
-        }
-
     }
 }

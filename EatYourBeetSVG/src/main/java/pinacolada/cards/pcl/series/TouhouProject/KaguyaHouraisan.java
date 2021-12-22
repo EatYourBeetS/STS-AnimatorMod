@@ -14,7 +14,10 @@ import java.util.List;
 
 public class KaguyaHouraisan extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KaguyaHouraisan.class).SetSkill(1,CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(KaguyaHouraisan.class)
+            .SetSkill(1,CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
                 for (PCLCardData d : AffinityToken.GetCards())

@@ -2,11 +2,11 @@ package pinacolada.cards.pcl.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.orbs.pcl.Earth;
-import pinacolada.powers.common.EnchantedArmorPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -22,7 +22,7 @@ public class Gargantua extends PCLCard
     {
         super(DATA);
 
-        Initialize(10, 11, 2, 15);
+        Initialize(10, 11, 2, 6);
         SetUpgrade(2, 2, 0, 0);
 
         SetAffinity_Red(1,0,2);
@@ -53,7 +53,7 @@ public class Gargantua extends PCLCard
 
         if (PCLGameUtilities.CanSpendAffinityPower(PCLAffinity.Orange, CHARGE_COST) && info.TryActivateLimited()) {
             PCLGameUtilities.TrySpendAffinityPower(PCLAffinity.Orange, CHARGE_COST);
-            PCLActions.Bottom.StackPower(new EnchantedArmorPower(p, secondaryValue));
+            PCLActions.Bottom.StackPower(new PlatedArmorPower(p, secondaryValue));
         }
 
     }

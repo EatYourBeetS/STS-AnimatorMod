@@ -36,7 +36,7 @@ public class Megumin extends PCLCard
     {
         super(DATA);
 
-        Initialize(15, 0, 5, ATTACK_TURNS);
+        Initialize(14, 0, 4, ATTACK_TURNS);
         SetUpgrade( 2, 0);
 
         SetAffinity_Blue(2, 0, 4);
@@ -50,7 +50,7 @@ public class Megumin extends PCLCard
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 3 == 0)
+        if (timesUpgraded % 4 == 0)
         {
             upgradeMagicNumber(1);
         }

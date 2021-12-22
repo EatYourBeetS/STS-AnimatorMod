@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -25,8 +22,9 @@ public class Verdia extends PCLCard
         Initialize(1, 20, 1);
         SetUpgrade(1, 1, 0);
 
-        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Orange(0, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Red, 4);
         SetAffinityRequirement(PCLAffinity.Dark, 4);
@@ -45,8 +43,9 @@ public class Verdia extends PCLCard
                 {
                     for (AbstractCard c : cards)
                     {
-                        PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Red, affinities.GetScaling(PCLAffinity.Red,true));
-                        PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Dark, affinities.GetScaling(PCLAffinity.Dark,true));
+                        for (PCLCardAffinity af : affinities.List) {
+                            PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Red, affinities.GetScaling(af.type,false));
+                        }
                         c.flash();
                     }
                 });

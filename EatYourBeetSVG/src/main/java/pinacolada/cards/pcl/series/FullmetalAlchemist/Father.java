@@ -12,8 +12,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCardTooltip;
-import pinacolada.powers.PowerHelper;
-import pinacolada.powers.common.GenesisPower;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -33,7 +32,7 @@ public class Father extends PCLCard implements OnAddToDeckListener, OnAddingToCa
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 46);
+        Initialize(0, 0, 10, 46);
         SetCostUpgrade(-1);
 
         SetAffinity_Dark(2);
@@ -81,8 +80,8 @@ public class Father extends PCLCard implements OnAddToDeckListener, OnAddingToCa
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (PCLGameUtilities.HasRelic(relic.relicId)) {
-            PCLActions.Bottom.StackPower(new GenesisPower(player, 1));
-            PCLActions.Bottom.ApplyPower(TargetHelper.Enemies(), PowerHelper.Strength, 1);
+            PCLActions.Bottom.GainTechnic(magicNumber);
+            PCLActions.Bottom.ApplyPower(TargetHelper.Enemies(), PCLPowerHelper.Strength, 1);
         }
         else {
             p.decreaseMaxHealth((int)Math.ceil(p.maxHealth * (secondaryValue / 100f)));

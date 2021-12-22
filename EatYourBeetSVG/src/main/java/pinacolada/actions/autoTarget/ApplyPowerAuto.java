@@ -8,14 +8,14 @@ import eatyourbeets.actions.EYBActionAutoTarget;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.powers.ApplyPower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
 {
     public static final String[] TEXT = ApplyPowerAction.TEXT;
 
-    protected PowerHelper powerHelper;
+    protected PCLPowerHelper powerHelper;
 
     protected boolean chooseRandomTarget;
     protected boolean ignoreArtifact;
@@ -25,7 +25,7 @@ public class ApplyPowerAuto extends EYBActionAutoTarget<AbstractPower>
     protected boolean canStack = true;
     protected boolean faster;
 
-    public ApplyPowerAuto(TargetHelper targetHelper, PowerHelper powerHelper, int amount)
+    public ApplyPowerAuto(TargetHelper targetHelper, PCLPowerHelper powerHelper, int amount)
     {
         super(ActionType.POWER);
 

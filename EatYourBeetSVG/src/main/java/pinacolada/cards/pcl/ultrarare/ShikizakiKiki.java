@@ -14,7 +14,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_UltraRare;
 import pinacolada.effects.SFX;
 import pinacolada.powers.PCLClickablePower;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.utilities.PCLActions;
 
@@ -97,8 +97,8 @@ public class ShikizakiKiki extends PCLCard_UltraRare
         @Override
         public void OnUse(AbstractMonster m, int cost)
         {
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryStrength, GAIN);
-            PCLActions.Bottom.StackPower(TargetHelper.Player(), PowerHelper.TemporaryDexterity, GAIN);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, GAIN);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryDexterity, GAIN);
 
             PCLActions.Bottom.SFX(SFX.ATTACK_FIRE, 0.5f, 0.6f).SetDuration(0.25f, true);
             PCLActions.Bottom.SFX(SFX.ATTACK_AXE, 0.5f, 0.6f).SetDuration(0.25f, true);

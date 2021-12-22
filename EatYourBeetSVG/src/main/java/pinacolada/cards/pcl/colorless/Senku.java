@@ -15,7 +15,7 @@ import eatyourbeets.utilities.TargetHelper;
 import eatyourbeets.utilities.WeightedList;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PowerHelper;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.FreezingPower;
 import pinacolada.powers.common.ShacklesPower;
@@ -92,7 +92,7 @@ public class Senku extends PCLCard
         }
 
         for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
-            PowerHelper helper = PowerHelper.ALL.get(debuff.getKey());
+            PCLPowerHelper helper = PCLPowerHelper.ALL.get(debuff.getKey());
             if (helper != null) {
                 if (m != null) {
                     PCLActions.Bottom.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, m.hb.cX, m.hb.cY), 0.2f);
@@ -125,7 +125,7 @@ public class Senku extends PCLCard
             }
 
             for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
-                PowerHelper helper = PowerHelper.ALL.get(debuff.getKey());
+                PCLPowerHelper helper = PCLPowerHelper.ALL.get(debuff.getKey());
                 builder.append(" NL ");
                 builder.append(this.attackTarget.equals(eatyourbeets.cards.base.EYBCardTarget.ALL) ? ACTIONS.ApplyToALL(debuff.getValue(), helper.Tooltip, true) : ACTIONS.Apply(debuff.getValue(), helper.Tooltip, true));
             }

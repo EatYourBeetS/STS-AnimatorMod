@@ -19,7 +19,6 @@ import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
-import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
@@ -387,7 +386,7 @@ public class Kirby extends PCLCard implements
             SetExhaust(true);
         }
         if (card.hasTag(AFTERLIFE) && !card.hasTag(GR.Enums.CardTags.PURGE)) {
-            SetAfterlife(true, PCLGameUtilities.InGame() && PCLGameUtilities.InBattle());
+            SetAfterlife(true);
         }
         if (card.hasTag(AUTOPLAY)) {
             SetAutoplay(true);

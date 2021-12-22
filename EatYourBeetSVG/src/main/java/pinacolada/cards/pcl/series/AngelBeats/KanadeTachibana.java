@@ -15,6 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class KanadeTachibana extends PCLCard
 {
     public static final PCLCardData DATA = Register(KanadeTachibana.class).SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final int MATCH_COMBO = 3;
 
     public KanadeTachibana()
     {
@@ -30,6 +31,12 @@ public class KanadeTachibana extends PCLCard
     }
 
     @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(MATCH_COMBO);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
@@ -38,7 +45,7 @@ public class KanadeTachibana extends PCLCard
         .SetOptions(false, true)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0]).AddCallback(
                 cards -> {
-                    boolean canGiveAfterlife = info.IsSynergizing && CombatStats.TryActivateLimited(cardID);
+                    boolean canGiveAfterlife = PCLGameUtilities.GetCurrentMatchCombo() >= MATCH_COMBO && CombatStats.TryActivateLimited(cardID);
 
                     for (AbstractCard c : cards) {
                         PCLCard card = PCLJUtils.SafeCast(c, PCLCard.class);
@@ -48,7 +55,7 @@ public class KanadeTachibana extends PCLCard
                             card.flash();
 
                             if (canGiveAfterlife) {
-                                card.SetAfterlife(true, true);
+                                card.SetAfterlife(true);
                             }
                         }
                     }

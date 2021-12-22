@@ -25,10 +25,17 @@ public class RinneSonogami extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 9, 3, 1);
-        SetUpgrade(0, 2, 2);
+        Initialize(0, 9, 4, 1);
+        SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 0, 2);
+        SetEthereal(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetEthereal(false);
     }
 
     @Override

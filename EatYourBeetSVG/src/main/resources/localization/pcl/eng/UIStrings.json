@@ -289,7 +289,9 @@
 			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions.",
 			"Filters",
 			"Any",
-			"Replace cards with Fool equivalents"
+			"Replace Base game/Animator cards when playing as the Fool",
+			"Replace Fool cards when playing as the Animator",
+			"Enable Current Affinity glow when no Matches are available"
 		]
 	},
 
@@ -326,8 +328,9 @@
 	{
 		"TEXT":
 		[
-			"Click this to learn more about #yAffinities.",
-			"Whenever you play a card, the counters of each of its #yAffinities will increase by 1. Spend counters to activate effects requiring them. NL Once per turn, when a card #yMatches, gain the power shown on the right."
+			"Whenever you play a card, the #yAffinity #yCounter of each of its #yAffinities will increase by #b1 (shown on the left). #yCounters are spent to active #yPay effects on cards and #yInteractables. If a #yPay effect is listed as requiring [A-Gen], you may pay any #yAffinity to activate it.",
+			"If the card #yMatches, the #yAffinity #yPower of each of its #yAffinities will also increase by #b1 (shown on the right). For every #b5 stacks of a #yPower gained, increase its #yPower #yLevel by 1.",
+			"Whenever you gain a #yPower #yLevel, gain #b1 #yUse of the #yAffinity #yPower, which can be used any time during your turn by clicking on the power's icon. Each #yLevel also increases the effectiveness of its corresponding #yAffinity #yScaling by 1 and allows you to hold an additional #yPower #yUse."
 		]
 	},
 
@@ -343,7 +346,8 @@
 			"Types",
 			"Affinities",
             "Scaling",
-            "Amount"
+            "Amount",
+            "Origins"
 		]
 	},
 

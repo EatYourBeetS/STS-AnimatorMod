@@ -290,13 +290,13 @@
 	},
 	"pcl:UsefulBox":
 	{
-		"DESCRIPTIONS": ["On your first #yMatch each turn, draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["On your first #yMatch each turn, draw #b1 card. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)"],
 		"FLAVOR": "A box that is useful.",
 		"NAME": "Useful Box"
 	},
 	"pcl:VeryUsefulBox":
 	{
-		"DESCRIPTIONS": ["Replaces #yUseful #yBox. NL On your first #yMatch each turn, gain [E] and draw #b1 card. NL Gains charges whenever you defeat a boss.","When #pRight #pClicked: Spend #b1 charge to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["Replaces #yUseful #yBox. NL On your first #yMatch each turn, gain [E] and draw #b1 card. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)"],
 		"FLAVOR": "A box that is very useful.",
 		"NAME": "Very-Useful Box"
 	},

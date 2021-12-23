@@ -29,10 +29,11 @@ public class Venti extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 2);
+        Initialize(0, 1, 2, 1);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Star(1, 0, 0);
         SetAffinity_Green(0,0,2);
+        SetAffinity_Light(0, 0, 1);
 
         SetEthereal(true);
     }
@@ -113,7 +114,7 @@ public class Venti extends PCLCard
         public void atEndOfTurn(boolean isPlayer)
         {
             super.atEndOfTurn(isPlayer);
-            RemovePower(PCLActions.Delayed);
+            ReducePower(1);
         }
     }
 

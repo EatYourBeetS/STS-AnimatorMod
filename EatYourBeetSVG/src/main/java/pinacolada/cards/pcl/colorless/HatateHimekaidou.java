@@ -25,19 +25,20 @@ public class HatateHimekaidou extends PCLCard implements OnStartOfTurnPostDrawSu
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 0);
+        Initialize(0, 1, 2, 0);
         SetUpgrade(0, 0, 0, 0);
         SetAffinity_Green(1, 0 ,0);
         SetAffinity_Light(1, 0 ,0);
-        SetAffinity_Star(0, 0 ,1);
+        SetAffinity_Star(0, 0 ,2);
         SetHaste(true);
+        SetEthereal(true);
         SetExhaust(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetRetainOnce(true);
+        SetEthereal(false);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class HatateHimekaidou extends PCLCard implements OnStartOfTurnPostDrawSu
     {
         PCLActions.Bottom.GainBlock(block);
 
-        PCLActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        PCLActions.Bottom.DiscardFromHand(name, 1, false)
                 .SetOptions(true, true, true)
                 .AddCallback(cards -> {
                     HatateHimekaidou other = (HatateHimekaidou) makeStatEquivalentCopy();
@@ -56,7 +57,7 @@ public class HatateHimekaidou extends PCLCard implements OnStartOfTurnPostDrawSu
                         }
                         PCLActions.Bottom.ModifyTag(c, HASTE, true);
                         PCLActions.Bottom.SelectFromPile(name, 1, player.discardPile)
-                                .SetFilter(c2 -> c2.costForTurn == c.costForTurn)
+                                .SetFilter(c2 -> c2.costForTurn == c.costForTurn && (c2.baseDamage > 0 || c2.baseBlock > 0))
                                 .SetOptions(false, true)
                                 .AddCallback(cards2 -> {
                                     if (cards2.size() > 0) {

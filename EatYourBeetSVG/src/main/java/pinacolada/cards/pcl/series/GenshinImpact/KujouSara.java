@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.utilities.PCLActions;
 
@@ -48,7 +48,7 @@ public class KujouSara extends PCLCard
         });
 
         if (IsStarter() && info.TryActivateLimited()) {
-            PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
+            PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
         }
     }
 }

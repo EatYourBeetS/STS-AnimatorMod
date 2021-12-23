@@ -28,8 +28,7 @@ public class HolyGrail extends PCLCard_UltraRare implements OnBattleEndSubscribe
         Initialize(0, 0, 3, 3);
         SetUpgrade(0, 0, 0, -1);
 
-        SetAffinity_Light(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Star(1);
 
         SetInnate(true);
         SetRetain(true);

@@ -42,7 +42,7 @@
 	},
 	"pcl:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["When a [A-Dark] card #yMatches: Gain #b{0} [D]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to reduce a single enemy's Attack damage by #b{2}% and damage resistance by #b{3}%.{4}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["If a [A-Dark] card #yMatches: Gain #b{0} [D]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to reduce a single enemy's Attack damage by #b{2}% and damage resistance by #b{3}%.{4}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Desecration"
 	},
 	"pcl:ElectrifiedPower":
@@ -57,7 +57,7 @@
 	},
 	"pcl:EndurancePower":
 	{
-	  "DESCRIPTIONS": ["When a [A-Orange] card #yMatches: Gain #b{0} [O]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["If a [A-Orange] card #yMatches: Gain #b{0} [O]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase the [Block] of the next card played by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Endurance"
 	},
 	"pcl:EnergizedPower":
@@ -117,7 +117,7 @@
 	},
 	"pcl:InvocationPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Light] card #yMatches: Gain #b{0} [L]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase your #yCommon #yBuffs and #yDebuff #yBonuses by #b{2}% this turn.{3}","NL #rThis #rpower #ris #rdisabled.","NL #pCurrent #pBonuses:{0}"],
 		"NAME": "Invocation"
 	},
 	"pcl:IceElementPower":
@@ -137,7 +137,7 @@
 	},
 	"pcl:MightPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Red] card #yMatches: Gain #b{0} [R]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Red] card #yMatches: Gain #b{0} [R]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase the damage of the next #yAttack played this turn by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Might"
 	},
 	"pcl:PhasingPower":
@@ -157,7 +157,7 @@
     },
 	"pcl:RerollAffinityPower":
 	{
-		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}]. NL #pMatch #pCombo: {2} NL NL Make a #yMatch by playing a card with [{0}]. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity."],
+		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}] NL #pMatch #pCombo: {2} NL NL {3}. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity.","Make a #yMatch by playing a card with [{0}]","Make a #yMatch by playing any card with [A-Gen]"],
 		"NAME": "Reroll Match"
 	},
 	"pcl:ShacklesPower":
@@ -172,7 +172,7 @@
 	},
 	"pcl:SuperchargePower":
 	{
-		"DESCRIPTIONS": ["When a [A-Light] card #yMatches: Gain #b{0} [L]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Light] card #yMatches: Gain #b{0} [L]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase the amount of the next #yCommon #yBuff gained by #b{2}%.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Supercharge"
 	},
 	"pcl:SupportDamagePower":
@@ -192,7 +192,7 @@
 	},
 	"pcl:TechnicPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Silver] card #yMatches: Gain #b{0} [S]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to gain #b{2} additional [E] each turn.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Silver] card #yMatches: Gain #b{0} [S]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to gain #b{2} additional [E] each turn.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Technic"
 	},
 	"pcl:TemporaryDesecrationPower":
@@ -227,7 +227,7 @@
 	},
 	"pcl:VelocityPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Green] card #yMatches: Gain #b{0} [G]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Green] card #yMatches: Gain #b{0} [G]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to draw #b{2} card(s).{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Velocity"
 	},
 	"pcl:VitalityPower":
@@ -252,7 +252,7 @@
 	},
 	"pcl:WisdomPower":
 	{
-		"DESCRIPTIONS": ["When a [A-Blue] card #yMatches: Gain #b{0} [B]. At #b{1} stacks, this gains #b1 Level and #b1 use. If you click this #yPower: Spend #b1 use to increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Blue] card #yMatches: Gain #b{0} [B]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Wisdom"
 	},
 		"pcl:AinzPower":

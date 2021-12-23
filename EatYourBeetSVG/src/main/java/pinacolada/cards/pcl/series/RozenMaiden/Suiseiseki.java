@@ -1,6 +1,5 @@
 package pinacolada.cards.pcl.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
@@ -30,12 +29,6 @@ public class Suiseiseki extends PCLCard
         SetAffinity_Light(1, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Orange, 7);
-    }
-
-    @Override
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        return Souseiseki.DATA.ID.equals(other.cardID) || super.HasDirectSynergy(other);
     }
 
     @Override

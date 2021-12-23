@@ -78,7 +78,9 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         this.scalingMultiplier = 1;
         this.currentLevel = 0;
         this.bonusLevel = 0;
-        this.triggerCondition.SetUses(0, false, false);
+        this.triggerCondition
+                .SetUses(0, false, false)
+                .SetCheckCondition(__ -> !isActive);
 
         Initialize(0, PowerType.BUFF, true);
     }

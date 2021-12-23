@@ -8,13 +8,14 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.misc.CardMods.AfterLifeMod;
 import pinacolada.utilities.PCLActions;
 
 import static pinacolada.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class ShioriSekine extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ShioriSekine.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(ShioriSekine.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.Random).SetSeriesFromClassPackage();
 
     public ShioriSekine()
     {
@@ -50,10 +51,13 @@ public class ShioriSekine extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Top.PlayFromPile(name, magicNumber, m, p.exhaustPile).SetOptions(true, false).SetFilter(c -> c.hasTag(AFTERLIFE)).AddCallback(cards -> {
-            for (AbstractCard c : cards) {
-                PCLActions.Top.Purge(c);
-            }
+        PCLActions.Bottom.PlayFromPile(name, magicNumber, m, p.exhaustPile)
+                .SetOptions(true, false)
+                .SetFilter(c -> c.hasTag(AFTERLIFE) || AfterLifeMod.IsAdded(c))
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        PCLActions.Last.Purge(c).ShowEffect(true);
+                    }
         });
     }
 }

@@ -172,7 +172,7 @@
 		},
 		"pcl:KanadeTachibana":
 		{
-			"DESCRIPTION": "Gain !S! [L]. {Fetch} !M! cards from your discard pile and give them <L>. || <LIM>. {0} Match Combo: Also give them {Afterlife}.",
+			"DESCRIPTION": "Gain !S! [L]. {Fetch} !M! cards from your discard pile and give them <L>. || <LIM>. {0} Match Combo: Also give them [Afterlife].",
 			"EXTENDED_DESCRIPTION": ["Choose cards to put into your hand.", "Choose a card to give Afterlife."],
 			"NAME": "Kanade Tachibana"
 		},
@@ -188,7 +188,7 @@
 		},
 		"pcl:ShioriSekine":
 		{
-			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random {Afterlife} card in your Exhaust pile and ** {Purge} it. || On Discard, Gain [O].",
+			"DESCRIPTION": "Unplayable if you have not Exhausted a card this turn. Play a random [Afterlife] card in your Exhaust pile and {Purge} it. || On Discard, Gain [O].",
 			"NAME": "Shiori Sekine"
 		},
 		"pcl:TK":
@@ -614,7 +614,7 @@
 		},
 		"pcl:SwordfishII":
 		{
-			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || On Discard or Played, Motivate 1.",
+			"DESCRIPTION": "At the end of your turn, deal !M! damage to ALL enemies for each Strike played this turn. || On Discard: Motivate 1.",
 			"NAME": "Swordfish II"
 		},
 		"pcl:TakashiNatsume":
@@ -1194,7 +1194,7 @@
 		},
 		"pcl:Suiseiseki":
 		{
-			"DESCRIPTION": "Add {Slimed} to your draw pile. ** !A! <O>: Give it {~Retain}. || <LIM>. If the last card played was {Souseiseki}: Play this ** card again.",
+			"DESCRIPTION": "Add {Slimed} to your draw pile. ** !A! <O>: Give it {~Retain}. || <LIM>. If the last card played was {Souseiseki}: Play this card again.",
 			"NAME": "Suiseiseki"
 		},
 		"pcl:TomoeKashiwaba":
@@ -1256,9 +1256,9 @@
 		},
 		"pcl:HatateHimekaidou":
 		{
-			"DESCRIPTION": "Discard !M! cards. Give them [~Haste]. For each: Choose a card in your discard pile with a matching cost to Imitate next turn.",
+			"DESCRIPTION": "Discard a card. Give it [~Haste]. Choose an Attack or [Block] card in your discard pile that matches its cost to Imitate next turn.",
 			"NAME": "Hatate Himekaidou",
-			"UPGRADE_DESCRIPTION": "Discard !M! cards. Give them [~Haste] and +1 <LSC>. For each: Choose a card in your discard pile with a matching cost to Imitate next turn."
+			"UPGRADE_DESCRIPTION": "Discard a card. Give it [~Haste] and +1 <LSC>. Choose an Attack or [Block] card in your discard pile that matches its cost to Imitate next turn."
 		},
 		"pcl:HinanawiTenshi":
 		{
@@ -1385,7 +1385,7 @@
 		"pcl:Emilia":
 		{
 			"DESCRIPTION": "Evoke ALL Orbs{0}, then Channel !M! [Frost]. || Next turn: Gain 1 [Orb Slot] for each unique Orb.",
-			"EXTENDED_DESCRIPTION": [" with +!S! [Focus]",""],
+			"EXTENDED_DESCRIPTION": [""," with +!S! [Focus]"],
 			"NAME": "Emilia"
 		},
 		"pcl:HarukoHaruhara":
@@ -3397,7 +3397,7 @@
 		},
 		"pcl:HolyGrail":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Refill your Energy. ** Lose !S! Max HP. || If you end the combat ** with this card in hand: ** Gain 2 Max HP.",
+			"DESCRIPTION": "<DRW-M>. ** Refill your [E]. ** Lose !S! Max [HP]. || If you end the combat ** with this card in hand: ** Gain 2 Max [HP].",
 			"NAME": "The Grail"
 		},
 		"pcl:JeanneDArc":

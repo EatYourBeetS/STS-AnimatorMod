@@ -11,7 +11,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.monsters.PCLEnemyIntent;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.powers.replacement.PCLVulnerablePower;
 import pinacolada.utilities.PCLActions;
@@ -50,7 +50,7 @@ public class Mayuri extends PCLCard
         PCLActions.Bottom.ApplyVulnerable(TargetHelper.Player(), magicNumber).AddCallback(() -> {
             for (PCLEnemyIntent intent : PCLGameUtilities.GetPCLIntents()) {
                 if (CheckSpecialCondition(true)) {
-                    PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
+                    PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
                     break;
                 }
             }
@@ -59,7 +59,7 @@ public class Mayuri extends PCLCard
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        float estimatedDifference = player.hasPower(VulnerablePower.POWER_ID) ? 1f : 1f + (PCLVulnerablePower.ATTACK_MULTIPLIER + PCLVulnerablePower.PLAYER_MODIFIER) / 100f;
+        float estimatedDifference = player.hasPower(VulnerablePower.POWER_ID) ? 1f : 1f + (PCLVulnerablePower.ATTACK_MULTIPLIER + PCLCombatStats.GetEffectBonus(VulnerablePower.POWER_ID)) / 100f;
         for (PCLEnemyIntent intent : PCLGameUtilities.GetPCLIntents()) {
             if (intent.GetDamage(true) * estimatedDifference > player.maxHealth / 4f) {
                 return true;

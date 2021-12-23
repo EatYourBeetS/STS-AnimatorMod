@@ -25,17 +25,17 @@ public class PurgeAnywhere extends EYBActionWithCallback<Boolean>
 
     public PurgeAnywhere(AbstractCard card)
     {
-        this(card, null, 3);
+        this(card, null, 1);
     }
 
     public PurgeAnywhere(UUID uuid)
     {
-        this(null, uuid, 3);
+        this(null, uuid, 1);
     }
 
     public PurgeAnywhere(AbstractCard card, UUID uuid, int repeat)
     {
-        super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_LONG);
+        super(ActionType.CARD_MANIPULATION, repeat > 1 ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_MED);
 
         this.uuid = uuid;
         this.card = card;

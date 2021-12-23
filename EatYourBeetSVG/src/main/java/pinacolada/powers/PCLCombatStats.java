@@ -14,6 +14,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.BlueCandle;
+import com.megacrit.cardcrawl.relics.OddMushroom;
+import com.megacrit.cardcrawl.relics.PaperCrane;
+import com.megacrit.cardcrawl.relics.PaperFrog;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBPower;
@@ -26,6 +29,7 @@ import pinacolada.cards.base.PCLCardCooldown;
 import pinacolada.interfaces.subscribers.*;
 import pinacolada.patches.CardGlowBorderPatches;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
+import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.ResistancePower;
 import pinacolada.powers.common.VitalityPower;
 import pinacolada.relics.PCLRelic;
@@ -37,11 +41,20 @@ import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 // This class handles events specific to PCL cards
 // Shared events are handled by the existing CombatStats class
 public class PCLCombatStats extends EYBPower implements InvisiblePower
 {
+    public enum Type {
+        Effect,
+        PassiveDamage,
+        PlayerEffect
+    }
+
     protected static final int PRIORITY = -3000;
     private static final FieldInfo<ArrayList<GameEvent<?>>> _eventsGetter = PCLJUtils.GetField("events", CombatStats.class);
     public static final String POWER_ID = GR.PCL.CreateID(CombatStats.class.getSimpleName());
@@ -57,7 +70,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnDamageOverrideSubscriber> onDamageOverride = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnGainAffinitySubscriber> onGainAffinity = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnGainTempHPSubscriber> onGainTempHP = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnGainTriggerablePowerBonusSubscriber> onGainTriggerablePowerBonus = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnGainPowerBonusSubscriber> onGainTriggerablePowerBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnMatchBonusSubscriber> onMatchBonus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbApplyFocusSubscriber> onOrbApplyFocus = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnOrbApplyLockOnSubscriber> onOrbApplyLockOn = RegisterEvent(new GameEvent<>());
@@ -107,6 +120,9 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
 
+    protected static final HashMap<String, Integer> EFFECT_BONUSES = new HashMap<>();
+    protected static final HashMap<String, Integer> PASSIVE_DAMAGE_BONUSES = new HashMap<>();
+    protected static final HashMap<String, Integer> PLAYER_EFFECT_BONUSES = new HashMap<>();
     private static final ArrayList<AbstractGameAction> cachedActions = new ArrayList<>();
 
     protected static <T> GameEvent<T> RegisterEvent(GameEvent<T> event) {
@@ -136,6 +152,14 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         CardGlowBorderPatches.overrideColor = null;
         PCLCombatStats.MatchingSystem.Initialize();
         PCLCombatStats.MatchingSystem.SetLastCardPlayed(null);
+        EFFECT_BONUSES.clear();
+        PASSIVE_DAMAGE_BONUSES.clear();
+        PLAYER_EFFECT_BONUSES.clear();
+
+        // Add effects for vanilla relics
+        AddEffectBonus(VulnerablePower.POWER_ID, PCLGameUtilities.HasRelicEffect(PaperFrog.ID) ? 25 : 0);
+        AddEffectBonus(WeakPower.POWER_ID, PCLGameUtilities.HasRelicEffect(PaperCrane.ID) ? 15 : 0);
+        AddPlayerEffectBonus(VulnerablePower.POWER_ID, PCLGameUtilities.HasRelicEffect(OddMushroom.ID) ? -25 : 0);
     }
 
     public static void RefreshPCL()
@@ -349,11 +373,11 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         }
     }
 
-    public static int OnGainTriggerablePowerBonus(String powerID, PCLTriggerablePower.Type gainType, int amount)
+    public static int OnGainTriggerablePowerBonus(String powerID, PCLCombatStats.Type gainType, int amount)
     {
-        for (OnGainTriggerablePowerBonusSubscriber s : onGainTriggerablePowerBonus.GetSubscribers())
+        for (OnGainPowerBonusSubscriber s : onGainTriggerablePowerBonus.GetSubscribers())
         {
-            amount = s.OnGainTriggerablePowerBonus(powerID, gainType, amount);
+            amount = s.OnGainPowerBonus(powerID, gainType, amount);
         }
         return amount;
     }
@@ -503,5 +527,57 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
     {
         GR.PCL.Dungeon.UpdateLongestMatchCombo(MatchingSystem.AffinityMeter.GetLongestMatchCombo());
         ClearPCLStats();
+    }
+
+    public static int GetEffectBonus(String powerID) {
+        return EFFECT_BONUSES.getOrDefault(powerID, 0);
+    }
+
+    public static int GetPassiveDamageBonus(String powerID) {
+        return PASSIVE_DAMAGE_BONUSES.getOrDefault(powerID, 0);
+    }
+
+    public static int GetPlayerEffectBonus(String powerID) {
+        return PLAYER_EFFECT_BONUSES.getOrDefault(powerID, 0);
+    }
+
+    public static Set<Map.Entry<String,Integer>> GetAllEffectBonuses() {
+        return EFFECT_BONUSES.entrySet();
+    }
+
+    public static Set<Map.Entry<String,Integer>> GetAllPassiveDamageBonuses() {
+        return PASSIVE_DAMAGE_BONUSES.entrySet();
+    }
+
+    public static Set<Map.Entry<String,Integer>> GetAllPlayerEffectBonuses() {
+        return PLAYER_EFFECT_BONUSES.entrySet();
+    }
+
+    public static void AddEffectBonus(String powerID, int multiplier)
+    {
+        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.Effect, multiplier);
+
+        EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
+        if (BurningPower.POWER_ID.equals(powerID) || eatyourbeets.powers.common.BurningPower.POWER_ID.equals(powerID)) {
+            eatyourbeets.powers.common.BurningPower.AddPlayerAttackBonus(multiplier);
+        }
+
+        PCLGameUtilities.UpdatePowerDescriptions();
+    }
+
+    public static void AddPassiveDamageBonus(String powerID, int multiplier)
+    {
+        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PassiveDamage, multiplier);
+
+        PASSIVE_DAMAGE_BONUSES.merge(powerID, multiplier, Integer::sum);
+        PCLGameUtilities.UpdatePowerDescriptions();
+    }
+
+    public static void AddPlayerEffectBonus(String powerID, int multiplier)
+    {
+        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PlayerEffect, multiplier);
+
+        PLAYER_EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
+        PCLGameUtilities.UpdatePowerDescriptions();
     }
 }

@@ -2,10 +2,11 @@ package pinacolada.powers.common;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.FrailPower;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.replacement.PCLFrailPower;
-import pinacolada.powers.replacement.PCLVulnerablePower;
-import pinacolada.powers.replacement.PCLWeakPower;
 
 public class ResistancePower extends PCLPower
 {
@@ -96,17 +97,17 @@ public class ResistancePower extends PCLPower
     public void UpdatePercentage()
     {
         //Undo the previous changes made by this power
-        ImpairedPower.AddPlayerModifier(this.totalMultiplier);
-        PCLVulnerablePower.AddPlayerModifier(this.totalMultiplier);
-        PCLWeakPower.AddPlayerModifier(this.totalMultiplier2);
-        PCLFrailPower.AddPlayerModifier(this.totalMultiplier2);
+        PCLCombatStats.AddPlayerEffectBonus(ImpairedPower.POWER_ID, this.totalMultiplier);
+        PCLCombatStats.AddPlayerEffectBonus(VulnerablePower.POWER_ID, this.totalMultiplier);
+        PCLCombatStats.AddPlayerEffectBonus(WeakPower.POWER_ID, this.totalMultiplier2);
+        PCLCombatStats.AddPlayerEffectBonus(FrailPower.POWER_ID, this.totalMultiplier2);
 
         this.totalMultiplier = MULTIPLIER * this.amount;
         this.totalMultiplier2 = MULTIPLIER2 * this.amount;
 
-        ImpairedPower.AddPlayerModifier(-this.totalMultiplier);
-        PCLVulnerablePower.AddPlayerModifier(-this.totalMultiplier);
-        PCLWeakPower.AddPlayerModifier(-this.totalMultiplier2);
-        PCLFrailPower.AddPlayerModifier(-this.totalMultiplier2);
+        PCLCombatStats.AddPlayerEffectBonus(ImpairedPower.POWER_ID, -this.totalMultiplier);
+        PCLCombatStats.AddPlayerEffectBonus(VulnerablePower.POWER_ID, -this.totalMultiplier);
+        PCLCombatStats.AddPlayerEffectBonus(WeakPower.POWER_ID, -this.totalMultiplier2);
+        PCLCombatStats.AddPlayerEffectBonus(FrailPower.POWER_ID, -this.totalMultiplier2);
     }
 }

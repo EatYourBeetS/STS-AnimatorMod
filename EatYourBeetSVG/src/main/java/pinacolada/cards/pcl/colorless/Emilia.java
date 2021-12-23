@@ -47,14 +47,15 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
         if (timesUpgraded > 0) {
             if (form == 1) {
                 Initialize(0, 1, 2, 0);
-                SetUpgrade(0, 0, 0, 0);
-                SetCostUpgrade(-1);
+                SetUpgrade(0, 0, 0, 2);
+                SetCostUpgrade(0);
+                cost = 2;
                 this.cardText.OverrideDescription(cardData.Strings.DESCRIPTION, true);
             }
             else {
                 Initialize(0, 1, 2, 0);
                 SetUpgrade(0, 0, 0, 2);
-                SetCostUpgrade(0);
+                SetCostUpgrade(-1);
                 this.cardText.OverrideDescription(null, true);
             }
         }

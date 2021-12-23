@@ -185,6 +185,7 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
                             Enchantment e = (Enchantment) selection.get(0);
                             ApplyEnchantment(e);
                             flash();
+                            Use();
                         }
                     }));
             AddCounter(-1);
@@ -198,6 +199,7 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
         if (PCLGameUtilities.InBossRoom() && GetEnchantmentLevel() < 2)
         {
             AddCounter(1);
+            Use();
             flash();
         }
     }
@@ -210,6 +212,6 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
 
     public String GetFullDescription()
     {
-        return FormatDescription(0) + " NL  NL " + DESCRIPTIONS[1];
+        return FormatDescription(0);
     }
 }

@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.vfx.ScreenFreezingEffect;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.FreezingPower;
 import pinacolada.powers.special.SheerColdPower;
 import pinacolada.utilities.PCLActions;
@@ -39,7 +39,7 @@ public class SheerCold extends PCLCard
     {
         PCLActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         PCLActions.Bottom.StackPower(new SheerColdPower(p, 1));
-        PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(FreezingPower.POWER_ID, FREEZING_REDUCTION_BONUS));
+        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(FreezingPower.POWER_ID, FREEZING_REDUCTION_BONUS));
         PCLActions.Bottom.VFX(new ScreenFreezingEffect());
     }
 }

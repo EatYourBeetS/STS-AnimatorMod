@@ -56,7 +56,6 @@ public class SwordfishII extends PCLCard
     {
         PCLActions.Bottom.VFX(new BorderLongFlashEffect(Color.WHITE));
         PCLActions.Bottom.StackPower(new SwordfishIIPower(p, magicNumber));
-        PCLActions.Bottom.Motivate(secondaryValue);
     }
 
     public static class SwordfishIIPower extends PCLPower

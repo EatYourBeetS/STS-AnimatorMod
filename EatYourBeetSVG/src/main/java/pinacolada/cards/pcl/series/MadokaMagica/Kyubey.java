@@ -31,6 +31,7 @@ public class Kyubey extends PCLCard
         SetAffinity_Dark(1);
         SetAffinity_Silver(1);
 
+        SetEthereal(true);
         SetPurge(true);
         GraveField.grave.set(this, true);
     }

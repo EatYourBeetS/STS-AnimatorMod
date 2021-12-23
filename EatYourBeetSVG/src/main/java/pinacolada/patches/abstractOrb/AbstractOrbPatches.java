@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import pinacolada.actions.orbs.DarkOrbEvokeAction;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.replacement.PCLLockOnPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -35,7 +34,8 @@ public class AbstractOrbPatches
             // This needs to be hardcoded so that Lock-On bonuses affect the vanilla Lock-On power as well
             if (PCLGameUtilities.GetPowerAmount(target, LockOnPower.POWER_ID) >= 1)
             {
-                retVal = PCLLockOnPower.ENEMY_MODIFIER > 0 ? (int) (dmg * ((retVal / dmg) + PCLLockOnPower.ENEMY_MODIFIER)) : retVal;
+                int modifier = PCLCombatStats.GetEffectBonus(LockOnPower.POWER_ID);
+                retVal = modifier > 0 ? (int) (dmg * ((retVal / dmg) + modifier)) : retVal;
             }
             return PCLCombatStats.OnOrbApplyLockOn(retVal, target, dmg);
         }

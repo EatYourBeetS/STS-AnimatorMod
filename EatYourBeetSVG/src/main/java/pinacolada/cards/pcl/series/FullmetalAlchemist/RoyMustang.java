@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -49,7 +49,7 @@ public class RoyMustang extends PCLCard
 
         if (TrySpendAffinity(PCLAffinity.Red))
         {
-            PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
+            PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
         }
     }
 }

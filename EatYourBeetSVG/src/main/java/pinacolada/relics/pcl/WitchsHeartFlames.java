@@ -7,7 +7,6 @@ import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.status.Status_Burn;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PCLTriggerablePower;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.relics.PCLRelic;
 import pinacolada.utilities.PCLActions;
@@ -29,7 +28,7 @@ public class WitchsHeartFlames extends PCLRelic implements OnCardCreatedSubscrib
         super.atBattleStart();
 
         PCLCombatStats.onCardCreated.Subscribe(this);
-        PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
+        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
     }
 
     @Override

@@ -3,14 +3,15 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.LockOnPower;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.monsters.PCLEnemyIntent;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.replacement.PCLLockOnPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -74,7 +75,7 @@ public class KaijiItou_RestrictedPaper extends PCLCard
         {
             super.onInitialApplication();
 
-            PCLLockOnPower.AddEnemyModifier(MODIFIER);
+            PCLCombatStats.AddEffectBonus(LockOnPower.POWER_ID, MODIFIER);
         }
 
         @Override
@@ -82,7 +83,7 @@ public class KaijiItou_RestrictedPaper extends PCLCard
         {
             super.onRemove();
 
-            PCLLockOnPower.AddEnemyModifier(-MODIFIER);
+            PCLCombatStats.AddEffectBonus(LockOnPower.POWER_ID, -MODIFIER);
         }
 
         @Override

@@ -4,11 +4,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.utilities.Colors;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.replacement.PCLVulnerablePower;
 import pinacolada.utilities.PCLActions;
 
 public class Lancer extends PCLCard
@@ -64,7 +65,7 @@ public class Lancer extends PCLCard
         {
             super.onInitialApplication();
 
-            PCLVulnerablePower.AddEnemyModifier(Lancer.VULNERABLE_MODIFIER);
+            PCLCombatStats.AddEffectBonus(VulnerablePower.POWER_ID, Lancer.VULNERABLE_MODIFIER);
         }
 
         @Override
@@ -72,7 +73,7 @@ public class Lancer extends PCLCard
         {
             super.onRemove();
 
-            PCLVulnerablePower.AddEnemyModifier(-Lancer.VULNERABLE_MODIFIER);
+            PCLCombatStats.AddEffectBonus(VulnerablePower.POWER_ID, -Lancer.VULNERABLE_MODIFIER);
         }
 
         @Override

@@ -7,7 +7,7 @@ import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.FreezingPower;
 import pinacolada.utilities.PCLActions;
@@ -50,7 +50,7 @@ public class KotoriItsuka extends PCLCard
             }
 
             if (info.IsSynergizing) {
-                PCLActions.Bottom.Callback(() -> PCLTriggerablePower.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
+                PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
             }
         }));
         PCLActions.Bottom.ApplyBurning(player, m, secondaryValue);

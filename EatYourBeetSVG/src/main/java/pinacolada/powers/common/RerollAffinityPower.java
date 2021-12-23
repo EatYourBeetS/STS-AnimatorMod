@@ -3,12 +3,14 @@ package pinacolada.powers.common;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.resources.GR;
 import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLJUtils;
 
 public class RerollAffinityPower extends PCLClickablePower
 {
@@ -29,10 +31,12 @@ public class RerollAffinityPower extends PCLClickablePower
     @Override
     public String GetUpdatedDescription()
     {
+        String afSymbol = PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity().GetAffinitySymbol();
         return FormatDescription(0,
-                PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity().GetAffinitySymbol(),
+                afSymbol,
                 PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity().GetAffinitySymbol(),
-                PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentMatchCombo());
+                PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentMatchCombo(),
+                PCLJUtils.Format(powerStrings.DESCRIPTIONS[PCLAffinity.Star.equals(PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity()) ? 2 : 1], afSymbol));
     }
 
     @Override

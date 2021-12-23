@@ -1,21 +1,39 @@
 package pinacolada.powers.affinity;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.PCLAffinity;
-import pinacolada.interfaces.subscribers.OnGainTempHPSubscriber;
-import pinacolada.interfaces.subscribers.OnGainTriggerablePowerBonusSubscriber;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.PCLTriggerablePower;
+import pinacolada.powers.PCLPowerHelper;
+import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class InvocationPower extends AbstractPCLAffinityPower implements OnTryApplyPowerListener, OnGainTempHPSubscriber, OnGainTriggerablePowerBonusSubscriber
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+public class InvocationPower extends AbstractPCLAffinityPower
 {
     public static final String POWER_ID = CreateFullID(InvocationPower.class);
     public static final PCLAffinity AFFINITY_TYPE = PCLAffinity.Light;
+    protected static final HashMap<String, Integer> POWERS = new HashMap<>();
+    protected static final HashMap<String, Integer> EFFECT_BONUSES = new HashMap<>();
+    protected static final HashMap<String, Integer> PASSIVE_DAMAGE_BONUSES = new HashMap<>();
+    protected static UUID battleID;
+
+    protected static boolean CheckForNewBattle() {
+        if (CombatStats.BattleID != battleID)
+        {
+            battleID = CombatStats.BattleID;
+            POWERS.clear();
+            EFFECT_BONUSES.clear();
+            PASSIVE_DAMAGE_BONUSES.clear();
+            return true;
+        }
+        return false;
+    }
 
     public InvocationPower()
     {
@@ -26,48 +44,69 @@ public class InvocationPower extends AbstractPCLAffinityPower implements OnTryAp
     public void OnUse(AbstractMonster m, int cost)
     {
         super.OnUse(m, cost);
-        PCLCombatStats.onGainTempHP.Subscribe(this);
-        PCLCombatStats.onGainTriggerablePowerBonus.Subscribe(this);
+
+        POWERS.clear();
+        EFFECT_BONUSES.clear();
+        PASSIVE_DAMAGE_BONUSES.clear();
+        if (player.powers != null) {
+            for (AbstractPower po : player.powers) {
+                if ((PCLGameUtilities.IsCommonBuff(po))) {
+                    AddPower(po.ID, (int) (po.amount * GetEffectiveMultiplier()));
+                }
+            }
+        }
+
+        for (Map.Entry<String,Integer> entry : PCLCombatStats.GetAllEffectBonuses()) {
+            AddEffectBonus(entry.getKey(), (int) (entry.getValue() * GetEffectiveMultiplier()));
+        }
+
+        for (Map.Entry<String,Integer> entry : PCLCombatStats.GetAllPassiveDamageBonuses()) {
+            AddPassiveDamageBonus(entry.getKey(), (int) (entry.getValue() * GetEffectiveMultiplier()));
+        }
     }
 
     @Override
-    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action) {
-        if (!isActive) {
-            PCLCombatStats.onGainTempHP.Unsubscribe(this);
-            PCLCombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
-            return true;
+    public void atStartOfTurn()
+    {
+        if (!CheckForNewBattle() && isActive) {
+            for (Map.Entry<String,Integer> entry : POWERS.entrySet()) {
+                AddPower(entry.getKey(), -entry.getValue());
+            }
+
+            for (Map.Entry<String,Integer> entry : EFFECT_BONUSES.entrySet()) {
+                AddEffectBonus(entry.getKey(), -entry.getValue());
+            }
+
+            for (Map.Entry<String,Integer> entry : PASSIVE_DAMAGE_BONUSES.entrySet()) {
+                AddPassiveDamageBonus(entry.getKey(), -entry.getValue());
+            }
         }
-        if (PCLGameUtilities.IsPlayer(power.owner) && PCLGameUtilities.IsCommonBuff(power)) {
-            power.amount = (int) (power.amount * GetEffectiveMultiplier());
-            isActive = false;
-            PCLCombatStats.onGainTempHP.Unsubscribe(this);
-            PCLCombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
-            flash();
-        }
-        return true;
+        super.atStartOfTurn();
     }
 
     @Override
-    public int OnGainTempHP(int amount) {
-        PCLCombatStats.onGainTempHP.Unsubscribe(this);
-        PCLCombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
-        if (!isActive) {
-            return amount;
-        }
-        isActive = false;
-        flash();
-        return amount *= GetEffectiveMultiplier();
+    protected float GetEffectiveMultiplier() {
+        return GetEffectiveIncrease();
     }
 
-    @Override
-    public int OnGainTriggerablePowerBonus(String powerID, PCLTriggerablePower.Type gainType, int amount) {
-        PCLCombatStats.onGainTempHP.Unsubscribe(this);
-        PCLCombatStats.onGainTriggerablePowerBonus.Unsubscribe(this);
-        if (!isActive) {
-            return amount;
+    protected void AddPower(String powerID, int amount) {
+        CheckForNewBattle();
+        PCLPowerHelper ph = PCLPowerHelper.ALL.get(powerID);
+        if (ph != null) {
+            POWERS.merge(powerID, amount, Integer::sum);
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), ph, amount);
         }
-        isActive = false;
-        flash();
-        return amount *= GetEffectiveMultiplier();
+    }
+
+    protected void AddEffectBonus(String powerID, int amount) {
+        CheckForNewBattle();
+        EFFECT_BONUSES.merge(powerID, amount, Integer::sum);
+        PCLCombatStats.AddEffectBonus(powerID, amount);
+    }
+
+    protected void AddPassiveDamageBonus(String powerID, int amount) {
+        CheckForNewBattle();
+        PASSIVE_DAMAGE_BONUSES.merge(powerID, amount, Integer::sum);
+        PCLCombatStats.AddPassiveDamageBonus(powerID, amount);
     }
 }

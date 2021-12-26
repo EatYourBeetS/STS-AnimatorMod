@@ -31,7 +31,7 @@ public class AcuraTooru extends PCLCard
         Initialize(4, 0, 2, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Green(1, 0, 2);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
 
         SetProtagonist(true);

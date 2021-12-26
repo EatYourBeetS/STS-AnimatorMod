@@ -43,7 +43,7 @@ public class ZankiKiguchi extends PCLCard
             {
                 if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && info2.TryActivateSemiLimited())
                 {
-                    PCLActions.Bottom.GainInspiration(1);
+                    PCLActions.Bottom.Draw(1);
                 }
             });
         }

@@ -8,7 +8,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.series.Overlord.Albedo;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.vfx.megacritCopy.HemokinesisEffect2;
 import pinacolada.powers.PCLClickablePower;
@@ -29,7 +28,7 @@ public class FeridBathory extends PCLCard
         super(DATA);
 
         Initialize(0,0, 2, FeridBathoryPower.FORCE_AMOUNT);
-        SetUpgrade(0, 2, 0);
+        SetUpgrade(0, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Dark(2);
@@ -48,20 +47,19 @@ public class FeridBathory extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.StackPower(new FeridBathoryPower(p, magicNumber));
     }
 
     public class FeridBathoryPower extends PCLClickablePower
     {
-        public static final int EXHAUST_PILE_THRESHOLD = 3;
+        public static final int EXHAUST_PILE_THRESHOLD = 2;
         public static final int FORCE_AMOUNT = 1;
 
         public FeridBathoryPower(AbstractCreature owner, int amount)
         {
-            super(owner, Albedo.DATA, PowerTriggerConditionType.Special, EXHAUST_PILE_THRESHOLD);
+            super(owner, FeridBathory.DATA, PowerTriggerConditionType.Special, EXHAUST_PILE_THRESHOLD);
             this.triggerCondition.SetCheckCondition((__) -> player.exhaustPile.size() >= EXHAUST_PILE_THRESHOLD);
-            this.triggerCondition.SetPayCost((cost) -> PCLActions.Bottom.PurgeFromPile(name, cost).SetOptions(false, false));
+            this.triggerCondition.SetPayCost((cost) -> PCLActions.Bottom.PurgeFromPile(name, cost, player.exhaustPile).SetOptions(false, false));
 
             Initialize(amount);
         }

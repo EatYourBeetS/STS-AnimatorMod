@@ -48,7 +48,7 @@ public class Gluttony extends PCLCard
 
     @Override
     public int GetXValue() {
-        return player != null ? (magicNumber * (player.drawPile.size() - (player.hand.contains(this) ? 1 : 0))) : -1;
+        return player != null ? (magicNumber * Math.min(player.drawPile.size(), secondaryValue)) : -1;
     }
 
     @Override

@@ -139,7 +139,7 @@ public class PCLGameUtilities extends GameUtilities
     }
 
     public static boolean CanOrbApplyFocusToEvoke(AbstractOrb orb) {
-        return (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID));
+        return (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID) && !Earth.ORB_ID.equals(orb.ID));
     }
 
     public static boolean CanPlayTwice(AbstractCard card)
@@ -375,7 +375,7 @@ public class PCLGameUtilities extends GameUtilities
         if (commonBuffs.isEmpty())
         {
             for (PCLPowerHelper ph : PCLPowerHelper.ALL.values()) {
-                if (!ph.IsDebuff) {
+                if (!ph.IsDebuff && !ph.EndTurnBehavior.equals(PCLPowerHelper.Behavior.Temporary)) {
                     commonBuffs.add(ph);
                 }
             }
@@ -773,6 +773,7 @@ public class PCLGameUtilities extends GameUtilities
             return;
         }
         PCLCard aCard = PCLJUtils.SafeCast(card, PCLCard.class);
+        EYBCard eCard = PCLJUtils.SafeCast(card, EYBCard.class);
         if (aCard != null) {
             if (AUTOPLAY.equals(tag)) {
                 aCard.SetAutoplay(value);
@@ -824,6 +825,38 @@ public class PCLGameUtilities extends GameUtilities
             }
             else {
                 aCard.tags.remove(tag);
+            }
+        }
+        else if (eCard != null) {
+            if (PCL_ETHEREAL.equals(tag)) {
+                eCard.SetEthereal(value);
+            }
+            else if (PCL_EXHAUST.equals(tag)) {
+                eCard.SetExhaust(value);
+            }
+            else if (PCL_INNATE.equals(tag)) {
+                eCard.SetInnate(value);
+            }
+            else if (PCL_RETAIN.equals(tag)) {
+                eCard.SetRetain(value);
+            }
+            else if (PCL_RETAIN_ONCE.equals(tag)) {
+                eCard.SetRetainOnce(value);
+            }
+            else if (PCL_UNPLAYABLE.equals(tag)) {
+                eCard.SetUnplayable(value);
+            }
+            else if (DELAYED.equals(tag)) {
+                eCard.SetDelayed(value);
+            }
+            else if (HASTE.equals(tag)) {
+                eCard.SetHaste(value);
+            }
+            else if (value) {
+                eCard.tags.add(tag);
+            }
+            else {
+                eCard.tags.remove(tag);
             }
         }
         else if (value) {

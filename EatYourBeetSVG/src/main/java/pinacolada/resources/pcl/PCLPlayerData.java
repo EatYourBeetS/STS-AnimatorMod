@@ -162,22 +162,23 @@ public class PCLPlayerData
             return;
         }
 
-        for (PCLLoadout loadout : BaseLoadouts)
-        {
-            loadout.OnVictory(SelectedLoadout, ascensionLevel);
+        if (SelectedLoadout != null) {
+            SelectedLoadout.OnVictory(ascensionLevel, 1);
         }
 
         SaveTrophies(true);
     }
 
-    public void RecordTrueVictory(int ascensionLevel)
+    public void RecordTrueVictory(int ascensionLevel, int trophyLevel)
     {
         if (ascensionLevel < 0) // Ascension reborn mod adds negative ascension levels
         {
             return;
         }
 
-        if (GR.PCL.Dungeon.IsUnnamedReign())
+        boolean isUnnamedReign = GR.PCL.Dungeon.IsUnnamedReign();
+
+        if (isUnnamedReign)
         {
             if (SpecialTrophies.Trophy1 < 0)
             {
@@ -185,6 +186,10 @@ public class PCLPlayerData
             }
 
             SpecialTrophies.Trophy1 += 1 + Math.floorDiv(ascensionLevel, 4);
+        }
+
+        if (SelectedLoadout != null) {
+            SelectedLoadout.OnVictory(ascensionLevel, trophyLevel);
         }
 
         SaveTrophies(true);
@@ -222,25 +227,25 @@ public class PCLPlayerData
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
-        add.Invoke(new Loadout_GATE(), 1);
-        add.Invoke(new Loadout_Elsword(), 2);
-        add.Invoke(new Loadout_Katanagatari(), 2);
-        add.Invoke(new Loadout_GoblinSlayer(), 3);
-        add.Invoke(new Loadout_OwariNoSeraph(), 3);
-        add.Invoke(new Loadout_Bleach(), 3);
-        add.Invoke(new Loadout_FullmetalAlchemist(), 4);
-        add.Invoke(new Loadout_Overlord(), 4);
-        add.Invoke(new Loadout_NoGameNoLife(), 5);
-        add.Invoke(new Loadout_Fate(), 5);
-        add.Invoke(new Loadout_OnePunchMan(), 6);
-        add.Invoke(new Loadout_TenseiSlime(), 6);
-        add.Invoke(new Loadout_LogHorizon(), 6);
-        add.Invoke(new Loadout_MadokaMagica(), 7);
-        add.Invoke(new Loadout_GenshinImpact(), 7);
-        add.Invoke(new Loadout_Rewrite(), 7);
+        add.Invoke(new Loadout_GATE(), 0);
+        add.Invoke(new Loadout_Elsword(), 0);
+        add.Invoke(new Loadout_Katanagatari(), 0);
+        add.Invoke(new Loadout_GoblinSlayer(), 0);
+        add.Invoke(new Loadout_OwariNoSeraph(), 0);
+        add.Invoke(new Loadout_Bleach(), 0);
+        add.Invoke(new Loadout_FullmetalAlchemist(), 0);
+        add.Invoke(new Loadout_Overlord(), 0);
+        add.Invoke(new Loadout_OnePunchMan(), 0);
+        add.Invoke(new Loadout_TenseiSlime(), 0);
+        add.Invoke(new Loadout_LogHorizon(), 0);
+        add.Invoke(new Loadout_Fate(), 1);
+        add.Invoke(new Loadout_Rewrite(), 2);
+        add.Invoke(new Loadout_NoGameNoLife(), 3);
+        add.Invoke(new Loadout_DateALive(), 4);
+        add.Invoke(new Loadout_TouhouProject(), 5);
+        add.Invoke(new Loadout_GenshinImpact(), 5);
+        add.Invoke(new Loadout_MadokaMagica(), 6);
         add.Invoke(new Loadout_AngelBeats(), 7);
-        add.Invoke(new Loadout_TouhouProject(), 7);
-        add.Invoke(new Loadout_DateALive(), 7);
         add.Invoke(new Loadout_RozenMaiden(), 7);
 
         for (PCLLoadout loadout : BaseLoadouts)

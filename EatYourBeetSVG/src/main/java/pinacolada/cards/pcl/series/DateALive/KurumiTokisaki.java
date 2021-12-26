@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import pinacolada.cards.base.CardUseInfo;
@@ -61,7 +60,7 @@ public class KurumiTokisaki extends PCLCard
                 {
                     for (AbstractCard card : cards) {
                         PCLActions.Bottom.ModifyTag(card,DELAYED,true);
-                        PCLActions.Bottom.StackPower(new EnergizedPower(p, 1));
+                        PCLActions.Bottom.GainEnergyNextTurn(1);
                     }
                 });
         cooldown.ProgressCooldownAndTrigger(m);

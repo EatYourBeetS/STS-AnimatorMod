@@ -18,7 +18,7 @@ public class SougenEsaka extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 4, 1, 2);
+        Initialize(3, 4, 1, 1);
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Red(0, 0, 1);

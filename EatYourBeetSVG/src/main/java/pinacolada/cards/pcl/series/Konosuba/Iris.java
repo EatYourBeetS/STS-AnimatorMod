@@ -35,6 +35,8 @@ public class Iris extends PCLCard
 
         SetAffinity_Light(1, 0, 1);
 
+        SetAffinityRequirement(PCLAffinity.Light, 7);
+
         SetExhaust(true);
     }
 
@@ -73,18 +75,26 @@ public class Iris extends PCLCard
             for (AbstractCard c : cards) {
                 PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(c));
                 PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(c));
-                PCLActions.Last.Callback(() -> {
-                    int amount = Math.min(secondaryValue,c.costForTurn + 1);
-                    PCLActions.Bottom.IncreaseScaling(p.hand, BaseMod.MAX_HAND_SIZE, PCLAffinity.Light, amount)
-                            .SetFilter(ca ->  buffs.getOrDefault(c.uuid, 0) < magicNumber)
-                            .AddCallback(cards2 ->
-                            {
-                                for (AbstractCard c2 : cards2)
+                if (TrySpendAffinity(PCLAffinity.Light)) {
+                    PCLActions.Last.Callback(() -> {
+
+                        PCLActions.Bottom.SelectFromHand(name, BaseMod.MAX_HAND_SIZE, true)
+                                .SetOptions(true, true, true)
+                                .SetFilter(ca ->  buffs.getOrDefault(c.uuid, 0) < secondaryValue)
+                                .AddCallback(cards2 ->
                                 {
-                                    PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
-                                }
-                            });
-                });
+                                    for (AbstractCard c2 : cards2)
+                                    {
+                                        int amount = c2.costForTurn + 1;
+                                        if (amount + buffs.getOrDefault(c2.uuid, 0) > secondaryValue) {
+                                            amount = secondaryValue - buffs.getOrDefault(c2.uuid, 0);
+                                        }
+                                        PCLActions.Bottom.IncreaseScaling(c2, PCLAffinity.Light, c2.costForTurn);
+                                        PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
+                                    }
+                                });
+                    });
+                }
             }
         });
     }

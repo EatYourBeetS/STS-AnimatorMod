@@ -7,6 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Kazuma extends PCLCard
 {
@@ -18,8 +19,8 @@ public class Kazuma extends PCLCard
     {
         super(DATA);
 
-        Initialize(5, 2, 2, 1);
-        SetUpgrade(1, 1, 1);
+        Initialize(5, 2, 2, 3);
+        SetUpgrade(2, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
@@ -35,8 +36,8 @@ public class Kazuma extends PCLCard
 
         this.baseDamage += magicNumber;
 
-        if (info.IsSynergizing) {
-            this.baseBlock += secondaryValue;
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber) {
+            this.baseBlock += 1;
         };
     }
 }

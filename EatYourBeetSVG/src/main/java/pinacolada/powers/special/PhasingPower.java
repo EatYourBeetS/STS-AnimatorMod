@@ -1,4 +1,4 @@
-package pinacolada.powers.common;
+package pinacolada.powers.special;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;

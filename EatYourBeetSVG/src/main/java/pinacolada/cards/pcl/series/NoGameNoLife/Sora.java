@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
@@ -78,7 +77,7 @@ public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 
         if (info.GetPreviousCardID().equals(Shiro.DATA.ID) && info.TryActivateLimited())
         {
-            PCLActions.Bottom.StackPower(new EnergizedPower(p, secondaryValue));
+            PCLActions.Bottom.GainEnergyNextTurn(secondaryValue);
         }
     }
 

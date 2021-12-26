@@ -44,7 +44,9 @@ public class CardTooltips
     public PCLCardTooltip Trigger = FindByID("Trigger").ShowText(false);
     public PCLCardTooltip Upgrade = FindByID("Upgrade").ShowText(false);
     public PCLCardTooltip Void = FindByID("Void").ShowText(false);
-    public PCLCardTooltip Trophy = FindByID("Ascension Trophy").ShowText(false);
+    public PCLCardTooltip Trophy1 = FindByID("~Trophy1").ShowText(false);
+    public PCLCardTooltip Trophy2 = FindByID("~Trophy2").ShowText(false);
+    public PCLCardTooltip Trophy3 = FindByID("~Trophy3").ShowText(false);
 
     public PCLCardTooltip Desecration = FindByID(PCLAffinity.Dark.PowerName);
     public PCLCardTooltip DesecrationScaling = FindByID(PCLAffinity.Dark.GetScalingTooltipID());
@@ -353,7 +355,9 @@ public class CardTooltips
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
         LoadFromPower(Frail, new FrailPower(null, 0, false));
 
-        Trophy.SetIcon(GR.PCL.Images.BRONZE_TROPHY.Texture());
+        Trophy1.SetIcon(GR.PCL.Images.BRONZE_TROPHY.Texture());
+        Trophy2.SetIcon(GR.PCL.Images.SILVER_TROPHY.Texture());
+        Trophy3.SetIcon(GR.PCL.Images.GOLD_TROPHY.Texture());
 
         //Common Debuff/Buff require loading powers for existing tooltips
         CommonBuff.description = PCLJUtils.JoinStrings(", ", new HashSet<>(PCLJUtils.Map(PCLGameUtilities.GetPCLCommonBuffs(), ph -> "[" + ph.Tooltip.id + "]")));

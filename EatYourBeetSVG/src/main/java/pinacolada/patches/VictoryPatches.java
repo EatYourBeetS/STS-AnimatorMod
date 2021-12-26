@@ -1,8 +1,10 @@
 package pinacolada.patches;
 
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.dungeons.TheEnding;
 import com.megacrit.cardcrawl.rooms.VictoryRoom;
 import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
@@ -67,7 +69,7 @@ public class VictoryPatches
 
             if (Settings.isStandardRun() && PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass))
             {
-                GR.PCL.Data.RecordTrueVictory(PCLGameUtilities.GetActualAscensionLevel());
+                GR.PCL.Data.RecordTrueVictory(PCLGameUtilities.GetActualAscensionLevel(), (GR.PCL.Dungeon.IsUnnamedReign() ? 3 : CardCrawlGame.dungeon instanceof TheEnding ? 2 : 1));
             }
         }
     }

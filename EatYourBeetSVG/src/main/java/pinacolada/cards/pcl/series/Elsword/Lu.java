@@ -8,15 +8,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.misc.GenericEffects.GenericEffect;
-import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
+import pinacolada.misc.GenericEffects.GenericEffect_ApplyToAll;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.resources.GR;
-import pinacolada.stances.DesecrationStance;
-import pinacolada.stances.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -72,19 +70,17 @@ public class Lu extends PCLCard
         PCLActions.Bottom.ChannelOrb(new Frost());
         PCLActions.Bottom.ChannelOrb(new Dark());
 
-        if (WisdomStance.IsActive() || DesecrationStance.IsActive()) {
-            PCLActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
-                    .AddCallback(info, (info2, stance) ->
+        PCLActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
+                .AddCallback(info, (info2, stance) ->
+                {
+                    if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID))
                     {
-                        if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID))
-                        {
-                            choices.Initialize(this, true);
-                            choices.AddEffect(new GenericEffect_Ciel(magicNumber));
-                            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
-                            choices.Select(1, m);
-                        }
-                    });
-        }
+                        choices.Initialize(this, true);
+                        choices.AddEffect(new GenericEffect_Ciel(magicNumber));
+                        choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PCLPowerHelper.Freezing, magicNumber));
+                        choices.Select(1, m);
+                    }
+                });
     }
 
     protected static class GenericEffect_Ciel extends GenericEffect

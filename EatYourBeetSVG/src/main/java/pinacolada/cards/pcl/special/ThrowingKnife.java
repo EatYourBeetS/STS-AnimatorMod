@@ -1,7 +1,6 @@
 package pinacolada.cards.pcl.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -81,12 +80,6 @@ public class ThrowingKnife extends PCLCard
 
         return super.SetForm(form, timesUpgraded);
     };
-
-    @Override
-    public AbstractCard makeCopy()
-    {
-        return (auxiliaryData.form == 0 && PCLGameUtilities.InBattle()) ? GetRandomCard() : super.makeCopy();
-    }
 
     @Override
     public void triggerOnManualDiscard()

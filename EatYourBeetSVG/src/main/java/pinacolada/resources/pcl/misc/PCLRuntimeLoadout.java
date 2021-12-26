@@ -26,7 +26,9 @@ public class PCLRuntimeLoadout
     public final PCLTrophies Trophies;
     public final Map<String, AbstractCard> BaseCards = new HashMap<>();
     public final Map<String, AbstractCard> ExpandedCards = new HashMap<>();
-    public final PCLCardTooltip TrophyTooltip;
+    public final PCLCardTooltip Trophy1Tooltip;
+    public final PCLCardTooltip Trophy2Tooltip;
+    public final PCLCardTooltip Trophy3Tooltip;
     public final PCLCardTooltip UnlockTooltip;
 
     public int bonus;
@@ -56,7 +58,9 @@ public class PCLRuntimeLoadout
         this.Trophies = Loadout.GetTrophies();
 
         this.expansionEnabled = GR.PCL.Config.ExpandedSeries.Get().contains(loadout.Series);
-        this.TrophyTooltip = new PCLCardTooltip(GR.PCL.Strings.Trophies.Bronze, Trophies != null && Trophies.Trophy1 >= 0 ? GR.PCL.Strings.Trophies.BronzeFormatted(Trophies.Trophy1) : GR.PCL.Strings.Trophies.BronzeLocked);
+        this.Trophy1Tooltip = new PCLCardTooltip(GR.PCL.Strings.Trophies.Bronze, Trophies != null && Trophies.Trophy1 >= 0 ? GR.PCL.Strings.Trophies.BronzeFormatted(Trophies.Trophy1) : GR.PCL.Strings.Trophies.BronzeLocked);
+        this.Trophy2Tooltip = new PCLCardTooltip(GR.PCL.Strings.Trophies.Silver, Trophies != null && Trophies.Trophy2 >= 0 ? GR.PCL.Strings.Trophies.SilverFormatted(Trophies.Trophy2) : GR.PCL.Strings.Trophies.SilverLocked);
+        this.Trophy3Tooltip = new PCLCardTooltip(GR.PCL.Strings.Trophies.Gold, Trophies != null && Trophies.Trophy3 >= 0 ? GR.PCL.Strings.Trophies.GoldFormatted(Trophies.Trophy3) : GR.PCL.Strings.Trophies.GoldLocked);
         this.UnlockTooltip = new PCLCardTooltip(GR.PCL.Strings.CharSelect.RightText, GR.PCL.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, GR.PCL.GetUnlockLevel()));
         InitializeCards(loadout.Series);
 
@@ -128,6 +132,7 @@ public class PCLRuntimeLoadout
         final PCLCardBuilder builder = new PCLCardBuilder(String.valueOf(Loadout.ID))
                 .SetImagePath(temp.assetUrl)
                 .SetNumbers(0,0,BaseCards.size(),ExpandedCards.size(),0)
+                .SetUpgrades(0, 0, ExpandedCards.size() - BaseCards.size(), 0, 0)
                 .CanUpgrade(false);
 
         if (isLocked) {
@@ -147,13 +152,17 @@ public class PCLRuntimeLoadout
         }
         else
         {
-            String trophyString = (Trophies.Trophy1 > -1 ? Trophies.Trophy1 : "--") + "/" + PCLTrophies.MAXIMUM_TROPHY;
+            String trophyString1 = (Trophies.Trophy1 > -1 ? Trophies.Trophy1 : "--") + "/" + PCLTrophies.MAXIMUM_TROPHY;
+            String trophyString2 = (Trophies.Trophy2 > -1 ? Trophies.Trophy2 : "--") + "/" + PCLTrophies.MAXIMUM_TROPHY;
+            String trophyString3 = (Trophies.Trophy3 > -1 ? Trophies.Trophy3 : "--") + "/" + PCLTrophies.MAXIMUM_TROPHY;
             card = builder
             .SetText(Loadout.Name,
-                    GR.PCL.Strings.SeriesSelection.ContainsNCards_Full("!M!", trophyString),
-                    GR.PCL.Strings.SeriesSelection.ContainsNCards_Full("!S!", trophyString))
+                    GR.PCL.Strings.SeriesSelection.ContainsNCards_Full("!M!", trophyString1, trophyString2, trophyString3),
+                    GR.PCL.Strings.SeriesSelection.ContainsNCards_Full("!S!", trophyString1, trophyString2, trophyString3))
             .SetProperties(temp.type, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE).Build();
-            card.tooltips.add(TrophyTooltip);
+            card.tooltips.add(Trophy1Tooltip);
+            card.tooltips.add(Trophy2Tooltip);
+            card.tooltips.add(Trophy3Tooltip);
         }
 
         if (canEnableExpansion) {

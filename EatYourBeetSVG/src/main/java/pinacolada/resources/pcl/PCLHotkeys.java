@@ -15,7 +15,6 @@ public class PCLHotkeys
     private static final String KEYMAP_CONTROL_PILE_SELECT = PCLConfig.CreateFullID("ControlPileSelect");
     private static final String KEYMAP_CYCLE = PCLConfig.CreateFullID("Cycle");
     private static final String KEYMAP_REROLL_CURRENT = PCLConfig.CreateFullID("RerollCurrent");
-    private static final String KEYMAP_REROLL_NEXT = PCLConfig.CreateFullID("RerollNext");
 
     static {
         EQUIVALENT_KEYS.put(Input.Keys.ALT_LEFT, Input.Keys.ALT_RIGHT);
@@ -30,7 +29,6 @@ public class PCLHotkeys
     public static InputAction controlPileSelect;
     public static InputAction cycle;
     public static InputAction rerollCurrent;
-    public static InputAction rerollNext;
 
     public static void load()
     {
@@ -38,7 +36,6 @@ public class PCLHotkeys
         controlPileSelect = new InputAction(InputActionSet.prefs.getInteger(KEYMAP_CONTROL_PILE_SELECT, Input.Keys.Y));
         cycle = new InputAction(InputActionSet.prefs.getInteger(KEYMAP_CYCLE, Input.Keys.CONTROL_LEFT));
         rerollCurrent = new InputAction(InputActionSet.prefs.getInteger(KEYMAP_REROLL_CURRENT, Input.Keys.Q));
-        rerollNext = new InputAction(InputActionSet.prefs.getInteger(KEYMAP_REROLL_NEXT, Input.Keys.W));
     }
 
     public static void save()
@@ -47,7 +44,6 @@ public class PCLHotkeys
         InputActionSet.prefs.putInteger(KEYMAP_CONTROL_PILE_SELECT, controlPileSelect.getKey());
         InputActionSet.prefs.putInteger(KEYMAP_CYCLE, cycle.getKey());
         InputActionSet.prefs.putInteger(KEYMAP_REROLL_CURRENT, rerollCurrent.getKey());
-        InputActionSet.prefs.putInteger(KEYMAP_REROLL_NEXT, rerollNext.getKey());
     }
 
     public static void resetToDefaults()
@@ -56,6 +52,5 @@ public class PCLHotkeys
         controlPileSelect.remap(Input.Keys.Y);
         cycle.remap(Input.Keys.CONTROL_LEFT);
         rerollCurrent.remap(Input.Keys.Q);
-        rerollNext.remap(Input.Keys.W);
     }
 }

@@ -2,13 +2,10 @@ package pinacolada.powers.common;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Plasma;
 import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
-import pinacolada.orbs.pcl.Chaos;
-import pinacolada.orbs.pcl.Water;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class ImpairedPower extends PCLPower implements OnOrbApplyFocusSubscriber
 {
@@ -69,9 +66,9 @@ public class ImpairedPower extends PCLPower implements OnOrbApplyFocusSubscriber
 
     @Override
     public void OnApplyFocus(AbstractOrb orb) {
-        if (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID)) {
+        if (PCLGameUtilities.CanOrbApplyFocus(orb)) {
             orb.passiveAmount *= Math.max(0,GetOrbMultiplier() / 100f);
-            if (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID)) {
+            if (PCLGameUtilities.CanOrbApplyFocusToEvoke(orb)) {
                 orb.evokeAmount *= Math.max(0,GetOrbMultiplier() / 100f);
             }
         }

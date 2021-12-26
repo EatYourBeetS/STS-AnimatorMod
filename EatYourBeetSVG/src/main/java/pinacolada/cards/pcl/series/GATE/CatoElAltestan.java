@@ -4,8 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
-import pinacolada.misc.GenericEffects.GenericEffect_Apply;
-import pinacolada.misc.GenericEffects.GenericEffect_ChannelOrb;
 import pinacolada.orbs.pcl.Air;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
@@ -15,8 +13,6 @@ public class CatoElAltestan extends PCLCard
     public static final PCLCardData DATA = Register(CatoElAltestan.class)
             .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
-
-    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public CatoElAltestan()
     {
@@ -41,19 +37,20 @@ public class CatoElAltestan extends PCLCard
 
         PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Sorcery, magicNumber);
 
-        choices.Initialize(this, true);
-        if (TrySpendAffinity(PCLAffinity.Blue))
-        {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PCLPowerHelper.Freezing, secondaryValue));
-        }
-        if (TrySpendAffinity(PCLAffinity.Red))
-        {
-            choices.AddEffect(new GenericEffect_Apply(TargetHelper.Normal(m), PCLPowerHelper.Burning, secondaryValue));
-        }
-        if (TrySpendAffinity(PCLAffinity.Green))
-        {
-            choices.AddEffect(new GenericEffect_ChannelOrb(new Air()));
-        }
-        choices.Select(1, m);
+        PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Red, PCLAffinity.Blue, PCLAffinity.Green).AddConditionalCallback(afChoices -> {
+            for (AffinityChoice af : afChoices) {
+                switch (af.Affinity) {
+                    case Red:
+                        PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
+                        break;
+                    case Blue:
+                        PCLActions.Bottom.ApplyFreezing(TargetHelper.Normal(m), secondaryValue);
+                        break;
+                    case Green:
+                        PCLActions.Bottom.ChannelOrb(new Air());
+                        break;
+                }
+            }
+        });
     }
 }

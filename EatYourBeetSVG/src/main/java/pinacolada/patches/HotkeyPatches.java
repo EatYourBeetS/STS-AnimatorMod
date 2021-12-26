@@ -30,7 +30,6 @@ public class HotkeyPatches
             elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.ControlPileSelect, PCLHotkeys.controlPileSelect));
             elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.Cycle, PCLHotkeys.cycle));
             elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.RerollCurrent, PCLHotkeys.rerollCurrent));
-            elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.RerollNext, PCLHotkeys.rerollNext));
         }
     }
 

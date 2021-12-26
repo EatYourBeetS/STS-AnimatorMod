@@ -49,7 +49,7 @@ public class _FakeLoadout extends PCLLoadout
     }
 
     @Override
-    public void OnVictory(PCLLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(int ascensionLevel, int trophyLevel)
     {
         //
     }

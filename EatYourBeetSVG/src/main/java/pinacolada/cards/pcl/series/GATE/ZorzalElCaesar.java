@@ -88,7 +88,7 @@ public class ZorzalElCaesar extends PCLCard
             {
                 for (AbstractCard c : cards)
                 {
-                    ((PCLCard)c).SetHaste(true);
+                    PCLActions.Bottom.ModifyTag(c, HASTE, true);
                 }
             });
 

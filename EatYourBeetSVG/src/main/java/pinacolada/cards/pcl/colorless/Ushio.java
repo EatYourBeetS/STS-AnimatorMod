@@ -3,8 +3,6 @@ package pinacolada.cards.pcl.colorless;
 import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -57,8 +55,8 @@ public class Ushio extends PCLCard implements OnStartOfTurnPostDrawSubscriber
         PCLGameEffects.Queue.ShowCardBriefly(this);
         PCLActions.Bottom.SFX("POWER_TIME_WARP", 0.05F, 0.05F);
         PCLActions.Bottom.VFX(new TimeWarpTurnEndEffect());
-        PCLActions.Bottom.StackPower(new DrawCardNextTurnPower(player, magicNumber));
-        PCLActions.Bottom.StackPower(new EnergizedPower(player, secondaryValue));
+        PCLActions.Bottom.DrawNextTurn(magicNumber);
+        PCLActions.Bottom.GainEnergyNextTurn(secondaryValue);
         PCLActions.Bottom.Add(new PressEndTurnButtonAction());
         PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }

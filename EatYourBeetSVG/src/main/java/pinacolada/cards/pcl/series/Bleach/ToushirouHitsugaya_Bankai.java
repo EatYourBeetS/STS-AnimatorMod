@@ -69,7 +69,9 @@ public class ToushirouHitsugaya_Bankai extends PCLCard
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        PCLActions.Bottom.ExhaustFromHand(name, magicNumber, true).SetFilter(c -> c.type == CardType.STATUS).AddCallback(cards -> {
+        PCLActions.Bottom.ExhaustFromHand(name, magicNumber, true)
+                .SetOptions(true, true, true)
+                .SetFilter(c -> c.type == CardType.STATUS).AddCallback(cards -> {
             if (cards.size() > secondaryValue && info.TryActivateLimited()) {
                 AbstractCard c = new SheerCold();
                 c.applyPowers();

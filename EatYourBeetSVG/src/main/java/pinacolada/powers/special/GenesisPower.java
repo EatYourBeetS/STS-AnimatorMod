@@ -1,4 +1,4 @@
-package pinacolada.powers.common;
+package pinacolada.powers.special;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

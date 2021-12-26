@@ -1,4 +1,4 @@
-package pinacolada.powers.common;
+package pinacolada.powers.special;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -59,14 +59,10 @@ public class RerollAffinityPower extends PCLClickablePower
 
     @Override
     public void OnClick() {
-        OnClick(PCLAffinityMeter.Target.CurrentAffinity);
-    }
-
-    public void OnClick(PCLAffinityMeter.Target target)
-    {
         if (triggerCondition.CanUse())
         {
-            PCLActions.Bottom.RerollAffinity(target).SetOptions(!canChoose, true);
+            PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity).SetAffinityChoices(PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity()).SetOptions(true, true);
+            PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.NextAffinity).SetOptions(!canChoose, true);
             this.triggerCondition.uses -= 1;
             this.triggerCondition.Refresh(false);
             updateDescription();

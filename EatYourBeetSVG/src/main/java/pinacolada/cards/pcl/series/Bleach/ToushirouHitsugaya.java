@@ -17,12 +17,12 @@ public class ToushirouHitsugaya extends PCLCard
 {
     public static final PCLCardData DATA = Register(ToushirouHitsugaya.class).SetAttack(1, CardRarity.RARE, PCLAttackType.Normal).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ToushirouHitsugaya_Bankai(), false));
-    public static final int FREEZING_THRESHOLD = 8;
+    public static final int FREEZING_THRESHOLD = 12;
 
     public ToushirouHitsugaya() {
         super(DATA);
 
-        Initialize(6, 3, 2, 1);
+        Initialize(6, 3, 3, 1);
         SetUpgrade(0, 0, 0);
         SetAffinity_Red(1,0,1);
         SetAffinity_Green(1, 0, 1);

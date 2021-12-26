@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
+import eatyourbeets.utilities.Mathf;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.powers.PCLClickablePower;
@@ -89,6 +90,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
 
     public void OnUse(AbstractMonster m, int cost) {
         this.isActive = true;
+        flash();
     }
 
     public void AddLevel(int levels) {
@@ -99,8 +101,8 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
     }
 
     public void AddUse(int uses) {
-        if (triggerCondition.uses + uses < triggerCondition.baseUses) {
-            triggerCondition.uses += uses;
+        if (triggerCondition.uses < triggerCondition.baseUses) {
+            triggerCondition.uses = Math.min(triggerCondition.uses + uses, triggerCondition.baseUses);
             triggerCondition.Refresh(false);
             flash();
         }
@@ -160,7 +162,8 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         return 1f + GetEffectiveIncrease();
     }
 
-    public Integer GetEffectiveThreshold() {return (currentLevel + 1) * threshold;}
+    // Required exp: 5, 10, 20, 40, 80
+    public Integer GetEffectiveThreshold() {return threshold * (int) Mathf.Pow(2, currentLevel);}
 
     @Override
     public String GetUpdatedDescription()

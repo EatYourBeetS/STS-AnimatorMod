@@ -21,6 +21,7 @@ public class GirlDeMo extends PCLCard
         SetHarmonic(true);
         SetExhaust(true);
         SetEthereal(true);
+        SetAutoplay(true);
     }
 
     @Override

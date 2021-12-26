@@ -35,7 +35,10 @@ public class Melzalgald extends PCLCard
         Initialize(18, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Star(1, 0, 2);
+        SetAffinity_Star(1, 0, 0);
+        SetAffinity_Red(0, 0, 1);
+        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Blue(0, 0, 1);
 
         SetExhaust(true);
     }

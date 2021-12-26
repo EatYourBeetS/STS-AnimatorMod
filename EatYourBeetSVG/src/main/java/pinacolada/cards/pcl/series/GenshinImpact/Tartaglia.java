@@ -30,16 +30,15 @@ public class Tartaglia extends PCLCard {
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    protected float GetInitialDamage()
     {
+        int amount = 0;
         for (AbstractCreature c : PCLGameUtilities.GetAllCharacters(true)) {
             if (PCLGameUtilities.GetPowerAmount(c, BurningPower.POWER_ID) > 0) {
                 amount += magicNumber;
             }
-
         }
-
-        return super.ModifyDamage(enemy, amount);
+        return baseDamage + amount;
     }
 
 

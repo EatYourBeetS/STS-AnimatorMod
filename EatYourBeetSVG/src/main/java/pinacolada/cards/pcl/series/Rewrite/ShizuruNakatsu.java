@@ -20,8 +20,8 @@ public class ShizuruNakatsu extends PCLCard
     {
         super(DATA);
 
-        Initialize(1, 3, 2, 6);
-        SetUpgrade(0, 3, 0);
+        Initialize(1, 4, 2, 6);
+        SetUpgrade(0, 3, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
     }
@@ -42,14 +42,16 @@ public class ShizuruNakatsu extends PCLCard
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.GUNSHOT);
         PCLActions.Bottom.GainBlock(block);
 
-        if (!player.stance.ID.equals(VelocityStance.STANCE_ID))
-        {
-            PCLActions.Bottom.DiscardFromHand(name, magicNumber, true)
-                    .ShowEffect(true, true)
-                    .SetFilter(c -> c.type == CardType.SKILL)
-                    .SetOptions(false, false, false)
-                    .AddCallback(() -> PCLActions.Bottom.ChangeStance(VelocityStance.STANCE_ID));
-        }
+        PCLActions.Bottom.DiscardFromHand(name, magicNumber, false)
+                .ShowEffect(true, true)
+                .SetFilter(c -> c.type == CardType.SKILL)
+                .SetOptions(false, true, false)
+                .AddCallback((cards) -> {
+                            if (cards.size() >= magicNumber) {
+                                PCLActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
+                            }
+                        }
+                );
     }
 
     @Override

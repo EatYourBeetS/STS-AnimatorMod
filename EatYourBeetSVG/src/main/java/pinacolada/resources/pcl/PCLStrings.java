@@ -239,9 +239,12 @@ public class PCLStrings
             return PCLJUtils.Format(Strings.TEXT[0], cardCount);
         }
 
-        public final String ContainsNCards_Full(Object cardCount, Object ascensionLevel)
+        public final String ContainsNCards_Full(Object cardCount, Object bronzeLevel, Object silverLevel, Object goldLevel)
         {
-            return ContainsNCards(cardCount) + " NL  NL " + GR.Tooltips.Trophy + ": " + ascensionLevel;
+            return ContainsNCards(cardCount)
+                    + " NL  NL " + GR.Tooltips.Trophy1 + ": " + bronzeLevel
+                    + " NL  NL " + GR.Tooltips.Trophy2 + ": " + silverLevel
+                    + " NL  NL " + GR.Tooltips.Trophy3 + ": " + goldLevel;
         }
 
         public final String ContainsNCards_Beta(Object cardCount)
@@ -614,6 +617,16 @@ public class PCLStrings
         public final String BronzeFormatted(int ascension)
         {
             return PCLJUtils.Format(BronzeDescription, ascension);
+        }
+
+        public final String SilverFormatted(int ascension)
+        {
+            return PCLJUtils.Format(SilverDescription, ascension);
+        }
+
+        public final String GoldFormatted(int ascension)
+        {
+            return PCLJUtils.Format(GoldDescription, ascension);
         }
     }
 

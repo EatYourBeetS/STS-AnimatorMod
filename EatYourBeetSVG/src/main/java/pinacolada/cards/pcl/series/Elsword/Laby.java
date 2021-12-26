@@ -58,18 +58,16 @@ public class Laby extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
-        PCLActions.Bottom.StackPower(new LabyPower(p, secondaryValue, magicNumber));
+        PCLActions.Bottom.GainThorns(magicNumber);
+        PCLActions.Bottom.StackPower(new LabyPower(p, secondaryValue));
     }
 
     public static class LabyPower extends PCLPower implements OnTryApplyPowerListener
     {
-        protected int secondaryAmount;
-
-        public LabyPower(AbstractCreature owner, int amount, int secondaryAmount)
+        public LabyPower(AbstractCreature owner, int amount)
         {
             super(owner, Laby.DATA);
 
-            this.secondaryAmount = secondaryAmount;
             Initialize(amount);
         }
 
@@ -79,7 +77,7 @@ public class Laby extends PCLCard
             super.atStartOfTurn();
             ResetAmount();
 
-            PCLActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(), secondaryAmount)
+            PCLActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(), amount)
             .ShowEffect(false, true);
             SFX.Play(SFX.POWER_CONSTRICTED);
             this.flashWithoutSound();
@@ -88,28 +86,18 @@ public class Laby extends PCLCard
         @Override
         public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
         {
-            if (amount > 0) {
-                PCLPowerHelper ph = PCLJUtils.Find(PCLGameUtilities.GetPCLCommonDebuffs(), ph2 -> ph2.ID.equals(power.ID));
-                int applyAmount = power.amount;
-                if (target == owner && ph != null && source != null && source != owner && power.amount > 0)
-                {
-                    if (VulnerablePower.POWER_ID.equals(ph.ID) || WeakPower.POWER_ID.equals(ph.ID) || FrailPower.POWER_ID.equals(ph.ID)) {
-                        applyAmount += 1;
-                    }
-                    GameActions.Bottom.StackPower(TargetHelper.Normal(source), ph, applyAmount);
-                    amount -= 1;
-                    flashWithoutSound();
-                    return false;
+            PCLPowerHelper ph = PCLJUtils.Find(PCLGameUtilities.GetPCLCommonDebuffs(), ph2 -> ph2.ID.equals(power.ID));
+            int applyAmount = power.amount;
+            if (target == owner && ph != null && source != null && source != owner && power.amount > 0)
+            {
+                if (!PCLGameUtilities.IsPlayerTurn() && (VulnerablePower.POWER_ID.equals(ph.ID) || WeakPower.POWER_ID.equals(ph.ID) || FrailPower.POWER_ID.equals(ph.ID))) {
+                    applyAmount += 1;
                 }
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), ph, applyAmount);
+                flashWithoutSound();
             }
 
             return true;
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, amount, secondaryAmount);
         }
 
     }

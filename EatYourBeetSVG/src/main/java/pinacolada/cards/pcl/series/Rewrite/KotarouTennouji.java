@@ -26,7 +26,7 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
 
         Initialize(8, 0, 0);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Star(1, 0, 2);
+        SetAffinity_Star(1, 0, 1);
 
         SetUnique(true, true);
         SetProtagonist(true);

@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.actions.orbs.EvokeOrb;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -48,15 +45,11 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
             if (form == 1) {
                 Initialize(0, 1, 2, 0);
                 SetUpgrade(0, 0, 0, 2);
-                SetCostUpgrade(0);
-                cost = 2;
-                this.cardText.OverrideDescription(cardData.Strings.DESCRIPTION, true);
             }
             else {
                 Initialize(0, 1, 2, 0);
-                SetUpgrade(0, 0, 0, 2);
-                SetCostUpgrade(-1);
-                this.cardText.OverrideDescription(null, true);
+                SetUpgrade(0, 3, 0, 2);
+                AddScaling(PCLAffinity.Blue, 2);
             }
         }
         return super.SetForm(form, timesUpgraded);

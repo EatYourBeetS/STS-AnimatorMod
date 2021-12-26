@@ -3,7 +3,7 @@ package pinacolada.powers.affinity;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLAffinity;
-import pinacolada.powers.common.GenesisPower;
+import pinacolada.powers.special.GenesisPower;
 import pinacolada.utilities.PCLActions;
 
 public class TechnicPower extends AbstractPCLAffinityPower

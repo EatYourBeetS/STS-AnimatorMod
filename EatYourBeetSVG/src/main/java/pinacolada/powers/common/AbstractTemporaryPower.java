@@ -47,10 +47,10 @@ public abstract class AbstractTemporaryPower extends PCLPower
     protected void onAmountChanged(int previousAmount, int difference)
     {
         if (constructorT2 != null) {
-            PCLActions.Top.StackPower(constructorT2.Invoke(owner, difference));
+            PCLActions.Top.StackPower(constructorT2.Invoke(owner, difference)).IgnoreArtifact(true);
         }
         else if (constructorT1 != null && previousAmount + difference != 0) {
-            PCLActions.Top.StackPower(constructorT1.Invoke(owner));
+            PCLActions.Top.StackPower(constructorT1.Invoke(owner)).IgnoreArtifact(true);
         }
 
         super.onAmountChanged(previousAmount, difference);
@@ -60,7 +60,7 @@ public abstract class AbstractTemporaryPower extends PCLPower
     public void atStartOfTurn()
     {
         if (amount < 0 && constructorT2 != null) {
-            PCLActions.Top.StackPower(constructorT2.Invoke(owner, -amount));
+            PCLActions.Top.StackPower(constructorT2.Invoke(owner, -amount)).IgnoreArtifact(true);
         }
         RemovePower();
     }

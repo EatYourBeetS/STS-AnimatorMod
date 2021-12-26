@@ -22,6 +22,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.GameEvent;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -562,7 +563,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
             eatyourbeets.powers.common.BurningPower.AddPlayerAttackBonus(multiplier);
         }
 
-        PCLGameUtilities.UpdatePowerDescriptions();
+        if (GameUtilities.InBattle()) {
+            PCLGameUtilities.UpdatePowerDescriptions();
+        }
+
     }
 
     public static void AddPassiveDamageBonus(String powerID, int multiplier)
@@ -570,7 +574,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PassiveDamage, multiplier);
 
         PASSIVE_DAMAGE_BONUSES.merge(powerID, multiplier, Integer::sum);
-        PCLGameUtilities.UpdatePowerDescriptions();
+
+        if (GameUtilities.InBattle()) {
+            PCLGameUtilities.UpdatePowerDescriptions();
+        }
     }
 
     public static void AddPlayerEffectBonus(String powerID, int multiplier)
@@ -578,6 +585,9 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PlayerEffect, multiplier);
 
         PLAYER_EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
-        PCLGameUtilities.UpdatePowerDescriptions();
+
+        if (GameUtilities.InBattle()) {
+            PCLGameUtilities.UpdatePowerDescriptions();
+        }
     }
 }

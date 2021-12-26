@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Vash extends PCLCard
 {
     public static final PCLCardData DATA = Register(Vash.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Random)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Trigun);
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -24,14 +24,15 @@ public class Vash extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 11, 1, 0);
-        SetUpgrade(0, 0, 0, 0);
+        Initialize(4, 4, 1, 0);
+        SetUpgrade(1, 1, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1);
         SetAffinity_Orange(1, 0, 1);
 
         SetLoyal(true);
+        SetExhaust(true);
     }
 
     @Override
@@ -41,8 +42,8 @@ public class Vash extends PCLCard
         PCLActions.Bottom.GainBlock(block);
 
 
+        PCLActions.Top.ReshuffleDiscardPile(false);
         PCLActions.Bottom.Reload(name, cards -> {
-            baseDamage += cards.size() * magicNumber;
             if (choices.TryInitialize(this))
             {
                 choices.AddEffect(new GenericEffect_Vash(CardType.ATTACK, this, cards));
@@ -81,21 +82,15 @@ public class Vash extends PCLCard
         {
             if (p.drawPile.size() > 0)
             {
+                int amount = source.damage * cards.size();
                 AbstractCard topCard = p.drawPile.getTopCard();
                 PCLGameEffects.List.ShowCardBriefly(topCard);
                 if (topCard.type.equals(cardType))
                 {
-                    if (topCard.baseDamage > 0) {
-                        topCard.baseDamage += source.damage;
-                    }
-                    if (topCard.baseBlock > 0) {
-                        topCard.baseBlock += source.damage;
-                    }
-                    //GameActions.Bottom.PlayCard(topCard,m);
+                    PCLActions.Bottom.GainSupportDamage(amount);
                 }
                 else {
-                    PCLActions.Bottom.Exhaust(topCard);
-                    PCLActions.Bottom.Exhaust(source);
+                    PCLActions.Bottom.DealDamageAtEndOfTurn(player, player, amount);
                     for (AbstractCard ca : cards) {
                         PCLActions.Bottom.Exhaust(ca);
                     }

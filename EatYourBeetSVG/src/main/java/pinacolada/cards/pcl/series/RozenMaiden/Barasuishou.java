@@ -21,7 +21,7 @@ public class Barasuishou extends PCLCard
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 1);
+        Initialize(8, 0, 2, 1);
         SetUpgrade(3, 0, 1);
         SetAffinity_Blue(1, 0, 2);
         SetAffinity_Dark(1, 0, 2);
@@ -30,9 +30,9 @@ public class Barasuishou extends PCLCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
+    protected float GetInitialDamage()
     {
-        return super.ModifyDamage(enemy, amount + magicNumber *
+        return baseDamage + (magicNumber *
                 (PCLJUtils.Count(player.drawPile.group, c -> c.type == CardType.CURSE) +
                 PCLJUtils.Count(player.discardPile.group, c -> c.type == CardType.CURSE) +
                 PCLJUtils.Count(player.hand.group, c -> c.type == CardType.CURSE)));

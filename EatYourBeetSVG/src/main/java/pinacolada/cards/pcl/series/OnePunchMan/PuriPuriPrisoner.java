@@ -26,7 +26,7 @@ public class PuriPuriPrisoner extends PCLCard
     {
         super(DATA);
 
-        Initialize(5, 0, 5);
+        Initialize(5, 0, 4);
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(2);

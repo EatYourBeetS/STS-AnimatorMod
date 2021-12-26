@@ -7,7 +7,6 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.common.EnergizedPower;
 import pinacolada.powers.common.*;
 import pinacolada.powers.replacement.*;
 import pinacolada.resources.GR;
@@ -20,6 +19,7 @@ public class PCLPowerHelper extends eatyourbeets.powers.PowerHelper
 {
     public enum Behavior {
         Permanent,
+        SingleTurn,
         Temporary,
         TurnBased,
     }
@@ -33,17 +33,15 @@ public class PCLPowerHelper extends eatyourbeets.powers.PowerHelper
     public static final PCLPowerHelper Freezing = new PCLPowerHelper(FreezingPower.POWER_ID, GR.Tooltips.Freezing, FreezingPower::new, Behavior.TurnBased,true);
     public static final PCLPowerHelper LockOn = new PCLPowerHelper(LockOnPower.POWER_ID, GR.Tooltips.LockOn, PCLLockOnPower::new, Behavior.TurnBased,true);
     public static final PCLPowerHelper Poison = new PCLPowerHelper(PoisonPower.POWER_ID, GR.Tooltips.Poison, PoisonPower::new, Behavior.TurnBased,true);
-    public static final PCLPowerHelper Shackles = new PCLPowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new, Behavior.Temporary,true);
+    public static final PCLPowerHelper Shackles = new PCLPowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new, Behavior.SingleTurn,true);
     public static final PCLPowerHelper Weak = new PCLPowerHelper(WeakPower.POWER_ID, GR.Tooltips.Weak, (o, s, a) -> new PCLWeakPower(o, a, PCLGameUtilities.IsMonster(s)), Behavior.TurnBased,true);
     public static final PCLPowerHelper Vulnerable = new PCLPowerHelper(VulnerablePower.POWER_ID, GR.Tooltips.Vulnerable, (o, s, a) -> new PCLVulnerablePower(o, a, PCLGameUtilities.IsMonster(s)), Behavior.TurnBased,true);
     public static final PCLPowerHelper Frail = new PCLPowerHelper(FrailPower.POWER_ID, GR.Tooltips.Frail, (o, s, a) -> new PCLFrailPower(o, a, PCLGameUtilities.IsMonster(s)), Behavior.TurnBased,true);
-    public static final PCLPowerHelper DelayedDamage = new PCLPowerHelper(DelayedDamagePower.POWER_ID, GR.Tooltips.DelayedDamage, (o, s, a) -> new DelayedDamagePower(o, a, AttackEffects.CLAW), Behavior.Temporary,true);
+    public static final PCLPowerHelper DelayedDamage = new PCLPowerHelper(DelayedDamagePower.POWER_ID, GR.Tooltips.DelayedDamage, (o, s, a) -> new DelayedDamagePower(o, a, AttackEffects.CLAW), Behavior.SingleTurn,true);
 
     public static final PCLPowerHelper Artifact = new PCLPowerHelper(ArtifactPower.POWER_ID, GR.Tooltips.Artifact, ArtifactPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Blur = new PCLPowerHelper(PCLBlurPower.POWER_ID, GR.Tooltips.Blur, PCLBlurPower::new, Behavior.TurnBased,false);
     public static final PCLPowerHelper Dexterity = new PCLPowerHelper(DexterityPower.POWER_ID, GR.Tooltips.Dexterity, DexterityPower::new, Behavior.Permanent, false);
-    public static final PCLPowerHelper DrawNextTurn = new PCLPowerHelper(DrawCardNextTurnPower.POWER_ID, GR.Tooltips.NextTurnDraw, DrawCardNextTurnPower::new, Behavior.TurnBased, false);
-    public static final PCLPowerHelper Energized = new PCLPowerHelper(EnergizedPower.POWER_ID, GR.Tooltips.Energized, EnergizedPower::new, Behavior.Temporary,false);
     public static final PCLPowerHelper Focus = new PCLPowerHelper(FocusPower.POWER_ID, GR.Tooltips.Focus, FocusPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Inspiration = new PCLPowerHelper(InspirationPower.POWER_ID, GR.Tooltips.Inspiration, InspirationPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Malleable = new PCLPowerHelper(MalleablePower.POWER_ID, GR.Tooltips.Malleable, MalleablePower::new, Behavior.Permanent,false);
@@ -63,8 +61,7 @@ public class PCLPowerHelper extends eatyourbeets.powers.PowerHelper
     public static final PCLPowerHelper Thorns = new PCLPowerHelper(ThornsPower.POWER_ID, GR.Tooltips.Thorns, ThornsPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Vitality = new PCLPowerHelper(VitalityPower.POWER_ID, GR.Tooltips.Vitality, VitalityPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Vigor = new PCLPowerHelper(VigorPower.POWER_ID, GR.Tooltips.Vigor, VigorPower::new, Behavior.Permanent,false);
-    public static final PCLPowerHelper BlockNextTurn = new PCLPowerHelper(NextTurnBlockPower.POWER_ID, GR.Tooltips.NextTurnBlock, (o, s, a) -> new NextTurnBlockPower(o, a), Behavior.TurnBased, false);
-    public static final PCLPowerHelper CounterAttack = new PCLPowerHelper(CounterAttackPower.POWER_ID, GR.Tooltips.CounterAttack, (o, s, a) -> new CounterAttackPower(o, a), Behavior.Temporary,false);
+    public static final PCLPowerHelper CounterAttack = new PCLPowerHelper(CounterAttackPower.POWER_ID, GR.Tooltips.CounterAttack, (o, s, a) -> new CounterAttackPower(o, a), Behavior.SingleTurn,false);
     public static final PCLPowerHelper EnchantedArmor = new PCLPowerHelper(EnchantedArmorPower.POWER_ID, GR.Tooltips.EnchantedArmor, (o, s, a) -> new EnchantedArmorPower(o, a), Behavior.Permanent,false);
     public static final PCLPowerHelper Ritual = new PCLPowerHelper(RitualPower.POWER_ID, GR.Tooltips.Ritual, (o, s, a) -> new RitualPower(o, a, PCLGameUtilities.IsPlayer(o)), Behavior.Permanent,false);
 

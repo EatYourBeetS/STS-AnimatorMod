@@ -2,7 +2,6 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -27,7 +26,7 @@ public class Status_Slimed extends PCLCard_Status
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (auxiliaryData.form == 1) {
-            PCLActions.Bottom.StackPower(new EnergizedPower(player, magicNumber));
+            PCLActions.Bottom.GainEnergyNextTurn(magicNumber);
         }
     }
 }

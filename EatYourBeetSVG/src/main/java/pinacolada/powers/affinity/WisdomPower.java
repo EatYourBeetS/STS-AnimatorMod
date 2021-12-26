@@ -3,9 +3,12 @@ package pinacolada.powers.affinity;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import pinacolada.cards.base.PCLAffinity;
+import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
+import pinacolada.powers.PCLCombatStats;
+import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class WisdomPower extends AbstractPCLAffinityPower
+public class WisdomPower extends AbstractPCLAffinityPower implements OnOrbApplyFocusSubscriber
 {
     public static final String POWER_ID = CreateFullID(WisdomPower.class);
     public static final PCLAffinity AFFINITY_TYPE = PCLAffinity.Blue;
@@ -18,21 +21,23 @@ public class WisdomPower extends AbstractPCLAffinityPower
     @Override
     public void OnUse(AbstractMonster m, int cost)
     {
-        AbstractOrb orb = PCLGameUtilities.GetFirstOrb(null);
-        if (PCLGameUtilities.IsValidOrb(orb)) {
-            int increase = (int) GetEffectiveIncrease();
-            PCLGameUtilities.ModifyOrbFocus(orb, increase, true, false);
-            flash();
+        super.OnUse(m, cost);
+        PCLCombatStats.onOrbApplyFocus.Subscribe(this);
+        PCLActions.Bottom.GainFocus(1, true);
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+        PCLCombatStats.onOrbApplyFocus.Unsubscribe(this);
+    }
+
+    @Override
+    public void OnApplyFocus(AbstractOrb orb) {
+        orb.passiveAmount *= GetEffectiveMultiplier();
+        if (PCLGameUtilities.CanOrbApplyFocusToEvoke(orb)) {
+            orb.evokeAmount *= GetEffectiveMultiplier();
         }
-    }
-
-    @Override
-    protected int GetMultiplierForDescription() {
-        return (int) GetEffectiveIncrease();
-    }
-
-    @Override
-    protected float GetEffectiveIncrease() {
-        return super.GetEffectiveIncrease() * 6;
     }
 }

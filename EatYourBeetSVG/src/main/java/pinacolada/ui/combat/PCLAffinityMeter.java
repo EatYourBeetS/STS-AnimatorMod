@@ -19,7 +19,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.effects.affinity.AffinityGlowEffect;
-import pinacolada.powers.common.RerollAffinityPower;
+import pinacolada.powers.special.RerollAffinityPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLHotkeys;
 import pinacolada.ui.GUIElement;
@@ -30,7 +30,6 @@ import pinacolada.ui.hitboxes.RelativeHitbox;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
-import pinacolada.utilities.PCLRenderHelpers;
 
 import static pinacolada.resources.GR.Enums.CardTags.HARMONIC;
 
@@ -75,7 +74,7 @@ public class PCLAffinityMeter extends GUIElement
                 .SetOffsets(2.3f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
-                        Reroll.OnClick(Target.CurrentAffinity);
+                        Reroll.OnClick();
                     }
                 });
         NextAffinity = new AffinityKeywordButton(hb, PCLAffinity.General, ICON_SIZE)
@@ -83,7 +82,7 @@ public class PCLAffinityMeter extends GUIElement
                 .SetOffsets(4.6f, 0.5f)
                 .SetOnClick(__ -> {
                     if (Reroll != null) {
-                        Reroll.OnClick(Target.NextAffinity);
+                        Reroll.OnClick();
                     }
                 });
         glowImg = GR.PCL.Images.Affinities.Border_Silhouette.Texture();
@@ -261,10 +260,7 @@ public class PCLAffinityMeter extends GUIElement
             }
 
             if (PCLHotkeys.rerollCurrent.isJustPressed()) {
-                Reroll.OnClick(Target.CurrentAffinity);
-            }
-            if (PCLHotkeys.rerollNext.isJustPressed()) {
-                Reroll.OnClick(Target.NextAffinity);
+                Reroll.OnClick();
             }
 
             isGlowing = GR.PCL.Config.FlashForReroll.Get()
@@ -274,7 +270,7 @@ public class PCLAffinityMeter extends GUIElement
                             && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER
                             && PCLJUtils.Find(AbstractDungeon.player.hand.group, c -> HasMatch(c, true) && PCLGameUtilities.IsPlayable(c)) == null
                             && Reroll.triggerCondition.uses > 0;
-            if (isGlowing && GR.UI.Elapsed75()) {
+            if (isGlowing && GR.UI.Elapsed(1.3f)) {
                 PCLGameEffects.Queue.Add(new AffinityGlowEffect(CurrentAffinity));
             }
         }
@@ -297,9 +293,9 @@ public class PCLAffinityMeter extends GUIElement
             final BitmapFont rerollFont = EYBFontHelper.CardTitleFont_Small;
             rerollFont.getData().setScale(0.8f);
 
-            if (isGlowing) {
-                PCLRenderHelpers.DrawCentered(sb, AffinityGlowEffect.FALLBACK_COLOR, glowImg, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.cY, CurrentAffinity.background_button.hb.width, CurrentAffinity.background_button.hb.height, 0.9f, 0, false, false);
-            }
+            //if (isGlowing) {
+            //    PCLRenderHelpers.DrawCentered(sb, AffinityGlowEffect.FALLBACK_COLOR, glowImg, CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.cY, CurrentAffinity.background_button.hb.width, CurrentAffinity.background_button.hb.height, 1.2f, 0, false, false);
+            //}
 
             pinacolada.utilities.PCLRenderHelpers.DrawCentered(sb, Colors.Black(0.5f), GR.PCL.Images.Panel_Elliptical_Half_H.Texture(),
                     (CurrentAffinity.background_button.hb.cX + NextAffinity.background_button.hb.cX) / 2, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.2f,

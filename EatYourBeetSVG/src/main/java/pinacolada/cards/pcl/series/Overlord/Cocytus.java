@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
+import pinacolada.actions.orbs.EvokeOrb;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -48,15 +49,11 @@ public class Cocytus extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        PCLActions.Bottom.EvokeOrb(1)
+        PCLActions.Bottom.EvokeOrb(2, EvokeOrb.Mode.SameOrb)
         .SetFilter(o -> Frost.ORB_ID.equals(o.ID))
         .AddCallback(orbs ->
         {
-            if (orbs.size() > 0)
-            {
-                PCLActions.Bottom.EvokeOrb(1, orbs.get(0));
-            }
-            else
+            if (orbs.size() == 0)
             {
                 PCLActions.Bottom.ChannelOrb(new Frost());
             }

@@ -46,6 +46,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+import static pinacolada.ui.seriesSelection.PCLLoadoutsContainer.MINIMUM_SERIES;
 
 public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameSubscriber, StartActSubscriber
 {
@@ -259,7 +260,15 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
     {
         Loadouts.clear();
 
-        // Always include the selected loadout
+        // The series may not be immediately initialized if the user starts a fresh save
+        if (GR.PCL.Config.SelectedSeries.Get() == null || GR.PCL.Config.SelectedSeries.Get().size() < MINIMUM_SERIES) {
+            GR.PCL.Config.SelectedSeries.Set(PCLJUtils.Map(GR.PCL.Data.GetEveryLoadout(), loadout -> loadout.Series), true);
+        }
+
+        // Always include the selected loadout. If for some reason none exists, assign one at random
+        if (GR.PCL.Data.SelectedLoadout != null) {
+            GR.PCL.Data.SelectedLoadout = PCLJUtils.Random(PCLJUtils.Filter(GR.PCL.Data.GetEveryLoadout(), loadout -> GR.PCL.GetUnlockLevel() >= loadout.UnlockLevel));
+        }
         if (GR.PCL.Data.SelectedLoadout != null) {
             final PCLRuntimeLoadout rloadout = PCLRuntimeLoadout.TryCreate(GR.PCL.Data.SelectedLoadout);
             GR.PCL.Dungeon.AddLoadout(rloadout);
@@ -280,7 +289,10 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
                 }
 
                 final PCLRuntimeLoadout rloadout = PCLRuntimeLoadout.TryCreate(loadout);
-                GR.PCL.Dungeon.AddLoadout(rloadout);
+                // Series must be unlocked to be present in-game
+                if (rloadout != null && !rloadout.isLocked) {
+                    GR.PCL.Dungeon.AddLoadout(rloadout);
+                }
             }
         }
 
@@ -320,7 +332,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         {
             group.group.removeIf(card ->
             {
-                if (card.color == AbstractCard.CardColor.COLORLESS)
+                if (card.color == AbstractCard.CardColor.COLORLESS || card.color == AbstractCard.CardColor.CURSE)
                 {
                     return !(card instanceof PCLCardBase) && !(card instanceof CustomCard);
                 }

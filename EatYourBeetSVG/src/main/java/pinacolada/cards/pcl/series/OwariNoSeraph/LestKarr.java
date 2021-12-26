@@ -2,14 +2,11 @@ package pinacolada.cards.pcl.series.OwariNoSeraph;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.cards.status.VoidCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.*;
-import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.status.*;
 import pinacolada.misc.GenericEffects.GenericEffect_StackPower;
 import pinacolada.powers.PCLPowerHelper;
@@ -43,13 +40,12 @@ public class LestKarr extends PCLCard
     {
         final RandomizedList<AbstractCard> pool = PCLGameUtilities.GetCardPoolInCombat(CardRarity.CURSE);
         pool.Add(new Status_Frostbite());
-        pool.Add(new Curse_SearingBurn());
         pool.Add(new Status_Burn());
         pool.Add(new Status_Wound());
         pool.Add(new Status_Slimed());
         pool.Add(new Crystallize());
-        pool.Add(new VoidCard());
-        pool.Add(new Dazed());
+        pool.Add(new Status_Void());
+        pool.Add(new Status_Dazed());
         final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         while (choice.size() < secondaryValue && pool.Size() > 0)

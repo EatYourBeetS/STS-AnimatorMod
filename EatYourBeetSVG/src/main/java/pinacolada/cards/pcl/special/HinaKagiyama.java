@@ -11,7 +11,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.replacement.Miracle;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class HinaKagiyama extends PCLCard
 {
@@ -78,10 +77,9 @@ public class HinaKagiyama extends PCLCard
         {
             super.atStartOfTurnPostDraw();
 
-            PCLActions.Bottom.SelectFromPile(name, baseAmount, player.exhaustPile)
+            PCLActions.Bottom.PurgeFromPile(name, baseAmount, player.exhaustPile)
                     .SetOptions(false, true)
-                    .SetMessage(FormatDescription(1, baseAmount))
-                    .SetFilter(PCLGameUtilities::IsHindrance)
+                    .SetFilter(c -> c.type == CardType.CURSE)
                     .AddCallback(cards ->
                     {
                         for (AbstractCard card : cards)

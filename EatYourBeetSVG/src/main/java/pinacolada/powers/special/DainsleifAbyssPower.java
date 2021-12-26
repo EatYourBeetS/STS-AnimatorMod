@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.interfaces.delegates.ActionT3;
@@ -212,8 +210,8 @@ public class DainsleifAbyssPower extends PCLPower {
         ApplyWeak(ACTIONS.ApplyToALL(3, GR.Tooltips.Weak, true), 10, 1, (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3)),
         ChannelRandomOrbs(ACTIONS.ChannelRandomOrbs(2, true), 10, 2, (c, p, m) -> PCLActions.Bottom.ChannelRandomOrbs(2)),
         ChannelRandomOrbs2(ACTIONS.ChannelRandomOrbs(4, true), 10, 3, (c, p, m) -> PCLActions.Bottom.ChannelRandomOrbs(4)),
-        NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 2, (c, p, m) -> PCLActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 3))),
-        NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 2, (c, p, m) -> PCLActions.Bottom.StackPower(new EnergizedPower(p, 2))),
+        NextTurnDraw(ACTIONS.NextTurnDraw(3, true), 10, 2, (c, p, m) -> PCLActions.Bottom.DrawNextTurn(3)),
+        NextTurnEnergy(ACTIONS.NextTurnEnergy(2, true), 10, 2, (c, p, m) -> PCLActions.Bottom.GainEnergyNextTurn(2)),
         GainBlessing(ACTIONS.GainAmount(6, GR.Tooltips.Invocation, true), 8, 2, (c, p, m) -> PCLActions.Bottom.GainInvocation(6, false)),
         GainCorruption(ACTIONS.GainAmount(9, GR.Tooltips.Desecration, true), 7, 3, (c, p, m) -> PCLActions.Bottom.GainDesecration(9, false)),
         GainIntellect(ACTIONS.GainAmount(6, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> PCLActions.Bottom.GainWisdom(6, false)),

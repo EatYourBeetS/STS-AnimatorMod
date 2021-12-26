@@ -3,10 +3,12 @@ package pinacolada.cards.pcl.series.Rewrite;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class ToukaNishikujou extends PCLCard
 {
@@ -37,8 +39,15 @@ public class ToukaNishikujou extends PCLCard
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.CreateThrowingKnives(magicNumber).AddCallback(card -> {
             if (card != null) {
-                PCLActions.Bottom.IncreaseScaling(card, PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity(), secondaryValue);
+                PCLAffinity af = PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity();
+                PCLActions.Bottom.IncreaseScaling(card, af, PCLGameUtilities.InStance(af) ? secondaryValue + 1 : secondaryValue);
             }
         });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        PCLAffinity af = PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity();
+        return PCLGameUtilities.InStance(af);
     }
 }

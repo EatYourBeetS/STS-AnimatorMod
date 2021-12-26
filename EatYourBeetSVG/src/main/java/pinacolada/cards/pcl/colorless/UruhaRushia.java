@@ -42,6 +42,12 @@ public class UruhaRushia extends PCLCard implements OnOrbApplyFocusSubscriber
         super.triggerWhenCreated(startOfBattle);
 
         PCLCombatStats.onOrbApplyFocus.Subscribe(this);
+        for (AbstractOrb orb : player.orbs) {
+            if (GameUtilities.IsValidOrb(orb)) {
+                orb.applyFocus();
+                break;
+            }
+        }
     }
 
     @Override

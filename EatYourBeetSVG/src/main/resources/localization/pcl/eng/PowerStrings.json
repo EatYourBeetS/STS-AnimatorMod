@@ -157,8 +157,8 @@
     },
 	"pcl:RerollAffinityPower":
 	{
-		"DESCRIPTIONS": ["#pCurrent #pAffinity: [{0}] NL #pNext #pAffinity: [{1}] NL #pMatch #pCombo: {2} NL NL {3}. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext #yAffinity to a random [A-Gen] from the card. Set the #yCurrent #yAffinity to the old #yNext #yAffinity. NL NL Click this button to reroll this #yAffinity.","Make a #yMatch by playing a card with [{0}]","Make a #yMatch by playing any card with [A-Gen]"],
-		"NAME": "Reroll Match"
+		"DESCRIPTIONS": ["#pCurrent [A-Gen]: [{0}] NL #pNext [A-Gen]: [{1}] NL #pMatch #pCombo: {2} NL NL {3}. When you do so: Gain its [A-Gen] #yPowers and activate its #yMatch effects. Set the #yNext [A-Gen] to a random [A-Gen] from the card. Set the #yCurrent [A-Gen] to the old #yNext [A-Gen]. NL NL Click this button to skip the #yCurrent [A-Gen].","Make a #yMatch by playing a card with [{0}]","Make a #yMatch by playing any card with [A-Gen]"],
+		"NAME": "Skip Affinity"
 	},
 	"pcl:ShacklesPower":
 	{
@@ -252,7 +252,7 @@
 	},
 	"pcl:WisdomPower":
 	{
-		"DESCRIPTIONS": ["If a [A-Blue] card #yMatches: Gain #b{0} [B]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to increase your first #yOrb's [Focus] by #b{2}.{3}","NL #rThis #rpower #ris #rdisabled."],
+		"DESCRIPTIONS": ["If a [A-Blue] card #yMatches: Gain #b{0} [B]. NL At #b{1} stacks: Gains #b1 Level and #b1 use. NL When clicked: Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b{2}% this turn.{3}","NL #rThis #rpower #ris #rdisabled."],
 		"NAME": "Wisdom"
 	},
 		"pcl:AinzPower":

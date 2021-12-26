@@ -23,7 +23,7 @@ public class MasamiIwasawa extends PCLCard
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(1, 0, 2);
+        SetAffinity_Light(1, 0, 1);
 
         SetEthereal(true);
         SetAfterlife(true);

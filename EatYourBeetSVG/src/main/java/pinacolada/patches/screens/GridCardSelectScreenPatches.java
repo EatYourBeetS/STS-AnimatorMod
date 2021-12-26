@@ -20,12 +20,22 @@ import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.ui.GridCardSelectScreenPatch;
+import pinacolada.utilities.PCLJUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 public class GridCardSelectScreenPatches
 {
+    public static final float[] Y_POSITIONS_2 = new float[]{
+            Settings.HEIGHT * 0.75F - 50.0F * Settings.scale,
+            Settings.HEIGHT / 4.0F + 50.0F * Settings.scale
+    };
+    public static final float[] Y_POSITIONS_3 = new float[]{
+            Settings.HEIGHT * 0.75F - 50.0F * Settings.scale,
+            Settings.HEIGHT / 2.0F,
+            Settings.HEIGHT / 4.0F + 50.0F * Settings.scale
+    };
     public static ArrayList<AbstractCard> cardList = new ArrayList();
     public static Field hoveredCardField;
 
@@ -40,9 +50,19 @@ public class GridCardSelectScreenPatches
             hoveredCardField.setAccessible(true);
             return (AbstractCard)hoveredCardField.get(gc);
         } catch (Exception var2) {
-            System.out.println("Exception occurred when getting private field hoveredCard from StSLib: " + var2.toString());
+            System.out.println("Exception occurred when getting private field hoveredCard: " + var2.toString());
             return null;
         }
+    }
+
+    public static void renderPreviewCard(SpriteBatch sb, AbstractCard card, float unHoveredScale, float y) {
+        card.drawScale = card.hb.hovered ? 1.0F : unHoveredScale;
+        card.current_x = card.target_x = (float)Settings.WIDTH * 0.63F;
+        card.current_y = card.target_y = y;
+        card.render(sb);
+        card.updateHoverLogic();
+        card.renderCardTip(sb);
+        GridCardSelectScreenPatches.cardList.add(card);
     }
 
     @SpirePatch(clz= GridCardSelectScreen.class, method="calculateScrollBounds")
@@ -103,13 +123,8 @@ public class GridCardSelectScreenPatches
         public static void Insert(GridCardSelectScreen __instance) {
             AbstractCard hoveredCard = GridCardSelectScreenPatches.getHoveredCard();
             if (hoveredCard instanceof PCLCard) {
-                if ((Boolean)GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.get(__instance)) {
-                    ((PCLCard) hoveredCard).SetForm(1, hoveredCard.timesUpgraded);
-                } else {
-                    ((PCLCard) hoveredCard).SetForm(0, hoveredCard.timesUpgraded);
-                }
-
-                GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(__instance, false);
+                ((PCLCard) hoveredCard).SetForm(BranchSelectFields.branchUpgradeForm.get(__instance), hoveredCard.timesUpgraded);
+                GridCardSelectScreenPatches.BranchSelectFields.branchUpgradeForm.set(__instance, 0);
             }
 
         }
@@ -136,7 +151,7 @@ public class GridCardSelectScreenPatches
 
         public static void Prefix(GridCardSelectScreen __instance) {
             GridCardSelectScreenPatches.BranchSelectFields.waitingForBranchUpgradeSelection.set(__instance, false);
-            GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(__instance, false);
+            BranchSelectFields.branchUpgradeForm.set(__instance, 0);
         }
     }
 
@@ -168,13 +183,20 @@ public class GridCardSelectScreenPatches
                 sb.draw(ImageMaster.UPGRADE_ARROW, x, y - by, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale1 * Settings.scale, arrowScale1 * Settings.scale, -45.0F, 0, 0, 64, 64, false, false);
                 x += 64.0F * Settings.scale;
                 by += 64.0F * Settings.scale;
-                sb.setColor(Color.WHITE);
                 sb.draw(ImageMaster.UPGRADE_ARROW, x, y + by, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale2 * Settings.scale, arrowScale2 * Settings.scale, 45.0F, 0, 0, 64, 64, false, false);
                 sb.draw(ImageMaster.UPGRADE_ARROW, x, y - by, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale2 * Settings.scale, arrowScale2 * Settings.scale, -45.0F, 0, 0, 64, 64, false, false);
                 x += 64.0F * Settings.scale;
                 by += 64.0F * Settings.scale;
                 sb.draw(ImageMaster.UPGRADE_ARROW, x, y + by, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale3 * Settings.scale, arrowScale3 * Settings.scale, 45.0F, 0, 0, 64, 64, false, false);
                 sb.draw(ImageMaster.UPGRADE_ARROW, x, y - by, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale3 * Settings.scale, arrowScale3 * Settings.scale, -45.0F, 0, 0, 64, 64, false, false);
+
+                if (GridCardSelectScreenPatches.BranchSelectFields.branchUpgrades.get(__instance).size() > 2) {
+                    x = (float)Settings.WIDTH / 2.0F - 73.0F * Settings.scale - 32.0F;
+                    sb.draw(ImageMaster.UPGRADE_ARROW, x, y, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale1 * Settings.scale, arrowScale1 * Settings.scale, 0, 0, 0, 64, 64, false, false);
+                    sb.draw(ImageMaster.UPGRADE_ARROW, x + 64.0F * Settings.scale, y, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale2 * Settings.scale, arrowScale2 * Settings.scale, 0, 0, 0, 64, 64, false, false);
+                    sb.draw(ImageMaster.UPGRADE_ARROW, x + 128.0F * Settings.scale, y, 32.0F, 32.0F, 64.0F, 64.0F, arrowScale3 * Settings.scale, arrowScale3 * Settings.scale, 0, 0, 0, 64, 64, false, false);
+                }
+
                 arrowTimer += Gdx.graphics.getDeltaTime() * 2.0F;
                 arrowScale1 = 0.8F + (MathUtils.cos(arrowTimer) + 1.0F) / 8.0F;
                 arrowScale2 = 0.8F + (MathUtils.cos(arrowTimer - 0.8F) + 1.0F) / 8.0F;
@@ -224,42 +246,22 @@ public class GridCardSelectScreenPatches
             AbstractCard c = GridCardSelectScreenPatches.getHoveredCard();
             if (__instance.forUpgrade && c instanceof PCLCard && ((PCLCard) c).cardData.CanToggleOnUpgrade) {
                 GridCardSelectScreenPatches.cardList.clear();
-                AbstractCard branchUpgradedCard = (AbstractCard)GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.get(__instance);
-                c.current_x = (float)Settings.WIDTH * 0.36F;
-                c.current_y = (float)Settings.HEIGHT / 2.0F;
-                c.target_x = (float)Settings.WIDTH * 0.36F;
-                c.target_y = (float)Settings.HEIGHT / 2.0F;
+                c.current_x = c.target_x = (float)Settings.WIDTH * 0.36F;
+                c.current_y = c.target_y = (float)Settings.HEIGHT / 2.0F;
                 c.render(sb);
                 c.updateHoverLogic();
                 c.hb.resize(0.0F, 0.0F);
-                if (__instance.upgradePreviewCard.hb.hovered) {
-                    __instance.upgradePreviewCard.drawScale = 1.0F;
-                } else {
-                    __instance.upgradePreviewCard.drawScale = 0.9F;
+
+                final ArrayList<AbstractCard> list = GridCardSelectScreenPatches.BranchSelectFields.branchUpgrades.get(__instance);
+                int size = list.size();
+                final float scale = size == 2 ? 0.9f : 0.8f;
+                final float[] yIndices = size == 2 ? Y_POSITIONS_2 : Y_POSITIONS_3;
+                for (int i = 0; i < size; i++) {
+                    if (yIndices.length > i) {
+                        renderPreviewCard(sb, list.get(i), scale, yIndices[i]);
+                    }
                 }
 
-                __instance.upgradePreviewCard.current_x = (float)Settings.WIDTH * 0.63F;
-                __instance.upgradePreviewCard.current_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale;
-                __instance.upgradePreviewCard.target_x = (float)Settings.WIDTH * 0.63F;
-                __instance.upgradePreviewCard.target_y = (float)Settings.HEIGHT * 0.75F - 50.0F * Settings.scale;
-                __instance.upgradePreviewCard.render(sb);
-                __instance.upgradePreviewCard.updateHoverLogic();
-                __instance.upgradePreviewCard.renderCardTip(sb);
-                GridCardSelectScreenPatches.cardList.add(__instance.upgradePreviewCard);
-                if (branchUpgradedCard.hb.hovered) {
-                    branchUpgradedCard.drawScale = 1.0F;
-                } else {
-                    branchUpgradedCard.drawScale = 0.9F;
-                }
-
-                branchUpgradedCard.current_x = (float)Settings.WIDTH * 0.63F;
-                branchUpgradedCard.current_y = (float)Settings.HEIGHT / 4.0F + 50.0F * Settings.scale;
-                branchUpgradedCard.target_x = (float)Settings.WIDTH * 0.63F;
-                branchUpgradedCard.target_y = (float)Settings.HEIGHT / 4.0F + 50.0F * Settings.scale;
-                branchUpgradedCard.render(sb);
-                branchUpgradedCard.updateHoverLogic();
-                branchUpgradedCard.renderCardTip(sb);
-                GridCardSelectScreenPatches.cardList.add(branchUpgradedCard);
                 if (__instance.forUpgrade || __instance.forTransform || __instance.forPurge || __instance.isJustForConfirming || __instance.anyNumber) {
                     __instance.confirmButton.render(sb);
                 }
@@ -289,10 +291,9 @@ public class GridCardSelectScreenPatches
                 locator = GridCardSelectScreen_Update.Locator.class
         )
         public static void Insert(GridCardSelectScreen __instance) {
-            if (GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.get(__instance) != null) {
-                ((AbstractCard)GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.get(__instance)).update();
+            for (AbstractCard c : GridCardSelectScreenPatches.BranchSelectFields.branchUpgrades.get(__instance)) {
+                c.update();
             }
-
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -319,13 +320,20 @@ public class GridCardSelectScreenPatches
         )
         public static void Insert(GridCardSelectScreen __instance) {
             AbstractCard c = GridCardSelectScreenPatches.getHoveredCard();
-            if (c instanceof PCLCard && ((PCLCard) c).cardData.CanToggleOnUpgrade) {
-                AbstractCard previewCard = c.makeStatEquivalentCopy();
-                ((PCLCard)previewCard).SetForm(1, previewCard.timesUpgraded);
-                previewCard.upgrade();
-                previewCard.displayUpgrades();
-                previewCard.initializeDescription();
-                GridCardSelectScreenPatches.BranchSelectFields.branchUpgradePreviewCard.set(__instance, previewCard);
+            PCLCard pC = PCLJUtils.SafeCast(c, PCLCard.class);
+            if (pC != null && pC.cardData.CanToggleOnUpgrade) {
+                final ArrayList<AbstractCard> list = GridCardSelectScreenPatches.BranchSelectFields.branchUpgrades.get(__instance);
+                list.clear();
+
+                for (int i = 0; i < pC.cardData.MaxForms; i++) {
+                    PCLCard previewCard = (PCLCard) pC.makeStatEquivalentCopy();
+                    previewCard.SetForm(i, previewCard.timesUpgraded);
+                    previewCard.upgrade();
+                    previewCard.displayUpgrades();
+                    previewCard.initializeDescription();
+                    list.add(previewCard);
+                }
+
                 GridCardSelectScreenPatches.BranchSelectFields.waitingForBranchUpgradeSelection.set(__instance, true);
             }
 
@@ -347,14 +355,12 @@ public class GridCardSelectScreenPatches
             method = "<class>"
     )
     public static class BranchSelectFields {
-        public static SpireField<AbstractCard> branchUpgradePreviewCard = new SpireField(() -> {
-            return null;
-        });
+        public static SpireField<ArrayList<AbstractCard>> branchUpgrades = new SpireField(ArrayList::new);
         public static SpireField<Boolean> waitingForBranchUpgradeSelection = new SpireField(() -> {
             return false;
         });
-        public static SpireField<Boolean> isBranchUpgrading = new SpireField(() -> {
-            return false;
+        public static SpireField<Integer> branchUpgradeForm = new SpireField(() -> {
+            return 0;
         });
 
         public BranchSelectFields() {

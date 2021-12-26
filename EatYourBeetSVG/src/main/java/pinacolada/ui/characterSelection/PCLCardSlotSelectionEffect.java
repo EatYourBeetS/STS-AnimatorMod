@@ -101,6 +101,11 @@ public class PCLCardSlotSelectionEffect extends EYBEffectWithCallback<Object>
     protected void UpdateInternal(float deltaTime)
     {
         grid.TryUpdate();
+
+        if (InputHelper.justClickedLeft && grid.hoveredCard == null)
+        {
+            Complete();
+        }
     }
 
     @Override

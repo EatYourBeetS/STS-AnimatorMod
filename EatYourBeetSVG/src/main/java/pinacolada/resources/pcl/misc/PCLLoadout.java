@@ -3,7 +3,6 @@ package pinacolada.resources.pcl.misc;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -408,46 +407,20 @@ public abstract class PCLLoadout
         return null;
     }
 
-    public void OnVictory(PCLLoadout currentLoadout, int ascensionLevel)
+    public void OnVictory(int ascensionLevel, int trophyLevel)
     {
         PCLTrophies trophies = GetTrophies();
-
         if (GR.PCL.Data.SelectedLoadout.ID == ID)
         {
-            trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
-        }
-
-        ArrayList<String> cardsWithSynergy = new ArrayList<>();
-        int synergyCount = 0;
-        int uniqueCards = 0;
-
-        ArrayList<AbstractCard> cards = AbstractDungeon.player.masterDeck.group;
-        for (AbstractCard c : cards)
-        {
-            PCLCard card = PCLJUtils.SafeCast(c, PCLCard.class);
-            if (card != null)
-            {
-                CardSeries series = card.series;
-                if (series != null && series.ID == ID)
-                {
-                    synergyCount += 1;
-                    if (!cardsWithSynergy.contains(card.cardID) && card.rarity != AbstractCard.CardRarity.BASIC)
-                    {
-                        uniqueCards += 1;
-                        cardsWithSynergy.add(card.cardID);
-                    }
-                }
+            switch (trophyLevel) {
+                case 2:
+                    trophies.Trophy2 = Math.max(trophies.Trophy2, ascensionLevel);
+                    break;
+                case 3:
+                    trophies.Trophy3 = Math.max(trophies.Trophy3, ascensionLevel);
+                    break;
             }
-        }
-
-        if (synergyCount >= cards.size() / 2)
-        {
-            trophies.Trophy2 = Math.max(trophies.Trophy2, ascensionLevel);
-        }
-
-        if (uniqueCards >= 8)
-        {
-            trophies.Trophy3 = Math.max(trophies.Trophy3, ascensionLevel);
+            trophies.Trophy1 = Math.max(trophies.Trophy1, ascensionLevel);
         }
     }
 
@@ -460,8 +433,8 @@ public abstract class PCLLoadout
         }
         data.GetCardSlot(0).Select(0, 5).GetData().MarkSeen();
         data.GetCardSlot(1).Select(0, 5).GetData().MarkSeen();
-        data.GetCardSlot(2).Select(null);
-        data.GetCardSlot(3).Select(null);
+        data.GetCardSlot(2).Select(0, 1).GetData().MarkSeen();
+        data.GetCardSlot(3).Select(1, 1).GetData().MarkSeen();
         data.GetCardSlot(4).Select(null);
         data.GetCardSlot(5).Select(null);
         data.GetRelicSlot(0).Select((PCLRelic) null);
@@ -515,6 +488,6 @@ public abstract class PCLLoadout
     protected void AddStarterCard(PCLCardData data, Integer value)
     {
         starterCards.add(new TupleT2<>(data, value));
-        data.MarkSeen();
+        //data.MarkSeen();
     }
 }

@@ -2,6 +2,7 @@ package pinacolada.cards.pcl.series.AngelBeats;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
@@ -17,23 +18,24 @@ public class Noda extends PCLCard
     {
         super(DATA);
 
-        Initialize(12, 0, 1, 4);
+        Initialize(12, 0, 1, 3);
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 0);
         SetAfterlife(true);
 
-        SetAffinityRequirement(PCLAffinity.Red, 3);
+        SetAffinityRequirement(PCLAffinity.Red, 4);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public void triggerOnExhaust()
     {
-        super.triggerOnManualDiscard();
+        super.triggerOnExhaust();
 
-        PCLActions.Bottom.Exhaust(this);
-        PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, magicNumber);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.TemporaryStrength, magicNumber);
+        }
     }
 
     @Override
@@ -41,7 +43,7 @@ public class Noda extends PCLCard
     {
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
 
-        if (info.IsSynergizing || TrySpendAffinity(PCLAffinity.Red))
+        if (TrySpendAffinity(PCLAffinity.Red))
         {
             PCLActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
         }

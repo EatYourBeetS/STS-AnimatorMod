@@ -21,7 +21,7 @@ public class KanadeTachibana extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 2);
+        Initialize(0, 2, 2, 2);
         SetUpgrade(0, 0, 1, 1);
 
         SetAfterlife(true);

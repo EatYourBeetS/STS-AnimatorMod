@@ -415,22 +415,15 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         super.update();
 
         if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.GRID && AbstractDungeon.gridSelectScreen.forUpgrade && hb.hovered && InputHelper.justClickedLeft) {
-            if (auxiliaryData.form == 1 && this.cardData.CanToggleOnUpgrade) {
-                GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(AbstractDungeon.gridSelectScreen, true);
-            } else {
-                GridCardSelectScreenPatches.BranchSelectFields.isBranchUpgrading.set(AbstractDungeon.gridSelectScreen, false);
-            }
-
             if (this.cardData.CanToggleOnUpgrade) {
+                GridCardSelectScreenPatches.BranchSelectFields.branchUpgradeForm.set(AbstractDungeon.gridSelectScreen, auxiliaryData.form);
                 beginGlowing();
                 GridCardSelectScreenPatches.cardList.forEach((c) -> {
                     if (c != this) {
                         c.stopGlowing();
                     }
-
                 });
             }
-
             GridCardSelectScreenPatches.BranchSelectFields.waitingForBranchUpgradeSelection.set(AbstractDungeon.gridSelectScreen, false);
         }
     }

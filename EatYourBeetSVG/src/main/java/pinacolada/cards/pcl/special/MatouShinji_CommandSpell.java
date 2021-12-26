@@ -54,7 +54,7 @@ public class MatouShinji_CommandSpell extends PCLCard
             {
                 for (AbstractCard c : cards)
                 {
-                    PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Star, c.costForTurn + magicNumber);
+                    PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Dark, c.costForTurn + magicNumber);
                     PCLActions.Bottom.Motivate(c, 1);
                 }
             });

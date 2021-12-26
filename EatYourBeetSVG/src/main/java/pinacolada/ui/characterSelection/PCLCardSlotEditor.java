@@ -91,7 +91,10 @@ public class PCLCardSlotEditor extends GUIElement
         this.cardAmount_text.SetActive(card != null);
         this.add_button.SetOnClick(this.slot::Add).SetInteractable(slot.CanAdd()).SetActive(true);
         this.decrement_button.SetOnClick(this.slot::Decrement).SetInteractable(slot.CanDecrement()).SetActive(true);
-        this.clear_button.SetOnClick(this.slot::Clear).SetInteractable(slot.CanRemove()).SetActive(true);
+        this.clear_button.SetOnClick(() -> {
+            this.slot.Clear();
+            this.cardName_text.SetText("");
+        }).SetInteractable(slot.CanRemove()).SetActive(true);
         this.change_button.SetOnClick(() -> loadoutEditor.TrySelectCard(this.slot)).SetInteractable(change).SetActive(true);
 
         return this;

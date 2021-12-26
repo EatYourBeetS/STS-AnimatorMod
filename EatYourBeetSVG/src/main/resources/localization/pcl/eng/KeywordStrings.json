@@ -24,11 +24,11 @@
 		"NAMES": ["[a-gen] power", "[a-gen] powers", "affinity power", "affinity powers"],
 		"PROPER_NAME": "Affinity Power"
 	},
-	"Affinity Reroll":
+	"Affinity Skip":
 	{
-		"DESCRIPTION": "Once per turn: You may reroll the #yCurrent or #yNext #yAffinities by clicking on them.",
-		"NAMES": ["affinity reroll, affinity rerolls, reroll, rerolls, [a-gen] reroll, [a-gen] rerolls"],
-		"PROPER_NAME": "Affinity Reroll"
+		"DESCRIPTION": "Once per turn: You may skip the #yCurrent #yAffinity by clicking on it.",
+		"NAMES": ["affinity skip, affinity skips, skip, skips, [a-gen] skip, [a-gen] skips"],
+		"PROPER_NAME": "Affinity Skip"
 	},
 	"Affinity Token":
 	{
@@ -41,12 +41,6 @@
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [G] up to #b50.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
-	},
-	"Ascension Trophy":
-	{
-		"DESCRIPTION": "The highest Ascension level at which Act 3 was cleared with this series.",
-		"NAMES": ["ascension trophy"],
-		"PROPER_NAME": "Ascension Trophy"
 	},
 	"Autoplay":
 	{
@@ -176,7 +170,7 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
+	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
 	  "NAMES": ["desecration"],
 	  "PROPER_NAME": "Desecration"
 	},
@@ -224,7 +218,7 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
+	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
 	  "NAMES": ["endurance"],
 	  "PROPER_NAME": "Endurance"
 	},
@@ -380,7 +374,7 @@
 	},
 	"Invocation":
 	{
-	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
+	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
 	  "NAMES": ["Invocation"],
 	  "PROPER_NAME": "Invocation"
 	},
@@ -452,7 +446,7 @@
 	},
 	"Might":
 	{
-	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
+	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
 	  "NAMES": ["might"],
 	  "PROPER_NAME": "Might"
 	},
@@ -674,7 +668,7 @@
 	},
 	"Velocity":
 	{
-	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to draw #b2 cards.",
+	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to draw #b2 cards.",
 	  "NAMES": ["velocity"],
 	  "PROPER_NAME": "Velocity"
 	},
@@ -710,7 +704,7 @@
 	},
 	"Wisdom":
 	{
-	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL Gains #b1 #yLevel for every #b5 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to increase the [Focus] of the next #yOrb #yChanneled by #b4.",
+	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b100% this turn.",
 	  "NAMES": ["wisdom"],
 	  "PROPER_NAME": "Wisdom"
 	},
@@ -845,6 +839,24 @@
 		"DESCRIPTION": "You can steal up to #b50 #yGold from a boss, #b25 #yGold from an elite, or #b10 #yGold from other non-minion enemies.",
 		"NAMES": ["~steal"],
 		"PROPER_NAME": "Steal"
+	},
+	"~Trophy1":
+	{
+		"DESCRIPTION": "The highest Ascension level at which Act 3 was cleared with this series.",
+		"NAMES": ["~trophy1"],
+		"PROPER_NAME": "Bronze Trophy"
+	},
+	"~Trophy2":
+	{
+		"DESCRIPTION": "The highest Ascension level at which Act 4 was cleared with this series.",
+		"NAMES": ["~trophy2"],
+		"PROPER_NAME": "Silver Trophy"
+	},
+	"~Trophy3":
+	{
+		"DESCRIPTION": "The highest Ascension level at which Act 5 was cleared with this series.",
+		"NAMES": ["~trophy3"],
+		"PROPER_NAME": "Gold Trophy"
 	},
 	"~Unique":
 	{

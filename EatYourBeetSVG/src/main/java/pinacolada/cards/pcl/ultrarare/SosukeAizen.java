@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_UltraRare;
 import pinacolada.powers.common.CounterAttackPower;
-import pinacolada.powers.common.PhasingPower;
+import pinacolada.powers.special.PhasingPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 

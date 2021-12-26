@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
+import eatyourbeets.actions.handSelection.ReshuffleFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.utility.CallbackAction;
@@ -1052,6 +1053,10 @@ public final class PCLActions
     public ReshuffleDiscardPile ReshuffleDiscardPile(boolean onlyIfEmpty)
     {
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
+    }
+
+    public ReshuffleFromHand ReshuffleFromHand(String sourceName, int amount, boolean isRandom) {
+        return (ReshuffleFromHand)this.Add(new ReshuffleFromHand(sourceName, amount, isRandom));
     }
 
     public ApplyAffinityPower RetainPower(PCLAffinity affinity)

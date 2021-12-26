@@ -51,6 +51,8 @@ public class ForceImpulseGundam extends PCLCard
                         PCLGameEffects.List.Add(VFX.SmallLaser(player.hb, enemy.hb, Color.SKY)).duration * 0.1f));
         PCLActions.Bottom.Reload(name, cards ->
         {
+            baseDamage -= bonusDamage;
+            bonusDamage = 0;
             if (cards.size() > 0)
             {
                 for (AbstractCard card : cards) {
@@ -62,6 +64,8 @@ public class ForceImpulseGundam extends PCLCard
                 }
             }
         });
+
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

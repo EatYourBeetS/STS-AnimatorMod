@@ -111,7 +111,7 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
 
     public String GetUpdatedDescription()
     {
-        return FormatDescription(0, passiveAmount, MAX_PROJECTILES, evokeAmount, evokeAmount, turns);
+        return FormatDescription(0, passiveAmount, MAX_PROJECTILES, evokeAmount, turns);
     }
 
     @Override
@@ -193,9 +193,9 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
     {
         FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, evokeAmount + "x" + projectilesCount, this.cX + NUM_X_OFFSET,
                 this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
-
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX + NUM_X_OFFSET,
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET,
                 this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, this.c, this.fontScale);
     }
 
     @Override
@@ -264,7 +264,7 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
         {
             PCLActions.Top.Add(new EarthOrbPassiveAction(this, -1));
             PCLActions.Top.DealDamage(null, info.owner, evokeAmount, DamageInfo.DamageType.THORNS, AttackEffects.SMASH).SetVFXColor(Color.TAN);
-            PCLActions.Top.GainBlock(evokeAmount);
+            PCLActions.Top.GainBlock(passiveAmount);
         }
         return damage;
     }

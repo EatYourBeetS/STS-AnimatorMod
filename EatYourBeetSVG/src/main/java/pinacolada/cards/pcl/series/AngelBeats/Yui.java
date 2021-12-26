@@ -31,7 +31,7 @@ public class Yui extends PCLCard implements OnAfterlifeSubscriber
         SetExhaust(true);
         SetAfterlife(true);
 
-        SetAffinityRequirement(PCLAffinity.General, 8);
+        SetAffinityRequirement(PCLAffinity.General, 12);
     }
 
     @Override

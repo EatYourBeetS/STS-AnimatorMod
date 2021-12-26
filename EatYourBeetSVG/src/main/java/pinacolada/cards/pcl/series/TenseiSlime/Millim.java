@@ -20,7 +20,10 @@ public class Millim extends PCLCard
 
         Initialize(6, 0, 3, 2);
 
-        SetAffinity_Star(1, 0, 1);
+        SetAffinity_Star(1, 0, 0);
+        SetAffinity_Red(0, 0, 1);
+        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Blue(0, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.General, 6);
         SetUnique(true, true);

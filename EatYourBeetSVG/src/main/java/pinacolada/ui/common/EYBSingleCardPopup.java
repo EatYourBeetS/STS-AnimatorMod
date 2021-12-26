@@ -500,7 +500,7 @@ public class EYBSingleCardPopup extends GUIElement
 
     public void ChangePreviewForm(int newForm)
     {
-        if (card != null) {
+        if (card != null && newForm >= 0 && newForm <= card.cardData.MaxForms - 1) {
             this.currentForm = card.SetForm(newForm, card.timesUpgraded);
             upgradedCard = card.MakePopupCopy();
             upgradedCard.SetForm(newForm, card.timesUpgraded);

@@ -33,7 +33,7 @@ public class TheCursedForest extends PCLEvent
             }
         }
 
-        return rng.randomBoolean(0.03f + (curseCount * 0.02f)) ? new TheCursedForest() : null;
+        return rng.randomBoolean(curseCount >= 2 ? (Math.max(0.15f, 0.03f + curseCount * 0.02f)) : 0) ? new TheCursedForest() : null;
     }
 
     public TheCursedForest()

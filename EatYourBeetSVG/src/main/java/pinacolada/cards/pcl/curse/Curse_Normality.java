@@ -159,7 +159,7 @@ public class Curse_Normality extends PCLCard_Curse implements OnTryApplyPowerLis
                             if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.TurnBased) {
                                 amount -= 1;
                             }
-                            else if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.Temporary) {
+                            else if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.SingleTurn || ph.EndTurnBehavior == PCLPowerHelper.Behavior.Temporary) {
                                 amount = 0;
                             }
                         }

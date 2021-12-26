@@ -2,52 +2,71 @@ package pinacolada.cards.pcl.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
+import pinacolada.cards.pcl.special.Saber_Alter;
 import pinacolada.cards.pcl.special.Saber_Excalibur;
+import pinacolada.cards.pcl.special.Saber_X;
 import pinacolada.effects.AttackEffects;
-import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
 
 public class Saber extends PCLCard
 {
+    private static final PCLAffinity[] cardAffinities = new PCLAffinity[] {PCLAffinity.Light, PCLAffinity.Blue, PCLAffinity.Green};
+    private static final ArrayList<FuncT0<PCLCard>> cardConstructors = new ArrayList<>();
+    public static final ArrayList<PCLCardPreview> cardPreviews = new ArrayList<>();
     public static final PCLCardData DATA = Register(Saber.class)
             .SetAttack(1, CardRarity.RARE, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetMultiformData(3, false)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Saber_Excalibur(), false));
+            .PostInitialize(
+                    data -> {
+                        for (FuncT0<PCLCard> constructor : cardConstructors) {
+                            cardPreviews.add(new PCLCardPreview(constructor.Invoke(), false));
+                        }
+                    }
+            );
+
+    static {
+        cardConstructors.add(Saber_Excalibur::new);
+        cardConstructors.add(Saber_Alter::new);
+        cardConstructors.add(Saber_X::new);
+    }
 
     public Saber()
     {
         super(DATA);
 
-        Initialize(9, 1, 3, 2);
-        SetUpgrade(2, 1, 0);
+        Initialize(7, 2, 2, 1);
+        SetUpgrade(1, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 
-        SetSoul(8, 0, Saber_Excalibur::new);
+        SetSoul(7, 0, Saber_Excalibur::new);
         SetLoyal(true);
     }
 
     @Override
-    protected float GetInitialBlock()
+    public int SetForm(Integer form, int timesUpgraded) {
+        SetSoul(7, 0, cardConstructors.get(form));
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
+    public PCLCardPreview GetCardPreview()
     {
-        ArrayList<PCLEnemyIntent> intents = PCLGameUtilities.GetPCLIntents();
-        if (intents.size() == 0) {
-            return super.GetInitialBlock();
-        }
-        for (PCLEnemyIntent intent : PCLGameUtilities.GetPCLIntents())
-        {
-            if (!intent.IsAttacking())
-            {
-                return super.GetInitialBlock();
-            }
-        }
-        return super.GetInitialBlock();
+        return cardPreviews.get(auxiliaryData.form);
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form], cardAffinities[auxiliaryData.form].GetFormattedPowerSymbol());
     }
 
     @Override
@@ -57,14 +76,21 @@ public class Saber extends PCLCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.StackAffinityPower(cardAffinities[auxiliaryData.form], secondaryValue);
+        }
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.GainRandomAffinityPower(1,false, PCLAffinity.Light, PCLAffinity.Red);
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
-        if (block > 0) {
-            PCLActions.Bottom.GainBlock(block);
-        }
-
-        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 1 + secondaryValue : 1, m);
+        PCLActions.Bottom.GainBlock(block);
+        this.baseDamage += magicNumber;
+        cooldown.ProgressCooldownAndTrigger(m);
     }
 }

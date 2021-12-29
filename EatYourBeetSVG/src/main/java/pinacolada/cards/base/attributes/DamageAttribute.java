@@ -18,9 +18,24 @@ public class DamageAttribute extends AbstractAttribute
                 largeIcon = ICONS.Brutal.Texture();
                 break;
 
-            case Elemental:
-                icon = ICONS.Elemental.Texture();
-                largeIcon = ICONS.Elemental_L.Texture();
+            case Dark:
+                icon = ICONS.Dark.Texture();
+                largeIcon = ICONS.Dark_L.Texture();
+                break;
+
+            case Electric:
+                icon = ICONS.Electric.Texture();
+                largeIcon = ICONS.Electric_L.Texture();
+                break;
+
+            case Fire:
+                icon = ICONS.Fire.Texture();
+                largeIcon = ICONS.Fire_L.Texture();
+                break;
+
+            case Ice:
+                icon = ICONS.Ice.Texture();
+                largeIcon = ICONS.Ice_L.Texture();
                 break;
 
             case Piercing:

@@ -22,10 +22,13 @@ import pinacolada.utilities.PCLJUtils;
 
 public class PCLBaseStatEditor extends GUIElement
 {
+
+    // TODO allow for fractional values, ADD potion slot editor
     public enum StatType
     {
         Gold(ImageMaster.TP_GOLD, Settings.GOLD_COLOR, 99, 15, -6, 6),
         HP(ImageMaster.TP_HP, Settings.RED_TEXT_COLOR, 70, 2, -6, 6),
+        PotionSlot(ImageMaster.POTION_PLACEHOLDER, Settings.CREAM_COLOR, 0, 1, -1, 0),
         CommonUpgrade(ImageMaster.TP_ASCENSION, Settings.CREAM_COLOR, 0, 1, 0, 2);
 
         public void SetAmount(PCLLoadoutData data, int amount)
@@ -50,6 +53,8 @@ public class PCLBaseStatEditor extends GUIElement
                     return CharacterOption.TEXT[5] + GetAmount(data);
                 case HP:
                     return CharacterOption.TEXT[4] + GetAmount(data);
+                case PotionSlot:
+                    return GR.PCL.Strings.Rewards.PotionSlot + GetAmount(data);
                 case CommonUpgrade:
                     return GR.PCL.Strings.Rewards.CommonUpgrade + GetAmount(data);
                 default:

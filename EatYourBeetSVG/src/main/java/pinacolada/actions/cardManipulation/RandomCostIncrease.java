@@ -13,7 +13,8 @@ public class RandomCostIncrease extends EYBActionWithCallback<AbstractCard>
 {
     public static String ID = GR.CreateID(GR.BASE_PREFIX, RandomCostIncrease.class.getName());
 
-    private final boolean permanent;
+    private boolean permanent;
+    private boolean relative;
 
     public RandomCostIncrease(int amount, boolean permanent)
     {
@@ -22,6 +23,14 @@ public class RandomCostIncrease extends EYBActionWithCallback<AbstractCard>
         this.permanent = permanent;
 
         Initialize(amount);
+    }
+
+    public RandomCostIncrease SetOptions(boolean permanent, boolean relative)
+    {
+        this.permanent = permanent;
+        this.relative = relative;
+
+        return this;
     }
 
     @Override

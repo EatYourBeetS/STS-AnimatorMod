@@ -3,14 +3,13 @@ package pinacolada.cards.pcl.colorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.markers.Hidden;
 import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.Arrays;
 
-public class TomoyaOkazaki extends PCLCard implements Hidden
+public class TomoyaOkazaki extends PCLCard
 {
     public static final PCLCardData DATA = Register(TomoyaOkazaki.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
 

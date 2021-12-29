@@ -6,6 +6,7 @@ import eatyourbeets.utilities.CardSelection;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.stances.EnduranceStance;
+import pinacolada.stances.InvocationStance;
 import pinacolada.stances.MightStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -18,7 +19,7 @@ public class SougenEsaka extends PCLCard
     {
         super(DATA);
 
-        Initialize(3, 4, 1, 1);
+        Initialize(4, 5, 1, 1);
         SetUpgrade(2, 1, 1);
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Red(0, 0, 1);
@@ -33,7 +34,7 @@ public class SougenEsaka extends PCLCard
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.BLUNT_LIGHT);
         PCLActions.Bottom.GainBlock(block);
 
-        if (PCLGameUtilities.InStance(MightStance.STANCE_ID)) {
+        if (PCLGameUtilities.InStance(MightStance.STANCE_ID) || PCLGameUtilities.InStance(InvocationStance.STANCE_ID)) {
             PCLActions.Bottom.GainEndurance(secondaryValue);
         }
 

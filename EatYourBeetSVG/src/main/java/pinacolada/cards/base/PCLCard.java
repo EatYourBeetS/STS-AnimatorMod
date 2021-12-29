@@ -705,9 +705,21 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         {
             dynamicTooltips.add(GR.Tooltips.Brutal);
         }
-        else if (attackType == PCLAttackType.Elemental)
+        else if (attackType == PCLAttackType.Dark)
         {
-            dynamicTooltips.add(GR.Tooltips.Elemental);
+            dynamicTooltips.add(GR.Tooltips.DarkDamage);
+        }
+        else if (attackType == PCLAttackType.Electric)
+        {
+            dynamicTooltips.add(GR.Tooltips.ElectricDamage);
+        }
+        else if (attackType == PCLAttackType.Fire)
+        {
+            dynamicTooltips.add(GR.Tooltips.FireDamage);
+        }
+        else if (attackType == PCLAttackType.Ice)
+        {
+            dynamicTooltips.add(GR.Tooltips.IceDamage);
         }
         else if (attackType == PCLAttackType.Piercing)
         {
@@ -1377,20 +1389,19 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
 
         if (applyEnemyPowers)
         {
-            if (attackType == PCLAttackType.Elemental)
+            if (attackType.powerToRemove != null)
             {
-                if (enemy.currentBlock > 0)
-                {
-                    tempDamage *= 1.3f;
-                }
                 for (AbstractPower power : enemy.powers) {
-                    if (ElementalExposurePower.POWER_ID.equals(power.ID))
+                    if (attackType.powerToRemove.equals(power.ID)) {
+                        tempDamage *= PCLAttackType.DAMAGE_MULTIPLIER;
+                    }
+                    else if (ElementalExposurePower.POWER_ID.equals(power.ID))
                     {
                         tempDamage *= (1 + (ELEMENTAL_MODIFIER / 100f));
                     }
                 }
             }
-            else if (attackType == PCLAttackType.Ranged)
+            if (attackType == PCLAttackType.Ranged)
             {
                 boolean hasFlight = false;
                 for (AbstractPower power : enemy.powers)

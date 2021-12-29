@@ -17,7 +17,7 @@ public class YoshinoHaruhiko extends PCLCard
         super(DATA);
 
         Initialize(3, 0, 2);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(2, 0, 0);
         SetExhaust(true);
         SetAffinity_Red(1, 0, 1);
         SetHitCount(2);

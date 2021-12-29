@@ -2,6 +2,7 @@ package pinacolada.misc.GenericEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
@@ -25,14 +26,10 @@ public class GenericEffect_EnterStance extends GenericEffect
     @Override
     public String GetText()
     {
-        // TODO: Create a reusable method which replaces all keywords with their icons
-        String text = tooltip.title
-        .replace(GR.Tooltips.Velocity.title, "[R]")
-        .replace(GR.Tooltips.Might.title, "[G]")
-        .replace(GR.Tooltips.Wisdom.title, "[B]")
-        .replace(GR.Tooltips.Endurance.title, "[O]")
-        .replace(GR.Tooltips.Invocation.title, "[L]")
-        .replace(GR.Tooltips.Desecration.title, "[D]");
+        String text = tooltip.title;
+        for (PCLAffinity af : PCLAffinity.Basic()) {
+            text = text.replace(af.PowerName, af.GetFormattedPowerSymbol());
+        }
 
         return GR.PCL.Strings.Actions.EnterStance("{" + text + "}", true);
     }

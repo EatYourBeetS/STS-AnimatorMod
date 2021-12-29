@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Urushihara extends PCLCard implements OnStartOfTurnPostDrawSubscriber //TODO
 {
     public static final PCLCardData DATA = Register(Urushihara.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.HatarakuMaouSama);
 

@@ -20,7 +20,7 @@ public class Magilou_Bienfu extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3);
+        Initialize(0, 0, 2);
 
         SetAffinity_Blue(1);
 

@@ -16,6 +16,14 @@
 			"At the start of turn or on #yEvoke: Reduce the cost of a random card by #b1, and increase the cost of another random card by #b1."
 		]
 	},
+	"pcl:Dark":
+	{
+	  "NAME": "Dark",
+	  "DESCRIPTION":
+	  [
+		"#yPassive: At the end of turn, increase stacks by #b{0}. NL #yEvoke: Deal #g{1} [~DD] damage to the lowest health enemy."
+	  ]
+	},
 	"pcl:Earth":
 	{
 		"NAME": "Earth",
@@ -29,7 +37,25 @@
 		"NAME": "Fire",
 		"DESCRIPTION":
 		[
-			"#yPassive: At the end of turn, deal #g{0} damage to the highest health enemy and apply #b{1} [Burning]. NL #yEvoke: Deal #g{2} damage to the highest health enemy and apply #b{3} [Burning]."
+			"#yPassive: At the end of turn, deal #g{0} [~FD] damage to the highest health enemy and apply #b{1} [Burning]. NL #yEvoke: Deal #g{2} [~FD] damage to the highest health enemy and apply #b{3} [Burning]."
+		]
+	},
+	"pcl:Frost":
+	{
+		"NAME": "Frost",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, gain #g{0} [Block]. NL #yEvoke: Gain #g{1} [Block].",
+			"#yPassive: At the end of turn, gain #g{0} [Block]. Deal #g{2} [~ID] damage to the enemy with the highest damage and apply #g{3} [Freezing] to it. NL #yEvoke: Gain #g{1} [Block]. Deal #g{4} [~ID] damage to ALL enemies and apply #g{5} [Freezing] to them."
+		]
+	},
+	"pcl:Lightning":
+	{
+		"NAME": "Lightning",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, deal #g{0} [~ED] damage to a random enemy. NL #yEvoke: Deal #g{1} [~ED] damage to a random enemy. NL Enemies with [~Lock-On] are prioritized.",
+			"#yPassive: At the end of turn, deal #g{0} [~ED] damage to ALL enemies. NL #yEvoke: Deal #g{1} [~ED] damage to ALL enemies."
 		]
 	},
 	"pcl:Metal":
@@ -38,6 +64,14 @@
 		"DESCRIPTION":
 		[
 			"#yPassive: Have #g{0} [Enchanted Armor] this turn. NL #yEvoke: Gain #g{1} [Metallicize]."
+		]
+	},
+	"pcl:Plasma":
+	{
+		"NAME": "Plasma",
+		"DESCRIPTION":
+		[
+			"#yPassive: At the end of turn, gain #g{0} [E]. NL #yEvoke: Gain #g{1} [E]."
 		]
 	},
 	"pcl:Water":

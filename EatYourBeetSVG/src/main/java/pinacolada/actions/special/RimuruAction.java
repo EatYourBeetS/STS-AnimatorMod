@@ -9,6 +9,8 @@ import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
 
+import static pinacolada.cards.base.PCLCard.HARMONIC;
+
 public class RimuruAction extends EYBAction
 {
     private final AbstractCard copy;
@@ -58,7 +60,8 @@ public class RimuruAction extends EYBAction
                 PCLGameUtilities.Retain(newCopy);
             }
 
-            PCLGameUtilities.SetCardTag(newCopy, GR.Enums.CardTags.VOLATILE, true);
+            PCLGameUtilities.ModifyCardTag(newCopy, GR.Enums.CardTags.VOLATILE, true);
+            PCLGameUtilities.ModifyCardTag(newCopy, HARMONIC, true);
             PCLGameUtilities.ChangeCardName(newCopy, rimuru.originalName);
             PCLGameUtilities.CopyVisualProperties(newCopy, copy);
 

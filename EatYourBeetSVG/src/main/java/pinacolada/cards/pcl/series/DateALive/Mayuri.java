@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Mayuri extends PCLCard
 {
     public static final PCLCardData DATA = Register(Mayuri.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     public Mayuri()

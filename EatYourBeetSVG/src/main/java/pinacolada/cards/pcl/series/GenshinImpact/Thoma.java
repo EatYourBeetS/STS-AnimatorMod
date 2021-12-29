@@ -19,7 +19,7 @@ public class Thoma extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 4, 6, 1);
+        Initialize(0, 3, 7, 1);
         SetUpgrade(0, 3, 0, 0);
         SetAffinity_Red(1, 0 ,0);
         SetAffinity_Orange(1, 0, 1);

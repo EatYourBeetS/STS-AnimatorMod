@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -19,8 +18,6 @@ public class MikuIzayoi extends PCLCard
             .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
             .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
-
-    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public MikuIzayoi()
     {

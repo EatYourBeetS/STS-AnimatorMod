@@ -178,17 +178,16 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
         if (counter > 0 && GetEnchantmentLevel() < 2)
         {
             PCLGameEffects.Queue.Callback(new SelectFromPile(name, 1, CreateUpgradeGroup())
-                    .HideTopPanel(true)
-                    .CancellableFromPlayer(false)
+                    .CancellableFromPlayer(true)
                     .AddCallback(selection -> {
                         if (selection.size() > 0) {
                             Enchantment e = (Enchantment) selection.get(0);
                             ApplyEnchantment(e);
                             flash();
+                            AddCounter(-1);
                             Use();
                         }
                     }));
-            AddCounter(-1);
         }
     }
 
@@ -212,6 +211,6 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
 
     public String GetFullDescription()
     {
-        return FormatDescription(0);
+        return (counter > 0) ? (FormatDescription(0) + " NL  NL " + DESCRIPTIONS[1]) : FormatDescription(0);
     }
 }

@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.TenseiSlime;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Shizu_Ifrit;
 import pinacolada.effects.AttackEffects;
 import pinacolada.orbs.pcl.Fire;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Shizu extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shizu.class)
-            .SetAttack(2, CardRarity.RARE)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Fire)
             .SetMultiformData(2, false)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Shizu_Ifrit(), false));
@@ -27,12 +24,11 @@ public class Shizu extends PCLCard
     {
         super(DATA);
 
-        Initialize(14, 0, 2, 2);
-        SetUpgrade(2, 0);
+        Initialize(15, 0, 2, 2);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
-        SetAffinity_Light(1, 0, 1);
+        SetAffinity_Light(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Red, 6);
     }
@@ -41,12 +37,12 @@ public class Shizu extends PCLCard
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {
-                Initialize(14, 0, 2, 2);
+                Initialize(15, 0, 2, 2);
                 SetUpgrade(4, 0);
                 AddScaling(PCLAffinity.Red, 1);
             }
             else {
-                Initialize(14, 0, 2, 2);
+                Initialize(15, 0, 2, 2);
                 SetUpgrade(0, 0, 2, 0);
             }
         }

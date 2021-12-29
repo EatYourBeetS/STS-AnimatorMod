@@ -9,7 +9,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.common.TemporaryElectroPower;
+import pinacolada.powers.temporary.TemporaryElectroPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;

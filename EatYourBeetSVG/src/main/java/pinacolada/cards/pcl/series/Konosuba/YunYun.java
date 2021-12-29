@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class YunYun extends PCLCard
 {
     public static final PCLCardData DATA = Register(YunYun.class)
-            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
 
     public YunYun()

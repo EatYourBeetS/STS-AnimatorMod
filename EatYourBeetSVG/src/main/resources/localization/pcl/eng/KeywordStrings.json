@@ -36,11 +36,29 @@
 		"NAMES": ["[a-gen] token", "[a-gen] tokens", "affinity token", "affinity tokens"],
 		"PROPER_NAME": "Affinity Token"
 	},
+	"Afterlife":
+	{
+		"DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
+		"NAMES": ["afterlife"],
+		"PROPER_NAME": "Afterlife"
+	},
 	"Agility":
 	{
 		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Dexterity] for every #b10 [G] up to #b50.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
+	},
+	"Air":
+	{
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When #yEvoked: #yCycle #b1 card.",
+		"NAMES": ["aether", "aether+", "air", "air+"],
+		"PROPER_NAME": "Air"
+	},
+	"Aura":
+	{
+		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
+		"NAMES": ["aura", "auras"],
+		"PROPER_NAME": "Aura"
 	},
 	"Autoplay":
 	{
@@ -56,9 +74,9 @@
 	},
 	"Blinded":
 	{
-	  "DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Dark] is #yChanneled. At the end of turn, reduce [Blinded] by #b1.",
-	  "NAMES": ["blinded"],
-	  "PROPER_NAME": "Blinded"
+		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [~Dark] is #yChanneled. At the end of turn, reduce [Blinded] by #b1.",
+		"NAMES": ["blinded"],
+		"PROPER_NAME": "Blinded"
 	},
 	"Blur":
 	{
@@ -80,9 +98,15 @@
 	},
 	"Burning Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Burning] and remove #b4 [Freezing].",
-	  "NAMES": ["burning weapon"],
-	  "PROPER_NAME": "Burning Weapon"
+		"DESCRIPTION": "Deal double damage against enemies with [Freezing]. Whenever an attack deals unblocked damage, apply #b2 [Burning] and remove #b4 [Freezing].",
+		"NAMES": ["burning weapon"],
+		"PROPER_NAME": "Burning Weapon"
+	},
+	"Chaos":
+	{
+		"DESCRIPTION": "Orb: Reduces the cost of a random card by #b1, and increases the cost of another random card by #b1.",
+		"NAMES": ["chaos", "chaos+"],
+		"PROPER_NAME": "Chaos"
 	},
 	"Choked":
 	{
@@ -98,13 +122,13 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Freezing], [Shackles], [Delayed Damage].",
+		"DESCRIPTION": "[Weak], [Vulnerable], [Frail], [Poison], [Burning], [Freezing], [Shackles], [DD].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
 	"Common Orb":
 	{
-		"DESCRIPTION": "[Fire], [Frost], [Lightning], [Dark].",
+		"DESCRIPTION": "[Fire], [Frost], [~Lightning], [~Dark].",
 		"NAMES": ["common orb", "common orbs"],
 		"PROPER_NAME": "Common Orb"
 	},
@@ -170,21 +194,27 @@
 	},
 	"Desecration":
 	{
-	  "DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
-	  "NAMES": ["desecration"],
-	  "PROPER_NAME": "Desecration"
+		"DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
+		"NAMES": ["desecration"],
+		"PROPER_NAME": "Desecration"
 	},
 	"Desecration Scaling":
 	{
-	  "DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [D].",
-	  "NAMES": ["[d] scaling", "desecration scaling"],
-	  "PROPER_NAME": "Desecration Scaling"
+		"DESCRIPTION": "For each point of [D] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [D].",
+		"NAMES": ["[d] scaling", "desecration scaling"],
+		"PROPER_NAME": "Desecration Scaling"
 	},
 	"Desecration Stance":
 	{
-	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Dark].",
-	  "NAMES": ["[d] stance", "desecration stance"],
-	  "PROPER_NAME": "Desecration Stance"
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [D] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Dark].",
+		"NAMES": ["[d] stance", "desecration stance"],
+		"PROPER_NAME": "Desecration Stance"
+	},
+	"Earth":
+	{
+		"DESCRIPTION": "Orb: Gains projectiles when #yTriggered. When you are attacked: Remove #b1 projectile to gain [Block] and deal damage back to the attacker. When #yEvoked: Each projectile deals damage to a random enemy. Automatically #yEvoked after #b3 turns.",
+		"NAMES": ["earth", "earth+"],
+		"PROPER_NAME": "Earth"
 	},
 	"Electrified":
 	{
@@ -194,21 +224,21 @@
 	},
 	"Electrified Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Poison]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Poison].",
-	  "NAMES": ["electrified weapon"],
-	  "PROPER_NAME": "Electrified Weapon"
+		"DESCRIPTION": "Deal double damage against enemies with [Poison]. Whenever an attack deals unblocked damage, apply #b2 [Electrified] and remove [Poison].",
+		"NAMES": ["electrified weapon"],
+		"PROPER_NAME": "Electrified Weapon"
 	},
 	"Elemental Exposure":
 	{
-        "DESCRIPTION": "Amplifies the effects of [Burning], [Freezing], and [Electrified]. Lasts for 2 turns.",
-        "NAMES": ["elemental exposure"],
-        "PROPER_NAME": "Elemental Exposure"
+		"DESCRIPTION": "Amplifies the effects of [Burning], [Freezing], and [Electrified]. Lasts for 2 turns.",
+		"NAMES": ["elemental exposure"],
+		"PROPER_NAME": "Elemental Exposure"
 	},
 	"Elemental Mastery":
 	{
-        "DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Induced.",
-        "NAMES": ["elemental mastery"],
-        "PROPER_NAME": "Elemental Mastery"
+		"DESCRIPTION": "At the end of the turn, Inflict Elemental Exposure to all enemies. Stacks increase whenever an Orb is Channeled or Induced.",
+		"NAMES": ["elemental mastery"],
+		"PROPER_NAME": "Elemental Mastery"
 	},
 	"Enchanted Armor":
 	{
@@ -218,21 +248,21 @@
 	},
 	"Endurance":
 	{
-	  "DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
-	  "NAMES": ["endurance"],
-	  "PROPER_NAME": "Endurance"
+		"DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
+		"NAMES": ["endurance"],
+		"PROPER_NAME": "Endurance"
 	},
 	"Endurance Scaling":
 	{
-	  "DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [O].",
-	  "NAMES": ["[o] scaling", "endurance scaling"],
-	  "PROPER_NAME": "Endurance Scaling"
+		"DESCRIPTION": "For each point of [O] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [O].",
+		"NAMES": ["[o] scaling", "endurance scaling"],
+		"PROPER_NAME": "Endurance Scaling"
 	},
 	"Endurance Stance":
 	{
-	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Orange].",
-	  "NAMES": ["[o] stance", "endurance stance"],
-	  "PROPER_NAME": "Endurance Stance"
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [O] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Orange].",
+		"NAMES": ["[o] stance", "endurance stance"],
+		"PROPER_NAME": "Endurance Stance"
 	},
 	"Energized":
 	{
@@ -254,9 +284,9 @@
 	},
 	"Eternal":
 	{
-	  "DESCRIPTION": "Cannot be removed from your deck. When exhausted, returns to your draw pile and changes form if it has multiple forms.",
-	  "NAMES": ["eternal"],
-	  "PROPER_NAME": "Eternal"
+		"DESCRIPTION": "Cannot be removed from your deck. When exhausted, returns to your draw pile and changes form if it has multiple forms.",
+		"NAMES": ["eternal"],
+		"PROPER_NAME": "Eternal"
 	},
 	"Exchange":
 	{
@@ -269,6 +299,12 @@
 		"DESCRIPTION": "Choose a card and move it to your hand.",
 		"NAMES": ["fetch"],
 		"PROPER_NAME": "Fetch"
+	},
+	"Fire":
+	{
+		"DESCRIPTION": "Orb: Applies [Burning] and deals [~FD] damage to the highest health enemy.",
+		"NAMES": ["fire", "fire+"],
+		"PROPER_NAME": "Fire"
 	},
 	"Flame Barrier":
 	{
@@ -296,9 +332,9 @@
 	},
 	"Freezing Weapon":
 	{
-	  "DESCRIPTION": "Deal double damage against enemies with [Burning]. Whenever an attack deals unblocked damage, apply #b2 [Freezing] and remove [Burning].",
-	  "NAMES": ["freezing weapon"],
-	  "PROPER_NAME": "Freezing Weapon"
+		"DESCRIPTION": "Deal double damage against enemies with [Burning]. Whenever an attack deals unblocked damage, apply #b2 [Freezing] and remove [Burning].",
+		"NAMES": ["freezing weapon"],
+		"PROPER_NAME": "Freezing Weapon"
 	},
 	"Genesis":
 	{
@@ -308,9 +344,9 @@
 	},
 	"Harmonic":
 	{
-	  "DESCRIPTION": "Will always #yMatch.",
-	  "NAMES": ["harmonic"],
-	  "PROPER_NAME": "Harmonic"
+		"DESCRIPTION": "Will always #yMatch.",
+		"NAMES": ["harmonic"],
+		"PROPER_NAME": "Harmonic"
 	},
 	"Health":
 	{
@@ -338,15 +374,15 @@
 	},
 	"Impaired":
 	{
-	  "DESCRIPTION": "Reduces the effectiveness of your Orbs.",
-	  "NAMES": ["impaired"],
-	  "PROPER_NAME": "Impaired"
+		"DESCRIPTION": "Reduces the effectiveness of your Orbs.",
+		"NAMES": ["impaired"],
+		"PROPER_NAME": "Impaired"
 	},
 	"Induce":
 	{
-	  "DESCRIPTION": "Evokes a copy of an Orb without Channeling it.",
-	  "NAMES": ["induce"],
-	  "PROPER_NAME": "Induce"
+		"DESCRIPTION": "Evokes a copy of an Orb without Channeling it.",
+		"NAMES": ["induce"],
+		"PROPER_NAME": "Induce"
 	},
 	"Inspiration":
 	{
@@ -374,21 +410,21 @@
 	},
 	"Invocation":
 	{
-	  "DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
-	  "NAMES": ["Invocation"],
-	  "PROPER_NAME": "Invocation"
+		"DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
+		"NAMES": ["Invocation"],
+		"PROPER_NAME": "Invocation"
 	},
 	"Invocation Scaling":
 	{
-	  "DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
-	  "NAMES": ["[l] scaling", "invocation scaling"],
-	  "PROPER_NAME": "Invocation Scaling"
+		"DESCRIPTION": "For each point of [L] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [L].",
+		"NAMES": ["[l] scaling", "invocation scaling"],
+		"PROPER_NAME": "Invocation Scaling"
 	},
 	"Invocation Stance":
 	{
-	  "DESCRIPTION": "Stance: The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Light].",
-	  "NAMES": ["[l] stance", "invocation stance"],
-	  "PROPER_NAME": "Invocation Stance"
+		"DESCRIPTION": "Stance: The #yInteractable #yPower of [L] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Light].",
+		"NAMES": ["[l] stance", "invocation stance"],
+		"PROPER_NAME": "Invocation Stance"
 	},
 	"Juggernaut":
 	{
@@ -446,21 +482,27 @@
 	},
 	"Might":
 	{
-	  "DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
-	  "NAMES": ["might"],
-	  "PROPER_NAME": "Might"
+		"DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
+		"NAMES": ["might"],
+		"PROPER_NAME": "Might"
 	},
 	"Might Scaling":
 	{
-	  "DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [R].",
-	  "NAMES": ["[r] scaling", "might scaling"],
-	  "PROPER_NAME": "Might Scaling"
+		"DESCRIPTION": "For each point of [R] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [R].",
+		"NAMES": ["[r] scaling", "might scaling"],
+		"PROPER_NAME": "Might Scaling"
 	},
 	"Might Stance":
 	{
 		"DESCRIPTION": "Stance: The #yInteractable #yPower of [R] is #b50% more effective. NL When exited or re-entered: Gain #b2 [A-Red]",
 		"NAMES": ["[r] stance", "might stance"],
 		"PROPER_NAME": "Might Stance"
+	},
+	"Motivate":
+	{
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
+		"NAMES": ["motivate"],
+		"PROPER_NAME": "Motivate"
 	},
 	"Multicolor":
 	{
@@ -500,9 +542,9 @@
 	},
 	"Orb Slot":
 	{
-	  "DESCRIPTION": "#yOrb #ySlots allow you to channel additional Orbs.",
-	  "NAMES": ["orb slot"],
-	  "PROPER_NAME": "Orb Slot"
+		"DESCRIPTION": "#yOrb #ySlots allow you to channel additional Orbs.",
+		"NAMES": ["orb slot"],
+		"PROPER_NAME": "Orb Slot"
 	},
 	"Phasing":
 	{
@@ -536,27 +578,39 @@
 	},
 	"Regeneration":
 	{
-	  "DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",
-	  "NAMES": ["regeneration"],
-	  "PROPER_NAME": "Regeneration"
+		"DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",
+		"NAMES": ["regeneration"],
+		"PROPER_NAME": "Regeneration"
 	},
 	"Rejuvenation":
 	{
-	  "DESCRIPTION": "Heal HP at the start of the turn.",
-	  "NAMES": ["rejuvenation"],
-	  "PROPER_NAME": "Rejuvenation"
+		"DESCRIPTION": "Heal HP at the start of the turn.",
+		"NAMES": ["rejuvenation"],
+		"PROPER_NAME": "Rejuvenation"
+	},
+	"Reload":
+	{
+		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
+		"NAMES": ["reload"],
+		"PROPER_NAME": "Reload"
 	},
 	"Resistance":
 	{
-	  "DESCRIPTION": "Reduces incoming #yAttack damage and the effects of [Frail], [Weak], [Vulnerable], and [Impaired].",
-	  "NAMES": ["resistance"],
-	  "PROPER_NAME": "Resistance"
+		"DESCRIPTION": "Reduces incoming #yAttack damage and the effects of [Frail], [Weak], [Vulnerable], and [Impaired].",
+		"NAMES": ["resistance"],
+		"PROPER_NAME": "Resistance"
+	},
+	"Ricochet":
+	{
+		"DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, activate this effect instead.",
+		"NAMES": ["ricochet"],
+		"PROPER_NAME": "Ricochet"
 	},
 	"Self-Immolation":
 	{
-	  "DESCRIPTION": "When you play a card with [Block], ALL characters take [Delayed Damage] equal to its [Block] times this power's stacks.",
-	  "NAMES": ["self-immolation"],
-	  "PROPER_NAME": "Self-Immolation"
+		"DESCRIPTION": "When you play a card with [Block], ALL characters take [DD] equal to its [Block] times this power's stacks.",
+		"NAMES": ["self-immolation"],
+		"PROPER_NAME": "Self-Immolation"
 	},
 	"Semi-Limited":
 	{
@@ -588,6 +642,18 @@
 		"NAMES": ["sorcery"],
 		"PROPER_NAME": "Sorcery"
 	},
+	"Soul":
+	{
+		"DESCRIPTION": "When played, reduce #ySoul by #b1. If it is at #b0, #yExhaust this and add the specified card to your discard pile.",
+		"NAMES": ["soul"],
+		"PROPER_NAME": "Soul"
+	},
+	"Spellcaster":
+	{
+		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
+		"NAMES": ["spellcaster"],
+		"PROPER_NAME": "Spellcaster"
+	},
 	"Starter":
 	{
 		"DESCRIPTION": "Activates if played at the start of turn.",
@@ -618,6 +684,12 @@
 		"NAMES": ["swirled"],
 		"PROPER_NAME": "Swirled"
 	},
+	"Synergy":
+	{
+		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
+		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
+		"PROPER_NAME": "Synergy"
+	},
 	"Teamwork":
 	{
 		"DESCRIPTION": "Teamwork is equal to the number of cards in hand that have the most common #yAffinity amongst your hand.",
@@ -632,9 +704,9 @@
 	},
 	"Technic Scaling":
 	{
-	  "DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [S].",
-	  "NAMES": ["[s] scaling", "technic scaling"],
-	  "PROPER_NAME": "Technic Scaling"
+		"DESCRIPTION": "For each point of [S] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [S].",
+		"NAMES": ["[s] scaling", "technic scaling"],
+		"PROPER_NAME": "Technic Scaling"
 	},
 	"Technic Stance":
 	{
@@ -643,11 +715,11 @@
 		"PROPER_NAME": "Technic Stance"
 	},
 	"Temporary HP":
-    {
-    	"DESCRIPTION": "Temporary HP lasts until end of combat.",
-    	"NAMES": ["temporary hp", "temp. hp"],
-    	"PROPER_NAME": "Temporary HP"
-    },
+	{
+		"DESCRIPTION": "Temporary HP lasts until end of combat.",
+		"NAMES": ["temporary hp", "temp. hp"],
+		"PROPER_NAME": "Temporary HP"
+	},
 	"Temporary Thorns":
 	{
 		"DESCRIPTION": "When attacked, deal damage to the attacker. Removed at the end of turn.",
@@ -657,7 +729,7 @@
 	"Trigger":
 	{
 		"DESCRIPTION": "",
-		"NAMES": ["trigger","triggered","triggers"],
+		"NAMES": ["trigger", "triggered", "triggers"],
 		"PROPER_NAME": "Trigger"
 	},
 	"Triggerable Debuff":
@@ -668,15 +740,15 @@
 	},
 	"Velocity":
 	{
-	  "DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to draw #b2 cards.",
-	  "NAMES": ["velocity"],
-	  "PROPER_NAME": "Velocity"
+		"DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to draw #b2 cards.",
+		"NAMES": ["velocity"],
+		"PROPER_NAME": "Velocity"
 	},
 	"Velocity Scaling":
 	{
-	  "DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [G].",
-	  "NAMES": ["[g] scaling", "velocity scaling"],
-	  "PROPER_NAME": "Velocity Scaling"
+		"DESCRIPTION": "For each point of [G] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [G].",
+		"NAMES": ["[g] scaling", "velocity scaling"],
+		"PROPER_NAME": "Velocity Scaling"
 	},
 	"Velocity Stance":
 	{
@@ -696,23 +768,29 @@
 		"NAMES": ["vitality"],
 		"PROPER_NAME": "Vitality"
 	},
+	"Water":
+	{
+		"DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP. Heal #b2 HP the first #b2 times Water is #yEvoked this combat.",
+		"NAMES": ["water", "water+"],
+		"PROPER_NAME": "Water"
+	},
 	"Willpower":
 	{
-	  "DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [O] up to #b50.",
-	  "NAMES": ["willpower"],
-	  "PROPER_NAME": "Willpower"
+		"DESCRIPTION": "Increases #yDamage or [Block] of cards that scale off this stat. NL Have #b1 [Endurance] for every #b10 [O] up to #b50.",
+		"NAMES": ["willpower"],
+		"PROPER_NAME": "Willpower"
 	},
 	"Wisdom":
 	{
-	  "DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL At #b5 stacks: Gains #b1 #Level, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b100% this turn.",
-	  "NAMES": ["wisdom"],
-	  "PROPER_NAME": "Wisdom"
+		"DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b100% this turn.",
+		"NAMES": ["wisdom"],
+		"PROPER_NAME": "Wisdom"
 	},
 	"Wisdom Scaling":
 	{
-	  "DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [B].",
-	  "NAMES": ["[b] scaling", "wisdom scaling"],
-	  "PROPER_NAME": "Wisdom Scaling"
+		"DESCRIPTION": "For each point of [B] #yScaling a card has: It gains #b+1 damage or [Block] per #yLevel of [B].",
+		"NAMES": ["[b] scaling", "wisdom scaling"],
+		"PROPER_NAME": "Wisdom Scaling"
 	},
 	"Wisdom Stance":
 	{
@@ -750,11 +828,29 @@
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
 	},
+	"~Dark":
+	{
+		"DESCRIPTION": "Orb: Deals [~DD] damage to the lowest health enemy.",
+		"NAMES": ["~dark"],
+		"PROPER_NAME": "Dark"
+	},
+	"~Dark Damage":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Electrified] per hit to deal +#b100% damage.",
+		"NAMES": ["~dark damage"],
+		"PROPER_NAME": "Dark Damage"
+	},
 	"~Delayed":
 	{
 		"DESCRIPTION": "Whenever you shuffle your draw pile, place this card on the bottom.",
 		"NAMES": ["~delayed"],
 		"PROPER_NAME": "Delayed"
+	},
+	"~Electric Damage":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Constricted] per hit to deal +#b100% damage.",
+		"NAMES": ["~electric damage"],
+		"PROPER_NAME": "Electric Damage"
 	},
 	"~Elemental":
 	{
@@ -768,6 +864,12 @@
 		"NAMES": ["~ethereal"],
 		"PROPER_NAME": "Ethereal"
 	},
+	"~Fire Damage":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Freezing] per hit to deal +#b100% damage.",
+		"NAMES": ["~fire damage"],
+		"PROPER_NAME": "Fire Damage"
+	},
 	"~Haste":
 	{
 		"DESCRIPTION": "When drawn, draw 1 card.",
@@ -776,21 +878,33 @@
 	},
 	"~HasteInfinite":
 	{
-	  "DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #ycan #yactivate #yonce #yper #yturn.",
-	  "NAMES": ["~haste infinite"],
-	  "PROPER_NAME": "Haste"
+		"DESCRIPTION": "When drawn, draw 1 card. NL #yThis #yeffect #ycan #yactivate #yonce #yper #yturn.",
+		"NAMES": ["~haste infinite"],
+		"PROPER_NAME": "Haste"
 	},
 	"~HasteOnce":
 	{
-	  "DESCRIPTION": "When drawn, draw 1 card. NL #bOnce #bactivated, #bremove #bthis #beffect.",
-	  "NAMES": ["~haste once"],
-	  "PROPER_NAME": "Haste"
+		"DESCRIPTION": "When drawn, draw 1 card. NL #bOnce #bactivated, #bremove #bthis #beffect.",
+		"NAMES": ["~haste once"],
+		"PROPER_NAME": "Haste"
+	},
+	"~Ice Damage":
+	{
+		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Burning] per hit to deal +#b100% damage.",
+		"NAMES": ["~ice damage"],
+		"PROPER_NAME": "Ice Damage"
 	},
 	"~Innate":
 	{
 		"DESCRIPTION": "Start each combat with this card in hand. Whenever you shuffle your draw pile, place this card on the top.",
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
+	},
+	"~Lightning":
+	{
+		"DESCRIPTION": "Orb: Deals [~ED] damage to a random enemy, prioritizing enemies with [~Lock-On].",
+		"NAMES": ["~lightning"],
+		"PROPER_NAME": "Lightning"
 	},
 	"~Lock-On":
 	{
@@ -803,6 +917,12 @@
 		"DESCRIPTION": "You may change this card's form in the pop-up viewer from your master deck outside of combat.",
 		"NAMES": ["~multiform"],
 		"PROPER_NAME": "Multiform"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"NAMES": ["~orb core", "~orb cores"],
+		"PROPER_NAME": "Orb Core"
 	},
 	"~Piercing":
 	{
@@ -824,9 +944,9 @@
 	},
 	"~RetainInfinite":
 	{
-	  "DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
-	  "NAMES": ["~retain infinite"],
-	  "PROPER_NAME": "Retain"
+		"DESCRIPTION": "Retained cards are not discarded at the end of turn. NL #yThis #yeffect #yis #ypermanent.",
+		"NAMES": ["~retain infinite"],
+		"PROPER_NAME": "Retain"
 	},
 	"~RetainOnce":
 	{
@@ -863,90 +983,5 @@
 		"DESCRIPTION": "Can be #yUpgraded any number of times. You can only have 1 copy of this card in your deck, additional copies will #yUpgrade this card instead.",
 		"NAMES": ["~unique"],
 		"PROPER_NAME": "Unique"
-	},
-		"Air":
-    	{
-    		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies when #yTriggered or #yEvoked. When #yEvoked: #yCycle #b1 card.",
-    		"NAMES": ["aether", "aether+", "air", "air+"],
-    		"PROPER_NAME": "Air"
-    	},
-    	"Afterlife": {
-    	  "DESCRIPTION": "You may play cards with #yAfterlife from your #yExhaust pile by #yPurging #b1 random #yNon-Afterlife card from your #yExhaust pile.",
-    	  "NAMES": [
-    		"afterlife"
-    	  ],
-    	  "PROPER_NAME": "Afterlife"
-    	},
-    	"Aura":
-    	{
-    		"DESCRIPTION": "Auras effects are automatically activated when a condition is met. These cards are not added to your draw pile at the start of battle.",
-    		"NAMES": ["aura", "auras"],
-    		"PROPER_NAME": "Aura"
-    	},
-    	"Chaos":
-    	{
-    		"DESCRIPTION": "Orb: Reduces the cost of a random card by #b1, and increases the cost of another random card by #b1.",
-    		"NAMES": ["chaos", "chaos+"],
-    		"PROPER_NAME": "Chaos"
-    	},
-    	"Earth":
-    	{
-    		"DESCRIPTION": "Orb: Gains projectiles when #yTriggered. When you are attacked: Remove #b1 projectile to gain [Block] and deal damage back to the attacker. When #yEvoked: Each projectile deals damage to a random enemy. Automatically #yEvoked after #b3 turns.",
-    		"NAMES": ["earth", "earth+"],
-    		"PROPER_NAME": "Earth"
-    	},
-    	"Fire":
-    	{
-    		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
-    		"NAMES": ["fire", "fire+"],
-    		"PROPER_NAME": "Fire"
-    	},
-    	"Motivate":
-    	{
-    		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
-    		"NAMES": ["motivate"],
-    		"PROPER_NAME": "Motivate"
-    	},
-    	"Reload":
-    	{
-    		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
-    		"NAMES": ["reload"],
-    		"PROPER_NAME": "Reload"
-    	},
-    	"Ricochet":
-    	{
-    	  "DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, activate this effect instead.",
-    	  "NAMES": ["ricochet"],
-    	  "PROPER_NAME": "Ricochet"
-    	},
-    	"Soul":
-    	{
-    	  "DESCRIPTION": "When played, reduce #ySoul by #b1. If it is at #b0, #yExhaust this and add the specified card to your discard pile.",
-    	  "NAMES": ["soul"],
-    	  "PROPER_NAME": "Soul"
-    	},
-    	"Spellcaster":
-    	{
-    		"DESCRIPTION": "#ySynergizes with other #ySpellcasters.",
-    		"NAMES": ["spellcaster"],
-    		"PROPER_NAME": "Spellcaster"
-    	},
-    	"Synergy":
-    	{
-    		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
-    		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
-    		"PROPER_NAME": "Synergy"
-    	},
-    	"Water":
-    	{
-    	  "DESCRIPTION": "Orb: Add #yTemporary #yHP to this orb's #yEvoke while Channeled. Automatically #yEvoked after 3 turns, giving you #yTemporary #yHP. Heal #b2 HP the first #b2 times Water is #yEvoked this combat.",
-    	  "NAMES": ["water", "water+"],
-    	  "PROPER_NAME": "Water"
-    	},
-    	"~Orb Core":
-    	{
-    		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
-    		"NAMES": ["~orb core", "~orb cores"],
-    		"PROPER_NAME": "Orb Core"
-    	}
+	}
 }

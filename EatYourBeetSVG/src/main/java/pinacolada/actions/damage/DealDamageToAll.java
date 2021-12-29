@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import pinacolada.cards.base.PCLAttackType;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -22,9 +23,12 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
 
     protected final ArrayList<AbstractCreature> targets = new ArrayList<>();
     protected BiConsumer<AbstractCreature, Boolean> onDamageEffect;
+    protected boolean applyPowers;
+    protected boolean applyPowerRemovalMultiplier;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean isFast;
+    protected String powerToRemove;
 
     protected Color vfxColor = null;
     protected Color enemyTint = null;
@@ -45,6 +49,12 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         this.damage = amount;
 
         Initialize(source, null, amount[0]);
+    }
+
+    public DealDamageToAll ApplyPowers(boolean applyPowers)
+    {
+        this.applyPowers = applyPowers;
+        return this;
     }
 
     public DealDamageToAll SetDamageEffect(BiConsumer<AbstractCreature, Boolean> onDamageEffect)
@@ -97,6 +107,21 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
+    public DealDamageToAll SetPowerToRemove(String powerToRemove)
+    {
+        this.powerToRemove = powerToRemove;
+
+        return this;
+    }
+
+    public DealDamageToAll SetPowerToRemove(String powerToRemove, boolean applyPowerRemovalMultiplier)
+    {
+        this.powerToRemove = powerToRemove;
+        this.applyPowerRemovalMultiplier = applyPowerRemovalMultiplier;
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
@@ -118,6 +143,10 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 if (onDamageEffect != null)
                 {
                     onDamageEffect.accept(enemy, !mute);
+                }
+
+                if (powerToRemove != null && enemy.hasPower(powerToRemove)) {
+                    PCLActions.Last.ReducePower(source, enemy, powerToRemove, 1);
                 }
 
                 mute = true;
@@ -145,6 +174,12 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                 if (!PCLGameUtilities.IsDeadOrEscaped(enemy))
                 {
                     final DamageInfo info = new DamageInfo(this.source, this.damage[i], this.damageType);
+                    if (applyPowers) {
+                        info.applyPowers(source, enemy);
+                    }
+                    if (applyPowerRemovalMultiplier) {
+                        info.output *= PCLAttackType.DAMAGE_MULTIPLIER;
+                    }
                     DamageHelper.ApplyTint(enemy, enemyTint, attackEffect);
                     DamageHelper.DealDamage(enemy, info, bypassBlock, bypassThorns);
                     targets.add(enemy);

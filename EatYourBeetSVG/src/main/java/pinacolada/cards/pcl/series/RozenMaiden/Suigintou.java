@@ -22,7 +22,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Suigintou extends PCLCard implements OnPurgeSubscriber
 {
     public static final PCLCardData DATA = Register(Suigintou.class)
-    		.SetAttack(2, CardRarity.RARE, PCLAttackType.Elemental).SetSeriesFromClassPackage()
+    		.SetAttack(2, CardRarity.RARE, PCLAttackType.Dark).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Suigintou_BlackFeather(), false));
     
     public Suigintou()

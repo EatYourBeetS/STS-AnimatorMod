@@ -21,7 +21,7 @@ import pinacolada.utilities.PCLJUtils;
 public class EmiyaShirou extends PCLCard implements OnAttackSubscriber
 {
     public static final PCLCardData DATA = Register(EmiyaShirou.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Fire)
             .SetSeriesFromClassPackage();
     private Fire fireOrb;
 

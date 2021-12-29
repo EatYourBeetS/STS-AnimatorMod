@@ -73,7 +73,11 @@ public class PCLRelicSlotEditor extends GUIElement
         this.relic = slot.GetRelic();
         this.relicName_text.SetText(relic != null ? relic.name : "").SetActive(true);
         this.relicValue_text.SetActive(true);
-        this.clear_button.SetOnClick(this.slot::Clear).SetInteractable(slot.CanRemove()).SetActive(relic != null);
+        this.clear_button.SetOnClick(() -> {
+            this.slot.Clear();
+            this.relicName_text.SetText("");
+            this.relicImage = null;
+        }).SetInteractable(slot.CanRemove()).SetActive(relic != null);
         this.change_button.SetOnClick(() -> loadoutEditor.TrySelectRelic(this.slot)).SetActive(change);
         if (relic != null) {
             this.relicImage = new GUI_Relic(relic, new AdvancedHitbox(relicValue_text.hb.x + relicValue_text.hb.width + SPACING / 2, relicValue_text.hb.y, relic.hb.width, relic.hb.height));

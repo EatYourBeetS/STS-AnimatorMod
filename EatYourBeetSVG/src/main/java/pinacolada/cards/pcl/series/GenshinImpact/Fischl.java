@@ -14,7 +14,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 
 public class Fischl extends PCLCard {
-    public static final PCLCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Elemental).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Dark).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Oz(), false));
 
     public Fischl() {

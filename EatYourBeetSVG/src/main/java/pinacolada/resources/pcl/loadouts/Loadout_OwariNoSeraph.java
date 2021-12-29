@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Clumsy;
-import pinacolada.cards.pcl.curse.Curse_Parasite;
 import pinacolada.cards.pcl.series.OwariNoSeraph.*;
 import pinacolada.cards.pcl.ultrarare.HiiragiMahiru;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -31,8 +29,6 @@ public class Loadout_OwariNoSeraph extends PCLLoadout
         AddStarterCard(CrowleyEusford.DATA, 13);
         AddStarterCard(HiiragiKureto.DATA, 20);
         AddStarterCard(Guren.DATA, 32);
-        AddStarterCard(Curse_Parasite.DATA, -7);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
     }
 
     @Override

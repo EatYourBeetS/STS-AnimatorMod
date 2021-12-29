@@ -9,10 +9,12 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
+import pinacolada.cards.base.PCLAttackType;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.vfx.SnowballEffect;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
+import pinacolada.powers.common.BurningPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -99,11 +101,15 @@ public class SheerColdPower extends PCLPower implements OnOrbPassiveEffectSubscr
     private void applyPower(AbstractCreature target, AbstractOrb orb, int damageAmount) {
         if (target != null) {
             int actualDamage = AbstractOrb.applyLockOn(target, damageAmount);
+            if (target.hasPower(BurningPower.POWER_ID)) {
+                actualDamage *= 2;
+            }
             PCLActions.Top.Wait(.15f);
             PCLActions.Top.VFX(new SnowballEffect(orb.hb.cX, orb.hb.cY, target.hb.cX, target.hb.cY)
                     .SetColor(Color.SKY, Color.NAVY).SetRealtime(true));
             PCLActions.Bottom.DealDamage(owner, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.ICE)
-                    .SetVFX(true, true);
+                    .SetVFX(true, true)
+                    .SetPowerToRemove(PCLAttackType.Ice.powerToRemove, true);
             PCLActions.Bottom.ApplyFreezing(owner, target, MathUtils.ceil(damageAmount / 2f)).CanStack(true);
         }
     }

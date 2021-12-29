@@ -68,9 +68,6 @@ public class TakashiNatsume extends PCLCard
         else if (c instanceof Curse_Nutcracker) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Nutcracker);
         }
-        else if (c instanceof Curse_Slumber) {
-            circle.ChangeForm(TakashiNatsume_Circle.Form.Shame);
-        }
         else if (c instanceof Curse_Decay || c instanceof Decay) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Decay);
         }
@@ -89,13 +86,17 @@ public class TakashiNatsume extends PCLCard
         else if (c instanceof Curse_Regret || c instanceof Regret) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Regret);
         }
+        else if (c instanceof Curse_SearingBurn) {
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Shame);
+        }
         else if (c instanceof Curse_Shame || c instanceof Shame) {
             circle.ChangeForm(TakashiNatsume_Circle.Form.Shame);
         }
-        //TODO slumber inverts impaired
+        else if (c instanceof Curse_Slumber) {
+            circle.ChangeForm(TakashiNatsume_Circle.Form.Curse_Slumber);
+        }
         //TODO eclipse recovers HP
         //TODO destroyer damages only enemies
-        //TODO witches restore magical girl form
 
         PCLActions.Bottom.MakeCardInHand(circle);
     }

@@ -88,7 +88,7 @@ public class Laby extends PCLCard
         {
             PCLPowerHelper ph = PCLJUtils.Find(PCLGameUtilities.GetPCLCommonDebuffs(), ph2 -> ph2.ID.equals(power.ID));
             int applyAmount = power.amount;
-            if (target == owner && ph != null && source != null && source != owner && power.amount > 0)
+            if (target == owner && ph != null && power.amount > 0)
             {
                 if (!PCLGameUtilities.IsPlayerTurn() && (VulnerablePower.POWER_ID.equals(ph.ID) || WeakPower.POWER_ID.equals(ph.ID) || FrailPower.POWER_ID.equals(ph.ID))) {
                     applyAmount += 1;

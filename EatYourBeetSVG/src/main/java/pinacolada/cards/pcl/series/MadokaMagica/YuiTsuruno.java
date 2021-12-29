@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class YuiTsuruno extends PCLCard
 {
     public static final PCLCardData DATA = Register(YuiTsuruno.class)
-            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.Random)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 

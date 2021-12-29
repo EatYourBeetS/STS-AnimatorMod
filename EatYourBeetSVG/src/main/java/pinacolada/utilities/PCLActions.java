@@ -68,6 +68,10 @@ import pinacolada.powers.affinity.*;
 import pinacolada.powers.common.EnergizedPower;
 import pinacolada.powers.common.*;
 import pinacolada.powers.replacement.*;
+import pinacolada.powers.temporary.TemporaryArtifactPower;
+import pinacolada.powers.temporary.TemporaryFocusPower;
+import pinacolada.powers.temporary.TemporaryResistancePower;
+import pinacolada.powers.temporary.TemporaryThornsPower;
 import pinacolada.resources.GR;
 import pinacolada.ui.combat.PCLAffinityMeter;
 
@@ -354,7 +358,8 @@ public final class PCLActions
         for (int i = 0; i < card.hitCount; i++)
         {
             actions.add(Add(new DealDamage(target, new DamageInfo(player, card.damage, card.damageTypeForTurn), effect))
-                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
+                    .SetPowerToRemove(card.attackType.powerToRemove));
         }
 
         return actions;
@@ -371,7 +376,8 @@ public final class PCLActions
         for (int i = 0; i < card.hitCount; i++)
         {
             actions.add(Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
-                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
+                    .SetPowerToRemove(card.attackType.powerToRemove));
         }
 
         return actions;
@@ -388,7 +394,8 @@ public final class PCLActions
         for (int i = 0; i < card.hitCount; i++)
         {
             actions.add(Add(new DealDamageToRandomEnemy(card, effect))
-                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock));
+                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
+                    .SetPowerToRemove(card.attackType.powerToRemove));
         }
         return actions;
     }
@@ -544,7 +551,7 @@ public final class PCLActions
 
     public ApplyPower GainBlur(int amount)
     {
-        return StackPower(new BlurPower(player, amount));
+        return StackPower(new PCLBlurPower(player, amount));
     }
 
     public ApplyPower GainCounterAttack(int amount)
@@ -845,6 +852,16 @@ public final class PCLActions
     public ModifyAllInstances ModifyAllInstances(UUID uuid)
     {
         return Add(new ModifyAllInstances(uuid));
+    }
+
+    public ModifyCost ModifyCost(AbstractCard card, int costChange, boolean permanent, boolean relative)
+    {
+        return Add(new ModifyCost(card, costChange, permanent, relative));
+    }
+
+    public ModifyCost ModifyCost(CardGroup cardGroup, int amount, int costChange, boolean permanent, boolean relative)
+    {
+        return Add(new ModifyCost(cardGroup, amount, costChange, permanent, relative));
     }
 
     public ModifyTag ModifyTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)

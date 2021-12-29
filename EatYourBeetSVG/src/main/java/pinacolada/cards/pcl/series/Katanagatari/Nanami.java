@@ -11,7 +11,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.common.CounterAttackPower;
-import pinacolada.powers.replacement.TemporaryEnvenomPower;
+import pinacolada.powers.temporary.TemporaryEnvenomPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;

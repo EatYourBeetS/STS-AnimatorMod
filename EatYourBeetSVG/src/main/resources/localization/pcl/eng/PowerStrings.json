@@ -262,12 +262,12 @@
     	},
     	"pcl:Amplification_DarkPower":
     	{
-    	  "DESCRIPTIONS": ["[Dark] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
+    	  "DESCRIPTIONS": ["[~Dark] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
     	  "NAME": "Dark Amplification"
     	},
     	"pcl:Amplification_LightningPower":
     	{
-    	  "DESCRIPTIONS": ["[Lightning] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
+    	  "DESCRIPTIONS": ["[~Lightning] has #b+{0} #y{1} #yScaling when Triggered and #b+{0} #y{1} #yScaling when Evoked."],
     	  "NAME": "Lightning Amplification"
     	},
     	"pcl:ArcherPower":
@@ -462,7 +462,7 @@
     	},
     	"pcl:IonizingStormPower":
     	{
-    	  "DESCRIPTIONS": ["[Lightning] applies #b{0}% of [Focus] as [Electrified] to a random enemy when #yTriggered and to ALL enemies when #yEvoked. NL At the start of turn: Gain #b{1} [L] for each enemy with [Electrified]."],
+    	  "DESCRIPTIONS": ["[~Lightning] applies #b{0}% of [Focus] as [Electrified] to a random enemy when #yTriggered and to ALL enemies when #yEvoked. NL At the start of turn: Gain #b{1} [L] for each enemy with [Electrified]."],
     	  "NAME": "Ionizing Storm"
     	},
     	"pcl:KaijinPower":
@@ -587,12 +587,12 @@
     	},
     	"pcl:SelfImmolationPower":
     	{
-    	  "DESCRIPTIONS": ["When you play a card that gives [Block]: ALL characters take [Delayed Damage] equal to #b{0} times its [Block]."],
+    	  "DESCRIPTIONS": ["When you play a card that gives [Block]: ALL characters take [DD] equal to #b{0} times its [Block]."],
     	  "NAME": "Self-Immolation"
     	},
     	"pcl:SheerColdPower":
     	{
-    	  "DESCRIPTIONS": ["[Frost] deals damage (#b{0}% of [Focus] on #yTrigger and #b{1}% on #yEvoke) and applies half that much [Freezing] to the enemy with the highest damage."],
+    	  "DESCRIPTIONS": ["[Frost] deals damage (#b{0}% of [Focus] on #yTrigger and #b{1}% on #yEvoke) and applies half that much [Freezing] to the enemy with the highest damage. This damage is doubled if that enemy has [Burning]."],
     	  "NAME": "Sheer Cold"
     	},
     	"pcl:ShikizakiKikiPower":

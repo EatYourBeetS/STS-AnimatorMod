@@ -3,6 +3,8 @@ package pinacolada.misc.GenericEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTooltip;
@@ -51,7 +53,15 @@ public class GenericEffect_ChannelOrb extends GenericEffect
 
     public PCLCardTooltip GetOrbTooltip(AbstractOrb orb)
     {
-        return CardTooltips.FindByID(orb.ID.replace(PCLResources.ID + ":", ""));
+        // Lightning and Dark use tooltips with ~
+        switch (orb.ID) {
+            case Lightning.ORB_ID:
+                return GR.Tooltips.Lightning;
+            case Dark.ORB_ID:
+                return GR.Tooltips.Dark;
+            default:
+                return CardTooltips.FindByID(orb.ID.replace(PCLResources.ID + ":", ""));
+        }
     }
 
     @Override

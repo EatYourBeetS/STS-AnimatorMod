@@ -9,15 +9,14 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
-import pinacolada.powers.common.FreezingPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class KotoriItsuka extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(KotoriItsuka.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire).SetSeriesFromClassPackage();
     public static final int THRESHOLD = 12;
-    public static final int BURNING_ATTACK_BONUS = 5;
+    public static final int BURNING_ATTACK_BONUS = 10;
 
     public KotoriItsuka()
     {
@@ -31,28 +30,12 @@ public class KotoriItsuka extends PCLCard
     }
 
     @Override
-    protected float ModifyDamage(AbstractMonster enemy, float amount)
-    {
-        if (enemy != null && PCLGameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= magicNumber)
-        {
-            return super.ModifyDamage(enemy, amount * 2);
-        }
-        return super.ModifyDamage(enemy, amount);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE).forEach(d -> d.AddCallback(m, (enemy, __) -> {
-            if (PCLGameUtilities.GetPowerAmount(enemy, FreezingPower.POWER_ID) >= 1)
-            {
-                PCLActions.Bottom.ReducePower(player, enemy, FreezingPower.POWER_ID, magicNumber);
-            }
-
-            if (info.IsSynergizing) {
-                PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
-            }
-        }));
-        PCLActions.Bottom.ApplyBurning(player, m, secondaryValue);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
+        PCLActions.Bottom.ApplyBurning(player, m, info.IsSynergizing ? secondaryValue + 1 : secondaryValue);
+        if (PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber) {
+            PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_ATTACK_BONUS));
+        }
     }
 }

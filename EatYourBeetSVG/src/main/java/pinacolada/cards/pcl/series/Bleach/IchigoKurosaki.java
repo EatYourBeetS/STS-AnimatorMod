@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class IchigoKurosaki extends PCLCard
 {
     public static final PCLCardData DATA = Register(IchigoKurosaki.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new IchigoKurosaki_Bankai(), false));
 
@@ -19,7 +19,7 @@ public class IchigoKurosaki extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 0, 2, 10);
+        Initialize(4, 0, 1, 15);
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -31,9 +31,10 @@ public class IchigoKurosaki extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.SLASH_HORIZONTAL);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
 
-        PCLActions.Bottom.AddAffinity(PCLAffinity.Red, magicNumber);
+        PCLActions.Bottom.StackAffinityPower(PCLAffinity.Red, magicNumber);
+        PCLActions.Bottom.StackAffinityPower(PCLAffinity.Green, magicNumber);
 
         if (CheckSpecialCondition(true))
         {

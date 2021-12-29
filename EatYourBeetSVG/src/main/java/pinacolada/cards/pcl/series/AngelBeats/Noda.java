@@ -22,7 +22,6 @@ public class Noda extends PCLCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Orange(0, 0, 0);
         SetAfterlife(true);
 
         SetAffinityRequirement(PCLAffinity.Red, 4);

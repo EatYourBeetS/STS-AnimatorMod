@@ -20,7 +20,6 @@ import java.net.URI;
 public class PCLCharacterSelectScreen
 {
     protected static final PCLLoadoutRenderer LoadoutRenderer = new PCLLoadoutRenderer();
-    protected static final PCLSpecialTrophiesRenderer SpecialTrophiesRenderer = new PCLSpecialTrophiesRenderer();
     protected static CharacterOption selectedOption;
     protected static GUI_Button DiscordButton;
     protected static GUI_Button SteamButton;
@@ -95,7 +94,6 @@ public class PCLCharacterSelectScreen
     public static void RenderOption(CharacterOption instance, SpriteBatch sb)
     {
         LoadoutRenderer.Render(sb);
-        SpecialTrophiesRenderer.Render(sb);
         DiscordButton.TryRender(sb);
         SteamButton.TryRender(sb);
         UnofficialDisclaimer.TryRender(sb);
@@ -104,7 +102,6 @@ public class PCLCharacterSelectScreen
     public static void UpdateOption(CharacterOption instance)
     {
         LoadoutRenderer.Update();
-        SpecialTrophiesRenderer.Update();
         DiscordButton.TryUpdate();
         SteamButton.TryUpdate();
         UnofficialDisclaimer.TryUpdate();

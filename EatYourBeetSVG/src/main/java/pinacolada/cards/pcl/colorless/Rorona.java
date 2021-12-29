@@ -23,7 +23,7 @@ import pinacolada.utilities.PCLActions;
 public class Rorona extends PCLCard
 {
     public static final PCLCardData DATA = Register(Rorona.class)
-            .SetPower(2, CardRarity.RARE)
+            .SetPower(2, CardRarity.UNCOMMON)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Atelier);
@@ -37,6 +37,7 @@ public class Rorona extends PCLCard
         Initialize(0, 0, 32, UPGRADE_CARD_REQUIREMENT);
         SetUpgrade(0, 0, -6);
 
+        SetAffinity_Blue(1);
         SetAffinity_Orange(1);
         SetAffinity_Light(1);
 

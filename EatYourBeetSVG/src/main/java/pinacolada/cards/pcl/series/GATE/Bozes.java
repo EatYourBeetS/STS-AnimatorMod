@@ -20,10 +20,11 @@ public class Bozes extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 1);
+        Initialize(6, 0, 2, 2);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 
         SetExhaust(true);
@@ -33,7 +34,9 @@ public class Bozes extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        PCLActions.Bottom.Motivate(magicNumber);
+        if (IsStarter()) {
+            PCLActions.Bottom.Motivate(magicNumber);
+        }
         PCLActions.Bottom.StackPower(new BozesPower(p, this.secondaryValue));
     }
 }

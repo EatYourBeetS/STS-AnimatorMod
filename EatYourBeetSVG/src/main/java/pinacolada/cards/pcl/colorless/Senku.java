@@ -74,7 +74,7 @@ public class Senku extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        AbstractGameAction.AttackEffect attackEffect = this.transformed ? AttackEffects.SMALL_EXPLOSION : this.attackType.equals(PCLAttackType.Elemental) ? AttackEffects.PSYCHOKINESIS : AttackEffects.BLUNT_LIGHT;
+        AbstractGameAction.AttackEffect attackEffect = this.transformed ? AttackEffects.SMALL_EXPLOSION : this.attackType.equals(PCLAttackType.Dark) ? AttackEffects.PSYCHOKINESIS : AttackEffects.BLUNT_LIGHT;
         if (this.attackTarget.equals(eatyourbeets.cards.base.EYBCardTarget.ALL)) {
             int[] damageMatrix = DamageInfo.createDamageMatrix(damage, true);
             PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, attackEffect);
@@ -240,12 +240,12 @@ public class Senku extends PCLCard
                 }
                 case IncreaseDamage2:
                 case IncreaseDamage3:{
-                    copy.SetAttackType(PCLAttackType.Elemental);
+                    copy.SetAttackType(PCLAttackType.Dark);
                     copy.baseDamage += effect.amount + (senku.upgraded ? 1 : 0);
                     break;
                 }
                 case MakeAOE:{
-                    copy.SetAttackType(PCLAttackType.Elemental);
+                    copy.SetAttackType(PCLAttackType.Dark);
                     copy.SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
                     break;
                 }
@@ -254,7 +254,7 @@ public class Senku extends PCLCard
                     copy.baseDamage *= 2;
                     copy.baseBlock *= 2;
                     copy.debuffs.merge(effect.powerID, effect.amount + copy.debuffs.getOrDefault(effect.powerID,effect.amount), Integer::sum);
-                    copy.SetAttackType(PCLAttackType.Elemental);
+                    copy.SetAttackType(PCLAttackType.Dark);
                     copy.SetExhaust(true);
                     copy.cost += 2;
                     copy.costForTurn += 2;

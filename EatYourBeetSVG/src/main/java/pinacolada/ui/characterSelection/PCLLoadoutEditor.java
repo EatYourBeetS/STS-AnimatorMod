@@ -20,6 +20,7 @@ import pinacolada.resources.pcl.misc.PCLLoadoutData;
 import pinacolada.resources.pcl.misc.PCLRelicSlot;
 import pinacolada.ui.AbstractScreen;
 import pinacolada.ui.controls.*;
+import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
@@ -40,12 +41,15 @@ public class PCLLoadoutEditor extends AbstractScreen
     protected ActionT0 onClose;
     protected int preset;
     public PCLBaseStatEditor activeEditor;
+    protected CharacterOption characterOption;
 
     protected PCLCardSlotSelectionEffect cardSelectionEffect;
     protected PCLRelicSlotSelectionEffect relicSelectionEffect;
+    protected GUI_Label startingDeck;
     protected GUI_Label deck_text;
     protected GUI_Label relic_text;
     protected GUI_Image background_image;
+    protected GUI_Button seriesButton;
     protected GUI_Button[] preset_buttons;
     protected GUI_Button cancel_button;
     protected GUI_Button clear_button;
@@ -69,6 +73,11 @@ public class PCLLoadoutEditor extends AbstractScreen
         .SetPosition(ScreenW(0.5f), ScreenH(0.5f))
         .SetColor(0, 0, 0, 0.9f);
 
+        startingDeck = new GUI_Label(null, new AdvancedHitbox(ScreenW(0.18f), ScreenH(0.05f))
+                .SetPosition(ScreenW(0.08f), ScreenH(0.97f)))
+                .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
+                .SetColor(Settings.CREAM_COLOR);
+
         deck_text = new GUI_Label(EYBFontHelper.CardTitleFont_Large,
                 new Hitbox(ScreenW(0.1f), ScreenH(0.8f), buttonHeight, buttonHeight))
                 .SetText(GR.PCL.Strings.CharSelect.DeckHeader)
@@ -80,6 +89,11 @@ public class PCLLoadoutEditor extends AbstractScreen
                 .SetText(GR.PCL.Strings.CharSelect.RelicsHeader)
                 .SetFontScale(0.8f)
                 .SetAlignment(0.5f, 0.5f);
+
+        seriesButton = new GUI_Button(GR.PCL.Images.Edit.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+                .SetPosition(startingDeck.hb.x + Scale(80), startingDeck.hb.y - Scale(48)).SetText("")
+                .SetTooltip(GR.PCL.Strings.CharSelect.SeriesEditor, GR.PCL.Strings.CharSelect.SeriesEditorInfo)
+                .SetOnClick(this::OpenSeriesSelect);
 
         preset_buttons = new GUI_Button[PCLLoadout.MAX_PRESETS];
         for (int i = 0; i < preset_buttons.length; i++)
@@ -189,6 +203,9 @@ public class PCLLoadoutEditor extends AbstractScreen
 
         this.loadout = loadout;
         this.onClose = onClose;
+        this.characterOption = option;
+
+        startingDeck.SetText(GR.PCL.Strings.CharSelect.LeftText + " NL #y" + (loadout.Series.LocalizedName.replace(" ", " #y")));
 
         PCLCardBase.canCropPortraits = false;
         ToggleViewUpgrades(false);
@@ -216,6 +233,7 @@ public class PCLLoadoutEditor extends AbstractScreen
 
         val.Refresh(presets[preset]);
         background_image.Update();
+        startingDeck.Update();
         deck_text.Update();
         relic_text.Update();
         upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
@@ -242,6 +260,8 @@ public class PCLLoadoutEditor extends AbstractScreen
         }
         else
         {
+            seriesButton.TryUpdate();
+
             for (int i = 0; i < preset_buttons.length; i++)
             {
                 final GUI_Button button = preset_buttons[i];
@@ -299,11 +319,14 @@ public class PCLLoadoutEditor extends AbstractScreen
         }
         else
         {
+            seriesButton.TryRender(sb);
+
             for (GUI_Button button : preset_buttons)
             {
                 button.TryRender(sb);
             }
 
+            startingDeck.Render(sb);
             deck_text.Render(sb);
             relic_text.Render(sb);
             // TODO find a better name for this before your render it
@@ -330,6 +353,14 @@ public class PCLLoadoutEditor extends AbstractScreen
             {
                 slotsEditors.get(i).TryRender(sb);
             }
+        }
+    }
+
+    private void OpenSeriesSelect()
+    {
+        if (characterOption != null)
+        {
+            GR.UI.SeriesSelection.Open(characterOption, () -> {});
         }
     }
 

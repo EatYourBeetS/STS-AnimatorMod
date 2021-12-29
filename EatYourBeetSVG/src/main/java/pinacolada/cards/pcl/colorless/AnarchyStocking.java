@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
@@ -43,9 +42,10 @@ public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
     @Override
     public void OnPurge(AbstractCard card, CardGroup source) {
         if (card != null && this.uuid.equals(card.uuid)) {
-            int poison = PCLGameUtilities.GetPowerAmount(PoisonPower.POWER_ID) + PCLGameUtilities.GetPowerAmount(ConstrictedPower.POWER_ID);
-            if (poison > 0) {
-                PCLActions.Bottom.ApplyPoison(TargetHelper.Enemies(), poison);
+            int constricted = PCLGameUtilities.GetPowerAmount(ConstrictedPower.POWER_ID);
+            if (constricted > 0) {
+                PCLActions.Bottom.RemovePower(player, player, ConstrictedPower.POWER_ID);
+                PCLActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), constricted);
             }
         }
     }

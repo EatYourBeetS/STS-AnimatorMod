@@ -1,12 +1,11 @@
 package pinacolada.cards.pcl.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
@@ -48,7 +47,11 @@ public class SakuyaOhtori extends PCLCard
         if (PCLGameUtilities.InStance(MightStance.STANCE_ID))
         {
             PCLActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
-
+            PCLActions.Bottom.ApplyBlinded(TargetHelper.Enemies(), magicNumber);
+        }
+        else
+        {
+            PCLActions.Bottom.ChangeStance(MightStance.STANCE_ID);
             Dark dark = null;
 
             for (AbstractOrb orb : player.orbs)
@@ -63,20 +66,6 @@ public class SakuyaOhtori extends PCLCard
             if (dark != null)
             {
                 dark.evokeAmount *= 2;
-            }
-        }
-        else
-        {
-            PCLActions.Bottom.ChangeStance(MightStance.STANCE_ID);
-
-            for (int i = 0; i < p.hand.size(); i++)
-            {
-                AbstractCard card = p.hand.getNCardFromTop(i);
-                if (card != this && card instanceof PCLCard && ((PCLCard) card).affinities.GetLevel(PCLAffinity.Green) > 0 && PCLGameUtilities.Retain(card))
-                {
-                    card.flash();
-                    return;
-                }
             }
         }
     }

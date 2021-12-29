@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.special.ThrowingKnife;
-import pinacolada.powers.replacement.TemporaryEnvenomPower;
+import pinacolada.powers.temporary.TemporaryEnvenomPower;
 import pinacolada.utilities.PCLActions;
 
 public class AcuraAkari extends PCLCard

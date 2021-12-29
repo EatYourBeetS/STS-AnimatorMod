@@ -81,9 +81,9 @@ public class PCLCardData
         postInitialize.clear();
     }
 
-    public AbstractCard CreateNewInstance(boolean upgrade) throws RuntimeException
+    public PCLCard CreateNewInstance(boolean upgrade) throws RuntimeException
     {
-        AbstractCard card = CreateNewInstance();
+        PCLCard card = CreateNewInstance();
         if (upgrade && card.canUpgrade())
         {
             card.upgrade();
@@ -92,7 +92,7 @@ public class PCLCardData
         return card;
     }
 
-    public AbstractCard CreateNewInstance() throws RuntimeException
+    public PCLCard CreateNewInstance() throws RuntimeException
     {
         try
         {

@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Clumsy;
 import pinacolada.cards.pcl.curse.Curse_Slumber;
 import pinacolada.cards.pcl.series.NoGameNoLife.*;
 import pinacolada.cards.pcl.ultrarare.Azriel;
@@ -29,7 +28,6 @@ public class Loadout_NoGameNoLife extends PCLLoadout
         AddStarterCard(Jibril.DATA, 20);
         AddStarterCard(Sora.DATA, 21);
         AddStarterCard(Shiro.DATA, 22);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_Slumber.DATA, -7);
     }
 

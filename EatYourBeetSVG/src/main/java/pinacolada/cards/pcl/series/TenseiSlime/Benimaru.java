@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Benimaru extends PCLCard
 {
     public static final PCLCardData DATA = Register(Benimaru.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public Benimaru()
@@ -47,7 +47,7 @@ public class Benimaru extends PCLCard
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE).forEach(d -> d
         .SetDamageEffect(e -> PCLGameEffects.List.Add(VFX.Fireball(player.hb, e.hb)).SetColor(Color.RED, Color.ORANGE).SetRealtime(true).duration)
-        .AddCallback(m, (enemy, __) -> PCLActions.Top.ApplyBurning(player, enemy, TrySpendAffinity(PCLAffinity.Red) ? magicNumber + 1 : magicNumber))
+        .AddCallback(m, (enemy, __) -> PCLActions.Top.ApplyBurning(player, enemy, TrySpendAffinity(PCLAffinity.Red) ? magicNumber * 2 : magicNumber))
         .SetRealtime(true));
     }
 }

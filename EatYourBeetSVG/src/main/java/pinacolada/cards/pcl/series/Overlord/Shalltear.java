@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Shalltear extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shalltear.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeries(CardSeries.Overlord);
 
     public Shalltear()
@@ -56,14 +56,13 @@ public class Shalltear extends PCLCard
             }
         }));
 
-        final AbstractPCLAffinityPower power = PCLCombatStats.MatchingSystem.GetPower(PCLAffinity.Light);
-        if (power.amount > 0)
+        final AbstractPCLAffinityPower powerLight = PCLCombatStats.MatchingSystem.GetPower(PCLAffinity.Light);
+        final AbstractPCLAffinityPower powerDark = PCLCombatStats.MatchingSystem.GetPower(PCLAffinity.Dark);
+        final int lightAmount = Math.min(secondaryValue, powerLight.amount);
+        PCLActions.Bottom.GainDesecration(lightAmount);
+        powerLight.reducePower(lightAmount);
+        if (powerDark.amount + lightAmount >= powerDark.GetEffectiveThreshold())
         {
-            final int amount = Math.min(secondaryValue, power.amount);
-            PCLActions.Bottom.GainDesecration(amount);
-            power.reducePower(amount);
-        }
-        else {
             PCLActions.Bottom.ChangeStance(DesecrationStance.STANCE_ID);
         }
     }

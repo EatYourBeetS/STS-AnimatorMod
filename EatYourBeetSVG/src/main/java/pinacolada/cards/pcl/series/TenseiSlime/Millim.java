@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Millim extends PCLCard
 {
     public static final PCLCardData DATA = Register(Millim.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Elemental)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire)
             .SetSeriesFromClassPackage();
 
     public Millim()

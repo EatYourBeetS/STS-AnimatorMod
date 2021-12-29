@@ -58,7 +58,7 @@ public abstract class PCLCard_Curse extends PCLCard
         Texture card = GetCardBackground();
         float popUpMultiplier = isPopup ? 0.5f : 1f;
         PCLRenderHelpers.DrawGrayscale(sb, () -> {
-            PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), new Color(0.2f, 0.2f, 0.2f, transparency), transparency, popUpMultiplier);
+            PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), new Color(0.22f, 0.22f, 0.22f, transparency), transparency, popUpMultiplier);
             return true;});
     }
 

@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class IrohaTamaki extends PCLCard
 {
     public static final PCLCardData DATA = Register(IrohaTamaki.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Electric)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new IrohaTamaki_Giovanna(), false));
 

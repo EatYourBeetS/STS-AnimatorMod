@@ -30,6 +30,7 @@ public class Ginko extends PCLCard
 
     @Override
     public void OnUpgrade() {
+        super.OnUpgrade();
         SetRetain(true);
     }
 

@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Injury;
-import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.series.OnePunchMan.*;
 import pinacolada.cards.pcl.ultrarare.SeriousSaitama;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -32,8 +30,6 @@ public class Loadout_OnePunchMan extends PCLLoadout
         AddStarterCard(MetalKnight.DATA, 16);
         AddStarterCard(Saitama.DATA, 16);
         AddStarterCard(Garou.DATA, 22);
-        AddStarterCard(Curse_Injury.DATA, -4);
-        AddStarterCard(Curse_SearingBurn.DATA, -6);
     }
 
     @Override

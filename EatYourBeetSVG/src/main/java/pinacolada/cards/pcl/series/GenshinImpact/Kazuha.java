@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Kazuha extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Kazuha.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Normal).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(Kazuha.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Piercing).SetSeriesFromClassPackage(true);
 
     public Kazuha()
     {

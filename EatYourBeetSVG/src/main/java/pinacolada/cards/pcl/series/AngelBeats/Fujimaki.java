@@ -19,7 +19,7 @@ public class Fujimaki extends PCLCard
     {
         super(DATA);
 
-        Initialize(8, 0, 2);
+        Initialize(9, 0, 2);
         SetUpgrade(3, 0, 0);
 
         SetCooldown(1, 0, this::OnCooldownCompleted);

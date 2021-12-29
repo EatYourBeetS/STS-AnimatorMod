@@ -22,7 +22,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class DolaSchwi extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(DolaSchwi.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ranged)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Electric)
             .SetSeriesFromClassPackage();
 
     public DolaSchwi()

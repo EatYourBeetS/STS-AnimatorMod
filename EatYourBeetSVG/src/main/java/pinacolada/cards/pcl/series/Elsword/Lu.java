@@ -23,7 +23,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Lu extends PCLCard
 {
     public static final PCLCardData DATA = Register(Lu.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Piercing)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ice)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Ciel(), false));

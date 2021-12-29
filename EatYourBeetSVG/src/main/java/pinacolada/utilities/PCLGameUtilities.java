@@ -6,7 +6,9 @@ import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPF
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -16,18 +18,19 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.WeightedList;
 import pinacolada.blights.common.UpgradedHand;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardAffinities;
-import pinacolada.cards.base.PCLCardAffinity;
+import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.pcl.*;
+import pinacolada.patches.cardLibrary.PCLCardLibraryPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
@@ -293,6 +296,20 @@ public class PCLGameUtilities extends GameUtilities
         return a != null ? a.GetScaling(affinity, useStarScaling) : 0;
     }
 
+    public static PCLCardData GetPCLCardReplacement(String cardID) {
+        return PCLCardLibraryPatches.GetReplacement(cardID);
+    }
+
+    public static PCLCard GetPCLCardReplacement(String cardID, boolean upgraded) {
+        PCLCardData data = GetPCLCardReplacement(cardID);
+        return data == null ? null : data.CreateNewInstance(upgraded);
+    }
+
+    public static AbstractCard GetCardReplacementOrDefault(String cardID, boolean upgraded) {
+        PCLCardData data = GetPCLCardReplacement(cardID);
+        return (AbstractCard)(data == null ? CardLibrary.getCopy(cardID, upgraded ? 1 : 0, 0) : data.CreateNewInstance(upgraded));
+    }
+
     public static boolean HasRedAffinity(AbstractCard card)
     {
         return GetPCLAffinityLevel(card, PCLAffinity.Red, true) > 0;
@@ -347,6 +364,24 @@ public class PCLGameUtilities extends GameUtilities
         return result;
     }
 
+    public static int GetDebuffsStacks(AbstractCreature creature)
+    {
+        return (creature == null || creature.powers == null) ? 0 : GetDebuffsStacks(creature.powers);
+    }
+
+    public static int GetDebuffsStacks(ArrayList<AbstractPower> powers)
+    {
+        int result = 0;
+        for (AbstractPower power : powers)
+        {
+            if (power.type == AbstractPower.PowerType.DEBUFF)
+            {
+                result += power.amount;
+            }
+        }
+
+        return result;
+    }
 
     public static int GetOrbBaseEvokeAmount(AbstractOrb orb) {
         Object f = GetOrbField(orb, "baseEvokeAmount");
@@ -454,6 +489,27 @@ public class PCLGameUtilities extends GameUtilities
 
     public static int GetPowerAmount(PCLAffinity affinity) {
         return PCLCombatStats.MatchingSystem.GetPowerAmount(affinity);
+    }
+
+    // TODO make dynamic replacements for non-PCL cards
+    public static AbstractCard GetAnyColorCardFiltered(AbstractCard.CardRarity rarity, AbstractCard.CardType type, boolean allowHealing)
+    {
+        // Exclude Animator and PCL cards from the prismatic shard pool when playing as the opposite class
+        boolean isAnimator = PCLGameUtilities.IsPlayerClass(eatyourbeets.resources.GR.Animator.PlayerClass);
+        boolean isPCL = PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass);
+        RandomizedList<AbstractCard> cardPool = new RandomizedList<>();
+        for (AbstractCard c : CardLibrary.cards.values()) {
+            if ((Settings.treatEverythingAsUnlocked() || !UnlockTracker.isCardLocked(c.cardID)) &&
+                    (allowHealing || PCLGameUtilities.IsObtainableInCombat(c)) &&
+                    (rarity == null || c.rarity == rarity) &&
+                    ((type == null && !PCLGameUtilities.IsHindrance(c)) || c.type == type) &&
+                    !(isAnimator && c instanceof PCLCard) &&
+                    !(isPCL && c instanceof AnimatorCard))
+                        {
+                            cardPool.Add(c);
+                        }
+        }
+        return cardPool.Retrieve(GetRNG());
     }
 
     public static AbstractOrb GetRandomCommonOrb() {

@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Aisha extends PCLCard
 {
     public static final PCLCardData DATA = Register(Aisha.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Electric)
             .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword);
 

@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.series.DateALive;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Natsumi extends PCLCard
 {
     public static final PCLCardData DATA = Register(Natsumi.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     public Natsumi()
@@ -33,6 +34,7 @@ public class Natsumi extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.FIRE).forEach(d -> d
+        .SetVFXColor(Color.TEAL, Color.TEAL)
         .SetOptions(true, false));
     }
 

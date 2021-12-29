@@ -29,7 +29,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Jibril extends PCLCard implements OnPCLClickablePowerUsed
 {
     public static final PCLCardData DATA = Register(Jibril.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
     private int costReduction = 0;
 

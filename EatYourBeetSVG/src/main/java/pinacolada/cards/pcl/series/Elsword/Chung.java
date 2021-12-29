@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.RemoveOrb;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
@@ -16,14 +17,14 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Chung extends PCLCard
 {
     public static final PCLCardData DATA = Register(Chung.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Ranged)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Ice)
             .SetSeriesFromClassPackage();
 
     public Chung()
     {
         super(DATA);
 
-        Initialize(7, 4, 5, 2);
+        Initialize(7, 3, 4, 2);
         SetUpgrade(2, 0, 2, 0);
 
         SetAffinity_Red(1);
@@ -63,7 +64,7 @@ public class Chung extends PCLCard
                 else {
                     PCLActions.Bottom.Add(new RemoveOrb(orb));
                 }
-
+                PCLActions.Bottom.ApplyFreezing(TargetHelper.Normal(m), secondaryValue);
             }
         }
     }

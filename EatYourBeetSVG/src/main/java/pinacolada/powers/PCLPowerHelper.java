@@ -9,6 +9,7 @@ import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.common.*;
 import pinacolada.powers.replacement.*;
+import pinacolada.powers.temporary.*;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -40,7 +41,7 @@ public class PCLPowerHelper extends eatyourbeets.powers.PowerHelper
     public static final PCLPowerHelper DelayedDamage = new PCLPowerHelper(DelayedDamagePower.POWER_ID, GR.Tooltips.DelayedDamage, (o, s, a) -> new DelayedDamagePower(o, a, AttackEffects.CLAW), Behavior.SingleTurn,true);
 
     public static final PCLPowerHelper Artifact = new PCLPowerHelper(ArtifactPower.POWER_ID, GR.Tooltips.Artifact, ArtifactPower::new, Behavior.Permanent,false);
-    public static final PCLPowerHelper Blur = new PCLPowerHelper(PCLBlurPower.POWER_ID, GR.Tooltips.Blur, PCLBlurPower::new, Behavior.TurnBased,false);
+    public static final PCLPowerHelper Blur = new PCLPowerHelper(BlurPower.POWER_ID, GR.Tooltips.Blur, PCLBlurPower::new, Behavior.TurnBased,false);
     public static final PCLPowerHelper Dexterity = new PCLPowerHelper(DexterityPower.POWER_ID, GR.Tooltips.Dexterity, DexterityPower::new, Behavior.Permanent, false);
     public static final PCLPowerHelper Focus = new PCLPowerHelper(FocusPower.POWER_ID, GR.Tooltips.Focus, FocusPower::new, Behavior.Permanent,false);
     public static final PCLPowerHelper Inspiration = new PCLPowerHelper(InspirationPower.POWER_ID, GR.Tooltips.Inspiration, InspirationPower::new, Behavior.Permanent,false);

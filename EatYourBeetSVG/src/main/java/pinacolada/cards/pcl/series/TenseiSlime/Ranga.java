@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
-import eatyourbeets.utilities.CardSelection;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
@@ -19,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Ranga extends PCLCard implements OnAttackSubscriber
 {
     public static final PCLCardData DATA = Register(Ranga.class)
-            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Elemental)
+            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Electric)
             .SetMaxCopies(3)
             .SetSeriesFromClassPackage();
 
@@ -33,7 +32,7 @@ public class Ranga extends PCLCard implements OnAttackSubscriber
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 
-        SetCooldown(3, 0, this::OnCooldownCompleted);
+        SetCooldown(2, 0, this::OnCooldownCompleted);
         SetExhaust(true);
     }
 
@@ -71,7 +70,7 @@ public class Ranga extends PCLCard implements OnAttackSubscriber
     @Override
     public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (player.exhaustPile.contains(this) && PCLGameUtilities.IsPlayer(info.owner) && target instanceof AbstractMonster && target.hasPower(VulnerablePower.POWER_ID)) {
-            PCLActions.Bottom.MoveCard(this,player.drawPile).SetDestination(CardSelection.Top).ShowEffect(true, true);
+            PCLActions.Bottom.MoveCard(this,player.hand).ShowEffect(true, true);
         }
     }
 

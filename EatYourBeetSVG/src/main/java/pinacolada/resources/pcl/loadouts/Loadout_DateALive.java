@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Clumsy;
-import pinacolada.cards.pcl.curse.Curse_Depression;
 import pinacolada.cards.pcl.series.DateALive.*;
 import pinacolada.cards.pcl.ultrarare.MioTakamiya;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -33,8 +31,6 @@ public class Loadout_DateALive extends PCLLoadout {
         AddStarterCard(Natsumi.DATA, 15);
         AddStarterCard(MukuroHoshimiya.DATA, 20);
         AddStarterCard(KurumiTokisaki.DATA, 33);
-        AddStarterCard(Curse_Depression.DATA, -6);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
     }
 
     @Override

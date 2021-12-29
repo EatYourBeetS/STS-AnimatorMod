@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Ain extends PCLCard
 {
     public static final PCLCardData DATA = Register(Ain.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword);
 

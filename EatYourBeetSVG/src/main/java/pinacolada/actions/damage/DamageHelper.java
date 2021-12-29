@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.common.TemporaryThornsPower;
+import pinacolada.powers.temporary.TemporaryThornsPower;
 import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;

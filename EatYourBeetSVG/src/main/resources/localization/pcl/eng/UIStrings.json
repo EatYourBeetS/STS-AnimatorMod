@@ -123,7 +123,7 @@
             "Give a random enemy NL {0} {1}",
 			"Give ALL enemies NL {0} {1}",
 			"Lose {0} {1}",
-			"Take {0} [Delayed Damage]",
+			"Take {0} [DD]",
 			"Add {0} {1} to your discard pile",
 			"Add {0} {1} to your draw pile",
 			"Add {0} {1} to your hand",
@@ -175,7 +175,7 @@
 			"+{0} Gold",
 			"Common Upgrade",
 			"#pRight-Click to preview.",
-			"Living Picture Upgrade"
+			"Potion Slot"
 		]
 	},
 
@@ -257,7 +257,8 @@
 			"Cards: {0}",
 			"Value: {0}/{1}",
 			"Your Hindrance level is determined by the proportion of your deck made up of negative-valued cards. Cards valued less than -2 have a larger impact on this number.",
-			"Your Affinity level is determined by the sum of the frequency of each Affinity that occurs more than 2 times in your deck."
+			"Your Affinity level is determined by the sum of the frequency of each Affinity that occurs more than 2 times in your deck.",
+			"You have unsaved changes to your loadout that will be lost upon leaving. Are you sure you want to leave this menu?"
 		]
 	},
 	
@@ -361,7 +362,7 @@
 	  "Respec [{0} Gold].",
 	  "Respec [No Upgrades].",
 	  "Respec Living Picture (Free option).",
-	  "Spit Out.",
+	  "Spit Out",
 	  "Retrieve cards from Kirby (Free option)."
 	]
    },

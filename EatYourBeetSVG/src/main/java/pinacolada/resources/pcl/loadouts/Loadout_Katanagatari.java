@@ -3,7 +3,6 @@ package pinacolada.resources.pcl.loadouts;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.curse.Curse_Injury;
-import pinacolada.cards.pcl.curse.Curse_Pain;
 import pinacolada.cards.pcl.series.Katanagatari.*;
 import pinacolada.cards.pcl.ultrarare.ShikizakiKiki;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -29,7 +28,7 @@ public class Loadout_Katanagatari extends PCLLoadout
         AddStarterCard(Togame.DATA, 13);
         AddStarterCard(Shichika.DATA, 13);
         AddStarterCard(Curse_Injury.DATA, -4);
-        AddStarterCard(Curse_Pain.DATA, -9);
+
     }
 
     @Override

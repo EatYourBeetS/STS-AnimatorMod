@@ -64,6 +64,7 @@ public class PCLStrings
         public final String CommonUpgrade = Strings.TEXT[6];
         public final String RightClickPreview = Strings.TEXT[7];
         public final String Enchantment = Strings.TEXT[8];
+        public final String PotionSlot = Strings.TEXT[9];
 
         public final String MaxHPBonus(int amount)
         {

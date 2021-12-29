@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MukuroHoshimiya extends PCLCard implements StartupCard, OnShuffleSubscriber
 {
-    public static final PCLCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, PCLAttackType.Elemental).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(MukuroHoshimiya.class).SetAttack(2, CardRarity.RARE, PCLAttackType.Electric).SetSeriesFromClassPackage();
     private final ArrayList<AbstractCard> cardList = new ArrayList<>();
 
 

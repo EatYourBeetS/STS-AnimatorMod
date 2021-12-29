@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Pain;
-import pinacolada.cards.pcl.curse.Curse_Writhe;
 import pinacolada.cards.pcl.series.Overlord.*;
 import pinacolada.cards.pcl.ultrarare.SirTouchMe;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -32,8 +30,6 @@ public class Loadout_Overlord extends PCLLoadout
         AddStarterCard(MareBelloFiore.DATA, 12);
         AddStarterCard(Victim.DATA, 17);
         AddStarterCard(Shalltear.DATA, 21);
-        AddStarterCard(Curse_Writhe.DATA, -5);
-        AddStarterCard(Curse_Pain.DATA, -8);
     }
 
     @Override

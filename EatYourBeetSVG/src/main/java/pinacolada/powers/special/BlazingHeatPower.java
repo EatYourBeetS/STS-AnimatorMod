@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
+import pinacolada.cards.base.PCLAttackType;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.orbs.pcl.Fire;
@@ -87,6 +88,10 @@ public class BlazingHeatPower extends PCLPower implements OnOrbPassiveEffectSubs
 
         if (target != null) {
             int actualDamage = AbstractOrb.applyLockOn(target, applyAmount);
+            // This damage action should not remove Freezing because the base Fire damage action already does this
+            if (target.hasPower(PCLAttackType.Fire.powerToRemove)) {
+                actualDamage *= PCLAttackType.DAMAGE_MULTIPLIER;
+            }
             if (actualDamage > 0)
             {
                 PCLActions.Bottom.DealDamage(source, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE_EXPLOSION);

@@ -223,7 +223,7 @@ public class PCLPlayerData
             BaseLoadouts.add(loadout);
             loadout.IsBeta = false;
             loadout.UnlockLevel = unlockLevel;
-            loadout.AddStarterCards();
+            loadout.AddLoadoutCards();
         };
 
         add.Invoke(new Loadout_Konosuba(), 0);
@@ -290,7 +290,7 @@ public class PCLPlayerData
             BetaLoadouts.add(loadout);
             loadout.IsBeta = true;
             loadout.UnlockLevel = unlockLevel;
-            loadout.AddStarterCards();
+            loadout.AddLoadoutCards();
         };
 
         //add.Invoke(new Loadout_HitsugiNoChaika(), 5);

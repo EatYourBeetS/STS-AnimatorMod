@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class JumpyDumpty extends PCLCard {
-    public static final PCLCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeries(CardSeries.GenshinImpact);
+    public static final PCLCardData DATA = Register(JumpyDumpty.class).SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeries(CardSeries.GenshinImpact);
 
     public JumpyDumpty() {
         super(DATA);

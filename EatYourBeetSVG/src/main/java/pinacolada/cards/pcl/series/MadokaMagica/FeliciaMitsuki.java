@@ -52,7 +52,7 @@ public class FeliciaMitsuki extends PCLCard
                     {
                         for (AbstractCard c : cards)
                         {
-                            PCLActions.Top.Motivate(c, 1);
+                            PCLGameUtilities.Retain(c);
                         }
                     });
         }

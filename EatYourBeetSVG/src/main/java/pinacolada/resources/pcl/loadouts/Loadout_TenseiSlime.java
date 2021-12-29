@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Clumsy;
-import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.series.TenseiSlime.*;
 import pinacolada.cards.pcl.ultrarare.Veldora;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -30,8 +28,6 @@ public class Loadout_TenseiSlime extends PCLLoadout
         AddStarterCard(Ramiris.DATA, 16);
         AddStarterCard(Rimuru.DATA, 17);
         AddStarterCard(Shizu.DATA, 21);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
-        AddStarterCard(Curse_SearingBurn.DATA, -6);
     }
 
     @Override

@@ -48,8 +48,8 @@ public class YasutoraSado extends PCLCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
             choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
         }
 
         choices.Select(PCLActions.Top, 1, m)

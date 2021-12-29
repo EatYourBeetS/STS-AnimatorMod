@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToushirouHitsugaya_Bankai extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ToushirouHitsugaya_Bankai.class).SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(ToushirouHitsugaya_Bankai.class).SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
                 data.AddPreview(new Status_Frostbite(), false);
                 data.AddPreview(new SheerCold(), false);

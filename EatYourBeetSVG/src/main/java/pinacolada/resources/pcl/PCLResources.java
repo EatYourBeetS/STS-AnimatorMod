@@ -149,7 +149,7 @@ public class PCLResources extends AbstractResources
     @Override
     protected void InitializeCharacter()
     {
-        BaseMod.addCharacter(new FoolCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
+        BaseMod.addCharacter(new FoolCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_BACKGROUND, PlayerClass);
     }
 
     @Override
@@ -247,7 +247,7 @@ public class PCLResources extends AbstractResources
         Data.Initialize();
         Config.InitializeOptions();
         PCLLoadoutsContainer.PreloadResources();
-        PCLImages.PreloadResources();
+        //PCLImages.PreloadResources();
         GR.IsLoaded = true;
     }
 

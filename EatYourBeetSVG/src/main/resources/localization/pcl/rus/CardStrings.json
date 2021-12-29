@@ -927,7 +927,7 @@
 		},
 		"animator:RundelhausCode":
 		{
-			"DESCRIPTION": "Даёт [B] и !M! случайной(ым) карте(ам) +2 к [B] множителю. || <TM-S>: выберите 1. ** Заряжает [Fire], [Lightning] или [Frost].",
+			"DESCRIPTION": "Даёт [B] и !M! случайной(ым) карте(ам) +2 к [B] множителю. || <TM-S>: выберите 1. ** Заряжает [Fire], [~Lightning] или [Frost].",
 			"NAME": "Рунделхаус Код"
 		},
 		"animator:Serara":

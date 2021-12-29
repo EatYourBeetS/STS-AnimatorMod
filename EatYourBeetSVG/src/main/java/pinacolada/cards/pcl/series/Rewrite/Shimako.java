@@ -9,6 +9,8 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.attributes.AbstractAttribute;
+import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.orbs.pcl.Earth;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.stances.*;
@@ -29,9 +31,16 @@ public class Shimako extends PCLCard
     }
 
     @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
+        PCLActions.Bottom.GainTemporaryHP(magicNumber);
 
         AbstractOrb orb;
         String curStance = player.stance.ID;

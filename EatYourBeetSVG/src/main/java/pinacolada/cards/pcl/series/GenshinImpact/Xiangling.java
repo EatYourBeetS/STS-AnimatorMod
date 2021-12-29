@@ -16,14 +16,14 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Xiangling extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true)
+    public static final PCLCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true)
             .PostInitialize(data -> data.AddPreview(new Xiangling_Guoba(), false));
 
     public Xiangling()
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 0);
+        Initialize(5, 0, 2, 0);
         SetUpgrade(3, 0, 0, 0);
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(0, 0, 1);

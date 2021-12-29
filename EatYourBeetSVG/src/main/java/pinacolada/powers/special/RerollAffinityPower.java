@@ -61,8 +61,9 @@ public class RerollAffinityPower extends PCLClickablePower
     public void OnClick() {
         if (triggerCondition.CanUse())
         {
-            PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity).SetAffinityChoices(PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity()).SetOptions(true, true);
+            PCLAffinity next = PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity();
             PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.NextAffinity).SetOptions(!canChoose, true);
+            PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity).SetAffinityChoices(next).SetOptions(true, true);
             this.triggerCondition.uses -= 1;
             this.triggerCondition.Refresh(false);
             updateDescription();

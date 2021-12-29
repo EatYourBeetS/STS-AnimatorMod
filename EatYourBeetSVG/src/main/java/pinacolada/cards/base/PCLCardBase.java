@@ -42,19 +42,9 @@ public abstract class PCLCardBase extends EYBCardBase
     public static boolean canCropPortraits = true;
     public static AbstractPlayer player = null;
 
-    public float hoverDuration;
-    public boolean renderTip;
-    public boolean hovered;
-    public boolean cropPortrait = true;
-    public boolean isPopup = false;
-    public boolean isPreview = false;
-    public boolean isSecondaryValueModified = false;
     public boolean isHitCountModified = false;
-    public boolean upgradedSecondaryValue = false;
     public boolean upgradedCooldownValue = false;
     public boolean upgradedHitCount = false;
-    public int baseSecondaryValue = 0;
-    public int secondaryValue = 0;
     public int baseCooldownValue = 0;
     public int cooldownValue = 0;
     public int hitCount = 1;
@@ -104,6 +94,37 @@ public abstract class PCLCardBase extends EYBCardBase
             this.hovered = false;
             this.renderTip = false;
         }
+    }
+
+    public void updateHoverLogic() {
+        this.hb.update();
+
+        if (this.hb.hovered) {
+            this.hover();
+            this.hoverDuration += GR.UI.Delta();
+            this.renderTip = this.hoverDuration > 0.2F && !Settings.hideCards;
+        } else {
+            this.unhover();
+        }
+    }
+
+    public void unhover() {
+        if (this.hovered) {
+            this.hoverDuration = 0.0F;
+            this.targetDrawScale = 0.75F;
+        }
+
+        this.hovered = false;
+        this.renderTip = false;
+    }
+
+    public void hover() {
+        if (!this.hovered) {
+            this.drawScale = 1.0F;
+            this.targetDrawScale = 1.0F;
+        }
+
+        this.hovered = true;
     }
 
     @Override

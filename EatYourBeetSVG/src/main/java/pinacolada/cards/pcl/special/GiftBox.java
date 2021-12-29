@@ -1,11 +1,14 @@
 package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.JUtils;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -56,5 +59,23 @@ public class GiftBox extends PCLCard
             PCLActions.Bottom.AddAffinity(af, 77);
             PCLActions.Bottom.StackAffinityPower(af, 10);
         }
+
+        final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        for (int i = 0; i < magicNumber; i++) {
+            final AbstractCard card = CardLibrary.getAnyColorCard(CardRarity.UNCOMMON);
+            if (card != null) {
+                choice.addToBottom(card);
+            }
+
+        }
+        JUtils.LogError(this, choice.size());
+
+        PCLActions.Bottom.SelectFromPile(name, 1, choice)
+                .SetOptions(false, false)
+                .AddCallback(cards ->
+                {
+                    PCLActions.Bottom.MakeCardInHand(cards.get(0));
+                });
+
     }
 }

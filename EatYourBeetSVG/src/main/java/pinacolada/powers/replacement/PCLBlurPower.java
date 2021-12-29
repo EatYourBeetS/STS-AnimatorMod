@@ -16,8 +16,7 @@ public class PCLBlurPower extends BlurPower implements CloneablePowerInterface
     {
         super(owner, amount);
 
-        this.maxBlock = (owner != null && owner.isPlayer) ? 30 : 999;
-        this.ID = "PCL" + ID;
+        this.maxBlock = (owner != null && owner.isPlayer) ? 40 : 999;
     }
 
     @Override

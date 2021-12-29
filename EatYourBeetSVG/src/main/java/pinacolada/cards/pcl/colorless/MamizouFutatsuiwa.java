@@ -68,7 +68,7 @@ public class MamizouFutatsuiwa extends PCLCard
         @Override
         public void atStartOfTurnPostDraw()
         {
-            super.atStartOfTurn();
+            super.atStartOfTurnPostDraw();
 
             PCLActions.Bottom.MakeCardInHand(MamizouFutatsuiwa_Daruma.GetRandomCard());
             ReducePower(1);

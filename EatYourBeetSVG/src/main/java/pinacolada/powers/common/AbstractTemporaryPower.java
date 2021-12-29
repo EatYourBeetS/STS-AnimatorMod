@@ -12,6 +12,8 @@ public abstract class AbstractTemporaryPower extends PCLPower
 {
     public static final String ID = CreateFullID(AbstractTemporaryPower.class);
 
+    private final boolean sourcePowerCanBeNegative;
+    private final String sourcePowerID;
     private final String targetName;
     private final FuncT1<AbstractPower, AbstractCreature> constructorT1;
     private final FuncT2<AbstractPower, AbstractCreature, Integer> constructorT2;
@@ -33,6 +35,8 @@ public abstract class AbstractTemporaryPower extends PCLPower
 
 
         AbstractPower targetPower = constructorT1 != null ? constructorT1.Invoke(owner) : constructorT2.Invoke(owner, amount);
+        this.sourcePowerCanBeNegative = targetPower.canGoNegative;
+        this.sourcePowerID = targetPower.ID;
         this.targetName = targetPower.name;
         this.img = targetPower.img;
         this.powerIcon = targetPower.region128;
@@ -54,6 +58,10 @@ public abstract class AbstractTemporaryPower extends PCLPower
         }
 
         super.onAmountChanged(previousAmount, difference);
+
+        if (previousAmount + difference == 0 || !sourcePowerCanBeNegative && (previousAmount + difference < 0)) {
+            PCLActions.Bottom.RemovePower(owner, owner, sourcePowerID);
+        }
     }
 
     @Override

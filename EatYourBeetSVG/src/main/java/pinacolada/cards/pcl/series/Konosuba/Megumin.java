@@ -27,7 +27,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Megumin extends PCLCard
 {
     public static final PCLCardData DATA = Register(Megumin.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
     public static final int ATTACK_TURNS = 2;
     public static final int SYNERGY_REQUIREMENT = 5;
@@ -128,7 +128,8 @@ public class Megumin extends PCLCard
 
                 final int[] damageMatrix = DamageInfo.createDamageMatrix(amount, true);
                 PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AttackEffects.NONE)
-                        .SetPiercing(true, false);
+                        .SetPiercing(true, false)
+                        .SetPowerToRemove(PCLAttackType.Fire.powerToRemove, true);
 
                 if (synergies >= SYNERGY_REQUIREMENT && CombatStats.TryActivateLimited(sourceCard.cardID))
                 {

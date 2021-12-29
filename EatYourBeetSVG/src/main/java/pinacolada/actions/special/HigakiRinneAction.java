@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
@@ -28,8 +27,6 @@ import pinacolada.powers.deprecated.MarkOfPoisonPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
-
-import java.util.ArrayList;
 
 public class HigakiRinneAction extends EYBAction
 {
@@ -210,10 +207,8 @@ public class HigakiRinneAction extends EYBAction
 
     private void ObtainRandomCardOfAnyColor()
     {
-        final ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-        final String key = PCLGameUtilities.GetRandomElement(keys);
-        final AbstractCard card = CardLibrary.cards.get(key).makeCopy();
-        if (PCLGameUtilities.IsObtainableInCombat(card))
+        final AbstractCard card = PCLGameUtilities.GetAnyColorCardFiltered(null, null, false);
+        if (card != null)
         {
             PCLActions.Bottom.MakeCardInHand(card);
         }

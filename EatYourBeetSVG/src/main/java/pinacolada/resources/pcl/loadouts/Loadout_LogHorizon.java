@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Clumsy;
-import pinacolada.cards.pcl.curse.Curse_Shame;
 import pinacolada.cards.pcl.series.LogHorizon.*;
 import pinacolada.cards.pcl.ultrarare.Kanami;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -31,8 +29,6 @@ public class Loadout_LogHorizon extends PCLLoadout
         AddStarterCard(Akatsuki.DATA, 22);
         AddStarterCard(Soujiro.DATA, 24);
         AddStarterCard(Krusty.DATA, 25);
-        AddStarterCard(Curse_Clumsy.DATA, -3);
-        AddStarterCard(Curse_Shame.DATA, -7);
     }
 
     @Override

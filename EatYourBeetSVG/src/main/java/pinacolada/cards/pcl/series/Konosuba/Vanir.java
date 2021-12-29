@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Vanir extends PCLCard
 {
     public static final PCLCardData DATA = Register(Vanir.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Dark)
             .SetSeriesFromClassPackage();
 
     public Vanir()

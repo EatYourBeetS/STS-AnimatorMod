@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Injury;
-import pinacolada.cards.pcl.curse.Curse_Parasite;
 import pinacolada.cards.pcl.series.Fate.*;
 import pinacolada.cards.pcl.ultrarare.JeanneDArc;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -31,8 +29,6 @@ public class Loadout_Fate extends PCLLoadout
         AddStarterCard(EmiyaKiritsugu.DATA, 16);
         AddStarterCard(Caster.DATA, 17);
         AddStarterCard(Saber.DATA, 25);
-        AddStarterCard(Curse_Injury.DATA, -4);
-        AddStarterCard(Curse_Parasite.DATA, -7);
     }
 
     @Override

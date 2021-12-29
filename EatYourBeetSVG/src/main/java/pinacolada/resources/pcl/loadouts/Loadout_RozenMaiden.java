@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Decay;
 import pinacolada.cards.pcl.series.RozenMaiden.*;
 import pinacolada.cards.pcl.ultrarare.Kirakishou;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -30,7 +29,6 @@ public class Loadout_RozenMaiden extends PCLLoadout
         AddStarterCard(JunSakurada.DATA, 11);
         AddStarterCard(Barasuishou.DATA, 15);
         AddStarterCard(Suigintou.DATA, 22);
-        AddStarterCard(Curse_Decay.DATA, -7);
     }
 
     @Override

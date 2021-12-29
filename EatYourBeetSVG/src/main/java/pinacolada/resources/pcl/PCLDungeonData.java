@@ -266,7 +266,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         }
 
         // Always include the selected loadout. If for some reason none exists, assign one at random
-        if (GR.PCL.Data.SelectedLoadout != null) {
+        if (GR.PCL.Data.SelectedLoadout == null) {
             GR.PCL.Data.SelectedLoadout = PCLJUtils.Random(PCLJUtils.Filter(GR.PCL.Data.GetEveryLoadout(), loadout -> GR.PCL.GetUnlockLevel() >= loadout.UnlockLevel));
         }
         if (GR.PCL.Data.SelectedLoadout != null) {

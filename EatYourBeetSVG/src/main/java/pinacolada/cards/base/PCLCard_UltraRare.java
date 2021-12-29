@@ -21,7 +21,7 @@ import java.util.Map;
 public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
 {
     private static final Map<String, PCLCard_UltraRare> cards = new HashMap<>();
-    private static final Color RENDER_COLOR = new Color(0.2f, 0.2f, 0.2f, 1);
+    private static final Color RENDER_COLOR = new Color(0.24f, 0.22f, 0.22f, 1);
 
     protected PCLCard_UltraRare(PCLCardData data)
     {

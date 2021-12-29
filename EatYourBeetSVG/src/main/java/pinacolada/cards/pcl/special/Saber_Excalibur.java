@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Saber_Excalibur extends PCLCard
 {
     public static final PCLCardData DATA = Register(Saber_Excalibur.class)
-            .SetAttack(3, CardRarity.SPECIAL, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.SPECIAL, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeries(Saber.DATA.Series);
 
     public Saber_Excalibur()

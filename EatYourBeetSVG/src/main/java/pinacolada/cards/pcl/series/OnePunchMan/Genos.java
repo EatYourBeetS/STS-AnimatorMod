@@ -59,7 +59,7 @@ public class Genos extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
         PCLActions.Bottom.ApplyBurning(p, p, magicNumber);
         PCLActions.Bottom.ApplyBurning(p, m, magicNumber);
     }

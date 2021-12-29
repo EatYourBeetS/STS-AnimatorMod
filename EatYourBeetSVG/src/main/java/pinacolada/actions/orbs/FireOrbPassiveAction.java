@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBAction;
+import pinacolada.cards.base.PCLAttackType;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.vfx.megacritCopy.FireballEffect2;
 import pinacolada.orbs.pcl.Fire;
@@ -47,7 +48,8 @@ public class FireOrbPassiveAction extends EYBAction
             if (actualDamage > 0)
             {
                 PCLActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE)
-                .SetVFX(true, false);
+                .SetVFX(true, false)
+                .SetPowerToRemove(PCLAttackType.Fire.powerToRemove, true);
             }
 
             PCLActions.Top.Wait(0.15f);

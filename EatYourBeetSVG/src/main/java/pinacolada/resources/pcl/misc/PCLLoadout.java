@@ -11,6 +11,7 @@ import eatyourbeets.utilities.TupleT2;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.basic.Defend;
 import pinacolada.cards.pcl.basic.Strike;
+import pinacolada.cards.pcl.curse.*;
 import pinacolada.characters.FoolCharacter;
 import pinacolada.relics.PCLRelic;
 import pinacolada.relics.pcl.PolychromePaintbrush;
@@ -195,6 +196,21 @@ public abstract class PCLLoadout
     public abstract PCLCardData GetSymbolicCard();
     public abstract PCLCardData GetUltraRare();
 
+    public void AddLoadoutCards() {
+        AddStarterCards();
+        AddStarterCard(Curse_Clumsy.DATA, -3);
+        AddStarterCard(Curse_Injury.DATA, -5);
+        AddStarterCard(Curse_Writhe.DATA, -5);
+        AddStarterCard(Curse_Depression.DATA, -6);
+        AddStarterCard(Curse_SearingBurn.DATA, -6);
+        AddStarterCard(Curse_Parasite.DATA, -7);
+        AddStarterCard(Curse_Doubt.DATA, -7);
+        AddStarterCard(Curse_Decay.DATA, -7);
+        AddStarterCard(Curse_Shame.DATA, -7);
+        AddStarterCard(Curse_Regret.DATA, -9);
+        AddStarterCard(Curse_Pain.DATA, -10);
+    }
+
     public void InitializeData(PCLLoadoutData data)
     {
         for (PCLBaseStatEditor.StatType type : PCLBaseStatEditor.StatType.values()) {
@@ -210,7 +226,7 @@ public abstract class PCLLoadout
 
         if (starterCards.isEmpty())
         {
-            AddStarterCards();
+            AddLoadoutCards();
         }
 
         for (TupleT2<PCLCardData, Integer> pair : starterCards)

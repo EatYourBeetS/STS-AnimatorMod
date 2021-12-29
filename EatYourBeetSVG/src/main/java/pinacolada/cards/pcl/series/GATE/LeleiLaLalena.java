@@ -19,7 +19,7 @@ public class LeleiLaLalena extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1);
+        Initialize(0, 0, 1, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(1);
@@ -56,7 +56,7 @@ public class LeleiLaLalena extends PCLCard
                 m = PCLGameUtilities.GetRandomEnemy(true);
             }
 
-            PCLActions.Bottom.ApplyWeak(p, m, 1);
+            PCLActions.Bottom.ApplyWeak(p, m, secondaryValue);
         }
     }
 

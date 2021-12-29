@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import pinacolada.cards.base.PCLAttackType;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.special.StolenGoldPower;
 import pinacolada.utilities.PCLActions;
@@ -19,11 +20,13 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
     protected boolean applyPowers;
+    protected boolean applyPowerRemovalMultiplier;
     protected boolean hasPlayedEffect;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
     protected int goldAmount;
+    protected String powerToRemove;
 
     protected Color vfxColor = null;
     protected Color enemyTint = null;
@@ -122,6 +125,20 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
+    public DealDamage SetPowerToRemove(String powerToRemove)
+    {
+        this.powerToRemove = powerToRemove;
+
+        return this;
+    }
+    public DealDamage SetPowerToRemove(String powerToRemove, boolean applyPowerRemovalMultiplier)
+    {
+        this.powerToRemove = powerToRemove;
+        this.applyPowerRemovalMultiplier = applyPowerRemovalMultiplier;
+
+        return this;
+    }
+
     public DealDamage StealGold(int goldAmount)
     {
         this.goldAmount = goldAmount;
@@ -163,6 +180,13 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         if (this.goldAmount > 0)
         {
             PCLActions.Instant.StackPower(source, new StolenGoldPower(target, goldAmount));
+        }
+
+        if (powerToRemove != null && target.hasPower(powerToRemove)) {
+            if (applyPowerRemovalMultiplier) {
+                info.output *= PCLAttackType.DAMAGE_MULTIPLIER;
+            }
+            PCLActions.Last.ReducePower(source, target, powerToRemove, 1);
         }
     }
 

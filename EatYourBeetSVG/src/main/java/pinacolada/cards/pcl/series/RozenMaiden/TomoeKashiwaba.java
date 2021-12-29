@@ -9,6 +9,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -39,14 +40,11 @@ public class TomoeKashiwaba extends PCLCard
                 .SetFilter(c -> !c.isEthereal)
                 .AddCallback(cards ->
                 {
-                    if (cards.size() > 0)
+                    for (AbstractCard card : cards)
                     {
-                        AbstractCard card = cards.get(0);
                         PCLGameUtilities.Retain(card);
-                        for (PCLAffinity af : PCLAffinity.Extended()) {
-                            if (PCLGameUtilities.GetPCLAffinityLevel(card, af, true) > 0) {
-                                PCLActions.Bottom.StackAffinityPower(af, 1, false);
-                            }
+                        if (card instanceof PCLCard) {
+                            PCLCombatStats.MatchingSystem.AddAffinities(((PCLCard) card).affinities);
                         }
                     }
                 });

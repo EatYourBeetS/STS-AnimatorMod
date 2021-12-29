@@ -3,7 +3,6 @@ package pinacolada.resources.pcl.loadouts;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
-import pinacolada.cards.pcl.curse.Curse_Writhe;
 import pinacolada.cards.pcl.series.MadokaMagica.*;
 import pinacolada.cards.pcl.ultrarare.Walpurgisnacht;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -32,7 +31,6 @@ public class Loadout_MadokaMagica extends PCLLoadout
         AddStarterCard(MifuyuAsuza.DATA, 16);
         AddStarterCard(MadokaKaname.DATA, 25);
         AddStarterCard(Curse_GriefSeed.DATA, 0);
-        AddStarterCard(Curse_Writhe.DATA, -5);
     }
 
     @Override

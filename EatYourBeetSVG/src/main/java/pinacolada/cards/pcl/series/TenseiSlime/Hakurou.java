@@ -8,6 +8,8 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.effects.AttackEffects;
+import pinacolada.misc.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.misc.GenericEffects.GenericEffect_GainAffinity;
 import pinacolada.stances.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
@@ -17,13 +19,14 @@ public class Hakurou extends PCLCard
             .SetAttack(2, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Green), true));
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Hakurou()
     {
         super(DATA);
 
-        Initialize(1, 1, 3, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(1, 1, 4, 2);
+        SetUpgrade(1, 0, 1, 1);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
@@ -31,7 +34,7 @@ public class Hakurou extends PCLCard
         SetAffinityRequirement(PCLAffinity.Red, 4);
         SetAffinityRequirement(PCLAffinity.Orange, 4);
 
-        SetHitCount(3,1);
+        SetHitCount(3,0);
     }
 
     @Override
@@ -67,12 +70,12 @@ public class Hakurou extends PCLCard
         }
 
         PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Red, PCLAffinity.Orange).AddConditionalCallback(() -> {
-            if (VelocityStance.IsActive()) {
-                PCLActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(PCLAffinity.Green, upgraded));
+            if (choices.TryInitialize(this))
+            {
+                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_GainAffinity(PCLAffinity.Green, magicNumber));
             }
-            else {
-                PCLActions.Bottom.ChangeStance(VelocityStance.STANCE_ID);
-            }
+            choices.Select(1, m);
         });
     }
 }

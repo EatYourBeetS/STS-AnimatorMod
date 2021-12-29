@@ -27,14 +27,12 @@ public class Henrietta extends PCLCard
 
         SetAffinity_Blue(1);
         SetAffinity_Orange(2);
-        SetDelayed(true);
     }
 
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             SetInnate(form == 0);
-            SetDelayed(form == 1);
         }
         return super.SetForm(form, timesUpgraded);
     };

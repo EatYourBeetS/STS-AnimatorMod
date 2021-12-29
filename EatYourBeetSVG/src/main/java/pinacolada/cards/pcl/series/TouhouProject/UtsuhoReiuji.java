@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class UtsuhoReiuji extends PCLCard
 {
     public static final PCLCardData DATA = Register(UtsuhoReiuji.class)
-            .SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeriesFromClassPackage(true);
 
     public UtsuhoReiuji()

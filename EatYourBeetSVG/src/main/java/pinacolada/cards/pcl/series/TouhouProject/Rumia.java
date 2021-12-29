@@ -15,13 +15,13 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Rumia extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Rumia.class).SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Elemental).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(Rumia.class).SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Dark).SetSeriesFromClassPackage(true);
 
     public Rumia()
     {
         super(DATA);
 
-        Initialize(4, 0, 3, 7);
+        Initialize(3, 0, 3, 7);
         SetUpgrade(1, 0, 0, 2);
         SetAffinity_Dark(1, 0, 2);
         SetAffinity_Blue(1, 0, 1);
@@ -59,7 +59,7 @@ public class Rumia extends PCLCard
             while (firstDark.evokeAmount >= magicNumber && times > 0) {
                 firstDark.evokeAmount -= magicNumber;
                 times -= 1;
-                PCLActions.Bottom.GainTemporaryHP(1);
+                PCLActions.Bottom.GainTemporaryHP(2);
             }
 
         }

@@ -51,7 +51,7 @@ public class LizardPriest extends PCLCard
                                 case Brutal:
                                     PCLActions.Bottom.GainInspiration(1);
                                     break;
-                                case Elemental:
+                                case Ranged:
                                     PCLActions.Bottom.GainTemporaryThorns(TEMPORARY_THORNS);
                                     break;
                                 default:

@@ -1,12 +1,6 @@
 package pinacolada.resources.pcl;
 
-import com.badlogic.gdx.graphics.Texture;
-import eatyourbeets.utilities.RotatingList;
-import pinacolada.resources.GR;
-import pinacolada.resources.pcl.misc.PCLLoadout;
 import pinacolada.ui.TextureCache;
-
-import java.util.HashMap;
 
 public class PCLImages
 {
@@ -19,8 +13,8 @@ public class PCLImages
     public final String ORB_A_PNG = "images/pcl/cardui/512/energy_orb_default_a.png";
     public final String ORB_B_PNG = "images/pcl/cardui/512/energy_orb_default_b.png";
     public final String ORB_C_PNG = "images/pcl/cardui/512/energy_orb_default_c.png";
-    public final String CHAR_BUTTON_PNG = "images/pcl/ui/charselect/animator_button.png";
-    public final String CHAR_PORTRAIT_JPG = "images/pcl/ui/charselect/animator_portrait.jpg";
+    public final String CHAR_BUTTON_PNG = "images/pcl/ui/charselect/pcl_button.png";
+    public final String CHAR_BACKGROUND = "images/pcl/ui/charselect/pcl_background.png";
 
     public final String ORB_VFX_PNG = "images/pcl/ui/topPanel/canvas/orbVfx.png";
     public final String[] ORB_TEXTURES =
@@ -127,8 +121,6 @@ public class PCLImages
 
     public static class CardIcons
     {
-        public final TextureCache Agility               = new TextureCache("images/pcl/cardui/core/Agility.png");
-        public final TextureCache Agility_L               = new TextureCache("images/pcl/cardui/core/1024/Agility.png");
         public final TextureCache Block                 = new TextureCache("images/pcl/cardui/core/Block.png");
         public final TextureCache BlockScaling          = new TextureCache("images/pcl/cardui/core/BlockScaling.png");
         public final TextureCache BlockScaling_L          = new TextureCache("images/pcl/cardui/core/1024/BlockScaling.png");
@@ -139,14 +131,18 @@ public class PCLImages
         public final TextureCache Brutal_L                = new TextureCache("images/pcl/cardui/core/1024/BrutalDamage.png");
         public final TextureCache Damage                = new TextureCache("images/pcl/cardui/core/NormalDamage.png");
         public final TextureCache Damage_L                = new TextureCache("images/pcl/cardui/core/1024/NormalDamage.png");
-        public final TextureCache Elemental             = new TextureCache("images/pcl/cardui/core/ElementalDamage.png");
-        public final TextureCache Elemental_L             = new TextureCache("images/pcl/cardui/core/1024/ElementalDamage.png");
+        public final TextureCache Dark                  = new TextureCache("images/pcl/cardui/core/DarkDamage.png");
+        public final TextureCache Dark_L             = new TextureCache("images/pcl/cardui/core/1024/DarkDamage.png");
+        public final TextureCache Electric             = new TextureCache("images/pcl/cardui/core/ElectricDamage.png");
+        public final TextureCache Electric_L             = new TextureCache("images/pcl/cardui/core/1024/ElectricDamage.png");
+        public final TextureCache Fire             = new TextureCache("images/pcl/cardui/core/FireDamage.png");
+        public final TextureCache Fire_L             = new TextureCache("images/pcl/cardui/core/1024/FireDamage.png");
         public final TextureCache Force                 = new TextureCache("images/pcl/cardui/core/Force.png");
         public final TextureCache Force_L                 = new TextureCache("images/pcl/cardui/core/1024/Force.png");
         public final TextureCache HP                    = new TextureCache("images/pcl/cardui/core/HP.png");
         public final TextureCache HP_L                    = new TextureCache("images/pcl/cardui/core/1024/HP.png");
-        public final TextureCache Intellect             = new TextureCache("images/pcl/cardui/core/Intellect.png");
-        public final TextureCache Intellect_L             = new TextureCache("images/pcl/cardui/core/1024/Intellect.png");
+        public final TextureCache Ice             = new TextureCache("images/pcl/cardui/core/IceDamage.png");
+        public final TextureCache Ice_L             = new TextureCache("images/pcl/cardui/core/1024/IceDamage.png");
         public final TextureCache Multiform               = new TextureCache("images/pcl/cardui/core/Multiform.png");
         public final TextureCache Multiform_L             = new TextureCache("images/pcl/cardui/core/1024/Multiform.png");
         public final TextureCache Piercing              = new TextureCache("images/pcl/cardui/core/PiercingDamage.png");
@@ -292,44 +288,5 @@ public class PCLImages
         public final TextureCache WaterSplash2     = new TextureCache("images/pcl/effects/WaterSplash2.png");
         public final TextureCache WaterSplash3     = new TextureCache("images/pcl/effects/WaterSplash3.png");
         public final TextureCache Whack            = new TextureCache("images/pcl/effects/Whack.png");
-    }
-
-
-    private final static HashMap<Integer, RotatingList<Texture>> portraits = new HashMap<>();
-
-    public Texture GetCharacterPortrait(int id)
-    {
-        return portraits.get(id).Current(true);
-    }
-
-    public static void PreloadResources()
-    {
-        for (PCLLoadout loadout : GR.PCL.Data.GetEveryLoadout())
-        {
-            int id = loadout.ID;
-            RotatingList<Texture> images = portraits.get(id);
-            if (images == null)
-            {
-                images = new RotatingList<>();
-                portraits.put(id, images);
-
-                Texture t;
-                t = GR.GetTexture("images/pcl/ui/charselect/animator_portrait_" + id + ".png");
-                if (t != null)
-                {
-                    images.Add(t);
-                }
-                t = GR.GetTexture("images/pcl/ui/charselect/animator_portrait_" + id + "b.png");
-                if (t != null)
-                {
-                    images.Add(t);
-                }
-                t = GR.GetTexture("images/pcl/ui/charselect/animator_portrait_" + id + "c.png");
-                if (t != null)
-                {
-                    images.Add(t);
-                }
-            }
-        }
     }
 }

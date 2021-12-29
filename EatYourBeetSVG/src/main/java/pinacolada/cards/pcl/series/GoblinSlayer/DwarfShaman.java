@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class DwarfShaman extends PCLCard
 {
     public static final PCLCardData DATA = Register(DwarfShaman.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Ranged)
             .SetSeriesFromClassPackage();
 
     public DwarfShaman()

@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Injury;
 import pinacolada.cards.pcl.series.GoblinSlayer.*;
 import pinacolada.cards.pcl.ultrarare.DemonLord;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -30,7 +29,6 @@ public class Loadout_GoblinSlayer extends PCLLoadout
         AddStarterCard(SwordMaiden.DATA, 20);
         AddStarterCard(HeavyWarrior.DATA, 22);
         AddStarterCard(GoblinSlayer.DATA, 27);
-        AddStarterCard(Curse_Injury.DATA, -4);
     }
 
     @Override

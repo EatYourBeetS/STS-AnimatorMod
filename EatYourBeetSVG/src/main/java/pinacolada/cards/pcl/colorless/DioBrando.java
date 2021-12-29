@@ -26,12 +26,13 @@ public class DioBrando extends PCLCard
         SetAffinity_Red(1,0,2);
         SetAffinity_Dark(1, 0, 1);
 
-        SetSoul(5, 0, DioBrando_TheWorld::new);
+        SetSoul(6, 0, DioBrando_TheWorld::new);
     }
 
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         this.AddScaling(PCLAffinity.Red, 1);
         this.AddScaling(PCLAffinity.Light, 1);
     }

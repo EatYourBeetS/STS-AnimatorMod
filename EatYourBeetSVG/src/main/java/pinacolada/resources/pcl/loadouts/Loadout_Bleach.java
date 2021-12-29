@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Injury;
 import pinacolada.cards.pcl.series.Bleach.*;
 import pinacolada.cards.pcl.ultrarare.SosukeAizen;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -33,7 +32,6 @@ public class Loadout_Bleach extends PCLLoadout
         AddStarterCard(SajinKomamura.DATA, 14);
         AddStarterCard(ToushirouHitsugaya.DATA, 20);
         AddStarterCard(ByakuyaKuchiki.DATA, 20);
-        AddStarterCard(Curse_Injury.DATA, -4);
     }
 
 

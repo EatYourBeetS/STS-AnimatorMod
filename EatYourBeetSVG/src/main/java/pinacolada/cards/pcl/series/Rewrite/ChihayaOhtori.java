@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 
 public class ChihayaOhtori extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ChihayaOhtori.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Normal).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(ChihayaOhtori.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Normal).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -20,8 +20,8 @@ public class ChihayaOhtori extends PCLCard
     {
         super(DATA);
 
-        Initialize(12, 0, 3, 3);
-        SetUpgrade(0, 0, -2);
+        Initialize(10, 0, 3, 2);
+        SetUpgrade(3, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(1, 0, 2);
     }

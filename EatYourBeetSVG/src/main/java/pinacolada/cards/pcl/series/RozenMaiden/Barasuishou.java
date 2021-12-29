@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Barasuishou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Barasuishou.class)
-    		.SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    		.SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
 
     public Barasuishou()
     {

@@ -19,10 +19,12 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
 {
     protected boolean hasPlayedEffect;
     protected boolean applyPowers;
+    protected boolean applyPowerRemovalMultiplier;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
     protected boolean isOrb;
+    protected String powerToRemove;
 
     protected Color vfxColor = null;
     protected Color enemyTint = null;
@@ -132,6 +134,21 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         return this;
     }
 
+    public DealDamageToRandomEnemy SetPowerToRemove(String powerToRemove)
+    {
+        this.powerToRemove = powerToRemove;
+
+        return this;
+    }
+
+    public DealDamageToRandomEnemy SetPowerToRemove(String powerToRemove, boolean applyPowerRemovalMultiplier)
+    {
+        this.powerToRemove = powerToRemove;
+        this.applyPowerRemovalMultiplier = applyPowerRemovalMultiplier;
+
+        return this;
+    }
+
     @Override
     protected boolean shouldCancelAction()
     {
@@ -161,6 +178,10 @@ public class DealDamageToRandomEnemy extends EYBActionWithCallback<AbstractCreat
         if (onDamageEffect != null)
         {
             AddDuration(onDamageEffect.Invoke(target));
+        }
+
+        if (powerToRemove != null && target.hasPower(powerToRemove)) {
+            PCLActions.Last.ReducePower(source, target, powerToRemove, 1);
         }
     }
 

@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.series.GenshinImpact.*;
 import pinacolada.cards.pcl.ultrarare.Dainsleif;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -31,7 +30,6 @@ public class Loadout_GenshinImpact extends PCLLoadout
         AddStarterCard(HuTao.DATA, 14);
         AddStarterCard(JeanGunnhildr.DATA, 20);
         AddStarterCard(Venti.DATA, 25);
-        AddStarterCard(Curse_SearingBurn.DATA, -6);
     }
 
     @Override

@@ -92,6 +92,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
     public final GUI_Button confirm;
     public final GUI_Button seriesCountLeft;
     public final GUI_Button seriesCountRight;
+    public final GUI_Button loadoutEditor;
     public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle toggleBeta;
     public final GUI_TextBox seriesAmount;
@@ -123,6 +124,11 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         .SetPosition(ScreenW(0.08f), ScreenH(0.97f)))
         .SetFont(EYBFontHelper.CardDescriptionFont_Normal, 0.9f)
         .SetColor(Settings.CREAM_COLOR);
+
+        loadoutEditor = new GUI_Button(GR.PCL.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
+                .SetPosition(startingDeck.hb.x + Scale(80), startingDeck.hb.y - Scale(48)).SetText("")
+                .SetTooltip(GR.PCL.Strings.CharSelect.DeckEditor, GR.PCL.Strings.CharSelect.DeckEditorInfo)
+                .SetOnClick(this::OpenLoadoutEditor);
 
         upgradeToggle = new GUI_Toggle(new Hitbox(xPos, getY.Invoke(0.5f), buttonWidth, buttonHeight * 0.8f))
                 .SetBackground(panelTexture, Color.DARK_GRAY)
@@ -259,6 +265,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         toggleBeta.TryRender(sb);
 
         startingDeck.TryRender(sb);
+        loadoutEditor.TryRender(sb);
         selectRandom.TryRender(sb);
         massSelectSeriesButton.TryRender(sb);
         massExpansionButton.TryRender(sb);
@@ -316,6 +323,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         toggleBeta.SetToggle(GR.PCL.Config.DisplayBetaSeries.Get()).TryUpdate();
 
         startingDeck.TryUpdate();
+        loadoutEditor.TryUpdate();
 
         if (!isScreenDisabled) {
             selectRandom.TryUpdate();
@@ -618,7 +626,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
 
     protected void UpdateStartingDeckText()
     {
-        String text = "Starting Series: NL #y" + ((container.currentSeriesCard != null) ? container.currentSeriesCard.name.replace(" ", " #y").replace("+","") : "");
+        String text = GR.PCL.Strings.CharSelect.LeftText + " NL #y" + ((container.currentSeriesCard != null) ? container.currentSeriesCard.name.replace(" ", " #y").replace("+","") : "");
         if (GR.PCL.Config.DisplayBetaSeries.Get() && GR.PCL.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";

@@ -27,6 +27,8 @@ public class ElricAlphonse_Alt extends PCLCard
         SetAffinity_Orange(1);
         SetAffinity_Red(1);
 
+        SetExhaust(true);
+
         SetAffinityRequirement(PCLAffinity.Orange, 4);
     }
 

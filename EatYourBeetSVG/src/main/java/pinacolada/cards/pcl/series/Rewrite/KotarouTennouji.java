@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
+import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
@@ -24,8 +25,8 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
     {
         super(DATA);
 
-        Initialize(8, 0, 0);
-        SetUpgrade(3, 0, 0);
+        Initialize(10, 0, 0);
+        SetUpgrade(2, 0, 0);
         SetAffinity_Star(1, 0, 1);
 
         SetUnique(true, true);
@@ -55,7 +56,7 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
     @Override
     public void OnStanceChanged(AbstractStance oldStance, AbstractStance newStance)
     {
-        if (player.hand.contains(this) && CombatStats.TryActivateLimited(cardID))
+        if (!newStance.ID.equals(NeutralStance.STANCE_ID) && player.hand.contains(this) && CombatStats.TryActivateLimited(cardID))
         {
             PCLActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
             .IncludeMasterDeck(true)

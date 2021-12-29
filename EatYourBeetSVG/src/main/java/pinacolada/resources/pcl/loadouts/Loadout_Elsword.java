@@ -2,8 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Doubt;
-import pinacolada.cards.pcl.curse.Curse_Injury;
 import pinacolada.cards.pcl.series.Elsword.*;
 import pinacolada.cards.pcl.ultrarare.Rose;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -29,8 +27,6 @@ public class Loadout_Elsword extends PCLLoadout
         AddStarterCard(Lu.DATA, 13);
         AddStarterCard(Elesis.DATA, 22);
         AddStarterCard(Noah.DATA, 25);
-        AddStarterCard(Curse_Injury.DATA, -4);
-        AddStarterCard(Curse_Doubt.DATA, -7);
     }
 
     @Override

@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class SakuraKinomoto extends PCLCard
 {
     public static final PCLCardData DATA = Register(SakuraKinomoto.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Elemental)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Electric)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CardcaptorSakura);
 

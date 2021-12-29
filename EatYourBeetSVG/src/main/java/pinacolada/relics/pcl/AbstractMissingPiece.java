@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.utilities.RandomizedList;
 import eatyourbeets.utilities.WeightedList;
@@ -186,7 +187,7 @@ public abstract class AbstractMissingPiece extends PCLRelic implements OnReceive
         rewards.add(startingIndex, new MissingPieceReward(CardSeries.ANY));
         for (int i = 1; i <= seriesChoices; i++)
         {
-            CardSeries series = synergies.Retrieve(AbstractDungeon.cardRng);
+            CardSeries series = synergies.Retrieve(EYBCard.rng);
             if (series != null)
             {
                 rewards.add(startingIndex + i, new MissingPieceReward(series));

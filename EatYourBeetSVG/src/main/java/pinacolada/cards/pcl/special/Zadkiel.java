@@ -16,7 +16,7 @@ import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class Zadkiel extends PCLCard {
-    public static final PCLCardData DATA = Register(Zadkiel.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Brutal, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeries(CardSeries.DateALive);
+    public static final PCLCardData DATA = Register(Zadkiel.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeries(CardSeries.DateALive);
 
     public Zadkiel() {
         super(DATA);

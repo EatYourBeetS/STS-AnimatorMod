@@ -31,7 +31,7 @@ public class TheFloatyThing extends PCLEvent
 
     public static TheFloatyThing TryCreate(Random rng)
     {
-        if (AbstractDungeon.floorNum > 14 && PCLGameUtilities.GetGold() > 160 && !(PCLGameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.15f)) {
+        if (AbstractDungeon.floorNum > 14 && PCLGameUtilities.GetGold() > 160 && !(PCLGameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.1f)) {
             return new TheFloatyThing();
         }
         return null;

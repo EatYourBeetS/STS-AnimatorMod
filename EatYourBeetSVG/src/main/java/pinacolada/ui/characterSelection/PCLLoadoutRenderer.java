@@ -14,6 +14,7 @@ import pinacolada.resources.pcl.misc.PCLLoadout;
 import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.ui.controls.GUI_Label;
+import pinacolada.ui.controls.GUI_TextBox;
 import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -41,7 +42,7 @@ public class PCLLoadoutRenderer extends GUIElement
     protected GUI_Button SeriesButton;
     protected GUI_Button LoadoutEditorButton;
     protected GUI_Label StartingCardsLabel;
-    protected GUI_Label StartingCardsListLabel;
+    protected GUI_TextBox StartingCardsListLabel;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected PCLLoadout loadout;
@@ -70,18 +71,19 @@ public class PCLLoadoutRenderer extends GUIElement
                 .SetAlignment(0.5f, 0.5f, false)
                 .SetText(GR.PCL.Strings.CharSelect.LeftText);
 
-        StartingCardsListLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+        StartingCardsListLabel = new GUI_TextBox(GR.PCL.Images.Panel_Rounded.Texture(),
                 new AdvancedHitbox(POS_X + ROW_OFFSET * 3.5f, POS_Y, leftTextWidth, 50f * Settings.scale))
+                .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.GREEN_TEXT_COLOR)
                 .SetFont(EYBFontHelper.CardTitleFont_Small, 0.8f)
                 .SetAlignment(0.5f, 0.5f, false);
 
         SeriesButton = new GUI_Button(GR.PCL.Images.Edit.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(StartingCardsListLabel.hb.x + StartingCardsListLabel.hb.width + Scale(40), StartingCardsListLabel.hb.y + Scale(25)).SetText("")
+                .SetPosition(StartingCardsListLabel.hb.x + Scale(110), StartingCardsListLabel.hb.y - Scale(48)).SetText("")
                 .SetTooltip(GR.PCL.Strings.CharSelect.SeriesEditor, GR.PCL.Strings.CharSelect.SeriesEditorInfo)
                 .SetOnClick(this::OpenSeriesSelect);
 
         LoadoutEditorButton = new GUI_Button(GR.PCL.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(SeriesButton.hb.x + SeriesButton.hb.width + Scale(40), StartingCardsLabel.hb.y + Scale(25)).SetText("")
+                .SetPosition(SeriesButton.hb.x + SeriesButton.hb.width + Scale(40), StartingCardsListLabel.hb.y - Scale(48)).SetText("")
                 .SetTooltip(GR.PCL.Strings.CharSelect.DeckEditor, GR.PCL.Strings.CharSelect.DeckEditorInfo)
                 .SetOnRightClick(this::ChangePreset)
                 .SetOnClick(this::OpenLoadoutEditor);
@@ -91,13 +93,13 @@ public class PCLLoadoutRenderer extends GUIElement
     {
         if (loadout != null && characterOption != null)
         {
-            GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> RefreshInternal(false));
+            GR.UI.LoadoutEditor.Open(loadout, characterOption, this::RefreshInternal);
         }
     }
 
     private void OpenSeriesSelect()
     {
-        if (loadout != null && characterOption != null)
+        if (characterOption != null)
         {
             GR.UI.SeriesSelection.Open(characterOption, () -> Refresh(selectScreen, characterOption));
         }
@@ -125,7 +127,7 @@ public class PCLLoadoutRenderer extends GUIElement
         if (preset != loadout.Preset)
         {
             loadout.Preset = preset;
-            RefreshInternal(false);
+            RefreshInternal();
         }
     }
 
@@ -195,38 +197,32 @@ public class PCLLoadoutRenderer extends GUIElement
             this.loadout = GR.PCL.Data.SelectedLoadout = loadouts.get(0);
         }
 
-        RefreshInternal(true);
+        RefreshInternal();
 
         SeriesButton.SetActive(true);
-        PCLCharacterSelectScreen.SpecialTrophiesRenderer.Refresh();
     }
 
-    public void RefreshInternal(boolean refreshPortrait)
+    public void RefreshInternal()
     {
         _gold.Set(characterOption, loadout.GetGold());
         _hp.Set(characterOption, String.valueOf(loadout.GetHP()));
 
-        if (refreshPortrait)
-        {
-            selectScreen.bgCharImg = GR.PCL.Images.GetCharacterPortrait(loadout.ID);
-        }
-
         int currentLevel = GR.PCL.GetUnlockLevel();
         if (currentLevel < loadout.UnlockLevel)
         {
-            StartingCardsListLabel.SetText(GR.PCL.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel)).SetColor(Settings.RED_TEXT_COLOR);
+            StartingCardsListLabel.SetText(GR.PCL.Strings.CharSelect.UnlocksAtLevel(loadout.UnlockLevel, currentLevel)).SetFontColor(Settings.RED_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(false);
             selectScreen.confirmButton.isDisabled = true;
         }
         else if (!loadout.Validate().IsValid)
         {
-            StartingCardsListLabel.SetText(GR.PCL.Strings.CharSelect.InvalidLoadout).SetColor(Settings.RED_TEXT_COLOR);
+            StartingCardsListLabel.SetText(GR.PCL.Strings.CharSelect.InvalidLoadout).SetFontColor(Settings.RED_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(true);
             selectScreen.confirmButton.isDisabled = true;
         }
         else
         {
-            StartingCardsListLabel.SetText(loadout.GetDeckPreviewString(true)).SetColor(Settings.GREEN_TEXT_COLOR);
+            StartingCardsListLabel.SetText(loadout.GetDeckPreviewString(true)).SetFontColor(Settings.GREEN_TEXT_COLOR);
             LoadoutEditorButton.SetInteractable(true);
             selectScreen.confirmButton.isDisabled = false;
         }

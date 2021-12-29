@@ -15,7 +15,7 @@ public class ReimuHakurei extends PCLCard
         super(DATA);
 
         Initialize(4, 0, 1, 2);
-        SetUpgrade(1, 0, 0, 1);
+        SetUpgrade(2, 0, 0, 1);
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Orange(1, 0, 0);
 

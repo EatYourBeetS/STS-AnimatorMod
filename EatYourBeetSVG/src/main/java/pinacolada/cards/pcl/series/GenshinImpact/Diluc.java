@@ -14,13 +14,13 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Diluc extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Diluc.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(Diluc.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true);
 
     public Diluc()
     {
         super(DATA);
 
-        Initialize(14, 0, 3, 3);
+        Initialize(13, 0, 2, 3);
         SetUpgrade(2,0,1,0);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
@@ -36,7 +36,6 @@ public class Diluc extends PCLCard
         int amount = 0;
         for (AbstractCreature c : PCLGameUtilities.GetEnemies(true)) {
             if (c.hasPower(FreezingPower.POWER_ID)) {
-                PCLActions.Bottom.RemovePower(p, c, FreezingPower.POWER_ID);
                 amount += magicNumber;
             }
         }

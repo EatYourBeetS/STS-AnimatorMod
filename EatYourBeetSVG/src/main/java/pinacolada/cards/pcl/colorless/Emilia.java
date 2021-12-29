@@ -47,8 +47,8 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
                 SetUpgrade(0, 0, 0, 2);
             }
             else {
-                Initialize(0, 1, 2, 0);
-                SetUpgrade(0, 3, 0, 2);
+                Initialize(0, 4, 2, 0);
+                SetUpgrade(0, 0, 0, 2);
                 AddScaling(PCLAffinity.Blue, 2);
             }
         }

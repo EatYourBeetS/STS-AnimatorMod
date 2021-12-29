@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 
 public class HuTao extends PCLCard
 {
-    public static final PCLCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Piercing)
+    public static final PCLCardData DATA = Register(HuTao.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Fire)
             .SetSeriesFromClassPackage()
             .SetMaxCopies(2)
             .SetMultiformData(2)

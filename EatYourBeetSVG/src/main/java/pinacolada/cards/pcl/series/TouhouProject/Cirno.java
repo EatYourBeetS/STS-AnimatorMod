@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Cirno extends PCLCard
 {
     public static final PCLCardData DATA = Register(Cirno.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

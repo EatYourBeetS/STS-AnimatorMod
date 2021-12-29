@@ -1,7 +1,5 @@
 package pinacolada.cards.pcl.series.Rewrite;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Burn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
@@ -14,11 +12,10 @@ import pinacolada.cards.pcl.status.Status_Burn;
 import pinacolada.effects.AttackEffects;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameEffects;
 
 public class Midou extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, PCLAttackType.Elemental, eatyourbeets.cards.base.EYBCardTarget.ALL)
+    public static final PCLCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_SearingBurn(), false).AddPreview(new Status_Burn(), false));
 
@@ -39,17 +36,9 @@ public class Midou extends PCLCard
 
         if (CombatStats.TryActivateLimited(cardID)) {
 
-            PCLActions.Bottom.SelectFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
+            PCLActions.Bottom.ExhaustFromPile(name, magicNumber, player.drawPile, player.hand, player.discardPile)
                     .SetOptions(true, true)
-                    .SetFilter(c -> c instanceof Burn)
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard card : cards)
-                        {
-                            PCLGameEffects.Queue.ShowCardBriefly(card);
-                            PCLActions.Last.ReplaceCard(card.uuid, new Curse_SearingBurn());
-                        }
-                    });
+                    .SetFilter(c -> c instanceof Status_Burn);
         }
 
     }

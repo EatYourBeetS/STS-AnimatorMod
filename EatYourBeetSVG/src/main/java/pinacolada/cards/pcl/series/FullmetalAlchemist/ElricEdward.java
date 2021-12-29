@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLActions;
 public class ElricEdward extends PCLCard
 {
     public static final PCLCardData DATA = Register(ElricEdward.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire)
             .SetSeriesFromClassPackage();
 
     public ElricEdward()

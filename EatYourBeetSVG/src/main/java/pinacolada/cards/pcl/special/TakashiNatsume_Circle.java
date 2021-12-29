@@ -13,7 +13,6 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.colorless.TakashiNatsume;
 import pinacolada.cards.pcl.series.GenshinImpact.AyakaKamisato;
-import pinacolada.cards.pcl.series.MadokaMagica.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.DeenergizedPower;
@@ -37,21 +36,15 @@ public class TakashiNatsume_Circle extends PCLCard
         Curse_Greed,
         Curse_JunTormented,
         Curse_Nutcracker,
+        Curse_SearingBurn,
         Curse_Slumber,
         Decay,
         Doubt,
-        HomuraAkemi_Homulily,
-        IrohaTamaki_Giovanna,
-        KyokoSakura_Ophelia,
-        MadokaKaname_Krimheild,
-        MamiTomoe_Candeloro,
-        NagisaMomoe_Charlotte,
         Necronomicurse,
         Normality,
         Pain,
         Parasite,
         Regret,
-        SayakaMiki_Oktavia,
         Shame,
         TimeParadox
     }
@@ -71,8 +64,8 @@ public class TakashiNatsume_Circle extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 2, 2);
 
         SetAffinity_Dark(1);
 
@@ -100,7 +93,7 @@ public class TakashiNatsume_Circle extends PCLCard
             case Curse_GriefSeed:
             case Decay:
                 baseDamage = DAMAGE_DECAY * secondaryValue;
-                SetAttackType(PCLAttackType.Elemental);
+                SetAttackType(PCLAttackType.Dark);
                 SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
                 this.type = CardType.ATTACK;
                 break;
@@ -113,26 +106,11 @@ public class TakashiNatsume_Circle extends PCLCard
             case Curse_Slumber:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + PCLJUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[5],secondaryValue), true);
                 break;
+            case Curse_SearingBurn:
+                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Burning, true), true);
+                break;
             case Doubt:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + ACTIONS.ApplyToALL(secondaryValue, GR.Tooltips.Weak, true), true);
-                break;
-            case HomuraAkemi_Homulily:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(HomuraAkemi.DATA.Strings.NAME, true), true);
-                break;
-            case IrohaTamaki_Giovanna:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(IrohaTamaki.DATA.Strings.NAME, true), true);
-                break;
-            case KyokoSakura_Ophelia:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(KyokoSakura.DATA.Strings.NAME, true), true);
-                break;
-            case MadokaKaname_Krimheild:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(MadokaKaname.DATA.Strings.NAME, true), true);
-                break;
-            case MamiTomoe_Candeloro:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(MamiTomoe.DATA.Strings.NAME, true), true);
-                break;
-            case NagisaMomoe_Charlotte:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(NagisaMomoe.DATA.Strings.NAME, true), true);
                 break;
             case Necronomicurse:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " " + ACTIONS.NextTurnDraw(secondaryValue, true) + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[4], true);
@@ -144,12 +122,9 @@ public class TakashiNatsume_Circle extends PCLCard
             case Pain:
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + PCLJUtils.Format(DATA.Strings.EXTENDED_DESCRIPTION[2],secondaryValue), true);
                 break;
-            case SayakaMiki_Oktavia:
-                cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " +  ACTIONS.Play(SayakaMiki.DATA.Strings.NAME, true), true);
-                break;
             case Regret:
                 baseDamage = magicNumber;
-                SetAttackType(PCLAttackType.Elemental);
+                SetAttackType(PCLAttackType.Dark);
                 SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.Random);
                 this.type = CardType.ATTACK;
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[1], true);
@@ -185,13 +160,6 @@ public class TakashiNatsume_Circle extends PCLCard
                 PCLActions.Bottom.Draw(secondaryValue);
                 break;
             case Curse_Eclipse:
-            case HomuraAkemi_Homulily:
-            case IrohaTamaki_Giovanna:
-            case KyokoSakura_Ophelia:
-            case MadokaKaname_Krimheild:
-            case MamiTomoe_Candeloro:
-            case NagisaMomoe_Charlotte:
-            case SayakaMiki_Oktavia:
                 AbstractCard c = GetCardForEffect();
                 if (upgraded) {
                     c.upgrade();
@@ -218,6 +186,9 @@ public class TakashiNatsume_Circle extends PCLCard
             case Curse_GriefSeed:
                 damageMatrix = DamageInfo.createDamageMatrix(damage, true);
                 PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.FIRE);
+                break;
+            case Curse_SearingBurn:
+                PCLActions.Bottom.ApplyBurning(TargetHelper.Enemies(), secondaryValue);
                 break;
             case Curse_Slumber:
                 PCLActions.Bottom.StackPower(player, new InvertPower(player, secondaryValue));
@@ -260,24 +231,11 @@ public class TakashiNatsume_Circle extends PCLCard
         }
     }
 
+    // TODO add more card replacements here
     protected AbstractCard GetCardForEffect() {
         switch(currentForm) {
             case Curse_Eclipse:
                 return new AyakaKamisato();
-            case HomuraAkemi_Homulily:
-                return new HomuraAkemi_Homulily();
-            case IrohaTamaki_Giovanna:
-                return new IrohaTamaki_Giovanna();
-            case KyokoSakura_Ophelia:
-                return new KyokoSakura_Ophelia();
-            case MadokaKaname_Krimheild:
-                return new MadokaKaname_Krimheild();
-            case MamiTomoe_Candeloro:
-                return new MamiTomoe_Candeloro();
-            case NagisaMomoe_Charlotte:
-                return new NagisaMomoe_Charlotte();
-            case SayakaMiki_Oktavia:
-                return new SayakaMiki_Oktavia();
             default:
                 return null;
         }

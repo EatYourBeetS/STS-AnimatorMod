@@ -1,15 +1,13 @@
 package pinacolada.cards.pcl.ultrarare;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.red.Evolve;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EvolvePower;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import org.apache.commons.lang3.StringUtils;
 import pinacolada.cards.base.*;
 import pinacolada.misc.GenericEffects.GenericEffect;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
@@ -17,9 +15,14 @@ import pinacolada.utilities.PCLJUtils;
 public class Azriel extends PCLCard_UltraRare
 {
     public static final PCLCardData DATA = Register(Azriel.class)
-            .SetPower(3, CardRarity.SPECIAL)
+            .SetPower(2, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS)
-            .SetSeries(CardSeries.NoGameNoLife);
+            .SetSeries(CardSeries.NoGameNoLife)
+            .SetMultiformData(2)
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new FakeAbstractCard(new Evolve()), false);
+            });
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Azriel()
@@ -33,14 +36,17 @@ public class Azriel extends PCLCard_UltraRare
         SetAffinity_Dark(1);
         SetAffinity_Silver(1);
 
-        SetEthereal(true);
+        SetDelayed(true);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
-    }
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetDelayed(form == 1);
+            SetInnate(form == 0);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -52,6 +58,7 @@ public class Azriel extends PCLCard_UltraRare
     public class AzrielPower extends PCLPower
     {
         private final PCLCard source;
+        protected CardType cardType;
 
         public AzrielPower(AbstractCreature owner, PCLCard source, int amount)
         {
@@ -78,7 +85,7 @@ public class Azriel extends PCLCard_UltraRare
         }
     }
 
-    protected static class GenericEffect_Azriel extends GenericEffect implements OnStartOfTurnPostDrawSubscriber
+    protected static class GenericEffect_Azriel extends GenericEffect
     {
         private final CardType cardType;
 
@@ -96,24 +103,17 @@ public class Azriel extends PCLCard_UltraRare
         @Override
         public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
         {
-            PCLCombatStats.onStartOfTurnPostDraw.Subscribe(this);
-        }
-
-        @Override
-        public void OnStartOfTurnPostDraw() {
-            int count = PCLJUtils.Count(player.hand.group, c -> c.type == cardType);
-            if (PCLJUtils.Count(player.hand.group, c -> c.type == cardType) > player.hand.size()) {
-                PCLActions.Bottom.SelectFromPile("",count,player.hand).SetOptions(true,false).AddCallback(cards -> {
-                    for (AbstractCard ca : cards) {
-                        PCLActions.Bottom.Motivate(ca, 1);
-                    }
-                });
-            }
-            else {
-                PCLActions.Bottom.DiscardFromHand("", 999, true).SetFilter(c -> c.type != cardType);
-            }
-            PCLActions.Bottom.Draw(1).SetFilter(c -> c.type == cardType, false);
-            PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            PCLActions.Last.Callback(() -> {
+                int count = PCLJUtils.Count(player.hand.group, c -> c.type == cardType);
+                if (count >= player.hand.size() / 2) {
+                    PCLActions.Bottom.Motivate(count);
+                }
+                else {
+                    PCLActions.Bottom.DiscardFromHand("", 999, true)
+                            .SetOptions(true, true, true)
+                            .SetFilter(c -> c.type != cardType);
+                }
+            });
         }
     }
 }

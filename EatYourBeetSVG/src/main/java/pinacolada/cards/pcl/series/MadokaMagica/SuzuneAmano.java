@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class SuzuneAmano extends PCLCard
 {
     public static final PCLCardData DATA = Register(SuzuneAmano.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Elemental)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Fire)
             .SetSeriesFromClassPackage();
 
     public SuzuneAmano()

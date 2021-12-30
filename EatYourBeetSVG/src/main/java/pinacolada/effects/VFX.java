@@ -8,7 +8,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.utility.CombinedEffect;
+import eatyourbeets.effects.vfx.ThrowProjectileEffect;
 import eatyourbeets.utilities.Mathf;
 import pinacolada.effects.vfx.*;
 import pinacolada.effects.vfx.megacritCopy.*;
@@ -114,7 +116,7 @@ public class VFX
                 .SetScale(0f)
                 .SetTargetRotation(1800f,360f)
                 .SetTargetScale(1f,5f)
-                .SetMode(AnimatedProjectile.AnimationMode.Loop, 240)
+                .SetMode(AnimatedPCLProjectile.AnimationMode.Loop, 240)
                 .SetFading(30);
     }
 
@@ -163,7 +165,7 @@ public class VFX
         return new GenericAnimationEffect(IMAGES.IceImpact.Texture(), cX, cY, 5, 5)
                 .SetScale(0f)
                 .SetTargetScale(1f,10f)
-                .SetMode(AnimatedProjectile.AnimationMode.Loop,25)
+                .SetMode(AnimatedPCLProjectile.AnimationMode.Loop,25)
                 .SetFading(30);
     }
 
@@ -351,7 +353,7 @@ public class VFX
     public static ThrowProjectileEffect ThrowRock(Hitbox source, Hitbox target, float duration)
     {
         duration *= Mathf.Abs(target.cX - source.cX) / (Settings.WIDTH * 0.5f);
-        final Projectile projectile = new Projectile(Earth.GetRandomTexture(), 128f, 128f)
+        final Projectile projectile = new PCLProjectile(Earth.GetRandomTexture(), 128f, 128f)
         .SetColor(PCLColors.Random(0.8f, 1f, true))
         .SetPosition(source.cX, source.cY);
         return (ThrowProjectileEffect)new ThrowProjectileEffect(projectile, target)

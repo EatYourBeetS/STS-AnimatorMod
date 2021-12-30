@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import pinacolada.cards.base.PCLAffinity;
@@ -17,7 +18,6 @@ import pinacolada.effects.affinity.ChangeAffinityCountEffect;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Image;
 import pinacolada.ui.controls.GUI_Label;
 import pinacolada.ui.hitboxes.RelativeHitbox;
@@ -58,7 +58,7 @@ public class PCLAffinityRow extends GUIElement
 
         if (Power != null)
         {
-            Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
+            Power.hb = new RelativeHitbox(hb, 1, 1, 1.7f, offset_y);
         }
 
         image_background = new GUI_Image(GR.PCL.Images.Panel_Elliptical_Half_H.Texture(),
@@ -74,7 +74,7 @@ public class PCLAffinityRow extends GUIElement
         .SetText("-");
 
         image_synergy = new GUI_Image(GR.PCL.Images.Arrow_Right.Texture(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
+        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(8f), offset_y * hb.height, false));
 
         image_synergy.SetActive(Power != null);
     }

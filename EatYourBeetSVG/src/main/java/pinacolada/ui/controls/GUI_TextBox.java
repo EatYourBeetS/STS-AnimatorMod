@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import pinacolada.ui.GUIElement;
+import eatyourbeets.ui.GUIElement;
 
 public class GUI_TextBox extends GUIElement
 {

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.*;
-import pinacolada.misc.GenericEffects.GenericEffect_ChannelOrb;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ChannelOrb;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;

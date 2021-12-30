@@ -109,7 +109,7 @@ public class ReisenInaba extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card.name.replace(" ", " #y"));
+            description = FormatDescription(0, card != null ? card.name.replace(" ", " #y") : "");
         }
     }
 }

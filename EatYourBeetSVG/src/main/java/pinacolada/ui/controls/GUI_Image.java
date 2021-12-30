@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.AdvancedTexture;
-import pinacolada.ui.GUIElement;
 
 public class GUI_Image extends GUIElement
 {

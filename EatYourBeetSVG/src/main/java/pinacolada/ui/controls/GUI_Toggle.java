@@ -13,8 +13,8 @@ import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class GUI_Toggle extends GUIElement

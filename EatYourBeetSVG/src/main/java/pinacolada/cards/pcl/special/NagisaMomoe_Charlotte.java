@@ -38,7 +38,7 @@ public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
         SetAffinity_Star(1);
         SetAffinity_Red(0,0,2);
         SetAffinity_Light(0,0,1);
-        SetExhaust(true);
+        SetPurge(true);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
 
                     if (healAmount > 0)
                     {
-                        PCLActions.Bottom.HealPlayerLimited(this, healAmount);
+                        PCLActions.Bottom.Heal(healAmount);
                     }
                 }));
         PCLActions.Bottom.ApplyVulnerable(TargetHelper.AllCharacters(),secondaryValue);

@@ -15,6 +15,8 @@ import pinacolada.ui.cardReward.CardAffinityPanel;
 import pinacolada.ui.characterSelection.PCLLoadoutEditor;
 import pinacolada.ui.combat.PCLCombatScreen;
 import pinacolada.ui.common.CardKeywordFilters;
+import pinacolada.ui.common.CardPoolScreen;
+import pinacolada.ui.common.CustomCardLibSortHeader;
 import pinacolada.ui.common.EYBSingleCardPopup;
 import pinacolada.ui.seriesSelection.PCLSeriesSelectScreen;
 import pinacolada.utilities.PCLGameUtilities;
@@ -36,19 +38,23 @@ public class UIManager
     public PCLCombatScreen CombatScreen;
     public EYBSingleCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
+    public CardPoolScreen CardsScreen;
     public PCLSeriesSelectScreen SeriesSelection;
     public PCLLoadoutEditor LoadoutEditor;
     public CardAffinityPanel CardAffinities;
     public CardKeywordFilters CardFilters;
+    public CustomCardLibSortHeader CustomHeader;
 
     public void Initialize()
     {
         CardAffinities = new CardAffinityPanel();
         CombatScreen = new PCLCombatScreen();
         CardPopup = new EYBSingleCardPopup();
+        CardsScreen = new CardPoolScreen();
         SeriesSelection = new PCLSeriesSelectScreen();
         LoadoutEditor = new PCLLoadoutEditor();
         CardFilters = new CardKeywordFilters();
+        CustomHeader = new CustomCardLibSortHeader(null);
     }
 
     public void Dispose()

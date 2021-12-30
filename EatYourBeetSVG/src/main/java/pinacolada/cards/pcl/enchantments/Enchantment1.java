@@ -6,7 +6,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.misc.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.stances.*;
 import pinacolada.utilities.PCLActions;

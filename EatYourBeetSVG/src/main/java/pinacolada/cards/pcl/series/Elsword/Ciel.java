@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.misc.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
 import pinacolada.stances.DesecrationStance;
 import pinacolada.stances.WisdomStance;
 import pinacolada.utilities.PCLActions;

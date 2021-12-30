@@ -3,6 +3,7 @@ package pinacolada.ui.controls;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
@@ -11,11 +12,10 @@ import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.utilities.PCLInputManager;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class GUI_CardGrid extends GUIElement
@@ -28,7 +28,7 @@ public class GUI_CardGrid extends GUIElement
     public static final int ROW_SIZE = 5;
 
     public final GUI_VerticalScrollBar scrollBar;
-    public final ArrayList<AbstractCard> cards;
+    public CardGroup cards;
     public boolean autoShowScrollbar;
     public boolean draggingScreen;
     public boolean shouldEnlargeHovered = true;
@@ -61,7 +61,7 @@ public class GUI_CardGrid extends GUIElement
 
     public GUI_CardGrid(float horizontalAlignment, boolean autoShowScrollbar)
     {
-        this.cards = new ArrayList<>();
+        this.cards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         this.scrollBar = new GUI_VerticalScrollBar(new Hitbox(ScreenW(0.03f), ScreenH(0.7f)))
                 .SetOnScroll(this::OnScroll);
         this.autoShowScrollbar = autoShowScrollbar;
@@ -157,9 +157,15 @@ public class GUI_CardGrid extends GUIElement
         this.scrollStart = 0f;
         this.draggingScreen = false;
         this.message = null;
-        this.cards.clear();
+        // Unlink the cards from any outside card group given to it
+        this.cards = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         RefreshDeckSize();
+    }
+
+    public GUI_CardGrid SetCardGroup(CardGroup cardGroup) {
+        this.cards = cardGroup;
+        return this;
     }
 
     public GUI_CardGrid AddCards(Collection<AbstractCard> cards)
@@ -177,7 +183,14 @@ public class GUI_CardGrid extends GUIElement
         card.targetDrawScale = card.drawScale = 0.75f;
         card.setAngle(0, true);
         card.lighten(true);
-        cards.add(card);
+        cards.addToTop(card);
+
+        return this;
+    }
+
+    public GUI_CardGrid RemoveCard(AbstractCard card)
+    {
+        cards.removeCard(card);
 
         return this;
     }
@@ -190,7 +203,7 @@ public class GUI_CardGrid extends GUIElement
             scrollBar.Render(sb);
         }
 
-        for (AbstractCard card : cards)
+        for (AbstractCard card : cards.group)
         {
             if (card != hoveredCard)
             {
@@ -257,7 +270,7 @@ public class GUI_CardGrid extends GUIElement
 
         int row = 0;
         int column = 0;
-        for (AbstractCard card : cards)
+        for (AbstractCard card : cards.group)
         {
             card.target_x = (DRAW_START_X * draw_x) + (column * PAD_X);
             card.target_y = DRAW_START_Y + scrollDelta - (row * pad_y);

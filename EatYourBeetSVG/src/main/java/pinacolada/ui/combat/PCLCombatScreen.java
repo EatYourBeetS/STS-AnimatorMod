@@ -3,9 +3,9 @@ package pinacolada.ui.combat;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import eatyourbeets.interfaces.subscribers.OnBattleStartSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStatsClearedSubscriber;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class PCLCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber

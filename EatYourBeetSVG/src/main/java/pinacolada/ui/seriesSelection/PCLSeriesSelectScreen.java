@@ -248,7 +248,19 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         UpdateStartingDeckText();
 
         GR.UI.CardAffinities.SetActive(true);
-        GR.UI.CardAffinities.Open(container.GetAllCardsInPool(), false, null, true);
+        GR.UI.CardAffinities.Open(container.GetAllCardsInPool(),
+                false,
+                (c) -> {
+                    CardGroup group = PCLGameUtilities.CreateCardGroup(c.AffinityGroup.GetCards());
+                    if (group.size() > 0 && previewCardsEffect == null) {
+                        group.sortByRarity(true);
+                        group.sortAlphabetically(true);
+                        group.group.sort(new CardSeriesComparator());
+                        group.group.sort(new CardAffinityComparator(c.Type));
+                        PreviewCards(group, null);
+                    }
+                },
+                true);
 
         seriesCountDropdown.SetItems(PCLJUtils.RangeArray(PCLLoadoutsContainer.MINIMUM_SERIES, GR.PCL.Data.GetEveryLoadout().size()));
         seriesCountDropdown.SetSelection(GR.PCL.Config.SeriesSize.Get(), false);
@@ -527,7 +539,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         {
             for (AbstractCard card : container.betaCards)
             {
-                cardGrid.cards.add(card);
+                cardGrid.AddCard(card);
                 container.allCards.add(card);
                 card.transparency = 0.01f;
             }
@@ -537,7 +549,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
             for (AbstractCard card : container.betaCards)
             {
                 RemoveFromPool(card);
-                cardGrid.cards.remove(card);
+                cardGrid.RemoveCard(card);
                 container.allCards.remove(card);
             }
         }

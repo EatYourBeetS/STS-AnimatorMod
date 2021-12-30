@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.misc.CounterIntentEffects.CounterIntentEffect;
+import pinacolada.cards.base.cardeffects.CounterIntentEffects.CounterIntentEffect;
 import pinacolada.ui.cards.TargetEffectPreview;
 import pinacolada.utilities.PCLGameUtilities;
 

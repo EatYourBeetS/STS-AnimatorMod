@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Toggle;
 import pinacolada.utilities.PCLGameUtilities;
 

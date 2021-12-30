@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import pinacolada.ui.GUIElement;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.utilities.PCLJUtils;
 import pinacolada.utilities.PCLRenderHelpers;

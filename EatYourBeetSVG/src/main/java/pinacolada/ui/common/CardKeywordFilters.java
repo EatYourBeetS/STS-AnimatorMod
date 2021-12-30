@@ -11,11 +11,11 @@ import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
 import org.apache.commons.lang3.StringUtils;
 import pinacolada.cards.base.*;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.ui.controls.GUI_Dropdown;
 import pinacolada.ui.controls.GUI_Label;
@@ -364,13 +364,7 @@ public class CardKeywordFilters extends GUIElement
     }
 
     public CardKeywordFilters Initialize(ActionT1<CardKeywordButton> onClick, ArrayList<AbstractCard> cards, boolean isColorless) {
-        CurrentOrigins.clear();
-        CurrentFilters.clear();
-        CurrentSeries.clear();
-        CurrentCosts.clear();
-        CurrentRarities.clear();
-        CurrentTypes.clear();
-        CurrentAffinities.Clear();
+        Clear(false);
         CurrentFilterCounts.clear();
         FilterButtons.clear();
 
@@ -396,10 +390,6 @@ public class CardKeywordFilters extends GUIElement
         for (Map.Entry<PCLCardTooltip,Integer> filter : CurrentFilterCounts.entrySet())
         {
             FilterButtons.add(new CardKeywordButton(hb, filter.getKey()).SetOnClick(onClick).SetCardCount(filter.getValue()));
-        }
-        for (AffinityKeywordButton c : AffinityButtons)
-        {
-            c.Reset(false);
         }
 
         ArrayList<CardSeries> items = new ArrayList<CardSeries>(availableSeries);
@@ -429,7 +419,11 @@ public class CardKeywordFilters extends GUIElement
         CurrentRarities.clear();
         CurrentTypes.clear();
         CurrentAffinities.Clear();
-        SeriesDropdown.SetSelectionIndices(new int[]{}, false);
+        CostDropdown.SetSelectionIndices(null, false);
+        OriginsDropdown.SetSelectionIndices(null, false);
+        TypesDropdown.SetSelectionIndices(null, false);
+        RaritiesDropdown.SetSelectionIndices(null, false);
+        SeriesDropdown.SetSelectionIndices(null, false);
         for (AffinityKeywordButton c : AffinityButtons)
         {
             c.Reset(false);

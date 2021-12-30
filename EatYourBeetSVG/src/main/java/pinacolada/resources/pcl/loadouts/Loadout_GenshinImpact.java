@@ -24,10 +24,10 @@ public class Loadout_GenshinImpact extends PCLLoadout
         AddStarterCard(Fischl.DATA, 10);
         AddStarterCard(Bennett.DATA, 10);
         AddStarterCard(Tartaglia.DATA, 10);
-        AddStarterCard(BarbaraPegg.DATA, 14);
-        AddStarterCard(Keqing.DATA, 14);
+        AddStarterCard(Keqing.DATA, 13);
         AddStarterCard(Klee.DATA, 14);
         AddStarterCard(HuTao.DATA, 14);
+        AddStarterCard(BarbaraPegg.DATA, 16);
         AddStarterCard(JeanGunnhildr.DATA, 20);
         AddStarterCard(Venti.DATA, 25);
     }

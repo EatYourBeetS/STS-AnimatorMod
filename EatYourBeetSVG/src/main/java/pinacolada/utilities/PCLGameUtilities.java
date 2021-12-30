@@ -618,6 +618,15 @@ public class PCLGameUtilities extends GameUtilities
         return result;
     }
 
+    public static int GetTotalCardsInPlay()
+    {
+        return AbstractDungeon.colorlessCardPool.size()
+                + AbstractDungeon.commonCardPool.size()
+                + AbstractDungeon.uncommonCardPool.size()
+                + AbstractDungeon.rareCardPool.size()
+                + AbstractDungeon.curseCardPool.size();
+    }
+
     public static int GetUniqueOrbsCount()
     {
         final HashSet<String> orbs = new HashSet<>();

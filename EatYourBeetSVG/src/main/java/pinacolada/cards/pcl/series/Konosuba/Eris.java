@@ -36,7 +36,7 @@ public class Eris extends PCLCard implements OnLosingHPSubscriber
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
 
-        SetExhaust(true);
+        SetPurge(true);
         SetHealing(true);
     }
 
@@ -105,7 +105,7 @@ public class Eris extends PCLCard implements OnLosingHPSubscriber
         if (val > 0) {
             PCLActions.Bottom.GainInvocation(val);
         }
-        PCLActions.Bottom.HealPlayerLimited(this, magicNumber);
+        PCLActions.Bottom.Heal(magicNumber);
         TrySpendAffinity(PCLAffinity.Light, PCLCombatStats.MatchingSystem.GetAffinityLevel(PCLAffinity.Light, true));
     }
 

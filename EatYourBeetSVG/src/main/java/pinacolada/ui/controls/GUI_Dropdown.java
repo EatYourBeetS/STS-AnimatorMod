@@ -14,10 +14,10 @@ import com.megacrit.cardcrawl.helpers.input.InputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.Mathf;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.ui.hitboxes.RelativeHitbox;
 import pinacolada.utilities.PCLJUtils;
@@ -213,9 +213,11 @@ public class GUI_Dropdown<T> extends GUIElement
 
     public GUI_Dropdown<T> SetSelectionIndices(int[] selection, boolean shouldInvoke) {
         this.currentIndices.clear();
-        for (Integer i : selection) {
-            if (i < rows.size() && i >= 0) {
-                currentIndices.add(i);
+        if (selection != null) {
+            for (Integer i : selection) {
+                if (i < rows.size() && i >= 0) {
+                    currentIndices.add(i);
+                }
             }
         }
         updateForSelection(shouldInvoke);

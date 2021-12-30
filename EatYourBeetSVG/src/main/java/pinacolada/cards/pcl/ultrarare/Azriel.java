@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.EvolvePower;
 import org.apache.commons.lang3.StringUtils;
 import pinacolada.cards.base.*;
-import pinacolada.misc.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;

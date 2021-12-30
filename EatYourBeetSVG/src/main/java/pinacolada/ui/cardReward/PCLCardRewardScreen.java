@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.resources.GR;
-import pinacolada.ui.GUIElement;
 import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;

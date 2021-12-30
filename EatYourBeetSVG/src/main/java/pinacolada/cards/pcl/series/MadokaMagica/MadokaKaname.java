@@ -36,7 +36,7 @@ public class MadokaKaname extends PCLCard
         SetAffinity_Light(1);
 
         SetHealing(true);
-        SetExhaust(true);
+        SetPurge(true);
         SetProtagonist(true);
         SetHarmonic(true);
 
@@ -76,7 +76,7 @@ public class MadokaKaname extends PCLCard
         {
             if (cards.size() > 0)
             {
-                PCLActions.Bottom.HealPlayerLimited(this, secondaryValue * cards.size());
+                PCLActions.Bottom.Heal(secondaryValue * cards.size());
                 PCLActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             }
         });

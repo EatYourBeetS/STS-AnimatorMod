@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.compendium.CardLibSortHeader;
-import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import pinacolada.cards.base.CardAmountComparator;
 import pinacolada.cards.base.FakeLibraryCard;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 
 public class CustomCardLibSortHeader extends CardLibSortHeader
 {
-    public static CardLibraryScreen Screen;
     public static CustomCardLibSortHeader Instance;
     private static CardGroup falseGroup;
     private static FakeLibraryCard fakeLibraryCard;

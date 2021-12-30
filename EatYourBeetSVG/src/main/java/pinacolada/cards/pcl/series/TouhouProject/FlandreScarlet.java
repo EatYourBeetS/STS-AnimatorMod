@@ -8,9 +8,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.HPAttribute;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.cards.pcl.special.FlandreScarlet_RemiliaScarlet;
 import pinacolada.effects.AttackEffects;
-import pinacolada.misc.GenericEffects.GenericEffect;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 

@@ -124,8 +124,8 @@ public class PCLStrings
         public final String LocalizationHelpHeader = Strings.TEXT[10];
         public final String FadeCardsWithoutSynergy = Strings.TEXT[11];
         public final String SimplifyCardUI = Strings.TEXT[12];
-        public final String RewardsDisabled = Strings.TEXT[13];
-        public final String ConsoleDisabled = Strings.TEXT[14];
+        public final String ViewCardPool = Strings.TEXT[13];
+        public final String ViewCardPoolDescription = Strings.TEXT[14];
         public final String HealingWarning = Strings.TEXT[15];
         public final String MaxStacks_F1 = Strings.TEXT[16];
         public final String GainBlockAboveMaxStacks_F1 = Strings.TEXT[17];

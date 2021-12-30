@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import pinacolada.ui.GUIElement;
+import eatyourbeets.ui.GUIElement;
 
 public class GUI_ImageRegion extends GUIElement
 {

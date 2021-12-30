@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 
 public class GR
 {
+    // TODO: Merge with EYB GR
     // TODO: Set to false
     public static final boolean TEST_MODE = false;
     public static final String BASE_PREFIX = "pcl";

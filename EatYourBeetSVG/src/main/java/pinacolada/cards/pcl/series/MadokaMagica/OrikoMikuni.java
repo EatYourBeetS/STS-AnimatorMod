@@ -3,9 +3,9 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.misc.GenericEffects.GenericEffect_NextTurnBlock;
-import pinacolada.misc.GenericEffects.GenericEffect_NextTurnDraw;
-import pinacolada.misc.GenericEffects.GenericEffect_Scry;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_NextTurnBlock;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_NextTurnDraw;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_Scry;
 import pinacolada.utilities.PCLActions;
 
 public class OrikoMikuni extends PCLCard

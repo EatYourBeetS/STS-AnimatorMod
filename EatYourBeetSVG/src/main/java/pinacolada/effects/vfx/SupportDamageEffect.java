@@ -4,9 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.Projectile;
+import eatyourbeets.effects.vfx.ThrowProjectileEffect;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
-import pinacolada.effects.Projectile;
+import pinacolada.effects.PCLProjectile;
 import pinacolada.effects.VFX;
 import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
@@ -53,7 +55,7 @@ public class SupportDamageEffect extends EYBEffect
         if (vfxTimer < 0f)
         {
             float colorValue = 1f - currentParticles / (float) totalParticles;
-            final Projectile projectile = new Projectile(image.Texture(), 256f, 256f)
+            final Projectile projectile = new PCLProjectile(image.Texture(), 256f, 256f)
                     .SetBlendingMode(PCLRenderHelpers.BlendingMode.Glowing)
                     .SetColor(new Color(colorValue, colorValue, colorValue, colorValue))
                     .SetRotation(Mathf.GetAngle(sourceHb.cX, sourceHb.cY, targetHb.cX, targetHb.cY))

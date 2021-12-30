@@ -86,6 +86,7 @@ public class PCLImages
     public final TextureCache Arrow_Right                 = new TextureCache("images/pcl/ui/topPanel/Arrow_Right.png");
     public final TextureCache CampfireOption_Enchant      = new TextureCache("images/pcl/ui/campfire/Enchant.png");
     public final TextureCache CampfireOption_Kirby        = new TextureCache("images/pcl/ui/campfire/Kirby.png");
+    public final TextureCache CardPool                    = new TextureCache("images/pcl/ui/topPanel/CardPool.png");
     public final TextureCache Circle                      = new TextureCache("images/pcl/ui/topPanel/Circle.png");
     public final TextureCache ControllableCardPile        = new TextureCache("images/pcl/ui/topPanel/ControllableCardPile.png");
     public final TextureCache ControllableCardPileBorder  = new TextureCache("images/pcl/ui/topPanel/ControllableCardPileBorder.png");

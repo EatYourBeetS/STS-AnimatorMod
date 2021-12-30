@@ -5,13 +5,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLImages;
 import pinacolada.resources.pcl.PCLStrings;
 import pinacolada.resources.pcl.misc.PCLLoadout;
 import pinacolada.resources.pcl.misc.PCLTrophies;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Image;
 import pinacolada.ui.hitboxes.AdvancedHitbox;
 

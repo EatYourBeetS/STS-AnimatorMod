@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import pinacolada.cards.base.*;
+import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect;
+import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
+import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffects;
 import pinacolada.cards.pcl.special.Vesta_Elixir;
-import pinacolada.misc.VestaElixirEffects.VestaElixirEffect;
-import pinacolada.misc.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
-import pinacolada.misc.VestaElixirEffects.VestaElixirEffects;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 

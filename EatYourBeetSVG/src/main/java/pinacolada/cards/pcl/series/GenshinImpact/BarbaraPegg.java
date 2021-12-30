@@ -35,7 +35,7 @@ public class BarbaraPegg extends PCLCard
         SetAffinityRequirement(PCLAffinity.Blue, 7);
         SetHarmonic(true);
         SetHealing(true);
-        SetExhaust(true);
+        SetPurge(true);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BarbaraPegg extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.VFX(new RainbowCardEffect());
-        PCLActions.Bottom.HealPlayerLimited(this, magicNumber);
+        PCLActions.Bottom.Heal(magicNumber);
         Water waterOrb = new Water();
         PCLActions.Bottom.ChannelOrb(waterOrb).AddCallback(orbs -> {
             int attackingCount = PCLJUtils.Count(PCLGameUtilities.GetPCLIntents(), i -> !i.IsAttacking());

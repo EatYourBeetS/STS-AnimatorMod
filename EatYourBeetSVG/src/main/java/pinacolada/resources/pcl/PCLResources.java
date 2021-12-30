@@ -26,6 +26,7 @@ import pinacolada.characters.FoolCharacter;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.events.base.PCLEvent;
+import pinacolada.misc.CardPoolPanelItem;
 import pinacolada.potions.GrowthPotion;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.powers.replacement.GenericFadingPower;
@@ -249,6 +250,7 @@ public class PCLResources extends AbstractResources
         PCLLoadoutsContainer.PreloadResources();
         //PCLImages.PreloadResources();
         GR.IsLoaded = true;
+        BaseMod.addTopPanelItem(new CardPoolPanelItem());
     }
 
     public String ProcessJson(String originalString, boolean useFallback)

@@ -7,7 +7,7 @@ import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.misc.VestaElixirEffects.VestaElixirEffect;
+import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect;
 
 import java.util.ArrayList;
 

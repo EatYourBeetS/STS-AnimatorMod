@@ -17,7 +17,7 @@ public class Illya extends PCLCard
 {
     public static final PCLCardData DATA = Register(Illya.class)
             .SetSkill(1, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage()
+            .SetSeriesFromClassPackage(true)
             .PostInitialize(data -> data.AddPreview(new Berserker(), false));
 
     public Illya()

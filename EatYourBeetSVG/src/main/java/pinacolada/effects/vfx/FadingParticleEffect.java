@@ -8,12 +8,12 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import pinacolada.effects.Projectile;
+import pinacolada.effects.PCLProjectile;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class FadingParticleEffect extends EYBEffect
 {
-    protected Projectile projectile;
+    protected PCLProjectile projectile;
     protected float x;
     protected float y;
     protected float alpha;
@@ -23,7 +23,7 @@ public class FadingParticleEffect extends EYBEffect
     {
         super(Settings.ACTION_DUR_FAST, false);
 
-        this.projectile = new Projectile(texture, texture.getWidth(), texture.getHeight());
+        this.projectile = new PCLProjectile(texture, texture.getWidth(), texture.getHeight());
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.x = x;
         this.y = y;
@@ -68,14 +68,14 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
-    public FadingParticleEffect Edit(ActionT1<Projectile> action)
+    public FadingParticleEffect Edit(ActionT1<PCLProjectile> action)
     {
         action.Invoke(projectile);
 
         return this;
     }
 
-    public <T> FadingParticleEffect Edit(T state, ActionT2<T, Projectile> action)
+    public <T> FadingParticleEffect Edit(T state, ActionT2<T, PCLProjectile> action)
     {
         action.Invoke(state, projectile);
 

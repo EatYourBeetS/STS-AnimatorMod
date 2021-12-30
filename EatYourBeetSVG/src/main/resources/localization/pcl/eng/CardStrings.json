@@ -947,7 +947,7 @@
 		},
 		"pcl:MonaMegistus":
 		{
-			"DESCRIPTION": "Scry !M!. Apply !M! [Constricted] for each {Common} discarded. || <slm>. If you Evoke an Orb with this in hand: Gain !S! [Sorcery].",
+			"DESCRIPTION": "Scry !M!. Apply !S! [Constricted] for each {Basic} or {Common} discarded. || <slm>. If you Evoke an Orb with this in hand: Gain !M! [Sorcery].",
 			"NAME": "Mona Megistus"
 		},
 		"pcl:Ningguang":
@@ -1098,7 +1098,7 @@
 		},
 		"pcl:SakuyaOhtori":
 		{
-			"DESCRIPTION": "<RS>: Enter <BS> and apply !M! [Blinded] to ALL enemies. ** Otherwise, Enter <RS> and double your rightmost [~Dark] amount.",
+			"DESCRIPTION": "<RS>: Enter <BS> and give a card in hand +!S! <BSC> (does not stack). ** Otherwise, Enter <RS> and apply !M! [Blinded].",
 			"NAME": "Sakuya Ohtori"
 		},
 		"pcl:Shimako":
@@ -1785,6 +1785,11 @@
 			"DESCRIPTION": "Can only be played ** if the enemy has !M! ** different {Debuffs}. || If you play an {Attack}: ** Cycle this card.",
 			"NAME": "Assassin"
 		},
+		"pcl:Avenger":
+		{
+			"DESCRIPTION": "This turn, whenever you receive unblocked attack damage: Gain !M! [Vigor] (Max 15).",
+			"NAME": "Angra Mainyu"
+		},
 		"pcl:Berserker":
 		{
 			"DESCRIPTION": "If Fatal or if the enemy loses its [Block]: Gain !S! [Block]. || Pay !A! <R>: Enter <RS>.",
@@ -1794,6 +1799,11 @@
 		{
 			"DESCRIPTION": "Steal !M! [Strength]. Lose !S! [Resistance]. || <DS> or Match: Channel 1 [~Dark] and Trigger it once.",
 			"NAME": "Medea"
+		},
+		"pcl:Diarmuid":
+		{
+			"DESCRIPTION": "If the {Next <W>} is <R>: Apply !M! [Vulnerable]. Otherwise, Apply !M! [Shackles]. || If this did not Match: Set the {Next <W>} to <R>.",
+			"NAME": "Diarmuid"
 		},
 		"pcl:EmiyaKiritsugu":
 		{
@@ -1826,6 +1836,12 @@
 			"DESCRIPTION": "Apply 1 [Vulnerable]. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Cu Chulainn"
+		},
+		"pcl:MorganLeFay":
+		{
+			"DESCRIPTION": "Pay X <L>: Apply !X! [Constricted]. || <LIM>. Obtain a random Curse with [~Haste]. Whenever you draw it: Apply !M! [Shackles] to ALL characters, ignoring [Artifact].",
+			"EXTENDED_DESCRIPTION": ["When you draw {0}: ALL characters gain #b{1} [Shackles], ignoring [Artifact]."],
+			"NAME": "Morgan Le Fay"
 		},
 		"pcl:Rider":
 		{
@@ -2525,10 +2541,10 @@
 		},
 		"pcl:HomuraAkemi":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Homulily} || Purge a Curse in play to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
+			"DESCRIPTION": "<CDN>: Obtain {Homulily} || Purge a Curse in play to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact].",
 			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), Obtain #b1 of #b2 cards from your deck. It costs #b1 less and #yPurges on use."],
 			"NAME": "Homura Akemi",
-			"UPGRADE_DESCRIPTION": "<CDN>: Exhaust and Obtain {Homulily} || Purge a Curse anywhere to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact]."
+			"UPGRADE_DESCRIPTION": "<CDN>: Obtain {Homulily} || Purge a Curse anywhere to Imitate a card from your deck in !M! turns. || <LIM>. Pay !A! <L>: Gain !S! [Artifact]."
 		},
 		"pcl:HomuraAkemi_Homulily":
 		{
@@ -2562,7 +2578,7 @@
 		},
 		"pcl:MadokaKaname":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Krimheild}. || Purge !M! {Curses} anywhere. Heal !S! [HP] for each. || When drawn: Recover 1 [HP].",
+			"DESCRIPTION": "<CDN>: Obtain {Krimheild}. || Purge !M! {Curses} anywhere. Heal !S! [HP] for each. || When drawn: Recover 1 [HP].",
 			"NAME": "Madoka Kaname"
 		},
 		"pcl:MadokaKaname_Krimheild":
@@ -2589,7 +2605,7 @@
 		},
 		"pcl:NagisaMomoe":
 		{
-			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Charlotte}. || Gain !M! [B] and [L]. || While in hand: Gain !S! [THP] upon playing a <L> card.",
+			"DESCRIPTION": "<CDN>: Obtain {Charlotte}. || Gain !M! [B] and [L]. || While in hand: Gain !S! [THP] upon playing a <L> card.",
 			"NAME": "Nagisa Momoe"
 		},
 		"pcl:NagisaMomoe_Charlotte":

@@ -8,7 +8,7 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.misc.CardMods.AfterLifeMod;
+import pinacolada.cards.base.modifiers.AfterLifeMod;
 import pinacolada.utilities.PCLActions;
 
 import static pinacolada.resources.GR.Enums.CardTags.AFTERLIFE;

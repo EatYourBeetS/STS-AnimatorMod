@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import eatyourbeets.effects.Projectile;
 import eatyourbeets.interfaces.subscribers.OnRawDamageReceivedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.utilities.Colors;
@@ -18,7 +19,7 @@ import eatyourbeets.utilities.RandomizedList;
 import pinacolada.actions.orbs.EarthOrbEvokeAction;
 import pinacolada.actions.orbs.EarthOrbPassiveAction;
 import pinacolada.effects.AttackEffects;
-import pinacolada.effects.Projectile;
+import pinacolada.effects.PCLProjectile;
 import pinacolada.effects.SFX;
 import pinacolada.orbs.PCLOrb;
 import pinacolada.powers.PCLCombatStats;
@@ -77,7 +78,7 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
         final int max = Math.min(MAX_PROJECTILES - projectiles.size(), amount);
         for (int i = 0; i < max; i++)
         {
-            projectiles.add(new Projectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
+            projectiles.add(new PCLProjectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
             .SetPosition(cX, cY)
             .SetColor(Colors.Random(0.9f, 1f, false))
             .SetScale(0.05f)

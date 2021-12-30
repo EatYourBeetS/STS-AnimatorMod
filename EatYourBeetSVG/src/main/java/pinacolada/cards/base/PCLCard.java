@@ -37,7 +37,7 @@ import pinacolada.actions.special.HasteAction;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.BlockAttribute;
 import pinacolada.cards.base.attributes.DamageAttribute;
-import pinacolada.misc.CardMods.AfterLifeMod;
+import pinacolada.cards.base.modifiers.AfterLifeMod;
 import pinacolada.patches.screens.GridCardSelectScreenPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;

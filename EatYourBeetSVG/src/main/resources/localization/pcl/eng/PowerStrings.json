@@ -42,7 +42,7 @@
 	},
 	"pcl:DesecrationPower":
 	{
-	  "DESCRIPTIONS": ["If a [A-Dark] card #yMatches: Gain #b{0} [D]. NL At #b{1} stacks: Gains #b1 Level. NL At Level #b{2}: Gains #b1 use. NL When clicked: Spend #b1 use to reduce a single enemy's Attack damage by #b{2}% and damage resistance by #b{3}%.{4}","NL #rThis #rpower #ris #rdisabled."],
+	  "DESCRIPTIONS": ["If a [A-Dark] card #yMatches: Gain #b{0} [D]. NL At #b{1} stacks: Gains #b1 Level. NL At Level #b{2}: Gains #b1 use. NL When clicked: Spend #b1 use to reduce a single enemy's Attack damage by #b{3}% and damage resistance by #b{4}%.{5}","NL #rThis #rpower #ris #rdisabled."],
 	  "NAME": "Desecration"
 	},
 	"pcl:ElectrifiedPower":

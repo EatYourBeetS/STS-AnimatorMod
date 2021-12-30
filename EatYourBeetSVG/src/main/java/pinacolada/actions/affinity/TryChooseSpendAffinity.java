@@ -3,7 +3,7 @@ package pinacolada.actions.affinity;
 import pinacolada.cards.base.AffinityChoice;
 import pinacolada.cards.base.AffinityChoiceBuilder;
 import pinacolada.cards.base.PCLAffinity;
-import pinacolada.misc.GenericEffects.GenericEffect_PayAffinity;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_PayAffinity;
 
 public class TryChooseSpendAffinity extends TryChooseAffinity
 {

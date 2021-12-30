@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.ui.GUIElement;
 import pinacolada.resources.GR;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.utilities.PCLGameUtilities;

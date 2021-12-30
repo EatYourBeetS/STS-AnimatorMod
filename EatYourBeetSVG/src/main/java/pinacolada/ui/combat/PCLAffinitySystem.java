@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.Mathf;
@@ -18,7 +19,6 @@ import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLHotkeys;
-import pinacolada.ui.GUIElement;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.ui.controls.GUI_Ftue;
 import pinacolada.ui.controls.GUI_Image;
@@ -509,8 +509,8 @@ public class PCLAffinitySystem extends GUIElement
         draggable_icon.Render(sb);
         info_icon.Render(sb);
 
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.PCL.Strings.Combat.Experience, info_icon.hb.cX + Scale(80), info_icon.hb.y, 1f, Colors.Blue(1f));
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.PCL.Strings.Combat.Uses, info_icon.hb.cX + Scale(144), info_icon.hb.y, 1f, Colors.Blue(1f));
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.PCL.Strings.Combat.Experience, info_icon.hb.cX + Scale(92), info_icon.hb.y, 1f, Colors.Blue(1f));
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, GR.PCL.Strings.Combat.Uses, info_icon.hb.cX + Scale(156), info_icon.hb.y, 1f, Colors.Blue(1f));
 
         for (PCLAffinityRow t : rows)
         {

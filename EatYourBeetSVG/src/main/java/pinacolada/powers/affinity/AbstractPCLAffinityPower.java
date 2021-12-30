@@ -14,7 +14,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.Mathf;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.powers.PCLClickablePower;
@@ -166,8 +165,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         return 1f + GetEffectiveIncrease();
     }
 
-    // Required exp: 5, 10, 20, 40, 80
-    public Integer GetEffectiveThreshold() {return threshold * (int) Mathf.Pow(2, currentLevel);}
+    public Integer GetEffectiveThreshold() {return threshold * (currentLevel + 1);}
 
     @Override
     public String GetUpdatedDescription()
@@ -255,7 +253,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         final Color borderColor = isActive ? ACTIVE_COLOR : (enabled && triggerCondition.CanUse()) ? imgColor : disabledColor;
 
         super.renderIconsImpl(sb, x + 16 * scale, cY + (3f * scale), borderColor, imgColor);
-        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "L" + String.valueOf(level), x + 36 * scale, y - 8 * scale, fontScale, levelColor);
+        FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "L" + String.valueOf(level) + "/" + String.valueOf(nextGrantingLevel), x + 36 * scale, y - 8 * scale, fontScale * 0.86f, levelColor);
 
         FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, "/" + threshold, x + (threshold < 10 ? 90 : 95) * scale, y, 1, amountColor);
         FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, String.valueOf(amount), x + 64 * scale, y, fontScale, amountColor);

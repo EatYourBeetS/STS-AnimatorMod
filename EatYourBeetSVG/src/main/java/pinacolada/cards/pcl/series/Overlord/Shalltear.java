@@ -29,7 +29,7 @@ public class Shalltear extends PCLCard
         SetAffinity_Dark(1, 0, 3);
 
         SetHealing(true);
-        SetExhaust(true);
+        SetPurge(true);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Shalltear extends PCLCard
 
             if (healAmount > 0)
             {
-                PCLActions.Bottom.HealPlayerLimited(this, healAmount);
+                PCLActions.Bottom.Heal(healAmount);
             }
         }));
 

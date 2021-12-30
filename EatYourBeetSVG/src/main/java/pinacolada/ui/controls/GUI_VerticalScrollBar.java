@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import eatyourbeets.interfaces.delegates.ActionT1;
-import pinacolada.ui.GUIElement;
+import eatyourbeets.ui.GUIElement;
 
 public class GUI_VerticalScrollBar extends GUIElement
 {

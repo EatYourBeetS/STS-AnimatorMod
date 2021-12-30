@@ -28,13 +28,14 @@ public class Loadout_Fate extends PCLLoadout
         AddStarterCard(RinTohsaka.DATA, 13);
         AddStarterCard(EmiyaKiritsugu.DATA, 16);
         AddStarterCard(Caster.DATA, 17);
+        AddStarterCard(KireiKotomine.DATA, 23);
         AddStarterCard(Saber.DATA, 25);
     }
 
     @Override
     public PCLCardData GetSymbolicCard()
     {
-        return Saber.DATA;
+        return EmiyaShirou.DATA;
     }
 
     @Override

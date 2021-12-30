@@ -6,17 +6,17 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainAffinity;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.effects.AttackEffects;
-import pinacolada.misc.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.misc.GenericEffects.GenericEffect_GainAffinity;
 import pinacolada.stances.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class Hakurou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Hakurou.class)
-            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Piercing, eatyourbeets.cards.base.EYBCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Green), true));
     private static final CardEffectChoice choices = new CardEffectChoice();

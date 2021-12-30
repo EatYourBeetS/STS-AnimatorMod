@@ -33,7 +33,7 @@ public class DesecrationPower extends AbstractPCLAffinityPower
     @Override
     public String GetUpdatedDescription()
     {
-        String newDesc = FormatDescription(0, PCLAffinityRow.SYNERGY_MULTIPLIER, GetEffectiveThreshold(), GetDamageReceivedIncrease(GetMultiplierForDescription()) * 100, GetDamageDealtDecrease(GetMultiplierForDescription()) * 100,  !IsEnabled() ? powerStrings.DESCRIPTIONS[1] : "");
+        String newDesc = FormatDescription(0, PCLAffinityRow.SYNERGY_MULTIPLIER, GetEffectiveThreshold(), GetNextGrantingLevel(), GetDamageReceivedIncrease(GetMultiplierForDescription()) * 100, GetDamageDealtDecrease(GetMultiplierForDescription()) * 100,  !IsEnabled() ? powerStrings.DESCRIPTIONS[1] : "");
         if (this.tooltips.size() > 0) {
             this.tooltips.get(0).description = newDesc;
         }

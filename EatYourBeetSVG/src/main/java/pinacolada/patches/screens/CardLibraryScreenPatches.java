@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import eatyourbeets.utilities.FieldInfo;
 import pinacolada.resources.GR;
-import pinacolada.ui.common.CustomCardLibSortHeader;
 import pinacolada.ui.controls.GUI_Button;
 import pinacolada.ui.hitboxes.DraggableHitbox;
 import pinacolada.utilities.PCLJUtils;
@@ -41,30 +40,27 @@ public class CardLibraryScreenPatches
     public static class CardLibraryScreen_DidChangeTab
     {
         private static final FieldInfo<CardLibSortHeader> _sortHeader = PCLJUtils.GetField("sortHeader", CardLibraryScreen.class);
-        private static final CustomCardLibSortHeader customHeader = new CustomCardLibSortHeader(null);
         private static CardLibSortHeader defaultHeader;
 
         @SpireInsertPatch(rloc = 0)
         public static void Insert(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection)
         {
             if (!IsAnimator(screen)) {
-                CustomCardLibSortHeader.Screen = screen;
-
                 Hitbox upgradeHitbox = tabBar.viewUpgradeHb;
                 upgradeHitbox.width = 260 * Settings.scale;
-                if (_sortHeader.Get(screen) != customHeader)
+                if (_sortHeader.Get(screen) != GR.UI.CustomHeader)
                 {
-                    _sortHeader.Set(screen, customHeader);
+                    _sortHeader.Set(screen, GR.UI.CustomHeader);
                 }
 
-                customHeader.SetupButtons(!(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_FOOL)));
+                GR.UI.CustomHeader.SetupButtons(!(newSelection == ColorTabBarFix.Enums.MOD && ColorTabBarFix.Fields.getModTab().color.equals(GR.Enums.Cards.THE_FOOL)));
             }
         }
 
         @SpirePostfixPatch
         public static void Postfix(CardLibraryScreen screen, ColorTabBar tabBar, ColorTabBar.CurrentTab newSelection) {
-            GR.UI.CardFilters.Initialize(__ -> customHeader.UpdateForFilters(), customHeader.originalGroup, customHeader.IsColorless());
-            customHeader.UpdateForFilters();
+            GR.UI.CardFilters.Initialize(__ -> GR.UI.CustomHeader.UpdateForFilters(), GR.UI.CustomHeader.originalGroup, GR.UI.CustomHeader.IsColorless());
+            GR.UI.CustomHeader.UpdateForFilters();
             if (openButton == null) {
                 openButton = new GUI_Button(GR.PCL.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false).SetIsPopupCompatible(true))
                         .SetBorder(GR.PCL.Images.HexagonalButtonBorder.Texture(), Color.WHITE)

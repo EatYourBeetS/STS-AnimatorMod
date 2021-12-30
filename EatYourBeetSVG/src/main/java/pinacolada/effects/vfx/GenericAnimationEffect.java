@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
-import pinacolada.effects.AnimatedProjectile;
-import pinacolada.effects.Projectile;
+import pinacolada.effects.AnimatedPCLProjectile;
+import pinacolada.effects.PCLProjectile;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class GenericAnimationEffect extends EYBEffect
 {
-    public final AnimatedProjectile projectile;
+    public final AnimatedPCLProjectile projectile;
 
     protected boolean fade;
     protected int endFrame;
@@ -31,7 +31,7 @@ public class GenericAnimationEffect extends EYBEffect
     {
         super(Settings.ACTION_DUR_MED, false);
 
-        this.projectile = new AnimatedProjectile(texture, rows, columns, frameDuration);
+        this.projectile = new AnimatedPCLProjectile(texture, rows, columns, frameDuration);
         this.projectile.SetPosition(x, y).SetTargetPosition(x, y);
         this.endFrame = this.projectile.totalFrames;
         this.scale = 1;
@@ -81,7 +81,7 @@ public class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public GenericAnimationEffect SetMode(AnimatedProjectile.AnimationMode mode, int duration)
+    public GenericAnimationEffect SetMode(AnimatedPCLProjectile.AnimationMode mode, int duration)
     {
         this.projectile.mode = mode;
         this.endFrame = duration;
@@ -104,14 +104,14 @@ public class GenericAnimationEffect extends EYBEffect
         return this;
     }
 
-    public GenericAnimationEffect Edit(ActionT1<AnimatedProjectile> action)
+    public GenericAnimationEffect Edit(ActionT1<AnimatedPCLProjectile> action)
     {
         action.Invoke(projectile);
 
         return this;
     }
 
-    public <T> GenericAnimationEffect Edit(T state, ActionT2<T, Projectile> action)
+    public <T> GenericAnimationEffect Edit(T state, ActionT2<T, PCLProjectile> action)
     {
         action.Invoke(state, projectile);
 

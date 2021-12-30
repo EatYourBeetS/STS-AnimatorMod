@@ -19,7 +19,7 @@ public class TechnicPower extends AbstractPCLAffinityPower
     public void Initialize(AbstractCreature owner)
     {
         super.Initialize(owner);
-        SetThreshold(10);
+        this.nextGrantingLevel = 3;
     }
 
     @Override
@@ -32,5 +32,14 @@ public class TechnicPower extends AbstractPCLAffinityPower
     @Override
     protected int GetMultiplierForDescription() {
         return (int) GetEffectiveIncrease();
+    }
+
+    @Override
+    protected void TryGainLevelEffects() {
+        while (GetEffectiveLevel() >= nextGrantingLevel) {
+            nextGrantingLevel *= 3;
+            triggerCondition.AddUses(1);
+            flash();
+        }
     }
 }

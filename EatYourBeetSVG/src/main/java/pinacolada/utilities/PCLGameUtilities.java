@@ -676,6 +676,11 @@ public class PCLGameUtilities extends GameUtilities
         return card instanceof PCLCard && ((PCLCard) card).cooldown != null;
     }
 
+    public static boolean HasEncounteredEvent(String eventID)
+    {
+        return GR.PCL.Dungeon.GetMapData(eventID) != null;
+    }
+
     public static boolean HasUpgradableAffinities(AbstractCard c)
     {
         final PCLCardAffinities a = PCLGameUtilities.GetPCLAffinities(c);

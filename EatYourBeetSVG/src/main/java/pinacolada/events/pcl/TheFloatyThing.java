@@ -1,15 +1,19 @@
 package pinacolada.events.pcl;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
+import eatyourbeets.utilities.JUtils;
 import pinacolada.cards.pcl.special.BlazingHeat;
 import pinacolada.cards.pcl.special.IonizingStorm;
 import pinacolada.cards.pcl.special.SheerCold;
@@ -31,7 +35,15 @@ public class TheFloatyThing extends PCLEvent
 
     public static TheFloatyThing TryCreate(Random rng)
     {
-        if (AbstractDungeon.floorNum > 14 && PCLGameUtilities.GetGold() > 160 && !(PCLGameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.1f)) {
+        String data = GR.PCL.Dungeon.GetMapData(ID);
+        if (data != null) {
+            try {
+                rolls = Integer.parseInt(data);
+            } catch (Exception e) {
+                JUtils.LogError(null, "Unable to load data for event " + ID);
+            }
+        }
+        if (rolls >= 0 && AbstractDungeon.floorNum > 14 && PCLGameUtilities.GetGold() > 160 && !(PCLGameUtilities.HasRelic(SpiritPoop3.ID)) && rng.randomBoolean(0.1f)) {
             return new TheFloatyThing();
         }
         return null;
@@ -100,8 +112,14 @@ public class TheFloatyThing extends PCLEvent
             {
                 AddOption(text.WishLockedOption()).SetDisabled(true);
             }
-            if (canDemand && !hasDemanded) {
-                AddOption(text.DemandOption(GetGoldToRefund())).AddCallback(this::Demand);
+            if (canDemand)
+            {
+                if (!hasDemanded) {
+                    AddOption(text.DemandOption(GetGoldToRefund())).AddCallback(this::Demand);
+                }
+                else {
+                    AddOption(text.EatOption()).AddCallback(() -> ChangePhase(Eat.class));
+                }
             }
             AddLeaveOption();
         }
@@ -110,6 +128,7 @@ public class TheFloatyThing extends PCLEvent
         {
             player.loseGold(PRICE);
             rolls += 1;
+            GR.PCL.Dungeon.SetMapData(ID, rolls);
 
             if (MathUtils.randomBoolean(GetChance())) {
                 ObtainReward();
@@ -202,6 +221,22 @@ public class TheFloatyThing extends PCLEvent
         }
     }
 
+    private static class Eat extends EYBEventPhase<TheFloatyThing, TheFloatyThing.EventStrings>
+    {
+        @Override
+        protected void OnEnter()
+        {
+            player.heal(player.maxHealth);
+            AbstractCard randomCurse = PCLGameUtilities.GetRandomElement(PCLGameUtilities.GetObtainableCurses());
+            if (randomCurse != null) {
+                PCLGameEffects.List.Add(new ShowCardAndObtainEffect(randomCurse, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
+            }
+            GR.PCL.Dungeon.SetMapData(ID, -1);
+            AddText(text.Eat());
+            AddLeaveOption();
+        }
+    }
+
     private static class EventStrings extends EYBEventStrings
     {
         public final String Introduction()
@@ -254,6 +289,11 @@ public class TheFloatyThing extends PCLEvent
             return GetDescription(9);
         }
 
+        public final String Eat()
+        {
+            return GetDescription(10);
+        }
+
         public final String WishOption(float chance, int gold)
         {
             return GetOption(0, chance, gold);
@@ -269,9 +309,9 @@ public class TheFloatyThing extends PCLEvent
             return GetOption(2, gold);
         }
 
-        public final String RefuseBountyOption()
+        public final String EatOption()
         {
-            return GetOption(4);
+            return GetOption(3);
         }
     }
 }

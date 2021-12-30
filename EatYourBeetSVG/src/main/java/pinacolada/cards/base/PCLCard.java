@@ -548,7 +548,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         return false;
     }
 
-    // Card will glow if this passes
+    // Card will glow green if this passes
     public boolean CheckSpecialCondition(boolean tryUse)
     {
         return false;

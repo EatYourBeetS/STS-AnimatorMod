@@ -13,6 +13,7 @@ import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import pinacolada.cards.base.PCLCardBase;
+import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLCardSlot;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -33,10 +34,8 @@ public class PCLLoadoutEditor extends AbstractScreen
     protected final static PCLLoadout.Validation val = new PCLLoadout.Validation();
     protected final ArrayList<PCLCardSlotEditor> slotsEditors = new ArrayList<>();
     protected final ArrayList<PCLRelicSlotEditor> relicsEditors = new ArrayList<>();
+    protected final ArrayList<PCLBaseStatEditor> baseStatEditors = new ArrayList<>();
     protected final PCLLoadoutData[] presets = new PCLLoadoutData[PCLLoadout.MAX_PRESETS];
-    protected PCLBaseStatEditor goldEditor;
-    protected PCLBaseStatEditor hpEditor;
-    protected PCLBaseStatEditor commonUpgradeEditor;
     protected PCLLoadout loadout;
     protected ActionT0 onClose;
     protected int preset;
@@ -48,6 +47,7 @@ public class PCLLoadoutEditor extends AbstractScreen
     protected GUI_Label startingDeck;
     protected GUI_Label deck_text;
     protected GUI_Label relic_text;
+    protected GUI_Label attributes_text;
     protected GUI_Image background_image;
     protected GUI_Button seriesButton;
     protected GUI_Button[] preset_buttons;
@@ -60,6 +60,7 @@ public class PCLLoadoutEditor extends AbstractScreen
     protected GUI_TextBox cardsValue_text;
     protected GUI_TextBox affinityValue_text;
     protected GUI_TextBox hindranceValue_text;
+    protected PCLCardTooltip infoTip;
 
     public PCLLoadoutEditor()
     {
@@ -90,6 +91,12 @@ public class PCLLoadoutEditor extends AbstractScreen
                 .SetFontScale(0.8f)
                 .SetAlignment(0.5f, 0.5f);
 
+        attributes_text = new GUI_Label(EYBFontHelper.CardTitleFont_Large,
+                new Hitbox(ScreenW(0.57f), ScreenH(0.8f), buttonHeight, buttonHeight))
+                .SetText(GR.PCL.Strings.CharSelect.AttributesHeader)
+                .SetFontScale(0.8f)
+                .SetAlignment(0.5f, 0.5f);
+
         seriesButton = new GUI_Button(GR.PCL.Images.Edit.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
                 .SetPosition(startingDeck.hb.x + Scale(80), startingDeck.hb.y - Scale(48)).SetText("")
                 .SetTooltip(GR.PCL.Strings.CharSelect.SeriesEditor, GR.PCL.Strings.CharSelect.SeriesEditorInfo)
@@ -100,7 +107,7 @@ public class PCLLoadoutEditor extends AbstractScreen
         {
             //noinspection SuspiciousNameCombination
             preset_buttons[i] = new GUI_Button(GR.PCL.Images.SquaredButton.Texture(), new Hitbox(0, 0, buttonHeight, buttonHeight))
-            .SetPosition(ScreenW(0.5f) + ((i - 1f) * buttonHeight), ScreenH(1f) - (buttonHeight * 0.85f))
+            .SetPosition(ScreenW(0.45f) + ((i - 1f) * buttonHeight), ScreenH(1f) - (buttonHeight * 0.85f))
             .SetText(String.valueOf(i + 1))
             .SetOnClick(i, (preset, __) -> ChangePreset(preset));
         }
@@ -111,18 +118,18 @@ public class PCLLoadoutEditor extends AbstractScreen
         .SetText(GridCardSelectScreen.TEXT[1])
         .SetOnClick(AbstractDungeon::closeCurrentScreen);
 
-        clear_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
-                .SetPosition(buttonWidth * 0.75f, cancel_button.hb.y + cancel_button.hb.height + labelHeight * 0.8f)
-                .SetColor(Color.WHITE)
-                .SetText(GR.PCL.Strings.CharSelect.Clear)
-                .SetOnClick(this::Clear);
-
         save_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
         .SetPosition(ScreenW(1) - (buttonWidth * 0.75f), button_cY)
         .SetColor(Color.FOREST)
         .SetText(GridCardSelectScreen.TEXT[0])
         .SetInteractable(false)
         .SetOnClick(this::Save);
+
+        clear_button = CreateHexagonalButton(0, 0, buttonWidth, buttonHeight)
+                .SetPosition(save_button.hb.cX, save_button.hb.y + save_button.hb.height + labelHeight * 0.8f)
+                .SetColor(Color.WHITE)
+                .SetText(GR.PCL.Strings.CharSelect.Clear)
+                .SetOnClick(this::Clear);
 
         upgrade_toggle = new GUI_Toggle(new Hitbox(0, 0, labelWidth * 0.75f, labelHeight))
         .SetPosition(ScreenW(0.5f), ScreenH(0.055f))
@@ -133,7 +140,7 @@ public class PCLLoadoutEditor extends AbstractScreen
         cardsValue_text = new GUI_TextBox(GR.PCL.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
         .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.CREAM_COLOR)
         .SetAlignment(0.5f, 0.5f)
-        .SetPosition(save_button.hb.cX, save_button.hb.y + save_button.hb.height + labelHeight * 0.8f)
+        .SetPosition(save_button.hb.cX, ScreenH(0.65f))
         .SetFont(FontHelper.tipHeaderFont, 1);
 
         cardsCount_text = new GUI_TextBox(GR.PCL.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight))
@@ -162,16 +169,19 @@ public class PCLLoadoutEditor extends AbstractScreen
             relicsEditors.add(new PCLRelicSlotEditor(this, ScreenW(0.1f), ScreenH(0.35f - (i * 0.05f))));
         }
 
-        hpEditor = new PCLBaseStatEditor(PCLBaseStatEditor.StatType.HP, ScreenW(0.82f), ScreenH(0.78f), this);
-        goldEditor = new PCLBaseStatEditor(PCLBaseStatEditor.StatType.Gold, ScreenW(0.82f), ScreenH(0.69f), this);
-        commonUpgradeEditor = new PCLBaseStatEditor(PCLBaseStatEditor.StatType.CommonUpgrade, ScreenW(0.82f), ScreenH(0.6f), this);
+        final PCLBaseStatEditor.StatType[] statTypes = PCLBaseStatEditor.StatType.values();
+        for (int i = 0; i < statTypes.length; i++) {
+            baseStatEditors.add(new PCLBaseStatEditor(statTypes[i], ScreenW(0.6f), ScreenH(0.78f - i * 0.1f), this));
+        }
 
         ascensionRequirement = new GUI_TextBox(GR.PCL.Images.Panel_Rounded.Texture(), new Hitbox(labelWidth, labelHeight * 4))
         .SetColors(Colors.Black(0.4f), Colors.Cream(0.9f))
         .SetText(GR.PCL.Strings.CharSelect.UnlocksAtAscension(PCLLoadout.GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED))
         .SetAlignment(0.5f, 0.5f)
-        .SetPosition(ScreenW(0.82f), ScreenH(0.78f))
+        .SetPosition(ScreenW(0.62f), ScreenH(0.78f))
         .SetFont(FontHelper.charDescFont, 0.9f);
+
+        infoTip = new PCLCardTooltip("", "");
     }
 
     public void Open(PCLLoadout loadout, CharacterOption option, ActionT0 onClose)
@@ -180,11 +190,10 @@ public class PCLLoadoutEditor extends AbstractScreen
 
         boolean enableHPAndGoldEditor = PCLGameUtilities.GetMaxAscensionLevel(option.c) >= PCLLoadout.GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED;
         ascensionRequirement.SetActive(!enableHPAndGoldEditor);
-        goldEditor.SetActive(enableHPAndGoldEditor);
-        hpEditor.SetActive(enableHPAndGoldEditor);
-        goldEditor.SetInteractable(enableHPAndGoldEditor);
-        hpEditor.SetInteractable(enableHPAndGoldEditor);
-        //commonUpgradeEditor.SetInteractable(enableHPAndGoldEditor);
+        for (PCLBaseStatEditor beditor : baseStatEditors) {
+            beditor.SetActive(enableHPAndGoldEditor);
+            beditor.SetInteractable(enableHPAndGoldEditor);
+        }
 
         for (int i = 0; i < loadout.Presets.length; i++)
         {
@@ -236,6 +245,7 @@ public class PCLLoadoutEditor extends AbstractScreen
         startingDeck.Update();
         deck_text.Update();
         relic_text.Update();
+        attributes_text.Update();
         upgrade_toggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
 
         if (cardSelectionEffect != null)
@@ -272,15 +282,13 @@ public class PCLLoadoutEditor extends AbstractScreen
             }
 
             ascensionRequirement.TryUpdate();
-            if (activeEditor == null || activeEditor == goldEditor) {
-                goldEditor.SetEstimatedValue(val.Values.getOrDefault(PCLBaseStatEditor.StatType.Gold, 0)).TryUpdate();
+
+            for (PCLBaseStatEditor beditor : baseStatEditors) {
+                if (activeEditor == null || activeEditor == beditor) {
+                    beditor.SetEstimatedValue(val.Values.getOrDefault(beditor.type, 0)).TryUpdate();
+                }
             }
-            if (activeEditor == null || activeEditor == hpEditor) {
-                hpEditor.SetEstimatedValue(val.Values.getOrDefault(PCLBaseStatEditor.StatType.HP, 0)).TryUpdate();
-            }
-            //if (activeEditor == null || activeEditor == commonUpgradeEditor) {
-            //    commonUpgradeEditor.SetEstimatedValue(val.Values.getOrDefault(AnimatorBaseStatEditor.StatType.CommonUpgrade, 0)).Update();
-            //}
+
             cancel_button.Update();
             clear_button.Update();
             save_button.Update();
@@ -300,6 +308,15 @@ public class PCLLoadoutEditor extends AbstractScreen
         cardsCount_text.SetText(GR.PCL.Strings.CharSelect.CardsCount(val.CardsCount.V1)).SetFontColor(val.CardsCount.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         cardsValue_text.SetText(GR.PCL.Strings.CharSelect.TotalValue(val.TotalValue.V1, PCLLoadout.MAX_VALUE)).SetFontColor(val.TotalValue.V2 ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR).TryUpdate();
         save_button.SetInteractable(val.IsValid).TryUpdate();
+
+        if (hindranceValue_text.hb.hovered) {
+            infoTip.SetText(hindranceValue_text.label.text, GR.PCL.Strings.CharSelect.HindranceDescription);
+            PCLCardTooltip.QueueTooltip(infoTip);
+        }
+        else if (affinityValue_text.hb.hovered) {
+            infoTip.SetText(affinityValue_text.label.text, GR.PCL.Strings.CharSelect.AffinityDescription);
+            PCLCardTooltip.QueueTooltip(infoTip);
+        }
     }
 
     @Override
@@ -329,10 +346,14 @@ public class PCLLoadoutEditor extends AbstractScreen
             startingDeck.Render(sb);
             deck_text.Render(sb);
             relic_text.Render(sb);
-            // TODO find a better name for this before your render it
-            //commonUpgradeEditor.TryRender(sb);
-            goldEditor.TryRender(sb);
-            hpEditor.TryRender(sb);
+            attributes_text.Render(sb);
+
+            // All editors must be rendered from top to bottom to prevent dropdowns from overlapping
+            for (int i = baseStatEditors.size() - 1; i >= 0; i--)
+            {
+                baseStatEditors.get(i).TryRender(sb);
+            }
+
             ascensionRequirement.TryRender(sb);
             cancel_button.Render(sb);
             clear_button.Render(sb);
@@ -348,7 +369,6 @@ public class PCLLoadoutEditor extends AbstractScreen
                 relicsEditors.get(i).TryRender(sb);
             }
 
-            //Render in reverse order to avoid things overlapping
             for (int i = slotsEditors.size() - 1; i >= 0; i--)
             {
                 slotsEditors.get(i).TryRender(sb);
@@ -360,7 +380,7 @@ public class PCLLoadoutEditor extends AbstractScreen
     {
         if (characterOption != null)
         {
-            GR.UI.SeriesSelection.Open(characterOption, () -> {});
+            GR.UI.SeriesSelection.Open(characterOption, this.onClose);
         }
     }
 
@@ -382,19 +402,7 @@ public class PCLLoadoutEditor extends AbstractScreen
 
     public void ChangePreset(int preset)
     {
-        if (!preset_buttons[2].interactable && preset >= 2)
-        {
-            preset = 1;
-        }
-        if (!preset_buttons[1].interactable && preset == 1)
-        {
-            preset = 0;
-        }
-
         this.preset = preset;
-        this.hpEditor.SetLoadout(presets[preset]);
-        this.goldEditor.SetLoadout(presets[preset]);
-        this.commonUpgradeEditor.SetLoadout(presets[preset]);
         SetSlotsActive(true);
     }
 
@@ -439,6 +447,10 @@ public class PCLLoadoutEditor extends AbstractScreen
                 reditor.SetActive(data.RelicsSize() > i);
                 reditor.SetSlot(reditor.isActive ? data.GetRelicSlot(i) : null);
             }
+            for (PCLBaseStatEditor beditor : baseStatEditors) {
+                beditor.SetLoadout(data);
+            }
+            val.Refresh(presets[preset]);
         }
         else
         {

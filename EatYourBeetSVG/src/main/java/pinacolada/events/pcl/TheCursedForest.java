@@ -20,6 +20,10 @@ public class TheCursedForest extends PCLEvent
 
     public static TheCursedForest TryCreate(Random rng)
     {
+        if (PCLGameUtilities.HasEncounteredEvent(ID)) {
+            return null;
+        }
+
         int curseCount = 0;
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group)
         {

@@ -1042,8 +1042,8 @@
 	{
 		"pcl:AkaneSenri":
 		{
-			"DESCRIPTION": "!M! random cards gain [~Haste]. Whenever you Shuffle your deck: Repeat this and gain !S! [G]. || Once per turn, pay 7 <L>: Channel [~Dark]. Trigger it once for every card in hand.",
-			"EXTENDED_DESCRIPTION": [" Whenever you shuffle your deck: Give [~Haste] to #b{0} random cards and gain #b{1} [G]. || Pay #b{2} [A-Light]: Channel 1 [~Dark]. Trigger it once for every card in hand."],
+			"DESCRIPTION": "Gain !S! [G] and give !M! random cards in your draw pile [~Haste]. Repeat this whenever you Shuffle your deck. || Once per turn, pay {0} <L>: Channel [~Dark]. Trigger it once per card in hand.",
+			"EXTENDED_DESCRIPTION": [" Whenever you shuffle your deck: Give [~Haste] to #b{0} random cards in your draw pile and gain #b{1} [G]. || Pay #b{2} [A-Light]: Channel 1 [~Dark]. Trigger it once per card in hand."],
 			"NAME": "Akane Senri"
 		},
 		"pcl:AkiraInoue":
@@ -1108,7 +1108,7 @@
 		},
 		"pcl:ShizuruNakatsu":
 		{
-			"DESCRIPTION": "Discard !M! {Skills} to Enter <GS>. || If your highest <W> is <G>: ** Has +!S! damage.",
+			"DESCRIPTION": "Discard !M! {Skills} to Enter <GS>. || <OS>: ** Has +!S! damage.",
 			"NAME": "Shizuru Nakatsu"
 		},
 		"pcl:SougenEsaka":
@@ -1618,7 +1618,7 @@
 		},
 		"pcl:Curse_Greed":
 		{
-			"DESCRIPTION": "When drawn: Raise ** the cost of a random ** card in your hand ** by 1 this turn.",
+			"DESCRIPTION": "When drawn: A random card in hand costs 1 more this turn. || On Exhaust: Retain a card.",
 			"NAME": "Avarice"
 		},
 		"pcl:Curse_GriefSeed":
@@ -1633,7 +1633,7 @@
 		},
 		"pcl:Curse_Normality":
 		{
-			"DESCRIPTION": "While in hand: Negate your {Common Debuffs}. Negate {Common Buffs} on ALL characters. You cannot play more than !M! cards this turn.{0}",
+			"DESCRIPTION": "While in hand, if you played !M!+ cards this turn: Negate the {Common Buffs} and {Common Debuffs} of ALL characters.{0}",
 			"EXTENDED_DESCRIPTION": [" ** (You have played !X! card(s) this turn).","I cannot play more than 3 cards this turn."],
 			"NAME": "Normality"
 		},
@@ -2396,7 +2396,7 @@
 		},
 		"pcl:Wiz":
 		{
-			"DESCRIPTION": "Exhaust 1 card. Choose a ** card in Exhaust pile and ** add a copy to your hand. || <LIM>. !M! Match Combo: This ** card will not Purge.",
+			"DESCRIPTION": "Exhaust 1 card. Choose a ** card in Exhaust pile and ** add a copy to your hand. || <LIM>. !M! Match Combo: This will not Purge.",
 			"NAME": "Wiz"
 		},
 		"pcl:YunYun":

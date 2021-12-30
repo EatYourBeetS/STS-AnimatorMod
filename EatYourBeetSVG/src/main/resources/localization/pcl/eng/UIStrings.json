@@ -175,7 +175,8 @@
 			"+{0} Gold",
 			"Common Upgrade",
 			"#pRight-Click to preview.",
-			"Potion Slot"
+			"Potion Slots",
+			"Orb Slots"
 		]
 	},
 
@@ -251,14 +252,18 @@
 			"Deck",
 			"Relics",
 			"Attributes",
-			"Reset",
+			"Deck Value",
 			"Hindrance: {0}",
 			"Affinity: {0}",
 			"Cards: {0}",
 			"Value: {0}/{1}",
 			"Your Hindrance level is determined by the proportion of your deck made up of negative-valued cards. Cards valued less than -2 have a larger impact on this number.",
 			"Your Affinity level is determined by the sum of the frequency of each Affinity that occurs more than 2 times in your deck.",
-			"You have unsaved changes to your loadout that will be lost upon leaving. Are you sure you want to leave this menu?"
+			"You have unsaved changes to your loadout that will be lost upon leaving. Are you sure you want to leave this menu?",
+			"Reset",
+			"Duplicate",
+			"Import",
+			"Export"
 		]
 	},
 	

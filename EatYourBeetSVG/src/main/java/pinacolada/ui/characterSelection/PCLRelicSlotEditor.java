@@ -41,7 +41,7 @@ public class PCLRelicSlotEditor extends GUIElement
                 .SetAlignment(0.5f, 0.5f)
                 .SetFont(FontHelper.cardEnergyFont_L, 0.75f);
 
-        relicName_text = new GUI_TextBox(GR.PCL.Images.Panel_Rounded_Half_H.Texture(), new AdvancedHitbox(relicValue_text.hb.x + relicValue_text.hb.width + SPACING, cY, AbstractCard.IMG_WIDTH, ITEM_HEIGHT))
+        relicName_text = new GUI_TextBox(GR.PCL.Images.Panel_Rounded_Half_H.Texture(), new AdvancedHitbox(relicValue_text.hb.x + relicValue_text.hb.width + SPACING, cY, AbstractCard.IMG_WIDTH * 1.1f, ITEM_HEIGHT))
                 .SetColors(Settings.HALF_TRANSPARENT_BLACK_COLOR, Settings.GOLD_COLOR)
                 .SetAlignment(0.5f, 0.5f)
                 .SetFont(FontHelper.cardTitleFont, 1);

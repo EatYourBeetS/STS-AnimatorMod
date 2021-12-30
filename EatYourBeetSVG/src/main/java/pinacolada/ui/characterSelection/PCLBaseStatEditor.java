@@ -23,13 +23,13 @@ import pinacolada.utilities.PCLJUtils;
 public class PCLBaseStatEditor extends GUIElement
 {
 
-    // TODO allow for fractional values, ADD potion slot editor
     public enum StatType
     {
-        Gold(ImageMaster.TP_GOLD, Settings.GOLD_COLOR, 99, 15, -6, 6),
-        HP(ImageMaster.TP_HP, Settings.RED_TEXT_COLOR, 70, 2, -6, 6),
-        PotionSlot(ImageMaster.POTION_PLACEHOLDER, Settings.CREAM_COLOR, 0, 1, -1, 0),
-        CommonUpgrade(ImageMaster.TP_ASCENSION, Settings.CREAM_COLOR, 0, 1, 0, 2);
+        HP(ImageMaster.TP_HP, Settings.RED_TEXT_COLOR, 70, 2, 1, -6, 6),
+        Gold(ImageMaster.TP_GOLD, Settings.GOLD_COLOR, 99, 15, 1, -6, 6),
+        OrbSlot(ImageMaster.ORB_SLOT_1, Settings.CREAM_COLOR, 3, 1, 3, -6, 3),
+        PotionSlot(ImageMaster.POTION_PLACEHOLDER, Settings.CREAM_COLOR, 0, 1, 3, -3, 3),
+        CommonUpgrade(ImageMaster.TP_ASCENSION, Settings.CREAM_COLOR, 0, 1, 2, 0, 4);
 
         public void SetAmount(PCLLoadoutData data, int amount)
         {
@@ -40,7 +40,12 @@ public class PCLBaseStatEditor extends GUIElement
 
         public int GetAmount(PCLLoadoutData data)
         {
-            return BaseAmount + AmountStep * (data != null ? data.Values.getOrDefault(this, 0) : 0);
+            return GetAmount(data != null ? data.Values.getOrDefault(this, 0) : 0);
+        }
+
+        public int GetAmount(int value)
+        {
+            return BaseAmount + (AmountPerStep * value) / ValuePerStep;
         }
 
         public String GetText(PCLLoadoutData data)
@@ -53,10 +58,12 @@ public class PCLBaseStatEditor extends GUIElement
                     return CharacterOption.TEXT[5] + GetAmount(data);
                 case HP:
                     return CharacterOption.TEXT[4] + GetAmount(data);
+                case OrbSlot:
+                    return GR.PCL.Strings.Rewards.OrbSlot + ": " + GetAmount(data);
                 case PotionSlot:
-                    return GR.PCL.Strings.Rewards.PotionSlot + GetAmount(data);
+                    return GR.PCL.Strings.Rewards.PotionSlot + ": " + GetAmount(data);
                 case CommonUpgrade:
-                    return GR.PCL.Strings.Rewards.CommonUpgrade + GetAmount(data);
+                    return GR.PCL.Strings.Rewards.CommonUpgrade + ": " + GetAmount(data);
                 default:
                     return "";
             }
@@ -65,15 +72,17 @@ public class PCLBaseStatEditor extends GUIElement
         public final Texture Icon;
         public final Color LabelColor;
         public final int BaseAmount;
-        public final int AmountStep;
+        public final int AmountPerStep;
+        public final int ValuePerStep;
         public final int MinValue;
         public final int MaxValue;
 
-        StatType(Texture icon, Color labelColor, int baseAmount, int amountStep, int minValue, int maxValue) {
+        StatType(Texture icon, Color labelColor, int baseAmount, int amountPerStep, int valuePerStep, int minValue, int maxValue) {
             this.Icon = icon;
             this.LabelColor = labelColor;
             this.BaseAmount = baseAmount;
-            this.AmountStep = amountStep;
+            this.AmountPerStep = amountPerStep;
+            this.ValuePerStep = valuePerStep;
             this.MinValue = minValue;
             this.MaxValue = maxValue;
         }
@@ -101,20 +110,20 @@ public class PCLBaseStatEditor extends GUIElement
         final float w = hb.width;
         final float h = hb.height;
 
-        image = new GUI_Image(type.Icon, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, (ICON_SIZE * 0.5f), h * 0.5f, false));
-        label = new GUI_Label(FontHelper.tipHeaderFont, new RelativeHitbox(hb, w - ICON_SIZE, h, (w + ICON_SIZE) * 0.5f, h * 0.5f, false))
+        image = new GUI_Image(type.Icon, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, ICON_SIZE * -0.13f, h * 0.5f, false));
+        label = new GUI_Label(FontHelper.tipHeaderFont, new RelativeHitbox(hb, w - ICON_SIZE, h, w * 0.5f + ICON_SIZE * -0.13f, h * 0.5f, false))
         .SetAlignment(0.5f, 0f, false)
         .SetColor(type.LabelColor);
 
-        decrease_button = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, -(ICON_SIZE * 0.5f), (h * 0.35f), false))
+        decrease_button = new GUI_Button(ImageMaster.CF_LEFT_ARROW, new RelativeHitbox(hb, ICON_SIZE * 0.9f, ICON_SIZE * 0.9f, -(ICON_SIZE * 0.5f), h * -0.15f, false))
         .SetOnClick(this::Decrease)
         .SetText(null);
 
-        increase_button = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new RelativeHitbox(hb, ICON_SIZE, ICON_SIZE, w + (ICON_SIZE * 0.5f), (h * 0.35f), false))
+        increase_button = new GUI_Button(ImageMaster.CF_RIGHT_ARROW, new RelativeHitbox(hb, ICON_SIZE * 0.9f, ICON_SIZE * 0.9f, w + (ICON_SIZE * 0.5f), h * -0.15f, false))
         .SetOnClick(this::Increase)
         .SetText(null);
 
-        valueDropdown = new GUI_Dropdown<Integer>(new RelativeHitbox(hb, 0.5f, 0.75f, 0.5f, -0.1f))
+        valueDropdown = new GUI_Dropdown<Integer>(new RelativeHitbox(hb, 0.85f, 0.75f, 0.5f, -0.2f))
                 .SetFontForButton(EYBFontHelper.CardTitleFont_Small, 1f)
                 .SetOnOpenOrClose(isOpen -> {
                     editor.activeEditor = isOpen ? this : null;
@@ -124,15 +133,26 @@ public class PCLBaseStatEditor extends GUIElement
                         Set(value.get(0));
                     }
                 })
-                .SetCanAutosizeButton(true)
-                .SetLabelFunctionForButton(null, value -> {
-                    if (value.isEmpty()) {
-                        return Settings.CREAM_COLOR;
-                    }
-                    int first = value.get(0);
-                    return first == 0 ? Settings.CREAM_COLOR : first < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
-                }, false)
-                .SetItems(PCLJUtils.RangeArray(type.MinValue, type.MaxValue));
+                .SetCanAutosizeButton(false)
+                .SetLabelFunctionForOption(
+                        value -> this.type.GetAmount(value) + " (" + value + ")", false
+                )
+                .SetLabelFunctionForButton(
+                        value -> {
+                            if (value.isEmpty()) {
+                                return String.valueOf(0);
+                            }
+                            return String.valueOf(value.get(0));
+                        },
+                        value -> {
+                            if (value.isEmpty()) {
+                                return Settings.CREAM_COLOR;
+                            }
+                            int first = value.get(0);
+                            return first == 0 ? Settings.CREAM_COLOR : first < 0 ? Settings.RED_TEXT_COLOR : Settings.GREEN_TEXT_COLOR;
+                        },
+                        false)
+                .SetItems(PCLJUtils.RangeArray(type.MinValue, type.MaxValue, type.ValuePerStep));
     }
 
     public PCLBaseStatEditor SetEstimatedValue(int value)

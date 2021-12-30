@@ -9,6 +9,7 @@ import eatyourbeets.events.base.EYBEventStrings;
 import pinacolada.events.base.PCLEvent;
 import pinacolada.relics.pcl.BountyMap;
 import pinacolada.relics.pcl.BountyMap2;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class ThePharmacy extends PCLEvent
 {
@@ -17,6 +18,9 @@ public class ThePharmacy extends PCLEvent
 
     public static ThePharmacy TryCreate(Random rng)
     {
+        if (PCLGameUtilities.HasEncounteredEvent(ID)) {
+            return null;
+        }
         if (!AbstractDungeon.player.hasRelic(BountyMap.ID) && AbstractDungeon.floorNum > 5 && AbstractDungeon.floorNum < 45 && rng.randomBoolean(0.12f)) {
             return new ThePharmacy();
         }

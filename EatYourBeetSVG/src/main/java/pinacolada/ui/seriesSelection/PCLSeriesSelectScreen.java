@@ -350,7 +350,8 @@ public class PCLSeriesSelectScreen extends AbstractScreen
     {
         PCLRuntimeLoadout current = container.Find(container.currentSeriesCard);
         if (characterOption != null && current != null) {
-            GR.UI.LoadoutEditor.Open(current.Loadout, characterOption, () -> {});
+            Proceed();
+            GR.UI.LoadoutEditor.Open(current.Loadout, characterOption, this.onClose);
         }
     }
 

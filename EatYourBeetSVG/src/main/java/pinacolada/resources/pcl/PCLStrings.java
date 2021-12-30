@@ -63,8 +63,8 @@ public class PCLStrings
         public final String GoldBonus_F1 = Strings.TEXT[5];
         public final String CommonUpgrade = Strings.TEXT[6];
         public final String RightClickPreview = Strings.TEXT[7];
-        public final String Enchantment = Strings.TEXT[8];
-        public final String PotionSlot = Strings.TEXT[9];
+        public final String PotionSlot = Strings.TEXT[8];
+        public final String OrbSlot = Strings.TEXT[9];
 
         public final String MaxHPBonus(int amount)
         {
@@ -173,7 +173,11 @@ public class PCLStrings
         public final String DeckHeader = Strings.TEXT[10];
         public final String RelicsHeader = Strings.TEXT[11];
         public final String AttributesHeader = Strings.TEXT[12];
-        public final String Clear = Strings.TEXT[13];
+        public final String ValueHeader = Strings.TEXT[13];
+        public final String HindranceDescription = Strings.TEXT[18];
+        public final String AffinityDescription = Strings.TEXT[19];
+        public final String UnsavedChanges = Strings.TEXT[20];
+        public final String Clear = Strings.TEXT[21];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {

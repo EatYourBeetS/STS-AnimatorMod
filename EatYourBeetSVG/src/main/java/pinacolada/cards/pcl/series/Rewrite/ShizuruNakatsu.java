@@ -2,13 +2,14 @@ package pinacolada.cards.pcl.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAttackType;
+import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
+import pinacolada.stances.EnduranceStance;
 import pinacolada.stances.VelocityStance;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLJUtils;
-
-import java.util.Arrays;
 
 public class ShizuruNakatsu extends PCLCard
 {
@@ -20,7 +21,7 @@ public class ShizuruNakatsu extends PCLCard
     {
         super(DATA);
 
-        Initialize(1, 4, 2, 6);
+        Initialize(1, 4, 2, 5);
         SetUpgrade(0, 3, 0, 1);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
@@ -29,7 +30,7 @@ public class ShizuruNakatsu extends PCLCard
     @Override
     protected float GetInitialDamage()
     {
-        if (CheckSpecialCondition(false))
+        if (EnduranceStance.IsActive())
         {
             return super.GetInitialDamage() + secondaryValue;
         }
@@ -52,11 +53,5 @@ public class ShizuruNakatsu extends PCLCard
                             }
                         }
                 );
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse){
-        PCLAffinity highestAffinity = PCLJUtils.FindMax(Arrays.asList(PCLAffinity.Extended()), this::GetHandAffinity);
-        return (highestAffinity.equals(PCLAffinity.Green));
     }
 }

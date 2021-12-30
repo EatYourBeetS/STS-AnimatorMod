@@ -76,11 +76,11 @@
 
 		"\"For just #b16 #yGold, you can cast a wish to obtain a prize! Every #b10 wishes will guarantee a rarer prize as well!\" NL NL The ~floaty thing~ screeches with undue excitement.",
 
-		"\"That's too bad. Maybe you'll have better luck if you WISH AGAIN!\" NL NL The ~floaty thing~ screeches into your face. NL NL (You have made {0} wishes so far).",
+		"\"That's too bad. Maybe you'll have better luck if you WISH AGAIN!!!\" NL NL The ~floaty thing~ screeches into your face. NL NL (You have made {0} wishes so far).",
 
-		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL (You have made {0} wishes so far)",
+		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL (You have made {0} wishes so far)",
 
-		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL The 'prize' you've gotten can't really be called a prize... NL NL (You have made {0} wishes so far)",
+		"\"CONGRATULATIONS ON YOUR 10TH ROLL IN A ROW! You've won a BETTER PRIZE!!!\" NL NL The ~floaty thing~ screeches into your face again. NL NL The 'prize' you've gotten can't really be called a prize... NL NL (You have made {0} wishes so far)",
 
 		"\"NO REFUNDS!!!\" NL NL The ~floaty thing~ screeches into your face. (Seriously, does it really have to screech so much...) NL NL (You have made {0} wishes so far).",
 
@@ -90,7 +90,7 @@
 
 		"\"H-h-hey... That wasn't supposed to be given out. GIVE IT BACK!\" NL NL The ~floaty thing~ screeches into your face as it charges towards you. NL NL You quickly dodge it and run away as fast as you can from the screeching floaty thing throwing curses at you.",
 
-		"You decide that the ~floaty thing~ is probably trying to rip you off and quickly make your leave before it is able to pester you anymore."
+		"You snatch the ~floaty thing~ out of the air and gobble it down your throat before it is able to goad you any more. NL NL It'll probably be bad for your stomatch, but at least nobody will ever fall prey to that thing's sales pitches again."
 	  ],
 	  "NAME": "The Floaty Thing",
 	  "OPTIONS":
@@ -98,7 +98,7 @@
 		"[Wish] #g{0}% #gchance #gto #gobtain #ga #gPrize. #rLose #r{1} #rGold.",
 		"[Locked] Not enough Gold.",
 		"[Demand your Gold back] #g50% chance to Gain #g{0} Gold.",
-		"[Leave]"
+		"[Eat the Thing] #gHeal #gto #gfull. #rObtain #ra #rrandom #rCurse."
 	  ]
 	},
 	"pcl:TheHaunt":

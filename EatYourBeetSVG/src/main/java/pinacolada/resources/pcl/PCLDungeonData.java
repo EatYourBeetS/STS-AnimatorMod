@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -52,7 +53,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
 {
     transient Random rng;
 
-    protected Map<String, String> BaseMap = null;
+    protected Map<String, String> EventLog = new HashMap<>();
     protected Integer RNGCounter = 0;
     protected Boolean EnteredUnnamedReign = false;
     protected Boolean IsCheating = false;
@@ -70,6 +71,16 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         BaseMod.addSaveField(id, data);
         BaseMod.subscribe(data);
         return data;
+    }
+
+    public String GetMapData(String eventID)
+    {
+        return (EventLog != null ? EventLog.getOrDefault(eventID, null) : null);
+    }
+
+    public void SetMapData(String eventID, Object value)
+    {
+        EventLog.put(eventID, value.toString());
     }
 
     public Random GetRNG()
@@ -365,8 +376,19 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             RemoveExtraCopies(card);
         }
 
-        for (int i = 0; i < (GR.PCL.Data.SelectedLoadout != null ? GR.PCL.Data.SelectedLoadout.GetCommonUpgrades() : 0); i++) {
-            PCLGameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
+
+        if (startGame) {
+            for (int i = 0; i < (GR.PCL.Data.SelectedLoadout != null ? GR.PCL.Data.SelectedLoadout.GetCommonUpgrades() : 0); i++) {
+                PCLGameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
+            }
+
+            player.potionSlots += (GR.PCL.Data.SelectedLoadout != null ? GR.PCL.Data.SelectedLoadout.GetPotionSlots() : 0);
+            player.potions.clear();
+            for (int i = 0; i < player.potionSlots; i++)
+            {
+                player.potions.add(new PotionSlot(i));
+            }
+            player.adjustPotionPositions();
         }
     }
 
@@ -506,7 +528,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
     {
         if (data != null)
         {
-            BaseMap = new HashMap<>(data.BaseMap);
+            EventLog = new HashMap<>(data.EventLog);
             EnteredUnnamedReign = data.EnteredUnnamedReign;
             RNGCounter = data.RNGCounter;
             IsCheating = data.IsCheating;
@@ -515,7 +537,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         }
         else
         {
-            BaseMap = new HashMap<>();
+            EventLog = new HashMap<>();
             EnteredUnnamedReign = false;
             LongestMatchCombo = 0;
             RNGCounter = 0;
@@ -526,9 +548,9 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
 
     protected void Validate()
     {
-        if (BaseMap == null)
+        if (EventLog == null)
         {
-            BaseMap = new HashMap<>();
+            EventLog = new HashMap<>();
         }
 
         if (IsCheating == null)

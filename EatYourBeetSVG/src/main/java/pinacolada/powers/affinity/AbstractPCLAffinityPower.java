@@ -43,13 +43,14 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
     public float effectMultiplier;
     public int gainMultiplier;
     public int scalingMultiplier;
-    public int totalGainedThisCombat;
-    public int currentLevel;
-    public int bonusLevel;
-    public int threshold = BASE_THRESHOLD;
     public boolean forceEnableThisTurn;
     public boolean isActive;
     public Hitbox hb;
+    protected int totalGainedThisCombat;
+    protected int currentLevel;
+    protected int bonusLevel;
+    protected int nextGrantingLevel;
+    protected int threshold = BASE_THRESHOLD;
 
     private static final StringBuilder builder = new StringBuilder();
 
@@ -77,6 +78,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         this.effectMultiplier = 1;
         this.gainMultiplier = 1;
         this.scalingMultiplier = 1;
+        this.nextGrantingLevel = 1;
         this.currentLevel = 0;
         this.bonusLevel = 0;
         this.triggerCondition
@@ -95,9 +97,8 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
 
     public void AddLevel(int levels) {
         bonusLevel += levels;
-        for (int i = 0; i < levels; i++) {
-            GainLevelEffects();
-        }
+        flashWithoutSound();
+        TryGainLevelEffects();
     }
 
     public void AddUse(int uses) {
@@ -142,7 +143,8 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         this.totalGainedThisCombat += amount;
         while (this.amount >= GetEffectiveThreshold()) {
             currentLevel += 1;
-            GainLevelEffects();
+            flashWithoutSound();
+            TryGainLevelEffects();
         }
     }
 
@@ -158,6 +160,8 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         return Math.max(0, currentLevel + bonusLevel);
     }
 
+    public Integer GetNextGrantingLevel() {return nextGrantingLevel;}
+
     protected float GetEffectiveMultiplier() {
         return 1f + GetEffectiveIncrease();
     }
@@ -168,7 +172,7 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
     @Override
     public String GetUpdatedDescription()
     {
-        String newDesc = FormatDescription(0, PCLAffinityRow.SYNERGY_MULTIPLIER, GetEffectiveThreshold(), GetMultiplierForDescription(), !IsEnabled() ? powerStrings.DESCRIPTIONS[1] : "");
+        String newDesc = FormatDescription(0, PCLAffinityRow.SYNERGY_MULTIPLIER, GetEffectiveThreshold(), GetNextGrantingLevel(), GetMultiplierForDescription(), !IsEnabled() ? powerStrings.DESCRIPTIONS[1] : "");
         if (this.tooltips.size() > 0) {
             this.tooltips.get(0).description = newDesc;
         }
@@ -197,9 +201,12 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         return false;
     }
 
-    protected void GainLevelEffects() {
-        triggerCondition.AddUses(1);
-        flash();
+    protected void TryGainLevelEffects() {
+        while (GetEffectiveLevel() >= nextGrantingLevel) {
+            nextGrantingLevel *= 2;
+            triggerCondition.AddUses(1);
+            flash();
+        }
     }
 
     public void Maintain() {

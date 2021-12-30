@@ -29,6 +29,7 @@ public abstract class PCLEvent extends EYBEvent
     public static final PCLImages.Events IMAGES = GR.PCL.Images.Events;
     public final ArrayList<EYBEventPhase> phases = new ArrayList<>();
     public EYBEventPhase currentPhase;
+    public final String id;
 
     public static String CreateFullID(Class<? extends EYBEvent> type)
     {
@@ -39,7 +40,7 @@ public abstract class PCLEvent extends EYBEvent
     {
         if (isAnimator)
         {
-            AbstractEvent event = TheCursedForest.TryCreate(rng);
+            PCLEvent event = TheCursedForest.TryCreate(rng);
             if (event == null) {
                 event = ThePharmacy.TryCreate(rng);
             }
@@ -48,6 +49,10 @@ public abstract class PCLEvent extends EYBEvent
             }
             if (event == null) {
                 event = TheHeroAssociation.TryCreate(rng);
+            }
+
+            if (event != null) {
+                GR.PCL.Dungeon.SetMapData(event.id, "");
             }
             return event;
         }
@@ -112,5 +117,6 @@ public abstract class PCLEvent extends EYBEvent
     public PCLEvent(String id, EYBEventStrings strings, String imageUrl)
     {
         super(id, strings, imageUrl);
+        this.id = id;
     }
 }

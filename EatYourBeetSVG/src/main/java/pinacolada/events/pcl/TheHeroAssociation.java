@@ -31,7 +31,13 @@ public class TheHeroAssociation extends PCLEvent
 
     public static TheHeroAssociation TryCreate(Random rng)
     {
-        if (PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass) && AbstractDungeon.floorNum > 8 && !(PCLGameUtilities.HasRelic(GranviaShieldCrest.ID)) && rng.randomBoolean(0.1f)) {
+        if (PCLGameUtilities.HasEncounteredEvent(ID)) {
+            return null;
+        }
+        if (PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass)
+                && AbstractDungeon.floorNum > 8
+                && !(PCLGameUtilities.HasRelic(GranviaShieldCrest.ID))
+                && rng.randomBoolean(0.1f)) {
             return new TheHeroAssociation();
         }
         return null;

@@ -169,11 +169,16 @@ public class PCLJUtils extends JUtils
 
     public static Integer[] RangeArray(int lowest, int highest)
     {
+        return RangeArray(lowest, highest, 1);
+    }
+
+    public static Integer[] RangeArray(int lowest, int highest, int step)
+    {
         if (highest < lowest) {
             return new Integer[]{};
         }
-        Integer[] values = new Integer[highest - lowest + 1];
-        Arrays.setAll(values, i -> i + lowest);
+        Integer[] values = new Integer[(highest - lowest) / step + 1];
+        Arrays.setAll(values, i -> i * step + lowest);
         return values;
     }
 

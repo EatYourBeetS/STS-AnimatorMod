@@ -14,7 +14,7 @@ public abstract class ImprovedBasicCard extends PCLCard
     {
         super(data);
 
-        InitializeAffinity(affinity, 1, affinity == PCLAffinity.Star ? 0 : 1, 0);
+        InitializeAffinity(affinity, 1, 0, 1);
 
         this.affinity = affinity;
         this.cropPortrait = false;

@@ -379,6 +379,8 @@ public class PCLPlayerData
                       .append("_Preset@").append(data.Preset).append(":").append((data.Preset == loadout.Preset) ? 1 : 0).append(";")
                       .append("_Gold@").append(data.Values.getOrDefault(PCLBaseStatEditor.StatType.Gold, 0)).append(";")
                       .append("_HP@").append(data.Values.getOrDefault(PCLBaseStatEditor.StatType.HP, 0)).append(";")
+                      .append("_OrbSlot@").append(data.Values.getOrDefault(PCLBaseStatEditor.StatType.OrbSlot, 0)).append(";")
+                      .append("_PotionSlot@").append(data.Values.getOrDefault(PCLBaseStatEditor.StatType.PotionSlot, 0)).append(";")
                       .append("_CommonUpgrade@").append(data.Values.getOrDefault(PCLBaseStatEditor.StatType.CommonUpgrade, 0)).append(";");
 
                     for (PCLRelicSlot slot : data.relicSlots)
@@ -459,6 +461,14 @@ public class PCLPlayerData
 
                     case "_HP":
                         loadoutData.Values.put(PCLBaseStatEditor.StatType.HP, itemAmount);
+                        break;
+
+                    case "_OrbSlot":
+                        loadoutData.Values.put(PCLBaseStatEditor.StatType.OrbSlot, itemAmount);
+                        break;
+
+                    case "_PotionSlot":
+                        loadoutData.Values.put(PCLBaseStatEditor.StatType.PotionSlot, itemAmount);
                         break;
 
                     case "_CommonUpgrade":

@@ -14,7 +14,7 @@
 	},
 	"Affinity Level":
 	{
-		"DESCRIPTION": "Increases a [A-Gen] #yPower's maximum stacks and the effectiveness of its #yScaling by #b1 per #yLevel.",
+		"DESCRIPTION": "Increase the effectiveness of a [A-Gen] #yPower's #yScaling by #b1 per #yLevel. NL Reaching #yLevel #b1 grants #b1 use of the [A-Gen]'s #yPower and doubles the level requirement for the next use.",
 		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels", "level", "levels"],
 		"PROPER_NAME": "Affinity Level"
 	},
@@ -194,7 +194,7 @@
 	},
 	"Desecration":
 	{
-		"DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
+		"DESCRIPTION": "Gain [D] when a [A-Dark] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to decrease a single enemy's #yAttack damage and damage resistance.",
 		"NAMES": ["desecration"],
 		"PROPER_NAME": "Desecration"
 	},
@@ -248,7 +248,7 @@
 	},
 	"Endurance":
 	{
-		"DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
+		"DESCRIPTION": "Gain [O] when a [A-Orange] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to increase the [Block] of the next [Block] card by #b+100%.",
 		"NAMES": ["endurance"],
 		"PROPER_NAME": "Endurance"
 	},
@@ -410,7 +410,7 @@
 	},
 	"Invocation":
 	{
-		"DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
+		"DESCRIPTION": "Gain [L] when a [A-Light] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to increase the amount of the next #yCommon #yBuff, [THP] gain, or #yDebuff #yBonus gained by #b+100%.",
 		"NAMES": ["Invocation"],
 		"PROPER_NAME": "Invocation"
 	},
@@ -482,7 +482,7 @@
 	},
 	"Might":
 	{
-		"DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
+		"DESCRIPTION": "Gain [R] when a [A-Red] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to increase the damage of the next #yAttack by #b+100%.",
 		"NAMES": ["might"],
 		"PROPER_NAME": "Might"
 	},
@@ -698,7 +698,7 @@
 	},
 	"Technic":
 	{
-		"DESCRIPTION": "Gain [S] when a [A-Silver] card #yMatches. NL Gains #b1 #yLevel for every #b10 stacks gained, granting you #b1 use of this power. NL Spend #b1 use to gain [Genesis], granting you #b1 extra [E] per turn.",
+		"DESCRIPTION": "Gain [S] when a [A-Silver] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to gain #b1 additional [E] per turn for the rest of the combat.",
 		"NAMES": ["technic"],
 		"PROPER_NAME": "Technic"
 	},
@@ -740,7 +740,7 @@
 	},
 	"Velocity":
 	{
-		"DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to draw #b2 cards.",
+		"DESCRIPTION": "Gain [G] when a [A-Green] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to draw #b2 cards.",
 		"NAMES": ["velocity"],
 		"PROPER_NAME": "Velocity"
 	},
@@ -782,7 +782,7 @@
 	},
 	"Wisdom":
 	{
-		"DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL At #b5 stacks: Gains #b1 #yLevel, giving you #b1 use of this power and doubling the required stacks for the next level. NL Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b100% this turn.",
+		"DESCRIPTION": "Gain [B] when a [A-Blue] card #yMatches. NL Gains #b1 #yLevel every #b5 stacks. NL Spend #b1 use to gain #b1 Temp. [Focus] and increase the [Focus] of ALL #yOrbs by #b100% this turn.",
 		"NAMES": ["wisdom"],
 		"PROPER_NAME": "Wisdom"
 	},

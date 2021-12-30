@@ -20,6 +20,7 @@ public class AkaneSenri extends PCLCard
             .SetPower(3, CardRarity.RARE)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
+    public static final int BLESSING_COST = 6;
 
     public AkaneSenri()
     {
@@ -30,6 +31,12 @@ public class AkaneSenri extends PCLCard
         SetEthereal(true);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
+    }
+
+    @Override
+    protected String GetRawDescription(Object... args)
+    {
+        return super.GetRawDescription(BLESSING_COST);
     }
 
     @Override
@@ -48,7 +55,6 @@ public class AkaneSenri extends PCLCard
 
     public static class AkaneSenriPower extends PCLClickablePower implements OnShuffleSubscriber
     {
-        private static final int BLESSING_COST = 7;
         protected int secondaryAmount;
 
         public AkaneSenriPower(AbstractPlayer owner, int amount, int secondaryAmount)

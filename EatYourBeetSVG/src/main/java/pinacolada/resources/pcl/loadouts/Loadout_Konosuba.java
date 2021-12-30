@@ -2,7 +2,6 @@ package pinacolada.resources.pcl.loadouts;
 
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.curse.Curse_Greed;
 import pinacolada.cards.pcl.series.Konosuba.*;
 import pinacolada.cards.pcl.ultrarare.Chomusuke;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -31,7 +30,6 @@ public class Loadout_Konosuba extends PCLLoadout
         AddStarterCard(Iris.DATA, 20);
         AddStarterCard(Wiz.DATA, 22);
         AddStarterCard(Megumin.DATA, 25);
-        AddStarterCard(Curse_Greed.DATA, -7);
     }
 
     @Override

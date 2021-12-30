@@ -93,7 +93,7 @@ public class PCLLoadoutRenderer extends GUIElement
     {
         if (loadout != null && characterOption != null)
         {
-            GR.UI.LoadoutEditor.Open(loadout, characterOption, this::RefreshInternal);
+            GR.UI.LoadoutEditor.Open(loadout, characterOption, () -> Refresh(selectScreen, characterOption));
         }
     }
 

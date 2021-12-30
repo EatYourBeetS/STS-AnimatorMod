@@ -134,14 +134,13 @@ public abstract class PCLLoadout
     }
 
     public static final int GOLD_AND_HP_EDITOR_ASCENSION_REQUIRED = 7;
-    public static final int BRONZE_REQUIRED_PRESET_SLOT_2 = 7;
-    public static final int BRONZE_REQUIRED_PRESET_SLOT_3 = 14;
     public static final int BRONZE_REQUIRED_EXPANSION = 16;
-    public static final int MAX_PRESETS = 3;
+    public static final int GOLD_REQUIRED_UR = 18; //TODO implement the condition for this
+    public static final int MAX_PRESETS = 5;
     public static final int MAX_VALUE = 30;
     public static final int MIN_CARDS = 10;
 
-    public PCLLoadoutData[] Presets = new PCLLoadoutData[3];
+    public PCLLoadoutData[] Presets = new PCLLoadoutData[PCLLoadout.MAX_PRESETS];
     public PCLCardSlot SpecialSlot1;
     public PCLCardSlot SpecialSlot2;
 
@@ -157,7 +156,6 @@ public abstract class PCLLoadout
     public boolean HasExpansion;
 
     public int CardDraw = 5;
-    public int OrbSlots = 3;
     public int UnlockLevel = 0;
 
     public PCLLoadout(String name)
@@ -201,8 +199,9 @@ public abstract class PCLLoadout
         AddStarterCard(Curse_Clumsy.DATA, -3);
         AddStarterCard(Curse_Injury.DATA, -5);
         AddStarterCard(Curse_Writhe.DATA, -5);
-        AddStarterCard(Curse_Depression.DATA, -6);
         AddStarterCard(Curse_SearingBurn.DATA, -6);
+        AddStarterCard(Curse_Depression.DATA, -7);
+        AddStarterCard(Curse_Greed.DATA, -7);
         AddStarterCard(Curse_Parasite.DATA, -7);
         AddStarterCard(Curse_Doubt.DATA, -7);
         AddStarterCard(Curse_Decay.DATA, -7);
@@ -292,7 +291,7 @@ public abstract class PCLLoadout
     public CharSelectInfo GetLoadout(String name, String description, FoolCharacter c)
     {
         int hp = GetHP();
-        return new CharSelectInfo(name + "-" + ID, description, hp, hp, OrbSlots, GetGold(), CardDraw, c, GetStartingRelics(), GetStartingDeck(), false);
+        return new CharSelectInfo(name + "-" + ID, description, hp, hp, GetOrbSlots(), GetGold(), CardDraw, c, GetStartingRelics(), GetStartingDeck(), false);
     }
 
     public ArrayList<String> GetStartingDeck()
@@ -361,6 +360,16 @@ public abstract class PCLLoadout
     public int GetGold()
     {
         return PCLBaseStatEditor.StatType.Gold.GetAmount(GetPreset());
+    }
+
+    public int GetPotionSlots()
+    {
+        return PCLBaseStatEditor.StatType.PotionSlot.GetAmount(GetPreset());
+    }
+
+    public int GetOrbSlots()
+    {
+        return PCLBaseStatEditor.StatType.OrbSlot.GetAmount(GetPreset());
     }
 
     public int GetCommonUpgrades()

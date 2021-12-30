@@ -25,7 +25,7 @@ public class Akatsuki extends PCLCard
 
         Initialize(11, 0, 2, 4);
 
-        SetAffinity_Green(2, 0, 2);
+        SetAffinity_Green(1, 0, 2);
     }
 
     @Override

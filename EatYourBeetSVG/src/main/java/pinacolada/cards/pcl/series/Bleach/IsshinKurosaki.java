@@ -22,7 +22,7 @@ public class IsshinKurosaki extends PCLCard
 
         Initialize(4, 7, 2, 4);
         SetUpgrade(0, 3, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Red, 6);
     }

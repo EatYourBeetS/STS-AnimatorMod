@@ -31,7 +31,7 @@ public class FeridBathory extends PCLCard
         SetUpgrade(0, 0, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetDelayed(true);
     }

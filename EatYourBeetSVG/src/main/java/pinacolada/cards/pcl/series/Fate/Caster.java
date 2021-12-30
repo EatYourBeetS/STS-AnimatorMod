@@ -29,7 +29,7 @@ public class Caster extends PCLCard
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 0, -1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
         SetAffinity_Dark(1);
 
         SetEthereal(true);

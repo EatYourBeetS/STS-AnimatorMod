@@ -15,7 +15,7 @@ public class OrbCore_Frost extends OrbCore
     {
         super(DATA, 1, 5);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
     }
 
     @Override

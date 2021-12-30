@@ -26,7 +26,7 @@ public class Aisha extends PCLCard
         Initialize(2, 0, 1, 1);
         SetUpgrade(2, 0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
         SetHitCount(2);
     }
 

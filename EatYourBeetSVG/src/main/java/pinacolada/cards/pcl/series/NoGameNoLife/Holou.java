@@ -35,7 +35,7 @@ public class Holou extends PCLCard
         SetUpgrade(0, 0, 0, 0);
 
         SetEthereal(true);
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
     }
 
     public void OnUpgrade() {

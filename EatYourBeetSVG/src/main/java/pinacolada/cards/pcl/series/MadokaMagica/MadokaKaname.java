@@ -33,7 +33,7 @@ public class MadokaKaname extends PCLCard
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
 
         SetHealing(true);
         SetExhaust(true);

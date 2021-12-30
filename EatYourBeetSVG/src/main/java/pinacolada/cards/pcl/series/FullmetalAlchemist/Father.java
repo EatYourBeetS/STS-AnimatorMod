@@ -35,7 +35,7 @@ public class Father extends PCLCard implements OnAddToDeckListener, OnAddingToCa
         Initialize(0, 0, 10, 46);
         SetCostUpgrade(-1);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
         SetAffinity_Silver(1);
 
         SetUnique(true, false);

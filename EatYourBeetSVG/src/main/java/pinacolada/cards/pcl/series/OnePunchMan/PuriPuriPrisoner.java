@@ -29,7 +29,7 @@ public class PuriPuriPrisoner extends PCLCard
         Initialize(5, 0, 4);
         SetUpgrade(3, 0, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
 
         SetAffinityRequirement(PCLAffinity.Red, 5);
     }

@@ -20,7 +20,7 @@ public class RenjiAbarai extends PCLCard
         Initialize(10, 0, 3);
         SetUpgrade(1, 0, -1);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Red, 4);
         SetAffinityRequirement(PCLAffinity.Green, 4);

@@ -24,7 +24,7 @@ public class OrigamiTobiichi extends PCLCard
 
         Initialize(0, 0, 3, 1);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
     }
 

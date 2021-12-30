@@ -15,7 +15,7 @@ public class OrbCore_Air extends OrbCore
     {
         super(DATA, 1,6);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Patchouli extends PCLCard
         Initialize(7, 0, 1, 2);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Blue(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Blue, 5);
     }

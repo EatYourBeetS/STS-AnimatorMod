@@ -29,7 +29,7 @@ public class DemonLord extends PCLCard_UltraRare
         Initialize(0, 0, HP_LOSS, HP_LOSS_USE);
         SetCostUpgrade(-1);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
         SetDelayed(true);
         GraveField.grave.set(this, true);
 

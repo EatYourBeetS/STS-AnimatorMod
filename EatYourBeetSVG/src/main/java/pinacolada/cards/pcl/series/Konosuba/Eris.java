@@ -34,7 +34,7 @@ public class Eris extends PCLCard implements OnLosingHPSubscriber
         SetUpgrade(0, 0, 3, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
 
         SetExhaust(true);
         SetHealing(true);

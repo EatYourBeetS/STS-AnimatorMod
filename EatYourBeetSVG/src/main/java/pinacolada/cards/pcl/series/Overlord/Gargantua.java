@@ -26,7 +26,7 @@ public class Gargantua extends PCLCard
         SetUpgrade(2, 2, 0, 0);
 
         SetAffinity_Red(1,0,2);
-        SetAffinity_Orange(2, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
         SetAffinity_Dark(1);
 
     }

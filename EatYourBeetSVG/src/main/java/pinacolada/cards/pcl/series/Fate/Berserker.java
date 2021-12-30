@@ -23,7 +23,7 @@ public class Berserker extends PCLCard
         Initialize(19, 0, 3, 12);
         SetUpgrade(5, 0, 0, 2);
 
-        SetAffinity_Red(2, 0, 6);
+        SetAffinity_Red(1, 0, 6);
         SetAffinity_Dark(1, 0, 0);
 
         SetAffinityRequirement(PCLAffinity.Red, 3);

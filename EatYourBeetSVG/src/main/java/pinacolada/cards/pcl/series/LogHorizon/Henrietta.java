@@ -26,7 +26,7 @@ public class Henrietta extends PCLCard
         Initialize(0, 0, 3, POWER_COST);
 
         SetAffinity_Blue(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class Zhongli extends PCLCard
 
         Initialize(0, 0, 4, 6);
         SetUpgrade(0, 0, 0);
-        SetAffinity_Orange(2, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetDelayed(true);
     }
 

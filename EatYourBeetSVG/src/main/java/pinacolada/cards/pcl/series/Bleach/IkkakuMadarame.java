@@ -21,7 +21,7 @@ public class IkkakuMadarame extends PCLCard {
 
         Initialize(11, 2, 2, 15);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
     }
 
     @Override

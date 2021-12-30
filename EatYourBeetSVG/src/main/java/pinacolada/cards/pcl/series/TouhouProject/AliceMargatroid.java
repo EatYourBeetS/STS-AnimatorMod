@@ -22,7 +22,7 @@ public class AliceMargatroid extends PCLCard
 
         Initialize(0, 0, 1, 3);
         SetUpgrade(0, 0, 0, 1);
-        SetAffinity_Blue(2, 0, 0);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1,0,0);
 
         SetEthereal(true);

@@ -27,7 +27,7 @@ public class GazelDwargon extends PCLCard
         SetUpgrade(0, 0, 0, 2);
 
         SetAffinity_Red(1);
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
     }
 
     @Override

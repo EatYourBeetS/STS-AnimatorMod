@@ -16,7 +16,7 @@ public class Curse_Eclipse extends PCLCard_Curse
     {
         super(DATA, true);
         Initialize(0,0,1,5);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
         SetUnplayable(true);
     }
 

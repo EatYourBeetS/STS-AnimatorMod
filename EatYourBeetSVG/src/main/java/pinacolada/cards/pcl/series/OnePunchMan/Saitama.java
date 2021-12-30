@@ -44,7 +44,7 @@ public class Saitama extends PCLCard //TODO
 
         Initialize(0, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
         SetAffinity_Green(1);
         SetAffinity_Light(1);
 

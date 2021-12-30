@@ -26,7 +26,7 @@ public class Saber_Excalibur extends PCLCard
         SetUpgrade(10, 5, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Light(2, 0, 20);
+        SetAffinity_Light(1, 0, 20);
 
         SetRetainOnce(true);
         SetPurge(true);

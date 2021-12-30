@@ -41,7 +41,7 @@ public class Greed extends PCLCard
 
         SetAffinity_Red(1);
         SetAffinity_Orange(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetObtainableInCombat(false);
     }

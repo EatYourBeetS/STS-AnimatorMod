@@ -25,7 +25,7 @@ public class PhoenixWright extends PCLCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
-        SetAffinity_Orange(2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1);
 
         SetAttackType(PCLAttackType.Normal);

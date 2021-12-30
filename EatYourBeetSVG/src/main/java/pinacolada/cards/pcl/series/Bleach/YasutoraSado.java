@@ -22,7 +22,7 @@ public class YasutoraSado extends PCLCard
 
         Initialize(2, 0, 5);
         SetUpgrade(3, 0, 0);
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetCooldown(2, 0, this::OnCooldownCompleted);
     }
 

@@ -23,7 +23,7 @@ public class Verdia extends PCLCard
         SetUpgrade(1, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Red, 4);

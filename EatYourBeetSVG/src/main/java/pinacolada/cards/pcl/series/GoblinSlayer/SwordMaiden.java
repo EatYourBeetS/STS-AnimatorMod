@@ -26,7 +26,7 @@ public class SwordMaiden extends PCLCard
         Initialize(0, 0, 6, 6);
 
         SetAffinity_Orange(1);
-        SetAffinity_Light(2, 0, 1);
+        SetAffinity_Light(1, 0, 1);
 
         SetExhaust(true);
     }

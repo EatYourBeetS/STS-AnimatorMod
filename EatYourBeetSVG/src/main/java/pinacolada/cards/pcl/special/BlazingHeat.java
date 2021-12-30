@@ -25,7 +25,7 @@ public class BlazingHeat extends PCLCard
 
         Initialize(0, 0, 2, FIRE_TRIGGER_BONUS);
         SetUpgrade(0, 0, 1, 0);
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
     }
 
     @Override

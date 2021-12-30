@@ -27,7 +27,7 @@ public class KanadeTachibana extends PCLCard
         SetAfterlife(true);
         SetPurge(true);
         SetAffinity_Blue(1, 0, 1);
-        SetAffinity_Light(2, 0, 2);
+        SetAffinity_Light(1, 0, 2);
         SetAffinity_Green(0,0,1);
     }
 

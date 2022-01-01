@@ -110,9 +110,10 @@ public class PCLCardData
         }
     }
 
-    public PCLCard MakeCopy(boolean upgraded)
+    // CardLibrary.getCopy may return an EYBCard if it determines a card should be replaced, so we cannot guarantee it is a PCLCard
+    public AbstractCard MakeCopy(boolean upgraded)
     {
-        return (PCLCard) (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
+        return (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
     }
 
     public PCLCardData AddPreviews(List<? extends AbstractCard> cards, boolean showUpgrade)

@@ -23,7 +23,9 @@ import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class PCLStance extends AbstractStance
@@ -69,9 +71,34 @@ public abstract class PCLStance extends AbstractStance
         return constructor.Invoke();
     }
 
+    public static String GetRandomStanceID(String... filter) {
+        final List<String> filters = Arrays.asList(filter);
+        return PCLJUtils.Random(PCLJUtils.Filter(stances.keySet(), id -> !filters.contains(id)));
+    }
+
     public static PCLStance GetStanceFromName(String name)
     {
         return stances.containsKey(name) ? stances.get(name).Invoke() : null;
+    }
+
+    public static PCLStance GetStanceFromPCLAffinity(PCLAffinity affinity)
+    {
+        switch (affinity) {
+            case Red:
+                return new MightStance();
+            case Green:
+                return new VelocityStance();
+            case Blue:
+                return new WisdomStance();
+            case Orange:
+                return new EnduranceStance();
+            case Light:
+                return new InvocationStance();
+            case Dark:
+                return new DesecrationStance();
+            default:
+                return null;
+        }
     }
 
     public static String CreateFullID(Class<? extends PCLStance> type)

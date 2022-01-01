@@ -33,8 +33,8 @@ public class ToushirouHitsugaya_Bankai extends PCLCard
     public ToushirouHitsugaya_Bankai() {
         super(DATA);
 
-        Initialize(3, 0, 4, 3);
-        SetUpgrade(0, 0, 0);
+        Initialize(4, 0, 4, 3);
+        SetUpgrade(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(1, 0, 2);
 

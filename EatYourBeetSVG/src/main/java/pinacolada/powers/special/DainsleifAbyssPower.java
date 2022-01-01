@@ -217,7 +217,7 @@ public class DainsleifAbyssPower extends PCLPower {
         GainIntellect(ACTIONS.GainAmount(6, GR.Tooltips.Wisdom, true), 8, 2, (c, p, m) -> PCLActions.Bottom.GainWisdom(6, false)),
         GainStrength(ACTIONS.GainAmount(4, GR.Tooltips.Strength, true), 8, 4, (c, p, m) -> PCLActions.Bottom.GainStrength(4)),
         GainFocus(ACTIONS.GainAmount(3, GR.Tooltips.Focus, true), 8, 4, (c, p, m) -> PCLActions.Bottom.GainFocus(3)),
-        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.Name, true), 9, 3, (c, p, m) -> {
+        ObtainGenshinCard(ACTIONS.ChooseMotivatedCard(CardSeries.GenshinImpact.LocalizedName, true), 9, 3, (c, p, m) -> {
             final CardGroup choice = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             final RandomizedList<AbstractCard> pool = new RandomizedList<AbstractCard>(genshinCards.GetInnerList());
 
@@ -227,13 +227,13 @@ public class DainsleifAbyssPower extends PCLPower {
                 ca.upgrade();
                 choice.addToTop(ca);
             }
-            PCLActions.Bottom.SelectFromPile(null, 1, choice)
+            PCLActions.Last.SelectFromPile(null, 1, choice)
                     .SetOptions(false, true)
                     .AddCallback(cards ->
                     {
                         if (cards != null && cards.size() > 0)
                         {
-                            PCLActions.Bottom.MakeCardInHand(cards.get(0))
+                            PCLActions.Last.MakeCardInHand(cards.get(0))
                                     .AddCallback(ca -> ca.modifyCostForCombat(-1));
                         }
                     });

@@ -265,7 +265,7 @@ public class GUI_Dropdown<T> extends GUIElement
     }
 
     public boolean AreAnyItemsHovered() {
-        if (this.hb.hovered || this.clearButton.hb.hovered) {
+        if (this.hb.hovered || (this.isMultiSelect && currentIndices.size() != 0 && this.clearButton.hb.hovered)) {
             return true;
         }
         for(int i = 0; i < this.visibleRowCount(); ++i) {

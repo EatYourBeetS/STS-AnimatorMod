@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
@@ -106,6 +107,7 @@ public class CardKeywordFilters extends GUIElement
     protected final GUI_Dropdown<CostFilter> CostDropdown;
     protected final GUI_Dropdown<AbstractCard.CardRarity> RaritiesDropdown;
     protected final GUI_Dropdown<AbstractCard.CardType> TypesDropdown;
+    protected final GUI_Button closeButton;
     protected final GUI_Button clearButton;
     public final GUI_VerticalScrollBar scrollBar;
     public final GUI_Label affinitiesSectionLabel;
@@ -208,6 +210,11 @@ public class CardKeywordFilters extends GUIElement
 
         isActive = false;
         hb = new AdvancedHitbox(DRAW_START_X, DRAW_START_Y, Scale(180), Scale(70)).SetIsPopupCompatible(true);
+        closeButton = new GUI_Button(GR.PCL.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f, false).SetIsPopupCompatible(true))
+                .SetBorder(GR.PCL.Images.HexagonalButtonBorder.Texture(), Color.WHITE)
+                .SetPosition(Settings.WIDTH * 0.96f, Settings.HEIGHT * 0.95f).SetText(CombatRewardScreen.TEXT[6])
+                .SetOnClick(this::Close)
+                .SetColor(Color.GRAY);
         clearButton = new GUI_Button(GR.PCL.Images.HexagonalButton.Texture(), new DraggableHitbox(0, 0, Settings.WIDTH * 0.07f, Settings.HEIGHT * 0.07f).SetIsPopupCompatible(true))
                 .SetBorder(GR.PCL.Images.HexagonalButtonBorder.Texture(), Color.WHITE)
                 .SetColor(Color.FIREBRICK)
@@ -405,6 +412,9 @@ public class CardKeywordFilters extends GUIElement
     }
 
     public void Close() {
+        closeButton.hb.hovered = false;
+        closeButton.hb.clicked = false;
+        closeButton.hb.justHovered = false;
         InputHelper.justReleasedClickLeft = false;
         CardCrawlGame.isPopupOpen = false;
         SetActive(false);
@@ -491,6 +501,7 @@ public class CardKeywordFilters extends GUIElement
         affinitiesSectionLabel.SetPosition(TypesDropdown.hb.x + TypesDropdown.hb.width + SPACING * 4, DRAW_START_Y + scrollDelta + SPACING * 6.1f).Update();
         keywordsSectionLabel.SetPosition(hb.x- SPACING, DRAW_START_Y + scrollDelta + SPACING * 2).Update();
         hb.update();
+        closeButton.TryUpdate();
         clearButton.TryUpdate();
         if (invalidated) {
             invalidated = false;
@@ -537,6 +548,7 @@ public class CardKeywordFilters extends GUIElement
         sb.draw(ImageMaster.WHITE_SQUARE_IMG, 0.0F, 0.0F, (float)Settings.WIDTH, (float)Settings.HEIGHT);
         sb.setColor(Color.WHITE);
         hb.render(sb);
+        closeButton.TryRender(sb);
         clearButton.TryRender(sb);
         affinitiesSectionLabel.Render(sb);
         keywordsSectionLabel.Render(sb);
@@ -570,7 +582,8 @@ public class CardKeywordFilters extends GUIElement
     {
         if (InputHelper.justClickedLeft)
         {
-            if (clearButton.hb.hovered
+            if (closeButton.hb.hovered
+                    || clearButton.hb.hovered
                     || SeriesDropdown.AreAnyItemsHovered()
                     || OriginsDropdown.AreAnyItemsHovered()
                     || CostDropdown.AreAnyItemsHovered()

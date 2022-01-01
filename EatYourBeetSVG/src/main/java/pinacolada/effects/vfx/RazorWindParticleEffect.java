@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 import pinacolada.effects.VFX;
-import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLJUtils;
 
 public class RazorWindParticleEffect extends EYBEffect

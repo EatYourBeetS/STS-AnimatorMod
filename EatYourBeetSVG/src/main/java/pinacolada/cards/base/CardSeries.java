@@ -89,6 +89,8 @@ public class CardSeries
     public final static CardSeries Monster = Add(73, "Monster");
     public final static CardSeries EurekaSeven = Add(74, "EurekaSeven");
     public final static CardSeries EightySix = Add(75, "EightySix");
+    public final static CardSeries Nier = Add(76, "Nier");
+    public final static CardSeries LaidBackCamp = Add(77, "LaidBackCamp");
 
     private static AbstractCard currentSynergy = null;
     private static PCLCard lastCardPlayed = null;

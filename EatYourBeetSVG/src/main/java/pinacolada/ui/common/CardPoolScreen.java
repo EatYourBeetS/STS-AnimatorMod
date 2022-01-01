@@ -79,7 +79,10 @@ public class CardPoolScreen extends AbstractScreen
         upgradeToggle.SetToggle(SingleCardViewPopup.isViewingUpgrade).Update();
         GR.UI.CustomHeader.update();
         GR.UI.CardFilters.TryUpdate();
-        openButton.TryUpdate();
+        if (!GR.UI.CardFilters.isActive) {
+            openButton.TryUpdate();
+        }
+
         //GR.UI.CardAffinities.TryUpdate();
     }
 
@@ -90,7 +93,9 @@ public class CardPoolScreen extends AbstractScreen
         upgradeToggle.Render(sb);
         GR.UI.CustomHeader.render(sb);
         GR.UI.CardFilters.TryRender(sb);
-        openButton.TryRender(sb);
+        if (!GR.UI.CardFilters.isActive) {
+            openButton.TryRender(sb);
+        }
         //GR.UI.CardAffinities.TryRender(sb);
     }
 

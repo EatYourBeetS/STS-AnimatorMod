@@ -1,10 +1,10 @@
 package pinacolada.misc;
 
 import basemod.TopPanelItem;
+import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.GenericCallback;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
-import pinacolada.ui.TextureCache;
 
 public abstract class PCLTopPanelItem extends TopPanelItem
 {

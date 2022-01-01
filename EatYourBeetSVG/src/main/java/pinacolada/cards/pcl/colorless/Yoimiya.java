@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.colorless;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -50,10 +51,12 @@ public class Yoimiya extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.AddCallback(e -> {
-            if (IsStarter() && e.lastDamageTaken > 0) {
-                PCLActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
-            }
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d ->
+                d.SetVFXColor(Color.FIREBRICK, Color.SCARLET)
+                        .AddCallback(e -> {
+                    if (IsStarter() && e.lastDamageTaken > 0) {
+                        PCLActions.Bottom.CreateThrowingKnives(1).SetUpgrade(upgraded);
+                    }
         }));
 
         int total = 0;

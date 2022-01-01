@@ -1,11 +1,11 @@
 package pinacolada.cards.pcl.series.GenshinImpact;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.AdditiveSlashImpactEffect;
@@ -15,32 +15,34 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.special.SheerCold;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
-import pinacolada.powers.PCLPower;
+import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.powers.special.SelfImmolationPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
+import pinacolada.utilities.PCLJUtils;
+
+import java.util.ArrayList;
 
 public class AyakaKamisato extends PCLCard {
     private static final Color FADE_EFFECT_COLOR = new Color(0.6f,0.6f,0.8f,0.5f);
-    public static final PCLCardData DATA = Register(AyakaKamisato.class).SetAttack(2, CardRarity.RARE, PCLAttackType.Brutal).SetSeriesFromClassPackage()
-            .SetMaxCopies(2)
-            .PostInitialize(data -> data.AddPreview(new SheerCold(), false));
-    public static final int THRESHOLD = 20;
+    public static final PCLCardData DATA = Register(AyakaKamisato.class)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Brutal)
+            .SetSeriesFromClassPackage()
+            .SetMaxCopies(1);
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(20, 0, 3, 7);
+        Initialize(32, 0, 3, 8);
         SetUpgrade(5, 0, 0, 0);
-        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
-        SetAffinity_Dark(1, 0, 3);
+        SetAffinity_Dark(1, 0, 4);
 
         SetEthereal(true);
         SetExhaust(true);
@@ -48,15 +50,65 @@ public class AyakaKamisato extends PCLCard {
     }
 
     @Override
-    protected String GetRawDescription(Object... args)
-    {
-        return super.GetRawDescription(THRESHOLD);
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
+        boolean checkCache = CheckSpecialCondition(true);
+
+        PreDamageAction(m);
+
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH)
+                .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy())
+                        .SetVFX(true, true)
+                        .SetDamageEffect(c ->
+                        {
+                            SFX.Play(SFX.PCL_DECAPITATION, 0.55f, 0.65f, 1.2f);
+                            SFX.Play(SFX.PCL_SPRAY, 1.1f, 1.25f, 1.3f);
+                            return PCLGameEffects.Queue.Add(VFX.Bleed(c.hb)).duration * 0.4f;
+                        })
+                );
+
+        PCLActions.Bottom.TakeDamage(secondaryValue, AttackEffects.CLAW).CanKill(false).IsCancellable(false);
+        PCLActions.Bottom.StackPower(new SelfImmolationPower(player, magicNumber));
+        PCLActions.Bottom.GainBlur(1);
+
+        PCLActions.Last.Callback(() -> {
+            if ((checkCache || CheckSpecialCondition(true)) && CombatStats.TryActivateLimited(cardID)) {
+                final ArrayList<AbstractCard> choices = new ArrayList<>();
+                choices.addAll(PCLJUtils.Filter(player.hand.group, c -> c.block > 0));
+                choices.addAll(PCLJUtils.Filter(player.discardPile.group, c -> c.block > 0));
+                choices.addAll(PCLJUtils.Filter(player.drawPile.group, c -> c.block > 0));
+
+                AbstractCard maxBlockCard = PCLJUtils.FindMax(choices, c -> c.block);
+                if (maxBlockCard != null) {
+                    PCLActions.Bottom.PlayCard(maxBlockCard, m).AddCallback(() -> {
+                        PCLActions.Last.Callback(() -> {
+                            for (AbstractCreature cr: PCLGameUtilities.GetAllCharacters(true)) {
+                                if (cr.powers != null) {
+                                    for (AbstractPower po : cr.powers) {
+                                        if (po instanceof DelayedDamagePower) {
+                                            po.atEndOfTurn(PCLGameUtilities.IsPlayer(cr));
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    });
+                }
+            }
+        });
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
+    public boolean CheckSpecialCondition(boolean tryUse){
+        int damage = 0;
+        for (PCLEnemyIntent intent : PCLGameUtilities.GetPCLIntents()) {
+            damage += intent.GetDamage(true);
+            if (damage >= player.currentHealth + player.currentBlock + PCLGameUtilities.GetTempHP()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-
+    protected WaitAction PreDamageAction(AbstractMonster m) {
         PCLGameEffects.Queue.RoomTint(Color.BLACK, 0.8F);
         SFX.Play(SFX.ATTACK_SCYTHE, 0.75f, 0.75f);
         SFX.Play(SFX.ATTACK_SCYTHE, 0.55f, 0.55f, 0.75f);
@@ -70,84 +122,6 @@ public class AyakaKamisato extends PCLCard {
             PCLGameEffects.Queue.Add(new AnimatedSlashEffect(m.hb.cX - i * 10f * Settings.scale, m.hb.cY + 20f * Settings.scale,
                     500f, 0f, 80f, 8f, FADE_EFFECT_COLOR, FADE_EFFECT_COLOR));
         }
-        PCLActions.Top.Wait(wait);
-
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH)
-                .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy()).SetVFX(true, true).SetDamageEffect(c ->
-                        {
-                            SFX.Play(SFX.PCL_DECAPITATION, 0.55f, 0.65f, 1.2f);
-                            SFX.Play(SFX.PCL_SPRAY, 1.1f, 1.25f, 1.3f);
-                            return PCLGameEffects.Queue.Add(VFX.Bleed(c.hb)).duration;
-                        }
-
-                ));
-
-        PCLActions.Last.Callback(() -> {
-            if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
-            {
-                PCLActions.Bottom.LoseHP(secondaryValue, AttackEffects.NONE).CanKill(false).IsCancellable(false);
-            }
-            else {
-                PCLActions.Bottom.StackPower(new SelfImmolationPower(p, magicNumber));
-                if (info.CanActivateLimited && !CheckCondition(0)) {
-                    PCLActions.Bottom.StackPower(new AyakaKamisatoPower(p, 1));
-                }
-            }
-        });
-    }
-
-    public static class AyakaKamisatoPower extends PCLPower
-    {
-        public AyakaKamisatoPower(AbstractCreature owner, int amount)
-        {
-            super(owner, AyakaKamisato.DATA);
-
-            Initialize(amount);
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-            CheckCondition(0);
-        }
-
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            super.atEndOfTurn(isPlayer);
-            RemovePower(PCLActions.Delayed);
-        }
-
-        @Override
-        public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
-        {
-            super.onApplyPower(power, target, source);
-
-            CheckCondition(power.owner == player && DelayedDamagePower.POWER_ID.equals(power.ID) ? power.amount : 0);
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            description = FormatDescription(0, THRESHOLD);
-        }
-    }
-
-    protected static boolean CheckCondition(int extraAmount) {
-        if (PCLGameUtilities.GetPowerAmount(player, DelayedDamagePower.POWER_ID) + extraAmount >= THRESHOLD && CombatStats.TryActivateLimited(AyakaKamisato.DATA.ID))
-        {
-            AbstractCard c = new SheerCold();
-            c.applyPowers();
-            if (PCLGameUtilities.IsPlayerTurn()) {
-                PCLActions.Bottom.PlayCopy(c, null);
-            }
-            else {
-                c.use(player, null);
-            }
-            return true;
-        }
-        return false;
+        return PCLActions.Top.Wait(wait);
     }
 }

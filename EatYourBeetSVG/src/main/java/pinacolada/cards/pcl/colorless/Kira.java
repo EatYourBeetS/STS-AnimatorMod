@@ -99,7 +99,7 @@ public class Kira extends PCLCard
             CardCrawlGame.music.silenceBGMInstantly();
             CardCrawlGame.music.silenceTempBgmInstantly();
 
-            PCLActions.Bottom.SFX(SFX.PCL_KIRA_POWER);
+            PCLActions.Bottom.SFX(SFX.ANIMATOR_KIRA_POWER);
             PCLGameEffects.Queue.Callback(new WaitRealtimeAction(9f), CardCrawlGame.music::unsilenceBGM);
         }
         else

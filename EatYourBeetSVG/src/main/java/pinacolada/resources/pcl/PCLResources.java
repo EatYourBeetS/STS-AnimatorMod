@@ -1,6 +1,7 @@
 package pinacolada.resources.pcl;
 
 import basemod.BaseMod;
+import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
@@ -30,7 +31,6 @@ import pinacolada.misc.CardPoolPanelItem;
 import pinacolada.potions.GrowthPotion;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.powers.replacement.GenericFadingPower;
-import pinacolada.resources.AbstractResources;
 import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
 import pinacolada.rewards.pcl.MissingPieceReward;
@@ -40,12 +40,13 @@ import pinacolada.ui.seriesSelection.PCLLoadoutsContainer;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class PCLResources extends AbstractResources
-{
+public class PCLResources extends GR implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber, AddAudioSubscriber {
     public final static String ID = GR.BASE_PREFIX;
 
     public final String OfficialName = "Animator (redesign)"; // Don't change this
@@ -56,11 +57,13 @@ public class PCLResources extends AbstractResources
     public final PCLStrings Strings = new PCLStrings();
     public final PCLImages Images = new PCLImages();
     public final PCLConfig Config = new PCLConfig();
+    protected final FileHandle testFolder;
     public Map<String, EYBCardMetadata> CardData;
+    protected String defaultLanguagePath;
 
     public PCLResources()
     {
-        super(ID);
+        this.testFolder = new FileHandle("c:/temp/" + ID + "-localization/");
     }
 
     public int GetUnlockLevel()
@@ -88,19 +91,16 @@ public class PCLResources extends AbstractResources
         return PCLGameUtilities.IsPlayerClass(PlayerClass);
     }
 
-    @Override
     protected void InitializeEvents()
     {
         PCLEvent.RegisterEvents();
     }
 
-    @Override
     protected void InitializeAudio()
     {
         SFX.Initialize();
     }
 
-    @Override
     protected void InitializeStrings()
     {
         PCLJUtils.LogInfo(this, "InitializeStrings();");
@@ -137,8 +137,7 @@ public class PCLResources extends AbstractResources
         EYBFontHelper.Initialize();
     }
 
-    @Override
-    protected void InitializeColor()
+    public void InitializeColor()
     {
         Color color = CardHelper.getColor(210, 106, 147);
         BaseMod.addColor(CardColor, color, color, color, color, color, color, color,
@@ -147,13 +146,11 @@ public class PCLResources extends AbstractResources
         Images.POWER_PNG_L, Images.ORB_B_PNG, Images.ORB_C_PNG);
     }
 
-    @Override
     protected void InitializeCharacter()
     {
         BaseMod.addCharacter(new FoolCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_BACKGROUND, PlayerClass);
     }
 
-    @Override
     protected void InitializeCards()
     {
         PCLJUtils.LogInfo(this, "InitializeCards();");
@@ -166,7 +163,6 @@ public class PCLResources extends AbstractResources
         PCLCardData.PostInitialize();
     }
 
-    @Override
     protected void InitializeRelics()
     {
         PCLJUtils.LogInfo(this, "InitializeRelics();");
@@ -174,7 +170,6 @@ public class PCLResources extends AbstractResources
         LoadCustomRelics();
     }
 
-    @Override
     protected void InitializeKeywords()
     {
         PCLJUtils.LogInfo(this, "InitializeKeywords();");
@@ -213,21 +208,18 @@ public class PCLResources extends AbstractResources
         }
     }
 
-    @Override
     protected void InitializePowers()
     {
         BaseMod.addPower(GenericFadingPower.class, GenericFadingPower.POWER_ID);
         // LoadCustomPowers();
     }
 
-    @Override
     protected void InitializePotions()
     {
         BaseMod.addPotion(GrowthPotion.class, Color.NAVY.cpy(), Color.FOREST.cpy(), Color.YELLOW.cpy(),
         GrowthPotion.POTION_ID, Enums.Characters.THE_FOOL);
     }
 
-    @Override
     protected void InitializeRewards()
     {
         MissingPieceReward.Serializer synergySerializer = new MissingPieceReward.Serializer();
@@ -237,7 +229,6 @@ public class PCLResources extends AbstractResources
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
     }
 
-    @Override
     protected void PostInitialize()
     {
         AttackEffects.Initialize();
@@ -325,5 +316,139 @@ public class PCLResources extends AbstractResources
         }
 
         CardTooltips.RegisterName(symbol, tooltip);
+    }
+
+    public String CreateID(String suffix)
+    {
+        return CreateID(ID, suffix);
+    }
+
+    @Override
+    public final void receiveEditCards()
+    {
+        InitializeCards();
+    }
+
+    @Override
+    public final void receiveEditCharacters()
+    {
+        InitializeCharacter();
+    }
+
+    @Override
+    public final void receiveEditKeywords()
+    {
+        InitializeKeywords();
+    }
+
+    @Override
+    public final void receiveEditRelics()
+    {
+        InitializeRelics();
+    }
+
+    @Override
+    public final void receiveEditStrings()
+    {
+        InitializeStrings();
+    }
+
+    @Override
+    public final void receiveAddAudio()
+    {
+        InitializeAudio();
+    }
+
+    @Override
+    public final void receivePostInitialize()
+    {
+        InitializeEvents();
+        InitializeMonsters();
+        InitializePotions();
+        InitializeRewards();
+        InitializePowers();
+        PostInitialize();
+    }
+
+    public void InitializeInternal()  { }
+
+    protected void InitializeMonsters()  { }
+
+    protected void InitializeTextures()  { }
+
+    public FileHandle GetFallbackFile(String fileName)
+    {
+        return Gdx.files.internal("localization/" + ID.toLowerCase() + "/eng/" + fileName);
+    }
+
+    public <T> T GetFallbackStrings(String fileName, Type typeOfT)
+    {
+        FileHandle file = GetFallbackFile(fileName);
+        if (!file.exists())
+        {
+            PCLJUtils.LogWarning(this, "File not found: " + file.path());
+            return null;
+        }
+
+        String json = file.readString(String.valueOf(StandardCharsets.UTF_8));
+        Gson gson = new Gson();
+        return gson.fromJson(json, typeOfT);
+    }
+
+    public boolean IsBetaTranslation()
+    {
+        return testFolder.isDirectory();
+    }
+
+    public FileHandle GetFile(Settings.GameLanguage language, String fileName)
+    {
+        if (IsBetaTranslation() && new File(testFolder.path() + "/" + fileName).isFile())
+        {
+            return Gdx.files.internal(testFolder.path() + "/" + fileName);
+        }
+        else
+        {
+            if (!IsTranslationSupported(language))
+            {
+                language = Settings.GameLanguage.ENG;
+            }
+
+            return Gdx.files.internal("localization/" + ID.toLowerCase() + "/" + language.name().toLowerCase() + "/" + fileName);
+        }
+    }
+
+    protected void LoadKeywords()
+    {
+        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"));
+
+        if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
+        {
+            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"));
+        }
+    }
+
+    protected void LoadCustomRelics()
+    {
+        super.LoadCustomRelics(ID);
+    }
+
+    protected void LoadCustomCards()
+    {
+        super.LoadCustomCards(ID);
+    }
+
+    protected void LoadCustomPowers()
+    {
+        super.LoadCustomPowers(ID);
+    }
+
+    protected void LoadCustomStrings(Class<?> type)
+    {
+        super.LoadCustomStrings(type, GetFallbackFile(type.getSimpleName() + ".json"));
+
+        if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
+        {
+            super.LoadCustomStrings(type, GetFile(Settings.language, type.getSimpleName() + ".json"));
+        }
     }
 }

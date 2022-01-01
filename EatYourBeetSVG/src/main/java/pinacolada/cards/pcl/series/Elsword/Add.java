@@ -30,14 +30,14 @@ public class Add extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 3, 2, 3);
-        SetUpgrade(0, 1, 1, 0);
+        Initialize(0, 6, 2, 3);
+        SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Blue(1, 0, 1);
-        SetAffinity_Dark(1);
-        SetAffinity_Silver(1,0,1);
+        SetAffinity_Dark(1, 0, 1);
+        SetAffinity_Silver(1,0,2);
 
-        SetAffinityRequirement(PCLAffinity.Dark, 5);
+        SetAffinityRequirement(PCLAffinity.Dark, 7);
 
         SetExhaust(true);
     }
@@ -46,7 +46,7 @@ public class Add extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.GainEnergyNextTurn(2);
+        PCLActions.Bottom.GainEnergyNextTurn(secondaryValue);
         PCLActions.Bottom.DrawNextTurn(magicNumber);
     }
 
@@ -54,7 +54,7 @@ public class Add extends PCLCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue).AddCallback(() -> {
-            if (TrySpendAffinity(PCLAffinity.Dark))
+            if (CheckAffinity(PCLAffinity.Dark) && info.TryActivateLimited() && TrySpendAffinity(PCLAffinity.Dark))
             {
                 PCLActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
                         .AddCallback(this::OnCardChosen);

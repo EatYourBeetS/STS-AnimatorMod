@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
 import pinacolada.utilities.PCLActions;
 
 public class Naotsugu extends PCLCard
@@ -19,13 +18,13 @@ public class Naotsugu extends PCLCard
     {
         super(DATA);
 
-        Initialize(9, 1);
+        Initialize(7, 5);
         SetUpgrade(3, 1);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(PCLAffinity.Red, 7);
+        SetAffinityRequirement(PCLAffinity.Red, 10);
     }
 
     @Override
@@ -37,11 +36,12 @@ public class Naotsugu extends PCLCard
         {
             AbstractCard best = null;
             int maxBlock = e.lastDamageTaken;
+            boolean playAll = TrySpendAffinity(PCLAffinity.Red);
             for (AbstractCard c : player.hand.group)
             {
                 if (c.block > 0 && c.block < maxBlock)
                 {
-                    if (MightStance.IsActive() || TrySpendAffinity(PCLAffinity.Red))
+                    if (playAll)
                     {
                         PCLActions.Top.PlayCard(c, player.hand, (AbstractMonster) e)
                         .SetDuration(Settings.ACTION_DUR_MED, true);

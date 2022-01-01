@@ -25,6 +25,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean skipWait;
+    protected boolean canKill = true;
     protected int goldAmount;
     protected String powerToRemove;
 
@@ -139,6 +140,13 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
+    public DealDamage CanKill(boolean value)
+    {
+        this.canKill = value;
+
+        return this;
+    }
+
     public DealDamage StealGold(int goldAmount)
     {
         this.goldAmount = goldAmount;
@@ -211,6 +219,10 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             if (applyPowers) {
                 info.applyPowers(source, target);
                 PCLGameUtilities.UsePenNib();
+            }
+            if (!canKill)
+            {
+                info.output = Math.max(0, Math.min(PCLGameUtilities.GetHP(target, true, true) - 1, info.output));
             }
             DamageHelper.ApplyTint(target, enemyTint, attackEffect);
             DamageHelper.DealDamage(target, info, bypassBlock, bypassThorns);

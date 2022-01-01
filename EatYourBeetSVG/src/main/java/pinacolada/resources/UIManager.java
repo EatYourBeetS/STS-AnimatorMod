@@ -23,8 +23,9 @@ import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
 
-public class UIManager
+public class UIManager extends eatyourbeets.resources.UIManager
 {
+    // TODO merge with EYB UIManager
     protected final ArrayList<ActionT1<SpriteBatch>> preRenderList = new ArrayList<>();
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
     protected float delta = 0;

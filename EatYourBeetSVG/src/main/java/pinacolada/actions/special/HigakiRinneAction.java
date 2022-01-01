@@ -182,14 +182,15 @@ public class HigakiRinneAction extends EYBAction
 
     private void ApplyRandomDebuff()
     {
-        switch (rng.random(5))
+        switch (rng.random(6))
         {
             case 0: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Poison, 3); break;
             case 1: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Weak, 1); break;
             case 2: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Vulnerable, 1); break;
             case 3: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.LockOn, 2); break;
             case 4: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Burning, 3); break;
-            case 5: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Constricted, 2); break;
+            case 5: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Freezing, 3); break;
+            case 6: PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Constricted, 2); break;
         }
     }
 

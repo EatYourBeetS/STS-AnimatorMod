@@ -33,7 +33,12 @@ public class Souei extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL).forEach(d -> d.AddCallback(enemy -> {
+            if (PCLGameUtilities.IsFatal(enemy, true))
+            {
+                DoAction(PCLGameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID));
+            }
+        }));
         PCLActions.Bottom.ApplyPoison(p, m, magicNumber).AddCallback(
                 m, (enemy, __) -> {
                     PoisonPower poison = PCLGameUtilities.GetPower(enemy, PoisonPower.class);
@@ -44,12 +49,19 @@ public class Souei extends PCLCard
                                 {
                                     if (PCLGameUtilities.IsFatal(action.target, true))
                                     {
-                                        PCLActions.Bottom.GainBlur(1);
-                                        PCLActions.Bottom.ApplyPoison(TargetHelper.Enemies(), basePoison.amount);
+                                        DoAction(basePoison.amount);
                                     }
                                 });
                     }
                 }
         );
+    }
+
+    protected void DoAction(int amount) {
+        PCLActions.Bottom.GainBlur(1);
+        if (amount > 0) {
+            PCLActions.Bottom.ApplyPoison(TargetHelper.Enemies(), amount);
+        }
+
     }
 }

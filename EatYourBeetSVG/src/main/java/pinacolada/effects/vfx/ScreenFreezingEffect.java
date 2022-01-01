@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
@@ -26,7 +25,7 @@ public class ScreenFreezingEffect extends EYBEffect
     public void update() {
         if (this.duration == this.startingDuration) {
             SFX.Play(SFX.HEAL_3);
-            AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(Color.NAVY));
+            PCLGameEffects.Queue.Add(new BorderLongFlashEffect(Color.NAVY));
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();

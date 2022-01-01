@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
-import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 
 public class StrongPunchEffect extends EYBEffect

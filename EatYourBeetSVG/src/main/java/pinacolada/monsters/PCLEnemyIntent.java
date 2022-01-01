@@ -157,6 +157,9 @@ public class PCLEnemyIntent extends eatyourbeets.monsters.EnemyIntent
 
     public static PCLEnemyIntent Get(AbstractMonster enemy)
     {
+        if (enemy == null) {
+            return null;
+        }
         PCLEnemyIntent intent = AbstractMonsterPatches.AbstractMonster_Fields.enemyIntent.get(enemy);
         if (intent == null)
         {

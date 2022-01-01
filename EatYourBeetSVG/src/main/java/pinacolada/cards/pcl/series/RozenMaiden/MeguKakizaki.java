@@ -21,12 +21,12 @@ public class MeguKakizaki extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 5, 5, 3);
-        SetUpgrade(0, 1, 5, 0);
+        Initialize(0, 8, 6, 3);
+        SetUpgrade(0, 2, 5, 0);
         SetAffinity_Light(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
 
-        SetAffinityRequirement(PCLAffinity.Dark, 8);
+        SetAffinityRequirement(PCLAffinity.Dark, 5);
 
         SetEthereal(true);
     }

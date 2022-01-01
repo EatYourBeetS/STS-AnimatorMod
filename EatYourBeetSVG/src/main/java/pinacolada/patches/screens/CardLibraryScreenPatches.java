@@ -86,8 +86,8 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Prefix(CardLibraryScreen __instance)
         {
-            if (openButton != null && !IsAnimator(__instance)) {
-                openButton.SetColor(GR.UI.CardFilters.isActive ? Color.WHITE : Color.GRAY).TryUpdate();
+            if (!GR.UI.CardFilters.isActive && openButton != null && !IsAnimator(__instance)) {
+                openButton.TryUpdate();
             }
             if (GR.UI.CardFilters.TryUpdate())
             {
@@ -115,7 +115,7 @@ public class CardLibraryScreenPatches
         @SpirePrefixPatch
         public static void Postfix(CardLibraryScreen __instance, SpriteBatch sb)
         {
-            if (openButton != null && !IsAnimator(__instance)) {
+            if (!GR.UI.CardFilters.isActive && openButton != null && !IsAnimator(__instance)) {
                 openButton.TryRender(sb);
             }
         }

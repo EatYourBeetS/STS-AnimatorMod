@@ -27,7 +27,7 @@ public class Benimaru extends PCLCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Blue(1);
 
-        SetAffinityRequirement(PCLAffinity.Red, 4);
+        SetAffinityRequirement(PCLAffinity.Red, 3);
     }
 
     @Override

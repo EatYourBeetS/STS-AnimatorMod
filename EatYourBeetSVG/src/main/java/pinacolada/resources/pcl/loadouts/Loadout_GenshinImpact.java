@@ -30,6 +30,7 @@ public class Loadout_GenshinImpact extends PCLLoadout
         AddStarterCard(BarbaraPegg.DATA, 16);
         AddStarterCard(JeanGunnhildr.DATA, 20);
         AddStarterCard(Venti.DATA, 25);
+        AddStarterCard(AyakaKamisato.DATA, 38);
     }
 
     @Override

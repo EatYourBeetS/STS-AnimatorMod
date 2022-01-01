@@ -34,7 +34,9 @@ import pinacolada.patches.cardLibrary.PCLCardLibraryPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
+import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
+import pinacolada.resources.pcl.PCLResources;
 import pinacolada.stances.PCLStance;
 
 import java.lang.reflect.Field;
@@ -265,6 +267,11 @@ public class PCLGameUtilities extends GameUtilities
     public static int GetGold()
     {
         return player != null ? player.gold : 0;
+    }
+
+    public static PCLCardTooltip GetOrbTooltip(AbstractOrb orb)
+    {
+        return CardTooltips.FindByID(orb.ID.replace(PCLResources.ID + ":", ""));
     }
 
     public static PCLCardAffinities GetPCLAffinities(AbstractCard card)

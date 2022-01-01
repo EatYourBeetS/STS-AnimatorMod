@@ -3,9 +3,9 @@ package pinacolada.cards.base;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import eatyourbeets.ui.TextureCache;
 import pinacolada.powers.affinity.*;
 import pinacolada.resources.GR;
-import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLJUtils;
 
 public enum PCLAffinity implements Comparable<PCLAffinity>

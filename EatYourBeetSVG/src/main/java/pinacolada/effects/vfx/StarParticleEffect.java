@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
+import eatyourbeets.ui.TextureCache;
 import pinacolada.effects.PCLEffect;
 import pinacolada.effects.VFX;
-import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLJUtils;
 import pinacolada.utilities.PCLRenderHelpers;
 

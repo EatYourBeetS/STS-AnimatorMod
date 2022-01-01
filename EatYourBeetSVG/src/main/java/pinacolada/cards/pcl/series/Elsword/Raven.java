@@ -19,7 +19,7 @@ public class Raven extends PCLCard
     {
         super(DATA);
 
-        Initialize(3, 0, 1);
+        Initialize(3, 0, 1, 2);
         SetUpgrade(3, 0);
 
         SetAffinity_Red(1);
@@ -45,11 +45,11 @@ public class Raven extends PCLCard
 
         if (PCLGameUtilities.IsAttacking(m.intent))
         {
-            PCLActions.Bottom.ApplyWeak(p, m, 1);
+            PCLActions.Bottom.ApplyWeak(p, m, magicNumber);
         }
         else
         {
-            PCLActions.Bottom.ApplyVulnerable(p, m, 2);
+            PCLActions.Bottom.ApplyVulnerable(p, m, secondaryValue);
         }
 
         PCLActions.Bottom.DrawNextTurn(1);

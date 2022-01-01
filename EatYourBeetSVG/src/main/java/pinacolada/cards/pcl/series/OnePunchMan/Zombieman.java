@@ -23,8 +23,8 @@ public class Zombieman extends PCLCard
         Initialize(7, 0, 2, 4);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Red(1, 0, 2);
-        SetAffinity_Dark(1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetObtainableInCombat(false);
     }

@@ -1,21 +1,18 @@
 package pinacolada.cards.pcl.series.GenshinImpact;
 
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.HealthBarRenderPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.PCLTriggerablePower;
 import pinacolada.powers.common.CounterAttackPower;
+import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.utilities.PCLActions;
 
 public class Beidou extends PCLCard
@@ -56,18 +53,16 @@ public class Beidou extends PCLCard
             AbstractCreature mo = info.owner;
             if (info.type == DamageInfo.DamageType.NORMAL && owner.currentBlock > 0 && mo != null)
             {
-                for (AbstractPower po : mo.powers) {
-                    if (po instanceof PCLTriggerablePower) {
-                        PCLActions.Bottom.Add(((PCLTriggerablePower) po).Trigger());
+                PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(mo), amount).AddCallback(() -> {
+                    for (AbstractPower po : mo.powers) {
+                        if (po instanceof ElectrifiedPower) {
+                            PCLActions.Bottom.Add(((ElectrifiedPower) po).Trigger());
+                            break;
+                        }
                     }
-                    else if (po instanceof PoisonPower) {
-                        PCLActions.Bottom.Add(new PoisonLoseHpAction(mo, player, po.amount, AttackEffects.POISON));
-                    }
-                    else if (po instanceof HealthBarRenderPower) {
-                        PCLActions.Bottom.DealDamage(player, mo, po.amount, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
-                    }
-                }
+                });
                 this.flashWithoutSound();
+                RemovePower();
             }
 
             return super.onAttacked(info, damageAmount);
@@ -75,7 +70,7 @@ public class Beidou extends PCLCard
 
         public void atStartOfTurn()
         {
-            ReducePower(1);
+            RemovePower();
         }
     }
 }

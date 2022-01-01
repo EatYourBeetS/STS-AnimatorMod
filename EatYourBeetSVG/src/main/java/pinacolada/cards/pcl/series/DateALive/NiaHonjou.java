@@ -20,7 +20,7 @@ public class NiaHonjou extends PCLCard
         super(DATA);
 
         Initialize(0, 3, 2, 2);
-        SetUpgrade(0,1,0,0);
+        SetUpgrade(0,0,0,0);
         SetAffinity_Light(1, 0, 2);
         SetAffinity_Blue(1, 0, 0);
 

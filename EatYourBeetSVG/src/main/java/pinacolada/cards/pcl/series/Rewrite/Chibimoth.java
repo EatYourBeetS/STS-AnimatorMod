@@ -19,8 +19,8 @@ public class Chibimoth extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
-        SetUpgrade(0,0,1,1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0,0,2,0);
         SetAffinity_Star(1, 0, 0);
         SetLoyal(true);
         SetExhaust(true);
@@ -53,6 +53,8 @@ public class Chibimoth extends PCLCard
                 card.use(player, null);
             }
         });
+
+
 
         PCLActions.Bottom.Callback(() ->
         {

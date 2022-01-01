@@ -1,6 +1,6 @@
 package pinacolada.resources.pcl;
 
-import pinacolada.ui.TextureCache;
+import eatyourbeets.ui.TextureCache;
 
 public class PCLImages
 {

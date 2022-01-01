@@ -10,7 +10,10 @@ import pinacolada.utilities.PCLActions;
 
 public class Alibaba_Aladdin extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Alibaba_Aladdin.class).SetPower(2, CardRarity.SPECIAL).SetSeries(CardSeries.Magi);
+    public static final PCLCardData DATA = Register(Alibaba_Aladdin.class)
+            .SetPower(2, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Magi);
 
     public Alibaba_Aladdin()
     {

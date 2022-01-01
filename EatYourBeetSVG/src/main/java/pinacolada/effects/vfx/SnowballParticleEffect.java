@@ -9,9 +9,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.ui.TextureCache;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.effects.VFX;
-import pinacolada.ui.TextureCache;
 import pinacolada.utilities.PCLGameEffects;
 
 public class SnowballParticleEffect extends EYBEffect

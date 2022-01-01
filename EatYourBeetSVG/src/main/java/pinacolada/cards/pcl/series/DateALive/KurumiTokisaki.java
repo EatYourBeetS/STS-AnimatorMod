@@ -29,8 +29,8 @@ public class KurumiTokisaki extends PCLCard
         Initialize(12, 12, 2);
         SetUpgrade(0,0,1);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Dark(1, 0, 1);
-        SetAffinity_Silver(1, 0, 0);
+        SetAffinity_Dark(1, 0, 2);
+        SetAffinity_Silver(1, 0, 1);
 
         SetAutoplay(true);
         SetEthereal(true);
@@ -69,9 +69,9 @@ public class KurumiTokisaki extends PCLCard
     protected void OnCooldownCompleted(AbstractMonster m)
     {
         PCLActions.Bottom.VFX(new BorderFlashEffect(Color.RED, true));
-        PCLActions.Bottom.SelectFromPile(name, 1, player.drawPile, player.discardPile)
+        PCLActions.Bottom.SelectFromPile(name, 1, player.drawPile, player.discardPile, player.hand)
                 .SetOptions(false,true)
-                .SetFilter(PCLGameUtilities::CanPlayTwice)
+                .SetFilter(c -> PCLGameUtilities.CanPlayTwice(c) && c.hasTag(DELAYED))
                 .AddCallback(cards ->
                 {
                     final String key = cardID + uuid;

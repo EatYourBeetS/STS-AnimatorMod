@@ -23,6 +23,7 @@ public class Loadout_Elsword extends PCLLoadout
         AddStarterCard(Ara.DATA, 8);
         AddStarterCard(Ciel.DATA, 9);
         AddStarterCard(Rena.DATA, 11);
+        AddStarterCard(Add.DATA, 12);
         AddStarterCard(Ain.DATA, 13);
         AddStarterCard(Lu.DATA, 13);
         AddStarterCard(Elesis.DATA, 22);

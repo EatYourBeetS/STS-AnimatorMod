@@ -125,7 +125,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
 
     public boolean IsUnnamedReign()
     {
-        return EnteredUnnamedReign;
+        return eatyourbeets.resources.GR.IsLoaded() ? GR.Common.Dungeon.IsUnnamedReign() : EnteredUnnamedReign;
     }
 
     public boolean IsCheating()
@@ -383,10 +383,11 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             }
 
             player.potionSlots += (GR.PCL.Data.SelectedLoadout != null ? GR.PCL.Data.SelectedLoadout.GetPotionSlots() : 0);
-            player.potions.clear();
-            for (int i = 0; i < player.potionSlots; i++)
-            {
-                player.potions.add(new PotionSlot(i));
+            while (player.potions.size() > player.potionSlots && player.potions.get(player.potions.size() - 1) instanceof PotionSlot) {
+                player.potions.remove(player.potions.size() - 1);
+            }
+            while (player.potionSlots > player.potions.size()) {
+                player.potions.add(new PotionSlot(player.potions.size() - 1));
             }
             player.adjustPotionPositions();
         }

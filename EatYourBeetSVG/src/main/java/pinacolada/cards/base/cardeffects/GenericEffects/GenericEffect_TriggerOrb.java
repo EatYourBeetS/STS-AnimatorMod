@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardTooltip;
-import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
-import pinacolada.resources.pcl.PCLResources;
 import pinacolada.utilities.PCLActions;
+
+import static pinacolada.utilities.PCLGameUtilities.GetOrbTooltip;
 
 public class GenericEffect_TriggerOrb extends GenericEffect
 {
@@ -47,11 +46,6 @@ public class GenericEffect_TriggerOrb extends GenericEffect
     public String GetText()
     {
         return GR.PCL.Strings.Actions.Trigger("[" + tooltip.id + "]", amount, true);
-    }
-
-    public PCLCardTooltip GetOrbTooltip(AbstractOrb orb)
-    {
-        return CardTooltips.FindByID(orb.ID.replace(PCLResources.ID + ":", ""));
     }
 
     @Override

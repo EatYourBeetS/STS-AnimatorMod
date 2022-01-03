@@ -33,12 +33,12 @@ public class AyakaKamisato extends PCLCard {
     public static final PCLCardData DATA = Register(AyakaKamisato.class)
             .SetAttack(3, CardRarity.RARE, PCLAttackType.Brutal)
             .SetSeriesFromClassPackage()
-            .SetMaxCopies(1);
+            .SetMaxCopies(2);
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(32, 0, 3, 8);
+        Initialize(32, 0, 4, 8);
         SetUpgrade(5, 0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 0);

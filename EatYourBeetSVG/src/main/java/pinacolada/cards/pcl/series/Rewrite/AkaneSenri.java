@@ -31,6 +31,7 @@ public class AkaneSenri extends PCLCard
         SetEthereal(true);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);
+        SetAffinity_Dark(1, 0, 0);
     }
 
     @Override

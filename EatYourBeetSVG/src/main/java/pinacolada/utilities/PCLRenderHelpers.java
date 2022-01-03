@@ -501,7 +501,9 @@ public class PCLRenderHelpers
             case 'K':
                 return card.GetSpecialVariableString();
             case 'X':
-                return card.GetXString();
+                return card.GetXString(false);
+            case 'x':
+                return card.GetXString(true);
             default:
                 return new ColoredString("?", Settings.RED_TEXT_COLOR);
         }

@@ -22,8 +22,8 @@ public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscrib
     {
         super(DATA);
 
-        Initialize(0, 1, 1, 2);
-        SetUpgrade(0, 1, 0, 0);
+        Initialize(0, 1, 1, 3);
+        SetUpgrade(0, 1, 0, 3);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 0, 1);
@@ -38,7 +38,6 @@ public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscrib
     {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.StackPower(new NextTurnBlockPower(p, secondaryValue));
-        PCLActions.Bottom.Cycle(name, 1);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

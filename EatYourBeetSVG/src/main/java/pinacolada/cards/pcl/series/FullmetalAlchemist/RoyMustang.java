@@ -34,18 +34,15 @@ public class RoyMustang extends PCLCard
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        PCLGameUtilities.ModifyMagicNumber(this, Math.max(1,BASE_BURNING - Math.max(0, PCLGameUtilities.GetEnemies(true).size() - 1)), true);
+    public int GetXValue() {
+        return Math.max(1,BASE_BURNING - Math.max(0, PCLGameUtilities.GetEnemies(true).size() - 1));
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.FIRE);
-        PCLActions.Bottom.ApplyBurning(TargetHelper.Enemies(), magicNumber);
+        PCLActions.Bottom.ApplyBurning(TargetHelper.Enemies(), GetXValue());
 
         if (TrySpendAffinity(PCLAffinity.Red))
         {

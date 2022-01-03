@@ -24,7 +24,7 @@ public class Simon extends PCLCard
         SetAffinity_Red(1, 0, 1);
 
         SetExhaust(true);
-        SetUnique(true,true);
+        SetUnique(true, -1);
         SetProtagonist(true);
     }
 

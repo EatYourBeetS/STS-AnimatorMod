@@ -36,7 +36,7 @@ public class Suigintou extends PCLCard implements OnPurgeSubscriber
 
         SetEthereal(true);
         SetExhaust(true);
-        SetUnique(true, true);
+        SetUnique(true, -1);
     }
 
     @Override

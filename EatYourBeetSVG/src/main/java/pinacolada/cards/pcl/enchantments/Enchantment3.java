@@ -24,7 +24,7 @@ public class Enchantment3 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 5);
+        Initialize(0, 0, 1, 6);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Enchantment3 extends Enchantment
         }
         else if (auxiliaryData.form == 5)
         {
-            upgradeMagicNumber(1);
+            upgradeMagicNumber(6);
         }
     }
 
@@ -58,18 +58,13 @@ public class Enchantment3 extends Enchantment
     @Override
     public boolean CanUsePower(int cost)
     {
-        return PCLCombatStats.MatchingSystem.CheckAffinityLevels(PCLAffinity.Extended(), cost, true) && (auxiliaryData.form != 5 || player.currentBlock >= UP5_BLOCK);
+        return PCLCombatStats.MatchingSystem.CheckAffinityLevels(PCLAffinity.Extended(), cost, true);
     }
 
     @Override
     public void PayPowerCost(int cost)
     {
         PCLActions.Bottom.TryChooseSpendAffinity(name, cost);
-
-        if (auxiliaryData.form == 5)
-        {
-            PCLActions.Bottom.LoseBlock(UP5_BLOCK);
-        }
     }
 
     @Override

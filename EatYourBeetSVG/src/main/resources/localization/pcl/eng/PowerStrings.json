@@ -472,7 +472,7 @@
     	},
     	"pcl:KuragesOathPower":
     	{
-    		"DESCRIPTIONS": ["[Water] has #b+{0} [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. At the end of turn: Take #b{1} damage and channel [Water] (this can't kill you)."],
+    		"DESCRIPTIONS": ["[Water] has #b+{0} [Focus] and reflects unblocked attack damage. You can no longer gain [Block] from cards. At the end of turn: Take #b{1} non-lethal damage and channel [Water] (this can't kill you)."],
     		"NAME": "Kurage's Oath"
     	},
     	"pcl:LightningCrystalPower":

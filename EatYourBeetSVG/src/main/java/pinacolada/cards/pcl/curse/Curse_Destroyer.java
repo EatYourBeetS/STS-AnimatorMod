@@ -25,7 +25,7 @@ public class Curse_Destroyer extends PCLCard_Curse
         SetAffinity_Red(1);
         SetAffinity_Dark(1);
 
-        SetUnique(true, false);
+        SetUnique(true, 1);
         SetUnplayable(true);
     }
 

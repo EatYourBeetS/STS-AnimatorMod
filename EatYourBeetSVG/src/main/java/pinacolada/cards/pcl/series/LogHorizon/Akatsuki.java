@@ -52,17 +52,14 @@ public class Akatsuki extends PCLCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                PCLActions.Bottom.MakeCardInDrawPile(PCLGameUtilities.Imitate(this))
-                        .AddCallback(card ->
+            PCLActions.Bottom.CreateThrowingKnives(magicNumber, player.drawPile)
+                    .AddCallback(card ->
+                    {
+                        if (upgraded)
                         {
-                            if (upgraded)
-                            {
-                                PCLGameUtilities.SetCardTag(card, HASTE, true);
-                            }
-                        });
-            }
+                            PCLGameUtilities.SetCardTag(card, HASTE, true);
+                        }
+                    });
         }
     }
 

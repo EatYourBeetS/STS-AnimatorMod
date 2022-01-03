@@ -36,7 +36,7 @@ public class Yoimiya extends PCLCard
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1, 0, 2);
 
         SetExhaust(true);
         SetHitCount(4, 0);

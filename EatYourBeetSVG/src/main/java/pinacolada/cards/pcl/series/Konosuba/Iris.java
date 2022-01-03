@@ -67,35 +67,43 @@ public class Iris extends PCLCard
             CombatStats.SetCombatData(cardID, buffs);
         }
 
+        DoAction();
+
         PCLActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetFilter(c -> c.type == CardType.ATTACK)
-        .SetOptions(false, false, false)
+        .SetOptions(true, true, true)
         .AddCallback((cards) ->
         { //
-            for (AbstractCard c : cards) {
-                PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(c));
-                PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(c));
-                if (TrySpendAffinity(PCLAffinity.Light)) {
-                    PCLActions.Last.Callback(() -> {
+            if (cards.size() > 0) {
+                DoAction();
+            }
+            if (TrySpendAffinity(PCLAffinity.Light)) {
+                PCLActions.Last.Callback(() -> {
 
-                        PCLActions.Bottom.SelectFromHand(name, BaseMod.MAX_HAND_SIZE, true)
-                                .SetOptions(true, true, true)
-                                .SetFilter(ca ->  buffs.getOrDefault(c.uuid, 0) < secondaryValue)
-                                .AddCallback(cards2 ->
-                                {
-                                    for (AbstractCard c2 : cards2)
-                                    {
-                                        int amount = c2.costForTurn + 1;
-                                        if (amount + buffs.getOrDefault(c2.uuid, 0) > secondaryValue) {
-                                            amount = secondaryValue - buffs.getOrDefault(c2.uuid, 0);
-                                        }
-                                        PCLActions.Bottom.IncreaseScaling(c2, PCLAffinity.Light, c2.costForTurn);
-                                        PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
+                    PCLActions.Bottom.SelectFromHand(name, BaseMod.MAX_HAND_SIZE, true)
+                            .SetOptions(true, true, true)
+                            .SetFilter(ca -> buffs.getOrDefault(ca.uuid, 0) < secondaryValue)
+                            .AddCallback(cards2 ->
+                            {
+                                for (AbstractCard c2 : cards2) {
+                                    int amount = c2.costForTurn + 1;
+                                    if (amount + buffs.getOrDefault(c2.uuid, 0) > secondaryValue) {
+                                        amount = secondaryValue - buffs.getOrDefault(c2.uuid, 0);
                                     }
-                                });
-                    });
-                }
+                                    PCLActions.Bottom.IncreaseScaling(c2, PCLAffinity.Light, c2.costForTurn);
+                                    PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
+                                }
+                            });
+                });
             }
         });
+    }
+
+    protected void DoAction() {
+        PCLActions.Bottom.SelectFromHand(name, 1, false).SetFilter(c -> c instanceof PCLCard)
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        PCLGameUtilities.ModifyDamage(c, c.baseDamage + secondaryValue, false);
+                    }
+                });
     }
 }

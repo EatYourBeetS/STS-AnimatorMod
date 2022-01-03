@@ -625,17 +625,17 @@ public abstract class PCLCardBase extends EYBCardBase
         return result;
     }
 
-    public ColoredString GetXString()
+    public ColoredString GetXString(boolean onlyInBattle)
     {
         if (PCLGameUtilities.InBattle() && player != null) {
             int value = GetXValue();
             if (value >= 0)
             {
-                return new ColoredString(value, Settings.GREEN_TEXT_COLOR);
+                return new ColoredString(onlyInBattle ? " (" + value + ")" : value, Settings.GREEN_TEXT_COLOR);
             }
         }
 
-        return new ColoredString("X", Settings.CREAM_COLOR);
+        return new ColoredString(onlyInBattle ? "" : "X", Settings.CREAM_COLOR);
     }
 
     public int GetXValue() {

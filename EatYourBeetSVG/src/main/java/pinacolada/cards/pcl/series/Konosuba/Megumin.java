@@ -44,7 +44,7 @@ public class Megumin extends PCLCard
         SetAffinity_Light(0,0,1);
 
         SetExhaust(true);
-        SetUnique(true, true);
+        SetUnique(true, -1);
     }
 
     @Override

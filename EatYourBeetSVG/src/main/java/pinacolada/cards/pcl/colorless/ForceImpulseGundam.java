@@ -22,7 +22,7 @@ public class ForceImpulseGundam extends PCLCard
     {
         super(DATA);
 
-        Initialize(15, 0, 5 );
+        Initialize(18, 0, 5 );
         SetUpgrade(3, 0, 1 );
 
         SetAffinity_Red(1, 0, 4);

@@ -24,7 +24,7 @@ public class Enchantment1 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 1, 5);
+        Initialize(0, 0, 1, 8);
     }
 
     @Override
@@ -39,10 +39,10 @@ public class Enchantment1 extends Enchantment
         if (auxiliaryData.form < 7)
         {
             upgradeMagicNumber(1);
-            upgradeSecondaryValue(2);
+            upgradeSecondaryValue(3);
         }
         else {
-            upgradeSecondaryValue(1);
+            upgradeSecondaryValue(6);
         }
     }
 

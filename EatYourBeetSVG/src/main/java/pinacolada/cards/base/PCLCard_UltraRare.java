@@ -27,7 +27,7 @@ public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
     {
         super(data);
 
-        SetUnique(true, false);
+        SetUnique(true, 1);
     }
 
     public static Map<String, PCLCard_UltraRare> GetCards()

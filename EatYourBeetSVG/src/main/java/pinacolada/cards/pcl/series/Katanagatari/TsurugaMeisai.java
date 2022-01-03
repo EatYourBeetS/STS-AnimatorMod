@@ -1,6 +1,5 @@
 package pinacolada.cards.pcl.series.Katanagatari;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
@@ -8,7 +7,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -22,7 +20,7 @@ public class TsurugaMeisai extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 2, 6);
+        Initialize(0, 2, 6, 3);
         SetUpgrade(0, 2, 0);
 
         SetAffinity_Light(1);
@@ -36,23 +34,17 @@ public class TsurugaMeisai extends PCLCard
     {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.StackPower(new NextTurnBlockPower(p, magicNumber));
-        PCLActions.Bottom.SelectFromHand(name, 1, false)
-        .SetOptions(true, true, true)
-        .SetMessage(GR.PCL.Strings.HandSelection.Copy)
-        .SetFilter(c -> PCLGameUtilities.IsLowCost(c) && c.type == CardType.ATTACK)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard c : cards)
-            {
-                PCLActions.Bottom.MakeCardInDrawPile(PCLGameUtilities.Imitate(c))
-                .AddCallback(card ->
-                {
-                    if (upgraded)
-                    {
-                        PCLGameUtilities.SetCardTag(card, HASTE, true);
-                    }
-                });
+        PCLActions.Bottom.CreateThrowingKnives(secondaryValue, player.drawPile).AddCallback(c -> {
+            if (upgraded) {
+                PCLGameUtilities.SetCardTag(c, HASTE, true);
             }
         });
+        PCLActions.Bottom.DiscardFromHand(name, 1, false)
+                .SetOptions(true, true, true)
+                .AddCallback(cards -> {
+                   if (cards.size() > 0) {
+                       PCLActions.Bottom.StackPower(new NextTurnBlockPower(p, secondaryValue));
+                   }
+                });
     }
 }

@@ -20,7 +20,7 @@ public class Zombieman extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 4);
+        Initialize(7, 0, 2, 3);
         SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -36,7 +36,7 @@ public class Zombieman extends PCLCard
 
         int[] damage = DamageInfo.createDamageMatrix(secondaryValue, true, true);
         PCLActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_HEAVY);
-        PCLActions.Bottom.LoseHP(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false).IgnoreTempHP(true);
+        PCLActions.Bottom.TakeDamage(secondaryValue, AttackEffects.BLUNT_LIGHT).CanKill(false);
         PCLActions.Bottom.Flash(this);
     }
 

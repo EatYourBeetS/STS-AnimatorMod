@@ -66,7 +66,7 @@ public class KuragesOathPower extends PCLPower implements OnOrbApplyFocusSubscri
         super.atEndOfTurn(isPlayer);
 
         if (PCLGameUtilities.GetOrbCount(Water.ORB_ID) == 0) {
-            PCLActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE).AddCallback(() -> {
+            PCLActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE).CanKill(false).AddCallback(() -> {
                 Water water = new Water();
                 PCLActions.Bottom.TriggerOrbPassive(water, 1);
                 PCLActions.Bottom.ChannelOrb(water);

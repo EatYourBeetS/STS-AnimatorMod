@@ -25,7 +25,7 @@ public class ByakuyaBankai extends PCLCard {
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
 
-        SetUnique(true, true);
+        SetUnique(true, -1);
         SetExhaust(true);
         SetMultiDamage(true);
     }

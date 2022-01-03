@@ -26,6 +26,7 @@ public class VariableToken extends CTToken
         validTokens.add('C');
         validTokens.add('K');
         validTokens.add('X');
+        validTokens.add('x');
     }
 
     private static VariableToken TryCreateToken(Character c)

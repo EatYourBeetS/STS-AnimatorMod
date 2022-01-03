@@ -85,7 +85,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     private static final Map<String, PCLCardData> staticCardData = new HashMap<>();
 
-    public boolean isMultiUpgrade;
+    public int maxUpgradeLevel;
     public CardSeries series;
     protected boolean unplayable;
     protected int upgrade_damage;
@@ -966,10 +966,10 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         }
     }
 
-    public void SetUnique(boolean value, boolean multiUpgrade)
+    public void SetUnique(boolean value, int maxUpgradeLevel)
     {
         SetTag(UNIQUE, value);
-        isMultiUpgrade = multiUpgrade;
+        this.maxUpgradeLevel = maxUpgradeLevel;
     }
 
     public void AddScaling(PCLAffinity affinity, int amount)
@@ -1041,7 +1041,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
             this.timesUpgraded += 1;
             this.upgraded = true;
 
-            if (isMultiUpgrade)
+            if (maxUpgradeLevel < 0 || maxUpgradeLevel > 1)
             {
                 this.name = originalName + "+" + this.timesUpgraded;
             }
@@ -1063,10 +1063,14 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         return false;
     }
 
+    public boolean isMultiUpgrade() {
+        return maxUpgradeLevel < 0 || maxUpgradeLevel > 1;
+    }
+
     @Override
     public boolean canUpgrade()
     {
-        return !upgraded || isMultiUpgrade;
+        return !upgraded || maxUpgradeLevel < 0 || timesUpgraded < maxUpgradeLevel;
     }
 
     @Override

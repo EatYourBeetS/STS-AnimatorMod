@@ -26,7 +26,7 @@ public class Millim extends PCLCard
         SetAffinity_Blue(0, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.General, 6);
-        SetUnique(true, true);
+        SetUnique(true, -1);
     }
 
     @Override

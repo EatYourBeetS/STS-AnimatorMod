@@ -28,7 +28,7 @@ public class JunSakurada extends PCLCard
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(0,0,1);
         
-        SetUnique(true, true);
+        SetUnique(true, -1);
         SetEthereal(true);
 
         SetProtagonist(true);

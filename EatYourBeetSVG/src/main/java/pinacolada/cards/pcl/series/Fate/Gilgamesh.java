@@ -49,7 +49,7 @@ public class Gilgamesh extends PCLCard implements OnRelicObtainedSubscriber
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
 
-        SetUnique(true, true);
+        SetUnique(true, -1);
 
         SetHitCount(3);
     }
@@ -57,7 +57,7 @@ public class Gilgamesh extends PCLCard implements OnRelicObtainedSubscriber
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 4 == 0)
+        if (timesUpgraded % 7 == 0)
         {
             upgradeMagicNumber(1);
         }

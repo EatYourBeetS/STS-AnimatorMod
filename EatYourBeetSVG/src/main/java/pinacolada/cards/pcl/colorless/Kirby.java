@@ -52,7 +52,7 @@ public class Kirby extends PCLCard implements
         SetObtainableInCombat(false);
         SetHarmonic(true);
         SetVolatile(true);
-        SetUnique(true, true);
+        SetUnique(true, -1);
         hasAttackOrSkill = false;
         previews.Clear();
     }
@@ -91,7 +91,7 @@ public class Kirby extends PCLCard implements
     @Override
     protected void OnUpgrade() {
         for (AbstractCard card : inheritedCards) {
-            if ((card instanceof PCLCard && ((PCLCard) card).isMultiUpgrade && card.timesUpgraded < this.timesUpgraded)
+            if ((card instanceof PCLCard && ((PCLCard) card).isMultiUpgrade() && card.timesUpgraded < this.timesUpgraded)
                     || !card.upgraded) {
                 card.upgrade();
             }

@@ -19,8 +19,8 @@ public class ZankiKiguchi extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 0, 7, 1);
-        SetUpgrade(1, 0, 3);
+        Initialize(2, 0, 1, 2);
+        SetUpgrade(1, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);
@@ -30,11 +30,7 @@ public class ZankiKiguchi extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
-
-        if (info.IsSynergizing)
-        {
-            PCLActions.Bottom.GainVelocity(secondaryValue);
-        }
+        PCLActions.Bottom.Cycle(name, magicNumber);
 
         if (info.CanActivateSemiLimited)
         {
@@ -43,7 +39,7 @@ public class ZankiKiguchi extends PCLCard
             {
                 if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID) && info2.TryActivateSemiLimited())
                 {
-                    PCLActions.Bottom.Draw(1);
+                    PCLActions.Bottom.Cycle(name, 1);
                 }
             });
         }

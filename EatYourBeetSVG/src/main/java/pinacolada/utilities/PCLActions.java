@@ -1067,6 +1067,11 @@ public final class PCLActions
         return Add(new RerollAffinity(target));
     }
 
+    public RerollAffinity RerollAffinity(PCLAffinityMeter.Target target, PCLAffinity... affinities)
+    {
+        return Add(new RerollAffinity(target)).SetAffinityChoices(affinities);
+    }
+
     public ReshuffleDiscardPile ReshuffleDiscardPile(boolean onlyIfEmpty)
     {
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));

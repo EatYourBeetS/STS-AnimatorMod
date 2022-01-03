@@ -1,6 +1,6 @@
 package pinacolada.cards.pcl.series.AngelBeats;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
@@ -24,7 +24,7 @@ public class YuriNakamura extends PCLCard
         SetAffinity_Orange(1, 0, 1);
         SetExhaust(true);
 
-        SetAffinityRequirement(PCLAffinity.Light, 3);
+        SetAffinityRequirement(PCLAffinity.Light, 5);
         SetHitCount(2);
     }
 
@@ -34,11 +34,14 @@ public class YuriNakamura extends PCLCard
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.GUNSHOT);
         PCLActions.Bottom.GainBlock(block);
 
-        PCLActions.Bottom.ExhaustFromHand(name, magicNumber, false).SetOptions(true, true, true).AddCallback(cards -> {
-            PCLActions.Bottom.Heal(Math.min(cards.size() * secondaryValue, GameActionManager.playerHpLastTurn - player.currentHealth));
+        CardGroup[] groups = upgraded ? (new CardGroup[] {p.hand, p.discardPile, p.drawPile}) : (new CardGroup[] {p.hand});
+        PCLActions.Bottom.ExhaustFromPile(name, magicNumber, groups)
+                .SetOptions(false, true)
+                .AddCallback(cards -> {
+                    PCLActions.Bottom.GainBlock(cards.size() * secondaryValue);
         });
 
-        if (player.exhaustPile.size() > 0 && (info.IsSynergizing || TrySpendAffinity(PCLAffinity.Light))) {
+        if (player.exhaustPile.size() > 0 && (TrySpendAffinity(PCLAffinity.Light))) {
             for (int i = 0; i < magicNumber; i++) {
                 PCLActions.Last.Motivate(player.exhaustPile).SetFilter(c -> c.hasTag(AFTERLIFE));
             }

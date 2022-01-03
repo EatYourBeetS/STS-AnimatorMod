@@ -20,7 +20,7 @@ import java.util.HashSet;
 public class RundelhausCode extends PCLCard
 {
     public static final PCLCardData DATA = Register(RundelhausCode.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Normal)
             .SetSeries(CardSeries.LogHorizon);
 
     private static final HashSet<AbstractCard> buffs = new HashSet<>();

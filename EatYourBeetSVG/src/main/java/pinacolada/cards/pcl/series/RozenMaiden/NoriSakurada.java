@@ -38,7 +38,9 @@ public class NoriSakurada extends PCLCard implements OnEndOfTurnSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
 
-        PCLActions.Bottom.Exchange(name, magicNumber);
+        PCLActions.Top.FetchFromPile(name, 1, player.discardPile)
+                .SetOptions(true, false);
+        PCLActions.Bottom.DiscardFromHand(name, 1, false);
 
         if (CheckAffinity(PCLAffinity.Light)) {
             PCLCombatStats.onEndOfTurn.SubscribeOnce(this);

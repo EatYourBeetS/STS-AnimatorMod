@@ -24,14 +24,12 @@ public class Chung extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 3, 4, 2);
+        Initialize(7, 0, 4, 2);
         SetUpgrade(2, 0, 2, 0);
 
-        SetAffinity_Red(1);
         SetAffinity_Orange(1);
+        SetAffinity_Silver(1);
         SetAffinity_Blue(0,0,2);
-
-        SetExhaust(true);
     }
 
 
@@ -53,7 +51,6 @@ public class Chung extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.ICE);
-        PCLActions.Bottom.GainBlock(block);
 
         boolean shouldEvoke = upgraded && auxiliaryData.form == 1;
         for (AbstractOrb orb : player.orbs) {

@@ -20,7 +20,7 @@ public class TsurugaMeisai extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 2, 6, 3);
+        Initialize(0, 2, 5, 2);
         SetUpgrade(0, 2, 0);
 
         SetAffinity_Light(1);

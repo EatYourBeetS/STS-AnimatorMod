@@ -20,7 +20,7 @@ public class Shinku extends PCLCard
     {
         super(DATA);
 
-        Initialize(3, 3, 2, 6);
+        Initialize(3, 3, 2, 5);
         SetUpgrade(3, 1);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 0);
@@ -49,7 +49,7 @@ public class Shinku extends PCLCard
                 .AddCallback(() ->
                 {
                     CombatStats.TryActivateLimited(cardID);
-                    PCLActions.Bottom.RecoverHP(secondaryValue);
+                    PCLActions.Bottom.GainTemporaryHP(secondaryValue);
                 }));
 
         PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Light, PCLAffinity.Dark).AddConditionalCallback(() -> {

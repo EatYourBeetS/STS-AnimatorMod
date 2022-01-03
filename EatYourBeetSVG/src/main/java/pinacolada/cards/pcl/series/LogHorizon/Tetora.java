@@ -22,7 +22,7 @@ public class Tetora extends PCLCard
             .SetPower(0, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_CARD_COST = 8;
+    private static final int POWER_CARD_COST = 5;
     private static final int USE_COST = 7;
     private static final int SYNERGY_TIMES = 2;
 
@@ -33,8 +33,6 @@ public class Tetora extends PCLCard
         Initialize(0, 0, 3, POWER_CARD_COST);
 
         SetAffinity_Star(1);
-
-        SetHarmonic(true);
 
         SetAffinityRequirement(PCLAffinity.General, USE_COST);
     }
@@ -98,7 +96,7 @@ public class Tetora extends PCLCard
         public void OnUse(AbstractMonster m, int cost)
         {
             super.OnUse(m, cost);
-            PCLActions.Bottom.Exchange(name, amount);
+            PCLActions.Bottom.Cycle(name, amount);
         }
 
         @Override

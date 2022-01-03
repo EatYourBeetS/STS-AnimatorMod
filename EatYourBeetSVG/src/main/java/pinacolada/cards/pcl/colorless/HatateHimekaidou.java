@@ -4,16 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.*;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameEffects;
-import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
 
-public class HatateHimekaidou extends PCLCard implements OnStartOfTurnPostDrawSubscriber
+public class HatateHimekaidou extends PCLCard
 {
     public static final PCLCardData DATA = Register(HatateHimekaidou.class)
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
@@ -46,41 +42,19 @@ public class HatateHimekaidou extends PCLCard implements OnStartOfTurnPostDrawSu
     {
         PCLActions.Bottom.GainBlock(block);
 
-        PCLActions.Bottom.DiscardFromHand(name, 1, false)
+        PCLActions.Bottom.DiscardFromHand(name, player.hand.size(), true)
                 .SetOptions(true, true, true)
                 .AddCallback(cards -> {
-                    HatateHimekaidou other = (HatateHimekaidou) makeStatEquivalentCopy();
-                    PCLCombatStats.onStartOfTurnPostDraw.Subscribe(other);
                     for (AbstractCard c : cards) {
                         if (upgraded) {
                             PCLActions.Bottom.IncreaseScaling(c, PCLAffinity.Light, 1);
                         }
                         PCLActions.Bottom.ModifyTag(c, HASTE, true);
-                        PCLActions.Bottom.SelectFromPile(name, 1, player.discardPile)
-                                .SetFilter(c2 -> c2.costForTurn == c.costForTurn && (c2.baseDamage > 0 || c2.baseBlock > 0))
-                                .SetOptions(false, true)
-                                .AddCallback(cards2 -> {
-                                    if (cards2.size() > 0) {
-                                        for (AbstractCard c2 : cards2) {
-                                            other.imitations.add(PCLGameUtilities.Imitate(c2));
-                                        }
-                                    }
-                                });
+                    }
+                    if (cards.size() > 0) {
+                        PCLActions.Bottom.Draw(cards.size());
                     }
                 });
-    }
-
-    @Override
-    public void OnStartOfTurnPostDraw()
-    {
-        super.OnStartOfTurnPostDraw();
-        if (imitations.size() > 0) {
-            PCLGameEffects.Queue.ShowCardBriefly(this);
-            for (AbstractCard c : imitations) {
-                PCLActions.Bottom.MakeCardInHand(c);
-            }
-        }
-        PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }
 

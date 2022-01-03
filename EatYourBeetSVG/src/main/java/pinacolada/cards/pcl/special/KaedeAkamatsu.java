@@ -25,12 +25,11 @@ public class KaedeAkamatsu extends PCLCard
         super(DATA);
 
         Initialize(0, 0, 3, 1);
+        SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 1);
 
         SetEthereal(true);
         SetExhaust(true);
-
-        SetHarmonic(true);
     }
 
     @Override

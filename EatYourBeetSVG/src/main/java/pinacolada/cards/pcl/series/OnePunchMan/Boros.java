@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.series.OnePunchMan;
 
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -59,7 +60,6 @@ public class Boros extends PCLCard
         {
             super(owner, Boros.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
 
-            this.maxAmount = 10;
             this.triggerCondition.SetUses(1, true, false);
 
             Initialize(amount);
@@ -68,7 +68,7 @@ public class Boros extends PCLCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, amount, maxAmount);
+            return FormatDescription(0, Math.min(amount, GameActionManager.playerHpLastTurn - player.currentHealth));
         }
 
         @Override

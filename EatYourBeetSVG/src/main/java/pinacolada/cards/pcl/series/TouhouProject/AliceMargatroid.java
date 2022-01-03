@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.series.TouhouProject;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,6 +11,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.interfaces.subscribers.OnTrySpendAffinitySubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
+import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class AliceMargatroid extends PCLCard
@@ -67,9 +69,15 @@ public class AliceMargatroid extends PCLCard
         {
             super.atStartOfTurn();
 
-            PCLActions.Bottom.Callback(() -> {
-                PCLActions.Bottom.Exchange(name, amount);
-            });
+            PCLActions.Bottom.Draw(amount);
+            PCLActions.Bottom.SelectFromHand(name, amount, false)
+                    .SetMessage(GR.PCL.Strings.HandSelection.MoveToDrawPile)
+                    .AddCallback(selected ->
+                    {
+                        for (AbstractCard c : selected) {
+                            PCLActions.Top.MoveCard(c, player.hand, player.drawPile);
+                        }
+                    });
         }
 
         @Override

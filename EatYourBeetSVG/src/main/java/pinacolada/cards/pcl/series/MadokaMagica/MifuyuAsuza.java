@@ -22,10 +22,10 @@ public class MifuyuAsuza extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0);
+        Initialize(0, 2, 0);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 2);
         SetAffinity_Light(1, 0, 0);
         SetExhaust(true);
 
@@ -35,6 +35,7 @@ public class MifuyuAsuza extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        PCLActions.Bottom.GainBlock(block);
         int stacks = PCLGameUtilities.UseXCostEnergy(this);
         PCLActions.Bottom.GainOrbSlots(stacks + magicNumber);
         for (int i = 0; i < stacks + magicNumber; i++) {

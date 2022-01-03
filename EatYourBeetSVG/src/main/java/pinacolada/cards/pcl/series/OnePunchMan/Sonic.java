@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class Sonic extends PCLCard
 {
     public static final PCLCardData DATA = Register(Sonic.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .SetMultiformData(2, false)
             .PostInitialize(data ->

@@ -33,15 +33,6 @@ public class EmirEins extends PCLCard
         super.triggerOnExhaust();
 
         PCLActions.Bottom.Add(new ShuffleAction(player.drawPile));
-        PCLActions.Last.Exchange(name, magicNumber);
-    }
-
-    @Override
-    public void triggerOnManualDiscard() {
-        super.triggerOnManualDiscard();
-
-        PCLActions.Bottom.Add(new ShuffleAction(player.drawPile));
-        PCLActions.Last.Exchange(name, magicNumber);
     }
 
     @Override

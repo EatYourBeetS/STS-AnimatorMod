@@ -52,7 +52,7 @@ public class MamizouFutatsuiwa extends PCLCard
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
         PCLActions.Bottom.StackPower(new MamizouFutatsuiwaPower(p, secondaryValue));
         if (PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue) {
-            PCLActions.Bottom.MakeCardInDiscardPile(PCLGameUtilities.Imitate(this));
+            PCLActions.Bottom.MakeCardInDiscardPile(this.makeStatEquivalentCopy());
         }
     }
 

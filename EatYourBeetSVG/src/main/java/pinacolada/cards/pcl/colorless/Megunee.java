@@ -64,7 +64,7 @@ public class Megunee extends PCLCard implements OnStartOfTurnPostDrawSubscriber
         {
             if (turns <= 0)
             {
-                PCLActions.Bottom.RecoverHP(secondaryValue);
+                PCLActions.Bottom.GainTemporaryHP(secondaryValue);
                 PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
             }
             else

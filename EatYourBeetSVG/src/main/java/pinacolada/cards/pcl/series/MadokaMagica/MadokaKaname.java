@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
@@ -38,7 +39,6 @@ public class MadokaKaname extends PCLCard
         SetHealing(true);
         SetPurge(true);
         SetProtagonist(true);
-        SetHarmonic(true);
 
         SetSoul(2, 0, MadokaKaname_Krimheild::new);
     }
@@ -62,7 +62,7 @@ public class MadokaKaname extends PCLCard
     {
         super.triggerWhenDrawn();
 
-        PCLActions.Bottom.RecoverHP(1);
+        PCLActions.Bottom.AddAffinity(PCLAffinity.Light, 1);
     }
 
     @Override

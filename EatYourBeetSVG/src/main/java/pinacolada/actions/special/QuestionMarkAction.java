@@ -3,14 +3,13 @@ package pinacolada.actions.special;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
-
-import static pinacolada.cards.base.PCLCard.HARMONIC;
 
 public class QuestionMarkAction extends EYBAction
 {
@@ -33,7 +32,7 @@ public class QuestionMarkAction extends EYBAction
         final int index = player.hand.group.indexOf(questionMark);
         if (copy != null && index >= 0)
         {
-            PCLGameUtilities.ModifyCardTag(copy, HARMONIC, true);
+            copy.affinities.Add(PCLAffinity.Star, 1);
             copy.triggerWhenCreated(false);
 
             if (questionMark.upgraded)

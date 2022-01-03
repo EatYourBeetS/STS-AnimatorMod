@@ -26,8 +26,8 @@ public class NononJakuzure extends PCLCard implements OnSynergySubscriber
         Initialize(0, 0, 2, 1);
 
         SetAffinity_Orange(1);
+        SetAffinity_Light(1);
 
-        SetHarmonic(true);
         SetExhaust(true);
     }
 

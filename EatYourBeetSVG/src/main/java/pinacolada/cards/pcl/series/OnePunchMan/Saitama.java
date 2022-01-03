@@ -54,7 +54,6 @@ public class Saitama extends PCLCard //TODO
         SetEffect(stage);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

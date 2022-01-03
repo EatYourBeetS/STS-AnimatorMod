@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class AuraBellaFiora extends PCLCard
 {
     public static final PCLCardData DATA = Register(AuraBellaFiora.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

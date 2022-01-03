@@ -47,7 +47,6 @@ public class Traveler_Lumine extends PCLCard_UltraRare implements OnStartOfTurnP
         SetEthereal(true);
         SetPurge(true);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

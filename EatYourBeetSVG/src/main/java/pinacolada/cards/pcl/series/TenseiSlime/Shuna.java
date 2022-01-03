@@ -2,7 +2,9 @@ package pinacolada.cards.pcl.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.attributes.AbstractAttribute;
@@ -19,11 +21,13 @@ public class Shuna extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 2);
-        SetUpgrade(0, 2, 0, 1);
+        Initialize(0, 1, 2, 3);
+        SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 0, 1);
+
+        SetAffinityRequirement(PCLAffinity.Light, 5);
     }
 
     @Override
@@ -37,8 +41,10 @@ public class Shuna extends PCLCard
     {
         super.triggerWhenDrawn();
 
-        PCLActions.Bottom.GainTemporaryHP(secondaryValue);
-        PCLActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.GainTemporaryHP(secondaryValue);
+            PCLActions.Bottom.Flash(this);
+        }
     }
 
     @Override
@@ -47,5 +53,8 @@ public class Shuna extends PCLCard
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
         PCLActions.Bottom.Draw(magicNumber);
+        if (TrySpendAffinity(PCLAffinity.Light)) {
+            PCLActions.Bottom.Draw(1);
+        }
     }
 }

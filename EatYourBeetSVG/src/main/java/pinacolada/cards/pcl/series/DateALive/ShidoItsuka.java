@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.WeightedList;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.utilities.PCLActions;
@@ -23,13 +24,12 @@ public class ShidoItsuka extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 6, 3);
+        Initialize(0, 6, 3, 4);
         SetUpgrade(0, 0);
         SetAffinity_Blue(1, 0, 1);
 
         SetExhaust(true);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ShidoItsuka extends PCLCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         InitializeSynergicCards();
-        boolean giveHarmonic = PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && info.TryActivateLimited();
+        boolean giveHarmonic = CheckSpecialCondition(true) && info.TryActivateLimited();
 
         WeightedList<AbstractCard> randomizedDALCards = new WeightedList<>(dateALiveCards);
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -61,7 +61,7 @@ public class ShidoItsuka extends PCLCard
             }
             if (giveHarmonic)
             {
-                PCLGameUtilities.ModifyCardTag(randomCard, HARMONIC, true);
+                PCLGameUtilities.ModifyAffinityLevel(randomCard, PCLAffinity.Star, 1, false);
             }
 
             options.addToBottom(randomCard);
@@ -82,7 +82,7 @@ public class ShidoItsuka extends PCLCard
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber;
+        return PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue;
     }
 
     private void InitializeSynergicCards()

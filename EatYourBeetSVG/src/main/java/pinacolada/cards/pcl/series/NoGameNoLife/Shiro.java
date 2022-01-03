@@ -29,7 +29,6 @@ public class Shiro extends PCLCard
         SetAffinity_Light(1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

@@ -10,6 +10,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
+import pinacolada.powers.common.BlindedPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -48,7 +49,7 @@ public class YaoHaDucy extends PCLCard
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
         PCLActions.Bottom.ReduceStrength(m, magicNumber, true);
 
-        if (m.hasPower(PoisonPower.POWER_ID))
+        if (m.hasPower(PoisonPower.POWER_ID) || m.hasPower(BlindedPower.POWER_ID))
         {
             PCLActions.Bottom.TryChooseGainAffinity(name, secondaryValue, PCLAffinity.Green, PCLAffinity.Orange);
         }

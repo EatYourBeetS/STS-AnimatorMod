@@ -26,7 +26,6 @@ public class MikuIzayoi extends PCLCard
         Initialize(0, 0, 2, 4);
         SetAffinity_Light(1, 0, 1);
         SetEthereal(true);
-        SetHarmonic(true);
     }
 
     @Override

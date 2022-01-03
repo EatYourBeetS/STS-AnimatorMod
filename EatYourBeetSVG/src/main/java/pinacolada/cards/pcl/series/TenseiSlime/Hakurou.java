@@ -25,8 +25,8 @@ public class Hakurou extends PCLCard
     {
         super(DATA);
 
-        Initialize(1, 1, 4, 2);
-        SetUpgrade(1, 0, 1, 1);
+        Initialize(1, 1, 4, 3);
+        SetUpgrade(1, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
@@ -46,7 +46,7 @@ public class Hakurou extends PCLCard
     @Override
     protected void OnUpgrade()
     {
-        upgradedDamage = true;
+        AddScaling(PCLAffinity.Red, 1);
     }
 
     @Override

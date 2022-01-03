@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLActions;
 public class HiiragiKureto extends PCLCard
 {
     public static final PCLCardData DATA = Register(HiiragiKureto.class)
-            .SetAttack(2, CardRarity.RARE)
+            .SetAttack(2, CardRarity.UNCOMMON)
             .SetSeriesFromClassPackage();
     public static final int AMOUNT = 4;
 

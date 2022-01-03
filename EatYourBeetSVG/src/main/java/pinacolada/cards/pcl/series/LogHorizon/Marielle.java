@@ -22,7 +22,7 @@ import java.util.Map;
 public class Marielle extends PCLCard
 {
     public static final PCLCardData DATA = Register(Marielle.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Marielle()
@@ -30,13 +30,20 @@ public class Marielle extends PCLCard
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 0, 0);
 
         SetAffinity_Green(1);
         SetAffinity_Orange(1);
         SetAffinity_Light(0,0,1);
 
         SetAffinityRequirement(PCLAffinity.General, 8);
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override

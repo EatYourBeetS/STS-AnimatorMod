@@ -38,7 +38,6 @@ public class Traveler_Aether extends PCLCard_UltraRare
         SetEthereal(true);
         SetPurge(true);
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

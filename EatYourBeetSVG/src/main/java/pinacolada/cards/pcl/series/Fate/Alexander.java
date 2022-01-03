@@ -24,6 +24,7 @@ public class Alexander extends PCLCard
         SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 0, 2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1);
     }
 

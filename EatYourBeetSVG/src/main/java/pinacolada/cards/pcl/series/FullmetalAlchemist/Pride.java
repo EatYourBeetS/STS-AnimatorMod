@@ -33,7 +33,6 @@ public class Pride extends PCLCard
         SetEvokeOrbCount(magicNumber);
         SetEthereal(true);
         SetExhaust(true);
-        SetHarmonic(true);
     }
 
     @Override

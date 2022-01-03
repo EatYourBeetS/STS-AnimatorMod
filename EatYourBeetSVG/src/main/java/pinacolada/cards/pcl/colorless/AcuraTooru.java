@@ -7,7 +7,6 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class AcuraTooru extends PCLCard
 {
@@ -36,7 +35,7 @@ public class AcuraTooru extends PCLCard
 
         SetProtagonist(true);
 
-        SetAffinityRequirement(PCLAffinity.Green, 4);
+        SetAffinityRequirement(PCLAffinity.Green, 8);
         SetHitCount(2);
     }
 
@@ -54,8 +53,8 @@ public class AcuraTooru extends PCLCard
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        if (TrySpendAffinity(PCLAffinity.Green)) {
-            PCLActions.Bottom.MakeCardInDrawPile(PCLGameUtilities.Imitate(new AcuraAkari()));
+        if (TrySpendAffinity(PCLAffinity.Green) && info.TryActivateLimited()) {
+            PCLActions.Bottom.MakeCardInDrawPile(new AcuraAkari());
         }
 
         if (info.IsSynergizing)

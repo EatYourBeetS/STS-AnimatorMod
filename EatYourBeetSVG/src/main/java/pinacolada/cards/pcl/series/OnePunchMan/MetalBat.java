@@ -24,7 +24,7 @@ public class MetalBat extends PCLCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(1, 0, 4, 2);
+        Initialize(1, 0, 3, 2);
         SetUpgrade(2, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 1);

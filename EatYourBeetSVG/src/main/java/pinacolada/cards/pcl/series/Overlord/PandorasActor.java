@@ -8,7 +8,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class PandorasActor extends PCLCard
 {
@@ -38,7 +37,7 @@ public class PandorasActor extends PCLCard
     {
         super.triggerOnExhaust();
         if (CombatStats.TryActivateSemiLimited(cardID)) {
-            PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(this));
+            PCLActions.Bottom.MakeCardInHand(this.makeStatEquivalentCopy());
         }
     }
 

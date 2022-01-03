@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -23,13 +23,13 @@ public class Shion extends PCLCard
     {
         super(DATA);
 
-        Initialize(15, 0, 6, 0);
+        Initialize(15, 0, 6, 3);
         SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Orange, 4);
+        SetAffinityRequirement(PCLAffinity.Orange, 6);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Shion extends PCLCard
 
         if (TrySpendAffinity(PCLAffinity.Orange))
         {
-            PCLActions.Bottom.ChangeStance(MightStance.STANCE_ID);
+            PCLActions.Bottom.ApplyVulnerable(TargetHelper.Normal(m), secondaryValue);
         }
     }
 }

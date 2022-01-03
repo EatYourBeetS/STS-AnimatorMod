@@ -32,7 +32,6 @@ public class Hans extends PCLCard implements OnTrySpendAffinitySubscriber
 
         SetAffinity_Dark(1,0,2);
 
-        SetHarmonic(true);
         SetExhaust(true);
     }
 

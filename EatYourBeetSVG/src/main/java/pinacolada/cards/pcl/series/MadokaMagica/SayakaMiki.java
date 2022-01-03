@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLActions;
 public class SayakaMiki extends PCLCard
 {
     public static final PCLCardData DATA = Register(SayakaMiki.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
@@ -44,7 +44,7 @@ public class SayakaMiki extends PCLCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this).SetText(magicNumber + GetXValue(), Settings.CREAM_COLOR);
+        return TempHPAttribute.Instance.SetCard(this).SetText(GetXValue(), Settings.CREAM_COLOR);
     }
 
     @Override

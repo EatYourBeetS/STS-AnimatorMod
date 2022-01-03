@@ -13,13 +13,13 @@ import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class MayuriKurotsuchi extends PCLCard {
-    public static final PCLCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal).SetSeriesFromClassPackage();
-    public static final int POISON_THRESHOLD = 20;
+    public static final PCLCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.Normal).SetSeriesFromClassPackage();
+    public static final int POISON_THRESHOLD = 16;
 
     public MayuriKurotsuchi() {
         super(DATA);
 
-        Initialize(0, 1, 4, 3);
+        Initialize(0, 1, 3, 3);
         SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Silver(1, 0, 0);
@@ -38,9 +38,8 @@ public class MayuriKurotsuchi extends PCLCard {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.ApplyPoison(TargetHelper.Normal(m), GetXValue())
                 .AddCallback(m, (enemy, cards) -> {
-                    if (PCLGameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID) >= POISON_THRESHOLD) {
-                        PCLActions.Bottom.StackPower(TargetHelper.Normal(m), PCLGameUtilities.GetRandomElement(PCLGameUtilities.GetPCLCommonDebuffs()), secondaryValue)
-                                .ShowEffect(false, true);
+                    if (PCLGameUtilities.GetPowerAmount(enemy, PoisonPower.POWER_ID) >= POISON_THRESHOLD && info.TryActivateLimited()) {
+                        PCLActions.Bottom.GainInspiration(1);
                     }
                 });
     }

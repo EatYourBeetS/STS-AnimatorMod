@@ -16,16 +16,17 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Akatsuki extends PCLCard
 {
     public static final PCLCardData DATA = Register(Akatsuki.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Piercing)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Piercing)
             .SetSeriesFromClassPackage();
 
     public Akatsuki()
     {
         super(DATA);
 
-        Initialize(11, 0, 2, 4);
+        Initialize(9, 0, 2, 4);
 
         SetAffinity_Green(1, 0, 2);
+        SetExhaust(true);
     }
 
     @Override

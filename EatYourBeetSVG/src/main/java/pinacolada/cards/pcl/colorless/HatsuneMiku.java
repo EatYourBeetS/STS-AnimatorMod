@@ -21,10 +21,8 @@ public class HatsuneMiku extends PCLCard
         Initialize(0, 0, 2, 39);
         SetCostUpgrade(-1);
         SetRetain(true);
-        SetHarmonic(true);
 
-        SetAffinity_Light(1);
-        SetAffinity_Silver(1);
+        SetAffinity_Star(1);
     }
 
     @Override

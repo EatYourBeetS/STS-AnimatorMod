@@ -67,7 +67,13 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this.info = info;
         this.attackEffect = effect;
 
-        Initialize(info.owner, target == null || PCLGameUtilities.IsDeadOrEscaped(target) ? PCLGameUtilities.GetRandomEnemy(true) : target, info.output);
+        boolean isInvalid = target == null || PCLGameUtilities.IsDeadOrEscaped(target);
+        Initialize(info.owner,
+                isInvalid ? PCLGameUtilities.GetRandomEnemy(true) : target,
+                isInvalid ? info.base : info.output);
+        if (isInvalid) {
+            applyPowers = true;
+        }
     }
 
     public DealDamage ApplyPowers(boolean applyPowers)

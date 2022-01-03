@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Cecily extends PCLCard
 {
     public static final PCLCardData DATA = Register(Cecily.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Cecily()

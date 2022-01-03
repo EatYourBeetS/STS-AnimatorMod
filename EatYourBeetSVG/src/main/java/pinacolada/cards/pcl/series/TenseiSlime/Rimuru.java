@@ -29,7 +29,6 @@ public class Rimuru extends PCLCard implements OnAfterCardPlayedSubscriber
         SetAffinity_Star(1, 0, 0);
         SetVolatile(true);
         SetProtagonist(true);
-        SetHarmonic(true);
 
         this.copy = this;
     }

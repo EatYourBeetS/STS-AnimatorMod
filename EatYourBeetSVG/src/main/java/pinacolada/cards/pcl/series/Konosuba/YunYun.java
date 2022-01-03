@@ -3,7 +3,6 @@ package pinacolada.cards.pcl.series.Konosuba;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
@@ -39,7 +38,7 @@ public class YunYun extends PCLCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            PCLActions.Bottom.ChannelOrb(new Lightning());
+            PCLGameUtilities.AddAffinityRerolls(1);
             PCLActions.Bottom.Flash(this);
         }
     }

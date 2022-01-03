@@ -1,13 +1,13 @@
 package pinacolada.cards.pcl.series.TouhouProject;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.attributes.HPAttribute;
+import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.cards.pcl.special.FlandreScarlet_RemiliaScarlet;
 import pinacolada.effects.AttackEffects;
@@ -27,8 +27,8 @@ public class FlandreScarlet extends PCLCard
     {
         super(DATA);
 
-        Initialize(8, 0);
-        SetUpgrade(3, 0);
+        Initialize(4, 0);
+        SetUpgrade(2, 0);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(1);
@@ -39,29 +39,16 @@ public class FlandreScarlet extends PCLCard
     }
 
     public AbstractAttribute GetSpecialInfo() {
-        return HPAttribute.Instance.SetCard(this);
-    }
-
-    @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        super.OnDrag(m);
-
-        if (m != null) {
-            CalculateHeal();
-        }
-        else {
-            heal = 0;
-        }
+        return damage > 0 ? TempHPAttribute.Instance.SetCard(this).SetText(damage, Settings.CREAM_COLOR) : null;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BITE);
-        if (CalculateHeal() > 0)
+        if (damage > 0)
         {
-            PCLActions.Bottom.RecoverHP(heal);
+            PCLActions.Bottom.GainTemporaryHP(damage);
         }
 
         PCLActions.Last.Callback(() -> {
@@ -82,11 +69,6 @@ public class FlandreScarlet extends PCLCard
                 PCLActions.Bottom.MakeCardInDrawPile(new FlandreScarlet_RemiliaScarlet());
             }
         });
-    }
-
-    protected int CalculateHeal()
-    {
-        return heal = Math.min(damage, GameActionManager.playerHpLastTurn - player.currentHealth);
     }
 
     protected static class GenericEffect_FlandreScarlet extends GenericEffect

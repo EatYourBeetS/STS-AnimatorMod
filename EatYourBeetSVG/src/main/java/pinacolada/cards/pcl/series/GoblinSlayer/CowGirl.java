@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class CowGirl extends PCLCard
 {
     public static final PCLCardData DATA = Register(CowGirl.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
             .SetSeriesFromClassPackage();
 
     public CowGirl()

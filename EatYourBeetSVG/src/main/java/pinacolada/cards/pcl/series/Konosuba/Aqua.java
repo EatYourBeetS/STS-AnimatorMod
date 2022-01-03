@@ -36,7 +36,6 @@ public class Aqua extends PCLCard
         SetAffinity_Blue(1);
 
         SetHealing(true);
-        SetHarmonic(true);
         SetTransformed(transformed);
 
         SetAffinityRequirement(PCLAffinity.Blue, 4);

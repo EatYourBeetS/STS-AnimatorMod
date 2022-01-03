@@ -3,13 +3,12 @@ package pinacolada.actions.special;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.actions.EYBAction;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.pcl.series.TenseiSlime.Rimuru;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
-
-import static pinacolada.cards.base.PCLCard.HARMONIC;
 
 public class RimuruAction extends EYBAction
 {
@@ -61,7 +60,7 @@ public class RimuruAction extends EYBAction
             }
 
             PCLGameUtilities.ModifyCardTag(newCopy, GR.Enums.CardTags.VOLATILE, true);
-            PCLGameUtilities.ModifyCardTag(newCopy, HARMONIC, true);
+            PCLGameUtilities.ModifyAffinityLevel(card, PCLAffinity.Star, 1, false);
             PCLGameUtilities.ChangeCardName(newCopy, rimuru.originalName);
             PCLGameUtilities.CopyVisualProperties(newCopy, copy);
 

@@ -282,6 +282,14 @@ public class PCLAffinitySystem extends GUIElement
 
     public boolean WouldMatch(AbstractCard card)
     {
+        for (OnSynergyCheckSubscriber s : PCLCombatStats.onSynergyCheck.GetSubscribers())
+        {
+            if (s.OnSynergyCheck(card, null))
+            {
+                return true;
+            }
+        }
+
         final PCLCard a = PCLJUtils.SafeCast(card, PCLCard.class);
         if (a != null) {
             return AffinityMeter.HasMatch(a);

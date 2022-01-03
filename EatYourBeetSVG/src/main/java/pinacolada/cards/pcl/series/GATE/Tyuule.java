@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Tyuule extends PCLCard
 {
     public static final PCLCardData DATA = Register(Tyuule.class)
-            .SetSkill(1, CardRarity.UNCOMMON)
+            .SetSkill(1, CardRarity.COMMON)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
@@ -23,7 +23,7 @@ public class Tyuule extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 2, 0, 2);
+        Initialize(0, 1, 0, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Dark(1, 0, 0);

@@ -4,9 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.special.ElricAlphonse_Alt;
+import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
 
 public class ElricAlphonse extends PCLCard
@@ -42,8 +44,7 @@ public class ElricAlphonse extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        if (info.IsSynergizing) {
-            PCLActions.Bottom.GainWisdom(secondaryValue);
-        }
+        PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity, PCLAffinity.Blue, PCLAffinity.Orange)
+                .SetOptions(false, true);
     }
 }

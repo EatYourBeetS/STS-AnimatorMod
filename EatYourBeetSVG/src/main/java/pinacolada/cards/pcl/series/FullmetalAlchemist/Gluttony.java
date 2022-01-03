@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLActions;
 public class Gluttony extends PCLCard
 {
     public static final PCLCardData DATA = Register(Gluttony.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Dark), true));
 
@@ -25,7 +25,7 @@ public class Gluttony extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 4, 3);
 
         SetAffinity_Red(1);
         SetAffinity_Dark(1);

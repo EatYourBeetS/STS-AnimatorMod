@@ -6,7 +6,6 @@ import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Status;
-import pinacolada.utilities.PCLActions;
 
 public class Status_Wound extends PCLCard_Status
 {
@@ -27,14 +26,6 @@ public class Status_Wound extends PCLCard_Status
         SetEthereal(form == 1);
         return super.SetForm(form, timesUpgraded);
     };
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        PCLActions.Bottom.RecoverHP(1 + auxiliaryData.form);
-    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

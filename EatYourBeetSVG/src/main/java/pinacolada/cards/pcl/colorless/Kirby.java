@@ -50,7 +50,6 @@ public class Kirby extends PCLCard implements
 
         SetAffinity_Star(1);
         SetObtainableInCombat(false);
-        SetHarmonic(true);
         SetVolatile(true);
         SetUnique(true, -1);
         hasAttackOrSkill = false;

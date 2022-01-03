@@ -1,12 +1,12 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.attributes.HPAttribute;
+import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -20,8 +20,8 @@ public class FlandreScarlet_RemiliaScarlet extends PCLCard
     {
         super(DATA);
 
-        Initialize(8, 0, 3, 2);
-        SetUpgrade(1, 0, 0, 1);
+        Initialize(4, 0, 3, 2);
+        SetUpgrade(2, 0, 0, 1);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Dark(1);
 
@@ -39,30 +39,16 @@ public class FlandreScarlet_RemiliaScarlet extends PCLCard
     }
 
     public AbstractAttribute GetSpecialInfo() {
-        return HPAttribute.Instance.SetCard(this);
+        return damage > 0 ? TempHPAttribute.Instance.SetCard(this).SetText(damage, Settings.CREAM_COLOR) : null;
     }
-
-    @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        super.OnDrag(m);
-
-        if (m != null) {
-            CalculateHeal();
-        }
-        else {
-            heal = 0;
-        }
-    }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BITE);
-        if (CalculateHeal() > 0)
+        if (damage > 0)
         {
-            PCLActions.Bottom.RecoverHP(heal);
+            PCLActions.Bottom.GainTemporaryHP(damage);
         }
         boolean isTemporary = TrySpendAffinity(PCLAffinity.Light);
         PCLActions.Delayed.SelectFromHand(name, player.hand.size() - 1, true).SetFilter(c -> c.uuid != this.uuid && c.type == CardType.ATTACK).AddCallback(cards -> {
@@ -70,11 +56,6 @@ public class FlandreScarlet_RemiliaScarlet extends PCLCard
                 PCLGameUtilities.ModifyDamage(c, magicNumber, isTemporary);
             }
         });
-    }
-
-    protected int CalculateHeal()
-    {
-        return heal = Math.min(damage, GameActionManager.playerHpLastTurn - player.currentHealth);
     }
 }
 

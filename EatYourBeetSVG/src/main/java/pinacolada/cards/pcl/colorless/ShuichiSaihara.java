@@ -126,8 +126,6 @@ public class ShuichiSaihara extends PCLCard
             }
         }
 
-
-
         @Override
         public void updateDescription()
         {

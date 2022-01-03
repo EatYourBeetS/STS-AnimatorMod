@@ -27,7 +27,7 @@ public class ApprenticeCleric extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 5, 2, 3);
+        Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3, 1, 0);
 
         SetAffinity_Light(1, 0, 1);
@@ -41,7 +41,7 @@ public class ApprenticeCleric extends PCLCard
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
-            PCLActions.Bottom.RecoverHP(secondaryValue);
+            PCLActions.Bottom.GainInvocation(secondaryValue);
             PCLActions.Bottom.Flash(this);
         }
     }

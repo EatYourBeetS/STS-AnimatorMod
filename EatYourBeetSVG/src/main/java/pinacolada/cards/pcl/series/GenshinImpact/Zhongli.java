@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Zhongli extends PCLCard
 {
     public static final PCLCardData DATA = Register(Zhongli.class).SetPower(3, CardRarity.RARE).SetMaxCopies(1).SetSeriesFromClassPackage().SetMultiformData(2);
-    private static final int POWER_ENERGY_COST = 7;
+    private static final int POWER_ENERGY_COST = 8;
 
     public Zhongli()
     {

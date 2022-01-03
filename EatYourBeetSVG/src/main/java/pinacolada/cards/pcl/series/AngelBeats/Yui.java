@@ -25,9 +25,7 @@ public class Yui extends PCLCard implements OnAfterlifeSubscriber
         super(DATA);
 
         Initialize(0, 0, 2, 2);
-        SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(1, 0, 1);
-        SetHarmonic(true);
+        SetAffinity_Star(1, 0, 0);
         SetExhaust(true);
         SetAfterlife(true);
 

@@ -29,7 +29,7 @@ public class KyokoSakura extends PCLCard
         SetUpgrade(3, 0, 1);
 
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(0,0,1);
+        SetAffinity_Green(1,0,1);
         SetSoul(4, 0, KyokoSakura_Ophelia::new);
     }
 
@@ -38,7 +38,7 @@ public class KyokoSakura extends PCLCard
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_VERTICAL);
         PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
-        PCLActions.Bottom.Exchange(name, magicNumber);
+        PCLActions.Bottom.Cycle(name, magicNumber);
 
         cooldown.ProgressCooldownAndTrigger(m);
     }

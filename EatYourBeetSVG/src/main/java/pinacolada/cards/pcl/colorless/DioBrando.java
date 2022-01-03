@@ -20,7 +20,7 @@ public class DioBrando extends PCLCard
     {
         super(DATA);
 
-        Initialize(18, 0, 3, 3);
+        Initialize(18, 0, 3, 2);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1,0,2);
@@ -52,7 +52,7 @@ public class DioBrando extends PCLCard
                         {
                             PCLActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile);
                         }
-                        PCLActions.Top.RecoverHP(secondaryValue * cards.size());
+                        PCLActions.Top.GainTemporaryHP(secondaryValue * cards.size());
                     });
         });
 

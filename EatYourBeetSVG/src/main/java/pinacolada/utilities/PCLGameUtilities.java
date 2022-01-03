@@ -822,6 +822,40 @@ public class PCLGameUtilities extends GameUtilities
         return c1 != null && c2 != null && c1.series != null && c1.series.equals(c2.series);
     }
 
+    public static void ModifyAffinityLevel(AbstractCard card, PCLAffinity affinity, int level, boolean relative)
+    {
+        PCLCard pC = PCLJUtils.SafeCast(card, PCLCard.class);
+        if (pC == null) {
+            return;
+        }
+
+        final PCLCardAffinities affinities = pC.affinities;
+        if (affinity == PCLAffinity.General) // Modify all existing levels
+        {
+            for (PCLCardAffinity a : affinities.List)
+            {
+                if (a.level > 0)
+                {
+                    ModifyAffinityLevel(a, level, relative);
+                }
+            }
+
+            if (affinities.Star != null && affinities.Star.level > 0)
+            {
+                ModifyAffinityLevel(affinities.Star, level, relative);
+            }
+        }
+        else
+        {
+            ModifyAffinityLevel(affinities.Get(affinity, true), level, relative);
+        }
+    }
+
+    public static void ModifyAffinityLevel(PCLCardAffinity affinity, int level, boolean relative)
+    {
+        affinity.level = relative ? (affinity.level + level) : level;
+    }
+
     public static void ModifyBlock(AbstractCard card, int amount, boolean temporary)
     {
         card.block = Math.max(0, amount);

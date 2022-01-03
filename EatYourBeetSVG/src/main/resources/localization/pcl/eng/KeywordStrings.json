@@ -570,12 +570,6 @@
 		"NAMES": ["rebound"],
 		"PROPER_NAME": "Rebound"
 	},
-	"Recover":
-	{
-		"DESCRIPTION": "Gain [HP] up to the amount you had at the end of your last turn.",
-		"NAMES": ["recover"],
-		"PROPER_NAME": "Recover"
-	},
 	"Regeneration":
 	{
 		"DESCRIPTION": "Heal HP at the end of the turn. Reduce by 1 each turn.",

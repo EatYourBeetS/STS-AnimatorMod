@@ -33,7 +33,6 @@ public class BarbaraPegg extends PCLCard
 
 
         SetAffinityRequirement(PCLAffinity.Blue, 7);
-        SetHarmonic(true);
         SetHealing(true);
         SetPurge(true);
     }

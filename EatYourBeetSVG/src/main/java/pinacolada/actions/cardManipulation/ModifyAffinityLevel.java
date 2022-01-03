@@ -7,8 +7,6 @@ import eatyourbeets.utilities.Colors;
 import pinacolada.actions.utility.GenericCardSelection;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardAffinities;
-import pinacolada.cards.base.PCLCardAffinity;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class ModifyAffinityLevel extends GenericCardSelection
@@ -60,30 +58,6 @@ public class ModifyAffinityLevel extends GenericCardSelection
             PCLGameUtilities.Flash(card, flashColor, true);
         }
 
-        final PCLCardAffinities affinities = ((PCLCard) card).affinities;
-        if (affinity == PCLAffinity.General) // Modify all existing levels
-        {
-            for (PCLCardAffinity a : affinities.List)
-            {
-                if (a.level > 0)
-                {
-                    ChangeLevel(a);
-                }
-            }
-
-            if (affinities.Star != null && affinities.Star.level > 0)
-            {
-                ChangeLevel(affinities.Star);
-            }
-        }
-        else
-        {
-            ChangeLevel(affinities.Get(affinity, true));
-        }
-    }
-
-    protected void ChangeLevel(PCLCardAffinity affinity)
-    {
-        affinity.level = relative ? (affinity.level + level) : level;
+        PCLGameUtilities.ModifyAffinityLevel(card, affinity, level, relative);
     }
 }

@@ -50,7 +50,7 @@ public class KenzoTenma extends PCLCard
                     }
                 }
                 if (stacks > 0) {
-                    PCLActions.Bottom.RecoverHP(stacks * magicNumber);
+                    PCLActions.Bottom.GainTemporaryHP(stacks * magicNumber);
                 }
             }
         });

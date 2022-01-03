@@ -46,7 +46,9 @@ public class OrbCore_Chaos extends OrbCore
         AbstractCard c = PCLGameUtilities.GetCardPoolInCombat(CardRarity.COMMON).Retrieve(rng);
         if (c != null)
         {
-            PCLActions.Bottom.MakeCardInHand(PCLGameUtilities.Imitate(c));
+            PCLActions.Bottom.MakeCardInHand(c).AddCallback(ca -> {
+                PCLActions.Bottom.Motivate(ca, 1);
+            });
             return true;
         }
         return false;

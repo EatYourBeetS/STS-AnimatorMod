@@ -2,12 +2,13 @@ package pinacolada.cards.pcl.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
 
 public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscriber
@@ -22,8 +23,7 @@ public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscrib
     {
         super(DATA);
 
-        Initialize(0, 1, 1, 3);
-        SetUpgrade(0, 1, 0, 3);
+        Initialize(0, 3, 1, 3);
 
         SetAffinity_Red(1);
         SetAffinity_Light(1, 0, 1);
@@ -34,10 +34,17 @@ public class MumenRider extends PCLCard implements OnStartOfTurnPostDrawSubscrib
     }
 
     @Override
+    protected void OnUpgrade()
+    {
+        SetRetain(true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.StackPower(new NextTurnBlockPower(p, secondaryValue));
+        PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity, PCLAffinity.Red, PCLAffinity.Light)
+                .SetOptions(false, true);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

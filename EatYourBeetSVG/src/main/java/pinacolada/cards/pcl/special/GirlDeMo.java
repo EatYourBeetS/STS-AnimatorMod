@@ -18,7 +18,6 @@ public class GirlDeMo extends PCLCard
 
         Initialize(0, 0, 2, 4);
         SetAffinity_Star(1);
-        SetHarmonic(true);
         SetExhaust(true);
         SetEthereal(true);
         SetAutoplay(true);

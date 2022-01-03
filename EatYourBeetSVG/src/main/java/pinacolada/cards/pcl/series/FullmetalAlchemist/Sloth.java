@@ -4,12 +4,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.replacement.TemporaryDrawReductionPower;
+import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
 
 public class Sloth extends PCLCard
@@ -22,7 +20,7 @@ public class Sloth extends PCLCard
     {
         super(DATA);
 
-        Initialize(16, 13, 2, 9);
+        Initialize(16, 13, 2, 7);
         SetUpgrade(2, 0, -1, 0);
 
         SetAffinity_Red(1, 0, 2);
@@ -35,6 +33,8 @@ public class Sloth extends PCLCard
         super.triggerOnExhaust();
 
         PCLActions.Bottom.GainBlock(secondaryValue);
+        PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity, PCLAffinity.Red, PCLAffinity.Dark)
+                .SetOptions(false, true);
     }
 
     @Override

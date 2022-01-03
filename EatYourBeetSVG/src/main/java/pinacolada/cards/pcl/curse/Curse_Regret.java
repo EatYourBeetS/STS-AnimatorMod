@@ -19,7 +19,7 @@ public class Curse_Regret extends PCLCard_Curse
     {
         super(DATA, true);
 
-        Initialize(0, 0, 1, 2);
+        Initialize(0, 0, 1, 1);
 
         SetUnplayable(true);
     }
@@ -29,7 +29,7 @@ public class Curse_Regret extends PCLCard_Curse
     {
         super.triggerOnExhaust();
         if (CombatStats.TryActivateLimited(cardID)) {
-            PCLActions.Bottom.RecoverHP(secondaryValue * player.hand.size());
+            PCLActions.Bottom.GainTemporaryHP(secondaryValue * player.hand.size());
         }
     }
 

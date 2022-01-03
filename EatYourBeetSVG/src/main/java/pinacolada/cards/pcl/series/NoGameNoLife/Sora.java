@@ -40,7 +40,6 @@ public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
         SetAffinity_Orange(1);
 
         SetProtagonist(true);
-        SetHarmonic(true);
     }
 
     @Override

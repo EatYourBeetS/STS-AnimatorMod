@@ -25,7 +25,6 @@ public class MisaKurobane_Yusarin extends PCLCard
 
         SetAffinity_Light(1);
 
-        SetHarmonic(true);
         SetExhaust(true);
     }
 

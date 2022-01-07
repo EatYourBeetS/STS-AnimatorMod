@@ -1,7 +1,6 @@
 package pinacolada.effects;
 
 import basemod.BaseMod;
-import patches.MainMusicPatches;
 
 public class SFX extends eatyourbeets.effects.SFX
 {
@@ -21,8 +20,6 @@ public class SFX extends eatyourbeets.effects.SFX
         BaseMod.addAudio(PCL_ORB_WATER_CHANNEL, "audio/pcl/sound/ORB_WATER_CHANNEL.ogg");
         BaseMod.addAudio(PCL_SUPPORT_DAMAGE, "audio/pcl/sound/EVFX02_11_QuickBlade.ogg");
         BaseMod.addAudio(PCL_STAR, "audio/pcl/sound/STAR.ogg");
-
-        MainMusicPatches.SetFolderPath("audio/pcl/music/");
     }
 
     public static final String PCL_ARROW = ANIMATOR_ARROW;

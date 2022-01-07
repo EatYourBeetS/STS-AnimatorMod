@@ -33,6 +33,7 @@ public class Canti extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetHaste(true);
     }
 

@@ -33,6 +33,7 @@ public class EmiyaShirou extends PCLCard implements OnAttackSubscriber
         SetUpgrade(3, 0, 2);
 
         SetAffinity_Red(1);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1, 0, 0);
         SetAffinity_Blue(0,0,1);
 
@@ -49,17 +50,18 @@ public class EmiyaShirou extends PCLCard implements OnAttackSubscriber
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE);
+        PCLActions.Delayed.Callback(() -> {
+            fireOrb = PCLJUtils.SafeCast(PCLGameUtilities.GetFirstOrb(Fire.ORB_ID),Fire.class);
+            if (fireOrb != null) {
+                fireOrb.SetBasePassiveAmount(magicNumber, true);
+                fireOrb.SetBaseEvokeAmount(magicNumber, true);
+            }
+            else {
+                PCLActions.Bottom.ChannelOrb(new Fire());
+            }
 
-        fireOrb = PCLJUtils.SafeCast(PCLGameUtilities.GetFirstOrb(Fire.ORB_ID),Fire.class);
-        if (fireOrb != null) {
-            fireOrb.IncreaseBasePassiveAmount(magicNumber);
-            fireOrb.IncreaseBaseEvokeAmount(magicNumber);
-        }
-        else {
-            PCLActions.Bottom.ChannelOrb(new Fire());
-        }
-
-        PCLCombatStats.onAttack.Subscribe(this);
+            PCLCombatStats.onAttack.Subscribe(this);
+        });
 
         if (info.IsSynergizing) {
             PCLActions.Bottom.Add(new RandomCardUpgrade());

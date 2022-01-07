@@ -30,7 +30,7 @@ public class MetalBat extends PCLCard implements OnEndOfTurnSubscriber
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Light(1);
 
-        SetAffinityRequirement(PCLAffinity.Red, 4);
+        SetAffinityRequirement(PCLAffinity.Red, 5);
     }
 
     @Override

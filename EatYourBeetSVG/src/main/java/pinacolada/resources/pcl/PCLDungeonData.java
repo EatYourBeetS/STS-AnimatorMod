@@ -316,8 +316,10 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         final AbstractPlayer player = CombatStats.RefreshPlayer();
         if (player.chosenClass != GR.PCL.PlayerClass)
         {
-            AbstractDungeon.srcColorlessCardPool.group.removeIf(PCLCard.class::isInstance);
-            AbstractDungeon.colorlessCardPool.group.removeIf(PCLCard.class::isInstance);
+            AbstractDungeon.srcCurseCardPool.group.removeIf(PCLCardBase.class::isInstance);
+            AbstractDungeon.curseCardPool.group.removeIf(PCLCardBase.class::isInstance);
+            AbstractDungeon.srcColorlessCardPool.group.removeIf(PCLCardBase.class::isInstance);
+            AbstractDungeon.colorlessCardPool.group.removeIf(PCLCardBase.class::isInstance);
             PCLEvent.UpdateEvents(false);
             PCLRelic.UpdateRelics(false);
             return;

@@ -1,5 +1,6 @@
 package pinacolada.cards.base;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
@@ -14,28 +15,34 @@ import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.resources.GR;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class PCLCardBuilder extends DynamicCardBuilder
 {
-    public int secondaryValue;
-    public int hitCount;
-    public int costUpgrade;
-    public int damageUpgrade;
-    public int blockUpgrade;
-    public int magicNumberUpgrade;
-    public int secondaryValueUpgrade;
-    public int hitCountUpgrade;
+    protected int secondaryValue;
+    protected int hitCount;
+    protected int costUpgrade;
+    protected int damageUpgrade;
+    protected int blockUpgrade;
+    protected int magicNumberUpgrade;
+    protected int secondaryValueUpgrade;
+    protected int hitCountUpgrade;
+    protected TextureAtlas.AtlasRegion fakePortrait;
+    protected boolean showTypeText = true;
 
-    public ActionT1<PCLCard> constructor;
-    public ActionT1<PCLCard> onUpgrade;
-    public ActionT3<PCLCard, AbstractPlayer, AbstractMonster> onUse;
-    public FuncT1<AbstractAttribute, PCLCard> getSpecialInfo;
-    public FuncT1<AbstractAttribute, PCLCard> getDamageInfo;
-    public FuncT1<AbstractAttribute, PCLCard> getBlockInfo;
-    public PCLAttackType attackType = PCLAttackType.Normal;
-    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
-    public int attributeMultiplier = 1;
-    public PCLCardAffinities affinities;
-    public CardSeries series;
+    protected int attributeMultiplier = 1;
+    protected ActionT1<PCLCard> constructor;
+    protected ActionT1<PCLCard> onUpgrade;
+    protected ActionT3<PCLCard, AbstractPlayer, AbstractMonster> onUse;
+    protected FuncT1<AbstractAttribute, PCLCard> getSpecialInfo;
+    protected FuncT1<AbstractAttribute, PCLCard> getDamageInfo;
+    protected FuncT1<AbstractAttribute, PCLCard> getBlockInfo;
+    protected PCLAttackType attackType = PCLAttackType.Normal;
+    protected EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    protected PCLCardAffinities affinities;
+    protected CardSeries series;
 
     public PCLCardBuilder(String id)
     {
@@ -47,10 +54,15 @@ public class PCLCardBuilder extends DynamicCardBuilder
 
     public PCLCardBuilder(PCLCard card, boolean copyNumbers)
     {
-        this(card, card.rawDescription, copyNumbers);
+        this(card, card.name, card.rawDescription, copyNumbers);
     }
 
     public PCLCardBuilder(PCLCard card, String text, boolean copyNumbers)
+    {
+        this(card, card.name, text, copyNumbers);
+    }
+
+    public PCLCardBuilder(PCLCard card, String name, String text, boolean copyNumbers)
     {
         this(card.cardID);
 
@@ -68,7 +80,7 @@ public class PCLCardBuilder extends DynamicCardBuilder
 
         SetImage(card.portraitImg, card.portraitForeground);
         SetProperties(card.type, card.rarity, AbstractCard.CardTarget.NONE);
-        SetText(card.name, text, text);
+        SetText(name, text, text);
         SetSeries(card.series);
     }
 
@@ -150,7 +162,30 @@ public class PCLCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public PCLCardBuilder SetTags(AbstractCard.CardTags... tags)
+    public PCLCardBuilder SetTags(AbstractCard card) {
+        ArrayList<AbstractCard.CardTags> tags = new ArrayList<>(card.tags);
+        if (card.exhaust || card.exhaustOnUseOnce) {
+            tags.add(GR.Enums.CardTags.PCL_EXHAUST);
+        }
+        if (card.retain) {
+            tags.add(GR.Enums.CardTags.PCL_RETAIN_ONCE);
+        }
+        if (card.selfRetain) {
+            tags.add(GR.Enums.CardTags.PCL_RETAIN);
+        }
+        if (card.isEthereal) {
+            tags.add(GR.Enums.CardTags.PCL_ETHEREAL);
+        }
+        if (card.isInnate) {
+            tags.add(GR.Enums.CardTags.PCL_INNATE);
+        }
+        if (card.purgeOnUse) {
+            tags.add(GR.Enums.CardTags.PURGE);
+        }
+        return SetTags(tags);
+    }
+
+    public PCLCardBuilder SetTags(List<AbstractCard.CardTags> tags)
     {
         for (AbstractCard.CardTags t : tags)
         {
@@ -161,6 +196,11 @@ public class PCLCardBuilder extends DynamicCardBuilder
         }
 
         return this;
+    }
+
+    public PCLCardBuilder SetTags(AbstractCard.CardTags... tags)
+    {
+        return SetTags(Arrays.asList(tags));
     }
 
     public PCLCardBuilder SetAttackType(PCLAttackType attackType, EYBCardTarget attackTarget)
@@ -218,6 +258,13 @@ public class PCLCardBuilder extends DynamicCardBuilder
         return this;
     }
 
+    public PCLCardBuilder SetPortrait(TextureAtlas.AtlasRegion portrait)
+    {
+        this.fakePortrait = portrait;
+
+        return this;
+    }
+
     public PCLCardBuilder SetText(CardStrings cardStrings)
     {
         return SetText(cardStrings.NAME, cardStrings.DESCRIPTION, cardStrings.UPGRADE_DESCRIPTION);
@@ -270,6 +317,13 @@ public class PCLCardBuilder extends DynamicCardBuilder
     public PCLCardBuilder CanUpgrade(boolean canUpgrade)
     {
         this.canUpgrade = canUpgrade;
+
+        return this;
+    }
+
+    public PCLCardBuilder ShowTypeText(boolean showTypeText)
+    {
+        this.showTypeText = showTypeText;
 
         return this;
     }

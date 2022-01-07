@@ -34,11 +34,12 @@ public class AyakaKamisato extends PCLCard {
             .SetAttack(3, CardRarity.RARE, PCLAttackType.Brutal)
             .SetSeriesFromClassPackage()
             .SetMaxCopies(2);
+    protected boolean checkCache;
 
     public AyakaKamisato() {
         super(DATA);
 
-        Initialize(32, 0, 4, 8);
+        Initialize(32, 0, 4, 13);
         SetUpgrade(5, 0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Green(1, 0, 0);
@@ -51,9 +52,8 @@ public class AyakaKamisato extends PCLCard {
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
-        boolean checkCache = CheckSpecialCondition(true);
-
         PreDamageAction(m);
+        checkCache = CheckSpecialCondition(true);
 
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SMASH)
                 .forEach(d -> d.SetVFXColor(Color.RED.cpy(), Color.RED.cpy())
@@ -69,7 +69,10 @@ public class AyakaKamisato extends PCLCard {
         PCLActions.Bottom.TakeDamage(secondaryValue, AttackEffects.CLAW).CanKill(false).IsCancellable(false);
         PCLActions.Bottom.StackPower(new SelfImmolationPower(player, magicNumber));
         PCLActions.Bottom.GainBlur(1);
+    }
 
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         PCLActions.Last.Callback(() -> {
             if ((checkCache || CheckSpecialCondition(true)) && CombatStats.TryActivateLimited(cardID)) {
                 final ArrayList<AbstractCard> choices = new ArrayList<>();
@@ -81,11 +84,16 @@ public class AyakaKamisato extends PCLCard {
                 if (maxBlockCard != null) {
                     PCLActions.Bottom.PlayCard(maxBlockCard, m).AddCallback(() -> {
                         PCLActions.Last.Callback(() -> {
-                            for (AbstractCreature cr: PCLGameUtilities.GetAllCharacters(true)) {
+                            DelayedDamagePower dd = PCLGameUtilities.GetPower(player, DelayedDamagePower.POWER_ID);
+                            if (dd != null) {
+                                dd.atEndOfTurn(true);
+                            }
+
+                            for (AbstractCreature cr: PCLGameUtilities.GetEnemies(true)) {
                                 if (cr.powers != null) {
                                     for (AbstractPower po : cr.powers) {
                                         if (po instanceof DelayedDamagePower) {
-                                            po.atEndOfTurn(PCLGameUtilities.IsPlayer(cr));
+                                            po.atEndOfTurn(false);
                                         }
                                     }
                                 }

@@ -54,6 +54,12 @@ public abstract class PCLClickablePower extends PCLPower
         hb = new Hitbox(size, size);
     }
 
+    public PCLClickablePower(AbstractCreature owner, PCLRelic relic, PCLPowerTriggerCondition condition)
+    {
+        this(owner, null, relic);
+
+        triggerCondition = condition;
+    }
 
     public PCLClickablePower(AbstractCreature owner, PCLRelic relic, PowerTriggerConditionType type, int requiredAmount)
     {

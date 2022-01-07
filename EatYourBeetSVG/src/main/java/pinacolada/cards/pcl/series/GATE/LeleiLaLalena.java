@@ -19,9 +19,10 @@ public class LeleiLaLalena extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 1, 1, 2);
+        SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(1);
 
         SetEvokeOrbCount(1);
@@ -34,7 +35,7 @@ public class LeleiLaLalena extends PCLCard
 
         if (m != null && HasSynergy())
         {
-            PCLGameUtilities.GetPCLIntent(m).AddWeak();
+            PCLGameUtilities.GetPCLIntent(m).AddFreezing();
         }
     }
 
@@ -49,6 +50,7 @@ public class LeleiLaLalena extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        PCLActions.Bottom.GainBlock(block);
         if (info.IsSynergizing)
         {
             if (m == null)
@@ -56,7 +58,7 @@ public class LeleiLaLalena extends PCLCard
                 m = PCLGameUtilities.GetRandomEnemy(true);
             }
 
-            PCLActions.Bottom.ApplyWeak(p, m, secondaryValue);
+            PCLActions.Bottom.ApplyFreezing(p, m, secondaryValue);
         }
     }
 

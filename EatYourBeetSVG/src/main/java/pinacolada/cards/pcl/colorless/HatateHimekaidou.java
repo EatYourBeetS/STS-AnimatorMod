@@ -4,10 +4,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
-
-import java.util.ArrayList;
 
 public class HatateHimekaidou extends PCLCard
 {
@@ -15,7 +14,6 @@ public class HatateHimekaidou extends PCLCard
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject);
-    protected final ArrayList<AbstractCard> imitations = new ArrayList<>();
 
     public HatateHimekaidou()
     {
@@ -29,12 +27,25 @@ public class HatateHimekaidou extends PCLCard
         SetHaste(true);
         SetEthereal(true);
         SetExhaust(true);
+
+        SetAffinityRequirement(PCLAffinity.Green, 10);
     }
 
     @Override
     protected void OnUpgrade()
     {
         SetEthereal(false);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        if (!CombatStats.HasActivatedLimited(cardID))
+        {
+            SetExhaust(!CheckAffinity(PCLAffinity.Green));
+        }
     }
 
     @Override
@@ -55,6 +66,10 @@ public class HatateHimekaidou extends PCLCard
                         PCLActions.Bottom.Draw(cards.size());
                     }
                 });
+
+        if (info.CanActivateLimited && TrySpendAffinity(PCLAffinity.Green) && info.TryActivateLimited()) {
+            PCLActions.Last.MoveCard(this,player.drawPile).ShowEffect(true, true);
+        }
     }
 }
 

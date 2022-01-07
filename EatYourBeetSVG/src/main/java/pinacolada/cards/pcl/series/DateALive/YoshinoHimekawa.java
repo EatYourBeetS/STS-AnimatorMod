@@ -62,7 +62,7 @@ public class YoshinoHimekawa extends PCLCard {
             PCLActions.Top.Discard(this, player.hand).ShowEffect(true, true)
                     .AddCallback(() -> {
                         SetTransformed(true);
-                        PCLActions.Bottom.GainBlur(1);
+                        PCLActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), secondaryValue).ShowEffect(true, true);
                     })
                     .SetDuration(0.15f, true);
         }

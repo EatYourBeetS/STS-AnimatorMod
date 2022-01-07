@@ -85,7 +85,7 @@ public class GinIchimaru extends PCLCard
         @Override
         public String GetText()
         {
-            return GR.PCL.Strings.Actions.PayCost(amount, affinity.GetTooltip(), true) + "NL" + GR.PCL.Strings.Actions.GainAmount(amount, affinity.equals(PCLAffinity.Green) ? GR.Tooltips.Velocity : GR.Tooltips.Might, true);
+            return GR.PCL.Strings.Actions.PayCost(amount, affinity.GetTooltip(), true) + " NL " + GR.PCL.Strings.Actions.GainAmount(1, affinity.equals(PCLAffinity.Green) ? GR.Tooltips.Velocity : GR.Tooltips.Might, true);
         }
 
         @Override

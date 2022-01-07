@@ -36,6 +36,7 @@ public class Ushio extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetEthereal(false);
     }
 

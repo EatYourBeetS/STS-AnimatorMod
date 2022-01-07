@@ -71,6 +71,6 @@ public class ConditionToken extends CTToken
     private void UpdateString(CTContext context)
     {
         coloredString.text = this.rawText;
-        coloredString.SetColor(context.card.CheckPrimaryCondition(false) ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+        coloredString.SetColor(PCLGameUtilities.InBattle() && context.card.CheckPrimaryCondition(false) ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
     }
 }

@@ -27,7 +27,6 @@ public class RizaHawkeye extends PCLCard
 
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Light(1);
 
     }
 

@@ -3,7 +3,6 @@ package pinacolada.cards.pcl.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.effects.AttackEffects;
 import pinacolada.stances.MightStance;
 import pinacolada.stances.VelocityStance;
@@ -27,7 +26,7 @@ public class RenjiAbarai extends PCLCard
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
+    public void Refresh(AbstractMonster enemy)
     {
         if (CheckAffinity(PCLAffinity.Red) && CheckAffinity(PCLAffinity.Green))
         {
@@ -38,9 +37,8 @@ public class RenjiAbarai extends PCLCard
             SetAttackType(PCLAttackType.Normal);
         }
 
-        return super.GetDamageInfo();
+        SetEvokeOrbCount(HasSynergy() ? 1 : 0);
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

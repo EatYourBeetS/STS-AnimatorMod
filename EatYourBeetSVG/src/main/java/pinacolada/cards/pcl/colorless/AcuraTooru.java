@@ -27,8 +27,8 @@ public class AcuraTooru extends PCLCard
     {
         super(DATA);
 
-        Initialize(4, 0, 2, 2);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(4, 0, 1, 2);
+        SetUpgrade(2, 0, 0, 1);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
@@ -44,8 +44,8 @@ public class AcuraTooru extends PCLCard
     {
         super.triggerOnManualDiscard();
 
-        PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
-        PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
+        PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
+        PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
     }
 
     @Override
@@ -59,8 +59,8 @@ public class AcuraTooru extends PCLCard
 
         if (info.IsSynergizing)
         {
-            PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 1);
-            PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1);
+            PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
+            PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
     }
 }

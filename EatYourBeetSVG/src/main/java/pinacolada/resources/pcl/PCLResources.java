@@ -33,6 +33,7 @@ import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.powers.replacement.GenericFadingPower;
 import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
+import pinacolada.rewards.pcl.ConcertsFinalHourReward;
 import pinacolada.rewards.pcl.MissingPieceReward;
 import pinacolada.rewards.pcl.SpecialGoldReward;
 import pinacolada.stances.PCLStance;
@@ -227,6 +228,9 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
+
+        ConcertsFinalHourReward.Serializer concertSerializer = new ConcertsFinalHourReward.Serializer();
+        BaseMod.registerCustomReward(Enums.Rewards.BOSS_SERIES_CARDS, concertSerializer, concertSerializer);
     }
 
     protected void PostInitialize()

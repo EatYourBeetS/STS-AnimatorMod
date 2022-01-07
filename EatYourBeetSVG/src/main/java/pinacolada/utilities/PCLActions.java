@@ -18,6 +18,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
@@ -1166,6 +1167,11 @@ public final class PCLActions
         return Add(new ApplyPower(source, power.owner, power, power.amount));
     }
 
+    public ApplyPower StackPower(AbstractCreature source, AbstractPower power, int stacks)
+    {
+        return Add(new ApplyPower(source, power.owner, power, stacks));
+    }
+
     public ApplyPowerAuto StackPower(TargetHelper target, PCLPowerHelper power, int stacks)
     {
         return Add(new ApplyPowerAuto(target, power, stacks));
@@ -1288,6 +1294,16 @@ public final class PCLActions
     public UpgradeFromPile UpgradeFromPile(CardGroup group, int amount, boolean permanent)
     {
         return Add(new UpgradeFromPile(group, amount).UpgradePermanently(permanent));
+    }
+
+    public UsePotionAction UsePotion(AbstractPotion potion, AbstractCreature target)
+    {
+        return UsePotion(potion, target, 1);
+    }
+
+    public UsePotionAction UsePotion(AbstractPotion potion, AbstractCreature target, int amount)
+    {
+        return Add(new UsePotionAction(potion, target, amount));
     }
 
     public PlayVFX VFX(AbstractGameEffect effect)

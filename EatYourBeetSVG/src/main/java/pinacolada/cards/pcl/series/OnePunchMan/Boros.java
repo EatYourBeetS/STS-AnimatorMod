@@ -22,7 +22,7 @@ public class Boros extends PCLCard
             .SetPower(3, CardRarity.RARE)
             .SetMultiformData(2)
             .SetSeriesFromClassPackage();
-    private static final int POWER_ENERGY_COST = 1;
+    private static final int POWER_ENERGY_COST = 5;
 
     public Boros()
     {
@@ -58,7 +58,7 @@ public class Boros extends PCLCard
 
         public BorosPower(AbstractCreature owner, int amount)
         {
-            super(owner, Boros.DATA, PowerTriggerConditionType.Energy, POWER_ENERGY_COST);
+            super(owner, Boros.DATA, PowerTriggerConditionType.Affinity, POWER_ENERGY_COST);
 
             this.triggerCondition.SetUses(1, true, false);
 

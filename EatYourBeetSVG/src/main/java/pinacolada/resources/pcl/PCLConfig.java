@@ -54,9 +54,9 @@ public class PCLConfig
     public ConfigOption_String CustomLoadouts = new ConfigOption_String(CUSTOM_LOADOUTS_KEY, "");
     public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
     public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
-    public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
-    public ConfigOption_Boolean ReplaceCardsFool = new ConfigOption_Boolean(REPLACE_CARDS_FOOL, true);
-    public ConfigOption_Boolean ReplaceCardsAnimator = new ConfigOption_Boolean(REPLACE_CARDS_ANIMATOR, true);
+    public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, false);
+    public ConfigOption_Boolean ReplaceCardsFool = new ConfigOption_Boolean(REPLACE_CARDS_FOOL, false);
+    public ConfigOption_Boolean ReplaceCardsAnimator = new ConfigOption_Boolean(REPLACE_CARDS_ANIMATOR, false);
     public ConfigOption_Boolean FlashForReroll = new ConfigOption_Boolean(FLASH_FOR_REROLL, true);
     public ConfigOption_Boolean EnableEventsForOtherCharacters = new ConfigOption_Boolean(ENABLE_EVENTS_FOR_OTHER_CHARACTERS, false);
     public ConfigOption_Boolean EnableRelicsForOtherCharacters = new ConfigOption_Boolean(ENABLE_RELICS_FOR_OTHER_CHARACTERS, false);

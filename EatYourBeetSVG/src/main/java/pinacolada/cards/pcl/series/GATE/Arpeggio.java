@@ -21,6 +21,7 @@ public class Arpeggio extends PCLCard
     public static final PCLCardData DATA = Register(Arpeggio.class)
             .SetPower(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
+            .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
     private static final int POWER_ENERGY_COST = 6;
     private static final int TRIGGER_LIMIT = 3;
@@ -29,7 +30,7 @@ public class Arpeggio extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, TRIGGER_LIMIT);
+        Initialize(0, 0, 2, 1);
         SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Blue(1);
@@ -37,29 +38,46 @@ public class Arpeggio extends PCLCard
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        if (timesUpgraded > 0) {
+            SetInnate(form != 1);
+        }
+        return super.SetForm(form, timesUpgraded);
+    };
+
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+        SetRetainOnce(true);
+    }
+
+    @Override
     protected String GetRawDescription(Object... args)
     {
-        return super.GetRawDescription(POWER_ENERGY_COST);
+        return super.GetRawDescription(POWER_ENERGY_COST, TRIGGER_LIMIT);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.GainOrbSlots(magicNumber);
-        PCLActions.Bottom.StackPower(new ArpeggioPower(p, magicNumber));
+        PCLActions.Bottom.GainOrbSlots(secondaryValue);
+        PCLActions.Bottom.StackPower(new ArpeggioPower(p, magicNumber, secondaryValue));
     }
 
     public static class ArpeggioPower extends PCLClickablePower implements OnMatchBonusSubscriber
     {
         private static final int MAX_BONUS = 6;
         private static final int EARTH_BONUS = 1;
-        private int intellectBonus;
+        private int secondaryValue;
 
-        public ArpeggioPower(AbstractCreature owner, int amount)
+        public ArpeggioPower(AbstractCreature owner, int amount, int secondaryValue)
         {
             super(owner, Arpeggio.DATA, PowerTriggerConditionType.Affinity, Arpeggio.POWER_ENERGY_COST);
 
             triggerCondition.SetUses(1, true, false);
+            this.secondaryValue = secondaryValue;
 
             Initialize(amount);
         }
@@ -67,7 +85,7 @@ public class Arpeggio extends PCLCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, TRIGGER_LIMIT,  intellectBonus, MAX_BONUS);
+            return FormatDescription(0, triggerCondition.requiredAmount, TRIGGER_LIMIT, amount, secondaryValue);
         }
 
         @Override
@@ -86,13 +104,20 @@ public class Arpeggio extends PCLCard
             PCLCombatStats.onMatchBonus.Unsubscribe(this);
         }
 
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+            ResetAmount();
+        }
+
 
         @Override
         public void OnMatchBonus(AbstractCard card, PCLAffinity affinity)
         {
-            if (PCLAffinity.Blue.equals(affinity))
+            if (amount > 0 && PCLAffinity.Orange.equals(affinity))
             {
-                PCLActions.Bottom.GainWisdom(amount);
+                amount -= 1;
+                PCLActions.Bottom.GainWisdom(secondaryValue);
                 this.flashWithoutSound();
             }
         }

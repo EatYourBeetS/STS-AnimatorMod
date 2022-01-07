@@ -1,21 +1,16 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import eatyourbeets.blights.animator.UltimateWispBlight;
 import eatyourbeets.utilities.FieldInfo;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
-
-import java.util.ArrayList;
 
 public class GiftBox extends PCLCard
 {
@@ -36,20 +31,6 @@ public class GiftBox extends PCLCard
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        final ArrayList<AbstractCard> cards = PCLGameUtilities.GetAvailableCards();
-        for (int i = 0; i < secondaryValue; i++)
-        {
-            PCLActions.Bottom.MakeCardInDrawPile(PCLGameUtilities.GetRandomElement(cards))
-            .SetUpgrade(false, true)
-            .SetDuration(0.01f, true);
-        }
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         //TODO: Make this into an actual card and not something for testing
@@ -59,8 +40,5 @@ public class GiftBox extends PCLCard
         }
 
         PCLActions.Bottom.GainEnergy(99);
-
-        PCLGameUtilities.GetCurrentRoom(true).spawnBlightAndObtain(hb.cX, hb.cY, new UltimateWispBlight());
-
     }
 }

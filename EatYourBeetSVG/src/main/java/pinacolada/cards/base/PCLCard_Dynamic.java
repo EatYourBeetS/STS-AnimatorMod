@@ -15,6 +15,7 @@ import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.ColoredString;
 import pinacolada.cards.base.attributes.AbstractAttribute;
+import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLRenderHelpers;
 
 public class PCLCard_Dynamic extends PCLCard
@@ -50,9 +51,9 @@ public class PCLCard_Dynamic extends PCLCard
         this.onUpgrade = builder.onUpgrade;
         this.constructor = builder.constructor;
         this.isMultiDamage = builder.isMultiDamage;
-        this.tags.addAll(builder.tags);
         this.cropPortrait = false;
         this.canUpgrade = builder.canUpgrade;
+        this.showTypeText = builder.showTypeText;
 
         if (builder.portraitImage != null)
         {
@@ -62,6 +63,9 @@ public class PCLCard_Dynamic extends PCLCard
         {
             this.portraitForeground = builder.portraitForeground;
         }
+        if (builder.fakePortrait != null) {
+            this.fakePortrait = builder.fakePortrait;
+        }
 
         this.getSpecialInfo = builder.getSpecialInfo;
         this.getDamageInfo = builder.getDamageInfo;
@@ -70,6 +74,10 @@ public class PCLCard_Dynamic extends PCLCard
         if (constructor != null)
         {
             constructor.Invoke(this);
+        }
+
+        for (CardTags tag : builder.tags) {
+            PCLGameUtilities.ModifyCardTag(this, tag, true);
         }
 
         SetSeries(builder.series);

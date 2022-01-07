@@ -3,10 +3,8 @@ package pinacolada.cards.pcl.enchantments;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class Enchantment5 extends Enchantment
@@ -27,26 +25,6 @@ public class Enchantment5 extends Enchantment
     {
         if (auxiliaryData.form == 7) {
             upgradeMagicNumber(1);
-        }
-    }
-
-    @Override
-    public boolean CanUsePower(int cost)
-    {
-        if (GetAffinity() == null) {
-            return PCLCombatStats.MatchingSystem.GetAffinityLevel(PCLAffinity.General, true) >= cost;
-        }
-        return PCLCombatStats.MatchingSystem.GetAffinityLevel(GetAffinity(), true) >= cost;
-    }
-
-    @Override
-    public void PayPowerCost(int cost)
-    {
-        if (GetAffinity() == null) {
-            PCLActions.Bottom.TryChooseSpendAffinity(name, cost);
-        }
-        else {
-            PCLGameUtilities.TrySpendAffinity(GetAffinity(), affinities.GetRequirement(GetAffinity()), true);
         }
     }
 
@@ -88,6 +66,11 @@ public class Enchantment5 extends Enchantment
                                 .SetOptions(true, true);
                     });
         }
+    }
+
+    @Override
+    public PCLAffinity[] GetAffinityList() {
+        return GetAffinity() != null ? new PCLAffinity[] {GetAffinity()} : super.GetAffinityList();
     }
 
     public PCLAffinity GetAffinity()

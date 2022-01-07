@@ -29,12 +29,12 @@ public class GridCardSelectScreenPatches
 {
     public static final float[] Y_POSITIONS_2 = new float[]{
             Settings.HEIGHT * 0.75F - 50.0F * Settings.scale,
-            Settings.HEIGHT / 4.0F + 50.0F * Settings.scale
+            Settings.HEIGHT * 0.25F + 50.0F * Settings.scale
     };
     public static final float[] Y_POSITIONS_3 = new float[]{
-            Settings.HEIGHT * 0.75F - 50.0F * Settings.scale,
-            Settings.HEIGHT / 2.0F,
-            Settings.HEIGHT / 4.0F + 50.0F * Settings.scale
+            Settings.HEIGHT * 0.75F + 25.0F * Settings.scale,
+            Settings.HEIGHT * 0.5F,
+            Settings.HEIGHT * 0.25F - 25.0F * Settings.scale
     };
     public static ArrayList<AbstractCard> cardList = new ArrayList();
     public static Field hoveredCardField;
@@ -56,7 +56,7 @@ public class GridCardSelectScreenPatches
     }
 
     public static void renderPreviewCard(SpriteBatch sb, AbstractCard card, float unHoveredScale, float y) {
-        card.drawScale = card.hb.hovered ? 1.0F : unHoveredScale;
+        card.drawScale = card.hb.hovered ? unHoveredScale + 0.1f : unHoveredScale;
         card.current_x = card.target_x = (float)Settings.WIDTH * 0.63F;
         card.current_y = card.target_y = y;
         card.render(sb);
@@ -254,7 +254,7 @@ public class GridCardSelectScreenPatches
 
                 final ArrayList<AbstractCard> list = GridCardSelectScreenPatches.BranchSelectFields.branchUpgrades.get(__instance);
                 int size = list.size();
-                final float scale = size == 2 ? 0.9f : 0.8f;
+                final float scale = size == 2 ? 0.9f : 0.62f;
                 final float[] yIndices = size == 2 ? Y_POSITIONS_2 : Y_POSITIONS_3;
                 for (int i = 0; i < size; i++) {
                     if (yIndices.length > i) {

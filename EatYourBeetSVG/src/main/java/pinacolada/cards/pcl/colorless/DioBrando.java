@@ -20,7 +20,7 @@ public class DioBrando extends PCLCard
     {
         super(DATA);
 
-        Initialize(18, 0, 3, 2);
+        Initialize(20, 0, 3, 1);
         SetUpgrade(4, 0, 0, 0);
 
         SetAffinity_Red(1,0,2);

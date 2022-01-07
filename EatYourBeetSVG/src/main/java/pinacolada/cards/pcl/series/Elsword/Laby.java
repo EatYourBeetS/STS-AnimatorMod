@@ -14,8 +14,6 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.effects.SFX;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
@@ -49,15 +47,8 @@ public class Laby extends PCLCard
     }
 
     @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.GainTemporaryHP(magicNumber);
         PCLActions.Bottom.GainThorns(magicNumber);
         PCLActions.Bottom.StackPower(new LabyPower(p, secondaryValue));
     }

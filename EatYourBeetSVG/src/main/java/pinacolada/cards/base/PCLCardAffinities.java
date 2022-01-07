@@ -320,6 +320,10 @@ public class PCLCardAffinities
         return list;
     }
 
+    public PCLAffinity[] GetAffinitiesAsArray() {
+        return GetAffinities().toArray(new PCLAffinity[] {});
+    }
+
     public int GetScaling(PCLAffinity affinity, boolean useStarScaling)
     {
         final int star = (Star != null ? Star.scaling : 0);

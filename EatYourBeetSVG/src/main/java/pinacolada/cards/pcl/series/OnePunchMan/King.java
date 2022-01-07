@@ -14,7 +14,8 @@ public class King extends PCLCard
 {
     public static final PCLCardData DATA = Register(King.class)
             .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .SetMultiformData(2, false);
 
     public King()
     {
@@ -27,13 +28,16 @@ public class King extends PCLCard
     }
 
     @Override
+    public int SetForm(Integer form, int timesUpgraded) {
+        SetInnate(upgraded && form == 0);
+        return super.SetForm(form, timesUpgraded);
+    };
+
+    @Override
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
         PCLActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(player), 1).IgnoreArtifact(true);
-        if (upgraded) {
-            PCLActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(player), 1).IgnoreArtifact(true);
-        }
     }
 
     @Override

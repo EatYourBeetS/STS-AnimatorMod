@@ -11,7 +11,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.orbs.pcl.Air;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class YuukaKazami extends PCLCard
@@ -59,7 +58,7 @@ public class YuukaKazami extends PCLCard
     @Override
     public boolean CheckPrimaryCondition(boolean tryUse)
     {
-        return PCLGameUtilities.InBattle() && GameActionManager.turn % 2 == 0;
+        return GameActionManager.turn % 2 == 0;
     }
 }
 

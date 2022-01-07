@@ -2,13 +2,10 @@ package pinacolada.cards.pcl.series.Fate;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Alexander extends PCLCard
 {
@@ -20,8 +17,8 @@ public class Alexander extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 0, 2);
-        SetUpgrade(2, 0);
+        Initialize(4, 0, 2);
+        SetUpgrade(3, 0);
 
         SetAffinity_Red(1, 0, 2);
         SetAffinity_Orange(1);
@@ -40,9 +37,17 @@ public class Alexander extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HEAVY);
-        if (MightStance.IsActive())
+        if (CheckPrimaryCondition(true))
         {
             PCLActions.Bottom.Draw(1);
         }
+        else {
+            PCLActions.Bottom.DrawNextTurn(1);
+        }
+    }
+
+    @Override
+    public boolean CheckPrimaryCondition(boolean tryUse){
+        return PCLGameUtilities.IsAffinityHighest(PCLAffinity.Red);
     }
 }

@@ -162,6 +162,12 @@
 		"NAMES": ["counter attack", "counter-attack", "Counter Attack", "counterattack"],
 		"PROPER_NAME": "Counterattack"
 	},
+	"Curl Up":
+	{
+		"DESCRIPTION": "Gain [Block] when you receive unblocked attack damage, then remove this power.",
+		"NAMES": ["curl up"],
+		"PROPER_NAME": "Curl Up"
+	},
 	"Current Affinity":
 	{
 		"DESCRIPTION": "Cards with the [A-Gen] of the #yCurrent #yAffinity will #yMatch when played.",
@@ -389,12 +395,6 @@
 		"DESCRIPTION": "Ignore the costs of the next #yInteractable Power used.",
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
-	},
-	"Intangible":
-	{
-		"DESCRIPTION": "Set all incoming damage to 1.",
-		"NAMES": ["intangible"],
-		"PROPER_NAME": "Intangible"
 	},
 	"Intellect":
 	{
@@ -893,6 +893,12 @@
 		"DESCRIPTION": "Start each combat with this card in hand. Whenever you shuffle your draw pile, place this card on the top.",
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
+	},
+	"~Intangible":
+	{
+		"DESCRIPTION": "Set all incoming damage to 1.",
+		"NAMES": ["~intangible"],
+		"PROPER_NAME": "Intangible"
 	},
 	"~Lightning":
 	{

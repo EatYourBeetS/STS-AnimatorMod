@@ -1,7 +1,6 @@
 package pinacolada.cards.pcl.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,13 +16,14 @@ import pinacolada.cards.pcl.series.Katanagatari.Emonzaemon;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Emonzaemon_EntouJyuu extends PCLCard
 {
     public static final PCLCardData DATA = Register(Emonzaemon_EntouJyuu.class)
             .SetPower(1, CardRarity.SPECIAL)
             .SetSeries(Emonzaemon.DATA.Series);
-    public static final int BONUS_DAMAGE = 3;
+    public static final int BONUS_DAMAGE = 2;
 
     public Emonzaemon_EntouJyuu()
     {
@@ -51,41 +51,13 @@ public class Emonzaemon_EntouJyuu extends PCLCard
         {
             super(owner, Emonzaemon_EntouJyuu.DATA);
 
-            this.attacks = 2;
-
             Initialize(amount);
         }
 
         @Override
-        public void atStartOfTurn()
+        public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card)
         {
-            super.atStartOfTurn();
-
-            SetEnabled(true);
-            attacks = 2;
-        }
-
-        @Override
-        public void onAfterUseCard(AbstractCard card, UseCardAction action)
-        {
-            super.onAfterUseCard(card, action);
-
-            if (attacks > 0 && card.type == CardType.ATTACK)
-            {
-                this.flashWithoutSound();
-                attacks -= 1;
-
-                if (attacks <= 0)
-                {
-                    SetEnabled(false);
-                }
-            }
-        }
-
-        @Override
-        public float atDamageGive(float damage, DamageInfo.DamageType type)
-        {
-            return damage + (type == DamageInfo.DamageType.NORMAL ? amount : 0);
+            return damage + (type == DamageInfo.DamageType.NORMAL && (ThrowingKnife.DATA.ID.equals(card.cardID) || PCLGameUtilities.HasGreenAffinity(card)) ? amount : 0);
         }
 
         @Override

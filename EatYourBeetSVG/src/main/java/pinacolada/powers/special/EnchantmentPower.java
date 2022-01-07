@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.pcl.enchantments.Enchantment;
 import pinacolada.powers.PCLClickablePower;
-import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.relics.PCLEnchantableRelic;
 import pinacolada.utilities.PCLJUtils;
 
@@ -16,12 +15,12 @@ public class EnchantmentPower extends PCLClickablePower
 
     public EnchantmentPower(PCLEnchantableRelic relic, AbstractCreature owner, int amount)
     {
-        super(owner, relic, PowerTriggerConditionType.Special, relic.enchantment.GetPowerCost(), relic.enchantment::CanUsePower, relic.enchantment::PayPowerCost);
+        super(owner, relic, relic.enchantment.triggerConditionType, relic.enchantment.GetPowerCost(), null, null, relic.enchantment.GetAffinityList());
 
         this.enchantment = relic.enchantment;
         this.ID += "(" + enchantment.index + "-" + enchantment.auxiliaryData.form + ")";
         this.triggerCondition.requiresTarget = enchantment.requiresTarget;
-        this.triggerCondition.SetOneUsePerPower(true);
+        this.triggerCondition.SetUses(enchantment.uses, enchantment.refreshEachTurn, true);
         this.hideAmount = true;
 
         Initialize(amount);

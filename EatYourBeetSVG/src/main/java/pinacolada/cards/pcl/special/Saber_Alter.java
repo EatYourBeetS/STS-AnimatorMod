@@ -49,7 +49,7 @@ public class Saber_Alter extends PCLCard
             for (AbstractMonster mo : GameUtilities.GetEnemies(true)) {
                 int debuffs = mo.powers != null ? mo.powers.size() : 0;
                 Dark d = new Dark();
-                PCLGameUtilities.ModifyOrbFocus(d, debuffs, true, true);
+                PCLGameUtilities.ModifyOrbBaseFocus(d, debuffs, true, true);
                 PCLActions.Bottom.ChannelOrb(d);
             }
 

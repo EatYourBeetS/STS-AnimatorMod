@@ -17,8 +17,10 @@ import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BurningPower;
+import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.powers.common.FreezingPower;
 import pinacolada.powers.common.ShacklesPower;
+import pinacolada.powers.replacement.PCLConstrictedPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLStrings;
 import pinacolada.utilities.PCLActions;
@@ -161,6 +163,8 @@ public class Senku extends PCLCard
     private enum SenkuEffect {
         ApplyBurning(BurningPower.POWER_ID, 2, 2, 8),
         ApplyFreezing(FreezingPower.POWER_ID, 2, 2, 7),
+        ApplyElectrified(ElectrifiedPower.POWER_ID, 2, 2, 7),
+        ApplyConstricted(PCLConstrictedPower.POWER_ID, 1, 2, 7),
         ApplyPoison(PoisonPower.POWER_ID, 4, 3, 10),
         ApplyPoison2(PoisonPower.POWER_ID, 3, 2, 10),
         ApplyPoison3(PoisonPower.POWER_ID, 3, 1, 10),

@@ -253,6 +253,16 @@ public class GR extends eatyourbeets.resources.GR
         }
     }
 
+    public static class PackageNames {
+        public static final String OG = "com.megacrit.cardcrawl";
+        public static final String EYB = "eatyourbeets";
+        public static final String PCL = "pinacolada";
+        public static final String MARISA = "ThMod.cards.Marisa";
+        public static final String GENSOKYO_ITEM = "Gensokyo.cards.Item";
+        public static final String GENSOKYO_LUNAR = "Gensokyo.cards.Lunar";
+        public static final String GENSOKYO_URBAN = "Gensokyo.cards.UrbanLegend";
+    }
+
     public static class Enums extends eatyourbeets.resources.GR.Enums
     {
         public static class Characters extends eatyourbeets.resources.GR.Enums.Characters
@@ -273,6 +283,7 @@ public class GR extends eatyourbeets.resources.GR
         public static class Rewards extends eatyourbeets.resources.GR.Enums.Rewards
         {
             @SpireEnum public static RewardItem.RewardType SERIES_CARDS;
+            @SpireEnum public static RewardItem.RewardType BOSS_SERIES_CARDS;
             @SpireEnum public static RewardItem.RewardType ENCHANTMENT;
         }
 

@@ -44,7 +44,7 @@
 			"Kill la Kill",
 			"Touhou Project",
 			"Welcome to the N.H.K.",
-			"Tales of Berseria",
+			"Tales",
 			"Rewrite",
 			"Date-a-Live",
 			"Angel Beats",
@@ -81,6 +81,10 @@
 			"Eureka Seven",
 			"Eighty-Six",
 			"Nier",
+			"Megaman",
+			"The Melancholy of Haruhi Suzumiya",
+			"Hyouka",
+			"Aria",
 			"Laid-Back Camp"
 		],
 		"EXTRA_TEXT":
@@ -168,7 +172,7 @@
 		"TEXT":
 		[
 			"Only contains Cards from this Series. WARNING: once you click on this, the other 2 Card rewards will disappear.",
-			"Bonus Relic",
+			"Possible Affinities",
 			"Cursed Relic",
 			"Reroll",
 			"+{0} Max HP",
@@ -216,7 +220,8 @@
 	  "Disable Expansion",
 	  "Enable Expansions",
 	  "Disable Expansions",
-	  "Cancel"
+	  "Cancel",
+	  "Show Colorless"
 	]
   },
 
@@ -295,8 +300,8 @@
 			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions.",
 			"Filters",
 			"Any",
-			"Replace Base game/Animator cards when playing as the Fool",
-			"Replace Fool cards when playing as the Animator",
+			"Replace Non-Fool cards when playing as the Fool (Warning: Unstable)",
+			"Replace Fool cards when playing as the Animator (Warning: Unstable)",
 			"Enable Current Affinity glow when no Matches are available"
 		]
 	},
@@ -353,7 +358,9 @@
 			"Affinities",
             "Scaling",
             "Amount",
-            "Origins"
+            "Origins",
+            "Colors",
+            "Results"
 		]
 	},
 

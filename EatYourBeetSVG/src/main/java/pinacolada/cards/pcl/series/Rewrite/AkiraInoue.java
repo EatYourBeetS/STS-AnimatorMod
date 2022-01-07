@@ -52,7 +52,7 @@ public class AkiraInoue extends PCLCard
                             PCLCardAffinities a = PCLGameUtilities.GetPCLAffinities(c);
                             if (a != null) {
                                 PCLActions.Top.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity)
-                                        .SetAffinityChoices(a.GetAffinities().toArray(new PCLAffinity[] {}))
+                                        .SetAffinityChoices(a.GetAffinitiesAsArray())
                                         .SetOptions(false, true);
                             }
                         }

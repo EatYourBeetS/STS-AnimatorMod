@@ -26,7 +26,6 @@ public class MifuyuAsuza extends PCLCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1, 0, 2);
-        SetAffinity_Light(1, 0, 0);
         SetExhaust(true);
 
         SetAffinityRequirement(PCLAffinity.General, 9);

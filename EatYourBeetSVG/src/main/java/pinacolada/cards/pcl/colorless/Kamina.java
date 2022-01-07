@@ -30,11 +30,17 @@ public class Kamina extends PCLCard implements OnLosingHPSubscriber, OnStartOfTu
     {
         super(DATA);
 
-        Initialize(35, 0, ATTACK_DELAY, 3);
-        SetUpgrade(8, 0, 0 , 0);
+        Initialize(36, 0, ATTACK_DELAY, 3);
+        SetUpgrade(9, 0, 0 , 0);
 
         SetAffinity_Red(1, 0, 6);
         SetExhaust(true);
+    }
+
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return IsStarter();
     }
 
     @Override

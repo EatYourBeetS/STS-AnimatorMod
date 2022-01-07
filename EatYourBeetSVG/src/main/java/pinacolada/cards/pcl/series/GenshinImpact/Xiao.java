@@ -12,7 +12,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
-import pinacolada.orbs.pcl.Air;
+import pinacolada.powers.special.SwirledPower;
 import pinacolada.stances.VelocityStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -26,7 +26,7 @@ public class Xiao extends PCLCard
     {
         super(DATA);
 
-        Initialize(6, 2, 2, 2);
+        Initialize(6, 2, 1, 1);
         SetUpgrade(1, 0, 1, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
@@ -36,9 +36,8 @@ public class Xiao extends PCLCard
     }
 
     @Override
-    protected float GetInitialDamage()
-    {
-        return super.GetInitialDamage() + magicNumber * PCLGameUtilities.GetOrbCount(Air.ORB_ID);
+    public int GetXValue() {
+        return secondaryValue * player.hand.size();
     }
 
     @Override
@@ -54,9 +53,12 @@ public class Xiao extends PCLCard
                             500f, 200f, 300f, 5f, Color.FOREST.cpy(), Color.GREEN.cpy())).duration;
                 }));
         PCLActions.Bottom.GainBlock(block);
+        for (AbstractMonster mo : PCLGameUtilities.GetEnemies(true)) {
+            PCLActions.Delayed.StackPower(player, new SwirledPower(mo, magicNumber));
+        }
 
         if (VelocityStance.IsActive()) {
-            PCLActions.Bottom.ApplyPoison(TargetHelper.Enemies(), secondaryValue * player.hand.size());
+            PCLActions.Bottom.ApplyPoison(TargetHelper.Enemies(), GetXValue());
             PCLActions.Last.Exhaust(this);
         }
         else {

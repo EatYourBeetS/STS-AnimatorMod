@@ -49,8 +49,6 @@ public class NarberalGamma extends PCLCard
             PCLActions.Bottom.ApplyPower(p, p, new TemporaryElectroPower(p));
         }
 
-        if (info.TryActivateSemiLimited()) {
-            PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(m), GetXValue());
-        }
+        PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(m), GetXValue());
     }
 }

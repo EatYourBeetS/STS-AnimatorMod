@@ -56,7 +56,7 @@ public class PCLStrings
         private final UIStrings Strings = GetUIStrings("Rewards");
 
         public final String Description = Strings.TEXT[0];
-        public final String BonusRelic = Strings.TEXT[1];
+        public final String PossibleAffinities = Strings.TEXT[1];
         public final String CursedRelic = Strings.TEXT[2];
         public final String Reroll = Strings.TEXT[3];
         public final String MaxHPBonus_F1 = Strings.TEXT[4];
@@ -105,6 +105,8 @@ public class PCLStrings
         public final String Scalings = Strings.TEXT[7];
         public final String Amount = Strings.TEXT[8];
         public final String Origins = Strings.TEXT[9];
+        public final String Colors = Strings.TEXT[10];
+        public final String Total = Strings.TEXT[11];
     }
 
     public class Misc
@@ -278,6 +280,7 @@ public class PCLStrings
         public final String AllExpansionEnable = Strings.TEXT[8];
         public final String AllExpansionDisable = Strings.TEXT[9];
         public final String Cancel = Strings.TEXT[10];
+        public final String ShowColorless = Strings.TEXT[11];
 
         public final String SelectRandom(int cards)
         {

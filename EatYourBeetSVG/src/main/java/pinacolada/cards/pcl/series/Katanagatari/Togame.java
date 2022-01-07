@@ -20,13 +20,19 @@ public class Togame extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 2, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(1);
-        SetAffinity_Orange(1, 0, 0);
+        SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Orange(1, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Green, 4);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        PCLActions.Bottom.GainBlock(block);
     }
 
     @Override

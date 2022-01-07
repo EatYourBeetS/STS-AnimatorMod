@@ -29,6 +29,7 @@ public class Hakurou extends PCLCard
         SetUpgrade(1, 0, 1, 0);
 
         SetAffinity_Red(1, 0, 0);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
 
         SetAffinityRequirement(PCLAffinity.Red, 4);

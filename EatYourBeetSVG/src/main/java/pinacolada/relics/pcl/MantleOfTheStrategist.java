@@ -2,12 +2,13 @@ package pinacolada.relics.pcl;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.relics.PCLRelic;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class MantleOfTheStrategist extends PCLRelic implements OnSynergyCheckSubscriber
+public class MantleOfTheStrategist extends PCLRelic implements OnSynergyCheckSubscriber, Hidden
 {
     public static final String ID = CreateFullID(MantleOfTheStrategist.class);
 

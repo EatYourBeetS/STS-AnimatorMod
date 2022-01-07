@@ -60,7 +60,7 @@ public class RimuruAction extends EYBAction
             }
 
             PCLGameUtilities.ModifyCardTag(newCopy, GR.Enums.CardTags.VOLATILE, true);
-            PCLGameUtilities.ModifyAffinityLevel(card, PCLAffinity.Star, 1, false);
+            PCLGameUtilities.ModifyAffinityLevel(newCopy, PCLAffinity.Star, 1, false);
             PCLGameUtilities.ChangeCardName(newCopy, rimuru.originalName);
             PCLGameUtilities.CopyVisualProperties(newCopy, copy);
 

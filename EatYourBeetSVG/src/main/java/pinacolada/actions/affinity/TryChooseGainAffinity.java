@@ -30,7 +30,7 @@ public class TryChooseGainAffinity extends TryChooseAffinity
     @Override
     protected AffinityChoice GetCard(PCLAffinity affinity) {
         GenericEffect_GainAffinity affinityGain = new GenericEffect_GainAffinity(affinity, cost);
-        AffinityChoiceBuilder builder = new AffinityChoiceBuilder(affinity, cost, affinityGain.GetText()).SetOnUse(affinityGain::Use);
+        AffinityChoiceBuilder builder = (AffinityChoiceBuilder) new AffinityChoiceBuilder(affinity, cost, affinityGain.GetText()).ShowTypeText(false).SetOnUse(affinityGain::Use);
         return builder.Build();
     }
 }

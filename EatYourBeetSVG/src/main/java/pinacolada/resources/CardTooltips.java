@@ -15,6 +15,7 @@ import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.EnergizedPower;
 import pinacolada.powers.common.*;
 import pinacolada.powers.replacement.AntiArtifactSlowPower;
+import pinacolada.powers.replacement.PCLCurlUpPower;
 import pinacolada.powers.special.*;
 import pinacolada.powers.temporary.TemporaryThornsPower;
 import pinacolada.resources.pcl.PCLImages;
@@ -88,6 +89,7 @@ public class CardTooltips
     public PCLCardTooltip CommonDebuff = FindByID("Common Debuff");
     public PCLCardTooltip Constricted = FindByID("Constricted");
     public PCLCardTooltip CounterAttack = FindByID("Counter-Attack");
+    public PCLCardTooltip CurlUp = FindByID("Curl Up");
     public PCLCardTooltip Dark = FindByID("~Dark");
     public PCLCardTooltip DarkDamage = FindByID("~Dark Damage");
     public PCLCardTooltip Delayed = FindByID("~Delayed");
@@ -121,7 +123,7 @@ public class CardTooltips
     public PCLCardTooltip Impaired = FindByID("Impaired");
     public PCLCardTooltip Innate = FindByID("~Innate");
     public PCLCardTooltip Inspiration = FindByID("Inspiration");
-    public PCLCardTooltip Intangible = FindByID("Intangible");
+    public PCLCardTooltip Intangible = FindByID("~Intangible");
     public PCLCardTooltip Lightning = FindByID("~Lightning");
     public PCLCardTooltip Limited = FindByID("Limited");
     public PCLCardTooltip LockOn = FindByID("~Lock-On");
@@ -333,6 +335,7 @@ public class CardTooltips
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
         LoadFromPower(Constricted, new ConstrictedPower(null, FakeCharacter.Instance, 0));
         LoadFromPower(CounterAttack, new CounterAttackPower(FakeCharacter.Instance, 0));
+        LoadFromPower(CurlUp, new PCLCurlUpPower(FakeCharacter.Instance, 0));
         LoadFromPower(DelayedDamage, new DelayedDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(DemonForm, new DemonFormPower(FakeCharacter.Instance, 0));
         LoadFromPower(Dexterity, new DexterityPower(FakeCharacter.Instance, 0));

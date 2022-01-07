@@ -3,12 +3,14 @@ package pinacolada.cards.pcl.enchantments;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.AdvancedTexture;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCardPreview;
+import pinacolada.cards.base.attributes.AbstractAttribute;
+import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.relics.PCLEnchantableRelic;
 import pinacolada.relics.pcl.UsefulBox;
 import pinacolada.resources.GR;
@@ -22,7 +24,10 @@ public abstract class Enchantment extends PCLCard implements Hidden
     private static final ArrayList<Enchantment> cards = new ArrayList<>();
 
     public int index;
-    public boolean requiresTarget;
+    public int uses = 1;
+    public boolean requiresTarget = false;
+    public boolean refreshEachTurn = true;
+    public PowerTriggerConditionType triggerConditionType = PowerTriggerConditionType.Affinity;
     public PCLEnchantableRelic relic;
 
     private final Color borderColor;
@@ -41,6 +46,7 @@ public abstract class Enchantment extends PCLCard implements Hidden
             cards.add(new Enchantment3());
             cards.add(new Enchantment4());
             cards.add(new Enchantment5());
+            cards.add(new Enchantment6());
 
             for (Enchantment a : cards)
             {
@@ -98,6 +104,18 @@ public abstract class Enchantment extends PCLCard implements Hidden
         }
     }
 
+    @Override
+    public AbstractAttribute GetDamageInfo()
+    {
+        return null;
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return null;
+    }
+
     public int GetPowerCost()
     {
         return secondaryValue;
@@ -105,13 +123,14 @@ public abstract class Enchantment extends PCLCard implements Hidden
 
     public boolean CanUsePower(int cost)
     {
-        return EnergyPanel.getCurrentEnergy() >= cost;
+        return true;
     }
 
     public void PayPowerCost(int cost)
     {
-        EnergyPanel.useEnergy(cost);
     }
+
+    public PCLAffinity[] GetAffinityList() {return PCLAffinity.Extended();}
 
     public abstract int GetMaxUpgradeIndex();
     public abstract void UsePower(AbstractMonster m);

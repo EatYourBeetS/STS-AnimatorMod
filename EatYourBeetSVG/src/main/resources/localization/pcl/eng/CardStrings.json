@@ -257,6 +257,11 @@
         	"DESCRIPTION": "Choose 1: Pay !A! <R>: Gain [R]; ** Pay !A! <G>: Gain [G]. || <slm>. On Discard: Apply !M! [Vulnerable] to ALL enemies.",
         	"NAME": "Gin Ichimaru"
         },
+		"pcl:GrimmjowJeagerjaques":
+		{
+			"DESCRIPTION": "Spend !M! [G] to deal +!S! damage and gain !M! [Vigor]. || <RS> or <OS>: Gain !B! [Block].",
+			"NAME": "Grimmjow Jeagerjaques"
+		},
 		"pcl:IchigoKurosaki":
 		{
 			"DESCRIPTION": "Gain !M! [R] [G]. || !S! [R]: Exhaust, then add {Ichigo Bankai} to your draw pile.",
@@ -369,6 +374,12 @@
 	},
 	"BETA:COLORLESS":
 	{
+		"pcl:AkariMizunashi":
+		{
+			"DESCRIPTION": "{0}Evoke your first [Water] to gain a [L] use. ** Otherwise, Channel [Water]. || When drawn: Heal !S! [HP] ** (!X!/!S! times left).",
+			"EXTENDED_DESCRIPTION": ["Convert ALL [Frost] to [Water]. "],
+			"NAME": "Akari Mizunashi"
+		},
 		"pcl:Alibaba_Aladdin":
 		{
 			"DESCRIPTION": "At the start of each turn: Gain +!M! [Focus] and lose 1 [Strength] and [Dexterity]. || Give the first !S! card(s) drawn each turn +1 <BSC>.",
@@ -383,7 +394,7 @@
 		},
 		"pcl:AnarchyStocking":
 		{
-			"DESCRIPTION": "Apply [Slow]. Gain !M! [Poison] and [Constricted]. || On Purge: Transfer your [Constricted] to ALL enemies.",
+			"DESCRIPTION": "Apply [Slow]. ** Gain !M! [Poison] and [Constricted]. || On Purge: Transfer your [Constricted] to ALL enemies.",
 			"NAME": "Anarchy Stocking"
 		},
 		"pcl:ArseneLupin":
@@ -418,6 +429,12 @@
 			"EXTENDED_DESCRIPTION": ["Take #b{0} [DD]: Halve the damage (rounded up) and double the hit count of an Attack in hand (does not stack)."],
 			"NAME": "The World"
 		},
+		"pcl:EruChitanda":
+		{
+			"DESCRIPTION": "Fetch 1 of !M! cards played last turn. Obtain a {<W> Token} of one of its <W>. || <LIM>. !S! Match Combo: Motivate the fetched card.",
+			"NAME": "Eru Chitanda",
+			"UPGRADE_DESCRIPTION": "Fetch 1 of !M! cards played last turn. Obtain a {<W> Token} of one of its <W>. || <LIM>. !S! Match Combo: Motivate the fetched card."
+		},
 		"pcl:ForceImpulseGundam":
 		{
 			"DESCRIPTION": "Reload: Increase this card's damage by !M! until played. Powers and Statuses Trigger Reload twice and Exhaust. || <CDN>: Obtain {<R> Token}{+} and Exhaust.",
@@ -440,6 +457,11 @@
 			"DESCRIPTION": "Gain [R]. If the target dies, take !M! damage and repeat this attack with +!S! damage on another enemy.",
 			"NAME": "Guts"
 		},
+		"pcl:HaruhiSuzumiya":
+        {
+            "DESCRIPTION": "Exhaust your hand. For each: Obtain a random Motivated card. || <LIM>. !A! <W>: Repeat this with your draw and discard piles.",
+            "NAME": "Haruhi Suzumiya"
+        },
 		"pcl:HatsuneMiku":
 		{
 			"DESCRIPTION": "Unplayable unless there are at least !S! cards in your Discard and {Exhaust} piles combined. || At the start of turn: Draw !M! card(s). They cost 0 this turn.",
@@ -464,7 +486,7 @@
 		},
 		"pcl:JotaroKujo_StarPlatinum":
 		{
-			"DESCRIPTION": "Gain 1 [Intangible]. || Whenever you play a {Colorless} or non-{Series} card: Gain +!M! of ALL <W>.",
+			"DESCRIPTION": "Gain 1 [~Intangible]. || Whenever you play a {Colorless} or non-{Series} card: Gain +!M! of ALL <W>.",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a #yColorless or #yNon-Series card: Gain #b{0} [A-Gen]."],
 			"NAME": "Star Platinum"
 		},
@@ -499,7 +521,7 @@
 		},
 		"pcl:Kamina":
         {
-            "DESCRIPTION": "Gain !S! [Vulnerable] and [Frail]. Next turn, remove your [Vulnerable] and [Frail] and attack. Cancel this attack if you receive unblocked attack damage.",
+            "DESCRIPTION": "Unplayable unless Starter. Gain !S! [Vulnerable] and [Frail]. Next turn, remove your [Vulnerable] and [Frail] and attack. Cancel this attack if you receive unblocked attack damage.",
             "NAME": "Kamina"
         },
 		"pcl:KenzoTenma":
@@ -519,7 +541,7 @@
 		},
 		"pcl:LaughingMan":
 		{
-			"DESCRIPTION": "At the end of the turn, select a card in your hand. Next turn, Cycle and Exhaust ALL cards not of the chosen cards type.",
+			"DESCRIPTION": "At the end of turn, select a card in hand. Next turn, Cycle and Exhaust ALL cards not of the chosen card's type.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, whenever you draw a card: Exhaust it if it is not a #y{1}, then draw a card."],
 			"NAME": "The Laughing Man"
 		},
@@ -530,13 +552,14 @@
 		},
 		"pcl:Megaman":
 		{
-			"DESCRIPTION": "<CDN>: Deal a Charged Attack. If used on yourself: Reduce Cooldown by !M!. || <LIM>. If {Fatal} with a Charged Attack: Store 1 use of the target's intent.",
+			"DESCRIPTION": "<CDN>: Becomes a Charged {0} Attack. If used on yourself: Reduce Cooldown by !M!.",
+			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", "<LIM>. If {Fatal} with a Charged Attack: Store 1 use of the target's intent.", "<LIM>. {0}. Reset this card's effect."],
 			"NAME": "Megaman"
 		},
 		"pcl:Megunee":
 		{
 			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Zombie Megu-Nee}. || On Exhaust: After a random number of turns, Gain !S! [THP].",
-			"NAME": "Megu-nee"
+			"NAME": "Megumi Sakura"
 		},
 		"pcl:Megunee_Zombie":
 		{
@@ -545,20 +568,20 @@
 		},
 		"pcl:MegurineLuka":
 		{
-			"DESCRIPTION": "This turn: ALL cards Match. || <LIM>. Match with {Hatsune Miku}: Prolong this effect by 1 turn.",
-			"EXTENDED_DESCRIPTION": ["ALL cards #yMatch this turn."],
+			"DESCRIPTION": "This turn: ** ALL cards Match. || <LIM>. If the last card played was {Hatsune Miku}: Lasts 1 more turn.",
+			"EXTENDED_DESCRIPTION": ["This turn: ALL cards #yMatch."],
 			"NAME": "Megurine Luka"
 		},
 		"pcl:Merlin":
 		{
-			"DESCRIPTION": "Remove your first Orb to {0}",
-			"EXTENDED_DESCRIPTION": ["When you play {0}: {1}", "enchant a card with it. || If you have !S! of that Orb: Obtain an {Orb Core}.", "to enchant a card with: {0}. || !S! {1}: Obtain an {Orb Core}."],
+			"DESCRIPTION": "To play this: Remove your first Orb. {0}",
+			"EXTENDED_DESCRIPTION": ["When you play {0}: {1}", "Enchant a card with it. || If you have !S! of that Orb: Obtain an {Orb Core}.", "Enchant a card with: {0} || !S! {1}: Obtain an {Orb Core}."],
 			"NAME": "Merlin",
-			"UPGRADE_DESCRIPTION": "Evoke your first Orb. {0}"
+			"UPGRADE_DESCRIPTION": "To play this: Evoke your first Orb. {0}"
 		},
 		"pcl:MotokoKusanagi":
 		{
-			"DESCRIPTION": "On Exhaust: Gain !M! [Blur] and [Support Damage]. Returns to your draw pile in !C! turns, reduced by 1 per 150 [Gold] (min. 1).",
+			"DESCRIPTION": "On Exhaust: Gain !M! [Blur] and [Support Damage]. || Returns to your draw pile in !C! turns, reduced by 1 per 150 [Gold] (min. 1).",
 			"NAME": "Motoko Kusanagi"
 		},
 		"pcl:MS06ZakuII":
@@ -696,9 +719,9 @@
 		},
 		"pcl:WingGundamZero":
 		{
-			"DESCRIPTION": "Upgrade !M! cards in hand, then increase their maximum upgrade levels by 1. <LIM>. If less than !S! cards could be upgraded: Play {Ionizing Storm}.",
+			"DESCRIPTION": "Upgrade !M! cards in hand, then increase their maximum upgrade levels by 1. || <LIM>. !S!+ upgraded cards in play: Play {Ionizing Storm}.",
 			"NAME": "Wing Gundam Zero",
-			"UPGRADE_DESCRIPTION": "Upgrade !M! cards anywhere, then increase their maximum upgrade levels by 1. <LIM>. If less than !S! cards could be upgraded: Play {Ionizing Storm}."
+			"UPGRADE_DESCRIPTION": "Upgrade !M! cards anywhere, then increase their maximum upgrade levels by 1. || <LIM>. !S!+ upgraded cards in play: Play {Ionizing Storm}."
 		},
 		"pcl:Yae":
 		{
@@ -805,13 +828,13 @@
 		},
 		"pcl:YorhaNo2TypeB":
 		{
-			"DESCRIPTION": "Gain !M! [Artifact]. Repeat this whenever you shuffle your deck. || If you gain <S> while you have [Artifact]: Each character gains between -!M! and !M! [Strength], ignoring [Artifact].",
+			"DESCRIPTION": "Gain !M! [Artifact]. Repeat this whenever you shuffle your deck. || If you gain <S> while you have [Artifact]: Each character gains between ** -!M! and !M! [Strength], ignoring [Artifact].",
 			"EXTENDED_DESCRIPTION": ["Gain #b{0} [Artifact] whenever you shuffle your deck. NL If you gain <S> while you have [Artifact]: Each character gains a random amount of [Strength] between #b-{0} and #b{0}, ignoring [Artifact]."],
 			"NAME": "Yorha No.2 Type B"
 		},
 		"pcl:YoshinoHimekawa":
 		{
-			"DESCRIPTION": "When drawn: Discard this card and change its form, ** then gain [Blur]. || Gain !S! [Blur]. ** <LIM>. Shuffle {Zadkiel} into your discard pile.",
+			"DESCRIPTION": "When drawn: Discard this and change its form, then apply !S! [Freezing] to ALL enemies. || Gain !S! [Blur]. ** <LIM>. Shuffle {Zadkiel} into your discard pile.",
 			"EXTENDED_DESCRIPTION": ["Gain !S! [Blur]. Apply !M! [Freezing] to ALL enemies."],
 			"NAME": "Yoshino Himekawa"
 		},
@@ -919,7 +942,7 @@
 			"DESCRIPTION": "Spread the target's [Poison] and [Burning] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use.",
 			"EXTENDED_DESCRIPTION": ["This turn, when you #yAttack an enemy with [Swirled]: Deal half of that #yAttack's damage to ALL other enemies (min. #b1)."],
 			"NAME": "Kazuha Kaedehara",
-			"UPGRADE_DESCRIPTION": "Spread the target's [Poison], [Burning], and [Electrified] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use."
+			"UPGRADE_DESCRIPTION": "Spread the target's [Poison], [Burning], and [Freezing] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use."
 		},
 		"pcl:Keqing":
 		{
@@ -933,7 +956,7 @@
 		},
 		"pcl:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "{0}[Water] has +!M! [Focus] and reflects unblocked attack damage. ALL cards give 0 [Block]. || If you have no [Water] at the end of turn: Take !S! non-lethal damage and channel [Water].",
+			"DESCRIPTION": "{0}[Water] has +!M! [Focus] and reflects unblocked attack damage. ALL cards give 0 [Block]. || If you have no [Water] at the end of turn: Take !S! non-lethal damage and Channel [Water].",
 			"EXTENDED_DESCRIPTION": ["Gain 2 [Regeneration]. ","Play {Water Core}. "],
 			"NAME": "Kokomi Sangonomiya"
 		},
@@ -1024,7 +1047,7 @@
 		},
 		"pcl:Xiao":
 		{
-			"DESCRIPTION": "Deals +!M! damage per [Air]. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] per card in hand. Otherwise: Enter <GS>.",
+			"DESCRIPTION": "Apply !M! [Swirled] to ALL enemies. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] per card in hand (!X!). Otherwise: Enter <GS>.",
 			"NAME": "Xiao"
 		},
 		"pcl:Xingqiu":
@@ -1066,8 +1089,8 @@
 		},
 		"pcl:ChihayaOhtori":
 		{
-			"DESCRIPTION": "Choose 1: Fetch a <O> card from your discard pile and {Motivate} it; ** Gain !S! {Temp}. [Artifact]. || Costs 1 less in <OS>.",
-		  	"EXTENDED_DESCRIPTION": ["Fetch a <O> card from your discard pile and {Motivate} it.", "Gain 3 {Temp}. [Artifact]."],
+			"DESCRIPTION": "Choose 1: Fetch a different <O> card from your discard pile and {Motivate} it; ** Gain !S! {Temp}. [Artifact]. || Costs 1 less in <OS>.",
+		  	"EXTENDED_DESCRIPTION": ["Fetch a different <O> card from your discard pile and {Motivate} it.", "Gain 3 {Temp}. [Artifact]."],
 		  	"NAME": "Chihaya Ohtori"
 		},
 		"pcl:Kagari":
@@ -1244,7 +1267,7 @@
 		"pcl:AyaShameimaru":
 		{
 			"DESCRIPTION": "Channel [Air]. [Air] gives adjacent Orbs +!M! [Focus]. || When you Evoke [Air], gain +!M! <G> or <O> (whichever is lower).",
-			"EXTENDED_DESCRIPTION": ["[Air] gives adjacent #yOrbs +#b{0} [Focus]. When you #yEvoke [Air]: Gain +#b{1} [A-Green] or [A-Orange] (whichever is lower)."],
+			"EXTENDED_DESCRIPTION": ["[Air] gives adjacent #yOrbs +#b{0} [Focus]. When you #yEvoke [Air]: Gain +#b{0} [A-Green] or [A-Orange] (whichever is lower)."],
 			"NAME": "Aya Shameimaru"
 		},
 		"pcl:ByakurenHijiri":
@@ -1263,9 +1286,15 @@
 			"DESCRIPTION": "<DRW>. If it is 0-1 Cost: Play it. Otherwise, this turn: ALL enemies will Attack and take 50% more damage. || <LIM>. Starter: This will not Exhaust.",
 			"NAME": "Clownpiece"
 		},
+		"pcl:EirinYagokoro":
+		{
+			"DESCRIPTION": "Remove your [Poison] and [Burning]. || <LIM>. Use your left-most usable Potion twice. If you had no Potions: Heal !S! [HP].",
+			"NAME": "Eirin Yakagoro",
+			"UPGRADE_DESCRIPTION": "Remove your [Poison], [Burning], and [Delayed Damage]. || <LIM>. Use your left-most usable Potion twice. If you had no Potions: Heal !S! [HP]."
+		},
 		"pcl:FlandreScarlet":
 		{
-			"DESCRIPTION": "Gain [THP] equal to damage. || Exhaust this or ** a random card. ** <LIM>. !A! <D>: Add {Remilia Scarlet} to your draw pile.",
+			"DESCRIPTION": "Exhaust this or a random card. Gain [THP] equal to damage. || <LIM>. !A! <D>: Add {Remilia Scarlet} to your draw pile.",
 			"EXTENDED_DESCRIPTION": ["Exhaust this.", "Exhaust a random card in hand."],
 			"NAME": "Flandre Scarlet"
 		},
@@ -1286,9 +1315,9 @@
 		},
 		"pcl:HatateHimekaidou":
 		{
-			"DESCRIPTION": "Discard ALL cards in hand and give them [~Haste]. Then, draw that many cards.",
+			"DESCRIPTION": "Discard ALL cards in hand and give them [~Haste]. Then, draw that many cards. || <LIM>. Pay !A! <G>: Return this to your draw pile.",
 			"NAME": "Hatate Himekaidou",
-			"UPGRADE_DESCRIPTION": "Discard ALL cards in hand and give them [~Haste] and +1 <LSC>. Then, draw that many cards."
+			"UPGRADE_DESCRIPTION": "Discard ALL cards in hand and give them [~Haste] and +1 <LSC>. Then, draw that many cards. || <LIM>. Pay !A! <G>: Return this to your draw pile."
 		},
 		"pcl:HinanawiTenshi":
 		{
@@ -1356,7 +1385,7 @@
 		},
 		"pcl:RinKaenbyou":
 		{
-			"DESCRIPTION": "Exhaust ALL cards in your discard pile and gain their <W>. Add {Vengeful Spirit} to your discard pile until you have !M! cards in play. || <LIM>. !S! Match Combo: ** Gain 1 [Intangible].",
+			"DESCRIPTION": "Exhaust ALL cards in your discard pile and gain their <W>. Add {Vengeful Spirit} to your discard pile until you have !M! cards in play. || <LIM>. !S! Match Combo: ** Gain 1 [~Intangible].",
 			"NAME": "Rin Kaenbyou"
 		},
 		"pcl:RinKaenbyou_VengefulSpirit":
@@ -1541,7 +1570,7 @@
 		},
 		"pcl:MisakiNakahara":
 		{
-			"DESCRIPTION": "Choose and add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
+			"DESCRIPTION": "Add 1 of !M! ** Colorless cards to ** your draw pile. || The first time you ** draw it: Motivate 1.",
 			"NAME": "Misaki Nakahara"
 		},
 		"pcl:NononJakuzure":
@@ -1573,9 +1602,8 @@
 		},
 		"pcl:Zero":
 		{
-			"DESCRIPTION": "Gain !M! [B] || Play a random {Skill} in your draw pile. ** <LIM>. If it was Basic: It costs 0 this combat.",
-			"NAME": "Zero",
-			"UPGRADE_DESCRIPTION": "Gain !M! [B]. <DRW>. || Play a random {Skill} in your draw pile. ** <LIM>. If it was Basic: It costs 0 this combat."
+			"DESCRIPTION": "Play a random {Skill} in your draw pile. || <LIM>. If it was a {Basic} card or a <S> card: Obtain 1 of !M! <B> cards that cost 1 less.",
+			"NAME": "Zero"
 		}
 	},
 	"CURSE":
@@ -1745,7 +1773,7 @@
 		},
 		"pcl:Laby":
 		{
-			"DESCRIPTION": "Gain !M! [Thorns]. Whenever you receive a {Common Debuff}: Apply it to ALL enemies. || At the start of each turn: Gain !S! [Constricted].",
+			"DESCRIPTION": "Gain !M! [Thorns]. Whenever you receive a {Common Debuff}: Apply it to ALL enemies. || At the start of each turn: ALL characters gain !S! [Constricted].",
 			"EXTENDED_DESCRIPTION": ["Whenever you receive a #yCommon #yDebuff: Apply it to ALL enemies. NL At the start of each turn: ALL characters gain #b{0} #yConstricted."],
 			"NAME": "Laby"
 		},
@@ -1757,8 +1785,8 @@
 		},
 		"pcl:Noah":
 		{
-			"DESCRIPTION": "Gain !M! [D]. || @If@ <L> @>@ <D>, Pay X <L>: Apply !X! [Shackles] to ALL enemies. Otherwise: Pay X <D>: Deal +!X! damage per hit and take !X! [DD].",
-			"EXTENDED_DESCRIPTION": ["Gain !M! [L]. || @If@ <L> @>@ <D>, Pay X <L>: Deal +!X! damage per hit and take !X! [DD]. Otherwise: Pay X <D>: Apply !X! [Shackles] to ALL enemies."],
+			"DESCRIPTION": "Has +!M! damage per [~Dark]. || @If@ <D> @>@ <L>, Pay X <D>: Apply !X! [Shackles] to ALL enemies. Otherwise: Pay X <L>: Gain !X! <D>.",
+			"EXTENDED_DESCRIPTION": ["Has +!M! damage per [~Lightning]. || @If@ <L> @>@ <D>, Pay X <L>: Apply !X! [Shackles] to ALL enemies. Otherwise: Pay X <D>: Gain !X! <L>."],
 			"NAME": "Noah"
 		},
 		"pcl:Raven":
@@ -1776,7 +1804,7 @@
 	{
 		"pcl:Alexander":
 		{
-			"DESCRIPTION": "<RS>: <DRW>. || On Exhaust: ** Play this card.",
+			"DESCRIPTION": "@If@ @your@ @highest@ <W> @is@ <R>: <DRW>. Otherwise, Gain [NTD]. || On Exhaust: Play this.",
 			"NAME": "Alexander the Great"
 		},
 		"pcl:Archer":
@@ -1792,8 +1820,9 @@
 		},
 		"pcl:Avenger":
 		{
-			"DESCRIPTION": "This turn, whenever you receive unblocked attack damage: Gain !M! [Vigor] (Max 15).",
-			"NAME": "Angra Mainyu"
+			"DESCRIPTION": "For !S! turns: The target takes +!M!% damage from <D> Attacks. || If you receive unblocked attack damage this turn: Gain !S! [Vigor].",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: The target takes #b+{1}% damage from [A-Dark] #yAttacks.","If you receive unblocked attack damage this turn: Gain #b{0} [Vigor]"],
+			"NAME": "Avenger"
 		},
 		"pcl:Berserker":
 		{
@@ -1897,7 +1926,7 @@
 		},
 		"pcl:MatouSakura":
 		{
-			"DESCRIPTION": "Remove your first [~Dark] to apply [Constricted] equal to half its damage. Otherwise, Channel !M! [~Dark] and add {Crystallize} to your draw pile. || Pay !A! <L>: Gain !S! [B].",
+			"DESCRIPTION": "Remove your first [~Dark] to apply [Constricted] equal to half its damage. Otherwise, Channel !M! [~Dark] and add {Crystallize} to your draw pile. || <LIM>. Pay !A! <L>: Gain !S! [B].",
 			"NAME": "Sakura Matou"
 		},
 		"pcl:MatouShinji":
@@ -2006,8 +2035,8 @@
 	{
 		"pcl:Arpeggio":
 		{
-			"DESCRIPTION": "Gain !M! [Orb Slot]. When a <B> card Matches: Gain +!M! [B]. || Once per turn, Pay {0} <W>: Trigger your first !S! [Earth].",
-			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to Trigger your first #b{1} [Earth]. || #yMatches with <B> cards grant +#b{2} [B]."],
+			"DESCRIPTION": "Gain !S! [Orb Slot]. The first !M! times a <O> card Matches each turn: Gain +!S! [B]. || Once per turn, Pay {0} <W>: Trigger your first {1} [Earth].",
+			"EXTENDED_DESCRIPTION": ["Once per turn: Pay #b{0} [A-Gen] to Trigger your first #b{1} [Earth]. || The next #b{2} #yMatches with [A-Orange] cards grant +#b{3} [B]."],
 			"NAME": "Arpeggio"
 		},
 		"pcl:Bozes":
@@ -2048,9 +2077,9 @@
 		},
 		"pcl:LeleiLaLalena":
 		{
-			"DESCRIPTION": "Discard a random card ** to {Channel} !M! [Frost]. || Match: Apply !S! [Weak].",
+			"DESCRIPTION": "Discard a random card ** to {Channel} !M! [Frost]. || Match: Apply !S! [Freezing].",
 			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Discard a card ** to {Channel} !M! [Frost]. || Match: Apply !S! [Weak]."
+			"UPGRADE_DESCRIPTION": "Discard a card ** to {Channel} !M! [Frost]. || Match: Apply !S! [Freezing]."
 		},
 		"pcl:MoltSolAugustus":
 		{
@@ -2184,7 +2213,7 @@
 	{
 		"pcl:AcuraAkari":
 		{
-			"DESCRIPTION": "<DIS-M>. Obtain [T-Knife] for each. || Match: Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "<DIS-M>. ** Obtain [T-Knife] for each. || Match: Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari Acura"
 		},
 		"pcl:AcuraShin":
@@ -2194,7 +2223,7 @@
 		},
 		"pcl:AcuraTooru":
 		{
-			"DESCRIPTION": "Match or On Discard: Apply !S! [Weak] and [Vulnerable] to ALL enemies. || <LIM>. Pay !A! <G>: Add {Acura Akari} to your draw pile.",
+			"DESCRIPTION": "Match or On Discard: Apply !M! [Weak] and [Vulnerable] to ALL enemies. || <LIM>. Pay !A! <G>: Add {Acura Akari} to your draw pile.",
 			"NAME": "Tooru Acura"
 		},
 		"pcl:ChaikaBohdan":
@@ -2255,8 +2284,8 @@
 		},
 		"pcl:Emonzaemon_EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! Temp. [Dexterity]. || Your first 2 {Attacks} each turn deal +!S! damage.",
-			"EXTENDED_DESCRIPTION": ["Your first #b2 #yAttacks each turn deal #b{0} additional damage."],
+			"DESCRIPTION": "Gain !M! Temp. [Dexterity]. || [T-Knife] and <G> {Attacks} deal +!S! damage.",
+			"EXTENDED_DESCRIPTION": ["[T-Knife] and [A-Green] #yAttacks deal +#b{0} damage."],
 			"NAME": "Entou Jyuu"
 		},
 		"pcl:HigakiRinne":
@@ -2326,7 +2355,7 @@
 		},
 		"pcl:ZankiKiguchi":
 		{
-			"DESCRIPTION": "<CYC-M>. || <slm>. Exit your ** Stance to <CYC>.",
+			"DESCRIPTION": "<CYC-M>. || <slm>. If this did not Match: Set the {Current <W>} to <G>.",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -2707,7 +2736,7 @@
 		},
 		"pcl:IzunaHatsuse":
 		{
-			"DESCRIPTION": "Apply !S! [Weak]. || Below 20% Max [HP]: Apply !M! [Shackles].",
+			"DESCRIPTION": "Apply !S! [Weak]. || <slm>. Below 20% Max [HP]: Apply !M! [Shackles].",
 			"EXTENDED_DESCRIPTION": [""],
 			"NAME": "Izuna Hatsuse"
 		},
@@ -2732,7 +2761,7 @@
 		},
 		"pcl:Shiro":
 		{
-			"DESCRIPTION": "Scry !S!. For each discarded card: Trigger a random Orb. || Spend !S! [L]: Gain a [B] {Use}.",
+			"DESCRIPTION": "Scry !S!. For each discarded card: Trigger a random Orb. || Spend !M! [L]: ** Gain a [B] {Use}.",
 			"NAME": "Shiro"
 		},
 		"pcl:Sora":
@@ -2767,8 +2796,8 @@
 	{
 		"pcl:Boros":
 		{
-			"DESCRIPTION": "At the end of each turn: Recover up to !M! [HP] lost since last turn. || Once per turn, pay [E]: ** All {Powers} are played ** twice this turn.",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: All #yPowers are played twice this turn. || At the end of turn: #yRecover #b{0} [HP]."],
+			"DESCRIPTION": "At the end of each turn: Recover up to !M! [HP] lost since last turn. || Once per turn, pay !A! <W>: ** All {Powers} are played ** twice this turn.",
+			"EXTENDED_DESCRIPTION": ["Pay 5 [A-Gen]: All #yPowers are played twice this turn. || At the end of turn: #yRecover #b{0} [HP]."],
 			"NAME": "Boros"
 		},
 		"pcl:DrGenus":
@@ -2797,8 +2826,7 @@
 		"pcl:King":
 		{
 			"DESCRIPTION": "Convert !M! [L] to [R]. || When Drawn: Apply 1 [Vulnerable] to a random enemy, ignoring [Artifact].",
-			"NAME": "King",
-			"UPGRADE_DESCRIPTION": "Convert !M! [L] to [R]. || When Drawn: Apply 1 [Vulnerable] to a random enemy twice, ignoring [Artifact]."
+			"NAME": "King"
 		},
 		"pcl:Melzalgald":
 		{
@@ -2844,7 +2872,7 @@
 		"pcl:Saitama":
 		{
 			"DESCRIPTION": "Whenever this card is ** played, increase its cost ** and change its effect ** for this combat.",
-			"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Gain !S! [G].", "Prevent the next time ** you would lose HP.", "Gain !M! [R]. ** Gain 1 [R] Use.", "Gain !M! [Vigor]. ** Gain 2 [R] Uses.", "Remove Intangible. ** Stun the enemy."],
+			"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Gain !S! [G].", "Prevent the next time ** you would lose HP.", "Gain !M! [R]. ** Gain 1 [R] Use.", "Gain !M! [Vigor]. ** Gain 2 [R] Uses.", "Remove [~Intangible]. ** Stun the enemy."],
 			"NAME": "Saitama",
 			"UPGRADE_DESCRIPTION": "Motivate 1. || Whenever this card is ** played, increase its cost ** and change its effect ** for this combat."
 		},
@@ -2871,7 +2899,7 @@
 		},
 		"pcl:Zombieman":
 		{
-			"DESCRIPTION": "Deals +!M! damage ** for every 10% missing [HP]. || When Drawn: Deal !S! damage to ALL enemies and take !S! non-lethal [HP].",
+			"DESCRIPTION": "Deals +!M! damage ** for every 10% missing [HP]. || When Drawn: Deal !S! damage to ALL enemies and take !S! non-lethal damage.",
 			"NAME": "Zombieman"
 		}
 	},
@@ -2924,7 +2952,7 @@
 		},
 		"pcl:NarberalGamma":
 		{
-			"DESCRIPTION": "Channel !M! [~Lightning]. [~Lightning] hits ALL enemies this turn. || <SLM>: Apply !S! [Electrified] per <L> or <D> card in hand (!X!).",
+			"DESCRIPTION": "Channel !M! [~Lightning]. [~Lightning] hits ALL enemies this turn. || Apply !S! [Electrified] per <L> or <D> card in hand (!X!).",
 			"NAME": "Narberal Gamma"
 		},
 		"pcl:PandorasActor":
@@ -3082,7 +3110,7 @@
 		},
 		"pcl:Millim":
 		{
-			"DESCRIPTION": "Deal +!M! damage per debuff on the enemy. Apply !S! [Burning] and [Poison]. || Pay !A! <W>: Gain a random ** {<W> Power} !M! times",
+			"DESCRIPTION": "Deal +!M! damage per debuff on the enemy. ** Apply !S! [Burning] and [Poison]. || Pay !A! <W>: Gain a random ** {<W> Power} !M! times",
 			"NAME": "Millim Nava"
 		},
 		"pcl:Ramiris":
@@ -3107,7 +3135,7 @@
 		},
 		"pcl:Shizu":
 		{
-			"DESCRIPTION": "Gain !M! [Burning Weapon]. || If you have [~Dark] and [Fire], ** Pay !A! <R>: Exhaust, then obtain {Ifrit} and Retain it.",
+			"DESCRIPTION": "Apply [Weak]. Gain !M! [Burning Weapon]. || If you have [~Dark] and [Fire], ** Pay !A! <R>: Exhaust, then obtain {Ifrit} and Retain it.",
 			"NAME": "Shizu"
 		},
 		"pcl:Shizu_Ifrit":
@@ -3118,7 +3146,7 @@
 		},
 		"pcl:Shuna":
 		{
-			"DESCRIPTION": "<DRW-M>. ** Pay !A! <L>: Draw +1. || <SLM>. When Drawn: Gain !S! [THP].",
+			"DESCRIPTION": "<DRW-S>. ** Pay !A! <L>: Draw +1. || <SLM>. When Drawn: Gain !S! [THP].",
 			"NAME": "Shuna"
 		},
 		"pcl:Souei":
@@ -3495,7 +3523,8 @@
 		"pcl:HolyGrail":
 		{
 			"DESCRIPTION": "<DRW-M>. ** Refill your [E]. ** Lose !S! Max [HP]. || If you end the combat ** with this card in hand: ** Gain 2 Max [HP].",
-			"NAME": "The Grail"
+			"EXTENDED_DESCRIPTION": ["<DRW-M>. ** Refill your [E].","Obtain {0} Command Spells.","Obtain a random Rare {Fate} card that costs 1 less."],
+			"NAME": "The Holy Grail"
 		},
 		"pcl:JeanneDArc":
 		{

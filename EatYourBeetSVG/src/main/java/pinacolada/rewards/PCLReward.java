@@ -61,15 +61,19 @@ public abstract class PCLReward extends CustomReward
         super(rewardImage, text, type);
     }
 
-    public ArrayList<AbstractCard> GenerateCardReward(CardSeries series)
+    public ArrayList<AbstractCard> GenerateCardReward(CardSeries series) {
+        return GenerateCardReward(series, AbstractDungeon.srcCommonCardPool, AbstractDungeon.srcUncommonCardPool, AbstractDungeon.srcRareCardPool);
+    }
+
+    public ArrayList<AbstractCard> GenerateCardReward(CardSeries series, CardGroup... groups)
     {
         final RewardContext context = new RewardContext(series);
         final WeightedList<AbstractCard> randomPool = new WeightedList<>();
         if (series != null && series != CardSeries.COLORLESS)
         {
-            AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
-            AddCards(AbstractDungeon.srcUncommonCardPool, randomPool, context);
-            AddCards(AbstractDungeon.srcRareCardPool, randomPool, context);
+            for (CardGroup cg : groups) {
+                AddCards(cg, randomPool, context);
+            }
         }
         else
         {

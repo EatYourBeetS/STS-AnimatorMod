@@ -40,6 +40,7 @@ public class MakiseKurisu extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetEthereal(false);
     }
 

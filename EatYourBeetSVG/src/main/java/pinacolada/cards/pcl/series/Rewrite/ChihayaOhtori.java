@@ -62,7 +62,7 @@ public class ChihayaOhtori extends PCLCard
     {
         PCLActions.Top.FetchFromPile(name, 1, player.discardPile)
         .SetOptions(false, false)
-        .SetFilter(c -> (c instanceof PCLCard && ((PCLCard) c).affinities.GetLevel(PCLAffinity.Orange) > 0))
+        .SetFilter(c -> (c instanceof PCLCard && ((PCLCard) c).affinities.GetLevel(PCLAffinity.Orange) > 0 && !cardID.equals(c.cardID)))
         .AddCallback(cards ->
         {
             if (cards.size() > 0)

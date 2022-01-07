@@ -34,6 +34,7 @@ public class NaoTomori extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetRetain(true);
     }
 

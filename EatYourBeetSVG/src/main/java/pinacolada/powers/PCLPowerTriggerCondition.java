@@ -74,6 +74,13 @@ public class PCLPowerTriggerCondition
         return this;
     }
 
+    public PCLPowerTriggerCondition SetAffinities(PCLAffinity... affinities)
+    {
+        this.affinities = affinities;
+
+        return this;
+    }
+
     public PCLPowerTriggerCondition AddUses(int uses)
     {
         if (HasInfiniteUses())

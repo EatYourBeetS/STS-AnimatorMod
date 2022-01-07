@@ -60,6 +60,12 @@
 		"FLAVOR": "The colors are slowly fading away...",
 		"NAME": "Colorless Fragment"
 	},
+	"pcl:ConcertsFinalHour":
+	{
+	  "DESCRIPTIONS": ["When you would die: Heal #b50% of your Max. [HP] instead and disable this relic. If you clear Act #b1 without dying: Add #b1 of #b3 #yUncommon or #yRare cards from your chosen series to your deck, then disable this relic."],
+	  "FLAVOR": "The tune becomes deeper with the passage of time.",
+	  "NAME": "Concert's Final Hour"
+	},
 	"pcl:CrumblingOrb":
 	{
 		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform #b{0} out of #b{1} random cards in your deck."],

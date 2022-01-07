@@ -123,6 +123,10 @@ public abstract class AffinityToken extends PCLCard implements OnTrySpendAffinit
         SetRetain(true);
     }
 
+    public PCLAffinity GetAffinity() {
+        return affinity;
+    }
+
     public void OnUpgrade() {
         SetHarmonic(true);
         SetPermanentHaste(true);

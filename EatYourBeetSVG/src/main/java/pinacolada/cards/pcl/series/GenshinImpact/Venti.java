@@ -51,12 +51,10 @@ public class Venti extends PCLCard
             if (form == 1) {
                 Initialize(0, 1, 2, 2);
                 SetUpgrade(0, 0, 0, 0);
-                upgradedDamage = true;
             }
             else {
                 Initialize(0, 1, 3, 2);
                 SetUpgrade(0, 0, 0, 0);
-                SetHaste(true);
             }
         }
         return super.SetForm(form, timesUpgraded);

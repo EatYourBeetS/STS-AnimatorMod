@@ -56,12 +56,6 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     };
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetEvokeOrbCount(magicNumber);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);

@@ -62,7 +62,7 @@ public class Suigintou extends PCLCard implements OnPurgeSubscriber
         PCLActions.Bottom.ChannelOrbs(Dark::new, secondaryValue).AddCallback(() -> {
             for (AbstractOrb orb : player.orbs) {
                 if (Dark.ORB_ID.equals(orb.ID)) {
-                    PCLGameUtilities.ModifyOrbFocus(orb, magicNumber + PCLGameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);
+                    PCLGameUtilities.ModifyOrbBaseFocus(orb, magicNumber + PCLGameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);
                 }
             }
             PCLActions.Bottom.TriggerOrbPassive(PCLJUtils.Count(player.hand.group, PCLGameUtilities::IsHindrance)).SetFilter(o -> Dark.ORB_ID.equals(o.ID));

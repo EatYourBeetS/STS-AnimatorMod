@@ -110,7 +110,7 @@ public class CustomCardLibSortHeader extends CardLibSortHeader
     @Override
     public void setGroup(CardGroup group)
     {
-        GR.UI.CardFilters.Clear(false);
+        GR.UI.CardFilters.Clear(false, true);
         if (this.group != null && this.originalGroup != null) {
             this.group.group = this.originalGroup;
         }

@@ -26,7 +26,7 @@ public class CardAmountComparator implements Comparator<AbstractCard>
         return ascending ? (a - b) : (b - a);
     }
 
-    public int CalculateRank(AbstractCard card)
+    public static int CalculateRank(AbstractCard card)
     {
         PCLCard c = PCLJUtils.SafeCast(card, PCLCard.class);
         int parsedValue = c != null ?

@@ -37,7 +37,7 @@ public class SorceryPower extends PCLPower implements OnChannelOrbSubscriber
 
     @Override
     public void OnChannelOrb(AbstractOrb orb) {
-        PCLGameUtilities.ModifyOrbFocus(orb, amount, true, false);
+        PCLGameUtilities.ModifyOrbBaseFocus(orb, amount, true, false);
         RemovePower();
     }
 }

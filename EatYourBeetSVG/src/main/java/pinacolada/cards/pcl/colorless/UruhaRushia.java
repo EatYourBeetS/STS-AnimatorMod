@@ -15,6 +15,7 @@ import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class UruhaRushia extends PCLCard implements OnOrbApplyFocusSubscriber
 {
@@ -73,8 +74,7 @@ public class UruhaRushia extends PCLCard implements OnOrbApplyFocusSubscriber
     public void OnApplyFocus(AbstractOrb orb) {
         int index = player.orbs.indexOf(orb);
         if (player.hand.contains(this) && index == 0) {
-            orb.passiveAmount += magicNumber;
-            orb.evokeAmount += magicNumber;
+            PCLGameUtilities.ModifyOrbTemporaryFocus(orb, magicNumber, true, false);
         }
     }
 

@@ -29,7 +29,7 @@ public class Shion extends PCLCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Orange, 6);
+        SetAffinityRequirement(PCLAffinity.Orange, 5);
     }
 
     @Override

@@ -29,6 +29,15 @@ public class Chongyun extends PCLCard
     }
 
     @Override
+    public void OnDrag(AbstractMonster m) {
+        super.OnDrag(m);
+
+        if (m != null) {
+            PCLGameUtilities.GetPCLIntent(m).AddFreezing();
+        }
+    }
+
+    @Override
     public int GetXValue() {
         return magicNumber + PCLGameUtilities.GetOrbCount(Frost.ORB_ID);
     }

@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.WeightedList;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
-public abstract class AbstractMysteryCard extends PCLCard
+public abstract class AbstractMysteryCard extends PCLCard implements Hidden
 {
     public CardRarity[] rarities;
 

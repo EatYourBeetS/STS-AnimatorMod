@@ -73,7 +73,7 @@ public class Victim extends PCLCard
 
         @Override
         public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-            if (damageAmount > 1 && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
+            if (damageAmount > 0 && info.type == DamageInfo.DamageType.NORMAL || info.type == DamageInfo.DamageType.THORNS) {
                 if (player.currentHealth <= damageAmount && damageAmount <= this.amount && CombatStats.TryActivateLimited(Victim.DATA.ID)) {
                     this.amount -= damageAmount;
                     damageAmount = 0;

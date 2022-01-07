@@ -9,6 +9,7 @@ import pinacolada.orbs.pcl.Air;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class AyaShameimaru extends PCLCard
 {
@@ -84,15 +85,15 @@ public class AyaShameimaru extends PCLCard
             int index = player.orbs.indexOf(orb);
             if (index >= 0) {
                 if (index + 1 < player.filledOrbCount() && Air.ORB_ID.equals(player.orbs.get(index + 1).ID)) {
-                    orb.passiveAmount += amount;
-                    orb.evokeAmount += amount;
+                    PCLGameUtilities.ModifyOrbTemporaryFocus(orb, amount, true, false);
                 }
                 if (index - 1 >= 0 && Air.ORB_ID.equals(player.orbs.get(index - 1).ID)) {
-                    orb.passiveAmount += amount;
-                    orb.evokeAmount += amount;
+                    PCLGameUtilities.ModifyOrbTemporaryFocus(orb, amount, true, false);
                 }
             }
         }
+
+
     }
 }
 

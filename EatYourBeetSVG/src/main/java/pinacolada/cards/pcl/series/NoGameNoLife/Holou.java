@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.BlueCandle;
+import com.megacrit.cardcrawl.relics.MedicalKit;
 import eatyourbeets.interfaces.subscribers.OnCardCreatedSubscriber;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -63,18 +64,11 @@ public class Holou extends PCLCard
         @Override
         public void onInitialApplication()
         {
-            final ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
-            cards.addAll(player.hand.group);
-            cards.addAll(player.discardPile.group);
-            cards.addAll(player.exhaustPile.group);
-
-            for (AbstractCard c : cards)
-            {
-                OnCardCreated(c, true);
-            }
+            CheckCards();
             PCLCombatStats.onCardCreated.Subscribe(this);
             PCLCombatStats.onShuffle.Subscribe(this);
             CombatStats.SetCombatData(BlueCandle.ID, true);
+            CombatStats.SetCombatData(MedicalKit.ID, true);
         }
 
         @Override
@@ -83,6 +77,7 @@ public class Holou extends PCLCard
             PCLCombatStats.onCardCreated.Unsubscribe(this);
             PCLCombatStats.onShuffle.Unsubscribe(this);
             CombatStats.SetCombatData(BlueCandle.ID, false);
+            CombatStats.SetCombatData(MedicalKit.ID, false);
         }
 
         @Override
@@ -101,11 +96,33 @@ public class Holou extends PCLCard
         @Override
         public void OnShuffle(boolean triggerRelics)
         {
-            PCLActions.Last.MakeCardInDrawPile(new Curse_Doubt());
+            PCLActions.Last.MakeCardInDrawPile(new Curse_Doubt())
+                    .AddCallback(c -> {
+                        if (c instanceof PCLCard) {
+                            ((PCLCard) c).SetUnplayable(false);
+                        }
+                    });
         }
 
         @Override
         public void OnCardCreated(AbstractCard card, boolean startOfBattle) {
+            ModifyCard(card, startOfBattle);
+            CheckCards();
+        }
+
+        protected void CheckCards() {
+            final ArrayList<AbstractCard> cards = new ArrayList<>(player.drawPile.group);
+            cards.addAll(player.hand.group);
+            cards.addAll(player.discardPile.group);
+            cards.addAll(player.exhaustPile.group);
+
+            for (AbstractCard c : cards)
+            {
+                ModifyCard(c, false);
+            }
+        }
+
+        protected void ModifyCard(AbstractCard card, boolean startOfBattle) {
             if (PCLGameUtilities.IsHindrance(card) && card instanceof PCLCard) {
                 PCLActions.Last.ModifyAllInstances(card.uuid, c -> ((PCLCard)c).SetUnplayable(false));
             }

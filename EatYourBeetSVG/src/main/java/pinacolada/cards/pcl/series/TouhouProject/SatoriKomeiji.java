@@ -24,9 +24,9 @@ public class SatoriKomeiji extends PCLCard
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {
-                data.AddPreview(new FakeAbstractCard(new Nirvana()), false);
+                data.AddPreview(new ReplacementCardBuilder(new Nirvana(), true).Build(), false);
             });
-    public static final PCLCardPreview MENTAL_FORTRESS = new PCLCardPreview(new FakeAbstractCard(new MentalFortress()), false);
+    public static final PCLCardPreview MENTAL_FORTRESS = new PCLCardPreview(new ReplacementCardBuilder(new MentalFortress(), true).Build(), false);
 
     public SatoriKomeiji()
     {

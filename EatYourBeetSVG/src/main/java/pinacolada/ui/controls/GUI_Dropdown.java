@@ -22,10 +22,7 @@ import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.ui.hitboxes.RelativeHitbox;
 import pinacolada.utilities.PCLJUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 
 public class GUI_Dropdown<T> extends GUIElement
 {
@@ -141,11 +138,15 @@ public class GUI_Dropdown<T> extends GUIElement
         this.currentIndices.clear();
         this.rows.clear();
         for (int i = 0; i < options.size(); i++) {
-            rows.add(new DropdownRow<>(new RelativeHitbox(hb, hb.width, this.rowHeight, 0f, 0, false).SetIsPopupCompatible(true), options.get(i), labelFunction, font, fontScale, i).SetIsMultiSelect(isMultiSelect));
+            rows.add(new DropdownRow<T>(new RelativeHitbox(hb, hb.width, this.rowHeight, 0f, 0, false).SetIsPopupCompatible(true), options.get(i), labelFunction, font, fontScale, i).SetIsMultiSelect(isMultiSelect));
         }
         Autosize();
 
         return this;
+    }
+
+    public GUI_Dropdown<T> SetItems(Collection<T> options) {
+        return SetItems(new ArrayList<>(options));
     }
 
     public GUI_Dropdown<T> SetLabelFunctionForButton(FuncT1<String, List<T>> labelFunctionButton, FuncT1<Color, List<T>> colorFunctionButton, boolean isSmartText) {
@@ -242,6 +243,23 @@ public class GUI_Dropdown<T> extends GUIElement
         for (int i = 0; i < rows.size(); i++) {
             if (selection.contains(rows.get(i).item)) {
                 currentIndices.add(i);
+            }
+        }
+        updateForSelection(shouldInvoke);
+        return this;
+    }
+
+    public GUI_Dropdown<T> ToggleSelection(T selection, boolean value, boolean shouldInvoke) {
+        for (int i = 0; i < rows.size(); i++) {
+            if (selection.equals(rows.get(i).item)) {
+                if (value && !currentIndices.contains(i)) {
+                    currentIndices.add(i);
+                }
+                else if (!value) {
+                    currentIndices.remove(i);
+                }
+
+                break;
             }
         }
         updateForSelection(shouldInvoke);

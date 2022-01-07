@@ -30,6 +30,7 @@ public class SakuraKinomoto extends PCLCard
         SetUpgrade(2, 0, 0, 1);
 
         SetAffinity_Blue(1, 0, 4);
+        SetAffinity_Light(1, 0, 1);
 
         SetExhaust(true);
     }

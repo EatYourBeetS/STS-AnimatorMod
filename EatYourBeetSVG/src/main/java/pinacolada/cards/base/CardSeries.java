@@ -90,7 +90,12 @@ public class CardSeries
     public final static CardSeries EurekaSeven = Add(74, "EurekaSeven");
     public final static CardSeries EightySix = Add(75, "EightySix");
     public final static CardSeries Nier = Add(76, "Nier");
-    public final static CardSeries LaidBackCamp = Add(77, "LaidBackCamp");
+    public final static CardSeries Megaman = Add(77, "Megaman");
+    public final static CardSeries HaruhiSuzumiya = Add(78, "HaruhiSuzumiya");
+    public final static CardSeries Hyouka = Add(79, "Hyouka");
+    public final static CardSeries Aria = Add(80, "Aria");
+    public final static CardSeries LaidBackCamp = Add(81, "LaidBackCamp");
+
 
     private static AbstractCard currentSynergy = null;
     private static PCLCard lastCardPlayed = null;

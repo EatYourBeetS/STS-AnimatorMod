@@ -63,6 +63,7 @@ public class Nirvash extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetEthereal(false);
         SetHaste(true);
     }

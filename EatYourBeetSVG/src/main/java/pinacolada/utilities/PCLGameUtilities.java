@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundFi
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -41,6 +42,7 @@ import pinacolada.stances.PCLStance;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.actionManager;
@@ -52,6 +54,9 @@ public class PCLGameUtilities extends GameUtilities
     private static final ArrayList<PCLPowerHelper> commonBuffs = new ArrayList<>();
     private static final ArrayList<PCLPowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
+    private static final RandomizedList<AbstractCard> fullCardPool = new RandomizedList<>();
+    private static final RandomizedList<AbstractCard> characterCardPool = new RandomizedList<>();
+    private static AbstractPlayer.PlayerClass lastPlayerClass;
 
     public static void AddAffinity(PCLAffinity affinity, int amount) {
         AddAffinity(affinity, amount, true);
@@ -246,6 +251,16 @@ public class PCLGameUtilities extends GameUtilities
         ModifySecondaryValue(card, Math.max(0, card.baseSecondaryValue - amount), temporary);
     }
 
+    public static int GetAffinityCount(PCLAffinity affinity)
+    {
+        return PCLCombatStats.MatchingSystem.GetAffinityLevel(affinity, true);
+    }
+
+    public static PCLAffinity GetCurrentAffinity()
+    {
+        return PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentAffinity();
+    }
+
     public static int GetCurrentMatchCombo()
     {
         return PCLCombatStats.MatchingSystem.AffinityMeter.GetCurrentMatchCombo();
@@ -267,6 +282,11 @@ public class PCLGameUtilities extends GameUtilities
     public static int GetGold()
     {
         return player != null ? player.gold : 0;
+    }
+
+    public static PCLAffinity GetNextAffinity()
+    {
+        return PCLCombatStats.MatchingSystem.AffinityMeter.GetNextAffinity();
     }
 
     public static PCLCardTooltip GetOrbTooltip(AbstractOrb orb)
@@ -304,7 +324,7 @@ public class PCLGameUtilities extends GameUtilities
     }
 
     public static PCLCardData GetPCLCardReplacement(String cardID) {
-        return PCLCardLibraryPatches.GetReplacement(cardID);
+        return PCLCardLibraryPatches.GetStandardReplacement(cardID);
     }
 
     public static PCLCard GetPCLCardReplacement(String cardID, boolean upgraded) {
@@ -345,6 +365,11 @@ public class PCLGameUtilities extends GameUtilities
     public static boolean HasDarkAffinity(AbstractCard card)
     {
         return GetPCLAffinityLevel(card, PCLAffinity.Dark, true) > 0;
+    }
+
+    public static boolean HasSilverAffinity(AbstractCard card)
+    {
+        return GetPCLAffinityLevel(card, PCLAffinity.Silver, true) > 0;
     }
 
     public static boolean HasMulticolorAffinity(AbstractCard card)
@@ -388,6 +413,18 @@ public class PCLGameUtilities extends GameUtilities
         }
 
         return result;
+    }
+
+    public static ArrayList<PCLAffinity> GetHighestAffinities()
+    {
+        int highestCount = PCLJUtils.Max(Arrays.asList(PCLAffinity.Extended()), PCLGameUtilities::GetAffinityCount);
+        ArrayList<PCLAffinity> maxes = new ArrayList<>();
+        for (PCLAffinity af : PCLAffinity.Extended()) {
+            if (GetAffinityCount(af) >= highestCount) {
+                maxes.add(af);
+            }
+        }
+        return maxes;
     }
 
     public static int GetOrbBaseEvokeAmount(AbstractOrb orb) {
@@ -501,22 +538,47 @@ public class PCLGameUtilities extends GameUtilities
     // TODO make dynamic replacements for non-PCL cards
     public static AbstractCard GetAnyColorCardFiltered(AbstractCard.CardRarity rarity, AbstractCard.CardType type, boolean allowHealing)
     {
+        RefreshCardLists();
         // Exclude Animator and PCL cards from the prismatic shard pool when playing as the opposite class
-        boolean isAnimator = PCLGameUtilities.IsPlayerClass(eatyourbeets.resources.GR.Animator.PlayerClass);
-        boolean isPCL = PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass);
-        RandomizedList<AbstractCard> cardPool = new RandomizedList<>();
-        for (AbstractCard c : CardLibrary.cards.values()) {
-            if ((Settings.treatEverythingAsUnlocked() || !UnlockTracker.isCardLocked(c.cardID)) &&
-                    (allowHealing || PCLGameUtilities.IsObtainableInCombat(c)) &&
-                    (rarity == null || c.rarity == rarity) &&
-                    ((type == null && !PCLGameUtilities.IsHindrance(c)) || c.type == type) &&
-                    !(isAnimator && c instanceof PCLCard) &&
-                    !(isPCL && c instanceof AnimatorCard))
-                        {
-                            cardPool.Add(c);
-                        }
+        if (fullCardPool.Size() == 0) {
+            boolean isAnimator = PCLGameUtilities.IsPlayerClass(eatyourbeets.resources.GR.Animator.PlayerClass);
+            boolean isPCL = PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass);
+            RandomizedList<AbstractCard> cardPool = new RandomizedList<>();
+            for (AbstractCard c : CardLibrary.cards.values()) {
+                if ((Settings.treatEverythingAsUnlocked() || !UnlockTracker.isCardLocked(c.cardID)) &&
+                        (allowHealing || PCLGameUtilities.IsObtainableInCombat(c)) &&
+                        (rarity == null || c.rarity == rarity) &&
+                        ((type == null && !PCLGameUtilities.IsHindrance(c)) || c.type == type) &&
+                        !(isAnimator && c instanceof PCLCard) &&
+                        !(isPCL && c instanceof AnimatorCard))
+                {
+                    fullCardPool.Add(c);
+                }
+            }
         }
-        return cardPool.Retrieve(GetRNG());
+
+        return fullCardPool.Retrieve(GetRNG());
+    }
+
+    public static AbstractCard GetRandomCard()
+    {
+        RefreshCardLists();
+        if (characterCardPool.Size() == 0) {
+            for (AbstractCard c : PCLGameUtilities.GetAvailableCards())
+            {
+                if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS)
+                {
+                    if (!c.tags.contains(VOLATILE)
+                            && !c.tags.contains(AbstractCard.CardTags.HEALING)
+                            && c.rarity != AbstractCard.CardRarity.BASIC)
+                    {
+                        characterCardPool.Add((PCLCard)c);
+                    }
+                }
+            }
+        }
+
+        return characterCardPool.Retrieve(GetRNG());
     }
 
     public static AbstractOrb GetRandomCommonOrb() {
@@ -776,6 +838,13 @@ public class PCLGameUtilities extends GameUtilities
     public static void IncreaseHitCount(PCLCard card, int amount, boolean temporary)
     {
         ModifyHitCount(card, card.baseHitCount + amount, temporary);
+    }
+
+    public static boolean IsAffinityHighest(PCLAffinity affinity)
+    {
+        int highestCount = PCLJUtils.Max(Arrays.asList(PCLAffinity.Extended()), PCLGameUtilities::GetAffinityCount);
+        int givenCount = GetAffinityCount(affinity);
+        return givenCount >= highestCount;
     }
 
     public static boolean IsAttacking(AbstractMonster.Intent intent)
@@ -1048,7 +1117,7 @@ public class PCLGameUtilities extends GameUtilities
     }
 
     public static void ModifyOrbBaseEvokeAmount(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
-        if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
+        if (canModifyNonFocusOrb || (CanOrbApplyFocus(orb) && CanOrbApplyFocusToEvoke(orb))) {
             ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
         }
 
@@ -1060,10 +1129,21 @@ public class PCLGameUtilities extends GameUtilities
         }
     }
 
-    public static void ModifyOrbFocus(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
+    public static void ModifyOrbBaseFocus(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
         if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
-            ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
+            if (canModifyNonFocusOrb || CanOrbApplyFocusToEvoke(orb)) {
+                ModifyOrbField(orb, "baseEvokeAmount", amount, isRelative);
+            }
             ModifyOrbField(orb, "basePassiveAmount", amount, isRelative);
+        }
+    }
+
+    public static void ModifyOrbTemporaryFocus(AbstractOrb orb, int amount, boolean isRelative, boolean canModifyNonFocusOrb) {
+        if (canModifyNonFocusOrb || CanOrbApplyFocus(orb)) {
+            orb.passiveAmount = isRelative ? orb.passiveAmount + amount : amount;
+            if (canModifyNonFocusOrb || CanOrbApplyFocusToEvoke(orb)) {
+                orb.evokeAmount = isRelative ? orb.evokeAmount + amount : amount;
+            }
         }
     }
 
@@ -1147,6 +1227,14 @@ public class PCLGameUtilities extends GameUtilities
                 relic.flash();
                 relic.stopPulse();
             }
+        }
+    }
+
+    protected static void RefreshCardLists() {
+        if (lastPlayerClass == null || (AbstractDungeon.player != null && lastPlayerClass != AbstractDungeon.player.chosenClass)) {
+            lastPlayerClass = AbstractDungeon.player != null ? AbstractDungeon.player.chosenClass : null;
+            fullCardPool.Clear();
+            characterCardPool.Clear();
         }
     }
 }

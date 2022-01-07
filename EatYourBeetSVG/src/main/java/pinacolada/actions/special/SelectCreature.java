@@ -128,6 +128,11 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
+    public SelectCreature IsCancellable(boolean cancellable) {
+        this.canCancel = cancellable;
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {

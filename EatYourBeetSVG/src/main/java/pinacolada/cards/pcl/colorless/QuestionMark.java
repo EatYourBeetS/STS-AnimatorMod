@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.colorless;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -17,7 +18,7 @@ public class QuestionMark extends PCLCard implements OnStartOfTurnSubscriber
             .SetSkill(-2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.ALL)
             .SetColor(CardColor.COLORLESS);
 
-    public PCLCard copy = null;
+    public AbstractCard copy = null;
 
     public QuestionMark()
     {

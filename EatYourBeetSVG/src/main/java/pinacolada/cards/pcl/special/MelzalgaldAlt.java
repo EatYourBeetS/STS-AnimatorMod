@@ -1,15 +1,9 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.Colors;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.attributes.HPAttribute;
 import pinacolada.cards.pcl.series.OnePunchMan.Melzalgald;
-import pinacolada.utilities.PCLGameUtilities;
 
 public abstract class MelzalgaldAlt extends PCLCard
 {
@@ -26,19 +20,5 @@ public abstract class MelzalgaldAlt extends PCLCard
 
         SetRetainOnce(true);
         SetExhaust(true);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return heal <= 0 ? null : HPAttribute.Instance.SetCard(this, false).SetText(new ColoredString(heal, Colors.Cream(1f)));
-    }
-
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        this.heal = PCLGameUtilities.GetHealthRecoverAmount(secondaryValue);
     }
 }

@@ -42,6 +42,7 @@ public abstract class PCLCardBase extends EYBCardBase
     public static boolean canCropPortraits = true;
     public static AbstractPlayer player = null;
 
+    public boolean showTypeText = true;
     public boolean isHitCountModified = false;
     public boolean upgradedCooldownValue = false;
     public boolean upgradedHitCount = false;
@@ -51,6 +52,7 @@ public abstract class PCLCardBase extends EYBCardBase
     public int baseHitCount = 1;
 
     public PCLCardCooldown cooldown;
+    protected TextureAtlas.AtlasRegion fakePortrait;
     protected AdvancedTexture portraitImg;
     protected AdvancedTexture portraitForeground;
     protected final ArrayList<PCLCardGlowBorderEffect> glowList = new ArrayList<>();
@@ -203,11 +205,14 @@ public abstract class PCLCardBase extends EYBCardBase
     @SpireOverride
     protected void renderType(SpriteBatch sb)
     {
-        BitmapFont font = EYBFontHelper.CardIconFont_Small;
-        Color color = Color.WHITE.cpy();//_typeColor.Get(this);
-        color.a = _renderColor.Get(this).a;
-        font.getData().setScale(drawScale * 0.9f);
-        FontHelper.renderRotatedText(sb, font, GetTypeText(), current_x, current_y - 22.0f * drawScale * Settings.scale, 0.0F, -1.0F * this.drawScale * Settings.scale, angle, false, color);
+        if (showTypeText) {
+            BitmapFont font = EYBFontHelper.CardIconFont_Small;
+            Color color = Color.WHITE.cpy();//_typeColor.Get(this);
+            color.a = _renderColor.Get(this).a;
+            font.getData().setScale(drawScale * 0.9f);
+            FontHelper.renderRotatedText(sb, font, GetTypeText(), current_x, current_y - 22.0f * drawScale * Settings.scale, 0.0F, -1.0F * this.drawScale * Settings.scale, angle, false, color);
+            pinacolada.utilities.PCLRenderHelpers.ResetFont(font);
+        }
     }
 
     @SpireOverride
@@ -324,6 +329,11 @@ public abstract class PCLCardBase extends EYBCardBase
         if (!isSeen || isLocked)
         {
             RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false, false, false);
+            return;
+        }
+
+        if (fakePortrait != null) {
+            pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, fakePortrait, new Vector2(0, 72), fakePortrait.getRegionWidth(), fakePortrait.getRegionHeight(), Color.WHITE.cpy(), transparency, 1f);
             return;
         }
 

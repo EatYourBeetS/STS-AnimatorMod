@@ -13,10 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.BlueCandle;
-import com.megacrit.cardcrawl.relics.OddMushroom;
-import com.megacrit.cardcrawl.relics.PaperCrane;
-import com.megacrit.cardcrawl.relics.PaperFrog;
+import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBPower;
@@ -57,7 +54,9 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
     }
 
     protected static final int PRIORITY = -3000;
+    private static final FieldInfo<Map<String, Object>> _combatDataGetter = PCLJUtils.GetField("combatData", CombatStats.class);
     private static final FieldInfo<ArrayList<GameEvent<?>>> _eventsGetter = PCLJUtils.GetField("events", CombatStats.class);
+    private static final FieldInfo<Map<String, Object>> _turnDataGetter = PCLJUtils.GetField("turnData", CombatStats.class);
     public static final String POWER_ID = GR.PCL.CreateID(CombatStats.class.getSimpleName());
 
     public static final ArrayList<GameEvent<?>> events = _eventsGetter.Get(null);
@@ -161,6 +160,14 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         AddEffectBonus(VulnerablePower.POWER_ID, PCLGameUtilities.HasRelicEffect(PaperFrog.ID) ? 25 : 0);
         AddEffectBonus(WeakPower.POWER_ID, PCLGameUtilities.HasRelicEffect(PaperCrane.ID) ? 15 : 0);
         AddPlayerEffectBonus(VulnerablePower.POWER_ID, PCLGameUtilities.HasRelicEffect(OddMushroom.ID) ? -25 : 0);
+    }
+
+    public static int GetLimitedActivations(String id) {
+        return (int) _combatDataGetter.Get(CombatStats.Instance).getOrDefault(id, 0);
+    }
+
+    public static int GetSemiLimitedActivations(String id) {
+        return (int) _turnDataGetter.Get(CombatStats.Instance).getOrDefault(id, 0);
     }
 
     public static void RefreshPCL()
@@ -422,7 +429,8 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
             return false;
         }
 
-        if (PCLGameUtilities.HasRelicEffect(BlueCandle.ID) && card.type == AbstractCard.CardType.CURSE) {
+        if ((PCLGameUtilities.HasRelicEffect(BlueCandle.ID) && card.type == AbstractCard.CardType.CURSE) ||
+                (PCLGameUtilities.HasRelicEffect(MedicalKit.ID) && card.type == AbstractCard.CardType.STATUS)) {
             canPlay = true;
         }
 

@@ -25,15 +25,15 @@ import java.util.HashMap;
 public class Merlin extends PCLCard
 {
     protected enum MerlinEffect {
-        Air(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Swirled, true), (c, p, m) -> PCLActions.Bottom.StackPower(player, new SwirledPower(m, 2))),
-        Chaos(GR.PCL.Strings.Actions.ChannelRandomOrbs(1, true), (c, p, m) -> PCLActions.Bottom.ChannelRandomOrbs(1)),
-        Dark(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Constricted, true), (c, p, m) -> PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), 2)),
-        Earth(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Normal(m), 2)),
-        Fire(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), 2)),
-        Frost(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Freezing, true), (c, p, m) -> PCLActions.Bottom.ApplyFreezing(TargetHelper.Normal(m), 2)),
-        Lightning(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Electrified, true), (c, p, m) -> PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(m), 2)),
-        Plasma(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Energized, true), (c, p, m) -> PCLActions.Bottom.GainEnergyNextTurn(1)),
-        Water(GR.PCL.Strings.Actions.GainAmount(3, GR.Tooltips.TempHP, true), (c, p, m) -> PCLActions.Bottom.GainTemporaryHP(3));
+        Air(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Swirled, true), (c, p, m) -> PCLActions.Delayed.StackPower(player, new SwirledPower(m, 2))),
+        Chaos(GR.PCL.Strings.Actions.ChannelRandomOrbs(1, true), (c, p, m) -> PCLActions.Delayed.ChannelRandomOrbs(1)),
+        Dark(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Constricted, true), (c, p, m) -> PCLActions.Delayed.ApplyConstricted(TargetHelper.Normal(m), 2)),
+        Earth(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Delayed.ApplyWeak(TargetHelper.Normal(m), 2)),
+        Fire(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Delayed.ApplyBurning(TargetHelper.Normal(m), 2)),
+        Frost(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Freezing, true), (c, p, m) -> PCLActions.Delayed.ApplyFreezing(TargetHelper.Normal(m), 2)),
+        Lightning(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Electrified, true), (c, p, m) -> PCLActions.Delayed.ApplyElectrified(TargetHelper.Normal(m), 2)),
+        Plasma(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Energized, true), (c, p, m) -> PCLActions.Delayed.GainEnergyNextTurn(1)),
+        Water(GR.PCL.Strings.Actions.GainAmount(3, GR.Tooltips.TempHP, true), (c, p, m) -> PCLActions.Delayed.GainTemporaryHP(3));
 
         private final String text;
         private final ActionT3<PCLCard, AbstractPlayer, AbstractMonster> action;
@@ -65,7 +65,7 @@ public class Merlin extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 1, 0);
+        Initialize(0, 1, 1, 3);
         SetExhaust(true);
 
         SetAffinity_Blue(1, 0, 2);
@@ -88,6 +88,12 @@ public class Merlin extends PCLCard
         initializeDescription();
     }
 
+    @Override
+    public boolean cardPlayable(AbstractMonster m)
+    {
+        return player.filledOrbCount() > 0;
+    }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -95,7 +101,7 @@ public class Merlin extends PCLCard
         PCLActions.Bottom.GainBlock(block);
 
         final AbstractOrb orb = PCLGameUtilities.GetFirstOrb(null);
-        if (orb != null)
+        if (PCLGameUtilities.IsValidOrb(orb))
         {
             if (upgraded) {
                 PCLActions.Bottom.EvokeOrb(1, orb);
@@ -116,7 +122,7 @@ public class Merlin extends PCLCard
                         }
                     });
 
-            if (PCLGameUtilities.GetOrbCount(orb.ID) > secondaryValue) {
+            if (PCLGameUtilities.GetOrbCount(orb.ID) >= secondaryValue) {
                 PCLActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
                         .AddCallback(cards ->
                         {

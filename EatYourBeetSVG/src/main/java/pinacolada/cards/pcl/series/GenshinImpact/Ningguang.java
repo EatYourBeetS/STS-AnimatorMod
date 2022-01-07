@@ -39,7 +39,7 @@ public class Ningguang extends PCLCard
             PCLActions.Top.Add(new EarthOrbPassiveAction(next, -magicNumber));
             PCLActions.Bottom.Add(new EarthOrbEvokeAction(next, magicNumber));
             PCLActions.Delayed.Callback(() -> {
-               next.IncreaseBaseEvokeAmount(1);
+               next.SetBaseEvokeAmount(1, true);
                next.evokeAmount = next.GetBaseEvokeAmount();
             });
         }

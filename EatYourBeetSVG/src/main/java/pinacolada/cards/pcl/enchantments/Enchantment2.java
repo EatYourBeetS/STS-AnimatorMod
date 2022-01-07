@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.enchantments;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -17,6 +18,8 @@ public class Enchantment2 extends Enchantment
         super(DATA, INDEX);
 
         Initialize(0, 0, 3, 1);
+
+        triggerConditionType = PowerTriggerConditionType.Energy;
     }
 
     @Override
@@ -42,6 +45,11 @@ public class Enchantment2 extends Enchantment
         if (auxiliaryData.form == 7) {
             PCLActions.Bottom.AddAffinity(PCLGameUtilities.GetRandomElement(PCLAffinity.Extended()), magicNumber);
         }
+    }
+
+    @Override
+    public PCLAffinity[] GetAffinityList() {
+        return GetAffinity() != null ? new PCLAffinity[] {GetAffinity()} : super.GetAffinityList();
     }
 
     public PCLAffinity GetAffinity()

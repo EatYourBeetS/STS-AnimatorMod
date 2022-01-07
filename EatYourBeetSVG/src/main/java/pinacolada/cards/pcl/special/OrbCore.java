@@ -215,12 +215,8 @@ public abstract class OrbCore extends PCLCard
                     orb.passiveAmount += 1;
                     orb.evokeAmount += 1;
                 }
-                else if (!PCLGameUtilities.CanOrbApplyFocusToEvoke(orb)) {
-                    orb.passiveAmount += GetScaledIncrease();
-                }
-                else if (PCLGameUtilities.CanOrbApplyFocus(orb)){
-                    orb.passiveAmount += GetScaledIncrease();
-                    orb.evokeAmount += GetScaledIncrease();
+                else {
+                    PCLGameUtilities.ModifyOrbTemporaryFocus(orb, (int) GetScaledIncrease(), true, false);
                 }
             }
         }

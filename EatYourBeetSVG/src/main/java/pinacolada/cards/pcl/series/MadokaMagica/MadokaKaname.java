@@ -30,11 +30,11 @@ public class MadokaKaname extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 1, 3, 3);
+        SetUpgrade(0, 0, 1, 0);
 
         SetAffinity_Blue(1);
-        SetAffinity_Light(1);
+        SetAffinity_Light(1, 0, 1);
 
         SetHealing(true);
         SetPurge(true);
@@ -68,8 +68,9 @@ public class MadokaKaname extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.PurgeFromPile(name, magicNumber, p.exhaustPile, player.hand, player.discardPile, player.drawPile)
-        .ShowEffect(true, true)
+        .ShowEffect(false, false)
         .SetOptions(true, true)
         .SetFilter(c -> CardType.CURSE.equals(c.type))
         .AddCallback(cards ->

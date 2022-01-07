@@ -89,8 +89,7 @@ public class MissingPieceReward extends PCLReward
 
                 if (statistics != null)
                 {
-                    //TODO: Localization
-                    tooltip.description += " NL NL Possible Affinities:";
+                    tooltip.description += " NL NL " + GR.PCL.Strings.Rewards.PossibleAffinities + ":";
                     if (loadout != null)
                     {
                         tooltip.description += " NL ( " + GR.PCL.Strings.Rewards.RightClickPreview + " )";

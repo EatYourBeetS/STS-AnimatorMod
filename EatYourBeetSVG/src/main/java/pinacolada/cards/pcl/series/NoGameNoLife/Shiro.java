@@ -22,10 +22,11 @@ public class Shiro extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 3);
+        Initialize(0, 0, 5, 3);
         SetCostUpgrade(-1);
 
         SetAffinity_Blue(1, 0, 1);
+        SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1);
 
         SetProtagonist(true);
@@ -47,7 +48,7 @@ public class Shiro extends PCLCard
                         PCLActions.Bottom.TriggerOrbPassive(cards.size(), true, false);
                     }
 
-                    if (PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Blue) > 0 && PCLGameUtilities.TrySpendAffinityPower(PCLAffinity.Light, secondaryValue)) {
+                    if (PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Blue) > 0 && PCLGameUtilities.TrySpendAffinityPower(PCLAffinity.Light, magicNumber)) {
                         PCLGameUtilities.AddAffinityPowerUse(PCLAffinity.Blue, 1);
                     }
                 }

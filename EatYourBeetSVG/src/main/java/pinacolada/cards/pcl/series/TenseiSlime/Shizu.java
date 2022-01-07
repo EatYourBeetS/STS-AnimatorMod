@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.series.TenseiSlime;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Shizu_Ifrit;
 import pinacolada.effects.AttackEffects;
@@ -24,7 +25,7 @@ public class Shizu extends PCLCard
     {
         super(DATA);
 
-        Initialize(15, 0, 2, 2);
+        Initialize(14, 0, 2, 2);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
@@ -37,12 +38,12 @@ public class Shizu extends PCLCard
     public int SetForm(Integer form, int timesUpgraded) {
         if (timesUpgraded > 0) {
             if (form == 1) {
-                Initialize(15, 0, 2, 2);
+                Initialize(14, 0, 2, 2);
                 SetUpgrade(4, 0);
                 AddScaling(PCLAffinity.Red, 1);
             }
             else {
-                Initialize(15, 0, 2, 2);
+                Initialize(14, 0, 2, 2);
                 SetUpgrade(0, 0, 2, 0);
             }
         }
@@ -52,9 +53,10 @@ public class Shizu extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.StackPower(new BurningWeaponPower(p, magicNumber));
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE).forEach(d -> d
         .SetDamageEffect(c -> PCLGameEffects.List.Attack(player, c, AttackEffects.SLASH_DIAGONAL, 0.9f, 1.1f).duration));
+        PCLActions.Bottom.ApplyWeak(TargetHelper.Normal(m), 1);
+        PCLActions.Bottom.StackPower(new BurningWeaponPower(p, magicNumber));
 
         if (CheckSpecialCondition(true) && TrySpendAffinity(PCLAffinity.Red))
         {

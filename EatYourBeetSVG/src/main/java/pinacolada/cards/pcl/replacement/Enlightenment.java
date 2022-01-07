@@ -18,7 +18,7 @@ public class Enlightenment extends PCLCard
         super(DATA);
 
         Initialize(0, 0, 1);
-        SetUpgrade(0, 0, 0);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);

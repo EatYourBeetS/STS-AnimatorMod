@@ -49,7 +49,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         else
         {
             Initialize(0, 6, 2);
-            SetUpgrade(0, 2);
+            SetUpgrade(0, 3);
         }
 
         SetTag(CardTags.STARTER_DEFEND, true);

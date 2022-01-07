@@ -15,14 +15,17 @@ public class WingGundamZero extends PCLCard
     public static final PCLCardData DATA = Register(WingGundamZero.class)
             .SetSkill(2, CardRarity.RARE, EYBCardTarget.Self).SetColor(CardColor.COLORLESS)
             .SetMaxCopies(1)
-            .SetSeries(CardSeries.Gundam);
+            .SetSeries(CardSeries.Gundam)
+            .PostInitialize(data -> {data.AddPreview(new IonizingStorm(), false);
+            });
+
 
     public WingGundamZero()
     {
         super(DATA);
 
-        Initialize(0, 5, 7, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 5, 8, 8);
+        SetUpgrade(0, 0, 0, 0);
 
         SetAffinity_Silver(1, 0, 2);
         SetAffinity_Light(1, 0, 2);
@@ -40,8 +43,8 @@ public class WingGundamZero extends PCLCard
     {
         CardGroup[] groups = upgraded ? (new CardGroup[] {p.discardPile, p.drawPile, p.hand}) : (new CardGroup[] {p.hand});
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.SelectFromPile(name, 999, groups)
-                .SetOptions(false, false)
+        PCLActions.Bottom.SelectFromPile(name, magicNumber, groups)
+                .SetOptions(false, true)
                 .AddCallback((cards) -> {
                    for (AbstractCard c : cards) {
                        PCLCard pC = PCLJUtils.SafeCast(c, PCLCard.class);
@@ -50,11 +53,20 @@ public class WingGundamZero extends PCLCard
                            pC.maxUpgradeLevel += 1;
                        }
                    }
-                    if (cards.size() < secondaryValue && info.TryActivateLimited()) {
-                        AbstractCard c = new IonizingStorm();
-                        c.applyPowers();
-                        PCLActions.Bottom.PlayCopy(c, null);
-                    }
                 });
+
+        if (CheckSpecialCondition(true) && info.TryActivateLimited()) {
+            AbstractCard c = new IonizingStorm();
+            c.applyPowers();
+            PCLActions.Bottom.PlayCopy(c, null);
+        }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse){
+        int upgraded = PCLJUtils.Count(player.discardPile.group, c -> c.upgraded)
+                + PCLJUtils.Count(player.drawPile.group, c -> c.upgraded)
+                + PCLJUtils.Count(player.hand.group, c -> c.upgraded);
+        return upgraded >= secondaryValue;
     }
 }

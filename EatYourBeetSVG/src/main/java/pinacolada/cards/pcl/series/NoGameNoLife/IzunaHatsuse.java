@@ -2,6 +2,7 @@ package pinacolada.cards.pcl.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -28,7 +29,7 @@ public class IzunaHatsuse extends PCLCard
     {
         super(DATA);
 
-        Initialize(1, 0, 3, 1);
+        Initialize(1, 0, 2, 1);
         SetUpgrade(1, 1, 0);
 
         SetAffinity_Red(1);
@@ -45,6 +46,9 @@ public class IzunaHatsuse extends PCLCard
         if (m != null)
         {
             PCLGameUtilities.GetPCLIntent(m).AddWeak();
+            if (CombatStats.CanActivateSemiLimited(cardID) && PCLGameUtilities.GetHealthPercentage(player) < 0.2f) {
+                PCLGameUtilities.GetPCLIntent(m).AddStrength(-magicNumber);
+            }
         }
     }
 
@@ -64,7 +68,7 @@ public class IzunaHatsuse extends PCLCard
             PCLActions.Bottom.GainBlock(block);
         }
 
-        if (PCLGameUtilities.GetHealthPercentage(player) < 0.2f) {
+        if (PCLGameUtilities.GetHealthPercentage(player) < 0.2f && info.TryActivateSemiLimited()) {
             PCLActions.Bottom.ApplyShackles(TargetHelper.Normal(m), magicNumber);
         }
     }

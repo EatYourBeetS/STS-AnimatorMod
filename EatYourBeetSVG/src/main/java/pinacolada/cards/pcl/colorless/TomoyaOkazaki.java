@@ -5,9 +5,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class TomoyaOkazaki extends PCLCard
 {
@@ -30,17 +31,16 @@ public class TomoyaOkazaki extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLAffinity highestAffinity = PCLJUtils.FindMax(Arrays.asList(PCLAffinity.Extended()), this::GetHandAffinity);
+        ArrayList<PCLAffinity> maxes = PCLGameUtilities.GetHighestAffinities();
         PCLActions.Bottom.SelectFromPile(name, magicNumber, player.discardPile, player.drawPile)
                 .SetOptions(true, true)
-                .SetFilter(c -> c instanceof PCLCard && ((PCLCard) c).affinities.GetLevel(highestAffinity) > 0)
+                .SetFilter(c -> c instanceof PCLCard && PCLJUtils.Any(maxes, af -> ((PCLCard) c).affinities.GetLevel(af) > 0))
                 .AddCallback(cards -> {
             for (AbstractCard card : cards)
             {
                 PCLActions.Bottom.Motivate(card, 1);
             }
         });
-
     }
 
 }

@@ -44,14 +44,14 @@ public abstract class PCLOrb extends EYBOrb implements OnStartOfTurnPostDrawSubs
         return this.baseEvokeAmount;
     }
 
-    public void IncreaseBasePassiveAmount(int amount) {
-        this.basePassiveAmount += amount;
+    public void SetBasePassiveAmount(int amount, boolean relative) {
+        this.basePassiveAmount = relative ? this.basePassiveAmount + amount : amount;
         applyFocus();
         this.updateDescription();
     }
 
-    public void IncreaseBaseEvokeAmount(int amount) {
-        this.baseEvokeAmount += amount;
+    public void SetBaseEvokeAmount(int amount, boolean relative) {
+        this.baseEvokeAmount = relative ? this.baseEvokeAmount + amount : amount;
         applyFocus();
         this.updateDescription();
     }

@@ -21,7 +21,7 @@ public class Shuna extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 2, 3);
+        Initialize(0, 1, 1, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Blue(1);
@@ -52,7 +52,7 @@ public class Shuna extends PCLCard
     {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
-        PCLActions.Bottom.Draw(magicNumber);
+        PCLActions.Bottom.Draw(secondaryValue);
         if (TrySpendAffinity(PCLAffinity.Light)) {
             PCLActions.Bottom.Draw(1);
         }

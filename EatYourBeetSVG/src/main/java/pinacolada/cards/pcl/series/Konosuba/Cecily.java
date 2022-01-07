@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.series.Konosuba;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
@@ -48,11 +49,13 @@ public class Cecily extends PCLCard
                     .SetFilter(c -> c instanceof PCLCard && !(PCLGameUtilities.GetPCLAffinityLevel(c, a, true) > 1))
                     .AddCallback(cards ->
                     {
-                        PCLCard card = PCLJUtils.SafeCast(cards.get(0), PCLCard.class);
-                        if (card != null)
-                        {
-                            card.affinities.Add(a, 1);
-                            card.flash();
+                        for (AbstractCard c : cards) {
+                            PCLCard card = PCLJUtils.SafeCast(c, PCLCard.class);
+                            if (card != null)
+                            {
+                                card.affinities.Add(a, 1);
+                                card.flash();
+                            }
                         }
                     });
         });

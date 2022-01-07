@@ -14,6 +14,7 @@ import pinacolada.utilities.PCLRenderHelpers;
 
 public abstract class PCLCard_Curse extends PCLCard
 {
+
     protected boolean playAtEndOfTurn;
 
     protected PCLCard_Curse(PCLCardData data, boolean playAtEndOfTurn)

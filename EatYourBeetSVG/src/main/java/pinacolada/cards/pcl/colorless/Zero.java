@@ -1,13 +1,22 @@
 package pinacolada.cards.pcl.colorless;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.WeightedList;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.pcl.replacement.Enlightenment;
+import pinacolada.cards.pcl.special.Ganyu;
+import pinacolada.cards.pcl.special.OrbCore_Frost;
+import pinacolada.cards.pcl.special.SheerCold;
+import pinacolada.cards.pcl.tokens.AffinityToken_Blue;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -18,6 +27,8 @@ public class Zero extends PCLCard
             .SetSkill(0, CardRarity.UNCOMMON)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GrimoireOfZero);
+    protected final static WeightedList<AbstractCard> blueCards = new WeightedList<>();
+
 
     public Zero()
     {
@@ -44,8 +55,33 @@ public class Zero extends PCLCard
         .SetOptions(true, false)
         .SetFilter(c -> c.type == CardType.SKILL).AddCallback(cards -> {
                 for (AbstractCard ca : cards) {
-                    if (ca.rarity == CardRarity.BASIC && info.TryActivateLimited()) {
-                        PCLGameUtilities.ModifyCostForCombat(ca, 0, false);
+                    if ((ca.rarity == CardRarity.BASIC || PCLGameUtilities.HasSilverAffinity(ca)) && info.TryActivateLimited()) {
+                        InitializeBlueCards();
+                        WeightedList<AbstractCard> randomBlueCards = new WeightedList<>(blueCards);
+                        final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+                        while (options.size() < magicNumber && randomBlueCards.Size() > 0)
+                        {
+                            AbstractCard randomCard = randomBlueCards.Retrieve(rng, true).makeCopy();
+                            PCLGameUtilities.ModifyCostForCombat(randomCard, 0, false);
+
+                            if (upgraded)
+                            {
+                                randomCard.upgrade();
+                            }
+                            options.addToBottom(randomCard);
+                        }
+
+                        PCLActions.Top.SelectFromPile(name, 1, options)
+                                .SetOptions(false, false)
+                                .AddCallback(cards2 ->
+                                {
+                                    if (cards2.size() > 0)
+                                    {
+                                        PCLActions.Bottom.MakeCardInDrawPile(cards2.get(0))
+                                                .SetDuration(Settings.ACTION_DUR_FASTER, true);
+
+                                    }
+                                });
                         break;
                     }
                 }
@@ -61,6 +97,27 @@ public class Zero extends PCLCard
             {
                 cards.Add(c);
             }
+        }
+    }
+
+    protected void InitializeBlueCards()
+    {
+        blueCards.Clear();
+
+        for (AbstractCard c : CardLibrary.getAllCards())
+        {
+            if (PCLGameUtilities.HasBlueAffinity(c)
+                    && PCLGameUtilities.IsObtainableInCombat(c)
+                    && c.rarity != AbstractCard.CardRarity.BASIC)
+            {
+                blueCards.Add(c, c.rarity == CardRarity.RARE || c.color == CardColor.COLORLESS ? 4 : c.rarity == CardRarity.UNCOMMON ? 7 : 10);
+            }
+
+            blueCards.Add(new SheerCold(), 2);
+            blueCards.Add(new OrbCore_Frost(), 2);
+            blueCards.Add(new Ganyu(), 3);
+            blueCards.Add(new Enlightenment(), 3);
+            blueCards.Add(new AffinityToken_Blue(), 7);
         }
     }
 }

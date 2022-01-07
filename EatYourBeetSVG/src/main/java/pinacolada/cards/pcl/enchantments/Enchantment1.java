@@ -7,7 +7,6 @@ import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.stances.*;
 import pinacolada.utilities.PCLActions;
 
@@ -47,18 +46,6 @@ public class Enchantment1 extends Enchantment
     }
 
     @Override
-    public boolean CanUsePower(int cost)
-    {
-        return PCLCombatStats.MatchingSystem.CheckAffinityLevels(GetAffinityList(), cost, true);
-    }
-
-    @Override
-    public void PayPowerCost(int cost)
-    {
-        PCLActions.Bottom.TryChooseSpendAffinity(name, cost, GetAffinityList());
-    }
-
-    @Override
     public void UsePower(AbstractMonster m)
     {
         String stanceID = GetStanceID();
@@ -83,7 +70,8 @@ public class Enchantment1 extends Enchantment
         }
     }
 
-    protected PCLAffinity[] GetAffinityList() {
+    @Override
+    public PCLAffinity[] GetAffinityList() {
         switch(auxiliaryData.form) {
             case 1:
                 return ArrayUtils.removeElement(PCLAffinity.Extended(), PCLAffinity.Red);

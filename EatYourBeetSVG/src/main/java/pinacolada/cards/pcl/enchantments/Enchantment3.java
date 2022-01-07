@@ -4,9 +4,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.utilities.ListSelection;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.utilities.PCLActions;
@@ -53,18 +51,6 @@ public class Enchantment3 extends Enchantment
             return super.GetRawDescription(UP5_BLOCK);
         }
         return super.GetRawDescription();
-    }
-
-    @Override
-    public boolean CanUsePower(int cost)
-    {
-        return PCLCombatStats.MatchingSystem.CheckAffinityLevels(PCLAffinity.Extended(), cost, true);
-    }
-
-    @Override
-    public void PayPowerCost(int cost)
-    {
-        PCLActions.Bottom.TryChooseSpendAffinity(name, cost);
     }
 
     @Override

@@ -23,6 +23,7 @@ public class Tatsumaki extends PCLCard
         Initialize(0, 3, 2);
         SetUpgrade(0, 1, 1);
 
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Light(1);
         SetAffinity_Green(0,0,1);

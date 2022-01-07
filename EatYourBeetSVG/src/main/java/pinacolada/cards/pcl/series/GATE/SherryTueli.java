@@ -73,7 +73,7 @@ public class SherryTueli extends PCLCard
             super.atStartOfTurnPostDraw();
 
             PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity)
-                    .SetAffinityChoices(PCLGameUtilities.GetPCLAffinities(card).GetAffinities().toArray(new PCLAffinity[] {}))
+                    .SetAffinityChoices(PCLGameUtilities.GetPCLAffinities(card).GetAffinitiesAsArray())
                     .SetOptions(false, true);
             ReducePower(1);
         }

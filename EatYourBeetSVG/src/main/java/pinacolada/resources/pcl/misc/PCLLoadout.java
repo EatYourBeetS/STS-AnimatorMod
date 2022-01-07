@@ -14,10 +14,7 @@ import pinacolada.cards.pcl.basic.Strike;
 import pinacolada.cards.pcl.curse.*;
 import pinacolada.characters.FoolCharacter;
 import pinacolada.relics.PCLRelic;
-import pinacolada.relics.pcl.PolychromePaintbrush;
-import pinacolada.relics.pcl.RollingCubes;
-import pinacolada.relics.pcl.TheMissingPiece;
-import pinacolada.relics.pcl.UsefulBox;
+import pinacolada.relics.pcl.*;
 import pinacolada.resources.GR;
 import pinacolada.ui.characterSelection.PCLBaseStatEditor;
 import pinacolada.utilities.PCLJUtils;
@@ -137,7 +134,7 @@ public abstract class PCLLoadout
     public static final int BRONZE_REQUIRED_EXPANSION = 16;
     public static final int GOLD_REQUIRED_UR = 18; //TODO implement the condition for this
     public static final int MAX_PRESETS = 5;
-    public static final int MAX_VALUE = 30;
+    public static final int MAX_VALUE = 35;
     public static final int MIN_CARDS = 10;
 
     public PCLLoadoutData[] Presets = new PCLLoadoutData[PCLLoadout.MAX_PRESETS];
@@ -238,9 +235,9 @@ public abstract class PCLLoadout
 
         for (int i = 0; i < MAX_RELIC_SLOTS; i++) {
             PCLRelicSlot r1 = data.AddRelicSlot();
-            r1.AddItem(new RollingCubes(), 2);
-            r1.AddItem(new PolychromePaintbrush(), 3);
-            //r1.AddItem(new PurgingStone(), 3);
+            r1.AddItem(new PolychromePaintbrush(), 2);
+            r1.AddItem(new RollingCubes(), 3);
+            r1.AddItem(new ConcertsFinalHour(), 5);
         }
 
     }

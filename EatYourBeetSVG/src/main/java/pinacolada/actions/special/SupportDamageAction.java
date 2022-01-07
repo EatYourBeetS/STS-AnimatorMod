@@ -23,7 +23,7 @@ public class SupportDamageAction extends EYBAction
 
     public SupportDamageAction(AbstractCreature owner, int output)
     {
-        this(owner, FindBestTarget(), output);
+        this(owner, PCLGameUtilities.IsPlayer(owner) ? FindBestTarget() : AbstractDungeon.player, output);
     }
 
     public SupportDamageAction(AbstractCreature owner, AbstractCreature target, int output)
@@ -43,7 +43,7 @@ public class SupportDamageAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (shouldCancelAction())
+        if (shouldCancelAction() || PCLGameUtilities.IsPlayer(target))
         {
             Complete();
             return;

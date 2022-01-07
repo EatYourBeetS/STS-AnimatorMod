@@ -1,5 +1,115 @@
 
 {
+	"pcl:Glyph00":
+	{
+	  "NAME": "Glyph of the Fool",
+	  "DESCRIPTION": ["Enemies have +#b{0}% HP. After #yAct #b1: Increases by +#b{1}% per floor."]
+	},
+	"pcl:Glyph01":
+	{
+	  "NAME": "Glyph of the Magician",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Ritual]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph02":
+	{
+	  "NAME": "Glyph of the High Priestess",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Regeneration]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph03":
+	{
+	  "NAME": "Glyph of the Empress",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Artifact]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph04":
+	{
+	  "NAME": "Glyph of the Emperor",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Plated Armor]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph05":
+	{
+	  "NAME": "Glyph of the Hierophant",
+	  "DESCRIPTION": ["ALL characters start with #b{0} [Support Damage]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph06":
+	{
+	  "NAME": "Glyph of the Lovers",
+	  "DESCRIPTION": ["The maximum HP any character can lose per turn is #b{0}. This cap increases by #b{10}% per turn. per #yAct past #yAct #b1: Decrease the starting cap by #b{2}% (min. #b30)."]
+	},
+	"pcl:Glyph07":
+	{
+	  "NAME": "Glyph of the Chariot",
+	  "DESCRIPTION": ["ALL characters start with #b{0} [Support Damage]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph08":
+	{
+	  "NAME": "Glyph of Justice",
+	  "DESCRIPTION": ["At the end of each turn: ALL enemies gain #b{0} [Counter-Attack]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph09":
+	{
+	  "NAME": "Glyph of the Hermit",
+	  "DESCRIPTION": ["At the end of each turn: ALL enemies gain #b{0} [Curl Up]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph10":
+	{
+	  "NAME": "Glyph of Fortune",
+	  "DESCRIPTION": ["Enemies drop #b{0}% more [Gold]. At the start of each turn: ALL enemies gain #b{1} of a random power. Both numbers increase by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph11":
+	{
+	  "NAME": "Glyph of Strength",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Strength]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph12":
+	{
+	  "NAME": "Glyph of the Hanged Man",
+	  "DESCRIPTION": ["ALL characters start with #b{0} [Constricted]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph13":
+	{
+	  "NAME": "Glyph of Death",
+	  "DESCRIPTION": ["Start the battle with #b2 [Vulnerable] (this cannot be prevented). Increase the effect of [Vulnerable] on ALL chracters by +#b{0}%. This effect increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph14":
+	{
+	  "NAME": "Glyph of Temperance",
+	  "DESCRIPTION": ["Start the battle with #b3 [Weak] (this cannot be prevented). Increase the effect of [Weak] on ALL chracters by +#b{0}%. This effect increases by #b{1} per #yAct past #yAct #b1 (max. #b60%)."]
+	},
+	"pcl:Glyph15":
+	{
+	  "NAME": "Glyph of the Devil",
+	  "DESCRIPTION": ["At the start of battle: Gain #b{0} [D] and Shuffle #b{0} random Curse(s) into your draw pile. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph16":
+	{
+	  "NAME": "Glyph of the Tower",
+	  "DESCRIPTION": ["ALL enemies start with #b{0} [Metallicize]. Increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph17":
+	{
+	  "NAME": "Glyph of the Star",
+	  "DESCRIPTION": ["Whenever you play a [A-Light] card: You and a random enemy gain #b1 [Electrified]. Increase the effect of [Electrified] on ALL chracters by +#b{0}%. This effect increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph18":
+	{
+	  "NAME": "Glyph of the Moon",
+	  "DESCRIPTION": ["Whenever you play a [A-Blue] card: You and a random enemy gain #b1 [Freezing]. Increase the effect of [Freezing] on ALL chracters by +#b{0}%. This effect increases by #b{1} per #yAct past #yAct #b1 (max. #b50%)."]
+	},
+	"pcl:Glyph19":
+	{
+	  "NAME": "Glyph of the Sun",
+	  "DESCRIPTION": ["Whenever you play a [A-Red] card: You and a random enemy gain #b1 [Burning]. Increase the effect of [Burning] on ALL chracters by +#b{0}%. This effect increases by #b{1} per #yAct past #yAct #b1."]
+	},
+	"pcl:Glyph20":
+	{
+	  "NAME": "Glyph of Judgment",
+	  "DESCRIPTION": ["At the start of each battle: Changes into #b1 of #b{3} #yGlyphs."]
+	},
+	"pcl:Glyph21":
+	{
+	  "NAME": "Glyph of the World",
+	  "DESCRIPTION": ["Die after #b{0} turns."]
+	},
 	"pcl:UpgradedHand":
 	{
 	  "NAME": "Upgraded Hand",

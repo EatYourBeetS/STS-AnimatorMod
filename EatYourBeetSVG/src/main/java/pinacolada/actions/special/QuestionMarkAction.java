@@ -9,11 +9,8 @@ import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLGameUtilities;
 
-import java.util.ArrayList;
-
 public class QuestionMarkAction extends EYBAction
 {
-    private static ArrayList<PCLCard> cardPool;
     private final QuestionMark questionMark;
 
     public QuestionMarkAction(QuestionMark instance)
@@ -28,12 +25,14 @@ public class QuestionMarkAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        final PCLCard copy = questionMark.copy = GetRandomCard();
+        final AbstractCard copy = questionMark.copy = PCLGameUtilities.GetRandomCard();
         final int index = player.hand.group.indexOf(questionMark);
         if (copy != null && index >= 0)
         {
-            copy.affinities.Add(PCLAffinity.Star, 1);
-            copy.triggerWhenCreated(false);
+            if (copy instanceof PCLCard) {
+                ((PCLCard) copy).affinities.Add(PCLAffinity.Star, 1);
+                ((PCLCard) copy).triggerWhenCreated(false);
+            }
 
             if (questionMark.upgraded)
             {
@@ -54,29 +53,5 @@ public class QuestionMarkAction extends EYBAction
         }
 
         Complete();
-    }
-
-    public static PCLCard GetRandomCard()
-    {
-        if (cardPool == null)
-        {
-            cardPool = new ArrayList<>();
-
-            for (AbstractCard c : PCLGameUtilities.GetAvailableCards())
-            {
-                if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS)
-                {
-                    if (c instanceof PCLCard
-                    && !(c instanceof QuestionMark)
-                    && !c.tags.contains(AbstractCard.CardTags.HEALING)
-                    && c.rarity != AbstractCard.CardRarity.BASIC)
-                    {
-                        cardPool.add((PCLCard)c);
-                    }
-                }
-            }
-        }
-
-        return (PCLCard) PCLGameUtilities.GetRandomElement(cardPool).makeCopy();
     }
 }

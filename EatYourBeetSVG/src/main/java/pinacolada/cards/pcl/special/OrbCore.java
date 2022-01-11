@@ -94,6 +94,7 @@ public abstract class OrbCore extends PCLCard
             cores2.Add(new OrbCore_Plasma());
             cores2.Add(new OrbCore_Chaos());
             cores2.Add(new OrbCore_Water());
+            cores2.Add(new OrbCore_Metal());
 
             for (OrbCore core : cores0.GetInnerList()) {
                 cores.Add(core, 11);

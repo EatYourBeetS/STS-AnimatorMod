@@ -34,7 +34,7 @@ public class KokomiSangonomiya extends PCLCard
     @Override
     protected String GetRawDescription(Object... args)
     {
-        return super.GetRawDescription(upgraded ? cardData.Strings.EXTENDED_DESCRIPTION[auxiliaryData.form] : "");
+        return super.GetRawDescription(upgraded && auxiliaryData.form == 1 ? cardData.Strings.EXTENDED_DESCRIPTION[0] : "");
     }
 
     @Override
@@ -44,6 +44,7 @@ public class KokomiSangonomiya extends PCLCard
         }
         else {
             SetAutoplay(false);
+            SetEthereal(false);
         }
         return super.SetForm(form, timesUpgraded);
     };
@@ -70,9 +71,10 @@ public class KokomiSangonomiya extends PCLCard
                     c.applyPowers();
                     c.use(p, null);
                 }
-                else {
-                    PCLActions.Bottom.StackPower(new RegenPower(p, 2));
-                }
+            }
+
+            if (info.TryActivateLimited()) {
+                PCLActions.Bottom.StackPower(new RegenPower(p, 2));
             }
     }
 }

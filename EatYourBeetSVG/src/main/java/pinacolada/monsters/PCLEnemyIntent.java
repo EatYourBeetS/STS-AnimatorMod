@@ -38,7 +38,7 @@ public class PCLEnemyIntent extends eatyourbeets.monsters.EnemyIntent
     {
         private static final ArrayList<AbstractPower> DEFAULT_PLAYER_POWERS = new ArrayList<>();
         private static final VulnerablePower VULNERABLE = new AnimatorVulnerablePower(null, 0, false);
-        private static final EnchantedArmorPower ENCHANTED_ARMOR = new EnchantedArmorPower(null, 0, false);
+        private static final EnchantedArmorPower ENCHANTED_ARMOR = new EnchantedArmorPower(null, 0);
         private static final BurningPower BURNING = new BurningPower(null, null, 0);
 
         private static final ArrayList<AbstractPower> DEFAULT_ENEMY_POWERS = new ArrayList<>();

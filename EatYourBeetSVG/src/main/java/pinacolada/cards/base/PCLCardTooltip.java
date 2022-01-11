@@ -27,6 +27,7 @@ import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import org.apache.commons.lang3.StringUtils;
+import pinacolada.blights.PCLBlight;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLPower;
 import pinacolada.relics.PCLRelic;
@@ -67,6 +68,7 @@ public class PCLCardTooltip extends EYBCardTooltip
     private static boolean inHand;
     private static PCLCard card;
     private static PCLRelic relic;
+    private static PCLBlight blight;
     private static AbstractCreature creature;
     private static Vector2 genericTipPos = new Vector2(0, 0);
 
@@ -183,6 +185,15 @@ public class PCLCardTooltip extends EYBCardTooltip
         {
             relic = source;
             GR.UI.AddPostRender(PCLCardTooltip::RenderFromRelic);
+        }
+    }
+
+    public static void QueueTooltips(PCLBlight source)
+    {
+        if (TryRender())
+        {
+            blight = source;
+            GR.UI.AddPostRender(PCLCardTooltip::RenderFromBlight);
         }
     }
 
@@ -351,6 +362,61 @@ public class PCLCardTooltip extends EYBCardTooltip
         for (int i = 0; i < relic.tips.size(); i++)
         {
             PCLCardTooltip tip = relic.tips.get(i);
+            if (tip.hideDescription == null)
+            {
+                tip.hideDescription = !StringUtils.isEmpty(tip.id) && GR.PCL.Config.HideTipDescription(tip.id);
+            }
+
+            if (!tip.hideDescription)
+            {
+                y -= tip.Render(sb, x, y, i) + BOX_EDGE_H * 3.15f;
+            }
+        }
+    }
+
+    public static void RenderFromBlight(SpriteBatch sb)
+    {
+        if (blight == null)
+        {
+            return;
+        }
+
+        float x;
+        float y;
+        if ((float) InputHelper.mX >= 1400.0F * Settings.scale)
+        {
+            x = InputHelper.mX - (350 * Settings.scale);
+            y = InputHelper.mY - (50 * Settings.scale);
+        }
+        else if (CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.RELIC_VIEW)
+        {
+            x = 180 * Settings.scale;
+            y = 0.7f * Settings.HEIGHT;
+        }
+        else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.SHOP && blight.tips.size() > 2 && !AbstractDungeon.player.hasBlight(blight.blightID))
+        {
+            x = InputHelper.mX + (60 * Settings.scale);
+            y = InputHelper.mY + (180 * Settings.scale);
+        }
+        else if (AbstractDungeon.player != null && AbstractDungeon.player.hasBlight(blight.blightID))
+        {
+            x = InputHelper.mX + (60 * Settings.scale);
+            y = InputHelper.mY - (30 * Settings.scale);
+        }
+        else if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)
+        {
+            x = 360 * Settings.scale;
+            y = InputHelper.mY + (50 * Settings.scale);
+        }
+        else
+        {
+            x = InputHelper.mX + (50 * Settings.scale);
+            y = InputHelper.mY + (50 * Settings.scale);
+        }
+
+        for (int i = 0; i < blight.tips.size(); i++)
+        {
+            PCLCardTooltip tip = blight.tips.get(i);
             if (tip.hideDescription == null)
             {
                 tip.hideDescription = !StringUtils.isEmpty(tip.id) && GR.PCL.Config.HideTipDescription(tip.id);

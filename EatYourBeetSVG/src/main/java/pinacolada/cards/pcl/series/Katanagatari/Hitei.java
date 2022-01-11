@@ -10,7 +10,6 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLClickablePower;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PowerTriggerConditionType;
 import pinacolada.utilities.PCLActions;
 
@@ -101,8 +100,8 @@ public class Hitei extends PCLCard
                     for (AbstractCard c : cards) {
                         PCLActions.Bottom.GainTemporaryHP(1);
                         if (c instanceof PCLCard) {
-                            PCLCombatStats.MatchingSystem.AddAffinities(((PCLCard) c).affinities);
-                            PCLCombatStats.MatchingSystem.AddAffinities(((PCLCard) c).affinities);
+                            PCLActions.Bottom.AddAffinities(((PCLCard) c).affinities);
+                            PCLActions.Bottom.AddAffinities(((PCLCard) c).affinities);
                         }
                     }
                 });

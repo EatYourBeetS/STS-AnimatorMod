@@ -1,49 +1,19 @@
 
 {
-	"pcl:Glyph00":
+	"pcl:GlyphBlight":
 	{
 	  "NAME": "Glyph of the Fool",
-	  "DESCRIPTION": ["Enemies have +#b{0}% HP. After #yAct #b1: Increases by +#b{1}% per floor."]
+	  "DESCRIPTION": ["At the start of combat: Activate #b1 of #b3 #yBlights for the combat. Its potency is equal to number of #yActs cleared times this #yGlyph's counter.{0}", " NL #pCurrent #pPotency: {0}", "{0} NL #pMinimum #pLevel #pat #pAscension #p{1}: #b{2}", "#rUnlocks #rat #rAscension #r{0}"]
 	},
-	"pcl:Glyph01":
+	"pcl:GlyphBlight1":
 	{
 	  "NAME": "Glyph of the Magician",
-	  "DESCRIPTION": ["ALL enemies start with #b{0} [Ritual]. Increases by #b{1} per #yAct past #yAct #b1."]
+	  "DESCRIPTION": ["Enemies start with #b{0} [Ritual]. Whenever you clear an #yAct: Increases by #b{1} times this #yGlyph's counter.","","{0} NL #pMinimum #pLevel #pat #pAscension #p{1}: #b{2}", "#rUnlocks #rat #rAscension #r{0}"]
 	},
-	"pcl:Glyph02":
+	"pcl:GlyphBlight2":
 	{
 	  "NAME": "Glyph of the High Priestess",
-	  "DESCRIPTION": ["ALL enemies start with #b{0} [Regeneration]. Increases by #b{1} per #yAct past #yAct #b1."]
-	},
-	"pcl:Glyph03":
-	{
-	  "NAME": "Glyph of the Empress",
-	  "DESCRIPTION": ["ALL enemies start with #b{0} [Artifact]. Increases by #b{1} per #yAct past #yAct #b1."]
-	},
-	"pcl:Glyph04":
-	{
-	  "NAME": "Glyph of the Emperor",
-	  "DESCRIPTION": ["ALL enemies start with #b{0} [Plated Armor]. Increases by #b{1} per #yAct past #yAct #b1."]
-	},
-	"pcl:Glyph05":
-	{
-	  "NAME": "Glyph of the Hierophant",
-	  "DESCRIPTION": ["ALL characters start with #b{0} [Support Damage]. Increases by #b{1} per #yAct past #yAct #b1."]
-	},
-	"pcl:Glyph06":
-	{
-	  "NAME": "Glyph of the Lovers",
-	  "DESCRIPTION": ["The maximum HP any character can lose per turn is #b{0}. This cap increases by #b{10}% per turn. per #yAct past #yAct #b1: Decrease the starting cap by #b{2}% (min. #b30)."]
-	},
-	"pcl:Glyph07":
-	{
-	  "NAME": "Glyph of the Chariot",
-	  "DESCRIPTION": ["ALL characters start with #b{0} [Support Damage]. Increases by #b{1} per #yAct past #yAct #b1."]
-	},
-	"pcl:Glyph08":
-	{
-	  "NAME": "Glyph of Justice",
-	  "DESCRIPTION": ["At the end of each turn: ALL enemies gain #b{0} [Counter-Attack]. Increases by #b{1} per #yAct past #yAct #b1."]
+	  "DESCRIPTION": ["Enemies have +#b{0}% HP. Whenever you clear an #yAct: Increases by +#b{1}% times this #yGlyph's counter.","","{0} NL #pMinimum #pLevel #pat #pAscension #p{1}: #b{2}", "#rUnlocks #rat #rAscension #r{0}"]
 	},
 	"pcl:Glyph09":
 	{
@@ -103,7 +73,7 @@
 	"pcl:Glyph20":
 	{
 	  "NAME": "Glyph of Judgment",
-	  "DESCRIPTION": ["At the start of each battle: Changes into #b1 of #b{3} #yGlyphs."]
+	  "DESCRIPTION": ["Enemies have +#b{0}% HP. After #yAct #b1: Increases by +#b{1}% per floor."]
 	},
 	"pcl:Glyph21":
 	{

@@ -34,7 +34,7 @@ public class Water extends PCLOrb
 
     public Water()
     {
-        super(ORB_ID, Timing.EndOfTurn);
+        super(ORB_ID, Timing.EndOfTurn, false);
 
         this.hFlip1 = MathUtils.randomBoolean();
         this.evoked = false;
@@ -93,14 +93,6 @@ public class Water extends PCLOrb
         }
 
         this.updateDescription();
-    }
-
-    @Override
-    public void applyFocus()
-    {
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
-
-        PCLCombatStats.OnOrbApplyFocus(this);
     }
 
     public void updateAnimation()

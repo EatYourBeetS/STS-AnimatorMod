@@ -89,6 +89,7 @@ public abstract class Enchantment extends PCLCard implements Hidden
         this.cropPortrait = false;
         this.relic = new UsefulBox(this);
         this.portraitImg = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ID), true));
+        this.showTypeText = false;
     }
 
     @Override

@@ -65,9 +65,7 @@ public class MS06ZakuII extends PCLCard
         PCLActions.Bottom.StackPower(new MS06ZakuIIPower(p, this.magicNumber));
 
         if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
-            PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-                PCLGameUtilities.IncreaseHandSizePermanently(hb.cX, hb.cY);
-            });
+            PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(PCLGameUtilities::IncreaseHandSizePermanently);
         }
     }
 

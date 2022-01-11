@@ -32,7 +32,8 @@ public class TryChooseSpendAffinity extends TryChooseAffinity
         int req = sourceAffinities != null ? sourceAffinities.GetRequirement(sourceAffinities.GetRequirement(PCLAffinity.General) > 0 ? PCLAffinity.General : affinity) : cost >= 0 ? cost : System.GetAffinityLevel(affinity, true);
         if (System.GetAffinityLevel(affinity,true) >= req) {
             GenericEffect_PayAffinity affinityCost = new GenericEffect_PayAffinity(affinity, req);
-            AffinityChoiceBuilder builder = (AffinityChoiceBuilder) new AffinityChoiceBuilder(affinity, cost, affinityCost.GetText())
+            AffinityChoiceBuilder builder = (AffinityChoiceBuilder) new AffinityChoiceBuilder(affinity, cost)
+                    .SetText(affinity.GetTooltip().title, affinityCost.GetText(), null)
                     .ShowTypeText(false)
                     .SetOnUse(affinityCost::Use);
             return builder.Build();

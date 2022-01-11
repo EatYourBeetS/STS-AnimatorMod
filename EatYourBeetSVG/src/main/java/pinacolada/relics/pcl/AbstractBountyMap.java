@@ -30,7 +30,7 @@ public abstract class AbstractBountyMap extends PCLRelic
     public void update() {
         super.update();
         if (counter < 0) {
-            SetEnabled(false);
+            this.usedUp();
         }
     }
 
@@ -41,11 +41,11 @@ public abstract class AbstractBountyMap extends PCLRelic
 
         Class<? extends AbstractRoom> roomType = this.GetCurrentRequiredRoom();
 
-        if (room.getClass().equals(roomType) && this.IsEnabled()) {
+        if ((room.getClass().equals(roomType) || room.getMapSymbol().equals("?")) && !usedUp) {
             flash();
             if (roomType.equals(EventRoom.class)) {
                 SetCounter(-1);
-                SetEnabled(false);
+                this.usedUp();
                 PCLEvent.ForceEvent(GetEventConstructor());
             }
             else {

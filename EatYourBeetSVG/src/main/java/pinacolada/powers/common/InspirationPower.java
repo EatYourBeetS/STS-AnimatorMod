@@ -7,6 +7,7 @@ import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PowerTriggerConditionType;
+import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 
 public class InspirationPower extends PCLPower implements OnPCLClickablePowerUsed
 {
@@ -38,7 +39,7 @@ public class InspirationPower extends PCLPower implements OnPCLClickablePowerUse
     @Override
     public boolean OnClickablePowerUsed(PCLClickablePower power, AbstractMonster target)
     {
-        if (!power.triggerCondition.type.equals(PowerTriggerConditionType.None)) {
+        if (!power.triggerCondition.type.equals(PowerTriggerConditionType.None) && !(power instanceof AbstractPCLAffinityPower)) {
             ReducePower(1);
 
             this.flashWithoutSound();

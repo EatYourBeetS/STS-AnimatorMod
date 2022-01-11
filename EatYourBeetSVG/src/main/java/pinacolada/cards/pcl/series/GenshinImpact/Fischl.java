@@ -9,19 +9,19 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.pcl.special.Oz;
+import pinacolada.cards.pcl.special.Fischl_Oz;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Fischl extends PCLCard {
     public static final PCLCardData DATA = Register(Fischl.class).SetAttack(0, CardRarity.COMMON, PCLAttackType.Dark).SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Oz(), false));
+            .PostInitialize(data -> data.AddPreview(new Fischl_Oz(), false));
 
     public Fischl() {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(1, 0, 4);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1, 0, 1);
@@ -40,13 +40,13 @@ public class Fischl extends PCLCard {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DARKNESS);
         PCLActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
 
-        if (CheckSpecialCondition(true) && CombatStats.TryActivateLimited(cardID)) {
-            PCLActions.Bottom.MakeCardInDiscardPile(new Oz()).SetUpgrade(upgraded, false);
+        if (CheckSpecialCondition(true) && CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.MakeCardInDiscardPile(new Fischl_Oz()).SetUpgrade(upgraded, false);
         }
     }
 
     @Override
     public boolean CheckSpecialCondition(boolean tryUse){
-        return PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && CombatStats.CanActivateLimited(cardID);
+        return PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber && CombatStats.CanActivateSemiLimited(cardID);
     }
 }

@@ -8,6 +8,7 @@ import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.EYBOrb;
 import eatyourbeets.utilities.ColoredString;
 import pinacolada.cards.base.PCLCardTooltip;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLImages;
 import pinacolada.utilities.PCLGameUtilities;
@@ -18,17 +19,29 @@ public abstract class PCLOrb extends EYBOrb implements OnStartOfTurnPostDrawSubs
     public static final PCLImages.Orbs IMAGES = GR.PCL.Images.Orbs;
     public static final int IMAGE_SIZE = 96;
     public PCLCardTooltip tooltip;
+    public final boolean canOrbApplyFocusToEvoke;
+    public final boolean canOrbApplyFocusToPassive;
 
     public static String CreateFullID(Class<? extends PCLOrb> type)
     {
         return GR.PCL.CreateID(type.getSimpleName());
     }
 
-    public PCLOrb(String id, Timing passiveEffectTiming)
+    public PCLOrb(String id, Timing passiveEffectTiming) {
+        this(id, passiveEffectTiming, true, true);
+    }
+
+    public PCLOrb(String id, Timing passiveEffectTiming, boolean canOrbApplyFocusToEvoke) {
+        this(id, passiveEffectTiming, canOrbApplyFocusToEvoke, true);
+    }
+
+    public PCLOrb(String id, Timing passiveEffectTiming, boolean canOrbApplyFocusToEvoke, boolean canOrbApplyFocusToPassive)
     {
         super(id, passiveEffectTiming);
         tooltip = new PCLCardTooltip(name, description);
         tooltip.subText = new ColoredString();
+        this.canOrbApplyFocusToEvoke = canOrbApplyFocusToEvoke;
+        this.canOrbApplyFocusToPassive = canOrbApplyFocusToPassive;
     }
 
     public static int GetFocus()
@@ -76,6 +89,20 @@ public abstract class PCLOrb extends EYBOrb implements OnStartOfTurnPostDrawSubs
         this.applyFocus();
         tooltip.description = this.description = GetUpdatedDescription();
     }
+
+    @Override
+    public void applyFocus()
+    {
+        int focus = GetFocus();
+        if (canOrbApplyFocusToPassive) {
+            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
+            if (canOrbApplyFocusToEvoke) {
+                this.evokeAmount = Math.max(0, this.baseEvokeAmount + focus);
+            }
+        }
+        PCLCombatStats.OnOrbApplyFocus(this);
+    }
+
 
     @Override
     public void update()

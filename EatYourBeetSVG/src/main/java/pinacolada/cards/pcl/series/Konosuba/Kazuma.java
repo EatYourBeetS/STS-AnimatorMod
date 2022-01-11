@@ -19,7 +19,7 @@ public class Kazuma extends PCLCard
     {
         super(DATA);
 
-        Initialize(5, 2, 2, 3);
+        Initialize(5, 1, 2, 3);
         SetUpgrade(2, 1, 0);
 
         SetAffinity_Red(1, 0, 1);
@@ -37,7 +37,7 @@ public class Kazuma extends PCLCard
         this.baseDamage += magicNumber;
 
         if (PCLGameUtilities.GetCurrentMatchCombo() >= magicNumber) {
-            this.baseBlock += 1;
+            PCLActions.Bottom.AddAffinities(affinities);
         };
     }
 }

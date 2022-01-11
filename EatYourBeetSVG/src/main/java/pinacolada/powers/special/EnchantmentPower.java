@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.pcl.enchantments.Enchantment;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.relics.PCLEnchantableRelic;
-import pinacolada.utilities.PCLJUtils;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class EnchantmentPower extends PCLClickablePower
 {
@@ -32,14 +32,7 @@ public class EnchantmentPower extends PCLClickablePower
         if (enchantmentDescription == null)
         {
             enchantment.cardText.ForceRefresh();
-            enchantmentDescription = enchantment.rawDescription
-            .replace("!S!", String.valueOf(enchantment.secondaryValue))
-            .replace("!M!", String.valueOf(enchantment.magicNumber))
-            .replace(" NL ", " ")
-            .replace("{", "")
-            .replace("~", "")
-            .replace("}", "");
-            enchantmentDescription = PCLJUtils.ModifyString(enchantmentDescription, w -> Character.isDigit(w.charAt(0)) ? ("#b" + w) : w);
+            enchantmentDescription = PCLGameUtilities.ConvertCardStringToPowerString(enchantment);
         }
 
         return enchantmentDescription;

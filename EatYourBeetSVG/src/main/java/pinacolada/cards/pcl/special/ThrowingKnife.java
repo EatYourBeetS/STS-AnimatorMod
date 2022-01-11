@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
@@ -13,7 +12,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -56,8 +54,6 @@ public class ThrowingKnife extends PCLCard
     private ThrowingKnife(int form, int timesUpgraded)
     {
         super(DATA, form, timesUpgraded);
-
-        this.portraitForeground = new AdvancedTexture(GR.GetTexture(GR.GetCardImage(ThrowingKnife.DATA.ID + "FG"), true), null);
 
         Initialize(2, 0, 1, 2);
         SetUpgrade(2, 0);

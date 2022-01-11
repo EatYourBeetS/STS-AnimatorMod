@@ -39,8 +39,7 @@ public class MikuIzayoi extends PCLCard
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetEthereal(true);
-                Initialize(0, 0, 2, 4);
-                SetUpgrade(0,0,2,0);
+                Initialize(0, 0, 5, 4);
             }
             else {
                 SetEthereal(false);

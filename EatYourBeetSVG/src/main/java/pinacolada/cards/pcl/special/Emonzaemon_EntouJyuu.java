@@ -1,13 +1,10 @@
 package pinacolada.cards.pcl.special;
 
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -23,7 +20,7 @@ public class Emonzaemon_EntouJyuu extends PCLCard
     public static final PCLCardData DATA = Register(Emonzaemon_EntouJyuu.class)
             .SetPower(1, CardRarity.SPECIAL)
             .SetSeries(Emonzaemon.DATA.Series);
-    public static final int BONUS_DAMAGE = 2;
+    public static final int BONUS_DAMAGE = 25;
 
     public Emonzaemon_EntouJyuu()
     {
@@ -45,8 +42,6 @@ public class Emonzaemon_EntouJyuu extends PCLCard
 
     public class Emonzaemon_EntouJyuuPower extends PCLPower
     {
-        private int attacks;
-
         public Emonzaemon_EntouJyuuPower(AbstractCreature owner, int amount)
         {
             super(owner, Emonzaemon_EntouJyuu.DATA);
@@ -57,13 +52,7 @@ public class Emonzaemon_EntouJyuu extends PCLCard
         @Override
         public float atDamageGive(float damage, DamageInfo.DamageType type, AbstractCard card)
         {
-            return damage + (type == DamageInfo.DamageType.NORMAL && (ThrowingKnife.DATA.ID.equals(card.cardID) || PCLGameUtilities.HasGreenAffinity(card)) ? amount : 0);
-        }
-
-        @Override
-        protected ColoredString GetSecondaryAmount(Color c)
-        {
-            return new ColoredString(attacks, Settings.CREAM_COLOR, c.a);
+            return damage + (type == DamageInfo.DamageType.NORMAL && (ThrowingKnife.DATA.ID.equals(card.cardID) || PCLGameUtilities.HasGreenAffinity(card)) ? amount : 0) / 100f;
         }
     }
 }

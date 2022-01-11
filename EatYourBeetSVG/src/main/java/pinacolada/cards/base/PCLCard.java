@@ -630,11 +630,11 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
             {
                 dynamicTooltips.add(GR.Tooltips.Multiform);
             }
-            else if (hasTag(UNIQUE))
+            if (hasTag(UNIQUE))
             {
                 dynamicTooltips.add(GR.Tooltips.Unique);
             }
-            else if (cardData.CanToggleOnUpgrade)
+            if (cardData.CanToggleOnUpgrade)
             {
                 dynamicTooltips.add(GR.Tooltips.BranchUpgrade);
             }

@@ -33,7 +33,7 @@ public class Chaos extends PCLOrb implements OnEndOfTurnSubscriber, OnAfterCardP
 
     public Chaos()
     {
-        super(ORB_ID, Timing.StartOfTurnPostDraw);
+        super(ORB_ID, Timing.StartOfTurnPostDraw, false, false);
 
         this.hFlip1 = MathUtils.randomBoolean();
         this.baseEvokeAmount = this.evokeAmount = 1;

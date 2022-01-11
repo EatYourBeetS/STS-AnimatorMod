@@ -15,7 +15,6 @@ import pinacolada.actions.orbs.AirOrbPassiveAction;
 import pinacolada.effects.SFX;
 import pinacolada.effects.vfx.FadingParticleEffect;
 import pinacolada.orbs.PCLOrb;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLRenderHelpers;
@@ -56,15 +55,6 @@ public class Air extends PCLOrb
     {
         CardCrawlGame.sound.play(SFX.POWER_FLIGHT, 0.2f);
         CardCrawlGame.sound.playAV(SFX.ORB_PLASMA_EVOKE, 1.2f, 0.7f);
-    }
-
-    @Override
-    public void applyFocus()
-    {
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
-        this.evokeAmount = Math.max(0, this.baseEvokeAmount + GetFocus());
-
-        PCLCombatStats.OnOrbApplyFocus(this);
     }
 
     @Override

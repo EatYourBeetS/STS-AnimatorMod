@@ -130,6 +130,7 @@ public class CardTooltips
     public PCLCardTooltip Loyal = FindByID("Loyal");
     public PCLCardTooltip Malleable = FindByID("Malleable");
     public PCLCardTooltip Match = FindByID("Match");
+    public PCLCardTooltip Metal = FindByID("Metal");
     public PCLCardTooltip Metallicize = FindByID("Metallicize");
     public PCLCardTooltip Multicolor = FindByID("Multicolor");
     public PCLCardTooltip MulticolorScaling = FindByID("Multicolor Scaling");
@@ -319,6 +320,7 @@ public class CardTooltips
         Air.SetIcon(tooltips.Air.Texture(), 6);
         Earth.SetIcon(tooltips.Earth.Texture(), 6);
         Water.SetIcon(tooltips.Water.Texture(), 6);
+        Metal.SetIcon(tooltips.Metal.Texture(), 6);
         Chaos.SetIcon(tooltips.Chaos.Texture(), 6);
         RandomOrb.SetIcon(tooltips.RandomOrb.Texture(), 6);
         Gold.SetIcon(tooltips.Gold.Texture(), 6);

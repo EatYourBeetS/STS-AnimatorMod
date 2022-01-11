@@ -15,7 +15,7 @@
 	"Affinity Level":
 	{
 		"DESCRIPTION": "Increase the effectiveness of a [A-Gen] #yPower's #yScaling by #b1 per #yLevel. NL Reaching #yLevel #b1 grants #b1 use of the [A-Gen]'s #yPower and doubles the level requirement for the next use.",
-		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels", "level", "levels"],
+		"NAMES": ["[a-gen] level", "[a-gen] levels", "affinity power level", "affinity power levels"],
 		"PROPER_NAME": "Affinity Level"
 	},
 	"Affinity Power":
@@ -473,6 +473,12 @@
 		"DESCRIPTION": "The number of consecutive #yMatches made.",
 		"NAMES": ["match combo"],
 		"PROPER_NAME": "Match Combo"
+	},
+	"Metal":
+	{
+		"DESCRIPTION": "Orb: When #yTriggered: Gain Temp. [Enchanted Armor]. When #yEvoked: Gain [Metallicize].",
+		"NAMES": ["metal", "metal+"],
+		"PROPER_NAME": "Metal"
 	},
 	"Metallicize":
 	{

@@ -45,6 +45,9 @@ public class PCLConfig
     private static final String REPLACE_CARDS_FOOL = PCLConfig.CreateFullID("ReplaceCards");
     private static final String REPLACE_CARDS_ANIMATOR = PCLConfig.CreateFullID("ReplaceCardsAnimator");
     private static final String FLASH_FOR_REROLL = PCLConfig.CreateFullID("FlashForReroll");
+    private static final String ASCENSIONGLYPH0 = PCLConfig.CreateFullID("AscensionGlyph0");
+    private static final String ASCENSIONGLYPH1 = PCLConfig.CreateFullID("AscensionGlyph1");
+    private static final String ASCENSIONGLYPH2 = PCLConfig.CreateFullID("AscensionGlyph2");
 
     private SpireConfig config;
     private HashSet<String> tips = null;
@@ -66,6 +69,9 @@ public class PCLConfig
     public ConfigOption_SeriesList SelectedSeries = new ConfigOption_SeriesList(SELECTED_SERIES, null);
     public ConfigOption_SeriesList ExpandedSeries = new ConfigOption_SeriesList(EXPANDED_SERIES, new ArrayList<>());
     public ConfigOption_Integer SeriesSize = new ConfigOption_Integer(SERIES_SIZE, MINIMUM_SERIES);
+    public ConfigOption_Integer AscensionGlyph0 = new ConfigOption_Integer(ASCENSIONGLYPH0, 0);
+    public ConfigOption_Integer AscensionGlyph1 = new ConfigOption_Integer(ASCENSIONGLYPH1, 0);
+    public ConfigOption_Integer AscensionGlyph2 = new ConfigOption_Integer(ASCENSIONGLYPH2, 0);
 
     public void Load(int slot)
     {
@@ -105,6 +111,9 @@ public class PCLConfig
             SelectedSeries.SetConfig(config);
             ExpandedSeries.SetConfig(config);
             SeriesSize.SetConfig(config);
+            AscensionGlyph0.SetConfig(config);
+            AscensionGlyph1.SetConfig(config);
+            AscensionGlyph2.SetConfig(config);
         }
         catch (IOException e)
         {

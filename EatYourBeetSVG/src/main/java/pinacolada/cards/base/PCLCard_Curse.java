@@ -16,6 +16,7 @@ public abstract class PCLCard_Curse extends PCLCard
 {
 
     protected boolean playAtEndOfTurn;
+    protected boolean canUpgrade;
 
     protected PCLCard_Curse(PCLCardData data, boolean playAtEndOfTurn)
     {
@@ -38,13 +39,15 @@ public abstract class PCLCard_Curse extends PCLCard
     @Override
     public boolean canUpgrade()
     {
-        return false;
+        return canUpgrade && super.canUpgrade();
     }
 
     @Override
     public void upgrade()
     {
-
+        if (canUpgrade) {
+            super.upgrade();
+        }
     }
 
     @Override

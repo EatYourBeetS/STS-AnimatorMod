@@ -5,6 +5,7 @@ import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
+import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,11 +28,13 @@ import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
+import pinacolada.blights.common.GlyphBlight;
+import pinacolada.blights.common.GlyphBlight1;
+import pinacolada.blights.common.GlyphBlight2;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardBase;
 import pinacolada.effects.card.PermanentUpgradeEffect;
-import pinacolada.events.base.PCLEvent;
 import pinacolada.relics.PCLRelic;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.loadouts._FakeLoadout;
@@ -320,12 +323,12 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             AbstractDungeon.curseCardPool.group.removeIf(PCLCardBase.class::isInstance);
             AbstractDungeon.srcColorlessCardPool.group.removeIf(PCLCardBase.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(PCLCardBase.class::isInstance);
-            PCLEvent.UpdateEvents(false);
+            //PCLEvent.UpdateEvents(false);
             PCLRelic.UpdateRelics(false);
             return;
         }
 
-        PCLEvent.UpdateEvents(true);
+        //PCLEvent.UpdateEvents(true);
         PCLRelic.UpdateRelics(true);
 
         if (startGame && Settings.isStandardRun())
@@ -392,6 +395,34 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
                 player.potions.add(new PotionSlot(player.potions.size() - 1));
             }
             player.adjustPotionPositions();
+
+            boolean shouldAdd0 = GR.PCL.Config.AscensionGlyph0.Get() > 0;
+            boolean shouldAdd1 = GR.PCL.Config.AscensionGlyph1.Get() > 0;
+            boolean shouldAdd2 = GR.PCL.Config.AscensionGlyph2.Get() > 0;
+            for (AbstractBlight blight : player.blights)
+            {
+                if (blight instanceof GlyphBlight)
+                {
+                    shouldAdd0 = false;
+                }
+                else if (blight instanceof GlyphBlight1)
+                {
+                    shouldAdd1 = false;
+                }
+                else if (blight instanceof GlyphBlight2)
+                {
+                    shouldAdd2 = false;
+                }
+            }
+            if (shouldAdd0) {
+                PCLGameUtilities.ObtainBlightWithoutEffect(new GlyphBlight(GR.PCL.Config.AscensionGlyph0.Get()));
+            }
+            if (shouldAdd1) {
+                PCLGameUtilities.ObtainBlightWithoutEffect(new GlyphBlight1(GR.PCL.Config.AscensionGlyph1.Get()));
+            }
+            if (shouldAdd2) {
+                PCLGameUtilities.ObtainBlightWithoutEffect(new GlyphBlight2(GR.PCL.Config.AscensionGlyph2.Get()));
+            }
         }
     }
 

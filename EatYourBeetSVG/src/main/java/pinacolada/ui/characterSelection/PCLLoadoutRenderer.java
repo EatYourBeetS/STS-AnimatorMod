@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
+import pinacolada.blights.common.GlyphBlight;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -42,10 +43,15 @@ public class PCLLoadoutRenderer extends GUIElement
     protected GUI_Button SeriesButton;
     protected GUI_Button LoadoutEditorButton;
     protected GUI_Label StartingCardsLabel;
+    protected GUI_Label AscensionGlyphsLabel;
     protected GUI_TextBox StartingCardsListLabel;
+    protected PCLGlyphEditor glyph0GUI;
+    protected PCLGlyphEditor glyph1GUI;
+    protected PCLGlyphEditor glyph2GUI;
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected PCLLoadout loadout;
+    protected GlyphBlight glyph1;
 
     protected float textScale;
 
@@ -87,6 +93,16 @@ public class PCLLoadoutRenderer extends GUIElement
                 .SetTooltip(GR.PCL.Strings.CharSelect.DeckEditor, GR.PCL.Strings.CharSelect.DeckEditorInfo)
                 .SetOnRightClick(this::ChangePreset)
                 .SetOnClick(this::OpenLoadoutEditor);
+
+        AscensionGlyphsLabel = new GUI_Label(EYBFontHelper.CardTitleFont_Small,
+                new AdvancedHitbox(POS_X * 6, POS_Y, leftTextWidth, 50f * Settings.scale))
+                .SetColor(Settings.GOLD_COLOR)
+                .SetAlignment(0.5f, 0.5f, false)
+                .SetText(GR.PCL.Strings.CharSelect.AscensionGlyph);
+
+        glyph0GUI = new PCLGlyphEditor(GR.PCL.Data.AscensionGlyph0, GR.PCL.Config.AscensionGlyph0, new AdvancedHitbox(AscensionGlyphsLabel.hb.x + ROW_OFFSET * 4f, POS_Y, GR.PCL.Data.AscensionGlyph0.hb.width, GR.PCL.Data.AscensionGlyph0.hb.height));
+        glyph1GUI = new PCLGlyphEditor(GR.PCL.Data.AscensionGlyph1, GR.PCL.Config.AscensionGlyph1, new AdvancedHitbox(AscensionGlyphsLabel.hb.x + ROW_OFFSET * 5.7f, POS_Y, GR.PCL.Data.AscensionGlyph1.hb.width, GR.PCL.Data.AscensionGlyph1.hb.height));
+        glyph2GUI = new PCLGlyphEditor(GR.PCL.Data.AscensionGlyph2, GR.PCL.Config.AscensionGlyph2, new AdvancedHitbox(AscensionGlyphsLabel.hb.x + ROW_OFFSET * 7.4f, POS_Y, GR.PCL.Data.AscensionGlyph2.hb.width, GR.PCL.Data.AscensionGlyph2.hb.height));
     }
 
     private void OpenLoadoutEditor()
@@ -197,6 +213,10 @@ public class PCLLoadoutRenderer extends GUIElement
             this.loadout = GR.PCL.Data.SelectedLoadout = loadouts.get(0);
         }
 
+        glyph0GUI.Refresh(selectScreen.ascensionLevel);
+        glyph1GUI.Refresh(selectScreen.ascensionLevel);
+        glyph2GUI.Refresh(selectScreen.ascensionLevel);
+
         RefreshInternal();
 
         SeriesButton.SetActive(true);
@@ -234,6 +254,10 @@ public class PCLLoadoutRenderer extends GUIElement
         LoadoutEditorButton.TryUpdate();
         StartingCardsLabel.Update();
         StartingCardsListLabel.Update();
+        AscensionGlyphsLabel.Update();
+        glyph0GUI.Update();
+        glyph1GUI.Update();
+        glyph2GUI.Update();
     }
 
     public void Render(SpriteBatch sb)
@@ -242,5 +266,9 @@ public class PCLLoadoutRenderer extends GUIElement
         LoadoutEditorButton.TryRender(sb);
         StartingCardsLabel.Render(sb);
         StartingCardsListLabel.Render(sb);
+        AscensionGlyphsLabel.Render(sb);
+        glyph0GUI.Render(sb);
+        glyph1GUI.Render(sb);
+        glyph2GUI.Render(sb);
     }
 }

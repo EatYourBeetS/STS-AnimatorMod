@@ -66,6 +66,12 @@ public class PCLCharacterSelectScreen
         LoadoutRenderer.RandomizeLoadout();
     }
 
+    public static void UpdateForAscensionChange(CharacterSelectScreen selectScreen) {
+        if (LoadoutRenderer.glyph1GUI != null) {
+            LoadoutRenderer.glyph1GUI.Refresh(selectScreen.ascensionLevel);
+        }
+    }
+
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
     {
         final CharacterOption current = selectedOption;

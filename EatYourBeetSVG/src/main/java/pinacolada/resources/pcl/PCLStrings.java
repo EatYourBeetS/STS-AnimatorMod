@@ -180,6 +180,10 @@ public class PCLStrings
         public final String AffinityDescription = Strings.TEXT[19];
         public final String UnsavedChanges = Strings.TEXT[20];
         public final String Clear = Strings.TEXT[21];
+        public final String Duplicate = Strings.TEXT[22];
+        public final String Import = Strings.TEXT[23];
+        public final String Export = Strings.TEXT[24];
+        public final String AscensionGlyph = Strings.TEXT[25];
 
         public final String UnlocksAtLevel(int unlockLevel, int currentLevel)
         {
@@ -545,9 +549,9 @@ public class PCLStrings
             return Get(38) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
-        public final String PlayAffinityToken(boolean addPeriod)
+        public final String ApplyToRandom(Object amount, Object debuff, boolean addPeriod)
         {
-            return Get(39) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return Format(addPeriod, 39, amount, debuff);
         }
 
         public final String ChooseMotivatedCard(Object category, boolean addPeriod)

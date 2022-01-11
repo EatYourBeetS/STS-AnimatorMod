@@ -47,6 +47,21 @@ public class ZarakiKenpachi extends PCLCard
 
             this.amount = amount;
 
+            updateDescription();
+        }
+
+        @Override
+        public void OnStartOfTurnPostDraw()
+        {
+            activated = false;
+            updateDescription();
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
             for (AbstractPCLAffinityPower po : PCLCombatStats.MatchingSystem.Powers) {
                 if (PCLAffinity.Red.equals(po.affinity)) {
                     po.SetGainMultiplier(po.gainMultiplier + 1);
@@ -59,13 +74,6 @@ public class ZarakiKenpachi extends PCLCard
             PCLCombatStats.onBlockBroken.Subscribe(this);
             PCLCombatStats.onStartOfTurnPostDraw.Subscribe(this);
 
-            updateDescription();
-        }
-
-        @Override
-        public void OnStartOfTurnPostDraw()
-        {
-            activated = false;
             updateDescription();
         }
 

@@ -12,8 +12,6 @@ public class EnchantedArmorPower extends PCLPower
 
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 
-    public final boolean reactive;
-
     public static float CalculatePercentage(int amount)
     {
         return 100f / (100f + amount);
@@ -21,14 +19,7 @@ public class EnchantedArmorPower extends PCLPower
 
     public EnchantedArmorPower(AbstractCreature owner, int resistance)
     {
-        this(owner, resistance, false);
-    }
-
-    public EnchantedArmorPower(AbstractCreature owner, int resistance, boolean reactive)
-    {
         super(owner, POWER_ID);
-
-        this.reactive = reactive;
 
         Initialize(resistance);
     }
@@ -39,14 +30,6 @@ public class EnchantedArmorPower extends PCLPower
         if (amount > 0)
         {
             this.description = FormatDescription(0, decimalFormat.format(((1 - CalculatePercentage(amount)) * 100)));
-
-            if (!reactive)
-            {
-                this.description += " NL NL Example: NL ";
-                this.description += GetExampleDamage(amount + 5) + " NL ";
-                this.description += GetExampleDamage(amount + 10) + " NL ";
-                this.description += GetExampleDamage(amount + 20);
-            }
         }
         else
         {
@@ -59,7 +42,7 @@ public class EnchantedArmorPower extends PCLPower
     {
         if (type == DamageInfo.DamageType.NORMAL)
         {
-            damage *= CalculatePercentage(reactive ? (amount + (int) damage) : amount);
+            damage *= CalculatePercentage(amount + (int) damage);
         }
 
         return super.atDamageReceive(damage, type);
@@ -68,7 +51,7 @@ public class EnchantedArmorPower extends PCLPower
     @Override
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount)
     {
-        if (reactive && info.type == DamageInfo.DamageType.NORMAL && info.owner != null)
+        if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null)
         {
             IncreasePower(damageAmount);
         }

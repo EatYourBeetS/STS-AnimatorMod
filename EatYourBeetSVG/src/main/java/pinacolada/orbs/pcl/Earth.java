@@ -61,7 +61,7 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
 
     public Earth()
     {
-        super(ORB_ID, Timing.EndOfTurn);
+        super(ORB_ID, Timing.EndOfTurn, false);
 
         this.evoked = false;
         this.evokeAmount = this.baseEvokeAmount = PROJECTILE_DAMAGE;
@@ -143,13 +143,6 @@ public class Earth extends PCLOrb implements OnStartOfTurnPostDrawSubscriber, On
         }
 
         this.updateDescription();
-    }
-
-    @Override
-    public void applyFocus()
-    {
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
-        PCLCombatStats.OnOrbApplyFocus(this);
     }
 
     @Override

@@ -20,13 +20,13 @@ public class OrikoMikuni extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 3, 4);
+        Initialize(0, 1, 3, 3);
         SetUpgrade(0, 0, 1, 2);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Blue, 6);
+        SetAffinityRequirement(PCLAffinity.Blue, 4);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class OrikoMikuni extends PCLCard
 
         if (TrySpendAffinity(PCLAffinity.Blue))
         {
-            choices.Select(3, m);
+            choices.Select(2, m);
         }
         else
         {

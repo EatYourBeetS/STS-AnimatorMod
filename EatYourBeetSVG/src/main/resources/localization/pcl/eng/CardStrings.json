@@ -97,6 +97,16 @@
 	},
 	"BETA":
 	{
+		"pcl:Apparition":
+		{
+			"DESCRIPTION": "ALL characters gain !S! [~Intangible]. Lose !M! [Strength], [Dexterity], and [Focus] this turn (this cannot be prevented). || Cycle ALL {Apparitions} in hand.",
+			"NAME": "Apparition"
+		},
+		"pcl:Bite":
+		{
+			"DESCRIPTION": "If the target has [DD]: Gain double [THP].",
+			"NAME": "Bite"
+		},
 		"pcl:Enlightenment":
 		{
 			"DESCRIPTION": "ALL 2+ cost cards in hand cost 1 this turn. || If you had none: ** Gain !M! [Inspiration].",
@@ -123,6 +133,11 @@
 		  "DESCRIPTION": "Costs 1 less if you have another Haniwa in your hand.",
 		  "NAME": "Haniwa"
 		},
+		"pcl:JAX":
+		{
+			"DESCRIPTION": "Take !S! [DD]. || Gain !M! [R] and [D].",
+			"NAME": "J.A.X."
+		},
 		"pcl:Miracle":
 		{
 			"DESCRIPTION": "Gain !M! [E].",
@@ -141,6 +156,11 @@
 			"EXTENDED_DESCRIPTION": ["Select this to fill this slot with a random Common card that changes every combat instead of removing a card from your deck."],
 			"NAME": "? ? ?",
 			"UPGRADE_DESCRIPTION": "At the start of combat: Transforms into a random upgraded Common card."
+		},
+		"pcl:RitualDagger":
+		{
+			"DESCRIPTION": "Remove [Artifact] and [~Intangible]. Deal double damage if the enemy has [Blinded]. || <LIM>. If {Fatal}: Permanently upgrade this.",
+			"NAME": "Ritual Dagger"
 		}
 	},
 	"BETA:ANGELBEATS":
@@ -376,7 +396,7 @@
 	{
 		"pcl:AkariMizunashi":
 		{
-			"DESCRIPTION": "{0}Evoke your first [Water] to gain a [L] use. ** Otherwise, Channel [Water]. || When drawn: Heal !S! [HP] ** (!X!/!S! times left).",
+			"DESCRIPTION": "{0}Evoke your first [Water] to gain a [L] use. ** Otherwise, Channel [Water]. || When drawn: Heal !S! [HP] ** (!X!/!S! times left this combat).",
 			"EXTENDED_DESCRIPTION": ["Convert ALL [Frost] to [Water]. "],
 			"NAME": "Akari Mizunashi"
 		},
@@ -552,8 +572,8 @@
 		},
 		"pcl:Megaman":
 		{
-			"DESCRIPTION": "<CDN>: Becomes a Charged {0} Attack. If used on yourself: Reduce Cooldown by !M!.",
-			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", "<LIM>. If {Fatal} with a Charged Attack: Store 1 use of the target's intent.", "<LIM>. {0}. Reset this card's effect."],
+			"DESCRIPTION": "If used on yourself: Becomes a {0} Attack with triple damage until played.",
+			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", " || <LIM>. If {Fatal}: Store the target's signature move.", " || <LIM>. If {Fatal}: Store {0} uses of: {1}.", " You may also choose to use: {0} (!X!/!M! times left)."],
 			"NAME": "Megaman"
 		},
 		"pcl:Megunee":
@@ -859,7 +879,7 @@
 		},
 		"pcl:BarbaraPegg":
 		{
-			"DESCRIPTION": "Channel 1 [Water]. || <SLM>. Pay !A! <B>: Trigger it once for each Attacking enemy.",
+			"DESCRIPTION": "Channel 1 [Water]. Trigger it once per Attacking enemy. || <SLM>. Pay !A! <B>: Retrive half of its [THP].",
 			"EXTENDED_DESCRIPTION": ["To play this, remove your first [Water]. Deal additional damage equal to its Evoke amount. <SLM>. If {Fatal}: Obtain {Wish}."],
 			"NAME": "Barbara Pegg"
 		},
@@ -871,7 +891,7 @@
 		},
 		"pcl:Bennett":
         {
-        	"DESCRIPTION": "Take 4 [DD]. || Gain !M! [Vigor] (+!S! on Match and/or below 20% Max [HP]).",
+        	"DESCRIPTION": "Take 4 [DD]. || Gain !M! [Vigor] (+!S! on Match).",
         	"NAME": "Bennett"
         },
 		"pcl:Chongyun":
@@ -897,7 +917,7 @@
 		},
 		"pcl:Diluc":
 		{
-			"DESCRIPTION": "For each character with [Freezing]: Gain !M! [Block] next turn. || Pay !A! <R>: Gain !S! [Burning Weapon].",
+			"DESCRIPTION": "For each character with [Freezing]: Gain !M! [NTB]. || Pay !A! <R>: Gain !S! [Burning Weapon].",
 			"NAME": "Diluc Ragnvindr"
 		},
 		"pcl:EulaLawrence":
@@ -908,8 +928,14 @@
 		},
 		"pcl:Fischl":
 		{
-			"DESCRIPTION": "Randomly Channel ** [~Lightning] or [~Dark]. || <LIM>. !M! Match Combo: Add {Oz} to your Discard Pile.",
+			"DESCRIPTION": "Randomly Channel ** [~Lightning] or [~Dark]. || <SLM>. !M! Match Combo: Add {Oz} to your discard pile.",
 			"NAME": "Fischl"
+		},
+		"pcl:Fischl_Oz":
+		{
+			"DESCRIPTION": "Apply !M! [Electrified] to a random enemy. || On your next !S! Matches with a <B> card: Randomly Channel 1 [~Lightning] or [~Dark].",
+			"EXTENDED_DESCRIPTION": ["The next #b{0} #yMatches made with [A-Blue] card(s) will randomly Channel 1 [~Lightning] or [~Dark]."],
+			"NAME": "Oz"
 		},
 		"pcl:Ganyu":
 		{
@@ -956,8 +982,8 @@
 		},
 		"pcl:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "{0}[Water] has +!M! [Focus] and reflects unblocked attack damage. ALL cards give 0 [Block]. || If you have no [Water] at the end of turn: Take !S! non-lethal damage and Channel [Water].",
-			"EXTENDED_DESCRIPTION": ["Gain 2 [Regeneration]. ","Play {Water Core}. "],
+			"DESCRIPTION": "{0}ALL cards give 0 [Block]. [Water] has +!M! [Focus] and reflects unblocked damage. If you have no [Water] at end of turn: Take !S! non-lethal damage and Channel [Water]. || <LIM>. Gain 2 [Regeneration].",
+			"EXTENDED_DESCRIPTION": ["Play {Water Core}. "],
 			"NAME": "Kokomi Sangonomiya"
 		},
 		"pcl:Kreideprinz":
@@ -989,12 +1015,6 @@
 		{
 			"DESCRIPTION": "<ST>: Trigger your ** first [Earth]. Otherwise, ** Channel 1 [Earth]. || Pay !A! <R> or <O>: ** {~Retain} a card.",
 			"NAME": "Noelle"
-		},
-		"pcl:Oz":
-		{
-			"DESCRIPTION": "Gain 1 [Orb Slot]. || The first time you play a <B> card each turn: Randomly Channel 1 [~Lightning] or [~Dark].",
-			"EXTENDED_DESCRIPTION": ["The first #b{0} [A-Blue] card(s) played this turn will also randomly Channel 1 #yLightning or #yDark. You have played #b{1} [A-Blue] card(s)."],
-			"NAME": "Oz"
 		},
 		"pcl:RaidenShogun":
 		{
@@ -1832,7 +1852,7 @@
 		"pcl:Caster":
 		{
 			"DESCRIPTION": "Steal !M! [Strength]. Lose !S! [Resistance]. || <DS> or Match: Channel 1 [~Dark] and Trigger it once.",
-			"NAME": "Medea"
+			"NAME": "Caster"
 		},
 		"pcl:Diarmuid":
 		{
@@ -1869,7 +1889,7 @@
 		{
 			"DESCRIPTION": "Apply 1 [Vulnerable]. || Pay !A! <R>: For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take +{0}% damage from [Vulnerable]."],
-			"NAME": "Cu Chulainn"
+			"NAME": "Lancer"
 		},
 		"pcl:MorganLeFay":
 		{
@@ -1880,7 +1900,7 @@
 		"pcl:Rider":
 		{
 			"DESCRIPTION": "Apply !M! [Shackles]. || Pay !A! <G> or <B>: Apply +!S!.",
-			"NAME": "Medusa"
+			"NAME": "Rider"
 		},
 		"pcl:RinTohsaka":
 		{
@@ -2176,7 +2196,7 @@
 		},
 		"pcl:LizardPriest":
 		{
-			"DESCRIPTION": "{~Retain} an Attack. If it was: ** [~Ranged]: -> Gain !S! Temp. [Thorns]. ** [~Brutal] -> Gain 1 [Inspiration]. ** Other -> Gain !M! [Block] next turn.",
+			"DESCRIPTION": "{~Retain} an Attack. If it was: ** [~Ranged]: -> Gain !S! Temp. [Thorns]. ** [~Brutal] -> Gain 1 [Inspiration]. ** Other -> Gain !M! [NTB].",
 			"EXTENDED_DESCRIPTION": ["At the end of turn: #yRetain #b{0} Attack(s)."],
 			"NAME": "Lizard Priest"
 		},
@@ -2284,8 +2304,8 @@
 		},
 		"pcl:Emonzaemon_EntouJyuu":
 		{
-			"DESCRIPTION": "Gain !M! Temp. [Dexterity]. || [T-Knife] and <G> {Attacks} deal +!S! damage.",
-			"EXTENDED_DESCRIPTION": ["[T-Knife] and [A-Green] #yAttacks deal +#b{0} damage."],
+			"DESCRIPTION": "Gain !M! Temp. [Dexterity]. || [T-Knife] and <G> {Attacks} deal +!S!% damage.",
+			"EXTENDED_DESCRIPTION": ["[T-Knife] and [A-Green] #yAttacks deal +#b{0}% damage."],
 			"NAME": "Entou Jyuu"
 		},
 		"pcl:HigakiRinne":
@@ -2344,9 +2364,9 @@
 		},
 		"pcl:TsurugaMeisai":
 		{
-			"DESCRIPTION": "Next turn: Gain !M! [Block]. Discard a card to gain +!S!. || Add !S! [T-Knife] to your draw pile.",
+			"DESCRIPTION": "Gain !M! [NTB]. Discard a card to gain +!S!. || Add !S! [T-Knife] to your draw pile.",
 			"NAME": "Tsuruga Meisai",
-			"UPGRADE_DESCRIPTION": "Next turn: Gain !M! [Block]. Discard a card to gain +!S!. || Add !S! [T-Knife] with [~Haste] to your draw pile."
+			"UPGRADE_DESCRIPTION": "Gain !M! [NTB]. Discard a card to gain +!S!. || Add !S! [T-Knife] with [~Haste] to your draw pile."
 		},
 		"pcl:UneriGinkaku":
 		{
@@ -2414,7 +2434,7 @@
 		},
 		"pcl:Kazuma":
 		{
-			"DESCRIPTION": "This gains +!M! damage. || !S! Match Combo: Also gains +1 [Block].",
+			"DESCRIPTION": "This gains +!M! damage. || !S! Match Combo: Gain double <W>.",
 			"NAME": "Kazuma Satou"
 		},
 		"pcl:Lean":
@@ -2652,7 +2672,7 @@
 		},
 		"pcl:OrikoMikuni":
 		{
-			"DESCRIPTION": "Choose 1: Scry !M!; ** Draw 1 card next turn; ** Gain !S! [Block] next turn. || Pay !A! <B>: Choose 3.",
+			"DESCRIPTION": "Choose 1: Scry !M!; ** Gain 1 [NTD]; ** Gain !S! [NTB]. || Pay !A! <B>: Choose 1 more.",
 			"NAME": "Oriko Mikuni"
 		},
 		"pcl:SayakaMiki":
@@ -3002,7 +3022,7 @@
 		},
 		"pcl:Guren":
 		{
-			"DESCRIPTION": "Play the top !M! cards of ** your draw pile. Exhaust ** every Hindrance and ** {Attack} among them. || Pay !A! <L>: Gain 1 [Support Damage] for ** every !M! cards in Exhaust pile.",
+			"DESCRIPTION": "Play the top !M! cards of ** your draw pile. Exhaust ** every Hindrance and ** {Attack} among them. || Pay !A! <L>: Gain 1 [Support Damage] per card in Exhaust pile.",
 			"NAME": "Guren Ichinose"
 		},
 		"pcl:HiiragiKureto":
@@ -3257,12 +3277,66 @@
 				"Once per combat, Pay !S! <W>: Play a random {Orb Core}."
 			],
 			"NAME": "Orb Cores"
+		},
+		"pcl:Glyph01":
+		{
+			"DESCRIPTION": "ALL enemies start with ** !M! [Ritual].",
+			"NAME": "Glyph of the Magician"
+		},
+		"pcl:Glyph02":
+		{
+			"DESCRIPTION": "ALL enemies ** have +!M!% HP.",
+			"NAME": "Glyph of the High Priestess"
+		},
+		"pcl:Glyph03":
+		{
+			"DESCRIPTION": "{0} and {1} cards ** deal !M!% less damage.",
+			"EXTENDED_DESCRIPTION": ["{0} and {1} cards deal #b{2}% less damage."],
+			"NAME": "Glyph of the Empress"
+		},
+		"pcl:Glyph04":
+		{
+			"DESCRIPTION": "{0} and {1} cards ** give !M!% less [Block].",
+			"EXTENDED_DESCRIPTION": ["{0} and {1} cards give #b{2}% less [Block]."],
+			"NAME": "Glyph of the Emperor"
+		},
+		"pcl:Glyph05":
+		{
+			"DESCRIPTION": "{0} is disabled ** this combat.",
+			"EXTENDED_DESCRIPTION": ["{0} is disabled this combat."],
+			"NAME": "Glyph of the Hierophant"
+		},
+		"pcl:Glyph06":
+		{
+			"DESCRIPTION": "The first time you play a {0} card each turn: ALL enemies heal !M! [HP].",
+			"EXTENDED_DESCRIPTION": ["The first time you play a {0} card each turn: ALL enemies heal #b{1} [HP]."],
+			"NAME": "Glyph of the Lovers"
+		},
+		"pcl:Glyph07":
+		{
+			"DESCRIPTION": "Discard the next !M! {0} card(s) drawn.",
+			"EXTENDED_DESCRIPTION": ["Discard the next #b{0} {1} card(s) drawn."],
+			"NAME": "Glyph of the Chariot"
+		},
+		"pcl:Glyph08":
+		{
+			"DESCRIPTION": "ALL enemies start with ** !M! [Thorns] and [Artifact].",
+			"NAME": "Glyph of Justice"
+		},
+		"pcl:Glyph09":
+		{
+			"DESCRIPTION": "At the start of each turn: ** ALL enemies gain !M! [Curl Up].",
+			"NAME": "Glyph of the Hermit"
+		},
+		"pcl:Glyph10":
+		{
+			"DESCRIPTION": "Enemies drop +!S!% [Gold]. || Whenever you shuffle your deck: ALL enemies gain !M! [Plated Armor] and [Regeneration].",
+			"NAME": "Glyph of Fortune"
 		}
 	},
 
 	"SPECIAL":
 	{
-
 		"pcl:AffinityToken":
 		{
 			"DESCRIPTION": "Set the {Current <W>} to {0}. || While in hand: If you would spend {0}, ** Purge this instead.",
@@ -3369,8 +3443,8 @@
 		},
 		"pcl:OrbCore_Metal":
 		{
-			"DESCRIPTION": "gives !M! [Enchanted Armor] on Evoke.",
-			"EXTENDED_DESCRIPTION": ["gives #b{0} [Enchanted Armor] on Evoke."],
+			"DESCRIPTION": "has +!M! [{0}] Scaling. The next 2 [Metal] Evoked give !M! [Metallicize]",
+			"EXTENDED_DESCRIPTION": ["has +#b{0} [S] Scaling. The next #b2 [Metal] #yEvoked give #b{0} [Metallicize]"],
 			"NAME": "Metal Core"
 		},
 		"pcl:OrbCore_Plasma":
@@ -3548,7 +3622,8 @@
 		},
 		"pcl:Rose":
 		{
-			"DESCRIPTION": "<DRW-M>. Reload: ** Attack +1 times. || If Fatal, deal !S! damage ** to ALL enemies.",
+			"DESCRIPTION": "Channel [Metal]. <DRW-M>, then Reload: Trigger ALL [Metal]. || Once played, you may pay !S! <S> once: [Metal] attacks the enemy with lowest HP this turn.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [A-Silver]: {1}","ALL [Metal] will attack the enemy with the lowest HP this turn."],
 			"NAME": "Rose"
 		},
 		"pcl:SeriousSaitama":

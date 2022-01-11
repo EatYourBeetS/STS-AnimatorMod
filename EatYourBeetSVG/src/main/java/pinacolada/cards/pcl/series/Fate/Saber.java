@@ -40,8 +40,7 @@ public class Saber extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 2, 2, 1);
-        SetUpgrade(1, 0, 0);
+        Initialize(7, 2, 1, 1);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
@@ -49,6 +48,7 @@ public class Saber extends PCLCard
 
         SetSoul(7, 0, Saber_Excalibur::new);
         SetLoyal(true);
+        SetUnique(true, -1);
     }
 
     @Override
@@ -72,7 +72,18 @@ public class Saber extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         SetInnate(true);
+        if (timesUpgraded % 4 == 1)
+        {
+            upgradeBlock(1);
+            upgradeDamage(1);
+        }
+        else
+        {
+            upgradeMagicNumber(0);
+            upgradeDamage(2);
+        }
     }
 
     @Override

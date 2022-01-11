@@ -7,7 +7,6 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 
@@ -40,7 +39,7 @@ public class Shiroe extends PCLCard
         PCLActions.Bottom.Cycle(name, magicNumber).AddCallback(cards -> {
             for (AbstractCard c : cards) {
                 if (c instanceof PCLCard) {
-                    PCLCombatStats.MatchingSystem.AddAffinities(((PCLCard) c).affinities);
+                    PCLActions.Bottom.AddAffinities(((PCLCard) c).affinities);
                 }
             }
         });

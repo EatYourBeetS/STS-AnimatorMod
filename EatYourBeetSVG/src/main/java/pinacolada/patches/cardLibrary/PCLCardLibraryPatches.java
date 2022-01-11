@@ -5,13 +5,14 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.colorless.Enlightenment;
+import com.megacrit.cardcrawl.cards.colorless.*;
 import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.cards.status.*;
 import com.megacrit.cardcrawl.cards.tempCards.Miracle;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.cards.animator.special.OrbCore_Aether;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.resources.animator.AnimatorResources;
@@ -19,6 +20,7 @@ import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.*;
+import pinacolada.cards.pcl.special.OrbCore_Air;
 import pinacolada.cards.pcl.status.*;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLResources;
@@ -35,7 +37,7 @@ public class PCLCardLibraryPatches
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72, 0x3a};
     private static final String idPrefix = new String(whatever);
 
-    public static EYBCardData GetEYBCardReplacementForPCL(String cardID) {
+    public static EYBCardData GetEYBCardReplacement(String cardID) {
         // Attempt to find the Animator replacement for PCL cards
         if (cardID.startsWith(PCLResources.ID)) {
             String replacementID = cardID.replace(PCLResources.ID, AnimatorResources.ID);
@@ -44,11 +46,16 @@ public class PCLCardLibraryPatches
         return null;
     }
 
-    public static PCLCardData GetPCLCardReplacementForEYB(String cardID) {
+    public static PCLCardData GetPCLCardReplacement(String cardID) {
         // Attempt to find the PCL replacement for EYB/Animator cards
         if (cardID.startsWith(AnimatorResources.ID)) {
             String replacementID = cardID.replace(AnimatorResources.ID, PCLResources.ID);
             return PCLCard.GetStaticData(replacementID);
+        }
+
+        // Misc. Animator game card replacements
+        if (OrbCore_Aether.DATA.ID.equals(cardID)) {
+            return OrbCore_Air.DATA;
         }
         return null;
     }
@@ -58,8 +65,10 @@ public class PCLCardLibraryPatches
         // Base game card replacements
         switch (cardID)
         {
+            case Apparition.ID: return pinacolada.cards.pcl.replacement.Apparition.DATA;
             case AscendersBane.ID:
                 return Curse_AscendersBane.DATA;
+            case Bite.ID: return pinacolada.cards.pcl.replacement.Bite.DATA;
             case Burn.ID: return Status_Burn.DATA;
             case Clumsy.ID: return Curse_Clumsy.DATA;
             case Dazed.ID: return Status_Dazed.DATA;
@@ -67,11 +76,13 @@ public class PCLCardLibraryPatches
             case Doubt.ID: return Curse_Doubt.DATA;
             case Enlightenment.ID: return pinacolada.cards.pcl.replacement.Enlightenment.DATA;
             case Injury.ID: return Curse_Injury.DATA;
+            case JAX.ID: return pinacolada.cards.pcl.replacement.JAX.DATA;
             case Miracle.ID: return pinacolada.cards.pcl.replacement.Miracle.DATA;
             case Normality.ID: return Curse_Normality.DATA;
             case Pain.ID: return Curse_Pain.DATA;
             case Parasite.ID: return Curse_Parasite.DATA;
             case Regret.ID: return Curse_Regret.DATA;
+            case RitualDagger.ID: return pinacolada.cards.pcl.replacement.RitualDagger.DATA;
             case Shame.ID: return Curse_Shame.DATA;
             case Slimed.ID: return Status_Slimed.DATA;
             case VoidCard.ID: return Status_Void.DATA;
@@ -92,7 +103,7 @@ public class PCLCardLibraryPatches
             return data.MakeCopy(card.upgraded);
         }
         else if (GR.PCL.Config.ReplaceCardsFool.Get()) {
-            data = GetPCLCardReplacementForEYB(card.cardID);
+            data = GetPCLCardReplacement(card.cardID);
             if (data != null)
             {
                 return data.MakeCopy(card.upgraded);
@@ -115,7 +126,7 @@ public class PCLCardLibraryPatches
         }
         else if (GR.PCL.Config.ReplaceCardsAnimator.Get() && PCLGameUtilities.IsPlayerClass(eatyourbeets.resources.GR.Animator.PlayerClass))
         {
-            final EYBCardData data = GetEYBCardReplacementForPCL(card[0].cardID);
+            final EYBCardData data = GetEYBCardReplacement(card[0].cardID);
             if (data != null)
             {
                 card[0] = data.MakeCopy(card[0].upgraded);
@@ -188,7 +199,7 @@ public class PCLCardLibraryPatches
             else if (PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass)) {
                 PCLCardData data = GetStandardReplacement(key);
                 if (data == null && GR.PCL.Config.ReplaceCardsFool.Get()) {
-                    data = GetPCLCardReplacementForEYB(key);
+                    data = GetPCLCardReplacement(key);
                 }
                 if (data != null)
                 {

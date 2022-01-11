@@ -13,7 +13,6 @@ import pinacolada.actions.orbs.FireOrbPassiveAction;
 import pinacolada.effects.SFX;
 import pinacolada.effects.vfx.FadingParticleEffect;
 import pinacolada.orbs.PCLOrb;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -62,15 +61,6 @@ public class Fire extends PCLOrb {
         super.triggerEvokeAnimation();
 
         SFX.Play(SFX.ATTACK_FIRE, 0.9f, 1.1f);
-    }
-
-    @Override
-    public void applyFocus()
-    {
-        int focus = GetFocus();
-        this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
-        this.evokeAmount = Math.max(0, this.baseEvokeAmount + focus);
-        PCLCombatStats.OnOrbApplyFocus(this);
     }
 
     public void updateAnimation() {

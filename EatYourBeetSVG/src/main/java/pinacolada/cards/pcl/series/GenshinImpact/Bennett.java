@@ -9,7 +9,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 public class Bennett extends PCLCard {
     public static final PCLCardData DATA = Register(Bennett.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal).SetSeriesFromClassPackage();
@@ -27,9 +26,6 @@ public class Bennett extends PCLCard {
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         PCLActions.Bottom.StackPower(new VigorPower(player, magicNumber));
-        if (PCLGameUtilities.GetHealthPercentage(player) < 0.2f) {
-            PCLActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
-        }
         if (info.IsSynergizing) {
             PCLActions.Bottom.StackPower(new VigorPower(player, secondaryValue));
         }

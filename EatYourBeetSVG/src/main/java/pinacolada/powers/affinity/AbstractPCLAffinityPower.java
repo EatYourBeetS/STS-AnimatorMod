@@ -108,21 +108,35 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         }
     }
 
-    public void SetThreshold(int threshold) {
-        this.threshold = threshold;
+    public AbstractPCLAffinityPower SetEnabled(boolean enable)
+    {
+        this.enabled = enable;
+        this.updateDescription();
+        return this;
     }
 
-    public void SetEffectMultiplier(float effectMultiplier) {
+    public AbstractPCLAffinityPower SetThreshold(int threshold) {
+        this.threshold = threshold;
+        this.updateDescription();
+        return this;
+    }
+
+    public AbstractPCLAffinityPower SetEffectMultiplier(float effectMultiplier) {
         this.effectMultiplier = effectMultiplier;
         this.updateDescription();
+        return this;
     }
 
-    public void SetGainMultiplier(int gainMultiplier) {
+    public AbstractPCLAffinityPower SetGainMultiplier(int gainMultiplier) {
         this.gainMultiplier = gainMultiplier;
+        this.updateDescription();
+        return this;
     }
 
-    public void SetScalingMultiplier(int scalingMultiplier) {
+    public AbstractPCLAffinityPower SetScalingMultiplier(int scalingMultiplier) {
         this.scalingMultiplier = scalingMultiplier;
+        this.updateDescription();
+        return this;
     }
 
     public void Stack(int amount, boolean maintain)
@@ -217,7 +231,6 @@ public abstract class AbstractPCLAffinityPower extends PCLClickablePower
         super.atStartOfTurn();
 
         this.forceEnableThisTurn = false;
-        enabled = true;
         isActive = false;
     }
 

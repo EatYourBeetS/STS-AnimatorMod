@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Base64Coder;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import org.apache.commons.lang3.StringUtils;
+import pinacolada.blights.common.GlyphBlight;
+import pinacolada.blights.common.GlyphBlight1;
+import pinacolada.blights.common.GlyphBlight2;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.loadouts.*;
@@ -21,6 +24,9 @@ import java.util.regex.Pattern;
 
 public class PCLPlayerData
 {
+    public static final int ASCENSION_GLYPH1_LEVEL_STEP = 2;
+    public static final int ASCENSION_GLYPH1_UNLOCK = 18;
+
     public final int MajorVersion = 2;
     public final int MaxUnlockLevel = 8;
     public final ArrayList<PCLLoadout> BaseLoadouts = new ArrayList<>();
@@ -28,6 +34,11 @@ public class PCLPlayerData
     public final ArrayList<PCLTrophies> Trophies = new ArrayList<>();
     public PCLTrophies SpecialTrophies = new PCLTrophies(-1);
     public PCLLoadout SelectedLoadout = new _FakeLoadout();
+    public GlyphBlight AscensionGlyph0;
+    public GlyphBlight1 AscensionGlyph1;
+    public GlyphBlight2 AscensionGlyph2;
+
+    // TODO use a serialized string to store glyph data
 
     public void Initialize()
     {
@@ -56,6 +67,10 @@ public class PCLPlayerData
         {
             SpecialTrophies = new PCLTrophies(0);
         }
+
+        AscensionGlyph0 = new GlyphBlight(GR.PCL.Config.AscensionGlyph0.Get());
+        AscensionGlyph1 = new GlyphBlight1(GR.PCL.Config.AscensionGlyph1.Get());
+        AscensionGlyph2 = new GlyphBlight2(GR.PCL.Config.AscensionGlyph2.Get());
     }
 
     public List<PCLLoadout> GetEveryLoadout()

@@ -258,7 +258,7 @@ public class TryChooseAffinity extends EYBActionWithCallback<ArrayList<AffinityC
     protected AffinityChoice GetCard(PCLAffinity affinity) {
         AffinityToken token = AffinityToken.GetCard(affinity);
         AffinityChoiceBuilder builder = new AffinityChoiceBuilder(affinity, cost);
-        builder.SetText(token.GetAffinity().Name, "", null).ShowTypeText(false);
+        builder.SetText(token.GetAffinity().GetTooltip().title, "", null).ShowTypeText(false);
         return builder.Build();
     }
 }

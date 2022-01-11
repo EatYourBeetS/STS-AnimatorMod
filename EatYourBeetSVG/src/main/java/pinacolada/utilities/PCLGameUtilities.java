@@ -30,7 +30,11 @@ import eatyourbeets.utilities.WeightedList;
 import pinacolada.blights.common.UpgradedHand;
 import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
-import pinacolada.orbs.pcl.*;
+import pinacolada.orbs.PCLOrb;
+import pinacolada.orbs.pcl.Air;
+import pinacolada.orbs.pcl.Earth;
+import pinacolada.orbs.pcl.Fire;
+import pinacolada.orbs.pcl.Water;
 import pinacolada.patches.cardLibrary.PCLCardLibraryPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
@@ -145,11 +149,11 @@ public class PCLGameUtilities extends GameUtilities
     }
 
     public static boolean CanOrbApplyFocus(AbstractOrb orb) {
-        return (!Plasma.ORB_ID.equals(orb.ID) && !Chaos.ORB_ID.equals(orb.ID));
+        return (!Plasma.ORB_ID.equals(orb.ID) && !(orb instanceof PCLOrb && !((PCLOrb) orb).canOrbApplyFocusToPassive));
     }
 
     public static boolean CanOrbApplyFocusToEvoke(AbstractOrb orb) {
-        return (!Dark.ORB_ID.equals(orb.ID) && !Water.ORB_ID.equals(orb.ID) && !Earth.ORB_ID.equals(orb.ID));
+        return (!Dark.ORB_ID.equals(orb.ID) && !(orb instanceof PCLOrb && !((PCLOrb) orb).canOrbApplyFocusToEvoke));
     }
 
     public static boolean CanPlayTwice(AbstractCard card)
@@ -189,6 +193,23 @@ public class PCLGameUtilities extends GameUtilities
     {
         AbstractPCLAffinityPower po = PCLCombatStats.MatchingSystem.GetPower(affinity);
         return po != null && po.TrySpend(amount >= 0 ? amount : po.triggerCondition.requiredAmount);
+    }
+
+    public static String ConvertCardStringToPowerString(PCLCard card)
+    {
+        return ConvertCardStringToPowerString(card, card.rawDescription);
+    }
+
+    public static String ConvertCardStringToPowerString(PCLCard card, String baseString)
+    {
+        String modifiedDescription = baseString
+                .replace("!S!", String.valueOf(card.secondaryValue))
+                .replace("!M!", String.valueOf(card.magicNumber))
+                .replace(" NL ", " ")
+                .replace("{", "")
+                .replace("~", "")
+                .replace("}", "");
+        return PCLJUtils.ModifyString(modifiedDescription, w -> Character.isDigit(w.charAt(0)) ? ("#b" + w) : w);
     }
 
     public static PCLAffinity ConvertEYBToPCLAffinity(Affinity affinity)
@@ -335,6 +356,11 @@ public class PCLGameUtilities extends GameUtilities
     public static AbstractCard GetCardReplacementOrDefault(String cardID, boolean upgraded) {
         PCLCardData data = GetPCLCardReplacement(cardID);
         return (AbstractCard)(data == null ? CardLibrary.getCopy(cardID, upgraded ? 1 : 0, 0) : data.CreateNewInstance(upgraded));
+    }
+
+    public static boolean HasAffinity(AbstractCard card, PCLAffinity affinity)
+    {
+        return GetPCLAffinityLevel(card, affinity, true) > 0;
     }
 
     public static boolean HasRedAffinity(AbstractCard card)
@@ -812,7 +838,7 @@ public class PCLGameUtilities extends GameUtilities
         ModifyDamage(card, card.baseDamage + amount, temporary);
     }
 
-    public static void IncreaseHandSizePermanently(float cX, float cY)
+    public static void IncreaseHandSizePermanently()
     {
         for (AbstractBlight blight : player.blights)
         {
@@ -822,7 +848,7 @@ public class PCLGameUtilities extends GameUtilities
                 return;
             }
         }
-        GetCurrentRoom(true).spawnBlightAndObtain(cX, cY, new UpgradedHand());
+        GetCurrentRoom(true).spawnBlightAndObtain(player.hb.cX, player.hb.cY, new UpgradedHand());
     }
 
     public static void IncreaseMagicNumber(AbstractCard card, int amount, boolean temporary)
@@ -1192,6 +1218,11 @@ public class PCLGameUtilities extends GameUtilities
             p.Maintain();
         }
     }
+
+    public static void ObtainBlightWithoutEffect(AbstractBlight blight) {
+        blight.instantObtain(player, player.blights.size(), false);
+    }
+
 
     public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
     {

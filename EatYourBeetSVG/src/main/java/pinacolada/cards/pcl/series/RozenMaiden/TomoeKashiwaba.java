@@ -9,7 +9,6 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -44,7 +43,7 @@ public class TomoeKashiwaba extends PCLCard
                     {
                         PCLGameUtilities.Retain(card);
                         if (card instanceof PCLCard) {
-                            PCLCombatStats.MatchingSystem.AddAffinities(((PCLCard) card).affinities);
+                            PCLActions.Bottom.AddAffinities(((PCLCard) card).affinities);
                         }
                     }
                 });

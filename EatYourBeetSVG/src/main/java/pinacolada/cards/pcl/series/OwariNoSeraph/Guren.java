@@ -23,13 +23,13 @@ public class Guren extends PCLCard implements OnPhaseChangedSubscriber
     {
         super(DATA);
 
-        Initialize(0, 1,3, 4);
+        Initialize(0, 1,3, 1);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Light(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Light, 5);
+        SetAffinityRequirement(PCLAffinity.Light, 8);
 
         SetExhaust(true);
     }
@@ -60,7 +60,7 @@ public class Guren extends PCLCard implements OnPhaseChangedSubscriber
         {
             if (TrySpendAffinity(PCLAffinity.Light))
             {
-                int amount = player.exhaustPile.size() / 3;
+                int amount = player.exhaustPile.size();
                 if (amount > 0)
                 {
                     PCLActions.Bottom.StackPower(new SupportDamagePower(player, amount));

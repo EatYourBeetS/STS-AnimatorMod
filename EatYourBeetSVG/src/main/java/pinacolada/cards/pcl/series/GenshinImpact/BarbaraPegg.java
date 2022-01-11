@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
+import pinacolada.actions.orbs.WaterOrbEvokeAction;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -51,9 +52,19 @@ public class BarbaraPegg extends PCLCard
         Water waterOrb = new Water();
         PCLActions.Bottom.ChannelOrb(waterOrb).AddCallback(orbs -> {
             int attackingCount = PCLJUtils.Count(PCLGameUtilities.GetPCLIntents(), i -> !i.IsAttacking());
-            if (attackingCount > 0 && info.CanActivateSemiLimited && TrySpendAffinity(PCLAffinity.Blue) && info.TryActivateSemiLimited()) {
-                PCLActions.Bottom.TriggerOrbPassive(waterOrb, attackingCount);
+            if (attackingCount > 0) {
+                PCLActions.Bottom.TriggerOrbPassive(waterOrb, attackingCount).AddCallback(__ -> {
+                    if (info.CanActivateSemiLimited && TrySpendAffinity(PCLAffinity.Blue) && info.TryActivateSemiLimited()) {
+                        int amount = waterOrb.evokeAmount / 2;
+                        PCLActions.Bottom.Add(new WaterOrbEvokeAction(waterOrb.hb, amount));
+                        PCLActions.Delayed.Callback(() -> {
+                            waterOrb.SetBaseEvokeAmount(amount, true);
+                        });
+                    }
+                });
             }
+
+
         });
 
     }

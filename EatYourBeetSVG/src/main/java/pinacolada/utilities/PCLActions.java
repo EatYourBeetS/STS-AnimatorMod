@@ -62,6 +62,7 @@ import pinacolada.actions.powers.*;
 import pinacolada.actions.special.*;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardAffinities;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
@@ -128,6 +129,11 @@ public final class PCLActions
     public ChangeAffinityCount AddAffinity(PCLAffinity affinity, int amount)
     {
         return Add(new ChangeAffinityCount(affinity, amount).ShowEffect(true));
+    }
+
+    public ChangeAffinityCountMultiple AddAffinities(PCLCardAffinities affinities)
+    {
+        return Add(new ChangeAffinityCountMultiple(affinities).ShowEffect(true));
     }
 
     public ApplyPower ApplyBlinded(AbstractCreature source, AbstractCreature target, int amount)

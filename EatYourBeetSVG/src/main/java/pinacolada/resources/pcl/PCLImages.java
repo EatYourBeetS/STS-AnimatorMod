@@ -218,6 +218,7 @@ public class PCLImages
         public final TextureCache Gold             = new TextureCache("images/pcl/cardui/tooltips/Gold.png");
         public final TextureCache GriefSeed        = new TextureCache("images/pcl/cardui/tooltips/GriefSeed.png");
         public final TextureCache Lightning        = new TextureCache("images/pcl/cardui/tooltips/Lightning.png");
+        public final TextureCache Metal            = new TextureCache("images/pcl/cardui/tooltips/Metal.png");
         public final TextureCache OrbSlot          = new TextureCache("images/pcl/cardui/tooltips/OrbSlot.png");
         public final TextureCache Plasma           = new TextureCache("images/pcl/cardui/tooltips/Plasma.png");
         public final TextureCache RandomOrb        = new TextureCache("images/pcl/cardui/tooltips/RandomOrb.png");
@@ -254,6 +255,7 @@ public class PCLImages
         public final TextureCache FireParticle1     = new TextureCache("images/pcl/orbs/FireParticle1.png");
         public final TextureCache FireParticle2     = new TextureCache("images/pcl/orbs/FireParticle2.png");
         public final TextureCache FireParticle3     = new TextureCache("images/pcl/orbs/FireParticle3.png");
+        public final TextureCache Metal            = new TextureCache("images/pcl/orbs/Metal.png");
         public final TextureCache Water1           = new TextureCache("images/pcl/orbs/Water1.png");
         public final TextureCache Water2           = new TextureCache("images/pcl/orbs/Water2.png");
         public final TextureCache Water3           = new TextureCache("images/pcl/orbs/Water3.png");

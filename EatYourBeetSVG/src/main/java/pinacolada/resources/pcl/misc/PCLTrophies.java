@@ -4,7 +4,7 @@ import pinacolada.utilities.PCLJUtils;
 
 public class PCLTrophies
 {
-    public static final int MAXIMUM_TROPHY = 20;
+    public static final int MAXIMUM_TROPHY = 25;
     public int ID;
     public int Trophy1 = -1;
     public int Trophy2 = -1;

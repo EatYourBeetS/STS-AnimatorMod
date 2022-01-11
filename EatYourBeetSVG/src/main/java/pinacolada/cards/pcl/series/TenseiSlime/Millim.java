@@ -39,6 +39,7 @@ public class Millim extends PCLCard
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
         if (timesUpgraded % 3 == 1)
         {
             upgradeMagicNumber(1);

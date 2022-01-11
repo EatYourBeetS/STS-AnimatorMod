@@ -31,10 +31,7 @@ import pinacolada.blights.common.UpgradedHand;
 import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.PCLOrb;
-import pinacolada.orbs.pcl.Air;
-import pinacolada.orbs.pcl.Earth;
-import pinacolada.orbs.pcl.Fire;
-import pinacolada.orbs.pcl.Water;
+import pinacolada.orbs.pcl.*;
 import pinacolada.patches.cardLibrary.PCLCardLibraryPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
@@ -624,14 +621,15 @@ public class PCLGameUtilities extends GameUtilities
     {
         if (orbs.Size() == 0)
         {
-            orbs.Add(new Lightning(), 7);
-            orbs.Add(new Frost(), 7);
-            orbs.Add(new Fire(), 6);
-            orbs.Add(new Dark(), 6);
-            orbs.Add(new Earth(), 5);
-            orbs.Add(new Air(), 4);
+            orbs.Add(new Lightning(), 8);
+            orbs.Add(new Frost(), 8);
+            orbs.Add(new Fire(), 8);
+            orbs.Add(new Dark(), 8);
+            orbs.Add(new Earth(), 6);
+            orbs.Add(new Air(), 6);
             orbs.Add(new Plasma(), 3);
             orbs.Add(new Water(), 3);
+            orbs.Add(new Metal(), 2);
         }
 
         return orbs.Retrieve(GetRNG(), false).makeCopy();

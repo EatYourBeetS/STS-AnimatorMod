@@ -72,7 +72,7 @@ public class Fischl_Oz extends PCLCard
         @Override
         public void OnMatchBonus(AbstractCard card, PCLAffinity affinity)
         {
-            if (amount > 0 && PCLAffinity.Orange.equals(affinity))
+            if (amount > 0 && PCLAffinity.Blue.equals(affinity))
             {
                 PCLActions.Bottom.ChannelOrb(rng.randomBoolean(0.5f) ? new Dark() : new Lightning());
                 ReducePower(1);

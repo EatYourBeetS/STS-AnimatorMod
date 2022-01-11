@@ -276,11 +276,11 @@
 		"NAMES": ["energized"],
 		"PROPER_NAME": "Energized"
 	},
-	"Enhance":
+	"Enrage":
 	{
-		"DESCRIPTION": "Increase the stat of a card for the rest of this combat.",
-		"NAMES": ["enhance", "enhanced", "enhancement"],
-		"PROPER_NAME": "Enhance"
+		"DESCRIPTION": "Whenever you play a #ySkill this turn: Gain [R].",
+		"NAMES": ["enrage"],
+		"PROPER_NAME": "Enrage"
 	},
 	"Envenom":
 	{
@@ -293,12 +293,6 @@
 		"DESCRIPTION": "Cannot be removed from your deck. When exhausted, returns to your draw pile and changes form if it has multiple forms.",
 		"NAMES": ["eternal"],
 		"PROPER_NAME": "Eternal"
-	},
-	"Exchange":
-	{
-		"DESCRIPTION": "Draw a certain number of cards, then move the same number of cards from your hand to the top of your draw pile.",
-		"NAMES": ["exchange"],
-		"PROPER_NAME": "Exchange"
 	},
 	"Fetch":
 	{

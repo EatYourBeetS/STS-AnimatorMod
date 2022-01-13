@@ -18,6 +18,7 @@ public class SFX extends eatyourbeets.effects.SFX
         BaseMod.addAudio(PCL_ORB_EARTH_CHANNEL, "audio/pcl/sound/ORB_EARTH_CHANNEL.ogg");
         BaseMod.addAudio(PCL_ORB_WATER_EVOKE, "audio/pcl/sound/ORB_WATER_EVOKE.ogg");
         BaseMod.addAudio(PCL_ORB_WATER_CHANNEL, "audio/pcl/sound/ORB_WATER_CHANNEL.ogg");
+        BaseMod.addAudio(PCL_PING, "audio/pcl/sound/PING.ogg");
         BaseMod.addAudio(PCL_SUPPORT_DAMAGE, "audio/pcl/sound/EVFX02_11_QuickBlade.ogg");
         BaseMod.addAudio(PCL_STAR, "audio/pcl/sound/STAR.ogg");
     }
@@ -35,6 +36,7 @@ public class SFX extends eatyourbeets.effects.SFX
     public static final String PCL_ORB_EARTH_EVOKE = "PCL_ORB_EARTH_EVOKE";
     public static final String PCL_ORB_WATER_CHANNEL = "PCL_ORB_WATER_CHANNEL";
     public static final String PCL_ORB_WATER_EVOKE = "PCL_ORB_WATER_EVOKE";
+    public static final String PCL_PING = "PCL_PING";
     public static final String PCL_PSI = "PCL_PSI";
     public static final String PCL_PUNCH = "PCL_PUNCH";
     public static final String PCL_STAR = "PCL_STAR";

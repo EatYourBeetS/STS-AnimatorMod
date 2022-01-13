@@ -11,7 +11,7 @@ import pinacolada.powers.PCLTriggerablePower;
 
 public class BurningPower extends PCLTriggerablePower
 {
-    private static final Color healthBarColor = Color.ORANGE.cpy();
+    private static final Color healthBarColor = new Color(1.00F, 0.3F, 0.05F, 1.0F);
     public static final String POWER_ID = CreateFullID(BurningPower.class);
     public static final int ATTACK_MULTIPLIER = 15;
 

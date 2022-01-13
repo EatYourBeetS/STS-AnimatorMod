@@ -24,8 +24,8 @@ public class Apparition extends PCLCard
         Initialize(0, 0, 99, 1);
         SetUpgrade(0, 0, 0);
 
+        SetAffinity_Light(1);
         SetAffinity_Dark(1);
-        SetAffinity_Silver(1);
         SetCostUpgrade(-1);
         SetEthereal(true);
         SetExhaust(true);

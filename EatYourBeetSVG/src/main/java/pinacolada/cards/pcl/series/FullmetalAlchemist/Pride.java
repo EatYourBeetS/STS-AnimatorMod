@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -81,7 +82,7 @@ public class Pride extends PCLCard
 
                 if (info.owner != null && info.owner.isPlayer != owner.isPlayer)
                 {
-                    PCLActions.Bottom.ApplyConstricted(owner, info.owner, amount);
+                    PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(info.owner), amount);
                     flashWithoutSound();
                 }
             }

@@ -17,7 +17,7 @@ public class OrbCore_Water extends OrbCore
 
     public OrbCore_Water()
     {
-        super(DATA, 1, 7);
+        super(DATA, 2, 7);
 
         SetAffinity_Blue(1);
         SetHealing(true);

@@ -39,6 +39,14 @@ public class FadingParticleEffect extends EYBEffect
         return this;
     }
 
+    public FadingParticleEffect SetColor(Color color, Color targetColor, float colorSpeed)
+    {
+        this.projectile.SetColor(color, targetColor, colorSpeed);
+        this.alpha = color.a;
+
+        return this;
+    }
+
     public FadingParticleEffect SetRotation(float startRotation)
     {
         this.projectile.SetRotation(startRotation);

@@ -595,7 +595,7 @@ public class PCLGameUtilities extends GameUtilities
                             && !c.tags.contains(AbstractCard.CardTags.HEALING)
                             && c.rarity != AbstractCard.CardRarity.BASIC)
                     {
-                        characterCardPool.Add((PCLCard)c);
+                        characterCardPool.Add(c);
                     }
                 }
             }

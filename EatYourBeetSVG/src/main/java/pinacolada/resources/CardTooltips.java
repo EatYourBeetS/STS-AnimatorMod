@@ -148,11 +148,11 @@ public class CardTooltips
     public PCLCardTooltip Purge = FindByID("Purge");
     public PCLCardTooltip Ranged = FindByID("~Ranged");
     public PCLCardTooltip Regeneration = FindByID("Regeneration");
-    public PCLCardTooltip Rejuvenation = FindByID("Rejuvenation");
     public PCLCardTooltip Resistance = FindByID("Resistance");
     public PCLCardTooltip Retain = FindByID("~Retain");
     public PCLCardTooltip RetainInfinite = FindByID("~RetainInfinite");
     public PCLCardTooltip RetainOnce = FindByID("~RetainOnce");
+    public PCLCardTooltip Rippled = FindByID("Rippled");
     public PCLCardTooltip Ritual = FindByID("Ritual");
     public PCLCardTooltip SelfImmolation = FindByID("Self-Immolation");
     public PCLCardTooltip SemiLimited = FindByID("Semi-Limited");
@@ -332,6 +332,7 @@ public class CardTooltips
         LoadFromPower(Blinded, new BlindedPower(FakeCharacter.Instance, null, 0));
         LoadFromPower(Electrified, new ElectrifiedPower(FakeCharacter.Instance, null,0));
         LoadFromPower(Freezing, new FreezingPower(FakeCharacter.Instance, null,0));
+        LoadFromPower(Rippled, new RippledPower(FakeCharacter.Instance, null,0));
         LoadFromPower(Poison, new PoisonPower(FakeCharacter.Instance, null, 0)).SetIconSizeMulti(1.05f, 1f);
         LoadFromPower(Artifact, new ArtifactPower(FakeCharacter.Instance, 0));
         LoadFromPower(Blur, new BlurPower(FakeCharacter.Instance, 0));
@@ -360,7 +361,6 @@ public class CardTooltips
         LoadFromPower(NextTurnDraw, new DrawCardNextTurnPower(FakeCharacter.Instance, 0));
         LoadFromPower(Phasing, new PhasingPower(FakeCharacter.Instance, 0));
         LoadFromPower(PlatedArmor, new PlatedArmorPower(FakeCharacter.Instance, 0));
-        LoadFromPower(Rejuvenation, new RejuvenationPower(FakeCharacter.Instance, 0));
         LoadFromPower(Resistance, new ResistancePower(FakeCharacter.Instance, 0));
         LoadFromPower(Ritual, new RitualPower(FakeCharacter.Instance, 0, true));
         LoadFromPower(SelfImmolation, new SelfImmolationPower(FakeCharacter.Instance, 0));

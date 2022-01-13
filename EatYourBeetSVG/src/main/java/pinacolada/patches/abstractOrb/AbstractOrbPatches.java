@@ -46,7 +46,11 @@ public class AbstractOrbPatches
         @SpirePostfixPatch
         public static void Postfix(AbstractOrb __instance)
         {
-            PCLCombatStats.OnOrbApplyFocus(__instance);
+            // Certain mods may instantiate Orb instances in static methods before CombatStats is initialized, which will cause this method call to crash without this in-game check
+            if (PCLGameUtilities.InGame()) {
+                PCLCombatStats.OnOrbApplyFocus(__instance);
+            }
+
         }
     }
 
@@ -91,7 +95,9 @@ public class AbstractOrbPatches
         @SpirePostfixPatch
         public static void Postfix(Dark __instance)
         {
-            PCLCombatStats.OnOrbApplyFocus(__instance);
+            if (PCLGameUtilities.InGame()) {
+                PCLCombatStats.OnOrbApplyFocus(__instance);
+            }
         }
     }
 

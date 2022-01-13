@@ -234,9 +234,15 @@
 		"NAMES": ["electrified weapon"],
 		"PROPER_NAME": "Electrified Weapon"
 	},
+	"Elemental Debuff":
+	{
+		"DESCRIPTION": "[Burning], [Freezing], [Electrified], [Rippled].",
+		"NAMES": ["elemental debuff", "elemental debuffs"],
+		"PROPER_NAME": "Elemental Debuff"
+	},
 	"Elemental Exposure":
 	{
-		"DESCRIPTION": "Amplifies the effects of [Burning], [Freezing], and [Electrified]. Lasts for 2 turns.",
+		"DESCRIPTION": "Amplifies the effects of [Burning], [Freezing], [Electrified], and [Rippled]. Lasts for 2 turns.",
 		"NAMES": ["elemental exposure"],
 		"PROPER_NAME": "Elemental Exposure"
 	},
@@ -576,12 +582,6 @@
 		"NAMES": ["regeneration"],
 		"PROPER_NAME": "Regeneration"
 	},
-	"Rejuvenation":
-	{
-		"DESCRIPTION": "Heal HP at the start of the turn.",
-		"NAMES": ["rejuvenation"],
-		"PROPER_NAME": "Rejuvenation"
-	},
 	"Reload":
 	{
 		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
@@ -599,6 +599,12 @@
 		"DESCRIPTION": "Reduce a card's #yRicochet by #b1 for every turn that it is in the Exhaust pile. If it is at #b0 while in your Exhaust pile, activate this effect instead.",
 		"NAMES": ["ricochet"],
 		"PROPER_NAME": "Ricochet"
+	},
+	"Rippled":
+	{
+		"DESCRIPTION": "When attacked, #b25% of damage received is dealt to ALL allies. This multiplier can be increased by card effects. NL At the start of turn, lose HP equal to #b50% of [Rippled] and reduce [Rippled] by #b1.",
+		"NAMES": ["rippled"],
+		"PROPER_NAME": "Rippled"
 	},
 	"Self-Immolation":
 	{
@@ -674,7 +680,7 @@
 	},
 	"Swirled":
 	{
-		"DESCRIPTION": "If the target has [Burning], [Freezing], or [Electrified]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
+		"DESCRIPTION": "If the target has [Burning], [Freezing], [Electrified], or [Rippled]: Spread 1 of each to ALL other enemies, then reduce this by 1. If there are no other enemies, increase stacks of each by 1.",
 		"NAMES": ["swirled"],
 		"PROPER_NAME": "Swirled"
 	},
@@ -725,12 +731,6 @@
 		"DESCRIPTION": "",
 		"NAMES": ["trigger", "triggered", "triggers"],
 		"PROPER_NAME": "Trigger"
-	},
-	"Triggerable Debuff":
-	{
-		"DESCRIPTION": "[Burning], [Freezing], [Electrified].",
-		"NAMES": ["triggerable debuff", "triggerable debuffs"],
-		"PROPER_NAME": "Triggerable Debuff"
 	},
 	"Velocity":
 	{
@@ -842,7 +842,7 @@
 	},
 	"~Electric Damage":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Constricted] per hit to deal +#b100% damage.",
+		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Rippled] per hit to deal +#b100% damage.",
 		"NAMES": ["~electric damage"],
 		"PROPER_NAME": "Electric Damage"
 	},

@@ -43,6 +43,11 @@ public class PCLCardLibraryPatches
             String replacementID = cardID.replace(PCLResources.ID, AnimatorResources.ID);
             return EYBCard.GetStaticData(replacementID);
         }
+
+        // Misc. PCL game card replacements
+        if (OrbCore_Air.DATA.ID.equals(cardID)) {
+            return OrbCore_Aether.DATA;
+        }
         return null;
     }
 

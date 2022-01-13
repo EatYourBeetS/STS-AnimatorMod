@@ -172,7 +172,7 @@
 		},
 		"pcl:AyatoNaoi":
 		{
-			"DESCRIPTION": "Channel !M! [~Dark] and Trigger them once if in <BS>. Otherwise, enter <BS>. || In {Afterlife}: ** ALL enemies lose HP equal to their Attack damage.",
+			"DESCRIPTION": "Channel !M! [~Dark]. Trigger them once if in <BS>. Otherwise, enter <BS>. || In {Afterlife}: ** ALL enemies gain [Rippled] equal to the sum of their Attack damage.",
 			"NAME": "Ayato Naoi"
 		},
 		"pcl:EriShiina":
@@ -982,7 +982,7 @@
 		},
 		"pcl:KokomiSangonomiya":
 		{
-			"DESCRIPTION": "{0}ALL cards give 0 [Block]. [Water] has +!M! [Focus] and reflects unblocked damage. If you have no [Water] at end of turn: Take !S! non-lethal damage and Channel [Water]. || <LIM>. Gain 2 [Regeneration].",
+			"DESCRIPTION": "{0}ALL cards give 0 [Block]. [Water] has +!M! [Focus] and reflects damage as [Rippled]. At end of turn: Take !S! non-lethal damage and Channel [Water]. || <LIM>. Gain 2 [Regeneration].",
 			"EXTENDED_DESCRIPTION": ["Play {Water Core}. "],
 			"NAME": "Kokomi Sangonomiya"
 		},
@@ -1003,7 +1003,7 @@
 		},
 		"pcl:MonaMegistus":
 		{
-			"DESCRIPTION": "Scry !M!. Apply !S! [Constricted] for each {Basic} or {Common} discarded. || <slm>. If you Evoke an Orb with this in hand: Gain !M! [Sorcery].",
+			"DESCRIPTION": "Scry !M!. Apply !S! [Rippled] for each {Basic} or {Common} discarded. || <slm>. If you Evoke an Orb with this in hand: Gain !M! [Sorcery].",
 			"NAME": "Mona Megistus"
 		},
 		"pcl:Ningguang":
@@ -1072,7 +1072,7 @@
 		},
 		"pcl:Xingqiu":
 		{
-			"DESCRIPTION": "Remove ALL [Burning] on the target to deal +!M! damage for each. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
+			"DESCRIPTION": "Remove ALL [Burning] on the target to deal +!M! damage for each. Otherwise, apply !M! [Rippled]. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Trigger your first orb whenever you play a #b1+ Cost Attack."],
 			"NAME": "Xingqiu"
 		},
@@ -1793,8 +1793,8 @@
 		},
 		"pcl:Laby":
 		{
-			"DESCRIPTION": "Gain !M! [Thorns]. Whenever you receive a {Common Debuff}: Apply it to ALL enemies. || At the start of each turn: ALL characters gain !S! [Constricted].",
-			"EXTENDED_DESCRIPTION": ["Whenever you receive a #yCommon #yDebuff: Apply it to ALL enemies. NL At the start of each turn: ALL characters gain #b{0} #yConstricted."],
+			"DESCRIPTION": "Gain !M! [Thorns]. Whenever you receive a {Common Debuff}: Apply it to ALL enemies. || At the start of each turn: ALL characters gain !S! [Rippled].",
+			"EXTENDED_DESCRIPTION": ["Whenever you receive a #yCommon #yDebuff: Apply it to ALL enemies. NL At the start of each turn: ALL characters gain #b{0} [Rippled]."],
 			"NAME": "Laby"
 		},
 		"pcl:Lu":
@@ -1882,7 +1882,7 @@
 		},
 		"pcl:KireiKotomine":
 		{
-			"DESCRIPTION": "Choose 1: ** Pay !A! <O>: Apply !M! [Constricted]. ** Pay !A! <L>: Transfer your [DD] to the target. ** Pay !A! <D>: ALL enemies take !S! [DD].",
+			"DESCRIPTION": "Choose 1: ** Pay !A! <O>: Apply !M! [Blinded]. ** Pay !A! <L>: Transfer your [DD] to the target. ** Pay !A! <D>: ALL enemies take !S! [DD].",
 			"NAME": "Kirei Kotomine"
 		},
 		"pcl:Lancer":
@@ -1893,7 +1893,7 @@
 		},
 		"pcl:MorganLeFay":
 		{
-			"DESCRIPTION": "Pay X <L>: Apply !X! [Constricted]. || <LIM>. Obtain a random Curse with [~Haste]. Whenever you draw it: Apply !M! [Shackles] to ALL characters, ignoring [Artifact].",
+			"DESCRIPTION": "Pay X <L>: Apply !X! [Rippled]. || <LIM>. Obtain a random Curse with [~Haste]. Whenever you draw it: Apply !M! [Shackles] to ALL characters, ignoring [Artifact].",
 			"EXTENDED_DESCRIPTION": ["When you draw {0}: ALL characters gain #b{1} [Shackles], ignoring [Artifact]."],
 			"NAME": "Morgan Le Fay"
 		},
@@ -1946,7 +1946,7 @@
 		},
 		"pcl:MatouSakura":
 		{
-			"DESCRIPTION": "Remove your first [~Dark] to apply [Constricted] equal to half its damage. Otherwise, Channel !M! [~Dark] and add {Crystallize} to your draw pile. || <LIM>. Pay !A! <L>: Gain !S! [B].",
+			"DESCRIPTION": "Remove your first [~Dark] to apply [Rippled] equal to its damage. Otherwise, Channel !M! [~Dark] and add {Crystallize} to your draw pile. || <LIM>. Pay !A! <L>: Gain !S! [B].",
 			"NAME": "Sakura Matou"
 		},
 		"pcl:MatouShinji":
@@ -1964,7 +1964,7 @@
 	{
 		"pcl:ElricAlphonse":
 		{
-			"DESCRIPTION": "Set the {Current <W>} to ** <B> or <O>. || On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
+			"DESCRIPTION": "Set the {Current <W>} to ** <B> or <O>. || <LIM>. On Exhaust: Add ** {Armored Alphonse}{+} ** to your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"pcl:ElricAlphonse_Alt":
@@ -2013,8 +2013,8 @@
 		},
 		"pcl:Pride":
 		{
-			"DESCRIPTION": "Channel !M! [~Dark]. || Until next turn: [~Dark] absorbs ** all unblocked damage you ** would take, and it applies ** !S! [Constricted] to the attacker.",
-			"EXTENDED_DESCRIPTION": ["Your [~Dark] absorbs all unblock damage, and it applies #b{0} [Constricted] to the attacker."],
+			"DESCRIPTION": "Channel !M! [~Dark]. || Until the start of next turn: [~Dark] absorbs unblocked damage and applies !S! [Constricted] to the attacker.",
+			"EXTENDED_DESCRIPTION": ["Your [~Dark] absorbs unblocked damage and applies #b{0} [Constricted] to the attacker."],
 			"NAME": "Pride"
 		},
 		"pcl:RizaHawkeye":
@@ -2062,6 +2062,7 @@
 		"pcl:Bozes":
 		{
 			"DESCRIPTION": "<ST>: Motivate !M!. || This turn, whenever a card Matches: Gain !S! [Support Damage].",
+			"EXTENDED_DESCRIPTION": ["This turn, when a card #yMatches: Gain #b{0} [Support Damage]."],
 			"NAME": "Bozes"
 		},
 		"pcl:CatoElAltestan":
@@ -2545,8 +2546,8 @@
 		},
 		"pcl:Shiroe":
 		{
-			"DESCRIPTION": "<CYC-M>. Gain the <W> of the Discarded cards. || All cards this turn have: Pay 4 <W>: Apply !S! [Constricted] to ALL enemies.",
-			"EXTENDED_DESCRIPTION": ["All cards have: Pay #b3 <W>: Apply #b{0} #y[Constricted] to ALL enemies."],
+			"DESCRIPTION": "<CYC-M>. Gain the <W> of the Discarded cards. || This turn, whenever you play a card, Pay 4 <W>: Apply !S! [Rippled] to ALL enemies.",
+			"EXTENDED_DESCRIPTION": ["All cards have: Pay #b3 <W>: Apply #b{0} #y[Rippled] to ALL enemies."],
 			"NAME": "Shiroe"
 		},
 		"pcl:Soujiro":

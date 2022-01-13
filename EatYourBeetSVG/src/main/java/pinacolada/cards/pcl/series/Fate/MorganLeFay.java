@@ -41,14 +41,14 @@ public class MorganLeFay extends PCLCard
 
     @Override
     public int GetXValue() {
-        return PCLCombatStats.MatchingSystem.GetAffinityLevel(PCLAffinity.Light, true) + 1;
+        return secondaryValue * PCLCombatStats.MatchingSystem.GetAffinityLevel(PCLAffinity.Light, true) + 1;
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), GetXValue());
+        PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(m), GetXValue());
         TrySpendAffinity(PCLAffinity.Light, GetXValue());
         if (info.TryActivateLimited()) {
             PCLActions.Bottom.Add(new CreateRandomCurses(1, p.hand)).AddCallback(card -> {

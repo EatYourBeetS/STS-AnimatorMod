@@ -313,6 +313,7 @@ public class GR extends eatyourbeets.resources.GR
             @SpireEnum public static AbstractGameAction.AttackEffect SMALL_EXPLOSION;
             @SpireEnum public static AbstractGameAction.AttackEffect SPARK;
             @SpireEnum public static AbstractGameAction.AttackEffect WATER;
+            @SpireEnum public static AbstractGameAction.AttackEffect WAVE;
         }
     }
 }

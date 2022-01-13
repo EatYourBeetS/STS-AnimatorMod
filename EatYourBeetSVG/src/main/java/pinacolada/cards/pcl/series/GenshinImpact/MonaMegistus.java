@@ -23,7 +23,7 @@ public class MonaMegistus extends PCLCard implements OnEvokeOrbSubscriber {
     public MonaMegistus() {
         super(DATA);
 
-        Initialize(0, 2, 2, 3);
+        Initialize(0, 2, 2, 2);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Blue(1, 0, 3);
 
@@ -51,7 +51,7 @@ public class MonaMegistus extends PCLCard implements OnEvokeOrbSubscriber {
                 .AddCallback(cards -> {
                     int commons = PCLJUtils.Count(cards, card -> card.rarity == CardRarity.COMMON || card.rarity == CardRarity.BASIC);
                     if (commons > 0) {
-                        PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), secondaryValue * commons);
+                        PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(m), secondaryValue * commons);
                     }
                 });
     }

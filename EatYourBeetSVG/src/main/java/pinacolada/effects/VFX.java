@@ -61,6 +61,16 @@ public class VFX
         return new CataclysmEffect();
     }
 
+    public static CircularWaveEffect CircularWave(Hitbox target)
+    {
+        return CircularWave(target.cX, target.cY);
+    }
+
+    public static CircularWaveEffect CircularWave(float cX, float cY)
+    {
+        return new CircularWaveEffect(cX, cY);
+    }
+
     public static ClashEffect2 Clash(Hitbox target)
     {
         return new ClashEffect2(target.cX, target.cY);

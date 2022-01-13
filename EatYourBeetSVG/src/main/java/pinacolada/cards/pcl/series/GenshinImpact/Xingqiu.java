@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.TriggerOrbPassiveAbility;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
@@ -64,7 +65,13 @@ public class Xingqiu extends PCLCard
                     SFX.Play(SFX.ATTACK_REAPER);
                     return wait * 0.55f;
                 }));
-        PCLActions.Bottom.RemovePower(p, m, BurningPower.POWER_ID);
+        if (m.hasPower(BurningPower.POWER_ID)) {
+            PCLActions.Bottom.RemovePower(p, m, BurningPower.POWER_ID);
+        }
+        else {
+            PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(m), magicNumber);
+        }
+
         PCLActions.Bottom.StackPower(new XingqiuPower(p, secondaryValue));
     }
 

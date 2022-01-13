@@ -63,7 +63,7 @@ public class Shiroe extends PCLCard
             super.onAfterCardPlayed(card);
 
             PCLActions.Bottom.TryChooseSpendAffinity(name, MINIMUM_AFFINITY).AddConditionalCallback(() -> {
-                PCLActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), amount);
+                PCLActions.Bottom.ApplyRippled(TargetHelper.Enemies(), amount);
             });
         }
 

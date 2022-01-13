@@ -32,7 +32,7 @@ public class Laby extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
+        Initialize(0, 0, 2, 2);
 
         SetAffinity_Light(1);
         SetAffinity_Dark(1);
@@ -68,7 +68,7 @@ public class Laby extends PCLCard
             super.atStartOfTurn();
             ResetAmount();
 
-            PCLActions.Bottom.ApplyConstricted(TargetHelper.AllCharacters(), amount)
+            PCLActions.Bottom.ApplyRippled(TargetHelper.AllCharacters(), amount)
             .ShowEffect(false, true);
             SFX.Play(SFX.POWER_CONSTRICTED);
             this.flashWithoutSound();

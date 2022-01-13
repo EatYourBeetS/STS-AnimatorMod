@@ -94,7 +94,10 @@ public class RespecCampfireOption extends AbstractCampfireOption
 
         relic.SetCounter(relic.GetEnchantmentLevel());
         relic.enchantment = null;
-        relic.flash();
-        Refresh();
+        PCLGameEffects.Queue.Callback(relic::Use).AddCallback(() -> {
+            Refresh();
+            room.campfireUI.reopen();
+        });
+
     }
 }

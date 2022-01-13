@@ -3,7 +3,7 @@ package pinacolada.cards.base;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.powers.common.FreezingPower;
-import pinacolada.powers.replacement.PCLConstrictedPower;
+import pinacolada.powers.common.RippledPower;
 
 public enum PCLAttackType
 {
@@ -11,7 +11,7 @@ public enum PCLAttackType
     Normal(false, false, null),
     Brutal(false, false, null),
     Dark(false, true, ElectrifiedPower.POWER_ID),
-    Electric(false, true, PCLConstrictedPower.POWER_ID),
+    Electric(false, true, RippledPower.POWER_ID),
     Fire(false, true, FreezingPower.POWER_ID),
     Ice(false, true, BurningPower.POWER_ID),
     Piercing(true, true, null),

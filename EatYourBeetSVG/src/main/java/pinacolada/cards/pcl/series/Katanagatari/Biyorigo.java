@@ -75,13 +75,14 @@ public class Biyorigo extends PCLCard
         @Override
         public int onAttacked(DamageInfo info, int damageAmount)
         {
-            if (info.type == DamageInfo.DamageType.NORMAL && damageAmount < info.output)
+            if (info.type == DamageInfo.DamageType.NORMAL && info.owner != null && info.owner.isPlayer != owner.isPlayer)
             {
                 PCLActions.Bottom.ApplyPoison(TargetHelper.Normal(info.owner), amount);
             }
 
             return super.onAttacked(info, damageAmount);
         }
+
         @Override
         public void OnUse(AbstractMonster m, int cost)
         {

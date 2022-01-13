@@ -27,7 +27,7 @@ public class Merlin extends PCLCard
     protected enum MerlinEffect {
         Air(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Swirled, true), (c, p, m) -> PCLActions.Delayed.StackPower(player, new SwirledPower(m, 2))),
         Chaos(GR.PCL.Strings.Actions.ChannelRandomOrbs(1, true), (c, p, m) -> PCLActions.Delayed.ChannelRandomOrbs(1)),
-        Dark(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Constricted, true), (c, p, m) -> PCLActions.Delayed.ApplyConstricted(TargetHelper.Normal(m), 2)),
+        Dark(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Rippled, true), (c, p, m) -> PCLActions.Delayed.ApplyRippled(TargetHelper.Normal(m), 2)),
         Earth(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Delayed.ApplyWeak(TargetHelper.Normal(m), 2)),
         Fire(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Delayed.ApplyBurning(TargetHelper.Normal(m), 2)),
         Frost(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Freezing, true), (c, p, m) -> PCLActions.Delayed.ApplyFreezing(TargetHelper.Normal(m), 2)),

@@ -5,11 +5,14 @@ import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.relics.PCLEnchantableRelic;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class GiftBox extends PCLCard
@@ -35,10 +38,18 @@ public class GiftBox extends PCLCard
     {
         //TODO: Make this into an actual card and not something for testing
         for (PCLAffinity af : PCLAffinity.Extended()) {
-            PCLActions.Bottom.AddAffinity(af, 77);
-            PCLActions.Bottom.StackAffinityPower(af, 10);
+            PCLActions.Bottom.AddAffinity(af, 77).ShowEffect(false);
+            PCLActions.Bottom.StackAffinityPower(af, 10).ShowEffect(false);
         }
 
         PCLActions.Bottom.GainEnergy(99);
+
+        PCLEnchantableRelic enchantable = PCLGameUtilities.GetRelic(PCLEnchantableRelic.class);
+        if (enchantable != null)
+        {
+            enchantable.AddCounter(2);
+        }
+
+        PCLActions.Bottom.ApplyRippled(TargetHelper.Enemies(), magicNumber);
     }
 }

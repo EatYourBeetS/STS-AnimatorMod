@@ -20,7 +20,7 @@ public class KireiKotomine extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 13, 10, 34);
+        Initialize(0, 13, 2, 34);
         SetUpgrade(0, 4, 2, 5);
 
         SetAffinity_Light(1, 0, 2);
@@ -29,7 +29,7 @@ public class KireiKotomine extends PCLCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(PCLAffinity.Orange, 3);
+        SetAffinityRequirement(PCLAffinity.Orange, 2);
         SetAffinityRequirement(PCLAffinity.Light, 5);
         SetAffinityRequirement(PCLAffinity.Dark, 8);
     }
@@ -43,7 +43,7 @@ public class KireiKotomine extends PCLCard
            for (AffinityChoice af : afChoices) {
                switch (af.Affinity) {
                    case Orange:
-                       PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), magicNumber);
+                       PCLActions.Bottom.ApplyBlinded(TargetHelper.Normal(m), magicNumber);
                        break;
                    case Light:
                        int toTransfer = PCLGameUtilities.GetPowerAmount(DelayedDamagePower.POWER_ID);

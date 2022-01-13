@@ -55,6 +55,7 @@ public class AttackEffects
    public static final AttackEffect DARK = GR.Enums.AttackEffect.DARK;
    public static final AttackEffect WATER = GR.Enums.AttackEffect.WATER;
    public static final AttackEffect BITE = GR.Enums.AttackEffect.BITE;
+   public static final AttackEffect WAVE = GR.Enums.AttackEffect.WAVE;
 
     public static EYBEffect GetVFX(AttackEffect effect, AbstractCreature source, float t_cX, float t_cY)
     {
@@ -224,6 +225,11 @@ public class AttackEffects
               .SetVFX(VFX::Water)
               .SetSFX(SFX.PCL_ORB_WATER_EVOKE)
               .SetDamageTint(Color.BLUE);
+
+      Add(magic, WAVE)
+                .SetVFX(VFX::CircularWave)
+                .SetSFX(SFX.PCL_PING)
+                .SetDamageTint(Color.TEAL);
    }
 
     protected static AttackEffectData Add(ArrayList<AttackEffect> category, AttackEffect effect)

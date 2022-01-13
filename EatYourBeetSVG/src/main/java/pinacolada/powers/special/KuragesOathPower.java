@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import pinacolada.effects.AttackEffects;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
 import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
@@ -15,7 +15,6 @@ import pinacolada.orbs.pcl.Water;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameUtilities;
 
 import java.util.ArrayList;
 
@@ -65,13 +64,11 @@ public class KuragesOathPower extends PCLPower implements OnOrbApplyFocusSubscri
     {
         super.atEndOfTurn(isPlayer);
 
-        if (PCLGameUtilities.GetOrbCount(Water.ORB_ID) == 0) {
-            PCLActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE).CanKill(false).AddCallback(() -> {
-                Water water = new Water();
-                PCLActions.Bottom.TriggerOrbPassive(water, 1);
-                PCLActions.Bottom.ChannelOrb(water);
-            });
-        }
+        PCLActions.Bottom.TakeDamage(secondaryAmount, AbstractGameAction.AttackEffect.NONE).CanKill(false).AddCallback(() -> {
+            Water water = new Water();
+            PCLActions.Bottom.TriggerOrbPassive(water, 1);
+            PCLActions.Bottom.ChannelOrb(water);
+        });
     }
 
     @Override
@@ -96,12 +93,11 @@ public class KuragesOathPower extends PCLPower implements OnOrbApplyFocusSubscri
 
             if (info.owner != null && info.owner.isPlayer != owner.isPlayer)
             {
-                PCLActions.Bottom.DealDamage(owner, info.owner, damageAmount - newDamage, DamageInfo.DamageType.THORNS, AttackEffects.WATER);
+                PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(info.owner), damageAmount - newDamage);
                 flashWithoutSound();
             }
             else if (owner.isPlayer) {
-                int[] damageMatrix = DamageInfo.createDamageMatrix(damageAmount - newDamage, false);
-                PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffects.WATER);
+                PCLActions.Bottom.ApplyRippled(TargetHelper.Enemies(), damageAmount - newDamage);
                 flashWithoutSound();
             }
         }

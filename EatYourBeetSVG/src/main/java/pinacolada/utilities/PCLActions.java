@@ -171,7 +171,6 @@ public final class PCLActions
         return StackPower(target, PCLPowerHelper.Electrified, amount);
     }
 
-
     public ApplyPower ApplyElectrified(AbstractCreature source, AbstractCreature target, int amount)
     {
         return StackPower(source, new ElectrifiedPower(target, source, amount));
@@ -241,6 +240,11 @@ public final class PCLActions
     public ApplyPower ApplyPower(AbstractCreature source, AbstractCreature target, AbstractPower power)
     {
         return Add(new ApplyPower(source, target, power)).CanStack(false);
+    }
+
+    public ApplyPowerAuto ApplyRippled(TargetHelper target, int amount)
+    {
+        return StackPower(target, PCLPowerHelper.Rippled, amount);
     }
 
     public ApplyPowerAuto ApplyShackles(TargetHelper target, int amount)

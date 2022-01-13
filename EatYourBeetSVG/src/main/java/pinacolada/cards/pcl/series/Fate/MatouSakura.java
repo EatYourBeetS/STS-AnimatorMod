@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.RemoveOrb;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
@@ -63,7 +64,7 @@ public class MatouSakura extends PCLCard
                PCLGameEffects.Queue.BorderLongFlash(new Color(1.0F, 0.0F, 1.0F, 0.7F));
                PCLGameEffects.Queue.Attack(player, enemy, AttackEffects.DARK, 1.1f, 1.2f);
                PCLActions.Bottom.Add(new RemoveOrb(orb));
-               PCLActions.Bottom.ApplyConstricted(player, enemy, orb.evokeAmount / 2);
+               PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(enemy), orb.evokeAmount);
                PCLActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.85f, 0.9f);
            }
            else

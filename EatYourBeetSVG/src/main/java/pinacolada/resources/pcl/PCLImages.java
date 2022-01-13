@@ -272,6 +272,7 @@ public class PCLImages
         public final TextureCache AirTrail2        = new TextureCache("images/pcl/effects/AirTrail2.png");
         public final TextureCache AirTrail3        = new TextureCache("images/pcl/effects/AirTrail3.png");
         public final TextureCache Circle           = new TextureCache("images/pcl/effects/Circle.png");
+        public final TextureCache Circle2           = new TextureCache("images/pcl/effects/Circle2.png");
         public final TextureCache Darkness         = new TextureCache("images/pcl/effects/Darkness.png");
         public final TextureCache Droplet          = new TextureCache("images/pcl/effects/Droplet.png");
         public final TextureCache FireBurst        = new TextureCache("images/pcl/effects/FireBurst.png");

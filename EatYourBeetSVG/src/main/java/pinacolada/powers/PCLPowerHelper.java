@@ -34,6 +34,7 @@ public class PCLPowerHelper extends eatyourbeets.powers.PowerHelper
     public static final PCLPowerHelper Freezing = new PCLPowerHelper(FreezingPower.POWER_ID, GR.Tooltips.Freezing, FreezingPower::new, Behavior.TurnBased,true);
     public static final PCLPowerHelper LockOn = new PCLPowerHelper(LockOnPower.POWER_ID, GR.Tooltips.LockOn, PCLLockOnPower::new, Behavior.TurnBased,true);
     public static final PCLPowerHelper Poison = new PCLPowerHelper(PoisonPower.POWER_ID, GR.Tooltips.Poison, PoisonPower::new, Behavior.TurnBased,true);
+    public static final PCLPowerHelper Rippled = new PCLPowerHelper(RippledPower.POWER_ID, GR.Tooltips.Rippled, RippledPower::new, Behavior.TurnBased,true);
     public static final PCLPowerHelper Shackles = new PCLPowerHelper(ShacklesPower.POWER_ID, GR.Tooltips.Shackles, ShacklesPower::new, Behavior.SingleTurn,true);
     public static final PCLPowerHelper Weak = new PCLPowerHelper(WeakPower.POWER_ID, GR.Tooltips.Weak, (o, s, a) -> new PCLWeakPower(o, a, PCLGameUtilities.IsMonster(s)), Behavior.TurnBased,true);
     public static final PCLPowerHelper Vulnerable = new PCLPowerHelper(VulnerablePower.POWER_ID, GR.Tooltips.Vulnerable, (o, s, a) -> new PCLVulnerablePower(o, a, PCLGameUtilities.IsMonster(s)), Behavior.TurnBased,true);

@@ -13,14 +13,14 @@ import pinacolada.utilities.PCLActions;
 public class ElricAlphonse_Alt extends PCLCard
 {
     public static final PCLCardData DATA = Register(ElricAlphonse_Alt.class)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.Self)
+            .SetSkill(2, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.Self)
             .SetSeries(ElricAlphonse.DATA.Series);
 
     public ElricAlphonse_Alt()
     {
         super(DATA);
 
-        Initialize(0, 2, 3, 2);
+        Initialize(0, 7, 3, 2);
         SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Blue(1);

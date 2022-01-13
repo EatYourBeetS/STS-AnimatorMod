@@ -12,6 +12,7 @@ import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.powers.common.FreezingPower;
+import pinacolada.powers.common.RippledPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -53,6 +54,9 @@ public class SwirledPower extends PCLPower implements OnTryApplyPowerListener
         if (PCLGameUtilities.GetPowerAmount(owner, ElectrifiedPower.POWER_ID) > 0) {
             powerHelpers.add(PCLPowerHelper.Electrified);
         }
+        if (PCLGameUtilities.GetPowerAmount(owner, RippledPower.POWER_ID) > 0) {
+            powerHelpers.add(PCLPowerHelper.Rippled);
+        }
 
         if (powerHelpers.size() > 0) {
             this.flash();
@@ -83,7 +87,7 @@ public class SwirledPower extends PCLPower implements OnTryApplyPowerListener
 
     @Override
     public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action) {
-        if (target == owner && (BurningPower.POWER_ID.equals(power.ID) || FreezingPower.POWER_ID.equals(power.ID) || ElectrifiedPower.POWER_ID.equals(power.ID))) {
+        if (target == owner && (BurningPower.POWER_ID.equals(power.ID) || FreezingPower.POWER_ID.equals(power.ID) || ElectrifiedPower.POWER_ID.equals(power.ID) || RippledPower.POWER_ID.equals(power.ID))) {
             PCLActions.Bottom.Callback(this::Swirl);
         }
         return true;

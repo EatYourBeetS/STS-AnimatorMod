@@ -1,7 +1,6 @@
 package pinacolada.resources.pcl;
 
 import basemod.BaseMod;
-import basemod.abstracts.CustomCard;
 import basemod.abstracts.CustomSavable;
 import basemod.interfaces.StartActSubscriber;
 import basemod.interfaces.StartGameSubscriber;
@@ -350,7 +349,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             {
                 if (card.color == AbstractCard.CardColor.COLORLESS || card.color == AbstractCard.CardColor.CURSE)
                 {
-                    return !(card instanceof PCLCardBase) && !(card instanceof CustomCard);
+                    return !(card instanceof PCLCardBase);
                 }
                 else if (card.color != GR.PCL.CardColor)
                 {

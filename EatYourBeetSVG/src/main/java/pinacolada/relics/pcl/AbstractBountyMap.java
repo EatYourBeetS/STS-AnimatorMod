@@ -41,7 +41,7 @@ public abstract class AbstractBountyMap extends PCLRelic
 
         Class<? extends AbstractRoom> roomType = this.GetCurrentRequiredRoom();
 
-        if ((room.getClass().equals(roomType) || room.getMapSymbol().equals("?")) && !usedUp) {
+        if (!usedUp && room != null && (room.getClass().equals(roomType) || "?".equals(room.getMapSymbol()))) {
             flash();
             if (roomType.equals(EventRoom.class)) {
                 SetCounter(-1);

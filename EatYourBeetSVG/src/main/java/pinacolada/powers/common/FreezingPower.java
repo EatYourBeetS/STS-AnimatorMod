@@ -10,7 +10,7 @@ import pinacolada.powers.PCLTriggerablePower;
 
 public class FreezingPower extends PCLTriggerablePower
 {
-    private static final Color healthBarColor = new Color(0.372F, 0.5F, 1.0F, 1.0F);
+    private static final Color healthBarColor = new Color(0.4F, 0.48F, 1.0F, 1.0F);
     public static final String POWER_ID = CreateFullID(FreezingPower.class);
     public static final int REDUCTION_MULTIPLIER = 10;
     public static final int MAX_REDUCTION_MULTIPLIER = 50;

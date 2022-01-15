@@ -87,24 +87,20 @@ public abstract class PCLEnchantableRelic extends PCLRelic // implements CustomS
 
     public CardGroup CreateUpgradeGroup()
     {
-        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        final RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>();
 
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         if (enchantment == null)
         {
+            final RandomizedList<AbstractCard> possiblePicks = new RandomizedList<>();
             possiblePicks.AddAll(PCLJUtils.Map(Enchantment.GetCards(), PCLCard::makeCopy));
+            for (int i = 0; i < MAX_CHOICES; i++) {
+                group.group.add(possiblePicks.Retrieve(rng));
+            }
         }
         else if (enchantment.canUpgrade())
         {
-            for (AbstractCard e : enchantment.GetUpgrades()) {
-                possiblePicks.Add(e);
-            }
+            group.group.addAll(enchantment.GetUpgrades());
         }
-
-        for (int i = 0; i < MAX_CHOICES; i++) {
-            group.group.add(possiblePicks.Retrieve(rng));
-        }
-
         return group;
     }
 

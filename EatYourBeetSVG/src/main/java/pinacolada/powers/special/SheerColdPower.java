@@ -109,7 +109,7 @@ public class SheerColdPower extends PCLPower implements OnOrbPassiveEffectSubscr
                     .SetColor(Color.SKY, Color.NAVY).SetRealtime(true));
             PCLActions.Bottom.DealDamage(owner, target, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.ICE)
                     .SetVFX(true, true)
-                    .SetPowerToRemove(PCLAttackType.Ice.powerToRemove, true);
+                    .SetPCLAttackType(PCLAttackType.Ice, true);
             PCLActions.Bottom.ApplyFreezing(owner, target, MathUtils.ceil(damageAmount / 2f)).CanStack(true);
         }
     }

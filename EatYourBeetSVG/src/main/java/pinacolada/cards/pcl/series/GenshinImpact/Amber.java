@@ -16,6 +16,7 @@ public class Amber extends PCLCard {
         Initialize(4, 1, 2, 2);
         SetUpgrade(2, 1, 0);
         SetAffinity_Green(1, 0 ,1);
+        SetAffinity_Light(1, 0, 0);
 
         SetAffinityRequirement(PCLAffinity.Green, 3);
     }

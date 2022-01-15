@@ -14,6 +14,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
+import pinacolada.powers.common.RippledPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -24,23 +25,21 @@ public class MatouSakura extends PCLCard
             .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage().PostInitialize(data ->
-            {
-                data.AddPreview(new Crystallize(), false);
-            });
+                    data.AddPreview(new Crystallize(), false));
 
     public MatouSakura()
     {
         super(DATA);
 
-        Initialize(0, 2, 2, 5);
-        SetUpgrade(0, 2, 1, 0);
+        Initialize(0, 2, 2, 15);
+        SetUpgrade(0, 4, 0, 0);
 
         SetAffinity_Dark(1, 0, 2);
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 1);
 
         SetExhaust(true);
 
-        SetAffinityRequirement(PCLAffinity.Light, 7);
+        SetAffinityRequirement(PCLAffinity.Light, 5);
     }
 
     @Override
@@ -70,13 +69,14 @@ public class MatouSakura extends PCLCard
            else
            {
                PCLActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
-               PCLActions.Bottom.MakeCardInDrawPile(new Crystallize());
+
            }
         });
+        PCLActions.Bottom.MakeCardInHand(new Crystallize());
 
         if (TrySpendAffinity(PCLAffinity.Light))
         {
-            PCLActions.Bottom.GainWisdom(secondaryValue);
+            PCLActions.Bottom.AddPowerEffectEnemyBonus(RippledPower.POWER_ID, secondaryValue);
         }
     }
 }

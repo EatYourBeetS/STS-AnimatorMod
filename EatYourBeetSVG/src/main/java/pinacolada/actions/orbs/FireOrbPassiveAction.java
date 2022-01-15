@@ -49,7 +49,7 @@ public class FireOrbPassiveAction extends EYBAction
             {
                 PCLActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE)
                 .SetVFX(true, false)
-                .SetPowerToRemove(PCLAttackType.Fire.powerToRemove, true);
+                .SetPCLAttackType(PCLAttackType.Fire, true);
             }
 
             PCLActions.Top.Wait(0.15f);

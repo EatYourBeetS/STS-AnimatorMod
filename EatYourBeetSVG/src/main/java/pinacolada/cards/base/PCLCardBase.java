@@ -422,10 +422,15 @@ public abstract class PCLCardBase extends EYBCardBase
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
         float popUpMultiplier = isPopup ? 0.5f : 1f;
-        boolean result = this.color == CardColor.COLORLESS ? pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> TryRenderCentered(sb, GetCardBackground(), popUpMultiplier)) : TryRenderCentered(sb, GetCardBackground(), popUpMultiplier);
-        if (!result)
-        {
+        Texture cardBg = GetCardBackground();
+        if (cardBg == null) {
             SpireSuper.call(sb, x, y);
+        }
+        else if (this.color == CardColor.COLORLESS){
+            pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> TryRenderCentered(sb, cardBg, popUpMultiplier));
+        }
+        else {
+            TryRenderCentered(sb, GetCardBackground(), popUpMultiplier);
         }
 
         TryRenderCentered(sb, GetCardBorderIndicator());

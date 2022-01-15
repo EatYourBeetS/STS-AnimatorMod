@@ -21,7 +21,7 @@ public class KokomiSangonomiya extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 6);
+        Initialize(0, 0, 2, 6);
         SetUpgrade(0,0,0,0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);

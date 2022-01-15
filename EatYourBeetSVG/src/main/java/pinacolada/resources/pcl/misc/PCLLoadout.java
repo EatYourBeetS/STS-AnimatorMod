@@ -495,8 +495,8 @@ public abstract class PCLLoadout
             -gold
          */
 
-        data.GetCardSlot(0).Select(0, MathUtils.random(3,6)).GetData().MarkSeen();
-        data.GetCardSlot(1).Select(0, MathUtils.random(3,6)).GetData().MarkSeen();
+        data.GetCardSlot(0).Select(0, MathUtils.random(2,6)).GetData().MarkSeen();
+        data.GetCardSlot(1).Select(0, MathUtils.random(2,6)).GetData().MarkSeen();
 
         // Favor less negative items over more ngeative items
         for (PCLCardSlot.Item negativeItem : negativeItems) {

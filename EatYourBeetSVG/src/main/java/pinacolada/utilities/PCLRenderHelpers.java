@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import eatyourbeets.interfaces.delegates.FuncT0;
+import eatyourbeets.interfaces.delegates.ActionT0;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT3;
 import eatyourbeets.utilities.AdvancedTexture;
@@ -412,27 +412,29 @@ public class PCLRenderHelpers
                 srcWidth, srcHeight, false, false);
     }
 
-    public static boolean DrawGrayscale(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
-        ShaderProgram defaultShader = sb.getShader();
-        sb.setShader(GR.GetGrayscaleShader());
-        boolean result = drawFunc.Invoke();
-        sb.setShader(defaultShader);
-        return result;
+    public static void DrawGrayscale(SpriteBatch sb, ActionT0 drawFunc) {
+        DrawWithShader(sb, GR.GetGrayscaleShader(), drawFunc);
     }
 
-    public static boolean DrawSepia(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
-        ShaderProgram defaultShader = sb.getShader();
-        sb.setShader(GR.GetSepiaShader());
-        boolean result = drawFunc.Invoke();
-        sb.setShader(defaultShader);
-        return result;
+    public static void DrawSepia(SpriteBatch sb, ActionT0 drawFunc) {
+        DrawWithShader(sb, GR.GetSepiaShader(), drawFunc);
     }
 
-    public static boolean DrawTranslucent(SpriteBatch sb, FuncT0<Boolean> drawFunc) {
-        sb.setBlendFunction(770,1);
-        boolean result = drawFunc.Invoke();
+    public static void DrawWithShader(SpriteBatch sb, ShaderProgram shader, ActionT0 drawFunc) {
+        ShaderProgram defaultShader = sb.getShader();
+        sb.setShader(shader);
+        drawFunc.Invoke();
+        sb.setShader(defaultShader);
+    }
+
+    public static void DrawTranslucent(SpriteBatch sb, ActionT0 drawFunc) {
+        DrawBlended(sb, BlendingMode.Glowing, drawFunc);
+    }
+
+    public static void DrawBlended(SpriteBatch sb, BlendingMode mode, ActionT0 drawFunc) {
+        sb.setBlendFunction(mode.srcFunc,mode.dstFunc);
+        drawFunc.Invoke();
         sb.setBlendFunction(770,771);
-        return result;
     }
 
     public static void WriteOnCard(SpriteBatch sb, AbstractCard card, BitmapFont font, String text, float x, float y, Color color)

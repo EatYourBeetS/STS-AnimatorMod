@@ -5,6 +5,7 @@ import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundFi
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
@@ -52,6 +53,7 @@ import static pinacolada.resources.GR.Enums.CardTags.*;
 
 public class PCLGameUtilities extends GameUtilities
 {
+    private static final AbstractCard.CardRarity[] poolOrdering = AbstractCard.CardRarity.values().clone();
     private static final ArrayList<PCLPowerHelper> commonBuffs = new ArrayList<>();
     private static final ArrayList<PCLPowerHelper> commonDebuffs = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
@@ -602,6 +604,29 @@ public class PCLGameUtilities extends GameUtilities
         }
 
         return characterCardPool.Retrieve(GetRNG());
+    }
+
+    public static AbstractCard GetRandomCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type) {
+        return GetRandomCard(rarity, type, true, false);
+    }
+
+    public static AbstractCard GetRandomCard(AbstractCard.CardRarity rarity, AbstractCard.CardType type, boolean useRng, boolean allowOtherRarities)
+    {
+        CardGroup pool = GetCardPool(rarity);
+        if (pool != null) {
+            AbstractCard c = type != null ? pool.getRandomCard(type, useRng) : pool.getRandomCard(useRng);
+            if (!allowOtherRarities || c != null) {
+                return c;
+            }
+            // Try to get a card from a different rarity pool. If you exhaust all the pools, fall back on the colorless pool
+            // Note that the basic and special rarities have no pools so we ignore them
+            if (rarity != null) {
+                PCLJUtils.LogInfo(null, "No cards found for Rarity " + rarity + ", Type " + type);
+                int nextRarityIndex = Math.max(0,rarity.ordinal() - 1);
+                return GetRandomCard(nextRarityIndex > 1 ? poolOrdering[nextRarityIndex] : null, type, useRng, allowOtherRarities);
+            }
+        }
+        return null;
     }
 
     public static AbstractOrb GetRandomCommonOrb() {

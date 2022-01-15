@@ -41,7 +41,7 @@ public class Xiangling extends PCLCard
             }
         }
 
-        if (info.IsSynergizing) {
+        if (info.IsSynergizing && info.TryActivateSemiLimited()) {
             PCLActions.Bottom.MakeCardInDrawPile(new Xiangling_Guoba());
         }
     }

@@ -24,8 +24,8 @@ import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.Mathf;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.blights.common.GlyphBlight;
 import pinacolada.blights.common.GlyphBlight1;
@@ -34,6 +34,7 @@ import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardBase;
 import pinacolada.effects.card.PermanentUpgradeEffect;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.relics.PCLRelic;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.loadouts._FakeLoadout;
@@ -292,7 +293,8 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         }
 
         RandomizedList<PCLLoadout> rList = new RandomizedList<>(GR.PCL.Data.GetEveryLoadout());
-        while (Loadouts.size() < GR.PCL.Config.SeriesSize.Get() && rList.Size() > 0) {
+        int numberOfSeries = Mathf.Max(MINIMUM_SERIES, GR.PCL.Config.SeriesSize.Get());
+        while (Loadouts.size() < numberOfSeries && rList.Size() > 0) {
             PCLLoadout loadout = rList.Retrieve(GetRNG(), true);
             if ((GR.PCL.Data.SelectedLoadout == null || !GR.PCL.Data.SelectedLoadout.Series.equals(loadout.Series)) && GR.PCL.Config.SelectedSeries.Get().contains(loadout.Series)) {
                 if (loadout.IsBeta)
@@ -309,13 +311,16 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             }
         }
 
+        PCLJUtils.LogInfo(this, "Starting Loadout: " + GR.PCL.Data.SelectedLoadout.Series);
+        PCLJUtils.LogInfo(this, "Starting Series: " + PCLJUtils.JoinStrings(",", PCLJUtils.Map(Loadouts, l -> l.Loadout.Series)));
+
         if (PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass) && PCLGameUtilities.IsNormalRun(false) && Settings.seed != null)
         {
             GR.PCL.Config.LastSeed.Set(Settings.seed.toString(), true);
         }
 
 
-        final AbstractPlayer player = CombatStats.RefreshPlayer();
+        final AbstractPlayer player = PCLCombatStats.RefreshPlayer();
         if (player.chosenClass != GR.PCL.PlayerClass)
         {
             AbstractDungeon.srcCurseCardPool.group.removeIf(PCLCardBase.class::isInstance);

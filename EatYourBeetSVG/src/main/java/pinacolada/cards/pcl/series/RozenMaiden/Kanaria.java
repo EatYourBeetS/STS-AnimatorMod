@@ -91,6 +91,7 @@ public class Kanaria extends PCLCard
             super.onInitialApplication();
 
             PCLCombatStats.onCardCreated.Subscribe(this);
+            PCLCombatStats.MatchingSystem.Powers.get(PCLAffinity.Light.ID).SetEnabled(true);
         }
 
         @Override

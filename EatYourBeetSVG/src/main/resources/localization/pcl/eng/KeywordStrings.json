@@ -830,7 +830,7 @@
 	},
 	"~Dark Damage":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Electrified] per hit to deal +#b100% damage.",
+		"DESCRIPTION": "Ignores #yThorns. For each hit, Remove #b1 [Electrified]: Deal +#b60% damage, and [Electrified] gains +#b5% effect bonus.",
 		"NAMES": ["~dark damage"],
 		"PROPER_NAME": "Dark Damage"
 	},
@@ -842,7 +842,7 @@
 	},
 	"~Electric Damage":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Rippled] per hit to deal +#b100% damage.",
+		"DESCRIPTION": "Ignores #yThorns. For each hit, Remove #b1 [Rippled]: Deal +#b60% damage, and [Rippled] gains +#b5% effect bonus.",
 		"NAMES": ["~electric damage"],
 		"PROPER_NAME": "Electric Damage"
 	},
@@ -860,7 +860,7 @@
 	},
 	"~Fire Damage":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Freezing] per hit to deal +#b100% damage.",
+		"DESCRIPTION": "Ignores #yThorns. For each hit, Remove #b1 [Freezing]: Deal +#b60% damage, and [Freezing] gains +#b2% effect bonus.",
 		"NAMES": ["~fire damage"],
 		"PROPER_NAME": "Fire Damage"
 	},
@@ -884,7 +884,7 @@
 	},
 	"~Ice Damage":
 	{
-		"DESCRIPTION": "Ignores #yThorns. Remove #b1 [Burning] per hit to deal +#b100% damage.",
+		"DESCRIPTION": "Ignores #yThorns. For each hit, Remove #b1 [Burning]: Deal +#b60% damage, and [Burning] gains +#b5% effect bonus.",
 		"NAMES": ["~ice damage"],
 		"PROPER_NAME": "Ice Damage"
 	},

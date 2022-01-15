@@ -48,7 +48,7 @@ public class MorganLeFay extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(m), GetXValue());
+        PCLActions.Bottom.ApplyConstricted(TargetHelper.Normal(m), GetXValue());
         TrySpendAffinity(PCLAffinity.Light, GetXValue());
         if (info.TryActivateLimited()) {
             PCLActions.Bottom.Add(new CreateRandomCurses(1, p.hand)).AddCallback(card -> {

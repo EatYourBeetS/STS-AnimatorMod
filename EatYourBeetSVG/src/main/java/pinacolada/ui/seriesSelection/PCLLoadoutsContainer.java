@@ -184,7 +184,7 @@ public class PCLLoadoutsContainer
         {
             TotalCardsInPool -= c.GetCardPoolInPlay().size();
             card.targetTransparency = 0.5f;
-            CurrentSeriesLimit = Mathf.Clamp(CurrentSeriesLimit, MINIMUM_SERIES, currentCards.size());
+            CurrentSeriesLimit = Mathf.Max(MINIMUM_SERIES, Mathf.Min(CurrentSeriesLimit, currentCards.size()));
             return true;
         }
 
@@ -196,7 +196,11 @@ public class PCLLoadoutsContainer
         GR.PCL.Data.SelectedLoadout = Find(currentSeriesCard).Loadout;
         GR.PCL.Config.SelectedSeries.Set(PCLJUtils.Map(currentCards, card -> Find(card).Loadout.Series), true);
         GR.PCL.Config.ExpandedSeries.Set(PCLJUtils.Map(expandedCards, card -> Find(card).Loadout.Series), true);
-        GR.PCL.Config.SeriesSize.Set(CurrentSeriesLimit, true);
+        GR.PCL.Config.SeriesSize.Set(Mathf.Max(MINIMUM_SERIES, CurrentSeriesLimit), true);
+
+        PCLJUtils.LogInfo(this, "Selected Loadout: " + GR.PCL.Data.SelectedLoadout.Series);
+        PCLJUtils.LogInfo(this, "Selected Series: " + PCLJUtils.JoinStrings(",", GR.PCL.Config.SelectedSeries.Get()));
+        PCLJUtils.LogInfo(this, "Series Size: " + GR.PCL.Config.SeriesSize.Get());
     }
 
     public ArrayList<AbstractCard> GetAllCardsInPool()

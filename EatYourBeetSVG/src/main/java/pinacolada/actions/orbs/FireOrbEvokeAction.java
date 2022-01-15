@@ -50,7 +50,7 @@ public class FireOrbEvokeAction extends EYBAction
             {
                 PCLActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.FIRE)
                         .SetVFX(true, true)
-                        .SetPowerToRemove(PCLAttackType.Fire.powerToRemove, true);
+                        .SetPCLAttackType(PCLAttackType.Fire, true);
             }
 
             PCLActions.Top.Wait(0.15f);

@@ -33,6 +33,8 @@ import java.util.Map;
 
 public class PCLCardLibraryPatches
 {
+    // TODO keep this value in sync with the actual beta mod
+    private static final String AnimatorBetaID = "animatorbeta";
     private static final FieldInfo<HashMap<String, AbstractCard>> _curses = PCLJUtils.GetField("curses", CardLibrary.class);
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72, 0x3a};
     private static final String idPrefix = new String(whatever);
@@ -41,7 +43,12 @@ public class PCLCardLibraryPatches
         // Attempt to find the Animator replacement for PCL cards
         if (cardID.startsWith(PCLResources.ID)) {
             String replacementID = cardID.replace(PCLResources.ID, AnimatorResources.ID);
-            return EYBCard.GetStaticData(replacementID);
+            EYBCardData replacementData = EYBCard.GetStaticData(replacementID);
+            if (replacementData == null) {
+                replacementID = cardID.replace(PCLResources.ID, AnimatorBetaID);
+                replacementData = EYBCard.GetStaticData(replacementID);
+            }
+            return replacementData;
         }
 
         // Misc. PCL game card replacements
@@ -52,6 +59,12 @@ public class PCLCardLibraryPatches
     }
 
     public static PCLCardData GetPCLCardReplacement(String cardID) {
+        // Attempt to find the PCL replacement for AnimatorBeta cards
+        if (cardID.startsWith(AnimatorBetaID)) {
+            String replacementID = cardID.replace(AnimatorBetaID, PCLResources.ID);
+            return PCLCard.GetStaticData(replacementID);
+        }
+
         // Attempt to find the PCL replacement for EYB/Animator cards
         if (cardID.startsWith(AnimatorResources.ID)) {
             String replacementID = cardID.replace(AnimatorResources.ID, PCLResources.ID);

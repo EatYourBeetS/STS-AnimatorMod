@@ -6,16 +6,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.interfaces.subscribers.OnStanceChangedSubscriber;
+import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.powers.common.ExitStanceNextTurnPower;
 import pinacolada.stances.*;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameEffects;
 
-public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscriber
+public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscriber, OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(KotarouTennouji.class).SetAttack(2, CardRarity.RARE, PCLAttackType.Normal).SetSeriesFromClassPackage();
 
@@ -50,7 +51,14 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
 
         choices.Select(1, m);
 
-        PCLActions.Bottom.ApplyPower(new ExitStanceNextTurnPower(p, 1));
+        PCLCombatStats.onStartOfTurnPostDraw.Subscribe((KotarouTennouji) makeStatEquivalentCopy());
+    }
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        PCLCombatStats.onStanceChanged.Subscribe(this);
     }
 
     @Override
@@ -59,17 +67,18 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
         if (!newStance.ID.equals(NeutralStance.STANCE_ID) && player.hand.contains(this) && CombatStats.TryActivateLimited(cardID))
         {
             PCLActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-            .IncludeMasterDeck(true)
-            .IsCancellable(false);
+                    .IncludeMasterDeck(true)
+                    .IsCancellable(false);
             flash();
         }
     }
 
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
 
-        PCLCombatStats.onStanceChanged.Subscribe(this);
+    @Override
+    public void OnStartOfTurnPostDraw()
+    {
+        PCLGameEffects.Queue.ShowCardBriefly(this);
+        PCLActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
+        PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
     }
 }

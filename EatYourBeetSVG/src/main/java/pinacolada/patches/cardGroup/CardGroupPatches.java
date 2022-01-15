@@ -118,4 +118,32 @@ public class CardGroupPatches
             }
         }
     }
+
+    // These random methods crash if the group is empty
+
+    @SpirePatch(clz = CardGroup.class, method = "getRandomCard", paramtypez = {Random.class})
+    public static class CardGroupPatches_GetRandomCard1
+    {
+        @SpirePostfixPatch
+        public static SpireReturn<AbstractCard> Prefix(CardGroup __instance, Random rng)
+        {
+            if (__instance.group.size() == 0) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch(clz = CardGroup.class, method = "getRandomCard", paramtypez = {boolean.class})
+    public static class CardGroupPatches_GetRandomCard2
+    {
+        @SpirePostfixPatch
+        public static SpireReturn<AbstractCard> Prefix(CardGroup __instance, boolean useRng)
+        {
+            if (__instance.group.size() == 0) {
+                return SpireReturn.Return(null);
+            }
+            return SpireReturn.Continue();
+        }
+    }
 }

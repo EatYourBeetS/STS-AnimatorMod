@@ -1,11 +1,12 @@
 package pinacolada.cards.pcl.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -50,6 +51,13 @@ public class GiftBox extends PCLCard
             enchantable.AddCounter(2);
         }
 
-        PCLActions.Bottom.ApplyRippled(TargetHelper.Enemies(), magicNumber);
+        AbstractDungeon.rareCardPool.clear();
+        AbstractDungeon.uncommonCardPool.clear();
+        AbstractDungeon.commonCardPool.clear();
+        AbstractDungeon.curseCardPool.clear();
+        AbstractCard randomCard = AbstractDungeon.getCardFromPool(CardRarity.RARE, CardType.POWER, true);
+        PCLActions.Bottom.MakeCardInHand(randomCard);
+        AbstractCard randomCard2 = AbstractDungeon.getCardFromPool(CardRarity.UNCOMMON, CardType.POWER, true);
+        PCLActions.Bottom.MakeCardInHand(randomCard2);
     }
 }

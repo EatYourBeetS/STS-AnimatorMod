@@ -22,14 +22,14 @@ public class Ciel extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 5, 6, 2);
+        Initialize(0, 5, 6, 3);
         SetUpgrade(0, 2, 1, 0);
 
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Blue, 6);
+        SetAffinityRequirement(PCLAffinity.Blue, 5);
     }
 
     @Override

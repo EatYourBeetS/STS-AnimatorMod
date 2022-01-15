@@ -28,7 +28,7 @@ public class Boros extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 4);
+        Initialize(0, 0, 4, POWER_ENERGY_COST);
 
         SetAffinity_Red(1);
         SetAffinity_Silver(1);

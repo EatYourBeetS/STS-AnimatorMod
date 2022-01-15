@@ -20,7 +20,7 @@ public class SabiHakuhei extends PCLCard {
         Initialize(9, 0, 2, 2);
         SetUpgrade(3, 0, 0);
         SetAffinity_Red(1, 0, 0);
-        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Blue(1, 0, 1);
 
         SetAffinityRequirement(PCLAffinity.Blue, 4);

@@ -33,8 +33,7 @@ public class Hibiki extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.GUNSHOT).forEach(d -> d
-                .SetOptions(true, false));
+        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.GUNSHOT);
 
         PCLActions.Bottom.ModifyAllInstances(uuid, c -> PCLGameUtilities.IncreaseHitCount((PCLCard) c, secondaryValue, false));
 

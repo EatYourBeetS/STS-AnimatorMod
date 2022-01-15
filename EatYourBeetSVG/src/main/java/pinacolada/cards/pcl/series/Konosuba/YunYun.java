@@ -11,6 +11,7 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.effects.AttackEffects;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -24,7 +25,7 @@ public class YunYun extends PCLCard
     {
         super(DATA);
 
-        Initialize(7, 0);
+        Initialize(7, 0, 3);
         SetUpgrade(4, 0);
 
         SetAffinity_Blue(1, 0, 1);
@@ -36,7 +37,7 @@ public class YunYun extends PCLCard
     {
         super.triggerWhenDrawn();
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        if (PCLCombatStats.MatchingSystem.AffinityMeter.Reroll != null && PCLCombatStats.MatchingSystem.AffinityMeter.Reroll.triggerCondition.uses < magicNumber && CombatStats.TryActivateSemiLimited(cardID))
         {
             PCLGameUtilities.AddAffinityRerolls(1);
             PCLActions.Bottom.Flash(this);
@@ -70,7 +71,9 @@ public class YunYun extends PCLCard
         }
 
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.NONE);
-        PCLActions.Bottom.DrawNextTurn(costForTurn);
+        if (costForTurn > 0) {
+            PCLActions.Bottom.DrawNextTurn(costForTurn);
+        }
     }
 
     public void RefreshCost()

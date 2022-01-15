@@ -439,9 +439,9 @@ public class PCLStrings
             return Format(addPeriod, 16, stance);
         }
 
-        public final String Boost(Object power, boolean addPeriod)
+        public final String Steal(Object power, Object buff, boolean addPeriod)
         {
-            return Format(addPeriod, 17, power);
+            return Format(addPeriod, 17, power, buff);
         }
 
         public final String Scry(int amount, boolean addPeriod)
@@ -494,7 +494,7 @@ public class PCLStrings
             return Format(addPeriod, 27, amount, power);
         }
 
-        public final String TakeDamage(int amount, boolean addPeriod)
+        public final String DealDamage(int amount, boolean addPeriod)
         {
             return Format(addPeriod, 28, amount);
         }

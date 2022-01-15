@@ -29,18 +29,17 @@ public class Curse_Parasite extends PCLCard_Curse implements StartupCard
     }
 
     @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+        DoEffect();
+    }
+
+    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        if (CombatStats.TryActivateSemiLimited(cardID)) {
-            PCLActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.HP_LOSS, AttackEffects.NONE)
-                    .SetDamageEffect(enemy ->
-                    {
-                        PCLGameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
-                        return 0f;
-                    });
-            PCLActions.Bottom.GainTemporaryHP(secondaryValue);
-        }
+        DoEffect();
     }
 
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -51,5 +50,17 @@ public class Curse_Parasite extends PCLCard_Curse implements StartupCard
     public boolean atBattleStartPreDraw() {
         PCLActions.Bottom.DealDamageAtEndOfTurn(player, player, magicNumber, AttackEffects.POISON);
         return true;
+    }
+
+    protected void DoEffect() {
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.DealDamageToRandomEnemy(secondaryValue, DamageInfo.DamageType.HP_LOSS, AttackEffects.NONE)
+                    .SetDamageEffect(enemy ->
+                    {
+                        PCLGameEffects.List.Add(new HemokinesisEffect2(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
+                        return 0f;
+                    });
+            PCLActions.Bottom.GainTemporaryHP(secondaryValue);
+        }
     }
 }

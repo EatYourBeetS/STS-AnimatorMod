@@ -44,7 +44,6 @@ import pinacolada.actions.basic.*;
 import pinacolada.actions.cardManipulation.*;
 import pinacolada.actions.damage.DealDamage;
 import pinacolada.actions.damage.DealDamageToAll;
-import pinacolada.actions.damage.DealDamageToRandomEnemy;
 import pinacolada.actions.damage.LoseHP;
 import pinacolada.actions.handSelection.CycleCards;
 import pinacolada.actions.handSelection.DiscardFromHand;
@@ -97,7 +96,7 @@ public final class PCLActions
     public static final PCLActions Delayed = new PCLActions(GameActions.ActionOrder.Delayed, GameActions.Delayed);
     public static final PCLActions Last = new PCLActions(GameActions.ActionOrder.Last, GameActions.Last);
 
-    protected  final GameActions.ActionOrder actionOrder;
+    protected final GameActions.ActionOrder actionOrder;
     protected final GameActions baseActions;
 
     protected PCLActions(GameActions.ActionOrder actionOrder, GameActions baseActions)
@@ -134,6 +133,31 @@ public final class PCLActions
     public ChangeAffinityCountMultiple AddAffinities(PCLCardAffinities affinities)
     {
         return Add(new ChangeAffinityCountMultiple(affinities).ShowEffect(true));
+    }
+
+    public AddPowerEffectBonus AddPowerEffectBonus(String powerID, PCLCombatStats.Type effectType, int amount)
+    {
+        return Add(new AddPowerEffectBonus(powerID, effectType, amount));
+    }
+
+    public AddPowerEffectBonus AddPowerEffectBonus(AbstractPower power, PCLCombatStats.Type effectType, int amount)
+    {
+        return Add(new AddPowerEffectBonus(power, effectType, amount));
+    }
+
+    public AddPowerEffectBonus AddPowerEffectEnemyBonus(String powerID, int amount)
+    {
+        return Add(new AddPowerEffectBonus(powerID, PCLCombatStats.Type.Effect, amount));
+    }
+
+    public AddPowerEffectBonus AddPowerEffectPassiveDamageBonus(String powerID, int amount)
+    {
+        return Add(new AddPowerEffectBonus(powerID, PCLCombatStats.Type.PassiveDamage, amount));
+    }
+
+    public AddPowerEffectBonus AddPowerEffectPlayerBonus(String powerID, int amount)
+    {
+        return Add(new AddPowerEffectBonus(powerID, PCLCombatStats.Type.PlayerEffect, amount));
     }
 
     public ApplyPower ApplyBlinded(AbstractCreature source, AbstractCreature target, int amount)
@@ -368,17 +392,17 @@ public final class PCLActions
         ArrayList<DealDamage> actions = new ArrayList<>();
         for (int i = 0; i < card.hitCount; i++)
         {
-            actions.add(Add(new DealDamage(target, new DamageInfo(player, card.damage, card.damageTypeForTurn), effect))
+            actions.add(Add(new DealDamage(card, target, effect))
                     .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
-                    .SetPowerToRemove(card.attackType.powerToRemove));
+                    .SetPCLAttackType(card.attackType));
         }
 
         return actions;
     }
 
-    public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int amount, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamage(target, new DamageInfo(source, amount, damageType), effect));
+        return Add(new DealDamage(target, new DamageInfo(source, baseDamage, damageType), effect));
     }
 
     public ArrayList<DealDamageToAll> DealCardDamageToAll(PCLCard card, AbstractGameAction.AttackEffect effect)
@@ -388,7 +412,7 @@ public final class PCLActions
         {
             actions.add(Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
                     .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
-                    .SetPowerToRemove(card.attackType.powerToRemove));
+                    .SetPCLAttackType(card.attackType));
         }
 
         return actions;
@@ -399,21 +423,14 @@ public final class PCLActions
         return Add(new DealDamageToAll(player, damageMatrix, damageType, effect, false));
     }
 
-    public ArrayList<DealDamageToRandomEnemy> DealCardDamageToRandomEnemy(PCLCard card, AbstractGameAction.AttackEffect effect)
+    public ArrayList<DealDamage> DealCardDamageToRandomEnemy(PCLCard card, AbstractGameAction.AttackEffect effect)
     {
-        ArrayList<DealDamageToRandomEnemy> actions = new ArrayList<>();
-        for (int i = 0; i < card.hitCount; i++)
-        {
-            actions.add(Add(new DealDamageToRandomEnemy(card, effect))
-                    .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock)
-                    .SetPowerToRemove(card.attackType.powerToRemove));
-        }
-        return actions;
+        return DealCardDamage(card, null, effect);
     }
 
-    public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
+    public DealDamage DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToRandomEnemy(new DamageInfo(player, baseDamage, damageType), effect));
+        return DealDamage(player, null, baseDamage, damageType, effect);
     }
 
     public MoveCard Discard(AbstractCard card, CardGroup group)

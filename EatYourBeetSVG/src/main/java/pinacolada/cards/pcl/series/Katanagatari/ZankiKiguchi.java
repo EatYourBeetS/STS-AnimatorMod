@@ -33,7 +33,7 @@ public class ZankiKiguchi extends PCLCard
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
         PCLActions.Bottom.Cycle(name, magicNumber);
 
-        if (!info.IsSynergizing && info.TryActivateSemiLimited()) {
+        if (!info.IsSynergizing) {
             PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity)
                     .SetAffinityChoices(PCLAffinity.Green)
                     .SetOptions(true, true);

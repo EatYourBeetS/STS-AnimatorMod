@@ -48,9 +48,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class PCLResources extends GR implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber, EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber, AddAudioSubscriber {
-    public final static String ID = GR.BASE_PREFIX;
+    public static final String ID = GR.BASE_PREFIX;
+    public static final String JSON_CARDS = "CardStrings.json";
+    public static final String JSON_KEYWORDS = "KeywordStrings.json";
+    public static final String JSON_METADATA = "PCL-CardMetadata.json";
+    public static final String JSON_SHORTCUTS = "CardStringsShortcuts.json";
 
-    public final String OfficialName = "Animator (redesign)"; // Don't change this
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_FOOL;
     public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_FOOL;
     public final PCLDungeonData Dungeon = PCLDungeonData.Register(CreateID("Data"));
@@ -109,12 +112,12 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
         LoadCustomStrings(OrbStrings.class);
         LoadCustomStrings(CharacterStrings.class);
 
-        String json = GetFallbackFile("CardStrings.json").readString(StandardCharsets.UTF_8.name());
+        String json = GetFallbackFile(JSON_CARDS).readString(StandardCharsets.UTF_8.name());
         LoadGroupedCardStrings(ProcessJson(json, true));
 
         if (testFolder.isDirectory() || IsTranslationSupported(Settings.language))
         {
-            FileHandle file = GetFile(Settings.language, "CardStrings.json");
+            FileHandle file = GetFile(Settings.language, JSON_CARDS);
             if (file.exists())
             {
                 String json2 = file.readString(StandardCharsets.UTF_8.name());
@@ -122,7 +125,7 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
             }
         }
 
-        String jsonString = new String(Gdx.files.internal("PCL-CardMetadata.json").readBytes());
+        String jsonString = new String(Gdx.files.internal(JSON_METADATA).readBytes());
         CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());
 
         LoadCustomStrings(RelicStrings.class);
@@ -250,8 +253,7 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
 
     public String ProcessJson(String originalString, boolean useFallback)
     {
-        final String path = "CardStringsShortcuts.json";
-        final FileHandle file = useFallback ? GetFallbackFile(path) : GetFile(Settings.language, path);
+        final FileHandle file = useFallback ? GetFallbackFile(JSON_SHORTCUTS) : GetFile(Settings.language, JSON_SHORTCUTS);
 
         if (!file.exists())
         {
@@ -423,11 +425,11 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
 
     protected void LoadKeywords()
     {
-        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"));
+        super.LoadKeywords(GetFallbackFile(JSON_KEYWORDS));
 
         if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
         {
-            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"));
+            super.LoadKeywords(GetFile(Settings.language, JSON_KEYWORDS));
         }
     }
 

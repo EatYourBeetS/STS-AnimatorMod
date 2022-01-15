@@ -1,10 +1,13 @@
 package pinacolada.actions.damage;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import pinacolada.cards.base.PCLAttackType;
@@ -19,15 +22,16 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
     protected final DamageInfo info;
 
     protected FuncT1<Float, AbstractCreature> onDamageEffect;
-    protected boolean applyPowers;
     protected boolean applyPowerRemovalMultiplier;
-    protected boolean hasPlayedEffect;
+    protected boolean applyPowers;
     protected boolean bypassBlock;
     protected boolean bypassThorns;
-    protected boolean skipWait;
     protected boolean canKill = true;
+    protected boolean hasPlayedEffect;
+    protected boolean isOrb;
+    protected boolean skipWait;
     protected int goldAmount;
-    protected String powerToRemove;
+    protected PCLAttackType pclAttackType = PCLAttackType.Normal;
 
     protected Color vfxColor = null;
     protected Color enemyTint = null;
@@ -58,10 +62,22 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         this(target, info, AttackEffect.NONE);
     }
 
+    public DealDamage(AbstractCard card, AbstractCreature target, AttackEffect effect)
+    {
+        this(card, target, new DamageInfo(AbstractDungeon.player, card.baseDamage, card.damageTypeForTurn), effect);
+    }
+
     public DealDamage(AbstractCreature target, DamageInfo info, AttackEffect effect)
+    {
+        this(null, target, info, effect);
+    }
+
+    public DealDamage(AbstractCard card, AbstractCreature target, DamageInfo info, AttackEffect effect)
     {
         super(ActionType.DAMAGE, Settings.ACTION_DUR_XFAST);
 
+        this.applyPowers = card != null;
+        this.card = card;
         this.goldAmount = 0;
         this.skipWait = false;
         this.info = info;
@@ -71,9 +87,6 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         Initialize(info.owner,
                 isInvalid ? PCLGameUtilities.GetRandomEnemy(true) : target,
                 isInvalid ? info.base : info.output);
-        if (isInvalid) {
-            applyPowers = true;
-        }
     }
 
     public DealDamage ApplyPowers(boolean applyPowers)
@@ -132,17 +145,25 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
         return this;
     }
 
-    public DealDamage SetPowerToRemove(String powerToRemove)
+    public DealDamage SetPCLAttackType(PCLAttackType pclAttackType)
     {
-        this.powerToRemove = powerToRemove;
+        this.pclAttackType = pclAttackType;
 
         return this;
     }
-    public DealDamage SetPowerToRemove(String powerToRemove, boolean applyPowerRemovalMultiplier)
+    public DealDamage SetPCLAttackType(PCLAttackType pclAttackType, boolean applyPowerRemovalMultiplier)
     {
-        this.powerToRemove = powerToRemove;
+        this.pclAttackType = pclAttackType;
         this.applyPowerRemovalMultiplier = applyPowerRemovalMultiplier;
 
+        return this;
+    }
+
+    public DealDamage SetOptions(boolean superFast, boolean isOrb, boolean canKill)
+    {
+        this.skipWait = superFast;
+        this.isOrb = isOrb;
+        this.canKill = canKill;
         return this;
     }
 
@@ -196,11 +217,12 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
             PCLActions.Instant.StackPower(source, new StolenGoldPower(target, goldAmount));
         }
 
-        if (powerToRemove != null && target.hasPower(powerToRemove)) {
+        if (pclAttackType.powerToRemove != null && target.hasPower(pclAttackType.powerToRemove)) {
             if (applyPowerRemovalMultiplier) {
                 info.output *= PCLAttackType.DAMAGE_MULTIPLIER;
             }
-            PCLActions.Last.ReducePower(source, target, powerToRemove, 1);
+            PCLActions.Last.AddPowerEffectEnemyBonus(pclAttackType.powerToRemove, pclAttackType.reactionIncrease);
+            PCLActions.Last.ReducePower(source, target, pclAttackType.powerToRemove, 1);
         }
     }
 
@@ -222,10 +244,24 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (TickDuration(deltaTime))
         {
-            if (applyPowers) {
-                info.applyPowers(source, target);
-                PCLGameUtilities.UsePenNib();
+            if (applyPowers)
+            {
+                if (card != null)
+                {
+                    card.calculateCardDamage((AbstractMonster) target);
+                    this.info.output = card.damage;
+                }
+                else
+                {
+                    this.info.applyPowers(this.info.owner, target);
+                }
             }
+
+            if (isOrb)
+            {
+                this.info.output = AbstractOrb.applyLockOn(target, this.info.output);
+            }
+
             if (!canKill)
             {
                 info.output = Math.max(0, Math.min(PCLGameUtilities.GetHP(target, true, true) - 1, info.output));

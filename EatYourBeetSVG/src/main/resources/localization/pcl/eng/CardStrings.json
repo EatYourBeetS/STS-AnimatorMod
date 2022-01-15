@@ -224,7 +224,7 @@
 		},
 		"pcl:Noda":
 		{
-			"DESCRIPTION": "Pay !A! <R>: ** Gain !S! [Counter-Attack]. || <SLM>. On Exhaust: Gain !M! Temp. [Strength].",
+			"DESCRIPTION": "Pay !A! <R>: Gain !S! [Counter-Attack]. || <slm>. On Exhaust: Gain !M! [R].",
 			"NAME": "Noda"
 		},
 		"pcl:ShioriSekine":
@@ -239,7 +239,7 @@
 		},
 		"pcl:Yui":
 		{
-			"DESCRIPTION": "Obtain {<L> Token}{+}, then Motivate !S!. || !A! <W> and in {Afterlife}: Add {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Obtain {<L> Token}{+}, then Motivate !S!. || <LIM>. !A! <W>. In {Afterlife}: Add {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"pcl:YuriNakamura":
@@ -299,7 +299,7 @@
 		},
 		"pcl:IkkakuMadarame":
 		{
-			"DESCRIPTION": "If {Zaraki Kenpachi} is active: You may gain [G] this turn. || !S! [R] or [G]: Exhaust and add {Ikkaku Bankai} to your draw pile.",
+			"DESCRIPTION": "Enable [R] and [G] this turn if they were disabled. || !S! [R] or [G]: Exhaust and add {Ikkaku Bankai} to your draw pile.",
 			"NAME": "Ikkaku Madarame"
 		},
 		"pcl:IsshinKurosaki":
@@ -387,8 +387,8 @@
 		},
 		"pcl:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "Double ALL [R] gains. You can no longer gain other {<W> Powers}. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
-			"EXTENDED_DESCRIPTION": ["Double ALL [R] gains. You can no longer gain other [A-Gen] #yPowers. NL Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
+			"DESCRIPTION": "[R] cannot be disabled. Double ALL [R] gains. Disable ALL other {<W> Powers}. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
+			"EXTENDED_DESCRIPTION": ["[R] cannot be disabled. Double ALL [R] gains. You can no longer gain other [A-Gen] #yPowers. NL Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
 			"NAME": "Zaraki Kenpachi"
 		}
 	},
@@ -572,8 +572,8 @@
 		},
 		"pcl:Megaman":
 		{
-			"DESCRIPTION": "If used on yourself: Becomes a {0} Attack with triple damage until played.",
-			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", " || <LIM>. If {Fatal}: Store the target's signature move.", " || <LIM>. If {Fatal}: Store {0} uses of: {1}.", " You may also choose to use: {0} (!X!/!M! times left)."],
+			"DESCRIPTION": "If used on yourself: Becomes a {0} Attack with triple damage until played. || {1}",
+			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", "If {Fatal}: Store {0}.", "the target's signature move", "If {Fatal}: Store {0} uses of: {1}", "You may also choose to use: {0} (!X!/!M! times left)."],
 			"NAME": "Megaman"
 		},
 		"pcl:Megunee":
@@ -944,7 +944,7 @@
 		},
 		"pcl:HuTao":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. For each: Gain [E] and Obtain {Searing Burn}. || On Exhaust: Add !S! {Searing Burn} to your hand.",
+			"DESCRIPTION": "Exhaust up to !M! cards from your draw pile or hand. For each: Gain [E] and Obtain {Searing Burn}. || On Exhaust: Obtain !S! {Searing Burn}.",
 			"NAME": "Hu Tao"
 		},
 		"pcl:JeanGunnhildr":
@@ -1024,7 +1024,7 @@
 		},
 		"pcl:Tartaglia":
 		{
-			"DESCRIPTION": "Has +!M! damage per character with [Burning]. Remove [Burning] from ALL characters. || <LIM>. If Fatal: Enter <RS> and add {Delusion} to your draw pile.",
+			"DESCRIPTION": "Has +!M! damage per character with [Burning]. ALL characters lose [Burning] and gain !S! [Rippled]. || <LIM>. If Fatal: Enter <RS> and add {Delusion} to your draw pile.",
 			"NAME": "Tartaglia"
 		},
 		"pcl:Thoma":
@@ -1056,7 +1056,7 @@
 		},
 		"pcl:Xiangling":
 		{
-			"DESCRIPTION": "Gain !M! [THP] for each enemy with [Burning] or [Freezing]. || Match: Add {Guoba} to your draw pile.",
+			"DESCRIPTION": "Gain !M! [THP] for each enemy with [Burning] or [Freezing]. || <slm>. Match: Add {Guoba} to your draw pile.",
 			"NAME": "Xiangling"
 		},
 		"pcl:Xiangling_Guoba":
@@ -1072,7 +1072,7 @@
 		},
 		"pcl:Xingqiu":
 		{
-			"DESCRIPTION": "Remove ALL [Burning] on the target to deal +!M! damage for each. Otherwise, apply !M! [Rippled]. || This turn: Trigger your first orb whenever you play a 1+ Cost Attack.",
+			"DESCRIPTION": "Remove ALL [Burning] on the target to deal +!M! damage for each. Otherwise, apply !M! [Rippled]. || This turn: Trigger your first Orb whenever you play a 1+ Cost Attack.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Trigger your first orb whenever you play a #b1+ Cost Attack."],
 			"NAME": "Xingqiu"
 		},
@@ -1121,12 +1121,12 @@
 		},
 		"pcl:KotarouTennouji":
 		{
-			"DESCRIPTION": "Enter any {Stance}. Exit your {Stance} next turn. || <LIM>. When you change {Stances} with is in hand: permanently Upgrade this card.",
+			"DESCRIPTION": "Enter any {Stance}. Exit it next turn. || <LIM>. When you change {Stances} with is in hand: permanently Upgrade this.",
 			"NAME": "Kotarou Tennouji"
 		},
 		"pcl:KotoriKanbe":
 		{
-			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 [Weak] and [Vulnerable] for every !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! [Strength].",
+			"DESCRIPTION": "Fully heal the enemy. Apply ** 1 [Weak] and [Vulnerable] per !M! HP healed. || <LIM>. If you healed {0} ** or more HP: The enemy ** also loses !S! [Strength].",
 			"NAME": "Kotori Kanbe"
 		},
 		"pcl:LuciaKonohana":
@@ -1207,8 +1207,8 @@
 		},
 		"pcl:Kanaria":
 		{
-			"DESCRIPTION": "The first time a {Hindrance} is created each turn: ** Gain !M! [L]. || Once per turn, pay {0} <B> or <L>: Obtain {Pizzicato}.",
-			"EXTENDED_DESCRIPTION": ["The next #b{0} time(s) a #yHindrance is created this turn: Gain #b{1} [G] and [L]. NL Pay #b{2} [A-Blue] or [A-Light]. Obtain #yPizzicato."],
+			"DESCRIPTION": "[L] cannot be disabled. The first time a {Hindrance} is created each turn: ** Gain !M! [L]. || Once per turn, pay {0} <B> or <L>: Obtain {Pizzicato}.",
+			"EXTENDED_DESCRIPTION": ["[L] cannot be disabled. The next #b{0} time(s) a #yHindrance is created this turn: Gain #b{1} [G] and [L]. NL Pay #b{2} [A-Blue] or [A-Light]. Obtain #yPizzicato."],
 			"NAME": "Kanaria"
 		},
 		"pcl:Kanaria_Pizzicato":
@@ -1893,7 +1893,7 @@
 		},
 		"pcl:MorganLeFay":
 		{
-			"DESCRIPTION": "Pay X <L>: Apply !X! [Rippled]. || <LIM>. Obtain a random Curse with [~Haste]. Whenever you draw it: Apply !M! [Shackles] to ALL characters, ignoring [Artifact].",
+			"DESCRIPTION": "Pay X <L>: Apply !X! [Constricted]. || <LIM>. Obtain a random Curse with [~Haste]. Whenever you draw it: Apply !M! [Shackles] to ALL characters, ignoring [Artifact].",
 			"EXTENDED_DESCRIPTION": ["When you draw {0}: ALL characters gain #b{1} [Shackles], ignoring [Artifact]."],
 			"NAME": "Morgan Le Fay"
 		},
@@ -1946,7 +1946,7 @@
 		},
 		"pcl:MatouSakura":
 		{
-			"DESCRIPTION": "Remove your first [~Dark] to apply [Rippled] equal to its damage. Otherwise, Channel !M! [~Dark] and add {Crystallize} to your draw pile. || <LIM>. Pay !A! <L>: Gain !S! [B].",
+			"DESCRIPTION": "Obtain {Crystallize}. Remove your first [~Dark] to apply [Rippled] equal to its damage. Otherwise, Channel !M! [~Dark]. || Pay !A! <L>: [Rippled] gains +!S!% effect bonus.",
 			"NAME": "Sakura Matou"
 		},
 		"pcl:MatouShinji":
@@ -2371,12 +2371,12 @@
 		},
 		"pcl:UneriGinkaku":
 		{
-			"DESCRIPTION": "Unplayable if you ** {Attacked} this turn. || When Drawn: ** Gain !M! [Counter-Attack].",
+			"DESCRIPTION": "Unplayable if you {Attacked} this turn. ** Apply !S! [Rippled]. || When Drawn: ** Gain !M! [Counter-Attack].",
 			"NAME": "Uneri Ginkaku"
 		},
 		"pcl:ZankiKiguchi":
 		{
-			"DESCRIPTION": "<CYC-M>. || <slm>. If this did not Match: Set the {Current <W>} to <G>.",
+			"DESCRIPTION": "<CYC-M>. || If this did not Match: Set the {Current <W>} to <G>.",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -2473,7 +2473,7 @@
 		},
 		"pcl:YunYun":
 		{
-			"DESCRIPTION": "Costs 1 more per {Attack} in hand besides this. Gain 1 [NTD] per [E] spent. || <SLM>. When Drawn: ** Gain a {<W> Skip}.",
+			"DESCRIPTION": "Costs 1 more per {Attack} in hand besides this. Gain 1 [NTD] per [E] spent. || <SLM>. When Drawn: ** Gain a {<W> Skip} (Max. !M!).",
 			"NAME": "YunYun"
 		}
 	},
@@ -3270,11 +3270,11 @@
 			"EXTENDED_DESCRIPTION":
 			[
 				"Once per combat, Pay !S! <R>: Obtain {Fire Core}.",
-				"Once per combat, Pay !S! <R>: Obtain {Air Core}.",
-				"Once per combat, Pay !S! <R>: Obtain {Frost Core}.",
-				"Once per combat, Pay !S! <R>: Obtain {Earth Core}.",
-				"Once per combat, Pay !S! <R>: Obtain {Lightning Core}.",
-				"Once per combat, Pay !S! <R>: Obtain {Dark Core}.",
+				"Once per combat, Pay !S! <G>: Obtain {Air Core}.",
+				"Once per combat, Pay !S! <B>: Obtain {Frost Core}.",
+				"Once per combat, Pay !S! <O>: Obtain {Earth Core}.",
+				"Once per combat, Pay !S! <L>: Obtain {Lightning Core}.",
+				"Once per combat, Pay !S! <D>: Obtain {Dark Core}.",
 				"Once per combat, Pay !S! <W>: Play a random {Orb Core}."
 			],
 			"NAME": "Orb Cores"
@@ -3331,8 +3331,18 @@
 		},
 		"pcl:Glyph10":
 		{
-			"DESCRIPTION": "Enemies drop +!S!% [Gold]. || Whenever you shuffle your deck: ALL enemies gain !M! [Plated Armor] and [Regeneration].",
+			"DESCRIPTION": "Non-Minion enemies drop !S! [Gold] (doubled for Elites and bosses). || Whenever you shuffle your deck: ALL enemies gain !M! [Plated Armor] and [Ritual].",
 			"NAME": "Glyph of Fortune"
+		},
+		"pcl:Glyph11":
+		{
+			"DESCRIPTION": "ALL enemies start with !M! [Strength]. || Whenever you play a {Power}: ALL enemies gain !S! [Strength].",
+			"NAME": "Glyph of Strength"
+		},
+		"pcl:Glyph12":
+		{
+			"DESCRIPTION": "At the end of each turn: Gain !M! [Constricted].",
+			"NAME": "Glyph of the Hanged Man"
 		}
 	},
 
@@ -3566,7 +3576,7 @@
 		},
 		"pcl:Cthulhu":
 		{
-			"DESCRIPTION": "This card's cost cannot ** be reduced, except by ** its own effect. || When Drawn: Add ** {Madness} to your hand.",
+			"DESCRIPTION": "This card cannot be Autoplayed or have its cost reduced. Play !M! random cards from any class and add them to your deck. || When Drawn: Obtain {Madness}.",
 			"NAME": "Cthulhu"
 		},
 		"pcl:Cthulhu_Madness":

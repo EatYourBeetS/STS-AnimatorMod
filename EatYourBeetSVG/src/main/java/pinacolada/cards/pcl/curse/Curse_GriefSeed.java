@@ -37,18 +37,15 @@ public class Curse_GriefSeed extends PCLCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (int i = 0; i < secondaryValue; i++) {
-            PCLActions.Bottom.SelectFromHand(name, 1, false)
-                    .SetFilter(PCLGameUtilities::HasCooldown)
-                    .AddCallback(cards -> {
-                for (AbstractCard c : cards) {
-                    if (PCLGameUtilities.HasCooldown(c)) {
-                        ((PCLCard) c).cooldown.ProgressCooldown(magicNumber);
-                        c.flash();
+        PCLActions.Bottom.SelectFromHand(name, 1, false)
+                .SetFilter(PCLGameUtilities::HasCooldown)
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        if (PCLGameUtilities.HasCooldown(c)) {
+                            ((PCLCard) c).cooldown.ProgressCooldownAndTrigger(magicNumber, PCLGameUtilities.GetRandomEnemy(true));
+                            c.flash();
+                        }
                     }
-                }
-            });
-        }
-
+                });
     }
 }

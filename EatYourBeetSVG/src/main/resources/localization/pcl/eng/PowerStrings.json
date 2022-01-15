@@ -170,6 +170,11 @@
 		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],
 		"NAME": "Energized"
 	},
+	"pcl:EnragePower":
+	{
+		"DESCRIPTIONS": ["For #b{0} turns, Whenever you play a #ySkill: Gain #b{1} [R]."],
+		"NAME": "Enrage"
+	},
 	"pcl:EntouJyuuPower":
 	{
 		"DESCRIPTIONS": ["On your next #b{0} #yAttack(s) this turn, draw #b1 card and apply #b1 #yBurning to ALL enemies."],
@@ -370,6 +375,11 @@
 		"DESCRIPTIONS": ["Receive #b{0}% more damage from Orbs and #b{1}% more damage from Ranged attacks for #b{2} {3}.", "turn", "turns"],
 		"NAME": "Lock-On"
 	},
+	"pcl:LuckPower":
+	{
+		"DESCRIPTIONS": ["If a [A-Star] card #yMatches: Gain #b{0} [S]. NL At #b{1} stacks: Gains #b1 Level. NL At Level #b{2}: Gains #b1 use. NL When clicked: Spend #b1 use to gain #b{3} additional [E] each turn.{4}", " NL #rThis #rpower #ris #rdisabled."],
+		"NAME": "Luck"
+	},
 	"pcl:MagusForm":
 	{
 		"DESCRIPTIONS": ["At the start of turn: Gain #b{0} [Focus] and lose #b{1} [Strength] and [Dexterity]."],
@@ -502,7 +512,7 @@
 	},
 	"pcl:SheerColdPower":
 	{
-		"DESCRIPTIONS": ["[Frost] deals damage (#b{0}% of [Focus] on #yTrigger and #b{1}% on #yEvoke) and applies half that much [Freezing] to the enemy with the highest damage. This damage is doubled if that enemy has [Burning]."],
+		"DESCRIPTIONS": ["[Frost] deals [~ID] damage (#b{0}% of [Focus] on #yTrigger and #b{1}% on #yEvoke) and applies half that much [Freezing] to the enemy with the highest damage."],
 		"NAME": "Sheer Cold"
 	},
 	"pcl:ShikizakiKikiPower":

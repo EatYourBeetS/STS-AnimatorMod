@@ -181,8 +181,8 @@ public class DainsleifAbyssPower extends PCLPower {
         PlayerLoseDexterity(ACTIONS.LosePower(1, GR.Tooltips.Dexterity, true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Dexterity, -1)),
         PlayerLoseFocus(ACTIONS.LosePower(1, GR.Tooltips.Focus, true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Focus, -1)),
         PlayerLoseStrength(ACTIONS.LosePower(1, GR.Tooltips.Strength, true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Strength, -1)),
-        PlayerTakeDamage(ACTIONS.TakeDamage(5, true), 2, (c, p, m) -> PCLActions.Bottom.StackPower(new DelayedDamagePower(p, 5))),
-        PlayerTakeDamage2(ACTIONS.TakeDamage(8, true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(new DelayedDamagePower(p, 8))),
+        PlayerTakeDamage(ACTIONS.GainAmount(5, GR.Tooltips.DelayedDamage, true), 2, (c, p, m) -> PCLActions.Bottom.StackPower(new DelayedDamagePower(p, 5))),
+        PlayerTakeDamage2(ACTIONS.GainAmount(8, GR.Tooltips.DelayedDamage,true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(new DelayedDamagePower(p, 8))),
         RandomEnemyGainStrength(ACTIONS.GiveRandomEnemy(3, GR.Tooltips.Strength, true), 2, (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Strength, 3)),
         RandomEnemyGainStrength2(ACTIONS.GiveRandomEnemy(6, GR.Tooltips.Strength, true), 3, (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PCLPowerHelper.Strength, 6)),
         ObtainCurses(ACTIONS.CreateCurses(true), 4, (c, p, m) -> {

@@ -133,7 +133,7 @@ public class PCLCardData
             return AddPreview((PCLCardBase) card, showUpgrade);
         }
 
-        throw new RuntimeException("Only instances of EYBCardBase are supported for previews.");
+        throw new RuntimeException("Only instances of PCLCardBase are supported for previews.");
     }
 
     public PCLCardData AddPreview(PCLCardBase card, boolean showUpgrade)

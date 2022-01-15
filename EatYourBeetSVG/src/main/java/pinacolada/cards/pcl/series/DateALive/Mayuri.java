@@ -50,7 +50,7 @@ public class Mayuri extends PCLCard
         PCLActions.Bottom.ApplyVulnerable(TargetHelper.Player(), magicNumber).AddCallback(() -> {
             for (PCLEnemyIntent intent : PCLGameUtilities.GetPCLIntents()) {
                 if (CheckSpecialCondition(true)) {
-                    PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
+                    PCLActions.Bottom.AddPowerEffectEnemyBonus(ElectrifiedPower.POWER_ID, secondaryValue);
                     break;
                 }
             }

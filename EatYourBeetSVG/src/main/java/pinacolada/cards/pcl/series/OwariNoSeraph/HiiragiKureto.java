@@ -12,7 +12,6 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.utilities.PCLActions;
@@ -66,7 +65,7 @@ public class HiiragiKureto extends PCLCard
         }));
 
         if (TrySpendAffinity(PCLAffinity.Light)) {
-            PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(ElectrifiedPower.POWER_ID, secondaryValue));
+            PCLActions.Bottom.AddPowerEffectEnemyBonus(ElectrifiedPower.POWER_ID, secondaryValue);
         }
     }
 

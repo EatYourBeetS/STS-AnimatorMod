@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.JumpyDumpty;
 import pinacolada.effects.AttackEffects;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.utilities.PCLActions;
 
@@ -36,7 +35,7 @@ public class Klee extends PCLCard
     {
 
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.SMALL_EXPLOSION);
-        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
+        PCLActions.Bottom.AddPowerEffectEnemyBonus(BurningPower.POWER_ID, magicNumber);
 
         for (int i = 0; i < secondaryValue; i++)
         {

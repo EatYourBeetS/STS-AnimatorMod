@@ -1,18 +1,19 @@
 package pinacolada.cards.pcl.ultrarare;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.utilities.ColoredString;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.special.Cthulhu_Madness;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameEffects;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class Cthulhu extends PCLCard_UltraRare //TODO make this play random colorless cards or offclass cards, increase by 1 whenever X happens, permanently transform cards in your deck to offclass cards
 {
@@ -29,13 +30,7 @@ public class Cthulhu extends PCLCard_UltraRare //TODO make this play random colo
 
         Initialize(800, 0, 120);
 
-        SetAffinity_Dark(1, 0, 32);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        SetAffinity_Star(1, 0, 32);
     }
 
     @Override
@@ -107,8 +102,16 @@ public class Cthulhu extends PCLCard_UltraRare //TODO make this play random colo
         }
 
         EnergyPanel.useEnergy(COST);
-        PCLActions.Bottom.GainTemporaryHP(magicNumber);
         PCLActions.Bottom.VFX(VFX.Cataclysm(), 0.8f, true)
         .AddCallback(__ -> PCLActions.Top.DealCardDamageToAll(this, AttackEffects.NONE));
+        PCLActions.Bottom.Callback(() -> {
+            for (int i = 0; i < magicNumber; i++) {
+                AbstractCard randomCard = PCLGameUtilities.GetAnyColorCardFiltered(null, null, false);
+                if (randomCard != null) {
+                    PCLGameEffects.TopLevelList.ShowAndObtain(randomCard);
+                    PCLActions.Bottom.PlayCopy(randomCard, m);
+                }
+            }
+        }).IsCancellable(false);
     }
 }

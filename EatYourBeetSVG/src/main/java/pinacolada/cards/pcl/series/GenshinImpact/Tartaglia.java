@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
@@ -22,7 +23,7 @@ public class Tartaglia extends PCLCard {
     public Tartaglia() {
         super(DATA);
 
-        Initialize(12, 0, 5);
+        Initialize(12, 0, 5, 1);
         SetUpgrade(3, 0, 1);
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
@@ -61,5 +62,7 @@ public class Tartaglia extends PCLCard {
         for (AbstractCreature c : PCLGameUtilities.GetAllCharacters(true)) {
             PCLActions.Bottom.RemovePower(p, c, BurningPower.POWER_ID);
         }
+
+        PCLActions.Bottom.ApplyRippled(TargetHelper.Enemies(), secondaryValue);
     }
 }

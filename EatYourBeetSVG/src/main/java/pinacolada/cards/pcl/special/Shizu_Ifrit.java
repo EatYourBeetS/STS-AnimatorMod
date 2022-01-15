@@ -8,7 +8,6 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.cards.pcl.series.TenseiSlime.Shizu;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.special.BurningWeaponPower;
 import pinacolada.utilities.PCLActions;
@@ -43,8 +42,7 @@ public class Shizu_Ifrit extends PCLCard
     {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.ApplyBurning(TargetHelper.AllCharacters(),secondaryValue);
-        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, magicNumber));
-
+        PCLActions.Bottom.AddPowerEffectEnemyBonus(BurningPower.POWER_ID, magicNumber);
 
         if (info.CanActivateLimited && TrySpendAffinity(PCLAffinity.Dark) && CombatStats.TryActivateLimited(cardID)) {
             if (choices.TryInitialize(this))

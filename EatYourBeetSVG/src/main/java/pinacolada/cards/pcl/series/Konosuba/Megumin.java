@@ -129,7 +129,7 @@ public class Megumin extends PCLCard
                 final int[] damageMatrix = DamageInfo.createDamageMatrix(amount, true);
                 PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AttackEffects.NONE)
                         .SetPiercing(true, false)
-                        .SetPowerToRemove(PCLAttackType.Fire.powerToRemove, true);
+                        .SetPCLAttackType(PCLAttackType.Fire, true);
 
                 if (synergies >= SYNERGY_REQUIREMENT && CombatStats.TryActivateLimited(sourceCard.cardID))
                 {

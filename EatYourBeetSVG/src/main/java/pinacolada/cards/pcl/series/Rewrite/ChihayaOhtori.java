@@ -3,7 +3,6 @@ package pinacolada.cards.pcl.series.Rewrite;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.special.RefreshHandLayout;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.effects.AttackEffects;
@@ -65,10 +64,8 @@ public class ChihayaOhtori extends PCLCard
         .SetFilter(c -> (c instanceof PCLCard && ((PCLCard) c).affinities.GetLevel(PCLAffinity.Orange) > 0 && !cardID.equals(c.cardID)))
         .AddCallback(cards ->
         {
-            if (cards.size() > 0)
-            {
-                PCLActions.Bottom.Motivate(cards.get(0), 1);
-                PCLActions.Bottom.Add(new RefreshHandLayout());
+            for (AbstractCard card2 : cards) {
+                PCLActions.Bottom.Motivate(card2, 1);
             }
         });
     }

@@ -28,7 +28,7 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
     protected boolean bypassBlock;
     protected boolean bypassThorns;
     protected boolean isFast;
-    protected String powerToRemove;
+    protected PCLAttackType pclAttackType = PCLAttackType.Normal;
 
     protected Color vfxColor = null;
     protected Color enemyTint = null;
@@ -107,16 +107,16 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
         return this;
     }
 
-    public DealDamageToAll SetPowerToRemove(String powerToRemove)
+    public DealDamageToAll SetPCLAttackType(PCLAttackType pclAttackType)
     {
-        this.powerToRemove = powerToRemove;
+        this.pclAttackType = pclAttackType;
 
         return this;
     }
 
-    public DealDamageToAll SetPowerToRemove(String powerToRemove, boolean applyPowerRemovalMultiplier)
+    public DealDamageToAll SetPCLAttackType(PCLAttackType pclAttackType, boolean applyPowerRemovalMultiplier)
     {
-        this.powerToRemove = powerToRemove;
+        this.pclAttackType = pclAttackType;
         this.applyPowerRemovalMultiplier = applyPowerRemovalMultiplier;
 
         return this;
@@ -145,8 +145,9 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                     onDamageEffect.accept(enemy, !mute);
                 }
 
-                if (powerToRemove != null && enemy.hasPower(powerToRemove)) {
-                    PCLActions.Last.ReducePower(source, enemy, powerToRemove, 1);
+                if (pclAttackType.powerToRemove != null && enemy.hasPower(pclAttackType.powerToRemove)) {
+                    PCLActions.Last.AddPowerEffectEnemyBonus(pclAttackType.powerToRemove, pclAttackType.reactionIncrease);
+                    PCLActions.Last.ReducePower(source, enemy, pclAttackType.powerToRemove, 1);
                 }
 
                 mute = true;

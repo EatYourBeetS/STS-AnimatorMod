@@ -7,7 +7,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.vfx.ScreenOnFireEffect3;
 import pinacolada.orbs.pcl.Fire;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.special.BlazingHeatPower;
 import pinacolada.utilities.PCLActions;
@@ -39,7 +38,7 @@ public class BlazingHeat extends PCLCard
     {
         PCLActions.Bottom.ChannelOrbs(Fire::new, magicNumber);
         PCLActions.Bottom.StackPower(new BlazingHeatPower(p, 1));
-        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddPassiveDamageBonus(BurningPower.POWER_ID, BURNING_DAMAGE_BONUS));
+        PCLActions.Bottom.AddPowerEffectPassiveDamageBonus(BurningPower.POWER_ID, BURNING_DAMAGE_BONUS);
         PCLActions.Bottom.VFX(new ScreenOnFireEffect3());
     }
 }

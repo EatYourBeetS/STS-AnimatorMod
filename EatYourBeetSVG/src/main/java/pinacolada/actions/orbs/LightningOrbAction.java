@@ -51,13 +51,13 @@ public class LightningOrbAction extends EYBAction
                 {
                     PCLActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.LIGHTNING)
                             .SetVFX(Settings.FAST_MODE, false)
-                            .SetPowerToRemove(PCLAttackType.Electric.powerToRemove, true);
+                            .SetPCLAttackType(PCLAttackType.Electric, true);
                 }
             }
         } else {
             int[] damage = DamageInfo.createDamageMatrix(amount, true, true);
             PCLActions.Top.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffects.LIGHTNING)
-                    .SetPowerToRemove(PCLAttackType.Electric.powerToRemove, true)
+                    .SetPCLAttackType(PCLAttackType.Electric, true)
                     .SetVFX(Settings.FAST_MODE, true);
             PCLActions.Top.SFX(SFX.ORB_LIGHTNING_EVOKE);
         }

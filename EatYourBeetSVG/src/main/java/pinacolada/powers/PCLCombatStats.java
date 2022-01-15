@@ -538,6 +538,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         ClearPCLStats();
     }
 
+    public static int GetBonus(String powerID, Type effectType) {
+        return GetEffectBonusMapForType(effectType).getOrDefault(powerID, 0);
+    }
+
     public static int GetEffectBonus(String powerID) {
         return EFFECT_BONUSES.getOrDefault(powerID, 0);
     }
@@ -562,40 +566,56 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         return PLAYER_EFFECT_BONUSES.entrySet();
     }
 
-    public static void AddEffectBonus(String powerID, int multiplier)
-    {
-        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.Effect, multiplier);
+    public static void AddBonus(String powerID, Type effectType, int multiplier) {
+        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, effectType, multiplier);
+        GetEffectBonusMapForType(effectType).merge(powerID, multiplier, Integer::sum);
 
-        EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
-        if (BurningPower.POWER_ID.equals(powerID) || eatyourbeets.powers.common.BurningPower.POWER_ID.equals(powerID)) {
+        // Because EYB powers don't reference this mapping by default, we need to update them manually
+        if (effectType == Type.Effect && (BurningPower.POWER_ID.equals(powerID) || eatyourbeets.powers.common.BurningPower.POWER_ID.equals(powerID))) {
             eatyourbeets.powers.common.BurningPower.AddPlayerAttackBonus(multiplier);
         }
 
         if (GameUtilities.InBattle()) {
-            PCLGameUtilities.UpdatePowerDescriptions();
+
+            for (AbstractCreature cr : PCLGameUtilities.GetAllCharacters(true)) {
+                if (cr.powers != null) {
+                    for (AbstractPower po : cr.powers) {
+                        if (powerID.equals(po.ID)) {
+                            po.updateDescription();
+                            po.flashWithoutSound();
+                        }
+                    }
+                }
+            }
+
         }
 
+    }
+
+    public static void AddEffectBonus(String powerID, int multiplier)
+    {
+        AddBonus(powerID, Type.Effect, multiplier);
     }
 
     public static void AddPassiveDamageBonus(String powerID, int multiplier)
     {
-        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PassiveDamage, multiplier);
-
-        PASSIVE_DAMAGE_BONUSES.merge(powerID, multiplier, Integer::sum);
-
-        if (GameUtilities.InBattle()) {
-            PCLGameUtilities.UpdatePowerDescriptions();
-        }
+        AddBonus(powerID, Type.PassiveDamage, multiplier);
     }
 
     public static void AddPlayerEffectBonus(String powerID, int multiplier)
     {
-        multiplier = PCLCombatStats.OnGainTriggerablePowerBonus(powerID, Type.PlayerEffect, multiplier);
+        AddBonus(powerID, Type.PlayerEffect, multiplier);
+    }
 
-        PLAYER_EFFECT_BONUSES.merge(powerID, multiplier, Integer::sum);
-
-        if (GameUtilities.InBattle()) {
-            PCLGameUtilities.UpdatePowerDescriptions();
+    public static HashMap<String, Integer> GetEffectBonusMapForType(Type effectType) {
+        switch (effectType) {
+            case Effect:
+                return EFFECT_BONUSES;
+            case PlayerEffect:
+                return PLAYER_EFFECT_BONUSES;
+            case PassiveDamage:
+                return PASSIVE_DAMAGE_BONUSES;
         }
+        throw new RuntimeException("Unsupported Effect Bonus type.");
     }
 }

@@ -73,7 +73,7 @@ public class EarthOrbEvokeAction extends EYBAction
             for (int i = 0; i < projectiles.size(); i++)
             {
                 PCLActions.Top.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
-                .SetOptions(true, true)
+                .SetOptions(true, true, true)
                 .SetDamageEffect(m ->
                 {
                     PCLGameEffects.List.Add(VFX.ThrowProjectile(projectiles.remove(0), m.hb)

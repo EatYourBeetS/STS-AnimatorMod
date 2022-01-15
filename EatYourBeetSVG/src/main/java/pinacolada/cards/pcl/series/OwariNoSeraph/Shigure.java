@@ -25,9 +25,8 @@ public class Shigure extends PCLCard
         Initialize(7, 0, 2, 2);
         SetUpgrade(2, 0, 1, 0);
 
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1, 0, 2);
         SetAffinity_Orange(1, 0, 0);
-        SetAffinity_Light(1, 0, 1);
     }
 
     @Override

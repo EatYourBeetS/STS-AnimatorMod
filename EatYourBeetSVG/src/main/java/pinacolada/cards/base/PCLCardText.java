@@ -304,7 +304,7 @@ public class PCLCardText
         final float offset_y = y - AbstractCard.RAW_H * 0.46f;
         final float alpha = card.transparency;
 
-        pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, card, GR.PCL.Images.Panel_Elliptical.Texture(),  new Vector2(offset_x, offset_y), 40, 40, Color.BLACK, alpha * 0.4f, 0.8f);
+        pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, card, GR.PCL.Images.ControllableCardPile.Texture(),  new Vector2(offset_x, offset_y), 40, 40, Color.BLACK, alpha * 0.6f, 0.8f);
         pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, card, texture,  new Vector2(offset_x, offset_y), 40, 40, iconColor, alpha, 0.8f);
 
         if (text != null)

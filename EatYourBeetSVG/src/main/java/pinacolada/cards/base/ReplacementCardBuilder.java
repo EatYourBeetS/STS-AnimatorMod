@@ -115,6 +115,16 @@ public class ReplacementCardBuilder extends PCLCardBuilder
 
     protected String GetModifiedText(String originalText) {
         return originalText
+                .replace("[F]", GR.Tooltips.Might.toString())
+                .replace("[A]", GR.Tooltips.Velocity.toString())
+                .replace("[I]", GR.Tooltips.Wisdom.toString())
+                .replace("[B]", GR.Tooltips.Invocation.toString())
+                .replace("[C]", GR.Tooltips.Desecration.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Force.toString(), GR.Tooltips.Might.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Agility.toString(), GR.Tooltips.Velocity.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Intellect.toString(), GR.Tooltips.Wisdom.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Blessing.toString(), GR.Tooltips.Invocation.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Corruption.toString(), GR.Tooltips.Desecration.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_Red.toString(), GR.Tooltips.Affinity_Red.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_Green.toString(), GR.Tooltips.Affinity_Green.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_Blue.toString(), GR.Tooltips.Affinity_Blue.toString())

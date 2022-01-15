@@ -12,7 +12,6 @@ import pinacolada.utilities.PCLGameUtilities;
 public class IkkakuMadarame extends PCLCard {
     public static final PCLCardData DATA = Register(IkkakuMadarame.class).SetAttack(2, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
-                data.AddPreview(new ZarakiKenpachi(), false);
                 data.AddPreview(new IkkakuBankai(), false);
             });
 
@@ -29,6 +28,7 @@ public class IkkakuMadarame extends PCLCard {
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.SLASH_HORIZONTAL);
         PCLActions.Bottom.GainBlock(block);
 
+        PCLGameUtilities.MaintainPower(PCLAffinity.Red);
         PCLGameUtilities.MaintainPower(PCLAffinity.Green);
 
         if (CheckSpecialCondition(true)) {

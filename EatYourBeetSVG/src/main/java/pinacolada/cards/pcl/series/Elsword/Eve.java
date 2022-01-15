@@ -52,6 +52,7 @@ public class Eve extends PCLCard
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);
+        SetAffinity_Dark(1);
         SetAffinity_Silver(1);
 
         SetDelayed(true);
@@ -146,7 +147,6 @@ public class Eve extends PCLCard
                     for (int i = 0; i < amount; i++)
                     {
                         PCLActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-                        .SetOptions(true, false)
                         .SetDamageEffect(enemy ->
                         {
                             SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);

@@ -65,6 +65,7 @@ public class ZarakiKenpachi extends PCLCard
             for (AbstractPCLAffinityPower po : PCLCombatStats.MatchingSystem.Powers) {
                 if (PCLAffinity.Red.equals(po.affinity)) {
                     po.SetGainMultiplier(po.gainMultiplier + 1);
+                    po.SetEnabled(true);
                 }
                 else {
                     po.SetEnabled(false);

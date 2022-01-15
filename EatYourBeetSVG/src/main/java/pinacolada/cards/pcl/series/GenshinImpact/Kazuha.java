@@ -22,8 +22,9 @@ public class Kazuha extends PCLCard
 
         Initialize(7, 0, 3, 0);
         SetUpgrade(3, 0, 1, 0);
+        SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 2);
-        SetAffinity_Blue(0, 0, 1);
+        SetAffinity_Blue(1, 0, 0);
 
         SetAffinityRequirement(PCLAffinity.Green, 9);
         SetExhaust(true);

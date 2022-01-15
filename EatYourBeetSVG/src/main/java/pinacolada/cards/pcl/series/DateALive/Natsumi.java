@@ -34,8 +34,7 @@ public class Natsumi extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.FIRE).forEach(d -> d
-        .SetVFXColor(Color.TEAL, Color.TEAL)
-        .SetOptions(true, false));
+        .SetVFXColor(Color.TEAL, Color.TEAL));
     }
 
     @Override

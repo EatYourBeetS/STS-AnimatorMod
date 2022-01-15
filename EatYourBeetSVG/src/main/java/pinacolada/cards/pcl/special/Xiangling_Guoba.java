@@ -8,7 +8,6 @@ import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.utilities.PCLActions;
@@ -59,7 +58,7 @@ public class Xiangling_Guoba extends PCLCard
         {
             super.onRemove();
 
-            PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(BurningPower.POWER_ID, BURNING_BONUS));
+            PCLActions.Bottom.AddPowerEffectEnemyBonus(BurningPower.POWER_ID, BURNING_BONUS);
         }
 
         @Override

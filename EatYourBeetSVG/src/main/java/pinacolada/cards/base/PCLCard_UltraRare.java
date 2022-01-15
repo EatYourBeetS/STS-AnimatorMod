@@ -85,9 +85,8 @@ public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
         RENDER_COLOR.a = this.transparency;
         Texture card = GetCardBackground();
         float popUpMultiplier = isPopup ? 0.5f : 1f;
-        PCLRenderHelpers.DrawGrayscale(sb, () -> {
-            PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), RENDER_COLOR, transparency, popUpMultiplier);
-            return true;});
+        PCLRenderHelpers.DrawGrayscale(sb, () ->
+            PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), RENDER_COLOR, transparency, popUpMultiplier));
     }
 
     @Override

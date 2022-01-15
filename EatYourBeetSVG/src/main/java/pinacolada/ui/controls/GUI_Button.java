@@ -308,7 +308,7 @@ public class GUI_Button extends GUIElement
                 this.RenderButton(sb, interactable, buttonColor);
             }
             else {
-                pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> {this.RenderButton(sb, interactable, buttonColor); return true;});
+                pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> this.RenderButton(sb, interactable, buttonColor));
             }
 
         }

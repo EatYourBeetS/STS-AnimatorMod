@@ -32,8 +32,9 @@ public class Merlin extends PCLCard
         Fire(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Delayed.ApplyBurning(TargetHelper.Normal(m), 2)),
         Frost(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Freezing, true), (c, p, m) -> PCLActions.Delayed.ApplyFreezing(TargetHelper.Normal(m), 2)),
         Lightning(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Electrified, true), (c, p, m) -> PCLActions.Delayed.ApplyElectrified(TargetHelper.Normal(m), 2)),
+        Metal(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Metallicize, true), (c, p, m) -> PCLActions.Delayed.GainMetallicize(1)),
         Plasma(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Energized, true), (c, p, m) -> PCLActions.Delayed.GainEnergyNextTurn(1)),
-        Water(GR.PCL.Strings.Actions.GainAmount(3, GR.Tooltips.TempHP, true), (c, p, m) -> PCLActions.Delayed.GainTemporaryHP(3));
+        Water(GR.PCL.Strings.Actions.GainAmount(4, GR.Tooltips.TempHP, true), (c, p, m) -> PCLActions.Delayed.GainTemporaryHP(4));
 
         private final String text;
         private final ActionT3<PCLCard, AbstractPlayer, AbstractMonster> action;
@@ -57,6 +58,7 @@ public class Merlin extends PCLCard
                 EFFECTS.put(Fire.ORB_ID, MerlinEffect.Fire);
                 EFFECTS.put(Frost.ORB_ID, MerlinEffect.Frost);
                 EFFECTS.put(Lightning.ORB_ID, MerlinEffect.Lightning);
+                EFFECTS.put(Metal.ORB_ID, MerlinEffect.Metal);
                 EFFECTS.put(Plasma.ORB_ID, MerlinEffect.Plasma);
                 EFFECTS.put(Water.ORB_ID, MerlinEffect.Water);
             });

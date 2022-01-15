@@ -191,4 +191,15 @@ public class AbstractDungeonPatches
             };
         }
     }
+
+    // The vanilla GetRandomCard from AbstractDungeon does an infinite loop if there are no uncommon and rare power cards in the pool...
+    @SpirePatch(clz = AbstractDungeon.class, method = "getCardFromPool")
+    public static class AbstractDungeonPatches_GetCardFromPool
+    {
+        @SpirePrefixPatch
+        public static SpireReturn<AbstractCard> Prefix(AbstractCard.CardRarity rarity, AbstractCard.CardType type, boolean useRng)
+        {
+            return SpireReturn.Return(PCLGameUtilities.GetRandomCard(rarity, type, useRng, true));
+        }
+    }
 }

@@ -82,6 +82,7 @@ public class PCLGlyphEditor extends GUIElement
             configOption.Set(blight.counter, true);
         }
         tooltip.description = enabled ? blight.GetAscensionTooltipDescription(ascensionLevel) : blight.GetLockedTooltipDescription();
+        image.SetGrayscale(!enabled);
     }
 
     public void Decrease()

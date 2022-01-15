@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -64,7 +65,7 @@ public class Yui extends PCLCard implements OnAfterlifeSubscriber
 
     @Override
     public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
-        if (playedCard == this && CheckAffinity(PCLAffinity.General))
+        if (playedCard == this && CheckAffinity(PCLAffinity.General) && CombatStats.TryActivateLimited(cardID))
         {
             PCLActions.Bottom.MakeCardInDrawPile(new GirlDeMo());
         }

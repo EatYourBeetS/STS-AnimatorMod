@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.AdvancedTexture;
+import pinacolada.utilities.PCLRenderHelpers;
 
 public class GUI_Image extends GUIElement
 {
@@ -22,6 +23,7 @@ public class GUI_Image extends GUIElement
     public int srcHeight;
     public boolean flipX;
     public boolean flipY;
+    public boolean grayscale;
 
     public GUI_Image(Texture texture)
     {
@@ -155,6 +157,13 @@ public class GUI_Image extends GUIElement
         return this;
     }
 
+    public GUI_Image SetGrayscale(boolean grayscale)
+    {
+        this.grayscale = grayscale;
+
+        return this;
+    }
+
     @Override
     public void Update()
     {
@@ -178,6 +187,15 @@ public class GUI_Image extends GUIElement
 
     public void Render(SpriteBatch sb, float x, float y, float width, float height)
     {
+        if (grayscale) {
+            PCLRenderHelpers.DrawGrayscale(sb, () -> RenderImpl(sb, x, y, width, height));
+        }
+        else {
+            RenderImpl(sb, x, y, width, height);
+        }
+    }
+
+    protected void RenderImpl(SpriteBatch sb, float x, float y, float width, float height) {
         if (background != null)
         {
             final float w = width * background.pos.scale;
@@ -214,7 +232,16 @@ public class GUI_Image extends GUIElement
         RenderCentered(sb, hb.x, hb.y, hb.width, hb.height);
     }
 
-    public void RenderCentered(SpriteBatch sb, float x, float y, float width, float height)
+    public void RenderCentered(SpriteBatch sb, float x, float y, float width, float height) {
+        if (grayscale) {
+            PCLRenderHelpers.DrawGrayscale(sb, () -> RenderCenteredImpl(sb, x, y, width, height));
+        }
+        else {
+            RenderCenteredImpl(sb, x, y, width, height);
+        }
+    }
+
+    protected void RenderCenteredImpl(SpriteBatch sb, float x, float y, float width, float height)
     {
         if (background != null)
         {

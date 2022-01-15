@@ -41,7 +41,7 @@ public class DarkOrbEvokeAction extends EYBAction
             {
                 PCLActions.Top.DealDamage(source, enemy, actualDamage, DamageInfo.DamageType.THORNS, AttackEffects.DARKNESS)
                         .SetVFX(true, false)
-                        .SetPowerToRemove(PCLAttackType.Dark.powerToRemove, true);
+                        .SetPCLAttackType(PCLAttackType.Dark, true);
             }
         }
 

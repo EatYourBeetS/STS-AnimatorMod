@@ -104,7 +104,7 @@ public class Patchouli extends PCLCard
             });
         }
 
-        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d.SetOptions(true, false).SetDamageEffect(actions.Retrieve(rng)));
+        PCLActions.Bottom.DealCardDamageToRandomEnemy(this, AttackEffects.NONE).forEach(d -> d.SetDamageEffect(actions.Retrieve(rng)));
 
         if (TrySpendAffinity(PCLAffinity.Blue) && info.TryActivateLimited())
         {

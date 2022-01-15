@@ -34,6 +34,7 @@ public class RundelhausCode extends PCLCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1, 0, 2);
+        SetAffinity_Orange(1);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(PCLAffinity.General, 6);

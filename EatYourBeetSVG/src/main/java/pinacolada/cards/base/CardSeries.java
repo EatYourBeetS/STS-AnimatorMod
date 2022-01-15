@@ -249,4 +249,10 @@ public class CardSeries
 
         return result;
     }
+
+    @Override
+    public String toString()
+    {
+        return Name != null ? Name : "";
+    }
 }

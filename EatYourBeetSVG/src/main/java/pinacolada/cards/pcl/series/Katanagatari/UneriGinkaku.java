@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -26,7 +27,7 @@ public class UneriGinkaku extends PCLCard
     {
         super(DATA);
 
-        Initialize(13, 0, 3);
+        Initialize(12, 0, 3, 2);
         SetUpgrade(4, 0, 1);
 
         SetAffinity_Green(1, 0, 3);
@@ -75,5 +76,6 @@ public class UneriGinkaku extends PCLCard
             SFX.Play(SFX.ATTACK_REAPER);
             return wait * 0.65f;
         }));
+        PCLActions.Bottom.ApplyRippled(TargetHelper.Normal(m), secondaryValue);
     }
 }

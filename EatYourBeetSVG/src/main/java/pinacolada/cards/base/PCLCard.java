@@ -163,9 +163,9 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     @Override
     public AbstractCard makeCopy()
     {
-        AbstractCard card = cardData.CreateNewInstance();
-        if (card instanceof PCLCard && auxiliaryData.form > 0) {
-            ((PCLCard) card).SetForm(auxiliaryData.form, timesUpgraded);
+        PCLCard card = cardData.CreateNewInstance();
+        if (card != null && auxiliaryData.form > 0) {
+            card.SetForm(auxiliaryData.form, timesUpgraded);
         }
         return card;
     }
@@ -1630,9 +1630,8 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         Texture card = GetCardBackground();
         float popUpMultiplier = isPopup ? 0.5f : 1f;
         if (this.color == CardColor.COLORLESS) {
-            pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> {
-                pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), PCLCard.COLORLESS_ORB_COLOR, transparency, popUpMultiplier);
-                return true;});
+            pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () ->
+                pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), PCLCard.COLORLESS_ORB_COLOR, transparency, popUpMultiplier));
         }
         else {
             pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, card, new Vector2(0,0), card.getWidth(), card.getHeight(), _renderColor.Get(this), transparency, popUpMultiplier);
@@ -1649,8 +1648,8 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
             Vector2 offset = new Vector2(-baseCard.getWidth() / (isPopup ? 7.7f : 3.85f), baseCard.getHeight() / (isPopup ? 5.3f : 2.64f));
             Texture energyOrb = GetEnergyOrb();
             if (this.color == CardColor.COLORLESS && !(this instanceof PCLCard_UltraRare)) {
-                pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () -> {
-                    pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, energyOrb, offset, energyOrb.getWidth(), energyOrb.getHeight(), PCLCard.COLORLESS_ORB_COLOR, transparency, popUpMultiplier); return true;});
+                pinacolada.utilities.PCLRenderHelpers.DrawGrayscale(sb, () ->
+                    pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, energyOrb, offset, energyOrb.getWidth(), energyOrb.getHeight(), PCLCard.COLORLESS_ORB_COLOR, transparency, popUpMultiplier));
             }
             else {
                 pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, this, energyOrb, offset, energyOrb.getWidth(), energyOrb.getHeight(), _renderColor.Get(this), transparency, popUpMultiplier);

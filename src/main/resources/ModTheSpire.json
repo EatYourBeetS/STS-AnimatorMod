@@ -1,0 +1,12 @@
+{
+  "modid": "pinacolada-thefool",
+  "name": "The Fool",
+  "author_list": ["PinaColada, EatYourBeetS, LeoZahn"],
+  "description": "Adds a new playable character based on The Animator, a new Act, 250+ cards, and 25+ relics.",
+  "credits" : "SFX: The Berklee College of Music, SquishiSprite, Zoltan Mihalyi, ViRiX, SilverIllusionist \n VFX: ashishlko11, Cethiel, The Free Archives @ Dreams Circle, Sinestesia, J. W. Bjerk, Airarcs, Font Awesome",
+  "version": "7.8.5",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.22.0",
+  "dependencies": ["basemod", "stslib", "eatyourbeetsvg-theanimator"],
+  "update_json": ""
+}

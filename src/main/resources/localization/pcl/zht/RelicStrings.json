@@ -1,0 +1,181 @@
+
+{
+	"animator:AlchemistGlove":
+	{
+		"DESCRIPTIONS": ["每場戰鬥開始時， #y生成 1個 #y火焰充能球 。"],
+		"FLAVOR": "你可以通過一個響指控制火焰。",
+		"NAME": "煉金手套"
+	},
+	"animator:AncientMedallion":
+	{
+		"DESCRIPTIONS": ["每場戰鬥開始時，回復 #b{0} 生命。 NL 拾起時， 隨機 #y升級 2張牌並選擇升級1張牌。如果被選中的牌可以被多次升級，則升級此牌2次。"],
+		"FLAVOR": "……",
+		"NAME": "上古掛墜"
+	},
+	"animator:BattleDrones":
+	{
+		"DESCRIPTIONS": ["每次同調 時， 對隨機一名敵人造成 #b{0} 點傷害並獲得 #b{1} 點 #y格擋 。"],
+		"FLAVOR": "完美的工程學造物。",
+		"NAME": "戰鬥無人機"
+	},
+	"animator:Buoy":
+	{
+		"DESCRIPTIONS": ["如果你回合結束時的生命值低於 #b{0}% ，獲得 #b{1} 點 #y格擋 。"],
+		"FLAVOR": "我的速度天下第一, 迅如疾風!",
+		"NAME": "泳圈"
+	},
+	"animator:CerealBox":
+	{
+		"DESCRIPTIONS": ["#p右鍵使用 ， #y回復 #b{0} 點生命 。 NL 初始獲得 #b{1} 次使用次數，每次進入商店時獲得 #b{2} 次使用次數 。 NL 最多存儲 #b{3} 次使用次數。"],
+		"FLAVOR": "全麥產品! 凍空粉雪認證。",
+		"NAME": "穀物箱"
+	},
+	"animator:ColorlessFragment":
+	{
+		"DESCRIPTIONS": ["替換 #y遺失殘片 。 每 #b{0} 場戰鬥，提高卡牌獎勵。有幾率獲得無色牌。概率獲得特定的無色牌。","當前系列："],
+		"FLAVOR": "顏色正在慢慢褪去…",
+		"NAME": "無色殘片"
+	},
+	"animator:CursedBlade":
+	{
+		"DESCRIPTIONS": ["戰鬥開始時擁有 #b{0} 點 #y武力 。 每當你受到未被格擋的攻擊傷害時, 增加 #y傷口 到你的手牌。"],
+		"FLAVOR": "力量都有代價。",
+		"NAME": "詛咒之刃"
+	},
+	"animator:CursedGlyph":
+	{
+		"DESCRIPTIONS": ["拾起時， #r失去 #r{0} 點 #r最大生命，提升所有敵人的最大生命。 NL NL 與此遺物連繫的牌 #y不能 被複制。"],
+		"FLAVOR": "這可能是個錯誤……",
+		"NAME": "詛咒符文"
+	},
+	"animator:EngravedStaff":
+	{
+		"DESCRIPTIONS": ["回合開始時， 隨機 #y提升 #b1 點 智力 、 NL 武力 或者 機敏 。"],
+		"FLAVOR": "公會最寶貴的財產之一。",
+		"NAME": "銘文法杖"
+	},
+	"animator:ExquisiteBloodVial":
+	{
+		"DESCRIPTIONS":
+		[
+			"每場戰鬥開始時， 回復 #b{0} 點生命。 NL NL #y[特殊遺物] NL 在篝火處 #p右擊 時，將開啟一場特殊的戰鬥， 勝利後可以解鎖該遺物的真正力量。 NL NL 戰鬥為第三幕難度。",
+			"戰鬥開始時, 獲得 #b{0} 層 #y再生 和 #b{1} 點最大生命。 NL NL 失去所有 #y小血瓶 ，每當你獲得一個 #y小血瓶 時，只提升該遺物的效果。"
+		],
+		"FLAVOR": "一個裝著遠古純種吸血鬼血液的瓶子。",
+		"NAME": "精緻的血瓶"
+	},
+	"animator:HallowedScabbard":
+	{
+		"DESCRIPTIONS": ["每場戰鬥一次，當你損失超過 #b{0} 點生命時， 獲得 #b{1} 層 #y再生 和 #b{2} 點 #y武力 。"],
+		"FLAVOR": "劍鞘的持有者被授予強力恢復能力，能夠迅速恢復致命傷。",
+		"NAME": "阿瓦隆"
+	},
+	"animator:HeavyHalberd":
+	{
+		"DESCRIPTIONS": ["回合開始時， 每有一個敵人有 #y易傷 則獲得 #b{0} 點 #y武力 。"],
+		"FLAVOR": "統治死亡即統治生命，死即生之巔峰。崇敬生命，擁抱死亡。",
+		"NAME": "重戟"
+	},
+	"animator:HolyGrailRelic":
+	{
+		"DESCRIPTIONS": ["拾起時，獲得 #b{0} 點最大生命。 每場戰鬥開始時， 增加 #y聖杯 到你的手牌中。"],
+		"FLAVOR": "'抵達根源'， 是遠坂家唯一的悲願。",
+		"NAME": "原初聖杯"
+	},
+	"animator:Hoodie":
+	{
+		"DESCRIPTIONS": ["如果你在一場戰鬥沒有受到傷害， 獲得 #b{0} #y最大生命 。"],
+		"FLAVOR": "有了這個，你說不定會被英雄協會承認。",
+		"NAME": "披風"
+	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["拾起時， 獲得 #b", " 塊 #y金幣 並 #r失去 #r", " 點 #r最大生命值 。 牌組中每有 #b", " 張牌， 獲得一個 #p無名 卡獎勵。"],
+		"FLAVOR": "無窮之力！ ……也有代價。",
+		"NAME": "無窮之力"
+	},
+	"animator:LivingPicture":
+	{
+		"DESCRIPTIONS": ["每回合一次， #y同調 時，抽 #b1 張牌。"],
+		"FLAVOR": "他...他在看著。",
+		"NAME": "活著的油畫"
+	},
+	"animator:OldCoffin":
+	{
+		"DESCRIPTIONS": ["第 #b4 回合開始， 每回合開始對一個隨機敵人給予一層隨機的 #y負面效果 。"],
+		"FLAVOR": "震驚的真相！",
+		"NAME": "舊棺材"
+	},
+	"animator:PurgingStone":
+	{
+		"DESCRIPTIONS": ["在 #y一般 卡牌獎勵中，你可以放逐掉某些牌使它們不再在獎勵和商店出現。每次戰鬥後獲得 #b1 次，擊敗精英或者Boss後獲得 #b2 次。可以存儲 #b{0} 次。"],
+		"FLAVOR": "人類無法對抗詛咒，但可以利用它。",
+		"NAME": "解咒石"
+	},
+	"animator:RacePiece":
+	{
+		"DESCRIPTIONS": ["拾起時，選擇 #b1 張牌並選擇你的牌庫中的 #b3 張牌轉化為與選中牌同 #y系列 的 #b3 張隨機牌。"],
+		"FLAVOR": "讀心者先生，你讀到這一步了嗎？將殺！",
+		"NAME": "種族棋子"
+	},
+	"animator:Readme":
+	{
+		"DESCRIPTIONS": ["此角色有 #y重要信息 。 NL #p右鍵 閱讀。"],
+		"FLAVOR": "只是一個說明，點擊後消失。",
+		"NAME": "說明"
+	},
+	"animator:Rinne":
+	{
+		"DESCRIPTIONS": ["YmVoYXZlcw== ZXJyYXRpY2FsbHk=, 57GFD0c= NzQ="],
+		"FLAVOR": "???",
+		"NAME": "???"
+	},
+	"animator:ShionDessert":
+	{
+		"DESCRIPTIONS": ["每回合開始時， 對 #y中毒 層數最多的敵人 給予 #b{0} 層 #y中毒 。"],
+		"FLAVOR": "來，嘗嘗吧，味道不會太差……吧？",
+		"NAME": "紫苑的甜品"
+	},
+	"animator:TheEgnaroPiece":
+	{
+		"DESCRIPTIONS": ["每回合開始時， 獲得 [E] 並抽1張牌。 NL 每回合結束時，獲得 #b", " 點 #y臨時生命 , 並且將此數量增加 #b1。"],
+		"FLAVOR": "這是什麼？",
+		"NAME": "橘色碎片"
+	},
+	"animator:TheEruzaStone":
+	{
+		"DESCRIPTIONS": ["每回合開始時，獲得 [E] [E] 。 NL 每當你打出1張 #y能力 牌，抽1張牌。"],
+		"FLAVOR": "這是什麼？",
+		"NAME": "藍色石頭"
+	},
+	"animator:TheMissingPiece":
+	{
+		"DESCRIPTIONS": ["每 #b{0} 場戰鬥，獲得一次較好的卡牌的獎勵機會。當前牌組中數量多的系列出現幾率會提高。","當前系列："],
+		"FLAVOR": "這是什麼？",
+		"NAME": "遺失殘片"
+	},
+	"animator:TheWolleyCore":
+	{
+		"DESCRIPTIONS": ["每回合開始時，抽 #b{0} 張牌。 NL 每當你打出1張牌, 對所有敵人造成 #b{1} 點傷害並且獲得 #b{2} 點 #y格擋 。"],
+		"FLAVOR": "這是什麼？",
+		"NAME": "綠色核心"
+	},
+	"animator:VividPicture":
+	{
+		"DESCRIPTIONS": ["代替 #y活著的油畫。 NL 每回合一次， #y同調 時， 抽 #b1 張牌並獲得 [E]"],
+		"FLAVOR": "他……他在看著。",
+		"NAME": "生動的油畫"
+	},
+	"animator:WizardHat":
+	{
+		"DESCRIPTIONS": ["戰鬥開始時擁有 #b{0} 點 #y智力 。 一場戰鬥一次，如果回合結束時有剩餘能量 #b{1} 點， 對所有敵人造成 #b{2} 點傷害。"],
+		"FLAVOR": "爆裂魔法天下第一！ ……當然，需要時間準備。",
+		"NAME": "巫師帽"
+	},
+	"animator:WornHelmet":
+	{
+		"DESCRIPTIONS": ["每場戰鬥開始時獲得 #b{0} 點 #y格擋 。 每回合結束時，手牌每有一張 #y狀態 牌或者 #y詛咒 牌得到 #b{1} 點 #y格擋 。"],
+		"FLAVOR": "哥布林。",
+		"NAME": "破碎的頭盔"
+	}
+}

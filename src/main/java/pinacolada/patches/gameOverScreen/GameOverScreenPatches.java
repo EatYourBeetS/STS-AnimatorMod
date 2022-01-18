@@ -1,0 +1,207 @@
+package pinacolada.patches.gameOverScreen;
+
+/*
+  protected void calculateUnlockProgress() {
+    this.score = calcScore(isVictory);
+    this.unlockLevel = UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass);
+    if (this.unlockLevel >= 5) {
+      this.maxLevel = true;
+      return;
+    }
+    if (this.score == 0)
+      this.playedWhir = true;
+    this.unlockProgress = UnlockTracker.getCurrentProgress(AbstractDungeon.player.chosenClass);
+    this.unlockTargetStart = this.unlockProgress;
+    this.unlockCost = UnlockTracker.getCurrentScoreCost(AbstractDungeon.player.chosenClass);
+    this.unlockTargetProgress = this.unlockProgress + this.score;
+    this.nextUnlockCost = UnlockTracker.incrementUnlockRamp(this.unlockCost);
+    if (this.unlockTargetProgress >= this.unlockCost) {
+      this.unlockBundle = UnlockTracker.getUnlockBundle(AbstractDungeon.player.chosenClass, this.unlockLevel);
+      if (this.unlockLevel == 4) {
+        this.unlockTargetProgress = this.unlockCost;
+      } else if (this.unlockTargetProgress > this.unlockCost - this.unlockProgress + this.nextUnlockCost - 1.0F) {
+        this.unlockTargetProgress = this.unlockCost - this.unlockProgress + this.nextUnlockCost - 1.0F;
+      }
+    }
+    logger.info("SCOR: " + this.score);
+    logger.info("PROG: " + this.unlockProgress);
+    logger.info("STRT: " + this.unlockTargetStart);
+    logger.info("TRGT: " + this.unlockTargetProgress);
+    logger.info("COST: " + this.unlockCost);
+    UnlockTracker.addScore(AbstractDungeon.player.chosenClass, this.score);
+    this.progressPercent = this.unlockTargetStart / this.unlockCost;
+  }
+
+      if (this.maxLevel)
+      return;
+    this.whiteUiColor.a = this.progressBarAlpha * 0.3F;
+    sb.setColor(this.whiteUiColor);
+    sb.draw(ImageMaster.WHITE_SQUARE_IMG, this.progressBarX, Settings.HEIGHT * 0.2F, this.progressBarWidth, 14.0F * Settings.scale);
+    sb.setColor(new Color(1.0F, 0.8F, 0.3F, this.progressBarAlpha * 0.9F));
+    sb.draw(ImageMaster.WHITE_SQUARE_IMG, this.progressBarX, Settings.HEIGHT * 0.2F, this.progressBarWidth * this.progressPercent, 14.0F * Settings.scale);
+    sb.setColor(new Color(0.0F, 0.0F, 0.0F, this.progressBarAlpha * 0.25F));
+    sb.draw(ImageMaster.WHITE_SQUARE_IMG, this.progressBarX, Settings.HEIGHT * 0.2F, this.progressBarWidth * this.progressPercent, 4.0F * Settings.scale);
+    String derp = "[" + (int)this.unlockProgress + "/" + this.unlockCost + "]";
+    this.creamUiColor.a = this.progressBarAlpha * 0.9F;
+    FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, derp, 576.0F * Settings.xScale, Settings.HEIGHT * 0.2F - 12.0F * Settings.scale, this.creamUiColor);
+    if (5 - this.unlockLevel == 1) {
+      derp = TEXT[42] + (5 - this.unlockLevel);
+    } else {
+      derp = TEXT[41] + (5 - this.unlockLevel);
+    }
+    FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, derp, 1344.0F * Settings.xScale, Settings.HEIGHT * 0.2F - 12.0F * Settings.scale, this.creamUiColor);
+*/
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.screens.GameOverScreen;
+import com.megacrit.cardcrawl.screens.GameOverStat;
+import com.megacrit.cardcrawl.unlock.AbstractUnlock;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.utilities.FieldInfo;
+import pinacolada.resources.GR;
+import pinacolada.utilities.PCLGameUtilities;
+import pinacolada.utilities.PCLJUtils;
+
+import java.util.ArrayList;
+
+public class GameOverScreenPatches
+{
+    public static final int MAX_LEVEL = GR.PCL.Data.MaxUnlockLevel;
+    public static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("DeathScreen");
+
+    public static final FieldInfo<Integer> _score = PCLJUtils.GetField("score", GameOverScreen.class);
+    public static final FieldInfo<Integer> _unlockLevel = PCLJUtils.GetField("unlockLevel", GameOverScreen.class);
+    public static final FieldInfo<Integer> _unlockCost = PCLJUtils.GetField("unlockCost", GameOverScreen.class);
+    public static final FieldInfo<Integer> _nextUnlockCost = PCLJUtils.GetField("nextUnlockCost", GameOverScreen.class);
+
+    public static final FieldInfo<Float> _unlockProgress = PCLJUtils.GetField("unlockProgress", GameOverScreen.class);
+    public static final FieldInfo<Float> _unlockTargetProgress = PCLJUtils.GetField("unlockTargetProgress", GameOverScreen.class);
+    public static final FieldInfo<Float> _unlockTargetStart = PCLJUtils.GetField("unlockTargetStart", GameOverScreen.class);
+    public static final FieldInfo<Float> _progressPercent = PCLJUtils.GetField("progressPercent", GameOverScreen.class);
+
+    public static final FieldInfo<Float> _statsTimer = PCLJUtils.GetField("statsTimer", GameOverScreen.class);
+    public static final FieldInfo<Float> _statAnimateTimer = PCLJUtils.GetField("statAnimateTimer", GameOverScreen.class);
+    public static final FieldInfo<Float> _progressBarTimer = PCLJUtils.GetField("progressBarTimer", GameOverScreen.class);
+    public static final FieldInfo<Float> _progressBarAlpha = PCLJUtils.GetField("progressBarAlpha", GameOverScreen.class);
+    public static final FieldInfo<Float> _progressBarX = PCLJUtils.GetField("progressBarX", GameOverScreen.class);
+    public static final FieldInfo<Float> _progressBarWidth = PCLJUtils.GetField("progressBarWidth", GameOverScreen.class);
+
+    public static final FieldInfo<Boolean> _playedWhir = PCLJUtils.GetField("playedWhir", GameOverScreen.class);
+    public static final FieldInfo<Boolean> _maxLevel = PCLJUtils.GetField("maxLevel", GameOverScreen.class);
+    public static final FieldInfo<Boolean> _showingStats = PCLJUtils.GetField("showingStats", GameOverScreen.class);
+
+    public static final FieldInfo<Color> _fadeBgColor = PCLJUtils.GetField("fadeBgColor", GameOverScreen.class);
+    public static final FieldInfo<Color> _whiteUiColor = PCLJUtils.GetField("whiteUiColor", GameOverScreen.class);
+    public static final FieldInfo<Color> _creamUiColor= PCLJUtils.GetField("creamUiColor", GameOverScreen.class);
+
+    public static final FieldInfo<ArrayList<AbstractUnlock>> _unlockBundle = PCLJUtils.GetField("unlockBundle", GameOverScreen.class);
+    public static final FieldInfo<ArrayList<GameOverStat>> _stats = PCLJUtils.GetField("stats", GameOverScreen.class);
+
+    @SpirePatch(clz = GameOverScreen.class, method = "calculateUnlockProgress")
+    public static class GameOverScreen_calculateUnlockProgress
+    {
+        @SpirePrefixPatch
+        public static SpireReturn Prefix(GameOverScreen __instance)
+        {
+            if (!PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass))
+            {
+                return SpireReturn.Continue();
+            }
+
+            _score.Set(__instance, GameOverScreen.calcScore(GameOverScreen.isVictory));
+            _unlockLevel.Set(__instance, UnlockTracker.getUnlockLevel(AbstractDungeon.player.chosenClass));
+
+            if (_unlockLevel.Get(__instance) >= MAX_LEVEL)
+            {
+                _maxLevel.Set(__instance, true);
+                return SpireReturn.Return(null);
+            }
+
+            if (_score.Get(__instance) == 0)
+            {
+                _playedWhir.Set(__instance, true);
+            }
+
+            _unlockProgress.Set(__instance, (float) UnlockTracker.getCurrentProgress(AbstractDungeon.player.chosenClass));
+            _unlockTargetStart.Set(__instance, _unlockProgress.Get(__instance));
+            _unlockCost.Set(__instance, UnlockTracker.getCurrentScoreCost(AbstractDungeon.player.chosenClass));
+            _unlockTargetProgress.Set(__instance, _unlockProgress.Get(__instance) + _score.Get(__instance));
+            _nextUnlockCost.Set(__instance, GR.PCL.GetUnlockCost(1, true));
+
+            if (_unlockTargetProgress.Get(__instance) >= _unlockCost.Get(__instance))
+            {
+                _unlockBundle.Set(__instance, UnlockTracker.getUnlockBundle(AbstractDungeon.player.chosenClass, _unlockLevel.Get(__instance)));
+                if (_unlockLevel.Get(__instance) == (MAX_LEVEL - 1))
+                {
+                    _unlockTargetProgress.Set(__instance, (float) _unlockCost.Get(__instance));
+                }
+                else if (_unlockTargetProgress.Get(__instance) > (_unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F))
+                {
+                    _unlockTargetProgress.Set(__instance, (_unlockCost.Get(__instance) - _unlockProgress.Get(__instance) + _nextUnlockCost.Get(__instance) - 1.0F));
+                }
+            }
+
+            UnlockTracker.addScore(AbstractDungeon.player.chosenClass, _score.Get(__instance));
+            _progressPercent.Set(__instance, _unlockTargetStart.Get(__instance) / _unlockCost.Get(__instance));
+
+            return SpireReturn.Return(null);
+        }
+    }
+
+    @SpirePatch(clz = GameOverScreen.class, method = "renderProgressBar")
+    public static class GameOverScreen_renderProgressBar
+    {
+        @SpirePrefixPatch
+        public static SpireReturn Insert(GameOverScreen __instance, SpriteBatch sb)
+        {
+            if (!PCLGameUtilities.IsPlayerClass(GR.PCL.PlayerClass))
+            {
+                return SpireReturn.Continue();
+            }
+            if (_maxLevel.Get(__instance))
+            {
+                return SpireReturn.Return(null);
+            }
+
+            _whiteUiColor.Get(__instance).a = _progressBarAlpha.Get(__instance) * 0.3f;
+            sb.setColor(_whiteUiColor.Get(__instance));
+
+            sb.draw(ImageMaster.WHITE_SQUARE_IMG, _progressBarX.Get(__instance),
+                    Settings.HEIGHT * 0.2F, _progressBarWidth.Get(__instance), 14.0F * Settings.scale);
+            sb.setColor(new Color(1.0F, 0.8F, 0.3F, _progressBarAlpha.Get(__instance) * 0.9F));
+            sb.draw(ImageMaster.WHITE_SQUARE_IMG, _progressBarX.Get(__instance), Settings.HEIGHT * 0.2F,
+                    _progressBarWidth.Get(__instance) * _progressPercent.Get(__instance), 14.0F * Settings.scale);
+            sb.setColor(new Color(0.0F, 0.0F, 0.0F, _progressBarAlpha.Get(__instance) * 0.25F));
+            sb.draw(ImageMaster.WHITE_SQUARE_IMG, _progressBarX.Get(__instance), Settings.HEIGHT * 0.2F,
+                    _progressBarWidth.Get(__instance) * _progressPercent.Get(__instance), 4.0F * Settings.scale);
+            String text = "[" + _unlockProgress.Get(__instance).intValue() + "/" + _unlockCost.Get(__instance) + "]";
+            _creamUiColor.Get(__instance).a = _progressBarAlpha.Get(__instance) * 0.9F;
+            FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                    576.0F * Settings.xScale, Settings.HEIGHT * 0.2F - 12.0F * Settings.scale, _creamUiColor.Get(__instance));
+
+            if (_unlockLevel.Get(__instance) == (MAX_LEVEL - 1))
+            {
+                text = uiStrings.TEXT[42] + (MAX_LEVEL - _unlockLevel.Get(__instance));
+            }
+            else
+            {
+                text = uiStrings.TEXT[41] + (MAX_LEVEL - _unlockLevel.Get(__instance));
+            }
+
+            FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                    1344.0F * Settings.xScale, Settings.HEIGHT * 0.2F - 12.0F * Settings.scale, _creamUiColor.Get(__instance));
+
+            return SpireReturn.Return(null);
+        }
+    }
+}

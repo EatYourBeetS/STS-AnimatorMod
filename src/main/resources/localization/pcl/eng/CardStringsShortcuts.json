@@ -1,0 +1,52 @@
+
+{
+	"<LIM>": "{Limited}",
+	"<SLM>": "{Semi-Limited}",
+	"<slm>": "{Semi-Lim}",
+	"<ST>": "Starter",
+
+	"<DRW>": "Draw 1",
+	"<DRW-M>": "Draw !M!",
+	"<DRW-S>": "Draw !S!",
+	"<DIS>": "Discard 1",
+	"<DIS-M>": "Discard !M!",
+	"<DIS-S>": "Discard !S!",
+	"<CYC>": "Cycle 1",
+	"<CYC-M>": "Cycle !M!",
+	"<CYC-S>": "Cycle !S!",
+	"<SPACE>": "    ",
+
+	"<RSC>": "{[R] Scaling}",
+	"<GSC>": "{[G] Scaling}",
+	"<BSC>": "{[B] Scaling}",
+	"<OSC>": "{[O] Scaling}",
+	"<LSC>": "{[L] Scaling}",
+	"<DSC>": "{[D] Scaling}",
+	"<SSC>": "{[S] Scaling}",
+	"<ASC>": "{[A-Star] Scaling}",
+
+	"<RS>": "{[R] Stance}",
+	"<GS>": "{[G] Stance}",
+	"<BS>": "{[B] Stance}",
+	"<OS>": "{[O] Stance}",
+	"<LS>": "{[L] Stance}",
+	"<DS>": "{[D] Stance}",
+	"<SS>": "{[S] Stance}",
+
+	"<R>": "[A-Red]",
+	"<G>": "[A-Green]",
+	"<B>": "[A-Blue]",
+  	"<O>": "[A-Orange]",
+	"<L>": "[A-Light]",
+	"<D>": "[A-Dark]",
+	"<S>": "[A-Silver]",
+	"<A>": "[A-Star]",
+	"<W>": "[A-Gen]",
+
+	"<CDN>": "{Cooldown} !C!",
+	"<RCT>": "Ricochet !C!",
+	"<SOUL>": "Soul !C!",
+	
+	" ** ": " NL ",
+	" || ": " NL  NL "
+}

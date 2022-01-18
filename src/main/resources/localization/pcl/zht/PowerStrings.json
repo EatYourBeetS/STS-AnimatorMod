@@ -1,0 +1,348 @@
+
+{
+	"animator:AinzPower":
+	{
+		"DESCRIPTIONS": ["在你的回合開始時獲得四種隨機效果中的一種 #b", " 次。"],
+		"NAME": "安茲·烏爾·恭"
+	},
+	"animator:ArcherPower":
+	{
+		"DESCRIPTIONS": ["在你的回合結束時，所有敵人每有一種負面效果就對他們造成 #b", " 點傷害。"],
+		"NAME": "Archer"
+	},
+	"animator:AzrielPower":
+	{
+		"DESCRIPTIONS": ["每當你給予負面效果時，得到 #b", " 點力量。"],
+		"NAME": "阿茲莉爾"
+	},
+	"animator:BiyorigoPower":
+	{
+		"DESCRIPTIONS": ["在你的回合結束時，消耗 #b{0}點剩餘能量獲得 #b{1} 點 #y機敏 和 #y武力"],
+		"NAME": "微刀 釵"
+	},
+	"animator:BorosPower":
+	{
+		"DESCRIPTIONS": ["所有 #y能力牌 將被打出兩次。"],
+		"NAME": "波羅斯"
+	},
+	"animator:BozesPower":
+	{
+		"DESCRIPTIONS": [" #y同調 時造成 #b", " 點 #y支援傷害 。"],
+		"NAME": "波賽斯·戈·芭蕾絲蒂"
+	},
+	"animator:BurningPower":
+	{
+		"DESCRIPTIONS": ["回合結束失去 #b", " 生命。 額外受到 #b", "% 的 #y攻擊 傷害。"],
+		"NAME": "點燃"
+	},
+	"animator:ChlammyZellPower":
+	{
+		"DESCRIPTIONS": ["回合內每次連續打出不同類型的牌時， 對所有敵人造成 #b", " 點傷害並 #y循環 #b1 張牌。 NL NL 上一張牌類型: #y"],
+		"NAME": "克拉米·傑爾"
+	},
+	"animator:CursedStabsPower":
+	{
+		"DESCRIPTIONS": ["每當造成未被格擋的傷害時，將1張 #y疼痛 加入你的抽牌堆。"],
+		"NAME": "詛咒匕首"
+	},
+	"animator:DarkCrystalPower":
+	{
+		"DESCRIPTIONS": ["被指定為目標時對所有角色給予 #b", " #y壓制 。"],
+		"NAME": "暗黑之晶"
+	},
+	"animator:DarkCubePower":
+	{
+		"DESCRIPTIONS": ["回合結束時對敵人給予 #b", " #y壓制 。"],
+		"NAME": "暗黑之方"
+	},
+	"animator:DarkWispPower":
+	{
+		"DESCRIPTIONS": ["死亡時對所有角色給予 #b", " #y壓制 。"],
+		"NAME": "暗黑之縷"
+	},
+	"animator:DarknessPower":
+	{
+		"DESCRIPTIONS": ["在接下來 #b", " 次受傷時， 增加1張 #y腎上腺素 到抽牌堆。"],
+		"NAME": "達克妮絲"
+	},
+	"animator:DelayedHealPower":
+	{
+		"DESCRIPTIONS": ["下回合開始時回復 #g", " 點生命。"],
+		"NAME": "延遲治療"
+	},
+	"animator:EarthenThornsPower":
+	{
+		"DESCRIPTIONS": ["受到攻擊時，造成 #b", " 點反傷。"],
+		"NAME": "地刺"
+	},
+	"animator:EmiyaShirouPower":
+	{
+		"DESCRIPTIONS": ["每當本回合內一個敵人失去格擋， 獲得 #b1 點能量並抽取 #b1 張隨機 #y攻擊 牌。"],
+		"NAME": "無限劍制"
+	},
+	"animator:EnchantedArmorPower":
+	{
+		"DESCRIPTIONS": ["減傷 #b", "% 。"],
+		"NAME": "魔法盔甲"
+	},
+	"animator:EntouJyuuPower":
+	{
+		"DESCRIPTIONS": ["本回合內接下來打出的 #b", " 張 #y攻擊牌 ，抽 #b1 張牌並對所有敵人給予 #b1 層 #y點燃 。"],
+		"NAME": "炎刃·銃"
+	},
+	"animator:EnvyPower":
+	{
+		"DESCRIPTIONS": ["每回合打出的前 #b", " 張牌 #y同調 。"],
+		"NAME": "嫉妒"
+	},
+	"animator:EvePower":
+	{
+		"DESCRIPTIONS": ["每當一張牌 #y同調 時，對一個隨機敵人造成 #b", " 點傷害，然後提升1點傷害。"],
+		"NAME": "伊芙"
+	},
+	"animator:FeridBathoryPower":
+	{
+		"DESCRIPTIONS": ["每當一張牌 #y消耗 時，一個隨機敵人失去 #b", " 點生命，然後獲得 #b", " 點 #y臨時生命。"],
+		"NAME": "費里德·巴特利"
+	},
+	"animator:FireCrystalPower":
+	{
+		"DESCRIPTIONS": ["被指定為目標時，所有其他角色獲得 #b", " 點 #y力量 和 #y點燃 。 "],
+		"NAME": "火焰之晶"
+	},
+	"animator:FireCubePower":
+	{
+		"DESCRIPTIONS": ["回合結束時， 所有隊友獲得 #b", " 點 #y力量 和 #y點燃 。 "],
+		"NAME": "火焰之方"
+	},
+	"animator:FireWispPower":
+	{
+		"DESCRIPTIONS": ["死亡時， 所有角色得到 #b", " 點 #y力量 和 #y點燃 。 "],
+		"NAME": "火焰之縷"
+	},
+	"animator:FlamingWeaponPower":
+	{
+		"DESCRIPTIONS": ["每次造成未被格擋的傷害時， 給予 #b", " 層 #y點燃 。"],
+		"NAME": "炎刃"
+	},
+	"animator:FrostCrystalPower":
+	{
+		"DESCRIPTIONS": ["被指定為目標時，所有其他角色獲得 #b", " 層 #y多層護甲 。"],
+		"NAME": "冰霜之晶"
+	},
+	"animator:FrostCubePower":
+	{
+		"DESCRIPTIONS": ["回合結束時， 所有隊友獲得 #b", " 層 #y多層護甲 。"],
+		"NAME": "冰霜之方"
+	},
+	"animator:FrostWispPower":
+	{
+		"DESCRIPTIONS": ["死亡時， 所有角色得到 #b", " 層 #y多層護甲 。"],
+		"NAME": "冰霜之縷"
+	},
+	"animator:GazelDwargonPower":
+	{
+		"DESCRIPTIONS": ["在每回合開始時，至多保留 #b", " 點 #y格擋 。"],
+		"NAME": "矮人王"
+	},
+	"animator:GeassPower":
+	{
+		"DESCRIPTIONS": ["本回合敵人會攻擊自身。"],
+		"NAME": "魯路修"
+	},
+	"animator:GuildGirlPower":
+	{
+		"DESCRIPTIONS": ["回合開始時循環 #b", " 張牌。"],
+		"NAME": "櫃檯小姐"
+	},
+	"animator:HandSizePower":
+	{
+		"DESCRIPTIONS": ["你現在的手牌上限是 #b", "。"],
+		"NAME": "手牌上限"
+	},
+	"animator:HealingCrystalPower":
+	{
+		"DESCRIPTIONS": ["被指定為目標時，所有其他角色回復 #b", " 生命 。"],
+		"NAME": "治療之晶"
+	},
+	"animator:HealingCubePower":
+	{
+		"DESCRIPTIONS": ["回合結束時， 所有隊友回復 #b", " 點 生命 。"],
+		"NAME": "治療之方"
+	},
+	"animator:HealingWispPower":
+	{
+		"DESCRIPTIONS": ["死亡時， 所有角色回復 #b", " 點 生命 。"],
+		"NAME": "治療之縷"
+	},
+	"animator:HigakiRinnePower":
+	{
+		"DESCRIPTIONS": ["???"],
+		"NAME": "???"
+	},
+	"animator:HiteiPower":
+	{
+		"DESCRIPTIONS": ["回合開始時，從卡組中選擇 #b", " 張牌消耗 。"],
+		"NAME": "否定姫"
+	},
+	"animator:InfinitePower":
+	{
+		"DESCRIPTIONS": ["受到未被阻擋的傷害前：獲得等量的 #y魔法盔甲 。 NL 受到負面效果時：獲得等量的 #y再生 。 NL 敵人獲得增益時: 獲得等量的 #y力量。 NL 回合結束時數據減半。"],
+		"NAME": "無盡之力"
+	},
+	"animator:KaijinPower":
+	{
+		"DESCRIPTIONS": ["回合結束時， #y保留 1張牌並在本場戰鬥中提升它的傷害和 #y格擋 #b", " 點。"],
+		"NAME": "凱·金"
+	},
+	"animator:LightningCrystalPower":
+	{
+		"DESCRIPTIONS": ["被指定為目標時，所有其他角色受到 #b", " 點 #y穿刺 傷害 。"],
+		"NAME": "雷電之晶"
+	},
+	"animator:LightningCubePower":
+	{
+		"DESCRIPTIONS": ["回合結束時， 所有隊友受到 #b", " 點 #y穿刺 傷害 。"],
+		"NAME": "雷電之方"
+	},
+	"animator:LightningWispPower":
+	{
+		"DESCRIPTIONS": ["死亡時， 所有角色受到 #b", " 點 #y穿刺 傷害 。"],
+		"NAME": "雷電之縷"
+	},
+	"animator:MarkOfPoisonPower":
+	{
+		"DESCRIPTIONS": ["每當你受到傷害時， 獲得 #b", " 層 #y中毒."],
+		"NAME": "中毒刻印"
+	},
+	"animator:NextTurnDexterityPower":
+	{
+		"DESCRIPTIONS": ["下回合獲得 #b", " 點臨時 #y敏捷 。"],
+		"NAME": "下回合敏捷"
+	},
+	"animator:OrbCore_ChaosPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，#y發現 #b", " 張牌。"],
+		"NAME": "混亂核心"
+	},
+	"animator:OrbCore_DarkPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，抽 #b", " 張牌， 並棄 #b1 張牌。"],
+		"NAME": "暗黑核心"
+	},
+	"animator:OrbCore_EarthPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，獲得 #b", " 層臨時 #y荊棘 。"],
+		"NAME": "大地核心"
+	},
+	"animator:OrbCore_FirePower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，對所有敵人給予 #b", " 層 #y點燃 。"],
+		"NAME": "烈焰核心"
+	},
+	"animator:OrbCore_FrostPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，獲得 #b", " 層 #y多層護甲 。"],
+		"NAME": "冰霜核心"
+	},
+	"animator:OrbCore_LightningPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，對所有敵人造成 #b", " 點 #y傷害 。"],
+		"NAME": "閃電核心"
+	},
+	"animator:OrbCore_PlasmaPower":
+	{
+		"DESCRIPTIONS": ["本回合接下來 #b", " 次 #y同調 ，獲得 #b", " 點 #y臨時生命 。"],
+		"NAME": "等離子核心"
+	},
+	"animator:PinaCoLadaPower":
+	{
+		"DESCRIPTIONS": ["接下來的 #b", " 張 #y0耗能 牌打出兩次。"],
+		"NAME": "平娜·戈·蘭達"
+	},
+	"animator:PoisonAffinityPower":
+	{
+		"DESCRIPTIONS": ["每當你給予 #y中毒 時, 額外給予一層 #b", " #y中毒 。"],
+		"NAME": "毒素親和"
+	},
+	"animator:PridePower":
+	{
+		"DESCRIPTIONS": ["下回合前，你每次受傷，用最右邊的 #y暗黑 充能球減少等量傷害來代替。"],
+		"NAME": "傲慢"
+	},
+	"animator:RoryMercuryPower":
+	{
+		"DESCRIPTIONS": ["本回合你的 #y攻擊 造成 #b", "% 額外傷害。"],
+		"NAME": "蘿莉·麥丘利"
+	},
+	"animator:ShikizakiKikiPower":
+	{
+		"DESCRIPTIONS": ["每回合開始時，從 #b", " 張隨機 #y攻擊牌 中選擇一張加入手牌，獲得其能耗相同的 #y武力 。"],
+		"NAME": "四季崎 記紀"
+	},
+	"animator:ShiroPower":
+	{
+		"DESCRIPTIONS": ["回合開始時得到 #b", " 點能量。"],
+		"NAME": "白"
+	},
+	"animator:SonicPower":
+	{
+		"DESCRIPTIONS": ["接下來的 #b", " 個回合開始時，得到 #b1 點 #y敏捷 並添加 #b1 張 #y飛刀 至你的手牌。"],
+		"NAME": "音速索尼克"
+	},
+	"animator:StolenGoldPower":
+	{
+		"DESCRIPTIONS": ["你偷竊了 #b", " 塊金幣。你還能偷竊 #b", " 塊金幣。"],
+		"NAME": "被盜的黃金"
+	},
+	"animator:StrategicInformationPower":
+	{
+		"DESCRIPTIONS": ["接下來 #b", " 次你棄一張牌， 獲得 #b", " 點 #y格擋 並對最生命值最少的敵人造成 #b", " 傷害。"],
+		"NAME": "戰略信息"
+	},
+	"animator:SupportDamagePower":
+	{
+		"DESCRIPTIONS": ["回合結束時對最生命值最少的敵人造成 #b", " 點傷害。"],
+		"NAME": "支援傷害"
+	},
+	"animator:TheUnnamedCultistPower":
+	{
+		"DESCRIPTIONS": ["每有一個隊友存活， 得到 #b", " 層魔法盔甲。"],
+		"NAME": "無名信徒"
+	},
+	"animator:TheUnnamedHatPower":
+	{
+		"DESCRIPTIONS": ["每回合結束時， 所有隊友獲得 #b", " 點治療。 NL NL 死亡時， 給予 #b", " 點 #y穿刺 傷害 。對對手給予 #y勒脖 。"],
+		"NAME": "H4T"
+	},
+	"animator:UltimateCrystalPower":
+	{
+		"DESCRIPTIONS": ["每當打出一張牌， 得到 #b", " #y力量。 NL NL #b", " 個回合過後， 召喚自己的複製。"],
+		"NAME": "終極之晶"
+	},
+	"animator:UltimateCubePower":
+	{
+		"DESCRIPTIONS": ["每回合結束時，得到 #b", " 種隨機增益。 NL NL #b", " 個回合過後爆炸，造成 #b", " 點傷害。 （此效果擊中多次）"],
+		"NAME": "終極之方"
+	},
+	"animator:UltimateWispPower":
+	{
+		"DESCRIPTIONS": ["每當它造成破防傷害時，添加 #b1 張 #y灼燒 到你的棄牌堆。 NL NL 每回合打出第一張牌 #y消耗 。"],
+		"NAME": "終極之縷"
+	},
+	"animator:UnnamedDollPower":
+	{
+		"DESCRIPTIONS": ["接下來 #b", " 個回合， 每打出一張不以此角色為目標的牌， 得到 #b", " #y最大生命 。 NL NL ", "死亡時，所有角色獲得 #b", " #y力量 。"],
+		"NAME": "無名傀儡"
+	},
+	"animator:VitalityPower":
+	{
+		"DESCRIPTIONS": ["本回合每當你被攻擊時， 獲得 #b", " 點 #y臨時生命 。"],
+		"NAME": "生生不息"
+	},
+	"animator:YukoShionjiPower":
+	{
+		"DESCRIPTIONS": ["查看抽牌堆頂部的牌， NL 你可以 #p左鍵 抽取 ( #b", " 次)， 或 #p右鍵 丟棄 ( #b", " 次)。"],
+		"NAME": "紫苑寺有子"
+	}
+}

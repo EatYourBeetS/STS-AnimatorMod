@@ -1,0 +1,415 @@
+
+{
+	"pcl:Series":
+	{
+		"TEXT":
+		[
+			"[Shapeshifter]",
+			"Elsword",
+			"Kantai Collection",
+			"Hitsugi no Chaika",
+			"Konosuba",
+			"Katanagatari",
+			"Owari no Seraph",
+			"Overlord",
+			"No Game No Life",
+			"GATE",
+			"Fate",
+			"Goblin Slayer",
+			"Fullmetal Alchemist",
+			"Hataraku Maou-sama",
+			"Grimoire of Zero",
+			"Steins;Gate",
+			"Tensei shitara Slime",
+			"Re:Zero",
+			"Madoka Magica",
+			"Charlotte",
+			"Accel World",
+			"Noragami",
+			"One Punch Man",
+			"Pandora Hearts",
+			"Zero no Tsukaima",
+			"Gabriel DropOut",
+			"Death Note",
+			"Kamisama no Memochou",
+			"Code Geass",
+			"Youjo Senki",
+			"Bleach",
+			"Jojo's Bizzarre Adventures",
+			"Tate no Yuusha",
+			"Symphogear",
+			"Call Of Cthulhu",
+			"Chuunibyou demo Koi ga Shitai!",
+			"FLCL",
+			"Kill la Kill",
+			"Touhou Project",
+			"Welcome to the N.H.K.",
+			"Tales",
+			"Rewrite",
+			"Date-a-Live",
+			"Angel Beats",
+			"Rozen Maiden",
+		  	"Log Horizon",
+		    "Vocaloid",
+		  	"Atelier",
+		  	"Cardcaptor Sakura",
+		  	"Guilty Crown",
+		  	"Gakkou Gurashi!",
+			"Genshin Impact",
+		  	"Cowboy Bebop",
+			"Ghost in the Shell",
+			"Clannad",
+			"Tengen Toppa Gurren-Lagann",
+			"Mobile Suit Gundam",
+			"Neon Genesis Evangelion",
+			"Lupin the Third",
+		  	"Hoshi no Kirby",
+			"Xenoblade Chronicles",
+			"Houkai Gakuen",
+			"Mushishi",
+			"Natsume Yuujinchou",
+			"Hololive",
+			"Berserk",
+			"Dr. Stone",
+			"Kaiji",
+			"Trigun",
+			"Panty & Stocking with Garterbelt",
+			"Danganronpa",
+			"Phoenix Wright Ace Attorney",
+			"Magi",
+			"Monster",
+			"Eureka Seven",
+			"Eighty-Six",
+			"Nier",
+			"Megaman",
+			"The Melancholy of Haruhi Suzumiya",
+			"Hyouka",
+			"Aria",
+			"Laid-Back Camp"
+		],
+		"EXTRA_TEXT":
+		[
+			"Series",
+			"Random Series",
+			"Colorless"
+		]
+	},
+
+	"pcl:Actions":
+	{
+		"TEXT":
+		[
+			"Gain {0} {1}",
+			"Apply {0} {1}",
+			"Apply {0} {1} NL to ALL enemies",
+			"Cycle {0}",
+			"Draw {0}",
+			"Discard {0}",
+			"Exhaust {0} card(s)",
+			"Gain {0} Orb Slot(s)",		
+			"Channel {0} random Orb(s)",
+			"Channel {0} {1}",
+			"Motivate {0}",
+			"Upgrade all cards NL in your hand",
+			"Have {0} {1} this turn",
+			"Remove all of NL your debuffs",
+			"Play the top card NL of your draw pile",
+			"Stun the enemy",
+			"Enter {0}",
+			"Steal {0} {1}",
+			"Scry {0}",
+			"Next turn: Gain {0} [Block]",
+			"Next turn: Draw {0} card(s)",
+			"Next turn: Gain {0} [E]",
+			"Enter any stance",
+			"Pay {0} [E]",
+			"Lose {0} HP",
+            "Give a random enemy NL {0} {1}",
+			"Give ALL enemies NL {0} {1}",
+			"Lose {0} {1}",
+			"Deal {0} damage",
+			"Add {0} {1} to your discard pile",
+			"Add {0} {1} to your draw pile",
+			"Add {0} {1} to your hand",
+			"Discard {0} random card(s)",
+			"Exhaust {0} random card(s)",
+			"Next turn: Draw {0} fewer card(s)",
+			"Next turn: Lose {0} [E]",
+			"Play {0}",
+			"Play {0} from anywhere",
+			"Play a random Orb Core",
+			"Apply {0} {1} NL to a random enemy",
+			"Choose 1 of 3 {0} cards to add to your hand. It costs 1 less",
+			"Obtain 3 random Curses",
+			"Heal {0} HP",
+			"Trigger your first {0} {1} time(s)",
+			"Pay {0} {1}"
+		]
+	},
+
+  "pcl:Trophies":
+  {
+	"TEXT":
+	[
+	  "Bronze",
+	  "Silver",
+	  "Gold",
+	  "Act 3 was cleared at Ascension Level {0}.",
+	  "Act 4 was cleared at Ascension Level {0}.",
+	  "Act 5 was cleared at Ascension Level {0}.",
+	  "Complete Act 3 with this series.",
+	  "Complete Act 4 with this series.",
+	  "Complete Act 5 with this series.",
+	  "Complete act 3 with at least #b30 cards in your deck, and without any duplicate.",
+	  "This Trophy will be revealed once it is obtained. #yHint: Collect all 3 keys.",
+	  "Defeat The Unnamed. NL Whenever you obtain this trophy, permanently increase the chance to find #pUltra #pRare cards, higher ascension increases this bonus by a larger amount. NL NL #yThe #yUnnamed #yReign is now available to all characters.",
+	  "Platinum"
+	]
+  },
+
+	"pcl:Rewards":
+	{
+		"TEXT":
+		[
+			"Only contains Cards from this Series. WARNING: once you click on this, the other 2 Card rewards will disappear.",
+			"Possible Affinities",
+			"Cursed Relic",
+			"Reroll",
+			"+{0} Max HP",
+			"+{0} Gold",
+			"Common Upgrade",
+			"#pRight-Click to preview.",
+			"Potion Slots",
+			"Orb Slots"
+		]
+	},
+
+  "pcl:SeriesSelection":
+  {
+	"TEXT":
+	[
+	  "{0} cards",
+	  "Beta",
+	  "Selecting this Series will not unlock trophies for the current run.",
+	  "Remove from Pool",
+	  "Add to Pool",
+	  "View Cards",
+	  "Select at least #b{0} #ySeries. NL #pRight-Click a #ySeries for more options.",
+	  "Expansion",
+	  "This series has additional cards that may be enabled by holding #p'CTRL' and clicking on this card.",
+	  "Additional cards for this series can now be enabled on the series select screen.",
+	  "Additional cards for this series are unlocked by clearing Ascension {0} or higher with this series.",
+	  "Pool Size",
+	  "This determines the number of series that will be randomly chosen from the available series to be available in a run.",
+	  "{0} Series selected.",
+	  "{0} cards selected."
+	]
+  },
+
+  "pcl:SeriesSelectionButtons":
+  {
+	"TEXT":
+	[
+	  "Show Beta Series.",
+	  "Clear Pool",
+	  "Add All to Pool",
+	  "Select Random",
+	  "Show card pool",
+	  "Save Changes",
+	  "Enable Expansion",
+	  "Disable Expansion",
+	  "Enable Expansions",
+	  "Disable Expansions",
+	  "Cancel",
+	  "Show Colorless"
+	]
+  },
+
+  "pcl:SingleCardPopupButtons":
+  {
+	"TEXT":
+	[
+	  "Variant",
+	  "Switch Variant",
+	  "Permanently change this card's variant to the currently-displayed variant. NL #rThis #rcan #ronly #rbe #rdone #ronce.",
+	  "Change this card's variant to the currently-displayed variant. NL #yThis #ycard #ycan #ychange #yforms #yany #ynumber #yof #ytimes.",
+	  "Cur. Copies",
+	  "Max. Copies",
+	  "If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops."
+	]
+  },
+
+
+	"pcl:CharacterSelect":
+	{
+		"TEXT":
+		[
+			"Current Loadout: ",
+			"Locked Series",
+			"Unlocks at Level {0} NL (You are Level {1})",
+			"Invalid Loadout (Please Edit)",
+			"Unlocks at Ascension {0}",
+			"Loadout Editor",
+			"#pLeft-Click to open the editor. NL #pRight-Click to change preset.",
+			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock",
+			"Select Series",
+			"Choose which Series to start with as well as which Series will be present in your runs.",
+			"Deck",
+			"Relics",
+			"Attributes",
+			"Deck Value",
+			"Hindrance: {0}",
+			"Affinity: {0}",
+			"Cards: {0}",
+			"Value: {0}/{1}",
+			"Your Hindrance level is determined by the proportion of your deck made up of negative-valued cards. Cards valued less than -2 have a larger impact on this number.",
+			"Your Affinity level is determined by the sum of the frequency of each Affinity that occurs more than 2 times in your deck.",
+			"You have unsaved changes to your loadout that will be lost upon leaving. Are you sure you want to leave this menu?",
+			"Reset",
+			"Copy Current To Slot",
+			"Import From Slot",
+			"Export",
+			"Ascension Glyphs:"
+		]
+	},
+	
+	"pcl:Misc":
+	{
+		"TEXT":
+		[
+			"Discord", 
+			"The Animator Discord link.",
+			"Steam", 
+			"The Animator Steam page.",
+			"No cards match the current filters.",
+			"Dynamic Portraits",
+			"Dynamic card portraits",
+			"{0} to cycle",
+			"Have you found a missing or incorrect translation? If you'd like to help, you can join the mod Discord and write your translation in the Localization channel.",
+			"Display Beta Series",
+			"Translation",
+			"Highlight Synergies.",
+			"Simplify Card UI",
+			"Card Pool",
+			"View all cards available in this run.",
+			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time.",
+			"(Max. #b{0} stacks)",
+			"(Above #b{0} stacks, gain [Block] instead)",
+			"(Max. #b{0} [Block])",
+			"Enable certain events for non-Fool characters",
+			"Enable certain relics for non-Fool characters",
+			"Alternate Version of The Animator: Card effects and mechanics differ from NL the official version. Settings and trophies are not shared between versions.",
+			"Filters",
+			"Any",
+			"Replace Non-Fool cards when playing as the Fool (Warning: Unstable)",
+			"Replace Fool cards when playing as the Animator (Warning: Unstable)",
+			"Enable Current Affinity glow when no Matches are available"
+		]
+	},
+
+	"pcl:Hotkeys":
+	{
+		"TEXT":
+		[
+			"Change Control Pile",
+			"Select Control Pile",
+			"Cycle Previews",
+			"Skip Current Affinity",
+			"Reroll Next Affinity"
+		]
+	},
+
+	"pcl:Combat":
+	{
+		"TEXT":
+		[
+			"Current",
+			"Next",
+			"Uses",
+			"Skips",
+			"Exp.",
+			"Control Pile",
+			"#pLeft-Click to play the displayed card. NL #pRight-Click to change this card. NL Press #p{0} to cycle through playable cards.",
+			"Total Matches",
+			"Combo",
+			"Longest Match Combo"
+		]
+	},
+
+	"pcl:Tutorial":
+	{
+		"TEXT":
+		[
+			"Whenever you play a card, the #yAffinity #yCounter of each of its #yAffinities will increase by #b1 (shown on the left). #yCounters are spent to active #yPay effects on cards and #yInteractables. If a #yPay effect is listed as requiring [A-Gen], you may pay any #yAffinity to activate it.",
+			"If the card #yMatches, the #yAffinity #yPower of each of its #yAffinities will also increase by #b1 (shown on the right). For every #b5 stacks of a #yPower gained, increase its #yPower #yLevel by 1.",
+			"Whenever you gain a #yPower #yLevel, gain #b1 #yUse of the #yAffinity #yPower, which can be used any time during your turn by clicking on the power's icon. Each #yLevel also increases the effectiveness of its corresponding #yAffinity #yScaling by 1 and allows you to hold an additional #yPower #yUse."
+		]
+	},
+
+	"pcl:SeriesUI":
+	{
+		"TEXT":
+		[
+			"Series",
+			"Item(s)",
+			"Keywords",
+			"Costs",
+			"Rarities",
+			"Types",
+			"Affinities",
+            "Scaling",
+            "Amount",
+            "Origins",
+            "Colors",
+            "Results"
+		]
+	},
+
+   "pcl:CardMods":
+   {
+	"TEXT":
+	[
+	  "Permanently increase your maximum hand size by 1. Can be obtained up to 3 times across all card effects.",
+	  "",
+	  "I do not have a non-Afterlife card in my exhaust pile to purge.",
+	  "Respec [{0} Gold].",
+	  "Respec [No Upgrades].",
+	  "Respec Living Picture (Free option).",
+	  "Spit Out",
+	  "Retrieve cards from Kirby (Free option)."
+	]
+   },
+
+   	"pcl:HandSelection":
+   	{
+   		"TEXT":
+   		[
+   			"move to your draw pile.",
+   			"buff.",
+   			"copy.",
+   			"activate:"
+   		]
+   	},
+   	"pcl:GridSelection":
+   	{
+   		"TEXT":
+   		[
+   			"Discard up to {0} card(s).",
+   			"Shuffle {0} card(s) into your Draw Pile.",
+   			"Transform into {0}.",
+   			"Choose {0} card(s).",
+   			"Purge {0} card(s).",
+   			"Scry (You draw from left to right).",
+   			"Fetch {0} card(s).",
+   			"Choose {0} affinity color(s) to spend.",
+   			"Give {0} card(s) {1}."
+   		]
+   	},
+   	"pcl:TheUnnamedReign":
+   	{
+   		"TEXT":
+   		[
+   			"The Unnamed Reign"
+   		]
+   	}
+}

@@ -1,0 +1,28 @@
+
+{
+	"animator:Doomed":
+	{
+		"NAME": "难逃一死",
+		"DESCRIPTION": [ "你的第 #b{0} 个回合结束时死亡。此效果不可阻挡。" ]
+	},
+	"animator:Haunted":
+	{
+		"NAME": "见鬼",
+		"DESCRIPTION": [ "这是个坏主意。" ]
+	},
+	"animator:UltimateCrystal":
+	{
+		"NAME": "终极晶体",
+		"DESCRIPTION": [ "战斗开始时，将 #b{0} 张手牌牌放入抽牌堆。" ]
+	},
+	"animator:UltimateCube":
+	{
+		"NAME": "终极方块",
+		"DESCRIPTION": [ "第一个回合结束时，受到 #b{0} 伤害。" ]
+	},
+	"animator:UltimateWisp":
+	{
+		"NAME": "终极精灵",
+		"DESCRIPTION": [ "每当你洗牌时，将 #b{0} 张 #y虚空 加入抽牌堆。" ]
+	}
+}

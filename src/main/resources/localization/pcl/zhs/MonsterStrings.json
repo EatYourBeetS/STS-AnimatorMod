@@ -1,0 +1,404 @@
+
+{
+	"animator:Dark_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "黑暗方块",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "黑暗方块",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "黑暗方块",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "雷电方块",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "雷电方块",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "雷电方块",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜方块",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜方块",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜方块",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰方块",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰方块",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰方块",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Cube_0":
+	{
+		"MOVES": [],
+		"NAME": "治疗方块",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_1":
+	{
+		"MOVES": [],
+		"NAME": "治疗方块",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Cube_2":
+	{
+		"MOVES": [],
+		"NAME": "治疗方块",
+		"DIALOG": [""]
+	},
+
+	"animator:Dark_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "黑暗晶体",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "黑暗晶体",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "黑暗晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "雷电晶体",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "雷电晶体",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "雷电晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜晶体",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜晶体",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰晶体",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰晶体",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Crystal_0":
+	{
+		"MOVES": [],
+		"NAME": "治疗晶体",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_1":
+	{
+		"MOVES": [],
+		"NAME": "治疗晶体",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Crystal_2":
+	{
+		"MOVES": [],
+		"NAME": "治疗晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:Dark_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "黑暗精灵",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "黑暗精灵",
+		"DIALOG": [""]
+	},
+	"animator:Dark_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "黑暗精灵",
+		"DIALOG": [""]
+	},
+
+	"animator:Lightning_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "雷电精灵",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "雷电精灵",
+		"DIALOG": [""]
+	},
+	"animator:Lightning_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "雷电精灵",
+		"DIALOG": [""]
+	},
+
+	"animator:Frost_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "冰霜精灵",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "冰霜精灵",
+		"DIALOG": [""]
+	},
+	"animator:Frost_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "冰霜精灵",
+		"DIALOG": [""]
+	},
+
+	"animator:Fire_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "火焰精灵",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "火焰精灵",
+		"DIALOG": [""]
+	},
+	"animator:Fire_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "火焰精灵",
+		"DIALOG": [""]
+	},
+
+	"animator:Healing_Wisp_0":
+	{
+		"MOVES": [],
+		"NAME": "治疗精灵",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_1":
+	{
+		"MOVES": [],
+		"NAME": "治疗精灵",
+		"DIALOG": [""]
+	},
+	"animator:Healing_Wisp_2":
+	{
+		"MOVES": [],
+		"NAME": "治疗精灵",
+		"DIALOG": [""]
+	},
+
+	"animator:Ultimate_Cube_3":
+	{
+		"MOVES": [],
+		"NAME": "终极方块",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Wisp_3":
+	{
+		"MOVES": [],
+		"NAME": "终极精灵",
+		"DIALOG": [""]
+	},
+	"animator:Ultimate_Crystal_3":
+	{
+		"MOVES": [],
+		"NAME": "终极晶体",
+		"DIALOG": [""]
+	},
+
+	"animator:HornedBat_P":
+	{
+		"MOVES": [],
+		"NAME": "紫色有角蝙蝠",
+		"DIALOG": [""]
+	},
+	"animator:HornedBat_R":
+	{
+		"MOVES": [],
+		"NAME": "红色有角蝙蝠",
+		"DIALOG": [""]
+	},
+	"animator:KrulTepes":
+	{
+		"MOVES": [],
+		"NAME": "克鲁鲁·采佩西",
+		"DIALOG": [""]
+	},
+	"animator:TheUnnamed_Doll":
+	{
+		"MOVES": [],
+		"NAME": "无名傀儡",
+		"DIALOG": [""]
+	},
+
+	"animator:TheUnnamed_Hat":
+	{
+		"MOVES": [],
+		"NAME": "H4T",
+		"DIALOG":
+		[
+			"入侵者！"
+		]
+	},
+
+	"animator:TheUnnamed_Cultist":
+	{
+		"MOVES": [],
+		"NAME": "无名信徒",
+		"DIALOG":
+		[
+			"看哪！这是终极晶体！",
+			"看哪！这是终极武器！",
+			"看哪！这是终极 {0} ！",
+			"看哪！这是终极地精！",
+			"看哪！这是终极…呃…东西！",
+			"我有个惊喜要给你，给我点时间准备……",
+			"还没准备好！",
+			"再等一小会！",
+			"就快好了！",
+			"惊喜！",
+			"注意！入侵者！"
+		]
+	},
+	"animator:TheUnnamed":
+	{
+		"MOVES": [],
+		"NAME": "无名",
+		"DIALOG":
+		[
+			"你够了。到此为止了……",
+			"这是什么玩意！我才是拥有无尽之力的人！",
+			"对不起，我没有名字。",
+			"你把我惹毛了……请收下我这小小的礼物。",
+			"三千世界我主宰",
+			"你在庆幸我这回合没橄榄你吗？",
+			"……",
+			"乳臭未干。",
+			"你要完了……",
+			"我的力量无人能及！",
+			"我立于不败之地！",
+			"吉尔伽美什！你为何叛变？",
+			"爆裂魔法？搁这放鞭炮呢？",
+			"使诈！不许飞鼠！",
+			"摆正你的屁股，波罗斯！",
+			"一拳超人真是虚有其表。",
+			"何不再昏睡几个世纪？",
+			"红莲啊。你又被控制了吗？",
+			"差点被七实吓到了。差点。",
+			"要不给你多来几张哥布林？",
+			"你一回合只能打16张牌。别怪我没提醒你，克拉米。",
+			"我这里有些好康的，比布朗运动……当我没说。",
+			"秒钟转动滴滴答",
+			"不错的尝试。不要再来了。",
+			"我劝你好自为之",
+			"我警告你不要再来了",
+			"勿谓言之不预",
+			"明知故犯……永别了",
+			"我……一定……会回来的……",
+			"咳咳……再见？",
+			"来者何人？",
+			"这牌组太小了，让我调整一下。",
+			"Pgh'nglui mglw'nafh Cthulhu R'lyeh wah'nagl fhtagn.",
+			"你以为就你有无实体？",
+			"看来你气数已尽。没救了，抬走吧。"
+		]
+	}
+}

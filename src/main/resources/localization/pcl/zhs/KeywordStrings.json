@@ -1,0 +1,75 @@
+
+{
+	"Aura":
+	{
+		"DESCRIPTION": "光环在条件满足时自动触发。 不加入战斗中的牌组。",
+		"NAMES": ["光环"],
+		"PROPER_NAME": "光环"
+	},
+	"Cooldown":
+	{
+		"DESCRIPTION": "每次打出或丢弃时减少层数。 层数为 #b0 时打出或丢弃触发效果。",
+		"NAMES": ["冷却"],
+		"PROPER_NAME": "冷却"
+	},
+	"Martial Artist":
+	{
+		"DESCRIPTION": "与 任何 #y武师 #y同调 。",
+		"NAMES": ["武师", "武师"],
+		"PROPER_NAME": "武师"
+	},
+	"Motivate":
+	{
+		"DESCRIPTION": "令一张随机手牌直到下次打出前 耗能减少1。重复指定的次数。",
+		"NAMES": ["激励"],
+		"PROPER_NAME": "激励"
+	},
+	"Phasing":
+	{
+		"DESCRIPTION": "你有 35% 的几率闪避 每次攻击。 每回合将该 几率降低 5% 。 叠加该能力 会重置几率 并使其推迟 1 回合衰减。",
+		"NAMES": ["透明化"],
+		"PROPER_NAME": "透明化"
+	},
+	"Reload":
+	{
+		"DESCRIPTION": "丢弃任意数量的手牌， 每丢弃一张发动一次。",
+		"NAMES": ["再装填"],
+		"PROPER_NAME": "再装填"
+	},
+	"Shapeshifter":
+	{
+		"DESCRIPTION": "与任何牌 #y同调 。",
+		"NAMES": ["变形者"],
+		"PROPER_NAME": "变形者"
+	},
+	"Spellcaster":
+	{
+		"DESCRIPTION": "与任何 #y法师 #y同调 。",
+		"NAMES": ["法师"],
+		"PROPER_NAME": "法师"
+	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "回合结束时，对生命值最低的敌人 造成伤害。 受攻击伤害加成影响。",
+		"NAMES": ["支援伤害"],
+		"PROPER_NAME": "支援伤害"
+	},
+	"Synergy":
+	{
+		"DESCRIPTION": "连续使用同一系列的牌或者 #y法师 或者 #y武师 时触发 #y同调 。",
+		"NAMES": ["同调"],
+		"PROPER_NAME": "同调"
+	},
+	"Teamwork":
+	{
+		"DESCRIPTION": "你的 #y协作 值为能与另一张不是 #y 变形者 的手牌 #y同调 的手牌数量。",
+		"NAMES": ["协作"],
+		"PROPER_NAME": "协作"
+	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "生成充能球。 NL  NL 每回合第二次 #y同调 获得额外效果。",
+		"NAMES": ["~充能球核心"],
+		"PROPER_NAME": "充能球核心"
+	}
+}

@@ -1,0 +1,55 @@
+
+{
+	"<LIM>": "限制",
+	"<SLM>": "准限制",
+	
+	"<AGI>": "{机敏}",
+	"<FOR>": "{武力}",
+	"<INT>": "{智力}",
+
+	"<DRW>": "抽1张牌",
+	"<DRW-M>": "抽 !M! 张牌",
+	"<SPACE>": "    ",
+	"<TM-S>": "{协作} !S!",
+
+	"<ST>": "开端",
+	"<RS>": "{[R] 姿态}",
+	"<BS>": "{[B] 姿态}",
+	"<GS>": "{[G] 姿态}",
+
+	"<格挡>": "[Block]",
+	"<假命>": "[Temporary HP]",
+	"<金币>": "[Gold]",
+
+	"<冰霜>": "[Frost]",
+	"<闪电>": "[~Lightning]",
+	"<等离子>": "[Plasma]",
+	"<黑暗>": "[~Dark]",
+	"<火焰>": "[Fire]",
+	"<空气>": "[Aether]",
+	"<大地>": "[Earth]",
+
+	"<易伤>": "[Vulnerable]",
+	"<虚弱>": "[Weak]",
+	"<脆弱>": "[Frail]",
+	"<燃烧>": "[Burning]",
+	"<中毒>": "[Poison]",
+	"<镣铐>": "[Shackles]",
+	"<锁定>": "[~Lock-On]",
+	"<缠绕>": "[Constricted]",
+
+	"<荆棘>": "[Thorns]",
+	"<魔甲>": "[Enchanted Armor]",
+	"<残影>": "[Blur]",
+	"<人工>": "[Artifact]",
+	"<柔韧>": "[Malleable]",
+	"<金属>": "[Metallicize]",
+	"<多层>": "[Plated Armor]",
+	"<支援>": "[Support Damage]",
+
+	"<飞刀>": "[T-Knife]",
+	"<悲叹>": "[Grief Seed]",
+
+	" ** ": " NL ",
+	" || ": " NL  NL "
+}

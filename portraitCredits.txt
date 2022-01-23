@@ -1,3 +1,4 @@
+Akari Mizunashi: Pixiv Id 44306821
 Ayaka Kamisato: Pixiv Id 15135717
 Aya Shameimaru: Miyuki Ruria
 Ayaka Kamisato: M-n-c-r
@@ -17,8 +18,10 @@ Megu-Nee: Domotolain
 Merlin: Pixiv Id 700656
 Misaki Nakahara: Pixiv Id 2612494
 Mitsu Kusabue: onohana
+Misuzu Kamio: Mauve
 Raiden Shogun: Pixiv Id 20714093
 Rin Kaenbyou: Pixiv Id 28850, Pkk
+Rin Shima: Pixiv Id 544465
 Rinnosuke Morichika: An²a
 Saber X: Ichinose Yukino
 Shimakaze: Pixiv Id 29498282
@@ -29,4 +32,5 @@ Thoma: Pixiv Id 11140521
 Tokiomi Tohsaka: Black Akazome
 Tomoe Kashiwaba: Kodoku Usagi
 Urushihara: Pixiv Id 815168
+Violet Evergarden: Pixiv Id 38985285
 Witch: Soukuu Kizuna

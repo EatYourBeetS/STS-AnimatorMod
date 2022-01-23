@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.SFX;
@@ -33,6 +34,8 @@ public class Boros extends PCLCard
         SetAffinity_Red(1);
         SetAffinity_Silver(1);
         SetAffinity_Dark(1);
+
+        SetAffinityRequirement(PCLAffinity.General, POWER_ENERGY_COST);
 
         SetDelayed(true);
         SetEthereal(true);

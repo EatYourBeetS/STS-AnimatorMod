@@ -3,9 +3,7 @@ package pinacolada.cards.pcl.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.LoseStrengthPower;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
@@ -14,6 +12,7 @@ import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class ZarakiKenpachi extends PCLCard
 {
@@ -36,10 +35,9 @@ public class ZarakiKenpachi extends PCLCard
         PCLActions.Bottom.StackPower(new ZarakiKenpachiPower(p, magicNumber));
     }
 
-    public static class ZarakiKenpachiPower extends PCLPower implements OnBlockBrokenSubscriber, OnStartOfTurnPostDrawSubscriber
+    public static class ZarakiKenpachiPower extends PCLPower implements OnBlockBrokenSubscriber
     {
         public static final String POWER_ID = CreateFullID(ZarakiKenpachiPower.class);
-        boolean activated;
 
         public ZarakiKenpachiPower(AbstractPlayer owner, int amount)
         {
@@ -47,13 +45,6 @@ public class ZarakiKenpachi extends PCLCard
 
             this.amount = amount;
 
-            updateDescription();
-        }
-
-        @Override
-        public void OnStartOfTurnPostDraw()
-        {
-            activated = false;
             updateDescription();
         }
 
@@ -73,7 +64,6 @@ public class ZarakiKenpachi extends PCLCard
             }
 
             PCLCombatStats.onBlockBroken.Subscribe(this);
-            PCLCombatStats.onStartOfTurnPostDraw.Subscribe(this);
 
             updateDescription();
         }
@@ -93,17 +83,14 @@ public class ZarakiKenpachi extends PCLCard
             }
 
             PCLCombatStats.onBlockBroken.Unsubscribe(this);
-            PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
 
         @Override
         public void OnBlockBroken(AbstractCreature creature)
         {
-            if (!creature.isPlayer && !activated)
+            if (!creature.isPlayer)
             {
-                activated = true;
-                PCLActions.Bottom.GainStrength(amount);
-                PCLActions.Bottom.ApplyPower(new LoseStrengthPower(player, amount));
+                PCLActions.Bottom.GainVigor(PCLGameUtilities.IsPCLAffinityPowerActive(PCLAffinity.Red) ? amount * 2 : amount);
             }
         }
 

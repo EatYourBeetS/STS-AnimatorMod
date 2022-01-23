@@ -48,10 +48,10 @@ public class WingGundamZero extends PCLCard
                 .AddCallback((cards) -> {
                    for (AbstractCard c : cards) {
                        PCLCard pC = PCLJUtils.SafeCast(c, PCLCard.class);
-                       c.upgrade();
                        if (pC != null && pC.maxUpgradeLevel > 0) {
                            pC.maxUpgradeLevel += 1;
                        }
+                       c.upgrade();
                    }
                 });
 

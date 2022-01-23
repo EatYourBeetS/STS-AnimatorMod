@@ -43,7 +43,7 @@ public class Glyph05 extends Glyph
 
     public PCLAffinity GetAffinity() {
         if (affinity == null) {
-            affinity = PCLGameUtilities.GetRandomElement(PCLAffinity.Extended());
+            affinity = PCLGameUtilities.GetRandomElement(PCLAffinity.Basic());
         }
         return affinity;
     }

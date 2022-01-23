@@ -15,6 +15,7 @@ import pinacolada.powers.PCLPower;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
+import pinacolada.utilities.PCLJUtils;
 
 public class ReisenInaba extends PCLCard
 {
@@ -109,7 +110,7 @@ public class ReisenInaba extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card != null ? card.name.replace(" ", " #y") : "");
+            description = FormatDescription(0, card != null ? PCLJUtils.ModifyString(card.name, w -> "#y" + w) : "");
         }
     }
 }

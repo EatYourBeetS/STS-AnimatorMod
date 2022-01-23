@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerIconShowEffect;
-import pinacolada.actions.special.KillCharacterAction;
+import eatyourbeets.actions.special.KillCharacterAction;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 

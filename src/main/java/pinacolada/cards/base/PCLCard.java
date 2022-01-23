@@ -22,6 +22,7 @@ import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
+import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
@@ -33,7 +34,6 @@ import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.RotatingList;
-import pinacolada.actions.special.HasteAction;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.BlockAttribute;
 import pinacolada.cards.base.attributes.DamageAttribute;
@@ -284,6 +284,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     public AbstractCard makeStatEquivalentCopy()
     {
         PCLCard copy = (PCLCard) super.makeStatEquivalentCopy();
+        copy.auxiliaryData = new PCLCardSaveData(auxiliaryData);
         copy.SetForm(auxiliaryData.form, timesUpgraded);
 
         copy.retain = retain;
@@ -308,13 +309,14 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
 
         copy.cooldownValue = cooldownValue;
         copy.baseCooldownValue = baseCooldownValue;
-        copy.auxiliaryData = new PCLCardSaveData(auxiliaryData);
 
         copy.tags.clear();
         copy.tags.addAll(tags);
         copy.originalName = originalName;
         copy.name = name;
         copy.series = series;
+
+        copy.initializeDescription();
 
         return copy;
     }
@@ -1511,6 +1513,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     public void onLoad(PCLCardSaveData data)
     {
         if (data != null) {
+            this.auxiliaryData = new PCLCardSaveData(data);
             SetForm(data.form, timesUpgraded);
             if (data.modifiedDamage != 0) {
                 PCLGameUtilities.ModifyDamage(this, baseDamage + data.modifiedDamage, false);

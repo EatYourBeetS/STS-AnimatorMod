@@ -18,7 +18,7 @@ public class CounterIntentEffect_Defend_Debuff extends CounterIntentEffect
         if (damage > 0)
         {
             PCLActions.Bottom.DealDamage(p, m, damage, DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_LIGHT);
-            PCLGameUtilities.UsePenNib();
+            PCLGameUtilities.RemoveDamagePowers();
         }
 
         PCLActions.Bottom.ApplyVulnerable(p, m, GetVulnerable(nanami));

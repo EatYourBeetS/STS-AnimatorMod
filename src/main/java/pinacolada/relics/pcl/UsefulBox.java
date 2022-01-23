@@ -19,7 +19,7 @@ public class UsefulBox extends PCLEnchantableRelic implements OnSynergySubscribe
 
     public UsefulBox(Enchantment enchantment)
     {
-        super(ID, RelicTier.STARTER, LandingSound.MAGICAL, enchantment);
+        super(ID, RelicTier.STARTER, LandingSound.MAGICAL, 1, false, enchantment);
     }
 
     @Override

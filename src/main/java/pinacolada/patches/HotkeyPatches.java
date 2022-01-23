@@ -12,34 +12,38 @@ import pinacolada.resources.pcl.PCLHotkeys;
 
 import java.util.ArrayList;
 
-@SpirePatch(
-        clz=InputSettingsScreen.class,
-        method="refreshData"
-)
+
 public class HotkeyPatches
 {
 
-    @SpireInsertPatch(
-            locator=Locator.class,
-            localvars={"elements"}
+    @SpirePatch(
+            clz=InputSettingsScreen.class,
+            method="refreshData"
     )
-    public static void Insert(InputSettingsScreen __instance, ArrayList<RemapInputElement> elements)
+    public static class RefreshData
     {
-        if (!Settings.isControllerMode) {
-            elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.ControlPileChange, PCLHotkeys.controlPileChange));
-            elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.ControlPileSelect, PCLHotkeys.controlPileSelect));
-            elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.Cycle, PCLHotkeys.cycle));
-            elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.RerollCurrent, PCLHotkeys.rerollCurrent));
-        }
-    }
-
-    private static class Locator extends SpireInsertLocator
-    {
-        @Override
-        public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
+        @SpireInsertPatch(
+                locator=Locator.class,
+                localvars={"elements"}
+        )
+        public static void Insert(InputSettingsScreen __instance, ArrayList<RemapInputElement> elements)
         {
-            Matcher finalMatcher = new Matcher.FieldAccessMatcher(InputSettingsScreen.class, "maxScrollAmount");
-            return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            if (!Settings.isControllerMode) {
+                elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.ControlPileChange, PCLHotkeys.controlPileChange));
+                elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.ControlPileSelect, PCLHotkeys.controlPileSelect));
+                elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.Cycle, PCLHotkeys.cycle));
+                elements.add(new RemapInputElement(__instance, GR.PCL.Strings.Hotkeys.RerollCurrent, PCLHotkeys.rerollCurrent));
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator
+        {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception
+            {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(InputSettingsScreen.class, "maxScrollAmount");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
         }
     }
 

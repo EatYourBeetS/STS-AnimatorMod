@@ -8,16 +8,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PenNibPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChemicalX;
-import com.megacrit.cardcrawl.relics.PenNib;
 import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -940,6 +939,12 @@ public class PCLGameUtilities extends GameUtilities
         return target == null || target.isDeadOrEscaped() || target.currentHealth <= 0;
     }
 
+    public static boolean IsPCLAffinityPowerActive(PCLAffinity affinity)
+    {
+        AbstractPCLAffinityPower po = PCLCombatStats.MatchingSystem.GetPower(affinity);
+        return po != null && po.isActive;
+    }
+
     public static boolean IsSameSeries(AbstractCard card1, AbstractCard card2)
     {
         PCLCard c1 = PCLJUtils.SafeCast(card1, PCLCard.class);
@@ -1253,6 +1258,10 @@ public class PCLGameUtilities extends GameUtilities
         blight.instantObtain(player, player.blights.size(), false);
     }
 
+    public static void ObtainRelicFromEvent(AbstractRelic relic) {
+        relic.instantObtain();
+        CardCrawlGame.metricData.addRelicObtainData(relic);
+    }
 
     public static void SetCardTag(AbstractCard card, AbstractCard.CardTags tag, boolean value)
     {
@@ -1273,22 +1282,6 @@ public class PCLGameUtilities extends GameUtilities
     {
         CombatStats.UnplayableCards().add(card.uuid);
         PCLCombatStats.OnTagChanged(card, PCL_UNPLAYABLE, true);
-    }
-
-    public static void UsePenNib()
-    {
-        if (player.hasPower(PenNibPower.POWER_ID))
-        {
-            PCLActions.Bottom.ReducePower(player, PenNibPower.POWER_ID, 1);
-
-            final AbstractRelic relic = player.getRelic(PenNib.ID);
-            if (relic != null)
-            {
-                relic.counter = 0;
-                relic.flash();
-                relic.stopPulse();
-            }
-        }
     }
 
     protected static void RefreshCardLists() {

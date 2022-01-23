@@ -18,6 +18,7 @@ import pinacolada.powers.PCLPower;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
+import pinacolada.utilities.PCLJUtils;
 
 public class ShuichiSaihara extends PCLCard
 {
@@ -129,7 +130,7 @@ public class ShuichiSaihara extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card.name.replace(" ", " #y"));
+            description = FormatDescription(0, PCLJUtils.ModifyString(card.name, w -> "#y" + w));
         }
     }
 }

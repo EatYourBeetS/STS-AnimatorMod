@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.pcl.basic.Strike;
-import pinacolada.patches.RelicLibraryPatches;
+import pinacolada.patches.relicLibrary.RelicLibraryPatches;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLResources;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -206,10 +206,7 @@ public class FoolCharacter extends CustomPlayer
     @Override
     public ArrayList<String> getStartingRelics()
     {
-        PCLLoadout currentLoadout = PrepareLoadout();
-        ArrayList<String> startingRelics = currentLoadout.GetStartingRelics();
-        startingRelics.addAll(currentLoadout.GetAdditionalRelics());
-        return startingRelics;
+        return PrepareLoadout().GetStartingRelics();
     }
 
     @Override

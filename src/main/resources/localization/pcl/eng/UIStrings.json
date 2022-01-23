@@ -85,7 +85,9 @@
 			"The Melancholy of Haruhi Suzumiya",
 			"Hyouka",
 			"Aria",
-			"Laid-Back Camp"
+			"Laid-Back Camp",
+			"AIR",
+			"Violet Evergarden"
 		],
 		"EXTRA_TEXT":
 		[
@@ -112,7 +114,7 @@
 			"Motivate {0}",
 			"Upgrade all cards NL in your hand",
 			"Have {0} {1} this turn",
-			"Remove all of NL your debuffs",
+			"Remove your Common Debuffs",
 			"Play the top card NL of your draw pile",
 			"Stun the enemy",
 			"Enter {0}",
@@ -292,7 +294,7 @@
 			"Simplify Card UI",
 			"Card Pool",
 			"View all cards available in this run.",
-			"To prevent infinite healing, some cards will give you Temporary HP instead of HP when played more than 1 time.",
+			"Current Series",
 			"(Max. #b{0} stacks)",
 			"(Above #b{0} stacks, gain [Block] instead)",
 			"(Max. #b{0} [Block])",

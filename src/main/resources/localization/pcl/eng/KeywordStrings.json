@@ -404,7 +404,7 @@
 	},
 	"Interactable":
 	{
-		"DESCRIPTION": "Once played, you may activate this effect at any time by clicking on the icon of this power, provided that you can pay the required cost.",
+		"DESCRIPTION": "A power whose effect can be triggered at any time by clicking on its icon and paying its cost.",
 		"NAMES": ["interact", "interactable", "interactables"],
 		"PROPER_NAME": "Interactable"
 	},

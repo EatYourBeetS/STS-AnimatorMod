@@ -302,7 +302,7 @@ public class PCLAffinityMeter extends GUIElement
                     CurrentAffinity.background_button.hb.width * 1.25f, CurrentAffinity.background_button.hb.height * 0.7f, 1, 0);
             FontHelper.renderFontLeftTopAligned(sb, rerollFont,
                     GR.PCL.Strings.Combat.Rerolls + ": " + Reroll.triggerCondition.uses + "/" + Reroll.triggerCondition.baseUses,
-                    CurrentAffinity.background_button.hb.cX, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.7f,
+                    NextAffinity.background_button.hb.x, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.7f,
                     Reroll.triggerCondition.uses > 0 ? Settings.BLUE_TEXT_COLOR : Settings.RED_TEXT_COLOR);
             pinacolada.utilities.PCLRenderHelpers.ResetFont(rerollFont);
         }

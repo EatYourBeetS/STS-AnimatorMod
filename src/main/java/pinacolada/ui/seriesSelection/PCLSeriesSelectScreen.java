@@ -629,7 +629,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
 
     protected void UpdateStartingDeckText()
     {
-        String text = GR.PCL.Strings.CharSelect.LeftText + " NL #y" + ((container.currentSeriesCard != null) ? container.currentSeriesCard.name.replace(" ", " #y").replace("+","") : "");
+        String text = GR.PCL.Strings.CharSelect.LeftText + " NL #y" + ((container.currentSeriesCard != null) ? PCLJUtils.ModifyString(container.currentSeriesCard.name, w -> "#y" + w).replace("+","") : "");
         if (GR.PCL.Config.DisplayBetaSeries.Get() && GR.PCL.Data.BetaLoadouts.size() > 0)
         {
             text += " NL Beta: Ascension and NL Trophies disabled.";

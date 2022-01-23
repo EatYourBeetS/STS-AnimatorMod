@@ -11,7 +11,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
-import pinacolada.utilities.PCLGameEffects;
 
 public class Keqing extends PCLCard
 {
@@ -46,7 +45,8 @@ public class Keqing extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER).forEach(d -> d.SetDamageEffect(c -> PCLGameEffects.List.Add(new DieDieDieEffect()).duration * 0.5f));
+        PCLActions.Bottom.VFX(new DieDieDieEffect());
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DAGGER);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

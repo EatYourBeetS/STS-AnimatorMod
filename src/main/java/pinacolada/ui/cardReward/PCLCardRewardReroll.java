@@ -10,7 +10,7 @@ import eatyourbeets.ui.GUIElement;
 import pinacolada.cards.pcl.series.Katanagatari.HigakiRinne;
 import pinacolada.effects.SFX;
 import pinacolada.effects.card.HideCardEffect;
-import pinacolada.relics.pcl.RollingCubes;
+import pinacolada.relics.pcl.AbstractCubes;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -22,7 +22,7 @@ public class PCLCardRewardReroll extends GUIElement
 
     protected final ActionT1<AbstractCard> onCardReroll;
     protected final ActionT1<AbstractCard> onCardAdded;
-    protected RollingCubes rollingCubes;
+    protected AbstractCubes rerollRelic;
     protected boolean canReroll;
     protected RewardItem rewardItem;
 
@@ -38,8 +38,8 @@ public class PCLCardRewardReroll extends GUIElement
         rewardItem = rItem;
         isActive = false;
 
-        rollingCubes = PCLGameUtilities.GetRelic(RollingCubes.ID);
-        if (rollingCubes != null && rollingCubes.CanActivate(rItem))
+        rerollRelic = PCLGameUtilities.GetRelic(AbstractCubes.class);
+        if (rerollRelic != null && rerollRelic.CanActivate(rItem))
         {
             isActive = true;
 
@@ -70,7 +70,7 @@ public class PCLCardRewardReroll extends GUIElement
             PCLGameEffects.TopLevelList.SpawnRelic(new SpiritPoop(), button.hb.cX, button.hb.cY);
         }
 
-        final AbstractCard replacement = rollingCubes.Reroll(removedCard, rewardItem);
+        final AbstractCard replacement = rerollRelic.Reroll(removedCard, rewardItem);
         if (replacement!= null)
         {
             SFX.Play(SFX.CARD_SELECT);
@@ -84,7 +84,7 @@ public class PCLCardRewardReroll extends GUIElement
         }
 
         button.SetActive(false);
-        SetActive(rollingCubes.CanReroll());
+        SetActive(rerollRelic.CanReroll());
     }
 
     @Override

@@ -17,7 +17,7 @@ import pinacolada.ui.combat.PCLCombatScreen;
 import pinacolada.ui.common.CardKeywordFilters;
 import pinacolada.ui.common.CardPoolScreen;
 import pinacolada.ui.common.CustomCardLibSortHeader;
-import pinacolada.ui.common.EYBSingleCardPopup;
+import pinacolada.ui.common.PCLSingleCardPopup;
 import pinacolada.ui.seriesSelection.PCLSeriesSelectScreen;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -37,7 +37,7 @@ public class UIManager extends eatyourbeets.resources.UIManager
     protected Hitbox lastHoveredTemp;
 
     public PCLCombatScreen CombatScreen;
-    public EYBSingleCardPopup CardPopup;
+    public PCLSingleCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
     public CardPoolScreen CardsScreen;
     public PCLSeriesSelectScreen SeriesSelection;
@@ -51,7 +51,7 @@ public class UIManager extends eatyourbeets.resources.UIManager
     {
         CardAffinities = new CardAffinityPanel();
         CombatScreen = new PCLCombatScreen();
-        CardPopup = new EYBSingleCardPopup();
+        CardPopup = new PCLSingleCardPopup();
         CardsScreen = new CardPoolScreen();
         SeriesSelection = new PCLSeriesSelectScreen();
         LoadoutEditor = new PCLLoadoutEditor();

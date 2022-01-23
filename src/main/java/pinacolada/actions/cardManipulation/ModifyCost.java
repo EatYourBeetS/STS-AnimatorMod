@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import eatyourbeets.utilities.Colors;
 import pinacolada.actions.utility.GenericCardSelection;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
@@ -66,12 +65,7 @@ public class ModifyCost extends GenericCardSelection
 
         if (permanent)
         {
-            if (relative) {
-                CostModifiers.For(card).Add(costChange);
-            }
-            else {
-                CostModifiers.For(card).Set(costChange);
-            }
+            PCLGameUtilities.ModifyCostForCombat(card, costChange, relative);
         }
         else
         {

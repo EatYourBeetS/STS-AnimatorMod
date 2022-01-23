@@ -23,7 +23,6 @@ public class SoulGem3 extends PCLRelic implements OnChannelOrbSubscriber
     @Override
     public void atBattleStart()
     {
-        PCLActions.Bottom.GainFocus(POWER_AMOUNT);
         PCLCombatStats.onChannelOrb.Subscribe(this);
         SetCounter(0);
     }

@@ -96,15 +96,21 @@
 		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
 		"NAME": "Exquisite Blood Vial"
 	},
-	"pcl:FireBlade":
+	"pcl:FlametangBoomerang":
 	{
-		"DESCRIPTIONS": ["For the first #b2 turns of combat, apply #b2 #yBurning whenever you deal unblocked #yAttack damage."],
+		"DESCRIPTIONS": ["At the start of combat, gain #b2 [Burning Weapon]."],
 		"FLAVOR": "I'm on fire!",
-		"NAME": "Fire Blade"
+		"NAME": "Flametang Boomerang"
+	},
+	"pcl:FoolishCubes":
+	{
+		"DESCRIPTIONS": ["You may reroll cards from card rewards into random #yCommons or #yUncommons. NL Gain #b{0} uses when you enter #yMonster rooms. Gain #b{1} more if it was an #yElite or #yBoss room. Store up to #b{2} uses."],
+		"FLAVOR": "A pair of simple rolling cubes.",
+		"NAME": "Foolish Cubes"
 	},
 	"pcl:GIJoeFigurine":
 	{
-		"DESCRIPTIONS": ["Whenever you shuffle your deck, apply #b2 #yLock-On to ALL enemies. NL All card rewards contain an additional #yGenshin #yImpact card."],
+		"DESCRIPTIONS": ["Whenever you shuffle your deck, apply #b2 [~Lock-On] to ALL enemies. NL All card rewards contain an additional #yGenshin #yImpact card."],
 		"FLAVOR": "A clear bottle containing liquid fire.",
 		"NAME": "Witch's Heart Flames"
 	},
@@ -116,19 +122,19 @@
 	},
 	"pcl:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} [L]."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} [Regeneration] and #b{2} [L]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
 	"pcl:Headphones":
 	{
-		"DESCRIPTIONS": ["At the start of combat, give all cards in your hand #yHarmonic."],
+		"DESCRIPTIONS": ["The first playable card drawn each combat gains [A-Star]."],
 		"FLAVOR": "Now you too can become a DIVA!",
 		"NAME": "Headphones"
 	},
 	"pcl:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [Force]."],
+		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [R]."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
@@ -192,12 +198,6 @@
 		"FLAVOR": "...Shin?",
 		"NAME": "Purple Teddy Bear"
 	},
-	"pcl:RollingCubes":
-	{
-		"DESCRIPTIONS": ["During card rewards, you may reroll a card into one of the same series. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
-		"FLAVOR": "A pair of rolling cubes.",
-		"NAME": "Rolling Cubes"
-	},
 	"pcl:RacePiece":
 	{
 		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."],
@@ -230,27 +230,27 @@
 	},
 	"pcl:SoulGem1":
 	{
-		"DESCRIPTIONS": ["At the start of turn, if #yStrength is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
+		"DESCRIPTIONS": ["At the start of turn, if [Strength] is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b6 #yAttacks played."],
 		"FLAVOR": "Would you like to make a contract?",
-		"NAME": "Red Soul Gem"
+		"NAME": "Soul Gem of Rage"
 	},
 	"pcl:SoulGem2":
 	{
-		"DESCRIPTIONS": ["At the start of turn, if #yDexterity is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b5 cards played that give #yBlock."],
+		"DESCRIPTIONS": ["At the start of turn, if [Dexterity] is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b5 cards played that give #yBlock."],
 		"FLAVOR": "Would you like to make a contract?",
-		"NAME": "Green Soul Gem"
+		"NAME": "Soul Gem of Freedom"
 	},
 	"pcl:SoulGem3":
 	{
-		"DESCRIPTIONS": ["#At the start of turn, if #yFocus is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
+		"DESCRIPTIONS": ["At the start of turn, if [Focus] is less than #b3, set it to #b3. Shuffle a #rCurse into your draw pile for every #b3 #yOrbs channeled."],
 		"FLAVOR": "Would you like to make a contract?",
-		"NAME": "Blue Soul Gem"
+		"NAME": "Soul Gem of Contemplation"
 	},
 	"pcl:SoulGem4":
 	{
-		"DESCRIPTIONS": ["#yStrength, #yDexterity, #yFocus, and #yBalance cannot fall below #b2. Destroy this relic if you play #b16 cards in a single turn or if you deal more than #b50 damage in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
+		"DESCRIPTIONS": ["#At the start of turn, if [Resistance] is less than #b3, set it to #b3. Destroy this relic if you play #b16 cards in a single turn. Something very bad will happen if this relic is destroyed...", "This relic can no longer be used as you have broken the contract. You will surely face further repercussions for this..."],
 		"FLAVOR": "Would you like to make a contract?",
-		"NAME": "Orange Soul Gem"
+		"NAME": "Soul Gem of Stoicism"
 	},
 	"pcl:SpiritPoop2":
 	{
@@ -263,6 +263,12 @@
 		"DESCRIPTIONS": ["At the start of battle, gain #b2 #yInspiration."],
 		"FLAVOR": "Well, what do you know. It's actually pretty pleasant!",
 		"NAME": "5-Star Spirit Poop"
+	},
+	"pcl:SpitefulCubes":
+	{
+		"DESCRIPTIONS": ["Replaces #yFoolish #yCubes. You may reroll cards from card rewards into cards from the same #ySeries. NL Gain #b{0} uses when you enter #yMonster rooms. Gain #b{1} more if it was an #yElite or #yBoss room. Store up to #b{2} uses."],
+		"FLAVOR": "A pair of black cubes. You probably should not roll them.",
+		"NAME": "Spiteful Cubes"
 	},
 	"pcl:StraightShooter":
 	{
@@ -302,13 +308,13 @@
 	},
 	"pcl:UsefulBox":
 	{
-		"DESCRIPTIONS": ["On your first #yMatch each turn, draw #b1 card. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)","#pRight #pClick this relic to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["On your first #yMatch each turn, draw #b1 card. Card rewards offer an additional set of options focused on a random Series. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)","#pRight #pClick this relic to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "A box that is useful.",
 		"NAME": "Useful Box"
 	},
 	"pcl:VeryUsefulBox":
 	{
-		"DESCRIPTIONS": ["Replaces #yUseful #yBox. NL On your first #yMatch each turn, gain [E] and draw #b1 card. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)","#pRight #pClick this relic to choose #b1 of #b3 upgrades for this relic."],
+		"DESCRIPTIONS": ["Replaces #yUseful #yBox. NL On your first #yMatch each turn, draw #b1 card. Card rewards offer #b2 additional sets of options focused on Colorless cards or random Series. NL Whenever you defeat a boss: Choose #b1 of #b3 upgrades for this relic. (Max. 2 upgrades)","#pRight #pClick this relic to choose #b1 of #b3 upgrades for this relic."],
 		"FLAVOR": "A box that is very useful.",
 		"NAME": "Very-Useful Box"
 	},

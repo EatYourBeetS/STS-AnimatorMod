@@ -63,6 +63,8 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
     public transient final ArrayList<PCLRuntimeLoadout> Loadouts = new ArrayList<>();
     public transient PCLLoadout StartingSeries = new _FakeLoadout();
     public HashSet<String> BannedCards = new HashSet<>();
+    protected transient boolean CanJumpNextFloor;
+    protected transient boolean CanJumpAnywhere;
 
     protected ArrayList<AnimatorLoadoutProxy> loadouts = new ArrayList<>();
     protected int startingLoadout = -1;
@@ -119,6 +121,23 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
         }
 
         EnteredUnnamedReign = true;
+    }
+
+    public boolean CanJumpAnywhere() {
+        return CanJumpAnywhere;
+    }
+
+    public boolean CanJumpNextFloor() {
+        return CanJumpNextFloor;
+    }
+
+    public void SetJumpAnywhere(boolean value) {
+        SetCheating();
+        CanJumpAnywhere = value;
+    }
+
+    public void SetJumpNextFloor(boolean value) {
+        CanJumpNextFloor = value;
     }
 
     public void UpdateLongestMatchCombo(int newCombo) {

@@ -21,7 +21,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Sora.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
             .SetSeries(CardSeries.NoGameNoLife)
             .PostInitialize(data -> data
                     .AddPreview(new Sora_Strategy1(), true)
@@ -34,7 +34,7 @@ public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
+        Initialize(0, 1, 1, 2);
 
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Orange(1);
@@ -51,6 +51,7 @@ public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.GainTemporaryHP(magicNumber);
         CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         group.addToBottom(new Sora_Strategy1());

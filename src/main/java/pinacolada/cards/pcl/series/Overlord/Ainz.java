@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_StackPower;
 import pinacolada.effects.SFX;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
@@ -70,6 +71,7 @@ public class Ainz extends PCLCard
             PCLActions.Bottom.SFX(SFX.ORB_LIGHTNING_EVOKE, 0.9f, 1.1f);
             PCLActions.Bottom.BorderLongFlash(Color.valueOf("3d0066"));
             PCLActions.Bottom.SFX(SFX.ORB_DARK_EVOKE, 0.9f, 1.1f);
+            PCLCombatStats.MatchingSystem.Powers.get(PCLAffinity.Dark.ID).SetEnabled(true);
         }
 
         @Override

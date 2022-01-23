@@ -21,6 +21,8 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.Logger;
 import pinacolada.cards.base.PCLCardTooltip;
+import pinacolada.interfaces.subscribers.markers.Replacement;
+import pinacolada.relics.PCLReplacementRelic;
 import pinacolada.resources.pcl.PCLResources;
 import pinacolada.utilities.PCLJUtils;
 
@@ -142,6 +144,11 @@ public class GR extends eatyourbeets.resources.GR
         catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e)
         {
             e.printStackTrace();
+            return;
+        }
+
+        if (Replacement.class.isAssignableFrom(type)) {
+            PCLReplacementRelic.RELICS.put(relic.relicId, relic);
             return;
         }
 

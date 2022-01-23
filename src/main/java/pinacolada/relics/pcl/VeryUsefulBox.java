@@ -23,7 +23,7 @@ public class VeryUsefulBox extends PCLEnchantableRelic implements OnSynergySubsc
 
     public VeryUsefulBox(Enchantment enchantment)
     {
-        super(ID, RelicTier.BOSS, LandingSound.MAGICAL, enchantment);
+        super(ID, RelicTier.BOSS, LandingSound.MAGICAL, 2, true, enchantment);
     }
 
     @Override
@@ -47,7 +47,6 @@ public class VeryUsefulBox extends PCLEnchantableRelic implements OnSynergySubsc
     public void OnSynergy(AbstractCard card)
     {
         PCLActions.Bottom.Draw(1);
-        PCLActions.Bottom.GainEnergy(1);
         SetEnabled(false);
         flash();
     }

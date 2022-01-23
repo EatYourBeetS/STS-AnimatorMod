@@ -21,8 +21,8 @@ public class AlinaGray extends PCLCard implements OnStartOfTurnPostDrawSubscribe
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 2);
-        SetUpgrade(0, 0, 0);
+        Initialize(0, 0, 1, 1);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1, 0, 0);
@@ -32,7 +32,7 @@ public class AlinaGray extends PCLCard implements OnStartOfTurnPostDrawSubscribe
 
     @Override
     public void OnUpgrade() {
-        SetExhaust(false);
+        SetRetainOnce(true);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class AlinaGray extends PCLCard implements OnStartOfTurnPostDrawSubscribe
         });
 
         if (info.IsSynergizing && info.TryActivateSemiLimited()) {
-            PCLGameUtilities.AddAffinityRerolls(1);
+            PCLGameUtilities.AddAffinityRerolls(secondaryValue);
         }
     }
 }

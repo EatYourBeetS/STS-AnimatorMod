@@ -57,7 +57,7 @@ public class Urushihara extends PCLCard implements OnStartOfTurnPostDrawSubscrib
             PCLGameEffects.Queue.ShowCardBriefly(this);
 
             PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.FIRE);
-            PCLGameUtilities.UsePenNib();
+            PCLGameUtilities.RemoveDamagePowers();
 
             PCLCombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }

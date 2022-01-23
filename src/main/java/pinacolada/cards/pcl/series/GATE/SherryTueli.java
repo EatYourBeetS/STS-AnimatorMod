@@ -81,7 +81,7 @@ public class SherryTueli extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card.name.replace(" ", " #y"));
+            description = FormatDescription(0, PCLJUtils.ModifyString(card.name, w -> "#y" + w));
         }
     }
 }

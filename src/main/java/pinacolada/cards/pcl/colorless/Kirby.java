@@ -276,10 +276,6 @@ public class Kirby extends PCLCard implements
         if (data.additionalData != null) {
             for (String id : data.additionalData) {
                 AbstractCard card = CardLibrary.getCard(id);
-                for (int i = 0; i < this.timesUpgraded; i++) {
-                    card.upgrade();
-                }
-
                 AddInheritedCard(card);
             }
         }
@@ -336,14 +332,15 @@ public class Kirby extends PCLCard implements
     }
 
     public void AddInheritedCard(AbstractCard card) {
-        for (int i = 0; i < timesUpgraded; i++) {
-            card.upgrade();
+        if (card != null) {
+            for (int i = 0; i < timesUpgraded; i++) {
+                card.upgrade();
+            }
+            inheritedCards.add(card);
+            previews.Add(GeneratePreviewCard(card));
+
+            addCardProperties(card);
         }
-        inheritedCards.add(card);
-        previews.Add(GeneratePreviewCard(card));
-
-        addCardProperties(card);
-
     }
 
     protected PCLCardPreview GeneratePreviewCard(AbstractCard card) {

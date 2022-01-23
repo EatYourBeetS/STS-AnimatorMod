@@ -166,7 +166,7 @@ public class Merlin extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card.name.replace(" ", " #y"), effect.text);
+            description = FormatDescription(0, PCLJUtils.ModifyString(card.name, w -> "#y" + w), effect.text);
         }
     }
 }

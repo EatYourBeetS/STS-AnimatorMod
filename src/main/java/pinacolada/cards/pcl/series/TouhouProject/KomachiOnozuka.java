@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.relics.animator.ShinigamiFerry;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.relics.pcl.ShinigamisFerry;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -21,7 +21,7 @@ public class KomachiOnozuka extends PCLCard
 {
     public static final PCLCardData DATA = Register(KomachiOnozuka.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Brutal).SetSeriesFromClassPackage();
 
-    private static final AbstractRelic relicReward = new ShinigamisFerry();
+    private static final AbstractRelic relicReward = new ShinigamiFerry();
     private static final PCLCardTooltip tooltip = new PCLCardTooltip(relicReward.name, relicReward.description);
 
     public KomachiOnozuka()

@@ -72,7 +72,7 @@ public class DolaSchwi extends PCLCard implements OnStartOfTurnPostDrawSubscribe
                     PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.PSYCHOKINESIS);
                 }
             }
-            PCLGameUtilities.UsePenNib();
+            PCLGameUtilities.RemoveDamagePowers();
         }
     }
 }

@@ -2,6 +2,7 @@ package pinacolada.cards.pcl.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
@@ -37,7 +38,9 @@ public class King extends PCLCard
     public void triggerWhenDrawn()
     {
         super.triggerWhenDrawn();
-        PCLActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(player), 1).IgnoreArtifact(true);
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(player), 1).IgnoreArtifact(true);
+        }
     }
 
     @Override

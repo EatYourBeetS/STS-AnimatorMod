@@ -26,8 +26,11 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
+import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
 import eatyourbeets.actions.handSelection.ReshuffleFromHand;
 import eatyourbeets.actions.monsters.TalkAction;
+import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.PlaySFX;
 import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
@@ -39,7 +42,6 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.ListSelection;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.affinity.*;
-import pinacolada.actions.autoTarget.ApplyPowerAuto;
 import pinacolada.actions.basic.*;
 import pinacolada.actions.cardManipulation.*;
 import pinacolada.actions.damage.DealDamage;
@@ -58,7 +60,10 @@ import pinacolada.actions.player.ChangeStance;
 import pinacolada.actions.player.GainGold;
 import pinacolada.actions.player.SpendEnergy;
 import pinacolada.actions.powers.*;
-import pinacolada.actions.special.*;
+import pinacolada.actions.special.CreateGriefSeeds;
+import pinacolada.actions.special.CreateThrowingKnives;
+import pinacolada.actions.special.SelectCreature;
+import pinacolada.actions.special.UsePotionAction;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardAffinities;
@@ -403,6 +408,11 @@ public final class PCLActions
     public DealDamage DealDamage(AbstractCreature source, AbstractCreature target, int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
         return Add(new DealDamage(target, new DamageInfo(source, baseDamage, damageType), effect));
+    }
+
+    public DealDamage DealDamage(AbstractCreature target, DamageInfo damageInfo, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new DealDamage(target, damageInfo, effect));
     }
 
     public ArrayList<DealDamageToAll> DealCardDamageToAll(PCLCard card, AbstractGameAction.AttackEffect effect)
@@ -770,11 +780,6 @@ public final class PCLActions
     public HealCreature RecoverHP(int amount)
     {
         return Add(new HealCreature(player, player, amount)).Recover(true);
-    }
-
-    public HealCreature HealPlayerLimited(AbstractCard card, int amount)
-    {
-        return Add(new HealCreature(player, player, amount).SetCard(card));
     }
 
     public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)

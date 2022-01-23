@@ -8,16 +8,15 @@ import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BlindedPower;
 import pinacolada.powers.common.ResistancePower;
-import pinacolada.stances.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -36,6 +35,9 @@ public class KanameTousen extends PCLCard {
         SetAffinity_Dark(1, 0, 0);
         SetAffinity_Blue(1, 0, 1);
         SetAffinity_Green(1, 0, 0);
+
+        SetAffinityRequirement(PCLAffinity.Blue, 7);
+        SetAffinityRequirement(PCLAffinity.Dark, 7);
     }
 
     @Override
@@ -50,9 +52,9 @@ public class KanameTousen extends PCLCard {
             }
         }
 
-        if (WisdomStance.IsActive() && CombatStats.TryActivateLimited(cardID)) {
+        PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Blue, PCLAffinity.Dark).AddConditionalCallback(() -> {
             PCLActions.Bottom.StackPower(player, new KanameTousenPower(player, 2));
-        }
+        });
     }
 
 

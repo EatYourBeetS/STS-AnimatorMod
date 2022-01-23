@@ -28,9 +28,9 @@ public class Ganyu extends PCLCard
     {
         super(DATA);
 
-        Initialize(10, 0, 8, 3);
+        Initialize(11, 0, 8, 3);
         SetUpgrade(4, 0, 1);
-        SetAffinity_Blue(1, 0, 2);
+        SetAffinity_Blue(1, 0, 3);
         SetAffinity_Silver(1, 0, 0);
 
         SetEthereal(true);

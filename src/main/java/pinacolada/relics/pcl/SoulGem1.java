@@ -22,7 +22,6 @@ public class SoulGem1 extends PCLRelic
     @Override
     public void atBattleStart()
     {
-        PCLActions.Bottom.GainStrength(POWER_AMOUNT);
         SetCounter(0);
     }
 

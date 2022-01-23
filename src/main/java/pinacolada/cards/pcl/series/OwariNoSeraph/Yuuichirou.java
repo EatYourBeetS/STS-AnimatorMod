@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -50,6 +51,8 @@ public class Yuuichirou extends PCLCard
     {
         super.triggerOnExhaust();
 
-        PCLActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
+        if (CombatStats.TryActivateLimited(cardID)) {
+            PCLActions.Bottom.MakeCardInDiscardPile(new Yuuichirou_Asuramaru()).SetUpgrade(upgraded, false);
+        }
     }
 }

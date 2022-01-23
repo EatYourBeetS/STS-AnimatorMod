@@ -17,7 +17,6 @@ import eatyourbeets.utilities.FieldInfo;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.dailymods.AllRelicPCLRun;
 import pinacolada.dailymods.NoRelics;
-import pinacolada.relics.pcl.AbstractMissingPiece;
 import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLDungeonData;
@@ -42,6 +41,11 @@ public abstract class PCLRelic extends CustomRelic
     public static String CreateFullID(Class<? extends PCLRelic> type)
     {
         return GR.PCL.CreateID(type.getSimpleName());
+    }
+
+    protected PCLRelic(String id, Texture texture, RelicTier tier, LandingSound sfx)
+    {
+        super(id, texture, tier, sfx);
     }
 
     public PCLRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
@@ -346,7 +350,6 @@ public abstract class PCLRelic extends CustomRelic
                 data.AddRelic(Melange.ID, AbstractRelic.RelicTier.SHOP);
             }
 
-            AbstractMissingPiece.RefreshDescription();
             PCLEnchantableRelic.RefreshDescription();
         }
     }

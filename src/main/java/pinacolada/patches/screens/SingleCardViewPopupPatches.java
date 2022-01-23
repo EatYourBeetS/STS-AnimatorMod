@@ -10,14 +10,14 @@ import eatyourbeets.utilities.FieldInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLImages;
-import pinacolada.ui.common.EYBSingleCardPopup;
+import pinacolada.ui.common.PCLSingleCardPopup;
 import pinacolada.utilities.PCLJUtils;
 
 public class SingleCardViewPopupPatches
 {
     private static final FieldInfo<AbstractCard> _card = PCLJUtils.GetField("card", SingleCardViewPopup.class);
     private static final PCLImages Images = GR.PCL.Images;
-    private static final EYBSingleCardPopup betterPopup = new EYBSingleCardPopup();
+    private static final PCLSingleCardPopup betterPopup = new PCLSingleCardPopup();
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = {AbstractCard.class})
     public static class SingleCardViewPopup_Open

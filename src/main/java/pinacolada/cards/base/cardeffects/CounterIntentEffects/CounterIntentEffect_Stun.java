@@ -17,7 +17,7 @@ public class CounterIntentEffect_Stun extends CounterIntentEffect
         if (damage > 0)
         {
             PCLActions.Bottom.DealDamage(p, m, damage, nanami.damageTypeForTurn, AttackEffects.NONE);
-            PCLGameUtilities.UsePenNib();
+            PCLGameUtilities.RemoveDamagePowers();
         }
 
         PCLActions.Bottom.ApplyVulnerable(p, m, GetVulnerable(nanami));

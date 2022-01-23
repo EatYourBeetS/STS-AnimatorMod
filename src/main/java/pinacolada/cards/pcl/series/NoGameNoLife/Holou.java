@@ -26,7 +26,9 @@ public class Holou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Holou.class)
             .SetPower(2, CardRarity.UNCOMMON)
-            .SetSeriesFromClassPackage();
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Curse_Doubt(), false));
 
     public Holou()
     {
@@ -34,9 +36,9 @@ public class Holou extends PCLCard
 
         Initialize(0, 0, 3, 0);
         SetUpgrade(0, 0, 0, 0);
+        SetAffinity_Blue(1);
 
         SetEthereal(true);
-        SetAffinity_Blue(1);
     }
 
     public void OnUpgrade() {

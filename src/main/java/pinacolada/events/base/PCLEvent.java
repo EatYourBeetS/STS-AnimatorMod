@@ -14,15 +14,11 @@ import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.rooms.AnimatorCustomEventRoom;
-import pinacolada.events.pcl.TheCursedForest;
-import pinacolada.events.pcl.TheFloatyThing;
-import pinacolada.events.pcl.TheHeroAssociation;
-import pinacolada.events.pcl.ThePharmacy;
+import pinacolada.events.pcl.*;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLImages;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class PCLEvent extends EYBEvent
 {
@@ -48,7 +44,13 @@ public abstract class PCLEvent extends EYBEvent
                 event = TheFloatyThing.TryCreate(rng);
             }
             if (event == null) {
+                event = MicrowaveEvent.TryCreate(rng);
+            }
+            if (event == null) {
                 event = TheHeroAssociation.TryCreate(rng);
+            }
+            if (event == null) {
+                event = ContractEvent.TryCreate(rng);
             }
 
             if (event != null) {
@@ -63,11 +65,7 @@ public abstract class PCLEvent extends EYBEvent
     public static void ForceEvent(AnimatorCustomEventRoom.GetEvent roomConstructor) {
         MapRoomNode node = new MapRoomNode(AbstractDungeon.currMapNode.x, AbstractDungeon.currMapNode.y);
         node.room = new AnimatorCustomEventRoom(roomConstructor);
-        ArrayList<MapEdge> curEdges = AbstractDungeon.currMapNode.getEdges();
-        Iterator var8 = curEdges.iterator();
-
-        while(var8.hasNext()) {
-            MapEdge edge = (MapEdge)var8.next();
+        for (MapEdge edge : AbstractDungeon.currMapNode.getEdges()) {
             node.addEdge(edge);
         }
 
@@ -103,6 +101,8 @@ public abstract class PCLEvent extends EYBEvent
 
     public static void RegisterEvents()
     {
+        BaseMod.addEvent(ContractEvent.ID, ContractEvent.class, ContractEvent.ID);
+        BaseMod.addEvent(MicrowaveEvent.ID, MicrowaveEvent.class, MicrowaveEvent.ID);
         BaseMod.addEvent(TheCursedForest.ID, TheCursedForest.class, TheCursedForest.ID);
         BaseMod.addEvent(TheFloatyThing.ID, TheFloatyThing.class, TheFloatyThing.ID);
         BaseMod.addEvent(TheHeroAssociation.ID, TheHeroAssociation.class, TheHeroAssociation.ID);

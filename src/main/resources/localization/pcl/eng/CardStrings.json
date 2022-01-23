@@ -104,7 +104,7 @@
 		},
 		"pcl:Bite":
 		{
-			"DESCRIPTION": "If the target has [DD]: Gain double [THP].",
+			"DESCRIPTION": "If the target has [DD]: ** Gain double [THP].",
 			"NAME": "Bite"
 		},
 		"pcl:Enlightenment":
@@ -294,7 +294,7 @@
 		},
 		"pcl:IkkakuBankai":
 		{
-			"DESCRIPTION": "Discard up to !M! cards. Attack an extra time for each.",
+			"DESCRIPTION": "Discard up to !M! cards. Attack 1 more time for each. || If [R] is active: This will not Exhaust.",
 			"NAME": "Ikkaku Bankai"
 		},
 		"pcl:IkkakuMadarame":
@@ -314,7 +314,7 @@
 		},
 		"pcl:KanameTousen":
 		{
-			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. || <LIM>. <BS>: For the next !S! turns, ignore your buffs with negative stacks.",
+			"DESCRIPTION": "For each enemy: Gain !S! Temp. [Artifact] if it has [Blinded]. Otherwise, apply !M! [Blinded]. || Pay !A! <B> or <D>: For !S! turns, negate your negative buffs.",
 			"EXTENDED_DESCRIPTION": ["For the next #b{0} turns, ignore buffs with negative stacks."],
 			"NAME": "Kaname Tousen"
 		},
@@ -387,8 +387,8 @@
 		},
 		"pcl:ZarakiKenpachi":
 		{
-			"DESCRIPTION": "[R] cannot be disabled. Double ALL [R] gains. Disable ALL other {<W> Powers}. || Once per turn, if you break an enemy's [Block]: Gain !M! [Vigor].",
-			"EXTENDED_DESCRIPTION": ["[R] cannot be disabled. Double ALL [R] gains. You can no longer gain other [A-Gen] #yPowers. NL Once per turn, if you break an enemy's #yBlock, gain #b{0} #yTemp. [Strength]."],
+			"DESCRIPTION": "[R] cannot be disabled. Double ALL [R] gains. Disable ALL other {<W> Powers}. || Whenever you kill an enemy or break its [Block]: Gain !M! [Vigor]. Gain +!M! if [R] is active.",
+			"EXTENDED_DESCRIPTION": ["[R] cannot be disabled. Double ALL [R] gains. You can no longer gain other [A-Gen] #yPowers. NL Whenever you kill an enemy or break its [Block], gain #b{0} [Vigor]. Gain +#b{0} if [R] is active."],
 			"NAME": "Zaraki Kenpachi"
 		}
 	},
@@ -578,7 +578,7 @@
 		"pcl:Megaman":
 		{
 			"DESCRIPTION": "If used on yourself: Becomes a {0} Attack with triple damage until played. || {1}",
-			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", "If {Fatal}: Store {0}.", "the target's signature move", "If {Fatal}: Store {0} uses of: {1}", "You may also choose to use: {0} (!X!/!M! times left)."],
+			"EXTENDED_DESCRIPTION": ["[~ED]","[~FD]","[~ID]", "If {Fatal}: Store {0}.", "the target's signature move", "If {Fatal}: Store {0} uses of: {1}", "You may also choose to use: {0} (!X!/{1} times left)."],
 			"NAME": "Megaman"
 		},
 		"pcl:Megunee":
@@ -604,6 +604,11 @@
 			"NAME": "Merlin",
 			"UPGRADE_DESCRIPTION": "To play this: Evoke your first Orb. {0}"
 		},
+		"pcl:MisuzuKamio":
+		{
+			"DESCRIPTION": "If [L] is active: Channel [Air] equal to your [Orb Slot] count. Evoke ALL [Air] at the start of your next turn. Otherwise, Gain !M! [L]. || <LIM>. Cut ALL negative buffs in half.",
+			"NAME": "Misuzu Kamio"
+		},
 		"pcl:MotokoKusanagi":
 		{
 			"DESCRIPTION": "On Exhaust: Gain !M! [Blur] and [Support Damage]. || Returns to your draw pile in !C! turns, reduced by 1 per 150 [Gold] (min. 1).",
@@ -619,6 +624,11 @@
 		{
 			"DESCRIPTION": "At the start of combat: Transforms into {Pyra} if you have more <R> in your deck than <G>. || The first Attack you play each turn is Motivated and gains Haste and Exhaust.",
 			"NAME": "Mythra"
+		},
+		"pcl:NagisaFurukawa":
+		{
+			"DESCRIPTION": "Unplayable unless {Tomoya Okazaki} and {Ushio} are in your Exhaust pile. || This turn, if you take lethal damage: Heal to full instead and remove this from your deck.",
+			"NAME": "Nagisa Furukawa"
 		},
 		"pcl:NaoTomori":
 		{
@@ -736,6 +746,12 @@
 			"DESCRIPTION": "Shuffle your deck, then choose a card type. ** Reload: If the top card of your deck is of that type: Gain !D! [Support Damage]. Otherwise, take !D! [DD] and Exhast the discarded card.",
 			"EXTENDED_DESCRIPTION": ["The next Attack played gains #b{0} damage."],
 			"NAME": "Vash the Stampede"
+		},
+		"pcl:VioletEvergarden":
+		{
+			"DESCRIPTION": "Give a card in hand [Loyal] and [Autoplay]. || <LIM>. After playing it !S! times: Reduce its cost by 1 for the rest of the combat.",
+			"EXTENDED_DESCRIPTION": ["After playing {0} #b{1} more times: Reduce its cost by #b1 this combat."],
+			"NAME": "Violet Evergarden"
 		},
 		"pcl:Vladilena":
 		{
@@ -1211,8 +1227,8 @@
 		},
 		"pcl:JunSakurada":
 		{
-			"DESCRIPTION": "Obtain {Tormented}. Next turn: Duplicate an Exhausted Attack. It costs 0, has !M! damage and [Block], and has [Purge]. || <CDN>: Upgrade permanently and Purge.",
-			"EXTENDED_DESCRIPTION": ["Next turn: Duplicate an Attack from your #yExhaust #yPile. It costs #b0, has +#b{0} damage and [Block], and has [Purge]."],
+			"DESCRIPTION": "Obtain {Tormented}. Next turn: Play an Exhausted Attack. It has !M! damage and [Block]. || <CDN>: Upgrade permanently and Purge.",
+			"EXTENDED_DESCRIPTION": ["Next turn: Play an Attack from your #yExhaust #yPile. It has +#b{0} damage and [Block]."],
 			"NAME": "Jun Sakurada"
 		},
 		"pcl:Kanaria":
@@ -1866,7 +1882,7 @@
 		},
 		"pcl:Diarmuid":
 		{
-			"DESCRIPTION": "If the {Next <W>} is <R>: Apply !M! [Vulnerable]. Otherwise, Apply !M! [Shackles]. || If this did not Match: Set the {Next <W>} to <R>.",
+			"DESCRIPTION": "If the {Next <W>} is <R>: Apply !M! [Vulnerable]. Otherwise, Apply !M! [Shackles]. || Not a Match: Set the {Next <W>} to <R>.",
 			"NAME": "Diarmuid"
 		},
 		"pcl:EmiyaKiritsugu":
@@ -2386,7 +2402,7 @@
 		},
 		"pcl:ZankiKiguchi":
 		{
-			"DESCRIPTION": "<CYC-M>. || If this did not Match: Set the {Current <W>} to <G>.",
+			"DESCRIPTION": "Not a Match: Set the {Current <W>} to <G>. || <SLM>. <CYC-M>.",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -2445,7 +2461,7 @@
 		},
 		"pcl:Kazuma":
 		{
-			"DESCRIPTION": "This gains +!M! damage. || !S! Match Combo: Gain double <W>.",
+			"DESCRIPTION": "This gains +!M! damage. || !S! Match Combo: ** Gives double <W>.",
 			"NAME": "Kazuma Satou"
 		},
 		"pcl:Lean":
@@ -2597,13 +2613,13 @@
 	{
 		"pcl:AlinaGray":
 		{
-			"DESCRIPTION": "<CYC-M>. Evoke your first Orb and Channel it back. || <SLM>. Match: Gain an {<W> Skip}.",
+			"DESCRIPTION": "<CYC-M>. Evoke your first Orb and Channel it back. || <SLM>. Match: Gain a {<W> Skip}.",
 			"EXTENDED_DESCRIPTION": ["For #b{0} turn(s): #ySoul is not consumed when drawing or playing #ySoul cards."],
 			"NAME": "Alina Gray"
 		},
 		"pcl:FeliciaMitsuki":
 		{
-			"DESCRIPTION": "<ST>: Draw a [Grief Seed] and Retain it. || Deal +!M! damage for every <L> card in hand.",
+			"DESCRIPTION": "<ST>: Draw a [Grief Seed] and Retain it. || Deal +!M! damage per <L> card in hand.",
 			"NAME": "Felicia Mitsuki"
 		},
 		"pcl:HomuraAkemi":
@@ -2779,8 +2795,8 @@
 		},
 		"pcl:Miko":
 		{
-			"DESCRIPTION": "Channel !M! [Plasma]. When you {Trigger} or Evoke [Plasma], gain !M! [L]. || <LIM>. Gain !S! [L].",
-			"EXTENDED_DESCRIPTION": ["Gain #b{0} [L] whenever you #yTrigger or #yEvoke [Plasma]."],
+			"DESCRIPTION": "Channel !M! [Plasma]. When you {Trigger} or Evoke [Plasma], gain !M! [L]. Whenever you activate [L]: Channel !M! [Plasma].",
+			"EXTENDED_DESCRIPTION": ["Gain #b{0} [L] whenever you #yTrigger or #yEvoke [Plasma]. NL Channel #b{0} [Plasma] whenever you activate [L]."],
 			"NAME": "Miko"
 		},
 		"pcl:NinaClive":
@@ -2856,7 +2872,7 @@
 		},
 		"pcl:King":
 		{
-			"DESCRIPTION": "Convert !M! [L] to [R]. || When Drawn: Apply 1 [Vulnerable] to a random enemy, ignoring [Artifact].",
+			"DESCRIPTION": "Convert !M! [L] to [R]. || <SLM>. When Drawn: Apply [Vulnerable] to a random enemy, ignoring [Artifact].",
 			"NAME": "King"
 		},
 		"pcl:Melzalgald":
@@ -2938,7 +2954,7 @@
 	{
 		"pcl:Ainz":
 		{
-			"DESCRIPTION": "At the start of each turn: Obtain {<D> Token}, then gain Temp. [Strength], [Dexterity], or [Focus] equal to your [D] {Level}. || When Drawn: Motivate this and gain [D].",
+			"DESCRIPTION": "[D] cannot be disabled. At the start of each turn: Obtain {<D> Token}, then gain Temp. [Strength], [Dexterity], or [Focus] equal to your [D] {Level}. || When Drawn: Motivate this and gain [D].",
 			"EXTENDED_DESCRIPTION": ["At the start of each turn: Obtain [A-Dark] #yToken, then gain #yTemporary [Strength], [Dexterity], or [Focus] equal to your [D] #yLevel."],
 			"NAME": "Ainz Ooal Gown"
 		},
@@ -3095,7 +3111,7 @@
 		},
 		"pcl:Yuuichirou":
 		{
-			"DESCRIPTION": "<DRW>. If it was a Hindrance: Draw 1 more. || On Exhaust: Add {Asuramaru} ** to your discard pile.",
+			"DESCRIPTION": "<DRW>. If it was a Hindrance: Draw 1 more. || <LIM>. On Exhaust: Add {Asuramaru} to your discard pile.",
 			"NAME": "Yuuichirou Hyakuya"
 		},
 		"pcl:Yuuichirou_Asuramaru":

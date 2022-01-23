@@ -31,12 +31,15 @@ public class ZankiKiguchi extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.BLUNT_HEAVY);
-        PCLActions.Bottom.Cycle(name, magicNumber);
 
         if (!info.IsSynergizing) {
             PCLActions.Bottom.RerollAffinity(PCLAffinityMeter.Target.CurrentAffinity)
                     .SetAffinityChoices(PCLAffinity.Green)
                     .SetOptions(true, true);
+        }
+
+        if (info.TryActivateSemiLimited()) {
+            PCLActions.Bottom.Cycle(name, magicNumber);
         }
     }
 }

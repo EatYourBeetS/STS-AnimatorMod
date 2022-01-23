@@ -20,7 +20,7 @@ public class Yuuichirou_Asuramaru extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 3, 3);
+        Initialize(0, 1, 3, 4);
         SetUpgrade(0,0,1,0);
 
         SetAffinity_Red(1);

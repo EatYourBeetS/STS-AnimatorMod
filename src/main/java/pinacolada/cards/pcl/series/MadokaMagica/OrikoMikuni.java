@@ -26,7 +26,7 @@ public class OrikoMikuni extends PCLCard
         SetAffinity_Blue(1);
         SetAffinity_Light(1, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Blue, 6);
+        SetAffinityRequirement(PCLAffinity.Blue, 4);
     }
 
     @Override

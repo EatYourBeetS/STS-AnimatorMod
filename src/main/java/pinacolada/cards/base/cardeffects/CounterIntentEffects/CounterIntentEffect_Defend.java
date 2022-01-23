@@ -14,7 +14,7 @@ public class CounterIntentEffect_Defend extends CounterIntentEffect
     public void EnqueueActions(PCLCard nanami, AbstractPlayer p, AbstractMonster m)
     {
         PCLActions.Bottom.DealDamage(p, m, GetDamage(nanami), DamageInfo.DamageType.THORNS, AttackEffects.BLUNT_LIGHT);
-        PCLGameUtilities.UsePenNib();
+        PCLGameUtilities.RemoveDamagePowers();
     }
 
     @Override

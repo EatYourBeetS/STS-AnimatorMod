@@ -4,9 +4,13 @@ import basemod.BaseMod;
 import basemod.ModPanel;
 import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import eatyourbeets.powers.monsters.LightningCubePower;
+import eatyourbeets.ui.config.ConfigOption_Boolean;
+import eatyourbeets.ui.config.ConfigOption_Integer;
+import eatyourbeets.ui.config.ConfigOption_String;
+import eatyourbeets.ui.config.ConfigOption_Vector2;
 import pinacolada.characters.FoolCharacter;
 import pinacolada.resources.GR;
-import pinacolada.ui.config.*;
+import pinacolada.ui.config.ConfigOption_SeriesList;
 import pinacolada.utilities.PCLJUtils;
 
 import java.io.File;

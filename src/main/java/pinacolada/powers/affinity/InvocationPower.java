@@ -50,7 +50,7 @@ public class InvocationPower extends AbstractPCLAffinityPower
         PASSIVE_DAMAGE_BONUSES.clear();
         if (player.powers != null) {
             for (AbstractPower po : player.powers) {
-                if ((PCLGameUtilities.IsCommonBuff(po))) {
+                if ((PCLGameUtilities.IsCommonBuff(po)) && po.amount > 0) {
                     AddPower(po.ID, (int) (po.amount * GetEffectiveMultiplier()));
                 }
             }

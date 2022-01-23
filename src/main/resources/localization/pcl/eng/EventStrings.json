@@ -10,6 +10,51 @@
 			"[Leave]"
 		]
 	},
+	"pcl:ContractEvent":
+	{
+		"DESCRIPTIONS":
+		[
+			"As you make your way through a sprawling city, you spot a strange cat-like creature perched on top of a fence. Suddenly, you hear a mysterious voice that seems to emanate from your head. NL NL \"Hello traveler. If you make a contract with me to kill witches, I can grant you any wish you want.\"",
+
+			"Out of the corner of your eye, you spot a black-haired girl readying a rifle whilst rushing towards you and the cat-like creature.  NL NL \"DON'T LISTEN TO THAT THING! IT IS TRYING TO TAKE YOUR SOUL!\" she screams at you. NL NL The cat-like creatures completely ignores her and stares at you, awaiting your response.",
+
+			"\"Great! To seal the contract, please choose one of these gems below. \" The voice in your head says. NL NL Three gems suddenly appear before your eyes, suspended in mid-air as if they were beckoning you to grab them. Which one do you choose?",
+
+			"\"Let me negotiate a reasonable contract.\" #yZhongli states calmly as he strides over to the cat-like creature. NL NL You and the girl watch as #yZhongli and the cat-like creature engage in intense negotation. Finally, after what seems like forever, #yZhongli approaches you with a written contract and a strange gem in his hand.",
+
+			"\"The contract has been sealed. Make sure to kill those witches!\" The voice in your head says as it fades, along with the strange cat-like creature. NL NL You notice that the black-haired girl has fallen to her knees, sobbing hysterically. NL NL \"I-I-I couldn't save them... I'm so sorry...\" The girl sobs uncontrollably. You decide it is best to let the girl be and go on your way.",
+
+			"The girl reaches out a hand towards you and you take it. Suddenly, your surroundings warp and distort. In the blink of an eye, you find yourself in the countryside, far away from the city. NL NL \"I'm glad I could save at least you\" she sighs with relief as she walks away.",
+
+			"\"The contract has been forged. Please honor it. Breaking the contract will incur the wrath of the rock.\" he states as he places the strange gem and the contract into your hands. NL NL You take a look at the contract and then quickly give up as you are greeted with a flood of legal mumbo jumbo. You decide that you'll probably be fine without reading it in detail and proceed on your way."
+		],
+		"NAME": "The Contract",
+		"OPTIONS":
+		[
+			"[Accept a Contract] #gChoose #g1 #gof #g3 #grelics #rwith #ra #rcatch",
+			"[Escape] Jump to any room on the next floor",
+			"[Bring in a professional diplomat] #g???",
+			"[Locked] ???.",
+			"[Accept] #gObtain #gRelic"
+		]
+	},
+	"pcl:MicrowaveEvent":
+	{
+		"DESCRIPTIONS":
+		[
+			"Before you lies an unpeeled #ybanana in a @microwave@.",
+
+			"You snatch the #ybanana from the microwave and devour it. NL NL You probably should have been patient and cooked the banana in the @microwave@, but what's done is done.",
+
+			"You take the logical course of action and cook the #ybanana in the @microwave@, peel intact. NL NL As soon as the @microwave@ is done cooking, you peer inside to find that the #ybanana has become green and gel-like. NL NL In spite of its odd appearance, you devour it. After all, what could possibly go wrong?"
+		],
+		"NAME": "Banana in a Microwave",
+		"OPTIONS":
+		[
+			"[Eat the Banana] #gHeal #g{0} #gHP.",
+			"[Cook the Banana] #gHeal #g{0} #gHP. ???"
+		]
+	},
 	"pcl:TheAbandonedCabin":
 	{
 		"DESCRIPTIONS":
@@ -54,34 +99,6 @@
 			"[Read about Ninjas] #gHeal #g{0} #gHP",
 			"[Read about Scientists] #gHeal #g{0} #gHP",
 			"[Read about Wizards] #gHeal #g{0} #gHP"
-		]
-	},
-	"pcl:TheContract":
-	{
-		"DESCRIPTIONS":
-		[
-			"As you make your way through a sprawling city, you spot a strange cat-like creature perched on top of a fence. Suddenly, you hear a mysterious voice that seems to emanate from your head. NL NL \"Hello traveler. If you make a contract with me, I can grant you any wish you want.\"",
-
-			"Out of the corner of your eye, you spot a black-haired girl readying a rifle whilst rushing towards you and the cat-like creature.  NL NL \"DON'T LISTEN TO THAT THING! IT IS TRYING TO TAKE YOUR SOUL!\" she screams at you. NL NL The cat-like creatures completely ignores her and stares at you, awaiting your response.",
-
-			"\"Great! To seal the contract, please choose one of these gems below. \" The voice in your head says. NL NL Three gems suddenly appear before your eyes, suspended in mid-air as if they were beckoning you to grab them. Which one do you choose?",
-
-			"\"The contract has been sealed. Make sure to kill those witches!\" The voice in your head says as it fades, along with the strange cat-like creature. NL NL You notice that the black-haired girl has fallen to her knees, sobbing hysterically. NL NL \"I-I-I couldn't save them... I'm so sorry...\" The girl sobs uncontrollably. You decide it is best to let the girl be and go on your way.",
-
-			"The girl reaches out a hand towards you and you take it. Suddenly, your surroundings warp and distort. In the blink of an eye, you find yourself in the countryside, far away from the city. NL NL \"I'm glad I could save at least you\" she sighs with relief as she walks away.",
-
-			"\"Let me negotiate a reasonable contract.\" #yZhongli states calmly as he strides over to the cat-like creature. NL NL You and the girl watch as #yZhongli and the cat-like creature negotiate nonstop. Finally, after what seems like forever, #yZhongli approaches you with a written contract and a strange gem in his hand.",
-
-			"\"The contract has been forged. Please honor it. Breaking the contract will incur the wrath of the rock.\" he states as he places the strange gem and the contract into your hands. NL NL You take a look at the contract and then quickly give up as you are greeted with a flood of legal mumbo jumbo. You decide that you'll probably be fine without reading it in detail and proceed on your way."
-		],
-		"NAME": "The Contract",
-		"OPTIONS":
-		[
-			"[Accept a Contract] #gChoose #g1 #gof #g3 #grelics #rwith #ra #rcatch",
-			"[Escape] Teleport to a random floor",
-			"[Bring in a professional diplomat] #g???",
-			"[Locked] ???.",
-			"[Accept] #gObtain #gRelic"
 		]
 	},
 	"pcl:TheFloatyThing":
@@ -248,6 +265,25 @@
 			"[Purify] #gRemove #g{0} #gRandom #gCurses #gFrom #gYour #gDeck."
 		]
 	},
+	"pcl:TheMadLaboratory":
+	{
+		"DESCRIPTIONS":
+		[
+			"Numerous trees flood your vision as you're quickly engulfed by a thick forest. NL NL The air is ~heavy~ ~and~ ~humid,~ filled with spores from fungi and the leafs all seem to be wet from recent rain. NL NL Dancing through the trees, a ghostly figure spins in the air, fading in and out of existence while approaching you.",
+
+			"\"This is no place for a mortal, are you perhaps lost?\" NL NL The green haired apparition says in a calm yet surprised tone. NL NL \"Oh! You've got your own set of afflictions, if you are going to persist they'll slow you down. It is my duty to contain those, but I can also show you how to harvest power from them.\" NL NL She seems to mean no harm, what will you do?",
+
+			"Blinding light envelops you completely robbing you of your vision, when you finally are able to see again, you're by yourself again. NL NL The trees and mushrooms stand mockingly still as you're left to wonder what happened, but somehow both the air and yourself feel lighter."
+		],
+		"NAME": "The Mad Laboratory",
+		"OPTIONS":
+		[
+			"[Relic] #gCreate #ga #grelic.",
+			"[Card] #gCreate #ga #gcard.",
+			"[Nuke] #rLose #r{0} #rHP. ???",
+			"[Locked] ???"
+		]
+	},
 	"pcl:ThePharmacy":
 	{
 	  "DESCRIPTIONS":
@@ -260,9 +296,9 @@
 
 		"\"Are you interested in bounties? If so, hunt a #yCocogoat or the #yPyrotechnician for me. You will receive a great reward. Use this map to locate it.\"",
 
-		"\"Please hunt a Cocogoat soon. Thank you.\"",
+		"\"Please hunt a #yCocogoat soon. Thank you.\"",
 
-		"You are handed a map that marks out the location of a secluded harbor as well as the description of the Pyrotechnician that you will need to arrest. NL NL The receptionist states \"Please hunt the Pyrotechnician soon. Thank you.\"",
+		"You are handed a map that marks out the location of a secluded harbor as well as the description of the #yPyrotechnician that you will need to arrest. NL NL The receptionist states \"Please hunt the Pyrotechnician soon. Thank you.\"",
 
 		"You decide that it is not wise to shop in such an ominous place as this and quickly take your leave before the ~receptionist~ can say anything else."
 	  ],

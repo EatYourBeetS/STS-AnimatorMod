@@ -425,7 +425,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         return false;
     }
 
-    private static boolean CanGoNegative(AbstractPower power)
+    public static boolean CanGoNegative(AbstractPower power)
     {
         return StrengthPower.POWER_ID.equals(power.ID) || DexterityPower.POWER_ID.equals(power.ID) || FocusPower.POWER_ID.equals(power.ID) || ResistancePower.POWER_ID.equals(power.ID);
     }

@@ -18,8 +18,8 @@ public class CatoElAltestan extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 1, 4, 3);
-        SetUpgrade(0, 1, 0, 1);
+        Initialize(0, 1, 3, 3);
+        SetUpgrade(0, 0, 1, 1);
 
         SetAffinity_Blue(1, 0, 2);
 
@@ -27,7 +27,7 @@ public class CatoElAltestan extends PCLCard
 
         SetAffinityRequirement(PCLAffinity.Red, 2);
         SetAffinityRequirement(PCLAffinity.Blue, 2);
-        SetAffinityRequirement(PCLAffinity.Green, 2);
+        SetAffinityRequirement(PCLAffinity.Green, 3);
     }
 
     @Override

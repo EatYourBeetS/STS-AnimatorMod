@@ -232,6 +232,8 @@ public class PCLImages
         public final TextureCache BubuPharmacy     = new TextureCache("images/pcl/events/BubuPharmacy.png");
         public final TextureCache CursedForest     = new TextureCache("images/pcl/events/CursedForest.png");
         public final TextureCache HeroAssociation  = new TextureCache("images/pcl/events/HeroAssociation.png");
+        public final TextureCache Kyubey         = new TextureCache("images/pcl/events/Kyubey.png");
+        public final TextureCache Microwave         = new TextureCache("images/pcl/events/Microwave.png");
         public final TextureCache QingyunPeak      = new TextureCache("images/pcl/events/QingyunPeak.png");
         public final TextureCache PaimonsBargains  = new TextureCache("images/pcl/events/PaimonsBargains.png");
         public final TextureCache Placeholder      = new TextureCache("images/pcl/events/Placeholder.png");

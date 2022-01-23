@@ -562,7 +562,7 @@
 	},
 	"pcl:SupportDamagePower":
 	{
-		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn."],
+		"DESCRIPTIONS": ["Deal #b{0} damage to the enemy with lowest HP at the end of your turn.{1}"," NL Will deal #b{0} damage to {1}."],
 		"NAME": "Support Damage"
 	},
 	"pcl:SwirledPower":

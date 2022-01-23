@@ -1,21 +1,15 @@
 package pinacolada.actions.basic;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.ui.FtueTip;
 import com.megacrit.cardcrawl.vfx.combat.HealEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
-import pinacolada.resources.GR;
-import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 
 public class HealCreature extends EYBActionWithCallback<Integer>
 {
-    private static boolean shownTip;
-
     protected final int playerHpLastTurn;
     protected boolean showEffect = true;
     protected boolean recover = false;
@@ -49,13 +43,6 @@ public class HealCreature extends EYBActionWithCallback<Integer>
         return this;
     }
 
-    public HealCreature SetCard(AbstractCard card)
-    {
-        this.card = card;
-
-        return this;
-    }
-
     @Override
     protected void FirstUpdate()
     {
@@ -69,30 +56,6 @@ public class HealCreature extends EYBActionWithCallback<Integer>
                 {
                     Complete(0);
                     return;
-                }
-            }
-
-            if (card != null)
-            {
-                if (card.heal > 0)
-                {
-                    final int tempHP = Math.min(target.currentHealth - amount, amount);
-                    if (tempHP > 0)
-                    {
-                        PCLActions.Top.GainTemporaryHP(tempHP);
-
-                        if (!shownTip)
-                        {
-                            PCLActions.Top.WaitRealtime(1f);
-                            AbstractDungeon.ftue = new FtueTip(name, GR.PCL.Strings.Misc.HealingWarning,
-                                    Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);
-                            shownTip = true;
-                        }
-                    }
-                }
-                else
-                {
-                    card.heal = amount;
                 }
             }
         }

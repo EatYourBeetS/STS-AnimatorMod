@@ -94,6 +94,12 @@ public class Venti extends PCLCard
         }
 
         @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, amount);
+        }
+
+        @Override
         public void onInitialApplication()
         {
             super.onInitialApplication();

@@ -10,8 +10,11 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.interfaces.subscribers.OnPCLClickablePowerUsed;
+import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
+import pinacolada.powers.affinity.InvocationPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -35,14 +38,11 @@ public class Miko extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.TryActivateLimited()) {
-            PCLActions.Bottom.GainInvocation(secondaryValue);
-        }
         PCLActions.Bottom.ChannelOrb(new Plasma());
         PCLActions.Bottom.StackPower(new MikoPower(p, magicNumber));
     }
 
-    public static class MikoPower extends PCLPower implements OnOrbPassiveEffectSubscriber
+    public static class MikoPower extends PCLPower implements OnOrbPassiveEffectSubscriber, OnPCLClickablePowerUsed
     {
         public MikoPower(AbstractCreature owner, int amount)
         {
@@ -57,6 +57,7 @@ public class Miko extends PCLCard
             super.onInitialApplication();
 
             PCLCombatStats.onOrbPassiveEffect.Subscribe(this);
+            PCLCombatStats.onPCLClickablePowerUsed.Subscribe(this);
         }
 
         @Override
@@ -65,6 +66,7 @@ public class Miko extends PCLCard
             super.onRemove();
 
             PCLCombatStats.onOrbPassiveEffect.Unsubscribe(this);
+            PCLCombatStats.onPCLClickablePowerUsed.Unsubscribe(this);
         }
 
         @Override
@@ -90,6 +92,14 @@ public class Miko extends PCLCard
         public void updateDescription()
         {
             description = FormatDescription(0, amount, PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Light));
+        }
+
+        @Override
+        public boolean OnClickablePowerUsed(PCLClickablePower power, AbstractMonster target) {
+            if (power instanceof InvocationPower) {
+                PCLActions.Bottom.ChannelOrbs(Plasma::new, amount);
+            }
+            return true;
         }
     }
 }

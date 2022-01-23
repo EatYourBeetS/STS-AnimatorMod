@@ -236,7 +236,7 @@ public abstract class PCLLoadout
         for (int i = 0; i < MAX_RELIC_SLOTS; i++) {
             PCLRelicSlot r1 = data.AddRelicSlot();
             r1.AddItem(new PolychromePaintbrush(), 2);
-            r1.AddItem(new RollingCubes(), 3);
+            r1.AddItem(new SpitefulCubes(), 3);
             r1.AddItem(new ConcertsFinalHour(), 5);
         }
 
@@ -329,24 +329,24 @@ public abstract class PCLLoadout
         }
         res.add(UsefulBox.ID);
 
-        if (!UnlockTracker.isRelicSeen(TheMissingPiece.ID))
+        if (!UnlockTracker.isRelicSeen(FoolishCubes.ID))
         {
-            UnlockTracker.markRelicAsSeen(TheMissingPiece.ID);
+            UnlockTracker.markRelicAsSeen(FoolishCubes.ID);
         }
-        res.add(TheMissingPiece.ID);
+        res.add(FoolishCubes.ID);
 
-        return res;
-    }
-
-    public ArrayList<String> GetAdditionalRelics()
-    {
-        final ArrayList<String> relicList = new ArrayList<>();
         for (PCLRelicSlot rSlot : GetPreset().relicSlots) {
             if (rSlot.selected != null && rSlot.selected.relic != null) {
-                relicList.add(rSlot.selected.relic.relicId);
+                String relicID = rSlot.selected.relic.relicId;
+                if (SpitefulCubes.ID.equals(relicID)) {
+                    res.set(1, relicID);
+                }
+                else {
+                    res.add(rSlot.selected.relic.relicId);
+                }
             }
         }
-        return relicList;
+        return res;
     }
 
     public int GetHP()

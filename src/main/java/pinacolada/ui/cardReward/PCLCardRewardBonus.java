@@ -14,7 +14,6 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCard_UltraRare;
 import pinacolada.effects.SFX;
 import pinacolada.effects.card.PermanentUpgradeEffect;
-import pinacolada.relics.pcl.AbstractMissingPiece;
 import pinacolada.relics.pcl.CursedGlyph;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLStrings;
@@ -200,7 +199,6 @@ public class PCLCardRewardBonus extends GUIElement
                 AbstractDungeon.player.gainGold(bundle.amount);
                 series.bonus += 1;
 
-                AbstractMissingPiece.RefreshDescription();
                 PCLJUtils.LogInfo(this, "Obtained Gold Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
@@ -216,7 +214,6 @@ public class PCLCardRewardBonus extends GUIElement
                 AbstractDungeon.player.increaseMaxHp(bundle.amount, true);
                 series.bonus += 1;
 
-                AbstractMissingPiece.RefreshDescription();
                 PCLJUtils.LogInfo(this, "Obtained Max HP Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }
@@ -232,7 +229,6 @@ public class PCLCardRewardBonus extends GUIElement
                 PCLGameEffects.TopLevelQueue.Add(new PermanentUpgradeEffect()).SetFilter(c -> AbstractCard.CardRarity.COMMON.equals(c.rarity));
                 series.bonus += 1;
 
-                AbstractMissingPiece.RefreshDescription();
                 PCLJUtils.LogInfo(this, "Obtained Common Upgrade Bonus (+" + bundle.amount + "): " + bundle.card.cardID);
                 return;
             }

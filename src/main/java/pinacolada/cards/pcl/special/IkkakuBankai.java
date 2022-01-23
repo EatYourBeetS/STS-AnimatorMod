@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 
 public class IkkakuBankai extends PCLCard
 {
@@ -15,11 +16,19 @@ public class IkkakuBankai extends PCLCard
     {
         super(DATA);
 
-        Initialize(1, 0, 4);
+        Initialize(3, 0, 3);
         SetUpgrade(2, 0, 0);
         SetAffinity_Red(1, 0, 2);
         SetAffinity_Green(1, 0, 2);
         SetExhaust(true);
+    }
+
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        SetExhaust(!PCLGameUtilities.IsPCLAffinityPowerActive(PCLAffinity.Red));
     }
 
     @Override

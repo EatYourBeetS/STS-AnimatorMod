@@ -132,6 +132,7 @@ public class ReplacementCardBuilder extends PCLCardBuilder
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_Dark.toString(), GR.Tooltips.Affinity_Dark.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_Star.toString(), GR.Tooltips.Multicolor.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Affinity_General.toString(), GR.Tooltips.Affinity_General.toString())
+                .replace(eatyourbeets.resources.GR.Tooltips.Blur.toString(), GR.Tooltips.Blur.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Lightning.toString(), GR.Tooltips.Lightning.toString())
                 .replace(eatyourbeets.resources.GR.Tooltips.Dark.toString(), GR.Tooltips.Dark.toString());
     }

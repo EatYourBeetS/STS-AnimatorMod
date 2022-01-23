@@ -81,12 +81,12 @@ public class JunSakurada extends PCLCard
                                 for (AbstractCard card : cards) {
                                     AbstractCard copy = PCLGameUtilities.Imitate(card);
                                     if (copy.baseDamage > 0) {
-                                        PCLGameUtilities.IncreaseDamage(copy, amount, false);
+                                        PCLGameUtilities.IncreaseDamage(copy, amount - 1, false);
                                     }
                                     if (copy.baseBlock > 0) {
-                                        PCLGameUtilities.IncreaseBlock(copy, amount, false);
+                                        PCLGameUtilities.IncreaseBlock(copy, amount - 1, false);
                                     }
-                                    PCLActions.Bottom.MakeCardInHand(copy);
+                                    PCLActions.Bottom.PlayCard(copy, PCLGameUtilities.GetRandomEnemy(true));
                                 }
                             });
             RemovePower();

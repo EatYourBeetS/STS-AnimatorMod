@@ -82,6 +82,9 @@ public class PCLRelicSlotEditor extends GUIElement
         if (relic != null) {
             this.relicImage = new GUI_Relic(relic, new AdvancedHitbox(relicValue_text.hb.x + relicValue_text.hb.width + SPACING / 2, relicValue_text.hb.y, relic.hb.width, relic.hb.height));
         }
+        else {
+            this.relicImage = null;
+        }
 
         return this;
     }

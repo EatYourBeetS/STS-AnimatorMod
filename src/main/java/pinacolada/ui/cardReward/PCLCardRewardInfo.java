@@ -15,11 +15,11 @@ public class PCLCardRewardInfo extends GUIElement
     public final GUI_Toggle upgradeToggle;
     public final GUI_Toggle zoomToggle;
     public final GUI_Toggle simplifyCardUIToggle;
-    public final KeywordLegend exhaust;
-    public final KeywordLegend ethereal;
-    public final KeywordLegend retain;
-    public final KeywordLegend innate;
-    public final KeywordLegend purge;
+    public final PCLKeywordLegend exhaust;
+    public final PCLKeywordLegend ethereal;
+    public final PCLKeywordLegend retain;
+    public final PCLKeywordLegend innate;
+    public final PCLKeywordLegend purge;
 
     public PCLCardRewardInfo()
     {
@@ -44,11 +44,11 @@ public class PCLCardRewardInfo extends GUIElement
         .SetFont(EYBFontHelper.CardDescriptionFont_Large, 0.475f)
         .SetOnToggle(this::ToggleSimplifyCardUI);
 
-        exhaust = new KeywordLegend(GR.Tooltips.Exhaust);
-        ethereal = new KeywordLegend(GR.Tooltips.Ethereal);
-        retain = new KeywordLegend(GR.Tooltips.Retain);
-        innate = new KeywordLegend(GR.Tooltips.Innate);
-        purge = new KeywordLegend(GR.Tooltips.Purge);
+        exhaust = new PCLKeywordLegend(GR.Tooltips.Exhaust);
+        ethereal = new PCLKeywordLegend(GR.Tooltips.Ethereal);
+        retain = new PCLKeywordLegend(GR.Tooltips.Retain);
+        innate = new PCLKeywordLegend(GR.Tooltips.Innate);
+        purge = new PCLKeywordLegend(GR.Tooltips.Purge);
     }
 
     public void Close()

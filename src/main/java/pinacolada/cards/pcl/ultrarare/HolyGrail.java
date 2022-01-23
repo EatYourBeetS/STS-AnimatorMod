@@ -11,7 +11,7 @@ import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_UltraRare;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.relics.pcl.HolyGrailRelic;
+import pinacolada.relics.pcl.replacement.HolyGrailRelic;
 import pinacolada.utilities.PCLActions;
 
 public class HolyGrail extends PCLCard_UltraRare implements OnBattleEndSubscriber

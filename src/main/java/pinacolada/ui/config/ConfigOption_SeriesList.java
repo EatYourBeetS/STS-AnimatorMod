@@ -1,6 +1,7 @@
 package pinacolada.ui.config;
 
 import basemod.ModPanel;
+import eatyourbeets.ui.config.ConfigOption;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLJUtils;

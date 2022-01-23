@@ -246,7 +246,7 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
         }
 
         return FormatDescription(0
-                , sourceCard.name.replace(" ", " #y")
+                , PCLJUtils.ModifyString(sourceCard.name, w -> "#y" + w)
                 , triggerCondition.requiredAmount
                 , first.GetTooltip(), sb.toString()
                 , active ? powerStrings.DESCRIPTIONS[6] : !triggerCondition.checkCondition.Invoke(triggerCondition.requiredAmount) ? powerStrings.DESCRIPTIONS[7] : "");

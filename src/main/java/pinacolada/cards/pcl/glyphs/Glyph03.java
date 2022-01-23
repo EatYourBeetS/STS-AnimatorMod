@@ -46,14 +46,14 @@ public class Glyph03 extends Glyph
 
     public PCLAffinity GetAffinity() {
         if (affinity == null) {
-            affinity = PCLGameUtilities.GetRandomElement(PCLAffinity.Extended());
+            affinity = PCLGameUtilities.GetRandomElement(PCLAffinity.Basic());
         }
         return affinity;
     }
 
     public PCLAffinity GetAffinity2() {
         if (affinity2 == null) {
-            affinity2 = PCLGameUtilities.GetRandomElement(PCLJUtils.Filter(PCLAffinity.Extended(), af -> af != GetAffinity()));
+            affinity2 = PCLGameUtilities.GetRandomElement(PCLJUtils.Filter(PCLAffinity.Basic(), af -> af != GetAffinity()));
         }
         return affinity2;
     }

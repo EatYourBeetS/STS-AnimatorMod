@@ -9,6 +9,7 @@ import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLJUtils;
 
 public class MorganLeFay extends PCLCard
 {
@@ -86,7 +87,7 @@ public class MorganLeFay extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, card != null ? card.name.replace(" ", " #y") : "", amount);
+            description = FormatDescription(0, card != null ? PCLJUtils.ModifyString(card.name, w -> "#y" + w) : "", amount);
         }
     }
 }

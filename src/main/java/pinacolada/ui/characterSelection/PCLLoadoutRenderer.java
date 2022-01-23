@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import eatyourbeets.ui.GUIElement;
@@ -32,6 +33,7 @@ public class PCLLoadoutRenderer extends GUIElement
 
     protected static final FieldInfo<String> _hp = PCLJUtils.GetField("hp", CharacterOption.class);
     protected static final FieldInfo<Integer> _gold = PCLJUtils.GetField("gold", CharacterOption.class);
+    protected static final FieldInfo<CharSelectInfo> _charSelectInfo = PCLJUtils.GetField("charInfo", CharacterOption.class);
     protected static final float POS_X = 170f * Settings.scale;
     protected static final float POS_Y = ((float) Settings.HEIGHT / 2f) - (20 * Settings.scale);
     protected static final float ROW_OFFSET = 60 * Settings.scale;
@@ -84,12 +86,12 @@ public class PCLLoadoutRenderer extends GUIElement
                 .SetAlignment(0.5f, 0.5f, false);
 
         SeriesButton = new GUI_Button(GR.PCL.Images.Edit.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(StartingCardsListLabel.hb.x + Scale(110), StartingCardsListLabel.hb.y - Scale(48)).SetText("")
+                .SetPosition(StartingCardsListLabel.hb.x + Scale(240), StartingCardsListLabel.hb.y + Scale(192)).SetText("")
                 .SetTooltip(GR.PCL.Strings.CharSelect.SeriesEditor, GR.PCL.Strings.CharSelect.SeriesEditorInfo)
                 .SetOnClick(this::OpenSeriesSelect);
 
         LoadoutEditorButton = new GUI_Button(GR.PCL.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-                .SetPosition(SeriesButton.hb.x + SeriesButton.hb.width + Scale(40), StartingCardsListLabel.hb.y - Scale(48)).SetText("")
+                .SetPosition(SeriesButton.hb.x + SeriesButton.hb.width + Scale(40), StartingCardsListLabel.hb.y + Scale(192)).SetText("")
                 .SetTooltip(GR.PCL.Strings.CharSelect.DeckEditor, GR.PCL.Strings.CharSelect.DeckEditorInfo)
                 .SetOnRightClick(this::ChangePreset)
                 .SetOnClick(this::OpenLoadoutEditor);
@@ -228,6 +230,8 @@ public class PCLLoadoutRenderer extends GUIElement
     {
         _gold.Set(characterOption, loadout.GetGold());
         _hp.Set(characterOption, String.valueOf(loadout.GetHP()));
+        _charSelectInfo.Get(characterOption).relics = loadout.GetStartingRelics();
+
 
         int currentLevel = GR.PCL.GetUnlockLevel();
         if (currentLevel < loadout.UnlockLevel)

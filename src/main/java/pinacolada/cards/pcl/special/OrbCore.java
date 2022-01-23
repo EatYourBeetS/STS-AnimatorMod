@@ -1,5 +1,6 @@
 package pinacolada.cards.pcl.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -10,7 +11,7 @@ import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.ArrayUtils;
 import pinacolada.actions.pileSelection.SelectFromPile;
@@ -31,9 +32,6 @@ public abstract class OrbCore extends PCLCard
     public static final String ID = GR.PCL.CreateID(OrbCore.class.getSimpleName());
 
     private static final WeightedList<OrbCore> cores = new WeightedList<>();
-    private static final RandomizedList<OrbCore> cores0 = new RandomizedList<>();
-    private static final RandomizedList<OrbCore> cores1 = new RandomizedList<>();
-    private static final RandomizedList<OrbCore> cores2 = new RandomizedList<>();
 
     protected static PCLCardData RegisterOrbCore(Class<? extends PCLCard> type, PCLCardTooltip orbTooltip, PCLCardTooltip scalingTooltip, PCLCardTooltip affinityTooltip)
     {
@@ -48,27 +46,28 @@ public abstract class OrbCore extends PCLCard
 
     public static SelectFromPile SelectCoreAction(String name, int amount)
     {
-        return new SelectFromPile(name, amount, OrbCore.CreateCoresGroup(true, PCLGameUtilities.GetRNG()));
+        return SelectCoreAction(name, amount, 3, false);
     }
 
-    public static CardGroup CreateCoresGroup(boolean anyCost, Random rng)
+    public static SelectFromPile SelectCoreAction(String name, int amount, int choices) {
+        return SelectCoreAction(name, amount, choices, false);
+    }
+
+    public static SelectFromPile SelectCoreAction(String name, int amount, int choices, boolean upgraded) {
+        return new SelectFromPile(name, amount, CreateCoresGroup(choices, GameUtilities.GetRNG(), upgraded));
+    }
+
+    public static CardGroup CreateCoresGroup(int size, Random rng, boolean upgraded)
     {
         InitializeCores();
-
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-
-        if (anyCost)
-        {
-            WeightedList<OrbCore> temp = new WeightedList<>(cores);
-            group.group.add(temp.Retrieve(rng, true).makeCopy());
-            group.group.add(temp.Retrieve(rng, true).makeCopy());
-            group.group.add(temp.Retrieve(rng, true).makeCopy());
-        }
-        else
-        {
-            group.group.add(cores0.Retrieve(rng, false).makeCopy());
-            group.group.add(cores1.Retrieve(rng, false).makeCopy());
-            group.group.add(cores2.Retrieve(rng, false).makeCopy());
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        WeightedList<OrbCore> temp = new WeightedList<>(cores);
+        while(temp.Size() > 0 && group.size() < size) {
+            AbstractCard copy = temp.Retrieve(rng, true).makeCopy();
+            if (upgraded) {
+                copy.upgrade();
+            }
+            group.group.add(copy);
         }
 
         return group;
@@ -85,26 +84,16 @@ public abstract class OrbCore extends PCLCard
     {
         if (cores.Size() == 0)
         {
-            cores0.Add(new OrbCore_Fire());
-            cores0.Add(new OrbCore_Lightning());
-            cores0.Add(new OrbCore_Dark());
-            cores0.Add(new OrbCore_Frost());
-            cores1.Add(new OrbCore_Air());
-            cores1.Add(new OrbCore_Earth());
-            cores2.Add(new OrbCore_Plasma());
-            cores2.Add(new OrbCore_Chaos());
-            cores2.Add(new OrbCore_Water());
-            cores2.Add(new OrbCore_Metal());
-
-            for (OrbCore core : cores0.GetInnerList()) {
-                cores.Add(core, 11);
-            }
-            for (OrbCore core : cores1.GetInnerList()) {
-                cores.Add(core, 7);
-            }
-            for (OrbCore core : cores2.GetInnerList()) {
-                cores.Add(core, 1);
-            }
+            cores.Add(new OrbCore_Fire(), 11);
+            cores.Add(new OrbCore_Lightning(), 11);
+            cores.Add(new OrbCore_Dark(), 11);
+            cores.Add(new OrbCore_Frost(), 11);
+            cores.Add(new OrbCore_Air(), 7);
+            cores.Add(new OrbCore_Earth(), 7);
+            cores.Add(new OrbCore_Plasma(), 1);
+            cores.Add(new OrbCore_Chaos(), 1);
+            cores.Add(new OrbCore_Water(), 1);
+            cores.Add(new OrbCore_Metal(), 1);
         }
     }
 

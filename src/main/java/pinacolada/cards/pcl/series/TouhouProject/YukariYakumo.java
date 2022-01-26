@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.series.TouhouProject;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.common.ImpairedPower;
 import pinacolada.powers.special.InvertPower;
 import pinacolada.utilities.PCLActions;
 
 public class YukariYakumo extends PCLCard
 {
-    public static final PCLCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(YukariYakumo.class).SetSkill(2, CardRarity.RARE, PCLCardTarget.Self).SetSeriesFromClassPackage();
     public static final int DESECRATION_COST = 10;
 
     public YukariYakumo()

@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Ren extends PCLCard
 {
     public static final PCLCardData DATA = Register(Ren.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Dark), true));
     public static final int THRESHOLD = 3;

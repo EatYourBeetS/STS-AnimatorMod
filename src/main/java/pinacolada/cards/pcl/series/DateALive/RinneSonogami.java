@@ -5,12 +5,9 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.stances.InvocationStance;
+import pinacolada.stances.pcl.InvocationStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class RinneSonogami extends PCLCard
 {
     public static final PCLCardData DATA = Register(RinneSonogami.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public RinneSonogami()

@@ -15,10 +15,7 @@ import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.FieldInfo;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
@@ -35,7 +32,7 @@ public class Gilgamesh extends PCLCard implements OnRelicObtainedSubscriber
     private static AbstractRelic lastRelicObtained = null;
 
     public static final PCLCardData DATA = Register(Gilgamesh.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Ranged, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public Gilgamesh()

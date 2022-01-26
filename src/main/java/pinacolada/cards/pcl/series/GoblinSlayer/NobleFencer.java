@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class NobleFencer extends PCLCard
 {
     public static final PCLCardData DATA = Register(NobleFencer.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

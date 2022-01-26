@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.HPAttribute;
 import pinacolada.cards.pcl.special.MadokaKaname_Krimheild;
@@ -19,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class MadokaKaname extends PCLCard
 {
     public static final PCLCardData DATA = Register(MadokaKaname.class)
-            .SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

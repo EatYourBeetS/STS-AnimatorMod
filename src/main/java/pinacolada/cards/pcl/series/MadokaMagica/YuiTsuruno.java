@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.CardSelection;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.effects.AttackEffects;
 import pinacolada.orbs.pcl.Fire;
@@ -15,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class YuiTsuruno extends PCLCard
 {
     public static final PCLCardData DATA = Register(YuiTsuruno.class)
-            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, PCLCardTarget.Random)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 

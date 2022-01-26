@@ -7,17 +7,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.TimeParadox;
 import pinacolada.utilities.PCLActions;
 
 public class MakiseKurisu extends PCLCard
 {
     public static final PCLCardData DATA = Register(MakiseKurisu.class)
-            .SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(3, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.SteinsGate)
             .PostInitialize(data ->

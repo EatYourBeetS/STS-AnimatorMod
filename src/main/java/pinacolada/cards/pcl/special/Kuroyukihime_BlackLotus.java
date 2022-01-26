@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class Kuroyukihime_BlackLotus extends PCLCard
 {
     public static final PCLCardData DATA = Register(Kuroyukihime_BlackLotus.class)
-            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, PCLCardTarget.AoE)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(Kuroyukihime.DATA.Series);
 

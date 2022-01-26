@@ -9,7 +9,7 @@ import pinacolada.utilities.PCLActions;
 
 public class MarisaKirisame extends PCLCard
 {
-    public static final PCLCardData DATA = Register(MarisaKirisame.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(MarisaKirisame.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Electric, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     public MarisaKirisame()
     {

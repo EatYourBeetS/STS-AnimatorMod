@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class RitualDagger extends PCLCard
 {
     public static final PCLCardData DATA = Register(RitualDagger.class)
-            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Normal, EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.Normal)
             .SetSeries(CardSeries.Fate)
             .SetColor(CardColor.COLORLESS);
 

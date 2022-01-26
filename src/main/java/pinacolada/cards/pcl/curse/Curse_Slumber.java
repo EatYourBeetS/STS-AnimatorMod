@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.curse;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.powers.common.ImpairedPower;
 import pinacolada.utilities.PCLActions;
 
 public class Curse_Slumber extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Slumber.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, false)
+            .SetCurse(-2, PCLCardTarget.None, false)
             .SetSeries(CardSeries.NoGameNoLife);
 
     public Curse_Slumber()

@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Victim extends PCLCard
 {
     public static final PCLCardData DATA = Register(Victim.class)
-            .SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(3, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Victim()

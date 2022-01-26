@@ -8,10 +8,8 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
-import com.megacrit.cardcrawl.orbs.*;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
-import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.utilities.TargetHelper;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +19,7 @@ import pinacolada.cards.base.PCLCardAffinities;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.effects.AttackEffects;
 import pinacolada.interfaces.subscribers.OnDamageActionSubscriber;
-import pinacolada.orbs.pcl.*;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
@@ -34,7 +32,6 @@ import pinacolada.utilities.PCLJUtils;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 
 public class MindControlPower extends PCLClickablePower implements OnDamageActionSubscriber, OnTryApplyPowerListener
 {
@@ -42,7 +39,6 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
     public static final Color ACTIVE_COLOR = new Color(0.5f, 1f, 0.5f, 1f);
     public static final int AFFINITY_GAIN = 2;
     public static final int BUFF_DEBUFF_GAIN = 1;
-    public static final HashMap<String, OrbConstructor> ORB_MAP = new HashMap<>();
 
     protected final AbstractCard sourceCard;
 
@@ -52,7 +48,7 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
     public int block;
     public int damage;
     public ArrayList<PCLAffinity> affinityPowers = new ArrayList<>();
-    public ArrayList<OrbConstructor> orbs = new ArrayList<>();
+    public ArrayList<PCLOrbHelper> orbs = new ArrayList<>();
     public ArrayList<PCLPowerHelper> buffs = new ArrayList<>();
     public ArrayList<PCLPowerHelper> debuffs = new ArrayList<>();
     protected byte moveByte;
@@ -61,19 +57,6 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
     protected int lastDamage;
     protected int lastMultiplier;
     protected boolean lastIsMultiDamage;
-
-    static {
-        ORB_MAP.put(GR.Tooltips.Air.id, new OrbConstructor(GR.Tooltips.Air, Air::new, 3));
-        ORB_MAP.put(GR.Tooltips.Chaos.id, new OrbConstructor(GR.Tooltips.Chaos, Chaos::new, 6));
-        ORB_MAP.put(GR.Tooltips.Dark.id, new OrbConstructor(GR.Tooltips.Dark, Dark::new, 1));
-        ORB_MAP.put(GR.Tooltips.Earth.id, new OrbConstructor(GR.Tooltips.Earth, Earth::new, 3));
-        ORB_MAP.put(GR.Tooltips.Fire.id, new OrbConstructor(GR.Tooltips.Fire, Fire::new, 2));
-        ORB_MAP.put(GR.Tooltips.Frost.id, new OrbConstructor(GR.Tooltips.Frost, Frost::new, 2));
-        ORB_MAP.put(GR.Tooltips.Lightning.id, new OrbConstructor(GR.Tooltips.Lightning, Lightning::new, 1));
-        ORB_MAP.put(GR.Tooltips.Metal.id, new OrbConstructor(GR.Tooltips.Metal, Metal::new, 6));
-        ORB_MAP.put(GR.Tooltips.Plasma.id, new OrbConstructor(GR.Tooltips.Plasma, Plasma::new, 6));
-        ORB_MAP.put(GR.Tooltips.Water.id, new OrbConstructor(GR.Tooltips.Water, Water::new, 5));
-    }
 
     private static ArrayList<PCLAffinity> GetAffinityPowers(AbstractCard card, int limit) {
         ArrayList<PCLAffinity> affs = new ArrayList<>();
@@ -119,12 +102,12 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
         return powers;
     }
 
-    private static ArrayList<OrbConstructor> GetOrbs(AbstractCard card, int limit) {
-        ArrayList<OrbConstructor> orbs = new ArrayList<>();
+    private static ArrayList<PCLOrbHelper> GetOrbs(AbstractCard card, int limit) {
+        ArrayList<PCLOrbHelper> orbs = new ArrayList<>();
         if (card instanceof PCLCard) {
             for (PCLCardTooltip tip : ((PCLCard) card).tooltips)
             {
-                OrbConstructor found = ORB_MAP.get(tip.id);
+                PCLOrbHelper found = PCLJUtils.Find(PCLOrbHelper.ALL.values(), o -> o.Tooltip.id.equals(tip.id));
                 if (found != null) {
                     orbs.add(found);
                     if (orbs.size() >= limit) {
@@ -351,8 +334,8 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
         for (PCLPowerHelper ph : debuffs) {
             PCLActions.Bottom.ApplyPower(TargetHelper.RandomEnemy(), ph, BUFF_DEBUFF_GAIN);
         }
-        for (OrbConstructor o : orbs) {
-            PCLActions.Bottom.ChannelOrbs(o.OrbInvoker, 1);
+        for (PCLOrbHelper o : orbs) {
+            PCLActions.Bottom.ChannelOrbs(o, 1);
         }
 
         return damage <= 0 && block <= 0 && buffs.isEmpty() && debuffs.isEmpty() && orbs.isEmpty();
@@ -417,7 +400,7 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
                 orbs = GetOrbs(card, rarityModifier -= debuffs.size());
 
                 if (block > 0 || affinityPowers.size() > 0 || buffs.size() > 0 || debuffs.size() > 0 || orbs.size() > 0) {
-                    this.triggerCondition.requiredAmount = 4 + debuffs.size() + buffs.size() + affinityPowers.size() + block / 15 + (int) PCLJUtils.Sum(orbs, o -> (float) o.cost);
+                    this.triggerCondition.requiredAmount = 4 + debuffs.size() + buffs.size() + affinityPowers.size() + block / 15 + (int) PCLJUtils.Sum(orbs, o -> Float.valueOf(PCLOrbHelper.COMMON_THRESHOLD - o.weight));
                 }
                 else {
                     canRedirect = true;
@@ -505,17 +488,5 @@ public class MindControlPower extends PCLClickablePower implements OnDamageActio
             }
         }
         return true;
-    }
-
-    private static class OrbConstructor {
-        public PCLCardTooltip Tooltip;
-        public FuncT0<AbstractOrb> OrbInvoker;
-        public int cost;
-
-        public OrbConstructor(PCLCardTooltip tooltip, FuncT0<AbstractOrb> func, int cost) {
-            this.Tooltip = tooltip;
-            this.OrbInvoker = func;
-            this.cost = cost;
-        }
     }
 }

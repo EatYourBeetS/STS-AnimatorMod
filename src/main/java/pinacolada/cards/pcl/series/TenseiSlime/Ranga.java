@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -39,7 +36,7 @@ public class Ranga extends PCLCard implements OnAttackSubscriber
     @Override
     protected void OnUpgrade()
     {
-        SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
+        SetAttackTarget(PCLCardTarget.AoE);
         SetMultiDamage(true);
         upgradedDamage = true;
     }

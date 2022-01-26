@@ -4,14 +4,17 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class GenericEffect_NextTurnBlock extends GenericEffect
 {
+    public static final String ID = Register(GenericEffect_NextTurnBlock.class);
+
     public GenericEffect_NextTurnBlock(int amount)
     {
-        this.amount = amount;
+        super(ID, null, GR.Tooltips.Block, PCLCardTarget.Self, amount);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -15,7 +16,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Kyubey extends PCLCard
 {
     public static final PCLCardData DATA = Register(Kyubey.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));

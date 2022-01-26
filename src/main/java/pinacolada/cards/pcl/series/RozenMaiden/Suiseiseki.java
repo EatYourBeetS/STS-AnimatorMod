@@ -2,10 +2,7 @@ package pinacolada.cards.pcl.series.RozenMaiden;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.status.Status_Slimed;
@@ -14,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class Suiseiseki extends PCLCard
 {
     public static final PCLCardData DATA = Register(Suiseiseki.class)
-    		.SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+    		.SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Status_Slimed(), false).AddPreview(new Souseiseki(), false));
 

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.actions.special.CreateRandomCurses;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLActions;
 public class MamiTomoe_Candeloro extends PCLCard implements OnPurgeSubscriber
 {
     public static final PCLCardData DATA = Register(MamiTomoe_Candeloro.class)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(SayakaMiki.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 

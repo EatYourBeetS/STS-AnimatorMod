@@ -3,14 +3,11 @@ package pinacolada.cards.pcl.series.LogHorizon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Frost;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ChannelOrb;
 import pinacolada.effects.AttackEffects;
-import pinacolada.orbs.pcl.Fire;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -20,7 +17,7 @@ import java.util.HashSet;
 public class RundelhausCode extends PCLCard
 {
     public static final PCLCardData DATA = Register(RundelhausCode.class)
-            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Electric, PCLCardTarget.Normal)
             .SetSeries(CardSeries.LogHorizon);
 
     private static final HashSet<AbstractCard> buffs = new HashSet<>();
@@ -72,10 +69,11 @@ public class RundelhausCode extends PCLCard
         PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_ChannelOrb(new Fire()));
-                choices.AddEffect(new GenericEffect_ChannelOrb(new Lightning()));
-                choices.AddEffect(new GenericEffect_ChannelOrb(new Frost()));
-                choices.AddEffect(new GenericEffect_ChannelOrb(new Dark()));
+                for (PCLOrbHelper orb : PCLOrbHelper.ALL.values()) {
+                    if (PCLGameUtilities.IsCommonOrb(orb.ID)) {
+                        choices.AddEffect(new GenericEffect_ChannelOrb(orb, 1));
+                    }
+                }
             }
 
             choices.Select(PCLActions.Bottom, 1, null)

@@ -7,15 +7,15 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.cards.pcl.special.Shichika_Kyotouryuu;
 import pinacolada.powers.common.CounterAttackPower;
-import pinacolada.stances.MightStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.MightStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
 public class Shichika extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shichika.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Shichika_Kyotouryuu(), true));
 

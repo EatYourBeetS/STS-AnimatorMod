@@ -53,7 +53,7 @@ public class TakashiNatsume_Circle extends PCLCard
     private static final int DAMAGE_DECAY = 2;
     private static final int HEAL_NUTCRACKER = 5;
     private static final int NORMALITY_HITS = 3;
-    public static final PCLCardData DATA = Register(TakashiNatsume_Circle.class).SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
+    public static final PCLCardData DATA = Register(TakashiNatsume_Circle.class).SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou);
     private TakashiNatsume_Circle.Form currentForm = Form.None;
 
     public TakashiNatsume_Circle() {
@@ -94,7 +94,7 @@ public class TakashiNatsume_Circle extends PCLCard
             case Decay:
                 baseDamage = DAMAGE_DECAY * secondaryValue;
                 SetAttackType(PCLAttackType.Dark);
-                SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
+                SetAttackTarget(PCLCardTarget.AoE);
                 this.type = CardType.ATTACK;
                 break;
             case Curse_Nutcracker:
@@ -125,7 +125,7 @@ public class TakashiNatsume_Circle extends PCLCard
             case Regret:
                 baseDamage = magicNumber;
                 SetAttackType(PCLAttackType.Dark);
-                SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.Random);
+                SetAttackTarget(PCLCardTarget.Random);
                 this.type = CardType.ATTACK;
                 cardText.OverrideDescription(DATA.Strings.DESCRIPTION + " NL  NL " + DATA.Strings.EXTENDED_DESCRIPTION[1], true);
                 break;

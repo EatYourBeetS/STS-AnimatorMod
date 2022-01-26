@@ -2,18 +2,15 @@ package pinacolada.cards.pcl.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.orbs.pcl.Air;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 
 public class Tatsumaki extends PCLCard
 {
     public static final PCLCardData DATA = Register(Tatsumaki.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Tatsumaki()

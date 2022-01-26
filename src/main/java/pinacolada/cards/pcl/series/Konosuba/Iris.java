@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.utilities.PCLActions;
@@ -21,7 +18,7 @@ import java.util.UUID;
 public class Iris extends PCLCard
 {
     public static final PCLCardData DATA = Register(Iris.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None, true)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
     private static HashMap<UUID, Integer> buffs;

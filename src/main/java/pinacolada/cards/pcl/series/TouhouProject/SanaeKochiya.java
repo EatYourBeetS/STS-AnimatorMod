@@ -8,6 +8,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.replacement.Miracle;
@@ -15,7 +16,7 @@ import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 
 public class SanaeKochiya extends PCLCard {
-    public static final PCLCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None, true).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(SanaeKochiya.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None, true).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Miracle(), false));
 
     public SanaeKochiya() {

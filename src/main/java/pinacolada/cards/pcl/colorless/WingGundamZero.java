@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.IonizingStorm;
 import pinacolada.utilities.PCLActions;
@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLJUtils;
 public class WingGundamZero extends PCLCard
 {
     public static final PCLCardData DATA = Register(WingGundamZero.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.Self).SetColor(CardColor.COLORLESS)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.Self).SetColor(CardColor.COLORLESS)
             .SetMaxCopies(1)
             .SetSeries(CardSeries.Gundam)
             .PostInitialize(data -> {data.AddPreview(new IonizingStorm(), false);

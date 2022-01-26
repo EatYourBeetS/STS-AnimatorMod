@@ -32,14 +32,12 @@ public class Kirby extends PCLCard implements
         StartupCard {
     public static PCLCardTooltip KirbyTooltip;
     public static final PCLCardData DATA = Register(Kirby.class)
-            .SetSkill(-2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.Normal, true)
+            .SetSkill(-2, CardRarity.RARE, PCLCardTarget.Normal, true)
             .SetColor(CardColor.COLORLESS)
             .SetMaxCopies(1)
             .SetSeries(CardSeries.Kirby)
             .PostInitialize(data ->
-            {
-                KirbyTooltip = new PCLCardTooltip(Kirby.DATA.Strings.NAME, Kirby.DATA.Strings.EXTENDED_DESCRIPTION[3]);
-            });
+                    KirbyTooltip = new PCLCardTooltip(Kirby.DATA.Strings.NAME, Kirby.DATA.Strings.EXTENDED_DESCRIPTION[3]));
     public static final int COPIED_CARDS = 2;
     protected final RotatingList<PCLCardPreview> previews = new RotatingList<>();
     protected final ArrayList<AbstractCard> inheritedCards = new ArrayList<>(COPIED_CARDS);

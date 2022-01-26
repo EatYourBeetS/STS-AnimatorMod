@@ -2,17 +2,18 @@ package pinacolada.cards.pcl.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class LeleiLaLalena extends PCLCard
 {
     public static final PCLCardData DATA = Register(LeleiLaLalena.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public LeleiLaLalena()
@@ -68,6 +69,6 @@ public class LeleiLaLalena extends PCLCard
         PCLActions.Bottom.DiscardFromHand(name, 1, !upgraded)
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
-        .AddCallback(() -> PCLActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
+        .AddCallback(() -> PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Frost, magicNumber));
     }
 }

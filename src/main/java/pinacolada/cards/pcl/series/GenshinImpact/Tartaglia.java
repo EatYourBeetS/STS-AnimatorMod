@@ -5,19 +5,16 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_Delusion;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.common.BurningPower;
-import pinacolada.stances.MightStance;
+import pinacolada.stances.pcl.MightStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Tartaglia extends PCLCard {
-    public static final PCLCardData DATA = Register(Tartaglia.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(Tartaglia.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ranged, PCLCardTarget.AoE).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_Delusion(), false));
 
     public Tartaglia() {
@@ -41,7 +38,6 @@ public class Tartaglia extends PCLCard {
         }
         return baseDamage + amount;
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info) {

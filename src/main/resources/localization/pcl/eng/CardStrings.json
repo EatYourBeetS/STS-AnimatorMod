@@ -377,7 +377,7 @@
 		},
 		"pcl:UryuuIshida":
 		{
-			"DESCRIPTION": "{Starter}: Transfer !M! [Weak] and !M! [Vulnerable] from you to the enemy. || On Discard: Gain !S! [Support Damage].",
+			"DESCRIPTION": "{Starter}: Transfer !M! [Weak] and !M! [Vulnerable] from you to the enemy. || <slm>. On Discard: Gain !S! [Support Damage].",
 			"NAME": "Uryuu Ishida"
 		},
 		"pcl:YasutoraSado":
@@ -824,7 +824,7 @@
 		},
 		"pcl:NiaHonjou":
 		{
-			"DESCRIPTION": "Whenever you make a Match this turn: Gain ** !M! [Block] (does not stack). || On Discard: Gain !S! [THP].",
+			"DESCRIPTION": "<slm>. Whenever you make a Match this turn: Gain !M! [Block]. || On Discard: Gain !S! [THP].",
 			"EXTENDED_DESCRIPTION": ["Whenever you make a #yMatch this turn: Gain #b{0} #yBlock."],
 			"NAME": "Nia Honjou"
 		},
@@ -842,7 +842,7 @@
 		},
 		"pcl:Ren":
 		{
-			"DESCRIPTION": "Trigger your first [~Dark]. Otherwise, channel [~Dark]. Then, apply !M! [Poison] per [~Dark]. || <SLM>. 3 [~Dark]: Obtain {<D> Token}{+}.",
+			"DESCRIPTION": "Trigger your first [~Dark]. Otherwise, Channel [~Dark]. Then, apply !M! [Poison] per [~Dark]. || <SLM>. 3 [~Dark]: Obtain {<D> Token}{+}.",
 			"NAME": "Ren"
 		},
 		"pcl:RinneSonogami":
@@ -989,7 +989,7 @@
 			"DESCRIPTION": "Spread the target's [Poison] and [Burning] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use.",
 			"EXTENDED_DESCRIPTION": ["This turn, when you #yAttack an enemy with [Swirled]: Deal half of that #yAttack's damage to ALL other enemies (min. #b1)."],
 			"NAME": "Kazuha Kaedehara",
-			"UPGRADE_DESCRIPTION": "Spread the target's [Poison], [Burning], and [Freezing] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use."
+			"UPGRADE_DESCRIPTION": "Apply !M! [Swirled]. Spread the target's [Poison], [Burning] to ALL other enemies. || Pay !A! <G>: Gain a [G] Use."
 		},
 		"pcl:Keqing":
 		{
@@ -1088,8 +1088,9 @@
 		},
 		"pcl:Xiao":
 		{
-			"DESCRIPTION": "Apply !M! [Swirled] to ALL enemies. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] per card in hand (!X!). Otherwise: Enter <GS>.",
-			"NAME": "Xiao"
+			"DESCRIPTION": "Has +!M! damage per enemy with [Swirled]. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] per card in hand (!X!). Otherwise: Enter <GS>.",
+			"NAME": "Xiao",
+			"UPGRADE_DESCRIPTION": "Has +!M! damage per enemy with [Swirled] or [Rippled]. || <GS>: Exhaust, then ALL enemies gain !S! [Poison] per card in hand (!X!). Otherwise: Enter <GS>."
 		},
 		"pcl:Xingqiu":
 		{
@@ -1104,7 +1105,7 @@
 		},
 		"pcl:YunJin":
 		{
-			"DESCRIPTION": "<CYC>. Motivate both the card discarded and the card drawn. || ",
+			"DESCRIPTION": "<CYC>. Motivate both the card discarded and the card drawn.",
 			"NAME": "Yun Jin"
 		},
 		"pcl:Zhongli":
@@ -2098,7 +2099,7 @@
 		},
 		"pcl:ItamiYouji":
 		{
-			"DESCRIPTION": "<DRW-M>, then ** {Reload}: Attack. || Pay !A! <O>: Gain 1 [Support Damage] for each card played this turn (!X!).",
+			"DESCRIPTION": "<DRW-M>, then ** {Reload}: Attack. || Pay !A! <O>: Gain !S! [Support Damage] per card played this turn (!X!).",
 			"NAME": "Itami Youji"
 		},
 		"pcl:MariKurokawa":
@@ -2423,8 +2424,8 @@
 		},
 		"pcl:Darkness":
 		{
-			"DESCRIPTION": "The next time you take unblocked damage this turn: ** Gain !M! [Plated Armor]. || Match: Lower this card's cost by 1 and [Block] by !S!.",
-			"EXTENDED_DESCRIPTION": ["The next time you take unblocked damage this turn: Gain #b{0} [Plated Armor]."],
+			"DESCRIPTION": "<slm>. If you take unlocked damage this turn: ** Gain !M! [Plated Armor]. || Match: Lower this card's cost by 1 and [Block] by !S!.",
+			"EXTENDED_DESCRIPTION": ["If you take unlocked damage this turn: Gain #b{0} [Plated Armor]."],
 			"NAME": "Darkness"
 		},
 		"pcl:Darkness_Adrenaline":
@@ -2847,18 +2848,6 @@
 			"EXTENDED_DESCRIPTION": ["Pay 5 [A-Gen]: All #yPowers are played twice this turn. || At the end of turn: #yRecover #b{0} [HP]."],
 			"NAME": "Boros"
 		},
-		"pcl:DrGenus":
-		{
-			"DESCRIPTION": "Take !M! [DD]. Fetch 1 card ** from your discard pile ** and apply 1 of 3 effects. || <LIM>. Pay !A! <B>: Create a ** copy of it after !S! turns.",
-			"EXTENDED_DESCRIPTION":
-			[
-				"After #b{0} turn(s), create a copy of {1}.",
-				"Double its damage ** and [Block] and increase ** its base cost by 1.",
-				"Give it [~Ethereal] and **  reduce its base cost ** by 1 (Minimum 1).",
-				"Give it LV1 <A> and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
-			],
-			"NAME": "Dr. Genus"
-		},
 		"pcl:Genos":
 		{
 			"DESCRIPTION": "Gain and apply !M! [Burning]. || On Exhaust: ** Reduce your highest ** {Debuff} by !S!.",
@@ -2866,7 +2855,7 @@
 		},
 		"pcl:Geryuganshoop":
 		{
-			"DESCRIPTION": "<ST>. Fetch 1 <D> Card. ** Otherwise: <CYC-M>. || Purge up to !S! cards in ** Exhaust pile and gain [Energized] for each.",
+			"DESCRIPTION": "<ST>. Fetch 1 <D> Card. ** Otherwise: <CYC-M>. || Purge up to !S! cards in ** Exhaust pile to gain [Energized] for each.",
 			"EXTENDED_DESCRIPTION": ["Choose {0} cards to Purge, for each gain Energy next turn."],
 			"NAME": "Geryuganshoop"
 		},
@@ -2935,7 +2924,7 @@
 		},
 		"pcl:PuriPuriPrisoner":
 		{
-			"DESCRIPTION": "The next Attack played this turn exhausts. If it is <G>: It deals double damage. Otherwise, gain [Block] equal to half of damage dealt. || Pay !A! <R>: Gain !M! [Counter-Attack].",
+			"DESCRIPTION": "The next Attack played this turn Exhausts. If it is <G>: It deals double damage. Otherwise, gain [Block] equal to half of damage dealt. || Pay !A! <R>: Gain !M! [Counter-Attack].",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} Attack(s) played this turn exhaust. If it is [A-Green]: It deals double damage. Otherwise, it gives [Block] equal to 75% of damage dealt."],
 			"NAME": "Puri Puri Prisoner"
 		},

@@ -2,10 +2,7 @@ package pinacolada.cards.pcl.series.NoGameNoLife;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.utilities.PCLActions;
@@ -14,7 +11,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Shiro extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shiro.class)
-            .SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None, true)
             .SetSeriesFromClassPackage();
     public static final int CHARGE_COST = 4;
 

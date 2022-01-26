@@ -2,16 +2,13 @@ package pinacolada.cards.pcl.series.TouhouProject;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Haniwa;
 import pinacolada.utilities.PCLActions;
 
 public class MayumiJoutouguu extends PCLCard
 {
-    public static final PCLCardData DATA = Register(MayumiJoutouguu.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(MayumiJoutouguu.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Haniwa(), false));
 
     public MayumiJoutouguu()

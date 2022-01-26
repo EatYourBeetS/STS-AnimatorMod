@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Saitama extends PCLCard //TODO
 {
     public static final PCLCardData DATA = Register(Saitama.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

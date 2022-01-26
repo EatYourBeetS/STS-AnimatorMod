@@ -262,11 +262,7 @@ public abstract class PCLLoadout
 
     public boolean CanChangePreset(int preset)
     {
-        if (preset < 0 || preset >= MAX_PRESETS)
-        {
-            return false;
-        }
-        return true;
+        return preset >= 0 && preset < MAX_PRESETS;
     }
 
     public PCLLoadoutData GetPreset()

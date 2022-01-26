@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.actions.orbs.EvokeOrb;
 import pinacolada.cards.base.*;
@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class AkariMizunashi extends PCLCard
 {
     public static final PCLCardData DATA = Register(AkariMizunashi.class)
-            .SetSkill(1, CardRarity.RARE, EYBCardTarget.Self)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.Self)
             .SetMaxCopies(1)
             .SetMultiformData(2, false)
             .SetColor(CardColor.COLORLESS)

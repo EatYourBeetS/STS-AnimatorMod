@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 
 public class Xiangling_Guoba extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Xiangling_Guoba.class).SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.Self).SetSeries(CardSeries.GenshinImpact);
+    public static final PCLCardData DATA = Register(Xiangling_Guoba.class).SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.Self).SetSeries(CardSeries.GenshinImpact);
     public static final int BURNING_BONUS = 5;
 
     public Xiangling_Guoba()

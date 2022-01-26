@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.actions.orbs.ShuffleOrbs;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Magilou_Bienfu;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Magilou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Magilou.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TalesOfBerseria)

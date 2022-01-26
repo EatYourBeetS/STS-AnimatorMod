@@ -3,8 +3,8 @@ package pinacolada.cards.pcl.series.LogHorizon;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.stances.EnduranceStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.EnduranceStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class Nyanta extends PCLCard

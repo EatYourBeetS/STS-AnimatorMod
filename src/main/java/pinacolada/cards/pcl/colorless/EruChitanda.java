@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class EruChitanda extends PCLCard
 {
     public static final PCLCardData DATA = Register(EruChitanda.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Self)
             .SetColor(CardColor.COLORLESS)
             .SetMaxCopies(2)
             .SetSeries(CardSeries.Hyouka);

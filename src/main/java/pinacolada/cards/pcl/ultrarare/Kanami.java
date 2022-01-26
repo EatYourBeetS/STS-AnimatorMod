@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Kanami extends PCLCard_UltraRare
 {
     public static final PCLCardData DATA = Register(Kanami.class)
-            .SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.AoE)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.LogHorizon)
             .PostInitialize(data -> data.AddPreview(new KanamiAlt(), true));

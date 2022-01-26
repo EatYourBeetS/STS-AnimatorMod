@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll_Player;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLActions;
 public class SummoningRitual extends PCLCard_UltraRare
 {
     public static final PCLCardData DATA = Register(SummoningRitual.class)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS);
 
     public SummoningRitual()

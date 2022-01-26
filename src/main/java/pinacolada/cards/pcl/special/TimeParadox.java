@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.colorless.MakiseKurisu;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -21,7 +18,7 @@ import java.util.ArrayList;
 public class TimeParadox extends PCLCard_Curse implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(TimeParadox.class)
-            .SetCurse(-1, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetCurse(-1, PCLCardTarget.None, true)
             .SetSeries(MakiseKurisu.DATA.Series);
     protected final ArrayList<AbstractCard> cards = new ArrayList<>();
     protected int turns = 0;

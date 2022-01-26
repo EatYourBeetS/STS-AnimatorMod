@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.modifiers.BlockModifiers;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.utilities.PCLActions;
@@ -13,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class ReineMurasame extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ReineMurasame.class).SetSkill(-1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(ReineMurasame.class).SetSkill(-1, CardRarity.UNCOMMON, PCLCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ShidoItsuka(), false));
 
     public ReineMurasame()

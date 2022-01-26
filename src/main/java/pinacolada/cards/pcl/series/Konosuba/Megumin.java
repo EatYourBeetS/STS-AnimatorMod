@@ -11,10 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
@@ -27,7 +24,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Megumin extends PCLCard
 {
     public static final PCLCardData DATA = Register(Megumin.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Fire, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
     public static final int ATTACK_TURNS = 2;
     public static final int SYNERGY_REQUIREMENT = 6;

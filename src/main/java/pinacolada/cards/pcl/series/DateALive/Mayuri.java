@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.PCLCombatStats;
@@ -20,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Mayuri extends PCLCard
 {
     public static final PCLCardData DATA = Register(Mayuri.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Electric, PCLCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     public Mayuri()

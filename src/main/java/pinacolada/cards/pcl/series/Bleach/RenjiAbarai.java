@@ -4,13 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.MightStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class RenjiAbarai extends PCLCard
 {
-    public static final PCLCardData DATA = Register(RenjiAbarai.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(RenjiAbarai.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     public RenjiAbarai()
     {

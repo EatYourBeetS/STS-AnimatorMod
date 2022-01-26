@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.cards.pcl.series.MadokaMagica.NagisaMomoe;
 import pinacolada.effects.AttackEffects;
@@ -22,7 +19,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
 {
     public static final PCLCardData DATA = Register(NagisaMomoe_Charlotte.class)
-            .SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.AoE)
             .SetSeries(NagisaMomoe.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
 

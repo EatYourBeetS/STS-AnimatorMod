@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 
 @SpirePatch(clz = AbstractStance.class, method = "getStanceFromName", paramtypez = {String.class})
 public class AbstractStancePatches_getStanceFromName
@@ -12,10 +12,10 @@ public class AbstractStancePatches_getStanceFromName
     @SpirePrefixPatch
     public static SpireReturn<AbstractStance> Prefix(String name)
     {
-        AbstractStance stance = PCLStance.GetStanceFromName(name);
+        PCLStanceHelper stance = PCLStanceHelper.Get(name);
         if (stance != null)
         {
-            return SpireReturn.Return(stance);
+            return SpireReturn.Return(stance.Create());
         }
 
         return SpireReturn.Continue();

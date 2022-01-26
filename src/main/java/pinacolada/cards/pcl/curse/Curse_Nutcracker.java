@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.curse;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Curse_Nutcracker extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Nutcracker.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, false)
+            .SetCurse(-2, PCLCardTarget.None, false)
             .SetSeries(CardSeries.YoujoSenki);
 
     public Curse_Nutcracker()

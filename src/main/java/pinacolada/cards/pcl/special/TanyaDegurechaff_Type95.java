@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Plasma;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.colorless.TanyaDegurechaff;
 import pinacolada.utilities.PCLActions;
 
 public class TanyaDegurechaff_Type95 extends PCLCard
 {
     public static final PCLCardData DATA = Register(TanyaDegurechaff_Type95.class)
-            .SetSkill(2, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(TanyaDegurechaff.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new OrbCore_Plasma(), false));

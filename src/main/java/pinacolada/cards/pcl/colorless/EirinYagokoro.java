@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.powers.common.BurningPower;
@@ -16,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class EirinYagokoro extends PCLCard
 {
     public static final PCLCardData DATA = Register(EirinYagokoro.class)
-            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Normal)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetColor(CardColor.COLORLESS)
             .SetMaxCopies(2)
             .SetSeries(CardSeries.TouhouProject);

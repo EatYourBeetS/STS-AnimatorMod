@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.powers.NextTurnBlockPower;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -15,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class LizardPriest extends PCLCard
 {
     public static final PCLCardData DATA = Register(LizardPriest.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
     public static final int TEMPORARY_THORNS = 2;
     public static final int BLOCK_NEXT_TURN = 3;

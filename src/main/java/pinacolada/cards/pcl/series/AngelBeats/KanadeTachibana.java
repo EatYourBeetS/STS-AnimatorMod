@@ -4,17 +4,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class KanadeTachibana extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KanadeTachibana.class).SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(KanadeTachibana.class).SetSkill(1, CardRarity.RARE, PCLCardTarget.None).SetSeriesFromClassPackage();
     public static final int MATCH_COMBO = 3;
 
     public KanadeTachibana()

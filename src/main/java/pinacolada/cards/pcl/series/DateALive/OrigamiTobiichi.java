@@ -16,13 +16,13 @@ public class OrigamiTobiichi extends PCLCard
     public static final PCLCardData DATA = Register(OrigamiTobiichi.class).SetPower(2, CardRarity.RARE).SetMaxCopies(2).SetSeriesFromClassPackage()
             .SetMultiformData(2)
             .PostInitialize(data -> data.AddPreview(new InverseOrigami(), false));
-    private static final int THRESHOLD = 10;
+    private static final int THRESHOLD = 11;
 
     public OrigamiTobiichi()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 1);
+        Initialize(0, 0, 4, 1);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Light(1, 0, 0);

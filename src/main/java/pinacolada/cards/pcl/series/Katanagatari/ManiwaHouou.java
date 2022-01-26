@@ -15,7 +15,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PowerTriggerConditionType;
-import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 
 public class ManiwaHouou extends PCLCard
@@ -103,7 +103,7 @@ public class ManiwaHouou extends PCLCard
         public void OnUse(AbstractMonster m, int cost)
         {
             PCLActions.Bottom.WaitRealtime(0.35f);
-            PCLActions.Bottom.ChangeStance(PCLStance.GetRandomStance());
+            PCLActions.Bottom.ChangeStance(PCLStanceHelper.RandomStance());
             RemovePower(PCLActions.Last);
         }
 

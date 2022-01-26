@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class KurumiTokisaki extends PCLCard
 {
     public static final PCLCardData DATA = Register(KurumiTokisaki.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Ranged, PCLCardTarget.AoE)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

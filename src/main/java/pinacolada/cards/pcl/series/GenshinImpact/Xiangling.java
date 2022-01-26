@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.GenshinImpact;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Xiangling_Guoba;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.common.BurningPower;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Xiangling extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true)
+    public static final PCLCardData DATA = Register(Xiangling.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, PCLCardTarget.AoE).SetSeriesFromClassPackage(true)
             .PostInitialize(data -> data.AddPreview(new Xiangling_Guoba(), false));
 
     public Xiangling()

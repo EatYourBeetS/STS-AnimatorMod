@@ -2,18 +2,15 @@ package pinacolada.cards.pcl.series.Bleach;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.RukiaBankai;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 
 public class RukiaKuchiki extends PCLCard
 {
-    public static final PCLCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(RukiaKuchiki.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new RukiaBankai(), false));
 
     public RukiaKuchiki()
@@ -35,7 +32,7 @@ public class RukiaKuchiki extends PCLCard
 
         if (IsStarter())
         {
-            PCLActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
+            PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Frost, magicNumber);
         }
 
         if (CheckSpecialCondition(true))

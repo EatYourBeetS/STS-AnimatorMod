@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.special.Sora_Strategy1;
@@ -21,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Sora extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Sora.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetSeries(CardSeries.NoGameNoLife)
             .PostInitialize(data -> data
                     .AddPreview(new Sora_Strategy1(), true)

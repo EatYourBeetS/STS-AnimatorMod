@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class NinaClive extends PCLCard
 {
     public static final PCLCardData DATA = Register(NinaClive.class)
-            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None)
             .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
 

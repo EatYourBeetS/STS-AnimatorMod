@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Status;
@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class GoblinShaman extends PCLCard_Status
 {
     public static final PCLCardData DATA = Register(GoblinShaman.class)
-            .SetStatus(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetStatus(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeries(GoblinSlayer.DATA.Series);
 
     public GoblinShaman()

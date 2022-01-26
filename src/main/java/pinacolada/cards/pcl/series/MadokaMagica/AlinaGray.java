@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class AlinaGray extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(AlinaGray.class)
-            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public AlinaGray()

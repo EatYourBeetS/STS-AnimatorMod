@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 public class FemaleKnight extends PCLCard
 {
     public static final PCLCardData DATA = Register(FemaleKnight.class)
-            .SetSkill(3, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(3, CardRarity.UNCOMMON, PCLCardTarget.None, true)
             .SetSeriesFromClassPackage();
 
     public FemaleKnight()

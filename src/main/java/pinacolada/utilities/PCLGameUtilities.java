@@ -26,12 +26,11 @@ import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-import eatyourbeets.utilities.WeightedList;
 import pinacolada.blights.common.UpgradedHand;
 import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.PCLOrb;
-import pinacolada.orbs.pcl.*;
+import pinacolada.orbs.pcl.Fire;
 import pinacolada.patches.cardLibrary.PCLCardLibraryPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
@@ -40,6 +39,7 @@ import pinacolada.resources.CardTooltips;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLResources;
 import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -55,7 +55,6 @@ public class PCLGameUtilities extends GameUtilities
     private static final AbstractCard.CardRarity[] poolOrdering = AbstractCard.CardRarity.values().clone();
     private static final ArrayList<PCLPowerHelper> commonBuffs = new ArrayList<>();
     private static final ArrayList<PCLPowerHelper> commonDebuffs = new ArrayList<>();
-    private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
     private static final RandomizedList<AbstractCard> fullCardPool = new RandomizedList<>();
     private static final RandomizedList<AbstractCard> characterCardPool = new RandomizedList<>();
     private static AbstractPlayer.PlayerClass lastPlayerClass;
@@ -648,24 +647,6 @@ public class PCLGameUtilities extends GameUtilities
         }
     }
 
-    public static AbstractOrb GetRandomOrb()
-    {
-        if (orbs.Size() == 0)
-        {
-            orbs.Add(new Lightning(), 8);
-            orbs.Add(new Frost(), 8);
-            orbs.Add(new Fire(), 8);
-            orbs.Add(new Dark(), 8);
-            orbs.Add(new Earth(), 6);
-            orbs.Add(new Air(), 6);
-            orbs.Add(new Plasma(), 3);
-            orbs.Add(new Water(), 3);
-            orbs.Add(new Metal(), 2);
-        }
-
-        return orbs.Retrieve(GetRNG(), false).makeCopy();
-    }
-
     public static <T extends AbstractRelic> T GetRelic(String relicID)
     {
         if (player == null)
@@ -852,6 +833,11 @@ public class PCLGameUtilities extends GameUtilities
         return player != null && player.stance instanceof PCLStance && affinity.equals(((PCLStance) player.stance).affinity);
     }
 
+    public static boolean InStance(PCLStanceHelper stance)
+    {
+        return player != null && player.stance != null && player.stance.ID.equals(stance.ID);
+    }
+
     public static boolean InStance(String stanceID)
     {
         return player != null && player.stance != null && player.stance.ID.equals(stanceID);
@@ -910,7 +896,12 @@ public class PCLGameUtilities extends GameUtilities
 
     public static boolean IsCommonOrb(AbstractOrb orb)
     {
-        return IsValidOrb(orb) && (Fire.ORB_ID.equals(orb.ID) || Frost.ORB_ID.equals(orb.ID) || Lightning.ORB_ID.equals(orb.ID) || Dark.ORB_ID.equals(orb.ID));
+        return IsValidOrb(orb) && IsCommonOrb(orb.ID);
+    }
+
+    public static boolean IsCommonOrb(String orbID)
+    {
+        return (Fire.ORB_ID.equals(orbID) || Frost.ORB_ID.equals(orbID) || Lightning.ORB_ID.equals(orbID) || Dark.ORB_ID.equals(orbID));
     }
 
     public static boolean IsDebuffing(AbstractMonster.Intent intent)

@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.series.NoGameNoLife.Sora;
 import pinacolada.utilities.PCLActions;
 
@@ -12,7 +13,7 @@ public class Sora_Strategy2 extends PCLCard
 {
     public static final PCLCardData DATA = Register(Sora_Strategy2.class)
             .SetImagePath(Sora_Strategy1.DATA.ImagePath)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(Sora.DATA.Series);
 
     public Sora_Strategy2()

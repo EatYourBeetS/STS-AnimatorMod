@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.Rewrite;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_SearingBurn;
 import pinacolada.cards.pcl.status.Status_Burn;
 import pinacolada.effects.AttackEffects;
@@ -15,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 
 public class Midou extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
+    public static final PCLCardData DATA = Register(Midou.class).SetAttack(0, CardRarity.COMMON, PCLAttackType.Fire, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_SearingBurn(), false).AddPreview(new Status_Burn(), false));
 

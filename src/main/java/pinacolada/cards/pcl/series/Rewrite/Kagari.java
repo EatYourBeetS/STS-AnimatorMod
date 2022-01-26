@@ -12,7 +12,7 @@ import pinacolada.orbs.pcl.Earth;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.stances.EnduranceStance;
+import pinacolada.stances.pcl.EnduranceStance;
 import pinacolada.utilities.PCLActions;
 
 public class Kagari extends PCLCard

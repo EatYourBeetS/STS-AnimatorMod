@@ -6,13 +6,13 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 
 public class KisukeUrahara extends PCLCard
 {
     public static final PCLCardData DATA = Register(KisukeUrahara.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage(true);
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -50,8 +50,8 @@ public class KisukeUrahara extends PCLCard
         RandomizedList<PCLAffinity> affinityOptions = new RandomizedList<PCLAffinity>(PCLAffinity.Basic());
         PCLAffinity af1 = affinityOptions.Retrieve(rng, true);
         PCLAffinity af2 = affinityOptions.Retrieve(rng, true);
-        PCLStance stance1 = PCLStance.GetStanceFromPCLAffinity(af1);
-        PCLStance stance2 = PCLStance.GetStanceFromPCLAffinity(af2);
+        PCLStanceHelper stance1 = PCLStanceHelper.Get(af1);
+        PCLStanceHelper stance2 = PCLStanceHelper.Get(af2);
 
         choices.Initialize(this);
         if (stance1 != null) {
@@ -65,15 +65,12 @@ public class KisukeUrahara extends PCLCard
 
     public static class GenericEffect_KisukeUrahara extends GenericEffect_EnterStance
     {
-        PCLStance stance;
         PCLAffinity affinity;
-        public GenericEffect_KisukeUrahara(PCLStance stance, PCLAffinity affinity, int amount)
+        public GenericEffect_KisukeUrahara(PCLStanceHelper stance, PCLAffinity affinity, int amount)
         {
-            super(stance.ID);
-            this.stance = stance;
+            super(stance);
             this.amount = amount;
             this.affinity = affinity;
-
         }
 
         @Override

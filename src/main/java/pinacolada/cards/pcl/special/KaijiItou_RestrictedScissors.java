@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class KaijiItou_RestrictedScissors extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KaijiItou_RestrictedScissors.class).SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.ALL).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Kaiji);
+    public static final PCLCardData DATA = Register(KaijiItou_RestrictedScissors.class).SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.AoE).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Kaiji);
 
 
     public KaijiItou_RestrictedScissors()

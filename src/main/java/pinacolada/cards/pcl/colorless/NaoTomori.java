@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_Normality;
 import pinacolada.powers.special.PhasingPower;
 import pinacolada.utilities.PCLActions;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class NaoTomori extends PCLCard
 {
-    public static final PCLCardData DATA = Register(NaoTomori.class).SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetMaxCopies(1).SetColor(CardColor.COLORLESS)
+    public static final PCLCardData DATA = Register(NaoTomori.class).SetSkill(1, CardRarity.RARE, PCLCardTarget.None).SetMaxCopies(1).SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Charlotte)
             .PostInitialize(data -> data.AddPreview(new Curse_Normality(), false));
 

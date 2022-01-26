@@ -69,10 +69,12 @@ public class CardEffectChoice
 
     public PCLCardBuilder AddEffect(GenericEffect effect)
     {
-        PCLCardBuilder builder = new PCLCardBuilder(source, effect.GetText(), false).SetOnUse(effect::Use);
-        if (effect.id != null)
+        PCLCardBuilder builder = new PCLCardBuilder(source, effect.GetText(), false)
+                .SetCardTarget(effect.target)
+                .SetOnUse(effect::Use);
+        if (effect.effectID != null)
         {
-            builder.SetID(effect.id);
+            builder.SetID(effect.effectID);
         }
         effects.add(builder);
         return builder;
@@ -99,6 +101,31 @@ public class CardEffectChoice
                 card.use(AbstractDungeon.player, target);
             }
         });
+    }
+
+    public SelectFromPile SelectWithTargeting(int amount)
+    {
+        return SelectWithTargeting(PCLActions.Bottom, Build(false), amount);
+    }
+
+    public SelectFromPile SelectWithTargeting(PCLActions gameActions, int amount)
+    {
+        return SelectWithTargeting(gameActions, Build(false), amount);
+    }
+
+    public SelectFromPile SelectWithTargeting(PCLActions gameActions, CardGroup group, int amount)
+    {
+        return (SelectFromPile) gameActions.SelectFromPile(source.name, amount, group)
+                .SetOptions(false, false)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard card : cards)
+                    {
+                        PCLActions.Top.SelectCreature(card).AddCallback(target -> {
+                            card.use(AbstractDungeon.player, target instanceof AbstractMonster ? (AbstractMonster) target : null);
+                        });
+                    }
+                });
     }
 
     public int Size() {

@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Hibiki extends PCLCard
 {
     public static final PCLCardData DATA = Register(Hibiki.class)
-            .SetAttack(1, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.RARE, PCLAttackType.Ranged, PCLCardTarget.Random)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Kancolle);
 

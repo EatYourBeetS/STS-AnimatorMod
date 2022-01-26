@@ -4,16 +4,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class MayuriKurotsuchi extends PCLCard {
-    public static final PCLCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.Normal).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(MayuriKurotsuchi.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.Normal).SetSeriesFromClassPackage();
     public static final int POISON_THRESHOLD = 16;
 
     public MayuriKurotsuchi() {

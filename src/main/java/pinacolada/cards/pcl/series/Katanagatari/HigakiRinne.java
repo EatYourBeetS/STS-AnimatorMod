@@ -14,10 +14,7 @@ import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.utilities.WeightedList;
 import pinacolada.actions.special.HigakiRinneAction;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.BlockAttribute;
 import pinacolada.cards.base.attributes.DamageAttribute;
@@ -35,7 +32,7 @@ public class HigakiRinne extends PCLCard
     private static final WeightedList<ActionT1<HigakiRinne>> exhaustActions = new WeightedList<>();
 
     public static final PCLCardData DATA = Register(HigakiRinne.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

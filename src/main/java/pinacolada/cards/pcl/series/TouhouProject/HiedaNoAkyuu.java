@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.NoDrawPower;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
@@ -16,7 +13,7 @@ import static pinacolada.resources.GR.Enums.CardTags.PCL_EXHAUST;
 
 public class HiedaNoAkyuu extends PCLCard
 {
-    public static final PCLCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+    public static final PCLCardData DATA = Register(HiedaNoAkyuu.class).SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage(true);
 
     public HiedaNoAkyuu()

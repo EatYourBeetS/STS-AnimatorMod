@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.actions.pileSelection.SelectFromPile;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.interfaces.subscribers.OnTrySpendAffinitySubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
@@ -32,7 +29,7 @@ public abstract class AffinityToken extends PCLCard implements OnTrySpendAffinit
 
     protected static PCLCardData RegisterAffinityToken(Class<? extends PCLCard> type)
     {
-        final PCLCardData data = Register(type).SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+        final PCLCardData data = Register(type).SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None).SetColor(CardColor.COLORLESS);
         final CardStrings strings = GR.GetCardStrings(ID);
         data.Strings.DESCRIPTION = PCLJUtils.Format(strings.DESCRIPTION, data.Strings.EXTENDED_DESCRIPTION[0], data.Strings.EXTENDED_DESCRIPTION[1]);
         return data;

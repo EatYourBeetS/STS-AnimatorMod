@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class GarbageDoll extends PCLCard
 {
-    public static final PCLCardData DATA = Register(GarbageDoll.class).SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
+    public static final PCLCardData DATA = Register(GarbageDoll.class).SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Clannad);
 
     private int turns;
 

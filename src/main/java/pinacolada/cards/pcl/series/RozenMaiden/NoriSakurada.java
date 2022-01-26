@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.RozenMaiden;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.DelayedDamagePower;
 import pinacolada.utilities.PCLActions;
@@ -15,7 +12,7 @@ public class NoriSakurada extends PCLCard implements OnEndOfTurnSubscriber
 {
     public static final PCLCardData DATA =
             Register(NoriSakurada.class)
-                    .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+                    .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public NoriSakurada() {
         super(DATA);

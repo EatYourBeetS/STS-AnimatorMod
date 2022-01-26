@@ -7,6 +7,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Apparition extends PCLCard
 {
     public static final PCLCardData DATA = Register(Apparition.class)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS);
 
     public Apparition()

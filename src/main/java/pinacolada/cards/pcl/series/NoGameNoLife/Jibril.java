@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import pinacolada.actions.orbs.ShuffleOrbs;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.DamageAttribute;
 import pinacolada.cards.base.modifiers.CostModifiers;
@@ -29,7 +26,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Jibril extends PCLCard implements OnPCLClickablePowerUsed
 {
     public static final PCLCardData DATA = Register(Jibril.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Dark, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
     private int costReduction = 0;
 

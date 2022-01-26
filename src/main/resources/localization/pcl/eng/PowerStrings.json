@@ -550,6 +550,11 @@
 		"DESCRIPTIONS": ["You stole #b{0} Gold. You can steal #b{1} more Gold."],
 		"NAME": "Stolen Gold"
 	},
+	"pcl:StonedPower":
+	{
+		"DESCRIPTIONS": ["If #b1 stack of [Burning], [Freezing], [Electrified], [Rippled], or [Swirled] would be removed: Remove #b1 stack of this power instead."],
+		"NAME": "Stoned"
+	},
 	"pcl:StrategicInformationPower":
 	{
 		"DESCRIPTIONS": ["The next #b{0} time(s) you discard a card, gain #b{1} #yBlock and deal #b{2} damage to the lowest health enemy."],

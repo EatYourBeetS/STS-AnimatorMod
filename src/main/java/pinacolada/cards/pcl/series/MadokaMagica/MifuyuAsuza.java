@@ -2,18 +2,16 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class MifuyuAsuza extends PCLCard
 {
     public static final PCLCardData DATA = Register(MifuyuAsuza.class)
-            .SetSkill(-1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(-1, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Curse_GriefSeed(), false));
@@ -42,7 +40,7 @@ public class MifuyuAsuza extends PCLCard
         }
 
         PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-            PCLActions.Bottom.ChannelOrbs(PCLGameUtilities::GetRandomCommonOrb, stacks);
+            PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.RandomCommonHelper(), stacks);
         });
     }
 }

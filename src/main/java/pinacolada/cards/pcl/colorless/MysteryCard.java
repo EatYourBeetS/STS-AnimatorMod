@@ -1,13 +1,13 @@
 package pinacolada.cards.pcl.colorless;
 
-import eatyourbeets.cards.base.EYBCardTarget;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 
 public class MysteryCard extends AbstractMysteryCard
 {
     public static final PCLCardData DATA = Register(MysteryCard.class)
             .SetImagePath(QuestionMark.DATA.ImagePath)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.ALL)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.AoE)
             .SetColor(CardColor.COLORLESS);
 
     public MysteryCard() {

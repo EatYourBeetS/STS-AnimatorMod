@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 
 public class KaijiItou extends PCLCard
 {
-    public static final PCLCardData DATA = Register(KaijiItou.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Kaiji)
+    public static final PCLCardData DATA = Register(KaijiItou.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Kaiji)
             .PostInitialize(data -> {
                 data.AddPreview(new KaijiItou_RestrictedPaper(), false);
                 data.AddPreview(new KaijiItou_RestrictedRock(), false);

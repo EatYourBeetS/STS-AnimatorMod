@@ -77,7 +77,7 @@ public class Senku extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         AbstractGameAction.AttackEffect attackEffect = this.transformed ? AttackEffects.SMALL_EXPLOSION : this.attackType.equals(PCLAttackType.Dark) ? AttackEffects.PSYCHOKINESIS : AttackEffects.BLUNT_LIGHT;
-        if (this.attackTarget.equals(eatyourbeets.cards.base.EYBCardTarget.ALL)) {
+        if (this.attackTarget.equals(PCLCardTarget.AoE)) {
             int[] damageMatrix = DamageInfo.createDamageMatrix(damage, true);
             PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, attackEffect);
         }
@@ -103,7 +103,7 @@ public class Senku extends PCLCard
                     PCLActions.Bottom.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, player.hb.cX + 500 * Settings.scale, player.hb.cY), 0.2f);
                 }
 
-                PCLActions.Bottom.ApplyPower(this.attackTarget.equals(eatyourbeets.cards.base.EYBCardTarget.ALL) ? TargetHelper.Enemies() : TargetHelper.Normal(m), helper, debuff.getValue());
+                PCLActions.Bottom.ApplyPower(this.attackTarget.equals(PCLCardTarget.AoE) ? TargetHelper.Enemies() : TargetHelper.Normal(m), helper, debuff.getValue());
             }
         }
     }
@@ -129,7 +129,7 @@ public class Senku extends PCLCard
             for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
                 PCLPowerHelper helper = PCLPowerHelper.ALL.get(debuff.getKey());
                 builder.append(" NL ");
-                builder.append(this.attackTarget.equals(eatyourbeets.cards.base.EYBCardTarget.ALL) ? ACTIONS.ApplyToALL(debuff.getValue(), helper.Tooltip, true) : ACTIONS.Apply(debuff.getValue(), helper.Tooltip, true));
+                builder.append(this.attackTarget.equals(PCLCardTarget.AoE) ? ACTIONS.ApplyToALL(debuff.getValue(), helper.Tooltip, true) : ACTIONS.Apply(debuff.getValue(), helper.Tooltip, true));
             }
             this.cardText.OverrideDescription(builder.toString(), true);
         }
@@ -250,7 +250,7 @@ public class Senku extends PCLCard
                 }
                 case MakeAOE:{
                     copy.SetAttackType(PCLAttackType.Dark);
-                    copy.SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
+                    copy.SetAttackTarget(PCLCardTarget.AoE);
                     break;
                 }
                 case MultiplyEffects:{

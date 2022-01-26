@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class GinIchimaru extends PCLCard
 {
-    public static final PCLCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Piercing, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(GinIchimaru.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Piercing, PCLCardTarget.Random).SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();
     public static final int MAX_AMOUNT = 10;

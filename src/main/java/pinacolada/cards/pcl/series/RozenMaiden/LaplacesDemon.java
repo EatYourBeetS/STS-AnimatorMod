@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
@@ -20,7 +17,7 @@ import pinacolada.utilities.PCLJUtils;
 public class LaplacesDemon extends PCLCard
 {
     public static final PCLCardData DATA = Register(LaplacesDemon.class)
-    		.SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    		.SetSkill(2, CardRarity.RARE, PCLCardTarget.None).SetSeriesFromClassPackage()
             .SetMaxCopies(1)
             .PostInitialize(data -> data.AddPreview(new LaplacesDemon(1), true));
 

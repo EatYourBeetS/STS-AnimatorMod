@@ -2,40 +2,33 @@ package pinacolada.cards.base.cardeffects.GenericEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardTooltip;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class GenericEffect_Apply extends GenericEffect
 {
-    protected final TargetHelper target;
+    public static final String ID = Register(GenericEffect_Apply.class);
+
     protected final PCLPowerHelper power;
 
-    public GenericEffect_Apply(TargetHelper target, PCLPowerHelper power, int amount)
+    public GenericEffect_Apply(PCLPowerHelper power, int amount)
     {
-        this(target, power, power.Tooltip, amount);
-    }
-
-    public GenericEffect_Apply(TargetHelper target, PCLPowerHelper power, PCLCardTooltip tooltip, int amount)
-    {
-        this.target = target;
+        super(ID, power.ID, power.Tooltip, PCLCardTarget.Normal, amount);
         this.power = power;
-        this.tooltip = tooltip;
-        this.amount = amount;
     }
 
     @Override
     public String GetText()
     {
-        return GR.PCL.Strings.Actions.Apply(amount, "["+tooltip.title+"]", true);
+        return GR.PCL.Strings.Actions.Apply(amount, tooltip.GetTitleOrIcon(), true);
     }
 
     @Override
     public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
     {
-        PCLActions.Bottom.StackPower(m, power.Create(m, p, amount));
+        PCLActions.Bottom.StackPower(target.GetTarget(m), power, amount);
     }
 }

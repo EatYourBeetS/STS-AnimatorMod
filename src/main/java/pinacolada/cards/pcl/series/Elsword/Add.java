@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.OrbCore;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.utilities.PCLActions;
@@ -18,7 +15,7 @@ import java.util.ArrayList;
 public class Add extends PCLCard
 {
     public static final PCLCardData DATA = Register(Add.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

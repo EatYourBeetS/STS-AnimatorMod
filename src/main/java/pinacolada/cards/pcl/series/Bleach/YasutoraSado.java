@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -48,8 +47,8 @@ public class YasutoraSado extends PCLCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+            choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.MightStance));
+            choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.VelocityStance));
         }
 
         choices.Select(PCLActions.Top, 1, m)

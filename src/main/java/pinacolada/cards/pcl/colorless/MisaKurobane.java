@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 public class MisaKurobane extends PCLCard
 {
     public static final PCLCardData DATA = Register(MisaKurobane.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Charlotte)
             .PostInitialize(data -> data.AddPreview(new MisaKurobane_Yusarin(), false));

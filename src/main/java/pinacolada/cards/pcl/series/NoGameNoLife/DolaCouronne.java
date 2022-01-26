@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class DolaCouronne extends PCLCard
 {
     public static final PCLCardData DATA = Register(DolaCouronne.class)
-            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public DolaCouronne()

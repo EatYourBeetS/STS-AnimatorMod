@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class ManiwaKoumori extends PCLCard
 {
     public static final PCLCardData DATA = Register(ManiwaKoumori.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeries(CardSeries.Katanagatari).PostInitialize(data ->
             {
                 for (ThrowingKnife knife : ThrowingKnife.GetAllCards())

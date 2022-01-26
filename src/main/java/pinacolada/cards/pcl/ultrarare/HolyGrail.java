@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.interfaces.subscribers.OnBattleEndSubscriber;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_UltraRare;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.relics.pcl.replacement.HolyGrailRelic;
 import pinacolada.utilities.PCLActions;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 public class HolyGrail extends PCLCard_UltraRare implements OnBattleEndSubscriber
 {
     public static final PCLCardData DATA = Register(HolyGrail.class)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Fate);
 

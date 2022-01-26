@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 
 public class InverseTohka extends PCLCard
 {
-    public static final PCLCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeries(CardSeries.DateALive);
+    public static final PCLCardData DATA = Register(InverseTohka.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.AoE).SetSeries(CardSeries.DateALive);
 
     public InverseTohka()
     {

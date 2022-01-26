@@ -2,17 +2,14 @@ package pinacolada.cards.pcl.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class ToukaNishikujou extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ToukaNishikujou.class).SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(ToukaNishikujou.class).SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public ToukaNishikujou()
     {

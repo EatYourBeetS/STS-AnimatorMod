@@ -8,7 +8,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.MightStance;
+import pinacolada.stances.pcl.MightStance;
 import pinacolada.utilities.PCLActions;
 
 public class Fujimaki extends PCLCard

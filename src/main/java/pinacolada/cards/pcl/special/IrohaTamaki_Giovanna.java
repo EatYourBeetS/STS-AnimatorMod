@@ -6,6 +6,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.series.MadokaMagica.IrohaTamaki;
 import pinacolada.cards.pcl.series.MadokaMagica.SayakaMiki;
 import pinacolada.powers.PCLPowerHelper;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class IrohaTamaki_Giovanna extends PCLCard
 {
     public static final PCLCardData DATA = Register(IrohaTamaki_Giovanna.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(SayakaMiki.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new IrohaTamaki(), false));
 

@@ -6,6 +6,7 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -13,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Wiz extends PCLCard
 {
     public static final PCLCardData DATA = Register(Wiz.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

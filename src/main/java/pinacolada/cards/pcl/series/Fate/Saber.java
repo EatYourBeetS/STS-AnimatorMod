@@ -19,7 +19,7 @@ public class Saber extends PCLCard
     private static final ArrayList<FuncT0<PCLCard>> cardConstructors = new ArrayList<>();
     public static final ArrayList<PCLCardPreview> cardPreviews = new ArrayList<>();
     public static final PCLCardData DATA = Register(Saber.class)
-            .SetAttack(1, CardRarity.RARE, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.RARE, PCLAttackType.Normal, PCLCardTarget.Normal)
             .SetMultiformData(3, false)
             .SetSeriesFromClassPackage()
             .PostInitialize(

@@ -7,13 +7,14 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.status.Status_Burn;
 import pinacolada.utilities.PCLActions;
 
 public class Overheat extends PCLCard
 {
     public static final PCLCardData DATA = Register(Overheat.class)
-            .SetStatus(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetStatus(0, CardRarity.COMMON, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .PostInitialize(data -> data.AddPreview(new Status_Burn(), false));
 

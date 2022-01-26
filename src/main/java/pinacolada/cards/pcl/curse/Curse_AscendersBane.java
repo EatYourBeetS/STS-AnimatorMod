@@ -9,10 +9,7 @@ import eatyourbeets.interfaces.listeners.OnRemovedFromDeckListener;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.ColoredString;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCardSaveData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -23,7 +20,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Curse_AscendersBane extends PCLCard_Curse implements OnRemovedFromDeckListener
 {
     public static final PCLCardData DATA = Register(Curse_AscendersBane.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, true);
+            .SetCurse(-2, PCLCardTarget.None, true);
     public static final int ASCENSION_THRESHOLD = 17;
     public static final int UNNAMED_FORM = 1;
 

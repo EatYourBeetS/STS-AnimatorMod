@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class LuciaKonohana extends PCLCard
 {
-    public static final PCLCardData DATA = Register(LuciaKonohana.class).SetSkill(-1, CardRarity.UNCOMMON, EYBCardTarget.Normal).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(LuciaKonohana.class).SetSkill(-1, CardRarity.UNCOMMON, PCLCardTarget.Normal).SetSeriesFromClassPackage();
 
     public LuciaKonohana()
     {

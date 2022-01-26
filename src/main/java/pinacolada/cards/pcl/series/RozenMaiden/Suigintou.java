@@ -13,6 +13,7 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.special.Suigintou_BlackFeather;
 import pinacolada.effects.AttackEffects;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.DesecrationPower;
 import pinacolada.utilities.PCLActions;
@@ -59,7 +60,7 @@ public class Suigintou extends PCLCard implements OnPurgeSubscriber
     {
         PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.DARKNESS);
 
-        PCLActions.Bottom.ChannelOrbs(Dark::new, secondaryValue).AddCallback(() -> {
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Dark, secondaryValue).AddCallback(() -> {
             for (AbstractOrb orb : player.orbs) {
                 if (Dark.ORB_ID.equals(orb.ID)) {
                     PCLGameUtilities.ModifyOrbBaseFocus(orb, magicNumber + PCLGameUtilities.GetPowerAmount(DesecrationPower.POWER_ID), true, false);

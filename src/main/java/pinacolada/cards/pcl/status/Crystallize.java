@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Status;
@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class Crystallize extends PCLCard_Status
 {
     public static final PCLCardData DATA = Register(Crystallize.class)
-            .SetStatus(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+            .SetStatus(1, CardRarity.UNCOMMON, PCLCardTarget.None);
 
     public Crystallize()
     {

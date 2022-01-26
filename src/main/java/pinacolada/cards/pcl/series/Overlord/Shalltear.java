@@ -8,14 +8,14 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
-import pinacolada.stances.DesecrationStance;
+import pinacolada.stances.pcl.DesecrationStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 
 public class Shalltear extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shalltear.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Dark, PCLCardTarget.AoE)
             .SetSeries(CardSeries.Overlord);
 
     public Shalltear()

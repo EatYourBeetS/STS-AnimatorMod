@@ -5,12 +5,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.utilities.PCLActions;
 
 public class Enlightenment extends PCLCard
 {
     public static final PCLCardData DATA = Register(Enlightenment.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS);
 
     public Enlightenment()

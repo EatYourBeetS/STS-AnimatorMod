@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLActions;
 public class Witch extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Witch.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Spearman(), true));
     public static final int MODIFIER = 30;

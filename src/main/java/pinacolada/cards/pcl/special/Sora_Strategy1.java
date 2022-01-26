@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.special;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.series.NoGameNoLife.Sora;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -14,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class Sora_Strategy1 extends PCLCard
 {
     public static final PCLCardData DATA = Register(Sora_Strategy1.class)
-            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, PCLCardTarget.Normal)
             .SetSeries(Sora.DATA.Series);
 
     public Sora_Strategy1()

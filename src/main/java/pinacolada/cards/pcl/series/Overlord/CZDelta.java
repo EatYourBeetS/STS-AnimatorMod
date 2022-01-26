@@ -9,10 +9,7 @@ import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
 import pinacolada.effects.VFX;
@@ -25,7 +22,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class CZDelta extends PCLCard implements OnStartOfTurnPostDrawSubscriber, OnAttackSubscriber
 {
     public static final PCLCardData DATA = Register(CZDelta.class)
-            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(0, CardRarity.COMMON, PCLAttackType.Ranged, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     private static final Color VFX_COLOR = new Color(0.6f, 1f, 0.6f, 1f);

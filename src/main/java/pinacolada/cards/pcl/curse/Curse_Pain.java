@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -16,7 +16,7 @@ import pinacolada.utilities.PCLActions;
 public class Curse_Pain extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Pain.class)
-            .SetCurse(-2, EYBCardTarget.None, false);
+            .SetCurse(-2, PCLCardTarget.None, false);
 
     public Curse_Pain()
     {

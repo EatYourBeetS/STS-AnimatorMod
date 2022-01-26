@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.series.RozenMaiden.Suigintou;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Suigintou_BlackFeather extends PCLCard_Curse implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Suigintou_BlackFeather.class)
-    		.SetCurse(0, eatyourbeets.cards.base.EYBCardTarget.None, true)
+    		.SetCurse(0, PCLCardTarget.None, true)
             .SetSeries(CardSeries.RozenMaiden)
             .PostInitialize(data -> data.AddPreview(new Suigintou(), false));
 

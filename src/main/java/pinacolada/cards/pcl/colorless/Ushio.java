@@ -6,17 +6,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 
 public class Ushio extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final PCLCardData DATA = Register(Ushio.class).SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Clannad)
+    public static final PCLCardData DATA = Register(Ushio.class).SetSkill(0, CardRarity.RARE, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetMaxCopies(2).SetSeries(CardSeries.Clannad)
             .PostInitialize(data -> data.AddPreview(new GarbageDoll(), false));
 
     private int turns;

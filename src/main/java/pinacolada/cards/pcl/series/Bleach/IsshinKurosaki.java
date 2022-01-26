@@ -3,12 +3,11 @@ package pinacolada.cards.pcl.series.Bleach;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToAll;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToEnemies;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_StackPower;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.stances.MightStance;
+import pinacolada.stances.pcl.MightStance;
 import pinacolada.utilities.PCLActions;
 
 public class IsshinKurosaki extends PCLCard
@@ -48,7 +47,7 @@ public class IsshinKurosaki extends PCLCard
     private void makeChoice(AbstractMonster m) {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PCLPowerHelper.Burning, magicNumber));
+            choices.AddEffect(new GenericEffect_ApplyToEnemies(PCLPowerHelper.Burning, magicNumber));
             choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.CounterAttack, secondaryValue));
         }
         choices.Select(1, m);

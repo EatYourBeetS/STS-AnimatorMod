@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.special.GeassPower;
 import pinacolada.utilities.PCLActions;
 
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 public class Lelouch extends PCLCard
 {
     public static final PCLCardData DATA = Register(Lelouch.class)
-            .SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetSkill(3, CardRarity.RARE, PCLCardTarget.AoE)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.CodeGeass);

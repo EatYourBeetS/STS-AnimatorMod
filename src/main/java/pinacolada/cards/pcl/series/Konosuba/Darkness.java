@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -13,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Darkness extends PCLCard
 {
     public static final PCLCardData DATA = Register(Darkness.class)
-            .SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.Self)
+            .SetSkill(2, CardRarity.COMMON, PCLCardTarget.Self)
             .SetSeriesFromClassPackage();
 
     public Darkness()
@@ -31,7 +32,9 @@ public class Darkness extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.StackPower(new DarknessPower(p, magicNumber));
+        if (info.TryActivateSemiLimited()) {
+            PCLActions.Bottom.StackPower(new DarknessPower(p, magicNumber));
+        }
 
         if (info.IsSynergizing && this.costForTurn > 0) {
             PCLGameUtilities.ModifyCostForCombat(this,-1,true);
@@ -53,7 +56,7 @@ public class Darkness extends PCLCard
         {
             super.wasHPLost(info, damageAmount);
 
-            if (info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0)
+            if (damageAmount > 0)
             {
                 PCLActions.Bottom.GainPlatedArmor(amount);
                 RemovePower();

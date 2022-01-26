@@ -10,13 +10,13 @@ import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStanc
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainAffinity;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 
 public class Hakurou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Hakurou.class)
-            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Piercing, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(2, CardRarity.COMMON, PCLAttackType.Piercing, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Green), true));
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -73,7 +73,7 @@ public class Hakurou extends PCLCard
         PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Red, PCLAffinity.Orange).AddConditionalCallback(() -> {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.VelocityStance));
                 choices.AddEffect(new GenericEffect_GainAffinity(PCLAffinity.Green, magicNumber));
             }
             choices.Select(1, m);

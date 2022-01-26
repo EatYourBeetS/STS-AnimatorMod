@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.curse;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Curse;
@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Curse_AbyssalVoid extends PCLCard_Curse
 {
-    public static final PCLCardData DATA = Register(Curse_AbyssalVoid.class).SetCurse(-1, EYBCardTarget.None, true);
+    public static final PCLCardData DATA = Register(Curse_AbyssalVoid.class).SetCurse(-1, PCLCardTarget.None, true);
 
     public Curse_AbyssalVoid()
     {

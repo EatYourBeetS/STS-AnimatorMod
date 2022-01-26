@@ -2,10 +2,10 @@ package pinacolada.cards.pcl.colorless;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.actions.orbs.EvokeOrb;
 import pinacolada.cards.base.*;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Emilia.class)
-            .SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetMultiformData(2, false)
             .SetSeries(CardSeries.ReZero);
@@ -60,7 +60,7 @@ public class Emilia extends PCLCard implements OnStartOfTurnPostDrawSubscriber
     {
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.EvokeOrb(player.filledOrbCount(), EvokeOrb.Mode.Sequential).AddFocus(secondaryValue).AddCallback(() -> {
-            PCLActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
+            PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Frost, magicNumber);
         });
         PCLCombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());
     }

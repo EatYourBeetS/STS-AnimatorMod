@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.powers.ElectroPower;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.temporary.TemporaryElectroPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLJUtils;
 public class NarberalGamma extends PCLCard
 {
     public static final PCLCardData DATA = Register(NarberalGamma.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public NarberalGamma()

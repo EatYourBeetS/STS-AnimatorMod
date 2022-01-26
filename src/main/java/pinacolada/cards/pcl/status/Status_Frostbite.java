@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 
 public class Status_Frostbite extends PCLCard_Status
 {
-    public static final PCLCardData DATA = Register(Status_Frostbite.class).SetMultiformData(2).SetStatus(-2, CardRarity.COMMON, EYBCardTarget.ALL);
+    public static final PCLCardData DATA = Register(Status_Frostbite.class).SetMultiformData(2).SetStatus(-2, CardRarity.COMMON, PCLCardTarget.AoE);
 
     public Status_Frostbite()
     {

@@ -2,11 +2,11 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Frost;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.vfx.ScreenFreezingEffect;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.FreezingPower;
 import pinacolada.powers.special.SheerColdPower;
@@ -37,7 +37,7 @@ public class SheerCold extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Frost, magicNumber);
         PCLActions.Bottom.StackPower(new SheerColdPower(p, 1));
         PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(FreezingPower.POWER_ID, FREEZING_REDUCTION_BONUS));
         PCLActions.Bottom.VFX(new ScreenFreezingEffect());

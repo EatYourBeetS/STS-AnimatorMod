@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class HaruhiSuzumiya extends PCLCard
 {
     public static final PCLCardData DATA = Register(HaruhiSuzumiya.class)
-            .SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.HaruhiSuzumiya);

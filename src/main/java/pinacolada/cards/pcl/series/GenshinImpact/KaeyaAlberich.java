@@ -6,16 +6,13 @@ import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.TriggerOrbPassiveAbility;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class KaeyaAlberich extends PCLCard {
-    public static final PCLCardData DATA = Register(KaeyaAlberich.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(KaeyaAlberich.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     public KaeyaAlberich() {
         super(DATA);

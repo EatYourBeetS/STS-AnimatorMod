@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.orbs.pcl.Air;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -15,7 +12,7 @@ import pinacolada.utilities.PCLJUtils;
 
 public class YuukaKazami extends PCLCard
 {
-    public static final PCLCardData DATA = Register(YuukaKazami.class).SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(YuukaKazami.class).SetSkill(2, CardRarity.COMMON, PCLCardTarget.Self).SetSeriesFromClassPackage();
 
     public YuukaKazami()
     {

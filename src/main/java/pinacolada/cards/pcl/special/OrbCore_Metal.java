@@ -1,16 +1,14 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.orbs.pcl.Metal;
-import pinacolada.resources.GR;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 
 public class OrbCore_Metal extends OrbCore
 {
-    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Metal.class, GR.Tooltips.Metal, GR.Tooltips.Technic, GR.Tooltips.Affinity_Silver)
+    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Metal.class, PCLOrbHelper.Metal)
             .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
@@ -19,11 +17,6 @@ public class OrbCore_Metal extends OrbCore
         super(DATA, 2, 7);
 
         SetAffinity_Silver(1);
-    }
-
-    @Override
-    public Class<? extends AbstractOrb> GetOrb() {
-        return Metal.class;
     }
 
     @Override

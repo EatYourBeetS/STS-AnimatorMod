@@ -5,14 +5,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.resources.GR;
-import pinacolada.stances.MightStance;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.MightStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -22,7 +19,7 @@ import java.util.UUID;
 
 public class SakuyaOhtori extends PCLCard
 {
-    public static final PCLCardData DATA = Register(SakuyaOhtori.class).SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(SakuyaOhtori.class).SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.Normal).SetSeriesFromClassPackage();
     private static HashMap<UUID, Integer> buffs;
 
     public SakuyaOhtori()

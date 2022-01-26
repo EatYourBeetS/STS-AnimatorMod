@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.basic.ImprovedDefend;
 import pinacolada.cards.pcl.basic.ImprovedStrike;
 import pinacolada.utilities.PCLActions;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class DolaRiku extends PCLCard
 {
     public static final PCLCardData DATA = Register(DolaRiku.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public DolaRiku()

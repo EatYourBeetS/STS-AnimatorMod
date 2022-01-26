@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Guts extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Guts.class).SetAttack(3, CardRarity.RARE, PCLAttackType.Brutal, eatyourbeets.cards.base.EYBCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Berserk);
+    public static final PCLCardData DATA = Register(Guts.class).SetAttack(3, CardRarity.RARE, PCLAttackType.Brutal, PCLCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Berserk);
 
     public Guts()
     {

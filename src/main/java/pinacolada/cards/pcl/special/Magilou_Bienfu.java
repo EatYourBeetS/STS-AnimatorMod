@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class Magilou_Bienfu extends PCLCard
 {
     public static final PCLCardData DATA = Register(Magilou_Bienfu.class)
-            .SetSkill(-2, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(-2, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(Magilou.DATA.Series);
 

@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.curse;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Curse;
@@ -10,7 +10,7 @@ import pinacolada.cards.base.PCLCard_Curse;
 public class Curse_Injury extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Injury.class)
-            .SetCurse(-2, EYBCardTarget.None, false);
+            .SetCurse(-2, PCLCardTarget.None, false);
 
     public Curse_Injury()
     {

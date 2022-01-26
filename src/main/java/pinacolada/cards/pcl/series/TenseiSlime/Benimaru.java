@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Benimaru extends PCLCard
 {
     public static final PCLCardData DATA = Register(Benimaru.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Fire, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public Benimaru()

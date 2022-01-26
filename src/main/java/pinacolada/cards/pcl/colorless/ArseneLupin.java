@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class ArseneLupin extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ArseneLupin.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Lupin).SetMaxCopies(2);
+    public static final PCLCardData DATA = Register(ArseneLupin.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ranged, PCLCardTarget.Random).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Lupin).SetMaxCopies(2);
 
     public ArseneLupin()
     {

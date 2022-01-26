@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.special.NagisaMomoe_Charlotte;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -13,13 +14,11 @@ import pinacolada.utilities.PCLGameUtilities;
 public class NagisaMomoe extends PCLCard
 {
     public static final PCLCardData DATA = Register(NagisaMomoe.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .SetMultiformData(2, false)
             .PostInitialize(data ->
-            {
-                data.AddPreview(new NagisaMomoe_Charlotte(), true);
-            });
+                    data.AddPreview(new NagisaMomoe_Charlotte(), true));
 
     public NagisaMomoe()
     {

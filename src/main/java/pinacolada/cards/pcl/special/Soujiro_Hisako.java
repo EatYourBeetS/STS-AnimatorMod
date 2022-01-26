@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLActions;
 public class Soujiro_Hisako extends PCLCard
 {
     public static final PCLCardData DATA = Register(Soujiro_Hisako.class)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(Soujiro.DATA.Series);
 
     public Soujiro_Hisako()

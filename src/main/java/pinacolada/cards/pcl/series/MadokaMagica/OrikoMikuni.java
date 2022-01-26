@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class OrikoMikuni extends PCLCard
 {
     public static final PCLCardData DATA = Register(OrikoMikuni.class)
-            .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();

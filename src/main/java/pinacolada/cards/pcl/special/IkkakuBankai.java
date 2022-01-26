@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class IkkakuBankai extends PCLCard
 {
-    public static final PCLCardData DATA = Register(IkkakuBankai.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeries(CardSeries.Bleach);
+    public static final PCLCardData DATA = Register(IkkakuBankai.class).SetAttack(2, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.AoE).SetSeries(CardSeries.Bleach);
 
     public IkkakuBankai()
     {

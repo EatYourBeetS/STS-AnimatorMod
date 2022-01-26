@@ -4,17 +4,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.*;
 import pinacolada.cards.pcl.special.TakashiNatsume_Circle;
 import pinacolada.utilities.PCLActions;
 
 public class TakashiNatsume extends PCLCard
 {
-    public static final PCLCardData DATA = Register(TakashiNatsume.class).SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou)
+    public static final PCLCardData DATA = Register(TakashiNatsume.class).SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.NatsumeYuujinchou)
             .PostInitialize(data -> data.AddPreview(new TakashiNatsume_Circle(), false));
 
     public TakashiNatsume()

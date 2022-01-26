@@ -2,11 +2,11 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.vfx.ScreenHexagonEffect;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.special.IonizingStormPower;
 import pinacolada.utilities.PCLActions;
 
@@ -34,7 +34,7 @@ public class IonizingStorm extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.ChannelOrbs(Lightning::new, magicNumber);
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Lightning, magicNumber);
         PCLActions.Bottom.StackPower(new IonizingStormPower(p, 1));
         PCLActions.Bottom.VFX(new ScreenHexagonEffect());
     }

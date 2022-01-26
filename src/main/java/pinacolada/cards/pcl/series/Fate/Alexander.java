@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Alexander extends PCLCard
 {
     public static final PCLCardData DATA = Register(Alexander.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public Alexander()

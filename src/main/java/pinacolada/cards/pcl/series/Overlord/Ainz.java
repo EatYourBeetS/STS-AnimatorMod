@@ -9,7 +9,6 @@ import pinacolada.effects.SFX;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -82,9 +81,9 @@ public class Ainz extends PCLCard
 
             final int amount = PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Dark);
             choices.Initialize(source, true);
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryStrength, GR.Tooltips.Strength, amount, true));
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, amount, true));
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, amount, true));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryStrength, amount));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, amount));
+            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, amount));
             choices.Select(1, null);
 
             this.flash();

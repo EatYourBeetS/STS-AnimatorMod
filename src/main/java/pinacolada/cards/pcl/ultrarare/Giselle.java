@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Giselle extends PCLCard_UltraRare
 {
     public static final PCLCardData DATA = Register(Giselle.class)
-            .SetSkill(2, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GATE);
 

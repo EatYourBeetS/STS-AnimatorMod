@@ -3,18 +3,15 @@ package pinacolada.cards.pcl.series.Bleach;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.powers.PCLPower;
-import pinacolada.stances.InvocationStance;
+import pinacolada.stances.pcl.InvocationStance;
 import pinacolada.utilities.PCLActions;
 
 public class OrihimeInoue extends PCLCard
 {
-    public static final PCLCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(OrihimeInoue.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public OrihimeInoue()
     {

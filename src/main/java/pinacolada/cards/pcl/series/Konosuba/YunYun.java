@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class YunYun extends PCLCard
 {
     public static final PCLCardData DATA = Register(YunYun.class)
-            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(0, CardRarity.UNCOMMON, PCLAttackType.Electric, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public YunYun()

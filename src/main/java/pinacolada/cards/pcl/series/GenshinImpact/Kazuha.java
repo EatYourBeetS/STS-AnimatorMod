@@ -7,7 +7,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.common.BurningPower;
-import pinacolada.powers.common.FreezingPower;
+import pinacolada.powers.special.SwirledPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -55,15 +55,7 @@ public class Kazuha extends PCLCard
         }
 
         if (upgraded) {
-            int freezingAmount = PCLGameUtilities.GetPowerAmount(m, FreezingPower.POWER_ID);
-
-            if (freezingAmount > 0) {
-                for (AbstractMonster mo : PCLGameUtilities.GetEnemies(true)) {
-                    if (mo != m) {
-                        PCLActions.Bottom.ApplyFreezing(TargetHelper.Normal(mo), freezingAmount);
-                    }
-                }
-            }
+            PCLActions.Bottom.StackPower(player, new SwirledPower(m, magicNumber));
         }
 
         if (PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Green) > 0 && TrySpendAffinity(PCLAffinity.Green)) {

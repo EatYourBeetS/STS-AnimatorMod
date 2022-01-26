@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.actions.orbs.EarthOrbEvokeAction;
 import pinacolada.actions.orbs.EarthOrbPassiveAction;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.orbs.pcl.Earth;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -15,7 +12,7 @@ import pinacolada.utilities.PCLJUtils;
 
 public class Ningguang extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Ningguang.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Self).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(Ningguang.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Self).SetSeriesFromClassPackage(true);
 
     public Ningguang()
     {

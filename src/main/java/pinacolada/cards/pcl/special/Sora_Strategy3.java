@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
@@ -13,7 +13,7 @@ public class Sora_Strategy3 extends PCLCard
 {
     public static final PCLCardData DATA = Register(Sora_Strategy3.class)
             .SetImagePath(Sora_Strategy1.DATA.ImagePath)
-            .SetSkill(0, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(Sora.DATA.Series);
 
     public Sora_Strategy3()

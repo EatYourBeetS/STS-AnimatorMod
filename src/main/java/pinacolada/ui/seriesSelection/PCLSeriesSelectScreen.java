@@ -165,9 +165,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         seriesCountDropdown = new GUI_Dropdown<Integer>(new AdvancedHitbox(ScreenW(0.875f),getY.Invoke(8f),buttonWidth,buttonHeight * 0.5f))
                 .SetFontForButton(EYBFontHelper.CardTitleFont_Small, 1f)
                 .SetHeader(EYBFontHelper.CardTitleFont_Small, 1f, Settings.GOLD_COLOR, textboxStrings.PoolSizeHeader)
-                .SetOnOpenOrClose(isOpen -> {
-                    isScreenDisabled = isOpen;
-                })
+                .SetOnOpenOrClose(isOpen -> isScreenDisabled = isOpen)
                 .SetOnChange(value -> {
                     if (value.size() > 0) {
                         container.CurrentSeriesLimit = value.get(0);
@@ -212,9 +210,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
         .SetColor(Color.FOREST);
 
         contextMenu = new GUI_ContextMenu<ContextOption>(new AdvancedHitbox(0,0,0,0), o -> o.name)
-                .SetOnOpenOrClose(isOpen -> {
-                    isScreenDisabled = isOpen;
-                })
+                .SetOnOpenOrClose(isOpen -> isScreenDisabled = isOpen)
             .SetOnChange(options -> {
                 for (ContextOption o: options) {
                     o.onSelect.Invoke(this, selectedCard);
@@ -468,9 +464,7 @@ public class PCLSeriesSelectScreen extends AbstractScreen
     {
         previewCardsEffect = new ShowCardPileEffect(cards)
         .SetStartingPosition(InputHelper.mX, InputHelper.mY);
-        previewCardsEffect.SetLoadout(loadout, () -> {
-           previewCardsEffect.Refresh(GetCardPool(loadout));
-        });
+        previewCardsEffect.SetLoadout(loadout, () -> previewCardsEffect.Refresh(GetCardPool(loadout)));
         PCLGameEffects.Manual.Add(previewCardsEffect);
     }
 

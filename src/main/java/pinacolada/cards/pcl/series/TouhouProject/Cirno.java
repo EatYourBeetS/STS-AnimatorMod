@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.utilities.PCLActions;
@@ -19,7 +16,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Cirno extends PCLCard
 {
     public static final PCLCardData DATA = Register(Cirno.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, PCLCardTarget.AoE)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

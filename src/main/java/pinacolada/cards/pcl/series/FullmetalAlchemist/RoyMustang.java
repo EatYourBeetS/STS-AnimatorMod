@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class RoyMustang extends PCLCard
 {
     public static final PCLCardData DATA = Register(RoyMustang.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
     public static final int BURNING_ATTACK_BONUS = 15;
     public static final int BASE_BURNING = 5;

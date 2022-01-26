@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLPower;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class Curse_Destroyer extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Destroyer.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, false).SetSeries(CardSeries.Konosuba);
+            .SetCurse(-2, PCLCardTarget.None, false).SetSeries(CardSeries.Konosuba);
 
     public Curse_Destroyer()
     {

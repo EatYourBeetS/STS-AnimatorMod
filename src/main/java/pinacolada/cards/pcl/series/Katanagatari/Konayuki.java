@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.series.Katanagatari;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Konayuki extends PCLCard
 {
     public static final PCLCardData DATA = Register(Konayuki.class)
-            .SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
     public static final int THRESHOLD = 3;
 

@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class Curse_Doubt extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Doubt.class)
-            .SetCurse(-2, EYBCardTarget.None, false);
+            .SetCurse(-2, PCLCardTarget.None, false);
 
     public Curse_Doubt()
     {

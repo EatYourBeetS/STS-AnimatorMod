@@ -21,7 +21,7 @@ public class Kirakishou extends PCLCard_UltraRare
     public static PCLCardTooltip MindControlInfo;
     public static final PCLCardData DATA
     	= Register(Kirakishou.class)
-    	.SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.Normal)
+    	.SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.Normal)
     	.SetColor(CardColor.COLORLESS).SetSeries(CardSeries.RozenMaiden)
         .PostInitialize(data ->
             {

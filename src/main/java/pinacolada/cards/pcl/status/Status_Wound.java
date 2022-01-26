@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Status;
@@ -10,7 +10,7 @@ import pinacolada.cards.base.PCLCard_Status;
 public class Status_Wound extends PCLCard_Status
 {
     public static final PCLCardData DATA = Register(Status_Wound.class)
-            .SetStatus(-2, CardRarity.COMMON, EYBCardTarget.None);
+            .SetStatus(-2, CardRarity.COMMON, PCLCardTarget.None);
 
     public Status_Wound()
     {

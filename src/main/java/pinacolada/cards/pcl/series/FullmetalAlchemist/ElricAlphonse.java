@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class ElricAlphonse extends PCLCard
 {
     public static final PCLCardData DATA = Register(ElricAlphonse.class)
-            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ElricAlphonse_Alt(), true));
 

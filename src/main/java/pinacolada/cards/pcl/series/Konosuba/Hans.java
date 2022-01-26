@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.interfaces.subscribers.OnTrySpendAffinitySubscriber;
@@ -20,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Hans extends PCLCard implements OnTrySpendAffinitySubscriber
 {
     public static final PCLCardData DATA = Register(Hans.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public Hans()

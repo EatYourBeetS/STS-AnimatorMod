@@ -6,12 +6,13 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.status.Status_Dazed;
 import pinacolada.utilities.PCLActions;
 
 public class MasamiIwasawa extends PCLCard
 {
-    public static final PCLCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+    public static final PCLCardData DATA = Register(MasamiIwasawa.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Status_Dazed(), false));
 

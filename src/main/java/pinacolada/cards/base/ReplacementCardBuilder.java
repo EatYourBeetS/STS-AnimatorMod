@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.FieldInfo;
 import pinacolada.cards.pcl.colorless.QuestionMark;
 import pinacolada.resources.GR;
@@ -44,6 +43,7 @@ public class ReplacementCardBuilder extends PCLCardBuilder
 
                 if (eC.type.equals(AbstractCard.CardType.ATTACK)) {
                     PCLAttackType at = PCLAttackType.Normal;
+                    PCLCardTarget ct = PCLCardTarget.Normal;
                     switch (eC.attackType) {
                         case None:
                             at = PCLAttackType.None;
@@ -58,7 +58,21 @@ public class ReplacementCardBuilder extends PCLCardBuilder
                             at = PCLAttackType.Dark;
                             break;
                     }
-                    SetAttackType(at, eC.attackTarget);
+                    switch (eC.attackTarget) {
+                        case None:
+                            ct = PCLCardTarget.None;
+                            break;
+                        case Self:
+                            ct = PCLCardTarget.Self;
+                            break;
+                        case ALL:
+                            ct = PCLCardTarget.AoE;
+                            break;
+                        case Random:
+                            ct = PCLCardTarget.Random;
+                            break;
+                    }
+                    SetAttackType(at, ct);
                 }
             }
             else {
@@ -68,7 +82,7 @@ public class ReplacementCardBuilder extends PCLCardBuilder
                 SetUpgrades(upgradedCopy.baseDamage - original.baseDamage, upgradedCopy.baseBlock - original.baseBlock, upgradedCopy.baseMagicNumber - original.baseMagicNumber, 0, 0);
                 SetCost(original.cost, upgradedCopy.cost - original.cost);
                 if (original.type.equals(AbstractCard.CardType.ATTACK)) {
-                    SetAttackType(PCLAttackType.Normal, original.target == AbstractCard.CardTarget.ALL_ENEMY ? EYBCardTarget.ALL : EYBCardTarget.Normal);
+                    SetAttackType(PCLAttackType.Normal, original.target == AbstractCard.CardTarget.ALL_ENEMY ? PCLCardTarget.AoE : PCLCardTarget.Normal);
                 }
 
                 GetAffinitiesFromCard(original);

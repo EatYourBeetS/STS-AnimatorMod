@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KanameTousen extends PCLCard {
-    public static final PCLCardData DATA = Register(KanameTousen.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(KanameTousen.class).SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     public KanameTousen() {
         super(DATA);
@@ -52,9 +52,7 @@ public class KanameTousen extends PCLCard {
             }
         }
 
-        PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Blue, PCLAffinity.Dark).AddConditionalCallback(() -> {
-            PCLActions.Bottom.StackPower(player, new KanameTousenPower(player, 2));
-        });
+        PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Blue, PCLAffinity.Dark).AddConditionalCallback(() -> PCLActions.Bottom.StackPower(player, new KanameTousenPower(player, 2)));
     }
 
 

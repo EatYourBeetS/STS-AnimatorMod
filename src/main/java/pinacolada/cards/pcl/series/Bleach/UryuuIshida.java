@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
+import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
@@ -20,7 +21,7 @@ public class UryuuIshida extends PCLCard {
     public UryuuIshida() {
         super(DATA);
 
-        Initialize(4, 0, 1, 2);
+        Initialize(5, 0, 1, 2);
         SetUpgrade(2, 0, 1);
         SetAffinity_Green(1, 0, 0);
         SetAffinity_Blue(1, 0, 1);
@@ -30,7 +31,9 @@ public class UryuuIshida extends PCLCard {
 
     @Override
     public void triggerOnManualDiscard() {
-        PCLActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        if (CombatStats.TryActivateSemiLimited(cardID)) {
+            PCLActions.Bottom.StackPower(new SupportDamagePower(player, secondaryValue));
+        }
     }
 
     @Override

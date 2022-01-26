@@ -3,20 +3,17 @@ package pinacolada.cards.pcl.series.TouhouProject;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.ResistancePower;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 
 public class ByakurenHijiri extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ByakurenHijiri.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.Self).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(ByakurenHijiri.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Self).SetSeriesFromClassPackage(true);
 
     public ByakurenHijiri()
     {

@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Serara extends PCLCard
 {
     public static final PCLCardData DATA = Register(Serara.class)
-            .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None, true)
             .SetSeries(CardSeries.LogHorizon);
     private static HashMap<UUID, Integer> buffs;
 

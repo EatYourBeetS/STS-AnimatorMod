@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
@@ -15,7 +12,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Barasuishou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Barasuishou.class)
-    		.SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    		.SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Dark, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     public Barasuishou()
     {

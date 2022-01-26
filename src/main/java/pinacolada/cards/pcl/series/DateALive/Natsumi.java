@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Natsumi extends PCLCard
 {
     public static final PCLCardData DATA = Register(Natsumi.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Ice, PCLCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     public Natsumi()

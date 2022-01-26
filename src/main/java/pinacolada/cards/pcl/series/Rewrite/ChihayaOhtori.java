@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.EnduranceStance;
+import pinacolada.stances.pcl.EnduranceStance;
 import pinacolada.utilities.PCLActions;
 
 public class ChihayaOhtori extends PCLCard

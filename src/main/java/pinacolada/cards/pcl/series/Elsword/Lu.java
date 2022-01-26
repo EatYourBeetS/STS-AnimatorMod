@@ -8,10 +8,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToAll;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToEnemies;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLPowerHelper;
@@ -43,7 +42,7 @@ public class Lu extends PCLCard
     @Override
     protected void OnUpgrade()
     {
-        SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
+        SetAttackTarget(PCLCardTarget.AoE);
         SetMultiDamage(true);
         upgradedDamage = true;
     }
@@ -77,7 +76,7 @@ public class Lu extends PCLCard
                     {
                         choices.Initialize(this, true);
                         choices.AddEffect(new GenericEffect_Ciel(magicNumber));
-                        choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Enemies(), PCLPowerHelper.Freezing, magicNumber));
+                        choices.AddEffect(new GenericEffect_ApplyToEnemies(PCLPowerHelper.Freezing, magicNumber));
                         choices.Select(1, m);
                     }
                 });
@@ -85,7 +84,6 @@ public class Lu extends PCLCard
 
     protected static class GenericEffect_Ciel extends GenericEffect
     {
-
         public GenericEffect_Ciel(int amount)
         {
             this.amount = amount;

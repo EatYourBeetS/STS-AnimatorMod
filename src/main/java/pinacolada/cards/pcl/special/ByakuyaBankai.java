@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class ByakuyaBankai extends PCLCard {
-    public static final PCLCardData DATA = Register(ByakuyaBankai.class).SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeries(CardSeries.Bleach);
+    public static final PCLCardData DATA = Register(ByakuyaBankai.class).SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Ranged, PCLCardTarget.AoE).SetSeries(CardSeries.Bleach);
 
     public ByakuyaBankai() {
         super(DATA);
@@ -70,7 +70,7 @@ public class ByakuyaBankai extends PCLCard {
         builder.SetOnUse(onUseAction);
 
         if (type.equals(CardType.ATTACK)) {
-            builder.SetAttackType(PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL);
+            builder.SetAttackType(PCLAttackType.Ranged, PCLCardTarget.AoE);
             builder.SetNumbers(damage, 0, magicNumber, 0, 1);
         } else {
             builder.SetNumbers(0, block, magicNumber, 0, 1);

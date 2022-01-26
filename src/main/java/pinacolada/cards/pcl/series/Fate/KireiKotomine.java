@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class KireiKotomine extends PCLCard
 {
     public static final PCLCardData DATA = Register(KireiKotomine.class)
-            .SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(3, CardRarity.RARE, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public KireiKotomine()

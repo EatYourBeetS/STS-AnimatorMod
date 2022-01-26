@@ -11,6 +11,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.interfaces.subscribers.OnPCLClickablePowerUsed;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
@@ -97,7 +98,7 @@ public class Miko extends PCLCard
         @Override
         public boolean OnClickablePowerUsed(PCLClickablePower power, AbstractMonster target) {
             if (power instanceof InvocationPower) {
-                PCLActions.Bottom.ChannelOrbs(Plasma::new, amount);
+                PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Plasma, amount);
             }
             return true;
         }

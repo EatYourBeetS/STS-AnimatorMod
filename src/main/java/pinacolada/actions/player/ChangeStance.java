@@ -10,11 +10,13 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.actions.EYBActionWithCallback;
 import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLJUtils;
 
 public class ChangeStance extends EYBActionWithCallback<AbstractStance>
 {
     private String id;
+    private PCLStanceHelper helper;
     private AbstractStance newStance;
     private AbstractStance previousStance;
     private boolean requireNeutralStance;
@@ -26,6 +28,15 @@ public class ChangeStance extends EYBActionWithCallback<AbstractStance>
 
         this.id = stanceId;
     }
+
+    public ChangeStance(PCLStanceHelper stanceHelper)
+    {
+        super(ActionType.SPECIAL);
+
+        this.id = stanceHelper.ID;
+        this.helper = stanceHelper;
+    }
+
 
     public ChangeStance(AbstractStance stance)
     {
@@ -77,7 +88,7 @@ public class ChangeStance extends EYBActionWithCallback<AbstractStance>
 
         if (newStance == null)
         {
-            newStance = AbstractStance.getStanceFromName(id);
+            newStance = helper != null ? helper.Create() : AbstractStance.getStanceFromName(id);
         }
 
         for (AbstractPower p : player.powers)

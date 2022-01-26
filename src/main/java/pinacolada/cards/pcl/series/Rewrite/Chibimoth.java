@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameEffects;
 
 public class Chibimoth extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(Chibimoth.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new KotoriKanbe(), false));
 
     public Chibimoth()

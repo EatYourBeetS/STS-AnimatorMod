@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.relics.ChemicalX;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.series.Bleach.IchigoKurosaki;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -19,7 +16,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class IchigoKurosaki_Bankai extends PCLCard
 {
     public static final PCLCardData DATA = Register(IchigoKurosaki_Bankai.class)
-            .SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Ranged, PCLCardTarget.AoE)
             .SetSeries(IchigoKurosaki.DATA.Series);
 
     public IchigoKurosaki_Bankai()

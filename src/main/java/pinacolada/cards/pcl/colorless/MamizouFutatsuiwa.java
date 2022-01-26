@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.colorless;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.cards.pcl.special.MamizouFutatsuiwa_Daruma;
@@ -17,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class MamizouFutatsuiwa extends PCLCard
 {
     public static final PCLCardData DATA = Register(MamizouFutatsuiwa.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject)
             .PostInitialize(data ->

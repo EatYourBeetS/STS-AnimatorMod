@@ -2,10 +2,7 @@ package pinacolada.cards.pcl.ultrarare;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_UltraRare;
+import pinacolada.cards.base.*;
 import pinacolada.powers.common.CounterAttackPower;
 import pinacolada.powers.special.PhasingPower;
 import pinacolada.utilities.PCLActions;
@@ -13,7 +10,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class SosukeAizen extends PCLCard_UltraRare
 {
-    public static final PCLCardData DATA = Register(SosukeAizen.class).SetSkill(-1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Bleach);
+    public static final PCLCardData DATA = Register(SosukeAizen.class).SetSkill(-1, CardRarity.SPECIAL, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Bleach);
     public SosukeAizen()
     {
         super(DATA);

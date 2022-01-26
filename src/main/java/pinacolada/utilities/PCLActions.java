@@ -68,6 +68,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardAffinities;
 import pinacolada.cards.pcl.tokens.AffinityToken;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.affinity.*;
@@ -79,6 +80,7 @@ import pinacolada.powers.temporary.TemporaryFocusPower;
 import pinacolada.powers.temporary.TemporaryResistancePower;
 import pinacolada.powers.temporary.TemporaryThornsPower;
 import pinacolada.resources.GR;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.ui.combat.PCLAffinityMeter;
 
 import java.util.ArrayList;
@@ -351,6 +353,11 @@ public final class PCLActions
         return Add(new ChangeStanceAction(stance));
     }
 
+    public ChangeStance ChangeStance(PCLStanceHelper stance)
+    {
+        return Add(new ChangeStance(stance));
+    }
+
     public ChangeStance ChangeStance(String stanceName)
     {
         return Add(new ChangeStance(stanceName));
@@ -361,14 +368,19 @@ public final class PCLActions
         return Add(new ChannelOrb(orb));
     }
 
-    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
+    public ChannelOrb ChannelOrbs(PCLOrbHelper orbHelper, int amount)
     {
-        return Add(new ChannelOrb(orbConstructor, amount));
+        return Add(new ChannelOrb(orbHelper, amount));
     }
 
     public ChannelOrb ChannelRandomOrbs(int amount)
     {
-        return Add(new ChannelOrb(PCLGameUtilities::GetRandomOrb, amount));
+        return Add(new ChannelOrb(PCLOrbHelper.RandomHelper(true), amount));
+    }
+
+    public ChannelOrb ChannelRandomOrbs(int amount, boolean weighted)
+    {
+        return Add(new ChannelOrb(PCLOrbHelper.RandomHelper(weighted), amount));
     }
 
     public CreateGriefSeeds CreateGriefSeeds(int amount)

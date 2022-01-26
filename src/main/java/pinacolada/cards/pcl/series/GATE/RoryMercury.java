@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class RoryMercury extends PCLCard
 {
     public static final PCLCardData DATA = Register(RoryMercury.class)
-            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Normal, PCLCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     private static final CardEffectChoice choices = new CardEffectChoice();

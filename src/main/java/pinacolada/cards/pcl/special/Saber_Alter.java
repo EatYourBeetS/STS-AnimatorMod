@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.series.Fate.Saber;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
@@ -21,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Saber_Alter extends PCLCard
 {
     public static final PCLCardData DATA = Register(Saber_Alter.class)
-            .SetAttack(3, CardRarity.SPECIAL, PCLAttackType.Dark, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.SPECIAL, PCLAttackType.Dark, PCLCardTarget.AoE)
             .SetSeries(Saber.DATA.Series);
 
     public Saber_Alter()

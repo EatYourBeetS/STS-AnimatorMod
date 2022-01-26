@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.orbs.*;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.RemoveOrb;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.OrbCore;
 import pinacolada.orbs.pcl.*;
 import pinacolada.powers.PCLPower;
@@ -47,7 +44,7 @@ public class Merlin extends PCLCard
 
     protected static final HashMap<String, MerlinEffect> EFFECTS = new HashMap<>();
     public static final PCLCardData DATA = Register(Merlin.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Fate)
             .PostInitialize(data -> {

@@ -5,15 +5,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCardPreview;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Zadkiel;
 import pinacolada.utilities.PCLActions;
 
 public class YoshinoHimekawa extends PCLCard {
-    public static final PCLCardData DATA = Register(YoshinoHimekawa.class).SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(YoshinoHimekawa.class).SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.AoE).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
                 data.AddPreview(new YoshinoHimekawa(true), false);
                 data.AddPreview(new Zadkiel(), false);

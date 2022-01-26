@@ -24,7 +24,7 @@ public class ItamiYouji extends PCLCard
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Silver(1);
 
-        SetAffinityRequirement(PCLAffinity.Orange, 6);
+        SetAffinityRequirement(PCLAffinity.Orange, 7);
 
         SetExhaust(true);
         SetProtagonist(true);
@@ -41,7 +41,7 @@ public class ItamiYouji extends PCLCard
 
     @Override
     public int GetXValue() {
-        return PCLGameUtilities.GetTotalCardsPlayed(this, true);
+        return secondaryValue * PCLGameUtilities.GetTotalCardsPlayed(this, true);
     }
 
 

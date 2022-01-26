@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.Fate;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.MatouShinji_CommandSpell;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -19,7 +16,7 @@ public class MatouShinji extends PCLCard
     private static final HashSet<CardType> cardTypes = new HashSet<>();
 
     public static final PCLCardData DATA = Register(MatouShinji.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.Random)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new MatouShinji_CommandSpell(), false));
 

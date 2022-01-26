@@ -5,12 +5,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.stances.MightStance;
+import pinacolada.stances.pcl.MightStance;
 import pinacolada.utilities.PCLActions;
 
 public class YoshinoHaruhiko extends PCLCard
 {
-    public static final PCLCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Random).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(YoshinoHaruhiko.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Normal, PCLCardTarget.Random).SetSeriesFromClassPackage();
 
     public YoshinoHaruhiko()
     {

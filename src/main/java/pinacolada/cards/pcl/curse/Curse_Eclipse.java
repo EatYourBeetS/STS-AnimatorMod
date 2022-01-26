@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 public class Curse_Eclipse extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Eclipse.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, false).SetSeries(CardSeries.Berserk);
+            .SetCurse(-2, PCLCardTarget.None, false).SetSeries(CardSeries.Berserk);
 
     public Curse_Eclipse()
     {

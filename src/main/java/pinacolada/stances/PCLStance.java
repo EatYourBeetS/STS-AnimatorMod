@@ -2,17 +2,13 @@ package pinacolada.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.effects.stance.StanceAura;
 import pinacolada.effects.stance.StanceParticleVertical;
 import pinacolada.powers.PCLCombatStats;
@@ -23,83 +19,14 @@ import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public abstract class PCLStance extends AbstractStance
 {
-    protected static final HashMap<String, FuncT0<PCLStance>> stances = new HashMap<>();
-    protected static final HashMap<String, PCLCardTooltip> tooltips = new HashMap<>();
     protected static final int GAIN = PCLAffinityRow.SYNERGY_MULTIPLIER * 2;
     protected static long sfxId = -1L;
-    protected final AbstractCreature owner;
     protected final StanceStrings strings;
     public final PCLAffinity affinity;
-
-    public static void Initialize()
-    {
-        stances.clear();
-        stances.put(MightStance.STANCE_ID, MightStance::new);
-        stances.put(WisdomStance.STANCE_ID, WisdomStance::new);
-        stances.put(VelocityStance.STANCE_ID, VelocityStance::new);
-        stances.put(EnduranceStance.STANCE_ID, EnduranceStance::new);
-        stances.put(InvocationStance.STANCE_ID, InvocationStance::new);
-        stances.put(DesecrationStance.STANCE_ID, DesecrationStance::new);
-
-        tooltips.clear();
-        tooltips.put(MightStance.STANCE_ID, GR.Tooltips.MightStance);
-        tooltips.put(VelocityStance.STANCE_ID, GR.Tooltips.VelocityStance);
-        tooltips.put(WisdomStance.STANCE_ID, GR.Tooltips.WisdomStance);
-        tooltips.put(EnduranceStance.STANCE_ID, GR.Tooltips.EnduranceStance);
-        tooltips.put(InvocationStance.STANCE_ID, GR.Tooltips.InvocationStance);
-        tooltips.put(DesecrationStance.STANCE_ID, GR.Tooltips.DesecrationStance);
-        tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
-    }
-
-    public static PCLCardTooltip GetStanceTooltip(String stance)
-    {
-        return tooltips.getOrDefault(stance, null);
-    }
-
-    public static AbstractStance GetRandomStance() {
-        FuncT0<PCLStance> constructor = PCLJUtils.Random(stances.values());
-        if (constructor == null) {
-            return new NeutralStance();
-        }
-        return constructor.Invoke();
-    }
-
-    public static String GetRandomStanceID(String... filter) {
-        final List<String> filters = Arrays.asList(filter);
-        return PCLJUtils.Random(PCLJUtils.Filter(stances.keySet(), id -> !filters.contains(id)));
-    }
-
-    public static PCLStance GetStanceFromName(String name)
-    {
-        return stances.containsKey(name) ? stances.get(name).Invoke() : null;
-    }
-
-    public static PCLStance GetStanceFromPCLAffinity(PCLAffinity affinity)
-    {
-        switch (affinity) {
-            case Red:
-                return new MightStance();
-            case Green:
-                return new VelocityStance();
-            case Blue:
-                return new WisdomStance();
-            case Orange:
-                return new EnduranceStance();
-            case Light:
-                return new InvocationStance();
-            case Dark:
-                return new DesecrationStance();
-            default:
-                return null;
-        }
-    }
 
     public static String CreateFullID(Class<? extends PCLStance> type)
     {
@@ -115,13 +42,12 @@ public abstract class PCLStance extends AbstractStance
     protected abstract Color GetParticleColor();
     protected abstract Color GetMainColor();
 
-    protected PCLStance(String id, PCLAffinity affinity, AbstractCreature owner)
+    protected PCLStance(PCLStanceHelper helper)
     {
-        this.ID = id;
-        this.strings = GR.GetStanceString(id);
+        this.ID = helper.ID;
+        this.strings = GR.GetStanceString(helper.ID);
         this.name = strings.NAME;
-        this.owner = owner;
-        this.affinity = affinity;
+        this.affinity = helper.Affinity;
 
         updateDescription();
     }

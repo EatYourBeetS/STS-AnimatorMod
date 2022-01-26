@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.ultrarare;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_UltraRare;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -18,7 +15,7 @@ public class Truth extends PCLCard_UltraRare
     private static final Crystallize status = new Crystallize();
 
     public static final PCLCardData DATA = Register(Truth.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.Normal)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.FullmetalAlchemist)
             .PostInitialize(data -> data.AddPreview(status, false));

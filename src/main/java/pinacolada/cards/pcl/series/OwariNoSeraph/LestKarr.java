@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class LestKarr extends PCLCard
 {
     public static final PCLCardData DATA = Register(LestKarr.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Self)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.Self)
             .SetSeries(CardSeries.OwariNoSeraph);
     public static final int INTELLECT_THRESHOLD = 5;
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -26,7 +26,7 @@ public class LestKarr extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0,0,0,1);
         SetAffinity_Dark(1,0,0);
         SetAffinity_Blue(1, 0, 0);
@@ -71,8 +71,8 @@ public class LestKarr extends PCLCard
 
                     if (choices.TryInitialize(this))
                     {
-                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, GR.Tooltips.Dexterity, magicNumber, true));
-                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, GR.Tooltips.Focus, magicNumber, true));
+                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, magicNumber));
+                        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, magicNumber));
                     }
                     choices.Select(1, m);
                 });

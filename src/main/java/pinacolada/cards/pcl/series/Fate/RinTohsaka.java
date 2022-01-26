@@ -7,6 +7,7 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.special.OrbCore;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -15,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class RinTohsaka extends PCLCard
 {
     public static final PCLCardData DATA = Register(RinTohsaka.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .AddPreviews(OrbCore.GetAllCores(), true);
 

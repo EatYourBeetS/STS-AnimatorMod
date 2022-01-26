@@ -2,10 +2,10 @@ package pinacolada.cards.pcl.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -40,7 +40,7 @@ public class MetalKnight extends PCLCard
         PCLActions.Bottom.GainMetallicize(magicNumber);
         PCLActions.Bottom.ModifyAllInstances(uuid, c -> PCLGameUtilities.DecreaseMagicNumber(c, 1, false));
         if (TrySpendAffinity(PCLAffinity.Silver)) {
-            PCLActions.Bottom.ChannelOrbs(Plasma::new, 1);
+            PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Plasma, 1);
         }
     }
 }

@@ -2,17 +2,14 @@ package pinacolada.cards.pcl.curse;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.status.Status_Dazed;
 import pinacolada.utilities.PCLActions;
 
 public class Curse_Dizziness extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Dizziness.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetCurse(-2, PCLCardTarget.None, true)
             .SetRarity(CardRarity.SPECIAL)
             .SetSeries(CardSeries.TouhouProject)
             .PostInitialize(data -> data.AddPreview(new Status_Dazed(), false));

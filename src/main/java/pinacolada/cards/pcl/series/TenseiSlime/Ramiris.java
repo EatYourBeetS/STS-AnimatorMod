@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Ramiris extends PCLCard
 {
     public static final PCLCardData DATA = Register(Ramiris.class)
-            .SetSkill(0, CardRarity.RARE, EYBCardTarget.ALL)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.AoE)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
     public static final int TEMP_HP = 2;

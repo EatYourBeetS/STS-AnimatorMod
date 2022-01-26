@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLJUtils;
 
 public class GirlDeMo extends PCLCard
 {
-    public static final PCLCardData DATA = Register(GirlDeMo.class).SetSkill(3, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetSeries(CardSeries.AngelBeats);
+    public static final PCLCardData DATA = Register(GirlDeMo.class).SetSkill(3, CardRarity.SPECIAL, PCLCardTarget.None).SetSeries(CardSeries.AngelBeats);
 
     public GirlDeMo()
     {

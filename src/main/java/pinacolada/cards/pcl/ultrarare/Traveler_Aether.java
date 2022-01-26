@@ -5,12 +5,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_UltraRare;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.Traveler_Wish;
-import pinacolada.orbs.pcl.Air;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Traveler_Aether extends PCLCard_UltraRare
 {
     public static final PCLCardData DATA = Register(Traveler_Aether.class)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> data.AddPreview(new Traveler_Wish(), false));
@@ -43,7 +40,7 @@ public class Traveler_Aether extends PCLCard_UltraRare
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.ChannelOrbs(Air::new, secondaryValue).AddCallback(() -> {
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Air, secondaryValue).AddCallback(() -> {
             int orbsInduced = 0;
 
             RandomizedList<AbstractOrb> orbList = new RandomizedList<>(PCLJUtils.Filter(player.orbs, PCLGameUtilities::IsCommonOrb));

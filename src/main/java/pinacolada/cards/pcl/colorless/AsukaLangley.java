@@ -43,7 +43,7 @@ public class AsukaLangley extends PCLCard
         if (timesUpgraded > 0) {
             if (form == 1) {
                 SetHaste(false);
-                SetAttackTarget(eatyourbeets.cards.base.EYBCardTarget.ALL);
+                SetAttackTarget(PCLCardTarget.AoE);
                 SetMultiDamage(true);
                 upgradedDamage = true;
             }

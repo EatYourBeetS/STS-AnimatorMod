@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.replacement;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAttackType;
 import pinacolada.cards.base.PCLCard;
@@ -16,7 +16,7 @@ import pinacolada.utilities.PCLActions;
 public class Bite extends PCLCard
 {
     public static final PCLCardData DATA = Register(Bite.class)
-            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Normal, EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.Normal)
             .SetColor(CardColor.COLORLESS);
 
     public Bite()

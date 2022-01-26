@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.ui.combat.PCLAffinityMeter;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Cecily extends PCLCard
 {
     public static final PCLCardData DATA = Register(Cecily.class)
-            .SetSkill(0, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Cecily()

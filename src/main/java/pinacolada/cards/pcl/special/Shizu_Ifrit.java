@@ -16,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Shizu_Ifrit extends PCLCard
 {
     public static final PCLCardData DATA = Register(Shizu_Ifrit.class)
-            .SetSkill(3, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(3, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(Shizu.DATA.Series)
             .PostInitialize(data -> data.AddPreview(new BlazingHeat(), false));
     public static final int AMOUNT = 2;

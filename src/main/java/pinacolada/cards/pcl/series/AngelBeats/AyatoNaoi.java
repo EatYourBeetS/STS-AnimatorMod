@@ -7,19 +7,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardEffectChoice;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.interfaces.subscribers.OnAfterlifeSubscriber;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class AyatoNaoi extends PCLCard implements OnAfterlifeSubscriber
 {
-    public static final PCLCardData DATA = Register(AyatoNaoi.class).SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(AyatoNaoi.class).SetSkill(3, CardRarity.RARE, PCLCardTarget.None).SetSeriesFromClassPackage();
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public AyatoNaoi()

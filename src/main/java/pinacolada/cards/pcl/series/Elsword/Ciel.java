@@ -5,8 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.stances.DesecrationStance;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -56,8 +55,8 @@ public class Ciel extends PCLCard
         {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
+                choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.WisdomStance));
+                choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.DesecrationStance));
             }
             choices.Select(1, m);
         }

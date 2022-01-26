@@ -4,7 +4,7 @@ import com.evacipated.cardcrawl.mod.stslib.cards.interfaces.StartupCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -17,7 +17,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Curse_Parasite extends PCLCard_Curse implements StartupCard
 {
     public static final PCLCardData DATA = Register(Curse_Parasite.class)
-            .SetCurse(-2, EYBCardTarget.None, false);
+            .SetCurse(-2, PCLCardTarget.None, false);
 
     public Curse_Parasite()
     {

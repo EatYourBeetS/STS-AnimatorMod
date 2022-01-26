@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.curse;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCard_Curse;
@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Curse_SearingBurn extends PCLCard_Curse
 {
-    public static final PCLCardData DATA = Register(Curse_SearingBurn.class).SetCurse(-2, EYBCardTarget.ALL, false);
+    public static final PCLCardData DATA = Register(Curse_SearingBurn.class).SetCurse(-2, PCLCardTarget.AoE, false);
 
     public Curse_SearingBurn()
     {

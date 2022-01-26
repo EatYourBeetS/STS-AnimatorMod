@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.DynamicCardBuilder;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -21,28 +20,27 @@ import java.util.List;
 
 public class PCLCardBuilder extends DynamicCardBuilder
 {
-    protected int secondaryValue;
-    protected int hitCount;
-    protected int costUpgrade;
-    protected int damageUpgrade;
-    protected int blockUpgrade;
-    protected int magicNumberUpgrade;
-    protected int secondaryValueUpgrade;
-    protected int hitCountUpgrade;
-    protected TextureAtlas.AtlasRegion fakePortrait;
-    protected boolean showTypeText = true;
-
-    protected int attributeMultiplier = 1;
     protected ActionT1<PCLCard> constructor;
     protected ActionT1<PCLCard> onUpgrade;
     protected ActionT3<PCLCard, AbstractPlayer, AbstractMonster> onUse;
-    protected FuncT1<AbstractAttribute, PCLCard> getSpecialInfo;
-    protected FuncT1<AbstractAttribute, PCLCard> getDamageInfo;
-    protected FuncT1<AbstractAttribute, PCLCard> getBlockInfo;
-    protected PCLAttackType attackType = PCLAttackType.Normal;
-    protected EYBCardTarget attackTarget = EYBCardTarget.Normal;
-    protected PCLCardAffinities affinities;
     protected CardSeries series;
+    protected PCLCardTarget attackTarget = PCLCardTarget.Normal;
+    protected FuncT1<AbstractAttribute, PCLCard> getBlockInfo;
+    protected FuncT1<AbstractAttribute, PCLCard> getDamageInfo;
+    protected FuncT1<AbstractAttribute, PCLCard> getSpecialInfo;
+    protected PCLAttackType attackType = PCLAttackType.Normal;
+    protected PCLCardAffinities affinities;
+    protected TextureAtlas.AtlasRegion fakePortrait;
+    protected boolean showTypeText = true;
+    protected int attributeMultiplier = 1;
+    protected int blockUpgrade;
+    protected int costUpgrade;
+    protected int damageUpgrade;
+    protected int hitCount;
+    protected int hitCountUpgrade;
+    protected int magicNumberUpgrade;
+    protected int secondaryValue;
+    protected int secondaryValueUpgrade;
 
     public PCLCardBuilder(String id)
     {
@@ -203,11 +201,11 @@ public class PCLCardBuilder extends DynamicCardBuilder
         return SetTags(Arrays.asList(tags));
     }
 
-    public PCLCardBuilder SetAttackType(PCLAttackType attackType, EYBCardTarget attackTarget)
+    public PCLCardBuilder SetAttackType(PCLAttackType attackType, PCLCardTarget attackTarget)
     {
         this.attackType = attackType;
         this.attackTarget = attackTarget;
-        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
+        this.isMultiDamage = (attackTarget == PCLCardTarget.AoE);
 
         return this;
     }
@@ -233,12 +231,18 @@ public class PCLCardBuilder extends DynamicCardBuilder
         return this;
     }
 
-    public PCLCardBuilder SetAttackType(PCLAttackType attackType, EYBCardTarget attackTarget, int multiplier)
+    public PCLCardBuilder SetAttackType(PCLAttackType attackType, PCLCardTarget attackTarget, int multiplier)
     {
         this.attackType = attackType;
         this.attackTarget = attackTarget;
         this.attributeMultiplier = multiplier;
-        this.isMultiDamage = (attackTarget == EYBCardTarget.ALL);
+        this.isMultiDamage = (attackTarget == PCLCardTarget.AoE);
+
+        return this;
+    }
+
+    public PCLCardBuilder SetCardTarget(PCLCardTarget cardTarget) {
+        this.attackTarget = cardTarget;
 
         return this;
     }

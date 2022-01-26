@@ -2,13 +2,10 @@ package pinacolada.cards.pcl.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.common.CounterAttackPower;
-import pinacolada.stances.EnduranceStance;
+import pinacolada.stances.pcl.EnduranceStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Sebas extends PCLCard
 {
     public static final PCLCardData DATA = Register(Sebas.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Sebas()

@@ -23,7 +23,7 @@ public class SingleCardViewPopupPatches
     public static class SingleCardViewPopup_Open
     {
         @SpireInsertPatch(rloc = 0)
-        public static SpireReturn Insert(SingleCardViewPopup __instance, AbstractCard card)
+        public static SpireReturn<Void> Insert(SingleCardViewPopup __instance, AbstractCard card)
         {
             PCLCard c = PCLJUtils.SafeCast(card, PCLCard.class);
             if (c != null && !c.isFlipped)
@@ -41,7 +41,7 @@ public class SingleCardViewPopupPatches
     public static class SingleCardViewPopup_Open2
     {
         @SpireInsertPatch(rloc = 0)
-        public static SpireReturn Insert(SingleCardViewPopup __instance, AbstractCard card, CardGroup group)
+        public static SpireReturn<Void> Insert(SingleCardViewPopup __instance, AbstractCard card, CardGroup group)
         {
             PCLCard c = PCLJUtils.SafeCast(card, PCLCard.class);
             if (c != null && !c.isFlipped)

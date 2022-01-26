@@ -2,18 +2,15 @@ package pinacolada.cards.pcl.series.Rewrite;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.EnduranceStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.EnduranceStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class ShizuruNakatsu extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ShizuruNakatsu.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(ShizuruNakatsu.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Ranged, PCLCardTarget.AoE).SetSeriesFromClassPackage();
 
     private boolean canAttack;
 

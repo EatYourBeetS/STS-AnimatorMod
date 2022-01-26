@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 
 public class Klee extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Klee.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(Klee.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire, PCLCardTarget.AoE).SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new JumpyDumpty(), true));
 
     public Klee()

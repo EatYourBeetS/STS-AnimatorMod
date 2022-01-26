@@ -1,9 +1,10 @@
-package pinacolada.stances;
+package pinacolada.stances.pcl;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.powers.affinity.VelocityPower;
+import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class VelocityStance extends PCLStance
@@ -18,7 +19,7 @@ public class VelocityStance extends PCLStance
 
     public VelocityStance()
     {
-        super(STANCE_ID, AFFINITY, AbstractDungeon.player);
+        super(PCLStanceHelper.VelocityStance);
     }
 
     @Override

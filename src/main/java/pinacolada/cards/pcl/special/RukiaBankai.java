@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 
 public class RukiaBankai extends PCLCard
 {
-    public static final PCLCardData DATA = Register(RukiaBankai.class).SetSkill(-1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetSeries(CardSeries.Bleach);
+    public static final PCLCardData DATA = Register(RukiaBankai.class).SetSkill(-1, CardRarity.SPECIAL, PCLCardTarget.None).SetSeries(CardSeries.Bleach);
 
     public RukiaBankai()
     {

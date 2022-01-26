@@ -19,7 +19,7 @@ public class ChaikaTrabant extends PCLCard implements OnStartOfTurnPostDrawSubsc
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     public static final PCLCardData DATA = Register(ChaikaTrabant.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.HitsugiNoChaika)
             .PostInitialize(data ->

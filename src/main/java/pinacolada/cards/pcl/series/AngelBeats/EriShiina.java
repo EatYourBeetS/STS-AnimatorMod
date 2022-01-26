@@ -8,7 +8,7 @@ import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.effects.AttackEffects;
 import pinacolada.interfaces.subscribers.OnAfterlifeSubscriber;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class EriShiina extends PCLCard implements OnAfterlifeSubscriber

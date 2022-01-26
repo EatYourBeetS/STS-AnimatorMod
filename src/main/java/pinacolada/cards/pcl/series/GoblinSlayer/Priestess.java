@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.FrailPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.monsters.PCLEnemyIntent;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Priestess extends PCLCard
 {
     public static final PCLCardData DATA = Register(Priestess.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.ALL, true)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.AoE, true)
             .SetSeriesFromClassPackage();
 
     public Priestess()

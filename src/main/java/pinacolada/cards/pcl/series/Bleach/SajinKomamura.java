@@ -6,20 +6,17 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.RandomizedList;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.stances.MightStance;
+import pinacolada.cards.base.*;
 import pinacolada.stances.PCLStance;
-import pinacolada.stances.VelocityStance;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.MightStance;
+import pinacolada.stances.pcl.VelocityStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class SajinKomamura extends PCLCard
 {
-    public static final PCLCardData DATA = Register(SajinKomamura.class).SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(SajinKomamura.class).SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public SajinKomamura()
     {

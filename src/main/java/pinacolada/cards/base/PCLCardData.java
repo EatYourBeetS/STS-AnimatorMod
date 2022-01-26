@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.RotatingList;
@@ -28,13 +27,13 @@ public class PCLCardData
     public final Class<? extends PCLCard> type;
     public final CardStrings Strings;
 
-    public EYBCardMetadata Metadata;
     public Object Shared;
     public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
     public int MaxCopies;
+    public boolean cropPortrait;
 
     public int MaxForms = 1;
     public boolean CanToggleFromPopup = false;
@@ -45,7 +44,7 @@ public class PCLCardData
     public final RotatingList<PCLCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
     public AbstractCard.CardColor CardColor;
-    public EYBCardTarget CardTarget;
+    public PCLCardTarget CardTarget;
     public PCLAttackType AttackType;
     public CardSeries Series;
     public PCLCard tempCard = null;
@@ -258,25 +257,25 @@ public class PCLCardData
 
     public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetAttack(cost, rarity, PCLAttackType.Normal, EYBCardTarget.Normal, false, false);
+        return SetAttack(cost, rarity, PCLAttackType.Normal, PCLCardTarget.Normal, false, false);
     }
 
     public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType)
     {
-        return SetAttack(cost, rarity, attackType, EYBCardTarget.Normal, false, false);
+        return SetAttack(cost, rarity, attackType, PCLCardTarget.Normal, false, false);
     }
 
-    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, EYBCardTarget target)
+    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, PCLCardTarget target)
     {
         return SetAttack(cost, rarity, attackType, target, false, false);
     }
 
-    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, EYBCardTarget target, boolean isBlockScaling)
+    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, PCLCardTarget target, boolean isBlockScaling)
     {
         return SetAttack(cost, rarity, attackType, target, isBlockScaling, false);
     }
 
-    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, EYBCardTarget target, boolean isBlockScaling, boolean canScaleMagicNumber)
+    public PCLCardData SetAttack(int cost, AbstractCard.CardRarity rarity, PCLAttackType attackType, PCLCardTarget target, boolean isBlockScaling, boolean canScaleMagicNumber)
     {
         SetRarity(rarity);
 
@@ -292,16 +291,16 @@ public class PCLCardData
 
     public PCLCardData SetSkill(int cost, AbstractCard.CardRarity rarity)
     {
-        return SetSkill(cost, rarity, EYBCardTarget.Normal);
+        return SetSkill(cost, rarity, PCLCardTarget.Normal);
     }
 
-    public PCLCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
+    public PCLCardData SetSkill(int cost, AbstractCard.CardRarity rarity, PCLCardTarget target)
     {
         return SetSkill(cost, rarity, target, false);
     }
 
 
-    public PCLCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target, boolean canScaleMagicNumber)
+    public PCLCardData SetSkill(int cost, AbstractCard.CardRarity rarity, PCLCardTarget target, boolean canScaleMagicNumber)
     {
         SetRarity(rarity);
 
@@ -318,7 +317,7 @@ public class PCLCardData
     {
         SetRarity(rarity);
 
-        CardTarget = EYBCardTarget.Self;
+        CardTarget = PCLCardTarget.Self;
         CardType = AbstractCard.CardType.POWER;
         AttackType = PCLAttackType.None;
         BaseCost = cost;
@@ -326,7 +325,7 @@ public class PCLCardData
         return this;
     }
 
-    public PCLCardData SetCurse(int cost, EYBCardTarget target, boolean special)
+    public PCLCardData SetCurse(int cost, PCLCardTarget target, boolean special)
     {
         SetRarity(special ? AbstractCard.CardRarity.SPECIAL : AbstractCard.CardRarity.CURSE);
 
@@ -339,7 +338,7 @@ public class PCLCardData
         return this;
     }
 
-    public PCLCardData SetStatus(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
+    public PCLCardData SetStatus(int cost, AbstractCard.CardRarity rarity, PCLCardTarget target)
     {
         SetRarity(rarity);
 

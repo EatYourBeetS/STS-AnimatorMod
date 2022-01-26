@@ -9,10 +9,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.SheerCold;
 import pinacolada.cards.pcl.status.Status_Frostbite;
 import pinacolada.effects.AttackEffects;
@@ -24,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ToushirouHitsugaya_Bankai extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ToushirouHitsugaya_Bankai.class).SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage()
+    public static final PCLCardData DATA = Register(ToushirouHitsugaya_Bankai.class).SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ice, PCLCardTarget.AoE).SetSeriesFromClassPackage()
             .PostInitialize(data -> {
                 data.AddPreview(new Status_Frostbite(), false);
                 data.AddPreview(new SheerCold(), false);

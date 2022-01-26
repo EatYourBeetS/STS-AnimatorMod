@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLJUtils;
 public class JotaroKujo extends PCLCard
 {
     public static final PCLCardData DATA = Register(JotaroKujo.class)
-            .SetSkill(3, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(3, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Jojo)
             .SetMultiformData(2, false)
             .PostInitialize(data -> data.AddPreview(new JotaroKujo_StarPlatinum(), false));

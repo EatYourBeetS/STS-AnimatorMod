@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.tokens.AffinityToken_Blue;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.powers.PCLCombatStats;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Curse_JunTormented extends PCLCard_Curse implements OnPurgeSubscriber
 {
     public static final PCLCardData DATA = Register(Curse_JunTormented.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, true).SetSeries(CardSeries.RozenMaiden);
+            .SetCurse(-2, PCLCardTarget.None, true).SetSeries(CardSeries.RozenMaiden);
 
     public Curse_JunTormented()
     {

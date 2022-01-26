@@ -7,13 +7,11 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.RemoveOrb;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.common.RippledPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
@@ -22,7 +20,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class MatouSakura extends PCLCard
 {
     public static final PCLCardData DATA = Register(MatouSakura.class)
-            .SetSkill(2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage().PostInitialize(data ->
                     data.AddPreview(new Crystallize(), false));
@@ -47,7 +45,7 @@ public class MatouSakura extends PCLCard
     {
         super.Refresh(enemy);
 
-        SetAttackTarget(PCLGameUtilities.HasOrb(Dark.ORB_ID) ? eatyourbeets.cards.base.EYBCardTarget.Normal : eatyourbeets.cards.base.EYBCardTarget.None);
+        SetAttackTarget(PCLGameUtilities.HasOrb(Dark.ORB_ID) ? PCLCardTarget.Normal : PCLCardTarget.None);
     }
 
     @Override
@@ -68,7 +66,7 @@ public class MatouSakura extends PCLCard
            }
            else
            {
-               PCLActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
+               PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Dark, magicNumber);
 
            }
         });

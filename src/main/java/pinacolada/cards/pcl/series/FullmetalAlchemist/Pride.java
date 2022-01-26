@@ -6,11 +6,12 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class Pride extends PCLCard
 {
     public static final PCLCardData DATA = Register(Pride.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
@@ -46,7 +47,7 @@ public class Pride extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Dark, magicNumber);
         PCLActions.Bottom.StackPower(new PridePower(p, secondaryValue));
     }
 

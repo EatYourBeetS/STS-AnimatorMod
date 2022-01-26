@@ -8,7 +8,7 @@ import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 
 public class SabiHakuhei extends PCLCard {
@@ -53,9 +53,7 @@ public class SabiHakuhei extends PCLCard {
         if (CombatStats.TryActivateSemiLimited(cardID))
         {
             PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Green)
-                    .AddConditionalCallback(() -> {
-                PCLActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
-            })
+                    .AddConditionalCallback(() -> PCLActions.Bottom.ChangeStance(WisdomStance.STANCE_ID))
                     .CancellableFromPlayer(true);
         }
     }

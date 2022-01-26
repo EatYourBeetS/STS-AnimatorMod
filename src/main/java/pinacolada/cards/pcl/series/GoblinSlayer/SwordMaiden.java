@@ -6,6 +6,7 @@ import eatyourbeets.utilities.ListSelection;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.utilities.PCLActions;
@@ -13,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 public class SwordMaiden extends PCLCard
 {
     public static final PCLCardData DATA = Register(SwordMaiden.class)
-            .SetSkill(2, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None, true)
             .SetSeriesFromClassPackage();
 
     public SwordMaiden()

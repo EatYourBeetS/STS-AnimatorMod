@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCard_Curse;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 
 public class RinKaenbyou_VengefulSpirit extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(RinKaenbyou_VengefulSpirit.class)
-    		.SetCurse(0, eatyourbeets.cards.base.EYBCardTarget.None, true)
+    		.SetCurse(0, PCLCardTarget.None, true)
             .SetSeries(CardSeries.TouhouProject);
 
     public RinKaenbyou_VengefulSpirit()

@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 public class Wrath extends PCLCard
 {
     public static final PCLCardData DATA = Register(Wrath.class)
-            .SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Normal, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public Wrath()

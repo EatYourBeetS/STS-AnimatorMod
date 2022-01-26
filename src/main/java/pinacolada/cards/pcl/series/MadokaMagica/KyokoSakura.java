@@ -3,10 +3,7 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.KyokoSakura_Ophelia;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
@@ -14,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class KyokoSakura extends PCLCard
 {
     public static final PCLCardData DATA = Register(KyokoSakura.class)
-            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Piercing, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.COMMON, PCLAttackType.Piercing, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->
             {

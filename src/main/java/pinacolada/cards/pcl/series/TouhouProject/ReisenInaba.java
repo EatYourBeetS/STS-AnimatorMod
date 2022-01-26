@@ -11,6 +11,7 @@ import pinacolada.actions.special.CreateRandomCurses;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLPower;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -19,7 +20,7 @@ import pinacolada.utilities.PCLJUtils;
 
 public class ReisenInaba extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ReisenInaba.class).SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(ReisenInaba.class).SetSkill(0, CardRarity.RARE, PCLCardTarget.None).SetSeriesFromClassPackage(true);
     public static final int CARDS = 3;
 
     public ReisenInaba()
@@ -48,9 +49,7 @@ public class ReisenInaba extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.Add(new CreateRandomCurses(1, p.hand)).AddCallback(card -> {
-            PCLActions.Bottom.ApplyPower(new ReisenInabaPower(player, card));
-        });
+        PCLActions.Bottom.Add(new CreateRandomCurses(1, p.hand)).AddCallback(card -> PCLActions.Bottom.ApplyPower(new ReisenInabaPower(player, card)));
     }
 
     @Override

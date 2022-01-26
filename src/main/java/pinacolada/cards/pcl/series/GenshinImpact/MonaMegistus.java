@@ -3,21 +3,18 @@ package pinacolada.cards.pcl.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnEvokeOrbSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLJUtils;
 
 public class MonaMegistus extends PCLCard implements OnEvokeOrbSubscriber {
     public static final PCLCardData DATA = Register(MonaMegistus.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.Normal)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage(true);
 
     public MonaMegistus() {

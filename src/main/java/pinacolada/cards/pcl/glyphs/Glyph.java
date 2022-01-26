@@ -1,6 +1,6 @@
 package pinacolada.cards.pcl.glyphs;
 
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.AdvancedTexture;
 import pinacolada.cards.base.PCLCard;
@@ -18,7 +18,7 @@ public abstract class Glyph extends PCLCard_Curse implements Hidden
 
     public static PCLCardData RegisterInternal(Class<? extends PCLCard> type)
     {
-        return Register(type).SetCurse(-2, EYBCardTarget.None, true);
+        return Register(type).SetCurse(-2, PCLCardTarget.None, true);
     }
 
     public static ArrayList<Glyph> GetCards()

@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.vfx.combat.OfferingEffect;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.PCLCardTooltip;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -24,7 +21,7 @@ public class Father extends PCLCard implements OnAddToDeckListener, OnAddingToCa
     private static final PCLCardTooltip tooltip = new PCLCardTooltip(relic.name, relic.description);
 
     public static final PCLCardData DATA = Register(Father.class)
-            .SetSkill(4, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(4, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage();
 

@@ -1,9 +1,10 @@
-package pinacolada.stances;
+package pinacolada.stances.pcl;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.powers.affinity.InvocationPower;
+import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class InvocationStance extends PCLStance
@@ -18,7 +19,7 @@ public class InvocationStance extends PCLStance
 
     public InvocationStance()
     {
-        super(STANCE_ID, AFFINITY, AbstractDungeon.player);
+        super(PCLStanceHelper.InvocationStance);
     }
 
     @Override

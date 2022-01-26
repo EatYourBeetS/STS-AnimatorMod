@@ -194,6 +194,7 @@ public class PCLRuntimeLoadout
             maxPercentage = percentage;
             i += 1;
         }
+        card.affinities.collapseDuplicates = true;
 
         return card;
     }

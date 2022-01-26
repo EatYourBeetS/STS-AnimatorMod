@@ -6,10 +6,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.resources.GR;
@@ -18,7 +15,7 @@ import pinacolada.utilities.PCLGameEffects;
 
 public class LaughingMan extends PCLCard implements OnEndOfTurnSubscriber, OnStartOfTurnSubscriber
 {
-    public static final PCLCardData DATA = Register(LaughingMan.class).SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetMaxCopies(1).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GhostInTheShell);
+    public static final PCLCardData DATA = Register(LaughingMan.class).SetSkill(0, CardRarity.RARE, PCLCardTarget.None).SetMaxCopies(1).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GhostInTheShell);
     private CardType cardType;
 
     public LaughingMan()

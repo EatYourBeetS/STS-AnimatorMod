@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import pinacolada.actions.orbs.EvokeOrb;
 import pinacolada.cards.base.*;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.orbs.pcl.Air;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -16,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class MisuzuKamio extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(MisuzuKamio.class)
-            .SetSkill(1, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Air);
 
@@ -46,7 +47,7 @@ public class MisuzuKamio extends PCLCard implements OnStartOfTurnPostDrawSubscri
         PCLActions.Bottom.GainBlock(block);
 
         if (CheckSpecialCondition(true)) {
-            PCLActions.Bottom.ChannelOrbs(Air::new, player.maxOrbs);
+            PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Air, player.maxOrbs);
             PCLCombatStats.onStartOfTurnPostDraw.Subscribe((MisuzuKamio) this.makeStatEquivalentCopy());
         }
         else {

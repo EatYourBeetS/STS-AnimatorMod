@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.series.AngelBeats;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -15,7 +15,7 @@ import static pinacolada.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class ShioriSekine extends PCLCard
 {
-    public static final PCLCardData DATA = Register(ShioriSekine.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.Random).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(ShioriSekine.class).SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.Random).SetSeriesFromClassPackage();
 
     public ShioriSekine()
     {

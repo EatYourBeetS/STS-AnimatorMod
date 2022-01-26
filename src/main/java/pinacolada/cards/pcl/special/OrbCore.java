@@ -15,8 +15,12 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.WeightedList;
 import org.apache.commons.lang3.ArrayUtils;
 import pinacolada.actions.pileSelection.SelectFromPile;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAffinity;
+import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardData;
 import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLClickablePower;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PowerTriggerConditionType;
@@ -33,14 +37,15 @@ public abstract class OrbCore extends PCLCard
 
     private static final WeightedList<OrbCore> cores = new WeightedList<>();
 
-    protected static PCLCardData RegisterOrbCore(Class<? extends PCLCard> type, PCLCardTooltip orbTooltip, PCLCardTooltip scalingTooltip, PCLCardTooltip affinityTooltip)
+    protected static PCLCardData RegisterOrbCore(Class<? extends PCLCard> type, PCLOrbHelper orbHelper)
     {
         final PCLCardData data = Register(type);
         final CardStrings strings = GR.GetCardStrings(ID);
-        final String orbEffect = PCLJUtils.Format(data.Strings.DESCRIPTION, scalingTooltip.id);
-        data.Strings.DESCRIPTION = PCLJUtils.Format(strings.DESCRIPTION, orbTooltip.id, orbEffect, affinityTooltip.id);
+
+        final String orbEffect = PCLJUtils.Format(data.Strings.DESCRIPTION, orbHelper.Affinity.GetPowerTooltip().id);
+        data.Strings.DESCRIPTION = PCLJUtils.Format(strings.DESCRIPTION, orbHelper.Tooltip.id, orbEffect, orbHelper.Affinity.GetTooltip().id);
         data.Strings.EXTENDED_DESCRIPTION = ArrayUtils.addAll(strings.EXTENDED_DESCRIPTION,data.Strings.EXTENDED_DESCRIPTION);
-        data.SetSharedData(orbTooltip);
+        data.SetSharedData(orbHelper);
         return data;
     }
 
@@ -120,27 +125,16 @@ public abstract class OrbCore extends PCLCard
     }
 
     public void ChannelOrb() {
-        try {
-            AbstractOrb o = GetOrb().getConstructor().newInstance();
-            PCLActions.Bottom.ChannelOrb(o);
-        } catch (Exception e) {
-            throw new RuntimeException("Orb cannot be created: " + GetOrb().toString());
-        }
+        PCLActions.Bottom.ChannelOrbs(GetHelper(), 1);
     }
 
-    public PCLAffinity GetAffinity() {
-        return PCLJUtils.FindMax(PCLAffinity.All(), af -> affinities.GetLevel(af, false));
+    public PCLAffinity GetRequiredAffinity() {
+        PCLAffinity affinity = GetHelper().Affinity;
+        return affinity != null && affinity != PCLAffinity.Star ? affinity : PCLAffinity.General;
     }
-
-    public PCLCardTooltip GetTooltip() {
-        PCLAffinity af = GetAffinity();
-        return (af == PCLAffinity.Star ? PCLAffinity.General.GetTooltip() : af.GetTooltip());
-    }
-
+    public PCLOrbHelper GetHelper() {return cardData.GetSharedData();}
     public boolean EvokeEffect(OrbCorePower power) {return false;}
     public boolean PassiveEffect(OrbCorePower power) {return false;}
-
-    public abstract Class<? extends AbstractOrb> GetOrb();
 
     public static class OrbCorePower extends PCLClickablePower implements OnOrbApplyFocusSubscriber, OnOrbPassiveEffectSubscriber
     {
@@ -148,7 +142,7 @@ public abstract class OrbCore extends PCLCard
 
         public OrbCorePower(AbstractCreature owner, OrbCore card, int amount, int cost)
         {
-            super(owner, card.cardData, PowerTriggerConditionType.Affinity, cost, null, null, card.GetAffinity());
+            super(owner, card.cardData, PowerTriggerConditionType.Affinity, cost, null, null, card.GetRequiredAffinity());
 
             this.card = card;
             this.canBeZero = true;
@@ -180,7 +174,7 @@ public abstract class OrbCore extends PCLCard
         public String GetUpdatedDescription()
         {
             String appendix = PCLJUtils.Format(powerStrings.DESCRIPTIONS[1], amount);
-            return FormatDescription(0, this.triggerCondition.requiredAmount, card.GetAffinity().GetTooltip(), card.cardData.GetSharedData(), appendix);
+            return FormatDescription(0, this.triggerCondition.requiredAmount, card.GetRequiredAffinity().GetTooltip(), card.GetHelper().Tooltip, appendix);
         }
 
         @Override
@@ -200,8 +194,8 @@ public abstract class OrbCore extends PCLCard
         @Override
         public void OnApplyFocus(AbstractOrb orb)
         {
-            if (orb != null && orb.getClass().equals(card.GetOrb())) {
-                if (Plasma.class.equals(card.GetOrb())) {
+            if (orb != null && card.GetHelper().ID.equals(orb.ID)) {
+                if (Plasma.ORB_ID.equals(orb.ID)) {
                     orb.passiveAmount += 1;
                     orb.evokeAmount += 1;
                 }
@@ -213,7 +207,7 @@ public abstract class OrbCore extends PCLCard
 
         @Override
         public void OnOrbPassiveEffect(AbstractOrb orb) {
-            if (orb != null && orb.getClass().equals(card.GetOrb())) {
+            if (orb != null && card.GetHelper().ID.equals(orb.ID)) {
                 if (card.PassiveEffect(this)) {
                     flash();
                 }
@@ -223,7 +217,7 @@ public abstract class OrbCore extends PCLCard
         @Override
         public void onEvokeOrb(AbstractOrb orb) {
             super.onEvokeOrb(orb);
-            if (orb != null && orb.getClass().equals(card.GetOrb())) {
+            if (orb != null && card.GetHelper().ID.equals(orb.ID)) {
                 if (card.EvokeEffect(this)) {
                     flash();
                 }
@@ -231,7 +225,7 @@ public abstract class OrbCore extends PCLCard
         }
 
         private float GetScaledIncrease() {
-            return PCLCombatStats.MatchingSystem.GetPowerLevel(card.GetAffinity()) * amount;
+            return PCLCombatStats.MatchingSystem.GetPowerLevel(card.GetRequiredAffinity()) * amount;
         }
 
         private void refreshOrbs() {

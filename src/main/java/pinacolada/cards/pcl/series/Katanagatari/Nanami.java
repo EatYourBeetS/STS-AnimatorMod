@@ -3,12 +3,12 @@ package pinacolada.cards.pcl.series.Katanagatari;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.powers.common.CounterAttackPower;
 import pinacolada.powers.temporary.TemporaryEnvenomPower;
@@ -19,7 +19,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Nanami extends PCLCard
 {
     public static final PCLCardData DATA = Register(Nanami.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
+            .SetSkill(2, CardRarity.UNCOMMON, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public Nanami()

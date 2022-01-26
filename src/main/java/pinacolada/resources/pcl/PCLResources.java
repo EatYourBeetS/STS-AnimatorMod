@@ -22,7 +22,10 @@ import eatyourbeets.console.CommandsManager;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.utilities.EYBFontHelper;
 import org.apache.commons.lang3.StringUtils;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardSeries;
+import pinacolada.cards.base.PCLAffinity;
+import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.characters.FoolCharacter;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
@@ -36,7 +39,6 @@ import pinacolada.resources.GR;
 import pinacolada.rewards.pcl.ConcertsFinalHourReward;
 import pinacolada.rewards.pcl.MissingPieceReward;
 import pinacolada.rewards.pcl.SpecialGoldReward;
-import pinacolada.stances.PCLStance;
 import pinacolada.ui.seriesSelection.PCLLoadoutsContainer;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -51,7 +53,6 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
     public static final String ID = GR.BASE_PREFIX;
     public static final String JSON_CARDS = "CardStrings.json";
     public static final String JSON_KEYWORDS = "KeywordStrings.json";
-    public static final String JSON_METADATA = "PCL-CardMetadata.json";
     public static final String JSON_SHORTCUTS = "CardStringsShortcuts.json";
 
     public final AbstractCard.CardColor CardColor = Enums.Cards.THE_FOOL;
@@ -62,7 +63,6 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
     public final PCLImages Images = new PCLImages();
     public final PCLConfig Config = new PCLConfig();
     protected final FileHandle testFolder;
-    public Map<String, EYBCardMetadata> CardData;
     protected String defaultLanguagePath;
 
     public PCLResources()
@@ -125,9 +125,6 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
             }
         }
 
-        String jsonString = new String(Gdx.files.internal(JSON_METADATA).readBytes());
-        CardData = new Gson().fromJson(jsonString, new TypeToken<Map<String, EYBCardMetadata>>(){}.getType());
-
         LoadCustomStrings(RelicStrings.class);
         LoadCustomStrings(PowerStrings.class);
         LoadCustomStrings(UIStrings.class);
@@ -160,7 +157,6 @@ public class PCLResources extends GR implements EditCharactersSubscriber, EditCa
         PCLJUtils.LogInfo(this, "InitializeCards();");
 
         GR.Tooltips = new CardTooltips();
-        PCLStance.Initialize();
         Strings.Initialize();
         CardSeries.InitializeStrings();
         LoadCustomCards();

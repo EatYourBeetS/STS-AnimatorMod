@@ -7,13 +7,14 @@ import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 
 public class NiaHonjou extends PCLCard
 {
-    public static final PCLCardData DATA = Register(NiaHonjou.class).SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(NiaHonjou.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public NiaHonjou()
     {
@@ -31,7 +32,9 @@ public class NiaHonjou extends PCLCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.ApplyPower(new NiaHonjouPower(p, magicNumber));
+        if (info.TryActivateSemiLimited()) {
+            PCLActions.Bottom.StackPower(new NiaHonjouPower(p, magicNumber));
+        }
     }
 
     @Override

@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.status.Status_Burn;
@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Yuuichirou_Asuramaru extends PCLCard
 {
     public static final PCLCardData DATA = Register(Yuuichirou_Asuramaru.class)
-            .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.Normal)
+            .SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.Normal)
             .SetSeries(CardSeries.OwariNoSeraph)
             .PostInitialize(data -> data.AddPreview(new Status_Burn(), false));
 

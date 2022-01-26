@@ -9,7 +9,8 @@ import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStanc
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
-import pinacolada.stances.*;
+import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLJUtils;
@@ -34,12 +35,9 @@ public class SakuraKashima extends PCLCard_UltraRare {
             PCLGameEffects.List.ShowCopy(this);
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
+                for (PCLStanceHelper stance : PCLStanceHelper.ALL.values()) {
+                    choices.AddEffect(new GenericEffect_EnterStance(stance));
+                }
             }
 
             choices.Select(1, null);

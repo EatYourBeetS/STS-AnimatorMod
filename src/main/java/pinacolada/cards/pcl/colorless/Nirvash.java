@@ -20,7 +20,7 @@ import static pinacolada.resources.GR.Enums.CardTags.PCL_EXHAUST;
 public class Nirvash extends PCLCard
 {
     public static final PCLCardData DATA = Register(Nirvash.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(1)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.EurekaSeven)

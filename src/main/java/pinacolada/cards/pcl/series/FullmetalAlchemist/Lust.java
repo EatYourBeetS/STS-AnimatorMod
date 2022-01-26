@@ -3,17 +3,14 @@ package pinacolada.cards.pcl.series.FullmetalAlchemist;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 
 public class Lust extends PCLCard
 {
     public static final PCLCardData DATA = Register(Lust.class)
-            .SetSkill(1, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetSkill(1, CardRarity.COMMON, PCLCardTarget.AoE)
             .SetSeriesFromClassPackage();
 
     public Lust()

@@ -50,7 +50,7 @@ public class PCLCardAffinity implements Comparable<PCLCardAffinity>
         return type + ": " + level + " (+" + upgrade + "), s:" + scaling;
     }
 
-    public void RenderOnCard(SpriteBatch sb, PCLCard card, float x, float y, float size, boolean highlight)
+    public void RenderOnCard(SpriteBatch sb, PCLCard card, float x, float y, float size, boolean highlight, boolean allowAlternateBorder)
     {
         float borderScale = 1f;
         final Color color = Color.WHITE.cpy();
@@ -63,7 +63,7 @@ public class PCLCardAffinity implements Comparable<PCLCardAffinity>
             borderScale += GR.UI.Time_Sin(0.015f, 2.5f);
         }
 
-        Texture background = type.GetBackground(level, upgrade);
+        Texture background = type.GetBackground(allowAlternateBorder ? level : Math.min(1, level), allowAlternateBorder ? upgrade : 0);
         if (background != null)
         {
             pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, card, background, new Vector2(x, y), size, size, Color.LIGHT_GRAY, 1f, 1f, 0);
@@ -71,7 +71,7 @@ public class PCLCardAffinity implements Comparable<PCLCardAffinity>
 
         pinacolada.utilities.PCLRenderHelpers.DrawOnCardAuto(sb, card, type.GetIcon(), new Vector2(x, y), size, size, color, 1f, 1f, 0f);
 
-        Texture border = type.GetBorder(level);
+        Texture border = type.GetBorder(allowAlternateBorder ? level : Math.min(1, level));
         if (border != null)
         {
             PCLRenderHelpers.DrawOnCardAuto(sb, card, border, new Vector2(x, y), size, size, borderColor, 1f, borderScale, 0f);

@@ -1,13 +1,11 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Frost;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.resources.GR;
+import pinacolada.orbs.PCLOrbHelper;
 
 public class OrbCore_Frost extends OrbCore
 {
-    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Frost.class, GR.Tooltips.Frost, GR.Tooltips.Wisdom, GR.Tooltips.Affinity_Blue)
+    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Frost.class, PCLOrbHelper.Frost)
             .SetPower(1, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
@@ -16,10 +14,5 @@ public class OrbCore_Frost extends OrbCore
         super(DATA, 1, 5);
 
         SetAffinity_Blue(1);
-    }
-
-    @Override
-    public Class<? extends AbstractOrb> GetOrb() {
-        return Frost.class;
     }
 }

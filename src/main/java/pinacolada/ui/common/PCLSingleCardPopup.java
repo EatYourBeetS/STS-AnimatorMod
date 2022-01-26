@@ -221,7 +221,7 @@ public class PCLSingleCardPopup extends GUIElement
         this.changeVariantHb.move((float) Settings.WIDTH / 2f  - 700f * Settings.scale, Settings.HEIGHT / 2f + 170 * Settings.scale);
 
         viewChangeVariants = baseCard != null && baseCard.cardData != null && baseCard.cardData.CanToggleFromPopup && (baseCard.upgraded || baseCard.cardData.UnUpgradedCanToggleForms) && (baseCard.auxiliaryData.form == 0 || baseCard.cardData.CanToggleFromAlternateForm) && PCLGameUtilities.InGame();
-        changeVariantDescription.SetText((baseCard != null && !baseCard.cardData.CanToggleFromAlternateForm) ? buttonStrings.ChangeVariantTooltipPermanent : buttonStrings.ChangeVariantTooltipAlways);
+        changeVariantDescription.SetText((baseCard != null && baseCard.cardData != null && !baseCard.cardData.CanToggleFromAlternateForm) ? buttonStrings.ChangeVariantTooltipPermanent : buttonStrings.ChangeVariantTooltipAlways);
     }
 
     public PCLCard GetCard()

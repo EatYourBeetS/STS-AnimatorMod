@@ -13,6 +13,7 @@ import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.effects.SFX;
 import pinacolada.orbs.PCLOrb;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
@@ -66,7 +67,7 @@ public class Chaos extends PCLOrb implements OnEndOfTurnSubscriber, OnAfterCardP
                 String id = currentForm.ID;
                 do
                 {
-                    orb = PCLGameUtilities.GetRandomOrb();
+                    orb = PCLOrbHelper.RandomOrb();
                 }
                 while (orb.ID.equals(id));
 

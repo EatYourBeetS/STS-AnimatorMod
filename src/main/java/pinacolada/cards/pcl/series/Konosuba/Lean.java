@@ -2,12 +2,10 @@ package pinacolada.cards.pcl.series.Konosuba;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -15,7 +13,7 @@ import pinacolada.utilities.PCLJUtils;
 public class Lean extends PCLCard
 {
     public static final PCLCardData DATA = Register(Lean.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None, true)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None, true)
             .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();
 
@@ -70,10 +68,10 @@ public class Lean extends PCLCard
         }
 
         if (TrySpendAffinity(PCLAffinity.Blue)) {
-            PCLActions.Bottom.ChannelOrbs(PCLGameUtilities::GetRandomCommonOrb, 1);
+            PCLActions.Bottom.ChannelOrb(PCLOrbHelper.RandomCommonOrb());
         }
         if (TrySpendAffinity(PCLAffinity.Green)) {
-            PCLActions.Bottom.ChannelOrbs(PCLGameUtilities::GetRandomCommonOrb, 1);
+            PCLActions.Bottom.ChannelOrb(PCLOrbHelper.RandomCommonOrb());
         }
     }
 }

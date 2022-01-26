@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Diluc extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Diluc.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Fire, eatyourbeets.cards.base.EYBCardTarget.ALL).SetSeriesFromClassPackage(true);
+    public static final PCLCardData DATA = Register(Diluc.class).SetAttack(3, CardRarity.UNCOMMON, PCLAttackType.Fire, PCLCardTarget.AoE).SetSeriesFromClassPackage(true);
 
     public Diluc()
     {

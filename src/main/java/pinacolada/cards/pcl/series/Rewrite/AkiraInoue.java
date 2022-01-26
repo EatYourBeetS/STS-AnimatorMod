@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.*;
@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class AkiraInoue extends PCLCard
 {
-    public static final PCLCardData DATA = Register(AkiraInoue.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(AkiraInoue.class).SetSkill(1, CardRarity.COMMON, PCLCardTarget.Self).SetSeriesFromClassPackage();
 
     public AkiraInoue()
     {

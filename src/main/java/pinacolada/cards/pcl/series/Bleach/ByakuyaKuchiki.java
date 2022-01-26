@@ -10,8 +10,8 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.ByakuyaBankai;
 import pinacolada.effects.AttackEffects;
 import pinacolada.resources.GR;
-import pinacolada.stances.MightStance;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.MightStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class ByakuyaKuchiki extends PCLCard {
@@ -57,7 +57,7 @@ public class ByakuyaKuchiki extends PCLCard {
         builder.SetOnUse(onUseAction);
 
         if (type.equals(CardType.ATTACK)) {
-            builder.SetAttackType(PCLAttackType.Piercing, eatyourbeets.cards.base.EYBCardTarget.Normal);
+            builder.SetAttackType(PCLAttackType.Piercing, PCLCardTarget.Normal);
             builder.SetNumbers(damage, 0, magicNumber, 0, 1);
         } else {
             builder.SetNumbers(0, block, magicNumber, 0, 1);

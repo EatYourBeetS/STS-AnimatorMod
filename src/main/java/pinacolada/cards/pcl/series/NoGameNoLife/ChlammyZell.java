@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLJUtils;
 public class ChlammyZell extends PCLCard
 {
     public static final PCLCardData DATA = Register(ChlammyZell.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new ChlammyZell_Scheme(), false));
     private static final CardEffectChoice choices = new CardEffectChoice();

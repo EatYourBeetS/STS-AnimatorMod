@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Vesta extends PCLCard
 {
     public static final PCLCardData DATA = Register(Vesta.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeries(CardSeries.TenseiSlime)
             .PostInitialize(data -> data.AddPreview(new Vesta_Elixir(), false));
 

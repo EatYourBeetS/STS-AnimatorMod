@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import eatyourbeets.interfaces.subscribers.OnRawDamageReceivedSubscriber;
 import eatyourbeets.utilities.GameUtilities;
-import pinacolada.cards.base.CardSeries;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.interfaces.subscribers.OnOrbApplyFocusSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
@@ -19,7 +16,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class UruhaRushia extends PCLCard implements OnOrbApplyFocusSubscriber
 {
-    public static final PCLCardData DATA = Register(UruhaRushia.class).SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Hololive);
+    public static final PCLCardData DATA = Register(UruhaRushia.class).SetSkill(0, CardRarity.RARE, PCLCardTarget.None).SetMaxCopies(2).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Hololive);
 
     public UruhaRushia()
     {

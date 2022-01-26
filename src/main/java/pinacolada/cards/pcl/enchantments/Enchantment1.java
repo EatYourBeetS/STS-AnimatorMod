@@ -6,7 +6,8 @@ import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.stances.*;
+import pinacolada.stances.PCLStanceHelper;
+import pinacolada.stances.pcl.*;
 import pinacolada.utilities.PCLActions;
 
 public class Enchantment1 extends Enchantment
@@ -52,18 +53,15 @@ public class Enchantment1 extends Enchantment
         else if (auxiliaryData.form == 7) {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
-                choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
+                for (PCLStanceHelper stance : PCLStanceHelper.ALL.values()) {
+                    choices.AddEffect(new GenericEffect_EnterStance(stance));
+                }
             }
 
             choices.Select(1, m);
         }
         else {
-            PCLActions.Bottom.ChangeStance(PCLStance.GetRandomStance());
+            PCLActions.Bottom.ChangeStance(PCLStanceHelper.RandomStance());
         }
     }
 

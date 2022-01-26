@@ -1,17 +1,14 @@
 package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.orbs.pcl.Chaos;
-import pinacolada.resources.GR;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class OrbCore_Chaos extends OrbCore
 {
-    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Chaos.class, GR.Tooltips.Chaos, GR.Tooltips.Multicolor, GR.Tooltips.Affinity_General)
+    public static final PCLCardData DATA = RegisterOrbCore(OrbCore_Chaos.class, PCLOrbHelper.Chaos)
             .SetPower(3, CardRarity.SPECIAL)
             .SetColor(CardColor.COLORLESS);
 
@@ -20,16 +17,6 @@ public class OrbCore_Chaos extends OrbCore
         super(DATA, 1, 9);
 
         SetAffinity_Star(1);
-    }
-
-    @Override
-    public PCLAffinity GetAffinity() {
-        return PCLAffinity.General;
-    }
-
-    @Override
-    public Class<? extends AbstractOrb> GetOrb() {
-        return Chaos.class;
     }
 
     @Override

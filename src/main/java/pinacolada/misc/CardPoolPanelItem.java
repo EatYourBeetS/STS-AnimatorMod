@@ -81,6 +81,6 @@ public class CardPoolPanelItem extends PCLTopPanelItem
             joiner.add(line);
         }
 
-        return base + " NL  NL " + PCLJUtils.ModifyString(GR.PCL.Strings.Misc.ViewCardPoolSeries, w -> "#p" + w) + ": NL " + joiner.toString();
+        return base + " NL  NL " + PCLJUtils.ModifyString(GR.PCL.Strings.Misc.ViewCardPoolSeries, w -> "#p" + w) + ": NL " + joiner;
     }
 }

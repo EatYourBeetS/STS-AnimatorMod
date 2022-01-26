@@ -2,18 +2,15 @@ package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.series.FullmetalAlchemist.ElricAlphonse;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.utilities.PCLActions;
 
 public class ElricAlphonse_Alt extends PCLCard
 {
     public static final PCLCardData DATA = Register(ElricAlphonse_Alt.class)
-            .SetSkill(2, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.Self)
+            .SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.Self)
             .SetSeries(ElricAlphonse.DATA.Series);
 
     public ElricAlphonse_Alt()
@@ -35,7 +32,7 @@ public class ElricAlphonse_Alt extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
+        PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Lightning, secondaryValue);
         PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.GainOrbSlots(1);
 

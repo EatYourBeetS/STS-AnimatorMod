@@ -97,6 +97,8 @@ public class CardSeries
     public final static CardSeries LaidBackCamp = Add(81, "LaidBackCamp");
     public final static CardSeries Air = Add(82, "Air");
     public final static CardSeries VioletEvergarden = Add(83, "VioletEvergarden");
+    public final static CardSeries Monogatari = Add(84, "Monogatari");
+    public final static CardSeries Persona = Add(85, "Persona");
 
 
     private static AbstractCard currentSynergy = null;

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Vash extends PCLCard
 {
     public static final PCLCardData DATA = Register(Vash.class)
-            .SetAttack(2, CardRarity.RARE, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(2, CardRarity.RARE, PCLAttackType.Ranged, PCLCardTarget.Random)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.Trigun);
     private static final CardEffectChoice choices = new CardEffectChoice();
 

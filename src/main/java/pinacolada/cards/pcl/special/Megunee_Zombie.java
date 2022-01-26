@@ -8,10 +8,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -20,7 +17,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class Megunee_Zombie extends PCLCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final PCLCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Brutal, eatyourbeets.cards.base.EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    public static final PCLCardData DATA = Register(Megunee_Zombie.class).SetAttack(-1, CardRarity.SPECIAL, PCLAttackType.Brutal, PCLCardTarget.Random).SetColor(CardColor.COLORLESS);
 
     private int turns;
 

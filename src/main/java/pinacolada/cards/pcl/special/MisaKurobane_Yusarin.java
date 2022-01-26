@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.colorless.MisaKurobane;
 import pinacolada.orbs.pcl.Fire;
 import pinacolada.utilities.PCLActions;
@@ -12,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class MisaKurobane_Yusarin extends PCLCard
 {
     public static final PCLCardData DATA = Register(MisaKurobane_Yusarin.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(MisaKurobane.DATA.Series);
 

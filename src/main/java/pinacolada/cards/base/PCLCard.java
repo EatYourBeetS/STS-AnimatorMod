@@ -23,7 +23,6 @@ import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT0;
@@ -79,7 +78,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     public final PCLCardData cardData;
     public final PCLCardAffinities affinities;
     public final ArrayList<PCLCardTooltip> tooltips;
-    public EYBCardTarget attackTarget = EYBCardTarget.Normal;
+    public PCLCardTarget attackTarget = PCLCardTarget.Normal;
     public PCLAttackType attackType = PCLAttackType.Normal;
 
     protected static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
@@ -112,19 +111,18 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
 
     public static PCLCardData RegisterCardData(PCLCardData cardData)
     {
-        cardData.Metadata = GR.PCL.CardData.get(cardData.ID);
         staticCardData.put(cardData.ID, cardData);
         return cardData;
     }
 
     protected PCLCard(PCLCardData cardData)
     {
-        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget(), 0, 0);
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.cardTarget, 0, 0);
     }
 
     protected PCLCard(PCLCardData cardData, int form, int timesUpgraded)
     {
-        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget(), form, timesUpgraded);
+        this(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.cardTarget, form, timesUpgraded);
     }
 
     protected PCLCard(PCLCardData cardData, String id, String imagePath, int cost, CardType type, CardColor color, CardRarity rarity, CardTarget target) {
@@ -135,13 +133,13 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     {
         super(id, cardData.Strings.NAME, imagePath, cost, "", type, color, rarity, target);
 
-        this.cropPortrait = cardData.Metadata == null || cardData.Metadata.cropPortrait;
+        this.cropPortrait = cardData.cropPortrait;
         this.cardData = cardData;
         this.tooltips = new ArrayList<>();
         this.cardText = new PCLCardText(this);
         this.affinities = new PCLCardAffinities(this);
 
-        SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
+        SetMultiDamage(cardData.CardTarget == PCLCardTarget.AoE);
         if (cardData.CardTarget != null) {
             SetAttackTarget(cardData.CardTarget);
         }
@@ -811,10 +809,10 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         this.attackType = attackType;
     }
 
-    public void SetAttackTarget(EYBCardTarget attackTarget)
+    public void SetAttackTarget(PCLCardTarget attackTarget)
     {
         this.attackTarget = attackTarget;
-        this.target = attackTarget.ToCardTarget();
+        this.target = attackTarget.cardTarget;
     }
 
     public void SetMultiDamage(boolean value)

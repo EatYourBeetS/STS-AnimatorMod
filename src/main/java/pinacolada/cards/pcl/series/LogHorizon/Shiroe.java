@@ -7,6 +7,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
 
@@ -14,7 +15,7 @@ public class Shiroe extends PCLCard
 {
     public static final int MINIMUM_AFFINITY = 4;
     public static final PCLCardData DATA = Register(Shiroe.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 

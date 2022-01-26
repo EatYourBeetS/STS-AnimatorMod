@@ -2,7 +2,7 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.actions.special.CreateRandomGoblins;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
@@ -13,7 +13,7 @@ import pinacolada.utilities.PCLActions;
 public class GoblinKing extends PCLCard_Status
 {
     public static final PCLCardData DATA = Register(GoblinKing.class)
-            .SetStatus(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetStatus(1, CardRarity.RARE, PCLCardTarget.None)
             .SetSeries(GoblinSlayer.DATA.Series);
 
     public GoblinKing()

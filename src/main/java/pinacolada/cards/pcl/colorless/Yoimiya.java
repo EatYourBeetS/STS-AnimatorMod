@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Yoimiya extends PCLCard
 {
     public static final PCLCardData DATA = Register(Yoimiya.class)
-            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetAttack(1, CardRarity.SPECIAL, PCLAttackType.Ranged, PCLCardTarget.Normal)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> {data.AddPreview(new BlazingHeat(), false);

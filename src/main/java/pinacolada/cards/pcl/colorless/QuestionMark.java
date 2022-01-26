@@ -9,13 +9,14 @@ import pinacolada.actions.special.QuestionMarkAction;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 
 public class QuestionMark extends PCLCard implements OnStartOfTurnSubscriber
 {
     public static final PCLCardData DATA = Register(QuestionMark.class)
-            .SetSkill(-2, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetSkill(-2, CardRarity.UNCOMMON, PCLCardTarget.AoE)
             .SetColor(CardColor.COLORLESS);
 
     public AbstractCard copy = null;

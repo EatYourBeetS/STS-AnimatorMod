@@ -4,12 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.stances.InvocationStance;
+import pinacolada.stances.pcl.InvocationStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
@@ -17,7 +17,7 @@ public class MitsuKusabue extends PCLCard
 {
     public static final PCLCardData DATA =
             Register(MitsuKusabue.class)
-                    .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None).SetSeriesFromClassPackage();
+                    .SetSkill(1, CardRarity.COMMON, PCLCardTarget.None).SetSeriesFromClassPackage();
 
     public MitsuKusabue() {
         super(DATA);

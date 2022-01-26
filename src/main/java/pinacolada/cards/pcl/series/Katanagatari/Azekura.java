@@ -2,17 +2,14 @@ package pinacolada.cards.pcl.series.Katanagatari;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.replacement.TemporaryDrawReductionPower;
 import pinacolada.utilities.PCLActions;
 
 public class Azekura extends PCLCard
 {
     public static final PCLCardData DATA = Register(Azekura.class)
-            .SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage();
 
     public Azekura()

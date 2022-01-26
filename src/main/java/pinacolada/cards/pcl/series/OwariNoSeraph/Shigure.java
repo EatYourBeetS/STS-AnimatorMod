@@ -7,7 +7,7 @@ import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 

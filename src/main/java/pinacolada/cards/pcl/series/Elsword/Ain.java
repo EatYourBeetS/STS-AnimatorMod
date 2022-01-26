@@ -12,7 +12,7 @@ import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.stances.WisdomStance;
+import pinacolada.stances.pcl.WisdomStance;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
@@ -20,7 +20,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Ain extends PCLCard
 {
     public static final PCLCardData DATA = Register(Ain.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ice, eatyourbeets.cards.base.EYBCardTarget.ALL)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Ice, PCLCardTarget.AoE)
             .SetMultiformData(2, false)
             .SetSeries(CardSeries.Elsword);
 

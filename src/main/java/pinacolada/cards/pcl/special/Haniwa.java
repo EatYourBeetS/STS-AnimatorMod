@@ -6,12 +6,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.modifiers.CostModifiers;
 import pinacolada.utilities.PCLActions;
 
 public class Haniwa extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Haniwa.class).SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None);
+    public static final PCLCardData DATA = Register(Haniwa.class).SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None);
 
     public Haniwa()
     {

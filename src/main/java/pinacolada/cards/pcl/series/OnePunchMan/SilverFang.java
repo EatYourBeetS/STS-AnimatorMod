@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.modifiers.BlockModifiers;
-import pinacolada.stances.VelocityStance;
+import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
 public class SilverFang extends PCLCard
 {
     public static final PCLCardData DATA = Register(SilverFang.class)
-            .SetSkill(2, CardRarity.COMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(2, CardRarity.COMMON, PCLCardTarget.None)
             .SetSeries(CardSeries.OnePunchMan);
 
     public SilverFang()

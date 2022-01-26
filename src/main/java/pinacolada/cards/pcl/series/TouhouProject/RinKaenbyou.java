@@ -8,6 +8,7 @@ import eatyourbeets.utilities.CardSelection;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.special.RinKaenbyou_VengefulSpirit;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -16,7 +17,7 @@ import pinacolada.utilities.PCLJUtils;
 public class RinKaenbyou extends PCLCard
 {
     public static final PCLCardData DATA = Register(RinKaenbyou.class)
-            .SetSkill(0, CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage(true)
             .PostInitialize(data -> data.AddPreview(new RinKaenbyou_VengefulSpirit(), false));
 

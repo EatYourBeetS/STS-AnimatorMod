@@ -3,15 +3,17 @@ package pinacolada.cards.base.cardeffects.GenericEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
 public class GenericEffect_GainTempHP extends GenericEffect
 {
+    public static final String ID = Register(GenericEffect_GainTempHP.class);
+
     public GenericEffect_GainTempHP(int amount)
     {
-        this.amount = amount;
-        this.tooltip = GR.Tooltips.TempHP;
+        super(ID, null, GR.Tooltips.TempHP, PCLCardTarget.Self, amount);
     }
 
     @Override

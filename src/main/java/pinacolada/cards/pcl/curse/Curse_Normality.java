@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -31,7 +31,7 @@ public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscr
     protected static final HashMap<AbstractCreature, HashMap<String, Integer>> POWERS = new HashMap<>();
     protected static UUID battleID;
     public static final PCLCardData DATA = Register(Curse_Normality.class)
-            .SetCurse(-2, EYBCardTarget.None, false);
+            .SetCurse(-2, PCLCardTarget.None, false);
 
     protected static void CheckForNewBattle() {
         if (CombatStats.BattleID != battleID)

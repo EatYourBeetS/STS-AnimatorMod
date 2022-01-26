@@ -28,7 +28,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class Traveler_Lumine extends PCLCard_UltraRare implements OnStartOfTurnPostDrawSubscriber
 {
     public static final PCLCardData DATA = Register(Traveler_Lumine.class)
-            .SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> {
                 data.AddPreview(new Traveler_Wish(), false);

@@ -26,7 +26,7 @@ import java.util.HashSet;
 public class Patchouli extends PCLCard
 {
     public static final PCLCardData DATA = Register(Patchouli.class)
-            .SetAttack(3, CardRarity.RARE, PCLAttackType.Electric, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(3, CardRarity.RARE, PCLAttackType.Electric, PCLCardTarget.Random)
             .SetSeriesFromClassPackage(true)
             .PostInitialize(data ->
             {

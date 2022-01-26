@@ -17,7 +17,7 @@ public class Dainsleif extends PCLCard_UltraRare {
     public static PowerStrings PhaseStrings;
     private static final CardGroup cardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final CardGroup upgradedCardChoices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    public static final PCLCardData DATA = Register(Dainsleif.class).SetSkill(2, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
+    public static final PCLCardData DATA = Register(Dainsleif.class).SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.None).SetColor(CardColor.COLORLESS).SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data ->
             {
                 cardChoices.group.add(new Traveler_Aether());

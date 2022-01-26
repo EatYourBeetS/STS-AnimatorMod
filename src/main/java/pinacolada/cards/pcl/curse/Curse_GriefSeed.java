@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Curse_GriefSeed extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_GriefSeed.class)
-            .SetCurse(0, eatyourbeets.cards.base.EYBCardTarget.None, false)
+            .SetCurse(0, PCLCardTarget.None, false)
             .SetSeries(CardSeries.MadokaMagica);
 
     public Curse_GriefSeed()

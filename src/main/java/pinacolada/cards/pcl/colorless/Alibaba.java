@@ -3,20 +3,19 @@ package pinacolada.cards.pcl.colorless;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToAll;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToEnemies;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_TriggerOrb;
 import pinacolada.cards.pcl.special.Alibaba_Aladdin;
 import pinacolada.effects.AttackEffects;
-import pinacolada.orbs.pcl.Earth;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Alibaba extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Alibaba.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Normal)
+    public static final PCLCardData DATA = Register(Alibaba.class).SetAttack(1, CardRarity.UNCOMMON, PCLAttackType.Normal, PCLCardTarget.Normal)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Magi)
             .PostInitialize(data -> data.AddPreview(new Alibaba_Aladdin(), false));
@@ -49,8 +48,8 @@ public class Alibaba extends PCLCard
             if (e.lastDamageTaken > 0) {
                 if (choices.TryInitialize(this))
                 {
-                    choices.AddEffect(new GenericEffect_ApplyToAll(TargetHelper.Normal(e), PCLPowerHelper.Burning, magicNumber));
-                    choices.AddEffect(new GenericEffect_TriggerOrb(new Earth()));
+                    choices.AddEffect(new GenericEffect_ApplyToEnemies(PCLPowerHelper.Burning, magicNumber));
+                    choices.AddEffect(new GenericEffect_TriggerOrb(PCLOrbHelper.Earth, 1));
                 }
                 choices.Select(1, m);
             }

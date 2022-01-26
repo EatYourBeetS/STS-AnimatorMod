@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.interfaces.subscribers.OnMatchBonusSubscriber;
@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 
 public class Fischl_Oz extends PCLCard
 {
-    public static final PCLCardData DATA = Register(Fischl_Oz.class).SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.Random).SetSeries(CardSeries.GenshinImpact);
+    public static final PCLCardData DATA = Register(Fischl_Oz.class).SetSkill(2, CardRarity.SPECIAL, PCLCardTarget.Random).SetSeries(CardSeries.GenshinImpact);
 
     public Fischl_Oz()
     {

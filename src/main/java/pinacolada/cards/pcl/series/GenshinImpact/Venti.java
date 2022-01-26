@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -21,7 +21,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class Venti extends PCLCard
 {
     public static final PCLCardData DATA = Register(Venti.class)
-            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetMultiformData(2, false)
             .SetSeriesFromClassPackage();

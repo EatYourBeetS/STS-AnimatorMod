@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.special;
 import com.megacrit.cardcrawl.actions.unique.MadnessAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.markers.Hidden;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 public class Cthulhu_Madness extends PCLCard implements Hidden
 {
     public static final PCLCardData DATA = Register(Cthulhu_Madness.class)
-            .SetSkill(1, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(Cthulhu.DATA.Series);
 

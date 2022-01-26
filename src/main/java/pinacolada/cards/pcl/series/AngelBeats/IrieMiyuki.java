@@ -7,6 +7,7 @@ import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.TempHPAttribute;
 import pinacolada.utilities.PCLActions;
@@ -14,7 +15,7 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class IrieMiyuki extends PCLCard
 {
-    public static final PCLCardData DATA = Register(IrieMiyuki.class).SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Self).SetSeriesFromClassPackage();
+    public static final PCLCardData DATA = Register(IrieMiyuki.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Self).SetSeriesFromClassPackage();
     public static final int MATCH_COMBO = 3;
 
     public IrieMiyuki()

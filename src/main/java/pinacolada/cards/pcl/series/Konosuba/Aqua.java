@@ -14,7 +14,7 @@ import pinacolada.utilities.PCLActions;
 public class Aqua extends PCLCard
 {
     public static final PCLCardData DATA = Register(Aqua.class)
-            .SetSkill(0, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Aqua(true), true));
 

@@ -5,14 +5,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import eatyourbeets.actions.EYBActionWithCallback;
-import eatyourbeets.interfaces.delegates.FuncT0;
+import pinacolada.orbs.PCLOrbHelper;
 
 import java.util.ArrayList;
 
 public class ChannelOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 {
     private final ArrayList<AbstractOrb> channeledOrbs = new ArrayList<>();
-    private FuncT0<AbstractOrb> orbConstructor;
+    private final PCLOrbHelper orbConstructor;
     private AbstractOrb orb;
     private boolean autoEvoke;
 
@@ -27,7 +27,7 @@ public class ChannelOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
         Initialize(1);
     }
 
-    public ChannelOrb(FuncT0<AbstractOrb> orbConstructor, int amount)
+    public ChannelOrb(PCLOrbHelper orbConstructor, int amount)
     {
         super(ActionType.SPECIAL, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
@@ -57,7 +57,7 @@ public class ChannelOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
         {
             if (orbConstructor != null)
             {
-                orb = orbConstructor.Invoke();
+                orb = orbConstructor.Create();
             }
 
             if (autoEvoke)

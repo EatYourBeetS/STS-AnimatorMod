@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.watcher.VigorPower;
 import eatyourbeets.powers.CombatStats;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAttackType;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -16,7 +13,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class CrowleyEusford extends PCLCard
 {
     public static final PCLCardData DATA = Register(CrowleyEusford.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Normal, eatyourbeets.cards.base.EYBCardTarget.Random)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Normal, PCLCardTarget.Random)
             .SetSeriesFromClassPackage();
 
     public CrowleyEusford()

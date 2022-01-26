@@ -21,6 +21,7 @@ public class PCLCardAffinities
     public PCLCard Card;
     public PCLCardAffinity Star = null;
     public boolean displayUpgrades = false;
+    public boolean collapseDuplicates = false;
 
     public PCLCardAffinities(PCLCard card)
     {
@@ -450,11 +451,11 @@ public class PCLCardAffinities
 
         if (HasStar())
         {
-            Star.RenderOnCard(sb, card, 0, y, size, displayUpgrades && Star.upgrade > 0);
+            Star.RenderOnCard(sb, card, 0, y, size, displayUpgrades && Star.upgrade > 0, collapseDuplicates);
             return;
         }
 
-        int max = 0;
+        ArrayList<PCLCardAffinity> renderables = new ArrayList<>();
         for (PCLCardAffinity PCLCardAffinity : List)
         {
             if (PCLCardAffinity.level <= 0)
@@ -462,9 +463,18 @@ public class PCLCardAffinities
                 break;
             }
 
-            max += 1;
+            if (collapseDuplicates) {
+                renderables.add(PCLCardAffinity);
+            }
+            else {
+                for (int i = 0; i < PCLCardAffinity.level; i++) {
+                    renderables.add(PCLCardAffinity);
+                }
+            }
+
         }
 
+        int max = renderables.size();
         final int half = max / 2;
         if (half >= 2)
         {
@@ -473,13 +483,8 @@ public class PCLCardAffinities
 
         for (int i = 0; i < max; i++)
         {
-            final PCLCardAffinity item = List.get(i);
+            final PCLCardAffinity item = renderables.get(i);
 
-// Render Left
-//            x *= -0.25f + (step * i);
-// Render Left
-
-// Render Centered
             if (max % 2 == 1)
             {
                 x = (step * (i - half));
@@ -488,9 +493,8 @@ public class PCLCardAffinities
             {
                 x = (step * 0.5f) + (step * (i - half));
             }
-// Render Centered
 
-            item.RenderOnCard(sb, card, x, y, size, displayUpgrades && item.upgrade > 0);
+            item.RenderOnCard(sb, card, x, y, size, displayUpgrades && item.upgrade > 0, collapseDuplicates);
         }
     }
 

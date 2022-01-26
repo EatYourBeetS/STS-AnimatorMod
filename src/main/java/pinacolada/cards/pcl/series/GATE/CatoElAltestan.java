@@ -11,7 +11,7 @@ import pinacolada.utilities.PCLActions;
 public class CatoElAltestan extends PCLCard
 {
     public static final PCLCardData DATA = Register(CatoElAltestan.class)
-            .SetSkill(1, CardRarity.UNCOMMON, eatyourbeets.cards.base.EYBCardTarget.Normal)
+            .SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Normal)
             .SetSeriesFromClassPackage();
 
     public CatoElAltestan()

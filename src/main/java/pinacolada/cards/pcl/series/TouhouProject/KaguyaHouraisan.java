@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.utilities.PCLActions;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public class KaguyaHouraisan extends PCLCard
 {
     public static final PCLCardData DATA = Register(KaguyaHouraisan.class)
-            .SetSkill(1,CardRarity.RARE, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(1,CardRarity.RARE, PCLCardTarget.None)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage()
             .PostInitialize(data ->

@@ -11,8 +11,7 @@ import com.megacrit.cardcrawl.monsters.beyond.Repulsor;
 import com.megacrit.cardcrawl.monsters.beyond.Spiker;
 import com.megacrit.cardcrawl.monsters.city.*;
 import com.megacrit.cardcrawl.monsters.exordium.*;
-import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.utilities.ListSelection;
 import eatyourbeets.utilities.TargetHelper;
@@ -21,6 +20,7 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
+import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.EnragePower;
 import pinacolada.powers.replacement.PCLCurlUpPower;
@@ -38,6 +38,7 @@ import java.util.HashMap;
 
 public class Megaman extends PCLCard
 {
+    //TODO Refactor to use GenericEffects
     private static class MegamanMove {
         private final SelectCreature.Targeting target;
         private final String text;
@@ -53,7 +54,7 @@ public class Megaman extends PCLCard
     }
     private static final PCLStrings.Actions ACTIONS = GR.PCL.Strings.Actions;
     public static final HashMap<String, MegamanMove> EFFECT_MAP = new HashMap<>();
-    public static final PCLCardData DATA = Register(Megaman.class).SetAttack(1, CardRarity.RARE, PCLAttackType.Ranged, EYBCardTarget.None)
+    public static final PCLCardData DATA = Register(Megaman.class).SetAttack(1, CardRarity.RARE, PCLAttackType.Ranged, PCLCardTarget.None)
             .SetMultiformData(3, false).SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Megaman);
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -83,7 +84,7 @@ public class Megaman extends PCLCard
         EFFECT_MAP.put(GremlinThief.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.DealDamage(8, true), (c, p, m) -> PCLActions.Bottom.DealDamage(p, m, 8, DamageInfo.DamageType.NORMAL, AttackEffects.SLASH_VERTICAL), 2));
         EFFECT_MAP.put(GremlinTsundere.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(9, GR.Tooltips.Block, true), (c, p, m) -> PCLActions.Bottom.GainBlock(9), 1));
         EFFECT_MAP.put(GremlinWarrior.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(1, GR.Tooltips.Might, true), (c, p, m) -> PCLActions.Bottom.GainMight(1), 2));
-        EFFECT_MAP.put(GremlinWizard.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.Channel(2, GR.Tooltips.Dark, true), (c, p, m) -> PCLActions.Bottom.ChannelOrbs(Dark::new, 2), 1));
+        EFFECT_MAP.put(GremlinWizard.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.Channel(2, GR.Tooltips.Dark, true), (c, p, m) -> PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Dark, 2), 1));
         EFFECT_MAP.put(Healer.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.HealHP(4, true), (c, p, m) -> PCLActions.Bottom.Heal(4), 2));
         EFFECT_MAP.put(Hexaghost.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(10, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), 10), 1));
         EFFECT_MAP.put(JawWorm.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(6, GR.Tooltips.Block, true), (c, p, m) -> PCLActions.Bottom.GainBlock(6), 2));

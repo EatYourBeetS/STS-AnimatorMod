@@ -20,24 +20,7 @@ public class SelectCreature extends eatyourbeets.actions.special.SelectCreature
         PCLCard c = PCLJUtils.SafeCast(card, PCLCard.class);
         if (c != null && c.attackTarget != null)
         {
-            switch (c.attackTarget)
-            {
-                case Self:
-                    targeting = Targeting.Player;
-                    break;
-                case None:
-                    targeting = Targeting.None;
-                    break;
-                case Normal:
-                    targeting = Targeting.Enemy;
-                    break;
-                case ALL:
-                    targeting = Targeting.AoE;
-                    break;
-                case Random:
-                    targeting = Targeting.Random;
-                    break;
-            }
+            targeting = c.attackTarget.selectMode;
         }
         else
         {

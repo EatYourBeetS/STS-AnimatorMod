@@ -4,17 +4,14 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.orbs.pcl.Air;
 import pinacolada.utilities.PCLActions;
 
 public class Kanaria_Pizzicato extends PCLCard
 {
     public static final PCLCardData DATA = Register(Kanaria_Pizzicato.class)
-    		.SetSkill(1, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None);
+    		.SetSkill(1, CardRarity.SPECIAL, PCLCardTarget.None);
 
     public Kanaria_Pizzicato()
     {

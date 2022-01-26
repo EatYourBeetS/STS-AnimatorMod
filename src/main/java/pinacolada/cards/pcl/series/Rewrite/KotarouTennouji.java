@@ -11,7 +11,8 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
 import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLCombatStats;
-import pinacolada.stances.*;
+import pinacolada.stances.PCLStance;
+import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 
@@ -40,12 +41,9 @@ public class KotarouTennouji extends PCLCard implements OnStanceChangedSubscribe
 
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_EnterStance(MightStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(VelocityStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(WisdomStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(EnduranceStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(InvocationStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(DesecrationStance.STANCE_ID));
+            for (PCLStanceHelper stance : PCLStanceHelper.ALL.values()) {
+                choices.AddEffect(new GenericEffect_EnterStance(stance));
+            }
         }
 
         choices.Select(1, m);

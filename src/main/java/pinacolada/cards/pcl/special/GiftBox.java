@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import eatyourbeets.utilities.FieldInfo;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.relics.PCLEnchantableRelic;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -19,7 +16,7 @@ import pinacolada.utilities.PCLJUtils;
 public class GiftBox extends PCLCard
 {
     public static final PCLCardData DATA = Register(GiftBox.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS);
     private static final FieldInfo<Prefs> _prefs = PCLJUtils.GetField("pref", CharStat.class);
 

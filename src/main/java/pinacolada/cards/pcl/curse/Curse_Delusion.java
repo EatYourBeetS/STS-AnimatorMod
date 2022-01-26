@@ -10,7 +10,7 @@ import pinacolada.utilities.PCLActions;
 public class Curse_Delusion extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_Delusion.class)
-            .SetCurse(-2, eatyourbeets.cards.base.EYBCardTarget.None, false).SetSeries(CardSeries.GenshinImpact)
+            .SetCurse(-2, PCLCardTarget.None, false).SetSeries(CardSeries.GenshinImpact)
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(PCLAffinity.Green), true));
 
     public Curse_Delusion()

@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.EYBCardTarget;
+import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import pinacolada.actions.pileSelection.SelectFromPile;
 import pinacolada.cards.base.CardUseInfo;
@@ -18,7 +18,7 @@ import pinacolada.utilities.PCLGameEffects;
 public class AffinityToken_General extends AffinityToken implements OnAddToDeckListener
 {
     public static final PCLCardData DATA = Register(AffinityToken_General.class)
-            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(0, CardRarity.UNCOMMON, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .PostInitialize(data ->
             {

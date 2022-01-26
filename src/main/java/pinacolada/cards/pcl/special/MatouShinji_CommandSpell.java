@@ -12,7 +12,7 @@ import pinacolada.utilities.PCLGameUtilities;
 public class MatouShinji_CommandSpell extends PCLCard
 {
     public static final PCLCardData DATA = Register(MatouShinji_CommandSpell.class)
-            .SetSkill(0, CardRarity.SPECIAL, eatyourbeets.cards.base.EYBCardTarget.None)
+            .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetSeries(MatouShinji.DATA.Series);
 
     public MatouShinji_CommandSpell()

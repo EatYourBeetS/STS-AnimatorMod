@@ -23,6 +23,7 @@ import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
+import static pinacolada.cards.base.PCLCardPreview.GeneratePreviewCard;
 import static pinacolada.resources.GR.Enums.CardTags.AFTERLIFE;
 
 public class Kirby extends PCLCard implements
@@ -341,9 +342,6 @@ public class Kirby extends PCLCard implements
         }
     }
 
-    protected PCLCardPreview GeneratePreviewCard(AbstractCard card) {
-        return (card instanceof PCLCardBase) ? new PCLCardPreview((PCLCardBase) card, false) : new PCLCardPreview(new FakeAbstractCard(card), false);
-    }
 
     protected void addCardProperties(AbstractCard card) {
         if (this.cost == -2 || card.cost == -1) {

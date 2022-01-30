@@ -1,7 +1,7 @@
 package pinacolada.relics;
 
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import pinacolada.interfaces.subscribers.markers.Replacement;
+import pinacolada.interfaces.markers.Replacement;
 
 import java.util.HashMap;
 import java.util.Map;

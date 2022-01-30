@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToEnemies;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_TriggerOrb;
 import pinacolada.cards.pcl.special.Alibaba_Aladdin;
 import pinacolada.effects.AttackEffects;
@@ -48,8 +48,8 @@ public class Alibaba extends PCLCard
             if (e.lastDamageTaken > 0) {
                 if (choices.TryInitialize(this))
                 {
-                    choices.AddEffect(new GenericEffect_ApplyToEnemies(PCLPowerHelper.Burning, magicNumber));
-                    choices.AddEffect(new GenericEffect_TriggerOrb(PCLOrbHelper.Earth, 1));
+                    choices.AddEffect(GenericEffect.ApplyToEnemies(magicNumber, PCLPowerHelper.Burning));
+                    choices.AddEffect(new GenericEffect_TriggerOrb(1, PCLOrbHelper.Earth));
                 }
                 choices.Select(1, m);
             }

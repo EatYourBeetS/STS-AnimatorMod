@@ -9,6 +9,8 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 import org.apache.commons.lang3.StringUtils;
 import pinacolada.blights.common.AbstractGlyphBlight;
 import pinacolada.blights.common.GlyphBlight;
+import pinacolada.blights.common.GlyphBlight1;
+import pinacolada.blights.common.GlyphBlight2;
 import pinacolada.cards.base.CardSeries;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.loadouts.*;
@@ -65,9 +67,9 @@ public class PCLPlayerData
             SpecialTrophies = new PCLTrophies(0);
         }
 
-        Glyphs.add(new GlyphBlight(GR.PCL.Config.AscensionGlyph0.Get()));
-        Glyphs.add(new GlyphBlight(GR.PCL.Config.AscensionGlyph1.Get()));
-        Glyphs.add(new GlyphBlight(GR.PCL.Config.AscensionGlyph2.Get()));
+        Glyphs.add(new GlyphBlight());
+        Glyphs.add(new GlyphBlight1());
+        Glyphs.add(new GlyphBlight2());
     }
 
     public List<PCLLoadout> GetEveryLoadout()

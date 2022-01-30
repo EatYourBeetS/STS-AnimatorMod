@@ -80,9 +80,9 @@ public class AyakaKamisato extends PCLCard {
                 choices.addAll(PCLJUtils.Filter(player.discardPile.group, c -> c.block > 0));
                 choices.addAll(PCLJUtils.Filter(player.drawPile.group, c -> c.block > 0));
 
-                AbstractCard maxBlockCard = PCLJUtils.FindMax(choices, c -> c.block);
-                if (maxBlockCard != null) {
-                    PCLActions.Bottom.PlayCard(maxBlockCard, m).AddCallback(() -> {
+                AbstractCard blockCard = PCLJUtils.FindMin(choices, c -> c.block);
+                if (blockCard != null) {
+                    PCLActions.Bottom.PlayCard(blockCard, m).AddCallback(() -> {
                         PCLActions.Last.Callback(() -> {
                             DelayedDamagePower dd = PCLGameUtilities.GetPower(player, DelayedDamagePower.POWER_ID);
                             if (dd != null) {

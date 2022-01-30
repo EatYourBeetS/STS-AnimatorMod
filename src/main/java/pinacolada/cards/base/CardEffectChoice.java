@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import pinacolada.actions.pileSelection.SelectFromPile;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.utilities.PCLActions;
 
 import java.util.ArrayList;

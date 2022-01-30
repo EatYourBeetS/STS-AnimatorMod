@@ -57,7 +57,7 @@
 	},
 	"pcl:BurningPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage). NL Receive +#b{2}% damage from [~ID] Attacks."],
 		"NAME": "Burning"
 	},
 	"pcl:BurningWeaponPower":
@@ -137,7 +137,7 @@
 	},
 	"pcl:ElectrifiedPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of outgoing damage is dealt to ALL allies, or to itself if it has no allies (min. #b1).", "At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt with #yAttacks is dealt to yourself (this cannot kill you)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of outgoing damage is dealt to ALL allies, or to itself if it has no allies (min. #b1). NL Receive +#b{2}% damage from [~DD] Attacks.", "At the start of each turn, lose #b{0} HP. #b{1}% of the damage dealt with #yAttacks is dealt to yourself (this cannot kill you). NL Receive +#b{2}% damage from [~DD] Attacks."],
 		"NAME": "Electrified"
 	},
 	"pcl:ElementalExposurePower":
@@ -227,7 +227,7 @@
 	},
 	"pcl:FreezingPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Deal #b{1}% less #yAttack damage (min. #b1 less damage). NL Receive +#b{2}% damage from [~FD] Attacks."],
 		"NAME": "Freezing"
 	},
 	"pcl:FreezingWeaponPower":
@@ -497,7 +497,7 @@
 	},
 	"pcl:RippledPower":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of received #yAttack damage is dealt to ALL other allies (min. #b1 additional damage)."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. #b{1}% of received #yAttack damage is dealt to ALL other allies (min. #b1 additional damage). NL Receive +#b{2}% damage from [~ED] Attacks."],
 		"NAME": "Rippled"
 	},
 	"pcl:SelfImmolationPower":
@@ -552,7 +552,7 @@
 	},
 	"pcl:StonedPower":
 	{
-		"DESCRIPTIONS": ["If #b1 stack of [Burning], [Freezing], [Electrified], [Rippled], or [Swirled] would be removed: Remove #b1 stack of this power instead."],
+		"DESCRIPTIONS": ["If [Burning], [Freezing], [Electrified], [Rippled], or [Swirled] would be reduced: Remove #b1 stack of this power instead."],
 		"NAME": "Stoned"
 	},
 	"pcl:StrategicInformationPower":
@@ -649,6 +649,11 @@
 	{
 		"DESCRIPTIONS": ["Whenever it deals unblocked damage, add #b1 #yBurn to your discard pile. NL NL The first card played each turn is #yExhausted."],
 		"NAME": "Ultimate Wisp"
+	},
+	"pcl:UndulatingLacunaPower":
+	{
+		"DESCRIPTIONS": ["[~Dark] applies #b{0}% of [Focus] as [Rippled] to ALL enemies on #yTrigger and #yEvoke. NL Whenever you draw an #yUnplayable card: [Rippled] gains +#b{1}% effect bonus."],
+		"NAME": "Undulating Lacuna"
 	},
 	"pcl:UnnamedDollPower":
 	{

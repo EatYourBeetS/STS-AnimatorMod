@@ -44,12 +44,7 @@ public class DioBrando_TheWorld extends PCLCard
         public TheWorldPower(AbstractPlayer owner, int amount)
         {
             super(owner, DioBrando_TheWorld.DATA, PowerTriggerConditionType.TakeDelayedDamage, amount, null, null, PCLAffinity.Star);
-            buffs = CombatStats.GetCombatData(DioBrando_TheWorld.DATA.ID, null);
-            if (buffs == null)
-            {
-                buffs = new HashSet<>();
-                CombatStats.SetCombatData(DioBrando_TheWorld.DATA.ID, buffs);
-            }
+            buffs = CombatStats.GetCombatData(DioBrando_TheWorld.DATA.ID, new HashSet<>());
 
             this.triggerCondition.SetCheckCondition(__ -> PCLJUtils.Find(player.hand.group, c -> c instanceof PCLCard && !buffs.contains(c.uuid)) != null);
             this.triggerCondition.SetOneUsePerPower(true);

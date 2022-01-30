@@ -28,6 +28,7 @@ public class TimeParadox extends PCLCard_Curse implements OnStartOfTurnPostDrawS
         super(DATA, true);
 
         Initialize(0, 0, 1, 5);
+        SetUpgrade(0, 0, 1, -3);
 
         SetAffinity_Silver(1);
 
@@ -47,7 +48,7 @@ public class TimeParadox extends PCLCard_Curse implements OnStartOfTurnPostDrawS
                     if (pc.size() > 0) {
                         TimeParadox other = (TimeParadox) makeStatEquivalentCopy();
                         other.cards.addAll(pc);
-                        other.turns = rng.random(magicNumber, secondaryValue);
+                        other.turns = rng.random(magicNumber, Math.max(magicNumber, secondaryValue));
                         PCLCombatStats.onStartOfTurnPostDraw.Subscribe(other);
                     }
                 });

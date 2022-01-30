@@ -1,19 +1,16 @@
 package pinacolada.powers.special;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.interfaces.subscribers.OnOrbPassiveEffectSubscriber;
+import eatyourbeets.utilities.TargetHelper;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
-
-import java.util.ArrayList;
 
 import static pinacolada.cards.pcl.special.IonizingStorm.LIGHTNING_BONUS;
 
@@ -57,40 +54,19 @@ public class IonizingStormPower extends PCLPower implements OnOrbPassiveEffectSu
         super.onEvokeOrb(orb);
 
         if (Lightning.ORB_ID.equals(orb.ID)) {
-            makeMove(orb, orb.evokeAmount / 2 * amount);
+            makeMove(orb, orb.evokeAmount * LIGHTNING_BONUS * amount / 100);
         }
     }
 
     @Override
     public void OnOrbPassiveEffect(AbstractOrb orb) {
         if (Lightning.ORB_ID.equals(orb.ID)) {
-            makeMove(orb, orb.passiveAmount / 2 * amount);
+            makeMove(orb, orb.passiveAmount * LIGHTNING_BONUS * amount / 100);
         }
     }
 
     private void makeMove(AbstractOrb orb, int applyAmount) {
-        AbstractCreature target = null;
-        ArrayList<AbstractMonster> enemies = PCLGameUtilities.GetEnemies(true);
-        if (owner.isPlayer && enemies.size() > 0) {
-            int highestAttack = Integer.MIN_VALUE;
-            float chance = (float) (1/(Math.max(enemies.size(),1.0)));
-
-            for (AbstractMonster m : enemies)
-            {
-                int damage = PCLGameUtilities.GetPCLIntent(m).GetDamage(true);
-                if (damage > highestAttack)
-                {
-                    highestAttack = damage;
-                    target = m;
-                }
-                else if (damage == highestAttack && rng.randomBoolean(chance)) {
-                    target = m;
-                }
-            }
-        }
-        if (target != null) {
-            this.applyPower(target, orb, applyAmount);
-        }
+        PCLActions.Bottom.ApplyElectrified(TargetHelper.RandomEnemy(), applyAmount).CanStack(true);
     }
 
     public void atStartOfTurn()
@@ -99,12 +75,6 @@ public class IonizingStormPower extends PCLPower implements OnOrbPassiveEffectSu
         int count = PCLJUtils.Count(PCLGameUtilities.GetEnemies(true), e -> e.hasPower(ElectrifiedPower.POWER_ID));
         if (count > 0) {
             PCLActions.Bottom.GainInvocation(PER_CHARGE * count);
-        }
-    }
-
-    private void applyPower(AbstractCreature target, AbstractOrb orb, int applyAmount) {
-        if (target != null) {
-            PCLActions.Bottom.ApplyElectrified(owner, target, applyAmount).CanStack(true);
         }
     }
 }

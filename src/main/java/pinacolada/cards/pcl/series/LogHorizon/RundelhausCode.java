@@ -20,7 +20,7 @@ public class RundelhausCode extends PCLCard
             .SetAttack(2, CardRarity.COMMON, PCLAttackType.Electric, PCLCardTarget.Normal)
             .SetSeries(CardSeries.LogHorizon);
 
-    private static final HashSet<AbstractCard> buffs = new HashSet<>();
+    private static HashSet<AbstractCard> buffs;
     private static final CardEffectChoice choices = new CardEffectChoice();
 
     public RundelhausCode()
@@ -46,11 +46,7 @@ public class RundelhausCode extends PCLCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (!CombatStats.GetCombatData(cardID + "_buffs", false))
-        {
-            CombatStats.SetCombatData(cardID + "_buffs", true);
-            buffs.clear();
-        }
+        buffs = CombatStats.GetCombatData(cardID, new HashSet<>());
 
         PCLActions.Bottom.SelectFromHand(name, magicNumber, true)
         .SetOptions(true, false, true)
@@ -71,7 +67,7 @@ public class RundelhausCode extends PCLCard
             {
                 for (PCLOrbHelper orb : PCLOrbHelper.ALL.values()) {
                     if (PCLGameUtilities.IsCommonOrb(orb.ID)) {
-                        choices.AddEffect(new GenericEffect_ChannelOrb(orb, 1));
+                        choices.AddEffect(new GenericEffect_ChannelOrb(1, orb));
                     }
                 }
             }

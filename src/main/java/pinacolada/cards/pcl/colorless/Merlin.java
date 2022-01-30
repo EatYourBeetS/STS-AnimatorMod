@@ -4,14 +4,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.*;
-import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.orbs.RemoveOrb;
 import pinacolada.cards.base.*;
+import pinacolada.cards.base.cardeffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ChannelOrb;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainTempHP;
 import pinacolada.cards.pcl.special.OrbCore;
 import pinacolada.orbs.pcl.*;
 import pinacolada.powers.PCLPower;
-import pinacolada.powers.special.SwirledPower;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -21,43 +22,24 @@ import java.util.HashMap;
 
 public class Merlin extends PCLCard
 {
-    protected enum MerlinEffect {
-        Air(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Swirled, true), (c, p, m) -> PCLActions.Delayed.StackPower(player, new SwirledPower(m, 2))),
-        Chaos(GR.PCL.Strings.Actions.ChannelRandomOrbs(1, true), (c, p, m) -> PCLActions.Delayed.ChannelRandomOrbs(1)),
-        Dark(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Rippled, true), (c, p, m) -> PCLActions.Delayed.ApplyRippled(TargetHelper.Normal(m), 2)),
-        Earth(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Delayed.ApplyWeak(TargetHelper.Normal(m), 2)),
-        Fire(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Delayed.ApplyBurning(TargetHelper.Normal(m), 2)),
-        Frost(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Freezing, true), (c, p, m) -> PCLActions.Delayed.ApplyFreezing(TargetHelper.Normal(m), 2)),
-        Lightning(GR.PCL.Strings.Actions.Apply(2, GR.Tooltips.Electrified, true), (c, p, m) -> PCLActions.Delayed.ApplyElectrified(TargetHelper.Normal(m), 2)),
-        Metal(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Metallicize, true), (c, p, m) -> PCLActions.Delayed.GainMetallicize(1)),
-        Plasma(GR.PCL.Strings.Actions.GainAmount(1, GR.Tooltips.Energized, true), (c, p, m) -> PCLActions.Delayed.GainEnergyNextTurn(1)),
-        Water(GR.PCL.Strings.Actions.GainAmount(4, GR.Tooltips.TempHP, true), (c, p, m) -> PCLActions.Delayed.GainTemporaryHP(4));
 
-        private final String text;
-        private final ActionT3<PCLCard, AbstractPlayer, AbstractMonster> action;
-
-        MerlinEffect(String text, ActionT3<PCLCard, AbstractPlayer, AbstractMonster> action) {
-            this.text = text;
-            this.action = action;
-        }
-    }
-
-    protected static final HashMap<String, MerlinEffect> EFFECTS = new HashMap<>();
+    protected static final HashMap<String, GenericEffect> EFFECTS = new HashMap<>();
+    protected static final GenericEffect FALLBACK = GenericEffect.Apply(1, PCLPowerHelper.Swirled);
     public static final PCLCardData DATA = Register(Merlin.class)
             .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.Fate)
             .PostInitialize(data -> {
-                EFFECTS.put(Air.ORB_ID, MerlinEffect.Air);
-                EFFECTS.put(Chaos.ORB_ID, MerlinEffect.Chaos);
-                EFFECTS.put(Dark.ORB_ID, MerlinEffect.Dark);
-                EFFECTS.put(Earth.ORB_ID, MerlinEffect.Earth);
-                EFFECTS.put(Fire.ORB_ID, MerlinEffect.Fire);
-                EFFECTS.put(Frost.ORB_ID, MerlinEffect.Frost);
-                EFFECTS.put(Lightning.ORB_ID, MerlinEffect.Lightning);
-                EFFECTS.put(Metal.ORB_ID, MerlinEffect.Metal);
-                EFFECTS.put(Plasma.ORB_ID, MerlinEffect.Plasma);
-                EFFECTS.put(Water.ORB_ID, MerlinEffect.Water);
+                EFFECTS.put(Air.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Swirled));
+                EFFECTS.put(Chaos.ORB_ID, new GenericEffect_ChannelOrb(1, null));
+                EFFECTS.put(Dark.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Rippled));
+                EFFECTS.put(Earth.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Stoned));
+                EFFECTS.put(Fire.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Burning));
+                EFFECTS.put(Frost.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Freezing));
+                EFFECTS.put(Lightning.ORB_ID, GenericEffect.Apply(2, PCLPowerHelper.Electrified));
+                EFFECTS.put(Metal.ORB_ID, GenericEffect.Gain(1, PCLPowerHelper.Metallicize));
+                EFFECTS.put(Plasma.ORB_ID, GenericEffect.Gain(1, PCLPowerHelper.Energized));
+                EFFECTS.put(Water.ORB_ID, new GenericEffect_GainTempHP(4));
             });
 
     public Merlin()
@@ -75,7 +57,7 @@ public class Merlin extends PCLCard
     {
         AbstractOrb orb = PCLGameUtilities.InGame() && PCLGameUtilities.InBattle() ? PCLGameUtilities.GetFirstOrb(null) : null;
         return super.GetRawDescription(PCLGameUtilities.IsValidOrb(orb) ?
-                PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[2], EFFECTS.getOrDefault(orb.ID, MerlinEffect.Earth).text, PCLGameUtilities.GetOrbTooltip(orb)) :
+                PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[2], EFFECTS.getOrDefault(orb.ID, FALLBACK).GetText(), PCLGameUtilities.GetOrbTooltip(orb)) :
                 cardData.Strings.EXTENDED_DESCRIPTION[1]);
     }
 
@@ -116,7 +98,7 @@ public class Merlin extends PCLCard
                         if (cards.size() > 0)
                         {
                             AbstractCard card = cards.get(0);
-                            MerlinEffect effect = EFFECTS.getOrDefault(orb.ID, MerlinEffect.Earth);
+                            GenericEffect effect = EFFECTS.getOrDefault(orb.ID, FALLBACK);
                             PCLActions.Bottom.ApplyPower(new MerlinPower(p, card, effect)).AllowDuplicates(true);
                         }
                     });
@@ -137,8 +119,8 @@ public class Merlin extends PCLCard
     public static class MerlinPower extends PCLPower
     {
         private final AbstractCard card;
-        private final MerlinEffect effect;
-        public MerlinPower(AbstractPlayer owner, AbstractCard card, MerlinEffect effect)
+        private final GenericEffect effect;
+        public MerlinPower(AbstractPlayer owner, AbstractCard card, GenericEffect effect)
         {
             super(owner, Merlin.DATA);
 
@@ -155,7 +137,7 @@ public class Merlin extends PCLCard
 
             if (this.card == card)
             {
-                this.effect.action.Invoke(null, player, m != null ? m : PCLGameUtilities.GetRandomEnemy(true));
+                this.effect.Use(null, player, m != null ? m : PCLGameUtilities.GetRandomEnemy(true));
                 this.flash();
             }
         }
@@ -163,7 +145,7 @@ public class Merlin extends PCLCard
         @Override
         public void updateDescription()
         {
-            description = FormatDescription(0, PCLJUtils.ModifyString(card.name, w -> "#y" + w), effect.text);
+            description = FormatDescription(0, PCLJUtils.ModifyString(card.name, w -> "#y" + w), effect.GetText());
         }
     }
 }

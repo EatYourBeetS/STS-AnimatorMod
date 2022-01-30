@@ -44,7 +44,7 @@ public class TokiomiTohsaka extends PCLCard
         {
             for (PCLOrbHelper orb : PCLOrbHelper.ALL.values()) {
                 if (PCLGameUtilities.IsCommonOrb(orb.ID)) {
-                    choices.AddEffect(new GenericEffect_ChannelOrb(orb, 1));
+                    choices.AddEffect(new GenericEffect_ChannelOrb(1, orb));
                 }
             }
         }

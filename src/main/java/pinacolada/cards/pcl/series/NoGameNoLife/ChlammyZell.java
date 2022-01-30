@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import org.apache.commons.lang3.StringUtils;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.pcl.special.ChlammyZell_Scheme;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;

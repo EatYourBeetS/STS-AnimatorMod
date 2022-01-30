@@ -25,7 +25,7 @@ public class Diluc extends PCLCard
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Orange(0, 0, 1);
 
-        SetAffinityRequirement(PCLAffinity.Red, 7);
+        SetAffinityRequirement(PCLAffinity.Red, 8);
     }
 
     @Override

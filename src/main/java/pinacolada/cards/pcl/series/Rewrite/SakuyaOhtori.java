@@ -52,12 +52,7 @@ public class SakuyaOhtori extends PCLCard
         if (PCLGameUtilities.InStance(MightStance.STANCE_ID))
         {
             PCLActions.Bottom.ChangeStance(WisdomStance.STANCE_ID);
-            buffs = CombatStats.GetCombatData(cardID, null);
-            if (buffs == null)
-            {
-                buffs = new HashMap<>();
-                CombatStats.SetCombatData(cardID, buffs);
-            }
+            buffs = CombatStats.GetCombatData(cardID, new HashMap<>());
 
             PCLActions.Bottom.SelectFromHand(name, 1, false)
                     .SetOptions(false, false, false)

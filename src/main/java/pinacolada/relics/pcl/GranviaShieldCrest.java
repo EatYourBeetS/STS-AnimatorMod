@@ -1,10 +1,12 @@
 package pinacolada.relics.pcl;
 
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.subscribers.OnLosingHPSubscriber;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.relics.PCLRelic;
+import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
@@ -27,9 +29,16 @@ public class GranviaShieldCrest extends PCLRelic implements OnLosingHPSubscriber
     public void onEquip()
     {
         super.onEquip();
-        if (tips.size() > 0)
-        {
-            tips.get(0).description = GetFullDescription();
+        RefreshDescription();
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (hb.hovered) {
+            RefreshDescription();
         }
     }
 
@@ -52,6 +61,8 @@ public class GranviaShieldCrest extends PCLRelic implements OnLosingHPSubscriber
         if (damageAmount > 0 && player.currentHealth <= damageAmount && CanRevive())
         {
 
+            PCLActions.Top.Add(new RelicAboveCreatureAction(player, this));
+            PCLActions.Bottom.Heal(Math.max(1, player.maxHealth));
             for (AbstractCard c : GetProtagonists()) {
                 if (c != null && PCLGameUtilities.CanRemoveFromDeck(c))
                 {
@@ -84,6 +95,13 @@ public class GranviaShieldCrest extends PCLRelic implements OnLosingHPSubscriber
 
     private ArrayList<AbstractCard> GetProtagonists() {
         return PCLJUtils.Filter(player.masterDeck.group, c -> c.hasTag(PROTAGONIST));
+    }
+
+    protected void RefreshDescription() {
+        if (tips.size() > 0)
+        {
+            tips.get(0).description = GetFullDescription();
+        }
     }
 
     public String GetFullDescription()

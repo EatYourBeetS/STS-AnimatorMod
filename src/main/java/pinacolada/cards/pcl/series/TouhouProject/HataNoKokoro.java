@@ -8,7 +8,7 @@ import pinacolada.utilities.PCLActions;
 
 public class HataNoKokoro extends PCLCard {
     public static final PCLCardData DATA = Register(HataNoKokoro.class)
-            .SetSkill(1, CardRarity.RARE)
+            .SetSkill(1, CardRarity.RARE, PCLCardTarget.None)
             .SetSeriesFromClassPackage(true);
 
     public HataNoKokoro() {
@@ -55,8 +55,13 @@ public class HataNoKokoro extends PCLCard {
                             for (AbstractCard c : cards) {
                                 if (c instanceof PCLCard) {
                                     PCLCardAffinities newAffinities = new PCLCardAffinities(null);
-                                    newAffinities.Set(choice.Affinity, 2);
-                                    newAffinities.SetScaling(choice.Affinity, magicNumber);
+                                    newAffinities.Set(choice.Affinity, 1);
+                                    if (((PCLCard) c).CanScale()) {
+                                        newAffinities.SetScaling(choice.Affinity, magicNumber);
+                                    }
+                                    for (PCLCardAffinity cAff : affinities.List) {
+                                        newAffinities.SetRequirement(cAff.type, cAff.requirement);
+                                    }
                                     ((PCLCard) c).affinities.Initialize(newAffinities);
                                 }
                             }

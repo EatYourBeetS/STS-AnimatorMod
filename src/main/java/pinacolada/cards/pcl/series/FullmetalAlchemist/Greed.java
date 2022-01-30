@@ -11,7 +11,7 @@ import pinacolada.cards.base.CardEffectChoice;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_StackPower;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.pcl.status.Crystallize;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
@@ -57,8 +57,8 @@ public class Greed extends PCLCard
     {
 
         choices.Initialize(this, true);
-        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.Malleable, magicNumber));
-        choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.Metallicize, secondaryValue));
+        choices.AddEffect(GenericEffect.Gain(magicNumber, PCLPowerHelper.Malleable));
+        choices.AddEffect(GenericEffect.Gain(secondaryValue, PCLPowerHelper.Metallicize));
         choices.Select(1, m);
         PCLActions.Bottom.StackPower(new GreedPower(p, 1));
     }

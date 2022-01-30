@@ -5,33 +5,32 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
+import eatyourbeets.ui.config.ConfigOption_Integer;
 import pinacolada.blights.PCLBlight;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
+
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class AbstractGlyphBlight extends PCLBlight
 {
     public static final String ID = CreateFullID(AbstractGlyphBlight.class);
     public static final float RENDER_SCALE = 0.8f;
 
+    public final ConfigOption_Integer configOption;
     public final int ascensionRequirement;
     public final int ascensionStep;
     public final int baseAmount;
     public final int baseAmountStep;
     public int cacheMinimumLevel;
 
-    public AbstractGlyphBlight(String ID, int ascensionRequirement, int ascensionStep)
+    public AbstractGlyphBlight(String ID, ConfigOption_Integer configOption, int ascensionRequirement, int ascensionStep)
     {
-        this(ID, ascensionRequirement, ascensionStep, 1, 1, 0);
+        this(ID, configOption, ascensionRequirement, ascensionStep, 1, 1);
     }
 
-    public AbstractGlyphBlight(String ID, int ascensionRequirement, int ascensionStep, int baseAmount, int baseAmountStep)
-    {
-        this(ID, ascensionRequirement, ascensionStep, baseAmount, baseAmountStep, 0);
-    }
-
-    public AbstractGlyphBlight(String ID, int ascensionRequirement, int ascensionStep, int baseAmount, int baseAmountStep, int counter)
+    public AbstractGlyphBlight(String ID, ConfigOption_Integer configOption, int ascensionRequirement, int ascensionStep, int baseAmount, int baseAmountStep)
     {
         super(ID);
         this.outlineImg = GR.GetTexture(GR.GetBlightOutlineImage(ID));
@@ -39,7 +38,8 @@ public abstract class AbstractGlyphBlight extends PCLBlight
         this.ascensionStep = Math.max(1, ascensionStep);
         this.baseAmount = baseAmount;
         this.baseAmountStep = baseAmountStep;
-        this.counter = counter;
+        this.configOption = configOption;
+        this.counter = configOption.Get(0);
         this.scale = RENDER_SCALE; // Because they end up looking larger in game than in the character select screen
         updateDescription();
     }
@@ -103,5 +103,18 @@ public abstract class AbstractGlyphBlight extends PCLBlight
 
     @Override
     public void renderOutline(SpriteBatch sb, boolean inTopPanel) {
+    }
+
+    @Override
+    public PCLBlight makeCopy() {
+        try
+        {
+            return getClass().getConstructor(ConfigOption_Integer.class).newInstance(configOption);
+        }
+        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
+        {
+            PCLJUtils.LogError(this, e.getMessage());
+            return null;
+        }
     }
 }

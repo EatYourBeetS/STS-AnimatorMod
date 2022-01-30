@@ -91,7 +91,7 @@ public class InvocationPower extends AbstractPCLAffinityPower
 
     protected void AddPower(String powerID, int amount) {
         CheckForNewBattle();
-        PCLPowerHelper ph = PCLPowerHelper.ALL.get(powerID);
+        PCLPowerHelper ph = PCLPowerHelper.Get(powerID);
         if (ph != null) {
             POWERS.merge(powerID, amount, Integer::sum);
             PCLActions.Bottom.StackPower(TargetHelper.Player(), ph, amount);

@@ -94,7 +94,7 @@ public class Senku extends PCLCard
         }
 
         for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
-            PCLPowerHelper helper = PCLPowerHelper.ALL.get(debuff.getKey());
+            PCLPowerHelper helper = PCLPowerHelper.Get(debuff.getKey());
             if (helper != null) {
                 if (m != null) {
                     PCLActions.Bottom.VFX(new PotionBounceEffect(player.hb.cX, player.hb.cY, m.hb.cX, m.hb.cY), 0.2f);
@@ -127,7 +127,7 @@ public class Senku extends PCLCard
             }
 
             for (Map.Entry<String,Integer> debuff : debuffs.entrySet()) {
-                PCLPowerHelper helper = PCLPowerHelper.ALL.get(debuff.getKey());
+                PCLPowerHelper helper = PCLPowerHelper.Get(debuff.getKey());
                 builder.append(" NL ");
                 builder.append(this.attackTarget.equals(PCLCardTarget.AoE) ? ACTIONS.ApplyToALL(debuff.getValue(), helper.Tooltip, true) : ACTIONS.Apply(debuff.getValue(), helper.Tooltip, true));
             }

@@ -3,6 +3,7 @@ package pinacolada.utilities;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -28,6 +29,7 @@ import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 import pinacolada.blights.common.UpgradedHand;
 import pinacolada.cards.base.*;
+import pinacolada.interfaces.listeners.OnTryReducePowerListener;
 import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.PCLOrb;
 import pinacolada.orbs.pcl.Fire;
@@ -157,6 +159,41 @@ public class PCLGameUtilities extends GameUtilities
     {
         return !card.isInAutoplay && (!card.purgeOnUse || card.hasTag(GR.Enums.CardTags.PURGE));
     }
+
+    public static boolean CanReducePower(AbstractCreature source, AbstractCreature target, String powerID, AbstractGameAction action)
+    {
+        AbstractPower power = powerID != null ? target.getPower(powerID) : null;
+        return power == null || CanReducePower(source, target, power, action);
+    }
+
+    public static boolean CanReducePower(AbstractCreature source, AbstractCreature target, AbstractPower powerToApply, AbstractGameAction action)
+    {
+        boolean canReduce = true;
+        if (target != null)
+        {
+            for (AbstractPower power : target.powers)
+            {
+                if (power instanceof OnTryReducePowerListener)
+                {
+                    canReduce &= ((OnTryReducePowerListener) power).TryReducePower(powerToApply, target, source, action);
+                }
+            }
+
+            if (canReduce && target != source && source != null)
+            {
+                for (AbstractPower power : source.powers)
+                {
+                    if (power instanceof OnTryReducePowerListener)
+                    {
+                        canReduce &= ((OnTryReducePowerListener) power).TryReducePower(powerToApply, target, source, action);
+                    }
+                }
+            }
+        }
+
+        return canReduce;
+    }
+
 
     public static boolean CanRemoveFromDeck(AbstractCard card)
     {
@@ -483,8 +520,8 @@ public class PCLGameUtilities extends GameUtilities
     {
         if (commonBuffs.isEmpty())
         {
-            for (PCLPowerHelper ph : PCLPowerHelper.ALL.values()) {
-                if (!ph.IsDebuff && !ph.EndTurnBehavior.equals(PCLPowerHelper.Behavior.Temporary)) {
+            for (PCLPowerHelper ph : PCLPowerHelper.Values()) {
+                if (ph.IsCommon && !ph.IsDebuff && !ph.EndTurnBehavior.equals(PCLPowerHelper.Behavior.Temporary)) {
                     commonBuffs.add(ph);
                 }
             }
@@ -497,8 +534,8 @@ public class PCLGameUtilities extends GameUtilities
     {
         if (commonDebuffs.isEmpty())
         {
-            for (PCLPowerHelper ph : PCLPowerHelper.ALL.values()) {
-                if (ph.IsDebuff) {
+            for (PCLPowerHelper ph : PCLPowerHelper.Values()) {
+                if (ph.IsCommon && ph.IsDebuff) {
                     commonDebuffs.add(ph);
                 }
             }

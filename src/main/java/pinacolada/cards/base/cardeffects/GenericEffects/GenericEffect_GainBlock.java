@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTarget;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
@@ -13,13 +14,13 @@ public class GenericEffect_GainBlock extends GenericEffect
 
     public GenericEffect_GainBlock(int amount)
     {
-        super(ID, null, GR.Tooltips.Block, PCLCardTarget.Self, amount);
+        super(ID, null, PCLCardTarget.Self, amount);
     }
 
     @Override
     public String GetText()
     {
-        return GR.PCL.Strings.Actions.GainAmount(amount, tooltip, true);
+        return GR.PCL.Strings.Actions.GainAmount(amount, GR.Tooltips.Block, true);
     }
 
     @Override

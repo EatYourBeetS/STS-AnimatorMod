@@ -21,7 +21,7 @@ public class Fischl extends PCLCard {
     public Fischl() {
         super(DATA);
 
-        Initialize(1, 0, 4);
+        Initialize(1, 0, 3);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1);
         SetAffinity_Dark(1, 0, 1);

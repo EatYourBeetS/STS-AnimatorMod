@@ -1,6 +1,5 @@
 package pinacolada.powers.common;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import pinacolada.effects.AttackEffects;
@@ -13,17 +12,10 @@ public class CounterAttackPower extends PCLPower
     public static final String POWER_ID = CreateFullID(CounterAttackPower.class);
     public static final int VULNERABLE_AMOUNT = 1;
     public static boolean retain = false;
-    private AbstractGameAction.AttackEffect attackEffect;
 
     public CounterAttackPower(AbstractCreature owner, int amount)
     {
-        this(owner, amount, AttackEffects.BLUNT_HEAVY);
-    }
-
-    public CounterAttackPower(AbstractCreature owner, int amount, AbstractGameAction.AttackEffect attackEffect)
-    {
         super(owner, POWER_ID);
-        this.attackEffect = attackEffect;
 
         Initialize(amount, PowerType.BUFF, false);
     }
@@ -40,7 +32,7 @@ public class CounterAttackPower extends PCLPower
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount < info.output)
         {
             int[] damageMatrix = DamageInfo.createDamageMatrix(amount, false);
-            PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, attackEffect);
+            PCLActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.NORMAL, AttackEffects.BLUNT_HEAVY);
             ReducePower(1);
         }
 

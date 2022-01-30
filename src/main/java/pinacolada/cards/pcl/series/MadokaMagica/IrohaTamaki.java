@@ -28,7 +28,7 @@ public class IrohaTamaki extends PCLCard
 
         SetAffinityRequirement(PCLAffinity.Light, 3);
 
-        SetSoul(4, 0, IrohaTamaki_Giovanna::new);
+        SetSoul(2, 0, IrohaTamaki_Giovanna::new);
     }
 
     @Override

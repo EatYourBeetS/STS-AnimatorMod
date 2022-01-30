@@ -1,10 +1,17 @@
 package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.utilities.RandomizedList;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainOrbSlots;
+import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainTempHP;
+import pinacolada.powers.PCLPowerHelper;
+import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
@@ -14,18 +21,21 @@ public class Vesta_Elixir extends PCLCard
             .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TenseiSlime);
-
-    public final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
+    public static final int MAX_GROUP_SIZE = 3;
+    public final ArrayList<GenericEffect> effects = new ArrayList<>();
 
     public Vesta_Elixir()
     {
         super(DATA);
 
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0, 0, 1, 1);
+
         SetAffinity_Star(1);
         SetPurge(true);
     }
 
-    public Vesta_Elixir(ArrayList<VestaElixirEffect> effects)
+    public Vesta_Elixir(ArrayList<GenericEffect> effects)
     {
         this();
 
@@ -51,42 +61,66 @@ public class Vesta_Elixir extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        for (VestaElixirEffect effect : effects)
+        for (GenericEffect effect : effects)
         {
-            effect.EnqueueAction(this, p);
+            effect.Use(this, p, m);
         }
     }
 
-    public void ApplyEffect(VestaElixirEffect effect)
+    public void ResearchEffects() {
+        effects.clear();
+        final RandomizedList<GenericEffect> possibleEffects = new RandomizedList<>();
+        for (PCLAffinity af : PCLAffinity.Extended()) {
+            possibleEffects.Add(GenericEffect.GainAffinityPower(magicNumber, af));
+        }
+        possibleEffects.Add(GenericEffect.Gain(secondaryValue, PCLPowerHelper.Inspiration));
+        possibleEffects.Add(GenericEffect.Gain(magicNumber, PCLPowerHelper.Malleable));
+        possibleEffects.Add(GenericEffect.Gain(secondaryValue, PCLPowerHelper.Metallicize));
+        possibleEffects.Add(GenericEffect.Gain(secondaryValue, PCLPowerHelper.Energized));
+        possibleEffects.Add(new GenericEffect_GainTempHP(magicNumber * 2));
+        possibleEffects.Add(new GenericEffect_GainOrbSlots(secondaryValue));
+
+        ChooseEffect(possibleEffects);
+    }
+
+    public void ChooseEffect(RandomizedList<GenericEffect> possibleEffects) {
+        if (effects.size() >= MAX_GROUP_SIZE) {
+            return;
+        }
+        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        while (group.size() < MAX_GROUP_SIZE && possibleEffects.Size() > 0) {
+            Vesta_Elixir other = (Vesta_Elixir) this.makeStatEquivalentCopy();
+            other.ApplyEffect(possibleEffects.Retrieve(rng, true));
+            group.addToTop(other);
+        }
+
+        PCLActions.Top.SelectFromPile(name, 1, group)
+                .SetOptions(false, false)
+                .AddCallback(c -> {
+                    if (c.size() > 0) {
+                        Vesta_Elixir elixir = PCLJUtils.SafeCast(c.get(0), Vesta_Elixir.class);
+                        if (elixir != null) {
+                            ApplyEffects(elixir.effects);
+                            ChooseEffect(possibleEffects);
+                        }
+                    }
+                });
+    }
+
+    protected void ApplyEffect(GenericEffect effect)
     {
         this.effects.add(effect);
-        this.cardText.OverrideDescription(this.rawDescription + " NL " + effect.GetDescription(), true);
+        UpdateDescription();
     }
 
-    public void ApplyEffects(ArrayList<VestaElixirEffect> effects)
+    protected void ApplyEffects(ArrayList<GenericEffect> effects)
     {
         this.effects.clear();
+        this.effects.addAll(effects);
+        UpdateDescription();
+    }
 
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < effects.size(); i++)
-        {
-            VestaElixirEffect effect = effects.get(i);
-
-            this.effects.add(effect);
-
-            String desc = effect.GetDescription();
-            if (desc != null && !desc.isEmpty())
-            {
-                sb.append(effect.GetDescription());
-
-                if (i < effects.size() - 1)
-                {
-                    sb.append(" NL ");
-                }
-            }
-        }
-
-        this.cardText.OverrideDescription(sb.toString(), true);
+    protected void UpdateDescription() {
+        this.cardText.OverrideDescription(GenericEffect.JoinEffectTexts(effects), true);
     }
 }

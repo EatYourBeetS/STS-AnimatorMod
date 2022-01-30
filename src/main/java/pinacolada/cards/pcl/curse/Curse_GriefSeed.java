@@ -37,6 +37,9 @@ public class Curse_GriefSeed extends PCLCard_Curse
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (block > 0) {
+            PCLActions.Bottom.GainBlock(block);
+        }
         PCLActions.Bottom.SelectFromHand(name, 1, false)
                 .SetFilter(PCLGameUtilities::HasCooldown)
                 .AddCallback(cards -> {

@@ -17,7 +17,7 @@ import pinacolada.effects.AttackEffects;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.common.DeenergizedPower;
 import pinacolada.powers.special.InvertPower;
-import pinacolada.powers.special.TemporaryThousandCutsPower;
+import pinacolada.powers.temporary.TemporaryThousandCutsPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLStrings;
 import pinacolada.utilities.PCLActions;

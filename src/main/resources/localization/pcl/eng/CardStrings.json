@@ -143,6 +143,36 @@
 			"DESCRIPTION": "Gain !M! [E].",
 			"NAME": "Miracle"
 		},
+		"pcl:MusouIsshin":
+		{
+			"DESCRIPTION": "Play {Ionizing Storm}. Replace your deck with !M! Musou Techniques. || Whenever you play an Attack: Trigger ALL [~Lightning].",
+			"NAME": "Musou Isshin"
+		},
+		"pcl:MusouIsshin_Defend":
+		{
+			"DESCRIPTION": "Gain !M! [D].",
+			"NAME": "Musou Isshin"
+		},
+		"pcl:MusouIsshin_Extend":
+		{
+			"DESCRIPTION": "Gain !M! [NTD]. || Evoke your first [~Lightning] to Extend Musou Isshin by 1 turn.",
+			"NAME": "Musou Isshin"
+		},
+		"pcl:MusouIsshin_Resolve":
+		{
+			"DESCRIPTION": "Gain !M! [NTB]. || Channel [~Lightning].",
+			"NAME": "Musou Isshin"
+		},
+		"pcl:MusouIsshin_Sheath":
+		{
+			"DESCRIPTION": "Restore your previous deck.",
+			"NAME": "Musou Isshin"
+		},
+		"pcl:MusouIsshin_Strike":
+		{
+			"DESCRIPTION": "The target loses !M! [HP].",
+			"NAME": "Musou Isshin"
+		},
 		"pcl:MysteryCard":
 		{
 			"DESCRIPTION": "At the start of combat: Transforms into a random 0 or 1 Cost Common card.",
@@ -289,7 +319,7 @@
 		},
 		"pcl:IchigoKurosaki_Bankai":
 		{
-			"DESCRIPTION": "This card's damage ** is multiplied by X",
+			"DESCRIPTION": "Multiply damage by X.",
 			"NAME": "Ichigo Bankai"
 		},
 		"pcl:IkkakuBankai":
@@ -449,10 +479,10 @@
 			"EXTENDED_DESCRIPTION": ["Take #b{0} [DD]: Halve the damage (rounded up) and double the hit count of an Attack in hand (does not stack)."],
 			"NAME": "The World"
 		},
-		"pcl:EchoingVortex":
+		"pcl:UndulatingLacuna":
 		{
-			"DESCRIPTION": "Channel !M! [~Dark]. [~Dark] applies [Rippled] to ALL enemies on Trigger and on Evoke. || Whenever you draw {Void}: [Rippled] gains +!S! effect and damage bonus.",
-			"NAME": "Echoing Vortex"
+			"DESCRIPTION": "Channel !M! [~Dark]. [~Dark] applies [Rippled] to ALL enemies on Trigger and on Evoke. || Whenever you draw an Unplayable card: [Rippled] gains +!S!% effect bonus.",
+			"NAME": "Undulating Lacuna"
 		},
 		"pcl:EruChitanda":
 		{
@@ -503,6 +533,17 @@
 			"DESCRIPTION": "The next !M! Defends played this turn activate twice. || <LIM>. !A! <W>: Carry this effect over to the next turn.",
 			"EXTENDED_DESCRIPTION": ["The next #b{0} Defend(s) played this turn activate twice."],
 			"NAME": "Jet Black"
+		},
+		"pcl:Joker":
+		{
+			"DESCRIPTION": "<CDN>: Exhaust and Obtain {Arsene}. || Choose 1 of !M! cards. For !S! turns: Play it whenever you activate a {Cooldown} effect or {<W> Power}.",
+			"EXTENDED_DESCRIPTION": ["For #b{0} turns: Play {1} whenever you activate a #yCooldown effect or [A-Gen] #yPower."],
+			"NAME": "Ren Amamiya"
+		},
+		"pcl:Joker_Arsene":
+		{
+			"DESCRIPTION": "Pay X <D>: Multiply damage by X. || <LIM>. !M! Match Combo: Play ALL cards chosen by any copy of {Joker} this combat.",
+			"NAME": "Arsene"
 		},
 		"pcl:JotaroKujo":
 		{
@@ -644,7 +685,7 @@
 				"After #b{0} turn(s), create a copy of {1}.",
 				"Double its hit count and [Block] and increase its base cost by 1.",
 				"Give it [~Ethereal] and reduce its base cost by 1. If it already had [~Ethereal], give it Exhaust.",
-				"Give it [~Innate], replace its affinities with Lv2 <S> and replace its Scalings with +6 <SSC>."
+				"Give it [~Innate], replace its affinities with <S> and replace its Scalings with +6 <SSC>."
 			],
 			"NAME": "Nirvash Type theEND",
 			"UPGRADE_DESCRIPTION": "Apply 1 of 3 upgrades to any Animator card in play. || <LIM>. Pay !A! <S>: Make this upgrade permanent. Remove this card from your deck."
@@ -674,7 +715,7 @@
 		},
 		"pcl:SheerCold":
 		{
-			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage ({0}% of [Focus] on Trigger and {1}% on Evoke) to the enemy with the highest damage and applies half that much [Freezing]. || [Freezing] gains +!S!% effect bonus.",
+			"DESCRIPTION": "Channel !M! [Frost]. [Frost] deals damage ({0}% of [Focus] on Trigger and {1}% on Evoke) to the enemy with the highest damage and applies half that much [Freezing]. || [~FD] attacks deal +!S!% damage against targets with [Freezing].",
 			"NAME": "Sheer Cold"
 		},
 		"pcl:ShuichiSaihara":
@@ -894,7 +935,7 @@
 		},
 		"pcl:AyakaKamisato":
 		{
-			"DESCRIPTION": "Gain [Blur] and !M! [Self-Immolation]. Take !S! non-lethal damage. || <LIM>. If any enemy would kill you: Play your highest [Block] card in play, then activate [DD] on ALL characters.",
+			"DESCRIPTION": "Gain [Blur] and !M! [Self-Immolation]. Take !S! non-lethal damage. || <LIM>. If any enemy would kill you: Play the lowest [Block] card in play, then activate [DD] on ALL characters.",
 			"EXTENDED_DESCRIPTION": ["in hand", "in play"],
 			"NAME": "Ayaka Kamisato"
 		},
@@ -922,7 +963,7 @@
 		},
 		"pcl:Curse_Delusion":
 		{
-			"DESCRIPTION": "At the end of your turn, a random card in your Draw Pile gains [Autoplay]. || On Exhaust: Obtain ** {<G> Token}+.",
+			"DESCRIPTION": "At end of turn, a random card in your Draw Pile gains [Autoplay]. || <LIM>. !A! <W>. On Exhaust: Play {Undulating Lacuna}.",
 			"NAME": "Delusion"
 		},
 		"pcl:Cyno":
@@ -1009,7 +1050,7 @@
 		},
 		"pcl:Kreideprinz":
         {
-        	"DESCRIPTION": "Obtain [Grief Seed]. Transform ALL Orbs into [Earth]. If any of them were: ** [Frost] -> Apply !S! [Freezing] to ALL enemies. ** [Earth] -> Gain [Inspiration].",
+        	"DESCRIPTION": "Obtain [Grief Seed]. Replace ALL Orbs with [Earth]. If any of them were: ** [Frost] -> Apply !S! [Freezing] to ALL enemies. ** [Earth] -> Gain [Inspiration].",
         	"NAME": "Kreideprinz"
         },
 		"pcl:KujouSara":
@@ -1357,7 +1398,7 @@
 		},
 		"pcl:HataNoKokoro":
 		{
-			"DESCRIPTION": "To play this, Pay !A! <W>: Replace the <W> and Scaling of ALL cards in hand with +!M! Scaling and LV2 of the chosen <W>. || On Discard: Gain !S! <B>.",
+			"DESCRIPTION": "To play this, Pay !A! <W>: ALL cards in hand lose their existing <W> and Scaling and gain the chosen <W> and +!M! of its Scaling. || On Discard: Gain !S! <B>.",
 			"NAME": "Hata No Kokoro"
 		},
 		"pcl:HatateHimekaidou":
@@ -1400,7 +1441,7 @@
 		},
 		"pcl:KonpakuYoumu":
 		{
-			"DESCRIPTION": "Scry X. ** Gain X [NTD]. || !A! <G> and X > 2: ** Obtain <G> {Token}{+}.",
+			"DESCRIPTION": "Scry X + !M!. ** Gain X + !M! [NTD]. || !A! <G> and X > 2: ** Obtain <G> {Token}{+}.",
 			"NAME": "Youmu Konpaku"
 		},
 		"pcl:MarisaKirisame":
@@ -1673,7 +1714,7 @@
 		},
 		"pcl:Curse_Decay":
 		{
-			"DESCRIPTION": "At the end of turn: ** Take !M! damage. || <LIM>. On Exhaust: Remove your [Vulnerable].",
+			"DESCRIPTION": "At the end of turn: ** Take !M! damage. || On Exhaust: Lose !S! [Weak].",
 			"NAME": "Decay"
 		},
 		"pcl:Curse_Depression":
@@ -1688,7 +1729,7 @@
 		},
 		"pcl:Curse_Doubt":
 		{
-			"DESCRIPTION": "At the end of turn: ** Gain !M! [Weak]. || <LIM>. On Exhaust: Remove your [Weak].",
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Weak]. || On Exhaust: Lose !S! [Frail].",
 			"NAME": "Doubt"
 		},
 		"pcl:Curse_Eclipse":
@@ -1719,12 +1760,12 @@
 		},
 		"pcl:Curse_Nutcracker":
 		{
-			"DESCRIPTION": "At the end of turn: ** ALL enemies heal !M! HP. || On Exhaust: ** Gain 1 [Inspiration].",
+			"DESCRIPTION": "At the end of turn: ** ALL enemies heal !M! HP. || On Exhaust: Gain [Inspiration].",
 			"NAME": "Nutcracker"
 		},
 		"pcl:Curse_Pain":
 		{
-			"DESCRIPTION": "While in hand: Lose !M! [HP] when you play another card. || <LIM>. On Exhaust: Deal !M! damage to a random enemy for every card played this turn.",
+			"DESCRIPTION": "While in hand, when you play another card: Lose !M! [HP]. || On Exhaust: Gain !M! [R].",
 			"NAME": "Pain"
 		},
 		"pcl:Curse_Parasite":
@@ -1734,7 +1775,7 @@
 		},
 		"pcl:Curse_Regret":
 		{
-			"DESCRIPTION": "At the end of turn: ** Lose !M! HP for every card in hand. || <LIM>. On Exhaust: Gain !S! [THP] per card in hand.",
+			"DESCRIPTION": "At the end of turn: ** Lose !M! HP for every card in hand. || On Exhaust: Gain !S! [THP].",
 			"NAME": "Regret"
 		},
 		"pcl:Curse_SearingBurn":
@@ -1745,7 +1786,7 @@
 		},
 		"pcl:Curse_Shame":
 		{
-			"DESCRIPTION": "At the end of turn: ** Gain !M! [Frail]. || <LIM>. On Exhaust: Remove your [Frail].",
+			"DESCRIPTION": "At the end of turn: ** Gain !M! [Frail]. || On Exhaust: Lose !S! [Vulnerable].",
 			"NAME": "Shame"
 		},
 		"pcl:Curse_Slumber":
@@ -3192,7 +3233,7 @@
 		},
 		"pcl:Vesta":
 		{
-			"DESCRIPTION": "Gain !S! [B] and [O]. || Research an {Elixir} ** for the next !M! turns. || Pay !A! <B>: Upgrade it.",
+			"DESCRIPTION": "Gain !S! [B] and [O]. || Research an {Elixir}. Obtain it in !M! turns. || Pay !A! <B>: Takes 1 less turn to research.",
 			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
 		},

@@ -5,14 +5,15 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.utilities.TargetHelper;
 
-public enum PCLCardTarget
+public enum PCLCardTarget implements Comparable<PCLCardTarget>
 {
-    Self(AbstractCard.CardTarget.SELF, SelectCreature.Targeting.Player, TargetHelper.Mode.Player, null),
+    // The ordering of this enum determines which targeting system takes priority
     None(AbstractCard.CardTarget.NONE, SelectCreature.Targeting.None, TargetHelper.Mode.Source,null),
-    Normal(AbstractCard.CardTarget.ENEMY, SelectCreature.Targeting.Enemy, TargetHelper.Mode.Normal,null),
-    All(AbstractCard.CardTarget.ALL, SelectCreature.Targeting.AoE, TargetHelper.Mode.AllCharacters, null),
-    Any(AbstractCard.CardTarget.SELF_AND_ENEMY, SelectCreature.Targeting.Any, TargetHelper.Mode.Normal,null),
     AoE(AbstractCard.CardTarget.ALL_ENEMY, SelectCreature.Targeting.AoE, TargetHelper.Mode.Enemies, "AoE"),
+    All(AbstractCard.CardTarget.ALL, SelectCreature.Targeting.AoE, TargetHelper.Mode.AllCharacters, null),
+    Self(AbstractCard.CardTarget.SELF, SelectCreature.Targeting.Player, TargetHelper.Mode.Player, null),
+    Normal(AbstractCard.CardTarget.ENEMY, SelectCreature.Targeting.Enemy, TargetHelper.Mode.Normal,null),
+    Any(AbstractCard.CardTarget.SELF_AND_ENEMY, SelectCreature.Targeting.Any, TargetHelper.Mode.Normal,null),
     Random(AbstractCard.CardTarget.ALL_ENEMY, SelectCreature.Targeting.Random, TargetHelper.Mode.RandomEnemy,"???");
 
     public final AbstractCard.CardTarget cardTarget;

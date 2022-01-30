@@ -20,6 +20,7 @@ import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.curse.Curse_AbyssalVoid;
 import pinacolada.cards.pcl.special.Traveler_Wish;
 import pinacolada.effects.AttackEffects;
+import pinacolada.effects.SFX;
 import pinacolada.orbs.pcl.Water;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
@@ -87,8 +88,9 @@ public class Traveler_Lumine extends PCLCard_UltraRare implements OnStartOfTurnP
         {
             PCLGameEffects.Queue.ShowCardBriefly(this);
 
-            PCLGameEffects.Queue.Add(new RoomTintEffect(Color.BLACK.cpy(), 0.8F, 2.0F + (orbCount / 10.0F), true));
+            PCLGameEffects.Queue.Add(new RoomTintEffect(Color.BLACK.cpy(), 0.85F, 2.0F + (orbCount / 10.0F), true));
             PCLGameEffects.Queue.Add(new BorderLongFlashEffect(new Color(1.0F, 1.0F, 1.0F, 0.5F)));
+            SFX.Play(SFX.VO_AWAKENEDONE_1, 1f, 1.35f);
 
             int startIdx = Math.max(orbCount - magicNumber, 0);
 

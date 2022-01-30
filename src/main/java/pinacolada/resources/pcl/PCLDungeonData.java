@@ -421,7 +421,7 @@ public class PCLDungeonData implements CustomSavable<PCLDungeonData>, StartGameS
             for (int i = 0; i < GR.PCL.Data.Glyphs.size(); i++) {
                 boolean shouldAdd = true;
                 for (AbstractBlight blight: player.blights) {
-                    if (GR.PCL.Data.Glyphs.get(0).getClass().equals(blight.getClass())) {
+                    if (GR.PCL.Data.Glyphs.get(i).getClass().equals(blight.getClass())) {
                         shouldAdd = false;
                         break;
                     }

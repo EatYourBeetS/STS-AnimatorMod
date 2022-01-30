@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.ui.GUIElement;
-import eatyourbeets.ui.config.ConfigOption_Integer;
 import eatyourbeets.utilities.Colors;
 import pinacolada.blights.common.AbstractGlyphBlight;
 import pinacolada.cards.base.PCLCardTooltip;
@@ -21,7 +20,6 @@ public class PCLGlyphEditor extends GUIElement
     protected static final float ICON_SIZE = 48f * Settings.scale;
 
     private final AbstractGlyphBlight blight;
-    private final ConfigOption_Integer configOption;
     protected Hitbox hb;
     protected GUI_Button decrease_button;
     protected GUI_Button increase_button;
@@ -31,11 +29,10 @@ public class PCLGlyphEditor extends GUIElement
     protected int maximumLevel = 99;
     protected PCLCardTooltip tooltip;
 
-    public PCLGlyphEditor(AbstractGlyphBlight blight, ConfigOption_Integer configOption, Hitbox hb)
+    public PCLGlyphEditor(AbstractGlyphBlight blight, Hitbox hb)
     {
         this.hb = hb;
         this.blight = blight;
-        this.configOption = configOption;
 
         final float w = hb.width;
         final float h = hb.height;
@@ -79,7 +76,7 @@ public class PCLGlyphEditor extends GUIElement
         minimumLevel = blight.GetMinimumLevel(ascensionLevel);
         if (blight.counter < minimumLevel) {
             blight.setAmount(minimumLevel);
-            configOption.Set(blight.counter, true);
+            blight.configOption.Set(blight.counter, true);
         }
         tooltip.description = enabled ? blight.GetAscensionTooltipDescription(ascensionLevel) : blight.GetLockedTooltipDescription();
         image.SetGrayscale(!enabled);
@@ -89,7 +86,7 @@ public class PCLGlyphEditor extends GUIElement
     {
         if (enabled && blight.counter > minimumLevel) {
             blight.addAmount(-1);
-            configOption.Set(blight.counter, true);
+            blight.configOption.Set(blight.counter, true);
         }
     }
 
@@ -97,7 +94,7 @@ public class PCLGlyphEditor extends GUIElement
     {
         if (enabled && blight.counter < maximumLevel) {
             blight.addAmount(1);
-            configOption.Set(blight.counter, true);
+            blight.configOption.Set(blight.counter, true);
         }
     }
 }

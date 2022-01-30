@@ -24,7 +24,7 @@ public class Mayuri extends PCLCard
     {
         super(DATA);
 
-        Initialize(4, 23, 3, 15);
+        Initialize(4, 21, 3, 20);
         SetUpgrade(2, 2, 0);
         SetAffinity_Light(1, 0, 2);
 

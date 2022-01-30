@@ -53,12 +53,7 @@ public class ApprenticeCleric extends PCLCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        buffs = CombatStats.GetCombatData(cardID, null);
-        if (buffs == null)
-        {
-            buffs = new HashMap<>();
-            CombatStats.SetCombatData(cardID, buffs);
-        }
+        buffs = CombatStats.GetCombatData(cardID, new HashMap<>());
 
         PCLActions.Bottom.IncreaseScaling(p.hand, BaseMod.MAX_HAND_SIZE, PCLAffinity.Light, 1)
         .SetFilter(c -> (PCLGameUtilities.HasRedAffinity(c) || PCLGameUtilities.HasOrangeAffinity(c) || PCLGameUtilities.HasGreenAffinity(c)) && buffs.getOrDefault(c.uuid, 0) < magicNumber)

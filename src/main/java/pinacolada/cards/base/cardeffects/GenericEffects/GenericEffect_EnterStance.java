@@ -2,9 +2,9 @@ package pinacolada.cards.base.cardeffects.GenericEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLAffinity;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTarget;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.resources.GR;
 import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
@@ -17,18 +17,14 @@ public class GenericEffect_EnterStance extends GenericEffect
 
     public GenericEffect_EnterStance(PCLStanceHelper stance)
     {
-        super(ID, stance.ID, stance.Tooltip, PCLCardTarget.Self, 1);
+        super(ID, stance.ID, PCLCardTarget.Self, 1);
         this.stance = stance;
     }
 
     @Override
     public String GetText()
     {
-        String text = tooltip.title;
-        for (PCLAffinity af : PCLAffinity.Basic()) {
-            text = text.replace(af.PowerName, af.GetFormattedPowerSymbol());
-        }
-
+        String text = stance.Tooltip.title.replace(stance.Affinity.PowerName, stance.Affinity.GetFormattedPowerSymbol());
         return GR.PCL.Strings.Actions.EnterStance("{" + text + "}", true);
     }
 

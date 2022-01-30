@@ -3,9 +3,9 @@ package pinacolada.cards.pcl.series.MadokaMagica;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_NextTurnBlock;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_NextTurnDraw;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_Scry;
+import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
 
 public class OrikoMikuni extends PCLCard
@@ -36,8 +36,8 @@ public class OrikoMikuni extends PCLCard
 
         choices.Initialize(this, true);
         choices.AddEffect(new GenericEffect_Scry(magicNumber));
-        choices.AddEffect(new GenericEffect_NextTurnDraw(1));
-        choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
+        choices.AddEffect(GenericEffect.Gain(1, PCLPowerHelper.NextTurnDraw));
+        choices.AddEffect(GenericEffect.Gain(secondaryValue, PCLPowerHelper.NextTurnBlock));
 
         if (TrySpendAffinity(PCLAffinity.Blue))
         {

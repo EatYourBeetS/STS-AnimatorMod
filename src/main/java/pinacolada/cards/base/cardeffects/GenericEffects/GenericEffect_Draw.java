@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardTarget;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;
 
@@ -13,7 +14,7 @@ public class GenericEffect_Draw extends GenericEffect
 
     public GenericEffect_Draw(int amount)
     {
-        super(ID, null, null, PCLCardTarget.None, amount);
+        super(ID, null,  PCLCardTarget.None, amount);
     }
 
     @Override

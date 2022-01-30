@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.pcl.special.Shichika_Kyotouryuu;
 import pinacolada.powers.common.CounterAttackPower;
 import pinacolada.stances.pcl.MightStance;

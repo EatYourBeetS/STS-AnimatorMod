@@ -54,7 +54,7 @@ public class SakuraKinomoto extends PCLCard
                 final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                 for (int i = 0; i < secondaryValue; i++)
                 {
-                    final AbstractCard card = GR.PCL.Dungeon.GetRandomRewardCard(choices.group, false, true);
+                    final AbstractCard card = GR.PCL.Dungeon.GetRandomRewardCard(choices.group, true, true);
                     if (card != null)
                     {
                         choices.group.add(card);

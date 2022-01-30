@@ -6,8 +6,7 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_GainAffinity;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.effects.AttackEffects;
 import pinacolada.stances.PCLStanceHelper;
@@ -73,8 +72,8 @@ public class Hakurou extends PCLCard
         PCLActions.Bottom.TryChooseSpendAffinity(this, PCLAffinity.Red, PCLAffinity.Orange).AddConditionalCallback(() -> {
             if (choices.TryInitialize(this))
             {
-                choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.VelocityStance));
-                choices.AddEffect(new GenericEffect_GainAffinity(PCLAffinity.Green, magicNumber));
+                choices.AddEffect(GenericEffect.EnterStance(PCLStanceHelper.VelocityStance));
+                choices.AddEffect(GenericEffect.GainAffinity(magicNumber, PCLAffinity.Green));
             }
             choices.Select(1, m);
         });

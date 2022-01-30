@@ -38,10 +38,9 @@ public class ShidoItsuka extends PCLCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        InitializeSynergicCards();
         boolean giveHarmonic = CheckSpecialCondition(true) && info.TryActivateLimited();
 
-        WeightedList<AbstractCard> randomizedDALCards = new WeightedList<>(dateALiveCards);
+        WeightedList<AbstractCard> randomizedDALCards = new WeightedList<>(GetSynergicCards());
         final CardGroup options = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
         for (int i = 0; i < magicNumber; i++)
         {
@@ -82,19 +81,20 @@ public class ShidoItsuka extends PCLCard
         return PCLGameUtilities.GetCurrentMatchCombo() >= secondaryValue;
     }
 
-    private void InitializeSynergicCards()
+    private WeightedList<AbstractCard> GetSynergicCards()
     {
-        dateALiveCards.Clear();
-
-        for (AbstractCard c : CardLibrary.getAllCards())
-        {
-            if (PCLGameUtilities.IsSameSeries(this, c)
-            && !c.hasTag(AbstractCard.CardTags.HEALING)
-            && c.rarity != AbstractCard.CardRarity.SPECIAL
-            && c.rarity != AbstractCard.CardRarity.BASIC)
+        if (dateALiveCards.GetInnerList().isEmpty()) {
+            for (AbstractCard c : CardLibrary.getAllCards())
             {
-                dateALiveCards.Add(c, c.rarity == CardRarity.COMMON ? 10 : c.rarity == CardRarity.UNCOMMON ? 7 : 4);
+                if (PCLGameUtilities.IsSameSeries(this, c)
+                        && !c.hasTag(AbstractCard.CardTags.HEALING)
+                        && c.rarity != AbstractCard.CardRarity.SPECIAL
+                        && c.rarity != AbstractCard.CardRarity.BASIC)
+                {
+                    dateALiveCards.Add(c, c.rarity == CardRarity.COMMON ? 10 : c.rarity == CardRarity.UNCOMMON ? 7 : 4);
+                }
             }
         }
+        return dateALiveCards;
     }
 }

@@ -1397,7 +1397,7 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
             {
                 for (AbstractPower power : enemy.powers) {
                     if (attackType.powerToRemove.equals(power.ID)) {
-                        tempDamage *= PCLAttackType.DAMAGE_MULTIPLIER;
+                        tempDamage *= attackType.GetDamageMultiplier();
                     }
                     else if (ElementalExposurePower.POWER_ID.equals(power.ID))
                     {

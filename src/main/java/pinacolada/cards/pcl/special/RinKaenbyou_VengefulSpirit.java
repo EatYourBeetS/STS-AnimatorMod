@@ -17,7 +17,7 @@ public class RinKaenbyou_VengefulSpirit extends PCLCard_Curse
     {
         super(DATA, false);
 
-        Initialize(0, 0, 6, 3);
+        Initialize(0, 0, 7, 3);
         SetUpgrade(0, 0, 0);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Dark(1, 0, 0);

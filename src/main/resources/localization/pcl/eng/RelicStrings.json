@@ -116,7 +116,7 @@
 	},
 	"pcl:GranviaShieldCrest":
 	{
-		"DESCRIPTIONS": ["If you have exactly 1 type of Protagonist in your deck and you would die from an attack, prevent all damage, then destroy this relic and all Protagonists in your deck.", "Current Protagonists:"],
+		"DESCRIPTIONS": ["If you have exactly 1 type of #yProtagonist in your deck and you would die from an attack, heal to full, then destroy this relic and all #yProtagonists in your deck.", "#yCurrent #yProtagonists:"],
 		"FLAVOR": "Awarded to those that display true honor and valor.",
 		"NAME": "Granvia Shield Crest"
 	},

@@ -48,6 +48,7 @@ import java.util.Set;
 public class PCLCombatStats extends EYBPower implements InvisiblePower
 {
     public enum Type {
+        Amplifier,
         Effect,
         PassiveDamage,
         PlayerEffect
@@ -120,6 +121,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static final ControllableCardPile ControlPile = new ControllableCardPile();
 
+    protected static final HashMap<String, Integer> AMPLIFIER_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> EFFECT_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> PASSIVE_DAMAGE_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> PLAYER_EFFECT_BONUSES = new HashMap<>();
@@ -152,6 +154,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         CardGlowBorderPatches.overrideColor = null;
         PCLCombatStats.MatchingSystem.Initialize();
         PCLCombatStats.MatchingSystem.SetLastCardPlayed(null);
+        AMPLIFIER_BONUSES.clear();
         EFFECT_BONUSES.clear();
         PASSIVE_DAMAGE_BONUSES.clear();
         PLAYER_EFFECT_BONUSES.clear();
@@ -543,6 +546,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         return GetEffectBonusMapForType(effectType).getOrDefault(powerID, 0);
     }
 
+    public static int GetAmplifierBonus(String powerID) {
+        return AMPLIFIER_BONUSES.getOrDefault(powerID, 0);
+    }
+
     public static int GetEffectBonus(String powerID) {
         return EFFECT_BONUSES.getOrDefault(powerID, 0);
     }
@@ -553,6 +560,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static int GetPlayerEffectBonus(String powerID) {
         return PLAYER_EFFECT_BONUSES.getOrDefault(powerID, 0);
+    }
+
+    public static Set<Map.Entry<String,Integer>> GetAllAmplifierBonuses() {
+        return AMPLIFIER_BONUSES.entrySet();
     }
 
     public static Set<Map.Entry<String,Integer>> GetAllEffectBonuses() {
@@ -593,6 +604,11 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     }
 
+    public static void AddAmplifierBonus(String powerID, int multiplier)
+    {
+        AddBonus(powerID, Type.Amplifier, multiplier);
+    }
+
     public static void AddEffectBonus(String powerID, int multiplier)
     {
         AddBonus(powerID, Type.Effect, multiplier);
@@ -610,6 +626,8 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static HashMap<String, Integer> GetEffectBonusMapForType(Type effectType) {
         switch (effectType) {
+            case Amplifier:
+                return AMPLIFIER_BONUSES;
             case Effect:
                 return EFFECT_BONUSES;
             case PlayerEffect:

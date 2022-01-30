@@ -1,30 +1,24 @@
 package pinacolada.cards.pcl.colorless;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.beyond.Exploder;
-import com.megacrit.cardcrawl.monsters.beyond.OrbWalker;
-import com.megacrit.cardcrawl.monsters.beyond.Repulsor;
-import com.megacrit.cardcrawl.monsters.beyond.Spiker;
+import com.megacrit.cardcrawl.monsters.beyond.*;
 import com.megacrit.cardcrawl.monsters.city.*;
 import com.megacrit.cardcrawl.monsters.exordium.*;
-import pinacolada.cards.base.PCLCardTarget;
-import eatyourbeets.interfaces.delegates.ActionT3;
+import com.megacrit.cardcrawl.potions.SneckoOil;
 import eatyourbeets.utilities.ListSelection;
-import eatyourbeets.utilities.TargetHelper;
 import pinacolada.actions.special.SelectCreature;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.CompositeEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
+import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.orbs.PCLOrbHelper;
 import pinacolada.powers.PCLPowerHelper;
-import pinacolada.powers.common.EnragePower;
-import pinacolada.powers.replacement.PCLCurlUpPower;
-import pinacolada.powers.replacement.PlayerFlightPower;
 import pinacolada.powers.special.StolenGoldPower;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLStrings;
@@ -38,18 +32,18 @@ import java.util.HashMap;
 
 public class Megaman extends PCLCard
 {
-    //TODO Refactor to use GenericEffects
     private static class MegamanMove {
-        private final SelectCreature.Targeting target;
-        private final String text;
-        private final ActionT3<PCLCard, AbstractPlayer, AbstractCreature> action;
+        private final GenericEffect effect;
         private final int uses;
 
-        public MegamanMove(SelectCreature.Targeting target, String text, ActionT3<PCLCard, AbstractPlayer, AbstractCreature> action, int uses) {
-            this.target = target;
-            this.text = text;
-            this.action = action;
+        public MegamanMove(int uses, GenericEffect... genericEffects) {
             this.uses = uses;
+            if (genericEffects.length == 1) {
+                effect = genericEffects[0];
+            }
+            else {
+                effect = new CompositeEffect(genericEffects);
+            }
         }
     }
     private static final PCLStrings.Actions ACTIONS = GR.PCL.Strings.Actions;
@@ -61,65 +55,61 @@ public class Megaman extends PCLCard
     private String previewForm;
 
     static {
-        EFFECT_MAP.put(AcidSlime_L.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(1, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Normal(m), 1), 2));
+        EFFECT_MAP.put(AcidSlime_L.ID, new MegamanMove(2, GenericEffect.Apply(1, PCLPowerHelper.Weak)));
         EFFECT_MAP.put(AcidSlime_M.ID, EFFECT_MAP.get(AcidSlime_L.ID));
         EFFECT_MAP.put(AcidSlime_S.ID, EFFECT_MAP.get(AcidSlime_L.ID));
-        EFFECT_MAP.put(BanditBear.ID, new MegamanMove(SelectCreature.Targeting.AoE,ACTIONS.ApplyToALL(3, GR.Tooltips.Frail, true), (c, p, m) -> PCLActions.Bottom.ApplyFrail(TargetHelper.Enemies(), 3), 1));
-        EFFECT_MAP.put(BanditLeader.ID, new MegamanMove(SelectCreature.Targeting.AoE,ACTIONS.ApplyToALL(3, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3), 1));
-        EFFECT_MAP.put(BanditPointy.ID, new MegamanMove(SelectCreature.Targeting.Enemy,ACTIONS.DealDamage(14, true), (c, p, m) -> PCLActions.Bottom.DealDamage(p, m, 14, DamageInfo.DamageType.NORMAL, AttackEffects.SLASH_HORIZONTAL), 1));
-        EFFECT_MAP.put(BookOfStabbing.ID, new MegamanMove(SelectCreature.Targeting.Enemy,ACTIONS.DealDamage(24, true), (c, p, m) -> PCLActions.Bottom.DealDamage(p, m, 18, DamageInfo.DamageType.NORMAL, AttackEffects.SLASH_DIAGONAL), 1));
-        EFFECT_MAP.put(Byrd.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(1, GR.Tooltips.Flight, true), (c, p, m) -> PCLActions.Bottom.StackPower(new PlayerFlightPower(p, 1)), 1));
-        EFFECT_MAP.put(Centurion.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(10, GR.Tooltips.Block, true), (c, p, m) -> PCLActions.Bottom.GainBlock(10), 1));
-        EFFECT_MAP.put(Champ.ID,
-                new MegamanMove(SelectCreature.Targeting.None, ACTIONS.RemoveCommonDebuffs(true),
-                        (c, p, m) -> {
-                            PCLActions.Bottom.RemoveCommonDebuffs(player, ListSelection.First(0), player.powers.size());
-                    }, 1));
-        EFFECT_MAP.put(Cultist.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(1, GR.Tooltips.Ritual, true), (c, p, m) -> PCLActions.Bottom.StackPower(TargetHelper.Player(), PCLPowerHelper.Ritual, 1), 1));
-        EFFECT_MAP.put(Exploder.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(15, GR.Tooltips.DelayedDamage, true), (c, p, m) -> PCLActions.Bottom.DealDamageAtEndOfTurn(p, m, 15), 2));
-        EFFECT_MAP.put(FungiBeast.ID, new MegamanMove(SelectCreature.Targeting.AoE, ACTIONS.ApplyToALL(1, GR.Tooltips.Vulnerable, true), (c, p, m) -> PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 1), 2));
-        EFFECT_MAP.put(GremlinFat.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.ApplyToRandom(2, GR.Tooltips.Weak, true), (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Normal(m), 1), 2));
-        EFFECT_MAP.put(GremlinLeader.ID, new MegamanMove(SelectCreature.Targeting.Enemy,ACTIONS.DealDamage(18, true), (c, p, m) -> PCLActions.Bottom.DealDamage(p, m, 18, DamageInfo.DamageType.NORMAL, AttackEffects.SLASH_DIAGONAL), 1));
-        EFFECT_MAP.put(GremlinNob.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(1, GR.Tooltips.Enrage, true), (c, p, m) -> PCLActions.Bottom.StackPower(new EnragePower(p, 2)), 1));
-        EFFECT_MAP.put(GremlinThief.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.DealDamage(8, true), (c, p, m) -> PCLActions.Bottom.DealDamage(p, m, 8, DamageInfo.DamageType.NORMAL, AttackEffects.SLASH_VERTICAL), 2));
-        EFFECT_MAP.put(GremlinTsundere.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(9, GR.Tooltips.Block, true), (c, p, m) -> PCLActions.Bottom.GainBlock(9), 1));
-        EFFECT_MAP.put(GremlinWarrior.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(1, GR.Tooltips.Might, true), (c, p, m) -> PCLActions.Bottom.GainMight(1), 2));
-        EFFECT_MAP.put(GremlinWizard.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.Channel(2, GR.Tooltips.Dark, true), (c, p, m) -> PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Dark, 2), 1));
-        EFFECT_MAP.put(Healer.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.HealHP(4, true), (c, p, m) -> PCLActions.Bottom.Heal(4), 2));
-        EFFECT_MAP.put(Hexaghost.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(10, GR.Tooltips.Burning, true), (c, p, m) -> PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), 10), 1));
-        EFFECT_MAP.put(JawWorm.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(6, GR.Tooltips.Block, true), (c, p, m) -> PCLActions.Bottom.GainBlock(6), 2));
-        EFFECT_MAP.put(Lagavulin.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(2, GR.Tooltips.Metallicize, true), (c, p, m) -> PCLActions.Bottom.GainMetallicize(2), 1));
-        EFFECT_MAP.put(LouseDefensive.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(5, GR.Tooltips.CurlUp, true), (c, p, m) -> PCLActions.Bottom.StackPower(new PCLCurlUpPower(p, 5)), 2));
+        EFFECT_MAP.put(BanditBear.ID, new MegamanMove(1, GenericEffect.ApplyToEnemies(3, PCLPowerHelper.Frail)));
+        EFFECT_MAP.put(BanditLeader.ID, new MegamanMove(1, GenericEffect.ApplyToEnemies(3, PCLPowerHelper.Weak)));
+        EFFECT_MAP.put(BanditPointy.ID, new MegamanMove(1, GenericEffect.DealDamage(15, AttackEffects.SLASH_DIAGONAL)));
+        EFFECT_MAP.put(BookOfStabbing.ID, new MegamanMove(1, GenericEffect.DealDamageToAll(12, AttackEffects.SLASH_DIAGONAL)));
+        EFFECT_MAP.put(BronzeAutomaton.ID, new MegamanMove(1, GenericEffect.DealDamageToAll(36, AttackEffects.LIGHTNING), GenericEffect.Gain(-7, PCLPowerHelper.Focus)));
+        EFFECT_MAP.put(Byrd.ID, new MegamanMove(1, GenericEffect.Gain(1, PCLPowerHelper.Flight)));
+        EFFECT_MAP.put(Centurion.ID, new MegamanMove(1, GenericEffect.GainBlock(10)));
+        EFFECT_MAP.put(Champ.ID, new MegamanMove(1, new GenericEffect_MegamanChamp()));
+        EFFECT_MAP.put(Chosen.ID, new MegamanMove(1, GenericEffect.Apply(2, PCLPowerHelper.Weak), GenericEffect.GainAffinityPower(2, PCLAffinity.Red)));
+        EFFECT_MAP.put(Cultist.ID, new MegamanMove(1, GenericEffect.Gain(1, PCLPowerHelper.Ritual)));
+        EFFECT_MAP.put(Exploder.ID, new MegamanMove(1, GenericEffect.ApplyToEnemies(14, PCLPowerHelper.DelayedDamage)));
+        EFFECT_MAP.put(FungiBeast.ID, new MegamanMove(1, GenericEffect.ApplyToEnemies(1, PCLPowerHelper.Vulnerable)));
+        EFFECT_MAP.put(GiantHead.ID, new MegamanMove(1, GenericEffect.Apply(1, PCLPowerHelper.Slow)));
+        EFFECT_MAP.put(GremlinFat.ID, new MegamanMove(2, GenericEffect.ApplyToRandom(2, PCLPowerHelper.Weak)));
+        EFFECT_MAP.put(GremlinLeader.ID, EFFECT_MAP.get(BanditPointy.ID));
+        EFFECT_MAP.put(GremlinNob.ID, new MegamanMove(1, GenericEffect.Gain(2, PCLPowerHelper.Enrage)));
+        EFFECT_MAP.put(GremlinThief.ID, new MegamanMove(2, GenericEffect.DealDamage(9, AttackEffects.SLASH_HORIZONTAL)));
+        EFFECT_MAP.put(GremlinTsundere.ID, new MegamanMove(1, GenericEffect.GainBlock(9)));
+        EFFECT_MAP.put(GremlinWarrior.ID, new MegamanMove(1, GenericEffect.GainAffinityPower(2, PCLAffinity.Red)));
+        EFFECT_MAP.put(GremlinWizard.ID, new MegamanMove(1, GenericEffect.ChannelOrb(2, PCLOrbHelper.Dark)));
+        EFFECT_MAP.put(Healer.ID, new MegamanMove(1, GenericEffect.Gain(1, PCLPowerHelper.Regen)));
+        EFFECT_MAP.put(Hexaghost.ID, new MegamanMove(1, GenericEffect.Gain(3, PCLPowerHelper.BurningWeapon), GenericEffect.ApplyToEnemies(3, PCLPowerHelper.Burning)));
+        EFFECT_MAP.put(JawWorm.ID, new MegamanMove(2, GenericEffect.GainBlock(3), GenericEffect.DealDamage(3, AttackEffects.BLUNT_LIGHT)));
+        EFFECT_MAP.put(Lagavulin.ID, new MegamanMove(1, GenericEffect.Gain(2, PCLPowerHelper.Metallicize)));
+        EFFECT_MAP.put(Looter.ID, new MegamanMove(1, new GenericEffect_MegamanSteal(7)));
+        EFFECT_MAP.put(LouseDefensive.ID, new MegamanMove(2, GenericEffect.Gain(5, PCLPowerHelper.CurlUp)));
         EFFECT_MAP.put(LouseNormal.ID, EFFECT_MAP.get(LouseNormal.ID));
-        EFFECT_MAP.put(Mugger.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Steal(5, GR.Tooltips.Gold, true), (c, p, m) -> PCLActions.Bottom.StackPower(new StolenGoldPower(m, 5)), 2));
-        EFFECT_MAP.put(OrbWalker.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(1, GR.Tooltips.Wisdom, true), (c, p, m) -> PCLActions.Bottom.GainWisdom(1), 2));
-        EFFECT_MAP.put(Repulsor.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.Draw(1, true), (c, p, m) -> PCLActions.Bottom.Draw(1), 3));
-        EFFECT_MAP.put(ShelledParasite.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(2, GR.Tooltips.PlatedArmor, true), (c, p, m) -> PCLActions.Bottom.GainPlatedArmor(2), 2));
-        EFFECT_MAP.put(Sentry.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.Draw(2, true), (c, p, m) -> PCLActions.Bottom.Draw(2), 2));
-        EFFECT_MAP.put(SlaverBlue.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(3, GR.Tooltips.Shackles, true), (c, p, m) -> PCLActions.Bottom.ApplyShackles(TargetHelper.Normal(m), 3), 1));
-        EFFECT_MAP.put(SlaverRed.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(3, GR.Tooltips.Shackles, true), (c, p, m) -> PCLActions.Bottom.ApplyShackles(TargetHelper.Normal(m), 3), 1));
-        EFFECT_MAP.put(SlimeBoss.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(38, GR.Tooltips.DelayedDamage, true), (c, p, m) -> PCLActions.Bottom.DealDamageAtEndOfTurn(p, m, 38), 1));
-        EFFECT_MAP.put(SnakePlant.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(3, GR.Tooltips.Malleable, true), (c, p, m) -> PCLActions.Bottom.GainMalleable(3), 1));
-        EFFECT_MAP.put(SphericGuardian.ID, new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(3, GR.Tooltips.Blur, true), (c, p, m) -> PCLActions.Bottom.GainBlur(3), 1));
-        EFFECT_MAP.put(SpikeSlime_L.ID, new MegamanMove(SelectCreature.Targeting.Enemy, ACTIONS.Apply(1, GR.Tooltips.Frail, true), (c, p, m) -> PCLActions.Bottom.ApplyWeak(TargetHelper.Normal(m), 1), 2));
+        EFFECT_MAP.put(Mugger.ID, new MegamanMove(2, new GenericEffect_MegamanSteal(5)));
+        EFFECT_MAP.put(Nemesis.ID, new MegamanMove(1, GenericEffect.Gain(1, PCLPowerHelper.Intangible)));
+        EFFECT_MAP.put(OrbWalker.ID, new MegamanMove(1, GenericEffect.GainAffinityPower(2, PCLAffinity.Blue)));
+        EFFECT_MAP.put(Repulsor.ID, new MegamanMove(3, GenericEffect.Draw(1)));
+        EFFECT_MAP.put(Reptomancer.ID, new MegamanMove(1, GenericEffect.Obtain(3, 0, ThrowingKnife.DATA)));
+        EFFECT_MAP.put(ShelledParasite.ID, new MegamanMove(2, GenericEffect.Gain(2, PCLPowerHelper.PlatedArmor)));
+        EFFECT_MAP.put(Sentry.ID, new MegamanMove(2, GenericEffect.Gain(1, PCLPowerHelper.Artifact)));
+        EFFECT_MAP.put(SlaverBlue.ID, new MegamanMove(2, GenericEffect.Apply(3, PCLPowerHelper.Shackles)));
+        EFFECT_MAP.put(SlaverRed.ID, new MegamanMove(1, GenericEffect.Apply(3, PCLPowerHelper.Vulnerable)));
+        EFFECT_MAP.put(SlimeBoss.ID, new MegamanMove(1, GenericEffect.ApplyToRandom(38, PCLPowerHelper.DelayedDamage)));
+        EFFECT_MAP.put(SnakeDagger.ID, new MegamanMove(2, GenericEffect.Obtain(1, 0, ThrowingKnife.DATA)));
+        EFFECT_MAP.put(SnakePlant.ID, new MegamanMove(1, GenericEffect.Gain(3, PCLPowerHelper.Malleable)));
+        EFFECT_MAP.put(Snecko.ID, new MegamanMove(1, new GenericEffect_MegamanSnecko()));
+        EFFECT_MAP.put(SphericGuardian.ID, new MegamanMove(2, GenericEffect.Gain(1, PCLPowerHelper.Blur)));
+        EFFECT_MAP.put(SpikeSlime_L.ID, new MegamanMove(2, GenericEffect.Apply(1, PCLPowerHelper.Frail)));
         EFFECT_MAP.put(SpikeSlime_M.ID, EFFECT_MAP.get(SpikeSlime_L.ID));
         EFFECT_MAP.put(SpikeSlime_S.ID, EFFECT_MAP.get(SpikeSlime_L.ID));
-        EFFECT_MAP.put(Spiker.ID, new MegamanMove(SelectCreature.Targeting.None,ACTIONS.GainAmount(1, GR.Tooltips.Thorns, true), (c, p, m) -> PCLActions.Bottom.GainThorns(1), 2));
-        EFFECT_MAP.put(TheCollector.ID,
-                new MegamanMove(SelectCreature.Targeting.AoE,ACTIONS.ApplyToALL(3, GR.Tooltips.Frail + " " + GR.Tooltips.Vulnerable + " " + GR.Tooltips.Weak, true),
-                        (c, p, m) -> {
-                            PCLActions.Bottom.ApplyFrail(TargetHelper.Enemies(), 3);
-                            PCLActions.Bottom.ApplyWeak(TargetHelper.Enemies(), 3);
-                            PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), 3);
-                        }, 1));
-        EFFECT_MAP.put(TheGuardian.ID,
-                new MegamanMove(SelectCreature.Targeting.None, ACTIONS.GainAmount(4, GR.Tooltips.Thorns, true) + " " + ACTIONS.GainAmount(20, GR.Tooltips.CurlUp, true),
-                        (c, p, m) -> {
-                            PCLActions.Bottom.GainThorns(4);
-                            PCLActions.Bottom.StackPower(new PCLCurlUpPower(p, 20));
-                        }
-                        , 1));
+        EFFECT_MAP.put(Spiker.ID, new MegamanMove(1, GenericEffect.Gain(3, PCLPowerHelper.Thorns)));
+        EFFECT_MAP.put(Taskmaster.ID, new MegamanMove(1, GenericEffect.DealDamage(9, AttackEffects.SLASH_DIAGONAL), GenericEffect.Apply(1, PCLPowerHelper.Vulnerable)));
+        EFFECT_MAP.put(TimeEater.ID, new MegamanMove(1, GenericEffect.Obtain(HououinKyouma.DATA)));
+        EFFECT_MAP.put(TheCollector.ID, new MegamanMove(1, GenericEffect.ApplyToEnemies(3, PCLPowerHelper.Vulnerable, PCLPowerHelper.Weak, PCLPowerHelper.Frail)));
+        EFFECT_MAP.put(TheGuardian.ID, new MegamanMove(1, GenericEffect.Gain(5, PCLPowerHelper.Thorns), GenericEffect.Gain(20, PCLPowerHelper.CurlUp)));
         EFFECT_MAP.put(TorchHead.ID, EFFECT_MAP.get(GremlinThief.ID));
+        EFFECT_MAP.put(Transient.ID, new MegamanMove(1, GenericEffect.Apply(99, PCLPowerHelper.Shackles)));
+        EFFECT_MAP.put(WrithingMass.ID, new MegamanMove(1, GenericEffect.Gain(1, PCLPowerHelper.Malleable), GenericEffect.Apply(1, PCLPowerHelper.Weak, PCLPowerHelper.Vulnerable)));
     }
 
     public Megaman()
@@ -231,8 +221,8 @@ public class Megaman extends PCLCard
 
                     if (currentMove != null) {
                         choices.Initialize(this, true);
-                        choices.AddEffect(new GenericEffect_Megaman(currentMove));
-                        choices.Select(1, m).SetOptions(false, true).AddCallback(cards -> {
+                        choices.AddEffect(currentMove.effect);
+                        choices.SelectWithTargeting(1).SetOptions(false, true).AddCallback(cards -> {
                             if (cards.size() > 0) {
                                 PCLActions.Bottom.ModifyAllInstances(uuid, card -> {
                                             Megaman mg = PCLJUtils.SafeCast(card, Megaman.class);
@@ -262,12 +252,12 @@ public class Megaman extends PCLCard
     }
 
     protected String GetEquippedString() {
-        return PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[6], GetCurrentMove().text, misc, GetCurrentMove().uses);
+        return PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[6], GetCurrentMove().effect.GetText(), misc, GetCurrentMove().uses);
     }
 
     protected String GetStealString() {
         return PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[3], previewForm != null ?
-                PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[5], GetMove(previewForm).uses, GetMove(previewForm).text)
+                PCLJUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[5], GetMove(previewForm).uses, GetMove(previewForm).effect.GetText())
         : cardData.Strings.EXTENDED_DESCRIPTION[4]);
     }
 
@@ -284,27 +274,63 @@ public class Megaman extends PCLCard
         }
     }
 
-    protected static class GenericEffect_Megaman extends GenericEffect
+    public static class GenericEffect_MegamanChamp extends GenericEffect
     {
-        protected final MegamanMove move;
-
-        public GenericEffect_Megaman(MegamanMove move)
+        public GenericEffect_MegamanChamp()
         {
-            this.move = move;
         }
 
         @Override
-        public String GetText()
-        {
-            return move.text;
+        public String GetText() {
+            return ACTIONS.RemoveCommonDebuffs(true);
         }
 
         @Override
         public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
         {
-            PCLActions.Bottom.SelectCreature(move.target, "").IsCancellable(false).AddCallback(c -> {
-                move.action.Invoke(card, p, c);
-            });
+            PCLActions.Bottom.RemoveCommonDebuffs(player, ListSelection.First(0), player.powers.size());
+        }
+    }
+
+    public static class GenericEffect_MegamanSnecko extends GenericEffect
+    {
+        protected static PotionStrings strings;
+
+        public GenericEffect_MegamanSnecko()
+        {
+        }
+
+        @Override
+        public String GetText() {
+            if (strings == null) {
+                strings = CardCrawlGame.languagePack.getPotionString(SneckoOil.POTION_ID);
+            }
+            return ACTIONS.Use(strings != null ? strings.NAME : SneckoOil.POTION_ID, true);
+        }
+
+        @Override
+        public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
+        {
+            PCLActions.Bottom.UsePotion(new SneckoOil(), m).SetShouldRemove(false);
+        }
+    }
+
+    public static class GenericEffect_MegamanSteal extends GenericEffect
+    {
+        public GenericEffect_MegamanSteal(int amount)
+        {
+            super(null, null, PCLCardTarget.Normal, amount);
+        }
+
+        @Override
+        public String GetText() {
+            return ACTIONS.Steal(amount, GR.Tooltips.Gold, true);
+        }
+
+        @Override
+        public void Use(PCLCard card, AbstractPlayer p, AbstractMonster m)
+        {
+            PCLActions.Bottom.StackPower(new StolenGoldPower(m, amount));
         }
     }
 }

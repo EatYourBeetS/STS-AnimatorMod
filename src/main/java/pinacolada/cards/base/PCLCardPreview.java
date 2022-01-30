@@ -17,6 +17,10 @@ public class PCLCardPreview
     public PCLCardBase upgradedPreview;
     public boolean isMultiPreview;
 
+    public static PCLCardPreview GeneratePreviewCard(AbstractCard card) {
+        return (card instanceof PCLCardBase) ? new PCLCardPreview((PCLCardBase) card, false) : new PCLCardPreview(new FakeAbstractCard(card), false);
+    }
+
     public PCLCardPreview(PCLCardBase card, boolean upgrade)
     {
         this.defaultPreview = card;

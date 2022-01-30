@@ -666,6 +666,12 @@
 		"NAMES": ["startup"],
 		"PROPER_NAME": "Startup"
 	},
+	"Stoned":
+	{
+		"DESCRIPTION": "If [Burning], [Freezing], [Electrified], [Rippled], or [Swirled] would be reduced: Remove 1 stack of this power instead.",
+		"NAMES": ["stoned"],
+		"PROPER_NAME": "Stoned"
+	},
 	"Stun":
 	{
 		"DESCRIPTION": "Cannot act for #b1 turn.",

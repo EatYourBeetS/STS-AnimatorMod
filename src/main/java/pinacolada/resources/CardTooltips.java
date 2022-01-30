@@ -163,6 +163,7 @@ public class CardTooltips
     public PCLCardTooltip Sorcery = FindByID("Sorcery");
     public PCLCardTooltip Slow = FindByID("Slow");
     public PCLCardTooltip Starter = FindByID("Starter");
+    public PCLCardTooltip Stoned = FindByID("Stoned");
     public PCLCardTooltip Strength = FindByID("Strength");
     public PCLCardTooltip SupportDamage = FindByID("Support Damage");
     public PCLCardTooltip Swirled = FindByID("Swirled");
@@ -372,6 +373,7 @@ public class CardTooltips
         LoadFromPower(Shackles, new GainStrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(Slow, new AntiArtifactSlowPower(FakeCharacter.Instance, 0));
         LoadFromPower(Sorcery, new SorceryPower(FakeCharacter.Instance, 0));
+        LoadFromPower(Stoned, new StonedPower(FakeCharacter.Instance, 0));
         LoadFromPower(Strength, new StrengthPower(FakeCharacter.Instance, 0));
         LoadFromPower(SupportDamage, new SupportDamagePower(FakeCharacter.Instance, 0));
         LoadFromPower(Swirled, new SwirledPower(FakeCharacter.Instance, 0));

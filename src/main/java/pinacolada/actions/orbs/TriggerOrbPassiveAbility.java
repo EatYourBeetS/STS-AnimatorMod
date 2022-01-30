@@ -98,8 +98,7 @@ public class TriggerOrbPassiveAbility extends EYBActionWithCallback<ArrayList<Ab
                 }
             }
 
-            final int max = Math.min(randomOrbs.Size(), amount);
-            for (int i = 0; i < max; i++)
+            for (int i = 0; i < amount; i++)
             {
                 TriggerPassiveEffect(randomOrbs.Retrieve(rng, false), 1);
             }

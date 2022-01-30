@@ -10,7 +10,6 @@ import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.utilities.AdvancedTexture;
 import pinacolada.cards.pcl.ultrarare.Cthulhu;
 import pinacolada.cards.pcl.ultrarare.HolyGrail;
-import pinacolada.cards.pcl.ultrarare.SummoningRitual;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLLoadout;
 import pinacolada.utilities.PCLRenderHelpers;
@@ -53,7 +52,6 @@ public abstract class PCLCard_UltraRare extends PCLCard implements Hidden
 
             cards.put(Cthulhu.DATA.ID, new Cthulhu());
             cards.put(HolyGrail.DATA.ID, new HolyGrail());
-            cards.put(SummoningRitual.DATA.ID, new SummoningRitual());
         }
 
         return cards;

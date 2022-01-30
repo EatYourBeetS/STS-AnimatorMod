@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_StackPower;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.effects.SFX;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
@@ -81,9 +81,9 @@ public class Ainz extends PCLCard
 
             final int amount = PCLGameUtilities.GetPCLAffinityPowerLevel(PCLAffinity.Dark);
             choices.Initialize(source, true);
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryStrength, amount));
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryDexterity, amount));
-            choices.AddEffect(new GenericEffect_StackPower(PCLPowerHelper.TemporaryFocus, amount));
+            choices.AddEffect(GenericEffect.Gain(amount, PCLPowerHelper.TemporaryStrength));
+            choices.AddEffect(GenericEffect.Gain(amount, PCLPowerHelper.TemporaryDexterity));
+            choices.AddEffect(GenericEffect.Gain(amount, PCLPowerHelper.TemporaryFocus));
             choices.Select(1, null);
 
             this.flash();

@@ -219,7 +219,7 @@ public class DealDamage extends EYBActionWithCallback<AbstractCreature>
 
         if (pclAttackType.powerToRemove != null && target.hasPower(pclAttackType.powerToRemove)) {
             if (applyPowerRemovalMultiplier) {
-                info.output *= PCLAttackType.DAMAGE_MULTIPLIER;
+                info.output *= pclAttackType.GetDamageMultiplier();
             }
             PCLActions.Last.AddPowerEffectEnemyBonus(pclAttackType.powerToRemove, pclAttackType.reactionIncrease);
             PCLActions.Last.ReducePower(source, target, pclAttackType.powerToRemove, 1);

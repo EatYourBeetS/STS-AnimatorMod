@@ -7,12 +7,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DexterityPower;
 import com.megacrit.cardcrawl.powers.FocusPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.*;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.powers.common.BlindedPower;
@@ -81,7 +77,7 @@ public class KanameTousen extends PCLCard {
             super.onRemove();
 
             for (Map.Entry<String, Integer> entry : counts.entrySet()) {
-                PCLActions.Bottom.StackPower(TargetHelper.Source(), PCLPowerHelper.ALL.get(entry.getKey()), entry.getValue());
+                PCLActions.Bottom.StackPower(TargetHelper.Source(), PCLPowerHelper.Get(entry.getKey()), entry.getValue());
             }
         }
 

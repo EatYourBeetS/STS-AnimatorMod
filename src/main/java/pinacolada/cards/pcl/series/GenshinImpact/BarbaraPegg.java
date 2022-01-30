@@ -7,6 +7,7 @@ import pinacolada.actions.orbs.WaterOrbEvokeAction;
 import pinacolada.cards.base.*;
 import pinacolada.cards.base.attributes.AbstractAttribute;
 import pinacolada.cards.base.attributes.HPAttribute;
+import pinacolada.monsters.PCLEnemyIntent;
 import pinacolada.orbs.pcl.Water;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -48,7 +49,7 @@ public class BarbaraPegg extends PCLCard
         PCLActions.Bottom.Heal(magicNumber);
         Water waterOrb = new Water();
         PCLActions.Bottom.ChannelOrb(waterOrb).AddCallback(orbs -> {
-            int attackingCount = PCLJUtils.Count(PCLGameUtilities.GetPCLIntents(), i -> !i.IsAttacking());
+            int attackingCount = PCLJUtils.Count(PCLGameUtilities.GetPCLIntents(), PCLEnemyIntent::IsAttacking);
             if (attackingCount > 0) {
                 PCLActions.Bottom.TriggerOrbPassive(waterOrb, attackingCount).AddCallback(__ -> {
                     if (info.CanActivateSemiLimited && TrySpendAffinity(PCLAffinity.Blue) && info.TryActivateSemiLimited()) {

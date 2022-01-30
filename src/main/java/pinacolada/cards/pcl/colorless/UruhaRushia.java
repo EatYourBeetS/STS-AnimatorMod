@@ -100,7 +100,7 @@ public class UruhaRushia extends PCLCard implements OnOrbApplyFocusSubscriber
         {
             super.onRemove();
 
-            PCLCombatStats.onRawDamageReceived.Subscribe(this);
+            PCLCombatStats.onRawDamageReceived.Unsubscribe(this);
         }
 
         public int OnRawDamageReceived(AbstractCreature target, DamageInfo info, int damage) {

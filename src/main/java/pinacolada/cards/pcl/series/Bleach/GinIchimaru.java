@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.effects.AttackEffects;
 import pinacolada.resources.GR;
 import pinacolada.utilities.PCLActions;

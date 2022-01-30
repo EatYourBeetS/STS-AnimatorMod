@@ -11,7 +11,6 @@ import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.FieldInfo;
 import pinacolada.blights.common.AbstractGlyphBlight;
-import pinacolada.blights.common.GlyphBlight;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.misc.PCLLoadout;
@@ -52,7 +51,6 @@ public class PCLLoadoutRenderer extends GUIElement
     protected CharacterSelectScreen selectScreen;
     protected CharacterOption characterOption;
     protected PCLLoadout loadout;
-    protected GlyphBlight glyph1;
 
     protected float textScale;
 
@@ -104,7 +102,7 @@ public class PCLLoadoutRenderer extends GUIElement
 
         float xOffset = AscensionGlyphsLabel.hb.x + ROW_OFFSET * 4f;
         for (AbstractGlyphBlight glyph : GR.PCL.Data.Glyphs) {
-            glyphEditors.add(new PCLGlyphEditor(glyph, GR.PCL.Config.AscensionGlyph0, new AdvancedHitbox(xOffset, POS_Y, glyph.hb.width, glyph.hb.height)));
+            glyphEditors.add(new PCLGlyphEditor(glyph, new AdvancedHitbox(xOffset, POS_Y, glyph.hb.width, glyph.hb.height)));
             xOffset += ROW_OFFSET * 1.7f;
         }
     }

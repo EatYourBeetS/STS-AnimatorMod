@@ -27,7 +27,7 @@ public class Iris extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
+        Initialize(0, 0, 2, 2);
         SetUpgrade(0,0,1, 1);
 
         SetAffinity_Light(1, 0, 1);

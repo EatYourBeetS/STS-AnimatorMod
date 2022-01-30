@@ -18,7 +18,7 @@ public class KonpakuYoumu extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 0, 0);
+        Initialize(0, 0, 1, 0);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Green(1, 0, 0);
 
@@ -45,7 +45,7 @@ public class KonpakuYoumu extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int xCost = PCLGameUtilities.GetXCostEnergy(this) + magicNumber;
+        int xCost = PCLGameUtilities.UseXCostEnergy(this) + magicNumber;
         PCLActions.Bottom.Scry(xCost);
         PCLActions.Bottom.DrawNextTurn(xCost);
         if (xCost > 2 && CheckAffinity(PCLAffinity.Green)) {

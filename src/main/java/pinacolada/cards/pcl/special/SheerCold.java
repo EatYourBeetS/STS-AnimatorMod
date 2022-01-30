@@ -15,7 +15,7 @@ import pinacolada.utilities.PCLActions;
 public class SheerCold extends PCLCard
 {
     public static final PCLCardData DATA = Register(SheerCold.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS).SetMaxCopies(1);
-    public static final int FREEZING_REDUCTION_BONUS = 20;
+    public static final int FREEZING_AMPLIFIER_BONUS = 40;
     public static final int FROST_TRIGGER_BONUS = 50;
     public static final int FROST_EVOKE_BONUS = 100;
 
@@ -23,7 +23,7 @@ public class SheerCold extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, FREEZING_REDUCTION_BONUS);
+        Initialize(0, 0, 2, FREEZING_AMPLIFIER_BONUS);
         SetUpgrade(0, 0, 1, 0);
         SetAffinity_Blue(1);
     }
@@ -39,7 +39,7 @@ public class SheerCold extends PCLCard
     {
         PCLActions.Bottom.ChannelOrbs(PCLOrbHelper.Frost, magicNumber);
         PCLActions.Bottom.StackPower(new SheerColdPower(p, 1));
-        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddEffectBonus(FreezingPower.POWER_ID, FREEZING_REDUCTION_BONUS));
+        PCLActions.Bottom.Callback(() -> PCLCombatStats.AddAmplifierBonus(FreezingPower.POWER_ID, FREEZING_AMPLIFIER_BONUS));
         PCLActions.Bottom.VFX(new ScreenFreezingEffect());
     }
 }

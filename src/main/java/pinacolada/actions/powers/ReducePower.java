@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
 public class ReducePower extends EYBActionWithCallback<AbstractPower>
@@ -35,6 +36,12 @@ public class ReducePower extends EYBActionWithCallback<AbstractPower>
     @Override
     protected void FirstUpdate()
     {
+        if (shouldCancelAction() || !PCLGameUtilities.CanReducePower(source, target, power, this))
+        {
+            Complete(power);
+            return;
+        }
+
         if (this.powerID != null)
         {
             power = this.target.getPower(this.powerID);

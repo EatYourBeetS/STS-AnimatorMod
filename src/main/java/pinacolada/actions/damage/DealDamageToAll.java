@@ -178,8 +178,8 @@ public class DealDamageToAll extends EYBActionWithCallback<ArrayList<AbstractCre
                     if (applyPowers) {
                         info.applyPowers(source, enemy);
                     }
-                    if (applyPowerRemovalMultiplier) {
-                        info.output *= PCLAttackType.DAMAGE_MULTIPLIER;
+                    if (applyPowerRemovalMultiplier && enemy.hasPower(pclAttackType.powerToRemove)) {
+                        info.output *= pclAttackType.GetDamageMultiplier();
                     }
                     DamageHelper.ApplyTint(enemy, enemyTint, attackEffect);
                     DamageHelper.DealDamage(enemy, info, bypassBlock, bypassThorns);

@@ -3,10 +3,9 @@ package pinacolada.cards.pcl.curse;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLCardTarget;
-import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.PCLCard_Curse;
 import pinacolada.utilities.PCLActions;
 
@@ -19,7 +18,7 @@ public class Curse_Regret extends PCLCard_Curse
     {
         super(DATA, true);
 
-        Initialize(0, 0, 1, 1);
+        Initialize(0, 0, 1, 2);
 
         SetUnplayable(true);
     }
@@ -28,9 +27,7 @@ public class Curse_Regret extends PCLCard_Curse
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        if (CombatStats.TryActivateLimited(cardID)) {
-            PCLActions.Bottom.GainTemporaryHP(secondaryValue * player.hand.size());
-        }
+        PCLActions.Bottom.GainTemporaryHP(secondaryValue);
     }
 
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

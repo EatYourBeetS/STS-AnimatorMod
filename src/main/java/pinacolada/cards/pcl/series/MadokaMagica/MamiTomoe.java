@@ -31,7 +31,7 @@ public class MamiTomoe extends PCLCard
 
         SetAffinity_Orange(1);
         SetAffinity_Light(1, 0, 2);
-        SetSoul(4, 0, MamiTomoe_Candeloro::new);
+        SetSoul(3, 0, MamiTomoe_Candeloro::new);
     }
 
     @Override

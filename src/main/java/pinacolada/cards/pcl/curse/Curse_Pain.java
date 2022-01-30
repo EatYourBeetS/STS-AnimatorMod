@@ -2,14 +2,11 @@ package pinacolada.cards.pcl.curse;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLCardTarget;
-import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.PCLCard_Curse;
 import pinacolada.utilities.PCLActions;
 
@@ -31,11 +28,7 @@ public class Curse_Pain extends PCLCard_Curse
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
-        if (CombatStats.TryActivateLimited(cardID)) {
-            for (int i = 0; i < AbstractDungeon.actionManager.cardsPlayedThisTurn.size(); i++) {
-                PCLActions.Bottom.DealDamageToRandomEnemy(1, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
-            }
-        }
+        PCLActions.Bottom.GainMight(magicNumber);
     }
 
     @Override

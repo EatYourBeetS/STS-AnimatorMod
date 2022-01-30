@@ -3,7 +3,7 @@ package pinacolada.cards.pcl.series.Bleach;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.effects.AttackEffects;
 import pinacolada.stances.PCLStanceHelper;
 import pinacolada.utilities.PCLActions;
@@ -47,8 +47,8 @@ public class YasutoraSado extends PCLCard
     {
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.MightStance));
-            choices.AddEffect(new GenericEffect_EnterStance(PCLStanceHelper.VelocityStance));
+            choices.AddEffect(GenericEffect.EnterStance(PCLStanceHelper.MightStance));
+            choices.AddEffect(GenericEffect.EnterStance(PCLStanceHelper.VelocityStance));
         }
 
         choices.Select(PCLActions.Top, 1, m)

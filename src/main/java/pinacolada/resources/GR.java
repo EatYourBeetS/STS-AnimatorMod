@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.Logger;
 import pinacolada.cards.base.PCLCardTooltip;
-import pinacolada.interfaces.subscribers.markers.Replacement;
+import pinacolada.interfaces.markers.Replacement;
 import pinacolada.relics.PCLReplacementRelic;
 import pinacolada.resources.pcl.PCLResources;
 import pinacolada.utilities.PCLJUtils;

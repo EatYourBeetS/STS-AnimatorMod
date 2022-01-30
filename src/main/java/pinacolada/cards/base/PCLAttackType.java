@@ -1,5 +1,6 @@
 package pinacolada.cards.base;
 
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.common.BurningPower;
 import pinacolada.powers.common.ElectrifiedPower;
 import pinacolada.powers.common.FreezingPower;
@@ -17,7 +18,7 @@ public enum PCLAttackType
     Piercing(true, true, null, 0),
     Ranged(false, true, null, 0);
 
-    public static final float DAMAGE_MULTIPLIER = 1.6f;
+    private static final int DAMAGE_MULTIPLIER = 60;
     public final boolean bypassThorns;
     public final boolean bypassBlock;
     public final String powerToRemove;
@@ -29,5 +30,13 @@ public enum PCLAttackType
         this.bypassBlock = bypassBlock;
         this.powerToRemove = powerToRemove;
         this.reactionIncrease = reactionIncrease;
+    }
+
+    public float GetDamageMultiplier() {
+        return 1f + (GetDamageMultiplierForDisplay() / 100f);
+    }
+
+    public int GetDamageMultiplierForDisplay() {
+        return DAMAGE_MULTIPLIER + PCLCombatStats.GetAmplifierBonus(powerToRemove);
     }
 }

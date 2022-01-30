@@ -278,6 +278,11 @@ public final class PCLActions
         return StackPower(target, PCLPowerHelper.Rippled, amount);
     }
 
+    public ApplyPower ApplyRippled(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new RippledPower(target, source, amount));
+    }
+
     public ApplyPowerAuto ApplyShackles(TargetHelper target, int amount)
     {
         return StackPower(target, PCLPowerHelper.Shackles, amount);

@@ -36,7 +36,7 @@ public class RinKaenbyou extends PCLCard
 
     @Override
     public int GetXValue() {
-        return player.hand.size() + player.discardPile.size() + player.drawPile.size() + player.limbo.size();
+        return player.hand.size() + player.drawPile.size();
     }
 
     @Override

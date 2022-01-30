@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.effects.EYBEffect;
 import pinacolada.effects.SFX;
@@ -26,7 +25,7 @@ public class ScreenHexagonEffect extends EYBEffect
         if (this.duration == this.startingDuration) {
             SFX.Play(SFX.PCL_BOOST, 0.5f, 0.5f);
             SFX.Play(SFX.ORB_LIGHTNING_CHANNEL, 0.7f, 0.7f);
-            AbstractDungeon.effectsQueue.add(new BorderLongFlashEffect(Color.GOLDENROD));
+            PCLGameEffects.Queue.Add(new BorderLongFlashEffect(Color.GOLDENROD));
         }
 
         this.duration -= Gdx.graphics.getDeltaTime();

@@ -9,8 +9,7 @@ import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_ApplyToEnemies;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
 import pinacolada.powers.PCLPowerHelper;
@@ -32,7 +31,7 @@ public class Lu extends PCLCard
     {
         super(DATA);
 
-        Initialize(2, 0, 3);
+        Initialize(2, 0, 4);
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Blue(1, 0, 2);
@@ -76,7 +75,7 @@ public class Lu extends PCLCard
                     {
                         choices.Initialize(this, true);
                         choices.AddEffect(new GenericEffect_Ciel(magicNumber));
-                        choices.AddEffect(new GenericEffect_ApplyToEnemies(PCLPowerHelper.Freezing, magicNumber));
+                        choices.AddEffect(GenericEffect.ApplyToEnemies(magicNumber, PCLPowerHelper.Freezing));
                         choices.Select(1, m);
                     }
                 });

@@ -164,10 +164,15 @@ public class Nirvash extends PCLCard
 
             case 3:
                 PCLCardAffinities newAffinities = new PCLCardAffinities(null);
-                newAffinities.Set(PCLAffinity.Silver, 2);
-                newAffinities.SetScaling(PCLAffinity.Silver, SILVER_SCALING);
+                newAffinities.Set(PCLAffinity.Silver, 1);
+                if (eCard.CanScale()) {
+                    newAffinities.SetScaling(PCLAffinity.Silver, SILVER_SCALING);
+                }
                 if (eCard.affinities.HasStar()) {
                     newAffinities.SetStar(eCard.affinities.Star.level);
+                }
+                for (PCLCardAffinity cAff : eCard.affinities.List) {
+                    newAffinities.SetRequirement(cAff.type, cAff.requirement);
                 }
                 eCard.affinities.Initialize(newAffinities);
                 eCard.SetInnate(true);

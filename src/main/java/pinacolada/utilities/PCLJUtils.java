@@ -148,7 +148,18 @@ public class PCLJUtils extends JUtils
         return result;
     }
 
-    public static <T, N> ArrayList<N> Map(List<T> list, FuncT1<N, T> predicate)
+    public static <T, N> ArrayList<N> Map(T[] list, FuncT1<N, T> predicate)
+    {
+        final ArrayList<N> res = new ArrayList<>();
+        for (T t : list)
+        {
+            res.add(predicate.Invoke(t));
+        }
+
+        return res;
+    }
+
+    public static <T, N> ArrayList<N> Map(Iterable<T> list, FuncT1<N, T> predicate)
     {
         final ArrayList<N> res = new ArrayList<>();
         for (T t : list)
@@ -192,12 +203,22 @@ public class PCLJUtils extends JUtils
         return sum;
     }
 
+    public static <T> int SumInt(Iterable<T> list, FuncT1<Integer, T> predicate)
+    {
+        int sum = 0;
+        for (T t : list)
+        {
+            sum += predicate.Invoke(t);
+        }
+        return sum;
+    }
+
     public static <T> T Random(T[] items)
     {
         return items != null && items.length > 0 ? items[RNG.nextInt(items.length)] : null;
     }
 
-    public static <T> T Random(ArrayList<T> items)
+    public static <T> T Random(List<T> items)
     {
         int size = items != null ? items.size() : 0;
         if (size == 0)

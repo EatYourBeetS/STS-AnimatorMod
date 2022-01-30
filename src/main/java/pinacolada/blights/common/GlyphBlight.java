@@ -22,12 +22,7 @@ public class GlyphBlight extends AbstractGlyphBlight
 
     public GlyphBlight()
     {
-        this(0);
-    }
-
-    public GlyphBlight(int counter)
-    {
-        super(ID, PCLPlayerData.ASCENSION_GLYPH1_UNLOCK, PCLPlayerData.ASCENSION_GLYPH1_LEVEL_STEP, 0, 1, counter);
+        super(ID, GR.PCL.Config.AscensionGlyph0, PCLPlayerData.ASCENSION_GLYPH1_UNLOCK, PCLPlayerData.ASCENSION_GLYPH1_LEVEL_STEP, 0, 1);
     }
 
     @Override

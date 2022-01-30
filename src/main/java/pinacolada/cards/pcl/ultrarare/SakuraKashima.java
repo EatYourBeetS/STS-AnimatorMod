@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.GenericEffects.GenericEffect_EnterStance;
+import pinacolada.cards.base.cardeffects.GenericEffect;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPower;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
@@ -36,7 +36,7 @@ public class SakuraKashima extends PCLCard_UltraRare {
             if (choices.TryInitialize(this))
             {
                 for (PCLStanceHelper stance : PCLStanceHelper.ALL.values()) {
-                    choices.AddEffect(new GenericEffect_EnterStance(stance));
+                    choices.AddEffect(GenericEffect.EnterStance(stance));
                 }
             }
 

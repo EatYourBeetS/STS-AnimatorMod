@@ -404,14 +404,14 @@ public class PCLStrings
             return Format(addPeriod, 9, amount, orb);
         }
 
-        public final String Motivate(Object amount, boolean addPeriod)
+        public final String DealDamage(int amount, boolean addPeriod)
         {
             return Format(addPeriod, 10, amount);
         }
 
-        public final String UpgradeALLCardsInHand(boolean addPeriod)
+        public final String DealDamageToAll(int amount, boolean addPeriod)
         {
-            return Get(11) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return Format(addPeriod, 11, amount);
         }
 
         public final String GainTemporaryAmount(Object amount, Object buff, boolean addPeriod)
@@ -424,9 +424,9 @@ public class PCLStrings
             return Get(13) + (addPeriod ? LocalizedStrings.PERIOD : "");
         }
 
-        public final String PlayTopCard(boolean addPeriod)
+        public final String Obtain(Object card, boolean addPeriod)
         {
-            return Get(14) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return Format(addPeriod, 14, card);
         }
 
         public final String Stun(boolean addPeriod)
@@ -494,7 +494,7 @@ public class PCLStrings
             return Format(addPeriod, 27, amount, power);
         }
 
-        public final String DealDamage(int amount, boolean addPeriod)
+        public final String Motivate(Object amount, boolean addPeriod)
         {
             return Format(addPeriod, 28, amount);
         }
@@ -544,9 +544,9 @@ public class PCLStrings
             return Format(addPeriod, 37, card);
         }
 
-        public final String PlayOrbCore(boolean addPeriod)
+        public final String Use(Object card, boolean addPeriod)
         {
-            return Get(38) + (addPeriod ? LocalizedStrings.PERIOD : "");
+            return Format(addPeriod, 38, card);
         }
 
         public final String ApplyToRandom(Object amount, Object debuff, boolean addPeriod)

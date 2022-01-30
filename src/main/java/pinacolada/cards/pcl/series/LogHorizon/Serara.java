@@ -57,12 +57,7 @@ public class Serara extends PCLCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        buffs = CombatStats.GetCombatData(cardID, null);
-        if (buffs == null)
-        {
-            buffs = new HashMap<>();
-            CombatStats.SetCombatData(cardID, buffs);
-        }
+        buffs = CombatStats.GetCombatData(cardID, new HashMap<>());
 
         PCLActions.Bottom.SelectFromHand(name, 1, !upgraded)
         .SetOptions(false, false, false)

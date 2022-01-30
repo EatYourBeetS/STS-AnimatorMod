@@ -7,13 +7,13 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.PCLCard_Curse;
 import pinacolada.interfaces.subscribers.OnCardMovedSubscriber;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
@@ -156,7 +156,7 @@ public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscr
                     HashMap<String, Integer> targetSet = POWERS.getOrDefault(owner, new HashMap<>());
                     for (String powerID : targetSet.keySet()) {
                         int amount = targetSet.getOrDefault(powerID, 0);
-                        PCLPowerHelper ph = PCLPowerHelper.ALL.get(powerID);
+                        PCLPowerHelper ph = PCLPowerHelper.Get(powerID);
 
                         if (shouldProgress) {
                             if (ph.EndTurnBehavior == PCLPowerHelper.Behavior.TurnBased) {

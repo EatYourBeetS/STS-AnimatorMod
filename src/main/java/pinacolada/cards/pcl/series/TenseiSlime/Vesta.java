@@ -5,14 +5,9 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import pinacolada.cards.base.*;
-import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect;
-import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffect_CompleteFaster;
-import pinacolada.cards.base.cardeffects.VestaElixirEffects.VestaElixirEffects;
 import pinacolada.cards.pcl.special.Vesta_Elixir;
 import pinacolada.powers.PCLPower;
 import pinacolada.utilities.PCLActions;
-
-import java.util.ArrayList;
 
 public class Vesta extends PCLCard
 {
@@ -47,29 +42,14 @@ public class Vesta extends PCLCard
     {
         PCLActions.Bottom.GainWisdom(secondaryValue);
         PCLActions.Bottom.GainEndurance(secondaryValue);
-
-        //TODO: This could all be done in VestaPower
-        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), TrySpendAffinity(PCLAffinity.Blue));
+        ResearchElixir();
     }
 
-    public void ResearchElixir(Vesta_Elixir elixir)
+    public void ResearchElixir()
     {
-        int timer = magicNumber;
-        final ArrayList<VestaElixirEffect> effects = new ArrayList<>();
-        for (VestaElixirEffect effect : elixir.effects)
-        {
-            if (effect instanceof VestaElixirEffect_CompleteFaster)
-            {
-                timer -= 1;
-            }
-            else
-            {
-                effects.add(effect);
-            }
-        }
-
-        elixir.ApplyEffects(effects);
-        PCLActions.Bottom.StackPower(new VestaPower(player, elixir, timer));
+        Vesta_Elixir elixir = (Vesta_Elixir) Vesta_Elixir.DATA.MakeCopy(false);
+        elixir.ResearchEffects();
+        PCLActions.Bottom.StackPower(new VestaPower(player, elixir, TrySpendAffinity(PCLAffinity.Blue) ? magicNumber - 1 : magicNumber));
     }
 
     public static class VestaPower extends PCLPower

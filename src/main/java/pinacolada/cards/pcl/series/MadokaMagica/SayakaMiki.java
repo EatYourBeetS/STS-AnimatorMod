@@ -30,7 +30,7 @@ public class SayakaMiki extends PCLCard
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
-        SetSoul(4, 0, SayakaMiki_Oktavia::new);
+        SetSoul(3, 0, SayakaMiki_Oktavia::new);
     }
 
     @Override

@@ -1050,7 +1050,7 @@
 		},
 		"pcl:Kreideprinz":
         {
-        	"DESCRIPTION": "Obtain [Grief Seed]. Replace ALL Orbs with [Earth]. If any of them were: ** [Frost] -> Apply !S! [Freezing] to ALL enemies. ** [Earth] -> Gain [Inspiration].",
+        	"DESCRIPTION": "Gain !S! [E]. Replace ALL Orbs with [Earth]. If any of them were: ** [Frost] -> Apply !M! [Freezing] to ALL enemies. ** [Earth] -> Gain [Inspiration]. ** [~Dark] -> Obtain !S! [Grief Seed].",
         	"NAME": "Kreideprinz"
         },
 		"pcl:KujouSara":

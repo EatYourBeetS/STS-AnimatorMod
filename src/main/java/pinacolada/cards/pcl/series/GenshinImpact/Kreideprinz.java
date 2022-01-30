@@ -3,6 +3,7 @@ package pinacolada.cards.pcl.series.GenshinImpact;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.TargetHelper;
@@ -22,7 +23,7 @@ public class Kreideprinz extends PCLCard
     {
         super(DATA);
 
-        Initialize(0, 10, 4, 1);
+        Initialize(0, 2, 4, 2);
         SetUpgrade(0, 3, 1);
         SetAffinity_Blue(1, 0, 0);
         SetAffinity_Orange(1, 0, 1);
@@ -32,18 +33,14 @@ public class Kreideprinz extends PCLCard
     }
 
     @Override
-    public int GetXValue() {
-        return magicNumber + PCLGameUtilities.GetOrbCount(Frost.ORB_ID);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         PCLActions.Bottom.GainBlock(block);
-        PCLActions.Bottom.CreateGriefSeeds(secondaryValue);
+        PCLActions.Bottom.GainEnergy(secondaryValue);
 
         boolean hadFrost = false;
         boolean hadEarth = false;
+        boolean hadDark = false;
         for (int i = 0; i < player.filledOrbCount(); i++) {
             AbstractOrb o = player.orbs.get(i);
             if (PCLGameUtilities.IsValidOrb(o)) {
@@ -52,13 +49,17 @@ public class Kreideprinz extends PCLCard
             }
             hadFrost = hadFrost | Frost.ORB_ID.equals(o.ID);
             hadEarth = hadEarth | Earth.ORB_ID.equals(o.ID);
+            hadDark = hadDark | Dark.ORB_ID.equals(o.ID);
         }
 
         if (hadFrost) {
             PCLActions.Bottom.ApplyFreezing(TargetHelper.Enemies(), magicNumber);
         }
         if (hadEarth) {
-            PCLActions.Bottom.GainInspiration(secondaryValue);
+            PCLActions.Bottom.GainInspiration(1);
+        }
+        if (hadDark) {
+            PCLActions.Bottom.CreateGriefSeeds(secondaryValue);
         }
     }
 }

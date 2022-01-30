@@ -11,8 +11,6 @@ import pinacolada.resources.GR;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
-import java.lang.reflect.InvocationTargetException;
-
 public abstract class AbstractGlyphBlight extends PCLBlight
 {
     public static final String ID = CreateFullID(AbstractGlyphBlight.class);
@@ -103,18 +101,5 @@ public abstract class AbstractGlyphBlight extends PCLBlight
 
     @Override
     public void renderOutline(SpriteBatch sb, boolean inTopPanel) {
-    }
-
-    @Override
-    public PCLBlight makeCopy() {
-        try
-        {
-            return getClass().getConstructor(ConfigOption_Integer.class).newInstance(configOption);
-        }
-        catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e)
-        {
-            PCLJUtils.LogError(this, e.getMessage());
-            return null;
-        }
     }
 }

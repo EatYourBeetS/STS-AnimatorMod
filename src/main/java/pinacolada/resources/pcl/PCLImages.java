@@ -277,6 +277,13 @@ public class PCLImages
         public final TextureCache Circle2           = new TextureCache("images/pcl/effects/Circle2.png");
         public final TextureCache Darkness         = new TextureCache("images/pcl/effects/Darkness.png");
         public final TextureCache Droplet          = new TextureCache("images/pcl/effects/Droplet.png");
+        public final TextureCache Electric1       = new TextureCache("images/pcl/effects/Electric1.png");
+        public final TextureCache Electric2       = new TextureCache("images/pcl/effects/Electric2.png");
+        public final TextureCache Electric3       = new TextureCache("images/pcl/effects/Electric3.png");
+        public final TextureCache Electric4       = new TextureCache("images/pcl/effects/Electric4.png");
+        public final TextureCache Electric5       = new TextureCache("images/pcl/effects/Electric5.png");
+        public final TextureCache Electric6       = new TextureCache("images/pcl/effects/Electric6.png");
+        public final TextureCache Electric7       = new TextureCache("images/pcl/effects/Electric7.png");
         public final TextureCache FireBurst        = new TextureCache("images/pcl/effects/FireBurst.png");
         public final TextureCache FrostSnow1       = new TextureCache("images/pcl/effects/FrostSnow1.png");
         public final TextureCache FrostSnow2       = new TextureCache("images/pcl/effects/FrostSnow2.png");

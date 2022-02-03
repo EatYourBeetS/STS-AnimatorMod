@@ -1,16 +1,16 @@
 package pinacolada.cards.pcl.series.AngelBeats;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.*;
+import pinacolada.cards.base.CardUseInfo;
+import pinacolada.cards.base.PCLAttackType;
+import pinacolada.cards.base.PCLCard;
+import pinacolada.cards.base.PCLCardData;
 import pinacolada.effects.AttackEffects;
-import pinacolada.interfaces.subscribers.OnAfterlifeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class HidekiHinata extends PCLCard implements OnAfterlifeSubscriber
+public class HidekiHinata extends PCLCard
 {
     public static final PCLCardData DATA = Register(HidekiHinata.class).SetAttack(1, CardRarity.COMMON, PCLAttackType.Ranged).SetSeriesFromClassPackage();
 
@@ -18,14 +18,13 @@ public class HidekiHinata extends PCLCard implements OnAfterlifeSubscriber
     {
         super(DATA);
 
-        Initialize(6, 0, 1, 6);
-        SetUpgrade(2, 0, 1, 1);
+        Initialize(6, 0, 2, 6);
+        SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Red(1, 0, 0);
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Orange(0,0,1);
 
-        SetAffinityRequirement(PCLAffinity.Green, 6);
         SetExhaust(true);
         SetAfterlife(true);
     }
@@ -40,12 +39,6 @@ public class HidekiHinata extends PCLCard implements OnAfterlifeSubscriber
         return super.ModifyDamage(enemy, amount);
     }
 
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-        PCLCombatStats.onAfterlife.Subscribe(this);
-    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -58,9 +51,7 @@ public class HidekiHinata extends PCLCard implements OnAfterlifeSubscriber
     }
 
     @Override
-    public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
-        if (playedCard == this && TrySpendAffinity(PCLAffinity.Green)) {
-            PCLActions.Bottom.GainEnergyNextTurn(1);
-        }
+    public void triggerOnAfterlife() {
+        PCLActions.Bottom.GainEnergyNextTurn(1);
     }
 }

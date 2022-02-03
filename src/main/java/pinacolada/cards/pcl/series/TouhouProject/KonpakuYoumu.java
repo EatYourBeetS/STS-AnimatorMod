@@ -30,13 +30,11 @@ public class KonpakuYoumu extends PCLCard
     @Override
     public int SetForm(Integer form, int timesUpgraded) {
         if (form == 1) {
-            Initialize(0, 0, 0, 0);
-            SetUpgrade(0, 0, 0, 0);
+            SetAffinityRequirement(PCLAffinity.Green, 6);
             SetRetain(true);
         }
         else {
-            Initialize(0, 0, 0, 0);
-            SetUpgrade(0, 0, 1, 0);
+            SetAffinityRequirement(PCLAffinity.Green, 4);
             SetRetain(false);
         }
         return super.SetForm(form, timesUpgraded);

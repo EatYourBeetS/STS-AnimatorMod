@@ -1,7 +1,5 @@
 package pinacolada.cards.pcl.colorless;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.ConstrictedPower;
@@ -10,12 +8,11 @@ import pinacolada.cards.base.CardSeries;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.powers.replacement.AntiArtifactSlowPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
+public class AnarchyStocking extends PCLCard
 {
     public static final PCLCardData DATA = Register(AnarchyStocking.class).SetSkill(1, CardRarity.UNCOMMON)
             .SetMaxCopies(2)
@@ -40,13 +37,11 @@ public class AnarchyStocking extends PCLCard implements OnPurgeSubscriber
     }
 
     @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card != null && this.uuid.equals(card.uuid)) {
-            int constricted = PCLGameUtilities.GetPowerAmount(ConstrictedPower.POWER_ID);
-            if (constricted > 0) {
-                PCLActions.Bottom.RemovePower(player, player, ConstrictedPower.POWER_ID);
-                PCLActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), constricted);
-            }
+    public void triggerOnPurge() {
+        int constricted = PCLGameUtilities.GetPowerAmount(ConstrictedPower.POWER_ID);
+        if (constricted > 0) {
+            PCLActions.Bottom.RemovePower(player, player, ConstrictedPower.POWER_ID);
+            PCLActions.Bottom.ApplyConstricted(TargetHelper.Enemies(), constricted);
         }
     }
 

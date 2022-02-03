@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
 import pinacolada.resources.GR;
+import pinacolada.ui.GridCardSelectScreenHelper;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
     @Override
     protected void FirstUpdate()
     {
+        GridCardSelectScreenHelper.Clear(true);
         if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
         {
             Complete();

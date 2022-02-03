@@ -18,7 +18,7 @@ import pinacolada.cards.base.PCLCardAffinities;
 import pinacolada.cards.pcl.tokens.AffinityToken;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
-import pinacolada.ui.GridCardSelectScreenPatch;
+import pinacolada.ui.GridCardSelectScreenHelper;
 import pinacolada.ui.combat.PCLAffinitySystem;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
@@ -179,7 +179,7 @@ public class TryChooseAffinity extends EYBActionWithCallback<ArrayList<AffinityC
             }
 
             selected = true;
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
             Complete(selectedCards);
         }
         else
@@ -219,7 +219,7 @@ public class TryChooseAffinity extends EYBActionWithCallback<ArrayList<AffinityC
             selected = true;
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
         }
 
         if (selected)

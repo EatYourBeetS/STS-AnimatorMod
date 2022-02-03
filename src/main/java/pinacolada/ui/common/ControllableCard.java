@@ -2,6 +2,7 @@ package pinacolada.ui.common;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
@@ -74,7 +75,7 @@ public class ControllableCard
     }
 
     public boolean CanUse() {
-        return enabled && card != null && (useCondition == null || useCondition.Invoke(this));
+        return enabled && AbstractDungeon.getCurrMapNode() != null && card != null && (useCondition == null || useCondition.Invoke(this));
     }
 
     public boolean IsEnabled()

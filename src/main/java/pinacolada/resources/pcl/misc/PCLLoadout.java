@@ -238,6 +238,7 @@ public abstract class PCLLoadout
             r1.AddItem(new PolychromePaintbrush(), 2);
             r1.AddItem(new SpitefulCubes(), 3);
             r1.AddItem(new ConcertsFinalHour(), 5);
+            r1.AddItem(new SomberTombstone(), 0);
         }
 
     }

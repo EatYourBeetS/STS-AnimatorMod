@@ -5,20 +5,22 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.*;
 import pinacolada.effects.AttackEffects;
+import pinacolada.effects.VFX;
 import pinacolada.utilities.PCLActions;
+import pinacolada.utilities.PCLGameEffects;
 import pinacolada.utilities.PCLGameUtilities;
 
 public class Millim extends PCLCard
 {
     public static final PCLCardData DATA = Register(Millim.class)
-            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Fire)
+            .SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Electric)
             .SetSeriesFromClassPackage();
 
     public Millim()
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 2);
+        Initialize(7, 0, 3, 2);
 
         SetAffinity_Star(1, 0, 0);
         SetAffinity_Red(0, 0, 1);
@@ -27,6 +29,8 @@ public class Millim extends PCLCard
 
         SetAffinityRequirement(PCLAffinity.General, 6);
         SetUnique(true, -1);
+
+        SetExhaust(true);
     }
 
     @Override
@@ -55,15 +59,21 @@ public class Millim extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.SLASH_HEAVY);
+        PCLActions.Bottom.DealCardDamage(this, m, AttackEffects.FIRE).forEach(d -> d.SetDamageEffect(__ -> {
+            PCLGameEffects.Queue.Add(VFX.IceImpact(m.hb.cX, m.hb.cY));
+            return PCLGameEffects.Queue.Add(VFX.SparkImpact(m.hb.cX, m.hb.cY)).duration * 0.4f;
+        }));
 
-        PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), secondaryValue);
-        PCLActions.Bottom.ApplyPoison(TargetHelper.Normal(m), secondaryValue);
+        PCLActions.Bottom.ApplyBurning(TargetHelper.Normal(m), magicNumber);
+        PCLActions.Bottom.ApplyFreezing(TargetHelper.Normal(m), magicNumber);
+        PCLActions.Bottom.ApplyElectrified(TargetHelper.Normal(m), magicNumber);
 
-        PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback(() -> {
-            for (int i = 0; i < magicNumber; i++)
-            {
-                PCLActions.Bottom.GainRandomAffinityPower(1, false);
+        PCLActions.Bottom.TryChooseSpendAffinity(this).AddConditionalCallback((spent) -> {
+            for (AffinityChoice ch : spent) {
+                for (int i = 0; i < ch.Amount() / secondaryValue; i++)
+                {
+                    PCLActions.Bottom.GainRandomAffinityPower(1, false);
+                }
             }
         });
     }

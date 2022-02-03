@@ -24,8 +24,14 @@ public class Fujimaki extends PCLCard
 
         SetCooldown(1, 0, this::OnCooldownCompleted);
         SetAffinity_Red(1, 0, 2);
+        SetAffinity_Green(1, 0, 0);
 
         SetAffinityRequirement(PCLAffinity.Green, 4);
+    }
+
+    @Override
+    public void triggerOnPurge() {
+        PCLActions.Bottom.ChangeStance(MightStance.STANCE_ID);
     }
 
     @Override

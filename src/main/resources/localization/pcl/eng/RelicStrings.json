@@ -180,6 +180,12 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
+	"pcl:PortableCactus":
+	{
+		"DESCRIPTIONS": ["Start each battle with #b{0} [Malleable]. Whenever you receive #yAttack damage: Gain #b{0} #yTemp. [Thorns]."],
+		"FLAVOR": "Now you can finally fulfill your lifelong dream of being a Spiker!",
+		"NAME": "Portable Cactus"
+	},
 	"pcl:PolychromePaintbrush":
 	{
 		"DESCRIPTIONS": ["When #pRight #pClicked: Transform a #yStrike or #yDefend into any of its #yImproved versions. NL Gain #b{0} uses when you enter #yElite or #yBoss rooms. Store up to #b{1} uses."],
@@ -221,6 +227,12 @@
 		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
+	},
+	"pcl:SomberTombstone":
+	{
+		"DESCRIPTIONS": ["At the start of battle, send ALL [Afterlife] cards in play to your Exhaust pile. NL ALL [Afterlife] cards created in combat are sent to your Exhaust pile."],
+		"FLAVOR": "Rest in peace.",
+		"NAME": "Somber Tombstone"
 	},
 	"pcl:SoulGem":
 	{

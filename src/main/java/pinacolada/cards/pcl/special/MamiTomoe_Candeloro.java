@@ -1,21 +1,18 @@
 package pinacolada.cards.pcl.special;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.actions.special.CreateRandomCurses;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.cards.pcl.series.MadokaMagica.SayakaMiki;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 
-public class MamiTomoe_Candeloro extends PCLCard implements OnPurgeSubscriber
+public class MamiTomoe_Candeloro extends PCLCard
 {
     public static final PCLCardData DATA = Register(MamiTomoe_Candeloro.class)
             .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
@@ -36,11 +33,8 @@ public class MamiTomoe_Candeloro extends PCLCard implements OnPurgeSubscriber
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        PCLCombatStats.onPurge.Subscribe(this);
+    public void triggerOnPurge() {
+        PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 
     @Override
@@ -52,13 +46,5 @@ public class MamiTomoe_Candeloro extends PCLCard implements OnPurgeSubscriber
             }
         });
         PCLActions.Delayed.Add(new CreateRandomCurses(magicNumber, p.hand));
-    }
-
-    @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card.uuid.equals(this.uuid)) {
-            PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
-            PCLCombatStats.onPurge.Unsubscribe(this);
-        }
     }
 }

@@ -73,8 +73,8 @@ public class PCLAffinityRow extends GUIElement
         .SetAlignment(0.5f, 0.5f)
         .SetText("-");
 
-        image_synergy = new GUI_Image(GR.PCL.Images.Arrow_Right.Texture(),
-        new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(8f), offset_y * hb.height, false));
+        image_synergy = new GUI_Image(GR.PCL.Images.Divider.Texture(),
+        new RelativeHitbox(hb, Scale(20), Scale(32), hb.width - Scale(4), offset_y * hb.height, false));
 
         image_synergy.SetActive(Power != null);
     }
@@ -96,6 +96,10 @@ public class PCLAffinityRow extends GUIElement
         {
             Power.atStartOfTurn();
         }
+    }
+
+    public boolean IsHovered() {
+        return Power.hb.hovered || image_background.hb.hovered || image_affinity.hb.hovered;
     }
 
     public void Initialize()

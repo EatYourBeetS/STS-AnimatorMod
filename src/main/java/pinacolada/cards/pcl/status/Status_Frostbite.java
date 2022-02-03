@@ -2,10 +2,10 @@ package pinacolada.cards.pcl.status;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.PCLCard_Status;
 import pinacolada.utilities.PCLActions;
 
@@ -19,6 +19,8 @@ public class Status_Frostbite extends PCLCard_Status
 
         Initialize(0, 0, 2, 3);
         SetUpgrade(0, 0, 2, 2);
+
+        SetUnplayable(true);
     }
 
     @Override

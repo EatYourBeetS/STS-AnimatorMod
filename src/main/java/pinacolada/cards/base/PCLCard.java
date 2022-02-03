@@ -21,6 +21,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FlightPower;
 import com.megacrit.cardcrawl.powers.LockOnPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.BlueCandle;
+import com.megacrit.cardcrawl.relics.MedicalKit;
 import com.megacrit.cardcrawl.vfx.cardManip.ExhaustCardEffect;
 import eatyourbeets.actions.special.HasteAction;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -465,6 +467,14 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
         }
 
         super.renderBannerImage(sb, drawX, drawY);
+    }
+
+    public void triggerOnAfterlife() {
+
+    }
+
+    public void triggerOnPurge() {
+
     }
 
     public void triggerWhenCreated(boolean startOfBattle)
@@ -1283,13 +1293,16 @@ public abstract class PCLCard extends PCLCardBase implements OnStartOfTurnSubscr
     public boolean cardPlayable(AbstractMonster m)
     {
         cantUseMessage = UNPLAYABLE_MESSAGE;
-        return !unplayable && super.cardPlayable(m);
+        return (!unplayable ||
+                (PCLGameUtilities.HasRelicEffect(BlueCandle.ID) && type == AbstractCard.CardType.CURSE) ||
+                (PCLGameUtilities.HasRelicEffect(MedicalKit.ID) && type == AbstractCard.CardType.STATUS))
+                && super.cardPlayable(m);
     }
 
     @Override
     public boolean canUse(AbstractPlayer p, AbstractMonster m)
     {
-        return !unplayable && super.canUse(p, m);
+        return cardPlayable(m) && this.hasEnoughEnergy();
     }
 
     @Override

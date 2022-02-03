@@ -21,7 +21,7 @@ public class MasamiIwasawa extends PCLCard
         super(DATA);
 
         Initialize(0, 12, 1, 2);
-        SetUpgrade(0, 2, 1, 0);
+        SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Orange(1, 0, 0);
         SetAffinity_Light(1, 0, 1);
@@ -42,5 +42,10 @@ public class MasamiIwasawa extends PCLCard
         {
             PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
         }
+    }
+
+    @Override
+    public void triggerOnAfterlife() {
+        PCLActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), magicNumber);
     }
 }

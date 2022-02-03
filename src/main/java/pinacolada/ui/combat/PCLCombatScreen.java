@@ -10,7 +10,6 @@ import pinacolada.utilities.PCLGameUtilities;
 
 public class PCLCombatScreen extends GUIElement implements OnStatsClearedSubscriber, OnBattleStartSubscriber
 {
-    public final PCLAffinitySystem Affinities = PCLCombatStats.MatchingSystem;
     public final EnemySubIntents Intents = new EnemySubIntents();
     public final CombatHelper Helper = new CombatHelper();
 
@@ -29,7 +28,7 @@ public class PCLCombatScreen extends GUIElement implements OnStatsClearedSubscri
     {
         SetActive(PCLGameUtilities.InBattle() && GR.PCL.IsSelected());
         PCLCombatStats.onBattleStart.Subscribe(this);
-        Affinities.SetActive(isActive);
+        PCLCombatStats.MatchingSystem.SetActive(isActive);
         Intents.Clear();
         Helper.Clear();
     }
@@ -38,13 +37,16 @@ public class PCLCombatScreen extends GUIElement implements OnStatsClearedSubscri
     @Override
     public void Update()
     {
-        Affinities.TryUpdate();
+        PCLCombatStats.MatchingSystem.TryUpdate();
+        PCLCombatStats.ControlPile.Update();
         Helper.Update();
+
     }
 
     @Override
     public void Render(SpriteBatch sb)
     {
-        Affinities.TryRender(sb);
+        PCLCombatStats.MatchingSystem.TryRender(sb);
+        PCLCombatStats.ControlPile.Render(sb);
     }
 }

@@ -1,17 +1,14 @@
 package pinacolada.cards.pcl.series.AngelBeats;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.special.ThrowingKnife;
 import pinacolada.effects.AttackEffects;
-import pinacolada.interfaces.subscribers.OnAfterlifeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.stances.pcl.VelocityStance;
 import pinacolada.utilities.PCLActions;
 
-public class EriShiina extends PCLCard implements OnAfterlifeSubscriber
+public class EriShiina extends PCLCard
 {
     public static final PCLCardData DATA = Register(EriShiina.class).SetAttack(2, CardRarity.UNCOMMON, PCLAttackType.Normal).SetSeriesFromClassPackage().PostInitialize(data ->
     {
@@ -38,10 +35,8 @@ public class EriShiina extends PCLCard implements OnAfterlifeSubscriber
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-        PCLCombatStats.onAfterlife.Subscribe(this);
+    public void triggerOnAfterlife() {
+        PCLActions.Bottom.CreateThrowingKnives(magicNumber);
     }
 
     @Override
@@ -58,13 +53,6 @@ public class EriShiina extends PCLCard implements OnAfterlifeSubscriber
         if (TrySpendAffinity(PCLAffinity.Blue))
         {
             PCLActions.Bottom.GainBlur(1);
-        }
-    }
-
-    @Override
-    public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
-        if (playedCard == this) {
-            PCLActions.Bottom.CreateThrowingKnives(magicNumber);
         }
     }
 }

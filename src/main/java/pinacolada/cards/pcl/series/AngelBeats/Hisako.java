@@ -10,6 +10,8 @@ import pinacolada.interfaces.subscribers.OnAfterlifeSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 
+import java.util.ArrayList;
+
 public class Hisako extends PCLCard implements OnAfterlifeSubscriber
 {
     public static final PCLCardData DATA = Register(Hisako.class).SetSkill(1, CardRarity.UNCOMMON, PCLCardTarget.Self).SetSeriesFromClassPackage();
@@ -61,7 +63,7 @@ public class Hisako extends PCLCard implements OnAfterlifeSubscriber
     }
 
     @Override
-    public void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard) {
+    public void OnAfterlife(AbstractCard playedCard, ArrayList<AbstractCard> fuelCards) {
         if (player.hand.contains(this)) {
             PCLActions.Bottom.GainInvocation(secondaryValue);
         }

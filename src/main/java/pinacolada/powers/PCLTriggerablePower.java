@@ -41,7 +41,7 @@ public abstract class PCLTriggerablePower extends PCLPower implements HealthBarR
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(0, GetPassiveDamage(), GetEffectMultiplier(), PCLCombatStats.GetAmplifierBonus(ID));
+        this.description = FormatDescription(0, GetPassiveDamage(), GetEffectMultiplier(), PCLCombatStats.GetAmplifierBonusForDisplay(ID));
     }
 
     @Override

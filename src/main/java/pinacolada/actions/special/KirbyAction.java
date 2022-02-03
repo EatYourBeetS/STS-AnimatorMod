@@ -10,7 +10,7 @@ import pinacolada.cards.pcl.colorless.AbstractMysteryCard;
 import pinacolada.cards.pcl.colorless.Kirby;
 import pinacolada.cards.pcl.colorless.MysteryCard;
 import pinacolada.cards.pcl.colorless.MysteryCard2;
-import pinacolada.ui.GridCardSelectScreenPatch;
+import pinacolada.ui.GridCardSelectScreenHelper;
 
 import java.util.ArrayList;
 
@@ -32,14 +32,14 @@ public class KirbyAction extends EYBActionWithCallback<Kirby>
     @Override
     protected void FirstUpdate()
     {
-        GridCardSelectScreenPatch.Clear();
+        GridCardSelectScreenHelper.Clear(true);
 
         CardGroup cardGroupPlaceholder = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
 
         AbstractMysteryCard placeholder = kirby.GetCard(0) instanceof MysteryCard ? new MysteryCard2(true) : new MysteryCard(true);
         placeholder.isSeen = true;
         cardGroupPlaceholder.addToBottom(placeholder);
-        GridCardSelectScreenPatch.AddGroup(cardGroupPlaceholder);
+        GridCardSelectScreenHelper.AddGroup(cardGroupPlaceholder);
 
 
         CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.MASTER_DECK);
@@ -50,13 +50,13 @@ public class KirbyAction extends EYBActionWithCallback<Kirby>
                 cardGroup.addToBottom(c);
             }
         }
-        GridCardSelectScreenPatch.AddGroup(cardGroup);
+        GridCardSelectScreenHelper.AddGroup(cardGroup);
 
-        CardGroup mergedGroup = GridCardSelectScreenPatch.GetCardGroup();
+        CardGroup mergedGroup = GridCardSelectScreenHelper.GetCardGroup();
 
         if (mergedGroup.size() < amount)
         {
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
             Complete(kirby);
             return;
         }
@@ -77,7 +77,7 @@ public class KirbyAction extends EYBActionWithCallback<Kirby>
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
             kirby.refreshDescription();
             Complete(kirby);
         }

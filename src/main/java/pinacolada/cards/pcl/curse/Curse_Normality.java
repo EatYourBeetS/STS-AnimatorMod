@@ -16,7 +16,6 @@ import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.base.PCLCard_Curse;
 import pinacolada.interfaces.subscribers.OnCardMovedSubscriber;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLPowerHelper;
 import pinacolada.utilities.PCLActions;
@@ -26,7 +25,7 @@ import pinacolada.utilities.PCLJUtils;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscriber, OnStartOfTurnSubscriber, OnPurgeSubscriber, OnCardMovedSubscriber
+public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscriber, OnStartOfTurnSubscriber, OnCardMovedSubscriber
 {
     protected static final HashMap<AbstractCreature, HashMap<String, Integer>> POWERS = new HashMap<>();
     protected static UUID battleID;
@@ -60,7 +59,6 @@ public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscr
         super.triggerWhenCreated(startOfBattle);
         PCLCombatStats.onStartOfTurn.Subscribe(this);
         PCLCombatStats.onApplyPower.Subscribe(this);
-        PCLCombatStats.onPurge.Subscribe(this);
     }
 
     @Override
@@ -117,7 +115,7 @@ public class Curse_Normality extends PCLCard_Curse implements OnApplyPowerSubscr
     }
 
     @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
+    public void triggerOnPurge() {
         TryRestorePowers(false);
     }
 

@@ -300,9 +300,9 @@ public class PCLAffinityMeter extends GUIElement
             pinacolada.utilities.PCLRenderHelpers.DrawCentered(sb, Colors.Black(0.5f), GR.PCL.Images.Panel_Elliptical_Half_H.Texture(),
                     (CurrentAffinity.background_button.hb.cX + NextAffinity.background_button.hb.cX) / 2, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.2f,
                     CurrentAffinity.background_button.hb.width * 1.25f, CurrentAffinity.background_button.hb.height * 0.7f, 1, 0);
-            FontHelper.renderFontLeftTopAligned(sb, rerollFont,
+            FontHelper.renderFontCentered(sb, rerollFont,
                     GR.PCL.Strings.Combat.Rerolls + ": " + Reroll.triggerCondition.uses + "/" + Reroll.triggerCondition.baseUses,
-                    NextAffinity.background_button.hb.x, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.7f,
+                    NextAffinity.background_button.hb.x, CurrentAffinity.background_button.hb.y - LABEL_OFFSET / 3.2f,
                     Reroll.triggerCondition.uses > 0 ? Settings.BLUE_TEXT_COLOR : Settings.RED_TEXT_COLOR);
             pinacolada.utilities.PCLRenderHelpers.ResetFont(rerollFont);
         }

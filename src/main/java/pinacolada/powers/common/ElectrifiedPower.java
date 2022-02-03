@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.utilities.Mathf;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.SFX;
+import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.PCLTriggerablePower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
@@ -62,7 +63,7 @@ public class ElectrifiedPower extends PCLTriggerablePower
     @Override
     public void updateDescription()
     {
-        this.description = FormatDescription(owner.isPlayer ? 1 : 0, GetPassiveDamage(), GetEffectMultiplier());
+        this.description = FormatDescription(owner.isPlayer ? 1 : 0, GetPassiveDamage(), GetEffectMultiplier(), PCLCombatStats.GetAmplifierBonusForDisplay(ID));
     }
 
     @Override

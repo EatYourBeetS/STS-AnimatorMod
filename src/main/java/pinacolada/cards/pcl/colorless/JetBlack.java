@@ -35,6 +35,7 @@ public class JetBlack extends PCLCard
     {
         boolean shouldRetain = CheckAffinity(PCLAffinity.General) && CombatStats.TryActivateLimited(cardID);
         PCLActions.Bottom.DealCardDamageToAll(this, AttackEffects.BLUNT_HEAVY);
+        PCLActions.Bottom.GainBlock(block);
         PCLActions.Bottom.StackPower(new JetBlackPower(p, magicNumber, shouldRetain));
     }
 

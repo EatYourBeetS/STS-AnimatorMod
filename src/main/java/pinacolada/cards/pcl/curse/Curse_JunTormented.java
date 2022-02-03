@@ -1,18 +1,15 @@
 package pinacolada.cards.pcl.curse;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.powers.CombatStats;
 import pinacolada.cards.base.*;
 import pinacolada.cards.pcl.tokens.AffinityToken_Blue;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 
-public class Curse_JunTormented extends PCLCard_Curse implements OnPurgeSubscriber
+public class Curse_JunTormented extends PCLCard_Curse
 {
     public static final PCLCardData DATA = Register(Curse_JunTormented.class)
             .SetCurse(-2, PCLCardTarget.None, true).SetSeries(CardSeries.RozenMaiden);
@@ -39,21 +36,15 @@ public class Curse_JunTormented extends PCLCard_Curse implements OnPurgeSubscrib
     }
 
     @Override
-    public void triggerWhenCreated(boolean isStartOfBattle)
-    {
-        super.triggerWhenCreated(isStartOfBattle);
-        PCLCombatStats.onPurge.Subscribe(this);
+    public void triggerOnPurge() {
+        if (CombatStats.TryActivateLimited(cardID)) {
+            PCLActions.Bottom.MakeCardInHand(new AffinityToken_Blue());
+        }
     }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-    }
-
-    @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card != null && this.uuid.equals(card.uuid) && CombatStats.TryActivateLimited(cardID)) {
-            PCLActions.Bottom.MakeCardInHand(new AffinityToken_Blue());
-        }
     }
 }

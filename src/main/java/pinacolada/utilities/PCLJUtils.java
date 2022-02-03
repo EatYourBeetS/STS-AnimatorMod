@@ -19,6 +19,32 @@ public class PCLJUtils extends JUtils
     private static final StringBuilder sb2 = new StringBuilder();
     private static final ArrayList<String> classNames = new ArrayList<>();
 
+    public static <T> boolean All(T[] list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (!predicate.test(t))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static <T> boolean Any(T[] list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static <T> ArrayList<T> Filter(T[] array, Predicate<T> predicate)
     {
         final ArrayList<T> res = new ArrayList<>();

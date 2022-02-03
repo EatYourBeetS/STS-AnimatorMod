@@ -341,8 +341,8 @@ public class PCLStrings
         private final UIStrings Strings = GetUIStrings("CardMods");
 
         public final String HandSize = Strings.TEXT[0];
-        public final String Unknown = Strings.TEXT[1];
-        public final String AfterLifeLocked = Strings.TEXT[2];
+        public final String AfterlifeMet = Strings.TEXT[1];
+        public final String AfterlifeRequirement = Strings.TEXT[2];
         public final String RespecLivingPicture = Strings.TEXT[3];
         public final String RespecLivingPictureLocked = Strings.TEXT[4];
         public final String RespecLivingPictureDescription = Strings.TEXT[5];

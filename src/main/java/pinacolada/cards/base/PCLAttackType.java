@@ -18,7 +18,7 @@ public enum PCLAttackType
     Piercing(true, true, null, 0),
     Ranged(false, true, null, 0);
 
-    private static final int DAMAGE_MULTIPLIER = 60;
+    public static final int DAMAGE_MULTIPLIER = 60;
     public final boolean bypassThorns;
     public final boolean bypassBlock;
     public final String powerToRemove;

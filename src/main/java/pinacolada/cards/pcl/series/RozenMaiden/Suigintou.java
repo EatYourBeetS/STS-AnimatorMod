@@ -1,7 +1,5 @@
 package pinacolada.cards.pcl.series.RozenMaiden;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -12,15 +10,13 @@ import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
 import pinacolada.cards.pcl.special.Suigintou_BlackFeather;
 import pinacolada.effects.AttackEffects;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
 import pinacolada.orbs.PCLOrbHelper;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.powers.affinity.DesecrationPower;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
-public class Suigintou extends PCLCard implements OnPurgeSubscriber
+public class Suigintou extends PCLCard
 {
     public static final PCLCardData DATA = Register(Suigintou.class)
     		.SetAttack(2, CardRarity.RARE, PCLAttackType.Dark).SetSeriesFromClassPackage()
@@ -49,10 +45,8 @@ public class Suigintou extends PCLCard implements OnPurgeSubscriber
     }
 
     @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card != null && this.uuid.equals(card.uuid)) {
-            PCLActions.Top.MakeCardInHand(new Suigintou_BlackFeather());
-        }
+    public void triggerOnPurge() {
+        PCLActions.Top.MakeCardInHand(new Suigintou_BlackFeather());
     }
 
     @Override
@@ -69,12 +63,5 @@ public class Suigintou extends PCLCard implements OnPurgeSubscriber
             PCLActions.Bottom.TriggerOrbPassive(PCLJUtils.Count(player.hand.group, PCLGameUtilities::IsHindrance)).SetFilter(o -> Dark.ORB_ID.equals(o.ID));
         });
 
-    }
-
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-        PCLCombatStats.onPurge.Subscribe(this);
     }
 }

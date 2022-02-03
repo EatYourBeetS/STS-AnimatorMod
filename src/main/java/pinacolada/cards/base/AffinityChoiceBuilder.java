@@ -19,7 +19,6 @@ public class AffinityChoiceBuilder extends PCLCardBuilder
         super(AffinityToken.GetCard(affinity), text, false);
         this.affinity = affinity;
         this.magicNumberUpgrade = this.magicNumber = amount;
-
     }
 
     public AffinityChoice Build()

@@ -212,7 +212,7 @@
 		},
 		"pcl:Fujimaki":
 		{
-			"DESCRIPTION": "Pay !A! <G>: Enter <RS>. || <CDN>: Gain !M! [R] and Obtain {~Wound}.",
+			"DESCRIPTION": "<CDN>: Gain !M! [R] and Obtain {~Wound}. || Pay !A! <G> or on Purge: Enter <RS>.",
 			"NAME": "Fujimaki"
 		},
 		"pcl:GirlDeMo":
@@ -228,7 +228,7 @@
 		},
 		"pcl:HidekiHinata":
 		{
-			"DESCRIPTION": "If the enemy is attacking: Deal +!S! damage. Otherwise, gain !M! [Support Damage]. || In {Afterlife}, pay !A! <G>: Gain [Energized].",
+			"DESCRIPTION": "If the enemy is attacking: Deal +!S! damage. Otherwise, gain !M! [Support Damage]. || In {Afterlife}: Gain [Energized].",
 			"NAME": "Hideki Hinata"
 		},
 		"pcl:Hisako":
@@ -249,7 +249,7 @@
 		},
 		"pcl:MasamiIwasawa":
 		{
-			"DESCRIPTION": "Starter: Apply !M! [Vulnerable] ** to ALL enemies. || Add !S! {Dazed} to ** your draw pile.",
+			"DESCRIPTION": "Starter and/or in {Afterlife}: Apply !M! [Vulnerable] to ALL enemies. || Add !S! {Dazed} to ** your draw pile.",
 			"NAME": "Masami Iwasawa"
 		},
 		"pcl:Noda":
@@ -269,7 +269,7 @@
 		},
 		"pcl:Yui":
 		{
-			"DESCRIPTION": "Obtain {<L> Token}{+}, then Motivate !S!. || <LIM>. !A! <W>. In {Afterlife}: Add {Girls Dead Monster} to your draw pile.",
+			"DESCRIPTION": "Obtain {<L> Token}{+}, then Motivate !S!. || <LIM>. In {Afterlife}: Add {Girls Dead Monster} to your draw pile.",
 			"NAME": "Yui"
 		},
 		"pcl:YuriNakamura":
@@ -286,7 +286,7 @@
 		},
 		"pcl:YuzuruOtonashi":
 		{
-			"DESCRIPTION": "Exhaust up to !M! cards. For each, if it is a: || {Attack} or {~Skill} -> Gain !S! [Temporary HP]. ** {~Power} -> Gain [L]. ** Hindrance -> Gain !M! <O>.",
+			"DESCRIPTION": "Exhaust up to !M! cards and give them <O>. Gain !S! [THP] for each. || On Purge: Gain !S! [THP].",
 			"NAME": "Yuzuru Otonashi"
 		}
 	},
@@ -488,7 +488,7 @@
 		{
 			"DESCRIPTION": "Fetch 1 of !M! cards played last turn. Obtain a {<W> Token} of one of its <W>. || <LIM>. !S! Match Combo: Motivate the fetched card.",
 			"NAME": "Eru Chitanda",
-			"UPGRADE_DESCRIPTION": "Fetch 1 of !M! cards played last turn. Obtain a {<W> Token} of one of its <W>. || <LIM>. !S! Match Combo: Motivate the fetched card."
+			"UPGRADE_DESCRIPTION": "Fetch any card played last turn. Obtain a {<W> Token} of one of its <W>. || <LIM>. !S! Match Combo: Motivate the fetched card."
 		},
 		"pcl:ForceImpulseGundam":
 		{
@@ -1254,7 +1254,7 @@
 		},
 		"pcl:Curse_JunTormented":
 		{
-			"DESCRIPTION": "When drawn or created: Duplicate ALL other {Hindrances} in hand. || <LIM>. When Purged: Obtain <B> Token.",
+			"DESCRIPTION": "When drawn: Duplicate ALL other {Hindrances} in hand. || <LIM>. When Purged: Obtain <B> Token.",
 			"NAME": "Tormented Jun"
 		},
 		"pcl:Curse_Rozen":
@@ -2498,7 +2498,7 @@
 		},
 		"pcl:Iris":
 		{
-			"DESCRIPTION": "Give an Attack +!S! damage. Exhaust a card to repeat this. || Pay !A! <L>: ALL cards in hand gain <LSC> equal to their cost + 1 (max !S!).",
+			"DESCRIPTION": "Give an Attack +!S! damage. ** Pay !A! <L>: Repeat this. || On Purge: ALL cards in hand gain <LSC> equal to their cost + 1 (max !S!).",
 			"NAME": "Iris"
 		},
 		"pcl:Kazuma":
@@ -3187,7 +3187,7 @@
 		},
 		"pcl:Millim":
 		{
-			"DESCRIPTION": "Deal +!M! damage per debuff on the enemy. ** Apply !S! [Burning] and [Poison]. || Pay !A! <W>: Gain a random ** {<W> Power} !M! times",
+			"DESCRIPTION": "Deal +!M! damage per debuff on the enemy. ** Apply !M! [Burning] [Freezing] [Electrified]. || Pay X <W>: Gain a random ** {<W> Power} for every !S! <W> spent.",
 			"NAME": "Millim Nava"
 		},
 		"pcl:Ramiris":

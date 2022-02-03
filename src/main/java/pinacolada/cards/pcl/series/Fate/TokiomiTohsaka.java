@@ -48,11 +48,9 @@ public class TokiomiTohsaka extends PCLCard
                 }
             }
         }
-        choices.Select(PCLActions.Bottom, 1, null)
-                .CancellableFromPlayer(true);
+        choices.Select(PCLActions.Bottom, 1, null);
         if (CheckPrimaryCondition(true)) {
-            choices.Select(PCLActions.Bottom, 1, null)
-                    .CancellableFromPlayer(true);
+            choices.Select(PCLActions.Bottom, 1, null);
         }
         else {
             PCLActions.Bottom.AddAffinity(PCLAffinity.Light, magicNumber);

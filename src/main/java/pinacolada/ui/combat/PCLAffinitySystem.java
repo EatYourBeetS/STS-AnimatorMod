@@ -497,6 +497,10 @@ public class PCLAffinitySystem extends GUIElement
         draggable_icon.Update();
         info_icon.Update();
 
+        boolean isHovered = dragAmount_image.hb.hovered || info_icon.hb.hovered || PCLJUtils.Any(rows, PCLAffinityRow::IsHovered);
+        dragAmount_image.SetColor(0.05f, 0.05f, 0.05f, isHovered ? 0.5f : 0.05f);
+        draggable_icon.SetColor(Colors.White(isHovered ? 0.75f : 0.1f));
+
         if (!draggingCard && info_icon.hb.hovered)
         {
             PCLCardTooltip.QueueTooltip(tooltip);

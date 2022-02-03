@@ -1,7 +1,5 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -11,12 +9,10 @@ import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.cards.pcl.series.MadokaMagica.NagisaMomoe;
 import pinacolada.effects.AttackEffects;
 import pinacolada.effects.VFX;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameEffects;
 
-public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
+public class NagisaMomoe_Charlotte extends PCLCard
 {
     public static final PCLCardData DATA = Register(NagisaMomoe_Charlotte.class)
             .SetAttack(0, CardRarity.SPECIAL, PCLAttackType.Normal, PCLCardTarget.AoE)
@@ -39,13 +35,9 @@ public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        PCLCombatStats.onPurge.Subscribe(this);
+    public void triggerOnPurge() {
+        PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
-
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
@@ -66,13 +58,5 @@ public class NagisaMomoe_Charlotte extends PCLCard implements OnPurgeSubscriber
                     }
                 }));
         PCLActions.Bottom.ApplyVulnerable(TargetHelper.AllCharacters(),secondaryValue);
-    }
-
-
-    @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card.uuid.equals(this.uuid)) {
-            PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
-        }
     }
 }

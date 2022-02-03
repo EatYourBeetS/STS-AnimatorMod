@@ -90,7 +90,6 @@ public class PCLImages
     public final PCLImages.Events Events = new PCLImages.Events();
     public final PCLImages.Orbs Orbs = new PCLImages.Orbs();
 
-    public final TextureCache Arrow_Right                 = new TextureCache("images/pcl/ui/topPanel/Arrow_Right.png");
     public final TextureCache CampfireOption_Enchant      = new TextureCache("images/pcl/ui/campfire/Enchant.png");
     public final TextureCache CampfireOption_Kirby        = new TextureCache("images/pcl/ui/campfire/Kirby.png");
     public final TextureCache CardPool                    = new TextureCache("images/pcl/ui/topPanel/CardPool.png");
@@ -98,6 +97,7 @@ public class PCLImages
     public final TextureCache ControllableCardPile        = new TextureCache("images/pcl/ui/topPanel/ControllableCardPile.png");
     public final TextureCache ControllableCardPileBorder  = new TextureCache("images/pcl/ui/topPanel/ControllableCardPileBorder.png");
     public final TextureCache Discord                     = new TextureCache("images/pcl/ui/topPanel/Discord.png");
+    public final TextureCache Divider                     = new TextureCache("images/pcl/ui/topPanel/Divider.png");
     public final TextureCache Draggable                   = new TextureCache("images/pcl/ui/topPanel/Draggable.png");
     public final TextureCache Edit                        = new TextureCache("images/pcl/ui/topPanel/Edit.png");
     public final TextureCache FullSquare                  = new TextureCache("images/pcl/ui/topPanel/FullSquare.png");

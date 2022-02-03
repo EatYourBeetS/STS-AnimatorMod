@@ -13,17 +13,16 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
-import com.megacrit.cardcrawl.relics.*;
+import com.megacrit.cardcrawl.relics.OddMushroom;
+import com.megacrit.cardcrawl.relics.PaperCrane;
+import com.megacrit.cardcrawl.relics.PaperFrog;
 import eatyourbeets.interfaces.subscribers.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.powers.GameEvent;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
-import pinacolada.cards.base.CardUseInfo;
-import pinacolada.cards.base.PCLAffinity;
-import pinacolada.cards.base.PCLCard;
-import pinacolada.cards.base.PCLCardCooldown;
+import pinacolada.cards.base.*;
 import pinacolada.interfaces.subscribers.*;
 import pinacolada.patches.CardGlowBorderPatches;
 import pinacolada.powers.affinity.AbstractPCLAffinityPower;
@@ -32,6 +31,7 @@ import pinacolada.powers.common.ResistancePower;
 import pinacolada.powers.common.VitalityPower;
 import pinacolada.relics.PCLRelic;
 import pinacolada.resources.GR;
+import pinacolada.ui.GridCardSelectScreenHelper;
 import pinacolada.ui.combat.PCLAffinitySystem;
 import pinacolada.ui.common.ControllableCardPile;
 import pinacolada.utilities.PCLActions;
@@ -62,6 +62,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static final ArrayList<GameEvent<?>> events = _eventsGetter.Get(null);
     public static final PCLAffinitySystem MatchingSystem = new PCLAffinitySystem();
+    public static final ControllableCardPile ControlPile = new ControllableCardPile();
 
     public static final GameEvent<OnAfterlifeSubscriber> onAfterlife = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnCardMovedSubscriber> onCardMoved = RegisterEvent(new GameEvent<>());
@@ -119,8 +120,6 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnSynergySubscriber> onSynergy = CombatStats.onSynergy;
     public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = CombatStats.onTryUsingCard;
 
-    public static final ControllableCardPile ControlPile = new ControllableCardPile();
-
     protected static final HashMap<String, Integer> AMPLIFIER_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> EFFECT_BONUSES = new HashMap<>();
     protected static final HashMap<String, Integer> PASSIVE_DAMAGE_BONUSES = new HashMap<>();
@@ -150,6 +149,7 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         RefreshPlayer();
         PCLJUtils.LogInfo(CombatStats.class, "Clearing PCL Player Stats");
         ControlPile.Clear();
+        GridCardSelectScreenHelper.Clear(true);
 
         CardGlowBorderPatches.overrideColor = null;
         PCLCombatStats.MatchingSystem.Initialize();
@@ -231,6 +231,9 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static void OnPurge(AbstractCard card, CardGroup source)
     {
+        if (card instanceof PCLCard) {
+            ((PCLCard) card).triggerOnPurge();
+        }
         for (OnPurgeSubscriber s : onPurge.GetSubscribers())
         {
             s.OnPurge(card, source);
@@ -248,11 +251,14 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
         return energySpent;
     }
 
-    public static void OnAfterlife(AbstractCard playedCard, AbstractCard fuelCard)
+    public static void OnAfterlife(AbstractCard playedCard, ArrayList<AbstractCard> fuelCards)
     {
+        if (playedCard instanceof PCLCard) {
+            ((PCLCard) playedCard).triggerOnAfterlife();
+        }
         for (OnAfterlifeSubscriber s : onAfterlife.GetSubscribers())
         {
-            s.OnAfterlife(playedCard, fuelCard);
+            s.OnAfterlife(playedCard, fuelCards);
         }
     }
 
@@ -428,11 +434,6 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
             return false;
         }
 
-        if ((PCLGameUtilities.HasRelicEffect(BlueCandle.ID) && card.type == AbstractCard.CardType.CURSE) ||
-                (PCLGameUtilities.HasRelicEffect(MedicalKit.ID) && card.type == AbstractCard.CardType.STATUS)) {
-            canPlay = true;
-        }
-
         for (OnTryUsingCardSubscriber s : onTryUsingCard.GetSubscribers())
         {
             canPlay &= s.OnTryUsingCard(card, p, m, canPlay);
@@ -548,6 +549,10 @@ public class PCLCombatStats extends EYBPower implements InvisiblePower
 
     public static int GetAmplifierBonus(String powerID) {
         return AMPLIFIER_BONUSES.getOrDefault(powerID, 0);
+    }
+
+    public static int GetAmplifierBonusForDisplay(String powerID) {
+        return PCLAttackType.DAMAGE_MULTIPLIER + GetAmplifierBonus(powerID);
     }
 
     public static int GetEffectBonus(String powerID) {

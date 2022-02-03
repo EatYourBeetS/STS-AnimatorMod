@@ -9,4 +9,8 @@ public class AffinityChoice extends PCLCard_Dynamic
         super(builder);
         this.Affinity = builder.affinity;
     }
+
+    public int Amount() {
+        return magicNumber;
+    }
 }

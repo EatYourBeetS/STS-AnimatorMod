@@ -65,34 +65,27 @@ public class Iris extends PCLCard
         }
 
         DoAction();
+        if (TrySpendAffinity(PCLAffinity.Light)) {
+            DoAction();
+        }
+    }
 
-        PCLActions.Bottom.ExhaustFromHand(name, 1, false)
-        .SetOptions(true, true, true)
-        .AddCallback((cards) ->
-        { //
-            if (cards.size() > 0) {
-                DoAction();
-            }
-            if (TrySpendAffinity(PCLAffinity.Light)) {
-                PCLActions.Last.Callback(() -> {
-
-                    PCLActions.Bottom.SelectFromHand(name, BaseMod.MAX_HAND_SIZE, true)
-                            .SetOptions(true, true, true)
-                            .SetFilter(ca -> buffs.getOrDefault(ca.uuid, 0) < secondaryValue)
-                            .AddCallback(cards2 ->
-                            {
-                                for (AbstractCard c2 : cards2) {
-                                    int amount = c2.costForTurn + 1;
-                                    if (amount + buffs.getOrDefault(c2.uuid, 0) > secondaryValue) {
-                                        amount = secondaryValue - buffs.getOrDefault(c2.uuid, 0);
-                                    }
-                                    PCLActions.Bottom.IncreaseScaling(c2, PCLAffinity.Light, c2.costForTurn);
-                                    PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
-                                }
-                            });
+    @Override
+    public void triggerOnPurge() {
+        PCLActions.Bottom.SelectFromHand(name, BaseMod.MAX_HAND_SIZE, true)
+                .SetOptions(true, true, true)
+                .SetFilter(ca -> buffs.getOrDefault(ca.uuid, 0) < secondaryValue)
+                .AddCallback(cards2 ->
+                {
+                    for (AbstractCard c2 : cards2) {
+                        int amount = c2.costForTurn + 1;
+                        if (amount + buffs.getOrDefault(c2.uuid, 0) > secondaryValue) {
+                            amount = secondaryValue - buffs.getOrDefault(c2.uuid, 0);
+                        }
+                        PCLActions.Bottom.IncreaseScaling(c2, PCLAffinity.Light, c2.costForTurn);
+                        PCLJUtils.IncrementMapElement(buffs, c2.uuid, amount);
+                    }
                 });
-            }
-        });
     }
 
     protected void DoAction() {

@@ -9,12 +9,10 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import pinacolada.cards.base.PCLCardTooltip;
 import pinacolada.interfaces.subscribers.OnCardMovedSubscriber;
 import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
-import pinacolada.patches.energyPanel.EnergyPanelPatches;
 import pinacolada.powers.PCLCombatStats;
 import pinacolada.resources.GR;
 import pinacolada.resources.pcl.PCLHotkeys;
@@ -26,7 +24,6 @@ import pinacolada.utilities.PCLJUtils;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-// TODO: Move to a different folder, make this a Screen
 public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSubscriber, OnCardMovedSubscriber
 {
     public static PCLCardTooltip TOOLTIP;
@@ -52,16 +49,17 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
                 .SetText("")
                 .SetFont(FontHelper.energyNumFontBlue, 1f)
                 .SetOnClick(() -> {
-                    if (currentCard != null && currentCard.CanUse()) {
+                    if (!AbstractDungeon.isScreenUp && currentCard != null && currentCard.CanUse()) {
                         currentCard.Select();
                     }
                 })
                 .SetOnRightClick(() -> {
-                   if (PCLGameUtilities.InBattle()) {
+                   if (PCLGameUtilities.InBattle() && !AbstractDungeon.isScreenUp) {
                        CardGroup cardGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
                        for (ControllableCard c : subscribers) {
                            if (c.CanUse()) {
                                cardGroup.addToBottom(c.card);
+                               c.card.drawScale = c.card.targetDrawScale = 0.75f;
                            }
                        }
                        if (cardGroup.size() > 0) {
@@ -85,16 +83,18 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
         PCLCombatStats.onPhaseChanged.Subscribe(this);
         PCLCombatStats.onPurge.Subscribe(this);
         PCLCombatStats.onCardMoved.Subscribe(this);
-        EnergyPanelPatches.Pile = this;
         subscribers.clear();
         currentCard = null;
     }
 
     public ControllableCard Add(AbstractCard card)
     {
-        ControllableCard controller = new ControllableCard(this, card);
-        subscribers.add(controller);
-        RefreshCard(controller);
+        ControllableCard controller = Find(card);
+        if (controller == null) {
+            controller = new ControllableCard(this, card);
+            subscribers.add(controller);
+            RefreshCard(controller);
+        }
         return controller;
     }
 
@@ -131,7 +131,11 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
 
     public boolean Contains(AbstractCard card)
     {
-        return card != null && PCLJUtils.Find(subscribers, c -> c.card == card) != null;
+        return card != null && Find(card) != null;
+    }
+
+    public ControllableCard Find(AbstractCard card) {
+        return PCLJUtils.Find(subscribers, c -> c.card == card);
     }
 
     public int GetUsableCount() {
@@ -144,10 +148,12 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
         RefreshCards();
     }
 
-    public void Update(EnergyPanel panel)
+    public void Update()
     {
         isHidden = !PCLGameUtilities.InBattle() || subscribers.size() == 0;
-        hb.update();
+        if (!AbstractDungeon.isScreenUp) {
+            hb.update();
+        }
         if (!isHidden) {
             RefreshCards();
             cardButton.SetText(String.valueOf(GetUsableCount()));
@@ -176,7 +182,7 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
         }
     }
 
-    public void Render(EnergyPanel panel, SpriteBatch sb)
+    public void Render(SpriteBatch sb)
     {
         if (!isHidden)
         {
@@ -205,9 +211,9 @@ public class ControllableCardPile implements OnPhaseChangedSubscriber, OnPurgeSu
             SetCurrentCard(PCLJUtils.Find(subscribers, ControllableCard::CanUse));
         }
 
-        if (currentCard != null) {
-            currentCard.card.target_x = hb.x + OFFSET_X;
-            currentCard.card.target_y = hb.y + OFFSET_Y;
+        if (currentCard != null && hb.hovered && !AbstractDungeon.isScreenUp) {
+            currentCard.card.current_x = currentCard.card.target_x = hb.x + OFFSET_X;
+            currentCard.card.current_y = currentCard.card.target_y = hb.y + OFFSET_Y;
             currentCard.card.drawScale = currentCard.card.targetDrawScale = SCALE;
             currentCard.card.fadingOut = false;
         }

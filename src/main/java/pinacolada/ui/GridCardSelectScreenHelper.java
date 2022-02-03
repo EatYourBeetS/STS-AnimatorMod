@@ -1,15 +1,24 @@
 package pinacolada.ui;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GenericCondition;
+import pinacolada.ui.controls.GUI_TextBox;
+import pinacolada.ui.hitboxes.AdvancedHitbox;
 import pinacolada.utilities.PCLJUtils;
 
 import java.util.ArrayList;
 
-public class GridCardSelectScreenPatch
+public class GridCardSelectScreenHelper
 {
     private static final FieldInfo<Float> _drawStartX = PCLJUtils.GetField("drawStartX", GridCardSelectScreen.class);
     private static final FieldInfo<Float> _padX = PCLJUtils.GetField("padX", GridCardSelectScreen.class);
@@ -23,12 +32,37 @@ public class GridCardSelectScreenPatch
 
     private static final CardGroup mergedGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     private static final ArrayList<CardGroup> cardGroups = new ArrayList<>();
+    private static final GUI_TextBox dynamicLabel = new GUI_TextBox(ImageMaster.WHITE_SQUARE_IMG,
+            new AdvancedHitbox(Settings.WIDTH / 4.0F, 96.0F * Settings.scale, Settings.WIDTH / 2.0F, 48.0F * Settings.scale))
+            .SetColors(new Color(0, 0, 0, 0.85f), Settings.CREAM_COLOR)
+            .SetAlignment(0.7f, 0.15f, true, false)
+            .SetFont(FontHelper.cardDescFont_N, 1f);
+    private static GenericCondition<ArrayList<AbstractCard>> condition;
+    private static FuncT1<String, ArrayList<AbstractCard>> dynamicString;
     private static boolean enabled = false;
 
-    public static void Clear()
+    public static void Clear(boolean clearFunctions)
     {
         cardGroups.clear();
         mergedGroup.clear();
+        if (clearFunctions) {
+            condition = null;
+            dynamicString = null;
+        }
+    }
+
+    public static void SetCondition(GenericCondition<ArrayList<AbstractCard>> newCondition) {
+        condition = newCondition;
+    }
+
+    public static void SetDynamicLabel(FuncT1<String, ArrayList<AbstractCard>> stringFunc) {
+        dynamicString = stringFunc;
+        if (dynamicString != null) {
+            dynamicLabel
+                    .SetText(dynamicString.Invoke(AbstractDungeon.gridSelectScreen.selectedCards))
+                    .Autosize(1f, null)
+                    .SetPosition((Settings.WIDTH / 2.0F) - dynamicLabel.hb.width / 8, 96.0F * Settings.scale);
+        }
     }
 
     public static void AddGroup(CardGroup cardGroup)
@@ -51,18 +85,22 @@ public class GridCardSelectScreenPatch
     {
         if (!enabled)
         {
-            Clear();
+            Clear(false);
         }
         else
         {
             if (cardGroups.size() == 1)
             {
                 _targetGroup.Set(selectScreen, cardGroups.get(0));
-                Clear();
+                Clear(false);
             }
 
             enabled = false;
         }
+    }
+
+    public static boolean IsConditionMet() {
+        return condition == null || condition.Check(AbstractDungeon.gridSelectScreen.selectedCards);
     }
 
     public static boolean UpdateCardPositionAndHover(GridCardSelectScreen selectScreen)
@@ -133,5 +171,18 @@ public class GridCardSelectScreenPatch
         _prevDeckSize.Set(instance, targetCardGroup.size());
 
         return true;
+    }
+
+    public static void UpdateDynamicString() {
+        if (dynamicString != null) {
+            dynamicLabel.SetText(dynamicString.Invoke(AbstractDungeon.gridSelectScreen.selectedCards));
+        }
+    }
+
+    public static void RenderDynamicString(SpriteBatch sb) {
+        if (dynamicString != null) {
+            dynamicLabel.SetText(dynamicString.Invoke(AbstractDungeon.gridSelectScreen.selectedCards));
+            dynamicLabel.Render(sb);
+        }
     }
 }

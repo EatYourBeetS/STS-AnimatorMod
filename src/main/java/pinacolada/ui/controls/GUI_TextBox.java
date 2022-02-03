@@ -61,6 +61,13 @@ public class GUI_TextBox extends GUIElement
         return this;
     }
 
+    public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText, boolean smartPadEnd)
+    {
+        this.label.SetAlignment(verticalRatio, horizontalRatio, smartText, smartPadEnd);
+
+        return this;
+    }
+
     public GUI_TextBox SetBackgroundTexture(Texture texture, Color color, float scale)
     {
         this.image.SetBackgroundTexture(texture, color, scale);
@@ -93,6 +100,21 @@ public class GUI_TextBox extends GUIElement
     public GUI_TextBox SetFontColor(Color textColor)
     {
         this.label.SetColor(textColor);
+
+        return this;
+    }
+
+    public GUI_TextBox Autosize() {
+        return Autosize(1f, 1f);
+    }
+
+    public GUI_TextBox Autosize(Float resizeMultiplier, Float resizeHeight) {
+        if (resizeMultiplier != null) {
+            this.hb.width = label.GetAutoWidth();
+        }
+        if (resizeHeight != null) {
+            this.hb.height = label.GetAutoHeight();
+        }
 
         return this;
     }

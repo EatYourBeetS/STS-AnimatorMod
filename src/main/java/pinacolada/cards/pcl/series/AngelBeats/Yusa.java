@@ -27,16 +27,15 @@ public class Yusa extends PCLCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        PCLActions.Top.Scry(secondaryValue).AddCallback(() -> {
-            PCLActions.Top.ExhaustFromPile(name, 1, p.discardPile)
-                    .SetOptions(false,true)
-                    .AddCallback(cards -> {
-                for (AbstractCard c : cards) {
-                    if (PCLGameUtilities.HasLightAffinity(c)) {
-                        PCLActions.Bottom.GainTemporaryHP(magicNumber);
+        PCLActions.Bottom.Scry(secondaryValue);
+        PCLActions.Bottom.ExhaustFromPile(name, 1, p.discardPile)
+                .SetOptions(false,true)
+                .AddCallback(cards -> {
+                    for (AbstractCard c : cards) {
+                        if (PCLGameUtilities.HasLightAffinity(c)) {
+                            PCLActions.Bottom.GainTemporaryHP(magicNumber);
+                        }
                     }
-                }
-            });
-        });
+                });
     }
 }

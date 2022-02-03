@@ -3,6 +3,7 @@ package pinacolada.ui.controls;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.ui.GUIElement;
@@ -21,6 +22,7 @@ public class GUI_Label extends GUIElement
     private float verticalRatio;
     private float horizontalRatio;
     private boolean smartText;
+    private boolean smartPadEnd;
 
     public GUI_Label(BitmapFont font)
     {
@@ -103,15 +105,26 @@ public class GUI_Label extends GUIElement
 
     public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
     {
+        return SetAlignment(verticalRatio, horizontalRatio, smartText, true);
+    }
+
+    public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText, boolean smartPadEnd)
+    {
         this.verticalRatio = verticalRatio;
         this.horizontalRatio = horizontalRatio;
         this.smartText = smartText;
+        this.smartPadEnd = smartPadEnd;
 
         return this;
     }
 
     public GUI_Label SetSmartText(boolean smartText) {
+        return SetSmartText(smartText, true);
+    }
+
+    public GUI_Label SetSmartText(boolean smartText, boolean smartPadEnd) {
         this.smartText = smartText;
+        this.smartPadEnd = smartPadEnd;
         return this;
     }
 
@@ -120,6 +133,14 @@ public class GUI_Label extends GUIElement
         this.textColor = textColor.cpy();
 
         return this;
+    }
+
+    public float GetAutoHeight() {
+        return PCLRenderHelpers.GetSmartHeight(font, text, Settings.WIDTH);
+    }
+
+    public float GetAutoWidth() {
+        return FontHelper.getSmartWidth(font, text, Settings.WIDTH, 0f);
     }
 
     @Override
@@ -144,7 +165,7 @@ public class GUI_Label extends GUIElement
         {
             final float step = hb.width * horizontalRatio;
             PCLRenderHelpers.WriteSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
-            hb.width - (step * 2), font.getLineHeight(), textColor);
+            smartPadEnd ? hb.width - (step * 2) : hb.width, font.getLineHeight(), textColor);
         }
         else if (horizontalRatio < 0.5f)
         {

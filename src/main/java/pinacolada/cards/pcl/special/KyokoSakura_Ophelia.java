@@ -1,23 +1,19 @@
 package pinacolada.cards.pcl.special;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import pinacolada.cards.base.PCLCardTarget;
 import eatyourbeets.utilities.TargetHelper;
 import pinacolada.cards.base.CardUseInfo;
 import pinacolada.cards.base.PCLCard;
 import pinacolada.cards.base.PCLCardData;
+import pinacolada.cards.base.PCLCardTarget;
 import pinacolada.cards.pcl.curse.Curse_GriefSeed;
 import pinacolada.cards.pcl.series.MadokaMagica.SayakaMiki;
-import pinacolada.interfaces.subscribers.OnPurgeSubscriber;
-import pinacolada.powers.PCLCombatStats;
 import pinacolada.utilities.PCLActions;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
-public class KyokoSakura_Ophelia extends PCLCard implements OnPurgeSubscriber
+public class KyokoSakura_Ophelia extends PCLCard
 {
     public static final PCLCardData DATA = Register(KyokoSakura_Ophelia.class)
             .SetSkill(0, CardRarity.SPECIAL, PCLCardTarget.None)
@@ -38,14 +34,6 @@ public class KyokoSakura_Ophelia extends PCLCard implements OnPurgeSubscriber
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        PCLCombatStats.onPurge.Subscribe(this);
-    }
-
-    @Override
     public void triggerOnExhaust()
     {
         super.triggerOnExhaust();
@@ -53,6 +41,10 @@ public class KyokoSakura_Ophelia extends PCLCard implements OnPurgeSubscriber
         PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
     }
 
+    @Override
+    public void triggerOnPurge() {
+        PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
+    }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
@@ -64,13 +56,5 @@ public class KyokoSakura_Ophelia extends PCLCard implements OnPurgeSubscriber
                 PCLActions.Bottom.ApplyBurning(TargetHelper.Enemies(), secondaryValue * count);
             }
         });
-    }
-
-    @Override
-    public void OnPurge(AbstractCard card, CardGroup source) {
-        if (card.uuid.equals(this.uuid)) {
-            PCLActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
-            PCLCombatStats.onPurge.Unsubscribe(this);
-        }
     }
 }

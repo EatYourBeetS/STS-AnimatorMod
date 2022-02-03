@@ -19,7 +19,7 @@ import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 import pinacolada.cards.base.PCLCard;
-import pinacolada.ui.GridCardSelectScreenPatch;
+import pinacolada.ui.GridCardSelectScreenHelper;
 import pinacolada.utilities.PCLJUtils;
 
 import java.lang.reflect.Field;
@@ -36,7 +36,7 @@ public class GridCardSelectScreenPatches
             Settings.HEIGHT * 0.5F,
             Settings.HEIGHT * 0.25F - 25.0F * Settings.scale
     };
-    public static ArrayList<AbstractCard> cardList = new ArrayList();
+    public static ArrayList<AbstractCard> cardList = new ArrayList<>();
     public static Field hoveredCardField;
 
     public static AbstractCard getHoveredCard() {
@@ -71,7 +71,7 @@ public class GridCardSelectScreenPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(GridCardSelectScreen __instance)
         {
-            if (GridCardSelectScreenPatch.CalculateScrollBounds(__instance))
+            if (GridCardSelectScreenHelper.CalculateScrollBounds(__instance))
             {
                 return SpireReturn.Return(null);
             }
@@ -88,7 +88,7 @@ public class GridCardSelectScreenPatches
         @SpirePostfixPatch
         public static void Postfix(GridCardSelectScreen __instance)
         {
-            GridCardSelectScreenPatch.Open(__instance);
+            GridCardSelectScreenHelper.Open(__instance);
         }
     }
 
@@ -98,7 +98,7 @@ public class GridCardSelectScreenPatches
         @SpirePrefixPatch
         public static SpireReturn Prefix(GridCardSelectScreen __instance)
         {
-            if (GridCardSelectScreenPatch.UpdateCardPositionAndHover(__instance))
+            if (GridCardSelectScreenHelper.UpdateCardPositionAndHover(__instance))
             {
                 return SpireReturn.Return(null);
             }
@@ -109,16 +109,17 @@ public class GridCardSelectScreenPatches
         }
     }
 
+    // TODO add patch for conditionals
     @SpirePatch(
             clz = GridCardSelectScreen.class,
             method = "update"
     )
-    public static class ConfirmUpgrade {
-        public ConfirmUpgrade() {
+    public static class GridUpdate {
+        public GridUpdate() {
         }
 
         @SpireInsertPatch(
-                locator = GridCardSelectScreenPatches.ConfirmUpgrade.Locator.class
+                locator = Locator1.class
         )
         public static void Insert(GridCardSelectScreen __instance) {
             AbstractCard hoveredCard = GridCardSelectScreenPatches.getHoveredCard();
@@ -129,8 +130,8 @@ public class GridCardSelectScreenPatches
 
         }
 
-        private static class Locator extends SpireInsertLocator {
-            private Locator() {
+        private static class Locator1 extends SpireInsertLocator {
+            private Locator1() {
             }
 
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
@@ -138,6 +139,32 @@ public class GridCardSelectScreenPatches
                 int[] found = LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
                 return new int[]{found[found.length - 1]};
             }
+        }
+
+        @SpireInsertPatch(
+                locator = Locator2.class
+        )
+        public static void Insert2(GridCardSelectScreen __instance) {
+            if (__instance.anyNumber) {
+                __instance.confirmButton.isDisabled = !GridCardSelectScreenHelper.IsConditionMet();
+            }
+        }
+
+        private static class Locator2 extends SpireInsertLocator {
+            private Locator2() {
+            }
+
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(GridSelectConfirmButton.class, "update");
+                int[] found = LineFinder.findAllInOrder(ctMethodToPatch, finalMatcher);
+                return new int[]{found[found.length - 1]};
+            }
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(GridCardSelectScreen __instance)
+        {
+            GridCardSelectScreenHelper.UpdateDynamicString();
         }
     }
 
@@ -276,6 +303,12 @@ public class GridCardSelectScreenPatches
             } else {
                 return SpireReturn.Continue();
             }
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(GridCardSelectScreen __instance, SpriteBatch sb)
+        {
+            GridCardSelectScreenHelper.RenderDynamicString(sb);
         }
     }
 

@@ -37,8 +37,7 @@ public class MisuzuKamio extends PCLCard implements OnStartOfTurnPostDrawSubscri
     protected void OnUpgrade()
     {
         super.OnUpgrade();
-        SetHaste(true);
-        SetExhaust(false);
+        SetAfterlife(true);
     }
 
     @Override

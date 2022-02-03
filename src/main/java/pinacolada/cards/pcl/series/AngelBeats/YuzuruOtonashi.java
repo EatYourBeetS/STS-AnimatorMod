@@ -16,18 +16,12 @@ public class YuzuruOtonashi extends PCLCard
         super(DATA);
 
         Initialize(0, 1, 2, 3);
-        SetUpgrade(0, 0, 0, 0);
+        SetUpgrade(0, 3, 0, 0);
 
         SetAffinity_Orange(1, 0, 1);
         SetAffinity_Light(1, 0, 0);
 
         SetProtagonist(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetHaste(true);
     }
 
     @Override
@@ -38,21 +32,18 @@ public class YuzuruOtonashi extends PCLCard
         .SetOptions(true, true, true)
         .AddCallback(cards ->
         {
-            for (AbstractCard card : cards)
+            for (AbstractCard c : cards)
             {
-                if (card.type == CardType.POWER)
-                {
-                    PCLActions.Bottom.GainInvocation(1, true);
-                }
-                else if (card.type == CardType.SKILL)
-                {
-                    PCLActions.Bottom.GainTemporaryHP(secondaryValue);
-                }
-                else if (PCLGameUtilities.IsHindrance(card))
-                {
-                    PCLActions.Bottom.AddAffinity(PCLAffinity.Orange, 2);
+                PCLActions.Bottom.GainTemporaryHP(secondaryValue);
+                if (c instanceof PCLCard && PCLGameUtilities.IsHindrance(c)) {
+                    ((PCLCard) c).affinities.Add(PCLAffinity.Orange, 1);
                 }
             }
         });
+    }
+
+    @Override
+    public void triggerOnPurge() {
+        PCLActions.Bottom.GainTemporaryHP(secondaryValue);
     }
 }

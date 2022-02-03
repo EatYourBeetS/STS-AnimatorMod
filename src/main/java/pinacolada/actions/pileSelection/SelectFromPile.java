@@ -13,7 +13,7 @@ import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.ListSelection;
 import pinacolada.resources.GR;
-import pinacolada.ui.GridCardSelectScreenPatch;
+import pinacolada.ui.GridCardSelectScreenHelper;
 import pinacolada.utilities.PCLGameUtilities;
 import pinacolada.utilities.PCLJUtils;
 
@@ -27,7 +27,9 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final CardGroup fakeHandGroup = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
     protected final CardGroup[] groups;
 
+    protected GenericCondition<ArrayList<AbstractCard>> condition;
     protected GenericCondition<AbstractCard> filter;
+    protected FuncT1<String, ArrayList<AbstractCard>> dynamicString;
     protected ListSelection<AbstractCard> origin;
     protected boolean hideTopPanel;
     protected boolean canPlayerCancel;
@@ -81,6 +83,12 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         return this;
     }
 
+    public SelectFromPile SetDynamicMessage(FuncT1<String, ArrayList<AbstractCard>> stringFunc) {
+        this.dynamicString = stringFunc;
+
+        return this;
+    }
+
     public SelectFromPile SetOptions(boolean isRandom, boolean anyNumber)
     {
         return SetOptions(isRandom ? CardSelection.Random : null, anyNumber);
@@ -116,6 +124,13 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         return this;
     }
 
+    public SelectFromPile SetCompletionRequirement(FuncT1<Boolean, ArrayList<AbstractCard>> condition)
+    {
+        this.condition = GenericCondition.FromT1(condition);
+
+        return this;
+    }
+
     @Override
     protected void FirstUpdate()
     {
@@ -124,7 +139,9 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             PCLGameUtilities.SetTopPanelVisible(false);
         }
 
-        GridCardSelectScreenPatch.Clear();
+        GridCardSelectScreenHelper.Clear(true);
+        GridCardSelectScreenHelper.SetCondition(condition);
+        GridCardSelectScreenHelper.SetDynamicLabel(dynamicString);
 
         for (CardGroup group : groups)
         {
@@ -144,9 +161,10 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                 for (AbstractCard c : temp.group)
                 {
                     player.hand.removeCard(c);
+                    c.stopGlowing();
                 }
 
-                GridCardSelectScreenPatch.AddGroup(fakeHandGroup);
+                GridCardSelectScreenHelper.AddGroup(fakeHandGroup);
             }
             else
             {
@@ -163,15 +181,15 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
                     }
                 }
 
-                GridCardSelectScreenPatch.AddGroup(temp);
+                GridCardSelectScreenHelper.AddGroup(temp);
             }
         }
 
-        CardGroup mergedGroup = GridCardSelectScreenPatch.GetCardGroup();
+        CardGroup mergedGroup = GridCardSelectScreenHelper.GetCardGroup();
         if (mergedGroup.isEmpty())
         {
             player.hand.group.addAll(fakeHandGroup.group);
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
             Complete();
             return;
         }
@@ -192,29 +210,29 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
 
             selected = true;
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
             Complete(selectedCards);
         }
         else
         {
+            if (canPlayerCancel)
+            {
+                // Setting canCancel to true does not ensure the cancel button will be shown...
+                AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
+            }
             if (anyNumber)
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, UpdateMessage());
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, dynamicString == null ? UpdateMessage() : "");
             }
             else
             {
-                if (canPlayerCancel)
-                {
-                    // Setting canCancel to true does not ensure the cancel button will be shown...
-                    AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
-                }
-                else if (amount > 1 && amount > mergedGroup.size())
+                if (!canPlayerCancel && amount > 1 && amount > mergedGroup.size())
                 {
                     AbstractDungeon.gridSelectScreen.selectedCards.addAll(mergedGroup.group);
                     return;
                 }
 
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), UpdateMessage(), forUpgrade, forTransform, canPlayerCancel, forPurge);
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), dynamicString == null ? UpdateMessage() : "", forUpgrade, forTransform, canPlayerCancel, forPurge);
             }
         }
     }
@@ -241,7 +259,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
             player.hand.group.addAll(fakeHandGroup.group);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            GridCardSelectScreenPatch.Clear();
+            GridCardSelectScreenHelper.Clear(true);
         }
 
         if (selected)

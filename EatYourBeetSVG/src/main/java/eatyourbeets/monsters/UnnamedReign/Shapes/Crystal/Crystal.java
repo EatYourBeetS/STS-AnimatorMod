@@ -38,8 +38,11 @@ public abstract class Crystal extends UnnamedShape
             case Frost:
                 return new FrostCrystal(tier, x, y);
 
+            case Ultimate:
+                return new UltimateCrystal(x, y, null);
+
             default:
-                return null;
+                throw new EnumConstantNotPresentException(MonsterElement.class, "element");
         }
     }
 }

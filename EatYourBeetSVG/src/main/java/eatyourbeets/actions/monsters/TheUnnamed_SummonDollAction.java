@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.MinionPower;
+import com.megacrit.cardcrawl.powers.SlowPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import eatyourbeets.actions.EYBAction;
@@ -101,7 +102,7 @@ public class TheUnnamed_SummonDollAction extends EYBAction
 
         if (ModHelper.isModEnabled(TimeDilation.ID))
         {
-            GameActions.Bottom.StackPower(new StrengthPower(monster, 0)).SkipIfZero(false);
+            GameActions.Bottom.StackPower(new SlowPower(monster, 0)).SkipIfZero(false);
         }
 
         GameActions.Bottom.ApplyPower(monster, monster, new MinionPower(monster));

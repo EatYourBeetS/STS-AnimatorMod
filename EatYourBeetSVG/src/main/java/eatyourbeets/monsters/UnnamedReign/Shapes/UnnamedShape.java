@@ -5,7 +5,7 @@ import eatyourbeets.resources.GR;
 
 public abstract class UnnamedShape extends EYBMonster
 {
-    protected final MonsterData_Shape data;
+    public final MonsterData_Shape data;
 
     public static String CreateFullID(MonsterShape shape, MonsterElement element, MonsterTier tier)
     {
@@ -17,6 +17,6 @@ public abstract class UnnamedShape extends EYBMonster
         super(new MonsterData_Shape(shape, element, tier), tier == MonsterTier.Ultimate ? EnemyType.ELITE : EnemyType.NORMAL, x, y);
 
         data = (MonsterData_Shape) super.data;
-        data.SetIdleAnimation(this, 0.5f);
+        data.SetIdleAnimation(this, 1f);
     }
 }

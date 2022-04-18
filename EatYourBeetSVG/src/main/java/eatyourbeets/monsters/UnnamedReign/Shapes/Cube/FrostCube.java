@@ -31,7 +31,7 @@ public class FrostCube extends Cube
         switch (data.tier)
         {
             case Small:
-                amount = 1;
+                amount = 2;
                 break;
 
             case Normal:

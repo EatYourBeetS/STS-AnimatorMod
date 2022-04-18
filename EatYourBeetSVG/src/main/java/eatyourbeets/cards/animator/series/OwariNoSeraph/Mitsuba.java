@@ -1,50 +1,49 @@
 package eatyourbeets.cards.animator.series.OwariNoSeraph;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
+import eatyourbeets.cards.base.modifiers.DamageModifiers;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsuba extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Mitsuba.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mitsuba.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Mitsuba()
     {
         super(DATA);
 
-        Initialize(7, 2, 2, 6);
-        SetUpgrade(3, 0, 0, 0);
+        Initialize(6, 2, 2);
+        SetUpgrade(2, 0, 1);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Red(1);
+        SetAffinity_Light(1);
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.Draw(magicNumber);
-    }
-
-    @Override
-    protected float ModifyBlock(AbstractMonster enemy, float amount)
-    {
-        if (enemy != null && enemy.currentHealth > player.currentHealth)
-        {
-            return super.ModifyBlock(enemy, amount + secondaryValue);
-        }
-
-        return super.ModifyBlock(enemy, amount);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        if (GameUtilities.InEliteRoom())
+        {
+            DamageModifiers.For(this).Add(magicNumber);
+            BlockModifiers.For(this).Add(magicNumber);
+        }
     }
 }

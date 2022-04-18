@@ -38,8 +38,11 @@ public abstract class Wisp extends UnnamedShape
             case Frost:
                 return new FrostWisp(tier, x, y);
 
+            case Ultimate:
+                return new UltimateWisp(x, y);
+
             default:
-                return null;
+                throw new EnumConstantNotPresentException(MonsterElement.class, "element");
         }
     }
 }

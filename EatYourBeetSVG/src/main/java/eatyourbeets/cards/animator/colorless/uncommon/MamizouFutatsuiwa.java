@@ -12,7 +12,10 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(MamizouFutatsuiwa.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
@@ -23,9 +26,9 @@ public class MamizouFutatsuiwa extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 3);
 
+        SetAffinity_Star(2);
+
         SetExhaust(true);
-        SetSynergy(Synergies.TouhouProject);
-        SetShapeshifter();
     }
 
     @Override
@@ -43,8 +46,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
         {
             if (shapeshifterPool.Size() == 0)
             {
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SHAPESHIFTER)));
-                shapeshifterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SHAPESHIFTER)));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(Affinity.Star) > 0));
+                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(Affinity.Star) > 0));
             }
 
             AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
@@ -56,25 +59,24 @@ public class MamizouFutatsuiwa extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.SelectFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .SetFilter(c -> c instanceof AnimatorCard && !c.hasTag(SHAPESHIFTER))
+        .SetFilter(c -> c instanceof AnimatorCard && !((AnimatorCard)c).affinities.HasStar())
         .AddCallback(cards ->
         {
             AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
             if (card != null)
             {
-                card.SetSynergy(Synergies.ANY);
-                card.SetShapeshifter();
+                card.affinities.Set(Affinity.Star, 2);
                 card.flash();
             }
         });

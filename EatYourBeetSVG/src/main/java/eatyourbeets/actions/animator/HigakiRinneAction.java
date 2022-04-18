@@ -1,337 +1,350 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageRandomEnemyAction;
 import com.megacrit.cardcrawl.actions.unique.BouncingFlaskAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.cards.tempCards.Shiv;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Lightning;
+import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.cardManipulation.RandomCardUpgrade;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.cards.animator.status.Status_Slimed;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.combatOnly.ShuffleEnemiesEffect;
 import eatyourbeets.effects.combatOnly.TalkEffect;
-import eatyourbeets.powers.animator.EnchantedArmorPower;
+import eatyourbeets.interfaces.delegates.ActionT0;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.deprecated.MarkOfPoisonPower;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
 public class HigakiRinneAction extends EYBAction
 {
-    private static final ArrayList<String> sounds = new ArrayList<>();
+    private static final RandomizedList<String> sounds = new RandomizedList<>();
+    private final WeightedList<ActionT0> actions = new WeightedList<>();
     private final HigakiRinne higakiRinne;
-    private int roll;
 
-    static
+    public static String GetRandomSFX()
     {
-        sounds.add("VO_AWAKENEDONE_3");
-        sounds.add("VO_GIANTHEAD_1B");
-        sounds.add("VO_GREMLINANGRY_1A");
-        sounds.add("VO_GREMLINCALM_2A");
-        sounds.add("VO_GREMLINFAT_2A");
-        sounds.add("VO_GREMLINNOB_1B");
-        sounds.add("VO_HEALER_1A");
-        sounds.add("VO_MERCENARY_1B");
-        sounds.add("VO_MERCHANT_MB");
-        sounds.add("VO_SLAVERBLUE_2A");
-        sounds.add("THUNDERCLAP");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("BELL");
-        sounds.add("NECRONOMICON");
-        sounds.add("INTIMIDATE");
+        if (sounds.Size() < 6)
+        {
+            sounds.Add(SFX.VO_AWAKENEDONE_3);
+            sounds.Add(SFX.VO_GIANTHEAD_1B);
+            sounds.Add(SFX.VO_GREMLINANGRY_1A);
+            sounds.Add(SFX.VO_GREMLINCALM_2A);
+            sounds.Add(SFX.VO_GREMLINFAT_2A);
+            sounds.Add(SFX.VO_GREMLINNOB_1B);
+            sounds.Add(SFX.VO_HEALER_1A);
+            sounds.Add(SFX.VO_MERCENARY_1B);
+            sounds.Add(SFX.VO_MERCHANT_MB);
+            sounds.Add(SFX.VO_SLAVERBLUE_2A);
+            sounds.Add(SFX.THUNDERCLAP);
+            sounds.Add(SFX.BELL);
+            sounds.Add(SFX.ENEMY_TURN);
+            sounds.Add(SFX.DEATH_STINGER);
+            sounds.Add(SFX.BOSS_VICTORY_STINGER);
+            sounds.Add(SFX.TINGSHA);
+            sounds.Add(SFX.NECRONOMICON);
+            sounds.Add(SFX.INTIMIDATE);
+        }
+
+        return sounds.RetrieveUnseeded(true);
     }
 
-    public HigakiRinneAction(HigakiRinne higakiRinne)
+    public HigakiRinneAction(HigakiRinne higakiRinne, int amount)
     {
         super(ActionType.SPECIAL, Settings.ACTION_DUR_XFAST);
 
         this.higakiRinne = higakiRinne;
 
-        Initialize(1);
-    }
-
-    protected boolean tryActivate(int chances)
-    {
-        return (roll -= chances) <= 0;
+        Initialize(amount);
     }
 
     @Override
     protected void FirstUpdate()
     {
-        roll = rng.random(188);
+        CreateActions();
 
-        if (tryActivate(3))
+        int i = 0;
+        while (actions.Size() > 0 && i++ < amount)
         {
-            GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, player.hand)
-            .SetOptions(false, false)
-            .AddCallback(cards ->
-            {
-                if (cards.size() > 0)
-                {
-                    AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-
-                    switch (cards.get(0).type)
-                    {
-                        case ATTACK:
-                            if (m != null)
-                            {
-                                GameActions.Bottom.ApplyVulnerable(player, m, 1);
-                            }
-                            break;
-
-                        case SKILL:
-                            if (m != null)
-                            {
-                                GameActions.Bottom.ApplyWeak(player, m, 1);
-                            }
-                            break;
-
-                        case POWER:
-                            GameActions.Bottom.GainRandomStat(2);
-                            break;
-
-                        case STATUS:
-                            if (m != null)
-                            {
-                                GameActions.Bottom.ApplyBurning(player, m, 3);
-                            }
-                            break;
-
-                        case CURSE:
-                            if (m != null)
-                            {
-                                GameActions.Bottom.ApplyConstricted(player, m, 3);
-                            }
-                            break;
-                    }
-                }
-            });
+            actions.Retrieve(rng).Invoke();
         }
-        else if (tryActivate(6)) // 6
+
+        Complete();
+    }
+
+    private void CreateActions()
+    {
+        // Buffs
+        actions.Add(this::GainBlock, 5);
+        actions.Add(this::GainBlock3Times, 4);
+        actions.Add(this::GainRandomStat, 3);
+        actions.Add(this::GainRandomBuff, 2);
+        actions.Add(this::GainTempHP, 2);
+        actions.Add(this::GainArtifact, 1);
+        actions.Add(this::GainEnergy, 1);
+
+        // Debuffs
+        actions.Add(this::DamageRandomEnemy, 3);
+        actions.Add(this::ApplyRandomDebuff, 3);
+        actions.Add(this::ApplyMarkOfPoison, 2);
+        actions.Add(this::BouncingFlask, 2);
+
+        // Orbs
+        actions.Add(this::ChannelRandomOrb, 2);
+        actions.Add(this::GainOrbSlot, 2);
+
+        // Cards
+        actions.Add(this::ObtainStatusCard, 4);
+        actions.Add(this::UpgradeRandomCard, 3);
+        actions.Add(this::ObtainThrowingKnife, 3);
+        actions.Add(this::Motivate, 2);
+        actions.Add(this::Draw, 2);
+        actions.Add(this::ObtainHigakiRinne, 1);
+        actions.Add(this::ObtainRandomCard, 1);
+        actions.Add(this::ObtainRandomCardOfAnyColor, 1);
+
+        // Special
+        actions.Add(() -> {}, 4);
+        actions.Add(this::PlayRandomSounds, 4);
+        actions.Add(this::SilentTalk, 4);
+        actions.Add(this::SelectCard, 3);
+        actions.Add(this::ShuffleEnemies, 2);
+        actions.Add(this::EnqueueNewActions, 1);
+    }
+
+    private void ShuffleEnemies()
+    {
+        for (AbstractGameEffect effect : AbstractDungeon.effectList)
         {
-            for (int i = 0; i < 3; i++)
+            if (effect instanceof ShuffleEnemiesEffect)
             {
-                GameActions.Bottom.GainBlock(2);
+                GameActions.Bottom.StackPower(new PlatedArmorPower(player, 2));
+                Complete();
+                return;
             }
         }
-        else if (tryActivate(6)) // 12
+
+        for (AbstractGameEffect effect : AbstractDungeon.effectsQueue)
         {
-            for (int i = 0; i < 3; i++)
+            if (effect instanceof ShuffleEnemiesEffect)
             {
-                GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(player, 3, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.POISON));
+                GameActions.Bottom.StackPower(new PlatedArmorPower(player, 2));
+                Complete();
+                return;
             }
         }
-        else if (tryActivate(6)) // 18
+
+        GameEffects.Queue.Add(new ShuffleEnemiesEffect());
+    }
+
+    private void EnqueueNewActions()
+    {
+        GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne, 3));
+    }
+
+    private void ApplyMarkOfPoison()
+    {
+        final AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+        if (m != null)
         {
-            GameActions.Bottom.ChannelRandomOrbs(1);
+            GameActions.Bottom.StackPower(player, new MarkOfPoisonPower(m, player, 2));
         }
-        else if (tryActivate(6)) // 24
+    }
+
+    private void Motivate()
+    {
+        GameActions.Bottom.Motivate(1);
+    }
+
+    private void GainRandomBuff()
+    {
+        switch (rng.random(5))
         {
-            GameActions.Bottom.Draw(1);
+            case 0: GameActions.Bottom.GainPlatedArmor(1); break;
+            case 1: GameActions.Bottom.GainMetallicize(1); break;
+            case 2: GameActions.Bottom.GainInspiration(1); break;
+            case 3: GameActions.Bottom.GainBlur(1); break;
+            case 4: GameActions.Bottom.GainMalleable(2); break;
+            case 5: GameActions.Bottom.GainTemporaryThorns(9); break;
         }
-        else if (tryActivate(8)) // 32
+    }
+
+    private void ApplyRandomDebuff()
+    {
+        switch (rng.random(5))
         {
-            GameActions.Bottom.Add(new RandomCardUpgrade());
+            case 0: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Poison, 3); break;
+            case 1: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Weak, 1); break;
+            case 2: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Vulnerable, 1); break;
+            case 3: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.LockOn, 2); break;
+            case 4: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Burning, 3); break;
+            case 5: GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(), PowerHelper.Constricted, 2); break;
         }
-        else if (tryActivate(8)) // 40
+    }
+
+    private void GainOrbSlot()
+    {
+        GameActions.Bottom.GainOrbSlots(1);
+    }
+
+    private void GainBlock3Times()
+    {
+        GameActions.Bottom.GainBlock(1);
+        GameActions.Bottom.GainBlock(1);
+        GameActions.Bottom.GainBlock(1);
+    }
+
+    private void ObtainRandomCardOfAnyColor()
+    {
+        final ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
+        final String key = GameUtilities.GetRandomElement(keys);
+        final AbstractCard card = CardLibrary.cards.get(key).makeCopy();
+        if (GameUtilities.IsObtainableInCombat(card))
         {
-            GameActions.Bottom.GainIntellect(1);
+            GameActions.Bottom.MakeCardInHand(card);
         }
-        else if (tryActivate(6)) // 46
+    }
+
+    private void SilentTalk()
+    {
+        GameEffects.Queue.Add(new TalkEffect(player.hb.cX + player.dialogX, player.hb.cY + player.dialogY, "", true));
+    }
+
+    private void PlayRandomSounds()
+    {
+        GameActions.Bottom.SFX(GetRandomSFX(), 0.5f, 1.5f);
+        GameActions.Bottom.SFX(GetRandomSFX(), 0.5f, 1.5f);
+        GameActions.Bottom.SFX(GetRandomSFX(), 0.5f, 1.5f);
+    }
+
+    private void ObtainRandomCard()
+    {
+        final RandomizedList<AbstractCard> cards = GameUtilities.GetCardPoolInCombat(null);
+        if (cards.Size() > 0)
         {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+            GameActions.Bottom.MakeCardInHand(cards.Retrieve(rng).makeCopy());
+        }
+    }
+
+    private void ObtainStatusCard()
+    {
+        GameActions.Bottom.MakeCardInHand(new Status_Slimed());
+    }
+
+    private void ObtainHigakiRinne()
+    {
+        GameActions.Bottom.MakeCardInHand(new HigakiRinne());
+    }
+
+    private void ObtainThrowingKnife()
+    {
+        GameActions.Bottom.MakeCardInHand(ThrowingKnife.GetRandomCardInBattle());
+    }
+
+    private void GainTempHP()
+    {
+        GameActions.Bottom.GainTemporaryHP(3);
+    }
+
+    private void GainArtifact()
+    {
+        GameActions.Bottom.GainArtifact(1);
+    }
+
+    private void GainEnergy()
+    {
+        GameActions.Bottom.GainEnergy(1);
+    }
+
+    private void BouncingFlask()
+    {
+        final AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+        if (m != null)
+        {
             GameActions.Bottom.Add(new BouncingFlaskAction(m, 2, 2));
         }
-        else if (tryActivate(6)) // 52
+    }
+
+    private void GainRandomStat()
+    {
+        GameActions.Bottom.GainRandomAffinityPower(1, false);
+    }
+
+    private void UpgradeRandomCard()
+    {
+        GameActions.Bottom.Add(new RandomCardUpgrade());
+    }
+
+    private void Draw()
+    {
+        GameActions.Bottom.Draw(1);
+    }
+
+    private void ChannelRandomOrb()
+    {
+        GameActions.Bottom.ChannelRandomOrb(1);
+    }
+
+    private void DamageRandomEnemy()
+    {
+        for (int i = 0; i < 3; i++)
         {
-            GameActions.Bottom.GainEnergy(1);
+            GameActions.Bottom.Add(new DamageRandomEnemyAction(new DamageInfo(player, 3, DamageInfo.DamageType.THORNS), AttackEffects.POISON));
         }
-        else if (tryActivate(6)) // 58
+    }
+
+    private void GainBlock()
+    {
+        for (int i = 0; i < 3; i++)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.GainBlock(2);
         }
-        else if (tryActivate(6)) // 64
+    }
+
+    private void SelectCard()
+    {
+        GameActions.Bottom.SelectFromPile(higakiRinne.name, 1, player.hand)
+        .SetOptions(false, false)
+        .AddCallback(cards ->
         {
-            GameActions.Bottom.GainForce(1);
-        }
-        else if (tryActivate(4)) // 68
-        {
-            GameActions.Bottom.GainArtifact(1);
-        }
-        else if (tryActivate(6)) // 74
-        {
-            GameActions.Bottom.GainTemporaryHP(2);
-        }
-        else if (tryActivate(8)) // 82
-        {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-            if (m != null)
+            for (AbstractCard c : cards)
             {
-                GameActions.Bottom.ApplyVulnerable(player, m, 1);
-            }
-        }
-        else if (tryActivate(8)) // 90
-        {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-            if (m != null)
-            {
-                GameActions.Bottom.ApplyWeak(player, m, 1);
-            }
-        }
-        else if (tryActivate(8)) // 98
-        {
-            GameActions.Bottom.MakeCardInHand(new Shiv());
-        }
-        else if (tryActivate(4)) // 102
-        {
-            GameActions.Bottom.MakeCardInHand(new Madness());
-        }
-        else if (tryActivate(6)) // 108
-        {
-            GameActions.Bottom.MakeCardInHand(new Slimed());
-        }
-        else if (tryActivate(3)) // 111
-        {
-            AbstractCard card = JUtils.GetRandomElement(Synergies.GetNonColorlessCard());
-            if (card != null && !card.tags.contains(AbstractCard.CardTags.HEALING))
-            {
-                GameActions.Bottom.MakeCardInHand(card.makeCopy());
-            }
-        }
-        else if (tryActivate(7)) // 118
-        {
-            GameActions.Bottom.SFX(JUtils.GetRandomElement(sounds));
-        }
-        else if (tryActivate(6)) // 124
-        {
-            GameEffects.Queue.Add(new TalkEffect(player.hb.cX + player.dialogX, player.hb.cY + player.dialogY, "", true));
-        }
-        else if (tryActivate(2)) // 126
-        {
-            ArrayList<String> keys = new ArrayList<>(CardLibrary.cards.keySet());
-            String key = JUtils.GetRandomElement(keys);
-            AbstractCard card = CardLibrary.cards.get(key).makeCopy();
-            if (!card.tags.contains(AbstractCard.CardTags.HEALING))
-            {
-                GameActions.Bottom.MakeCardInHand(card);
-            }
-        }
-        else if (tryActivate(6)) // 132
-        {
-            for (AbstractCreature m : GameUtilities.GetEnemies(true))
-            {
-                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.BLUNT_HEAVY);
-            }
-        }
-        else if (tryActivate(6)) // 138
-        {
-            for (AbstractCreature m : GameUtilities.GetEnemies(true))
-            {
-                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.SLASH_HEAVY);
-            }
-        }
-        else if (tryActivate(6)) // 144
-        {
-            for (AbstractCreature m : GameUtilities.GetEnemies(true))
-            {
-                GameActions.Bottom.DealDamage(player, m, 1, DamageInfo.DamageType.THORNS, AttackEffect.POISON);
-            }
-        }
-        else if (tryActivate(6)) // 150
-        {
-            GameActions.Bottom.GainBlock(1);
-            GameActions.Bottom.GainBlock(1);
-            GameActions.Bottom.GainBlock(1);
-        }
-        else if (tryActivate(6)) // 156
-        {
-            GameActions.Bottom.GainOrbSlots(1);
-            GameActions.Bottom.ChannelOrb(new Lightning());
-        }
-        else if (tryActivate(4)) // 160
-        {
-            GameActions.Bottom.GainTemporaryHP(5);
-        }
-        else if (tryActivate(3)) // 163
-        {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-            if (m != null)
-            {
-                GameActions.Bottom.ApplyConstricted(player, m, 3);
-            }
-        }
-        else if (tryActivate(3)) // 166
-        {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-            if (m != null)
-            {
-                GameActions.Bottom.ApplyBurning(player, m, 3);
-            }
-        }
-        else if (tryActivate(3)) // 169
-        {
-            GameActions.Bottom.GainPlatedArmor(1);
-        }
-        else if (tryActivate(3)) // 172
-        {
-            GameActions.Bottom.Motivate(1);
-        }
-        else if (tryActivate(3)) // 175
-        {
-            AbstractMonster m = GameUtilities.GetRandomEnemy(true);
-            if (m != null)
-            {
-                GameActions.Bottom.StackPower(player, new MarkOfPoisonPower(m, player, 2));
-            }
-        }
-        else if (tryActivate(3)) // 178
-        {
-            GameActions.Bottom.Draw(3);
-        }
-        else if (tryActivate(2)) // 180
-        {
-            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
-            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
-            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
-        }
-        else if (tryActivate(5)) // 185
-        {
-            for (AbstractGameEffect effect : AbstractDungeon.effectList)
-            {
-                if (effect instanceof ShuffleEnemiesEffect)
+                final AbstractMonster m = GameUtilities.GetRandomEnemy(true);
+                switch (c.type)
                 {
-                    GameActions.Bottom.StackPower(new EnchantedArmorPower(player, 1));
-                    Complete();
-                    return;
+                    case ATTACK:
+                        GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1);
+                        break;
+
+                    case SKILL:
+                        GameActions.Bottom.ApplyWeak(TargetHelper.RandomEnemy(), 1);
+                        break;
+
+                    case POWER:
+                        GameActions.Bottom.GainRandomAffinityPower(1, true);
+                        GameActions.Bottom.GainRandomAffinityPower(1, true);
+                        GameActions.Bottom.GainRandomAffinityPower(1, true);
+                        break;
+
+                    case STATUS:
+                        GameActions.Bottom.ApplyBurning(TargetHelper.RandomEnemy(), 3);
+                        break;
+
+                    case CURSE:
+                        GameActions.Bottom.ApplyConstricted(TargetHelper.RandomEnemy(), 3);
+                        break;
                 }
             }
-
-            for (AbstractGameEffect effect : AbstractDungeon.effectsQueue)
-            {
-                if (effect instanceof ShuffleEnemiesEffect)
-                {
-                    GameActions.Bottom.StackPower(new EnchantedArmorPower(player, 1));
-                    Complete();
-                    return;
-                }
-            }
-
-            GameEffects.Queue.Add(new ShuffleEnemiesEffect());
-        }
+        });
     }
 }

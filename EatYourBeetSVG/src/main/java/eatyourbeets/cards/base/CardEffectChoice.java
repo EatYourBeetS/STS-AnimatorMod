@@ -7,23 +7,29 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.pileSelection.SelectFromPile;
 import eatyourbeets.interfaces.delegates.ActionT3;
-import eatyourbeets.misc.GenericEffects.GenericEffect;
+import eatyourbeets.cards.effects.GenericEffects.GenericEffect;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
 public class CardEffectChoice
 {
     protected final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-    protected final ArrayList<AnimatorCardBuilder> effects = new ArrayList<>();
-    protected AnimatorCard source;
+    protected final ArrayList<DynamicCardBuilder> effects = new ArrayList<>();
+    protected EYBCard source;
 
-    public void Initialize(AnimatorCard source)
+    public boolean ShouldInitialize()
+    {
+        return source == null;
+    }
+
+    public void Initialize(EYBCard source)
     {
         Initialize(source, false);
     }
 
-    public void Initialize(AnimatorCard source, boolean clearEffects)
+    public void Initialize(EYBCard source, boolean clearEffects)
     {
         this.source = source;
 
@@ -34,9 +40,9 @@ public class CardEffectChoice
         }
     }
 
-    public boolean TryInitialize(AnimatorCard source)
+    public boolean TryInitialize(EYBCard source)
     {
-        if (this.source == null)
+        if (ShouldInitialize())
         {
             Initialize(source);
             return true;
@@ -45,47 +51,58 @@ public class CardEffectChoice
         return false;
     }
 
-    public CardGroup Build(boolean forceRebuild)
+    public CardGroup Build(boolean forceRebuild, AbstractMonster m)
     {
         if (group.isEmpty() || forceRebuild)
         {
             group.clear();
 
-            for (AnimatorCardBuilder b : effects)
+            for (DynamicCardBuilder b : effects)
             {
-                group.addToTop(b.Build());
+                final EYBCard c = b.Build();
+                if (GameUtilities.IsPlayable(c, m))
+                {
+                    group.addToTop(c);
+                }
             }
         }
 
         return group;
     }
 
-    public AnimatorCardBuilder AddEffect(String text, ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse)
+    public DynamicCardBuilder AddEffect(String text, ActionT3<EYBCard, AbstractPlayer, AbstractMonster> onUse)
     {
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(source, text, false).SetOnUse(onUse);
+        final DynamicCardBuilder builder = ((source instanceof AnimatorCard) ?
+        new AnimatorCardBuilder(source.cardID, source, text, false):
+        new UnnamedCardBuilder(source.cardID, source, text, false))
+        .SetOnUse(onUse);
         effects.add(builder);
         return builder;
     }
 
-    public AnimatorCardBuilder AddEffect(GenericEffect effect)
+    public DynamicCardBuilder AddEffect(GenericEffect effect)
     {
-        AnimatorCardBuilder builder = new AnimatorCardBuilder(source, effect.GetText(), false).SetOnUse(effect::Use);
+        final DynamicCardBuilder builder = ((source instanceof AnimatorCard) ?
+        new AnimatorCardBuilder(source.cardID, source, effect.GetText(), false):
+        new UnnamedCardBuilder(source.cardID, source, effect.GetText(), false))
+        .CanUse(effect::CanUse).SetOnUse(effect::Use);
         if (effect.id != null)
         {
             builder.SetID(effect.id);
         }
+        effect.OnCreateBuilder(builder);
         effects.add(builder);
         return builder;
     }
 
     public SelectFromPile Select(int amount, AbstractMonster m)
     {
-        return Select(GameActions.Bottom, Build(false), amount, m);
+        return Select(GameActions.Bottom, Build(false, m), amount, m);
     }
 
     public SelectFromPile Select(GameActions gameActions, int amount, AbstractMonster m)
     {
-        return Select(gameActions, Build(false), amount, m);
+        return Select(gameActions, Build(false, m), amount, m);
     }
 
     public SelectFromPile Select(GameActions gameActions, CardGroup group, int amount, AbstractMonster m)

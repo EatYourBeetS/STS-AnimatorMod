@@ -1,24 +1,35 @@
 package eatyourbeets.relics;
 
 import basemod.abstracts.CustomRelic;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class EYBRelic extends CustomRelic
 {
-    protected static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
+    private static final FieldInfo<Float> _offsetX = JUtils.GetField("offsetX", AbstractRelic.class);
 
     public static AbstractPlayer player;
     public static Random rng;
+
+    public EYBCardTooltip mainTooltip;
+    public ArrayList<EYBCardTooltip> tips;
 
     public EYBRelic(String id, String imageID, RelicTier tier, LandingSound sfx)
     {
@@ -30,10 +41,44 @@ public abstract class EYBRelic extends CustomRelic
         this(id, id, tier, sfx);
     }
 
+    public TextureAtlas.AtlasRegion GetPowerIcon()
+    {
+        final Texture texture = img;
+        final int h = texture.getHeight();
+        final int w = texture.getWidth();
+        final int section = h / 2;
+        return new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), (h / 2) - (section / 2), section, section);
+    }
+
+    public final void updateDescription()
+    {
+        updateDescription(false);
+    }
+
+    @Override
+    public final void updateDescription(AbstractPlayer.PlayerClass c)
+    {
+        updateDescription(false);
+    }
+
+    public final void updateDescription(boolean initializeTips)
+    {
+        this.description = getUpdatedDescription();
+
+        if (initializeTips)
+        {
+            initializeTips();
+        }
+        else
+        {
+            this.mainTooltip.description = description;
+        }
+    }
+
     @Override
     public String getUpdatedDescription()
     {
-        return DESCRIPTIONS[0];
+        return FormatDescription(0, counter);
     }
 
     @Override
@@ -50,14 +95,38 @@ public abstract class EYBRelic extends CustomRelic
         }
     }
 
-    protected String FormatDescription(Object... args)
+    @Override
+    public void renderCounter(SpriteBatch sb, boolean inTopPanel)
     {
-        return JUtils.Format(DESCRIPTIONS[0], args);
+        if (this.counter >= 0)
+        {
+            final String text = GetCounterString();
+            if (inTopPanel)
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                        _offsetX.Get(null) + this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+            else
+            {
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.topPanelInfoFont, text,
+                        this.currentX + 30.0F * Settings.scale, this.currentY - 7.0F * Settings.scale, Color.WHITE);
+            }
+        }
+    }
+
+    protected String FormatDescription(int index, Object... args)
+    {
+        return JUtils.Format(DESCRIPTIONS[index], args);
     }
 
     protected void DisplayAboveCreature(AbstractCreature creature)
     {
         GameActions.Top.Add(new RelicAboveCreatureAction(creature, this));
+    }
+
+    protected String GetCounterString()
+    {
+        return String.valueOf(counter);
     }
 
     public boolean IsEnabled()
@@ -86,11 +155,31 @@ public abstract class EYBRelic extends CustomRelic
     }
 
     @Override
+    public void renderBossTip(SpriteBatch sb)
+    {
+        EYBCardTooltip.QueueTooltips(tips, Settings.WIDTH * 0.63F, Settings.HEIGHT * 0.63F, false);
+    }
+
+    @Override
+    public void renderTip(SpriteBatch sb)
+    {
+        EYBCardTooltip.QueueTooltips(this);
+    }
+
+    @Override
     public void atPreBattle()
     {
         super.atPreBattle();
 
-        Subscribe();
+        ActivateBattleEffect();
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        DeactivateBattleEffect();
     }
 
     @Override
@@ -98,7 +187,10 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onEquip();
 
-        Subscribe();
+        if (GameUtilities.InBattle(true))
+        {
+            ActivateBattleEffect();
+        }
     }
 
     @Override
@@ -106,15 +198,71 @@ public abstract class EYBRelic extends CustomRelic
     {
         super.onUnequip();
 
-        Unsubscribe();
+        if (GameUtilities.InBattle(true))
+        {
+            DeactivateBattleEffect();
+        }
     }
 
-    protected void Subscribe()
+    @Override
+    protected void initializeTips()
+    {
+        if (tips == null)
+        {
+            tips = new ArrayList<>();
+        }
+        else
+        {
+            tips.clear();
+        }
+
+        mainTooltip = new EYBCardTooltip(name, description);
+        tips.add(mainTooltip);
+
+        final Scanner desc = new Scanner(this.description);
+        String s;
+        boolean alreadyExists;
+        do
+        {
+            if (!desc.hasNext())
+            {
+                desc.close();
+                return;
+            }
+
+            s = desc.next();
+            if (s.charAt(0) == '#')
+            {
+                s = s.substring(2);
+            }
+
+            s = s.replace(',', ' ');
+            s = s.replace('.', ' ');
+
+            if (s.length() > 4)
+            {
+                s = s.replace('[', ' ');
+                s = s.replace(']', ' ');
+            }
+
+            s = s.trim();
+            s = s.toLowerCase();
+
+            EYBCardTooltip tip = CardTooltips.FindByName(s);
+            if (tip != null && !tips.contains(tip))
+            {
+                tips.add(tip);
+            }
+        }
+        while (true);
+    }
+
+    protected void ActivateBattleEffect()
     {
 
     }
 
-    protected void Unsubscribe()
+    protected void DeactivateBattleEffect()
     {
 
     }

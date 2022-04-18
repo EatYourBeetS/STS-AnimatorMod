@@ -1,0 +1,11 @@
+
+{
+	"unnamed:UnnamedDollOrb":
+	{
+		"NAME": "Unnamed Doll",
+		"DESCRIPTION":
+		[
+			"#yAttack: Damages a random enemy, prioritizing enemies with #yDebuffs. NL #yDefend: Grants [Block], receives all incoming unblocked attack damage. NL #yOn #yDeath: Allies gain #b1 [Strength]."
+		]
+	}
+}

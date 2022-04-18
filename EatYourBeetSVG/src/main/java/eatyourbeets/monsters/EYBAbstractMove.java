@@ -1,7 +1,6 @@
 package eatyourbeets.monsters;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,6 +8,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.autoTarget.ApplyPowerAuto;
+import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT2;
@@ -50,7 +50,8 @@ public abstract class EYBAbstractMove
     public AbstractMonster owner;
     public DamageInfo damageInfo;
     public boolean disabled;
-    public int damageMultiplier;
+    public boolean skipNormalAction;
+    public int attacks;
     public boolean shieldAll;
     public int uses = -1;
     public Object data;
@@ -71,7 +72,7 @@ public abstract class EYBAbstractMove
 
     public boolean CanUseFallback(Byte previousMove)
     {
-        return !disabled && previousMove != id && uses != 0;
+        return !disabled && (previousMove == null || id != previousMove) && uses != 0;
     }
 
     public boolean CanUse(Byte previousMove)
@@ -86,7 +87,10 @@ public abstract class EYBAbstractMove
             uses -= 1;
         }
 
-        QueueActions(target);
+        if (!skipNormalAction)
+        {
+            QueueActions(target);
+        }
 
         if (onUse != null)
         {
@@ -143,18 +147,18 @@ public abstract class EYBAbstractMove
             {
                 attackEffect = AbstractGameAction.AttackEffect.BLUNT_HEAVY;
             }
-            if (damageMultiplier < 1)
+            if (attacks < 1)
             {
-                damageMultiplier = 1;
+                attacks = 1;
             }
 
             UseAnimation(attackAnimation);
             damageInfo.base = damage.Calculate();
             damageInfo.applyPowers(owner, target);
 
-            for (int i = 0; i < damageMultiplier; i++)
+            for (int i = 0; i < attacks; i++)
             {
-                GameActions.Bottom.Add(new DamageAction(target, damageInfo, attackEffect));
+                GameActions.Bottom.Add(new DealDamage(target, damageInfo, attackEffect));
             }
         }
 
@@ -162,17 +166,16 @@ public abstract class EYBAbstractMove
         {
             int amount = template.amount != null ? template.amount : misc.Calculate();
             TargetHelper helper = template.target != null ? template.target : targetHelper;
-
             GameActions.Bottom.Add(new ApplyPowerAuto(helper, template.power, amount));
         }
     }
 
-    public void Select()
+    public void Select(boolean refreshIntent)
     {
         if (damageInfo != null)
         {
             damageInfo.base = damage.Calculate();
-            owner.setMove(name, id, intent, damageInfo.base, damageMultiplier, damageMultiplier > 1);
+            owner.setMove(name, id, intent, damageInfo.base, attacks, attacks > 1);
         }
         else
         {
@@ -182,6 +185,11 @@ public abstract class EYBAbstractMove
         if (onSelect != null)
         {
             onSelect.Invoke(this);
+        }
+
+        if (refreshIntent)
+        {
+            owner.createIntent();
         }
     }
 
@@ -286,18 +294,18 @@ public abstract class EYBAbstractMove
         return this;
     }
 
-    public EYBAbstractMove SetDamage(int damage, int multiplier)
+    public EYBAbstractMove SetDamage(int damage, int attacks)
     {
         this.damage = new MoveAttribute(damage);
         this.damageInfo = new DamageInfo(owner, damage);
-        this.damageMultiplier = multiplier;
+        this.attacks = attacks;
 
         return this;
     }
 
-    public EYBAbstractMove SetDamageMultiplier(int multiplier)
+    public EYBAbstractMove SetNumberOfAttacks(int attacks)
     {
-        this.damageMultiplier = multiplier;
+        this.attacks = attacks;
 
         return this;
     }
@@ -348,6 +356,13 @@ public abstract class EYBAbstractMove
     public EYBAbstractMove SetUses(int uses)
     {
         this.uses = uses;
+
+        return this;
+    }
+
+    public EYBAbstractMove SkipNormalAction(boolean skip)
+    {
+        this.skipNormalAction = skip;
 
         return this;
     }

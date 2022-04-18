@@ -1,64 +1,65 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.special.AcuraTooru_Dragoon;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraTooru extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AcuraTooru.class).SetAttack(2, CardRarity.UNCOMMON);
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, false);
-        }
-    }
+    public static final EYBCardData DATA = Register(AcuraTooru.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeries(CardSeries.HitsugiNoChaika)
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.HitsugiNoChaika_Tooru(6, Fredrika.DATA, AcuraTooru_Dragoon.DATA));
+                data.AddPreview(new AcuraTooru_Dragoon(), true);
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, false);
+                }
+            });
 
     public AcuraTooru()
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 2);
+        Initialize(0, 5, 0, 1);
         SetUpgrade(0, 0, 0, 1);
-        SetScaling(0, 1, 0);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(2);
+        SetAffinity_Red(1);
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        return super.GetDamageInfo().AddMultiplier(2);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.GainBlock(magicNumber);
-        GameActions.Bottom.GainAgility(1);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
 
-        if (isSynergizing)
+        if (info.IsSynergizing && info.TryActivateLimited())
         {
-            GameActions.Bottom.GainBlock(magicNumber);
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
         }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.Callback(() ->
+        {
+            for (AbstractCard c : player.hand.group)
+            {
+                if (ThrowingKnife.DATA.IsCard(c) && c.canUpgrade())
+                {
+                    c.upgrade();
+                    c.flash();
+                }
+            }
+        });
     }
 }

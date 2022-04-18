@@ -48,7 +48,7 @@ public abstract class EYBMonsterData
 
     public void SetIdleAnimation(EYBMonster monster, float timeScale)
     {
-        SetAnimation(monster, "Idle", 1);
+        SetAnimation(monster, "Idle", timeScale);
     }
 
     public void SetAnimation(EYBMonster monster, String name)

@@ -2,20 +2,20 @@ package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.IntellectPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class IntellectStance extends EYBStance
 {
+    public static final Affinity AFFINITY = IntellectPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(IntellectStance.class);
-    public static final int STAT_GAIN_AMOUNT = 2;
-    public static final int STAT_LOSE_AMOUNT = 1;
-    public static final int DAMAGE_AMOUNT = 7;
+    public static final int STAT_GAIN_AMOUNT = 1;
 
     public static boolean IsActive()
     {
@@ -42,13 +42,11 @@ public class IntellectStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainIntellect(1, true);
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
         }
     }
 
@@ -60,15 +58,21 @@ public class IntellectStance extends EYBStance
         if (TryApplyStance(null))
         {
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
         }
+    }
+
+    @Override
+    public void atStartOfTurn()
+    {
+        super.atStartOfTurn();
+
+        GameActions.Bottom.TriggerOrbPassive(1);
     }
 
     @Override
     public void onRefreshStance()
     {
-        IntellectPower.PreserveOnce();
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override
@@ -92,6 +96,6 @@ public class IntellectStance extends EYBStance
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, DAMAGE_AMOUNT);
+        description = FormatDescription(STAT_GAIN_AMOUNT);
     }
 }

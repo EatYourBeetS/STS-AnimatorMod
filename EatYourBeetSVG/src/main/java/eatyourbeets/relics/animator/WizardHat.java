@@ -1,14 +1,17 @@
 package eatyourbeets.relics.animator;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -16,8 +19,9 @@ public class WizardHat extends AnimatorRelic
 {
     public static final String ID = CreateFullID(WizardHat.class);
     public static final int INTELLECT_AMOUNT = 2;
-    public static final int DAMAGE_AMOUNT = 32;
-    public static final int ENERGY_COST = 4;
+    public static final int DAMAGE_BONUS_PER_TURN = 2;
+    public static final int DAMAGE_AMOUNT = 14;
+    public static final int ENERGY_COST = 3;
 
     public WizardHat()
     {
@@ -27,65 +31,68 @@ public class WizardHat extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(INTELLECT_AMOUNT, ENERGY_COST, DAMAGE_AMOUNT);
+        return FormatDescription(0, INTELLECT_AMOUNT) + " NL " + FormatDescription(1, ENERGY_COST, DAMAGE_AMOUNT, DAMAGE_BONUS_PER_TURN);
     }
 
     @Override
-    public void onEquip()
+    protected void ActivateBattleEffect()
     {
-        super.onEquip();
+        super.ActivateBattleEffect();
 
-        SetEnabled(true);
+        GameActions.Bottom.ApplyPower(new WizardHarPower(player, this));
+        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT, true);
+        flash();
     }
 
-    @Override
-    public void atBattleStart()
+    public static class WizardHarPower extends AnimatorClickablePower
     {
-        super.atBattleStart();
-
-        SetEnabled(true);
-        GameActions.Bottom.GainIntellect(INTELLECT_AMOUNT);
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        SetEnabled(true);
-    }
-
-    @Override
-    public void onPlayerEndTurn()
-    {
-        super.onPlayerEndTurn();
-
-        if (IsEnabled())
+        public WizardHarPower(AbstractCreature owner, EYBRelic relic)
         {
-            int energy = EnergyPanel.getCurrentEnergy();
-            if (energy >= 4)
+            super(owner, relic, PowerTriggerConditionType.Energy, ENERGY_COST);
+
+            this.amount = DAMAGE_AMOUNT;
+            this.triggerCondition.SetUses(1, false, false);
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(1, triggerCondition.requiredAmount, amount, DAMAGE_BONUS_PER_TURN);
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.9f, 1.1f);
+            GameActions.Bottom.Wait(0.35f);
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.8f, 1.2f);
+            GameActions.Bottom.BorderFlash(Color.ORANGE);
+            GameActions.Bottom.Wait(0.35f);
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.7f, 1.3f);
+            GameActions.Bottom.Wait(0.35f);
+            GameActions.Bottom.BorderFlash(Color.RED);
+            GameActions.Bottom.SFX(SFX.ORB_LIGHTNING_PASSIVE, 0.5f, 1.5f);
+
+            for (AbstractCreature c : GameUtilities.GetEnemies(true))
             {
-                SetEnabled(false);
-
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
-                GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2f);
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
-                GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3f);
-                GameActions.Bottom.Wait(0.35f);
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-                GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
-
-                for (AbstractCreature m : GameUtilities.GetEnemies(true))
-                {
-                    GameActions.Bottom.VFX((new FlameBarrierEffect(m.hb_x, m.hb_y)));
-                    GameActions.Bottom.VFX((new ExplosionSmallEffect(m.hb_x, m.hb_y)));
-                }
-
-                int[] multiDamage = DamageInfo.createDamageMatrix(DAMAGE_AMOUNT, true);
-                GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE);
+                GameActions.Bottom.VFX((new FlameBarrierEffect(c.hb_x, c.hb_y)));
+                GameActions.Bottom.VFX((new ExplosionSmallEffect(c.hb_x, c.hb_y)));
             }
+
+            int[] multiDamage = DamageInfo.createDamageMatrix(amount, true);
+            GameActions.Bottom.DealDamageToAll(multiDamage, DamageInfo.DamageType.THORNS, AttackEffects.NONE);
+            GameActions.Bottom.WaitRealtime(0.35f);
+            RemovePower(GameActions.Last);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            stackPower(DAMAGE_BONUS_PER_TURN);
         }
     }
 }

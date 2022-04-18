@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -18,9 +17,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.monsters.PlayerMinions.UnnamedDoll;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+
+import java.util.ArrayList;
 
 public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 {
@@ -31,19 +34,33 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         Any,
         Random,
         AoE,
-        None
+        None,
+        PlayerMinion
     }
 
     protected ActionT1<AbstractCreature> onHovering;
     protected AbstractCreature previous;
     protected AbstractCreature target;
     protected Targeting targeting;
+    protected boolean autoSelect;
     protected boolean skipConfirmation;
+    protected boolean cancellable;
 
     private final Vector2[] points = new Vector2[20];
     private final Vector2 controlPoint = new Vector2();
     private final Vector2 origin = new Vector2();
     private float arrowScaleTimer;
+
+    public SelectCreature(AbstractCreature target)
+    {
+        super(ActionType.SPECIAL);
+
+        this.card = null;
+        this.target = target;
+        this.cancellable = true;
+
+        Initialize(1);
+    }
 
     public SelectCreature(Targeting targeting, String sourceName)
     {
@@ -51,8 +68,9 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
 
         this.card = null;
         this.targeting = targeting;
+        this.cancellable = true;
 
-        Initialize(amount, sourceName);
+        Initialize(1, sourceName);
     }
 
     public SelectCreature(AbstractCard card)
@@ -60,6 +78,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         super(ActionType.SPECIAL);
 
         this.card = card;
+        this.cancellable = true;
 
         EYBCard c = JUtils.SafeCast(card, EYBCard.class);
         if (c != null && c.attackTarget != null)
@@ -104,7 +123,28 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
             }
         }
 
-        Initialize(amount, card.name);
+        Initialize(1, card.name);
+    }
+
+    public SelectCreature AutoSelectSingleTarget(boolean autoSelectSingleTarget)
+    {
+        this.autoSelect = autoSelectSingleTarget;
+
+        return this;
+    }
+
+    public SelectCreature SkipConfirmation(boolean skipConfirmation)
+    {
+        this.skipConfirmation = skipConfirmation;
+
+        return this;
+    }
+
+    public SelectCreature IsCancellable(boolean cancellable)
+    {
+        this.cancellable = cancellable;
+
+        return this;
     }
 
     public SelectCreature SetOnHovering(ActionT1<AbstractCreature> onHovering)
@@ -131,16 +171,72 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     @Override
     protected void FirstUpdate()
     {
+        if (target != null)
+        {
+            Complete(target);
+            return;
+        }
+
+        final ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);
+        if (enemies.size() == 0 && targeting == Targeting.Enemy)
+        {
+            Complete(null);
+            return;
+        }
+
+        final ArrayList<UnnamedDoll> dolls = CombatStats.Dolls.GetAll();
+        if (dolls.size() == 0 && targeting == Targeting.PlayerMinion)
+        {
+            Complete(null);
+            return;
+        }
+
+        if (autoSelect)
+        {
+            if (targeting == Targeting.Enemy && enemies.size() == 1)
+            {
+                target = enemies.get(0);
+                if (card != null)
+                {
+                    card.calculateCardDamage((AbstractMonster) target);
+                }
+            }
+            else if (targeting == Targeting.PlayerMinion && dolls.size() == 1)
+            {
+                target = dolls.get(0);
+                if (card != null)
+                {
+                    card.calculateCardDamage((AbstractMonster) target);
+                }
+            }
+            else if (targeting == Targeting.Player)
+            {
+                target = player;
+                if (card != null)
+                {
+                    card.applyPowers();
+                }
+            }
+
+            if (target != null)
+            {
+                Complete(target);
+                return;
+            }
+        }
+
         if (skipConfirmation)
         {
             switch (targeting)
             {
                 case Player:
-                    Complete(AbstractDungeon.player);
+                    Complete(player);
                     return;
+
                 case Random:
                     Complete(GameUtilities.GetRandomEnemy(true));
                     return;
+
                 case AoE:
                 case None:
                     Complete(null);
@@ -161,7 +257,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
     {
         GameCursor.hidden = true;
 
-        if (InputHelper.justClickedRight && canCancel)
+        if (InputHelper.justClickedRight && cancellable)
         {
             if (card != null)
             {
@@ -175,13 +271,16 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         switch (targeting)
         {
             case Player:
-                UpdateTarget(true, false);
+                UpdateTarget(true, false, false);
                 break;
             case Enemy:
-                UpdateTarget(false, true);
+                UpdateTarget(false, true, false);
                 break;
             case Any:
-                UpdateTarget(true, true);
+                UpdateTarget(true, true, false);
+                break;
+            case PlayerMinion:
+                UpdateTarget(false, false, true);
                 break;
         }
 
@@ -201,6 +300,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                     return;
 
                 case Player:
+                case PlayerMinion:
                 case Enemy:
                 case Any:
                     if (target != null)
@@ -221,7 +321,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         super.Complete();
     }
 
-    protected void UpdateTarget(boolean targetPlayer, boolean targetEnemy)
+    protected void UpdateTarget(boolean targetPlayer, boolean targetEnemy, boolean targetMinion)
     {
         if (target != null)
         {
@@ -236,6 +336,17 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         else if (targetEnemy)
         {
             for (AbstractMonster m : GameUtilities.GetEnemies(true))
+            {
+                if (m.hb.hovered && !m.isDying)
+                {
+                    target = m;
+                    break;
+                }
+            }
+        }
+        else if (targetMinion)
+        {
+            for (AbstractMonster m : CombatStats.Dolls.GetAll())
             {
                 if (m.hb.hovered && !m.isDying)
                 {
@@ -268,6 +379,7 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
         switch (targeting)
         {
             case Player:
+            case PlayerMinion:
             case Enemy:
             case Any:
                 RenderArrow(sb);
@@ -289,7 +401,8 @@ public class SelectCreature extends EYBActionWithCallback<AbstractCreature>
                 break;
         }
 
-        if (CreateMessage().length() > 0)
+        final String message = UpdateMessage();
+        if (message.length() > 0)
         {
             FontHelper.renderDeckViewTip(sb, message, Settings.scale * 96f, Settings.CREAM_COLOR);
         }

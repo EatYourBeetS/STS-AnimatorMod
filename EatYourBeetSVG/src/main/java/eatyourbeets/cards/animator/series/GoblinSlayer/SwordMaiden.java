@@ -2,33 +2,33 @@ package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.ListSelection;
 
 public class SwordMaiden extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SwordMaiden.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SwordMaiden.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public SwordMaiden()
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
+        Initialize(0, 0, 6, 3);
+
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
 
         SetExhaust(true);
-        SetSynergy(Synergies.GoblinSlayer);
-    }
-
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -38,23 +38,30 @@ public class SwordMaiden extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public AbstractAttribute GetPrimaryInfo()
     {
-        GameActions.Bottom.GainForce(1, true);
-        GameActions.Bottom.GainAgility(1, true);
-        GameActions.Bottom.GainIntellect(1, true);
+        return TempHPAttribute.Instance.SetCard(this, true);
+    }
+
+    @Override
+    public AbstractAttribute GetSecondaryInfo()
+    {
+        return HPAttribute.Instance.SetCardHeal(this);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        this.heal = GameUtilities.GetHealthRecoverAmount(secondaryValue);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.Callback(() ->
-        {
-            for (int i = player.powers.size() - 1; i >= 0; i--)
-            {
-                AbstractPower power = player.powers.get(i);
-                if (power.type == AbstractPower.PowerType.DEBUFF)
-                {
-                    GameActions.Bottom.RemovePower(player, player, power);
-                    return;
-                }
-            }
-        });
+        GameActions.Bottom.RecoverHP(secondaryValue);
+        GameActions.Bottom.RemoveDebuffs(player, ListSelection.Last(0), 1);
     }
 }

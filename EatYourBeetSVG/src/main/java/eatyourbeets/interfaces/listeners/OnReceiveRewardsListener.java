@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface OnReceiveRewardsListener
 {
-    void OnReceiveRewards(ArrayList<RewardItem> rewards);
+    void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards);
 }

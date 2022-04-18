@@ -6,48 +6,42 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
 import eatyourbeets.resources.AbstractResources;
-import eatyourbeets.rewards.animator.AuraCardsReward;
+import eatyourbeets.rewards.animator.MissingPieceReward;
+import eatyourbeets.rewards.animator.SpecialCardReward;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
-import eatyourbeets.rewards.animator.SynergyCardsReward;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorLoadoutsContainer;
 import eatyourbeets.utilities.JUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class AnimatorResources extends AbstractResources
 {
-    public final static String ID = "animator";
+    public static final String ID = "animator";
 
-    public final AbstractCard.CardColor CardColor = Enums.Cards.THE_ANIMATOR;
-    public final AbstractPlayer.PlayerClass PlayerClass = Enums.Characters.THE_ANIMATOR;
+    public final String OfficialName = "Animator (redesign)"; // Don't change this
     public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
     public final AnimatorPlayerData Data = new AnimatorPlayerData();
     public final AnimatorStrings Strings = new AnimatorStrings();
     public final AnimatorImages Images = new AnimatorImages();
     public final AnimatorConfig Config = new AnimatorConfig();
+    public final Color RenderColor = CardHelper.getColor(210, 147, 106);
     public Map<String, EYBCardMetadata> CardData;
 
     public AnimatorResources()
     {
-        super(ID);
-    }
-
-    public int GetUnlockLevel()
-    {
-        return UnlockTracker.getUnlockLevel(PlayerClass);
+        super(ID, Enums.Cards.THE_ANIMATOR, Enums.Characters.THE_ANIMATOR);
     }
 
     public int GetUnlockCost()
@@ -68,6 +62,11 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeStrings()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeStrings();");
 
         LoadCustomStrings(OrbStrings.class);
@@ -101,7 +100,12 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeColor()
     {
-        Color color = CardHelper.getColor(210, 147, 106);
+        if (isLoaded)
+        {
+            return;
+        }
+
+        final Color color = RenderColor.cpy();
         BaseMod.addColor(CardColor, color, color, color, color, color, color, color,
         Images.ATTACK_PNG, Images.SKILL_PNG, Images.POWER_PNG,
         Images.ORB_A_PNG, Images.ATTACK_PNG, Images.SKILL_PNG,
@@ -111,21 +115,38 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeCharacter()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
     }
 
     @Override
     protected void InitializeCards()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeCards();");
 
         Strings.Initialize();
+        CardSeries.InitializeStrings();
         LoadCustomCards();
+        EYBCardData.PostInitialize();
     }
 
     @Override
     protected void InitializeRelics()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeRelics();");
 
         LoadCustomRelics();
@@ -134,9 +155,14 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeKeywords()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeKeywords();");
 
-        LoadKeywords();
+        LoadKeywords(CardColor);
     }
 
     @Override
@@ -148,6 +174,11 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializePotions()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         BaseMod.addPotion(FalseLifePotion.class, Color.GOLDENROD.cpy(), Color.WHITE.cpy(), Color.GOLDENROD.cpy(),
         FalseLifePotion.POTION_ID, Enums.Characters.THE_ANIMATOR);
 
@@ -158,43 +189,30 @@ public class AnimatorResources extends AbstractResources
     @Override
     protected void InitializeRewards()
     {
-        SynergyCardsReward.Serializer synergySerializer = new SynergyCardsReward.Serializer();
+        if (isLoaded)
+        {
+            return;
+        }
+
+        MissingPieceReward.Serializer synergySerializer = new MissingPieceReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SYNERGY_CARDS, synergySerializer, synergySerializer);
 
         SpecialGoldReward.Serializer goldSerializer = new SpecialGoldReward.Serializer();
         BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_GOLD, goldSerializer, goldSerializer);
 
-        AuraCardsReward.Serializer auraSerializer = new AuraCardsReward.Serializer();
-        BaseMod.registerCustomReward(Enums.Rewards.AURA_CARDS, auraSerializer, auraSerializer);
+        SpecialCardReward.Serializer cardSerializer = new SpecialCardReward.Serializer();
+        BaseMod.registerCustomReward(Enums.Rewards.SPECIAL_CARDS, cardSerializer, cardSerializer);
     }
 
     @Override
     protected void PostInitialize()
     {
-        Config.Initialize();
+        Config.Load(CardCrawlGame.saveSlot);
         Data.Initialize();
         Config.InitializeOptions();
+        AnimatorAscensionManager.Initialize();
         AnimatorLoadoutsContainer.PreloadResources();
         AnimatorImages.PreloadResources();
-    }
-
-    public String ProcessJson(String originalString, boolean useFallback)
-    {
-        final String path = "CardStringsShortcuts.json";
-        final FileHandle file = useFallback ? GetFallbackFile(path) : GetFile(Settings.language, path);
-
-        if (!file.exists())
-        {
-            return originalString;
-        }
-
-        String shortcutsJson = file.readString(String.valueOf(StandardCharsets.UTF_8));
-        Map<String, String> items = new Gson().fromJson(shortcutsJson, new TypeToken<Map<String, String>>(){}.getType());
-
-        int size = items.size();
-        String[] shortcuts = items.keySet().toArray(new String[size]);
-        String[] replacement = items.values().toArray(new String[size]);
-
-        return StringUtils.replaceEach(originalString, shortcuts, replacement);
+        isLoaded = true;
     }
 }

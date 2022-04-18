@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import eatyourbeets.actions.EYBActionWithCallbackT2;
 import eatyourbeets.actions.special.DelayAllActions;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -29,12 +30,14 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
     public static final float DEFAULT_TARGET_X_RIGHT = (Settings.WIDTH / 2f) + (200f * Settings.scale);
     public static final float DEFAULT_TARGET_Y = (Settings.HEIGHT / 2f);
 
+    protected final boolean isCopy;
     protected FuncT1<AbstractCard, CardGroup> findCard;
     protected CardGroup sourcePile;
     protected int sourcePileIndex;
     protected boolean purge;
     protected boolean exhaust;
     protected boolean spendEnergy;
+    protected boolean autoPlay;
     protected Vector2 currentPosition;
     protected Vector2 targetPosition;
     protected boolean renderLast;
@@ -43,6 +46,9 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
     {
         super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
 
+        this.autoPlay = true;
+        this.spendEnergy = false;
+        this.isCopy = false;
         this.isRealtime = true;
         this.findCard = findCard;
         this.sourcePile = sourcePile;
@@ -54,9 +60,11 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
     {
         super(ActionType.WAIT, Settings.ACTION_DUR_FAST);
 
+        this.autoPlay = true;
+        this.spendEnergy = false;
         this.isRealtime = true;
 
-        if (copy)
+        if (isCopy = copy)
         {
             this.card = card.makeSameInstanceOf();
             this.card.energyOnUse = card.energyOnUse;
@@ -66,6 +74,12 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             this.card = card;
         }
 
+        if (this.card != null)
+        {
+            this.card.unfadeOut();
+            this.card.lighten(true);
+        }
+
         this.renderLast = renderLast;
 
         AddToLimbo();
@@ -73,9 +87,10 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         Initialize(target, 1);
     }
 
-    public PlayCard SpendEnergy(boolean spendEnergy)
+    public PlayCard SpendEnergy(boolean spendEnergy, boolean autoPlay)
     {
         this.spendEnergy = spendEnergy;
+        this.autoPlay = autoPlay;
 
         return this;
     }
@@ -92,11 +107,22 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
         return this;
     }
 
-    public PlayCard SetCurrentPosition(float x, float y)
+    public PlayCard SetCurrentPosition(float x, float y, boolean updateImmediately)
     {
         currentPosition = new Vector2(x, y);
 
+        if (updateImmediately && card != null)
+        {
+            card.current_x = card.target_x = currentPosition.x;
+            card.current_y = card.target_y = currentPosition.y;
+        }
+
         return this;
+    }
+
+    public PlayCard SetCurrentPosition(float x, float y)
+    {
+        return SetCurrentPosition(x, y, false);
     }
 
     public PlayCard SetTargetPosition(float x, float y)
@@ -140,7 +166,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
             if (card == null)
             {
-                Complete();
+                Cancel();
                 return;
             }
             else
@@ -151,7 +177,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
 
         if (!CheckConditions(card))
         {
-            Complete();
+            Cancel();
             return;
         }
 
@@ -165,7 +191,7 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             else
             {
                 JUtils.LogWarning(this, "Could not find " + card.cardID + " in " + sourcePile.type.name().toLowerCase());
-                Complete();
+                Cancel();
                 return;
             }
         }
@@ -284,7 +310,10 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             energyOnUse = card.energyOnUse;
         }
 
-        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, energyOnUse, true, !spendEnergy));
+        GameUtilities.SetCardTag(card, GR.Enums.CardTags.AUTOPLAYED, autoPlay);
+        GameUtilities.SetCardTag(card, GR.Enums.CardTags.AUTOPLAYED_COPY, isCopy);
+
+        AbstractDungeon.actionManager.cardQueue.add(0, new CardQueueItem(card, enemy, energyOnUse, !spendEnergy, autoPlay || !spendEnergy));
 
         Complete(enemy);
     }
@@ -301,6 +330,17 @@ public class PlayCard extends EYBActionWithCallbackT2<AbstractMonster, AbstractC
             {
                 player.limbo.addToBottom(card);
             }
+        }
+    }
+
+    protected void Cancel()
+    {
+        Complete();
+
+        if (card != null)
+        {
+            player.limbo.removeCard(card);
+            card.unfadeOut();
         }
     }
 }

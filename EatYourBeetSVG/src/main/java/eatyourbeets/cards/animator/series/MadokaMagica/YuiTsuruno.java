@@ -1,60 +1,80 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
+import eatyourbeets.cards.animator.curse.special.Curse_GriefSeed;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 public class YuiTsuruno extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YuiTsuruno.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental);
-    static
-    {
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+    public static final EYBCardData DATA = Register(YuiTsuruno.class)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public YuiTsuruno()
     {
         super(DATA);
 
-        Initialize(5, 0);
-        SetUpgrade(3, 0);
+        Initialize(8, 0, 2);
 
-        SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAffinity_Red(1);
+        SetAffinity_Light(1);
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.ChannelOrb(new Fire());
-        GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.triggerOnManualDiscard();
+        GameActions.Bottom.SelectFromHand(name, 1, false)
+        .SetOptions(false, false, false)
+        .AddCallback(info, (info2, cards) ->
+        {
+            if (info2.CanActivateSemiLimited)
+            {
+                for (AbstractCard c : cards)
+                {
+                    if (upgraded)
+                    {
+                        GameUtilities.Retain(c);
+                    }
 
-        GameActions.Bottom.ChannelOrb(new Fire());
-        GameActions.Bottom.MakeCardInHand(new Curse_GriefSeed());
-    }
+                    if (Curse_GriefSeed.DATA.IsCard(c))
+                    {
+                        GameActions.Bottom.ChannelOrb(new Fire());
+                    }
+                }
+            }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-        GameActions.Bottom.MoveCards(p.drawPile, p.discardPile, 1)
-        .ShowEffect(true, true)
-        .SetOrigin(CardSelection.Bottom);
+            final RandomizedList<AbstractCard> toDiscard = new RandomizedList<>();
+            for (AbstractCard c : player.hand.group)
+            {
+                if (!cards.contains(c) && !c.uuid.equals(uuid))
+                {
+                    toDiscard.Add(c);
+                }
+            }
+
+            int discarded = 0;
+            while (toDiscard.Size() > 0 && discarded < magicNumber)
+            {
+                GameActions.Delayed.Discard(toDiscard.Retrieve(rng), player.hand)
+                .ShowEffect(true, true, 0.1f);
+                discarded += 1;
+            }
+        });
     }
 }

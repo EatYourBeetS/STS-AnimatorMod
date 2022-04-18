@@ -6,6 +6,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.blue.*;
 import com.megacrit.cardcrawl.cards.colorless.*;
+import com.megacrit.cardcrawl.cards.curses.AscendersBane;
+import com.megacrit.cardcrawl.cards.curses.Clumsy;
 import com.megacrit.cardcrawl.cards.curses.CurseOfTheBell;
 import com.megacrit.cardcrawl.cards.curses.Necronomicurse;
 import com.megacrit.cardcrawl.cards.green.*;
@@ -24,11 +26,16 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.EmptyRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.blights.animator.UltimateCrystalBlight;
+import eatyourbeets.blights.animator.UltimateCubeBlight;
+import eatyourbeets.blights.animator.UltimateWispBlight;
+import eatyourbeets.cards.animator.curse.special.Curse_AscendersBane;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UnnamedEnemyGroup;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -56,7 +63,7 @@ public class TheUnnamedReign extends AbstractDungeon
         this.initializeLevelSpecificChances();
         mapRng = new Random(Settings.seed + (long) (AbstractDungeon.actNum * 200));
 
-        GenerateMap();
+        GenerateMap(null);
 
         AbstractDungeon.currMapNode = new MapRoomNode(0, -1);
         AbstractDungeon.currMapNode.room = new EmptyRoom();
@@ -82,7 +89,7 @@ public class TheUnnamedReign extends AbstractDungeon
         CardCrawlGame.music.changeBGM(id);
         mapRng = new Random(Settings.seed + (long) (saveFile.act_num * 200));
 
-        GenerateMap();
+        GenerateMap(saveFile);
 
 //        MapRoomNode victoryNode = new MapRoomNode(3, map.size());
 //        victoryNode.room = new TrueVictoryRoom();
@@ -91,13 +98,12 @@ public class TheUnnamedReign extends AbstractDungeon
         this.populatePathTaken(saveFile);
     }
 
-    protected void GenerateMap()
+    protected void GenerateMap(SaveFile saveFile)
     {
         AbstractDungeon.map = new ArrayList<>();
         TheUnnamedReign_Map.GenerateMap(AbstractDungeon.map);
 
-        GenerateMonstersInADecentWay();
-
+        GenerateMonsterPool(saveFile);
         generateMonsters();
 
         firstRoomChosen = false;
@@ -111,8 +117,8 @@ public class TheUnnamedReign extends AbstractDungeon
 
         if (key.equals(TheUnnamed.ID))
         {
-            DungeonMap.boss = ImageMaster.loadImage("images/ui/map/boss/Animator_TheUnnamed.png");
-            DungeonMap.bossOutline = ImageMaster.loadImage("images/ui/map/bossOutline/Animator_TheUnnamed.png");
+            DungeonMap.boss = GR.Common.Images.UnnamedReignBoss.Texture(true);
+            DungeonMap.bossOutline = GR.Common.Images.UnnamedReignBossOutline.Texture(true);
         }
         else
         {
@@ -214,7 +220,7 @@ public class TheUnnamedReign extends AbstractDungeon
 //        shrineList.add("Upgrade Shrine");
     }
 
-    protected void GenerateMonstersInADecentWay()
+    protected void GenerateMonsterPool(SaveFile saveFile)
     {
         MONSTER_LIST_WHICH_ACTUALLY_WORKS = new ArrayList<>();
 
@@ -251,10 +257,33 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(7, normalEnemies.Retrieve(mapRng)); // ev1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(8, null);                   // r1/sh1
 
-        RandomizedList<String> eliteEnemies = new RandomizedList<>();
+        final RandomizedList<String> eliteEnemies = new RandomizedList<>();
         eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
         eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteEnemies.Add(UnnamedEnemyGroup.ULTIMATE_WISP);
+
+        String addLast = null;
+        final String blight = GameUtilities.GetAscensionBlightChoice();
+        if (blight != null)
+        {
+            if (UltimateCrystalBlight.ID.equals(blight))
+            {
+                addLast = UnnamedEnemyGroup.ULTIMATE_CRYSTAL;
+            }
+            else if (UltimateCubeBlight.ID.equals(blight))
+            {
+                addLast = UnnamedEnemyGroup.ULTIMATE_CUBE;
+            }
+            else if (UltimateWispBlight.ID.equals(blight))
+            {
+                addLast = UnnamedEnemyGroup.ULTIMATE_WISP;
+            }
+
+            if (addLast != null)
+            {
+                eliteEnemies.Remove(addLast);
+            }
+        }
 
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(9, eliteEnemies.Retrieve(mapRng));  // mo1
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(10, null);  // tr1
@@ -262,7 +291,7 @@ public class TheUnnamedReign extends AbstractDungeon
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(12, null); // r1/sh1
 
         MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(13, eliteEnemies.Retrieve(mapRng)); // mo1
-        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(14, eliteEnemies.Retrieve(mapRng)); // mo2
+        MONSTER_LIST_WHICH_ACTUALLY_WORKS.add(14, addLast != null ? addLast : eliteEnemies.Retrieve(mapRng)); // mo2
     }
 
     @Override
@@ -276,7 +305,6 @@ public class TheUnnamedReign extends AbstractDungeon
     @Override
     protected void generateWeakEnemies(int count)
     {
-        // These aren't even used but whatever
         monsterList.add(UnnamedEnemyGroup.CULTIST);
         monsterList.add(UnnamedEnemyGroup.THREE_NORMAL_SHAPES);
         monsterList.add(UnnamedEnemyGroup.TWO_SHAPES);
@@ -295,7 +323,6 @@ public class TheUnnamedReign extends AbstractDungeon
     @Override
     protected void generateElites(int count)
     {
-        // These aren't even used but whatever
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_WISP);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CUBE);
         eliteMonsterList.add(UnnamedEnemyGroup.ULTIMATE_CRYSTAL);
@@ -303,7 +330,7 @@ public class TheUnnamedReign extends AbstractDungeon
 
     public static ArrayList<AbstractCard> GetCardReplacements(ArrayList<AbstractCard> cards, boolean forceReplace)
     {
-        ArrayList<AbstractCard> result = new ArrayList<>();
+        final ArrayList<AbstractCard> result = new ArrayList<>();
         for (AbstractCard c : cards)
         {
             for (String cardID : GetCardReplacements(c, forceReplace))
@@ -447,6 +474,13 @@ public class TheUnnamedReign extends AbstractDungeon
             case CurseOfTheBell.ID:
             case Necronomicurse.ID:
             {
+                replacements.add(Clumsy.ID);
+                break;
+            }
+
+            case AscendersBane.ID:
+            {
+                replacements.add(Curse_AscendersBane.DATA.ID);
                 break;
             }
 

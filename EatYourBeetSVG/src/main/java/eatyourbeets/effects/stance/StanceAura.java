@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
 
@@ -21,12 +20,12 @@ public class StanceAura extends EYBEffect
         super(2f);
 
         this.img = ImageMaster.EXHAUST_L;
-        this.scale = Random(2.7f, 2.5f) * Settings.scale;
+        this.scale = Random(2.7f, 2.5f);
         this.color = color.cpy();
         this.x = player.hb.cX + Random(-player.hb.width / 16f, player.hb.width / 16f);
         this.y = player.hb.cY + Random(-player.hb.height / 16f, player.hb.height / 12f);
-        this.x -= img.packedWidth * 0.5f;
-        this.y -= img.packedHeight * 0.5f;
+//        this.x -= img.packedWidth * 0.5f;
+//        this.y -= img.packedHeight * 0.5f;
         this.renderBehind = true;
         this.rotation = Random(0f, 360f);
 

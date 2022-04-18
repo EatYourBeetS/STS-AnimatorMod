@@ -3,16 +3,17 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class SeriousSaitama extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SeriousSaitama.class).SetSkill(-1, CardRarity.SPECIAL, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SeriousSaitama.class)
+            .SetSkill(X_COST, CardRarity.SPECIAL, EYBCardTarget.ALL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OnePunchMan);
 
     public SeriousSaitama()
     {
@@ -21,23 +22,31 @@ public class SeriousSaitama extends AnimatorCard_UltraRare
         Initialize(0, 0, 0);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+
         SetPurge(true);
-        SetSynergy(Synergies.OnePunchMan);
+        SetDelayed(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int amount = GameUtilities.UseXCostEnergy(this) + magicNumber;
+        final int x = GameUtilities.UseXCostEnergy(this);
+        final int amount = x + magicNumber;
+
         if (amount > 0)
         {
             GameActions.Bottom.GainForce(amount);
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.Enemies(), amount);
         }
 
-        for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+        if (x > 1)
         {
-            GameActions.Bottom.ApplyPower(p, new StunMonsterPower(enemy, 1));
-            GameActions.Bottom.ApplyVulnerable(p, enemy, amount).SkipIfZero(true);
+            for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+            {
+                GameActions.Bottom.ApplyPower(p, new StunMonsterPower(enemy, 1));
+            }
         }
     }
 }

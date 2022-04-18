@@ -1,6 +1,9 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -8,12 +11,13 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.interfaces.subscribers.OnEndOfTurnSubscriber;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnEndOfTurnLastSubscriber;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.powers.common.CounterAttackPower;
+import eatyourbeets.utilities.*;
 
-public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
+public class Fredrika extends AnimatorCard implements OnEndOfTurnLastSubscriber
 {
     private enum Form
     {
@@ -23,15 +27,20 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         Dragoon
     }
 
-    private Form currentForm = Form.Default;
+    public static final EYBCardData DATA = Register(Fredrika.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Fredrika(Form.Cat), true);
+                data.AddPreview(new Fredrika(Form.Dominica), true);
+                data.AddPreview(new Fredrika(Form.Dragoon), true);
+            });
 
-    public static final EYBCardData DATA = Register(Fredrika.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetMaxCopies(2);
-    static
-    {
-        DATA.AddPreview(new Fredrika(Form.Cat), true);
-        DATA.AddPreview(new Fredrika(Form.Dominica), true);
-        DATA.AddPreview(new Fredrika(Form.Dragoon), true);
-    }
+    private static final int SPECIAL = 2;
+    private static boolean flipVfx;
+    private Form currentForm = Form.Default;
 
     private Fredrika(Form form)
     {
@@ -44,73 +53,53 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
     {
         super(DATA);
 
-        Initialize(9, 2, 2);
-        SetUpgrade(2, 2, 0);
+        Initialize(7, 2, 2, 4);
+        SetUpgrade(2, 2, 1);
+
+        SetAffinity_Star(1);
 
         SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.Chaika);
-        SetShapeshifter();
-    }
-
-    @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        if (currentForm == Form.Dominica && m != null)
-        {
-            GameUtilities.GetIntent(m).AddWeak();
-        }
     }
 
     @Override
     public EYBCardPreview GetCardPreview()
     {
-        if (currentForm != Form.Default)
-        {
-            return null;
-        }
+        return currentForm == Form.Default ? super.GetCardPreview() : null;
+    }
 
-        return super.GetCardPreview();
+    @Override
+    public ColoredString GetSpecialVariableString()
+    {
+        return new ColoredString(SPECIAL, Colors.Cream(1));
+    }
+
+    @Override
+    public AbstractAttribute GetSpecialInfo()
+    {
+        return currentForm == Form.Cat ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (currentForm == Form.Dominica)
-        {
-            return super.GetDamageInfo();
-        }
-        else if (currentForm == Form.Dragoon)
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-
-        return null;
+        return (currentForm == Form.Dominica) ? super.GetDamageInfo() : (currentForm == Form.Dragoon) ? super.GetDamageInfo().AddMultiplier(2) : null;
     }
 
     @Override
     public AbstractAttribute GetBlockInfo()
     {
-        if (currentForm == Form.Default || currentForm == Form.Cat)
-        {
-            return super.GetBlockInfo();
-        }
-
-        return null;
+        return (currentForm == Form.Default || currentForm == Form.Dominica) ? super.GetBlockInfo() : null;
     }
 
     @Override
     protected float GetInitialBlock()
     {
-        if (currentForm == Form.Default)
-        {
-            return super.GetInitialBlock() + GameUtilities.GetEnemies(true).size() * magicNumber;
-        }
-
-        return super.GetInitialBlock();
+        return super.GetInitialBlock() +
+        ((currentForm == Form.Default && CombatStats.CanActivatedStarter()) ? (GameUtilities.GetEnemies(true).size() * SPECIAL) : 0);
     }
 
     @Override
-    public void OnEndOfTurn(boolean isPlayer)
+    public void OnEndOfTurnLast(boolean isPlayer)
     {
         this.ChangeForm(Form.Default);
     }
@@ -144,35 +133,47 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         switch (currentForm)
         {
             case Default:
             {
+                info.TryActivateStarter();
                 GameActions.Bottom.GainBlock(block);
                 break;
             }
 
             case Cat:
             {
-                GameActions.Bottom.GainBlock(block);
+                GameActions.Bottom.GainTemporaryHP(magicNumber);
+                GameActions.Bottom.SpendEnergy(999, true)
+                .AddCallback(energy ->
+                {//
+                    GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(energy + 1, (amount, c) -> BlockModifiers.For(c).Add(amount));
+                });
                 break;
             }
 
             case Dominica:
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActions.Bottom.ApplyWeak(p, m, 1);
-                GameActions.Bottom.ApplyVulnerable(p, m, 1);
+                GameActions.Bottom.GainBlock(block);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+                GameActions.Bottom.StackPower(new CounterAttackPower(p, secondaryValue));
                 break;
             }
 
             case Dragoon:
             {
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-                GameActions.Bottom.GainMetallicize(2);
+                for (int i = 0; i < 2; i++)
+                {
+                    GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+                    .SetVFX(true, false)
+                    .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.Claw(enemy.hb, Color.WHITE, Color.VIOLET).FlipX(flipVfx ^= true).SetScale(1.4f)).duration);
+                }
+
+                GameActions.Bottom.GainForce(SPECIAL);
+                GameActions.Bottom.GainMetallicize(SPECIAL);
                 break;
             }
         }
@@ -193,16 +194,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
         if (this.currentForm == formID)
         {
             return;
-        }
-
-        switch (currentForm)
-        {
-            case Dominica:
-                SetScaling(intellectScaling, agilityScaling - 1, forceScaling);
-                break;
-            case Dragoon:
-                SetScaling(intellectScaling, agilityScaling, forceScaling - 1);
-                break;
         }
 
         this.currentForm = formID;
@@ -242,8 +233,6 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.target = CardTarget.SELF_AND_ENEMY;
                 this.cost = 2;
 
-                SetScaling(intellectScaling, agilityScaling, forceScaling + 1);
-
                 break;
             }
 
@@ -256,15 +245,13 @@ public class Fredrika extends AnimatorCard implements OnEndOfTurnSubscriber
                 this.target = CardTarget.ENEMY;
                 this.cost = 1;
 
-                SetScaling(intellectScaling, agilityScaling + 1, forceScaling);
-
                 break;
             }
         }
 
         if (formID != Form.Default)
         {
-            CombatStats.onEndOfTurn.SubscribeOnce(this);
+            CombatStats.onEndOfTurnLast.SubscribeOnce(this);
         }
 
         this.setCostForTurn(cost);

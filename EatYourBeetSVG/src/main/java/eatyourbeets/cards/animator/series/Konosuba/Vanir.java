@@ -1,29 +1,34 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.events.shrines.Transmogrifier;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Vanir extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Vanir.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Vanir.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public Vanir()
     {
         super(DATA);
 
-        Initialize(12, 0, 3);
-        SetUpgrade(1, 0, -1);
-        SetScaling(1, 0, 0);
+        Initialize(11, 0, 3);
+        SetUpgrade(2, 0);
 
-        SetSynergy(Synergies.Konosuba);
-        SetShapeshifter();
+        SetAffinity_Blue(0, 0, 1);
+        SetAffinity_Star(1, 1, 0);
     }
 
     @Override
@@ -44,9 +49,20 @@ public class Vanir extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        if (damage > 8)
+        {
+            GameActions.Bottom.SFX(SFX.ATTACK_DEFECT_BEAM);
+            GameActions.Bottom.VFX(VFX.SmallLaser(p.hb, m.hb, Color.RED));
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
+            .SetDamageEffect(c -> GameEffects.List.Add(VFX.SmallExplosion(c.hb)).duration * 0.1f);
+        }
+        else
+        {
+            GameActions.Bottom.Wait(0.25f);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+        }
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
     }
 }

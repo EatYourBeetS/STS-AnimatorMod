@@ -1,38 +1,36 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.ui.cards.DrawPileCardPreview;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Raven extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Raven.class).SetAttack(1, CardRarity.COMMON);
-
-    private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Raven::FindBestCard);
+    public static final EYBCardData DATA = Register(Raven.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Raven()
     {
         super(DATA);
 
-        Initialize(5, 0, 1);
-        SetUpgrade(3, 0);
-        SetScaling(0, 1, 0);
+        Initialize(4, 0, 2);
+        SetUpgrade(2, 0, 1);
 
-        SetSynergy(Synergies.Elsword);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (m != null)
         {
             GameUtilities.GetIntent(m).AddWeak();
@@ -40,36 +38,9 @@ public class Raven extends AnimatorCard
     }
 
     @Override
-    public void calculateCardDamage(AbstractMonster mo)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.calculateCardDamage(mo);
-
-        drawPileCardPreview.SetCurrentTarget(mo);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        drawPileCardPreview.Update();
-    }
-
-    @Override
-    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
-    {
-        super.Render(sb, hovered, selected, library);
-
-        if (!library)
-        {
-            drawPileCardPreview.Render(sb);
-        }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
         if (GameUtilities.IsAttacking(m.intent))
         {
@@ -77,34 +48,9 @@ public class Raven extends AnimatorCard
         }
         else
         {
-            GameActions.Bottom.ApplyVulnerable(p, m, 1);
+            GameActions.Bottom.ApplyVulnerable(p, m, 2);
         }
 
-        AbstractCard card = FindBestCard(m);
-        if (card != null)
-        {
-            GameActions.Bottom.Draw(card);
-        }
-    }
-
-    private static AbstractCard FindBestCard(AbstractMonster target)
-    {
-        AbstractCard selected = null;
-
-        CardGroup drawPile = player.drawPile;
-        if (drawPile.size() > 0)
-        {
-            int minDamage = Integer.MAX_VALUE;
-            for (AbstractCard c : drawPile.getAttacks().group)
-            {
-                if (c.baseDamage < minDamage)
-                {
-                    minDamage = c.baseDamage;
-                    selected = c;
-                }
-            }
-        }
-
-        return selected;
+        GameActions.Bottom.BlockNextTurn(magicNumber);
     }
 }

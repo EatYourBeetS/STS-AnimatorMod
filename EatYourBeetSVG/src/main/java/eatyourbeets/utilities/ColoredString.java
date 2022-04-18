@@ -9,7 +9,10 @@ public class ColoredString
 
     public ColoredString(Object text, Color color, float alpha)
     {
-        this.text = String.valueOf(text);
+        if (text != null)
+        {
+            this.text = String.valueOf(text);
+        }
 
         if (color != null)
         {
@@ -31,5 +34,26 @@ public class ColoredString
     public ColoredString()
     {
         this("");
+    }
+
+    public ColoredString SetText(String text)
+    {
+        this.text = text;
+
+        return this;
+    }
+
+    public ColoredString SetText(Object text)
+    {
+        this.text = String.valueOf(text);
+
+        return this;
+    }
+
+    public ColoredString SetColor(Color color)
+    {
+        this.color = color.cpy();
+
+        return this;
     }
 }

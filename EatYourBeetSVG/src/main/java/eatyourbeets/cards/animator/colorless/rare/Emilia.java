@@ -5,10 +5,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
@@ -16,7 +13,10 @@ import eatyourbeets.utilities.GameEffects;
 
 public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(Emilia.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Emilia.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.ReZero);
 
     public Emilia()
     {
@@ -25,10 +25,11 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 1);
 
+        SetAffinity_Blue(2);
+        SetAffinity_Light(2);
+
         SetEvokeOrbCount(magicNumber);
         SetExhaust(true);
-        SetSynergy(Synergies.ReZero);
-        SetSpellcaster();
     }
 
     @Override
@@ -38,7 +39,7 @@ public class Emilia extends AnimatorCard implements OnStartOfTurnPostDrawSubscri
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber);
         CombatStats.onStartOfTurnPostDraw.Subscribe((Emilia) makeStatEquivalentCopy());

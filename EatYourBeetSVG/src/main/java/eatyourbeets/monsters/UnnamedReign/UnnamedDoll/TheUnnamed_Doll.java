@@ -10,8 +10,8 @@ import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.monsters.CursedStabsPower;
 import eatyourbeets.powers.monsters.UnnamedDollPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
@@ -24,6 +24,10 @@ public class TheUnnamed_Doll extends EYBMonster
     private final TheUnnamed theUnnamed;
     private final EYBAbstractMove ritualAndArtifactAll;
     private final EYBAbstractMove antiIntangible;
+    private boolean gainedFlight;
+    private boolean gainedThorns;
+    private boolean appliedFrail;
+    private boolean appliedWeak;
 
     public TheUnnamed_Doll(TheUnnamed theUnnamed, float x, float y)
     {
@@ -40,13 +44,29 @@ public class TheUnnamed_Doll extends EYBMonster
         .SetUses(1);
 
         //Rotation:
-        moveset.Normal.Defend(16)
+        moveset.Normal.Defend(9)
         .SetBlockScaling(0.12f)
-        .SetBlockAoE(true);
+        .SetIntent(Intent.DEFEND_BUFF)
+        .SetOnUse((m, t) ->
+        {
+            if (!gainedFlight)
+            {
+                GameActions.Bottom.StackPower(new PlayerFlightPower(this, 1));
+                gainedFlight = true;
+            }
+            else if (!gainedThorns)
+            {
+                GameActions.Bottom.StackPower(TargetHelper.Enemies(), PowerHelper.TemporaryThorns, 3);
+                gainedThorns = true;
+            }
+            else
+            {
+                GameActions.Bottom.Heal(this, this, m.block.Calculate());
+            }
+        });
 
-        moveset.Normal.DefendBuff(9, PowerHelper.TemporaryThorns, 2)
-        .SetPowerTarget(TargetHelper.Enemies(this))
-        .SetMiscBonus(18, 1)
+        moveset.Normal.Defend(12)
+        .SetBlockScaling(0.12f)
         .SetBlockAoE(true);
 
         moveset.Normal.Attack(1).SetMisc(1)
@@ -54,20 +74,18 @@ public class TheUnnamed_Doll extends EYBMonster
         .SetIntent(Intent.ATTACK_DEBUFF)
         .SetOnUse((m, t) ->
         {
-            final float roll = AbstractDungeon.aiRng.random();
             final int amount = m.misc.Calculate();
-
-            if (roll < 0.33f)
-            {
-                GameActions.Bottom.ReduceStrength(t,2, true);
-            }
-            else if (roll < 0.66f)
+            if (!appliedFrail)
             {
                 GameActions.Bottom.ApplyFrail(this, t, amount);
             }
-            else
+            else if (!appliedWeak)
             {
                 GameActions.Bottom.ApplyWeak(this, t, amount);
+            }
+            else
+            {
+                GameActions.Bottom.GainTemporaryStats(-amount, -1, -amount);
             }
         });
     }
@@ -77,7 +95,6 @@ public class TheUnnamed_Doll extends EYBMonster
     {
         super.init();
 
-        GameActions.Bottom.ApplyPower(this, this, new CursedStabsPower(this));
         GameActions.Bottom.ApplyPower(this, this, new UnnamedDollPower(this));
         GameActions.Bottom.GainBlock(this, 26 + (int)(GameUtilities.GetAscensionLevel() * 0.66f));
     }
@@ -123,11 +140,11 @@ public class TheUnnamed_Doll extends EYBMonster
     {
         if (historySize >= 2 && ritualAndArtifactAll.CanUse(previousMove))
         {
-            ritualAndArtifactAll.Select();
+            ritualAndArtifactAll.Select(false);
         }
         else if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) >= 2 && !AbstractDungeon.player.hasPower(WraithFormPower.POWER_ID))
         {
-            antiIntangible.Select();
+            antiIntangible.Select(false);
         }
         else
         {
@@ -150,8 +167,8 @@ public class TheUnnamed_Doll extends EYBMonster
                 maxHealth = 221;
             }
 
-            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.atlas";
-            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamedMinion.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/TheUnnamedMinion.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/TheUnnamedMinion.json";
             scale = 2;
 
             SetHB(0,-20,120,140, 0, 60);

@@ -2,20 +2,17 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.BlackLotus;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.special.Kuroyukihime_BlackLotus;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class Kuroyukihime extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kuroyukihime.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
-    static
-    {
-        DATA.AddPreview(new BlackLotus(), false);
-    }
+    public static final EYBCardData DATA = Register(Kuroyukihime.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.AccelWorld)
+            .PostInitialize(data -> data.AddPreview(new Kuroyukihime_BlackLotus(), true));
 
     public Kuroyukihime()
     {
@@ -24,18 +21,22 @@ public class Kuroyukihime extends AnimatorCard
         Initialize(0, 0, 2);
         SetCostUpgrade(-1);
 
-        SetSynergy(Synergies.AccelWorld);
+        SetAffinity_Light(1);
+
+        SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.General, 3);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, false)
         .AddCallback(() ->
-        {
-            GameActions.Bottom.MakeCardInHand(new BlackLotus());
-            GameActions.Bottom.Exhaust(this);
+        {//
+            GameActions.Bottom.MakeCardInHand(new Kuroyukihime_BlackLotus())
+            .SetUpgrade(CheckAffinity(Affinity.General), false);
         });
     }
 }

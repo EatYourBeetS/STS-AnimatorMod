@@ -3,16 +3,15 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class LeleiLaLalena extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(LeleiLaLalena.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(LeleiLaLalena.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public LeleiLaLalena()
     {
@@ -20,14 +19,16 @@ public class LeleiLaLalena extends AnimatorCard
 
         Initialize(0, 0, 1);
 
+        SetAffinity_Blue(1);
+
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.Gate);
-        SetSpellcaster();
     }
 
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (m != null && HasSynergy())
         {
             GameUtilities.GetIntent(m).AddWeak();
@@ -43,9 +44,9 @@ public class LeleiLaLalena extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             if (m == null)
             {
@@ -54,10 +55,12 @@ public class LeleiLaLalena extends AnimatorCard
 
             GameActions.Bottom.ApplyWeak(p, m, 1);
         }
+
+        GameActions.Bottom.RetainPower(Affinity.Blue);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DiscardFromHand(name, 1, !upgraded)
         .ShowEffect(!upgraded, !upgraded)

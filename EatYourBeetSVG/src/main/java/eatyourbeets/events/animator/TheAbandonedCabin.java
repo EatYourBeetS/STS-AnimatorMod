@@ -4,12 +4,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.relics.animator.unnamedReign.AncientMedallion;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 
 public class TheAbandonedCabin extends EYBEvent
@@ -20,7 +19,7 @@ public class TheAbandonedCabin extends EYBEvent
 
     public TheAbandonedCabin()
     {
-        super(ID, STRINGS, "Cabin1.png");
+        super(ID, STRINGS, IMAGES.Cabin1.Path());
 
         this.noCardsInRewards = true;
 
@@ -43,7 +42,7 @@ public class TheAbandonedCabin extends EYBEvent
 
         if (Medallions > 0)
         {
-            AbstractRelic relic = new AncientMedallion(Medallions);
+            final AbstractRelic relic = new AncientMedallion(Medallions);
             relic.instantObtain();
             Medallions = 0;
         }
@@ -64,8 +63,8 @@ public class TheAbandonedCabin extends EYBEvent
         @Override
         protected void OnEnter()
         {
-            dialog.loadImage("images/events/Cabin2.png");
-            CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
+            dialog.loadImage(IMAGES.Cabin2.Path());
+            CardCrawlGame.music.playTempBGM(SFX.ANIMATOR_THE_CREATURE);
             AddText(text.EncounteringCreature());
             AddContinueOption();
         }
@@ -73,13 +72,13 @@ public class TheAbandonedCabin extends EYBEvent
 
     private static class FirstTradeProposal extends EYBEventPhase<TheAbandonedCabin, EventStrings>
     {
-        private final int HP_LOSS = GetMaxHP(30);
+        private final int HP_LOSS = GetMaxHP(AncientMedallion.IsDowngraded() ? 24 : 30);
 
         @Override
         protected void OnEnter()
         {
-            dialog.loadImage("images/events/Cabin2.png");
-            CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
+            dialog.loadImage(IMAGES.Cabin2.Path());
+            CardCrawlGame.music.playTempBGM(SFX.ANIMATOR_THE_CREATURE);
             AddText(text.FirstTradeProposal());
             AddOption(text.AcceptTradeOption(HP_LOSS)).AddCallback(this::AcceptTrade);
             AddPhaseChangeOption(text.RunOption(), RanAwaySuccessfully.class);
@@ -87,7 +86,7 @@ public class TheAbandonedCabin extends EYBEvent
 
         private void AcceptTrade()
         {
-            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
+            CardCrawlGame.sound.play(SFX.EVENT_VAMP_BITE, 0.05f);
             player.damage(new DamageInfo(null, HP_LOSS));
             event.Medallions += 1;
             ProgressPhase();
@@ -126,14 +125,14 @@ public class TheAbandonedCabin extends EYBEvent
 
     private static class SecondTradeProposal extends EYBEventPhase<TheAbandonedCabin, EventStrings>
     {
-        private final int HP_LOSS_TRADE = GetMaxHP(40);
-        private final int HP_LOSS_RUN = GetMaxHP(20);
+        private final int HP_LOSS_TRADE = GetMaxHP(AncientMedallion.IsDowngraded() ? 30 : 40);
+        private final int HP_LOSS_RUN = GetMaxHP(AncientMedallion.IsDowngraded() ? 16 : 20);
 
         @Override
         protected void OnEnter()
         {
-            dialog.loadImage("images/events/Cabin2.png");
-            CardCrawlGame.music.playTempBGM(GR.Common.Audio_TheCreature);
+            dialog.loadImage(IMAGES.Cabin2.Path());
+            CardCrawlGame.music.playTempBGM(SFX.ANIMATOR_THE_CREATURE);
             AddText(text.SecondTradeProposal());
             AddOption(text.AcceptTradeOption(HP_LOSS_TRADE)).AddCallback(this::AcceptTrade);
             AddOption(text.AttemptToRunOption(HP_LOSS_RUN)).AddCallback(this::AttemptToRun);
@@ -141,8 +140,8 @@ public class TheAbandonedCabin extends EYBEvent
 
         private void AcceptTrade()
         {
-            CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
-            GameEffects.List.Add(new BorderLongFlashEffect(Color.RED));
+            CardCrawlGame.sound.play(SFX.EVENT_VAMP_BITE, 0.05f);
+            GameEffects.List.BorderLongFlash(Color.RED);
             player.damage(new DamageInfo(null, HP_LOSS_TRADE));
             event.Medallions += 1;
             ProgressPhase();
@@ -156,7 +155,7 @@ public class TheAbandonedCabin extends EYBEvent
             }
             else
             {
-                CardCrawlGame.sound.play("EVENT_VAMP_BITE", 0.05f);
+                CardCrawlGame.sound.play(SFX.EVENT_VAMP_BITE, 0.05f);
                 player.damage(new DamageInfo(null, HP_LOSS_RUN));
                 ChangePhase(RanAwayDamaged.class);
             }

@@ -12,8 +12,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import eatyourbeets.ui.GUIElement;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.resources.GR;
+import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.RenderHelpers;
 
 public class GUI_Toggle extends GUIElement
@@ -33,6 +35,8 @@ public class GUI_Toggle extends GUIElement
     public float fontSize = 1;
     public float tickSize = 48;
     public ActionT1<Boolean> onToggle = null;
+    public EYBCardTooltip tooltip;
+    public boolean forceRenderTooltip;
 
     public GUI_Toggle(Hitbox hb)
     {
@@ -92,9 +96,9 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
-    public GUI_Toggle SetPosition(float x, float y)
+    public GUI_Toggle SetPosition(float cX, float cY)
     {
-        this.hb.move(x, y);
+        this.hb.move(cX, cY);
 
         return this;
     }
@@ -127,6 +131,24 @@ public class GUI_Toggle extends GUIElement
         return this;
     }
 
+    public GUI_Toggle SetTooltip(EYBCardTooltip tooltip, boolean forceRender)
+    {
+        this.tooltip = tooltip;
+        this.forceRenderTooltip = forceRender;
+
+        return this;
+    }
+
+    public GUI_Toggle ShowTooltip(boolean show)
+    {
+        if (tooltip != null)
+        {
+            this.tooltip.canRender = show;
+        }
+
+        return this;
+    }
+
     public void Toggle()
     {
         Toggle(!toggled);
@@ -155,32 +177,35 @@ public class GUI_Toggle extends GUIElement
     {
         hb.update();
 
-        if (hb.justHovered)
+        if (!interactable)
         {
-            CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
+            return;
         }
 
-        if (hb.hovered && InputHelper.justClickedLeft)
+        if (GR.UI.TryHover(hb))
         {
-            hb.clickStarted = true;
-        }
-
-        boolean controllerPressed = false;
-        if (controllerAction != null && controllerAction.isJustPressed())
-        {
-            if (controllerAction != CInputActionSet.select || hb.hovered)
+            if (hb.justHovered)
             {
-                controllerPressed = true;
-                controllerAction.unpress();
+                CardCrawlGame.sound.playA("UI_HOVER", -0.3f);
+            }
+
+            if (hb.hovered && InputHelper.justClickedLeft)
+            {
+                hb.clickStarted = true;
             }
         }
 
-        if (interactable && (hb.clicked || controllerPressed))
+        if (hb.clicked)
         {
             hb.clicked = false;
             CardCrawlGame.sound.playA("UI_CLICK_1", -0.2f);
 
             Toggle();
+        }
+
+        if (hb.hovered && tooltip != null && tooltip.canRender)
+        {
+            EYBCardTooltip.QueueTooltip(tooltip, hb, forceRenderTooltip);
         }
     }
 

@@ -59,7 +59,7 @@ public class AnimatorCardRewardInfo extends GUIElement
 
     public void Open()
     {
-        isActive = GameUtilities.IsPlayerClass(GR.Animator.PlayerClass);
+        isActive = GameUtilities.IsEYBPlayerClass();
         upgradeToggle.Toggle(false);
     }
 

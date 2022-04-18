@@ -13,12 +13,12 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.console.CommandsManager;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.monsters.EYBMonster;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.GenericFadingPower;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.affinity.*;
+import eatyourbeets.powers.replacement.GenericFadingPower;
 import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
@@ -30,51 +30,57 @@ import java.lang.reflect.Field;
 
 public class CommonResources extends AbstractResources
 {
-    public final static String ID = "EYB";
+    public final static String ID = "eyb";
     public final CommonDungeonData Dungeon = CommonDungeonData.Register(CreateID("Data"));
     public final CommonStrings Strings = new CommonStrings();
     public final CommonImages Images = new CommonImages();
 
-    public final String Audio_TheUltimateCrystal = "ANIMATOR_THE_ULTIMATE_CRYSTAL";
-    public final String Audio_TheCreature = "ANIMATOR_THE_CREATURE.ogg";
-    public final String Audio_TheUnnamed = "ANIMATOR_THE_UNNAMED.ogg";
-    public final String Audio_TheHaunt = "ANIMATOR_THE_HAUNT.ogg";
-
     public CommonResources()
     {
-        super(ID);
+        super(ID, AbstractCard.CardColor.COLORLESS, null);
     }
 
     @Override
     protected void InitializeEvents()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         EYBEvent.RegisterEvents();
     }
 
     @Override
     protected void InitializeAudio()
     {
-        BaseMod.addAudio("ANIMATOR_REAPER", "audio/sound/STS_SFX_Reaper_v1.ogg");
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_EVOKE", "audio/sound/ANIMATOR_ORB_EARTH_EVOKE.ogg");
-        BaseMod.addAudio("ANIMATOR_ORB_EARTH_CHANNEL", "audio/sound/ANIMATOR_ORB_EARTH_CHANNEL.ogg");
-        BaseMod.addAudio("ANIMATOR_KIRA_POWER", "audio/sound/ANIMATOR_KIRA_POWER.ogg");
-        BaseMod.addAudio("ANIMATOR_MEGUMIN_CHARGE", "audio/sound/ANIMATOR_MEGUMIN_CHARGE.ogg");
-        //BaseMod.addAudio("ANIMATOR_EMONZAEMON_ATTACK", "audio/sound/ANIMATOR_EMONZAEMON_ATTACK.ogg");
-        BaseMod.addAudio(Audio_TheUltimateCrystal, "audio/sound/ANIMATOR_THE_ULTIMATE_CRYSTAL.ogg");
-        BaseMod.addAudio(Audio_TheHaunt, "audio/music/ANIMATOR_THE_HAUNT.ogg");
-        BaseMod.addAudio(Audio_TheUnnamed, "audio/music/ANIMATOR_THE_UNNAMED.ogg");
-        BaseMod.addAudio(Audio_TheCreature, "audio/music/ANIMATOR_THE_CREATURE.ogg");
+        if (isLoaded)
+        {
+            return;
+        }
+
+        SFX.Initialize();
     }
 
     @Override
     protected void InitializeMonsters()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         EYBMonster.RegisterMonsters();
     }
 
     @Override
     protected void InitializeCards()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeCards();");
 
         Strings.Initialize();
@@ -85,21 +91,37 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializePowers()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         BaseMod.addPower(GenericFadingPower.class, GenericFadingPower.POWER_ID);
     }
 
     @Override
     protected void PostInitialize()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
+        AttackEffects.Initialize();
         CommandsManager.RegisterCommands();
         GR.Tooltips.InitializeIcons();
         GR.UI.Initialize();
-        GR.IsLoaded = true;
+        isLoaded = true;
     }
 
     @Override
     protected void InitializeStrings()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeStrings();");
 
         LoadCustomStrings(PowerStrings.class);
@@ -112,17 +134,24 @@ public class CommonResources extends AbstractResources
     @Override
     protected void InitializeKeywords()
     {
+        if (isLoaded)
+        {
+            return;
+        }
+
         JUtils.LogInfo(this, "InitializeKeywords();");
 
-        LoadKeywords();
+        LoadKeywords(null);
 
-        AddPowerTooltip("[F]", "Force", new ForcePower(null, 0));
-        AddPowerTooltip("[A]", "Agility", new AgilityPower(null, 0));
-        AddPowerTooltip("[I]", "Intellect", new IntellectPower(null, 0));
-        AddEnergyTooltip("[R]", AbstractCard.orb_red);
-        AddEnergyTooltip("[G]", AbstractCard.orb_green);
-        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
-        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
+        AddPowerTooltip("[F]", "Force", new ForcePower());
+        AddPowerTooltip("[A]", "Agility", new AgilityPower());
+        AddPowerTooltip("[I]", "Intellect", new IntellectPower());
+        AddPowerTooltip("[B]", "Blessing", new BlessingPower());
+        AddPowerTooltip("[C]", "Corruption", new CorruptionPower());
+//        AddEnergyTooltip("[R]", AbstractCard.orb_red);
+//        AddEnergyTooltip("[G]", AbstractCard.orb_green);
+//        AddEnergyTooltip("[B]", AbstractCard.orb_blue);
+//        AddEnergyTooltip("[P]", AbstractCard.orb_purple);
         AddEnergyTooltip("[E]", null); // TODO: generalize this
 
         for (Field field : GameDictionary.class.getDeclaredFields())
@@ -131,14 +160,16 @@ public class CommonResources extends AbstractResources
             {
                 try
                 {
-                    Keyword k = (Keyword) field.get(null);
-                    EYBCardTooltip tooltip = new EYBCardTooltip(TipHelper.capitalize(k.NAMES[0]), k.DESCRIPTION);
-
-                    CardTooltips.RegisterID(TipHelper.capitalize(field.getName()), tooltip);
-
-                    for (String name : k.NAMES)
+                    final Keyword k = (Keyword) field.get(null);
+                    if (CardTooltips.FindByName(k.NAMES[0]) == null)
                     {
-                        CardTooltips.RegisterName(name, tooltip);
+                        final EYBCardTooltip tooltip = new EYBCardTooltip(JUtils.Capitalize(k.NAMES[0]), k.DESCRIPTION);
+                        CardTooltips.RegisterID(JUtils.Capitalize(field.getName()), tooltip);
+
+                        for (String name : k.NAMES)
+                        {
+                            CardTooltips.RegisterName(name, tooltip);
+                        }
                     }
                 }
                 catch (IllegalAccessException ex)
@@ -175,7 +206,8 @@ public class CommonResources extends AbstractResources
             return;
         }
 
-        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
+        tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 3, 5, size-6, size-6);
+        //tooltip.icon = new TextureAtlas.AtlasRegion(power.img, 2, 4, size-4, size-4);
 
         EYBCardTooltip stance = CardTooltips.FindByID(id + " Stance");
         if (stance != null)

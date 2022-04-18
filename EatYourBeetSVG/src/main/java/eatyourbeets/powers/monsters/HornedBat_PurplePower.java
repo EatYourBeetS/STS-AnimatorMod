@@ -1,5 +1,6 @@
 package eatyourbeets.powers.monsters;
 
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -7,7 +8,7 @@ import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.actions.special.DieAction;
 import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.common.PlayerFlightPower;
+import eatyourbeets.powers.replacement.PlayerFlightPower;
 import eatyourbeets.utilities.GameActions;
 
 public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPowerListener
@@ -18,13 +19,11 @@ public class HornedBat_PurplePower extends AnimatorPower implements OnTryApplyPo
     {
         super(owner, POWER_ID);
 
-        this.amount = -1;
-
-        updateDescription();
+        Initialize(-1);
     }
 
     @Override
-    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
         return (target != owner || !power.ID.equals(PoisonPower.POWER_ID));
     }

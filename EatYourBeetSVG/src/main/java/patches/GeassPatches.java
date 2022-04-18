@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.unique.VampireDamageAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.animator.GeassPower;
+import eatyourbeets.powers.CombatStats;
 
 // Make the enemy hit itself (Also VampireDamageAction because it obviously does not inherit from DamageAction)
 public class GeassPatches
@@ -18,11 +18,7 @@ public class GeassPatches
         @SpirePostfixPatch
         public static void Method(DamageAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect)
         {
-            if (action != null && action.source != null && action.source.hasPower(GeassPower.POWER_ID))
-            {
-                info.applyPowers(action.source, action.source);
-                action.target = action.source;
-            }
+            CombatStats.OnCreateDamageAction(action, info);
         }
     }
 
@@ -32,11 +28,7 @@ public class GeassPatches
         @SpirePostfixPatch
         public static void Method(VampireDamageAction action, AbstractCreature target, DamageInfo info, AbstractGameAction.AttackEffect effect)
         {
-            if (action != null && action.source != null && action.source.hasPower(GeassPower.POWER_ID))
-            {
-                info.applyPowers(action.source, action.source);
-                action.target = action.source;
-            }
+            CombatStats.OnCreateDamageAction(action, info);
         }
     }
 }

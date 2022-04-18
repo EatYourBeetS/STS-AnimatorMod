@@ -1,138 +1,86 @@
 package eatyourbeets.relics.animator;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.relics.EYBRelic;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class PurgingStone extends AnimatorRelic
 {
-    private static final FieldInfo<Boolean> _isBoss = JUtils.GetField("isBoss", RewardItem.class);
-
     public static final String ID = CreateFullID(PurgingStone.class);
-    public static final int MAX_BAN_COUNT = 80;
-    public static final int MAX_STORED_USES = 3;
+    public static final int ENERGY_COST = 1;
+    public static final int TEMP_HP = 3;
 
     public PurgingStone()
     {
-        super(ID, RelicTier.STARTER, LandingSound.SOLID);
+        super(ID, RelicTier.SHOP, LandingSound.SOLID);
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_STORED_USES);
+        return FormatDescription(0, ENERGY_COST, TEMP_HP);
     }
 
     @Override
-    public void onEquip()
+    protected void ActivateBattleEffect()
     {
-        super.onEquip();
+        super.ActivateBattleEffect();
 
-        SetCounter(0);
-        AddUses(0);
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        AbstractRoom room = GameUtilities.GetCurrentRoom();
-        if (room instanceof MonsterRoomElite || room instanceof MonsterRoomBoss)
-        {
-            AddUses(2);
-        }
-        else
-        {
-            AddUses(1);
-        }
+        GameActions.Bottom.ApplyPower(new PurgingStonePower(player, this, TEMP_HP));
         flash();
     }
 
-    public int GetBannedCount()
+    public static class PurgingStonePower extends AnimatorClickablePower
     {
-        return GR.Animator.Dungeon.BannedCards.size();
-    }
-
-    private void AddUses(int uses)
-    {
-        int banned = GetBannedCount();
-        if (AddCounter(uses) + banned > MAX_BAN_COUNT)
+        public PurgingStonePower(AbstractCreature owner, EYBRelic relic, int amount)
         {
-            SetCounter(MAX_BAN_COUNT - banned);
-        }
-        if (counter > MAX_STORED_USES)
-        {
-            SetCounter(MAX_STORED_USES);
-        }
-    }
+            super(owner, relic, PowerTriggerConditionType.Energy, ENERGY_COST);
 
-    public boolean IsBanned(String cardID)
-    {
-        return GR.Animator.Dungeon.BannedCards.contains(cardID);
-    }
+            this.triggerCondition.SetUses(1, false, false);
 
-    public boolean IsBanned(AbstractCard card)
-    {
-        return card != null && IsBanned(card.cardID);
-    }
-
-    public boolean CanActivate(RewardItem rewardItem)
-    {
-        if (!GameUtilities.InBattle() && rewardItem != null && rewardItem.type == RewardItem.RewardType.CARD && !_isBoss.Get(rewardItem))
-        {
-            return counter > 0;
+            Initialize(amount);
         }
 
-        return false;
-    }
-
-    public boolean CanBan(AbstractCard card)
-    {
-        if (counter > 0)
+        @Override
+        public String GetUpdatedDescription()
         {
-            if (card.color == AbstractCard.CardColor.COLORLESS)
+            return FormatDescription(0, triggerCondition.requiredAmount, amount);
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            GameActions.Bottom.ExhaustFromHand(name, BaseMod.MAX_HAND_SIZE, true)
+            .SetOptions(true, true, true)
+            .SetFilter(GameUtilities::IsHindrance)
+            .AddCallback(cards ->
             {
-                return false;
-            }
+                int tempHP = 0;
+                for (AbstractCard c : cards)
+                {
+                    if (c.type == AbstractCard.CardType.CURSE)
+                    {
+                        tempHP += amount;
+                    }
+                }
 
-            if (!GR.Animator.Dungeon.BannedCards.contains(card.cardID))
-            {
-                CardGroup pool = GameUtilities.GetCardPoolSource(card.rarity, card.color);
-                if (pool == null)
+                if (tempHP > 0)
                 {
-                    return false;
+                    GameActions.Bottom.GainTemporaryHP(tempHP);
                 }
-                else if (card.type == AbstractCard.CardType.POWER)
-                {
-                    return card.rarity == AbstractCard.CardRarity.COMMON || pool.getPowers().size() >= 2;
-                }
-                else if (card.type == AbstractCard.CardType.SKILL)
-                {
-                    return pool.getSkills().size() >= 3;
-                }
-                else if (card.type == AbstractCard.CardType.ATTACK)
-                {
-                    return pool.getAttacks().size() >= 3;
-                }
-            }
+            });
+
+            GameActions.Bottom.WaitRealtime(0.35f);
+            RemovePower(GameActions.Last);
         }
-
-        return false;
-    }
-
-    public void Ban(AbstractCard card)
-    {
-        GR.Animator.Dungeon.Ban(card.cardID);
-        AddCounter(-1);
-        flash();
     }
 }

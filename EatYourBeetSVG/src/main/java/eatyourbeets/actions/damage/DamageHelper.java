@@ -1,8 +1,11 @@
 package eatyourbeets.actions.damage;
 
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.animator.EarthenThornsPower;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -10,8 +13,23 @@ import java.util.ArrayList;
 
 public class DamageHelper
 {
-    public static void DealDamage(AbstractCreature target, DamageInfo info, boolean bypassBlock, boolean bypassThorns)
+    public static void ApplyTint(AbstractCreature target, Color overrideColor, AbstractGameAction.AttackEffect attackEffect)
     {
+        final Color tint = overrideColor != null ? overrideColor : AttackEffects.GetDamageTint(attackEffect);
+        if (target != null && tint != null)
+        {
+            target.tint.color.set(tint.cpy());
+            target.tint.changeColor(Color.WHITE.cpy());
+        }
+    }
+
+    public static void DealDamage(AbstractCreature target, DamageInfo info, boolean bypassBlock, boolean bypassThorns, boolean canKill)
+    {
+        if (!GameUtilities.IsValidTarget(target))
+        {
+            return;
+        }
+
         int previousBlock = 0;
         if (bypassBlock)
         {
@@ -23,6 +41,12 @@ public class DamageHelper
         if (bypassThorns)
         {
             ignoredPowers = RemovePowers(target);
+        }
+
+        final int totalHP = GameUtilities.GetHP(target, true, true);
+        if (!canKill && info.output >= totalHP)
+        {
+            info.output = Math.min(info.output, totalHP - 1);
         }
 
         target.damage(info);

@@ -3,13 +3,14 @@ package eatyourbeets.actions.cardManipulation;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
 {
     protected final static FieldInfo<AbstractCard> _targetCard = JUtils.GetField("targetCard", UseCardAction.class);
     protected final Map<AbstractCard, AbstractCard> newCards = new HashMap<>();
+    protected boolean triggerEvents;
     protected boolean upgrade;
     protected UUID cardUUID;
 
@@ -25,10 +27,18 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
     {
         super(ActionType.CARD_MANIPULATION);
 
+        this.triggerEvents = true;
         this.cardUUID = cardUUID;
         this.card = replacement;
 
         Initialize(1);
+    }
+
+    public ReplaceCard TriggerEvents(boolean triggerEvents)
+    {
+        this.triggerEvents = triggerEvents;
+
+        return this;
     }
 
     public ReplaceCard SetUpgrade(boolean upgrade)
@@ -41,18 +51,18 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
     @Override
     protected void FirstUpdate()
     {
-        Replace(player.limbo.group);
-        Replace(player.exhaustPile.group);
-        Replace(player.discardPile.group);
-        Replace(player.drawPile.group);
-        Replace(player.hand.group);
+        Replace(player.limbo);
+        Replace(player.exhaustPile);
+        Replace(player.discardPile);
+        Replace(player.drawPile);
+        Replace(player.hand);
 
         for (int i = 0; i < AbstractDungeon.actionManager.actions.size(); i++)
         {
-            AbstractGameAction action = AbstractDungeon.actionManager.actions.get(i);
+            final AbstractGameAction action = AbstractDungeon.actionManager.actions.get(i);
             if (action instanceof UseCardAction)
             {
-                AbstractCard card = _targetCard.Get(action);
+                final AbstractCard card = _targetCard.Get(action);
                 if (newCards.containsKey(card) || cardUUID.equals(card.uuid))
                 {
                     _targetCard.Set(action, Replace(card));
@@ -68,14 +78,20 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
         Complete(newCards);
     }
 
-    protected void Replace(ArrayList<AbstractCard> cards)
+    protected void Replace(CardGroup group)
     {
-        for (int i = 0; i < cards.size(); i++)
+        for (int i = 0; i < group.group.size(); i++)
         {
-            AbstractCard original = cards.get(i);
+            final AbstractCard original = group.group.get(i);
             if (cardUUID.equals(original.uuid))
             {
-                cards.set(i, Replace(original));
+                final AbstractCard replacement = Replace(original);
+                group.group.set(i, replacement);
+
+                if (group.type == CardGroup.CardGroupType.HAND)
+                {
+                    replacement.triggerWhenDrawn();
+                }
             }
         }
     }
@@ -95,6 +111,11 @@ public class ReplaceCard extends EYBActionWithCallback<Map<AbstractCard, Abstrac
             if (upgrade)
             {
                 replacement.upgrade();
+            }
+
+            if (triggerEvents && replacement instanceof EYBCard)
+            {
+                ((EYBCard)replacement).triggerWhenCreated(false);
             }
 
             GameUtilities.CopyVisualProperties(replacement, original);

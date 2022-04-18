@@ -3,53 +3,79 @@ package eatyourbeets.cards.animator.ultrarare;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class HiiragiTenri extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(HiiragiTenri.class).SetSkill(4, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HiiragiTenri.class)
+            .SetSkill(4, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.OwariNoSeraph)
+            .PostInitialize(data ->
+            {
+                final AbstractCard token = AffinityToken.GetCard(Affinity.General);
+                token.upgrade();
+                data.AddPreview(token, true);
+            });
 
     public HiiragiTenri()
     {
         super(DATA);
 
-        Initialize(0, 0, 20);
-        SetUpgrade(0, 0, 10);
+        Initialize(0, 0, 0, 5);
+        SetUpgrade(0, 0, 0, 2);
 
-        SetSynergy(Synergies.OwariNoSeraph);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(2);
+
+        SetRetainOnce(true);
+        SetPurge(true);
+
+        SetAffinityRequirement(Affinity.General, 4);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        return magicNumber > 0 ? TempHPAttribute.Instance.SetCard(this, true) : null;
     }
 
     @Override
-    public void triggerOnExhaust()
+    protected void Refresh(AbstractMonster enemy)
     {
-        super.triggerOnExhaust();
+        super.Refresh(enemy);
 
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.MoveCards(player.exhaustPile, player.drawPile).ShowEffect(false, false);
-        }
+        GameUtilities.ModifyMagicNumber(this, player.discardPile.size(), false);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
-
-        for (AbstractCard c : p.discardPile.group)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.PlayCard(c, p.discardPile, m).SetExhaust(true);
+            GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
+
+        if (CheckAffinity(Affinity.General))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.General, true);
+        }
+
+        GameActions.Bottom.SelectFromPile(name, secondaryValue, p.discardPile)
+        .SetFilter(m, (target, c) -> !GameUtilities.IsHindrance(c) && GameUtilities.IsPlayable(c, target))
+        .SetOptions(true, true)
+        .AddCallback(m, (target, cards) ->
+        {
+            GameActions.DelayCurrentActions();
+            for (AbstractCard c : cards)
+            {
+               GameActions.Bottom.PlayCard(c, player.discardPile, target).SetExhaust(true);
+            }
+        });
     }
 }

@@ -5,11 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.ultrarare.Azami;
+import eatyourbeets.cards.animator.ultrarare.Cthulhu;
 import eatyourbeets.cards.animator.ultrarare.HolyGrail;
+import eatyourbeets.cards.animator.ultrarare.SummoningRitual;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.utilities.RenderHelpers;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,11 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
 {
     private static final Map<String, AnimatorCard_UltraRare> cards = new HashMap<>();
     private static final Color RENDER_COLOR = new Color(0.4f, 0.4f, 0.4f, 1);
+
+    protected static EYBCardData Register(Class<? extends AnimatorCard> type)
+    {
+        return AnimatorCard.Register(type).SetMaxCopies(1);
+    }
 
     protected AnimatorCard_UltraRare(EYBCardData data)
     {
@@ -47,10 +54,18 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
                 }
             }
 
+            cards.put(Azami.DATA.ID, new Azami());
+            cards.put(Cthulhu.DATA.ID, new Cthulhu());
             cards.put(HolyGrail.DATA.ID, new HolyGrail());
+            cards.put(SummoningRitual.DATA.ID, new SummoningRitual());
         }
 
         return cards;
+    }
+
+    public static EYBCardData GetCardData(AnimatorLoadout loadout)
+    {
+        return loadout == null ? Cthulhu.DATA : loadout.GetUltraRare();
     }
 
     public static void MarkAsSeen(String cardID)
@@ -70,28 +85,19 @@ public abstract class AnimatorCard_UltraRare extends AnimatorCard implements Hid
     @Override
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
+        final Color temp = _renderColor.Get(this);
         RENDER_COLOR.a = this.transparency;
-        switch (type)
-        {
-            case ATTACK:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_ATTACK_UR.Texture(), x, y);
-                break;
-            case SKILL:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture(), x, y);
-                break;
-            case POWER:
-                RenderHelpers.DrawOnCardCentered(sb, this, RENDER_COLOR, GR.Animator.Images.CARD_BACKGROUND_POWER_UR.Texture(), x, y);
-                break;
-            default:
-                super.renderCardBg(sb, x, y);
-                break;
-        }
+        _renderColor.Set(this, RENDER_COLOR);
+
+        super.renderCardBg(sb, x, y);
+
+        _renderColor.Set(this, temp);
     }
 
     @Override
     protected Texture GetEnergyOrb()
     {
-        return IMAGES.CARD_ENERGY_ORB_A.Texture();
+        return ANIMATOR_IMAGES.CARD_ENERGY_ORB_ANIMATOR.Texture();
     }
 
 //    @Override

@@ -1,30 +1,33 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.AgilityStance;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Ara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Ara.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Ara.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Ara()
     {
         super(DATA);
 
-        Initialize(3, 0);
+        Initialize(3, 0, 2);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Elsword);
-        SetMartialArtist();
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Red(1);
+
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -34,24 +37,21 @@ public class Ara extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetSoundPitch(1.1f, 1.3f);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.Draw(GameUtilities.GetDebuffsCount(m.powers));
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false)
-        .AddCallback(cards ->
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetOptions(false, false, true);
+
+        if (TryUseAffinity(Affinity.Green))
         {
-            if (cards.size() > 0 && cards.get(0).type.equals(CardType.POWER))
-            {
-                GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
-            }
-        });
+            GameActions.Bottom.Draw(magicNumber);
+        }
     }
 }

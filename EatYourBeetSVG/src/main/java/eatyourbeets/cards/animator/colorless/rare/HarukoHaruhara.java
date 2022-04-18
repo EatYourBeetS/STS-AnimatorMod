@@ -1,69 +1,47 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.actions.cardManipulation.RandomCostIncrease;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
 
 public class HarukoHaruhara extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HarukoHaruhara.class).SetSkill(1, CardRarity.RARE).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HarukoHaruhara.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.FLCL);
 
     public HarukoHaruhara()
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.FLCL);
+        SetAffinity_Star(2);
+
+        SetExhaust(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.SFX(SFX.THUNDERCLAP, 3.3f, 3.3f, 0.9f);
+        GameActions.Bottom.SFX(SFX.BELL, 5f,5f, 0.9f);
+
         GameActions.Bottom.DiscardFromHand(name, 1, true)
         .ShowEffect(true, true)
         .SetOptions(false, false, false)
-        .AddCallback(m, (target, cards) ->
-        {
-            AbstractCard discarded = cards.get(0);
-            RandomizedList<AbstractCard> playable = new RandomizedList<>();
-            RandomizedList<AbstractCard> unplayable = new RandomizedList<>();
-            for (AbstractCard card : player.hand.group)
-            {
-                if (card != this && card != discarded)
-                {
-                    if (GameUtilities.IsCurseOrStatus(card))
-                    {
-                        unplayable.Add(card);
-                    }
-                    else
-                    {
-                        playable.Add(card);
-                    }
-                }
-            }
+        .AddCallback(cards -> GameActions.Top.Draw(cards.size()));
+        GameActions.Bottom.GainEnergy(magicNumber);
+    }
 
-            AbstractCard card = null;
-            if (playable.Size() > 0)
-            {
-                card = playable.Retrieve(rng);
-            }
-            else if (unplayable.Size() > 0)
-            {
-                card = unplayable.Retrieve(rng);
-            }
-
-            if (card != null)
-            {
-                GameActions.Bottom.PlayCard(card, player.hand, target);
-            }
-        });
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.Add(new RandomCostIncrease(1, false));
     }
 }

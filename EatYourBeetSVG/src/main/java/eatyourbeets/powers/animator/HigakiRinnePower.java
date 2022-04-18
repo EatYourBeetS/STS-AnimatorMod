@@ -1,10 +1,11 @@
 package eatyourbeets.powers.animator;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.utilities.GameActions;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.animator.HigakiRinneAction;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.GameActions;
 
 public class HigakiRinnePower extends AnimatorPower
 {
@@ -12,20 +13,13 @@ public class HigakiRinnePower extends AnimatorPower
 
     private final HigakiRinne higakiRinne;
 
-    public HigakiRinnePower(AbstractPlayer owner, HigakiRinne higakiRinne, int amount)
+    public HigakiRinnePower(AbstractCreature owner, HigakiRinne higakiRinne, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
         this.higakiRinne = higakiRinne;
 
-        updateDescription();
-    }
-
-    @Override
-    public void updateDescription()
-    {
-        this.description = powerStrings.DESCRIPTIONS[0];
+        Initialize(amount);
     }
 
     @Override
@@ -33,11 +27,13 @@ public class HigakiRinnePower extends AnimatorPower
     {
         super.atStartOfTurn();
 
-        for (int i = 0; i < this.amount; i++)
-        {
-            GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne));
-        }
-
+        GameActions.Bottom.Add(new HigakiRinneAction(higakiRinne, amount));
         this.flash();
+    }
+
+    @Override
+    public AbstractPower makeCopy()
+    {
+        return new HigakiRinnePower(owner, higakiRinne, amount);
     }
 }

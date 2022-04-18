@@ -2,7 +2,6 @@ package eatyourbeets.actions.handSelection;
 
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
@@ -30,23 +29,15 @@ public class ExhaustFromHand extends SelectFromHand
     {
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.exhaustPile);
-            if (showEffect)
-            {
-                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
-            }
-            else
-            {
-                action.update(); // only once
-            }
+            GameActions.Top.MoveCard(card, player.hand, player.exhaustPile).ShowEffect(showEffect, realtime);
         }
 
         super.Complete(result);
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(ExhaustAction.TEXT[0]);
+        return super.UpdateMessageInternal(ExhaustAction.TEXT[0]);
     }
 }

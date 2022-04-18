@@ -1,30 +1,37 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Hakurou extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Hakurou.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Hakurou.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Green), false));
 
     public Hakurou()
     {
         super(DATA);
 
-        Initialize(1, 0, 3, 4);
-        SetUpgrade(0, 0, 1, 0);
-        SetScaling(0, 1, 1);
+        Initialize(1, 0, 3);
+        SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.TenSura);
-        SetMartialArtist();
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Green(2, 0, 2);
+
+        SetDelayed(true);
     }
 
     @Override
@@ -44,29 +51,23 @@ public class Hakurou extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        GameActions.Bottom.GainAgility(1);
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
+            GameActions.Bottom.Flash(this);
+        }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.GainBlock(secondaryValue)
-            .SetVFX(true, true);
-        }
-
         GameActions.Bottom.VFX(new DieDieDieEffect());
-
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE);
         }
 
-        if (isSynergizing)
-        {
-            GameActions.Bottom.GainAgility(1);
-        }
+        GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID)
+        .RequireNeutralStance(true);
     }
 }

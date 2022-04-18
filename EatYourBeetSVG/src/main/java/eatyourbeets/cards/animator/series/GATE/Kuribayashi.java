@@ -1,62 +1,80 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.unique.RetainCardsAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Kuribayashi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Kuribayashi.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(Kuribayashi.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public Kuribayashi()
     {
         super(DATA);
 
-        Initialize(7, 0, 2, 3);
-        SetUpgrade(4, 0, 0);
-        SetScaling(0, 1, 1);
+        Initialize(8, 0, 2);
+        SetUpgrade(2, 0, 0);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.Gate);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Green(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
-    public AbstractAttribute GetDamageInfo()
+    protected void OnUpgrade()
     {
-        if (AgilityStance.IsActive())
-        {
-            return super.GetDamageInfo().AddMultiplier(2);
-        }
-        else
-        {
-            return super.GetDamageInfo();
-        }
+        SetRetainOnce(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-
-        if (AgilityStance.IsActive())
-        {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        }
-
-        if (ForceStance.IsActive())
-        {
-            GameActions.Bottom.ReduceStrength(m, secondaryValue, true);
-        }
-
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
+
+        if (info.IsSynergizing || CheckAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.StackPower(new KuribayashiPower(p, 1));
+        }
+    }
+
+    public static class KuribayashiPower extends AnimatorPower
+    {
+        public KuribayashiPower(AbstractCreature owner, int amount)
+        {
+            super(owner, Kuribayashi.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
+        {
+            super.atEndOfTurn(isPlayer);
+
+            GameActions.Bottom.SelectFromHand(name, amount, false)
+            .SetOptions(true, true, true)
+            .SetFilter(c -> c.type == CardType.ATTACK && GameUtilities.CanRetain(c))
+            .SetMessage(RetainCardsAction.TEXT[0])
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameUtilities.Retain(c);
+                }
+            });
+            RemovePower();
+            flash();
+        }
     }
 }

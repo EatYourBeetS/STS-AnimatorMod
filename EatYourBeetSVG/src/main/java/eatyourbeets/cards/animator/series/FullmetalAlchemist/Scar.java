@@ -1,48 +1,72 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.utilities.GameActions;
 
 public class Scar extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Scar.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Scar.class)
+            .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetSeriesFromClassPackage();
 
     public Scar()
     {
         super(DATA);
 
-        Initialize(14, 0);
+        Initialize(14, 0, 0, 4);
         SetUpgrade(4, 0);
-        SetScaling(1, 0, 1);
 
-        SetSynergy(Synergies.FullmetalAlchemist);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(__ -> CardCrawlGame.sound.playA("ORB_DARK_EVOKE", -0.3f));
-
-        GameActions.Bottom.ExhaustFromHand(name, 1, true)
-        .ShowEffect(true, true)
-        .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.ChannelOrb(new Earth()));
-
-        if (isSynergizing)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(__ ->
         {
-            GameActions.Bottom.FetchFromPile(name, 1, p.exhaustPile)
-            .ShowEffect(true, true)
-            .SetOptions(true, true);
-            PurgeOnUseOnce();
+            SFX.Play(SFX.ORB_DARK_EVOKE, 0.5f, 0.7f);
+            return 0f;
+        });
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.ExhaustFromHand(name, 1, false)
+        .SetOptions(true, true, false)
+        .AddCallback(cards ->
+        {
+            if (cards.size() > 0)
+            {
+                GameActions.Top.ChannelOrb(new Earth());
+            }
+        });
+
+        if (info.IsSynergizing)
+        {
+            GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
+            .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)
+            .SetOptions(false, true)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.TakeDamageAtEndOfTurn(secondaryValue, AttackEffects.SMASH);
+                    GameActions.Top.MoveCard(c, player.exhaustPile, player.discardPile)
+                    .ShowEffect(true, true);
+                }
+            });
         }
     }
 }

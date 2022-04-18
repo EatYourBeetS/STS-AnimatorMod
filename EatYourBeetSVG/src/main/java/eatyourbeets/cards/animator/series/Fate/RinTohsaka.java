@@ -1,50 +1,58 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
+import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class RinTohsaka extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(RinTohsaka.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(RinTohsaka.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreviews(OrbCore.GetAllCores(), false));
 
     public RinTohsaka()
     {
         super(DATA);
 
         Initialize(0, 5, 0, 1);
-        SetUpgrade(0, 1, 0, 1);
-        SetScaling(1, 0, 0);
+        SetUpgrade(0, 2, 0, 0);
 
-        SetSynergy(Synergies.Fate);
-        SetSpellcaster();
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Light(1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryArtifact(secondaryValue);
 
-        if (HasSynergy() && p.filledOrbCount() > 0 && CombatStats.TryActivateSemiLimited(cardID))
+        if (CheckSpecialCondition(true))
         {
-            AbstractOrb orb = p.orbs.get(0);
-            if (!(orb instanceof EmptyOrbSlot))
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1, 3)
+            .AddCallback(cards ->
             {
-                AbstractOrb copy = orb.makeCopy();
-
-                copy.evokeAmount = orb.evokeAmount;
-                copy.passiveAmount = orb.passiveAmount;
-
-                GameActions.Bottom.ChannelOrb(copy);
-            }
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.MakeCardInDrawPile(c);
+                }
+            }));
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetUniqueOrbsCount() >= 3 && (tryUse ? CombatStats.TryActivateLimited(cardID) : CombatStats.CanActivateLimited(cardID));
     }
 }

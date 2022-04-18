@@ -9,11 +9,13 @@ import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.animator.unnamedReign.UnnamedReignRelic;
+import eatyourbeets.resources.GR;
 
 public class WayTooManyDifferentRelicObtainedPatches
 {
     protected static void OnRelicObtain(AbstractRelic relic, OnRelicObtainedSubscriber.Trigger trigger)
     {
+        GR.Animator.Dungeon.OnRelicObtained(relic);
         CombatStats.OnRelicObtained(relic, trigger);
         UnnamedReignRelic.OnRelicObtained(relic, trigger);
     }

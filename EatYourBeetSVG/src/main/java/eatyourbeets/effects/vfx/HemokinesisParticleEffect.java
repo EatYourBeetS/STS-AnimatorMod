@@ -35,7 +35,7 @@ public class HemokinesisParticleEffect extends EYBEffect
     protected boolean facingLeft;
     protected float rotationRate;
 
-    public HemokinesisParticleEffect(float sX, float sY, float tX, float tY, boolean facingLeft)
+    public HemokinesisParticleEffect(float sX, float sY, float tX, float tY, boolean facingLeft, Color color)
     {
         super(0.7f);
 
@@ -57,9 +57,16 @@ public class HemokinesisParticleEffect extends EYBEffect
         this.controlPoints.clear();
         this.rotationRate = MathUtils.random(600f, 650f) * Settings.scale;
         this.currentSpeed = 1000f * Settings.scale;
-        this.color = new Color(1f, 0f, 0.02f, 0.6f);
+        this.color = color.cpy();
         this.scale = Settings.scale;
         this.renderBehind = MathUtils.randomBoolean();
+    }
+
+    public HemokinesisParticleEffect SetScale(float scale)
+    {
+        this.scale = scale * Settings.scale;
+
+        return this;
     }
 
     public void update()

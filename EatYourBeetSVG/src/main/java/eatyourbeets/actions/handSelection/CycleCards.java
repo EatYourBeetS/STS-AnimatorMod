@@ -25,21 +25,14 @@ public class CycleCards extends DiscardFromHand
     @Override
     protected void Complete(ArrayList<AbstractCard> result)
     {
-        if (drawInstantly)
-        {
-            GameActions.Top.Draw(result.size());
-        }
-        else
-        {
-            GameActions.Bottom.Draw(result.size());
-        }
+        (drawInstantly ? GameActions.Top : GameActions.Bottom).Draw(result.size());
 
         super.Complete(result);
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(GamblingChipAction.TEXT[1]);
+        return super.UpdateMessageInternal(GamblingChipAction.TEXT[1]);
     }
 }

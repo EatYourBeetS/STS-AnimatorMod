@@ -1,30 +1,57 @@
 package eatyourbeets.resources;
 
+import basemod.DevConsole;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.Hitbox;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.AbstractScreen;
-import eatyourbeets.ui.EYBCombatScreen;
+import eatyourbeets.ui.animator.cardReward.CardAffinityPanel;
+import eatyourbeets.ui.animator.characterSelection.AnimatorLoadoutEditor;
+import eatyourbeets.ui.animator.combat.EYBCombatScreen;
 import eatyourbeets.ui.animator.seriesSelection.AnimatorSeriesSelectScreen;
-import eatyourbeets.ui.common.EYBSingleCardPopup;
+import eatyourbeets.ui.common.EYBCampfireUI;
+import eatyourbeets.ui.common.EYBCardPopup;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
 public class UIManager
 {
+    protected final ArrayList<ActionT1<SpriteBatch>> preRenderList = new ArrayList<>();
     protected final ArrayList<ActionT1<SpriteBatch>> postRenderList = new ArrayList<>();
+    protected float delta = 0;
+    protected float timer = 0;
     protected boolean isDragging;
+    protected Hitbox lastHovered;
+    protected Hitbox lastHoveredTemp;
 
+    public boolean IsEndOfTurn;
+    public boolean CanHoverCards;
     public EYBCombatScreen CombatScreen;
-    public EYBSingleCardPopup CardPopup;
+    public EYBCampfireUI CampfireUI;
+    public EYBCardPopup CardPopup;
     public AbstractScreen CurrentScreen;
     public AnimatorSeriesSelectScreen SeriesSelection;
+    public AnimatorLoadoutEditor LoadoutEditor;
+    public CardAffinityPanel CardAffinities;
 
     public void Initialize()
     {
+        CanHoverCards = true;
+        CardAffinities = new CardAffinityPanel();
         CombatScreen = new EYBCombatScreen();
+        CampfireUI = new EYBCampfireUI();
+        CardPopup = new EYBCardPopup();
         SeriesSelection = new AnimatorSeriesSelectScreen();
-        CardPopup = new EYBSingleCardPopup();
+        LoadoutEditor = new AnimatorLoadoutEditor();
     }
 
     public void Dispose()
@@ -35,11 +62,33 @@ public class UIManager
         }
 
         CurrentScreen = null;
+        lastHovered = null;
+    }
+
+    public void PreUpdate()
+    {
+        delta = Gdx.graphics.getRawDeltaTime();
+        timer += delta;
+        isDragging = false;
+        lastHoveredTemp = null;
+
+        if (Elapsed(0.4f))
+        {
+            CombatStats.Refresh();
+
+            if (Elapsed(1.2f) && CombatStats.BattleID != null && AbstractDungeon.actionManager.phase == GameActionManager.Phase.WAITING_ON_USER)
+            {
+                GameUtilities.UpdatePowerDescriptions();
+            }
+        }
     }
 
     public void Update()
     {
-        isDragging = false;
+        if ((Settings.isDebug || DevConsole.infiniteEnergy) && GameUtilities.InGame())
+        {
+            GR.Common.Dungeon.SetCheating();
+        }
 
         if (CurrentScreen != null)
         {
@@ -50,6 +99,22 @@ public class UIManager
         CardPopup.TryUpdate();
     }
 
+    public void PostUpdate()
+    {
+        lastHovered = lastHoveredTemp;
+        CanHoverCards = true;
+    }
+
+    public void PreRender(SpriteBatch sb)
+    {
+        for (ActionT1<SpriteBatch> toRender : preRenderList)
+        {
+            toRender.Invoke(sb);
+        }
+
+        preRenderList.clear();
+    }
+
     public void Render(SpriteBatch sb)
     {
         if (CurrentScreen != null)
@@ -57,27 +122,117 @@ public class UIManager
             CurrentScreen.Render(sb);
         }
 
-        CombatScreen.TryRender(sb);
         CardPopup.TryRender(sb);
     }
 
     public void PostRender(SpriteBatch sb)
     {
-        for (ActionT1<SpriteBatch> postRender : postRenderList)
+        EYBCardTooltip.RenderAll(sb);
+
+        for (ActionT1<SpriteBatch> toRender : postRenderList)
         {
-            postRender.Invoke(sb);
+            toRender.Invoke(sb);
         }
 
         postRenderList.clear();
     }
 
-    public boolean TryDragging()
+    public boolean IsDragging()
     {
-        return !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+        return isDragging;
     }
 
-    public void AddPostRender(ActionT1<SpriteBatch> postRender)
+    public boolean TryDragging()
     {
-        postRenderList.add(postRender);
+        final boolean drag = !CardCrawlGame.isPopupOpen && (CurrentScreen == null || !isDragging) && (isDragging = true);
+        if (drag)
+        {
+            EYBCardTooltip.CanRenderTooltips(false);
+        }
+
+        return drag;
+    }
+
+    public boolean TryHover(Hitbox hitbox)
+    {
+        if (hitbox != null && hitbox.justHovered && hitbox != lastHovered)
+        {
+            hitbox.hovered = hitbox.justHovered = false;
+            lastHoveredTemp = hitbox;
+            return false;
+        }
+
+        if (hitbox == null || hitbox.hovered)
+        {
+            lastHoveredTemp = hitbox;
+            return hitbox == lastHovered;
+        }
+
+        return false;
+    }
+
+    public float Time_Sin(float distance, float speed)
+    {
+        return MathUtils.sin(timer * speed) * distance;
+    }
+
+    public float Time_Cos(float distance, float speed)
+    {
+        return MathUtils.cos(timer * speed) * distance;
+    }
+
+    public float Time_Multi(float value)
+    {
+        return timer * value;
+    }
+
+    public float Time()
+    {
+        return timer;
+    }
+
+    public float Delta()
+    {
+        return delta;
+    }
+
+    public float Delta(float multiplier)
+    {
+        return delta * multiplier;
+    }
+
+    public boolean Elapsed(float value)
+    {
+        return (delta >= value) || (((timer % value) - delta) < 0);
+    }
+
+    public boolean Elapsed25()
+    {
+        return Elapsed(0.25f);
+    }
+
+    public boolean Elapsed50()
+    {
+        return Elapsed(0.50f);
+    }
+
+    public boolean Elapsed75()
+    {
+        return Elapsed(0.75f);
+    }
+
+    public boolean Elapsed100()
+    {
+        return Elapsed(1.00f);
+    }
+
+    public void AddPreRender(ActionT1<SpriteBatch> toRender)
+    {
+        preRenderList.add(toRender);
+    }
+
+    public void AddPostRender(ActionT1<SpriteBatch> toRender)
+    {
+        postRenderList.add(toRender);
     }
 }

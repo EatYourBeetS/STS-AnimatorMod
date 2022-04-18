@@ -1,19 +1,22 @@
 package eatyourbeets.utilities;
 
+import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
@@ -21,7 +24,11 @@ import java.util.jar.JarInputStream;
 
 public class JUtils
 {
-    private static final MessageFormat formatter = new MessageFormat("");
+    public static final Random RNG = new Random();
+
+    private static final Gson gson = new Gson();
+    private static final StringBuilder sb1 = new StringBuilder();
+    private static final StringBuilder sb2 = new StringBuilder();
     private static final ArrayList<String> classNames = new ArrayList<>();
     private static final WeightedList<AbstractOrb> orbs = new WeightedList<>();
 
@@ -39,6 +46,37 @@ public class JUtils
         }
     }
 
+    public static <T> boolean All(Iterable<T> list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (!predicate.test(t))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static <T> boolean Any(Iterable<T> list, Predicate<T> predicate)
+    {
+        for (T t : list)
+        {
+            if (predicate.test(t))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static String Capitalize(String text)
+    {
+        return text.length() <= 1 ? text.toUpperCase() : TipHelper.capitalize(text);
+    }
+
     public static <T> int Count(Iterable<T> list, Predicate<T> predicate)
     {
         int count = 0;
@@ -53,9 +91,21 @@ public class JUtils
         return count;
     }
 
+    @SafeVarargs
+    public static <T> ArrayList<T> CreateList(T... items)
+    {
+        final ArrayList<T> list = new ArrayList<>(items.length);
+        for (int i = 0; i < items.length; i++)
+        {
+            list.add(i, items[i]);
+        }
+
+        return list;
+    }
+
     public static <K, V> Map<K, List<V>> Group(Iterable<V> list, FuncT1<K, V> getKey)
     {
-        Map<K, List<V>> map = new HashMap<>();
+        final Map<K, List<V>> map = new HashMap<>();
         for (V v : list)
         {
             K k = getKey.Invoke(v);
@@ -67,7 +117,7 @@ public class JUtils
 
     public static <K, V, C> Map<K, C> Group(Iterable<V> list, FuncT1<K, V> getKey, ActionT3<K, V, C> add)
     {
-        Map<K, C> map = new HashMap<>();
+        final Map<K, C> map = new HashMap<>();
         for (V v : list)
         {
             K k = getKey.Invoke(v);
@@ -79,7 +129,7 @@ public class JUtils
 
     public static <T> ArrayList<T> Filter(Iterable<T> list, Predicate<T> predicate)
     {
-        ArrayList<T> res = new ArrayList<>();
+        final ArrayList<T> res = new ArrayList<>();
         for (T t : list)
         {
             if (predicate.test(t))
@@ -91,11 +141,22 @@ public class JUtils
         return res;
     }
 
-    public static <T> T Find(Iterable<T> list, FuncT1<Boolean, T> predicate)
+    public static <T, S> ArrayList<S> Select(Iterable<T> list, FuncT1<S, T> select)
+    {
+        final ArrayList<S> res = new ArrayList<>();
+        for (T t : list)
+        {
+            res.add(select.Invoke(t));
+        }
+
+        return res;
+    }
+
+    public static <T> T Find(Iterable<T> list, Predicate<T> predicate)
     {
         for (T t : list)
         {
-            if (predicate.Invoke(t))
+            if (predicate.test(t))
             {
                 return t;
             }
@@ -146,15 +207,74 @@ public class JUtils
         return result;
     }
 
+    // Simple string Formatting in which integers inside curly braces are replaced by args[i].
     public static String Format(String format, Object... args)
     {
-        if (args.length > 0)
+        if (StringUtils.isEmpty(format))
         {
-            format = format.replaceAll("(?<!\\\\)'", "''").replaceAll("\\\\'", "'");
+            return "";
+        }
+        if (args == null || args.length == 0)
+        {
+            return format;
         }
 
-        formatter.applyPattern(format);
-        return formatter.format(args);
+        sb1.setLength(0);
+        sb2.setLength(0);
+        int braces = 0;
+        for (int i = 0; i < format.length(); i++)
+        {
+            Character c = format.charAt(i);
+            if (c == '{')
+            {
+                sb2.setLength(0);
+                int j = i + 1;
+                while (j < format.length())
+                {
+                    final Character next = format.charAt(j);
+                    if (Character.isDigit(next))
+                    {
+                        sb2.append(next);
+                        j += 1;
+                        continue;
+                    }
+                    else if (next == '}' && sb2.length() > 0)
+                    {
+                        int index;
+                        if (sb2.length() == 1)
+                        {
+                            index = Character.getNumericValue(sb2.toString().charAt(0));
+                        }
+                        else
+                        {
+                            index = ParseInt(sb2.toString(), -1);
+                        }
+
+                        if (index >= 0 && index < args.length)
+                        {
+                            sb1.append(args[index]);
+                        }
+                        else
+                        {
+                            LogError(JUtils.class, "Invalid format: " + format + "\n" + JoinStrings(", " , args));
+                        }
+
+                        i = j;
+                    }
+
+                    break;
+                }
+
+                if (sb2.length() > 0)
+                {
+                    continue;
+                }
+            }
+
+            sb1.append(c);
+        }
+
+        return sb1.toString();
     }
 
     public static ArrayList<String> GetClassNamesFromJarFile(String prefix)
@@ -163,18 +283,18 @@ public class JUtils
         {
             try
             {
-                String path = JUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-                JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
+                final String path = JUtils.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+                final JarInputStream jarFile = new JarInputStream(new FileInputStream(path));
 
                 while (true)
                 {
-                    JarEntry entry = jarFile.getNextJarEntry();
+                    final JarEntry entry = jarFile.getNextJarEntry();
                     if (entry == null)
                     {
                         break;
                     }
 
-                    String name = entry.getName();
+                    final String name = entry.getName();
                     if (name.endsWith(".class") && name.indexOf('$') == -1)
                     {
                         classNames.add(name.replaceAll("/", "\\."));
@@ -187,7 +307,7 @@ public class JUtils
             }
         }
 
-        ArrayList<String> result = new ArrayList<>();
+        final ArrayList<String> result = new ArrayList<>();
         for (String entry : classNames)
         {
             if (entry.startsWith(prefix))
@@ -199,11 +319,31 @@ public class JUtils
         return result;
     }
 
+    public static FieldInfo[] GetFields(Class<?> type) throws RuntimeException
+    {
+        try
+        {
+            final Field[] fields = type.getDeclaredFields();
+            final FieldInfo[] result = new FieldInfo[fields.length];
+            for (int i = 0; i < fields.length; i++)
+            {
+                fields[i].setAccessible(true);
+                result[i] = new FieldInfo(fields[i]);
+            }
+
+            return result;
+        }
+        catch (SecurityException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static <T> FieldInfo<T> GetField(String fieldName, Class<?> type) throws RuntimeException
     {
         try
         {
-            Field field = type.getDeclaredField(fieldName);
+            final Field field = type.getDeclaredField(fieldName);
             field.setAccessible(true);
             return new FieldInfo<>(field);
         }
@@ -211,6 +351,67 @@ public class JUtils
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public static <T> MethodInfo.T0<T> GetMethod(String methodName, Class<?> type) throws RuntimeException
+    {
+        return new MethodInfo.T0<>(methodName, type);
+    }
+
+    public static <T, T1> MethodInfo.T1<T, T1> GetMethod(String methodName, Class<?> type, Class<T1> t1) throws RuntimeException
+    {
+        return new MethodInfo.T1<>(methodName, type, t1);
+    }
+
+    public static <T, T1, T2> MethodInfo.T2<T, T1, T2> GetMethod(String methodName, Class<?> type, Class<T1> t1, Class<T2> t2) throws RuntimeException
+    {
+        return new MethodInfo.T2<>(methodName, type, t1, t2);
+    }
+
+    public static boolean IsNotEmpty(List list)
+    {
+        return list != null && list.size() > 0;
+    }
+
+    public static boolean IsNullOrEmpty(List list)
+    {
+        return list == null || list.isEmpty();
+    }
+
+    public static boolean IsNullOrZero(Number number)
+    {
+        return number == null || number.intValue() == 0;
+    }
+
+    public static <T> Constructor<T> TryGetConstructor(Class<T> type, Class... paramTypes)
+    {
+        try
+        {
+            return paramTypes.length > 0 ? type.getDeclaredConstructor(paramTypes) : type.getConstructor();
+        }
+        catch (NoSuchMethodException e)
+        {
+            return null;
+        }
+    }
+
+    public static <T> T CallDefaultConstructor(Class<T> type)
+    {
+        final Constructor<T> ctor = TryGetConstructor(type);
+        if (ctor != null)
+        {
+            try
+            {
+                ctor.setAccessible(true);
+                return ctor.newInstance();
+            }
+            catch (InstantiationException | IllegalAccessException | InvocationTargetException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 
     public static Logger GetLogger(Object source)
@@ -221,42 +422,6 @@ public class JUtils
         }
 
         return LogManager.getLogger((source instanceof Class) ? ((Class)source).getName() : source.getClass().getName());
-    }
-
-    public static MethodInfo GetMethod(String methodName, Class<?> type, Class<?>... parameterTypes) throws RuntimeException
-    {
-        try
-        {
-            Method method = type.getDeclaredMethod(methodName, parameterTypes);
-            method.setAccessible(true);
-            return new MethodInfo(method);
-        }
-        catch (NoSuchMethodException e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static <T> T GetRandomElement(List<T> list)
-    {
-        return GetRandomElement(list, GameUtilities.GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr)
-    {
-        return GetRandomElement(arr, GameUtilities.GetRNG());
-    }
-
-    public static <T> T GetRandomElement(T[] arr, Random rng)
-    {
-        int size = arr.length;
-        return (size > 0) ? arr[rng.random(arr.length - 1)] : null;
-    }
-
-    public static <T> T GetRandomElement(List<T> list, Random rng)
-    {
-        int size = list.size();
-        return (size > 0) ? list.get(rng.random(list.size() - 1)) : null;
     }
 
     public static int IncrementMapElement(Map map, Object key)
@@ -279,7 +444,7 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, Collection<T> values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
@@ -290,13 +455,102 @@ public class JUtils
 
     public static <T> String JoinStrings(String delimiter, T[] values)
     {
-        StringJoiner sj = new StringJoiner(delimiter);
+        final StringJoiner sj = new StringJoiner(delimiter);
         for (T value : values)
         {
             sj.add(String.valueOf(value));
         }
 
         return sj.toString();
+    }
+
+    public static String[] SplitString(String separator, String text)
+    {
+        return SplitString(separator, text, true);
+    }
+
+    public static String[] SplitString(String separator, String text, boolean removeEmptyEntries)
+    {
+        if (StringUtils.isEmpty(text))
+        {
+            return new String[0];
+        }
+
+        sb1.setLength(0);
+        sb2.setLength(0);
+
+        int s_index = 0;
+        final ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < text.length(); i++)
+        {
+            char c = text.charAt(i);
+            if (separator.charAt(s_index) != c)
+            {
+                if (s_index > 0)
+                {
+                    sb1.append(sb2.toString());
+                    sb2.setLength(0);
+                    s_index = 0;
+                }
+                sb1.append(c);
+            }
+            else if ((separator.length() - 1) > s_index)
+            {
+                s_index += 1;
+                sb2.append(c);
+            }
+            else
+            {
+                if (!removeEmptyEntries)
+                {
+                    result.add(sb1.toString());
+                    if (i == text.length() - 1)
+                    {
+                        result.add("");
+                    }
+                }
+                else if (sb1.length() > 0)
+                {
+                    result.add(sb1.toString());
+                }
+
+                s_index = 0;
+                sb1.setLength(0);
+                sb2.setLength(0);
+            }
+        }
+
+        if (sb1.length() > 0)
+        {
+            result.add(sb1.toString());
+        }
+
+        final String[] arr = new String[result.size()];
+        return result.toArray(arr);
+    }
+
+    public static String TitleCase(String text)
+    {
+        return ModifyString(text, w -> Character.toUpperCase(w.charAt(0)) + (w.length() > 1 ? w.substring(1) : ""));
+    }
+
+    public static String ModifyString(String text, FuncT1<String, String> modifyWord)
+    {
+        return ModifyString(text, " ", " ", modifyWord);
+    }
+
+    public static String ModifyString(String text, String separator, String delimiter, FuncT1<String, String> modifyWord)
+    {
+        final String[] words = SplitString(separator, text);
+        if (modifyWord != null)
+        {
+            for (int i = 0; i < words.length; i++)
+            {
+                words[i] = modifyWord.Invoke(words[i]);
+            }
+        }
+
+        return JoinStrings(delimiter, words);
     }
 
     public static void LogError(Object source, Object message)
@@ -329,25 +583,25 @@ public class JUtils
         GetLogger(source).warn(Format(format, values));
     }
 
-    public static float ParseFloat(String value, float defaultValue)
+    public static Float ParseFloat(String value, Float defaultValue)
     {
         try
         {
             return Float.parseFloat(value);
         }
-        catch (NumberFormatException ex)
+        catch (NumberFormatException | NullPointerException ex)
         {
             return defaultValue;
         }
     }
 
-    public static int ParseInt(String value, int defaultValue)
+    public static Integer ParseInt(String value, Integer defaultValue)
     {
         try
         {
             return Integer.parseInt(value);
         }
-        catch (NumberFormatException ex)
+        catch (NumberFormatException | NullPointerException ex)
         {
             return defaultValue;
         }
@@ -362,5 +616,51 @@ public class JUtils
     public static <T> T SafeCast(Object o, Class<T> type)
     {
         return type.isInstance(o) ? (T)o : null;
+    }
+
+    public static boolean ShowDebugInfo()
+    {
+        return Settings.isDebug || Settings.isInfo;
+    }
+
+    public static <T> T Random(T[] items)
+    {
+        return items[RNG.nextInt(items.length)];
+    }
+
+    public static <T> T Random(ArrayList<T> items)
+    {
+        return items.get(RNG.nextInt(items.size()));
+    }
+
+    public static <T> T Random(Collection<T> items)
+    {
+        int size = items.size();
+        if (size == 0)
+        {
+            return null;
+        }
+
+        int i = 0;
+        int targetIndex = RNG.nextInt(size);
+        for (T item : items)
+        {
+            if (i++ == targetIndex)
+            {
+                return item;
+            }
+        }
+
+        throw new RuntimeException("items.size() was smaller than " + targetIndex + ".");
+    }
+
+    public static <T> T Deserialize(String json, Class<T> type)
+    {
+        return gson.fromJson(json, type);
+    }
+
+    public static String Serialize(Object object)
+    {
+        return gson.toJson(object);
     }
 }

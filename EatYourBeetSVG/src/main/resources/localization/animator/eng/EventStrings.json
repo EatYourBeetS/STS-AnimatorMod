@@ -65,7 +65,7 @@
 		"OPTIONS":
 		[
 			"[Sell] #gRemove {0}. #gGain #g{1} #gGold.",
-			"[Trade] #gImprove #gall Strikes #gand Defends. #rLose #r{0} #rGold.",
+			"[Trade] #gImprove #g1 #gStrike #gand #g1 #gDefend. #rLose #r{0} #rGold.",
 			"[Locked] No card to sell.",
 			"[Locked] Not enough Gold."
 		]
@@ -83,9 +83,11 @@
 		"NAME": "The Masked Traveler (Part 2)",
 		"OPTIONS":
 		[
-			"[Accept] #gObtain #gRelic",
-			"[Accept] #gRemove #g{0} #gcards, #gobtain #g{1} #grandom #gUpgraded #gcards.",
-			"[Accept] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP."
+			"[Accept] #gObtain #gRelic.",
+			"[Accept] #gObtain #gRelic. #gGain #g{0} #gMax #gHP #gfor #geach #gCurse #g({1} #gHP).",
+			"[Accept] #gRemove #g{0} #gcards, #gchoose #gand #gobtain #g{1} #gUncommon #gcards.",
+			"[Accept] #gRecover #gyour #gstarting #grelics. #rLose #r{0} #rMax #rHP.",
+			"[Accept] #gGain #g{1} #gGold. #rLose {0}."
 		]
 	},
 	"animator:TheMaskedTraveler3":
@@ -133,7 +135,7 @@
 	{
 		"DESCRIPTIONS":
 		[
-			"Numerous trees flood your vision as you're quickly engulfed by a thick forest. NL NL The air is ~heavy~ ~and~ ~humid,~ filled with spores from fungi and the leafs all seem to be wet from recent rain. NL NL Dancing through the trees, a ghostly figure spins in the air, fading in and out of existence while approaching you.",
+			"Numerous trees flood your vision as you're quickly engulfed by a thick forest. NL NL The air is ~heavy~ ~and~ ~humid,~ filled with spores from fungi and the leaves all seem to be wet from recent rain. NL NL Dancing through the trees, a ghostly figure spins in the air, fading in and out of existence while approaching you.",
 
 			"\"This is no place for a mortal, are you perhaps lost?\" NL NL The green haired apparition says in a calm yet surprised tone. NL NL \"Oh! You've got your own set of afflictions, if you are going to persist they'll slow you down. It is my duty to contain those, but I can also show you how to harvest power from them.\" NL NL She seems to mean no harm, what will you do?",
 
@@ -143,7 +145,49 @@
 		"OPTIONS":
 		[
 			"[Embrace] #gObtain #gHina #gKagiyama #rAnd #rA #rCurse.",
-			"[Purify] #gRemove #g{0} #gRandom #gCurses #gFrom #gYour #gDeck."
+			"[Purify] #gRemove #g{0} #gRandom #gNon-Special #gCurses #gFrom #gYour #gDeck."
+		]
+	},
+	"animator:Drug Dealer":
+	{
+		"OPTIONS": 
+		[
+		  "[Accept] #gReceive #gR.F.N.",
+		  "[Become Test Subject] #gTransform #g2 #gcards.",
+		  "[Ingest Mutagens] #gObtain #ga #gspecial #grelic.",
+		  "[Leave]",
+		  "[Locked] Requires: 2 or more cards in deck.",
+		  "Select Cards to Transform."
+		]
+	},
+	"animator:Forgotten Altar":
+	{
+		"OPTIONS": 
+		[
+	      "[Offer: Golden Idol] #gObtain #ga #gspecial #gRelic. #rLose #rGolden #rIdol.",
+		  "[Locked] Requires: Golden Idol.",
+		  "[Sacrifice] #gGain #g{0} #gMax #gHP. #rLose #r{1} #rHP.",
+		  "[Locked] Requires: Humanity.",
+		  "[Desecrate] #gObtain #g{1} #gGold. #rBecome #rCursed #r- #r{0}."
+		]
+	},
+	"animator:Nest":
+	{
+		"OPTIONS": [
+		  "[Join the cult] #gObtain {0}. #rLose #r{1} #rHP.",
+		  "[Smash and Grab] #gObtain #g{0} #gGold.",
+		  "[Leave]",
+		  "[Continue]"
+		]
+	},
+	"animator:Vampires":
+	{
+		"OPTIONS": 
+		[
+			"[Accept] #gRemove #gall Strikes. #gReceive #g4 Bites. #rLose #r{0} #rMax #rHP.",
+			"[Refuse]",
+			"[Lose {0}] #gReceive {1}.",
+			"[Leave]"
 		]
 	}
 }

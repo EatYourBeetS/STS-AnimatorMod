@@ -1,43 +1,31 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class YunYun extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(YunYun.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(YunYun.class)
+            .SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public YunYun()
     {
         super(DATA);
 
-        Initialize(8, 0);
-        SetUpgrade(4, 0);
-        SetScaling(1, 0, 0);
+        Initialize(7, 0);
+        SetUpgrade(2, 0);
 
-        SetSynergy(Synergies.Konosuba);
-        SetSpellcaster();
-    }
+        SetAffinity_Blue(1, 1, 1);
+        SetAffinity_Light(1, 0, 1);
 
-    @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        if (CombatStats.TryActivateLimited(cardID))
-        {
-            GameActions.Bottom.ChannelOrb(new Lightning());
-            GameActions.Bottom.Flash(this);
-        }
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -57,16 +45,14 @@ public class YunYun extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE");
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
 
-        for (AbstractMonster m1 : GameUtilities.GetEnemies(true))
+        if (CheckAffinity(Affinity.Blue))
         {
-            GameActions.Bottom.VFX(new LightningEffect(m1.drawX, m1.drawY));
+            GameActions.Bottom.ChannelOrb(new Lightning());
         }
-
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
     }
 
     public void RefreshCost()

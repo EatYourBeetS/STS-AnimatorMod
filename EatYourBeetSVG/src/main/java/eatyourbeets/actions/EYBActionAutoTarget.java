@@ -32,7 +32,7 @@ public class EYBActionAutoTarget<T> extends EYBActionWithCallback<T>
     {
         targets.clear();
 
-        for (AbstractCreature c : targetHelper.GetTargets())
+        for (AbstractCreature c : targetHelper.GetTargets(true))
         {
             if (reverse)
             {

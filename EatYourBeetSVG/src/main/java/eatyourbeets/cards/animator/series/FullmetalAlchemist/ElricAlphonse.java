@@ -2,59 +2,64 @@ package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.ElricAlphonseAlt;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.cards.animator.special.ElricAlphonse_Alt;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ElricAlphonse.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new ElricAlphonseAlt(), true);
-    }
+    public static final EYBCardData DATA = Register(ElricAlphonse.class)
+            .SetSkill(0, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.FullmetalAlchemist_Alphonse(6, ElricEdward.DATA, ElricAlphonse_Alt.DATA));
+                data.AddPreview(new ElricAlphonse_Alt(), true);
+            });
 
     public ElricAlphonse()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
+        Initialize(0, 2, 2);
         SetUpgrade(0, 0, 1);
 
-        SetEthereal(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
-    }
-
-//    @Override
-//    public List<TooltipInfo> getCustomTooltips()
-//    {
-//        if (cardText.index == 1)
-//        {
-//            return super.getCustomTooltips();
-//        }
-//
-//        return null;
-//    }
-
-    @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        GameActions.Bottom.MakeCardInDiscardPile(new ElricAlphonseAlt()).SetUpgrade(upgraded, false);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (GameUtilities.GetPowerAmount(p, IntellectPower.POWER_ID) <= magicNumber)
+        GameActions.Bottom.GainBlock(block);
+
+        if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainIntellect(1, true);
+            GameActions.Bottom.GainIntellect(1);
         }
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.Callback(() ->
+        {
+            for (AbstractAffinityPower power : CombatStats.Affinities.Powers)
+            {
+                if (power.amountGainedThisTurn > 0)
+                {
+                    power.RetainOnce();
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return CombatStats.Affinities.GetPowerAmount(Affinity.Blue) < magicNumber;
     }
 }

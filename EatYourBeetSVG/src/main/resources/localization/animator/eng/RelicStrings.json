@@ -8,7 +8,7 @@
 	},
 	"animator:AncientMedallion":
 	{
-		"DESCRIPTIONS": ["At the start of each combat, Heal #b{0} HP. NL Upon pickup, #yUpgrade 2 random cards and a card of your choice. The chosen card will be upgraded twice."],
+		"DESCRIPTIONS": ["Upon pickup, #yUpgrade 2 random cards and a card of your choice, the chosen card is upgraded twice. At the start of combat, heal #b{0} HP. ", "Healing {0} less HP (Ascension 18+)."],
 		"FLAVOR": "...",
 		"NAME": "Ancient Medallion"
 	},
@@ -18,6 +18,12 @@
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},
+	"animator:BloodVial_Alt":
+	{
+		"DESCRIPTIONS": ["At the start of combat, heal #b{0} [HP]."],
+		"FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+		"NAME": "Blood Vial"
+	},
 	"animator:Buoy":
 	{
 		"DESCRIPTIONS": ["If you end your turn below #b{0}% HP, gain #b{1} #yBlock."],
@@ -26,7 +32,7 @@
 	},
 	"animator:CerealBox":
 	{
-		"DESCRIPTIONS": ["#pRight #pClick to #yHeal #b{0} HP. NL Starts at #b{1} uses, gain #b{2} uses when entering a shop room. NL You can store up to #b{3} uses."],
+		"DESCRIPTIONS": ["Pay #b{0} [E] to heal #b{1} HP. Starts at #b{2} uses, gain #b{3} uses when entering a shop.", "Pay #b{0} [E] to heal #b{1} HP."],
 		"FLAVOR": "Whole Grain Guaranteed! Approved by Konayuki.",
 		"NAME": "Cereal Box"
 	},
@@ -38,25 +44,31 @@
 	},
 	"animator:CrumblingOrb":
 	{
-		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each Boss and Elite fight, choose and permanently transform 2 out of 3 random cards in your deck."],
+		"DESCRIPTIONS": ["Gain [E] at the start of each turn. At the start of each turn, before drawing, add a random card to the top of your draw pile."],
 		"FLAVOR": "As the orb understands the user's heart, the fusion between the two restructures the soul and causes a great transformation.",
 		"NAME": "Crumbling Orb"
 	},
 	"animator:CursedBlade":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yForce and #yAgility. Whenever you take unblocked Attack damage, add a #yWound to your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [F] and [A]. Whenever you take unblocked Attack damage, add a #yWound to your hand.", "Once per turn, pay #b{0} [MHP] to deal #b{1} damage to ALL enemies, then increase damage and cost by #b{2}."],
 		"FLAVOR": "Power comes at a price.",
 		"NAME": "Cursed Blade"
 	},
 	"animator:CursedGlyph":
 	{
-		"DESCRIPTIONS": ["Upon pickup, #rlose #r{0} #rMax #rHP, all enemies start with additional Max HP. NL NL The card linked to this relic can #yNOT be duplicated."],
+		"DESCRIPTIONS": ["Upon pickup, #rlose #r{0} #rMax #rHP, all enemies start with additional Max HP."],
 		"FLAVOR": "Maybe it was a mistake...",
 		"NAME": "Cursed Glyph"
 	},
+	"animator:Destiny":
+	{
+		"DESCRIPTIONS": ["Whenever you draw a #yCurse, gain #b{0} [THP]. Significantly increases chances of finding #pUltrarare cards."],
+		"FLAVOR": "It would seem it found its way to you in the end, as expected.",
+		"NAME": "Destiny"
+	},
 	"animator:EngravedStaff":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, randomly #yBoost #yForce, #yAgility, or #yIntellect"],
+		"DESCRIPTIONS": ["At the start of turn, #yBoost a random [Affinity] #yPowers. NL Whenever you reach an [Affinity] #yPower threshold, gain #b{0} [THP]."],
 		"FLAVOR": "One of the most treasured possessions of the Guild.",
 		"NAME": "Engraved Staff"
 	},
@@ -68,13 +80,13 @@
 	},
 	"animator:HallowedScabbard":
 	{
-		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} HP or more, gain #b{1} #yRegeneration and #b{2} #yForce."],
+		"DESCRIPTIONS": ["Once per combat, if you lose a total of #b{0} or more [HP], gain #b{1} #yRegeneration and #b{2} [B]."],
 		"FLAVOR": "The holder of the scabbard is granted potent healing, allowing for critical and fatal wound to be rapidly repaired.",
 		"NAME": "Hallowed Scabbard"
 	},
 	"animator:HeavyHalberd":
 	{
-		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yForce for each character with #yVulnerable."],
+		"DESCRIPTIONS": ["Whenever you apply [Vulnerable], gain #b{0} [Force]."],
 		"FLAVOR": "Ruling over death means ruling over life. Death is the climax of life. To have the best death, you must honor life.",
 		"NAME": "Heavy Halberd"
 	},
@@ -86,27 +98,51 @@
 	},
 	"animator:Hoodie":
 	{
-		"DESCRIPTIONS": ["If you end a combat without taking unblocked damage, gain #b{0} #yMax #yHP."],
+		"DESCRIPTIONS": ["Halve all [MHP] loss and #yNon-Attack damage received during your turn."],
 		"FLAVOR": "With this, you might be admitted to the Hero association.",
 		"NAME": "Hoodie"
 	},
 	"animator:InfinitePower":
 	{
-		"DESCRIPTIONS": ["Upon pickup, gain #b", " #yGold and #rlose #r", " #rMax #rHP. For every #b", " cards in your deck, obtain an #pUnnamed card reward."],
+		"DESCRIPTIONS": ["Upon pickup, gain #b{0} #yGold and #rlose #r{1} #rMax #rHP. For every #b{2} cards in your deck, obtain an #pUnnamed card reward."],
 		"FLAVOR": "Infinite Power! At a price...",
 		"NAME": "InfinitePower"
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["Once per turn, when a card #ySynergizes, draw #b1 card."],
+		"DESCRIPTIONS": ["Up to #b{0} times per combat, when you manually #ySeal a card, draw #b1 card."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
+	"animator:VividPicture":
+	{
+		"DESCRIPTIONS": ["Replaces #yLiving #yPicture. Up to #b{0} times per combat, when you manually #ySeal a card, draw #b{1} cards."],
+		"FLAVOR": "It's always watching.",
+		"NAME": "Vivid Picture"
+	},
 	"animator:MantleOfTheStrategist":
 	{
-		"DESCRIPTIONS": ["The second card you play in your turn will #ySynergize."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [Inspiration]."],
 		"FLAVOR": "A robe made from cloth woven from the tracks of falling stars.",
 		"NAME": "Mantle of the Strategist"
+	},
+	"animator:ModelSpaceship":
+	{
+		"DESCRIPTIONS": ["Upon pickup, lose #b{0} [Gold]. NL Draw #b1 additional card each turn. At the end of each turn, deal #b{1} damage to a random enemy for each #yAttack in hand."],
+		"FLAVOR": "What's your favorite thing about space? Mine is space.",
+		"NAME": "Model Spaceship"
+	},
+	"animator:NeowsComplaint":
+	{
+		"DESCRIPTIONS": ["Your first #b{0} card rewards contain 1 additional card."],
+		"FLAVOR": "I want the original back.",
+		"NAME": "Neow's Complaint"
+	},
+	"animator:NuclearBattery":
+	{
+		"DESCRIPTIONS": ["Conserve #b1 [E] between turns. Twice per combat, if you don't have [Plasma], pay [E] to #yChannel #b1 [Plasma].", "If you have no [Plasma], pay [E] to #yChannel [Plasma]."],
+		"FLAVOR": "Is this thing safe?",
+		"NAME": "Nuclear Battery"
 	},
 	"animator:OldCoffin":
 	{
@@ -114,15 +150,21 @@
 		"FLAVOR": "Shocking Truth!",
 		"NAME": "Old Coffin"
 	},
+	"animator:PlotArmor":
+	{
+		"DESCRIPTIONS": ["Gain a #b{0}% chance to dodge attacks while below #b{1}% Max [HP]. NL #pRight-Click to change amount."],
+		"FLAVOR": "Being integral part of the plot protects you, but also prevents you from straying too far off the main path.",
+		"NAME": "Plot Armor"
+	},
 	"animator:PurgingStone":
 	{
-		"DESCRIPTIONS": ["You may banish cards from appearing in future #yNormal rewards and shops. Gain #b1 use at the end of each combat, and #b2 uses against Elites or Bosses. Can store up to #b{0} uses."],
+		"DESCRIPTIONS": ["Once per combat, pay #b{0} [E] to #yExhaust all #yHindrances in hand, then gain #b{1} [THP] for each #yCurse #yExhausted by this effect."],
 		"FLAVOR": "Humans are helpless against curses, and can only redirect their influence.",
 		"NAME": "Purging Stone"
 	},
 	"animator:RacePiece":
 	{
-		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 cards of the selected card's #ySeries."],
+		"DESCRIPTIONS": ["Upon pickup, select #b1 card, then choose and #yTransform #b3 cards in your deck into #b3 #yUpgraded cards of the selected card's #ySeries."],
 		"FLAVOR": "Did you see that coming Mr. Mind Reader? Checkmate.",
 		"NAME": "Race Piece"
 	},
@@ -132,21 +174,45 @@
 		"FLAVOR": "???",
 		"NAME": "???"
 	},
+	"animator:RollingCubes":
+	{
+		"DESCRIPTIONS": ["Once per floor, you may reroll all cards in a #yNormal card reward. NL Gain #b{0} use when you enter #yElite or #yBoss rooms. Stores up to #b{1} uses."],
+		"FLAVOR": "A pair of cubes.",
+		"NAME": "Cubes"
+	},
 	"animator:ShionDessert":
 	{
 		"DESCRIPTIONS": ["At the start of each turn, apply #b{0} #yPoison to the enemy with the most #yPoison."],
 		"FLAVOR": "Here, have a taste, how bad can it be?",
 		"NAME": "Shion's Dessert"
 	},
+	"animator:ShinigamiFerry":
+	{
+		"DESCRIPTIONS": ["For 1 floor, you may ignore paths when choosing the next room to travel to."],
+		"FLAVOR": "When the candlestick burns short, the Shinigami come to collect their dues.",
+		"NAME": "Shinigami's Ferry"
+	},
+	"animator:SoulGem":
+	{
+		"DESCRIPTIONS": ["At the start of your turn, Exhaust a #yHindrance from your hand."],
+		"FLAVOR": "Would you like to make a contract?",
+		"NAME": "Soul Gem"
+	},
+	"animator:SpellScroll":
+	{
+		"DESCRIPTIONS": ["At the start of each combat, draw #b1 card, then #yTransform a card in hand into a random #yUpgraded [A_Blue] card and give it #yEthereal."],
+		"FLAVOR": "It's written in a language you don't recognize. Despite that, you understand its content perfectly.",
+		"NAME": "Spell Scroll"
+	},
 	"animator:TheEgnaroPiece":
 	{
-		"DESCRIPTIONS": ["Gain [E] and draw 1 card at the start of each turn. NL Gain #b{0} #yTemporary #yHP at the end of each turn, then increase this number by #b1."],
+		"DESCRIPTIONS": ["At the start of each turn, gain [E] and draw #b1 card. NL At the start of combat, gain #b{0} [Vitality] for every #b{1} cards in your deck."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Egnaro Piece"
 	},
 	"animator:TheEruzaStone":
 	{
-		"DESCRIPTIONS": ["Gain [E] [E] at the start of each turn. NL Whenever you play a #yPower, draw 1 card."],
+		"DESCRIPTIONS": ["At the start of each turn, gain {0} [E]. Once per turn, when you play a #yPower, gain #b1 [Vitality] (Max #b{1}^)."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Eruza Stone"
 	},
@@ -156,28 +222,34 @@
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Missing Piece"
 	},
+	"animator:TheUnnamedMark":
+	{
+		"DESCRIPTIONS": ["All enemy minions have #b+{0} [{1}]."],
+		"FLAVOR": "Unnamed: 1, Player: 0",
+		"NAME": "Unnamed Mark"
+	},
 	"animator:TheWolleyCore":
 	{
-		"DESCRIPTIONS": ["Draw #b{0} cards at the start of each turn. NL Whenever you play a card, deal #b{1} damage to ALL enemies and gain #b{2} #yBlock."],
+		"DESCRIPTIONS": ["At the start of each turn, draw #b{0} cards. NL Every #b{1} cards played, gain #b{2} [THP] and deal #b{3} damage to ALL enemies."],
 		"FLAVOR": "What is this thing?",
 		"NAME": "The Wolley Core"
 	},
-	"animator:VividPicture":
-	{
-		"DESCRIPTIONS": ["Replaces #yThe #yLiving #yPicture. NL Once per turn, when a card #ySynergizes, draw #b1 card and gain [E]"],
-		"FLAVOR": "It's always watching.",
-		"NAME": "Vivid Picture"
-	},
 	"animator:WizardHat":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yIntellect. Once per combat, if you end your turn with at least #b{1} unspent energy, deal #b{2} damage to ALL enemies."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} [I].", "Once per combat, pay #b{0} [E] to deal #b{1} damage to ALL enemies. Increase damage by #b{2} each turn."],
 		"FLAVOR": "Explosion magic is the strongest magic. But that also means it takes time to prepare.",
 		"NAME": "Wizard Hat"
 	},
 	"animator:WornHelmet":
 	{
-		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yStatus and #yCurse in your hand."],
+		"DESCRIPTIONS": ["Start each combat with #b{0} #yBlock. At the end of each turn, gain #b{1} #yBlock for every #yHindrance in your hand."],
 		"FLAVOR": "Goblins.",
 		"NAME": "Worn Helmet"
+	},
+	"animator:Ynitaph":
+	{
+		"DESCRIPTIONS": [" ( Ascension {0}+ )", "Proof of victory against #pThe #pUnnamed, lose this relic on death. Start each #yElite combat with ", "#b{0} #yStrength.", "#b{0} #yStrength and #yDexterity.", "#b{0} #yStrength, #yDexterity and #yFocus (If you have no Orb slots, gain #yMetallicize instead)."],
+		"FLAVOR": "Legends say something will happen if you collect all pieces. Legends also say that it has not been implemented yet.",
+		"NAME": "Ynitaph"
 	}
 }

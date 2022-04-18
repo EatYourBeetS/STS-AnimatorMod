@@ -1,30 +1,61 @@
 
 {
-	"EYB:HandSelection":
+	"eyb:HandSelection":
 	{
 		"TEXT":
 		[
 			"move to your draw pile.",
-			"buff."
+			"buff.",
+			"copy.",
+			"activate:"
 		]
 	},
-
-	"EYB:GridSelection":
+	"eyb:GridSelection":
 	{
 		"TEXT":
 		[
 			"Discard up to {0} card(s).",
 			"Shuffle {0} card(s) into your Draw Pile.",
-			"Transform into a {0}.",
-			"Choose {0} card(s)."
+			"Transform into {0}.",
+			"Choose {0} card(s).",
+			"Purge {0} card(s).",
+			"Scry (You draw from left to right).",
+			"Fetch {0} card(s)."
 		]
 	},
-
-	"EYB:TheUnnamedReign":
+	"eyb:TheUnnamedReign":
 	{
 		"TEXT":
 		[
 			"The Unnamed Reign"
+		]
+	},
+	"eyb:Ascension":
+	{
+		"TEXT":
+		[
+			"Ascension",
+			"Double Act #b3 Boss.",
+			"Whenever you #ySmith at rest sites, start your next combat with #yTemporary -1 [Strength], [Dexterity], [Focus].",
+			"Improved #yAscender's #yBane.",
+			"Whenever you use a #yPotion, add a #yDazed to the top of your draw pile.",
+			"Choose #b1 of #b3 #yBlights to obtain at the start of Act #b2.",
+			"(Max Level) Double bosses in all Acts."
+		]
+	},
+	"eyb:Terms":
+	{
+		"TEXT":
+		[
+			"Ascension",
+			"Transform",
+			"Upgrade",
+			"Downgrade",
+			"Improve",
+			"Obtain",
+			"Attack",
+			"Defend",
+			"Random"
 		]
 	}
 }

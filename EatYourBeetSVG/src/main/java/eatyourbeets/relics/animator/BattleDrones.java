@@ -1,20 +1,9 @@
 package eatyourbeets.relics.animator;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
-public class BattleDrones extends AnimatorRelic implements OnSynergySubscriber
+public class BattleDrones extends AnimatorRelic
 {
     public static final String ID = CreateFullID(BattleDrones.class);
     public static final int DAMAGE_AMOUNT = 3;
@@ -31,36 +20,26 @@ public class BattleDrones extends AnimatorRelic implements OnSynergySubscriber
         return JUtils.Format(DESCRIPTIONS[0], DAMAGE_AMOUNT, BLOCK_AMOUNT);
     }
 
-    @Override
-    protected void Subscribe()
-    {
-        CombatStats.onSynergy.Subscribe(this);
-    }
-
-    @Override
-    protected void Unsubscribe()
-    {
-        CombatStats.onSynergy.Unsubscribe(this);
-    }
-
-    @Override
-    public void OnSynergy(AbstractCard card)
-    {
-        if (card != null)
-        {
-            GameActions.Bottom.Callback(()->
-            {
-                GameActions.Bottom.GainBlock(BLOCK_AMOUNT).SetVFX(true, true);
-                GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE)
-                .SetDamageEffect(enemy ->
-                {
-                    CardCrawlGame.sound.play("ATTACK_MAGIC_BEAM_SHORT");
-                    GameEffects.List.Add(new SmallLaserEffect(enemy.hb.cX, enemy.hb.cY, player.hb.cX, player.hb.cY));
-                    GameEffects.List.Add(new BorderFlashEffect(Color.SKY));
-                });
-
-                flash();
-            });
-        }
-    }
+//    @Override
+//    public void OnSynergy(AbstractCard card)
+//    {
+//        if (card != null)
+//        {
+//            GameActions.Bottom.Callback(()->
+//            {
+//                GameActions.Bottom.GainBlock(BLOCK_AMOUNT).SetVFX(true, true);
+//                GameActions.Bottom.DealDamageToRandomEnemy(DAMAGE_AMOUNT, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+//                .SetDamageEffect(enemy ->
+//                {
+//                    SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT);
+//                    final Hitbox source = (player.relics.indexOf(this) / MAX_RELICS_PER_PAGE == relicPage) ? this.hb : player.hb;
+//                    GameEffects.List.Add(VFX.SmallLaser(source, enemy.hb, Color.CYAN));
+//                    GameEffects.List.BorderFlash(Color.SKY);
+//                    return 0f;
+//                });
+//
+//                flash();
+//            });
+//        }
+//    }
 }

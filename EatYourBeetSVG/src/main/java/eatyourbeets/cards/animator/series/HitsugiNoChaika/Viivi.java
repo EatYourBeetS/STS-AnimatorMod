@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -12,25 +12,26 @@ import eatyourbeets.utilities.GameActions;
 
 public class Viivi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Viivi.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random);
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, false);
-        }
-    }
+    public static final EYBCardData DATA = Register(Viivi.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, false);
+                }
+            });
 
     public Viivi()
     {
         super(DATA);
 
         Initialize(3, 0, 3);
-        SetUpgrade(0, 0, 1);
-        SetScaling(0, 1, 0);
+        SetUpgrade(1, 0, 0);
 
-        SetMartialArtist();
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Light(2);
     }
 
     @Override
@@ -54,15 +55,15 @@ public class Viivi extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.VFX(new DaggerSprayEffect(AbstractDungeon.getMonsters().shouldFlipVfx()), 0f);
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE);
         }
 
-        if (IsStarter())
+        if (info.TryActivateStarter())
         {
             GameActions.Bottom.GainAgility(1);
             GameActions.Bottom.Draw(1);

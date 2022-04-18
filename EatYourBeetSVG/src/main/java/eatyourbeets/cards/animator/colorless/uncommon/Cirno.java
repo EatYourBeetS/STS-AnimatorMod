@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -8,24 +8,40 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.vfx.combat.FallingIceEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Cirno extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Cirno.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Cirno.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetMaxCopies(2)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject);
 
     public Cirno()
     {
         super(DATA);
 
-        Initialize(3, 0);
-        SetUpgrade(3, 0);
-        SetScaling(1, 0, 0);
+        Initialize(2, 0, 1);
+        SetUpgrade(3, 0, 0);
+
+        SetAffinity_Blue(1, 0, 1);
 
         SetEthereal(true);
-        SetMultiDamage(true);
-        SetSynergy(Synergies.TouhouProject);
+    }
+
+    @Override
+    public void OnDrag(AbstractMonster m)
+    {
+        super.OnDrag(m);
+
+        for (EnemyIntent intent : GameUtilities.GetIntents())
+        {
+            intent.AddFreezing();
+        }
     }
 
     @Override
@@ -37,7 +53,7 @@ public class Cirno extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Callback(() ->
         {
@@ -48,10 +64,13 @@ public class Cirno extends AnimatorCard
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
             }
+
+            GameActions.Top.Wait(0.3f);
         });
 
-        GameActions.Bottom.ChannelOrb(new Frost());
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.SLASH_VERTICAL).SetVFX(false, true);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.BLUNT_LIGHT)
+        .SetVFX(true, false)
+        .SetDamageEffect((c, __) -> GameActions.Bottom.ApplyFreezing(player, c, magicNumber).ShowEffect(true, true));
     }
 }
 

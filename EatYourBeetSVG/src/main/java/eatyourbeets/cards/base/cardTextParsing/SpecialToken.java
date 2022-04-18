@@ -26,18 +26,28 @@ public abstract class SpecialToken extends CTToken
             builder.setLength(0);
 
             int i = 1;
+            int indentation = 0;
             while (true)
             {
-                Character next = parser.NextCharacter(i);
-
+                final Character next = parser.NextCharacter(i);
                 if (next == null)
                 {
                     break;
                 }
+                else if (next == '{')
+                {
+                    indentation += 1;
+                }
                 else if (next == '}')
                 {
-                    String word = builder.toString();
+                    if (indentation > 0)
+                    {
+                        indentation -= 1;
+                        i += 1;
+                        continue;
+                    }
 
+                    final String word = builder.toString();
                     EYBCardTooltip tooltip = CardTooltips.FindByName(word
                     .replace(" NL ", " ")
                     .split("\\(")[0] // Ignore modifiers
@@ -45,12 +55,19 @@ public abstract class SpecialToken extends CTToken
 
                     if (tooltip != null)
                     {
-                        parser.AddTooltip(tooltip);
+                        if (tooltip.requiredColor != null && parser.cardColor != tooltip.requiredColor)
+                        {
+                            tooltip = null;
+                        }
+                        else
+                        {
+                            parser.AddTooltip(tooltip);
+                        }
                     }
 
                     if (word.startsWith("~"))
                     {
-                        internalParser.Initialize(null, word.substring(1)); // card must be null
+                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
                     }
                     else if (word.startsWith("+"))
                     {
@@ -59,7 +76,15 @@ public abstract class SpecialToken extends CTToken
                             return i + 1;
                         }
 
-                        internalParser.Initialize(null, word.substring(1)); // card must be null
+                        if (word.length() == 1)
+                        {
+                            final WordToken plus = new WordToken(word);
+                            plus.coloredString.SetColor(Settings.GOLD_COLOR);
+                            parser.AddToken(plus);
+                            return i + 1;
+                        }
+
+                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
                     }
                     else if (word.startsWith("-"))
                     {
@@ -68,18 +93,18 @@ public abstract class SpecialToken extends CTToken
                             return i + 1;
                         }
 
-                        internalParser.Initialize(null, word.substring(1)); // card must be null
+                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
                     }
                     else
                     {
-                        internalParser.Initialize(null, word); // card must be null
+                        internalParser.Initialize(null, parser.cardColor, word); // card must be null
                     }
 
                     for (CTToken token : internalParser.lines.get(0).tokens) // All the tokens are in the first line, regardless of width and type
                     {
                         if (token instanceof WordToken)
                         {
-                            ((WordToken)token).overrideColor = Settings.GOLD_COLOR.cpy();
+                            ((WordToken)token).coloredString.SetColor(Settings.GOLD_COLOR);
                             ((WordToken)token).tooltip = tooltip;
                         }
 

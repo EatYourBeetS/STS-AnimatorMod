@@ -8,15 +8,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.rewards.animator.SynergyCardsReward;
+import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
@@ -30,6 +27,7 @@ import java.util.StringJoiner;
 public abstract class AbstractMissingPiece extends AnimatorRelic implements OnReceiveRewardsListener
 {
     protected transient AbstractRoom lastRoom = null;
+    protected boolean showAffinities = false;
 
     protected abstract int GetRewardInterval();
 
@@ -45,7 +43,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
         {
             if (missingPiece.tips.size() > 0)
             {
-                missingPiece.tips.get(0).body = missingPiece.GetFullDescription();
+                missingPiece.tips.get(0).description = missingPiece.GetFullDescription();
                 missingPiece.flash();
             }
         }
@@ -68,12 +66,35 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
                 this.currentX + 30f * Settings.scale, this.currentY - 7f * Settings.scale, Color.WHITE);
             }
         }
+
+        if (showAffinities)
+        {
+            GR.UI.CardAffinities.TryRender(sb);
+        }
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (showAffinities)
+        {
+            if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.COMBAT_REWARD)
+            {
+                GR.UI.CardAffinities.TryUpdate();
+            }
+            else
+            {
+                showAffinities = false;
+            }
+        }
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(GetRewardInterval());
+        return FormatDescription(0, GetRewardInterval());
     }
 
     @Override
@@ -89,18 +110,20 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     {
         super.onVictory();
 
-        if (RewardsAllowed())
+        if (GameUtilities.AreRewardsAllowed(true))
         {
             AddCounter(1);
         }
     }
 
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
     {
-        if (counter > 0 && RewardsAllowed() && GetActualCounter() == 0)
+        final AbstractRoom room = GameUtilities.GetCurrentRoom();
+        if (counter > 0 && lastRoom != room && normalRewards && GetActualCounter() == 0)
         {
+            lastRoom = room;
             this.flash();
-            lastRoom = GameUtilities.GetCurrentRoom();
 
             int startingIndex = -1;
             for (int i = 0; i < rewards.size(); i++)
@@ -124,13 +147,13 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     public String GetFullDescription()
     {
         String base = getUpdatedDescription();
-        if (GR.Animator.Dungeon.Series.isEmpty())
+        if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {
             return base;
         }
 
         StringJoiner joiner = new StringJoiner(" NL ");
-        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
             if (series.promoted)
             {
@@ -153,36 +176,39 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
     private void AddSynergyRewards(ArrayList<RewardItem> rewards, int startingIndex)
     {
-        WeightedList<Synergy> synergies = CreateWeightedList();
-
+        final WeightedList<CardSeries> synergies = CreateWeightedList();
         for (int i = 0; i < 3; i++)
         {
-            Synergy synergy = synergies.Retrieve(AbstractDungeon.cardRng);
-            if (synergy != null)
+            final CardSeries series = synergies.Retrieve(AbstractDungeon.cardRng);
+            if (series != null)
             {
-                rewards.add(startingIndex + i, new SynergyCardsReward(synergy));
+                rewards.add(startingIndex + i, new MissingPieceReward(series));
             }
         }
+
+        GR.UI.CardAffinities.Open(player.masterDeck.group);
+        showAffinities = true;
     }
 
-    private WeightedList<Synergy> CreateWeightedList()
+    private WeightedList<CardSeries> CreateWeightedList()
     {
-        WeightedList<Synergy> list = new WeightedList<>();
-        Map<Synergy, List<AbstractCard>> synergyListMap = Synergies.GetCardsBySynergy(player.masterDeck.group);
+        final WeightedList<CardSeries> list = new WeightedList<>();
+        final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.GetCardsBySynergy(player.masterDeck.group);
 
-        if (GR.Animator.Dungeon.Series.isEmpty())
+        if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {
-            GR.Animator.Dungeon.AddAllSeries();
+            GR.Animator.Dungeon.AddAllLoadouts();
         }
 
-        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Series)
+        boolean lowAscension = GameUtilities.GetAscensionLevel() < 13;
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
             if (series.Cards.size() >= 10)
             {
-                Synergy s = series.Loadout.Synergy;
+                final CardSeries s = series.Loadout.Series;
 
                 int weight = series.promoted ? 5 : 2;
-                if (synergyListMap.containsKey(s))
+                if (lowAscension && synergyListMap.containsKey(s))
                 {
                     int size = synergyListMap.get(s).size();
                     if (size >= 2)
@@ -202,18 +228,10 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
 
         if (relicId.equals(ColorlessFragment.ID))
         {
-            list.Add(Synergies.ANY, ColorlessFragment.COLORLESS_WEIGHT);
+            list.Add(CardSeries.ANY, lowAscension ? 12 : 7);
         }
 
         return list;
-    }
-
-    private boolean RewardsAllowed()
-    {
-        final AbstractRoom room = GameUtilities.GetCurrentRoom();
-        return room != null && lastRoom != room && room.rewardAllowed
-        && !(room instanceof MonsterRoomBoss)
-        && (room instanceof MonsterRoom || room.eliteTrigger); // || (room instanceof EventRoom && room.combatEvent));
     }
 
     private int GetActualCounter()

@@ -7,6 +7,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 
 public class AnimatorCard_Dynamic extends AnimatorCard
 {
@@ -15,12 +16,13 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     public boolean canUpgrade;
     public boolean canSelect;
     public int attributeMultiplier;
-    public final ActionT1<AnimatorCard> constructor;
-    public final ActionT1<AnimatorCard> onUpgrade;
-    public final ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUse;
-    public final FuncT1<AbstractAttribute, AnimatorCard> getSpecialInfo;
-    public final FuncT1<AbstractAttribute, AnimatorCard> getDamageInfo;
-    public final FuncT1<AbstractAttribute, AnimatorCard> getBlockInfo;
+    public final ActionT1<EYBCard> constructor;
+    public final ActionT1<EYBCard> onUpgrade;
+    public final ActionT3<EYBCard, AbstractPlayer, AbstractMonster> onUse;
+    public final FuncT2<Boolean, EYBCard, AbstractMonster> canUse;
+    public final FuncT1<AbstractAttribute, EYBCard> getSpecialInfo;
+    public final FuncT1<AbstractAttribute, EYBCard> getDamageInfo;
+    public final FuncT1<AbstractAttribute, EYBCard> getBlockInfo;
 
     public AnimatorCard_Dynamic(AnimatorCardBuilder builder)
     {
@@ -32,19 +34,27 @@ public class AnimatorCard_Dynamic extends AnimatorCard
         SetCostUpgrade(builder.costUpgrade);
 
         this.attributeMultiplier = builder.attributeMultiplier;
-        this.intellectScaling = builder.intellectScaling;
-        this.agilityScaling = builder.agilityScaling;
-        this.forceScaling = builder.forceScaling;
+        this.affinities.Initialize(builder.affinities);
         this.attackTarget = builder.attackTarget;
         this.attackType = builder.attackType;
         this.builder = builder;
         this.onUse = builder.onUse;
+        this.canUse = builder.canUse;
         this.onUpgrade = builder.onUpgrade;
         this.constructor = builder.constructor;
         this.isMultiDamage = builder.isMultiDamage;
         this.tags.addAll(builder.tags);
         this.cropPortrait = false;
         this.canUpgrade = builder.canUpgrade;
+
+        if (builder.portraitImage != null)
+        {
+            this.portraitImg = builder.portraitImage;
+        }
+        if (builder.portraitForeground != null)
+        {
+            this.portraitForeground = builder.portraitForeground;
+        }
 
         this.getSpecialInfo = builder.getSpecialInfo;
         this.getDamageInfo = builder.getDamageInfo;
@@ -55,7 +65,7 @@ public class AnimatorCard_Dynamic extends AnimatorCard
             constructor.Invoke(this);
         }
 
-        SetSynergy(builder.synergy);
+        SetSeries(builder.series);
     }
 
     @Override
@@ -113,12 +123,18 @@ public class AnimatorCard_Dynamic extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (onUse != null)
         {
             onUse.Invoke(this, p, m);
         }
+    }
+
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m)
+    {
+        return super.canUse(p, m) && (canUse == null || canUse.Invoke(this, m));
     }
 
     @Override

@@ -5,7 +5,9 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
 import eatyourbeets.utilities.FieldInfo;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
@@ -69,11 +71,17 @@ public class GridCardSelectScreenPatch
     {
         if (cardGroups.isEmpty())
         {
-            return false;
+            if (!GameUtilities.IsEYBPlayerClass() || selectScreen.isJustForConfirming)
+            {
+                return false;
+            }
+            else
+            {
+                cardGroups.add(_targetGroup.Get(selectScreen));
+            }
         }
 
         float lineNum = 0;
-
         float drawStartX = _drawStartX.Get(selectScreen);
         float drawStartY = _drawStartY.Get(selectScreen);
         float padX = _padX.Get(selectScreen);
@@ -84,7 +92,8 @@ public class GridCardSelectScreenPatch
 
         for (CardGroup cardGroup : cardGroups)
         {
-            ArrayList<AbstractCard> cards = cardGroup.group;
+            final ArrayList<AbstractCard> cards = cardGroup.group;
+            final boolean drawCentered = cards.size() < 5;
             for (int i = 0; i < cards.size(); ++i)
             {
                 int mod = i % 5;
@@ -93,12 +102,25 @@ public class GridCardSelectScreenPatch
                     lineNum += 1;
                 }
 
-                AbstractCard card = cards.get(i);
+                final AbstractCard card = cards.get(i);
 
-                card.target_x = drawStartX + (float) mod * padX;
-                card.target_y = drawStartY + currentDiffY - lineNum * padY;
                 card.fadingOut = false;
-                card.stopGlowing();
+                card.target_y = drawStartY + currentDiffY - lineNum * padY;
+
+                if (drawCentered)
+                {
+                    card.target_x = (Settings.WIDTH * 0.5f) + (Mathf.GetOffsetFromCenter(i, cards.size()) * padX);
+                }
+                else
+                {
+                    card.target_x = drawStartX + (mod * padX);
+                }
+
+                if (!selectScreen.selectedCards.contains(card))
+                {
+                    card.stopGlowing();
+                }
+
                 card.update();
                 card.updateHoverLogic();
 

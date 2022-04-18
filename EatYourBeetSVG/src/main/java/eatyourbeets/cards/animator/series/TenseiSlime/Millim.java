@@ -1,56 +1,81 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
+import eatyourbeets.orbs.animator.Chaos;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
-public class Millim extends AnimatorCard
+import java.util.ArrayList;
+
+public class Millim extends AnimatorCard implements OnReceiveRewardsListener
 {
-    public static final EYBCardData DATA = Register(Millim.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(Millim.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental)
+            .SetMaxCopies(0)
+            .SetSeriesFromClassPackage()
+            .ModifyRewards((data, rewards) ->
+            {
+                final EYBCard copy = data.GetFirstCopy(player.masterDeck);
+                if (copy != null)
+                {
+                    GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, (5 - Math.min(4, copy.timesUpgraded / 2)) * 0.05f, true, data);
+                }
+            });
 
     public Millim()
     {
         super(DATA);
 
-        Initialize(5, 0, 2);
-        SetUpgrade(1, 0, 0);
-        SetScaling(1, 1, 1);
+        Initialize(6, 0, 2);
 
+        SetAffinity_Star(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.General, 4);
         SetUnique(true, true);
-        SetSynergy(Synergies.TenSura);
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
+    {
+        if (normalRewards)
+        {
+            GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, (5 - Math.min(4, timesUpgraded / 2)) * 0.05f, c -> c.rarity == CardRarity.COMMON, DATA);
+        }
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 2 == 1)
+        if (timesUpgraded % 3 == 1)
         {
             upgradeMagicNumber(1);
+            upgradeDamage(1);
         }
         else
         {
+            upgradeMagicNumber(0);
             upgradeDamage(2);
         }
-
-        this.upgradedMagicNumber = true;
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
-        GameActions.Bottom.ApplyBurning(p, m, magicNumber);
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        if (isSynergizing)
+        for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 2));
+            GameActions.Bottom.GainRandomAffinityPower(1, false);
+        }
+
+        if (CheckAffinity(Affinity.General))
+        {
+            GameActions.Bottom.ChannelOrb(new Chaos());
         }
     }
 }

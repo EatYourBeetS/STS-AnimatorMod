@@ -55,6 +55,7 @@ package patches.gameOverScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -63,8 +64,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.screens.DeathScreen;
 import com.megacrit.cardcrawl.screens.GameOverScreen;
 import com.megacrit.cardcrawl.screens.GameOverStat;
+import com.megacrit.cardcrawl.screens.VictoryScreen;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.GR;
@@ -106,6 +109,56 @@ public class GameOverScreenPatches
 
     public static final FieldInfo<ArrayList<AbstractUnlock>> _unlockBundle = JUtils.GetField("unlockBundle", GameOverScreen.class);
     public static final FieldInfo<ArrayList<GameOverStat>> _stats = JUtils.GetField("stats", GameOverScreen.class);
+
+    @SpirePatch(clz = DeathScreen.class, method = "createGameOverStats")
+    @SpirePatch(clz = VictoryScreen.class, method = "createGameOverStats")
+    public static class GameOverScreen_createGameOverStats
+    {
+        private static int ascensionCache;
+
+        @SpirePrefixPatch
+        public static void Prefix(Object __instance)
+        {
+            ascensionCache = AbstractDungeon.ascensionLevel;
+            AbstractDungeon.ascensionLevel = GameUtilities.GetActualAscensionLevel();
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(Object __instance)
+        {
+            AbstractDungeon.ascensionLevel = ascensionCache;
+        }
+    }
+
+    @SpirePatch(clz = GameOverScreen.class, method = "calcScore", paramtypez = {boolean.class})
+    public static class GameOverScreen_calcScore
+    {
+        private static int ascensionCache;
+        private static int playerCache;
+
+        @SpirePrefixPatch
+        public static void Prefix(boolean victory)
+        {
+            ascensionCache = AbstractDungeon.ascensionLevel;
+            AbstractDungeon.ascensionLevel = GameUtilities.GetActualAscensionLevel();
+
+            if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && !victory && AbstractDungeon.screen == AbstractDungeon.CurrentScreen.DEATH)
+            {
+                final int hashCode = AbstractDungeon.player.hashCode();
+                if (playerCache != hashCode)
+                {
+                    playerCache = hashCode;
+                    GR.Animator.Data.RecordDefeat(AbstractDungeon.ascensionLevel);
+                }
+            }
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(boolean victory)
+        {
+            AbstractDungeon.ascensionLevel = ascensionCache;
+        }
+    }
 
     @SpirePatch(clz = GameOverScreen.class, method = "calculateUnlockProgress")
     public static class GameOverScreen_calculateUnlockProgress
@@ -162,7 +215,7 @@ public class GameOverScreenPatches
     public static class GameOverScreen_renderProgressBar
     {
         @SpirePrefixPatch
-        public static SpireReturn Insert(GameOverScreen __instance, SpriteBatch sb)
+        public static SpireReturn Prefix(GameOverScreen __instance, SpriteBatch sb)
         {
             if (!GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
             {

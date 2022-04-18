@@ -1,52 +1,52 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.watcher.PressEndTurnButtonAction;
-import com.megacrit.cardcrawl.actions.watcher.SkipEnemiesTurnAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.TimeWarpTurnEndEffect;
-import eatyourbeets.actions.animator.CreateRandomCurses;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.powers.NoDrawPower;
+import eatyourbeets.cards.animator.curse.special.Curse_GriefSeed;
+import eatyourbeets.cards.animator.special.HomuraAkemi_Homulilly;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 
 public class HomuraAkemi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HomuraAkemi.class).SetSkill(3, CardRarity.RARE, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(HomuraAkemi.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.MadokaMagica_Witch(HomuraAkemi_Homulilly.DATA));
+                data.AddPreview(new HomuraAkemi_Homulilly(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+                data.AddPreview(AffinityToken.GetCard(Affinity.Blue), false);
+            });
 
     public HomuraAkemi()
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
+        Initialize(0, 2, 2);
+        SetUpgrade(0, 3, 0);
+
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
 
         SetExhaust(true);
-        SetEthereal(true);
-        SetSynergy(Synergies.MadokaMagica);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        SetEthereal(false);
-    }
+        GameActions.Bottom.GainBlock(block);
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.SFX("POWER_TIME_WARP", 0.05F);
-        GameActions.Bottom.VFX(new TimeWarpTurnEndEffect());
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.VIOLET, true));
-        GameActions.Bottom.Add(new SkipEnemiesTurnAction());
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
-        GameActions.Bottom.StackPower(new EnergizedPower(p, magicNumber));
-        GameActions.Bottom.Add(new CreateRandomCurses(secondaryValue, p.discardPile));
-        GameActions.Bottom.Add(new PressEndTurnButtonAction());
+        if (info.IsStarter)
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Blue, false);
+        }
+
+        GameActions.Bottom.ReboundCards(magicNumber);
+        GameActions.Bottom.StackPower(new NoDrawPower(p));
     }
 }

@@ -1,13 +1,14 @@
 package eatyourbeets.actions.cardManipulation;
 
 import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
     @Override
     protected void FirstUpdate()
     {
-        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+        if (GameUtilities.AreMonstersBasicallyDead())
         {
             Complete();
             return;
@@ -58,7 +59,7 @@ public class ScryWhichActuallyTriggersDiscard extends EYBActionWithCallback<Arra
             }
         }
 
-        AbstractDungeon.gridSelectScreen.open(group, amount, true, ScryAction.TEXT[0]);
+        AbstractDungeon.gridSelectScreen.open(group, amount, true, GR.Common.Strings.GridSelection.Scry);
     }
 
     @Override

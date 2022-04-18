@@ -1,70 +1,53 @@
 package eatyourbeets.cards.animator.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.colorless.rare.TanyaDegurechaff;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 
 public class TanyaDegurechaff_Type95 extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class).SetSkill(4, CardRarity.SPECIAL, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(TanyaDegurechaff_Type95.class)
+            .SetSkill(2, CardRarity.SPECIAL, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(TanyaDegurechaff.DATA.Series);
 
     public TanyaDegurechaff_Type95()
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 3, 1);
 
-        SetSynergy(Synergies.YoujoSenki);
+        SetAffinity_Dark(1);
+        SetAffinity_Light(1);
+
+        SetExhaust(true);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    protected void OnUpgrade()
     {
-        super.triggerWhenDrawn();
+        SetRetainOnce(true);
+    }
 
-        if (cost > 0)
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        for (Affinity a : Affinity.Basic())
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.modifyCostForCombat(-1));
-            GameActions.Bottom.Flash(this);
+            GameActions.Bottom.StackAffinityPower(a, magicNumber, false);
         }
-    }
 
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        if (cost > 0)
+        GameActions.Bottom.SelectFromHand(name, 1, false)
+        .SetFilter(c -> c instanceof EYBCard && ((EYBCard) c).CanScale())
+        .AddCallback(cards ->
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.modifyCostForCombat(-1));
-        }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.ChannelOrb(new Plasma());
-        GameActions.Bottom.ModifyAllInstances(uuid, c ->
-        {
-            c.isCostModified = c.isCostModifiedForTurn = false;
-            c.cost = c.costForTurn = 4;
+            for (AbstractCard c : cards)
+            {
+                GameActions.Top.IncreaseScaling(c, Affinity.Star, secondaryValue);
+            }
         });
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return false;
-    }
-
-    @Override
-    public void upgrade()
-    {
-
     }
 }

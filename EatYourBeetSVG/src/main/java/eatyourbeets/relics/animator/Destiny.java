@@ -1,16 +1,14 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameActions;
 
-import java.util.ArrayList;
-
-public class Destiny extends AnimatorRelic implements OnReceiveRewardsListener, Hidden
+public class Destiny extends AnimatorRelic implements Hidden
 {
     public static final String ID = CreateFullID(Destiny.class);
+    public static final int TEMP_HP = 1;
 
     public Destiny()
     {
@@ -24,14 +22,20 @@ public class Destiny extends AnimatorRelic implements OnReceiveRewardsListener, 
     }
 
     @Override
-    public String getUpdatedDescription()
+    public void onCardDraw(AbstractCard drawnCard)
     {
-        return DESCRIPTIONS[0];
+        super.onCardDraw(drawnCard);
+
+        if (drawnCard.type == AbstractCard.CardType.CURSE)
+        {
+            GameActions.Bottom.GainTemporaryHP(1);
+            flash();
+        }
     }
 
     @Override
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    public String getUpdatedDescription()
     {
-        GameEffects.Queue.RemoveRelic(this);
+        return FormatDescription(0, TEMP_HP);
     }
 }

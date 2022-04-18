@@ -2,6 +2,7 @@ package eatyourbeets.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.resources.GR;
 
 public abstract class AnimatorPower extends EYBPower
@@ -11,13 +12,39 @@ public abstract class AnimatorPower extends EYBPower
         return GR.Animator.CreateID(type.getSimpleName());
     }
 
-    public AnimatorPower(AbstractCreature owner, EYBCardData cardData)
+    public AnimatorPower(AbstractCreature owner, AbstractCreature source, String id)
     {
-        super(owner, cardData);
+        super(owner, id);
+
+        this.source = source;
     }
 
     public AnimatorPower(AbstractCreature owner, String id)
     {
         super(owner, id);
+    }
+
+    public AnimatorPower(AbstractCreature owner, AbstractCreature source, EYBCardData cardData)
+    {
+        super(owner, cardData);
+
+        this.source = source;
+    }
+
+    public AnimatorPower(AbstractCreature owner, EYBCardData cardData)
+    {
+        super(owner, cardData);
+    }
+
+    public AnimatorPower(AbstractCreature owner, AbstractCreature source, EYBRelic relic)
+    {
+        super(owner, relic);
+
+        this.source = source;
+    }
+
+    public AnimatorPower(AbstractCreature owner, EYBRelic relic)
+    {
+        super(owner, relic);
     }
 }

@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.monsters.exordium.GremlinWarrior;
 import com.megacrit.cardcrawl.monsters.exordium.Sentry;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.monsters.EYBAbstractMove;
+import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.monsters.SharedMoveset.EYBMove_DefendBuff;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Cube.DarkCube;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
@@ -23,6 +25,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     protected final EYBAbstractMove moveSummonEnemy;
     protected AbstractMonster firstSummon;
     protected AbstractMonster secondSummon;
+    protected EYBMove_DefendBuff strengthBuff;
 
     public TheUnnamed_Cultist_Single(float x, float y)
     {
@@ -58,7 +61,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
         .SetPowerTarget(TargetHelper.Enemies(this))
         .SetMiscBonus(4, 1);
 
-        moveset.Normal.DefendBuff(8, PowerHelper.Strength, 3)
+        strengthBuff = (EYBMove_DefendBuff) moveset.Normal.DefendBuff(8, PowerHelper.Strength, 3)
         .SetPowerTarget(TargetHelper.Enemies(this))
         .SetMiscBonus(4, 1)
         .SetBlockAoE(true);
@@ -73,8 +76,26 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 15));
+        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 8));
         GameActions.Bottom.Talk(this, STRINGS.DIALOG[10], 1f, 3f);
+    }
+
+    @Override
+    public void update()
+    {
+        super.update();
+
+        if (!isDying && !isDead && intentAlphaTarget > 0 && this.nextMove == strengthBuff.id)
+        {
+            final int strength = strengthBuff.misc.Calculate();
+            for (EnemyIntent intent : GameUtilities.GetIntents())
+            {
+                if (intent.enemy != this)
+                {
+                    intent.AddStrength(strength);
+                }
+            }
+        }
     }
 
     @Override
@@ -88,7 +109,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
                 if (firstSummon != null)
                 {
                     moveSummonEnemy.SetData(firstSummon);
-                    moveSummonEnemy.Select();
+                    moveSummonEnemy.Select(false);
                     return;
                 }
             }
@@ -99,7 +120,7 @@ public class TheUnnamed_Cultist_Single extends TheUnnamed_Cultist
                 if (secondSummon != null)
                 {
                     moveSummonEnemy.SetData(secondSummon);
-                    moveSummonEnemy.Select();
+                    moveSummonEnemy.Select(false);
                     return;
                 }
             }

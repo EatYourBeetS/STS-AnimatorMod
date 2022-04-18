@@ -1,47 +1,53 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnBlock;
-import eatyourbeets.misc.GenericEffects.GenericEffect_NextTurnDraw;
-import eatyourbeets.misc.GenericEffects.GenericEffect_Scry;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class OrikoMikuni extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(OrikoMikuni.class).SetSkill(0, CardRarity.COMMON, EYBCardTarget.None);
-
-    private static final CardEffectChoice choices = new CardEffectChoice();
+    public static final EYBCardData DATA = Register(OrikoMikuni.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .ObtainableAsReward((data, deck) -> (deck.size() >= 18));
 
     public OrikoMikuni()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 4);
-        SetUpgrade(0, 0, 1, 2);
+        Initialize(0, 0, 3, 3);
+        SetUpgrade(0, 0, 0, -1);
 
-        SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
+
+        SetExhaust(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        choices.Initialize(this, true);
-        choices.AddEffect(new GenericEffect_Scry(magicNumber));
-        choices.AddEffect(new GenericEffect_NextTurnDraw(1));
-        choices.AddEffect(new GenericEffect_NextTurnBlock(secondaryValue));
+        GameActions.Bottom.Scry(magicNumber)
+        .AddCallback(cards ->
+        {
+            int discarded = 0;
+            for (AbstractCard c : cards)
+            {
+                if (!GameUtilities.IsHindrance(c))
+                {
+                    discarded += 1;
+                }
+            }
 
-        if (GameUtilities.InStance(IntellectStance.STANCE_ID) && CombatStats.TryActivateLimited(cardID))
-        {
-            choices.Select(3, m);
-        }
-        else
-        {
-            choices.Select(1, m);
-        }
+            if (discarded > 0)
+            {
+                GameActions.Bottom.TakeDamageAtEndOfTurn(discarded * secondaryValue);
+            }
+        });
+        GameActions.Bottom.Draw(1);
     }
 }

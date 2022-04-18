@@ -17,14 +17,15 @@ public class SymbolToken extends CTToken
     static final Map<String, SymbolToken> tokenCache = new HashMap<>();
     static
     {
-        tokenCache.put("R", new SymbolToken("[R]"));
-        tokenCache.put("G", new SymbolToken("[G]"));
-        tokenCache.put("B", new SymbolToken("[B]"));
+//        tokenCache.put("R", new SymbolToken("[R]"));
+//        tokenCache.put("G", new SymbolToken("[G]"));
         tokenCache.put("W", new SymbolToken("[W]"));
         tokenCache.put("E", new SymbolToken("[E]")); // Energy
         tokenCache.put("F", new SymbolToken("[F]")); // Force
         tokenCache.put("A", new SymbolToken("[A]")); // Agility
         tokenCache.put("I", new SymbolToken("[I]")); // Intellect
+        tokenCache.put("B", new SymbolToken("[B]")); // Blessing
+        tokenCache.put("C", new SymbolToken("[C]")); // Corruption
     }
 
     private SymbolToken(String text)
@@ -61,11 +62,11 @@ public class SymbolToken extends CTToken
                 }
                 else if (next == ']')
                 {
-                    String key = builder.toString();
+                    final String key = builder.toString();
                     SymbolToken token = tokenCache.get(key);
                     if (token == null)
                     {
-                        EYBCardTooltip tooltip = CardTooltips.FindByID(key);
+                        final EYBCardTooltip tooltip = CardTooltips.FindByID(key);
                         if (tooltip != null)
                         {
                             token = new SymbolToken(tooltip);
@@ -73,7 +74,7 @@ public class SymbolToken extends CTToken
                         }
                         else
                         {
-                            throw new RuntimeException("Unknown symbol type: [" + key + "], Raw text is: " + parser.text);
+                            throw new RuntimeException((parser.card != null ? parser.card.cardID : "?") + ") Unknown symbol type: [" + key + "], Raw text is: " + parser.text);
                         }
                     }
 

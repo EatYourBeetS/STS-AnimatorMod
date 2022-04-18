@@ -5,10 +5,8 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.Synergy;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
@@ -24,7 +22,7 @@ public class RacePiece extends AnimatorRelic
     public static final String ID = CreateFullID(RacePiece.class);
 
     private boolean awaitingInput;
-    private Synergy synergy;
+    private CardSeries series;
     private int toSelect;
 
     public RacePiece()
@@ -46,10 +44,10 @@ public class RacePiece extends AnimatorRelic
     {
         if (super.canSpawn())
         {
-            HashSet<Synergy> synergies = Synergies.GetAllSynergies(player.masterDeck.group);
-            for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Series)
+            HashSet<CardSeries> synergies = CardSeries.GetAllSeries(player.masterDeck.group);
+            for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Loadouts)
             {
-                if (synergies.contains(Synergies.GetByID(loadout.ID)))
+                if (synergies.contains(CardSeries.GetByID(loadout.ID)))
                 {
                     return true;
                 }
@@ -66,7 +64,7 @@ public class RacePiece extends AnimatorRelic
 
         if (awaitingInput)
         {
-            if (synergy == null)
+            if (series == null)
             {
                 UpdateSynergy();
             }
@@ -122,13 +120,13 @@ public class RacePiece extends AnimatorRelic
         for (AbstractCard c : player.masterDeck.group)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && card.synergy != null && card.color != AbstractCard.CardColor.COLORLESS)
+            if (card != null && card.series != null && card.color != AbstractCard.CardColor.COLORLESS)
             {
                 group.addToTop(card);
             }
         }
 
-        synergy = null;
+        series = null;
         if (group.size() > 0)
         {
             awaitingInput = true;
@@ -158,12 +156,14 @@ public class RacePiece extends AnimatorRelic
             WeightedList<AnimatorCard> rewards = new WeightedList<>();
 
             ArrayList<AnimatorCard> cards = new ArrayList<>();
-            Synergies.AddCards(synergy, CardLibrary.getAllCards(), cards);
+            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
 
             for (AnimatorCard c : cards)
             {
-                if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS)
+                if (c.type != AbstractCard.CardType.CURSE && c.type != AbstractCard.CardType.STATUS && c.color != AbstractCard.CardColor.COLORLESS)
                 {
+                    c = (AnimatorCard) c.makeCopy();
+                    c.upgrade();
                     switch (c.rarity)
                     {
                         case COMMON:
@@ -184,20 +184,14 @@ public class RacePiece extends AnimatorRelic
             float displayCount = 0f;
             for (AbstractCard c : AbstractDungeon.gridSelectScreen.selectedCards)
             {
-                AbstractCard reward = rewards.Retrieve(rng, false);
+                final AbstractCard reward = rewards.Retrieve(rng, false);
                 if (reward != null)
                 {
-                    reward = reward.makeCopy();
-                    if (c.upgraded)
-                    {
-                        reward.upgrade();
-                    }
-
                     c.untip();
                     c.unhover();
                     player.masterDeck.removeCard(c);
 
-                    GameEffects.TopLevelList.Add(new ShowCardAndObtainEffect(reward, (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false));
+                    GameEffects.TopLevelList.ShowAndObtain(reward.makeStatEquivalentCopy(), (float) Settings.WIDTH / 3f + displayCount, (float)Settings.HEIGHT / 2f, false);
                     displayCount += (float)Settings.WIDTH / 6f;
                 }
             }
@@ -211,17 +205,17 @@ public class RacePiece extends AnimatorRelic
     {
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
         {
-            synergy = null;
+            series = null;
 
             AbstractCard c = AbstractDungeon.gridSelectScreen.selectedCards.get(0);
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
             if (card != null)
             {
-                synergy = card.synergy;
+                series = card.series;
             }
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
-            awaitingInput = synergy != null;
+            awaitingInput = series != null;
         }
     }
 }

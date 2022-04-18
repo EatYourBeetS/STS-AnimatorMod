@@ -2,7 +2,6 @@ package eatyourbeets.powers.monsters;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EntanglePower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -10,22 +9,20 @@ import eatyourbeets.utilities.GameUtilities;
 public class TheUnnamedHatPower extends AnimatorPower
 {
     public static final String POWER_ID = CreateFullID(TheUnnamedHatPower.class);
+    public static final int DEBUFF_AMOUNT_1 = 8;
+    public static final int DEBUFF_AMOUNT_2 = 2;
 
     public TheUnnamedHatPower(AbstractCreature owner, int amount)
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-
-        updateDescription();
+        Initialize(amount);
     }
 
     @Override
     public void updateDescription()
     {
-        String[] desc = powerStrings.DESCRIPTIONS;
-
-        description = desc[0] + amount + desc[1];
+        this.description = FormatDescription(0, amount, DEBUFF_AMOUNT_1, DEBUFF_AMOUNT_2);
     }
 
     @Override
@@ -33,7 +30,17 @@ public class TheUnnamedHatPower extends AnimatorPower
     {
         super.onDeath();
 
-        GameActions.Bottom.ApplyPower(null, new EntanglePower(player));
+        GameActions.Last.Callback(() ->
+        {
+            if (GameUtilities.IsPlayerTurn(true))
+            {
+                GameActions.Bottom.GainTemporaryStats(-DEBUFF_AMOUNT_1, -DEBUFF_AMOUNT_1, -DEBUFF_AMOUNT_1);
+            }
+            else
+            {
+                GameActions.Bottom.GainTemporaryStats(-DEBUFF_AMOUNT_2, -DEBUFF_AMOUNT_2, -DEBUFF_AMOUNT_2);
+            }
+        });
     }
 
     @Override

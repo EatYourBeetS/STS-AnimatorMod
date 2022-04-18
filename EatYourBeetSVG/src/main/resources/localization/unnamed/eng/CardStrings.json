@@ -1,0 +1,344 @@
+
+{
+	"BASIC":
+	{
+		"unnamed:Defend":
+		{
+			"DESCRIPTION": "Recover !M! [HP].",
+			"NAME": "Defend"
+		},
+		"unnamed:PowerStrike":
+		{
+			"DESCRIPTION": "Next turn: ** Lose !M! [E].",
+			"NAME": "Power Strike"
+		},
+		"unnamed:Strike":
+		{
+			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Amplification].",
+			"NAME": "Strike"
+		},
+		"unnamed:SummonDoll":
+		{
+			"DESCRIPTION": "Summon 1 {Doll}.",
+			"EXTENDED_DESCRIPTION": ["{0} [Strength], {1} [Dexterity] || Initial Intent: ** {{2}}"],
+			"NAME": "Summon Doll"
+		}
+	},
+	
+	"COMMON":
+	{
+		"unnamed:Animate":
+		{
+			"DESCRIPTION": "Activate 1 Doll. || <SLM>. ** <DRW>.",
+			"NAME": "Animate"
+		},
+		"unnamed:AttackOrder":
+		{
+			"DESCRIPTION": "Mark the enemy. || Activate the first ** Doll that intends ** to {Attack}.",
+			"NAME": "Attack Order"
+		},
+		"unnamed:CleavingAttack":
+		{
+			"DESCRIPTION": "Give a Doll +!S! [Strength]. ** It can attack ALL ** enemies this turn.",
+			"NAME": "Cleaving Attacks"
+		},
+		"unnamed:DefenseOrder":
+		{
+			"DESCRIPTION": "Activate the first ** Doll that intends to {Defend} and give ** it +!M! Max [HP].",
+			"NAME": "Defense Order"
+		},
+		"unnamed:Dishearten":
+		{
+			"DESCRIPTION": "Apply !M! [Withering]. || <SLM>. ** Solo: Gain [E].",
+			"NAME": "Dishearten"
+		},
+		"unnamed:Diversion":
+		{
+			"DESCRIPTION": "Reshuffle all {Skills} ** in hand: Apply ** !M! [Amplification] for each.",
+			"NAME": "Diversion"
+		},
+		"unnamed:DrainingTouch":
+		{
+			"DESCRIPTION": "Apply !M! [Withering].",
+			"NAME": "Draining Touch"
+		},
+		"unnamed:Fireblast":
+		{
+			"DESCRIPTION": "Add 1 {Burn} to ** your draw pile. || Solo: Give it {~Ethereal}.",
+			"NAME": "Fireblast"
+		},
+		"unnamed:Intimidate":
+		{
+			"DESCRIPTION": "Apply !S! [Amplification]. ** <DRW-M>.",
+			"NAME": "Intimidate"
+		},
+		"unnamed:LingeringSpirit":
+		{
+			"DESCRIPTION": "Once this combat, ** pay !M! [E]: Summon ** 1 Doll, then heal all ** Dolls for !S! [HP].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: #ySummon #b1 #yDoll, then heal all #yDolls for #b{1} [HP]."],
+			"NAME": "Lingering Spirit"
+		},
+		"unnamed:Overextert":
+		{
+			"DESCRIPTION": "Deal !M! damage ** to all Dolls.",
+			"NAME": "Overexert"
+		},
+		"unnamed:Preparation":
+		{
+			"DESCRIPTION": "Solo: Fetch 1 card. || Retain !M! card(s). You ** can't draw additional ** cards this turn.",
+			"NAME": "Preparation"
+		},
+		"unnamed:RecklessRitual":
+		{
+			"DESCRIPTION": "Summon 1 Doll. || Gain !S! [SK]. Draw !M! ** less card(s) next turn.",
+			"NAME": "Reckless Ritual"
+		},
+		"unnamed:Rejuvenate":
+		{
+			"DESCRIPTION": "Heal a Doll for !M! [HP]. || At the start of each ** combat: Heal !S! [HP].",
+			"NAME": "Rejuvenate"
+		},
+		"unnamed:ChanneledStrike":
+		{
+			"DESCRIPTION": "Mark the enemy. || {~Recast}: Deals !M! ** additional damage.",
+			"NAME": "Channeled Strike"
+		},
+		"unnamed:Retrace":
+		{
+			"DESCRIPTION": "Reshuffle all ** {Attacks} in hand: ** Gain +!M! [Block] for each.",
+			"NAME": "Retrace"
+		},
+		"unnamed:RisingEdge":
+		{
+			"DESCRIPTION": "Next turn: Add this to ** your hand with +1 cost ** and +!M! damage.",
+			"NAME": "Rising Edge"
+		}
+	},
+	
+	"UNCOMMON":
+	{
+		"unnamed:AbsorbEssence":
+		{
+			"DESCRIPTION": "Deal !M! damage to a ** Doll. Next turn: Gain ** [E] and <DRW>.",
+			"NAME": "Capture Essence"
+		},
+		"unnamed:AdvancedSummon":
+		{
+			"DESCRIPTION": "Summon 1 Doll. ** Give it +!S! [Strength] [Dexterity].",
+			"NAME": "Advanced Ritual",
+			"UPGRADE_DESCRIPTION": "Summon 1 Doll. ** Give it +!S! [Strength] [Dexterity] ** and Activate it."
+		},
+		"unnamed:Battleplans":
+		{
+			"DESCRIPTION": "Once per turn, ** discard !M! random ** card(s): Activate 1 Doll.",
+			"EXTENDED_DESCRIPTION": ["Discard #b{0} random cards: #yActivate #b1 #yDoll."],
+			"NAME": "Battleplans"
+		},
+		"unnamed:BloodBarrier":
+		{
+			"DESCRIPTION": "Gain !M! [Metallicize]. || At the start ** of each turn: ALL ** Allies lose !S! [HP].",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, Allies lose #b{0} [HP]."],
+			"NAME": "Blood Barrier"
+		},
+		"unnamed:ChallengeFate":
+		{
+			"DESCRIPTION": "<DRW-M>, then ** Exhaust 1 random card.",
+			"NAME": "Challenge Fate"
+		},
+		"unnamed:Decay":
+		{
+			"DESCRIPTION": "Apply !M! [Withering] [Amplification]. || At the start of combat: Lose 1 Summon slot.",
+			"NAME": "Decay"
+		},
+		"unnamed:Deflect":
+		{
+			"DESCRIPTION": "When Retained: ** Gain !M! [Block]. || If Reshuffled from your ** hand: Gain !S! [Block].",
+			"NAME": "Deflect"
+		},
+		"unnamed:ElementalMastery":
+		{
+			"DESCRIPTION": "Motivate !M! {~Elemental} ** {Attacks} in your draw pile. || Raise this card's cost ** by 1 and [Block] by !S!.",
+			"NAME": "Elemental Mastery"
+		},
+		"unnamed:Enchain":
+		{
+			"DESCRIPTION": "<DRW>. || If you played ** {Enchain} this turn: ** Apply !M! [Constricted].",
+			"NAME": "Enchain"
+		},
+		"unnamed:Enrage":
+		{
+			"DESCRIPTION": "Attach: +!M! Max [HP]. ** Whenever it loses ** [HP]: Give it +!S! [Strength].",
+			"NAME": "Enrage"
+		},
+		"unnamed:Equilibrium":
+		{
+			"DESCRIPTION": "Reshuffle up to !M! cards. ** Next turn: Draw that ** many additional cards.",
+			"NAME": "Equilibrium"
+		},
+		"unnamed:Experiment":
+		{
+			"DESCRIPTION": "Give a Doll !S! [Poison] ** and +!M! [Strength] [Dexterity].",
+			"NAME": "Experiment"
+		},
+		"unnamed:FocusedEffort":
+		{
+			"DESCRIPTION": "Choose 1 Doll: Change ** ALL Dolls to have its ** same intent, then ** Activate them.",
+			"NAME": "Focused Effort"
+		},
+		"unnamed:HackAndSlash":
+		{
+			"DESCRIPTION": "<DRW>. ** Reshuffle 1 card. || {~Recast}: Gain !M! {Temp} ** [Strength], +!S! if Solo.",
+			"NAME": "Hack & Slash"
+		},
+		"unnamed:Illuminate":
+		{
+			"DESCRIPTION": "Recover !M! [HP]. || Heal ALL Dolls ** for !S! [HP].",
+			"NAME": "Illuminate"
+		},
+		"unnamed:InstantCut":
+		{
+			"DESCRIPTION": "Apply !M! [Amplification]. || If Reshuffled from your ** hand: Deal !S! damage ** to ALL enemies.",
+			"NAME": "Instant Cut"
+		},
+		"unnamed:LightningStrike":
+		{
+			"DESCRIPTION": "<LIM>. If the ** enemy has !M! or ** more [Amplification]: Stun it.",
+			"NAME": "Lightning Strike"
+		},
+		"unnamed:LivingArmor":
+		{
+			"DESCRIPTION": "Solo: Gain !M! [Plated Armor]. || Attach: +!S! [Dexterity]. ** Whenever it is healed: ** Give it +!S! Max [HP].",
+			"NAME": "Living Armor"
+		},
+		"unnamed:Obfuscate":
+		{
+			"DESCRIPTION": "Gain !M! Temp [Dexterity]. || Apply !S! [Withering] to ** ALL enemies.",
+			"NAME": "Obfuscate"
+		},
+		"unnamed:Offering":
+		{
+			"DESCRIPTION": "Lose !M! [HP]. || Summon 1 Doll: ** Give it +!S! Max [HP].",
+			"NAME": "Offering"
+		},
+		"unnamed:Renewal":
+		{
+			"DESCRIPTION": "Sacrifice 1 to ** Summon 1 Doll.",
+			"NAME": "Renewal"
+		},
+		"unnamed:Scorch":
+		{
+			"DESCRIPTION": "Remove all [Block] ** from the enemy. || If it has [Strength]: It also ** loses !M! [Strength].",
+			"NAME": "Scorch"
+		},
+		"unnamed:TwinSummoning":
+		{
+			"DESCRIPTION": "Discard !M! card(s). || Summon !S! Dolls ** of the same type.",
+			"NAME": "Twin Summon"
+		},
+		"unnamed:Unravel":
+		{
+			"DESCRIPTION": "Exhaust the top !M! cards ** of your draw pile. || In !S! turns: Add !K! of ** them to your hand.",
+			"NAME": "Unravel",
+			"EXTENDED_DESCRIPTION": ["In #b{0} turn(s), #yFetch #b{1} of these cards from your #yExhaust pile: NL "]
+		},
+		"unnamed:Unburden":
+		{
+			"DESCRIPTION": "Exhaust 1 Hindrance to ** give ALL Allies +!M! [Strength]. || Solo: Exhaust from ** any pile instead.",
+			"NAME": "Unburden"
+		}
+	},
+	
+	"RARE":
+	{
+		"unnamed:EndlessResearch":
+		{
+			"DESCRIPTION": "Choose and play 1 of the ** top !M! cards of your draw ** pile. Discard the rest. || If you choose a {0-Cost} ** card: Repeat this effect.",
+			"NAME": "Endless Research"
+		},
+		"unnamed:Reflection":
+		{
+			"DESCRIPTION": "Stun a Doll and ** Summon a copy of it. || Solo: Draw 1 copy of ** each {Attack} in hand ** and Motivate them.",
+			"NAME": "Reflection"
+		},
+		"unnamed:InfinitePower":
+		{
+			"DESCRIPTION": "At the start of turn: ** Gain 1 [E], [Strength] and [Block]. || Once per turn: Pay !M! [E]: ** Raise cost and effect by 1.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to stack this power, then raise this cost by #b1. || At the start of each turn, gain #b{1} [E], [Strength] and [Block]."],
+			"NAME": "Infinite Power"
+		},
+		"unnamed:LonesomeSpirit":
+		{
+			"DESCRIPTION": "Start of turn, Solo: ** Gain !M! [Strength] (Max !S!). || End of turn, Solo: ** Gain !M! [Dexterity] (Max !S!).",
+			"EXTENDED_DESCRIPTION": ["Start of turn, if #ySolo, gain #b{0} [Strength] ( #b{1} remaining). ** At the end of turn, if #ySolo, gain #b{0} [Dexterity] ( #b{2} remaining)."],
+			"NAME": "Lonesome Spirit"
+		},
+		"unnamed:NamelessCrown":
+		{
+			"DESCRIPTION": "Solo: Gain !M! [Strength] [Dexterity], !S! [THP]. ** Lose ALL Summon slots. || Attach: Once per turn, ** when Activated: Double ** the intent effect.",
+			"NAME": "Nameless Crown"
+		},
+		"unnamed:ChainLightning":
+		{
+			"DESCRIPTION": "Apply !S! [Amplification] per hit. || Choose the first target. ** Cannot damage the same ** enemy twice in a row.",
+			"NAME": "Chain Lightning"
+		},
+		"unnamed:RuneCarving":
+		{
+			"DESCRIPTION": "<LIM>. Choose 1 of !M! ** random cards in your ** deck: Permanently raise ** damage and [Block] by !S! ** (+1 in Unnamed Reign).",
+			"NAME": "Rune Carving"
+		},
+		"unnamed:SoulGathering":
+		{
+			"DESCRIPTION": "Whenever a character ** dies: Gain 1 stack. || Once per turn, pay !M! ** stacks: Choose 1 effect.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} stacks: Choose #b1 effect. || Whenever a character dies, gain #b{1} stacks(s).", "<DRW-M>. ** Motivate 1.", "Recover !M! [HP].", "Summon 1 Doll. ** Activate 1 Doll."],
+			"NAME": "Gather Souls"
+		},
+		"unnamed:SummoningArts":
+		{
+			"DESCRIPTION": "Whenever you Summon ** a Doll: Give it +!M! [Strength] [Dexterity]. || Whenever you change a Doll ** intent: Give it +!S! Max [HP].",
+			"EXTENDED_DESCRIPTION": ["Whenever you #ySummon a #yDoll: Give it +#b{0} [Strength] [Dexterity]. ** Whenever you change a #yDoll intent: Give it +#b{1} Max [HP]."],
+			"NAME": "Summoning Arts"
+		},
+		"unnamed:Transcend_Space":
+		{
+			"DESCRIPTION": "Apply [Amplification] and [Withering] to ** each enemy equal to ** their current intent ** damage (max !S!).",
+			"NAME": "Astromancy"
+		},
+		"unnamed:Transcend_Time":
+		{
+			"DESCRIPTION": "Reshuffle all cards in ** hand. <DRW-M> ** from the top of your ** discard pile.",
+			"NAME": "Chronomancy"
+		}
+	},
+	
+	"STATUS":
+	{
+		"unnamed:Status_Burn":
+		{
+			"DESCRIPTION": "Unplayable. || At the end of turn: ** Take !M! damage.",
+			"NAME": "Burn"
+		},
+		"unnamed:Status_Dazed":
+		{
+			"DESCRIPTION": "Unplayable.",
+			"NAME": "Dazed"
+		},
+		"unnamed:Status_Slimed":
+		{
+			"DESCRIPTION": "",
+			"NAME": "Slimed"
+		},
+		"unnamed:Status_Wound":
+		{
+			"DESCRIPTION": "Unplayable.",
+			"NAME": "Wound"
+		},
+		"unnamed:Status_Void":
+		{
+			"DESCRIPTION": "Unplayable. || When drawn: ** Lose 1 [E].",
+			"NAME": "Void"
+		}
+	},
+	
+	"SPECIAL": {}
+}

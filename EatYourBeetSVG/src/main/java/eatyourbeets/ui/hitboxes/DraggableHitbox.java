@@ -13,6 +13,10 @@ public class DraggableHitbox extends AdvancedHitbox
     protected Vector2 dragStart = null;
 
     public boolean canDrag;
+    public float min_y;
+    public float max_y;
+    public float min_x;
+    public float max_x;
 
     public DraggableHitbox(Hitbox hb)
     {
@@ -39,11 +43,32 @@ public class DraggableHitbox extends AdvancedHitbox
         super(x, y, width, height);
 
         this.canDrag = canDrag;
+        this.min_x = -width * 0.25f;
+        this.max_x = Settings.WIDTH + (width * 0.25f);
+        this.min_y = -height * 0.25f;
+        this.max_y = Settings.HEIGHT + (height * 0.25f);
+    }
+
+    public DraggableHitbox CanDrag(boolean canDrag)
+    {
+        this.canDrag = canDrag;
+
+        return this;
     }
 
     public DraggableHitbox SetPosition(float cX, float cY)
     {
         move(cX, cY);
+
+        return this;
+    }
+
+    public DraggableHitbox SetBounds(float min_x, float max_x, float min_y, float max_y)
+    {
+        this.min_x = min_x;
+        this.max_x = max_x;
+        this.min_y = min_y;
+        this.max_y = max_y;
 
         return this;
     }
@@ -70,13 +95,8 @@ public class DraggableHitbox extends AdvancedHitbox
                 }
                 else if (!InputHelper.justReleasedClickLeft && dragStart != null)
                 {
-                    final float max_X = Settings.WIDTH + (width * 0.25f);
-                    final float min_X = -width * 0.25f;
-                    final float max_Y = Settings.HEIGHT + (height * 0.25f);
-                    final float min_Y = -height * 0.25f;
-
-                    target_cX = Math.min(max_X, Math.max(min_X, target_cX + (mX - dragStart.x)));
-                    target_cY = Math.min(max_Y, Math.max(min_Y, target_cY + (mY - dragStart.y)));
+                    target_cX = Math.min(max_x, Math.max(min_x, target_cX + (mX - dragStart.x)));
+                    target_cY = Math.min(max_y, Math.max(min_y, target_cY + (mY - dragStart.y)));
 
                     if (GR.UI.TryDragging())
                     {
@@ -102,5 +122,10 @@ public class DraggableHitbox extends AdvancedHitbox
 
             dragStart = null;
         }
+    }
+
+    public boolean IsDragging()
+    {
+        return dragStart != null;
     }
 }

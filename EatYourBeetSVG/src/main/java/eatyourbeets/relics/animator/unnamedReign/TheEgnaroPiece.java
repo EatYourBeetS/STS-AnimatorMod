@@ -1,11 +1,13 @@
 package eatyourbeets.relics.animator.unnamedReign;
 
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class TheEgnaroPiece extends UnnamedReignRelic
 {
     public static final String ID = CreateFullID(TheEgnaroPiece.class);
-    public static final int INITIAL_TEMPORARY_HP = 1;
+    public static final int VITALITY_AMOUNT = 1;
+    public static final int CARDS_STEP = 8;
 
     public TheEgnaroPiece()
     {
@@ -15,23 +17,7 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(INITIAL_TEMPORARY_HP);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        SetCounter(INITIAL_TEMPORARY_HP);
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        SetCounter(-1);
+        return JUtils.Format(DESCRIPTIONS[0], VITALITY_AMOUNT, CARDS_STEP);
     }
 
     @Override
@@ -43,13 +29,14 @@ public class TheEgnaroPiece extends UnnamedReignRelic
     }
 
     @Override
-    public void onPlayerEndTurn()
+    protected void ActivateBattleEffect()
     {
-        super.onPlayerEndTurn();
-
-        GameActions.Bottom.GainTemporaryHP(this.counter);
-        AddCounter(1);
-        flash();
+        this.counter = VITALITY_AMOUNT * (player.masterDeck.size() / CARDS_STEP);
+        if (counter > 0)
+        {
+            GameActions.Bottom.GainVitality(counter);
+            flash();
+        }
     }
 
     @Override
@@ -64,5 +51,15 @@ public class TheEgnaroPiece extends UnnamedReignRelic
         super.onUnequip();
 
         player.energy.energyMaster -= 1;
+    }
+
+    public String GetFalseLifePotionString()
+    {
+        return " NL #y" + name.replace(" ", " #y") + " increases the power of this potion by #b" + GetFalseLifePotionPowerIncrease() + ".";
+    }
+
+    public int GetFalseLifePotionPowerIncrease()
+    {
+        return 1;
     }
 }

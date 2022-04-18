@@ -2,18 +2,18 @@ package eatyourbeets.events.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import eatyourbeets.cards.animator.basic.ImprovedDefend;
+import eatyourbeets.cards.animator.basic.ImprovedStrike;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventOption;
 import eatyourbeets.events.base.EYBEventPhase;
 import eatyourbeets.events.base.EYBEventStrings;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
-
-import java.util.ArrayList;
 
 public class TheMaskedTraveler1 extends EYBEvent
 {
@@ -31,10 +31,8 @@ public class TheMaskedTraveler1 extends EYBEvent
 
     private static class Introduction extends EYBEventPhase<TheMaskedTraveler1, EventStrings>
     {
-        private final ArrayList<AbstractCard> replacementStrikes = new ArrayList<>();
-        private final ArrayList<AbstractCard> replacementDefends = new ArrayList<>();
-        private final int SELLING_PRICE = RNG.random(30, 50);
-        private final int BUYING_PRICE = RNG.random(85, 100);
+        private final int SELLING_PRICE = RNG.random(40, 60);
+        private final int BUYING_PRICE = RNG.random(90, 110);
 
         @Override
         public void OnEnter()
@@ -43,7 +41,7 @@ public class TheMaskedTraveler1 extends EYBEvent
 
             for (AbstractCard card : player.masterDeck.group)
             {
-                if (card.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND) || card.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE))
+                if (card.tags.contains(GR.Enums.CardTags.IMPROVED_BASIC_CARD))
                 {
                     cards.Add(card);
                 }
@@ -83,71 +81,41 @@ public class TheMaskedTraveler1 extends EYBEvent
         {
             player.loseGold(BUYING_PRICE);
 
-            if (replacementStrikes.isEmpty())
+            final RandomizedList<AbstractCard> strikes = new RandomizedList<>();
+            final RandomizedList<AbstractCard> defends = new RandomizedList<>();
+            for (AbstractCard c : player.masterDeck.group)
             {
-                for (AbstractCard c : CardLibrary.getAllCards())
+                if (!c.hasTag(GR.Enums.CardTags.IMPROVED_BASIC_CARD))
                 {
-                    if (c.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE))
+                    if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE))
                     {
-                        replacementStrikes.add(c);
+                        strikes.Add(c);
                     }
-                    else if (c.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND))
+                    else if (c.hasTag(AbstractCard.CardTags.STARTER_DEFEND))
                     {
-                        replacementDefends.add(c);
+                        defends.Add(c);
                     }
                 }
             }
 
-            RandomizedList<AbstractCard> strikes = new RandomizedList<>(replacementStrikes);
-            RandomizedList<AbstractCard> defends = new RandomizedList<>(replacementDefends);
-            ArrayList<AbstractCard> deck = player.masterDeck.group;
-            ArrayList<AbstractCard> strikesToReplace = new ArrayList<>();
-            ArrayList<AbstractCard> defendsToReplace = new ArrayList<>();
-
-            for (AbstractCard card : deck)
+            final EYBCardData defend = GameUtilities.GetRandomElement(ImprovedDefend.GetCards(), RNG);
+            final EYBCardData strike = GameUtilities.GetRandomElement(ImprovedStrike.GetCards(), RNG);
+            if (strikes.Size() > 0 && strike != null)
             {
-                if (card.tags.contains(GR.Enums.CardTags.IMPROVED_STRIKE) || card.tags.contains(GR.Enums.CardTags.IMPROVED_DEFEND))
-                {
-                    if (card.tags.contains(AbstractCard.CardTags.HEALING))
-                    {
-                        strikes.GetInnerList().removeIf(c -> c.cardID.equals(card.cardID));
-                    }
-                }
-                else if (card.tags.contains(AbstractCard.CardTags.STARTER_DEFEND))
-                {
-                    defendsToReplace.add(card);
-                }
-                else if (card.tags.contains(AbstractCard.CardTags.STARTER_STRIKE))
-                {
-                    strikesToReplace.add(card);
-                }
+                SwapCards(strike, strikes.Retrieve(RNG), defend == null ? 0.5f : 0.4f);
             }
-
-            for (AbstractCard card : strikesToReplace)
+            if (defends.Size() > 0 && defend != null)
             {
-                deck.remove(card);
-                ObtainCard(strikes.Retrieve(RNG), card.upgraded);
-            }
-
-            for (AbstractCard card : defendsToReplace)
-            {
-                deck.remove(card);
-                ObtainCard(defends.Retrieve(RNG), card.upgraded);
+                SwapCards(defend, defends.Retrieve(RNG), strike == null ? 0.5f : 0.6f);
             }
 
             ProgressPhase();
         }
 
-        private void ObtainCard(AbstractCard replacement, boolean upgraded)
+        private void SwapCards(EYBCardData toAdd, AbstractCard toRemove, float offset_x)
         {
-            replacement = replacement.makeCopy();
-
-            if (upgraded)
-            {
-                replacement.upgrade();
-            }
-
-            GameEffects.List.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
+            player.masterDeck.group.remove(toRemove);
+            GameEffects.List.ShowAndObtain(toAdd.MakeCopy(toRemove.upgraded), Settings.WIDTH * offset_x, (float) Settings.HEIGHT / 2f, false);
         }
     }
 

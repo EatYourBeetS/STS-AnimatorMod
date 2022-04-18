@@ -1,27 +1,25 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
+import eatyourbeets.cards.animator.status.Status_Wound;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.misc.GenericEffects.GenericEffect_EnterStance;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.stances.AgilityStance;
-import eatyourbeets.stances.ForceStance;
-import eatyourbeets.stances.IntellectStance;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Spearman extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Spearman.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing);
-    static
-    {
-        DATA.AddPreview(new Witch(), true);
-        DATA.AddPreview(new FakeAbstractCard(new Wound()), false);
-    }
+    public static final EYBCardData DATA = Register(Spearman.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Witch(), true);
+                data.AddPreview(new Status_Wound(), false);
+            });
 
     private static final CardEffectChoice choices = new CardEffectChoice();
 
@@ -29,41 +27,42 @@ public class Spearman extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 1);
-        SetUpgrade(4, 0);
-        SetScaling(0, 1, 1);
+        Initialize(9, 0);
+        SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Red(1);
+        SetAffinity_Green(1);
+
+        SetCardPreview(Witch.DATA::IsCard);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void Refresh(AbstractMonster enemy)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL);
-        GameActions.Bottom.GainAgility(magicNumber, true);
-        GameActions.Bottom.GainForce(magicNumber, true);
-        GameActions.Bottom.MakeCardInDrawPile(new Wound());
+        super.Refresh(enemy);
 
-        if (choices.TryInitialize(this))
-        {
-            choices.AddEffect(new GenericEffect_EnterStance(ForceStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(AgilityStance.STANCE_ID));
-            choices.Initialize(new Witch());
-            choices.AddEffect(new GenericEffect_EnterStance(IntellectStance.STANCE_ID));
-            choices.AddEffect(new GenericEffect_EnterStance(NeutralStance.STANCE_ID));
-            choices.Initialize(this);
-        }
+        cardPreview.enabled = HasSynergy();
+    }
 
-        if (!CombatStats.HasActivatedSemiLimited(cardID))
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f);
+        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.MakeCardInHand(new Status_Wound());
+
+        if (info.IsSynergizing)
         {
-            for (AbstractCard c : p.hand.group)
+            GameActions.Bottom.Draw(1)
+            .SetFilter(Witch.DATA::IsCard, false)
+            .AddCallback(cards ->
             {
-                if (c.cardID.equals(Witch.DATA.ID) && CombatStats.TryActivateSemiLimited(cardID))
+                for (AbstractCard c : cards)
                 {
-                    choices.Select(1, m);
-                    break;
+                    GameUtilities.Retain(c);
                 }
-            }
+            });
         }
     }
 }

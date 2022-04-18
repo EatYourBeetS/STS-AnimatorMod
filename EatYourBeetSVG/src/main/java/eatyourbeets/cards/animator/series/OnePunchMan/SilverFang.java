@@ -1,47 +1,54 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 
 public class SilverFang extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SilverFang.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(SilverFang.class)
+            .SetSkill(2, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeries(CardSeries.OnePunchMan);
 
     public SilverFang()
     {
         super(DATA);
 
-        Initialize(0, 9, 1);
+        Initialize(0, 6, 1);
         SetUpgrade(0, 3, 0);
 
-        SetSynergy(Synergies.OnePunchMan);
-        SetMartialArtist();
+        SetAffinity_Green(2);
+        SetAffinity_Light(2);
+
+        SetRetainOnce(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        GameActions.Bottom.GainBlock(block);
+        super.triggerOnOtherCardPlayed(c);
 
-        if (AgilityStance.IsActive())
+        if (c.type == CardType.ATTACK)
         {
-            GameActions.Bottom.SelectFromHand(name, 1, true)
-            .SetFilter(c -> c instanceof EYBCard && c.type == CardType.ATTACK)
-            .AddCallback(cards ->
+            GameActions.Bottom.ModifyAllInstances(uuid).AddCallback(card ->
             {
-                if (cards.size() > 0)
-                {
-                    EYBCard card = (EYBCard)cards.get(0);
-                    card.agilityScaling += 1;
-                    card.flash();
-                }
+                BlockModifiers.For(card).Add(1);
+                card.applyPowers();
             });
         }
+    }
 
-        if (isSynergizing)
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainBlock(block);
+        BlockModifiers.For(this).Set(0);
+
+        if (info.IsSynergizing && info.TryActivateLimited())
         {
             GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID);
         }

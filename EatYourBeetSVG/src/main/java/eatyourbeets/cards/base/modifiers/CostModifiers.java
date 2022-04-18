@@ -63,7 +63,7 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
             return;
         }
 
-        int currentCost = (card.costForTurn - previousAmount);
+        final int currentCost = (card.costForTurn - previousAmount);
         int modifier = baseAmount;
         for (Integer n : modifiers.values())
         {
@@ -72,6 +72,12 @@ public class CostModifiers extends AbstractModifiers implements OnCardResetSubsc
 
         previousAmount = modifier;
 
-        GameUtilities.ModifyCostForTurn(card, currentCost + modifier, false);
+        final int newCost = currentCost + modifier;
+        GameUtilities.ModifyCostForTurn(card, Math.max(0, newCost), false);
+
+        if (newCost < 0)
+        {
+            previousAmount -= newCost;
+        }
     }
 }

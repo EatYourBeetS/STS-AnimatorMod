@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.monsters.exordium.Lagavulin;
+import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.Crystal;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Crystal.UltimateCrystal;
@@ -17,6 +18,7 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.monsters.UnnamedReign.Shapes.UnnamedShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.UltimateWisp;
 import eatyourbeets.monsters.UnnamedReign.Shapes.Wisp.Wisp;
+import eatyourbeets.monsters.UnnamedReign.UltimateShape.UltimateShape;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_BEHOLD;
 import eatyourbeets.monsters.UnnamedReign.UnnamedCultist.TheUnnamed_Cultist_DollSummoner;
@@ -27,7 +29,8 @@ import eatyourbeets.utilities.RandomizedList;
 
 public class UnnamedEnemyGroup
 {
-    public static final String TWO_SHAPES = "animator:DOUBLE_SHAPES_WEAK";
+    public static final String TWO_NORMAL_SHAPES = "animator:DOUBLE_SHAPES_WEAK";
+    public static final String TWO_SHAPES = "animator:DOUBLE_SHAPES";
     public static final String UNNAMED_HAT = "animator:UNNAMED_HAT";
     public static final String THREE_NORMAL_SHAPES = "animator:TRIPLE_SHAPES_WEAK";
     public static final String CULTIST = "animator:UNNAMED_CULTIST_1";
@@ -39,6 +42,7 @@ public class UnnamedEnemyGroup
     public static final String ULTIMATE_CRYSTAL = "animator:ULTIMATE_CRYSTAL";
     public static final String ULTIMATE_CUBE = "animator:ULTIMATE_CUBE";
     public static final String ULTIMATE_WISP = "animator:ULTIMATE_WISP";
+    public static final String ULTIMATE_SHAPE = "animator:ULTIMATE_SHAPE";
     public static final String THE_UNNAMED = TheUnnamed.ID;
 
     private final static float CULTIST_X = 180;
@@ -48,6 +52,7 @@ public class UnnamedEnemyGroup
 
     public static void RegisterMonsterGroups()
     {
+        BaseMod.addMonster(TWO_NORMAL_SHAPES, UnnamedEnemyGroup::TwoShapesWeak);
         BaseMod.addMonster(TWO_SHAPES, UnnamedEnemyGroup::TwoShapes);
         BaseMod.addMonster(THREE_NORMAL_SHAPES, UnnamedEnemyGroup::ThreeNormalShapes);
         BaseMod.addMonster(CULTIST, TheUnnamed_Cultist.STRINGS.NAME, UnnamedEnemyGroup::Cultist);
@@ -60,6 +65,7 @@ public class UnnamedEnemyGroup
         BaseMod.addMonster(ULTIMATE_CRYSTAL, UltimateCrystal.NAME, UnnamedEnemyGroup::UltimateCrystal);
         BaseMod.addMonster(ULTIMATE_CUBE, UltimateCube.NAME, UnnamedEnemyGroup::UltimateCube);
         BaseMod.addMonster(ULTIMATE_WISP, UltimateWisp.NAME, UnnamedEnemyGroup::UltimateWisp);
+        BaseMod.addMonster(ULTIMATE_SHAPE, UltimateShape.NAME, UnnamedEnemyGroup::UltimateShape);
         BaseMod.addMonster(THE_UNNAMED, TheUnnamed.NAME, TheUnnamed::new);
     }
 
@@ -72,6 +78,35 @@ public class UnnamedEnemyGroup
         enemies[2] = Create(0, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
         enemies[1] = Create(1, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
         enemies[0] = Create(2, Retrieve(shapes), MonsterTier.Normal, Retrieve(elements));
+
+        return new MonsterGroup(enemies);
+    }
+
+    public static MonsterGroup TwoShapesWeak()
+    {
+        Random rng = GR.Common.Dungeon.GetRNG();
+        AbstractMonster[] enemies = new AbstractMonster[2];
+        switch (rng.random(2))
+        {
+            case 0:
+            {
+                enemies[0] = Create(0, MonsterShape.Cube, MonsterTier.Small, MonsterElement.Fire);
+                enemies[1] = Create(1, MonsterShape.Wisp, MonsterTier.Small, MonsterElement.Healing);
+                break;
+            }
+            case 1:
+            {
+                enemies[0] = Create(0, MonsterShape.Wisp, MonsterTier.Small, MonsterElement.Dark);
+                enemies[1] = Create(1, MonsterShape.Cube, MonsterTier.Small, MonsterElement.Frost);
+                break;
+            }
+            case 2:
+            {
+                enemies[0] = Create(0, MonsterShape.Cube, MonsterTier.Small, MonsterElement.Dark);
+                enemies[1] = Create(1, MonsterShape.Wisp, MonsterTier.Small, MonsterElement.Frost);
+                break;
+            }
+        }
 
         return new MonsterGroup(enemies);
     }
@@ -189,43 +224,51 @@ public class UnnamedEnemyGroup
 
     public static MonsterGroup UltimateWisp()
     {
-        return new MonsterGroup(new UltimateWisp());
+        return new MonsterGroup(new UltimateWisp(0, 0));
     }
 
     public static MonsterGroup UltimateCube()
     {
-        return new MonsterGroup(new UltimateCube());
+        return new MonsterGroup(new UltimateCube(120, 0));
     }
 
+    public static MonsterGroup UltimateShape()
+    {
+        return new MonsterGroup(new UltimateShape(-100, 130));
+    }
 
     // Utility
 
-    protected static <T> T Retrieve(RandomizedList<T> list)
+    public static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
     {
-        return list.Retrieve(GR.Common.Dungeon.GetRNG());
-    }
-
-    private static UnnamedShape Create(int index, MonsterShape shape, MonsterTier tier, MonsterElement element)
-    {
+        UnnamedShape enemy = null;
         switch (shape)
         {
             case Cube:
             {
-                return Cube.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                enemy = Cube.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                break;
             }
 
             case Crystal:
             {
-                return Crystal.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                enemy = Crystal.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                break;
             }
 
             case Wisp:
             {
-                return Wisp.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                enemy = Wisp.CreateEnemy(tier, element, xPos[index], yPos[index]);
+                break;
             }
         }
 
-        return null;
+        return enemy;
+    }
+
+    public static <T> T Retrieve(RandomizedList<T> list)
+    {
+        return list.Retrieve(GR.Common.Dungeon.GetRNG());
     }
 
     private static final float[] xPos = new float[4];

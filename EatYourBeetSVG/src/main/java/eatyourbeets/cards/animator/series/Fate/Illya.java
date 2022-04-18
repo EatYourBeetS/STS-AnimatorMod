@@ -1,29 +1,23 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.SelfDamagePower;
-import eatyourbeets.resources.GR;
-import eatyourbeets.ui.cards.DrawPileCardPreview;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RotatingList;
 
 public class Illya extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Illya.class).SetSkill(1, CardRarity.COMMON);
-    static
-    {
-        DATA.AddPreview(new Berserker(), false);
-    }
-
-    private final DrawPileCardPreview drawPileCardPreview = new DrawPileCardPreview(Illya::FindBestCard);
+    public static final EYBCardData DATA = Register(Illya.class)
+            .SetSkill(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Berserker(), false));
 
     public Illya()
     {
@@ -32,34 +26,9 @@ public class Illya extends AnimatorCard
         Initialize(0, 0, 6);
         SetUpgrade(0, 0, -2);
 
-        SetSynergy(Synergies.Fate);
-    }
+        SetAffinity_Star(1);
 
-    @Override
-    public void calculateCardDamage(AbstractMonster mo)
-    {
-        super.calculateCardDamage(mo);
-
-        drawPileCardPreview.SetCurrentTarget(mo);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        drawPileCardPreview.Update();
-    }
-
-    @Override
-    public void Render(SpriteBatch sb, boolean hovered, boolean selected, boolean library)
-    {
-        super.Render(sb, hovered, selected, library);
-
-        if (!library)
-        {
-            drawPileCardPreview.Render(sb);
-        }
+        SetCardPreview(this::FindCards);
     }
 
     @Override
@@ -69,26 +38,18 @@ public class Illya extends AnimatorCard
 
         GameActions.Bottom.Callback(() ->
         {
-            if (!DrawBerserker(player.drawPile))
-            {
-                if (!DrawBerserker(player.discardPile))
-                {
-                    if (!DrawBerserker(player.exhaustPile))
-                    {
-                        DrawBerserker(player.hand);
-                    }
-                }
-            }
+            boolean __ = DrawBerserker(player.drawPile)    || DrawBerserker(player.discardPile)
+                      || DrawBerserker(player.exhaustPile) || DrawBerserker(player.hand);
         });
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        AbstractCard card = FindBestCard(m);
+        final AbstractCard card = cardPreview.FindCard(m);
         if (card != null)
         {
-            GameActions.Bottom.StackPower(new SelfDamagePower(p, magicNumber));
+            GameActions.Bottom.TakeDamageAtEndOfTurn(magicNumber);
             GameActions.Bottom.PlayCard(card, p.drawPile, m);
         }
     }
@@ -114,13 +75,14 @@ public class Illya extends AnimatorCard
         return false;
     }
 
-    private static AbstractCard FindBestCard(AbstractMonster target)
+    private void FindCards(RotatingList<AbstractCard> cards, AbstractMonster target)
     {
+        cards.Clear();
         AbstractCard bestCard = null;
         int maxDamage = Integer.MIN_VALUE;
         for (AbstractCard c : player.drawPile.group)
         {
-            if (c.type == CardType.ATTACK && c.cardPlayable(target) && !c.tags.contains(GR.Enums.CardTags.TEMPORARY))
+            if (c.type == CardType.ATTACK && GameUtilities.IsPlayable(c, target) && !c.tags.contains(VOLATILE))
             {
                 c.calculateCardDamage(target);
                 if (c.damage > maxDamage)
@@ -131,7 +93,6 @@ public class Illya extends AnimatorCard
                 c.resetAttributes();
             }
         }
-
-        return bestCard;
+        cards.Add(bestCard);
     }
 }

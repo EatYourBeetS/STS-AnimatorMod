@@ -1,15 +1,22 @@
 package eatyourbeets.ui.animator.characterSelection;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
+import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import patches.unlockTracker.UnlockTrackerPatches;
 
 import java.awt.*;
@@ -17,6 +24,8 @@ import java.net.URI;
 
 public class AnimatorCharacterSelectScreen
 {
+    private static final FieldInfo<Texture> _buttonImg = JUtils.GetField("buttonImg", CharacterOption.class);
+
     protected static final AnimatorLoadoutRenderer LoadoutRenderer = new AnimatorLoadoutRenderer();
     protected static final AnimatorTrophiesRenderer TrophiesRenderer = new AnimatorTrophiesRenderer();
     protected static final AnimatorSpecialTrophiesRenderer SpecialTrophiesRenderer = new AnimatorSpecialTrophiesRenderer();
@@ -24,19 +33,21 @@ public class AnimatorCharacterSelectScreen
     protected static GUI_Button DiscordButton;
     protected static GUI_Button SteamButton;
 
-
     public static void Initialize(CharacterSelectScreen selectScreen)
     {
+        GameUtilities.UnlockAscension(SaveHelper.getPrefs(GR.Enums.Characters.THE_ANIMATOR.name()), 10);
         GameUtilities.UnlockAllKeys();
         selectedOption = null;
 
-        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, 36, 36))
-                .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f).SetText("")
-                .SetOnClick(() -> Browse(DiscordButton));
+        final float size = Settings.scale * 36;
 
-        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, 36, 36))
-                .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f - DiscordButton.hb.height * 1.1f).SetText("")
-                .SetOnClick(() -> Browse(SteamButton));
+        DiscordButton = new GUI_Button(GR.Common.Images.Discord.Texture(), new AdvancedHitbox(0, 0, size, size))
+        .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f).SetText("")
+        .SetOnClick(() -> Browse(DiscordButton));
+
+        SteamButton = new GUI_Button(GR.Common.Images.Steam.Texture(), new AdvancedHitbox(0, 0, size, size))
+        .SetPosition(Settings.WIDTH * 0.025f, Settings.HEIGHT * 0.95f - DiscordButton.hb.height * 1.1f).SetText("")
+        .SetOnClick(() -> Browse(SteamButton));
 
         DiscordButton.SetActive(SteamButton.SetActive(Desktop.isDesktopSupported()).isActive);
 
@@ -55,12 +66,27 @@ public class AnimatorCharacterSelectScreen
 
     private static void UpdateSelectedCharacter(CharacterSelectScreen selectScreen)
     {
-        CharacterOption current = selectedOption;
+        final CharacterOption current = selectedOption;
 
         selectedOption = null;
 
         for (CharacterOption o : selectScreen.options)
         {
+            if (o.c.chosenClass == GR.Enums.Characters.THE_UNNAMED)
+            {
+                final boolean locked = GR.Animator.Data.SpecialTrophies.Trophy1 <= 0;
+                if (o.locked != locked)
+                {
+                    _buttonImg.Set(o, (o.locked = locked) ? ImageMaster.CHAR_SELECT_LOCKED : GR.Unnamed.Images.CHARACTER_BUTTON.Texture());
+                }
+
+                if (o.locked && o.hb.hovered)
+                {
+                    TipHelper.renderGenericTip((float) InputHelper.mX + 70.0F * Settings.xScale, (float) InputHelper.mY - 10.0F * Settings.scale,
+                            CharacterOption.TEXT[0], UnnamedCharacter.TEXT[0]);
+                }
+            }
+
             if (o.selected)
             {
                 if (o.c.chosenClass == GR.Enums.Characters.THE_ANIMATOR)
@@ -71,10 +97,6 @@ public class AnimatorCharacterSelectScreen
                     {
                         LoadoutRenderer.Refresh(selectScreen, o);
                     }
-                }
-                else if (o.c.chosenClass == GR.Enums.Characters.THE_UNNAMED)
-                {
-                    selectScreen.confirmButton.isDisabled = true;
                 }
 
                 return;

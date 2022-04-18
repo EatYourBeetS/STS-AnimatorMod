@@ -1,16 +1,22 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RotatingList;
 
 public class Zero extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Zero.class).SetSkill(0, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Zero.class)
+            .SetSkill(0, CardRarity.UNCOMMON)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.GrimoireOfZero);
 
     public Zero()
     {
@@ -18,20 +24,31 @@ public class Zero extends AnimatorCard
 
         Initialize(0, 0, 0);
 
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+
+        SetCardPreview(this::FindCards);
         SetExhaust(true);
-        SetSynergy(Synergies.GrimoireOfZero);
-        SetSpellcaster();
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        SetExhaust(false);
+        GameActions.Bottom.GainIntellect(1, upgraded);
+        GameActions.Bottom.PlayFromPile(name, 1, m, p.drawPile)
+        .SetOptions(true, false)
+        .SetFilter(c -> c.type == CardType.SKILL);
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void FindCards(RotatingList<AbstractCard> cards, AbstractMonster target)
     {
-        GameActions.Top.PlayCard(p.drawPile, m, g -> JUtils.GetRandomElement(g.getSkills().group));
+        cards.Clear();
+        for (AbstractCard c : player.drawPile.group)
+        {
+            if (c.type == CardType.SKILL && GameUtilities.IsPlayable(c, target) && !c.tags.contains(VOLATILE))
+            {
+                cards.Add(c);
+            }
+        }
     }
 }

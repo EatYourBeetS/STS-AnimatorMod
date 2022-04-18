@@ -1,46 +1,65 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_1;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_2;
-import eatyourbeets.cards.animator.special.MelzalgaldAlt_3;
+import eatyourbeets.cards.animator.special.Melzalgald_1;
+import eatyourbeets.cards.animator.special.Melzalgald_2;
+import eatyourbeets.cards.animator.special.Melzalgald_3;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Melzalgald extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Melzalgald.class).SetAttack(3, CardRarity.UNCOMMON);
-    static
-    {
-        DATA.AddPreview(new MelzalgaldAlt_1(), true);
-        DATA.AddPreview(new MelzalgaldAlt_2(), true);
-        DATA.AddPreview(new MelzalgaldAlt_3(), true);
-    }
+    public static final EYBCardData DATA = Register(Melzalgald.class)
+            .SetAttack(3, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Melzalgald_1(), true);
+                data.AddPreview(new Melzalgald_2(), true);
+                data.AddPreview(new Melzalgald_3(), true);
+            });
 
     public Melzalgald()
     {
         super(DATA);
 
-        Initialize(21, 0);
-        SetScaling(2, 2, 2);
+        Initialize(18, 0, 4);
+        SetUpgrade(0, 0, 0);
+
+        SetAffinity_Star(2, 0, 3);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OnePunchMan);
-        SetShapeshifter();
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public AbstractAttribute GetSpecialInfo()
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        return HPAttribute.Instance.SetCardHeal(this);
+    }
 
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_1()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_2()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
-        GameActions.Bottom.MakeCardInHand(new MelzalgaldAlt_3()).SetUpgrade(upgraded, false).AddCallback(GameUtilities::Retain);
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        this.heal = GameUtilities.GetHealthRecoverAmount(magicNumber);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.RecoverHP(magicNumber);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
+
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_1()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_2()).SetUpgrade(upgraded, false);
+        GameActions.Bottom.MakeCardInHand(new Melzalgald_3()).SetUpgrade(upgraded, false);
     }
 }

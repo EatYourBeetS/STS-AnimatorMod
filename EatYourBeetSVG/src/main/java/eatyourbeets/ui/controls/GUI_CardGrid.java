@@ -79,6 +79,13 @@ public class GUI_CardGrid extends GUIElement
         return this;
     }
 
+    public GUI_CardGrid ShowScrollbar(boolean showScrollbar)
+    {
+        this.autoShowScrollbar = showScrollbar;
+
+        return this;
+    }
+
     public GUI_CardGrid CanDragScreen(boolean canDrag)
     {
         this.canDragScreen = canDrag;

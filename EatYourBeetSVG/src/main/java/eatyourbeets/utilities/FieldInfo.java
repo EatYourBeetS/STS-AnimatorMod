@@ -1,16 +1,18 @@
 package eatyourbeets.utilities;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 public class FieldInfo<T>
 {
-    private final Field field;
+    public final Field field;
 
-    public void Set(Object instance, T value) throws RuntimeException
+    public T Set(Object instance, T value) throws RuntimeException
     {
         try
         {
             field.set(instance, value);
+            return value;
         }
         catch (IllegalAccessException e)
         {
@@ -28,6 +30,16 @@ public class FieldInfo<T>
         {
             throw new RuntimeException(e);
         }
+        catch (Exception e)
+        {
+            JUtils.LogError(this, field.getName());
+            throw e;
+        }
+    }
+
+    public boolean IsStatic()
+    {
+        return Modifier.isStatic(field.getModifiers());
     }
 
     public FieldInfo(Field field)

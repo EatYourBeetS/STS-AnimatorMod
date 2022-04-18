@@ -5,8 +5,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.GurenAction;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -14,35 +15,31 @@ import eatyourbeets.utilities.GameActions;
 
 public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
 {
-    public static final EYBCardData DATA = Register(Guren.class).SetSkill(3, CardRarity.RARE).SetMaxCopies(2);
-
-    private boolean alreadyPlayed = false;
+    public static final EYBCardData DATA = Register(Guren.class)
+            .SetSkill(3, CardRarity.RARE)
+            .SetSeries(CardSeries.OwariNoSeraph);
 
     public Guren()
     {
         super(DATA);
 
-        Initialize(0, 0,3);
+        Initialize(0, 0,2);
+        SetUpgrade(0, 0,1);
+
+        SetAffinity_Red(2);
+        SetAffinity_Light(1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OwariNoSeraph);
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
         {
             GameActions.Bottom.Add(new GurenAction(m));
         }
 
-        alreadyPlayed = true;
         CombatStats.onPhaseChanged.Subscribe(this);
     }
 
@@ -60,13 +57,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
                 }
             }
 
-            alreadyPlayed = false;
             CombatStats.onPhaseChanged.Unsubscribe(this);
         }
-    }
-
-    public boolean CanAutoPlay(GurenAction gurenAction)
-    {
-        return !alreadyPlayed;
     }
 }

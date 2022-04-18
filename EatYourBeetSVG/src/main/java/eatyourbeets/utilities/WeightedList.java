@@ -38,6 +38,17 @@ public class WeightedList<T>
         }
     }
 
+    public List<T> GetInnerList()
+    {
+        final ArrayList<T> result = new ArrayList<>();
+        for (Item item : items)
+        {
+            result.add(item.object);
+        }
+
+        return result;
+    }
+
     public int Size()
     {
         return items.size();
@@ -62,34 +73,40 @@ public class WeightedList<T>
 
     public T Retrieve(Random rng, boolean remove)
     {
-        int r = rng.random(totalWeight);
-        int currentWeight = 0;
+        return Retrieve(rng.random(totalWeight), remove);
+    }
 
+    public T RetrieveUnseeded(boolean remove)
+    {
+        return Retrieve(JUtils.RNG.nextInt(totalWeight + 1), remove);
+    }
+
+    private T Retrieve(int roll, boolean remove)
+    {
         Item selected = null;
+        int currentWeight = 0;
         for (Item item : items)
         {
-            if ((currentWeight + item.weight) >= r)
+            if ((currentWeight + item.weight) >= roll)
             {
                 selected = item;
-
                 break;
             }
+
             currentWeight += item.weight;
         }
 
-        if (selected != null)
-        {
-            if (remove)
-            {
-                Remove(selected);
-            }
-
-            return selected.object;
-        }
-        else
+        if (selected == null)
         {
             return null;
         }
+
+        if (remove)
+        {
+            Remove(selected);
+        }
+
+        return selected.object;
     }
 
     private void Remove(Item item)

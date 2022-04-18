@@ -1,38 +1,41 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.animator.special.Oktavia;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.curse.special.Curse_GriefSeed;
+import eatyourbeets.cards.animator.special.SayakaMiki_Oktavia;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class SayakaMiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SayakaMiki.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new Oktavia(), true);
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+    public static final EYBCardData DATA = Register(SayakaMiki.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.MadokaMagica_Witch(SayakaMiki_Oktavia.DATA));
+                data.AddPreview(new SayakaMiki_Oktavia(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+            });
 
     public SayakaMiki()
     {
         super(DATA);
 
-        Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0, 2, 3);
+        SetUpgrade(0, 0, 2);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Blue(2);
     }
 
     @Override
@@ -42,19 +45,42 @@ public class SayakaMiki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainTemporaryHP(magicNumber);
-        GameActions.Bottom.ChannelOrb(new Frost());
-
-        IntellectPower.PreserveOnce();
-
-        AbstractCard last = GameUtilities.GetLastCardPlayed(true, 1);
-        if (HasSynergy() && last != null && last.cardID.equals(Curse_GriefSeed.DATA.ID))
+        GameActions.Bottom.StackPower(new SayakaMikiPower(p, 1)).ShowEffect(false, false);
+        GameActions.Bottom.GainBlessing(1, true);
+        GameActions.Delayed.Callback(() ->
         {
-            GameActions.Bottom.MakeCardInDiscardPile(new Oktavia()).SetUpgrade(upgraded, false);
-            GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-            GameActions.Last.ModifyAllInstances(uuid).AddCallback(GameActions.Bottom::Exhaust);
+            if (CheckSpecialCondition(true))
+            {
+                GameActions.Bottom.RecoverHP(secondaryValue);
+            }
+        });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameUtilities.GetPowerAmount(Affinity.Light) >= (tryUse ? 3 : 2);
+    }
+
+    public static class SayakaMikiPower extends AnimatorPower
+    {
+        public SayakaMikiPower(AbstractCreature owner, int amount)
+        {
+            super(owner, SayakaMiki.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            GameActions.Bottom.ChannelOrbs(Frost::new, amount);
+            RemovePower();
         }
     }
 }

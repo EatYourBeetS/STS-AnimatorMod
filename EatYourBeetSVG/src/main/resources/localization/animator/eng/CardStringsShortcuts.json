@@ -10,14 +10,23 @@
 
 	"<DRW>": "Draw 1 card",
 	"<DRW-M>": "Draw !M! card(s)",
-	"<TM-S>": "Teamwork !S!",
 	"<SPACE>": "    ",
 
 	"<ST>": "Starter",
 	"<FS>": "{[F] Stance}",
 	"<IS>": "{[I] Stance}",
 	"<AS>": "{[A] Stance}",
+	"<CS>": "{[C] Stance}",
 
+	"<R>": "[A_Red]",
+	"<G>": "[A_Green]",
+	"<B>": "[A_Blue]",
+	"<L>": "[A_Light]",
+	"<D>": "[A_Dark]",
+	"<S>": "[A_Star]",
+	"<W>": "[A_Gen]",
+	"<P>": "[A_Seal]",
+	
 	" ** ": " NL ",
 	" || ": " NL  NL "
 }

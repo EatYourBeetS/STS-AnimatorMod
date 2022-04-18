@@ -1,18 +1,20 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSubscriber
 {
-    public static final EYBCardData DATA = Register(MumenRider.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(MumenRider.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     private int turns;
 
@@ -20,10 +22,12 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super(DATA);
 
-        Initialize(3, 0, 20);
+        Initialize(2, 0, 4, 6);
+        SetUpgrade(1, 0, -1, -1);
+
+        SetAffinity_Red(1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.OnePunchMan);
     }
 
     @Override
@@ -31,39 +35,35 @@ public class MumenRider extends AnimatorCard implements OnStartOfTurnPostDrawSub
     {
         super.triggerOnExhaust();
 
-        turns = rng.random(0, 5);
+        turns = rng.random(magicNumber, secondaryValue);
         CombatStats.onStartOfTurnPostDraw.Subscribe(this);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SMASH);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+    }
 
-        if (upgraded)
-        {
-            GameActions.Bottom.Draw(1);
-        }
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.Cycle(name, 1);
     }
 
     @Override
     public void OnStartOfTurnPostDraw()
     {
-        if (player.exhaustPile.contains(this))
+        if (!player.exhaustPile.contains(this))
         {
-            if (turns <= 0)
-            {
-                GameActions.Bottom.MoveCard(this, player.exhaustPile, player.drawPile)
-                .ShowEffect(false, false);
-                CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
-            }
-            else
-            {
-                turns -= 1;
-            }
+            CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+            return;
         }
-        else
+
+        if ((turns -= 1) <= 0)
         {
+            GameActions.Bottom.MoveCard(this, player.exhaustPile, player.hand)
+                    .ShowEffect(true, true);
             CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         }
     }

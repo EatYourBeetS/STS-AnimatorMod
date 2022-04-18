@@ -72,16 +72,32 @@ public class GUI_Label extends GUIElement
         return this;
     }
 
+    public GUI_Label SetPosition(float cX, float cY)
+    {
+        this.hb.move(cX, cY);
+
+        return this;
+    }
+
     public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio)
     {
         return SetAlignment(verticalRatio, horizontalRatio, false);
     }
 
-    public GUI_Label SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
+    public GUI_Label SetAlignment(Float verticalRatio, Float horizontalRatio, Boolean smartText)
     {
-        this.verticalRatio = verticalRatio;
-        this.horizontalRatio = horizontalRatio;
-        this.smartText = smartText;
+        if (verticalRatio != null)
+        {
+            this.verticalRatio = verticalRatio;
+        }
+        if (horizontalRatio != null)
+        {
+            this.horizontalRatio = horizontalRatio;
+        }
+        if (smartText != null)
+        {
+            this.smartText = smartText;
+        }
 
         return this;
     }
@@ -114,7 +130,7 @@ public class GUI_Label extends GUIElement
         if (smartText)
         {
             final float step = hb.width * horizontalRatio;
-            FontHelper.renderSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
+            RenderHelpers.WriteSmartText(sb, font, text, hb.x + step, hb.y + (hb.height * verticalRatio),
             hb.width - (step * 2), font.getLineHeight(), textColor);
         }
         else if (horizontalRatio < 0.5f)

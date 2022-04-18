@@ -1,16 +1,19 @@
 package eatyourbeets.powers.animator;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.interfaces.listeners.OnTryApplyPowerListener;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class GeassPower extends AnimatorPower
+import java.util.Collections;
+
+public class GeassPower extends AnimatorPower implements OnTryApplyPowerListener
 {
     public static final String POWER_ID = CreateFullID(GeassPower.class);
 
@@ -18,29 +21,28 @@ public class GeassPower extends AnimatorPower
     {
         super(owner, POWER_ID);
 
-        amount = -1;
-        type = PowerType.DEBUFF;
-
-        updateDescription();
+        Initialize(-1, PowerType.DEBUFF, false);
     }
 
     @Override
-    public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    public boolean TryApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source, AbstractGameAction action)
     {
-        super.onApplyPower(power, target, source);
+        return !enabled || (power.type != PowerType.DEBUFF || owner != source || (owner.isPlayer == target.isPlayer));
+    }
 
-        if (power.type == PowerType.DEBUFF && owner == source && (owner.isPlayer != target.isPlayer))
+    @Override
+    public void onRemove()
+    {
+        super.onRemove();
+
+        GameActions.Last.Callback(() ->
         {
-            ArtifactPower artifact = GameUtilities.GetPower(owner, ArtifactPower.POWER_ID);
-            if (artifact != null)
-            {
-                artifact.amount += 1;
-            }
-            else
-            {
-                target.powers.add(0, new ArtifactPower(target, 1));
-            }
-        }
+           if (!owner.powers.contains(this))
+           {
+               owner.powers.add(this);
+               Collections.sort(owner.powers);
+           }
+        });
     }
 
     @Override
@@ -48,7 +50,7 @@ public class GeassPower extends AnimatorPower
     {
         super.onInitialApplication();
 
-        AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
+        final AbstractMonster monster = JUtils.SafeCast(owner, AbstractMonster.class);
         if (monster != null && !GameUtilities.IsAttacking(monster.intent))
         {
             if (!monster.hasPower(StunMonsterPower.POWER_ID))
@@ -56,7 +58,7 @@ public class GeassPower extends AnimatorPower
                 GameActions.Bottom.ApplyPower(owner, owner, new StunMonsterPower(monster));
             }
 
-            RemovePower();
+            SetEnabled(false);
         }
     }
 
@@ -65,6 +67,6 @@ public class GeassPower extends AnimatorPower
     {
         super.atEndOfTurn(isPlayer);
 
-        RemovePower();
+        SetEnabled(false);
     }
 }

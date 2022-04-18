@@ -1,6 +1,6 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -15,22 +15,30 @@ import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
 import eatyourbeets.cards.animator.special.OrbCore;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.delegates.ActionT0;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.*;
+import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
 import java.util.HashSet;
 
 public class Patchouli extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Patchouli.class).SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
-    static
-    {
-        for (OrbCore core : OrbCore.GetAllCores())
-        {
-            DATA.AddPreview(core, false);
-        }
-    }
+    public static final EYBCardData DATA = Register(Patchouli.class)
+            .SetAttack(3, CardRarity.RARE, EYBAttackType.Elemental, EYBCardTarget.Random)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.TouhouProject)
+            .PostInitialize(data ->
+            {
+                for (OrbCore core : OrbCore.GetAllCores())
+                {
+                    final AbstractCard card = core.makeCopy();
+                    card.upgrade();
+                    data.AddPreview(card, false);
+                }
+            });
 
     private final HashSet<String> uniqueOrbs = new HashSet<>();
 
@@ -40,10 +48,10 @@ public class Patchouli extends AnimatorCard
 
         Initialize(7, 0, 1, 2);
         SetUpgrade(3, 0, 0, 0);
-        SetScaling(2, 0, 0);
 
-        SetSynergy(Synergies.TouhouProject);
-        SetSpellcaster();
+        SetAffinity_Blue(2, 0, 2);
+
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override
@@ -68,9 +76,9 @@ public class Patchouli extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        RandomizedList<ActionT0> actions = new RandomizedList<>();
+        final RandomizedList<ActionT0> actions = new RandomizedList<>();
         for (int i = 0; i < magicNumber; i++)
         {
             if (actions.Size() == 0)
@@ -84,6 +92,18 @@ public class Patchouli extends AnimatorCard
             actions.Retrieve(rng).Invoke();
             GameActions.Bottom.WaitRealtime(0.2f);
         }
+
+        if ((info.IsSynergizing || CheckAffinity(Affinity.Blue)) && info.TryActivateLimited())
+        {
+            GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1, 5, true)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.MakeCardInHand(c);
+                }
+            }));
+        }
     }
 
     private void Lightning()
@@ -92,6 +112,7 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ORB_LIGHTNING_EVOKE", 0.2f);
             GameEffects.Queue.Add(new LightningEffect(e.drawX, e.drawY));
+            return 0f;
         });
     }
 
@@ -107,6 +128,8 @@ public class Patchouli extends AnimatorCard
             {
                 GameEffects.Queue.Add(new FallingIceEffect(frostCount, monsters.shouldFlipVfx()));
             }
+
+            return 0f;
         });
     }
 
@@ -116,6 +139,7 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ATTACK_WHIRLWIND", 0.2f);
             GameEffects.Queue.Add(new WhirlwindEffect());
+            return 0f;
         });
     }
 
@@ -125,24 +149,12 @@ public class Patchouli extends AnimatorCard
         {
             CardCrawlGame.sound.play("ATTACK_FIRE", 0.2f);
             GameEffects.Queue.Add(new FireballEffect(player.hb.cX, player.hb.cY, e.hb.cX, e.hb.cY));
+            return 0f;
         });
     }
 
     private DealDamageToRandomEnemy CreateDamageAction()
     {
-        return GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.NONE).SetOptions(true, false);
-    }
-
-    @Override
-    public void triggerWhenCreated(boolean startOfBattle)
-    {
-        super.triggerWhenCreated(startOfBattle);
-
-        if (startOfBattle && CombatStats.TryActivateLimited(cardID))
-        {
-            GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.Wait(0.3f);
-            GameActions.Bottom.MakeCardInDiscardPile(JUtils.GetRandomElement(OrbCore.GetAllCores()).makeCopy());
-        }
+        return GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.NONE).SetOptions(true, false);
     }
 }

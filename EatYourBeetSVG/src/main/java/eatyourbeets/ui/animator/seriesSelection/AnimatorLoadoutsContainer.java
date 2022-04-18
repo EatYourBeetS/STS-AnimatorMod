@@ -3,12 +3,15 @@ package eatyourbeets.ui.animator.seriesSelection;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
+import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,11 +51,11 @@ public class AnimatorLoadoutsContainer
         allCards.clear();
 
         int promotedCount = 0;
-        RandomizedList<AnimatorRuntimeLoadout> toPromote = new RandomizedList<>();
-        ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
+        final WeightedList<AnimatorRuntimeLoadout> toPromote = new WeightedList<>();
+        final ArrayList<AnimatorRuntimeLoadout> seriesSelectionItems = new ArrayList<>();
         for (AnimatorLoadout loadout : GR.Animator.Data.BaseLoadouts)
         {
-            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
                 if (loadout == GR.Animator.Data.SelectedLoadout)
@@ -62,7 +65,9 @@ public class AnimatorLoadoutsContainer
                 }
                 else
                 {
-                    toPromote.Add(card);
+                    //TODO: Check affinities instead
+                    final AnimatorTrophies trophies = loadout.GetTrophies();
+                    toPromote.Add(card, 1 + ((trophies.Trophy1 + trophies.Trophy2 + trophies.Trophy3) / 20));
                 }
 
                 seriesSelectionItems.add(card);
@@ -71,7 +76,7 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorLoadout loadout : GR.Animator.Data.BetaLoadouts)
         {
-            AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
+            final AnimatorRuntimeLoadout card = AnimatorRuntimeLoadout.TryCreate(loadout);
             if (card != null)
             {
                 if (loadout == GR.Animator.Data.SelectedLoadout)
@@ -84,7 +89,7 @@ public class AnimatorLoadoutsContainer
             }
         }
 
-        Random rng = new Random(Settings.seed + 13);
+        final Random rng = new Random(AbstractDungeon.cardRng.randomLong());
         while (promotedCount < 3)
         {
             toPromote.Retrieve(rng).Promote();
@@ -93,7 +98,7 @@ public class AnimatorLoadoutsContainer
 
         for (AnimatorRuntimeLoadout c : seriesSelectionItems)
         {
-            AbstractCard card = c.BuildCard();
+            final AbstractCard card = c.BuildCard();
             if (card != null)
             {
                 cardsMap.put(c.BuildCard(), c);
@@ -141,17 +146,17 @@ public class AnimatorLoadoutsContainer
 
     public void CommitChanges()
     {
-        GR.Animator.Dungeon.Series.clear();
+        GR.Animator.Dungeon.Loadouts.clear();
         for (AbstractCard card : selectedCards)
         {
-            AnimatorRuntimeLoadout loadout = Find(card);
+            final AnimatorRuntimeLoadout loadout = Find(card);
             if (loadout.IsBeta)
             {
                 // Do not unlock trophies or ascension
                 Settings.seedSet = true;
             }
 
-            GR.Animator.Dungeon.AddSeries(loadout);
+            GR.Animator.Dungeon.AddLoadout(loadout);
         }
 
         if (GR.Animator.Data.SelectedLoadout.IsBeta)
@@ -159,12 +164,18 @@ public class AnimatorLoadoutsContainer
             Settings.seedSet = true;
         }
 
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && GameUtilities.IsNormalRun(false) && Settings.seed != null)
+        {
+            GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
+        }
+
         GR.Animator.Dungeon.InitializeCardPool(false);
+        GameUtilities.GetAscensionData(true).OnGameStart();
     }
 
     public ArrayList<AbstractCard> GetAllCardsInPool()
     {
-        ArrayList<AbstractCard> cards = new ArrayList<>();
+        final ArrayList<AbstractCard> cards = new ArrayList<>();
         for (AbstractCard card : selectedCards)
         {
             cards.addAll(Find(card).Cards.values());

@@ -1,66 +1,69 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.GameUtilities;
 
 public class SuzuneAmano extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(SuzuneAmano.class).SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental);
+    public static final EYBCardData DATA = Register(SuzuneAmano.class)
+            .SetAttack(1, CardRarity.UNCOMMON, EYBAttackType.Elemental)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage();
 
     public SuzuneAmano()
     {
         super(DATA);
 
-        Initialize(7, 0, 3, 6);
-        SetUpgrade(0, 0, 0, 0);
-        SetScaling(1, 0, 0);
+        Initialize(7, 0);
+        SetUpgrade(3, 0);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Dark(2, 0, 1);
     }
 
     @Override
-    protected float GetInitialDamage()
+    public void triggerWhenDrawn()
     {
-        float damage = super.GetInitialDamage();
-        if (IsStarter())
+        super.triggerWhenDrawn();
+
+        GameActions.Delayed.Callback(() ->
         {
-            damage += (JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)) * secondaryValue);
-        }
-
-        return damage;
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.FIRE);
-
-        if (IsStarter())
-        {
-            GameActions.Bottom.Draw(JUtils.Count(player.orbs, o -> Fire.ORB_ID.equals(o.ID)));
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.ExhaustFromHand(name, 1, !upgraded)
-        .ShowEffect(true, true)
-        .SetOptions(false, false, false)
-        .AddCallback(m, (enemy, cards) ->
-        {
-            if (cards != null && cards.size() > 0)
+            if (!player.hand.contains(this))
             {
-                GameActions.Bottom.ApplyBurning(player, enemy, magicNumber);
+                return;
+            }
+
+            int minHealth = Integer.MAX_VALUE;
+            AbstractMonster enemy = null;
+
+            for (AbstractMonster m : GameUtilities.GetEnemies(true))
+            {
+                if (m.currentHealth < minHealth)
+                {
+                    minHealth = m.currentHealth;
+                    enemy = m;
+                }
+            }
+
+            if (enemy != null && player.hand.contains(this))
+            {
+                GameActions.Top.AutoPlay(this, player.hand, enemy);
             }
         });
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE);
+        GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile)
+        .SetOptions(false, false, false);
     }
 }

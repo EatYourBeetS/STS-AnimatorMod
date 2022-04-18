@@ -6,8 +6,11 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.modifiers.CostModifiers;
+import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.List;
@@ -16,10 +19,12 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 {
     public static String ID = GR.CreateID("eyb", MotivateAction.class.getName());
 
+    protected GenericCondition<AbstractCard> filter;
     protected boolean motivateZeroCost = true;
     protected boolean costReduced = false;
     protected AbstractCard card;
     protected CardGroup group;
+    protected Integer effectIndex;
 
     public MotivateAction(int amount)
     {
@@ -42,6 +47,13 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
         return this;
     }
 
+    public MotivateAction SetFilter(FuncT1<Boolean, AbstractCard> filter)
+    {
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
     public MotivateAction SetGroup(List<AbstractCard> cards)
     {
         this.group = GameUtilities.CreateCardGroup(cards);
@@ -52,6 +64,13 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
     public MotivateAction SetGroup(CardGroup group)
     {
         this.group = group;
+
+        return this;
+    }
+
+    public MotivateAction ShowEffect(boolean show, int xOffsetIndex)
+    {
+        this.effectIndex = show ? xOffsetIndex : null;
 
         return this;
     }
@@ -76,13 +95,16 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
             for (AbstractCard c : group.group)
             {
-                if (c.costForTurn > 0)
+                if (filter == null || filter.Check(c))
                 {
-                    betterPossible.Add(c);
-                }
-                else if (c.cost > 0)
-                {
-                    possible.Add(c);
+                    if (c.costForTurn > 0)
+                    {
+                        betterPossible.Add(c);
+                    }
+                    else if (c.cost > 0)
+                    {
+                        possible.Add(c);
+                    }
                 }
             }
 
@@ -96,7 +118,14 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
             }
         }
 
-        if (card == null || (card.costForTurn <= 0 && !motivateZeroCost))
+        if (card == null)
+        {
+            Complete(null);
+            return;
+        }
+
+        final boolean zeroCost = card.costForTurn <= 0;
+        if (zeroCost && !motivateZeroCost)
         {
             Complete(null);
             return;
@@ -104,12 +133,42 @@ public class MotivateAction extends EYBActionWithCallback<AbstractCard>
 
         CostModifiers.For(card).Add(ID, -amount);
         GameUtilities.TriggerWhenPlayed(card, c -> CostModifiers.For(c).Remove(ID, false));
-        GameUtilities.Flash(card, Color.GOLD, true);
 
-        if (card.costForTurn <= 0)
+        if (zeroCost)
         {
+            GameUtilities.Flash(card, Color.GOLD, true);
             Complete(card);
         }
+        else
+        {
+            ShowEffect();
+        }
+    }
+
+    protected void ShowEffect()
+    {
+        if (group == null || group.type == CardGroup.CardGroupType.HAND || effectIndex == null)
+        {
+            GameUtilities.Flash(card, Color.GOLD, true);
+            return;
+        }
+
+        final float offsetX;
+        final float offsetY = (Settings.HEIGHT * 0.33f) + (effectIndex * AbstractCard.IMG_HEIGHT * 0.1f);
+        if (group.type == CardGroup.CardGroupType.DRAW_PILE)
+        {
+            offsetX = (Settings.WIDTH * 0.12f) + (effectIndex * AbstractCard.IMG_WIDTH * 0.4f);
+        }
+        else if (group.type == CardGroup.CardGroupType.DISCARD_PILE || group.type == CardGroup.CardGroupType.EXHAUST_PILE)
+        {
+            offsetX = (Settings.WIDTH * 0.78f) - (effectIndex * AbstractCard.IMG_WIDTH * 0.4f);
+        }
+        else
+        {
+            offsetX = (Settings.WIDTH * 0.4f) + (effectIndex * AbstractCard.IMG_WIDTH * 0.4f);
+        }
+
+        GameEffects.TopLevelList.ShowCardBriefly(card.makeStatEquivalentCopy(), offsetX, offsetY);
     }
 
     @Override

@@ -1,13 +1,13 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.interfaces.subscribers.OnAttackSubscriber;
 import eatyourbeets.powers.CombatStats;
@@ -16,56 +16,52 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class ChaikaBohdan extends AnimatorCard implements OnAttackSubscriber
 {
-    public static final EYBCardData DATA = Register(ChaikaBohdan.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(ChaikaBohdan.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public ChaikaBohdan()
     {
         super(DATA);
 
-        Initialize(6, 0, 3, 2);
-        SetUpgrade(1, 0);
+        Initialize(4, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Red(1);
+        SetAffinity_Green(2);
+
+        SetRetainOnce(true);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        SetHaste(true);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
+        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.Callback(() -> DamageModifiers.For(this).Set(0));
     }
 
     @Override
-    public void Refresh(AbstractMonster enemy)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.Refresh(enemy);
-
-        if (player.hand.contains(this))
-        {
-            CombatStats.onAttack.Subscribe(this);
-        }
+        GameActions.Bottom.Cycle(name, 1);
     }
 
     @Override
     public void OnAttack(DamageInfo info, int damageAmount, AbstractCreature target)
     {
-        if (player.hand.contains(this))
+        if (player.hand.contains(this) && info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsMonster(target))
         {
-            if (info.type == DamageInfo.DamageType.NORMAL && GameUtilities.IsMonster(target))
-            {
-                DamageModifiers.For(this).Add(secondaryValue);
-                this.flash();
-            }
-        }
-        else
-        {
-            CombatStats.onAttack.Unsubscribe(this);
+            DamageModifiers.For(this).Add(magicNumber);
+            flash();
         }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void triggerWhenCreated(boolean startOfBattle)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL);
-        DamageModifiers.For(this).Set(0);
+        super.triggerWhenCreated(startOfBattle);
+
+        CombatStats.onAttack.Subscribe(this);
     }
 }

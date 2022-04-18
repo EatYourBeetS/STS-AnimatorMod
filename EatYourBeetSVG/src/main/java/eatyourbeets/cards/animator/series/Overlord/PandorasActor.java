@@ -1,32 +1,32 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class PandorasActor extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(PandorasActor.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(PandorasActor.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public PandorasActor()
     {
         super(DATA);
 
-        Initialize(0, 4);
-        SetUpgrade(0, 2);
+        Initialize(0, 4, 4);
+        SetUpgrade(0, 2, 2);
 
-        SetSynergy(Synergies.Overlord);
-        SetShapeshifter();
+        SetAffinity_Star(1, 0, 0);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
     }
@@ -39,17 +39,7 @@ public class PandorasActor extends AnimatorCard
         if (startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.SpendEnergy(cost, false).AddCallback(amount ->
-            {
-                AbstractCard copy = this.makeStatEquivalentCopy();
-                copy.applyPowers();
-                copy.use(player, null);
-                copy.purgeOnUse = true;
-                copy.freeToPlayOnce = true;
-
-                Synergies.SetLastCardPlayed(copy);
-                GameActions.Bottom.GainEnergy(amount);
-            });
+            GameActions.Bottom.GainBlock(magicNumber);
         }
     }
 }

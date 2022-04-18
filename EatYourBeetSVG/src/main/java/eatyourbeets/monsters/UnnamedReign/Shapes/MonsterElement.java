@@ -11,21 +11,26 @@ public enum MonsterElement
     Fire,
     Frost;
 
-    public static RandomizedList<MonsterElement> GetRandomizedList(MonsterElement exception)
+    public static RandomizedList<MonsterElement> GetRandomizedList(MonsterElement... exceptions)
     {
-        RandomizedList<MonsterElement> result = GetRandomizedList();
-        result.GetInnerList().remove(exception);
+        final RandomizedList<MonsterElement> result = GetRandomizedList();
+        for (MonsterElement element : exceptions)
+        {
+            result.GetInnerList().remove(element);
+        }
+
         return result;
     }
 
     public static RandomizedList<MonsterElement> GetRandomizedList()
     {
-        RandomizedList<MonsterElement> result = new RandomizedList<>();
+        final RandomizedList<MonsterElement> result = new RandomizedList<>();
         result.Add(MonsterElement.Dark);
         result.Add(MonsterElement.Fire);
         result.Add(MonsterElement.Frost);
         result.Add(MonsterElement.Healing);
         result.Add(MonsterElement.Lightning);
+
         return result;
     }
 }

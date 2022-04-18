@@ -12,30 +12,29 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.PhilosopherStone;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import com.megacrit.cardcrawl.ui.FtueTip;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.cards.animator.series.FullmetalAlchemist.Father;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.effects.player.RemoveRelicEffect;
 import eatyourbeets.effects.special.UnnamedRelicEquipEffect;
 import eatyourbeets.effects.utility.CallbackEffect;
 import eatyourbeets.effects.utility.SequentialEffect;
-import eatyourbeets.interfaces.listeners.OnAddedToDeckListener;
+import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.FieldInfo;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 
-public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsListener, OnAddedToDeckListener
+public abstract class UnnamedReignRelic extends AnimatorRelic implements OnReceiveRewardsListener, OnAddToDeckListener
 {
     public UnnamedReignRelic(String id, RelicTier tier, LandingSound sfx)
     {
@@ -71,7 +70,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
     private void DisableConsole()
     {
-        if (GR.TEST_MODE)
+        if (GameUtilities.IsTestMode())
         {
             return;
         }
@@ -84,8 +83,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
         if (Gdx.input.isKeyJustPressed(DevConsole.toggleKey) && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.FTUE)
         {
-            // TODO: Localization
-            AbstractDungeon.ftue = new FtueTip(name, "The console is disabled while in this act.",
+            AbstractDungeon.ftue = new FtueTip(name, GR.Animator.Strings.Misc.ConsoleDisabled,
             Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, FtueTip.TipType.NO_FTUE);
         }
 
@@ -131,12 +129,8 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
 
         if (relic instanceof UnnamedReignRelic)
         {
-            AbstractPlayer p = AbstractDungeon.player;
-
-            SequentialEffect effect = new SequentialEffect();
-
-            int goldBonus = UnnamedRelicEquipEffect.CalculateGoldBonus();
-
+            final AbstractPlayer p = AbstractDungeon.player;
+            final SequentialEffect effect = new SequentialEffect();
             for (AbstractRelic r : p.relics)
             {
                 if (r != null && (r != relic) && !(r instanceof OnEquipUnnamedReignRelicListener))
@@ -146,18 +140,32 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
             }
 
             effect.Enqueue(new CallbackEffect(GameActions.Bottom.Wait(0.1f), null, UnnamedReignRelic::RemoveSpecialRelics));
+            effect.Enqueue(new UnnamedRelicEquipEffect());
+            GameEffects.List.Add(effect);
 
             AbstractRelic.relicPage = 0;
             player.reorganizeRelics();
-
             ((UnnamedReignRelic) relic).OnManualEquip();
-
-            effect.Enqueue(new UnnamedRelicEquipEffect(goldBonus));
-
-            GameEffects.List.Add(effect);
         }
         else if (!(relic instanceof OnEquipUnnamedReignRelicListener) && relic.tier != RelicTier.STARTER)
         {
+            if (relic.relicId.equals(PhilosopherStone.ID) && Father.DATA.IsInGroup(player.masterDeck))
+            {
+                boolean skip = true;
+                for (AbstractRelic r : player.relics)
+                {
+                    if (r.relicId.equals(PhilosopherStone.ID) && r != relic)
+                    {
+                        skip = false;
+                    }
+                }
+
+                if (skip)
+                {
+                    return;
+                }
+            }
+
             for (AbstractRelic r : player.relics)
             {
                 //noinspection ConstantConditions
@@ -171,7 +179,7 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     }
 
     @Override
-    public void OnReceiveRewards(ArrayList<RewardItem> rewards)
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
     {
         MapRoomNode node = AbstractDungeon.getCurrMapNode();
         if (node != null && node.room instanceof MonsterRoom)
@@ -182,18 +190,21 @@ public abstract class UnnamedReignRelic extends AnimatorRelic implements OnRecei
     }
 
     @Override
-    public void OnAddedToDeck(AbstractCard card)
+    public boolean OnAddToDeck(AbstractCard card)
     {
-        ArrayList<String> cards = TheUnnamedReign.GetCardReplacements(card, false);
+        final ArrayList<String> cards = TheUnnamedReign.GetCardReplacements(card, false);
         if (cards.size() > 0)
         {
-            player.masterDeck.removeCard(card);
             for (String cardID : cards)
             {
                 UnlockTracker.markCardAsSeen(cardID);
-                player.masterDeck.group.add(CardLibrary.getCard(cardID).makeCopy());
+                GameEffects.TopLevelQueue.ShowAndObtain(CardLibrary.getCard(cardID).makeCopy());
             }
+
+            return false;
         }
+
+        return true;
     }
 
     private void AddGoldToRewards(ArrayList<RewardItem> rewards, int step)

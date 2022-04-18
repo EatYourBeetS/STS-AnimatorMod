@@ -1,7 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -9,38 +8,42 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.AnimatedSlashEffect;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Assassin extends AnimatorCard
 {
-    private static int EFFECT = 0;
-
-    public static final EYBCardData DATA = Register(Assassin.class).SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing);
+    public static final EYBCardData DATA = Register(Assassin.class)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
+    public static final int ATTACKS_COUNT = 3;
     public static final int DEBUFFS_COUNT = 3;
 
     public Assassin()
     {
         super(DATA);
 
-        Initialize(2, 0, DEBUFFS_COUNT);
-        SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
+        Initialize(3, 0, DEBUFFS_COUNT);
+        SetUpgrade(1, 0);
 
         SetRetain(true);
-        SetMartialArtist();
-        SetSynergy(Synergies.Fate);
+
+        SetAffinity_Green(1);
+        SetAffinity_Dark(1);
     }
 
     @Override
     public void triggerOnOtherCardPlayed(AbstractCard c)
     {
-        if (c.type == CardType.ATTACK && player.hand.contains(this))
+        if (c.type == CardType.ATTACK && player.hand.contains(this) && c.uuid != uuid && !c.hasTag(GR.Enums.CardTags.AUTOPLAYED))
         {
             GameActions.Bottom.MoveCard(this, player.hand, player.discardPile)
             .AddCallback(() -> GameActions.Bottom.Draw(1));
@@ -74,26 +77,23 @@ public class Assassin extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        return super.GetDamageInfo().AddMultiplier(3);
+        return super.GetDamageInfo().AddMultiplier(ATTACKS_COUNT);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HORIZONTAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.3f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(e -> DamageEffect(e, 0));
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.3f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(e -> DamageEffect(e, 1));
 
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_VERTICAL)
-        .SetDamageEffect(this::DamageEffect)
-        .SetDuration(0.2f, false);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(e -> DamageEffect(e, 2));
     }
 
-    private void DamageEffect(AbstractCreature e)
+    private float DamageEffect(AbstractCreature e, int index)
     {
         float x = e.hb.cX;
         float y = e.hb.cY - 60f * Settings.scale;
@@ -102,31 +102,27 @@ public class Assassin extends AnimatorCard
         float dy;
         float angle;
 
-        if (EFFECT == 0)
+        SFX.Play(SFX.ATTACK_SWORD, 0.85f + (0.2f * index));
+
+        if (index == 0)
         {
             dx = 500;
             dy = 200;
             angle = 290;
-
-            EFFECT = 1;
         }
-        else if (EFFECT == 1)
+        else if (index == 1)
         {
             dx = -500;
             dy = 200;
             angle = -290;
-
-            EFFECT = 2;
         }
         else
         {
             dx = -500;
             dy = -200;
-            angle = -230;
-
-            EFFECT = 0;
+            angle = 120;
         }
 
-        GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET.cpy(), Color.TEAL.cpy()));
+        return GameEffects.List.Add(new AnimatedSlashEffect(x, y, dx, dy, angle, scale, Color.VIOLET, Color.TEAL)).duration * 0.4f;
     }
 }

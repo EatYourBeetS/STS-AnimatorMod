@@ -16,7 +16,7 @@ public class TheUnnamedMerchant extends EYBEvent
 
     public TheUnnamedMerchant()
     {
-        super(ID, STRINGS, "Merchant.png");
+        super(ID, STRINGS, IMAGES.Merchant.Path());
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offering());

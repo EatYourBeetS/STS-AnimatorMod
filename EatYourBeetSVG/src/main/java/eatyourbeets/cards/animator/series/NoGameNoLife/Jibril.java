@@ -1,47 +1,46 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 import eatyourbeets.actions.orbs.ShuffleOrbs;
-import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.common.IntellectPower;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Jibril.class).SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Jibril.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
+            .SetSeriesFromClassPackage();
 
     public Jibril()
     {
         super(DATA);
 
         Initialize(6, 0, 2);
-        SetUpgrade(4, 0, 0);
-        SetScaling(3, 0, 0);
+        SetUpgrade(3, 0, 0);
+
+        SetAffinity_Blue(2, 0, 2);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.NoGameNoLife);
-        SetSpellcaster();
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.VFX(new ShockWaveEffect(p.hb.cX, p.hb.cY, Color.VIOLET.cpy(), ShockWaveEffect.ShockWaveType.ADDITIVE), 0.3f);
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.FIRE);
+        GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.VIOLET), 0.3f);
+        GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrb(new Dark());
 
-        if (isSynergizing)
+        if (info.IsSynergizing)
         {
             GameActions.Bottom.Add(new ShuffleOrbs(1));
-            GameActions.Bottom.Add(new TriggerOrbPassiveAbility(magicNumber, false, true));
+            GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);
         }
-
-        IntellectPower.PreserveOnce();
     }
 }

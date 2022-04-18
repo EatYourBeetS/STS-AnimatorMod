@@ -4,11 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.defect.IncreaseMaxOrbAction;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -16,11 +14,14 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.CardFlashVfx;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.animator.CreateThrowingKnives;
@@ -30,39 +31,49 @@ import eatyourbeets.actions.cardManipulation.*;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.actions.damage.DealDamageToAll;
 import eatyourbeets.actions.damage.DealDamageToRandomEnemy;
-import eatyourbeets.actions.handSelection.CycleCards;
-import eatyourbeets.actions.handSelection.DiscardFromHand;
-import eatyourbeets.actions.handSelection.ExhaustFromHand;
-import eatyourbeets.actions.handSelection.SelectFromHand;
+import eatyourbeets.actions.damage.LoseHP;
+import eatyourbeets.actions.handSelection.*;
 import eatyourbeets.actions.monsters.TalkAction;
 import eatyourbeets.actions.orbs.ChannelOrb;
 import eatyourbeets.actions.orbs.EvokeOrb;
+import eatyourbeets.actions.orbs.TriggerOrbPassiveAbility;
 import eatyourbeets.actions.pileSelection.*;
 import eatyourbeets.actions.player.ChangeStance;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.actions.player.SpendEnergy;
-import eatyourbeets.actions.powers.ApplyPower;
-import eatyourbeets.actions.powers.ReducePower;
-import eatyourbeets.actions.powers.ReduceStrength;
+import eatyourbeets.actions.powers.*;
 import eatyourbeets.actions.special.DelayAllActions;
+import eatyourbeets.actions.special.PlaySFX;
+import eatyourbeets.actions.special.PlayVFX;
 import eatyourbeets.actions.special.SelectCreature;
-import eatyourbeets.actions.special.VFX;
+import eatyourbeets.actions.unnamed.ActivateDoll;
+import eatyourbeets.actions.unnamed.HealDoll;
+import eatyourbeets.actions.unnamed.ModifyDollHP;
+import eatyourbeets.actions.unnamed.SummonDoll;
 import eatyourbeets.actions.utility.CallbackAction;
 import eatyourbeets.actions.utility.SequentialAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.*;
 import eatyourbeets.interfaces.subscribers.OnPhaseChangedSubscriber;
+import eatyourbeets.monsters.PlayerMinions.UnnamedDoll;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.animator.BurningPower;
+import eatyourbeets.powers.affinity.CorruptionPower;
+import eatyourbeets.powers.affinity.*;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.common.AgilityPower;
-import eatyourbeets.powers.common.ForcePower;
-import eatyourbeets.powers.common.IntellectPower;
-import eatyourbeets.powers.common.TemporaryArtifactPower;
+import eatyourbeets.powers.common.EnergizedPower;
+import eatyourbeets.powers.common.*;
+import eatyourbeets.powers.replacement.*;
+import eatyourbeets.powers.unnamed.AmplificationPower;
+import eatyourbeets.powers.unnamed.WitheringPower;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -70,6 +81,19 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 @SuppressWarnings("UnusedReturnValue")
 public final class GameActions
 {
+    public enum ActionOrder
+    {
+        TurnStart,
+        NextCombat,
+
+        Instant,
+        Top,
+        Bottom,
+        Delayed,
+        DelayedTop,
+        Last
+    }
+
     @Deprecated
     public static final GameActions NextCombat = new GameActions(ActionOrder.NextCombat);
     @Deprecated
@@ -79,6 +103,7 @@ public final class GameActions
     public static final GameActions Top = new GameActions(ActionOrder.Top);
     public static final GameActions Bottom = new GameActions(ActionOrder.Bottom);
     public static final GameActions Delayed = new GameActions(ActionOrder.Delayed);
+    public static final GameActions DelayedTop = new GameActions(ActionOrder.DelayedTop);
     public static final GameActions Last = new GameActions(ActionOrder.Last);
 
     protected final ActionOrder actionOrder;
@@ -86,6 +111,11 @@ public final class GameActions
     protected GameActions(ActionOrder actionOrder)
     {
         this.actionOrder = actionOrder;
+    }
+
+    public static void ClearActions()
+    {
+        AbstractDungeon.actionManager.actions.clear();
     }
 
     public static DelayAllActions DelayCurrentActions()
@@ -98,9 +128,25 @@ public final class GameActions
         return AbstractDungeon.actionManager.actions;
     }
 
-    public static void ClearActions()
+    public static void InsertActions(ArrayList<AbstractGameAction> toAdd, int index)
     {
-        AbstractDungeon.actionManager.actions.clear();
+        final ArrayList<AbstractGameAction> actions = GetActions();
+        for (int i = toAdd.size() - 1; i >= 0; i++)
+        {
+            actions.add(index, toAdd.get(i));
+        }
+    }
+
+    public static ArrayList<AbstractGameAction> GetActionsCopy(boolean clearOriginal)
+    {
+        final ArrayList<AbstractGameAction> actions = GetActions();
+        final ArrayList<AbstractGameAction> copy = new ArrayList<>(actions);
+        if (clearOriginal)
+        {
+            actions.clear();
+        }
+
+        return copy;
     }
 
     public <T extends AbstractGameAction> T Add(T action)
@@ -153,6 +199,13 @@ public final class GameActions
             case Delayed:
             {
                 Bottom.Callback(action, Bottom::Add);
+                break;
+            }
+
+            case DelayedTop:
+            {
+                Bottom.Callback(action, Bottom::Add);
+                break;
             }
 
             case Last:
@@ -177,7 +230,7 @@ public final class GameActions
 
     public ApplyPower ApplyConstricted(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new ConstrictedPower(target, source, amount));
+        return StackPower(source, new AnimatorConstrictedPower(target, source, amount));
     }
 
     public ApplyPowerAuto ApplyConstricted(TargetHelper target, int amount)
@@ -187,17 +240,37 @@ public final class GameActions
 
     public ApplyPower ApplyFrail(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new FrailPower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new FrailPower(target, amount, source == null || GameUtilities.IsMonster(source)));
+    }
+
+    public ApplyPower ApplyFreezing(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new FreezingPower(target, source, amount));
+    }
+
+    public ApplyPowerAuto ApplyFreezing(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Freezing, amount);
     }
 
     public ApplyPower ApplyPoison(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new PoisonPower(target, source, amount));
+        return StackPower(source, target.isPlayer ? new PoisonPlayerPower(target, source, amount) : new PoisonPower(target, source, amount));
     }
 
     public ApplyPowerAuto ApplyPoison(TargetHelper target, int amount)
     {
         return StackPower(target, PowerHelper.Poison, amount);
+    }
+
+    public ApplyPower ApplyLockOn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new LockOnPower(target, amount));
+    }
+
+    public ApplyPowerAuto ApplyLockOn(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.LockOn, amount);
     }
 
     public ApplyPower ApplyPower(AbstractPower power)
@@ -222,7 +295,7 @@ public final class GameActions
 
     public ApplyPower ApplyVulnerable(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new VulnerablePower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new AnimatorVulnerablePower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyVulnerable(TargetHelper target, int amount)
@@ -232,7 +305,7 @@ public final class GameActions
 
     public ApplyPower ApplyWeak(AbstractCreature source, AbstractCreature target, int amount)
     {
-        return StackPower(source, new WeakPower(target, amount, GameUtilities.IsMonster(source)));
+        return StackPower(source, new WeakPower(target, amount, source == null || GameUtilities.IsMonster(source)));
     }
 
     public ApplyPowerAuto ApplyWeak(TargetHelper target, int amount)
@@ -240,7 +313,27 @@ public final class GameActions
         return StackPower(target, PowerHelper.Weak, amount);
     }
 
-    public CallbackAction Callback(AbstractGameAction action, Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public PlayCard AutoPlay(AbstractCard card, CardGroup group, AbstractMonster target)
+    {
+        return (PlayCard) PlayCard(card, group, target).SpendEnergy(true, true).AddCondition(AbstractCard::hasEnoughEnergy);
+    }
+
+    public ApplyPower BlockNextTurn(int amount)
+    {
+        return StackPower(new NextTurnBlockPower(player, amount));
+    }
+
+    public PlayVFX BorderFlash(Color color)
+    {
+        return VFX(new BorderFlashEffect(color, true));
+    }
+
+    public PlayVFX BorderLongFlash(Color color)
+    {
+        return VFX(new BorderLongFlashEffect(color, true));
+    }
+
+    public <T> CallbackAction Callback(AbstractGameAction action, T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
         return Add(new CallbackAction(action, state, onCompletion));
     }
@@ -262,17 +355,17 @@ public final class GameActions
 
     public CallbackAction Callback(ActionT0 onCompletion)
     {
-        return Callback(new WaitAction(0.05f), onCompletion);
+        return Callback(new WaitAction(0.02f), onCompletion);
     }
 
     public CallbackAction Callback(ActionT1<AbstractGameAction> onCompletion)
     {
-        return Callback(new WaitAction(0.05f), onCompletion);
+        return Callback(new WaitAction(0.02f), onCompletion);
     }
 
-    public CallbackAction Callback(Object state, ActionT2<Object, AbstractGameAction> onCompletion)
+    public <T> CallbackAction Callback(T state, ActionT2<T, AbstractGameAction> onCompletion)
     {
-        return Callback(new WaitAction(0.05f), state, onCompletion);
+        return Callback(new WaitAction(0.02f), state, onCompletion);
     }
 
     public ChangeStanceAction ChangeStance(AbstractStance stance)
@@ -285,17 +378,17 @@ public final class GameActions
         return Add(new ChangeStance(stanceName));
     }
 
-    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
-    {
-        return Add(new ChannelOrb(orbConstructor, amount));
-    }
-
     public ChannelOrb ChannelOrb(AbstractOrb orb)
     {
         return Add(new ChannelOrb(orb));
     }
 
-    public ChannelOrb ChannelRandomOrbs(int amount)
+    public ChannelOrb ChannelOrbs(FuncT0<AbstractOrb> orbConstructor, int amount)
+    {
+        return Add(new ChannelOrb(orbConstructor, amount));
+    }
+
+    public ChannelOrb ChannelRandomOrb(int amount)
     {
         return Add(new ChannelOrb(GameUtilities::GetRandomOrb, amount));
     }
@@ -324,13 +417,13 @@ public final class GameActions
 
     public DealDamageToAll DealDamageToAll(EYBCard card, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect))
+        return Add(new DealDamageToAll(player, card.multiDamage, card.damageTypeForTurn, effect, false))
         .SetPiercing(card.attackType.bypassThorns, card.attackType.bypassBlock);
     }
 
     public DealDamageToAll DealDamageToAll(int[] damageMatrix, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
     {
-        return Add(new DealDamageToAll(player, damageMatrix, damageType, effect));
+        return Add(new DealDamageToAll(player, damageMatrix, damageType, effect, false));
     }
 
     public DealDamageToRandomEnemy DealDamageToRandomEnemy(int baseDamage, DamageInfo.DamageType damageType, AbstractGameAction.AttackEffect effect)
@@ -374,6 +467,31 @@ public final class GameActions
         .ShowEffect(true, false);
     }
 
+    public ApplyPower DrawReduction(int amount)
+    {
+        return StackPower(new NextTurnDrawReductionPower(player, amount)).ShowEffect(false, false);
+    }
+
+    public ApplyPower DrawNextTurn(int amount)
+    {
+        return StackPower(new DrawCardNextTurnPower(player, amount));
+    }
+
+    public EvokeOrb EvokeOrb(int times)
+    {
+        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
+    {
+        return Add(new EvokeOrb(times, orb));
+    }
+
+    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
+    {
+        return Add(new EvokeOrb(times, mode));
+    }
+
     public MoveCard Exhaust(AbstractCard card)
     {
         return MoveCard(card, player.exhaustPile);
@@ -399,39 +517,29 @@ public final class GameActions
         return Add(new FetchFromPile(sourceName, amount, groups));
     }
 
-    public EvokeOrb EvokeOrb(int times)
+    public PlayVFX Flash(AbstractCard card)
     {
-        return Add(new EvokeOrb(times, EvokeOrb.Mode.SameOrb));
+        return Flash(card, Color.ORANGE.cpy(), false);
     }
 
-    public EvokeOrb EvokeOrb(int times, AbstractOrb orb)
+    public PlayVFX SuperFlash(AbstractCard card)
     {
-        return Add(new EvokeOrb(times, orb));
+        return Flash(card, Color.ORANGE.cpy(), true);
     }
 
-    public EvokeOrb EvokeOrb(int times, EvokeOrb.Mode mode)
+    public PlayVFX Flash(AbstractCard card, Color color, boolean superFlash)
     {
-        return Add(new EvokeOrb(times, mode));
+        return VFX(new CardFlashVfx(card, color.cpy(), superFlash));
     }
 
-    public VFX Flash(AbstractCard card)
-    {
-        return VFX(new CardFlashVfx(card, Color.ORANGE.cpy()));
-    }
-
-    public ApplyPower GainAgility(int amount)
+    public ApplyAffinityPower GainAgility(int amount)
     {
         return GainAgility(amount, false);
     }
 
-    public ApplyPower GainAgility(int amount, boolean preserveOnce)
+    public ApplyAffinityPower GainAgility(int amount, boolean retain)
     {
-        if (preserveOnce)
-        {
-            AgilityPower.PreserveOnce();
-        }
-
-        return StackPower(new AgilityPower(player, amount));
+        return StackAffinityPower(AgilityPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainArtifact(int amount)
@@ -439,19 +547,49 @@ public final class GameActions
         return StackPower(new ArtifactPower(player, amount));
     }
 
+    public ApplyAffinityPower GainBlessing(int amount)
+    {
+        return GainBlessing(amount, false);
+    }
+
+    public ApplyAffinityPower GainBlessing(int amount, boolean retain)
+    {
+        return StackAffinityPower(BlessingPower.AFFINITY_TYPE, amount, retain);
+    }
+
+    public GainBlock GainBlock(int amount)
+    {
+        return GainBlock(player, amount);
+    }
+
     public GainBlock GainBlock(AbstractCreature target, int amount)
     {
         return Add(new GainBlock(target, target, amount));
     }
 
-    public GainBlock GainBlock(int amount)
+    public LoseBlock LoseBlock(int amount)
     {
-        return Add(new GainBlock(player, player, amount));
+        return LoseBlock(player, amount);
+    }
+
+    public LoseBlock LoseBlock(AbstractCreature target, int amount)
+    {
+        return Add(new LoseBlock(target, target, amount));
     }
 
     public ApplyPower GainBlur(int amount)
     {
-        return StackPower(new BlurPower(player, amount));
+        return StackPower(new AnimatorBlurPower(player, amount));
+    }
+
+    public ApplyAffinityPower GainCorruption(int amount)
+    {
+        return GainCorruption(amount, false);
+    }
+    
+    public ApplyAffinityPower GainCorruption(int amount, boolean retain)
+    {
+        return StackAffinityPower(CorruptionPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainDexterity(int amount)
@@ -459,9 +597,19 @@ public final class GameActions
         return StackPower(new DexterityPower(player, amount));
     }
 
+    public ApplyPower GainDexterity(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new DexterityPower(target, amount));
+    }
+
     public GainEnergyAction GainEnergy(int amount)
     {
         return Add(new GainEnergyAction(amount));
+    }
+
+    public ApplyPower GainEnergyNextTurn(int amount)
+    {
+        return StackPower(new EnergizedPower(player, amount));
     }
 
     public ApplyPower GainFocus(int amount)
@@ -469,19 +617,14 @@ public final class GameActions
         return StackPower(new FocusPower(player, amount));
     }
 
-    public ApplyPower GainForce(int amount)
+    public ApplyAffinityPower GainForce(int amount)
     {
         return GainForce(amount, false);
     }
 
-    public ApplyPower GainForce(int amount, boolean preserveOnce)
+    public ApplyAffinityPower GainForce(int amount, boolean retain)
     {
-        if (preserveOnce)
-        {
-            ForcePower.PreserveOnce();
-        }
-
-        return StackPower(new ForcePower(player, amount));
+        return StackAffinityPower(ForcePower.AFFINITY_TYPE, amount, retain);
     }
 
     public GainGold GainGold(int amount)
@@ -489,29 +632,39 @@ public final class GameActions
         return Add(new GainGold(amount, true));
     }
 
-    public ApplyPower GainIntellect(int amount)
+    public ApplyPower GainInspiration(int amount)
+    {
+        return StackPower(new InspirationPower(player, amount));
+    }
+
+    public ApplyPower GainIntangible(int amount)
+    {
+        return StackPower(new AnimatorIntangiblePower(player, amount));
+    }
+
+    public ApplyAffinityPower GainIntellect(int amount)
     {
         return GainIntellect(amount, false);
     }
 
-    public ApplyPower GainIntellect(int amount, boolean preserveOnce)
+    public ApplyAffinityPower GainIntellect(int amount, boolean retain)
     {
-        if (preserveOnce)
-        {
-            IntellectPower.PreserveOnce();
-        }
-
-        return StackPower(new IntellectPower(player, amount));
+        return StackAffinityPower(IntellectPower.AFFINITY_TYPE, amount, retain);
     }
 
     public ApplyPower GainMalleable(int amount)
     {
-        return StackPower(new MalleablePower(player, amount));
+        return GainMalleable(player, player, amount);
+    }
+
+    public ApplyPower GainMalleable(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new MalleablePower(target, amount));
     }
 
     public ApplyPower GainMetallicize(int amount)
     {
-        return StackPower(new MetallicizePower(player, amount));
+        return StackPower(new AnimatorMetallicizePower(player, amount));
     }
 
     public IncreaseMaxOrbAction GainOrbSlots(int slots)
@@ -521,38 +674,27 @@ public final class GameActions
 
     public ApplyPower GainPlatedArmor(int amount)
     {
-        return StackPower(new PlatedArmorPower(player, amount));
+        return StackPower(new AnimatorPlatedArmorPower(player, amount));
     }
 
-    public ApplyPower GainRandomStat(int amount)
+    public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain)
     {
-        return GainRandomStat(amount, false);
+        return StackAffinityPower(null, amount, retain);
     }
 
-    public ApplyPower GainRandomStat(int amount, boolean preserveOnce)
+    public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain, Affinity... affinities)
     {
-        int roll = AbstractDungeon.cardRandomRng.random(2);
-        switch (roll)
-        {
-            case 0:
-            {
-                return GainIntellect(amount, preserveOnce);
-            }
-            case 1:
-            {
-                return GainAgility(amount, preserveOnce);
-            }
-            case 2:
-            default:
-            {
-                return GainForce(amount, preserveOnce);
-            }
-        }
+        return StackAffinityPower(GameUtilities.GetRandomElement(affinities), amount, retain);
     }
 
     public ApplyPower GainStrength(int amount)
     {
-        return StackPower(new StrengthPower(player, amount));
+        return GainStrength(player, player, amount);
+    }
+
+    public ApplyPower GainStrength(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new StrengthPower(target, amount));
     }
 
     public ApplyPower GainTemporaryArtifact(int amount)
@@ -562,7 +704,12 @@ public final class GameActions
 
     public GainTemporaryHP GainTemporaryHP(int amount)
     {
-        return Add(new GainTemporaryHP(player, player, amount));
+        return GainTemporaryHP(player, player, amount);
+    }
+
+    public GainTemporaryHP GainTemporaryHP(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return Add(new GainTemporaryHP(source, target, amount));
     }
 
     public ApplyPower GainTemporaryThorns(int amount)
@@ -570,9 +717,33 @@ public final class GameActions
         return StackPower(new EarthenThornsPower(player, amount));
     }
 
+    public ApplyPower GainTemporaryStats(int strength, int dexterity, int focus)
+    {
+        final HashMap<PowerHelper, Integer> powers = new HashMap<>();
+        if (strength != 0)
+        {
+            powers.put(PowerHelper.Strength, strength);
+        }
+        if (dexterity != 0)
+        {
+            powers.put(PowerHelper.Dexterity, dexterity);
+        }
+        if (focus != 0)
+        {
+            powers.put(PowerHelper.Focus, focus);
+        }
+
+        return StackPower(new TemporaryStatsPower(player, powers));
+    }
+
     public ApplyPower GainThorns(int amount)
     {
         return StackPower(new ThornsPower(player, amount));
+    }
+
+    public ApplyPower GainVitality(int amount)
+    {
+        return StackPower(new VitalityPower(player, amount));
     }
 
     public HealCreature Heal(AbstractCreature source, AbstractCreature target, int amount)
@@ -585,44 +756,91 @@ public final class GameActions
         return Add(new HealCreature(player, player, amount));
     }
 
-    public LoseHPAction LoseHP(int amount, AbstractGameAction.AttackEffect effect)
+    public HealCreature RecoverHP(int amount)
     {
-        return Add(new LoseHPAction(player, player, amount, effect));
+        return Add(new HealCreature(player, player, amount)).Recover(true);
     }
 
-    public MakeTempCard MakeCard(AbstractCard card, CardGroup group)
+    public HealCreature HealPlayerLimited(AbstractCard card, int amount)
     {
-        return Add(new MakeTempCard(card, group));
+        return Add(new HealCreature(player, player, amount).SetCard(card));
     }
 
-    public MakeTempCard MakeCardInDiscardPile(AbstractCard card)
+    public ModifyAffinityScaling IncreaseExistingScaling(AbstractCard card, int amount)
+    {
+        return Add(new ModifyAffinityScaling(card, Affinity.General, amount, true));
+    }
+
+    public ModifyAffinityScaling IncreaseScaling(AbstractCard card, Affinity affinity, int amount)
+    {
+        return Add(new ModifyAffinityScaling(card, affinity, amount, true));
+    }
+
+    public ModifyAffinityScaling IncreaseScaling(CardGroup group, int cards, Affinity affinity, int amount)
+    {
+        return Add(new ModifyAffinityScaling(group, cards, affinity, amount, true));
+    }
+
+    public LoseHP LoseHP(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new LoseHP(target, source, amount, effect));
+    }
+
+    public LoseHP LoseHP(int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return Add(new LoseHP(player, player, amount, effect));
+    }
+
+    public ApplyPower LoseHPUntilEndOfCombat(int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return StackPower(new TemporaryHealthReductionPower(player, amount, effect));
+    }
+
+    public GenerateCard MakeCard(AbstractCard card, CardGroup group)
+    {
+        return Add(new GenerateCard(card, group));
+    }
+
+    public GenerateCard MakeCardInDiscardPile(AbstractCard card)
     {
         return MakeCard(card, player.discardPile);
     }
 
-    public MakeTempCard MakeCardInDrawPile(AbstractCard card)
+    public GenerateCard MakeCardInDrawPile(AbstractCard card)
     {
         return MakeCard(card, player.drawPile);
     }
 
-    public MakeTempCard MakeCardInHand(AbstractCard card)
+    public GenerateCard MakeCardInHand(AbstractCard card)
     {
         return MakeCard(card, player.hand);
     }
 
-    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
+    public GenerateCard ObtainAffinityToken(Affinity affinity, boolean upgraded)
     {
-        return Add(new ModifyAllInstances(uuid, state, onCompletion));
+        return MakeCardInHand(AffinityToken.GetCard(affinity))
+        .PlaySFX(SFX.TINGSHA, 2.25f, 2.5f, 0.75f)
+        .SetUpgrade(upgraded, false);
     }
 
-    public ModifyAllInstances ModifyAllInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
+    public ModifyAffinityLevel SealAffinities(AbstractCard card, boolean manual)
     {
-        return Add(new ModifyAllInstances(uuid, onCompletion));
+        return Add(new ModifyAffinityLevel(card, null, 0, false)).Seal(true, manual);
     }
 
-    public ModifyAllInstances ModifyAllInstances(UUID uuid)
+    public ModifyAffinityLevel SealAffinities(CardGroup group, int cards, boolean reshuffle)
     {
-        return Add(new ModifyAllInstances(uuid));
+        return Add(new ModifyAffinityLevel(group, cards, null, 0, false)).Seal(true, reshuffle);
+    }
+
+    public ModifyAffinityLevel ModifyAffinityLevel(AbstractCard card, Affinity affinity, int amount, boolean relative)
+    {
+        return Add(new ModifyAffinityLevel(card, affinity, amount, relative));
+    }
+
+    public ModifyAffinityLevel ModifyAffinityLevel(CardGroup group, int cards, Affinity affinity, int amount, boolean relative)
+    {
+        return Add(new ModifyAffinityLevel(group, cards, affinity, amount, relative));
     }
 
     public <S> ModifyAllCopies ModifyAllCopies(String cardID, S state, ActionT2<S, AbstractCard> onCompletion)
@@ -638,6 +856,21 @@ public final class GameActions
     public ModifyAllCopies ModifyAllCopies(String cardID)
     {
         return Add(new ModifyAllCopies(cardID));
+    }
+
+    public <S> ModifyAllInstances ModifyAllInstances(UUID uuid, S state, ActionT2<S, AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllInstances(uuid, state, onCompletion));
+    }
+
+    public ModifyAllInstances ModifyAllInstances(UUID uuid, ActionT1<AbstractCard> onCompletion)
+    {
+        return Add(new ModifyAllInstances(uuid, onCompletion));
+    }
+
+    public ModifyAllInstances ModifyAllInstances(UUID uuid)
+    {
+        return Add(new ModifyAllInstances(uuid));
     }
 
     public MotivateAction Motivate()
@@ -718,13 +951,23 @@ public final class GameActions
     {
         return Add(new PlayCard(card, target, true, actionOrder != ActionOrder.Top))
         .SetCurrentPosition(card.current_x, card.current_y)
-        .SpendEnergy(false)
+        .SpendEnergy(false, true)
         .SetPurge(true);
     }
 
     public PlayFromPile PlayFromPile(String sourceName, int amount, AbstractMonster target, CardGroup... groups)
     {
         return Add(new PlayFromPile(sourceName, target, amount, groups));
+    }
+
+    public ApplyPower PlayNextTurn(AbstractCard card, AbstractMonster target)
+    {
+        return StackPower(new NextTurnPlayCardPower(player, card, target));
+    }
+
+    public ApplyPower PlayNextTurn(ArrayList<AbstractCard> cards, AbstractMonster target)
+    {
+        return StackPower(new NextTurnPlayCardPower(player, cards, target));
     }
 
     public PurgeAnywhere Purge(UUID uuid)
@@ -737,6 +980,11 @@ public final class GameActions
         return Add(new PurgeAnywhere(card));
     }
 
+    public PurgeFromPile PurgeFromPile(String sourceName, int amount, CardGroup... groups)
+    {
+        return Add(new PurgeFromPile(sourceName, amount, groups));
+    }
+
     public ReducePower ReducePower(AbstractCreature source, String powerID, int amount)
     {
         return Add(new ReducePower(source, source, powerID, amount));
@@ -747,9 +995,31 @@ public final class GameActions
         return Add(new ReducePower(power.owner, power.owner, power, amount));
     }
 
+    public ReducePower ReducePower(Affinity affinity, int amount)
+    {
+        return ReducePower(GameUtilities.GetPower(affinity), amount);
+    }
+
+    public IncreasePower IncreasePower(AbstractPower power, int amount)
+    {
+        return Add(new IncreasePower(power.owner, power.owner, power, amount));
+    }
+
+    public ApplyPower ReboundCards(int amount)
+    {
+        final ReboundPower power = new ReboundPower(player);
+        power.amount = amount;
+        return StackPower(power);
+    }
+
     public ReduceStrength ReduceStrength(AbstractCreature target, int amount, boolean temporary)
     {
-        return Add(new ReduceStrength(player, target, amount, temporary));
+        return ReduceStrength(player, target, amount, temporary);
+    }
+
+    public ReduceStrength ReduceStrength(AbstractCreature source, AbstractCreature target, int amount, boolean temporary)
+    {
+        return Add(new ReduceStrength(source, target, amount, temporary));
     }
 
     public <S> DiscardFromHand Reload(String sourceName, S state, ActionT2<S, ArrayList<AbstractCard>> onReload)
@@ -766,19 +1036,43 @@ public final class GameActions
         .AddCallback(onReload));
     }
 
-    public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractPower power)
+    public ModifyPowers RemoveDebuffs(AbstractCreature target, ListSelection<AbstractPower> selection, int count)
     {
-        return Add(new RemoveSpecificPowerAction(power.owner, source, power));
+        return Add(new ModifyPowers(target, target, 0, false))
+        .SetFilter(GameUtilities::IsDebuff)
+        .SetSelection(selection, count)
+        .IsDebuffInteraction(true);
     }
 
-    public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)
+    public ModifyPowers ModifyDebuffs(AbstractCreature target, FuncT1<Integer, AbstractPower> calculateNewAmount, ListSelection<AbstractPower> selection, int count)
     {
-        return Add(new RemoveSpecificPowerAction(target, source, power));
+        return Add(new ModifyPowers(target, target, calculateNewAmount))
+        .SetFilter(GameUtilities::IsDebuff)
+        .SetSelection(selection, count)
+        .IsDebuffInteraction(true);
     }
 
-    public RemoveSpecificPowerAction RemovePower(AbstractCreature source, AbstractCreature target, String powerID)
+    public ModifyPowers ReduceDebuffs(AbstractCreature target, int amount, ListSelection<AbstractPower> selection, int count)
     {
-        return Add(new RemoveSpecificPowerAction(target, source, powerID));
+        return Add(new ModifyPowers(target, target, -amount, true))
+        .SetFilter(GameUtilities::IsDebuff)
+        .SetSelection(selection, count)
+        .IsDebuffInteraction(true);
+    }
+
+    public RemovePower RemovePower(AbstractCreature source, AbstractPower power)
+    {
+        return Add(new RemovePower(power.owner, source, power));
+    }
+
+    public RemovePower RemovePower(AbstractCreature source, AbstractCreature target, AbstractPower power)
+    {
+        return Add(new RemovePower(target, source, power));
+    }
+
+    public RemovePower RemovePower(AbstractCreature source, AbstractCreature target, String powerID)
+    {
+        return Add(new RemovePower(target, source, powerID));
     }
 
     public ReplaceCard ReplaceCard(UUID uuid, AbstractCard replacement)
@@ -791,19 +1085,39 @@ public final class GameActions
         return Add(new ReshuffleDiscardPile(onlyIfEmpty));
     }
 
+    public ReshuffleFromHand ReshuffleFromHand(String sourceName, int amount, boolean isRandom)
+    {
+        return Add(new ReshuffleFromHand(sourceName, amount, isRandom));
+    }
+
+    public MoveCard Reshuffle(AbstractCard card, CardGroup sourcePile)
+    {
+        return MoveCard(card, sourcePile, player.drawPile).SetDestination(CardSelection.Bottom(GameUtilities.GetRNG().random((int)(player.drawPile.size() * 0.8f))));
+    }
+
+    public ApplyAffinityPower RetainPower(Affinity affinity)
+    {
+        return StackAffinityPower(affinity, 0, true);
+    }
+
+    public PlaySFX SFX(String key)
+    {
+        return SFX(key, 1, 1, 1);
+    }
+
+    public PlaySFX SFX(String key, float pitchMin, float pitchMax)
+    {
+        return Add(new PlaySFX(key, pitchMin, pitchMax, 1));
+    }
+
+    public PlaySFX SFX(String key, float pitchMin, float pitchMax, float volume)
+    {
+        return Add(new PlaySFX(key, pitchMin, pitchMax, volume));
+    }
+
     public ScryWhichActuallyTriggersDiscard Scry(int amount)
     {
         return Add(new ScryWhichActuallyTriggersDiscard(amount));
-    }
-
-    public SFXAction SFX(String key)
-    {
-        return Add(new SFXAction(key));
-    }
-
-    public SFXAction SFX(String key, float pitchVar)
-    {
-        return Add(new SFXAction(key, pitchVar));
     }
 
     public SelectCreature SelectCreature(SelectCreature.Targeting target, String source)
@@ -814,6 +1128,11 @@ public final class GameActions
     public SelectCreature SelectCreature(AbstractCard card)
     {
         return Add(new SelectCreature(card));
+    }
+
+    public SelectCreature SelectCreature(AbstractCreature target)
+    {
+        return Add(new SelectCreature(target));
     }
 
     public SelectFromHand SelectFromHand(String sourceName, int amount, boolean isRandom)
@@ -831,6 +1150,11 @@ public final class GameActions
         return Add(new SequentialAction(action, action2));
     }
 
+    public ShakeScreenAction ShakeScreen(float actionDuration, ScreenShake.ShakeDur shakeDuration, ScreenShake.ShakeIntensity intensity)
+    {
+        return Add(new ShakeScreenAction(actionDuration, shakeDuration, intensity));
+    }
+
     public SpendEnergy SpendEnergy(AbstractCard card)
     {
         return Add(new SpendEnergy(card.freeToPlay() ? 0 : card.costForTurn, false));
@@ -841,9 +1165,14 @@ public final class GameActions
         return Add(new SpendEnergy(amount, canSpendLess));
     }
 
-    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)
     {
-        return Add(new ApplyPowerAuto(target, power, stacks));
+        return Add(new ApplyAffinityPower(player, affinity, amount, retain));
+    }
+
+    public ApplyPower StackPower(AbstractPower power)
+    {
+        return StackPower(power.owner, power);
     }
 
     public ApplyPower StackPower(AbstractCreature source, AbstractPower power)
@@ -851,9 +1180,124 @@ public final class GameActions
         return Add(new ApplyPower(source, power.owner, power, power.amount));
     }
 
-    public ApplyPower StackPower(AbstractPower power)
+    public ApplyPowerAuto StackPower(TargetHelper target, PowerHelper power, int stacks)
     {
-        return StackPower(power.owner, power);
+        return Add(new ApplyPowerAuto(target, power, stacks));
+    }
+
+    public ApplyPower StackAmplification(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new AmplificationPower(target, amount));
+    }
+
+    public ApplyPowerAuto StackAmplification(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Amplification, amount);
+    }
+
+    public ApplyPower StackWithering(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return StackPower(source, new WitheringPower(target, amount));
+    }
+
+    public ApplyPowerAuto StackWithering(TargetHelper target, int amount)
+    {
+        return StackPower(target, PowerHelper.Withering, amount);
+    }
+
+    public SelectCreature SelectDoll(String source)
+    {
+        return SelectCreature(SelectCreature.Targeting.PlayerMinion, source);
+    }
+
+    public SelectCreature SacrificeDoll(String source)
+    {
+        return (SelectCreature) SelectCreature(SelectCreature.Targeting.PlayerMinion, source)
+        .AddCallback(c ->
+        {
+            if (c != null)
+            {
+                CombatStats.Dolls.Sacrifice((UnnamedDoll) c);
+            }
+        });
+    }
+
+    public SelectCreature SacrificeDoll(AbstractMonster doll)
+    {
+        return (SelectCreature) SelectCreature(doll)
+        .AddCallback(c ->
+        {
+            if (c instanceof UnnamedDoll)
+            {
+                CombatStats.Dolls.Sacrifice((UnnamedDoll) c);
+            }
+        });
+    }
+
+
+    public ActivateDoll ActivateDoll(int times)
+    {
+        return Add(new ActivateDoll(times));
+    }
+
+    public ActivateDoll ActivateDoll(AbstractCreature doll, int times)
+    {
+        return Add(new ActivateDoll((UnnamedDoll) doll, times));
+    }
+
+    public HealDoll HealDolls(int amount)
+    {
+        return Add(new HealDoll(amount));
+    }
+
+    public HealDoll HealDoll(AbstractCreature doll, int amount)
+    {
+        return Add(new HealDoll((UnnamedDoll)doll, amount));
+    }
+
+    public SummonDoll SummonDoll(int times)
+    {
+        return Add(new SummonDoll(times));
+    }
+
+    public ModifyDollHP ModifyDollMaxHP(AbstractCreature doll, int amount)
+    {
+        return Add(new ModifyDollHP((UnnamedDoll) doll, amount));
+    }
+
+    public ModifyDollHP ModifyDollsMaxHP(int amount)
+    {
+        return Add(new ModifyDollHP(amount));
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount)
+    {
+        return DealDamageAtEndOfTurn(source, target, amount, AttackEffects.SLASH_VERTICAL);
+    }
+
+    public ApplyPower DealDamageAtEndOfTurn(AbstractCreature source, AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return StackPower(source, new DelayedDamagePower(target, amount, effect)).IgnoreArtifact(amount < 4);
+    }
+
+    public ApplyPower TakeDamageAtEndOfTurn(int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return DealDamageAtEndOfTurn(player, player, amount, effect);
+    }
+
+    public ApplyPower TakeDamageAtEndOfTurn(int amount)
+    {
+        return DealDamageAtEndOfTurn(player, player, amount);
+    }
+
+    public DealDamage TakeDamage(int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return TakeDamage(player, amount, effect);
+    }
+
+    public DealDamage TakeDamage(AbstractCreature target, int amount, AbstractGameAction.AttackEffect effect)
+    {
+        return DealDamage(null, target, amount, DamageInfo.DamageType.THORNS, effect);
     }
 
     public TalkAction Talk(AbstractCreature source, String text)
@@ -864,6 +1308,16 @@ public final class GameActions
     public TalkAction Talk(AbstractCreature source, String text, float duration, float bubbleDuration)
     {
         return Add(new TalkAction(source, text, duration, bubbleDuration));
+    }
+
+    public TriggerOrbPassiveAbility TriggerOrbPassive(int times)
+    {
+        return Add(new TriggerOrbPassiveAbility(times));
+    }
+
+    public TriggerOrbPassiveAbility TriggerOrbPassive(AbstractOrb orb, int times)
+    {
+        return Add(new TriggerOrbPassiveAbility(orb, times));
     }
 
     public SelectFromHand UpgradeFromHand(String sourceName, int amount, boolean isRandom)
@@ -885,19 +1339,24 @@ public final class GameActions
         });
     }
 
-    public VFX VFX(AbstractGameEffect effect)
+    public UpgradeFromPile UpgradeFromPile(CardGroup group, int amount, boolean permanent)
     {
-        return Add(new VFX(effect, false));
+        return Add(new UpgradeFromPile(group, amount).UpgradePermanently(permanent));
     }
 
-    public VFX VFX(AbstractGameEffect effect, boolean wait)
+    public PlayVFX VFX(AbstractGameEffect effect)
     {
-        return Add(new VFX(effect, wait));
+        return Add(new PlayVFX(effect, 0));
     }
 
-    public VFX VFX(AbstractGameEffect effect, float duration)
+    public PlayVFX VFX(AbstractGameEffect effect, float wait)
     {
-        return Add(new VFX(effect, duration));
+        return Add(new PlayVFX(effect, wait));
+    }
+
+    public PlayVFX VFX(AbstractGameEffect effect, float wait, boolean isPercentage)
+    {
+        return Add(new PlayVFX(effect, isPercentage ? effect.duration * wait : wait));
     }
 
     public WaitAction Wait(float duration)
@@ -908,18 +1367,6 @@ public final class GameActions
     public WaitRealtimeAction WaitRealtime(float duration)
     {
         return Add(new WaitRealtimeAction(duration));
-    }
-
-    public enum ActionOrder
-    {
-        TurnStart,
-        NextCombat,
-
-        Instant,
-        Top,
-        Bottom,
-        Delayed,
-        Last
     }
 
     protected static class ExecuteLast implements OnPhaseChangedSubscriber

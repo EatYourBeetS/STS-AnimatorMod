@@ -1,109 +1,99 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.DarkSmokePuffEffect;
-import com.megacrit.cardcrawl.vfx.GenericSmokeEffect;
-import com.megacrit.cardcrawl.vfx.combat.SmokingEmberEffect;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.RandomizedList;
 
-public class CataclysmEffect extends AbstractGameEffect
+public class CataclysmEffect extends EYBEffect
 {
-    private final float x;
-    private final float y;
-    private static final float DUR = 0.5f;
-    private final AtlasRegion img;
-    private boolean playedSound = false;
+    protected final RandomizedList<AbstractMonster> enemies = new RandomizedList<>();
+    protected float delay_1;
+    protected float delay_2;
+    protected float delay_3;
+    protected boolean vertical;
 
-    public CataclysmEffect(float x, float y)
+    public CataclysmEffect()
     {
-        this.img = ImageMaster.VERTICAL_IMPACT;
-        this.x = x - (float) this.img.packedWidth / 2f;
-        this.y = y - (float) this.img.packedHeight * 0.01f;
-        this.startingDuration = DUR;
-        this.duration = DUR;
-        this.scale = Settings.scale;
-        this.rotation = MathUtils.random(40f, 50f);
-        this.color = Color.SCARLET.cpy();
-        this.renderBehind = false;
+        super(4f, true);
     }
 
-    private void playRandomSfX()
+    @Override
+    protected void FirstUpdate()
     {
-        CardCrawlGame.sound.playA("ORB_LIGHTNING_EVOKE", -MathUtils.random(0.3f, 0.5f));
+        super.FirstUpdate();
+
+        GameEffects.Queue.Add(new BorderLongFlashEffect(Color.VIOLET, false));
     }
 
-    public void update()
+    @Override
+    protected void UpdateInternal(float deltaTime)
     {
-        if (duration == DUR)
+        super.UpdateInternal(deltaTime);
+
+        if (enemies.Size() == 0)
         {
-            for (int i = 0; i < 50; ++i)
+            this.enemies.AddAll(GameUtilities.GetEnemies(true));
+        }
+
+        delay_1 -= deltaTime;
+        if (delay_1 < 0)
+        {
+            delay_1 = Random(0.1f, 0.3f);
+
+            AbstractMonster target = enemies.Retrieve(RNG);
+            if (target != null)
             {
-                GameEffects.Queue.Add(new GenericSmokeEffect(x + MathUtils.random(-280f, 250f) * Settings.scale, y - 80f * Settings.scale));
+                GameEffects.Queue.Add(VFX.Fireball(SKY_HB_R, target.hb).SetColor(Color.RED, Color.ORANGE));
+                GameEffects.Queue.Add(VFX.Fireball(SKY_HB_L, target.hb).SetColor(Color.GOLDENROD, Color.VIOLET));
+                GameEffects.Queue.Add(VFX.MeteorFall(target.hb));
             }
         }
 
-        if (this.duration < 0f)
+        delay_2 -= deltaTime;
+        if (delay_2 < 0)
         {
-            CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
-            GameEffects.Queue.Add(new DarkSmokePuffEffect(this.x, this.y));
+            delay_2 = Random(0.6f, 1f);
+            GameEffects.Queue.Add(new BorderFlashEffect(RandomBoolean(0.5f) ? Color.RED : Color.ORANGE));
+            GameEffects.Queue.Add(VFX.Whirlwind());
+        }
 
-            for (int i = 0; i < 12; ++i)
+        delay_3 -= deltaTime;
+        if (delay_3 < 0)
+        {
+            delay_3 = Random(0.4f, 0.75f);
+            if (RandomBoolean(0.5f))
             {
-                GameEffects.Queue.Add(new SmokingEmberEffect(this.x + MathUtils.random(-50f, 50f) * Settings.scale, this.y + MathUtils.random(-50f, 50f) * Settings.scale));
+                for (int f = 0; f < 18; f++)
+                {
+                    GameEffects.Queue.Add(VFX.FallingIce(18));
+                }
             }
-
-            this.isDone = true;
+            else
+            {
+                for (AbstractMonster m : GameUtilities.GetEnemies(true))
+                {
+                    GameEffects.Queue.Add(VFX.Lightning(m.hb));
+                }
+            }
         }
-
-        if (this.duration < 0.5f && !this.playedSound)
-        {
-            this.playRandomSfX();
-            this.playedSound = true;
-        }
-
-        if (this.duration > 0.2f)
-        {
-            this.color.a = Interpolation.fade.apply(0.5f, 0f, (this.duration - 0.34f) * 5f);
-        }
-        else
-        {
-            this.color.a = Interpolation.fade.apply(0f, 0.5f, this.duration * 5f);
-        }
-
-        this.scale = Interpolation.fade.apply(Settings.scale * 1.1f, Settings.scale * 1.05f, this.duration / 0.6f);
-
-        this.duration -= Gdx.graphics.getDeltaTime();
     }
 
-    public void render(SpriteBatch sb)
+    @Override
+    public void render(SpriteBatch spriteBatch)
     {
-        sb.setColor(this.color);
-        sb.setBlendFunction(770, 1);
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3f, this.scale * 0.8f, this.rotation - 18f);
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.3f, this.scale * 0.8f, this.rotation + MathUtils.random(12f, 18f));
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.4f, this.scale * 0.5f, this.rotation - MathUtils.random(-10f, 14f));
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.7f, this.scale * 0.9f, this.rotation + MathUtils.random(20f, 28f));
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 1.5f, this.scale * MathUtils.random(1.4f, 1.6f), this.rotation);
-        Color c = Color.GOLD.cpy();
-        c.a = this.color.a;
-        sb.setColor(c);
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.8f, 1.2f), this.rotation);
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale, this.scale * MathUtils.random(0.4f, 0.6f), this.rotation);
-        sb.draw(this.img, this.x + MathUtils.random(-10f, 10f) * Settings.scale, this.y, (float) this.img.packedWidth / 2f, 0f, (float) this.img.packedWidth, (float) this.img.packedHeight, this.scale * 0.5f, this.scale * 0.7f, this.rotation + MathUtils.random(20f, 28f));
-        sb.setBlendFunction(770, 771);
+
     }
 
+    @Override
     public void dispose()
     {
+
     }
 }

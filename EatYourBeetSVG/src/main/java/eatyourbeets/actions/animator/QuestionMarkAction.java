@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.EYBCardAffinity;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
@@ -29,14 +29,16 @@ public class QuestionMarkAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        int index = player.hand.group.indexOf(questionMark);
-        questionMark.copy = GetRandomCard();
-        AnimatorCard copy = questionMark.copy;
-
+        final AnimatorCard copy = questionMark.copy = GetRandomCard();
+        final int index = player.hand.group.indexOf(questionMark);
         if (copy != null && index >= 0)
         {
-            copy.SetSynergy(Synergies.ANY);
-            copy.SetShapeshifter();
+            for (EYBCardAffinity a : copy.affinities.List)
+            {
+                a.level = 0;
+            }
+
+            copy.affinities.Set(Affinity.Star, questionMark.upgraded ? 2 : 1);
             copy.triggerWhenCreated(false);
 
             if (questionMark.upgraded)
@@ -48,6 +50,7 @@ public class QuestionMarkAction extends EYBAction
             copy.current_y = questionMark.current_y;
             copy.target_x = questionMark.target_x;
             copy.target_y = questionMark.target_y;
+            copy.uuid = questionMark.uuid;
 
             player.hand.group.remove(index);
             player.hand.group.add(index, copy);
@@ -71,7 +74,7 @@ public class QuestionMarkAction extends EYBAction
                 {
                     if (c instanceof AnimatorCard
                     && !(c instanceof QuestionMark)
-                    && !c.tags.contains(AbstractCard.CardTags.HEALING)
+                    && GameUtilities.IsObtainableInCombat(c)
                     && c.rarity != AbstractCard.CardRarity.BASIC)
                     {
                         cardPool.add((AnimatorCard)c);
@@ -80,6 +83,6 @@ public class QuestionMarkAction extends EYBAction
             }
         }
 
-        return (AnimatorCard) JUtils.GetRandomElement(cardPool).makeCopy();
+        return (AnimatorCard) GameUtilities.GetRandomElement(cardPool).makeCopy();
     }
 }

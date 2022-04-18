@@ -1,26 +1,31 @@
 package eatyourbeets.cards.animator.series.NoGameNoLife;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class DolaCouronne extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(DolaCouronne.class).SetSkill(1, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(DolaCouronne.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public DolaCouronne()
     {
         super(DATA);
 
-        Initialize(0, 9, 2, 7);
-        SetUpgrade(0, 1, -1);
+        Initialize(0, 0, 6);
+        SetUpgrade(0, 0, 3);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Green(2);
+        SetAffinity_Light(2);
     }
 
     @Override
@@ -28,23 +33,36 @@ public class DolaCouronne extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        if (CombatStats.TryActivateLimited(cardID))
+        GameActions.Bottom.Motivate();
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.StackPower(new DolaCouronnePower(p, magicNumber));
+    }
+
+    public static class DolaCouronnePower extends AnimatorPower
+    {
+        public DolaCouronnePower(AbstractCreature owner, int amount)
         {
-            GameActions.Bottom.GainBlock(secondaryValue);
-            GameActions.Bottom.GainArtifact(1);
+            super(owner, DolaCouronne.DATA);
+
+            Initialize(amount);
         }
-    }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.GainBlock(block);
-    }
+        @Override
+        public void onAfterCardPlayed(AbstractCard usedCard)
+        {
+            super.onAfterCardPlayed(usedCard);
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
-        .SetOptions(false, false, true);
+            if (enabled && usedCard.type == CardType.ATTACK)
+            {
+                GameActions.Bottom.GainBlock(amount);
+                SetEnabled(false);
+                RemovePower();
+                flash();
+            }
+        }
     }
 }

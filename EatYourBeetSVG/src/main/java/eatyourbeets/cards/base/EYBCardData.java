@@ -5,55 +5,96 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import eatyourbeets.interfaces.delegates.ActionT1;
+import eatyourbeets.interfaces.delegates.ActionT2;
+import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
+import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.GR;
+import eatyourbeets.ui.common.EYBCardPopupAction;
 import eatyourbeets.utilities.RotatingList;
+import eatyourbeets.utilities.TupleT2;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class EYBCardData
+public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewardsListener
 {
+    private static final ArrayList<TupleT2<EYBCardData, ActionT1<EYBCardData>>> postInitialize = new ArrayList<>();
+
+    private ActionT2<EYBCardData, ArrayList<RewardItem>> modifyRewards;
+    private FuncT2<Boolean, EYBCardData, CardGroup> obtainableAsReward;
     private Constructor<? extends EYBCard> constructor;
 
     public final Class<? extends EYBCard> type;
     public final CardStrings Strings;
 
     public EYBCardMetadata Metadata;
+    public Object Shared;
     public String ImagePath;
     public String ID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
     public int MaxCopies;
 
+    public final ArrayList<EYBCardPopupAction> popupActions = new ArrayList<>();
     public final RotatingList<EYBCardPreview> previews = new RotatingList<>();
     public AbstractCard.CardRarity CardRarity;
     public AbstractCard.CardColor CardColor;
     public EYBCardTarget CardTarget;
     public EYBAttackType AttackType;
-    public Synergy Synergy;
+    public CardSeries Series;
     public EYBCard tempCard = null;
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID)
     {
-        this.type = type;
-        this.Strings = GR.GetCardStrings(cardID);
+        this(type, cardID, GR.GetCardStrings(cardID));
+
         this.ImagePath = GR.GetCardImage(cardID);
-        this.ID = cardID;
-        this.MaxCopies = -1;
     }
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings)
     {
-        this.type = type;
-        this.Strings = strings;
         this.ID = cardID;
         this.MaxCopies = -1;
+        this.Strings = EYBCardText.ProcessCardStrings(strings);
+        this.type = type;
     }
 
-    public AbstractCard CreateNewInstance() throws RuntimeException
+    public static void PostInitialize()
+    {
+        for (TupleT2<EYBCardData, ActionT1<EYBCardData>> pair : postInitialize)
+        {
+            pair.V2.Invoke(pair.V1);
+        }
+
+        postInitialize.clear();
+    }
+
+    public EYBCard CreateNewInstance(boolean upgrade) throws RuntimeException
+    {
+        final EYBCard card = CreateNewInstance();
+        if (upgrade && card.canUpgrade())
+        {
+            card.upgrade();
+        }
+
+        return card;
+    }
+
+    public EYBCard CreateNewInstance() throws RuntimeException
     {
         try
         {
@@ -71,21 +112,46 @@ public class EYBCardData
         }
     }
 
-    public EYBCardBase AddPreview(EYBCardBase card, boolean showUpgrade)
+    public EYBCard MakeCopy(boolean upgraded)
+    {
+        return (EYBCard) (type.isAssignableFrom(Hidden.class) ? CreateNewInstance(upgraded) : CardLibrary.getCopy(ID, upgraded ? 1 : 0, 0));
+    }
+
+    public EYBCardData AddPreviews(List<? extends AbstractCard> cards, boolean showUpgrade)
+    {
+        for (AbstractCard c : cards)
+        {
+            AddPreview(c, showUpgrade);
+        }
+
+        return this;
+    }
+
+    public EYBCardData AddPreview(AbstractCard card, boolean showUpgrade)
+    {
+        if (card instanceof EYBCard)
+        {
+            return AddPreview((EYBCard) card, showUpgrade);
+        }
+
+        throw new RuntimeException("Only instances of EYBCard are supported for previews. (" + ID + ":" + (card == null ? "null" : card.cardID) + ")");
+    }
+
+    public EYBCardData AddPreview(EYBCard card, boolean showUpgrade)
     {
         previews.Add(new EYBCardPreview(card, showUpgrade));
 
-        return card;
+        return this;
     }
 
     public TextureAtlas.AtlasRegion GetCardIcon()
     {
         if (cardIcon == null)
         {
-            Texture texture = GR.GetTexture(ImagePath);
-            int h = texture.getHeight();
-            int w = texture.getWidth();
-            int section = h / 2;
+            final Texture texture = GR.GetTexture(ImagePath);
+            final int h = texture.getHeight();
+            final int w = texture.getWidth();
+            final int section = h / 2;
             cardIcon = new TextureAtlas.AtlasRegion(texture, (w / 2) - (section / 2), 0, section, section);
         }
 
@@ -115,9 +181,22 @@ public class EYBCardData
         }
     }
 
-    public EYBCardData SetSynergy(Synergy synergy)
+    public EYBCardData SetSeriesFromClassPackage()
     {
-        Synergy = synergy;
+        final int length = "eatyourbeets.cards.animator.".length();
+        final String name = type.getPackage().getName();
+        final CardSeries series = CardSeries.GetByName(name.substring(length + ((name.charAt(length) == 'b') ? "cards_beta.series." : "series.").length()), false);
+        if (series == null)
+        {
+            throw new RuntimeException("Couldn't find card series from class package: " + type);
+        }
+
+        return SetSeries(series);
+    }
+
+    public EYBCardData SetSeries(CardSeries series)
+    {
+        Series = series;
 
         return this;
     }
@@ -132,6 +211,32 @@ public class EYBCardData
     public EYBCardData SetColor(AbstractCard.CardColor color)
     {
         CardColor = color;
+
+        return this;
+    }
+
+    public EYBCardData SetMetadataSource(Map<String, EYBCardMetadata> data)
+    {
+        Metadata = data.get(ID);
+
+        return this;
+    }
+
+    public EYBCardData SetTypeAndRarity(AbstractCard.CardType type, AbstractCard.CardRarity rarity)
+    {
+        CardType = type;
+        CardRarity = rarity;
+
+        if (MaxCopies == -1 && type != AbstractCard.CardType.STATUS && type != AbstractCard.CardType.CURSE)
+        {
+            switch (rarity)
+            {
+                case COMMON: return SetMaxCopies(3);
+                case UNCOMMON: return SetMaxCopies(3);
+                case RARE: return SetMaxCopies(2);
+                default: return SetMaxCopies(0);
+            }
+        }
 
         return this;
     }
@@ -155,9 +260,9 @@ public class EYBCardData
 
     public EYBCardData SetAttack(int cost, AbstractCard.CardRarity rarity, EYBAttackType attackType, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetTypeAndRarity(AbstractCard.CardType.ATTACK, rarity);
+
         CardTarget = target;
-        CardType = AbstractCard.CardType.ATTACK;
         AttackType = attackType;
         BaseCost = cost;
 
@@ -171,9 +276,9 @@ public class EYBCardData
 
     public EYBCardData SetSkill(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetTypeAndRarity(AbstractCard.CardType.SKILL, rarity);
+
         CardTarget = target;
-        CardType = AbstractCard.CardType.SKILL;
         AttackType = EYBAttackType.None;
         BaseCost = cost;
 
@@ -182,20 +287,20 @@ public class EYBCardData
 
     public EYBCardData SetPower(int cost, AbstractCard.CardRarity rarity)
     {
-        CardRarity = rarity;
+        SetTypeAndRarity(AbstractCard.CardType.POWER, rarity);
+
         CardTarget = EYBCardTarget.Self;
-        CardType = AbstractCard.CardType.POWER;
         AttackType = EYBAttackType.None;
         BaseCost = cost;
 
         return this;
     }
 
-    public EYBCardData SetCurse(int cost, EYBCardTarget target)
+    public EYBCardData SetCurse(int cost, EYBCardTarget target, boolean special)
     {
-        CardRarity = AbstractCard.CardRarity.CURSE;
+        SetTypeAndRarity(AbstractCard.CardType.CURSE, special ? AbstractCard.CardRarity.SPECIAL : AbstractCard.CardRarity.CURSE);
+
         CardColor = AbstractCard.CardColor.CURSE;
-        CardType = AbstractCard.CardType.CURSE;
         AttackType = EYBAttackType.None;
         CardTarget = target;
         BaseCost = cost;
@@ -205,13 +310,126 @@ public class EYBCardData
 
     public EYBCardData SetStatus(int cost, AbstractCard.CardRarity rarity, EYBCardTarget target)
     {
-        CardRarity = rarity;
+        SetTypeAndRarity(AbstractCard.CardType.STATUS, rarity);
+
         CardColor = AbstractCard.CardColor.COLORLESS;
-        CardType = AbstractCard.CardType.STATUS;
         AttackType = EYBAttackType.None;
         CardTarget = target;
         BaseCost = cost;
 
         return this;
+    }
+
+    public EYBCardData ObtainableAsReward(FuncT2<Boolean, EYBCardData, CardGroup> callback)
+    {
+        this.obtainableAsReward = callback;
+
+        return this;
+    }
+
+    public EYBCardData ModifyRewards(ActionT2<EYBCardData, ArrayList<RewardItem>> callback)
+    {
+        this.modifyRewards = callback;
+
+        return this;
+    }
+
+    public EYBCardData PostInitialize(ActionT1<EYBCardData> callback)
+    {
+        postInitialize.add(new TupleT2<>(this, callback));
+
+        return this;
+    }
+
+    public EYBCardData AddPopupAction(EYBCardPopupAction action)
+    {
+        popupActions.add(action);
+
+        return this;
+    }
+
+    public EYBCardData SetSharedData(Object shared)
+    {
+        Shared = shared;
+
+        return this;
+    }
+
+    public <T> T GetSharedData()
+    {
+        return (T)Shared;
+    }
+
+    public EYBCard GetFirstCopy(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (c.cardID.equals(ID))
+            {
+                return (EYBCard)c;
+            }
+        }
+
+        return null;
+    }
+
+    public int GetTotalCopies(CardGroup group)
+    {
+        int result = 0;
+        for (AbstractCard c : group.group)
+        {
+            if (c.cardID.equals(ID))
+            {
+                result += 1;
+            }
+        }
+
+        return result;
+    }
+
+    public boolean IsCard(AbstractCard card)
+    {
+        return card != null && ID.equals(card.cardID);
+    }
+
+    public boolean IsInGroup(CardGroup group)
+    {
+        for (AbstractCard c : group.group)
+        {
+            if (c.cardID.equals(ID))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean IsNotSeen()
+    {
+        return UnlockTracker.isCardLocked(ID) || !UnlockTracker.isCardSeen(ID);
+    }
+
+    public void MarkSeen()
+    {
+        if (!UnlockTracker.isCardSeen(ID))
+        {
+            UnlockTracker.markCardAsSeen(ID);
+        }
+    }
+
+    @Override
+    public boolean ShouldCancel()
+    {
+        return obtainableAsReward != null && !obtainableAsReward.Invoke(this, AbstractDungeon.player.masterDeck);
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
+    {
+        if (normalRewards && modifyRewards != null)
+        {
+            modifyRewards.Invoke(this, rewards);
+        }
     }
 }

@@ -44,7 +44,7 @@ public class GUI_TextBox extends GUIElement
 
     public GUI_TextBox SetFont(BitmapFont font, float fontScale)
     {
-        this.label.SetFont(font, 1);
+        this.label.SetFont(font, fontScale);
 
         return this;
     }
@@ -54,9 +54,23 @@ public class GUI_TextBox extends GUIElement
         return SetAlignment(verticalRatio, horizontalRatio, false);
     }
 
-    public GUI_TextBox SetAlignment(float verticalRatio, float horizontalRatio, boolean smartText)
+    public GUI_TextBox SetAlignment(Float verticalRatio, Float horizontalRatio, Boolean smartText)
     {
         this.label.SetAlignment(verticalRatio, horizontalRatio, smartText);
+
+        return this;
+    }
+
+    public GUI_TextBox SetBackgroundTexture(Texture texture, Color color, float scale)
+    {
+        this.image.SetBackgroundTexture(texture, color, scale);
+
+        return this;
+    }
+
+    public GUI_TextBox SetBackgroundTexture(Texture texture)
+    {
+        this.image.SetBackgroundTexture(texture);
 
         return this;
     }
@@ -69,9 +83,18 @@ public class GUI_TextBox extends GUIElement
         return this;
     }
 
-    public GUI_TextBox SetPosition(float x, float y)
+    public GUI_TextBox SetPosition(Float cX, Float cY)
     {
-        this.hb.move(x, y);
+        if (cX == null)
+        {
+            cX = hb.cX;
+        }
+        if (cY == null)
+        {
+            cY = hb.cY;
+        }
+
+        this.hb.move(cX, cY);
 
         return this;
     }

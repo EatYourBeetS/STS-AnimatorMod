@@ -1,27 +1,35 @@
 
 {
-	"EYB:ForceStance":
+	"eyb:ForceStance":
 	{
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"#g+{0} #gStrength, NL #r-{1} #rFocus, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yForce."
+			"#g+{0} [Strength]. Upon entering: #yBoost [F]. NL Whenever you play an #yAttack, take #b{1} [DD]. NL Upon exiting: Remove your [DD]."
 		]
 	},
-	"EYB:AgilityStance":
+	"eyb:AgilityStance":
 	{
 		"NAME": "Agility Stance",
 		"DESCRIPTION": 
 		[
-			"#g+{0} #gDexterity, NL #r-{1} #rStrength, NL #r-{1} #rFocus. NL On Enter: #yBoost #yAgility."
+			"#g+{0} [Dexterity]. Upon entering: #yBoost [A]. NL Retain #b{1} [Block] each turn."
 		]
 	},
-	"EYB:IntellectStance":
+	"eyb:IntellectStance":
 	{
 		"NAME": "Intellect Stance",
 		"DESCRIPTION": 
 		[
-			"#g+{0} #gFocus, NL #r-{1} #rStrength, NL #r-{1} #rDexterity. NL On Enter: #yBoost #yIntellect."
+			"#g+{0} [Focus]. Upon entering: #yBoost [I]. NL At the start of each turn, trigger your first orb."
+		]
+	},
+	"eyb:CorruptionStance":
+	{
+		"NAME": "Demon Stance",
+		"DESCRIPTION": 
+		[
+			"#g+{0} [Strength], #g+{0} [Dexterity], #g+{0} [Focus]. NL Upon exiting: Gain #b{1} [E]."
 		]
 	}
 }

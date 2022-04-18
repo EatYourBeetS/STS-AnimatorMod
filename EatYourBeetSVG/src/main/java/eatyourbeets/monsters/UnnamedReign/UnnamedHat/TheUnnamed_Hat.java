@@ -1,8 +1,8 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedHat;
 
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.ArtifactPower;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
@@ -48,7 +48,7 @@ public class TheUnnamed_Hat extends EYBMonster
         .SetBlockBonus(7, 2)
         .SetMiscBonus(7, 1);
 
-        moveset.Normal.ShuffleCard(new Dazed(), 1)
+        moveset.Normal.ShuffleCard(new Status_Dazed(), 1)
         .SkipAnimation(true);
 
         moveset.Normal.AttackDebuff(4, PowerHelper.Frail, 1)
@@ -77,7 +77,7 @@ public class TheUnnamed_Hat extends EYBMonster
     @Override
     protected void SetNextMove(int roll, int historySize)
     {
-        commonMoveset.GetNextMove(this).Select();
+        commonMoveset.GetNextMove(this).Select(false);
     }
 
     protected static class CommonMoveset
@@ -134,8 +134,8 @@ public class TheUnnamed_Hat extends EYBMonster
                 maxHealth = 66;
             }
 
-            atlasUrl = "images/monsters/animator/TheUnnamed/Hat.atlas";
-            jsonUrl = "images/monsters/animator/TheUnnamed/Hat.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/Hat.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/Hat.json";
             scale = 1.6f;
 
             SetHB(0,0,100,140, 0, 50);

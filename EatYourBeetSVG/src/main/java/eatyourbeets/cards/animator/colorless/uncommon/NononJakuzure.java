@@ -3,18 +3,15 @@ package eatyourbeets.cards.animator.colorless.uncommon;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.interfaces.subscribers.OnSynergySubscriber;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
-public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
+public class NononJakuzure extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(NononJakuzure.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(NononJakuzure.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.KillLaKill);
 
     public NononJakuzure()
     {
@@ -22,43 +19,44 @@ public class NononJakuzure extends AnimatorCard implements OnSynergySubscriber
 
         Initialize(0, 0, 2, 1);
 
+        SetAffinity_Green(1);
+        
         SetExhaust(true);
-        SetSynergy(Synergies.KillLaKill);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetHaste(true);
+        SetRetainOnce(true);
     }
 
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
+//    @Override
+//    public void Refresh(AbstractMonster enemy)
+//    {
+//        super.Refresh(enemy);
+//
+//        if (player.hand.contains(this))
+//        {
+//            CombatStats.onSynergy.Subscribe(this);
+//        }
+//    }
+//
+//    @Override
+//    public void OnSynergy(AbstractCard card)
+//    {
+//        if (!player.hand.contains(this))
+//        {
+//            CombatStats.onSynergy.Unsubscribe(this);
+//        }
+//        else if (card != this)
+//        {
+//            GameUtilities.IncreaseSecondaryValue(this, 1, false);
+//            flash();
+//        }
+//    }
 
-        if (player.hand.contains(this))
-        {
-            CombatStats.onSynergy.Subscribe(this);
-        }
-    }
-
     @Override
-    public void OnSynergy(AbstractCard card)
-    {
-        if (!player.hand.contains(this))
-        {
-            CombatStats.onSynergy.Unsubscribe(this);
-        }
-        else if (card != this)
-        {
-            GameUtilities.IncreaseSecondaryValue(this, 1, false);
-            flash();
-        }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.Cycle(name, magicNumber)
         .AddCallback(() ->

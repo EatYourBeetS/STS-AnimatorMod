@@ -21,12 +21,14 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(MAX_HP_LOSS);
+        return FormatDescription(0, MAX_HP_LOSS);
     }
 
     @Override
     public void atBattleStart()
     {
+        super.atBattleStart();
+
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters)
         {
             IncreaseMaxHP(m);
@@ -38,6 +40,8 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
     @Override
     public void onSpawnMonster(AbstractMonster monster)
     {
+        super.onSpawnMonster(monster);
+
         IncreaseMaxHP(monster);
 
         AbstractDungeon.onModifyPower();
@@ -59,22 +63,23 @@ public class CursedGlyph extends AnimatorRelic implements OnEquipUnnamedReignRel
 
     protected void IncreaseMaxHP(AbstractMonster monster)
     {
-        GameActions.Top.Add(new RelicAboveCreatureAction(monster, this));
+        GameActions.Bottom.Callback(new RelicAboveCreatureAction(monster, this), monster, (m, __) ->
+        {
+            int bonusHealth = 6;
+            if (GR.Common.Dungeon.IsUnnamedReign())
+            {
+                bonusHealth += (int) Math.ceil(m.maxHealth * 0.07);
+            }
+            else if (AbstractDungeon.ascensionLevel >= 7)
+            {
+                bonusHealth += (int) Math.ceil(m.maxHealth * 0.09);
+            }
+            else
+            {
+                bonusHealth += (int) Math.ceil(m.maxHealth * 0.13);
+            }
 
-        int bonusHealth = 6;
-        if (GR.Common.Dungeon.IsUnnamedReign())
-        {
-            bonusHealth += (int) Math.ceil(monster.maxHealth * 0.07);
-        }
-        else if (AbstractDungeon.ascensionLevel >= 7)
-        {
-            bonusHealth += (int) Math.ceil(monster.maxHealth * 0.09);
-        }
-        else
-        {
-            bonusHealth += (int) Math.ceil(monster.maxHealth * 0.13);
-        }
-
-        monster.increaseMaxHp(bonusHealth, true);
+            m.increaseMaxHp(bonusHealth, true);
+        });
     }
 }

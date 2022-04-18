@@ -2,52 +2,64 @@ package eatyourbeets.cards.animator.series.Overlord;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.effects.GenericEffects.GenericEffect_Draw;
+import eatyourbeets.cards.effects.GenericEffects.GenericEffect_GainOrBoost;
+import eatyourbeets.cards.effects.GenericEffects.GenericEffect_GainOrbSlots;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
-
-import java.util.ArrayList;
 
 public class Evileye extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Evileye.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Evileye.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
+    public static final int INTELLECT_AMOUNT = 3;
+
+    private static final CardEffectChoice choices = new CardEffectChoice();
 
     public Evileye()
     {
         super(DATA);
 
-        Initialize(0,0, 1);
-        SetCostUpgrade(-1);
+        Initialize(0,0,4, 2);
 
-        SetSynergy(Synergies.Overlord);
-        SetSpellcaster();
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
+
+        SetAffinityRequirement(Affinity.Dark, 4);
+        SetAffinityRequirement(Affinity.Light, 4);
+
+        SetEthereal(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
     {
-        if (HasSynergy() && CombatStats.TryActivateLimited(this.cardID))
-        {
-            GameActions.Bottom.GainIntellect(2);
-            GameActions.Bottom.GainOrbSlots(1);
-        }
+        SetEthereal(false);
+    }
 
-        GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.Reload(name, cards ->
+    @Override
+    public ColoredString GetSpecialVariableString()
+    {
+        return super.GetSpecialVariableString(INTELLECT_AMOUNT);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        choices.Initialize(this, true);
+        choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Blue, INTELLECT_AMOUNT, false));
+        choices.AddEffect(new GenericEffect_GainOrbSlots(secondaryValue));
+        choices.AddEffect(new GenericEffect_Draw(magicNumber));
+        choices.Select(1, m);
+
+        if (CheckAffinity(Affinity.Dark) || CheckAffinity(Affinity.Light))
         {
-            ArrayList<AbstractOrb> orbs = player.orbs;
-            if (orbs.size() > 0)
-            {
-                for (int i = 0; i < cards.size(); i++)
-                {
-                    orbs.get(0).onStartOfTurn();
-                    orbs.get(0).onEndOfTurn();
-                }
-            }
-        });
+            GameActions.Bottom.GainEnergy(1);
+            this.exhaustOnUseOnce = true;
+        }
     }
 }

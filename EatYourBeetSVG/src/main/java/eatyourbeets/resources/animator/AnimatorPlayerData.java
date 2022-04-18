@@ -5,14 +5,14 @@ import basemod.abstracts.CustomUnlock;
 import basemod.abstracts.CustomUnlockBundle;
 import com.badlogic.gdx.utils.Base64Coder;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts.*;
-import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
-import eatyourbeets.resources.animator.misc.AnimatorTrophies;
+import eatyourbeets.resources.animator.misc.*;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,12 @@ import java.util.regex.Pattern;
 
 public class AnimatorPlayerData
 {
+    public final int MajorVersion = 2;
     public final int MaxUnlockLevel = 8;
     public final ArrayList<AnimatorLoadout> BaseLoadouts = new ArrayList<>();
     public final ArrayList<AnimatorLoadout> BetaLoadouts = new ArrayList<>();
     public final ArrayList<AnimatorTrophies> Trophies = new ArrayList<>();
+    public AnimatorStats Stats = new AnimatorStats();
     public AnimatorTrophies SpecialTrophies = new AnimatorTrophies(-1);
     public AnimatorLoadout SelectedLoadout = new _FakeLoadout();
 
@@ -32,11 +34,24 @@ public class AnimatorPlayerData
     {
         AddBaseLoadouts();
         AddBetaLoadouts();
-        DeserializeTrophies(GR.Animator.Config.TrophyString());
+        Reload();
+    }
+
+    public void Reload()
+    {
+        DeserializeStats(GR.Animator.Config.Stats.Get());
+        DeserializeTrophies(GR.Animator.Config.Trophies.Get());
+        DeserializeCustomLoadouts(GR.Animator.Config.CustomLoadouts.Get());
+
+        final Integer version = GR.Animator.Config.MajorVersion.Get(null);
+        if (version == null || version < MajorVersion)
+        {
+            UpdateMajorVersion(version);
+        }
 
         if (SelectedLoadout == null || SelectedLoadout.ID < 0)
         {
-            SelectedLoadout = GetBaseLoadout(Synergies.Konosuba.ID);
+            SelectedLoadout = BaseLoadouts.get(0);
         }
 
         if (SpecialTrophies == null || SpecialTrophies.ID != 0)
@@ -71,13 +86,13 @@ public class AnimatorPlayerData
         return null;
     }
 
-    public AnimatorLoadout GetLoadout(Synergy synergy)
+    public AnimatorLoadout GetLoadout(CardSeries series)
     {
-        if (synergy != null)
+        if (series != null)
         {
             for (AnimatorLoadout loadout : GetEveryLoadout())
             {
-                if (synergy.equals(loadout.Synergy))
+                if (series.equals(loadout.Series))
                 {
                     return loadout;
                 }
@@ -85,6 +100,17 @@ public class AnimatorPlayerData
         }
 
         return null;
+    }
+
+    public AnimatorLoadout GetLoadout(int id)
+    {
+        final AnimatorLoadout loadout = GetBaseLoadout(id);
+        if (loadout == null)
+        {
+            return GetBetaLoadout(id);
+        }
+
+        return loadout;
     }
 
     public AnimatorLoadout GetLoadout(int id, boolean isBeta)
@@ -131,9 +157,38 @@ public class AnimatorPlayerData
         return null;
     }
 
+    public AnimatorLoadoutStats GetStats(int id, boolean ascension20)
+    {
+        for (AnimatorLoadoutStats stats : (ascension20 ? Stats.list_a20 : Stats.list))
+        {
+            if (stats.id == id)
+            {
+                return stats;
+            }
+        }
+
+        return null;
+    }
+
+    public void RecordDefeat(int ascensionLevel)
+    {
+        if (ascensionLevel < 0 || GR.Common.Dungeon.IsCheating())
+        {
+            return;
+        }
+
+        for (AnimatorLoadout loadout : BaseLoadouts)
+        {
+            loadout.OnDefeat(SelectedLoadout, ascensionLevel);
+        }
+
+        SaveStats(false);
+        SaveTrophies(true);
+    }
+
     public void RecordVictory(int ascensionLevel)
     {
-        if (ascensionLevel < 0) // Ascension reborn mod adds negative ascension levels
+        if (ascensionLevel < 0 || GR.Common.Dungeon.IsCheating())
         {
             return;
         }
@@ -143,6 +198,7 @@ public class AnimatorPlayerData
             loadout.OnVictory(SelectedLoadout, ascensionLevel);
         }
 
+        SaveStats(false);
         SaveTrophies(true);
     }
 
@@ -160,17 +216,38 @@ public class AnimatorPlayerData
                 SpecialTrophies.Trophy1 = 0;
             }
 
-            SpecialTrophies.Trophy1 += 1 + Math.floorDiv(ascensionLevel, 4);
+            SpecialTrophies.Trophy1 += 1 + Math.floorDiv(ascensionLevel, 5);
+            GameUtilities.GetAscensionData(true).OnTrueVictory();
         }
 
+        SaveStats(false);
         SaveTrophies(true);
+    }
+
+    public void SaveStats(boolean flush)
+    {
+        JUtils.LogInfo(AnimatorPlayerData.class, "Saving Stats");
+
+        GR.Animator.Config.Stats.Set(SerializeStats(), flush);
     }
 
     public void SaveTrophies(boolean flush)
     {
         JUtils.LogInfo(AnimatorPlayerData.class, "Saving Trophies");
 
-        GR.Animator.Config.TrophyString(SerializeTrophies(), flush);
+        GR.Animator.Config.Trophies.Set(SerializeTrophies(), flush);
+    }
+
+    public void SaveLoadouts(boolean flush)
+    {
+        JUtils.LogInfo(AnimatorPlayerData.class, "Saving Loadouts");
+
+        GR.Animator.Config.CustomLoadouts.Set(SerializeCustomLoadouts(), flush);
+    }
+
+    private void UpdateMajorVersion(Integer previousVersion)
+    {
+        GR.Animator.Config.MajorVersion.Set(MajorVersion, true);
     }
 
     private void AddBaseLoadouts()
@@ -179,43 +256,46 @@ public class AnimatorPlayerData
 
         final ActionT2<AnimatorLoadout, Integer> add = (loadout, unlockLevel) ->
         {
-            BaseLoadouts.add(loadout);
-            loadout.UnlockLevel = unlockLevel;
+            if (loadout.IsEnabled)
+            {
+                BaseLoadouts.add(loadout);
+                loadout.IsBeta = false;
+                loadout.UnlockLevel = unlockLevel;
+                loadout.AddStarterCards();
+            }
         };
 
-        add.Invoke(new Konosuba(), 0);
-        add.Invoke(new Gate(), 1);
-        add.Invoke(new Elsword(), 2);
-        add.Invoke(new Katanagatari(), 2);
-        add.Invoke(new GoblinSlayer(), 3);
-        add.Invoke(new NoGameNoLife(), 3);
-        add.Invoke(new OwariNoSeraph(), 3);
-        add.Invoke(new FullmetalAlchemist(), 4);
-        add.Invoke(new Overlord(), 4);
-        add.Invoke(new Fate(), 5);
-        add.Invoke(new Chaika(), 5);
-        add.Invoke(new Kancolle(), 6);
-        add.Invoke(new OnePunchMan(), 6);
-        add.Invoke(new AccelWorld(), 7);
-        add.Invoke(new TenSura(), 7);
-        add.Invoke(new MadokaMagica(), 8);
-        add.Invoke(new LogHorizon(), 8);
+        add.Invoke(new Loadout_GATE(), 0);
+        add.Invoke(new Loadout_Konosuba(), 0);
+        add.Invoke(new Loadout_Elsword(), 1);
+        add.Invoke(new Loadout_Katanagatari(), 2);
+        add.Invoke(new Loadout_GoblinSlayer(), 2);
+        add.Invoke(new Loadout_OwariNoSeraph(), 3);
+        add.Invoke(new Loadout_FullmetalAlchemist(), 3);
+        add.Invoke(new Loadout_TenseiSlime(), 4);
+        add.Invoke(new Loadout_Overlord(), 4);
+        add.Invoke(new Loadout_Fate(), 5);
+        add.Invoke(new Loadout_HitsugiNoChaika(), 5);
+        add.Invoke(new Loadout_OnePunchMan(), 6);
+        add.Invoke(new Loadout_NoGameNoLife(), 6);
+        add.Invoke(new Loadout_MadokaMagica(), 7);
+        add.Invoke(new Loadout_TouhouProject(), 7);
+        //add.Invoke(new Loadout_LogHorizon(), 7);
 
         for (AnimatorLoadout loadout : BaseLoadouts)
         {
-            if (loadout.UnlockLevel == 0)
+            if (loadout.UnlockLevel <= 0)
             {
                 continue;
             }
 
             final String cardID = loadout.GetSymbolicCard().ID;
-            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
-
-            CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
+            final CustomUnlock unlock = new CustomUnlock(AbstractUnlock.UnlockType.MISC, cardID);
             unlock.type = AbstractUnlock.UnlockType.CARD;
             unlock.card = new AnimatorRuntimeLoadout(loadout).BuildCard();
             unlock.key = unlock.card.cardID = GR.Animator.CreateID("series:" + loadout.Name);
 
+            CustomUnlockBundle bundle = BaseMod.getUnlockBundleFor(GR.Animator.PlayerClass, loadout.UnlockLevel - 1);
             if (bundle == null)
             {
                 bundle = new CustomUnlockBundle(AbstractUnlock.UnlockType.MISC, "", "", "");
@@ -238,13 +318,44 @@ public class AnimatorPlayerData
     private void AddBetaLoadouts()
     {
         BetaLoadouts.clear();
-        //BetaLoadouts.add(new <YourLoadoutHere>);
+
+        final ActionT2<AnimatorLoadout, Integer> add = (loadout, unlockLevel) ->
+        {
+            if (loadout.IsEnabled)
+            {
+                BetaLoadouts.add(loadout);
+                loadout.IsBeta = true;
+                loadout.UnlockLevel = unlockLevel;
+                loadout.AddStarterCards();
+            }
+        };
+    }
+
+    private void DeserializeStats(String data)
+    {
+        if (data != null && data.length() > 0)
+        {
+            final String decoded = Base64Coder.decodeString(data);
+            try
+            {
+                Stats = JUtils.Deserialize(decoded, AnimatorStats.class);
+            }
+            catch (Exception e)
+            {
+                Stats = new AnimatorStats();
+            }
+        }
+    }
+
+    private String SerializeStats()
+    {
+        return Base64Coder.encodeString(JUtils.Serialize(Stats));
     }
 
     // SelectedLoadout|Series_1,Trophy1,Trophy2,Trophy3|Series_2,Trophy1,Trophy2,Trophy3|...
     private String SerializeTrophies()
     {
-        StringJoiner sj = new StringJoiner("|");
+        final StringJoiner sj = new StringJoiner("|");
 
         sj.add(String.valueOf(SelectedLoadout.ID));
         sj.add(SpecialTrophies.Serialize());
@@ -260,11 +371,12 @@ public class AnimatorPlayerData
     private void DeserializeTrophies(String data)
     {
         Trophies.clear();
+        SpecialTrophies = null;
 
         if (data != null && data.length() > 0)
         {
-            String decoded = Base64Coder.decodeString(data);
-            String[] items = decoded.split(Pattern.quote("|"));
+            final String decoded = Base64Coder.decodeString(data);
+            final String[] items = JUtils.SplitString("|", decoded);
 
             if (items.length > 0)
             {
@@ -281,7 +393,7 @@ public class AnimatorPlayerData
 
                 for (int i = 1; i < items.length; i++)
                 {
-                    AnimatorTrophies trophies = new AnimatorTrophies();
+                    final AnimatorTrophies trophies = new AnimatorTrophies();
 
                     trophies.Deserialize(items[i]);
 
@@ -294,6 +406,132 @@ public class AnimatorPlayerData
                         Trophies.add(trophies);
                     }
                 }
+            }
+        }
+    }
+
+    //003 _Gold@60;_HP@99;Strike@3:0;Defend@3:1;animator:Strike_Dark@1:2|004 Strike@4:0 ...
+    private String SerializeCustomLoadouts()
+    {
+        final StringJoiner sj = new StringJoiner("|");
+        final StringBuilder sb = new StringBuilder();
+
+        final int level = GR.Animator.GetUnlockLevel();
+        for (AnimatorLoadout loadout : GetEveryLoadout())
+        {
+            if (loadout.UnlockLevel <= level)
+            {
+                for (AnimatorLoadoutData data : loadout.Presets)
+                {
+                    if (data == null)
+                    {
+                        continue;
+                    }
+
+                    sb.setLength(0);
+                    sb.append(StringUtils.leftPad(String.valueOf(loadout.ID), 3, '0'))
+                      .append(" ")
+                      .append("_Preset@").append(data.Preset).append(":").append((data.Preset == loadout.Preset) ? 1 : 0).append(";")
+                      .append("_Gold@").append(data.Gold).append(";")
+                      .append("_HP@").append(data.HP).append(";")
+                      .append("_Buff@").append(data.Buff).append(";");
+
+                    for (AnimatorCardSlot slot : data)
+                    {
+                        if (slot.amount > 0)
+                        {
+                            sb.append(slot.GetData().ID).append("@")
+                              .append(slot.amount).append(":")
+                              .append(slot.GetSlotIndex()).append(";");
+                        }
+                    }
+
+                    sj.add(sb.toString());
+                }
+            }
+        }
+
+        return Base64Coder.encodeString(sj.toString());
+    }
+
+    private void DeserializeCustomLoadouts(String data)
+    {
+        if (StringUtils.isEmpty(data))
+        {
+            return;
+        }
+
+        final String decoded = Base64Coder.decodeString(data);
+        final String[] strings = JUtils.SplitString("|", decoded);
+        for (String s : strings)
+        {
+            final int id = JUtils.ParseInt(s.substring(0, 3), -1);
+            final AnimatorLoadout loadout = GetLoadout(id);
+            if (loadout == null)
+            {
+                JUtils.LogWarning(this, "Loadout not found, ID:" + id);
+                continue;
+            }
+
+            int i = 0;
+            final AnimatorLoadoutData loadoutData = new AnimatorLoadoutData(loadout);
+            for (String item : s.substring(4).split(Pattern.quote(";")))
+            {
+                final int index = item.indexOf("@");
+                final String[] amountAndIndex = item.substring(index + 1).split(Pattern.quote(":"));
+                final int itemAmount = JUtils.ParseInt(amountAndIndex[0], 0);
+                final int itemIndex = amountAndIndex.length > 1 ? JUtils.ParseInt(amountAndIndex[1], -1) : -1;
+                final String itemID = item.substring(0, index);
+                switch (itemID)
+                {
+                    case "_Preset":
+                        if (itemIndex == 1)
+                        {
+                            loadout.Preset = loadoutData.Preset = itemAmount;
+                        }
+                        else
+                        {
+                            loadoutData.Preset = itemAmount;
+                        }
+                        break;
+
+                    case "_Gold":
+                        loadoutData.Gold = itemAmount;
+                        break;
+
+                    case "_HP":
+                        loadoutData.HP = itemAmount;
+                        break;
+
+                    case "_Buff":
+                        loadoutData.Buff = itemAmount;
+                        break;
+
+                    default:
+                    {
+                        if (itemIndex < 0 || itemIndex >= loadoutData.Size())
+                        {
+                            return;
+                        }
+
+                        final AnimatorCardSlot slot = loadoutData.GetCardSlot(itemIndex);
+                        for (AnimatorCardSlot.Item c : slot.Cards)
+                        {
+                            if (c.data.ID.equals(itemID))
+                            {
+                                slot.Select(c, itemAmount);
+                                break;
+                            }
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+
+            if (loadoutData.Validate().IsValid)
+            {
+                loadout.Presets[loadoutData.Preset] = loadoutData;
             }
         }
     }

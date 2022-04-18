@@ -16,7 +16,8 @@ public class EYBMoveset
     public enum Mode
     {
         Random,
-        Sequential
+        Sequential,
+        Repeat
     }
 
     public final AbstractMonster owner;
@@ -78,6 +79,20 @@ public class EYBMoveset
 
         if (move == null)
         {
+            if (mode == Mode.Repeat && previousMove != null)
+            {
+                final ArrayList<Byte> history = owner.moveHistory;
+                for (int i = history.size() - 1; i >= 0; i--)
+                {
+                    move = GetMove(history.get(i));
+
+                    if (Normal.rotation.contains(move) && move.CanUse(null))
+                    {
+                        return move;
+                    }
+                }
+            }
+
             move = sequence.remove(0);
 
             if (!move.CanUse(previousMove))

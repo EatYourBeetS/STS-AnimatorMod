@@ -1,0 +1,15 @@
+
+{
+	"unnamed:Incomplete":
+	{
+		"DESCRIPTIONS": ["At the start of combat, gain [E] and draw #b1 card."],
+		"FLAVOR": "Something is missing...",
+		"NAME": "Incomplete"
+	},
+	"unnamed:DimCandles":
+	{
+		"DESCRIPTIONS": ["Once per turn, when you play a #ySummon card, gain [E] and #b{0} [SK]."],
+		"FLAVOR": "They are melting at an imperceptible rate.",
+		"NAME": "Dim Candles"
+	}
+}

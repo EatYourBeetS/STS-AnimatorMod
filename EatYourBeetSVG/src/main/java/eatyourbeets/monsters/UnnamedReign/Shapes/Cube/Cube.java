@@ -38,8 +38,11 @@ public abstract class Cube extends UnnamedShape
             case Frost:
                 return new FrostCube(tier, x, y);
 
-                default:
-                    return null;
+            case Ultimate:
+                return new UltimateCube(x, y);
+
+            default:
+                throw new EnumConstantNotPresentException(MonsterElement.class, "element");
         }
     }
 }

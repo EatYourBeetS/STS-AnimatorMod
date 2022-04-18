@@ -67,8 +67,10 @@ public class ChannelOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
             }
             else
             {
-                for (AbstractOrb o : AbstractDungeon.player.orbs)
+                final ArrayList<AbstractOrb> orbs = player.orbs;
+                for (int i = 0; i < player.maxOrbs; i++)
                 {
+                    final AbstractOrb o = orbs.get(i);
                     if (o instanceof EmptyOrbSlot)
                     {
                         AbstractDungeon.player.channelOrb(orb);
@@ -83,6 +85,11 @@ public class ChannelOrb extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 
         if (amount > 0)
         {
+            if (orbConstructor == null)
+            {
+                throw new RuntimeException("Attempted to channel the same orb instance multiple times.");
+            }
+
             //repeat
             duration = startDuration;
             isDone = false;

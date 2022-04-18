@@ -1,11 +1,15 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameActions;
@@ -13,7 +17,14 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsurugi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Mitsurugi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Mitsurugi.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(AffinityToken.GetCard(Affinity.Red), false);
+                data.AddPreview(AffinityToken.GetCard(Affinity.Light), false);
+            });
 
     private final TargetEffectPreview targetEffectPreview = new TargetEffectPreview(this::OnTargetChanged);
     private boolean showDamage = true;
@@ -22,22 +33,17 @@ public class Mitsurugi extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(8, 0, 1, 4);
-        SetUpgrade(2, 0, 0, 0);
-        SetScaling(0, 0, 1);
+        Initialize(8, 0);
+        SetUpgrade(2, 0);
 
-        SetSynergy(Synergies.Konosuba);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Light(2);
     }
 
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (showDamage)
-        {
-            return super.GetDamageInfo();
-        }
-
-        return null;
+        return showDamage ? super.GetDamageInfo() : null;
     }
 
     @Override
@@ -53,17 +59,28 @@ public class Mitsurugi extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.GainBlock(secondaryValue);
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        group.group.add(AffinityToken.GetCopy(Affinity.Red, false));
+        group.group.add(AffinityToken.GetCopy(Affinity.Light, false));
+        GameActions.Bottom.SelectFromPile(name, 1, group)
+        .SetOptions(false, false)
+        .AddCallback(cards2 ->
+        {
+            for (AbstractCard c : cards2)
+            {
+                GameActions.Bottom.MakeCardInHand(c);
+            }
+        });
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainForce(magicNumber, upgraded);
+        GameActions.Bottom.GainForce(1, upgraded);
 
         if (GameUtilities.IsAttacking(m.intent))
         {
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+            GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
         }
     }
 

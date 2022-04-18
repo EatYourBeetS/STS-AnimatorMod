@@ -23,27 +23,27 @@ public class Haunted extends AnimatorBlight
     {
         super.atTurnStart();
 
-        boolean activated = false;
-
-        for (int i = 0; i < counter; i++)
+        final int rng = AbstractDungeon.cardRandomRng.random(100);
+        if (rng < (counter * 5))
         {
-            if (AbstractDungeon.cardRandomRng.random(100) < 6)
-            {
-                activated = true;
-
+//            if (counter >= 4 && GameUtilities.GetAscensionLevel() >= 16 && GameUtilities.GetPowerAmount(Affinity.Dark) >= 6 && CombatStats.TryActivateLimited(ID))
+//            {
+//                AnimatorCard_UltraRare.MarkAsSeen(Azami.DATA.ID);
+//                AbstractDungeon.player.drawPile.addToTop(new Azami());
+//            }
+//            else
+//            {
                 AbstractDungeon.player.drawPile.addToRandomSpot(new TheHaunt());
-            }
-        }
+//            }
 
-        if (activated)
-        {
             flash();
         }
     }
 
+    @Override
     public void atBattleStart()
     {
-        AbstractPlayer p = AbstractDungeon.player;
+        final AbstractPlayer p = AbstractDungeon.player;
         if (counter >= 10)
         {
             GameActions.Bottom.ApplyVulnerable(p, p, 1);

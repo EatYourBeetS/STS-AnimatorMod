@@ -3,10 +3,12 @@ package eatyourbeets.ui.animator.seriesSelection;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.effects.EYBEffect;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.ui.controls.GUI_CardGrid;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayDeque;
 
@@ -25,6 +27,8 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
         this.container = screen.container;
         this.grid = screen.cardGrid;
         this.grid.Clear();
+
+        GR.UI.CardAffinities.SetActive(false);
     }
 
     @Override
@@ -115,6 +119,11 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
                 {
                     screen.toggleBeta.SetInteractable(true).SetActive(container.betaCards.size() > 0);
                 }
+
+                GR.UI.CardAffinities.SetActive(true);
+                GR.UI.CardAffinities.Open(container.GetAllCardsInPool());
+                JUtils.LogInfo(this, AbstractDungeon.effectList.size() + AbstractDungeon.topLevelEffects.size());
+                Complete();
             }
         }
     }
@@ -123,8 +132,8 @@ public class AnimatorSeriesSelectEffect extends EYBEffect
     {
         screen.selectAll.SetInteractable(value);
         screen.deselectAll.SetInteractable(value);
-        screen.selectRandom75.SetInteractable(value);
-        screen.selectRandom100.SetInteractable(value);
+        screen.selectRandomMinimum.SetInteractable(value);
+        screen.selectRandomForPurgingStone.SetInteractable(value);
         screen.toggleBeta.SetInteractable(value);
     }
 }

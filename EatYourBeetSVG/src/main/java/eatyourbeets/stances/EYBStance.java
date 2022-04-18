@@ -1,6 +1,5 @@
 package eatyourbeets.stances;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -11,6 +10,7 @@ import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -34,11 +34,19 @@ public abstract class EYBStance extends AbstractStance
         stances.put(ForceStance.STANCE_ID, ForceStance::new);
         stances.put(IntellectStance.STANCE_ID, IntellectStance::new);
         stances.put(AgilityStance.STANCE_ID, AgilityStance::new);
+        stances.put(CorruptionStance.STANCE_ID, CorruptionStance::new);
 
         tooltips.clear();
         tooltips.put(ForceStance.STANCE_ID, GR.Tooltips.ForceStance);
         tooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.AgilityStance);
         tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
+        tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
+
+        for (String key : tooltips.keySet())
+        {
+            tooltips.get(key).description = stances.get(key).Invoke().description;
+        }
+
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);
     }
 
@@ -50,6 +58,11 @@ public abstract class EYBStance extends AbstractStance
     public static AbstractStance GetStanceFromName(String name)
     {
         return stances.containsKey(name) ? stances.get(name).Invoke() : null;
+    }
+
+    public static boolean Exists(String name)
+    {
+        return stances.containsKey(name);
     }
 
     public static String CreateFullID(Class<? extends EYBStance> type)
@@ -76,7 +89,6 @@ public abstract class EYBStance extends AbstractStance
         updateDescription();
     }
 
-
     @Override
     public void updateDescription()
     {
@@ -88,7 +100,7 @@ public abstract class EYBStance extends AbstractStance
     {
         if (!Settings.DISABLE_EFFECTS)
         {
-            this.particleTimer -= Gdx.graphics.getRawDeltaTime();
+            this.particleTimer -= GR.UI.Delta();
             if (this.particleTimer < 0f)
             {
                 this.particleTimer = 0.04f;
@@ -96,7 +108,7 @@ public abstract class EYBStance extends AbstractStance
             }
         }
 
-        this.particleTimer2 -= Gdx.graphics.getRawDeltaTime();
+        this.particleTimer2 -= GR.UI.Delta();
         if (this.particleTimer2 < 0f)
         {
             this.particleTimer2 = MathUtils.random(0.45f, 0.55f);
@@ -114,8 +126,8 @@ public abstract class EYBStance extends AbstractStance
             this.stopIdleSfx();
         }
 
-        CardCrawlGame.sound.play("STANCE_ENTER_CALM");
-        sfxId = CardCrawlGame.sound.playAndLoop("STANCE_LOOP_CALM");
+        SFX.Play(SFX.STANCE_ENTER_CALM);
+        sfxId = CardCrawlGame.sound.playAndLoop(SFX.STANCE_LOOP_CALM);
         GameEffects.Queue.Add(new BorderFlashEffect(GetMainColor(), true));
     }
 

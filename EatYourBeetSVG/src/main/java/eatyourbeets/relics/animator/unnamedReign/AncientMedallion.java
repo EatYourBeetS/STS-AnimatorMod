@@ -12,17 +12,31 @@ import eatyourbeets.interfaces.subscribers.OnRelicObtainedSubscriber;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
 public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedReignRelicListener, OnRelicObtainedSubscriber
 {
     public static final String ID = CreateFullID(AncientMedallion.class);
-    public static final int HEAL_AMOUNT = 4;
     public static final int MULTI_UPGRADE = 2;
+    public static final int BASE_HEAL_AMOUNT = 4;
+    public static final int ASCENSION_THRESHOLD = 18;
+    public static final int ASCENSION_HEAL_REDUCTION = 1;
 
     private int equipEffects;
     private boolean event;
     private boolean awaitingInput;
+
+    public static boolean IsDowngraded()
+    {
+        return GameUtilities.GetAscensionLevel() >= ASCENSION_THRESHOLD;
+    }
+
+    public static int GetHealAmount()
+    {
+        return IsDowngraded() ? (BASE_HEAL_AMOUNT - ASCENSION_HEAL_REDUCTION) : BASE_HEAL_AMOUNT;
+    }
 
     public AncientMedallion()
     {
@@ -52,7 +66,14 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(HEAL_AMOUNT * Math.max(1, counter));
+        final int amount = Math.max(1, counter);
+        String description = FormatDescription(0, GetHealAmount() * amount);
+        if (GameUtilities.GetAscensionLevel() >= ASCENSION_THRESHOLD)
+        {
+            description += JUtils.ModifyString(FormatDescription(1, ASCENSION_HEAL_REDUCTION * amount), w -> ("#r" + w));
+        }
+
+        return description;
     }
 
     public void onManualEquip()
@@ -116,7 +137,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
     {
         super.atBattleStart();
 
-        player.heal(HEAL_AMOUNT * counter, true);
+        player.heal(GetHealAmount() * counter, true);
         flash();
     }
 
@@ -199,6 +220,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (group.size() > 0)
         {
             awaitingInput = true;
+            GameUtilities.SetTopPanelVisible(false);
         }
         else
         {
@@ -220,12 +242,12 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
     private boolean UpdateSelection()
     {
-        AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
-        if (preview != null && !preview.tags.contains(GR.Enums.CardTags.TEMPORARY) && preview.canUpgrade())
+        final AbstractCard preview = AbstractDungeon.gridSelectScreen.upgradePreviewCard;
+        if (preview != null && !preview.tags.contains(GR.Enums.CardTags.MARKED) && preview.canUpgrade())
         {
             preview.upgrade();
             preview.displayUpgrades();
-            preview.tags.add(GR.Enums.CardTags.TEMPORARY);
+            preview.tags.add(GR.Enums.CardTags.MARKED);
         }
 
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() > 0)
@@ -242,6 +264,7 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
 
             player.bottledCardUpgradeCheck(c);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+            GameUtilities.SetTopPanelVisible(true);
             awaitingInput = false;
 
             GameEffects.Queue.Add(new UpgradeShineEffect((float) Settings.WIDTH / 2f, (float) Settings.HEIGHT / 2f));
@@ -258,7 +281,6 @@ public class AncientMedallion extends AnimatorRelic implements OnEquipUnnamedRei
         if (event)
         {
             GR.Common.Dungeon.EnterUnnamedReign();
-
             event = false;
         }
     }

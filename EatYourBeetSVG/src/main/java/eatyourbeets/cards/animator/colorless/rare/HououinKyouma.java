@@ -5,32 +5,47 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class HououinKyouma extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HououinKyouma.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(HououinKyouma.class)
+            .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.SteinsGate);
 
     public HououinKyouma()
     {
         super(DATA);
 
-        Initialize(0, 0);
-        SetCostUpgrade(-1);
+        Initialize(0, 0, 14);
+        SetUpgrade(0, 0, -2);
+
+        SetAffinity_Blue(2);
 
         SetPurge(true);
-        SetSynergy(Synergies.SteinsGate);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
     {
-        CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        SetRetainOnce(true);
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        SetUnplayable(player.drawPile.size() < magicNumber);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        final CardGroup choices = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
         for (AbstractCard c : AbstractDungeon.actionManager.cardsPlayedThisCombat)
         {
             if (!c.cardID.equals(this.cardID))
@@ -56,7 +71,13 @@ public class HououinKyouma extends AnimatorCard
         {
             GameActions.Bottom.SelectFromPile(name, 1, choices)
             .SetOptions(false, false)
-            .AddCallback(cards -> GameActions.Bottom.MakeCardInHand(cards.get(0)).AddCallback(GameUtilities::Retain));
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.MakeCardInDrawPile(c).SetDestination(CardSelection.Bottom);
+                }
+            });
         }
     }
 }

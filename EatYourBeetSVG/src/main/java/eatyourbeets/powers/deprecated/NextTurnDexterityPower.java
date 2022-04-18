@@ -2,7 +2,6 @@ package eatyourbeets.powers.deprecated;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.DexterityPower;
-import com.megacrit.cardcrawl.powers.LoseDexterityPower;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -32,10 +31,7 @@ public class NextTurnDexterityPower extends AnimatorPower
     {
         super.atStartOfTurnPostDraw();
 
-        GameActions.Top.StackPower(new LoseDexterityPower(owner, amount))
-        .ShowEffect(false, true)
-        .AddCallback(() -> GameActions.Top.StackPower(new DexterityPower(owner, amount)));
-
+        GameActions.Bottom.StackPower(new DexterityPower(owner, amount));
         RemovePower();
     }
 }

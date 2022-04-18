@@ -3,22 +3,20 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardEffectChoice;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.interfaces.subscribers.OnShuffleSubscriber;
-import eatyourbeets.misc.GenericEffects.GenericEffect_GainOrBoost;
+import eatyourbeets.cards.effects.GenericEffects.GenericEffect_GainOrBoost;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
 public class FielNirvalen extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(FielNirvalen.class).SetPower(1, CardRarity.UNCOMMON).SetMaxCopies(3);
+    public static final EYBCardData DATA = Register(FielNirvalen.class)
+            .SetPower(1, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
     public static final int SCRY_AMOUNT = 2;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
@@ -27,32 +25,36 @@ public class FielNirvalen extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(0, 0, 1, 2);
+        SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.NoGameNoLife);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(1);
+        SetAffinity_Dark(1);
     }
 
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return TempHPAttribute.Instance.SetCard(this, true);
+        return TempHPAttribute.Instance.SetCard(this, false).SetText(GetSecondaryValueString());
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
+        GameActions.Bottom.GainTemporaryHP(secondaryValue);
         GameActions.Bottom.StackPower(new FielNirvalenPower(p, SCRY_AMOUNT));
 
         if (choices.TryInitialize(this))
         {
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Agility, 1, true));
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Intellect, 1, true));
-            choices.AddEffect(new GenericEffect_GainOrBoost(GR.Tooltips.Force, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Red, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Green, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Blue, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Light, 1, true));
+            choices.AddEffect(new GenericEffect_GainOrBoost(Affinity.Dark, 1, true));
         }
 
-        choices.Select(secondaryValue, m);
+        choices.Select(magicNumber, m);
     }
 
     public static class FielNirvalenPower extends AnimatorPower implements OnShuffleSubscriber
@@ -95,7 +97,7 @@ public class FielNirvalen extends AnimatorCard
 
             if (enabled)
             {
-                GameActions.Bottom.Scry(amount);
+                GameActions.Last.Scry(amount);
                 enabled = false;
                 flash();
             }

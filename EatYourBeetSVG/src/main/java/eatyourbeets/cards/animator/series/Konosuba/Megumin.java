@@ -1,72 +1,74 @@
 package eatyourbeets.cards.animator.series.Konosuba;
 
-import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
-import com.megacrit.cardcrawl.vfx.combat.FlameBarrierEffect;
+import eatyourbeets.cards.animator.special.Megumin_Explosion;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.Mathf;
 
 public class Megumin extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Megumin.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL);
+    public static final EYBCardData DATA = Register(Megumin.class)
+            .SetSkill(X_COST, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Megumin_Explosion(), true);
+                data.AddPreview(AffinityToken.GetCard(Affinity.Blue), false);
+            });
 
     public Megumin()
     {
         super(DATA);
 
-        Initialize(10, 0);
-        SetUpgrade( 2, 0);
-        SetScaling(4, 0, 0);
+        Initialize(0, 0, 2);
+
+        SetAffinity_Blue(2);
+        SetAffinity_Red(2);
 
         SetExhaust(true);
-        SetUnique(true, true);
-        SetSynergy(Synergies.Konosuba);
-        SetSpellcaster();
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (timesUpgraded % 2 == 0)
-        {
-            upgradeDamage(1);
-        }
+        SetRetainOnce(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.1f);
-        GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.2f);
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.ORANGE));
-        GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.SFX("ORB_LIGHTNING_PASSIVE", 0.3f);
-        GameActions.Bottom.Wait(0.35f);
-        GameActions.Bottom.VFX(new BorderFlashEffect(Color.RED));
-        GameActions.Bottom.SFX("ORB_LIGHTNING_EVOKE", 0.5f);
-
-        for (AbstractCreature m1 : GameUtilities.GetEnemies(true))
+        final int charge = GameUtilities.UseXCostEnergy(this);
+        final Megumin_Explosion card = new Megumin_Explosion();
+        for (int i = 0; i < charge; i++)
         {
-            GameActions.Bottom.VFX(new FlameBarrierEffect(m1.hb_x, m1.hb_y));
-            GameActions.Bottom.VFX(new ExplosionSmallEffect(m1.hb_x, m1.hb_y));
+            card.upgrade();
         }
 
-        GameActions.Bottom.DealDamageToAll(this, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.SFX(SFX.ANIMATOR_MEGUMIN_CHARGE, 0.95f, 1.05f);
+        GameActions.Bottom.MakeCardInDrawPile(card)
+        .SetDestination(CardSelection.Bottom(upgraded ? (p.drawPile.size() / 2) : 0));
 
-        if (HasSynergy() && CombatStats.TryActivateLimited(cardID))
+        final int tokens = Mathf.Min(20, charge - magicNumber);
+        if (tokens > 0)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-            .IncludeMasterDeck(true)
-            .IsCancellable(false);
+            GameActions.Bottom.Callback(tokens, (amount, __) ->
+            {
+                for (int i = 0; i < amount; i++)
+                {
+                    GameActions.Top.PlayCard(AffinityToken.GetCopy(Affinity.Blue, false), null)
+                    .SetCurrentPosition(Settings.WIDTH * 0.6f, Settings.HEIGHT * 0.5f, true)
+                    .SetTargetPosition(Settings.WIDTH * 0.6f, Settings.HEIGHT * 0.5f)
+                    .SetDuration(0.12f, false);
+                }
+            });
         }
     }
 }

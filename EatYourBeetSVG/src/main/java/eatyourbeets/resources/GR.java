@@ -9,7 +9,9 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -35,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class GR
 {
@@ -52,7 +55,11 @@ public class GR
     public static AnimatorResources Animator;
     public static UnnamedResources Unnamed;
     public static CommonResources Common;
-    public static boolean IsLoaded;
+
+    public static boolean IsLoaded()
+    {
+        return Common != null && (Common.isLoaded && Animator.isLoaded && Unnamed.isLoaded);
+    }
 
     public static void Initialize()
     {
@@ -67,7 +74,7 @@ public class GR
 
         Initialize(Common);
         Initialize(Animator);
-        //Initialize(Unnamed);
+        Initialize(Unnamed);
     }
 
     protected static void Initialize(AbstractResources resources)
@@ -80,82 +87,98 @@ public class GR
 
     public static CharacterStrings GetCharacterStrings(String characterID)
     {
-        return CardCrawlGame.languagePack.getCharacterString(characterID);
+        return GetLanguagePack().getCharacterString(characterID);
     }
 
     public static MonsterStrings GetMonsterStrings(String monsterID)
     {
-        return CardCrawlGame.languagePack.getMonsterStrings(monsterID);
+        return GetLanguagePack().getMonsterStrings(monsterID);
     }
 
     public static PowerStrings GetPowerStrings(String powerID)
     {
-        return CardCrawlGame.languagePack.getPowerStrings(powerID);
+        return GetLanguagePack().getPowerStrings(powerID);
     }
 
     public static RelicStrings GetRelicStrings(String relicID)
     {
-        return CardCrawlGame.languagePack.getRelicStrings(relicID);
+        return GetLanguagePack().getRelicStrings(relicID);
     }
 
     public static CardStrings GetCardStrings(String cardID)
     {
-        return CardCrawlGame.languagePack.getCardStrings(cardID);
+        return GetLanguagePack().getCardStrings(cardID);
     }
 
     public static StanceStrings GetStanceString(String stanceID)
     {
-        return CardCrawlGame.languagePack.getStanceString(stanceID);
+        return GetLanguagePack().getStanceString(stanceID);
     }
 
     public static EventStrings GetEventStrings(String eventID)
     {
-        return CardCrawlGame.languagePack.getEventString(eventID);
+        return GetLanguagePack().getEventString(eventID);
     }
 
     public static BlightStrings GetBlightStrings(String blightID)
     {
-        return CardCrawlGame.languagePack.getBlightString(blightID);
+        return GetLanguagePack().getBlightString(blightID);
     }
 
     public static UIStrings GetUIStrings(String stringID)
     {
-        return CardCrawlGame.languagePack.getUIString(stringID);
+        return GetLanguagePack().getUIString(stringID);
     }
 
     public static OrbStrings GetOrbStrings(String orbID)
     {
-        return CardCrawlGame.languagePack.getOrbString(orbID);
+        return GetLanguagePack().getOrbString(orbID);
     }
 
-    public static String GetCardImage(String cardID)
+    private static LocalizedStrings GetLanguagePack()
     {
-        return "images/cards/" + cardID.replace(":", "/") + ".png";
+        return CardCrawlGame.languagePack;
     }
 
-    public static String GetRelicImage(String relicID)
+    public static String GetPng(String id, String subFolder)
     {
-        return "images/relics/" + relicID.replace(":", "/") + ".png";
+        final String[] s = id.split(Pattern.quote(":"), 2);
+        return "images/" + s[0] + "/" + subFolder + "/" + s[1].replace(":", "_") + ".png";
     }
 
-    public static String GetBlightImageName(String blightID)
+    public static String GetCardImage(String id)
     {
-        return blightID.replace(":", "/") + ".png";
+        return GetPng(id, "cards");
     }
 
-    public static String GetPowerImage(String powerID)
+    public static String GetRelicImage(String id)
     {
-        return "images/powers/" + powerID.replace(":", "/") + ".png";
+        return GetPng(id, "relics");
     }
 
-    public static String GetMonsterImage(String monsterID)
+    public static String GetBlightImage(String id)
     {
-        return "images/monsters/" + monsterID.replace(":", "/") + ".png";
+        return GetPng(id, "blights");
     }
 
-    public static String GetRewardImage(String rewardID)
+    public static String GetBlightOutlineImage(String id)
     {
-        return "images/ui/rewards/" + rewardID.replace(":", "/") + ".png";
+        return GetPng(id, "blights/outline");
+    }
+
+    public static String GetPowerImage(String id)
+    {
+        return GetPng(id, "powers");
+    }
+
+    public static String GetMonsterImage(String id)
+    {
+        return GetPng(id, "monsters");
+    }
+
+    public static String GetRewardImage(String id)
+    {
+        return GetPng(id, "ui/rewards");
     }
 
     public static boolean IsTranslationSupported(Settings.GameLanguage language)
@@ -170,8 +193,13 @@ public class GR
 
     public static Texture GetTexture(String path, boolean useMipMap)
     {
+        return GetTexture(path, true, false);
+    }
+
+    public static Texture GetTexture(String path, boolean useMipMap, boolean refresh)
+    {
         Texture texture = textures.get(path);
-        if (texture == null)
+        if (texture == null || refresh)
         {
             FileHandle file = Gdx.files.internal(path);
             if (file.exists())
@@ -189,7 +217,6 @@ public class GR
             else
             {
                 JUtils.GetLogger(GR.class).error("Texture does not exist: " + path);
-                texture = null;
             }
 
             textures.put(path, texture);
@@ -203,7 +230,7 @@ public class GR
         return prefix + ":" + suffix;
     }
 
-    protected void LoadCustomRelics(String character)
+    protected void LoadCustomRelics(String character, AbstractCard.CardColor cardColor)
     {
         final String prefix = "eatyourbeets.relics." + character;
 
@@ -215,7 +242,7 @@ public class GR
                 {
                     logger.info("Adding: " + s);
 
-                    LoadCustomRelic(Class.forName(s));
+                    LoadCustomRelic(Class.forName(s), cardColor);
                 }
                 catch (ClassNotFoundException e)
                 {
@@ -225,7 +252,7 @@ public class GR
         }
     }
 
-    protected void LoadCustomRelic(Class<?> type)
+    protected void LoadCustomRelic(Class<?> type, AbstractCard.CardColor cardColor)
     {
         if (!CanInstantiate(type))
         {
@@ -243,13 +270,12 @@ public class GR
             return;
         }
 
-        BaseMod.addRelicToCustomPool(relic, Enums.Cards.THE_ANIMATOR);
+        BaseMod.addRelicToCustomPool(relic, cardColor);
     }
 
     protected void LoadCustomCards(String character)
     {
         final String prefix = "eatyourbeets.cards." + character;
-
         for (String s : cardClassNames)
         {
             if (s.startsWith(prefix))
@@ -324,7 +350,7 @@ public class GR
         }
     }
 
-    protected void LoadKeywords(FileHandle file)
+    protected void LoadKeywords(FileHandle file, AbstractCard.CardColor requiredColor)
     {
         if (!file.exists())
         {
@@ -332,16 +358,20 @@ public class GR
             return;
         }
 
-        String json = file.readString(String.valueOf(StandardCharsets.UTF_8));
-        Gson gson = new Gson();
-        Type typeToken = new TypeToken<Map<String, Keyword>>(){}.getType();
-        Map<String, Keyword> items = gson.fromJson(json, typeToken);
-
+        final String json = file.readString(String.valueOf(StandardCharsets.UTF_8));
+        final Gson gson = new Gson();
+        final Type typeToken = new TypeToken<Map<String, Keyword>>(){}.getType();
+        final Map<String, Keyword> items = gson.fromJson(json, typeToken);
         for (Map.Entry<String, Keyword> pair : items.entrySet())
         {
-            String id = pair.getKey();
-            Keyword keyword = pair.getValue();
-            EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
+            final String id = pair.getKey();
+            final Keyword keyword = pair.getValue();
+            final EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
+
+            if (requiredColor != null)
+            {
+                tooltip.requiredColor = requiredColor;
+            }
 
             CardTooltips.RegisterID(id, tooltip);
 
@@ -367,16 +397,16 @@ public class GR
     @SuppressWarnings("unchecked")
     public static void LoadGroupedCardStrings(String jsonString)
     {
-        Map localizationStrings = ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
-        Map cardStrings = new HashMap<>();
+        final Map localizationStrings = ReflectionHacks.getPrivateStatic(LocalizedStrings.class, "cards");
+        final Map cardStrings = new HashMap<>();
         try
         {
-            Type typeToken = new TypeToken<Map<String, Map<String, CardStrings>>>(){}.getType();
-            Map map = new HashMap<>((Map)new Gson().fromJson(jsonString, typeToken));
+            final Type typeToken = new TypeToken<Map<String, Map<String, CardStrings>>>(){}.getType();
+            final Map map = new HashMap<>((Map)new Gson().fromJson(jsonString, typeToken));
 
             for (Object key1 : map.keySet())
             {
-                Map map3 = ((Map<Object, CardStrings>)map.get(key1));
+                final Map map3 = ((Map<Object, CardStrings>)map.get(key1));
                 for (Object key2 : map3.keySet())
                 {
                     cardStrings.put(key2, map3.get(key2));
@@ -403,92 +433,70 @@ public class GR
     {
         public static class Characters
         {
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractPlayer.PlayerClass THE_UNNAMED;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_ANIMATOR;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_UNNAMED;
         }
 
         public static class Cards
         {
-            @SpireEnum
-            public static AbstractCard.CardColor THE_ANIMATOR;
-
-            @SpireEnum
-            public static AbstractCard.CardColor THE_UNNAMED;
+            @SpireEnum public static AbstractCard.CardColor THE_ANIMATOR;
+            @SpireEnum public static AbstractCard.CardColor THE_UNNAMED;
         }
 
         public static class Library
         {
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_ANIMATOR;
+            @SpireEnum public static CardLibrary.LibraryType THE_ANIMATOR;
+            @SpireEnum public static CardLibrary.LibraryType THE_UNNAMED;
+        }
 
-            @SpireEnum
-            public static CardLibrary.LibraryType THE_UNNAMED;
+        public static class CardGroupType
+        {
+            @SpireEnum public static CardGroup.CardGroupType PURGED_CARDS;
         }
 
         public static class Screens
         {
-            @SpireEnum
-            public static AbstractDungeon.CurrentScreen EYB_SCREEN;
+            @SpireEnum public static AbstractDungeon.CurrentScreen EYB_SCREEN;
         }
 
         public static class Rewards
         {
-            @SpireEnum
-            public static RewardItem.RewardType SYNERGY_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType AURA_CARDS;
-
-            @SpireEnum
-            public static RewardItem.RewardType SPECIAL_GOLD;
+            @SpireEnum public static RewardItem.RewardType SYNERGY_CARDS;
+            @SpireEnum public static RewardItem.RewardType SPECIAL_CARDS;
+            @SpireEnum public static RewardItem.RewardType SPECIAL_GOLD;
         }
 
         public static class CardTags
         {
-            @SpireEnum
-            public static AbstractCard.CardTags TEMPORARY;
+            @SpireEnum public static AbstractCard.CardTags MARKED;
+            @SpireEnum public static AbstractCard.CardTags VOLATILE;
+            @SpireEnum public static AbstractCard.CardTags UNIQUE;
+            @SpireEnum public static AbstractCard.CardTags AUTOPLAYED;
+            @SpireEnum public static AbstractCard.CardTags AUTOPLAYED_COPY;
+            @SpireEnum public static AbstractCard.CardTags IGNORE_PEN_NIB;
+            @SpireEnum public static AbstractCard.CardTags ECHO;
+            @SpireEnum public static AbstractCard.CardTags PURGE;
+            @SpireEnum public static AbstractCard.CardTags DELAYED;
+            @SpireEnum public static AbstractCard.CardTags HASTE;
+            @SpireEnum public static AbstractCard.CardTags PURGING;
+            @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags SUMMON;
+            @SpireEnum public static AbstractCard.CardTags ATTACHMENT;
+            @SpireEnum public static AbstractCard.CardTags RECAST;
+            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+        }
 
-            @SpireEnum
-            public static AbstractCard.CardTags SHAPESHIFTER;
-
-            @SpireEnum
-            public static AbstractCard.CardTags SPELLCASTER;
-
-            @SpireEnum
-            public static AbstractCard.CardTags MARTIAL_ARTIST;
-
-            @SpireEnum
-            public static AbstractCard.CardTags UNIQUE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags VOIDBOUND;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IGNORE_PEN_NIB;
-
-            @SpireEnum
-            public static AbstractCard.CardTags ECHO;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags HASTE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags PURGING;
-
-            @SpireEnum
-            public static AbstractCard.CardTags LOYAL;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_STRIKE;
-
-            @SpireEnum
-            public static AbstractCard.CardTags IMPROVED_DEFEND;
+        public static class AttackEffect
+        {
+            @SpireEnum public static AbstractGameAction.AttackEffect GUNSHOT;
+            @SpireEnum public static AbstractGameAction.AttackEffect SHIELD_FROST;
+            @SpireEnum public static AbstractGameAction.AttackEffect DAGGER;
+            @SpireEnum public static AbstractGameAction.AttackEffect SPEAR;
+            @SpireEnum public static AbstractGameAction.AttackEffect PUNCH;
+            @SpireEnum public static AbstractGameAction.AttackEffect BITE;
+            @SpireEnum public static AbstractGameAction.AttackEffect CLAW;
+            @SpireEnum public static AbstractGameAction.AttackEffect DARK;
+            @SpireEnum public static AbstractGameAction.AttackEffect ICE;
         }
     }
 }

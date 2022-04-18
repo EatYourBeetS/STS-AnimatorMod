@@ -1,0 +1,33 @@
+
+{
+	"unnamed:AmplificationPower":
+	{
+		"DESCRIPTIONS": ["Take #b{0}% more #yAttack damage."],
+		"NAME": "Amplification"
+	},
+	"unnamed:AttachmentsPower":
+	{
+		"DESCRIPTIONS": ["."],
+		"NAME": "Attachments"
+	},
+	"unnamed:CleavingAttacksPower":
+	{
+		"DESCRIPTIONS": ["Attacks hit ALL enemies."],
+		"NAME": "Cleaving Attacks"
+	},
+	"unnamed:MarkedPower":
+	{
+		"DESCRIPTIONS": ["All #yDolls will target this enemy."],
+		"NAME": "Marked"
+	},
+	"unnamed:SummoningSicknessPower":
+	{
+		"DESCRIPTIONS": ["You can't #ySummon new #yDolls. Whenever you play a card, decrease [SK] by #b1."],
+		"NAME": "Summoning Sickness"
+	},
+	"unnamed:WitheringPower":
+	{
+		"DESCRIPTIONS": ["Deal #b{0}% less #yAttack damage. Reduce [Withering] stacks by #b{1}% each turn."],
+		"NAME": "Withering"
+	}
+}

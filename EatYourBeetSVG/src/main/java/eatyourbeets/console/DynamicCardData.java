@@ -160,7 +160,7 @@ public class DynamicCardData
         AnimatorCard ac = JUtils.SafeCast(card, AnimatorCard.class);
         if (ac != null)
         {
-            builder.SetSynergy(ac.synergy, ac.hasTag(AnimatorCard.SHAPESHIFTER));
+            builder.SetSeries(ac.series);
             data.Image = GR.GetCardImage(card.cardID);
         }
         else

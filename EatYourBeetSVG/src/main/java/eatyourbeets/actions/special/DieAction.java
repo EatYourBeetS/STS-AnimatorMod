@@ -33,7 +33,7 @@ public class DieAction extends EYBAction
                 m.die();
                 m.hideHealthBar();
 
-                if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+                if (GameUtilities.AreMonstersBasicallyDead())
                 {
                     AbstractDungeon.actionManager.cleanCardQueue();
                     GameEffects.List.Add(new DeckPoofEffect(64f * Settings.scale, 64f * Settings.scale, true));

@@ -4,42 +4,46 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.TemporaryEnvenomPower;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.replacement.TemporaryEnvenomPower;
 import eatyourbeets.utilities.GameActions;
 
 public class AcuraAkari extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(AcuraAkari.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
-    static
-    {
-        for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
-        {
-            DATA.AddPreview(knife, false);
-        }
-    }
+    public static final EYBCardData DATA = Register(AcuraAkari.class)
+            .SetAttack(1, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                for (ThrowingKnife knife : ThrowingKnife.GetAllCards())
+                {
+                    data.AddPreview(knife, false);
+                }
+            });
 
     public AcuraAkari()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetCostUpgrade(-1);
+        Initialize(4, 0, 1, 1);
+        SetUpgrade(1, 0, 1);
 
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DiscardFromHand(name, 2, false)
-        .SetOptions(false, false, false)
-        .AddCallback(() -> GameActions.Bottom.CreateThrowingKnives(magicNumber));
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetOptions(true, false, true)
+        .AddCallback(cards -> GameActions.Bottom.CreateThrowingKnives(cards.size()));
 
-        if (isSynergizing && CombatStats.TryActivateSemiLimited(cardID))
+        if (info.IsSynergizing && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

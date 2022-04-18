@@ -1,6 +1,8 @@
 package eatyourbeets.interfaces.subscribers;
 
-public interface OnLoseHpSubscriber
+import com.megacrit.cardcrawl.cards.DamageInfo;
+
+public interface OnLoseHPSubscriber
 {
-    int OnLoseHp(int damageAmount);
+    void OnLoseHP(DamageInfo info, int amount);
 }

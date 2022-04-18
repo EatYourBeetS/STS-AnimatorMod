@@ -1,49 +1,40 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorImages;
+import eatyourbeets.utilities.AdvancedTexture;
 import eatyourbeets.utilities.ColoredString;
-import eatyourbeets.utilities.ColoredTexture;
 import eatyourbeets.utilities.JUtils;
-
-import java.util.ArrayList;
 
 public abstract class AnimatorCard extends EYBCard
 {
-    protected static final Color defaultGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR;
-    protected static final Color synergyGlowColor = new Color(1, 0.843f, 0, 0.25f);
-    protected AnimatorCardCooldown cooldown;
+    protected static final AbstractPlayer.PlayerClass PLAYER_CLASS = GR.Animator.PlayerClass;
 
-    public static final AnimatorImages IMAGES = GR.Animator.Images;
-    public static final CardTags SHAPESHIFTER = GR.Enums.CardTags.SHAPESHIFTER;
-    public static final CardTags MARTIAL_ARTIST = GR.Enums.CardTags.MARTIAL_ARTIST;
-    public static final CardTags SPELLCASTER = GR.Enums.CardTags.SPELLCASTER;
-    public Synergy synergy;
+    public CardSeries series;
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName())).SetColor(GR.Animator.CardColor);
+        return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName()))
+        .SetColor(GR.Animator.CardColor).SetMetadataSource(GR.Animator.CardData);
     }
 
     protected AnimatorCard(EYBCardData cardData)
     {
         super(cardData, cardData.ID, cardData.ImagePath, cardData.BaseCost, cardData.CardType, cardData.CardColor, cardData.CardRarity, cardData.CardTarget.ToCardTarget());
 
+        canUpgrade = cardData.CardType != CardType.STATUS && cardData.CardType != CardType.CURSE;
+
         SetMultiDamage(cardData.CardTarget == EYBCardTarget.ALL);
         SetAttackTarget(cardData.CardTarget);
         SetAttackType(cardData.AttackType);
 
-        if (cardData.Synergy != null)
+        if (cardData.Series != null)
         {
-            SetSynergy(cardData.Synergy);
+            SetSeries(cardData.Series);
         }
     }
 
@@ -52,122 +43,16 @@ public abstract class AnimatorCard extends EYBCard
         super(data, id, imagePath, cost, type, color, rarity, target);
     }
 
-    public boolean HasSynergy()
+    public void SetSeries(CardSeries series)
     {
-        return Synergies.IsSynergizing(this) || WouldSynergize();
-    }
-
-    public boolean HasSynergy(AbstractCard other)
-    {
-        return Synergies.IsSynergizing(this) || WouldSynergize(other);
-    }
-
-    public boolean HasDirectSynergy(AbstractCard other)
-    {
-        if (synergy != null)
-        {
-            AnimatorCard card = JUtils.SafeCast(other, AnimatorCard.class);
-            if (card != null && synergy.equals(card.synergy))
-            {
-                return true;
-            }
-        }
-
-        return Synergies.HasTagSynergy(this, other);
-    }
-
-    public boolean WouldSynergize()
-    {
-        return Synergies.WouldSynergize(this);
-    }
-
-    public boolean WouldSynergize(AbstractCard other)
-    {
-        return Synergies.WouldSynergize(this, other);
-    }
-
-    public void SetSpellcaster()
-    {
-        SetTag(SPELLCASTER, true);
-    }
-
-    public void SetMartialArtist()
-    {
-        SetTag(MARTIAL_ARTIST, true);
-    }
-
-    public void SetShapeshifter()
-    {
-        SetTag(SHAPESHIFTER, true);
-    }
-
-    public void SetSynergy(Synergy synergy)
-    {
-        this.synergy = synergy;
-    }
-
-    public void SetCooldown(int baseCooldown, int cooldownUpgrade, ActionT1<AbstractMonster> onCooldownCompleted)
-    {
-        cooldown = new AnimatorCardCooldown(this, baseCooldown, cooldownUpgrade, onCooldownCompleted);
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        if (cooldown != null)
-        {
-            cooldown.ProgressCooldownAndTrigger(null);
-        }
-    }
-
-    @Override
-    public void triggerOnGlowCheck()
-    {
-        super.triggerOnGlowCheck();
-
-        this.glowColor = HasSynergy() ? synergyGlowColor : defaultGlowColor;
-    }
-
-    @Override
-    public void hover()
-    {
-        super.hover();
-
-        if (player != null && player.hand.contains(this))
-        {
-            for (AbstractCard c : player.hand.group)
-            {
-                if (c == this || WouldSynergize(c))
-                {
-                    c.transparency = 1f;
-                }
-                else
-                {
-                    c.transparency = 0.2f;
-                }
-            }
-        }
-    }
-
-    @Override
-    public void unhover()
-    {
-        if (hovered && player != null && player.hand.contains(this))
-        {
-            for (AbstractCard c : AbstractDungeon.player.hand.group)
-            {
-                c.transparency = 0.35f;
-            }
-        }
-
-        super.unhover();
+        this.series = series;
     }
 
     @Override
     public AbstractCard makeStatEquivalentCopy()
     {
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();
-        copy.synergy = synergy;
+        copy.series = series;
         return copy;
     }
 
@@ -175,63 +60,26 @@ public abstract class AnimatorCard extends EYBCard
     public final void use(AbstractPlayer p1, AbstractMonster m1)
     {
         JUtils.LogWarning(this, "AnimatorCard.use() should not be called");
-        boolean isSynergizing = Synergies.IsSynergizing(this);
-        OnUse(p1, m1, isSynergizing);
-        OnLateUse(p1, m1, isSynergizing);
+        final CardUseInfo info = new CardUseInfo(this, m1);
+
+        OnUse(p1, m1, info);
+        OnLateUse(p1, m1, info);
     }
 
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }
 
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
-    }
-
-    @Override
-    public void GenerateDynamicTooltips(ArrayList<EYBCardTooltip> dynamicTooltips)
-    {
-        super.GenerateDynamicTooltips(dynamicTooltips);
-
-        if (hasTag(SHAPESHIFTER))
-        {
-            dynamicTooltips.add(GR.Tooltips.Shapeshifter);
-        }
-        else if (hasTag(MARTIAL_ARTIST))
-        {
-            dynamicTooltips.add(GR.Tooltips.MartialArtist);
-        }
-        else if (hasTag(SPELLCASTER))
-        {
-            dynamicTooltips.add(GR.Tooltips.Spellcaster);
-        }
-    }
-
-    @Override
-    public ColoredString GetHeaderText()
-    {
-        return (synergy == null) ? null : new ColoredString(synergy.LocalizedName, Settings.CREAM_COLOR);
     }
 
     @Override
     public ColoredString GetBottomText()
     {
-        if (hasTag(SHAPESHIFTER))
-        {
-            return new ColoredString(GR.Tooltips.Shapeshifter.title, new Color(1f, 1f, 0.8f, transparency));
-        }
-        else if (hasTag(SPELLCASTER))
-        {
-            return new ColoredString(GR.Tooltips.Spellcaster.title, new Color(0.9f, 0.9f, 1f, transparency));
-        }
-        else if (hasTag(MARTIAL_ARTIST))
-        {
-            return new ColoredString(GR.Tooltips.MartialArtist.title, new Color(0.9f, 1f, 0.9f, transparency));
-        }
-
-        return null;
+        return (series == null) ? null : new ColoredString(series.LocalizedName, Settings.CREAM_COLOR);
     }
 
     @Override
@@ -241,18 +89,18 @@ public abstract class AnimatorCard extends EYBCard
         {
             switch (type)
             {
-                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK.Texture();
-                case POWER: return IMAGES.CARD_BACKGROUND_POWER.Texture();
-                default: return IMAGES.CARD_BACKGROUND_SKILL.Texture();
+                case ATTACK: return ANIMATOR_IMAGES.CARD_BACKGROUND_ATTACK.Texture();
+                case POWER: return ANIMATOR_IMAGES.CARD_BACKGROUND_POWER.Texture();
+                default: return ANIMATOR_IMAGES.CARD_BACKGROUND_SKILL.Texture();
             }
         }
-        else if (color == CardColor.COLORLESS)
+        else if (color == CardColor.COLORLESS || color == CardColor.CURSE)
         {
             switch (type)
             {
-                case ATTACK: return IMAGES.CARD_BACKGROUND_ATTACK_UR.Texture();
-                case POWER: return IMAGES.CARD_BACKGROUND_POWER_UR.Texture();
-                default: return IMAGES.CARD_BACKGROUND_SKILL_UR.Texture();
+                case ATTACK: return ANIMATOR_IMAGES.CARD_BACKGROUND_ATTACK_UR.Texture();
+                case POWER: return ANIMATOR_IMAGES.CARD_BACKGROUND_POWER_UR.Texture();
+                default: return ANIMATOR_IMAGES.CARD_BACKGROUND_SKILL_UR.Texture();
             }
         }
 
@@ -262,51 +110,42 @@ public abstract class AnimatorCard extends EYBCard
     @Override
     protected Texture GetEnergyOrb()
     {
-        if (color == GR.Animator.CardColor)
-        {
-            return IMAGES.CARD_ENERGY_ORB_A.Texture();
-        }
-
-        return null;
+        return (color == GR.Animator.CardColor ? ANIMATOR_IMAGES.CARD_ENERGY_ORB_ANIMATOR : ANIMATOR_IMAGES.CARD_ENERGY_ORB_COLORLESS).Texture();
     }
 
     @Override
-    protected ColoredTexture GetCardBanner()
+    protected AdvancedTexture GetCardBanner()
     {
-//        if (rarity == CardRarity.SPECIAL)
-//        {
-//            return IMAGES.CARD_BANNER_SPECIAL.Texture();
-//        }
-        return new ColoredTexture(IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
+        return new AdvancedTexture(ANIMATOR_IMAGES.CARD_BANNER_GENERIC.Texture(), GetRarityColor(false));
     }
 
     @Override
-    protected ColoredTexture GetPortraitFrame()
+    protected AdvancedTexture GetPortraitFrame()
     {
         switch (type)
         {
             case ATTACK:
-                return new ColoredTexture(IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(ANIMATOR_IMAGES.CARD_FRAME_ATTACK.Texture(), GetRarityColor(false));
 
             case POWER:
-                return new ColoredTexture(IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(ANIMATOR_IMAGES.CARD_FRAME_POWER.Texture(), GetRarityColor(false));
 
             case SKILL:
             case CURSE:
             case STATUS:
             default:
-                return new ColoredTexture(IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
+                return new AdvancedTexture(ANIMATOR_IMAGES.CARD_FRAME_SKILL.Texture(), GetRarityColor(false));
         }
     }
 
     @Override
     public ColoredString GetSecondaryValueString()
     {
-        if (cooldown != null)
-        {
-            return cooldown.GetSecondaryValueString();
-        }
+        return cooldown != null ? cooldown.GetSecondaryValueString() : super.GetSecondaryValueString();
+    }
 
-        return super.GetSecondaryValueString();
+    public boolean HasSynergy()
+    {
+        return affinities.GetLevel(Affinity.General) > 0;
     }
 }

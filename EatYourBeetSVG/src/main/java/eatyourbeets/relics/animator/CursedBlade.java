@@ -1,15 +1,26 @@
 package eatyourbeets.relics.animator;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.status.Status_Wound;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
 
 public class CursedBlade extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CursedBlade.class);
     public static final int BUFF_AMOUNT = 3;
+    public static final int HP_COST = 3;
+    public static final int DAMAGE_AND_COST_INCREASE = 2;
+    public static final int AOE_DAMAGE = 9;
 
     public CursedBlade()
     {
@@ -19,17 +30,7 @@ public class CursedBlade extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return JUtils.Format(DESCRIPTIONS[0], BUFF_AMOUNT);
-    }
-
-    @Override
-    public void atBattleStart()
-    {
-        super.atBattleStart();
-
-        GameActions.Bottom.GainForce(BUFF_AMOUNT);
-        GameActions.Bottom.GainAgility(BUFF_AMOUNT);
-        flash();
+        return FormatDescription(0, BUFF_AMOUNT) + " NL " + FormatDescription(1, HP_COST, AOE_DAMAGE, DAMAGE_AND_COST_INCREASE);
     }
 
     @Override
@@ -37,10 +38,52 @@ public class CursedBlade extends AnimatorRelic
     {
         if (info.type == DamageInfo.DamageType.NORMAL && damageAmount > player.currentBlock)
         {
-            GameActions.Bottom.MakeCardInHand(new Wound());
+            GameActions.Bottom.MakeCardInHand(new Status_Wound());
             flash();
         }
 
         return super.onAttacked(info, damageAmount);
+    }
+
+    @Override
+    protected void ActivateBattleEffect()
+    {
+        super.ActivateBattleEffect();
+
+        GameActions.Bottom.ApplyPower(new CursedBladePower(player, this));
+        GameActions.Bottom.GainAgility(BUFF_AMOUNT, true);
+        GameActions.Bottom.GainForce(BUFF_AMOUNT, true);
+        flash();
+    }
+
+    public static class CursedBladePower extends AnimatorClickablePower
+    {
+        public CursedBladePower(AbstractCreature owner, EYBRelic relic)
+        {
+            super(owner, relic, PowerTriggerConditionType.LoseMixedHP, HP_COST);
+
+            this.amount = CursedBlade.AOE_DAMAGE;
+            this.triggerCondition.SetUses(1, true, false);
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(1, triggerCondition.requiredAmount, amount, DAMAGE_AND_COST_INCREASE);
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            GameActions.Bottom.SFX(SFX.ATTACK_WHIRLWIND, 0.9f, 1.1f);
+            GameActions.Bottom.VFX(VFX.Whirlwind(Color.RED, false));
+            GameActions.Bottom.DealDamageToAll(DamageInfo.createDamageMatrix(amount, true),
+                    DamageInfo.DamageType.THORNS, AttackEffects.SLASH_HORIZONTAL);
+
+            this.triggerCondition.requiredAmount += DAMAGE_AND_COST_INCREASE;
+            this.amount += DAMAGE_AND_COST_INCREASE;
+        }
     }
 }

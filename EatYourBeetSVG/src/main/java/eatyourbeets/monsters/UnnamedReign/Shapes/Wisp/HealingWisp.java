@@ -14,7 +14,7 @@ public class HealingWisp extends Wisp
 
         moveset.Normal.Attack(3, tier.Add(2, 1));
 
-        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(0, 2))
+        moveset.Normal.Buff(PowerHelper.Strength, Math.max(2, tier.Add(0, 2)))
         .AddPower(PowerHelper.Artifact, 1);
     }
 

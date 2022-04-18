@@ -1,74 +1,108 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Entoma extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Entoma.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Entoma.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Piercing)
+            .SetSeriesFromClassPackage();
 
     public Entoma()
     {
         super(DATA);
 
-        Initialize(6, 0, 2);
-        SetUpgrade(1, 0, 0);
+        Initialize(5, 0, 2);
+        SetUpgrade(0, 0, 2);
 
-        SetUnique(true, true);
-        SetSynergy(Synergies.Overlord);
+        SetAffinity_Dark(1, 1, 1);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (timesUpgraded % 3 == 0)
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
+        .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration);
+        GameActions.Bottom.RetainPower(Affinity.Dark);
+        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+
+        if ((info.IsSynergizing || CheckAffinity(Affinity.Dark)) && !m.hasPower(EntomaPower.DeriveID(cardID)))
         {
-            upgradeMagicNumber(1);
+            GameActions.Bottom.ApplyPower(new EntomaPower(m, p, 1));
+        }
+    }
+
+    public static class EntomaPower extends AnimatorPower implements OnApplyPowerSubscriber
+    {
+        public EntomaPower(AbstractCreature owner, AbstractCreature source, int amount)
+        {
+            super(owner, source, Entoma.DATA);
+
+            this.maxAmount = 1;
+
+            Initialize(amount, PowerType.DEBUFF, false);
         }
 
-        upgradedMagicNumber = true;
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE)
-        .SetDamageEffect(e -> GameEffects.List.Add(new BiteEffect(e.hb.cX, e.hb.cY - 40f * Settings.scale, Color.SCARLET.cpy())))
-        .AddCallback(enemy ->
+        @Override
+        public void updateDescription()
         {
-            if (GameUtilities.IsFatal(enemy, true) && CombatStats.TryActivateLimited(cardID))
+            this.description = FormatDescription(0, amount, maxAmount);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onApplyPower.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onApplyPower.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+        {
+            if (target == owner && PoisonPower.POWER_ID.equals(power.ID))
             {
-                player.increaseMaxHp(2, false);
-
-                GameActions.Bottom.ModifyAllInstances(uuid, AbstractCard::upgrade)
-                .IncludeMasterDeck(true)
-                .IsCancellable(false);
+                GameActions.Bottom.GainTemporaryHP(amount);
+                flashWithoutSound();
             }
-        });
+        }
 
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
-    }
-
-    @Override
-    public void atTurnStart()
-    {
-        super.atTurnStart();
-
-        if (CombatStats.TurnCount(true) > 0 && baseDamage > 0)
+        @Override
+        public void wasHPLost(DamageInfo info, int damageAmount)
         {
-            GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - 1));
+            if (AbstractDungeon.actionManager.currentAction instanceof PoisonLoseHpAction)
+            {
+                GameActions.Bottom.GainTemporaryHP(amount);
+                flashWithoutSound();
+            }
+
+            super.wasHPLost(info, damageAmount);
         }
     }
 }

@@ -1,20 +1,20 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.BlockAttribute;
 import eatyourbeets.powers.animator.GazelDwargonPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class GazelDwargon extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(GazelDwargon.class).SetPower(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(GazelDwargon.class)
+            .SetPower(X_COST, CardRarity.UNCOMMON)
+            .SetSeriesFromClassPackage();
 
     public GazelDwargon()
     {
@@ -23,24 +23,25 @@ public class GazelDwargon extends AnimatorCard
         Initialize(0, 0, 4);
         SetUpgrade(0, 1, 0);
 
-        SetSynergy(Synergies.TenSura);
+        SetAffinity_Red(1);
     }
 
     @Override
     public AbstractAttribute GetBlockInfo()
     {
+        final AbstractAttribute result = super.GetBlockInfo();
         if (upgraded)
         {
-            return BlockAttribute.Instance.SetCard(this).SetText("X+" + baseBlock, Settings.CREAM_COLOR);
+            result.mainText.SetText("X+" + result.mainText.text);
         }
 
-        return super.GetBlockInfo();
+        return result;
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        int stacks = GameUtilities.UseXCostEnergy(this);
+        final int stacks = GameUtilities.UseXCostEnergy(this);
         if (stacks > 0)
         {
             GameActions.Bottom.GainPlatedArmor(stacks);
@@ -49,7 +50,7 @@ public class GazelDwargon extends AnimatorCard
 
         if (upgraded)
         {
-            GameActions.Bottom.GainBlock(stacks + baseBlock);
+            GameActions.Bottom.GainBlock(stacks + block);
         }
     }
 }

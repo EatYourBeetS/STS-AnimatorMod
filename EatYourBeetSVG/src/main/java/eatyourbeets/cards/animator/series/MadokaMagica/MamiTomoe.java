@@ -1,88 +1,63 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.MindblastEffect;
-import eatyourbeets.cards.animator.curse.Curse_GriefSeed;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.animator.curse.special.Curse_GriefSeed;
+import eatyourbeets.cards.animator.special.MamiTomoe_Candeloro;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 
 public class MamiTomoe extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MamiTomoe.class).SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Ranged);
-    static
-    {
-        DATA.AddPreview(new Curse_GriefSeed(), false);
-    }
+    public static final EYBCardData DATA = Register(MamiTomoe.class)
+            .SetAttack(2, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.MadokaMagica_Witch(MamiTomoe_Candeloro.DATA));
+                data.AddPreview(new MamiTomoe_Candeloro(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+            });
 
     public MamiTomoe()
     {
         super(DATA);
 
-        Initialize(9, 0, 1, 1);
-        SetUpgrade(2, 0, 0, 0);
-        SetScaling(1, 0, 0);
+        Initialize(7, 0, 1);
+        SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Light(2);
+
+        SetCardPreview(c -> c.costForTurn == 0);
     }
 
     @Override
-    public void triggerWhenDrawn()
+    public void triggerOnManualDiscard()
     {
-        super.triggerWhenDrawn();
+        super.triggerOnManualDiscard();
 
-        GameActions.Bottom.MakeCardInDiscardPile(new Curse_GriefSeed());
-        GameActions.Bottom.Flash(this);
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
+        }
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.Refresh(enemy);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT)
+        .SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.6f);
+        GameActions.Bottom.Draw(magicNumber)
+        .SetFilter(c -> c.costForTurn == 0, false);
 
-        int count = 0;
-        String id = Curse_GriefSeed.DATA.ID;
-        if (player.drawPile.findCardById(id) != null)
+        if (info.IsSynergizing)
         {
-            count += 1;
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
         }
-        if (player.discardPile.findCardById(id) != null)
-        {
-            count += 1;
-        }
-        if (player.exhaustPile.findCardById(id) != null)
-        {
-            count += 1;
-        }
-
-        magicNumber = baseMagicNumber + count;
-    }
-
-    @Override
-    public AbstractAttribute GetDamageInfo()
-    {
-        return super.GetDamageInfo().AddMultiplier(magicNumber);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.SFX("ATTACK_HEAVY");
-        GameActions.Bottom.VFX(new MindblastEffect(p.dialogX, p.dialogY, p.flipHorizontal), 0.05f * magicNumber);
-
-        for (int i = 0; i < magicNumber; i++)
-        {
-            GameActions.Bottom.SFX("ATTACK_FIRE");
-            GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        }
-
-        GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.LONG, ScreenShake.ShakeIntensity.MED));
     }
 }

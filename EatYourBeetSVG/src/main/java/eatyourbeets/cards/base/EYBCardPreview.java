@@ -12,32 +12,36 @@ import eatyourbeets.utilities.RenderHelpers;
 
 public class EYBCardPreview
 {
-    public EYBCardBase defaultPreview;
-    public EYBCardBase upgradedPreview;
+    public EYBCard defaultPreview;
+    public EYBCard upgradedPreview;
     public boolean isMultiPreview;
 
-    public EYBCardPreview(EYBCardBase card, boolean upgrade)
+    public EYBCardPreview(EYBCard card, boolean upgrade)
     {
         this.defaultPreview = card;
         this.defaultPreview.isPreview = true;
 
         if (upgrade)
         {
-            this.upgradedPreview = (EYBCardBase) defaultPreview.makeStatEquivalentCopy();
+            this.upgradedPreview = (EYBCard) defaultPreview.makeStatEquivalentCopy();
             this.upgradedPreview.isPreview = true;
             this.upgradedPreview.upgrade();
-            this.upgradedPreview.displayUpgrades();
         }
     }
 
-    public EYBCardBase GetPreview(boolean upgraded)
+    public EYBCard GetPreview(boolean upgraded)
     {
         return upgraded && upgradedPreview != null ? upgradedPreview : defaultPreview;
     }
 
-    public void Render(SpriteBatch sb, EYBCardBase card, boolean upgraded)
+    public void Render(SpriteBatch sb, EYBCard card, boolean upgraded)
     {
-        EYBCardBase preview = GetPreview(upgraded);
+        final EYBCard preview = GetPreview(upgraded);
+
+        if (upgraded)
+        {
+            preview.displayUpgrades(card.affinities.displayUpgrades);
+        }
 
         if (card.isPopup)
         {
@@ -59,10 +63,10 @@ public class EYBCardPreview
 
         if (isMultiPreview)
         {
-            String cyclePreviewText = GR.Animator.Strings.Misc.PressControlToCycle;
-            BitmapFont font = RenderHelpers.GetDescriptionFont(preview, 0.9f);
+            final String cyclePreviewText = GR.Animator.Strings.Misc.PressControlToCycle;
+            final BitmapFont font = RenderHelpers.GetDescriptionFont(preview, 0.9f);
             RenderHelpers.DrawOnCardAuto(sb, preview, GR.Common.Images.Panel.Texture(), new Vector2(0, -AbstractCard.RAW_H * 0.55f),
-            AbstractCard.IMG_WIDTH * 0.6f, font.getLineHeight() * 1.8f, Color.DARK_GRAY, 0.75f, 1);
+            AbstractCard.RAW_W * 0.6f, font.getLineHeight() * 1.6f / Settings.scale, Color.DARK_GRAY, 0.75f, 1);
             RenderHelpers.WriteOnCard(sb, preview, font, cyclePreviewText, 0, -AbstractCard.RAW_H * 0.55f, Color.MAGENTA);
             RenderHelpers.ResetFont(font);
         }

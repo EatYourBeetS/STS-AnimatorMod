@@ -1,76 +1,57 @@
 package eatyourbeets.cards.animator.series.MadokaMagica;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.curse.special.Curse_GriefSeed;
+import eatyourbeets.cards.animator.special.MadokaKaname_KriemhildGretchen;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
 public class MadokaKaname extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(MadokaKaname.class).SetSkill(2, CardRarity.RARE, EYBCardTarget.None);
-
-    private static final int HEAL_AMOUNT = 3;
+    public static final EYBCardData DATA = Register(MadokaKaname.class)
+            .SetSkill(2, CardRarity.RARE, EYBCardTarget.None)
+            .SetMaxCopies(1)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPopupAction(new EYBCardPopupActions.MadokaMagica_Witch(MadokaKaname_KriemhildGretchen.DATA));
+                data.AddPreview(new MadokaKaname_KriemhildGretchen(), true);
+                data.AddPreview(new Curse_GriefSeed(), false);
+                data.AddPreview(AffinityToken.GetCard(Affinity.Light), true);
+            });
 
     public MadokaKaname()
     {
         super(DATA);
 
-        Initialize(0, 0, 3, 0);
-        SetUpgrade(0, 0, 1, 0);
-        SetHealing(true);
-        SetPurge(true);
+        Initialize(0, 0, 2, 3);
 
-        SetSynergy(Synergies.MadokaMagica);
+        SetAffinity_Blue(1);
+        SetAffinity_Light(2);
+
+        SetAffinityRequirement(Affinity.Light, 5);
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.Refresh(enemy);
+        GameActions.Bottom.GainTemporaryArtifact(magicNumber);
+        GameActions.Bottom.ObtainAffinityToken(Affinity.Light, upgraded)
+        .AddCallback(c -> GameActions.Bottom.Motivate(c, 1));
 
-        GameUtilities.ModifySecondaryValue(this,
-        JUtils.Count(player.drawPile.group, c -> c.type == CardType.CURSE) +
-        JUtils.Count(player.discardPile.group, c -> c.type == CardType.CURSE) +
-        JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE), false);
-    }
-
-    @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
-    {
-        super.triggerOnOtherCardPlayed(c);
-
-        if (player.hand.contains(this) && c.hasTag(SPELLCASTER))
+        if (CheckAffinity(Affinity.Light) && info.TryActivateLimited())
         {
-            GameActions.Bottom.GainTemporaryHP(1);
-            GameActions.Bottom.Flash(this);
+            GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
+            GameActions.Bottom.ExhaustFromPile(name, 999, p.drawPile, p.hand, p.discardPile)
+            .ShowEffect(true, true)
+            .SetOptions(true, true)
+            .SetFilter(c -> c.type == CardType.CURSE)
+            .AddCallback(cards -> GameActions.Bottom.GainIntangible(secondaryValue));
         }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.ExhaustFromPile(name, magicNumber, p.drawPile, p.hand, p.discardPile)
-        .ShowEffect(true, true)
-        .SetOptions(true, true)
-        .SetFilter(c -> c.type == CardType.CURSE)
-        .AddCallback(cards ->
-        {
-            if (cards.size() > 0)
-            {
-                for (int i = 0; i < cards.size(); i++)
-                {
-                    GameActions.Bottom.Heal(HEAL_AMOUNT);
-                }
-                GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
-            }
-        });
     }
 }

@@ -10,11 +10,11 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.*;
 import com.megacrit.cardcrawl.relics.*;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
@@ -67,7 +67,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
 
         HardCodedStuff_SneckoSkull();
 
-        if (AbstractDungeon.getMonsters().areMonstersBasicallyDead())
+        if (GameUtilities.AreMonstersBasicallyDead())
         {
             Complete();
             return;
@@ -140,7 +140,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return;
         }
 
-        if (shouldCancelAction() || HardCodedStuff_NoDraw() || !GameUtilities.CanApplyPower(source, target, powerToApply))
+        if (shouldCancelAction() || HardCodedStuff_NoDraw() || !GameUtilities.CanApplyPower(source, target, powerToApply, this))
         {
             Complete(callbackResult);
             return;
@@ -192,6 +192,8 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             }
         }
 
+        CombatStats.OnApplyPower(source, target, powerToApply);
+
         if (showEffect)
         {
             GameEffects.List.Add(new FlashAtkImgEffect(target.hb.cX, target.hb.cY, attackEffect));
@@ -205,6 +207,8 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             AddPower();
         }
+
+        AbstractDungeon.onModifyPower();
     }
 
     @Override
@@ -214,6 +218,12 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         {
             Complete(callbackResult);
         }
+    }
+
+    @Override
+    protected boolean shouldCancelAction()
+    {
+        return GameUtilities.AreMonstersBasicallyDead() || super.shouldCancelAction();
     }
 
     private void StackPower(AbstractPower power)
@@ -256,13 +266,12 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         }
 
         power.updateDescription();
-        AbstractDungeon.onModifyPower();
     }
 
     private void AddPower()
     {
         callbackResult = powerToApply;
-        target.powers.add(powerToApply);
+        target.addPower(powerToApply);
 
         Collections.sort(target.powers);
 
@@ -286,25 +295,6 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
                 GameEffects.List.Add(new PowerDebuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, powerToApply.name));
             }
         }
-
-        AbstractDungeon.onModifyPower();
-        if (target.isPlayer)
-        {
-            int buffCount = 0;
-
-            for (AbstractPower pw : target.powers)
-            {
-                if (pw.type == AbstractPower.PowerType.BUFF)
-                {
-                    buffCount += 1;
-                }
-            }
-
-            if (buffCount >= 10)
-            {
-                UnlockTracker.unlockAchievement("POWERFUL");
-            }
-        }
     }
 
     @Override
@@ -323,7 +313,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
             return false;
         }
 
-        AbstractPower artifact = target.getPower(ArtifactPower.POWER_ID);
+        final AbstractPower artifact = target.getPower(ArtifactPower.POWER_ID);
         if (artifact != null)
         {
             GameActions.Top.Add(new TextAboveCreatureAction(target, TEXT[0]));

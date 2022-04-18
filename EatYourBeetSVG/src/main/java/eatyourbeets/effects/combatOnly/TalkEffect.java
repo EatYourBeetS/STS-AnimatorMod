@@ -86,7 +86,8 @@ public class TalkEffect extends EYBEffect
             appearEffect = DialogWord.AppearEffect.BUMP_IN;
         }
 
-        GameEffects.Queue.Add(new SpeechTextEffect(source_x, source_y, duration, message, appearEffect));
+        (GameEffects.TopLevelList.GetList().contains(this) ? GameEffects.TopLevelQueue : GameEffects.Queue)
+        .Add(new SpeechTextEffect(source_x, source_y, duration, message, appearEffect));
     }
 
     @Override

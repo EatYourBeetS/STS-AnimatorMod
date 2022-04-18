@@ -32,7 +32,7 @@ public class CreateThrowingKnives extends EYBActionWithCallback<AbstractCard>
         final int max = Math.min(amount, BaseMod.MAX_HAND_SIZE - player.hand.size());
         for (int i = 0; i < max; i++)
         {
-            GameActions.Top.MakeCard(ThrowingKnife.GetRandomCard(), player.hand)
+            GameActions.Top.MakeCard(ThrowingKnife.GetRandomCardInBattle(), player.hand)
             .SetUpgrade(upgraded, false).CancelIfFull(true)
             .AddCallback((ActionT1<AbstractCard>) this::Complete)
             .SetDuration(Settings.ACTION_DUR_FASTER, false);

@@ -66,7 +66,7 @@ public class UnlockTrackerPatches
     private static final String key_current_cost = base + "CurrentCost";
     private static final String key_total_score = base + "TotalScore";
     private static final String key_high_score = base + "HighScore";
-
+    
     public static void Validate()
     {
         final float progress = UnlockTracker.getCurrentProgress(GR.Animator.PlayerClass);
@@ -89,7 +89,7 @@ public class UnlockTrackerPatches
             }
         }
     }
-
+    
     @SpirePatch(clz = UnlockTracker.class, method = "addScore", paramtypez = {AbstractPlayer.PlayerClass.class, int.class})
     public static class UnlockTracker_addScore
     {

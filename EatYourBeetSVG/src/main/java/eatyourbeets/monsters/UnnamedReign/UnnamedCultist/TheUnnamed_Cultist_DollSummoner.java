@@ -1,11 +1,12 @@
 package eatyourbeets.monsters.UnnamedReign.UnnamedCultist;
 
-import com.megacrit.cardcrawl.cards.status.VoidCard;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.special.SendMinionsAway;
+import eatyourbeets.cards.animator.status.Status_Void;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.monsters.UnnamedReign.UnnamedDoll.TheUnnamed_Doll;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.monsters.TheUnnamedCultistPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -38,7 +39,11 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
         moveset.Normal.Attack(9, 2)
         .SetDamageScaling(0.2f);
 
-        moveset.Normal.ShuffleCard(new VoidCard(), 3);
+        moveset.Normal.ShuffleCard(new Status_Void(), 3);
+
+        moveset.Normal.DefendDebuff(9, PowerHelper.Frail, 1)
+        .SetBlockScaling(0.2f)
+        .SetUses(1);
     }
 
     @Override
@@ -46,7 +51,7 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
     {
         super.usePreBattleAction();
 
-        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 12));
+        GameActions.Bottom.StackPower(new TheUnnamedCultistPower(this, 6));
         GameActions.Bottom.WaitRealtime(0.2f);
         GameActions.Bottom.Talk(this, STRINGS.DIALOG[5], 1f, 2.5f);
     }
@@ -67,16 +72,16 @@ public class TheUnnamed_Cultist_DollSummoner extends TheUnnamed_Cultist
             if (historySize == 0)
             {
                 moveTalk.SetMisc(6);
-                moveTalk.Select();
+                moveTalk.Select(false);
             }
             else if (historySize == 1)
             {
                 moveTalk.SetMisc(8);
-                moveTalk.Select();
+                moveTalk.Select(false);
             }
             else
             {
-                moveSummonEnemy.Select();
+                moveSummonEnemy.Select(false);
             }
         }
         else

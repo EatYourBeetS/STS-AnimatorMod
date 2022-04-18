@@ -1,19 +1,21 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.TempHPAttribute;
-import eatyourbeets.powers.animator.EnvyPower;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Envy extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Envy.class).SetPower(2, CardRarity.RARE);
+    public static final EYBCardData DATA = Register(Envy.class)
+            .SetPower(2, CardRarity.RARE)
+            .SetSeriesFromClassPackage();
+    public static final int TEMP_HP_ENERGY_COST = 2;
 
     public Envy()
     {
@@ -21,15 +23,9 @@ public class Envy extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetEthereal(true);
-        SetSynergy(Synergies.FullmetalAlchemist);
-        SetShapeshifter();
-    }
+        SetAffinity_Star(1, 1, 0);
 
-    @Override
-    public AbstractAttribute GetSpecialInfo()
-    {
-        return (magicNumber > 0) ? TempHPAttribute.Instance.SetCard(this, true) : null;
+        SetEthereal(true);
     }
 
     @Override
@@ -39,22 +35,93 @@ public class Envy extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        GameUtilities.ModifyMagicNumber(this, Math.floorDiv(player.maxHealth - player.currentHealth, 5), true);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.StackPower(new EnvyPower(p, 1));
+    }
 
-        int tempHP = Math.floorDiv(p.maxHealth - p.currentHealth, 5);
-        if (tempHP > 0)
+    public static class EnvyPower extends AnimatorClickablePower
+    {
+        private int vitality;
+
+        public EnvyPower(AbstractPlayer owner, int amount)
         {
-            GameActions.Bottom.GainTemporaryHP(tempHP);
+            super(owner, Envy.DATA, PowerTriggerConditionType.Energy, Envy.TEMP_HP_ENERGY_COST);
+
+            triggerCondition.SetUses(1, true, false);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void update(int slot)
+        {
+            super.update(slot);
+
+            if (GR.UI.Elapsed25())
+            {
+                UpdateVitality();
+            }
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(0, vitality, amount);
+        }
+
+        @Override
+        public void atStartOfTurnPostDraw()
+        {
+            super.atStartOfTurnPostDraw();
+
+            GameActions.Last.Callback(() ->
+            {
+                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
+                .SetFilter(EnvyPower::HasUpgradableAffinities);
+                flash();
+            });
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            UpdateVitality();
+            GameActions.Bottom.GainVitality(vitality);
+        }
+
+        private void UpdateVitality()
+        {
+            final int newValue = GameUtilities.GetHealthPercentage(player) < 0.25f ? 2 : 1;
+            if (newValue != vitality)
+            {
+                vitality = newValue;
+                updateDescription();
+            }
+        }
+
+        private static boolean HasUpgradableAffinities(AbstractCard c)
+        {
+            final EYBCardAffinities a = GameUtilities.GetAffinities(c);
+            if (a != null)
+            {
+                if (a.Star != null && a.Star.level == 1)
+                {
+                    return true;
+                }
+
+                for (EYBCardAffinity affinity : a.List)
+                {
+                    if (affinity.level == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

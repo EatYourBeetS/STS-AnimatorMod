@@ -1,6 +1,5 @@
 package eatyourbeets.effects.vfx;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -11,10 +10,13 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.utilities.Colors;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class ColoredSweepingBeamEffect extends EYBEffect
 {
+    protected static final Color SECONDARY_COLOR = new Color(0.3f, 0.3f, 1f, 1f);
+
     private final float sX;
     private final float sY;
     private float dX;
@@ -48,9 +50,9 @@ public class ColoredSweepingBeamEffect extends EYBEffect
         this.startingDuration = DUR;
     }
 
-    public void update()
+    @Override
+    protected void UpdateInternal(float deltaTime)
     {
-        this.duration -= Gdx.graphics.getDeltaTime();
         if (this.isFlipped)
         {
             this.dX = (float) Settings.WIDTH / 2f * Interpolation.pow3Out.apply(this.duration);
@@ -75,11 +77,7 @@ public class ColoredSweepingBeamEffect extends EYBEffect
             this.color.a = Interpolation.pow2Out.apply(0f, 1f, this.duration * 4f);
         }
 
-        if (this.duration < 0f)
-        {
-            this.isDone = true;
-        }
-
+        super.UpdateInternal(deltaTime);
     }
 
     public void render(SpriteBatch sb)
@@ -87,7 +85,7 @@ public class ColoredSweepingBeamEffect extends EYBEffect
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
         sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f + 10f * Settings.scale, 0f, (float) img.packedHeight / 2f, this.dst, 50f, this.scale + Random(-0.01f, 0.01f), this.scale, this.rotation);
-        sb.setColor(new Color(0.3f, 0.3f, 1f, this.color.a));
+        sb.setColor(Colors.Lerp(color, SECONDARY_COLOR, 0.5f, color.a));//new Color(0.3f, 0.3f, 1f, this.color.a));
         sb.draw(img, this.sX, this.sY - (float) img.packedHeight / 2f, 0f, (float) img.packedHeight / 2f, this.dst, Random(50f, 90f), this.scale + Random(-0.02f, 0.02f), this.scale, this.rotation);
         sb.setBlendFunction(770, 771);
     }

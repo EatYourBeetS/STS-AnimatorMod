@@ -1,18 +1,22 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.JuggernautPower;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
 public class SirTouchMe extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(SirTouchMe.class).SetAttack(2, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(SirTouchMe.class)
+            .SetAttack(2, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Overlord);
 
     public SirTouchMe()
     {
@@ -20,16 +24,16 @@ public class SirTouchMe extends AnimatorCard_UltraRare
 
         Initialize(4, 4, 4, 3);
         SetUpgrade(2, 2, 2, 0);
-        SetScaling(0, 0, 2);
-
-        SetSynergy(Synergies.Overlord);
+        
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Light(2, 0, 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
         GameActions.Bottom.StackPower(new JuggernautPower(p, magicNumber));
     }
 

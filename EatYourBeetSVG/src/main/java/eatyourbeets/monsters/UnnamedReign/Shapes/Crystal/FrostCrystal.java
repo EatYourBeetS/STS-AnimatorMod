@@ -13,7 +13,7 @@ public class FrostCrystal extends Crystal
     {
         super(MonsterElement.Frost, tier, x, y);
 
-        moveset.Normal.ShuffleCard(new Crystallize(), 3);
+        moveset.Normal.ShuffleCard(new Crystallize(), tier.Add(1, 2));
 
         moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 1));
 

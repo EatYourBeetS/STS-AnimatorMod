@@ -1,28 +1,63 @@
 package eatyourbeets.actions.orbs;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import eatyourbeets.actions.EYBAction;
+import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.interfaces.delegates.FuncT1;
+import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
 
-public class TriggerOrbPassiveAbility extends EYBAction
+import java.util.ArrayList;
+
+public class TriggerOrbPassiveAbility extends EYBActionWithCallback<ArrayList<AbstractOrb>>
 {
-    protected boolean isRandom;
+    protected final ArrayList<AbstractOrb> orbs = new ArrayList<>();
+    protected GenericCondition<AbstractOrb> filter;
     protected boolean isSequential;
+    protected boolean isRandom;
+    protected AbstractOrb orb;
 
     public TriggerOrbPassiveAbility(int times)
     {
-        this(times, false, false);
+        this(times, false, false, null);
     }
 
-    public TriggerOrbPassiveAbility(int times, boolean random, boolean sequential)
+    public TriggerOrbPassiveAbility(AbstractOrb orb, int times)
+    {
+        this(times, false, false, orb);
+    }
+
+    public TriggerOrbPassiveAbility(int times, boolean random, boolean sequential, AbstractOrb orb)
     {
         super(ActionType.WAIT);
 
-        isRandom = random;
-        isSequential = sequential;
+        this.isRandom = random;
+        this.isSequential = sequential;
+        this.orb = orb;
 
         Initialize(times);
+    }
+
+    public TriggerOrbPassiveAbility SetFilter(FuncT1<Boolean, AbstractOrb> filter)
+    {
+        this.filter = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> TriggerOrbPassiveAbility SetFilter(S state, FuncT2<Boolean, S, AbstractOrb> filter)
+    {
+        this.filter = GenericCondition.FromT2(filter, state);
+
+        return this;
+    }
+
+    public TriggerOrbPassiveAbility SetOrb(AbstractOrb orb)
+    {
+        this.orb = orb;
+
+        return this;
     }
 
     public TriggerOrbPassiveAbility SetRandom(boolean random)
@@ -44,55 +79,77 @@ public class TriggerOrbPassiveAbility extends EYBAction
     {
         if (player.orbs == null || player.orbs.isEmpty())
         {
-            Complete();
+            Complete(orbs);
             return;
         }
 
-        AbstractOrb orb;
-        if (isRandom)
+        if (orb != null)
         {
-            RandomizedList<AbstractOrb> randomOrbs = new RandomizedList<>();
+            TriggerPassiveEffect(orb, amount);
+        }
+        else if (isRandom)
+        {
+            final RandomizedList<AbstractOrb> randomOrbs = new RandomizedList<>();
             for (AbstractOrb temp : player.orbs)
             {
-                if (GameUtilities.IsValidOrb(temp))
+                if (IsValidOrb(temp))
                 {
                     randomOrbs.Add(temp);
                 }
             }
 
-            for (int i = 0; i < amount; i++)
+            final int max = Math.min(randomOrbs.Size(), amount);
+            for (int i = 0; i < max; i++)
             {
-                orb = randomOrbs.Retrieve(rng);
-                orb.onStartOfTurn();
-                orb.onEndOfTurn();
+                TriggerPassiveEffect(randomOrbs.Retrieve(rng), 1);
             }
         }
         else if (isSequential)
         {
-            int max = Math.min(player.orbs.size(), amount);
-            for (int i = 1; i <= max; i++)
+            int i = 0;
+            int orbs = 0;
+            while (orbs < amount && i < player.orbs.size())
             {
-                orb = player.orbs.get(i - 1);
-                if (GameUtilities.IsValidOrb(orb))
+                final AbstractOrb orb = player.orbs.get(i++);
+                if (IsValidOrb(orb))
                 {
-                    orb.onStartOfTurn();
-                    orb.onEndOfTurn();
+                    TriggerPassiveEffect(orb, 1);
+                    orbs += 1;
                 }
             }
         }
         else
         {
-            orb = player.orbs.get(0);
-            if (GameUtilities.IsValidOrb(orb))
+            int i = 0;
+            while (i < player.orbs.size())
             {
-                for (int i = 0; i < amount; i++)
+                final AbstractOrb orb = player.orbs.get(i++);
+                if (IsValidOrb(orb))
                 {
-                    orb.onStartOfTurn();
-                    orb.onEndOfTurn();
+                    TriggerPassiveEffect(orb, amount);
+                    break;
                 }
             }
         }
 
-        Complete();
+        Complete(orbs);
+    }
+
+    protected void TriggerPassiveEffect(AbstractOrb orb, int times)
+    {
+        if (IsValidOrb(orb))
+        {
+            for (int i = 0; i < times; i++)
+            {
+                orb.onStartOfTurn();
+                orb.onEndOfTurn();
+                orbs.add(orb);
+            }
+        }
+    }
+
+    protected boolean IsValidOrb(AbstractOrb orb)
+    {
+        return GameUtilities.IsValidOrb(orb) && (filter == null || filter.Check(orb));
     }
 }

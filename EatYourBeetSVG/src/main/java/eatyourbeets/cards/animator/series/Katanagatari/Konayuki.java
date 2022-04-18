@@ -1,44 +1,46 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Konayuki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Konayuki.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Konayuki.class)
+            .SetSkill(1, CardRarity.COMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     public Konayuki()
     {
         super(DATA);
 
-        Initialize(0, 5, 3, 1);
-        SetUpgrade(0, 3, 0, 0);
+        Initialize(0, 0, 3, 12);
+        SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Katanagatari);
+        SetAffinity_Red(2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void triggerOnExhaust()
     {
-        GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainForce(magicNumber)
-        .AddCallback(force ->
+        super.triggerOnExhaust();
+
+        GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainForce(magicNumber);
+        CombatStats.Affinities.GetPower(Affinity.Red).SetMaximumAmount(secondaryValue);
+
+        if (info.IsSynergizing)
         {
-            if (force.amount >= 10 && CombatStats.TryActivateLimited(cardID))
-            {
-                GameEffects.Queue.ShowCardBriefly(this.makeStatEquivalentCopy());
-                GameActions.Bottom.DealDamageToRandomEnemy(40, damageTypeForTurn, AbstractGameAction.AttackEffect.BLUNT_HEAVY)
-                .SetOptions(false, false, false)
-                .SetPiercing(true, false);
-            }
-        });
+            GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true);
+        }
     }
 }

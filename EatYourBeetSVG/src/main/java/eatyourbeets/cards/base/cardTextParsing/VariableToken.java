@@ -2,28 +2,40 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class VariableToken extends CTToken
 {
     private final char variableID;
+    private ColoredString coloredString;
 
-    static final Map<Character, VariableToken> tokenCache = new HashMap<>();
+    static final ArrayList<Character> validTokens = new ArrayList<>();
     static
     {
-        tokenCache.put('D', new VariableToken('D'));
-        tokenCache.put('M', new VariableToken('M'));
-        tokenCache.put('B', new VariableToken('B'));
-        tokenCache.put('S', new VariableToken('S'));
+        validTokens.add('D');
+        validTokens.add('M');
+        validTokens.add('B');
+        validTokens.add('S');
+        validTokens.add('A');
+        validTokens.add('K');
+    }
+
+    private static VariableToken TryCreateToken(Character c)
+    {
+        return validTokens.contains(c) ? new VariableToken(c) : null;
     }
 
     private VariableToken(char variableID)
     {
         super(CTTokenType.Variable, null);
+
+        this.coloredString = new ColoredString(null, null);
         this.variableID = variableID;
     }
 
@@ -31,7 +43,7 @@ public class VariableToken extends CTToken
     {
         if (parser.character == '!' && parser.CompareNext(2, '!'))
         {
-            VariableToken token = tokenCache.get(parser.NextCharacter(1));
+            final VariableToken token = TryCreateToken(parser.NextCharacter(1));
             if (token != null)
             {
                 parser.AddToken(token);
@@ -63,6 +75,59 @@ public class VariableToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        super.Render(sb, context, RenderHelpers.GetCardAttributeString(context.card, variableID));
+        if (coloredString.text == null || GR.UI.Elapsed25())
+        {
+            UpdateString(context);
+        }
+
+        super.Render(sb, context, coloredString);
+    }
+
+    private void UpdateString(CTContext context)
+    {
+        if (variableID == 'A')
+        {
+            int i = 1;
+            boolean requireAll = true;
+            final CTLine line = context.lines.get(context.lineIndex);
+            final ArrayList<Affinity> types = new ArrayList<>();
+            while (true)
+            {
+                final CTToken next = line.Get(line.tokenIndex + (i++));
+                if (next instanceof SymbolToken)
+                {
+                    Affinity t = Affinity.FromTooltip(((SymbolToken) next).tooltip);
+                    if (t != null)
+                    {
+                        types.add(t);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else if (next instanceof WordToken)
+                {
+                    if (next.rawText.equals("or"))
+                    {
+                        requireAll = false;
+                    }
+                    else if (!next.rawText.equals("and"))
+                    {
+                        break;
+                    }
+                }
+                else if (!(next instanceof WhitespaceToken) && !next.rawText.equals(","))
+                {
+                    break;
+                }
+            }
+
+            coloredString = context.card.GetAffinityString(types, requireAll);
+        }
+        else
+        {
+            coloredString = RenderHelpers.GetCardAttributeString(context.card, variableID);
+        }
     }
 }

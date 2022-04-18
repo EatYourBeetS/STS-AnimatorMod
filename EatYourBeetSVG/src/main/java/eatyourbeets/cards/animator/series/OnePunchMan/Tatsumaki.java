@@ -1,58 +1,71 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.orbs.animator.Aether;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
 public class Tatsumaki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Tatsumaki.class).SetSkill(2, CardRarity.COMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Tatsumaki.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Tatsumaki()
     {
         super(DATA);
 
         Initialize(0, 0, 1);
+        SetUpgrade(0, 0, 1);
+
+        SetAffinity_Blue(2);
 
         SetEvokeOrbCount(1);
-        SetSynergy(Synergies.OnePunchMan);
-        SetEthereal(true);
     }
 
     @Override
-    protected void OnUpgrade()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        SetEthereal(false);
+        GameActions.Bottom.ChannelOrb(new Aether());
+        GameActions.Bottom.GainTemporaryStats(0, 0, magicNumber);
+        GameActions.Bottom.StackPower(new TatsumakiPower(p));
     }
 
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public static class TatsumakiPower extends AnimatorClickablePower
     {
-        if (IntellectStance.IsActive())
+        public TatsumakiPower(AbstractCreature owner)
         {
-            GameActions.Bottom.GainOrbSlots(1);
+            super(owner, Tatsumaki.DATA, PowerTriggerConditionType.Energy, 1);
+
+            this.triggerCondition.SetUses(1, false, false);
+
+            Initialize(-1);
         }
 
-        GameActions.Bottom.ChannelOrb(new Aether());
-
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        @Override
+        public void atEndOfTurn(boolean isPlayer)
         {
-            if (player.stance.ID.equals(NeutralStance.STANCE_ID))
-            {
-                GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
-            }
-            else
-            {
-                GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID);
-            }
+            super.atEndOfTurn(isPlayer);
+
+            RemovePower();
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
+            GameActions.Bottom.WaitRealtime(0.25f);
+            RemovePower(GameActions.Last);
         }
     }
 }

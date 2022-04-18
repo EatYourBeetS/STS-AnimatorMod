@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
@@ -18,10 +18,10 @@ import eatyourbeets.utilities.JUtils;
 import java.util.ArrayList;
 
 @SpireInitializer //
-public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PreMonsterTurnSubscriber,
-                                          PostEnergyRechargeSubscriber, PostDrawSubscriber, PostDeathSubscriber,
+public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSubscriber, PostDrawSubscriber, PostDeathSubscriber,
                                           PreStartGameSubscriber, PostUpdateSubscriber, PostRenderSubscriber
 {
+    private static final EYBModInitializer instance = new EYBModInitializer();
     private static GUI_TextBox testModeLabel;
 
     public static void initialize()
@@ -29,7 +29,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
         ArrayList<OnStartBattleSubscriber> battleStart = JUtils.<ArrayList<OnStartBattleSubscriber>>
         GetField("startBattleSubscribers", BaseMod.class).Get(null);
 
-        EYBModInitializer instance = new EYBModInitializer();
         BaseMod.subscribe(instance);
         battleStart.remove(instance);
         battleStart.add(0, instance);
@@ -39,7 +38,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     @Override
     public void receiveOnBattleStart(AbstractRoom abstractRoom)
     {
-        CombatStats.EnsurePowerIsApplied();
         CombatStats.OnBattleStart();
     }
 
@@ -53,20 +51,6 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
     public void receivePostDraw(AbstractCard abstractCard)
     {
         CombatStats.OnAfterDraw(abstractCard);
-    }
-
-    @Override
-    public void receivePostEnergyRecharge()
-    {
-        CombatStats.EnsurePowerIsApplied(); // Ensure PlayerStatistics is always active at turn start
-    }
-
-    @Override // false = skips monster turn
-    public boolean receivePreMonsterTurn(AbstractMonster abstractMonster)
-    {
-        CombatStats.EnsurePowerIsApplied();
-
-        return true;
     }
 
     @Override
@@ -95,13 +79,18 @@ public class EYBModInitializer implements OnStartBattleSubscriber, PostBattleSub
             if (testModeLabel == null)
             {
                 testModeLabel = new GUI_TextBox(GR.Common.Images.Panel.Texture(),
-                        new AdvancedHitbox(Settings.WIDTH * 0.12f, Settings.HEIGHT * 0.08f))
-                        .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
-                        .SetAlignment(0.5f, 0.5f)
-                        .SetText("TEST MODE");
+                new AdvancedHitbox(Settings.WIDTH * 0.16f, Settings.HEIGHT * 0.12f))
+                .SetPosition(Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.85f)
+                .SetAlignment(0.5f, 0.5f)
+                .SetFont(FontHelper.buttonLabelFont, 1.5f)
+                .SetText("TEST MODE");
             }
 
-            if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
+            if (GR.UI.Elapsed(40))
+            {
+                testModeLabel.SetActive(true);
+            }
+            else if (Gdx.input.isKeyPressed(Input.Keys.ALT_LEFT) && Gdx.input.isKeyJustPressed(Input.Keys.NUM_7))
             {
                 testModeLabel.SetActive(false);
             }

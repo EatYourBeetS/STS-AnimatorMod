@@ -68,7 +68,7 @@ public class StanceParticleHorizontal extends EYBEffect
         sb.setColor(color);
         sb.setBlendFunction(770, 1);
         sb.draw(img, x, y, 32f, 32f, 25f,
-        128f, scale, scale + (startingDuration * 0.2f - duration) * Settings.scale, rotation,
+        128f, scale, scale + (startingDuration * 0.2f - duration), rotation,
         0, 0, 64, 64, false, false);
         sb.setBlendFunction(770, 771);
     }

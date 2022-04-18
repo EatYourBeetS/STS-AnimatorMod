@@ -1,47 +1,55 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.stances.ForceStance;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Shion extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shion.class).SetAttack(2, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Shion.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Shion()
     {
         super(DATA);
 
-        Initialize(16, 0, 2);
-        SetUpgrade(5, 0, 0);
-        SetScaling(0, 0, 1);
+        Initialize(14, 0, 2, 9);
+        SetUpgrade(4, 0, 0);
 
-        SetSynergy(Synergies.TenSura);
+        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Light(1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+    }
 
-        if (isSynergizing && CombatStats.TryActivateLimited(cardID))
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
+        .SetFilter(c -> GameUtilities.HasRedAffinity(c) || GameUtilities.HasLightAffinity(c))
+        .SetOptions(false, true, false)
+        .AddCallback(cards ->
+        {
+            if (cards.size() >= magicNumber)
+            {
+                GameActions.Bottom.GainBlock(secondaryValue);
+            }
+        });
+
+        if (info.IsSynergizing && info.TryActivateLimited())
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.DiscardFromHand(name, 1, false)
-        .SetOptions(false, false, false);
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, 1));
     }
 }

@@ -1,65 +1,60 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.animator.status.Status_Void;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
-
-import java.util.ArrayList;
 
 public class Geryuganshoop extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Geryuganshoop.class).SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Geryuganshoop.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Status_Void(), false));
 
     public Geryuganshoop()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 2);
-        SetUpgrade(0, 0, 1, 1);
+        Initialize(0, 0, 1, 2);
 
-        SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
+        SetPurge(true);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
     {
-        GameActions.Bottom.Cycle(name, magicNumber)
-        .AddCallback(() -> GameActions.Bottom.SelectFromPile(name, secondaryValue, player.exhaustPile)
-                           .SetMessage(JUtils.Format(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue))
-                           .SetOptions(false, true)
-                           .AddCallback(this::OnCardChosen));
+        SetPurge(false);
     }
 
-    private void OnCardChosen(ArrayList<AbstractCard> cards)
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        boolean limited = CombatStats.HasActivatedLimited(this.cardID);
-
-        if (cards != null && cards.size() > 0)
+        GameActions.Bottom.GainEnergy(magicNumber);
+        GameActions.Bottom.SFX(SFX.ORB_DARK_CHANNEL, 0.3f, 0.4f, 0.9f);
+        GameActions.Bottom.MakeCardInDrawPile(new Status_Void());
+        GameActions.Bottom.PurgeFromPile(name, secondaryValue, player.exhaustPile)
+        .SetOptions(false, false, false)
+        .AddCallback(cards ->
         {
-            for (AbstractCard card : cards)
+            if (cards.size() > 0)
             {
-                if (!limited && (card.cardID.equals(Boros.DATA.ID) || card.cardID.startsWith(Melzalgald.DATA.ID)))
-                {
-                    CombatStats.TryActivateLimited(this.cardID);
-                    GameActions.Bottom.MoveCard(card, player.exhaustPile, player.hand)
-                            .ShowEffect(true, false);
-                }
-                else
-                {
-                    player.exhaustPile.removeCard(card);
-                    CardCrawlGame.sound.play("CARD_EXHAUST", 0.2f);
-                }
+                GameActions.Top.FetchFromPile(name, 1, player.drawPile);
             }
+        });
+    }
 
-            GameActions.Bottom.GainEnergy(cards.size());
-        }
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return player.exhaustPile.size() >= secondaryValue;
     }
 }

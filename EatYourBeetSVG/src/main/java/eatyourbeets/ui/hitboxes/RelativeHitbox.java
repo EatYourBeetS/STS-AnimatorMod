@@ -19,12 +19,12 @@ public class RelativeHitbox extends AdvancedHitbox
         this(hb, percentWidth * hb.width, percentHeight * hb.height, percent_cX, percent_cY, true);
     }
 
-    public RelativeHitbox(Hitbox hb, float width, float height, float offset_cX, float offset_cY, boolean isPercentage)
+    public RelativeHitbox(Hitbox hb, float width, float height, float offset_cX, float offset_cY, boolean percentageOffset)
     {
         super(hb.x, hb.y, width, height);
 
         this.parentHB = hb;
-        this.percentageOffset = isPercentage;
+        this.percentageOffset = percentageOffset;
         this.offset_cX = offset_cX;
         this.offset_cY = offset_cY;
         this.lerpSpeed = -1;
@@ -73,5 +73,12 @@ public class RelativeHitbox extends AdvancedHitbox
         super.update();
 
         UpdateTargetPosition();
+    }
+
+    public static RelativeHitbox SetPercentageOffset(Hitbox hb, Float x, Float y)
+    {
+        final RelativeHitbox hitbox = (RelativeHitbox)hb;
+        hitbox.SetPercentageOffset(x == null ? hitbox.offset_cX : x, y == null ? hitbox.offset_cY : y);
+        return hitbox;
     }
 }

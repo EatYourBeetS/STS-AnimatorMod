@@ -1,27 +1,31 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.EnergizedPower;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Gillette extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Gillette.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Gillette.class)
+            .SetAttack(1, CardRarity.COMMON)
+            .SetSeries(CardSeries.HitsugiNoChaika);
 
     public Gillette()
     {
         super(DATA);
 
-        Initialize(7, 0, 1);
+        Initialize(5, 0, 1);
         SetUpgrade(3, 0, 0);
 
-        SetSynergy(Synergies.Chaika);
+        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Light(2);
     }
 
     @Override
@@ -29,13 +33,16 @@ public class Gillette extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.ApplyWeak(TargetHelper.Enemies(), magicNumber);
+        }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
-        GameActions.Bottom.StackPower(new EnergizedPower(p, 1));
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
+        GameActions.Bottom.GainEnergyNextTurn(1);
     }
 }

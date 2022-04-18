@@ -30,7 +30,7 @@ public class EYBCardMetadataV2
 
         if (series != null)
         {
-            card.SetSynergy(Synergies.GetByName(series, false));
+            card.SetSeries(CardSeries.GetByName(series, false));
         }
 
         if (stats != null && stats.length > 0)
@@ -81,16 +81,18 @@ public class EYBCardMetadataV2
             }
         }
 
-        if (scaling != null)
-        {
-            if (affinity.length != 3)
-            {
-                throw new RuntimeException("Card scaling must have 3 elements: " + card.cardID);
-            }
-
-            card.SetScaling(scaling[2], scaling[1], scaling[0]);
-        }
-
+// TODO: sts_exporter scaling and affinity
+//
+//        if (scaling != null)
+//        {
+//            if (affinity.length != 3)
+//            {
+//                throw new RuntimeException("Card scaling must have 3 elements: " + card.cardID);
+//            }
+//
+//            card.SetScaling(scaling[2], scaling[1], scaling[0]);
+//        }
+//
 //        if (affinity != null)
 //        {
 //            if (affinity.length != 5)
@@ -119,24 +121,29 @@ public class EYBCardMetadataV2
         metadata.stats = new int[] {card.cost, Math.max(0, card.baseDamage), Math.max(0, card.baseBlock), card.baseMagicNumber, card.baseSecondaryValue};
         metadata.upgrade = new int[] {card.upgrade_cost, card.upgrade_damage, card.upgrade_block, card.upgrade_magicNumber, card.upgrade_secondaryValue};
 
-        if ((card.forceScaling + card.agilityScaling + card.intellectScaling) > 0)
+        if (card.affinities.List.size() > 0 || card.affinities.HasStar())
         {
-            metadata.scaling = new int[] {card.forceScaling, card.agilityScaling, card.intellectScaling };
+            metadata.scaling = new int[]
+            {
+                card.affinities.GetScaling(Affinity.Red, false),
+                card.affinities.GetScaling(Affinity.Green, false),
+                card.affinities.GetScaling(Affinity.Blue, false)
+            };
         }
 
-        if (exportSeries && card.synergy != null)
+        if (exportSeries && card.series != null)
         {
-            metadata.series = card.synergy.Name;
+            metadata.series = card.series.Name;
         }
 
-//        metadata.affinity = new int[] {0, 0, 0, 0, 0 };
-//        for (EYBCardAffinity a : card.affinities.List)
-//        {
-//            if (a.Type.ID >= 0)
-//            {
-//                metadata.affinity[a.Type.ID] = a.level;
-//            }
-//        }
+        metadata.affinity = new int[] {0, 0, 0, 0, 0 };
+        for (EYBCardAffinity a : card.affinities.List)
+        {
+            if (a.type.ID >= 0)
+            {
+                metadata.affinity[a.type.ID] = a.level;
+            }
+        }
 
         if (!card.cropPortrait)
         {

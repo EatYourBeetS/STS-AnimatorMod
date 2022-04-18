@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.screens.SingleCardViewPopup;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
-import eatyourbeets.ui.common.EYBSingleCardPopup;
+import eatyourbeets.ui.common.EYBCardPopup;
 import eatyourbeets.utilities.FieldInfo;
 import eatyourbeets.utilities.JUtils;
 
@@ -17,7 +17,7 @@ public class SingleCardViewPopupPatches
 {
     private static final FieldInfo<AbstractCard> _card = JUtils.GetField("card", SingleCardViewPopup.class);
     private static final AnimatorImages Images = GR.Animator.Images;
-    private static final EYBSingleCardPopup betterPopup = new EYBSingleCardPopup();
+    private static final EYBCardPopup betterPopup = new EYBCardPopup();
 
     @SpirePatch(clz = SingleCardViewPopup.class, method = "open", paramtypez = {AbstractCard.class})
     public static class SingleCardViewPopup_Open

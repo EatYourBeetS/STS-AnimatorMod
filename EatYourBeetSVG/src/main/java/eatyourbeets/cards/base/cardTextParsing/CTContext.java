@@ -4,9 +4,11 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RenderHelpers;
@@ -33,11 +35,12 @@ public class CTContext
     protected float scaleModifier;
 
     public EYBCard card;
+    public AbstractCard.CardColor cardColor;
     public float start_y;
     public float start_x;
     public Color color;
 
-    public void Initialize(EYBCard card, String text)
+    public void Initialize(EYBCard card, AbstractCard.CardColor cardColor, String text)
     {
         if (card != null)
         {
@@ -46,6 +49,7 @@ public class CTContext
 
         this.font = EYBFontHelper.CardDescriptionFont_Normal;
         this.card = card;
+        this.cardColor = cardColor;
         this.text = text;
         this.lines.clear();
         this.scaleModifier = 1;
@@ -89,7 +93,7 @@ public class CTContext
         {
             this.character = this.text.charAt(characterIndex);
 
-            // The order matters!
+            // The order matters
             if ((amount = VariableToken.TryAdd(this))    == 0 // !M!
             &&  (amount = SymbolToken.TryAdd(this))      == 0 // [E]
             &&  (amount = SpecialToken.TryAdd(this))     == 0 // {code}
@@ -123,8 +127,7 @@ public class CTContext
 
         this.start_y = (card.current_y - IMG_HEIGHT * card.drawScale * 0.5f + DESC_OFFSET_Y * card.drawScale) + (height * 0.775f + font.getCapHeight() * 0.375f) -6f;
         this.start_x = 0;
-        this.lineIndex = 0;
-        this.color = RenderHelpers.CopyColor(card, DEFAULT_COLOR);
+        this.color = Colors.Copy(DEFAULT_COLOR, card.transparency);
 
         for (lineIndex = 0; lineIndex < lines.size(); lineIndex += 1)
         {
@@ -136,7 +139,7 @@ public class CTContext
 
     protected boolean CompareNext(int amount, char character)
     {
-        Character other = NextCharacter(amount);
+        final Character other = NextCharacter(amount);
         if (other != null)
         {
             return other == character;

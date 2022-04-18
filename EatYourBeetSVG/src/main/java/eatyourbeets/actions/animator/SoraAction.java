@@ -1,6 +1,7 @@
 package eatyourbeets.actions.animator;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.actions.unique.ArmamentsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -9,10 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.special.RefreshHandLayout;
 import eatyourbeets.cards.animator.series.NoGameNoLife.Sora;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCardBuilder;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
@@ -213,7 +210,7 @@ public class SoraAction extends EYBAction
                     return effect.GenerateInternal((c, p, m) ->
                     {
                         GameActions.Bottom.DealDamageToAll(c, AttackEffect.SMASH);
-                        GameUtilities.UsePenNib();
+                        GameUtilities.RemoveDamagePowers();
                     });
                 }
 
@@ -264,9 +261,9 @@ public class SoraAction extends EYBAction
                     {
                         for (int i = 0; i < 2; i++)
                         {
-                            GameActions.Bottom.DealDamageToRandomEnemy(c, AbstractGameAction.AttackEffect.SMASH);
+                            GameActions.Bottom.DealDamageToRandomEnemy(c, AttackEffects.BLUNT_LIGHT);
                         }
-                        GameUtilities.UsePenNib();
+                        GameUtilities.RemoveDamagePowers();
                     });
                 }
             }
@@ -274,7 +271,7 @@ public class SoraAction extends EYBAction
             return null;
         }
 
-        protected AnimatorCardBuilder GenerateInternal(ActionT3<AnimatorCard, AbstractPlayer, AbstractMonster> onUseAction)
+        protected AnimatorCardBuilder GenerateInternal(ActionT3<EYBCard, AbstractPlayer, AbstractMonster> onUseAction)
         {
             AnimatorCardBuilder builder = new AnimatorCardBuilder(Sora.DATA.ID + "Alt");
 

@@ -1,51 +1,47 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class HighElfArcher extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(HighElfArcher.class).SetAttack(0, CardRarity.UNCOMMON, EYBAttackType.Ranged);
+    public static final EYBCardData DATA = Register(HighElfArcher.class)
+            .SetAttack(0, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage();
 
     public HighElfArcher()
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
-        SetUpgrade(1, 0, 1);
-        SetScaling(0, 1, 0);
+        Initialize(3, 0, 2, 1);
+        SetUpgrade(0, 0, 0, 1);
 
-        SetSynergy(Synergies.GoblinSlayer);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.SFX(SFX.ANIMATOR_ARROW);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
+        .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
-        if (GameUtilities.GetPowerAmount(p, AgilityPower.POWER_ID) <= magicNumber)
+        if (info.IsStarter)
         {
-            GameActions.Bottom.GainAgility(1);
+            GameActions.Bottom.Draw(1);
         }
 
-        if (isSynergizing)
+        if (!GameUtilities.HasArtifact(m))
         {
-            GameActions.Bottom.ModifyAllInstances(uuid)
-            .AddCallback(c ->
-            {
-                if (!c.hasTag(HASTE))
-                {
-                    c.tags.add(HASTE);
-                }
-            });
+            GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);
         }
     }
 }

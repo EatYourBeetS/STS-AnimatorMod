@@ -1,0 +1,63 @@
+
+{
+	"Activate":
+	{
+		"DESCRIPTION": "Execute the current intent. #yDolls are #yActivated at the end of turn, or manually through other effects.",
+		"NAMES": ["activate", "activates", "activated"],
+		"PROPER_NAME": "Activate"
+	},
+	"Amplification":
+	{
+		"DESCRIPTION": "Increase incoming #yAttack damage by #b1% per stack of [Amplification], rounded up.",
+		"NAMES": ["amplification"],
+		"PROPER_NAME": "Amplification"
+	},
+	"Mark":
+	{
+		"DESCRIPTION": "#yDolls prioritize the latest #yMarked enemy. Ignores [Artifact].",
+		"NAMES": ["mark", "marked"],
+		"PROPER_NAME": "Mark"
+	},
+	"Sacrifice":
+	{
+		"DESCRIPTION": "Destroy #b1 #yDoll, triggering its death effect.",
+		"NAMES": ["sacrifice"],
+		"PROPER_NAME": "Sacrifice"
+	},
+	"Solo":
+	{
+		"DESCRIPTION": "Activates if you have no #yDolls.",
+		"NAMES": ["solo"],
+		"PROPER_NAME": "Solo"
+	},
+	"Attachment":
+	{
+		"DESCRIPTION": "Apply a persistent effect to a #yDoll. If it dies, move all #yAttached cards from your #yExhaust pile to your discard pile.",
+		"NAMES": ["attach", "attached", "attachment", "attachments"],
+		"PROPER_NAME": "Attachment"
+	},
+	"Summon":
+	{
+		"DESCRIPTION": "You can #ySummon up to #b4 #yDolls (If full, raise the max [HP] of all #yDolls instead). Once per turn, you can #pRight-Click on them to change their intent.",
+		"NAMES": ["summon", "summoned"],
+		"PROPER_NAME": "Summon"
+	},
+	"Summoning Sickness":
+	{
+		"DESCRIPTION": "You can't #ySummon new #yDolls. Whenever you play a card, decrease [SK] by #b1.",
+		"NAMES": ["summoning sickness"],
+		"PROPER_NAME": "Summoning Sickness"
+	},
+	"Unnamed Doll":
+	{
+		"DESCRIPTION": "#yAttack: Damages a random enemy, prioritizing enemies with #yDebuffs. NL #yDefend: Grants [Block], receives all incoming unblocked #yAttack damage. NL #yOn #yDeath: Allies gain #b1 [Strength].",
+		"NAMES": ["unnamed doll", "doll", "dolls"],
+		"PROPER_NAME": "Unnamed Doll"
+	},
+	"Withering":
+	{
+		"DESCRIPTION": "Reduce #yAttack damage by #b1% per stack of [Withering] (Max #b60%^). Reduce stacks of [Withering] by #b25% each turn.",
+		"NAMES": ["withering"],
+		"PROPER_NAME": "Withering"
+	}
+}

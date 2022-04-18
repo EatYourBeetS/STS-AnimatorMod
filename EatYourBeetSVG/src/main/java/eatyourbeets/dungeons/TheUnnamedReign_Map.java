@@ -165,7 +165,7 @@ public class TheUnnamedReign_Map
             row.set(center, Mo2);
             y += 1;
 
-            if (GameUtilities.GetActualAscensionLevel() >= 20)
+            if (GameUtilities.GetAscensionLevel() >= 20)
             {
                 Ev1 = CreateMonsterRoomElite(center, y);
                 row = CreateRow(y);

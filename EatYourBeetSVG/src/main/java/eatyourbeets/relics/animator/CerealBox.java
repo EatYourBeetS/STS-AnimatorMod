@@ -1,83 +1,34 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
+import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.relics.EYBRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.InputManager;
-import eatyourbeets.utilities.JUtils;
 
 public class CerealBox extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CerealBox.class);
-    public static final int HEAL_AMOUNT = 2;
-    public static final int BASE_CHARGES = 10;
-    public static final int SHOP_CHARGES = 4;
-    public static final int MAX_CHARGES = 20;
+    public static final int HEAL_COST = 1;
+    public static final int HEAL_AMOUNT = 3;
+    public static final int BASE_USES = 5;
+    public static final int SHOP_BONUS_USES = 3;
 
     public CerealBox()
     {
         super(ID, RelicTier.SHOP, LandingSound.FLAT);
+
+        SetCounter(BASE_USES);
     }
 
     @Override
     public String getUpdatedDescription()
     {
-        return JUtils.Format(DESCRIPTIONS[0], HEAL_AMOUNT, BASE_CHARGES, SHOP_CHARGES, MAX_CHARGES);
-    }
-
-    @Override
-    public int getPrice()
-    {
-        return (int)(super.getPrice() * 0.8f);
-    }
-
-    @Override
-    public void onEquip()
-    {
-        super.onEquip();
-
-        SetCounter(BASE_CHARGES);
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-
-        if (hb.hovered && !AbstractDungeon.isScreenUp && InputManager.RightClick.IsJustPressed())
-        {
-            stopPulse();
-            Use();
-        }
-    }
-
-    @Override
-    public void onVictory()
-    {
-        super.onVictory();
-
-        stopPulse();
-    }
-
-    @Override
-    public void atTurnStartPostDraw()
-    {
-        super.atTurnStartPostDraw();
-
-        if (counter > 0 && GameUtilities.GetHealthPercentage(player) < 0.25f)
-        {
-            GameActions.Bottom.Add(new RelicAboveCreatureAction(player, this));
-
-            beginLongPulse();
-        }
-        else
-        {
-            stopPulse();
-        }
+        return FormatDescription(0, HEAL_COST, HEAL_AMOUNT, BASE_USES, SHOP_BONUS_USES);
     }
 
     @Override
@@ -87,25 +38,52 @@ public class CerealBox extends AnimatorRelic
 
         if (room instanceof ShopRoom)
         {
-            if (AddCounter(SHOP_CHARGES) > MAX_CHARGES)
-            {
-                SetCounter(MAX_CHARGES);
-            }
-
+            AddCounter(SHOP_BONUS_USES);
             flash();
         }
     }
 
-    public void Use()
+    @Override
+    protected void ActivateBattleEffect()
     {
+        super.ActivateBattleEffect();
+
         if (counter > 0)
         {
-            if (player.currentHealth < player.maxHealth)
-            {
-                player.heal(HEAL_AMOUNT);
+            GameActions.Bottom.ApplyPower(new CerealBoxPower(player, this));
+        }
+    }
 
-                AddCounter(-1);
+    public static class CerealBoxPower extends AnimatorClickablePower
+    {
+        private final EYBRelic relic;
+
+        public CerealBoxPower(AbstractCreature owner, EYBRelic relic)
+        {
+            super(owner, relic, PowerTriggerConditionType.Energy, CerealBox.HEAL_COST);
+
+            this.triggerCondition.SetUses(relic.counter, false, false);
+            this.relic = relic;
+        }
+
+        @Override
+        public String GetUpdatedDescription()
+        {
+            return FormatDescription(1, triggerCondition.requiredAmount, CerealBox.HEAL_AMOUNT);
+        }
+
+        @Override
+        public void OnUse(AbstractMonster m)
+        {
+            super.OnUse(m);
+
+            if (this.relic.counter > 0)
+            {
+                this.relic.AddCounter(-1);
+                GameActions.Bottom.Heal(CerealBox.HEAL_AMOUNT);
             }
+
+            this.triggerCondition.uses = relic.counter;
         }
     }
 }

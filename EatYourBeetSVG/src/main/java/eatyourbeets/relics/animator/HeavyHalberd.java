@@ -1,12 +1,14 @@
 package eatyourbeets.relics.animator;
 
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
+import eatyourbeets.interfaces.subscribers.OnApplyPowerSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
 
-public class HeavyHalberd extends AnimatorRelic
+public class HeavyHalberd extends AnimatorRelic implements OnApplyPowerSubscriber
 {
     public static final String ID = CreateFullID(HeavyHalberd.class);
     public static final int FORCE_AMOUNT = 1;
@@ -19,19 +21,28 @@ public class HeavyHalberd extends AnimatorRelic
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(FORCE_AMOUNT);
+        return FormatDescription(0, FORCE_AMOUNT);
     }
 
     @Override
-    public void atTurnStartPostDraw()
+    protected void ActivateBattleEffect()
     {
-        super.atTurnStartPostDraw();
+        CombatStats.onApplyPower.Subscribe(this);
+    }
 
-        int force = JUtils.Count(GameUtilities.GetAllCharacters(true), c -> c.hasPower(VulnerablePower.POWER_ID)) * FORCE_AMOUNT;
-        if (force > 0)
+    @Override
+    protected void DeactivateBattleEffect()
+    {
+        CombatStats.onApplyPower.Unsubscribe(this);
+    }
+
+    @Override
+    public void OnApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source)
+    {
+        if (source != null && source.isPlayer && VulnerablePower.POWER_ID.equals(power.ID))
         {
-            GameActions.Bottom.GainForce(force);
-            flash();
+            GameActions.Bottom.GainForce(1);
+            this.flash();
         }
     }
 }

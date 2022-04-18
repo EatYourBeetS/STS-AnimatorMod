@@ -19,6 +19,12 @@ public class EYBGainPowerEffect extends AbstractGameEffect
 
     public EYBGainPowerEffect(EYBPower power, boolean playSfx)
     {
+        if (power == null)
+        {
+            isDone = true;
+            return;
+        }
+
         this.img = power.img;
 
         if (power.powerIcon != null)
@@ -43,6 +49,11 @@ public class EYBGainPowerEffect extends AbstractGameEffect
 
     public void update()
     {
+        if (isDone)
+        {
+            return;
+        }
+
         this.duration -= Gdx.graphics.getDeltaTime();
         if (this.duration > 0.5f)
         {
@@ -52,11 +63,15 @@ public class EYBGainPowerEffect extends AbstractGameEffect
         {
             this.color.a = Interpolation.fade.apply(0.5f, 0f, 1f - this.duration);
         }
-
     }
 
     public void render(SpriteBatch sb, float x, float y)
     {
+        if (isDone)
+        {
+            return;
+        }
+
         sb.setColor(this.color);
         sb.setBlendFunction(770, 1);
         if (this.region48 != null)

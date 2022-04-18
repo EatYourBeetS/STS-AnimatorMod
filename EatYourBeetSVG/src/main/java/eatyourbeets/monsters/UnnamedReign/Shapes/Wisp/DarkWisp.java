@@ -18,7 +18,7 @@ public class DarkWisp extends Wisp
         moveset.Normal.Attack(tier.Add(3, 1), 2)
         .SetDamageScaling(0.25f);
 
-        moveset.Normal.Buff(PowerHelper.Strength, tier.Add(1, 3))
+        moveset.Normal.Buff(PowerHelper.Strength, Math.max(2, tier.Add(1, 3)))
         .AddPower(PowerHelper.Artifact, 1);
     }
 
@@ -31,7 +31,7 @@ public class DarkWisp extends Wisp
         switch (data.tier)
         {
             case Small:
-                amount = 8;
+                amount = 9;
                 break;
 
             case Normal:

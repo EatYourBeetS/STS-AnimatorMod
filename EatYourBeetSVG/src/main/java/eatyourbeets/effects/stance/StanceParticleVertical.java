@@ -59,7 +59,7 @@ public class StanceParticleVertical extends EYBEffect
         sb.setBlendFunction(770, 1);
         sb.draw(img, x, y + vY, (float) img.packedWidth / 2f,
         (float) img.packedHeight / 2f, (float) img.packedWidth, (float) img.packedHeight,
-        scale * 0.8f, (0.1f + (startingDuration - duration) * 2f * scale) * Settings.scale, rotation);
+        scale * 0.8f, (0.1f + (startingDuration - duration) * 2f * scale), rotation);
         sb.setBlendFunction(770, 771);
     }
 }

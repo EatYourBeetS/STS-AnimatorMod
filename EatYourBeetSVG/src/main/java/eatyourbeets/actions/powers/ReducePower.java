@@ -1,40 +1,45 @@
 package eatyourbeets.actions.powers;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.EYBActionWithCallback;
+import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.EYBPower;
+import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 public class ReducePower extends EYBActionWithCallback<AbstractPower>
 {
     private String powerID;
     private AbstractPower power;
+    private boolean isDebuffInteraction;
 
     public ReducePower(AbstractCreature target, AbstractCreature source, String powerID, int amount)
     {
         super(ActionType.REDUCE_POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
-        Initialize(target, source, amount);
-
         this.powerID = powerID;
-        this.actionType = ActionType.REDUCE_POWER;
+
+        Initialize(target, source, amount);
     }
 
     public ReducePower(AbstractCreature target, AbstractCreature source, AbstractPower power, int amount)
     {
         super(ActionType.REDUCE_POWER, Settings.FAST_MODE ? Settings.ACTION_DUR_XFAST : Settings.ACTION_DUR_FAST);
 
-        Initialize(target, source, amount);
-
         this.power = power;
-        this.actionType = ActionType.REDUCE_POWER;
+
+        Initialize(target, source, amount);
+    }
+
+    public ReducePower IsDebuffInteraction(boolean value)
+    {
+        isDebuffInteraction = value;
+
+        return this;
     }
 
     @Override
@@ -47,6 +52,15 @@ public class ReducePower extends EYBActionWithCallback<AbstractPower>
 
         if (power != null)
         {
+            final AbstractAffinityPower affinityPower = JUtils.SafeCast(power, AbstractAffinityPower.class);
+            if (affinityPower != null)
+            {
+                affinityPower.Reduce(amount, true);
+                Complete(power);
+                return;
+            }
+
+            final int initialAmount = power.amount;
             if (power.canGoNegative && power.amount < 0)
             {
                 power.stackPower(amount);
@@ -59,10 +73,19 @@ public class ReducePower extends EYBActionWithCallback<AbstractPower>
             power.updateDescription();
             AbstractDungeon.onModifyPower();
 
-            if (power.amount == 0)
+            if (isDebuffInteraction)
+            {
+                CombatStats.OnModifyDebuff(power, initialAmount, power.amount);
+            }
+
+            final EYBPower p = JUtils.SafeCast(power, EYBPower.class);
+            if (power.amount == 0 && (p == null || !p.canBeZero))
             {
                 GameActions.Top.RemovePower(source, target, power);
+                Complete(null);
             }
         }
+
+        Complete(power);
     }
 }

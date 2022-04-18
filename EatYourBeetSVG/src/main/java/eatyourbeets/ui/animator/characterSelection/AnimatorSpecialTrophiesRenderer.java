@@ -1,18 +1,17 @@
 package eatyourbeets.ui.animator.characterSelection;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import com.megacrit.cardcrawl.helpers.TipHelper;
+import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
 import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
 
 public class AnimatorSpecialTrophiesRenderer extends GUIElement
@@ -20,17 +19,23 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
     protected static final AnimatorStrings.Trophies trophyStrings = GR.Animator.Strings.Trophies;
     protected static final AnimatorImages images = GR.Animator.Images;
 
+    protected final GUI_Image trophy_image;
     protected final Hitbox trophySpecialHb;
+    protected final EYBCardTooltip tooltip;
     protected AnimatorTrophies specialTrophies;
+    protected String trophyString = "";
 
     public AnimatorSpecialTrophiesRenderer()
     {
-        trophySpecialHb = new AdvancedHitbox(0, 0, 64 * Settings.scale, 64 * Settings.scale);
-
-        float baseX = 200f * Settings.scale;
-        float baseY = (float) Settings.HEIGHT / 2f;
-
-        trophySpecialHb.move(baseX + 492f * Settings.scale, baseY + 154f * Settings.scale);
+        final float size = Scale(64);
+        trophySpecialHb = new AdvancedHitbox(ScreenW(0.34375f), ScreenH(0.61296f), size, size);
+        tooltip = new EYBCardTooltip(trophyStrings.Platinum, "");
+        trophy_image = new GUI_Image(images.LOCKED_TROPHY.Texture(), trophySpecialHb).SetBackgroundTexture(images.PLATINUM_TROPHY_SLOT.Texture());
+//
+//        float baseX = 200f * Settings.scale;
+//        float baseY = (float) Settings.HEIGHT / 2f;
+//
+//        trophySpecialHb.move(baseX + 492f * Settings.scale, baseY + 154f * Settings.scale);
     }
 
     public void Refresh()
@@ -40,58 +45,34 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
 
     public void Update()
     {
-        final float offsetX = 60 * Settings.scale;
-        final float offsetY = 0;
-
-        trophySpecialHb.update();
-
-        if (trophySpecialHb.hovered)
+        if (specialTrophies == null)
         {
-            String description = specialTrophies.Trophy1 > 0 ? trophyStrings.PlatinumDescription : trophyStrings.PlatinumHint;
-            TipHelper.renderGenericTip(trophySpecialHb.cX + offsetX, trophySpecialHb.cY + offsetY, trophyStrings.Platinum, description);
+            return;
+        }
+
+        trophyString = (specialTrophies.Trophy1 > 0) ? (" " + String.format("%.2f", AnimatorReward.GetUltraRareChance(GR.Animator.Data.SelectedLoadout)) + "%") : null;
+        trophy_image.SetTexture(trophyString != null ? images.PLATINUM_TROPHY.Texture() : images.LOCKED_TROPHY.Texture()).Update();
+
+        if (trophy_image.hb.hovered)
+        {
+            tooltip.description = specialTrophies.Trophy1 > 0 ? trophyStrings.PlatinumDescription : trophyStrings.PlatinumHint;
+            EYBCardTooltip.QueueTooltip(tooltip, false);
         }
     }
 
     public void Render(SpriteBatch sb)
     {
-        RenderSpecialTrophy(trophySpecialHb, specialTrophies.Trophy1, sb);
-    }
-
-    private static void RenderSpecialTrophy(Hitbox trophyHb, int trophyLevel, SpriteBatch sb)
-    {
-        String trophyString = "";
-        if (trophyLevel > 0)
+        if (specialTrophies == null)
         {
-            trophyString += " " + String.format("%.2f", AnimatorReward.GetUltraRareChance(null)) + "%";
+            return;
         }
 
-        float w = 64;
-        float h = 64;
-        float halfW = 32;
-        float halfH = 32;
+        trophy_image.Render(sb);
 
-        sb.setColor(trophyHb.hovered ? Color.WHITE : Color.LIGHT_GRAY);
-        sb.draw(images.PLATINUM_TROPHY_SLOT.Texture(), trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                0f, 0, 0, 64, 64, false, false);
-
-        Texture trophyTexture;
-        if (trophyLevel <= 0)
+        if (trophyString != null)
         {
-            trophyTexture = images.LOCKED_TROPHY.Texture();
-        }
-        else
-        {
-            trophyTexture = images.PLATINUM_TROPHY.Texture();
-        }
-
-        sb.setColor(Color.WHITE);
-        sb.draw(trophyTexture, trophyHb.x, trophyHb.y, halfW, halfH, w, h, Settings.scale, Settings.scale,
-                0f, 0, 0, 64, 64, false, false);
-
-        if (trophyLevel > 0)
-        {
-            FontHelper.renderFontCentered(sb, FontHelper.tipHeaderFont, trophyString,
-                    trophyHb.cX + (trophyHb.width * 1.3f * Settings.scale), trophyHb.cY, Settings.GOLD_COLOR);
+            FontHelper.renderFontLeft(sb, FontHelper.tipHeaderFont, trophyString,
+            trophy_image.hb.x + (trophy_image.hb.width * 1.1f), trophy_image.hb.cY, Settings.GOLD_COLOR);
         }
     }
 }

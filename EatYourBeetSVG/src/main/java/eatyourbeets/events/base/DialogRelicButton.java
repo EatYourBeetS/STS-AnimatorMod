@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
+import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.relics.EYBRelic;
 
 public class DialogRelicButton extends LargeDialogOptionButton
 {
@@ -21,7 +23,22 @@ public class DialogRelicButton extends LargeDialogOptionButton
     {
         super.update(size);
 
+        relicPreview.currentX = relicPreview.hb.x = this.hb.x + this.hb.width * 0.93f;
+        relicPreview.currentY = relicPreview.hb.y = this.hb.y + this.hb.height * 0.5f;
+        relicPreview.hb.width = relicPreview.hb.height = 0;
         relicPreview.update();
+
+        if (this.hb.hovered)
+        {
+            if (relicPreview instanceof EYBRelic)
+            {
+                EYBCardTooltip.QueueTooltips((EYBRelic) relicPreview); //hb.x + hb.width * 0.5f, hb.y + hb.height * 3f, relicPreview.tips);
+            }
+            else
+            {
+                TipHelper.queuePowerTips(hb.x + hb.width * 0.5f, hb.y + hb.height * 3f, relicPreview.tips);
+            }
+        }
     }
 
     @Override
@@ -29,16 +46,6 @@ public class DialogRelicButton extends LargeDialogOptionButton
     {
         super.render(sb);
 
-        relicPreview.currentX = this.hb.x + this.hb.width * 0.9f;
-        relicPreview.currentY = this.hb.y + this.hb.height * 0.5f;
         relicPreview.render(sb);
-
-        if (this.hb.hovered)
-        {
-            TipHelper.queuePowerTips(
-            this.hb.x + this.hb.width * 0.5f,
-            this.hb.y + this.hb.height * 3f,
-            relicPreview.tips);
-        }
     }
 }

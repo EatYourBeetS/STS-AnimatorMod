@@ -1,0 +1,14 @@
+
+{
+	"<LIM>": "Limited",
+	"<SLM>": "{Semi-Limited}",
+	"<slm>": "{Semi-Lim}",
+
+	"<DRW>": "Draw 1 card",
+	"<DRW-M>": "Draw !M! card(s)",
+	"<SPACE>": "    ",
+
+	"<ST>": "Starter",	
+	" ** ": " NL ",
+	" || ": " NL  NL "
+}

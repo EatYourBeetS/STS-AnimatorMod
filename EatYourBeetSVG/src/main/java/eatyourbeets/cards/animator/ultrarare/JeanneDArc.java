@@ -1,18 +1,23 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class JeanneDArc extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(JeanneDArc.class).SetAttack(1, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(JeanneDArc.class)
+            .SetAttack(1, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Fate);
 
     public JeanneDArc()
     {
@@ -20,9 +25,9 @@ public class JeanneDArc extends AnimatorCard_UltraRare
 
         Initialize(11, 0, 8);
         SetUpgrade(2, 0, 0);
-        SetScaling(0, 0, 1);
 
-        SetSynergy(Synergies.Fate);
+        SetAffinity_Red(1);
+        SetAffinity_Light(2, 0, 2);
     }
 
     @Override
@@ -32,13 +37,14 @@ public class JeanneDArc extends AnimatorCard_UltraRare
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.7f);
+        GameActions.Bottom.GainBlessing(1, true);
         GameActions.Bottom.ExhaustFromPile(name, 1, p.drawPile, p.hand, p.discardPile)
         .ShowEffect(true, true)
         .SetOptions(true, true)
-        .SetFilter(GameUtilities::IsCurseOrStatus);
+        .SetFilter(GameUtilities::IsHindrance);
     }
 
     @Override

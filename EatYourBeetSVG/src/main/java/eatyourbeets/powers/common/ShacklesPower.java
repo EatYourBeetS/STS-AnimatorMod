@@ -1,13 +1,15 @@
 package eatyourbeets.powers.common;
 
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CommonPower;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
-public class ShacklesPower extends CommonPower implements InvisiblePower
+public class ShacklesPower extends CommonPower
 {
     public static final String POWER_ID = CreateFullID(ShacklesPower.class);
 
@@ -15,21 +17,41 @@ public class ShacklesPower extends CommonPower implements InvisiblePower
     {
         super(owner, POWER_ID);
 
-        this.amount = amount;
-        this.type = PowerType.DEBUFF;
+        this.loadRegion("shackle");
+        this.powerIcon = this.region48;
+
+        Initialize(amount, PowerType.DEBUFF, false);
     }
 
     @Override
-    public void onInitialApplication()
+    public void playApplyPowerSfx()
     {
-        //GameActions.Instant.Callback(() -> owner.powers.remove(this));
-        owner.powers.remove(this);
-        GameActions.Top.ReduceStrength(owner, amount, true);
+        SFX.Play(SFX.POWER_SHACKLE, 0.95F, 1.05f);
     }
 
     @Override
-    public void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    protected void onAmountChanged(int previousAmount, int difference)
     {
+        GameActions.Top.StackPower(new StrengthPower(owner, -difference));
 
+        super.onAmountChanged(previousAmount, difference);
+    }
+
+    @Override
+    public void duringTurn()
+    {
+        super.duringTurn();
+
+        final AbstractMonster m = JUtils.SafeCast(owner, AbstractMonster.class);
+        if (m != null && !GameUtilities.IsAttacking(m.intent))
+        {
+            GameActions.Top.RemovePower(owner, this);
+        }
+    }
+
+    @Override
+    public void atEndOfTurn(boolean isPlayer)
+    {
+        RemovePower();
     }
 }

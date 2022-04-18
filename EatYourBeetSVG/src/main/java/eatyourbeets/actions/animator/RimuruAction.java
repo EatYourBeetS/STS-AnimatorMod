@@ -6,8 +6,9 @@ import eatyourbeets.actions.EYBAction;
 import eatyourbeets.cards.animator.series.TenseiSlime.Rimuru;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.UUID;
 
 public class RimuruAction extends EYBAction
 {
@@ -30,10 +31,9 @@ public class RimuruAction extends EYBAction
     @Override
     protected void FirstUpdate()
     {
-        if (!transform(player.hand, card) && !transform(player.drawPile, card) && !transform(player.discardPile, card)
-        && !transform(player.exhaustPile, card) && !transform(player.limbo, card))
+        if (!TryReplace(player.hand) && !TryReplace(player.drawPile) && !TryReplace(player.discardPile)
+        && !TryReplace(player.exhaustPile) && !TryReplace(player.limbo) && !TryReplace(CombatStats.PurgedCards))
         {
-            // Rimuru has been purged or removed from the game, unsubscribe it
             CombatStats.onAfterCardPlayed.Unsubscribe(rimuru);
         }
         else
@@ -45,37 +45,34 @@ public class RimuruAction extends EYBAction
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean transform(CardGroup group, AbstractCard card)
+    private boolean TryReplace(CardGroup group)
     {
-        int index = group.group.indexOf(rimuru.copy);
-        if (index >= 0)
+        final UUID copyUUID = rimuru.copy.uuid;
+        for (int i = 0; i < group.size(); i++)
         {
-            group.group.remove(index);
-            group.group.add(index, newCopy);
-
-            if (rimuru.upgraded || copy.retain)
+            if (group.group.get(i).uuid.equals(copyUUID))
             {
-                GameUtilities.Retain(newCopy);
+                group.group.set(i, newCopy);
+
+                GameUtilities.SetCardTag(newCopy, EYBCard.VOLATILE, true);
+                GameUtilities.ChangeCardName(newCopy, rimuru.originalName);
+                GameUtilities.CopyVisualProperties(newCopy, copy);
+
+                if (group.type == CardGroup.CardGroupType.HAND)
+                {
+                    newCopy.applyPowers();
+                }
+
+                if (newCopy instanceof EYBCard)
+                {
+                    ((EYBCard)newCopy).triggerWhenCreated(false);
+                }
+
+                rimuru.copy = newCopy;
+                rimuru.copy.uuid = rimuru.uuid;
+
+                return true;
             }
-
-            newCopy.tags.add(GR.Enums.CardTags.TEMPORARY);
-            newCopy.name = rimuru.name;
-
-            GameUtilities.CopyVisualProperties(newCopy, copy);
-
-            if (group.type == CardGroup.CardGroupType.HAND)
-            {
-                newCopy.applyPowers();
-            }
-
-            if (newCopy instanceof EYBCard)
-            {
-                ((EYBCard)newCopy).triggerWhenCreated(false);
-            }
-
-            rimuru.copy = newCopy;
-
-            return true;
         }
 
         return false;

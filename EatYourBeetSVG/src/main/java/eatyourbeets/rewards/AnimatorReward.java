@@ -4,14 +4,19 @@ import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
+import eatyourbeets.cards.animator.ultrarare.Azami;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.relics.animator.Destiny;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 
@@ -26,6 +31,17 @@ public abstract class AnimatorReward extends CustomReward
 
     public static float GetUltraRareChance(AnimatorLoadout loadout)
     {
+        final Float rate = GR.Common.Dungeon.GetFloat("UR_RATE", null);
+        if (rate != null)
+        {
+            if (rate > 0 && GameUtilities.InGame())
+            {
+                GR.Common.Dungeon.SetCheating();
+            }
+
+            return rate;
+        }
+
         float bonus = 1;
         int level = GR.Animator.Data.SpecialTrophies.Trophy1;
         if (level > 0)
@@ -33,7 +49,16 @@ public abstract class AnimatorReward extends CustomReward
             bonus += level / (level + 100f);
         }
 
-        if (loadout != null && loadout.IsBeta)
+        if (GameUtilities.HasRelic(Destiny.ID))
+        {
+            bonus += 0.4f;
+        }
+
+        if (loadout == null)
+        {
+            return 7f * bonus;
+        }
+        else if (loadout.IsBeta)
         {
             return 6f * bonus;
         }
@@ -45,7 +70,7 @@ public abstract class AnimatorReward extends CustomReward
 
     public AnimatorReward(String id, String text, RewardType type)
     {
-        super(new Texture(GR.GetRewardImage(id)), text, type);
+        this(new Texture(GR.GetRewardImage(id)), text, type);
     }
 
     public AnimatorReward(Texture rewardImage, String text, RewardType type)
@@ -53,11 +78,11 @@ public abstract class AnimatorReward extends CustomReward
         super(rewardImage, text, type);
     }
 
-    public ArrayList<AbstractCard> GenerateCardReward(Synergy synergy)
+    public ArrayList<AbstractCard> GenerateCardReward(CardSeries series)
     {
-        RewardContext context = new RewardContext(synergy);
-        WeightedList<AbstractCard> randomPool = new WeightedList<>();
-        if (synergy != null && synergy != Synergies.ANY)
+        final RewardContext context = new RewardContext(series);
+        final WeightedList<AbstractCard> randomPool = new WeightedList<>();
+        if (series != null && series != CardSeries.ANY)
         {
             AddCards(AbstractDungeon.srcCommonCardPool, randomPool, context);
             AddCards(AbstractDungeon.srcUncommonCardPool, randomPool, context);
@@ -68,11 +93,12 @@ public abstract class AnimatorReward extends CustomReward
             AddCards(AbstractDungeon.srcColorlessCardPool, randomPool, context);
         }
 
-        ArrayList<AbstractCard> result = new ArrayList<>();
+        final ArrayList<AbstractCard> result = new ArrayList<>();
         while (result.size() < context.rewardSize && randomPool.Size() > 0)
         {
-            AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);
-            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel(this))
+            final AbstractCard card = randomPool.Retrieve(AbstractDungeon.cardRng);
+            if (card instanceof OnAddingToCardRewardListener && ((OnAddingToCardRewardListener) card).ShouldCancel()
+            || (card instanceof EYBCard && ((EYBCard) card).cardData.ShouldCancel()))
             {
                 continue;
             }
@@ -82,7 +108,11 @@ public abstract class AnimatorReward extends CustomReward
 
         if (result.size() > 0)
         {
-            AddUltraRare(result, context.synergy);
+            AddUltraRare(result, context.series);
+        }
+        else
+        {
+            context.AddCard(new QuestionMark(), result);
         }
 
         return result;
@@ -90,18 +120,17 @@ public abstract class AnimatorReward extends CustomReward
 
     private void AddCards(CardGroup pool, WeightedList<AbstractCard> cards, RewardContext context)
     {
-        Synergy synergy = context.synergy;
-
+        final CardSeries series = context.series;
         for (AbstractCard c : pool.group)
         {
             AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && (synergy.Equals(card.synergy) || Synergies.ANY.equals(synergy)))
+            if (card != null && (series.Equals(card.series) || CardSeries.ANY.equals(series)))
             {
-                if (Synergies.ANY.equals(synergy)) // colorless
+                if (CardSeries.ANY.equals(series)) // colorless
                 {
                     cards.Add(card, card.rarity == AbstractCard.CardRarity.UNCOMMON ? 8 : 2);
                 }
-                else if (synergy.equals(card.synergy))
+                else if (series.equals(card.series))
                 {
                     int weight = context.GetRarityWeight(card.rarity);
                     if (weight > 0)
@@ -113,27 +142,28 @@ public abstract class AnimatorReward extends CustomReward
         }
     }
 
-    private void AddUltraRare(ArrayList<AbstractCard> cards, Synergy synergy)
+    private void AddUltraRare(ArrayList<AbstractCard> cards, CardSeries series)
     {
-        int currentLevel = GR.Animator.GetUnlockLevel();
-        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36 || cards.isEmpty())
-        {
-            JUtils.LogInfo(this, "Unlucky");
-            return;
-        }
-
-        AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(synergy);
-        if (loadout == null)
+        final int currentLevel = GR.Animator.GetUnlockLevel();
+        if (currentLevel <= 2 || cards.isEmpty() || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
         {
             return;
         }
 
+        final AbstractPlayer player = AbstractDungeon.player;
+        final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
         float chances = GetUltraRareChance(loadout);
-        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        if (chances <= 0)
+        {
+            return;
+        }
+
+        for (AbstractCard c : player.masterDeck.group)
         {
             if (c instanceof AnimatorCard_UltraRare)
             {
-                if (synergy.ID == ((AnimatorCard_UltraRare) c).synergy.ID)
+                CardSeries s = ((AnimatorCard_UltraRare) c).series;
+                if (s != null && series.ID == s.ID)
                 {
                     return; // No duplicates
                 }
@@ -144,32 +174,49 @@ public abstract class AnimatorReward extends CustomReward
             }
         }
 
+        EYBCardData ur = null;
         float roll = AbstractDungeon.cardRng.random(100f);
         if (roll < chances)
         {
-            EYBCardData data = loadout.GetUltraRare();
-            if (data != null)
-            {
-                cards.set(Math.min(1, cards.size() - 1), data.CreateNewInstance());
-            }
+            ur = AnimatorCard_UltraRare.GetCardData(loadout);
+        }
+        else if (!GR.Animator.Dungeon.BannedCards.contains(Azami.DATA.ID) && !Azami.DATA.ShouldCancel() && roll < (chances * 3))
+        {
+            GR.Animator.Dungeon.Ban(Azami.DATA.ID);
+            ur = Azami.DATA;
+        }
+
+        if (ur != null)
+        {
+            cards.set(Math.min(1, cards.size() - 1), ur.CreateNewInstance());
         }
     }
 
     private static class RewardContext
     {
-        public Synergy synergy;
+        public CardSeries series;
         public int rewardSize;
         public int rareCardChance;
         public int uncommonCardChance;
         public int commonCardChance;
 
-        public RewardContext(Synergy synergy)
+        public RewardContext(CardSeries series)
         {
-            this.synergy = synergy;
+            this.series = series;
             this.rewardSize = 3;
-            this.rareCardChance = 3;
-            this.uncommonCardChance = 37;
-            this.commonCardChance = 60;
+
+            if (GameUtilities.GetAscensionLevel() < 12)
+            {
+                this.rareCardChance = 3;
+                this.uncommonCardChance = 37;
+                this.commonCardChance = 60;
+            }
+            else
+            {
+                this.rareCardChance = 2;
+                this.uncommonCardChance = 33;
+                this.commonCardChance = 65;
+            }
 
             for (AbstractRelic relic : AbstractDungeon.player.relics)
             {

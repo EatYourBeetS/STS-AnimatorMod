@@ -1,21 +1,25 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleHorizontal;
 import eatyourbeets.effects.stance.StanceParticleVertical;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.AgilityPower;
+import eatyourbeets.powers.affinity.AgilityPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class AgilityStance extends EYBStance
 {
+    public static final Affinity AFFINITY = AgilityPower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(AgilityStance.class);
-    public static final int STAT_GAIN_AMOUNT = 2;
-    public static final int STAT_LOSE_AMOUNT = 1;
-    public static final int DRAW_AMOUNT = 1;
+    public static final int STAT_GAIN_AMOUNT = 1;
+    public static final int BLOCK_RETAIN_AMOUNT = 6;
 
     public static boolean IsActive()
     {
@@ -42,13 +46,11 @@ public class AgilityStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_LOSE_AMOUNT);
         }
     }
 
@@ -59,16 +61,22 @@ public class AgilityStance extends EYBStance
 
         if (TryApplyStance(null))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_GAIN_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_LOSE_AMOUNT);
         }
+    }
+
+    @Override
+    public void onEndOfTurn()
+    {
+        super.onEndOfTurn();
+
+        CombatStats.BlockRetained += BLOCK_RETAIN_AMOUNT;
     }
 
     @Override
     public void onRefreshStance()
     {
-        AgilityPower.PreserveOnce();
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override
@@ -81,7 +89,10 @@ public class AgilityStance extends EYBStance
     @Override
     protected void QueueAura()
     {
-        //GameEffects.Queue.Add(new StanceAura(GetAuraColor()));
+        if (Settings.DISABLE_EFFECTS)
+        {
+            GameEffects.Queue.Add(new StanceAura(GetAuraColor()));
+        }
     }
 
     @Override
@@ -93,6 +104,6 @@ public class AgilityStance extends EYBStance
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, DRAW_AMOUNT);
+        description = FormatDescription(STAT_GAIN_AMOUNT, BLOCK_RETAIN_AMOUNT);
     }
 }

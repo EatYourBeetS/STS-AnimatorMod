@@ -8,7 +8,8 @@ public enum EYBCardTarget
     None(null),
     Normal(null),
     ALL("AoE"),
-    Random("???");
+    Random("???"),
+    Minion(null);
 
     public final String tag;
 
@@ -31,6 +32,7 @@ public enum EYBCardTarget
             case Normal:
                 return AbstractCard.CardTarget.ENEMY;
 
+            case Minion:
             case None:
             default:
                 return AbstractCard.CardTarget.NONE;

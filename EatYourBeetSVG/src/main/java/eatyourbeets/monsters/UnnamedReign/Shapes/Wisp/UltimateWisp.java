@@ -1,6 +1,8 @@
 package eatyourbeets.monsters.UnnamedReign.Shapes.Wisp;
 
 import com.megacrit.cardcrawl.powers.HexPower;
+import eatyourbeets.blights.animator.UltimateWispBlight;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
@@ -15,11 +17,17 @@ public class UltimateWisp extends Wisp
     public static final String ID = CreateFullID(MonsterShape.Wisp, MonsterElement.Ultimate, MonsterTier.Ultimate);
     public static final String NAME = "Ultimate Wisp";
 
-    public UltimateWisp()
+    private final EYBAbstractMove antiStrengthLoss;
+    private int antiStrengthLossCounter = 0;
+
+    public UltimateWisp(float x, float y)
     {
-        super(MonsterElement.Ultimate, MonsterTier.Ultimate, 0, 0);
+        super(MonsterElement.Ultimate, MonsterTier.Ultimate, x, y);
 
         moveset.mode = EYBMoveset.Mode.Sequential;
+
+        antiStrengthLoss = moveset.Special.Attack(50)
+        .SetOnUse((m, t) -> m.damage.baseAmount += 10);
 
         moveset.Normal.Attack(8, 3)
         .SetDamageScaling(0.2f);
@@ -34,11 +42,35 @@ public class UltimateWisp extends Wisp
         .SetDamageScaling(0.2f)
         .SetOnUse((m, t) ->
         {
-            if (GameUtilities.GetAscensionLevel() >= 18 || !t.hasPower(HexPower.POWER_ID))
+            if (GameUtilities.GetAscensionLevel() >= 19 || !t.hasPower(HexPower.POWER_ID))
             {
                 GameActions.Bottom.StackPower(this, new HexPower(t, 1));
             }
         });
+    }
+
+    @Override
+    protected void SetNextMove(int roll, int historySize)
+    {
+        if (antiStrengthLossCounter > 3)
+        {
+            antiStrengthLoss.Select(false);
+        }
+        else
+        {
+            super.SetNextMove(roll, historySize);
+        }
+    }
+
+    @Override
+    public void takeTurn()
+    {
+        if (GameUtilities.IsAttacking(intent) && ((getIntentDmg() <= 1) || (getIntentDmg() <= (getIntentBaseDmg() - 5))))
+        {
+            antiStrengthLossCounter += 1;
+        }
+
+        super.takeTurn();
     }
 
     @Override
@@ -47,5 +79,10 @@ public class UltimateWisp extends Wisp
         super.usePreBattleAction();
 
         GameActions.Bottom.ApplyPower(this, this, new UltimateWispPower(this));
+
+        if (UltimateWispBlight.ID.equals(GameUtilities.GetAscensionBlightChoice()))
+        {
+            GameActions.Bottom.GainBlock(this, 16);
+        }
     }
 }

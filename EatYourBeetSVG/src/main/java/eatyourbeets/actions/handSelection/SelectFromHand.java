@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.GenericCondition;
 import eatyourbeets.utilities.RandomizedList;
@@ -17,6 +18,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final ArrayList<AbstractCard> excluded = new ArrayList<>();
     protected final ArrayList<AbstractCard> selectedCards = new ArrayList<>();
     protected GenericCondition<AbstractCard> filter;
+    protected GenericCondition<AbstractCard> priority;
     protected boolean reAddCards;
     protected boolean isRandom;
     protected boolean canPickLower;
@@ -37,12 +39,27 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
         Initialize(amount, sourceName);
 
+        this.message = GR.Common.Strings.HandSelection.Activate;
         this.isRandom = isRandom;
     }
 
     public SelectFromHand SetMessage(String message)
     {
         this.message = message;
+
+        return this;
+    }
+
+    public SelectFromHand SetPriority(FuncT1<Boolean, AbstractCard> filter)
+    {
+        this.priority = GenericCondition.FromT1(filter);
+
+        return this;
+    }
+
+    public <S> SelectFromHand SetPriority(S state, FuncT2<Boolean, S, AbstractCard> filter)
+    {
+        this.priority = GenericCondition.FromT2(filter, state);
 
         return this;
     }
@@ -63,7 +80,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromHand SetOptions(boolean anyNumber, boolean canPickZero, boolean canPickLower)
     {
-        return SetOptions(anyNumber, canPickZero, canPickLower, false, false, false);
+        return SetOptions(anyNumber, canPickZero, canPickLower, false, false, anyNumber && !canPickZero);
     }
 
     public SelectFromHand SetOptions(boolean anyNumber, boolean canPickZero, boolean canPickLower, boolean forTransform, boolean forUpgrade, boolean upTo)
@@ -125,7 +142,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             Complete(selectedCards);
             return;
         }
-        else if (size <= amount && !anyNumber)
+        else if (size <= amount && !canPickZero && !anyNumber)
         {
             selectedCards.addAll(cardSource.group);
             Complete(selectedCards);
@@ -134,13 +151,44 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
 
         if (isRandom)
         {
-            RandomizedList<AbstractCard> list = new RandomizedList<>();
-            list.AddAll(cardSource.group);
-
-            int max = Math.min(amount, list.Size());
-            for (int i = 0; i < max; i++)
+            if (priority == null)
             {
-                selectedCards.add(list.Retrieve(rng));
+                final RandomizedList<AbstractCard> list = new RandomizedList<>();
+                list.AddAll(cardSource.group);
+
+                final int max = Math.min(amount, list.Size());
+                for (int i = 0; i < max; i++)
+                {
+                    selectedCards.add(list.Retrieve(rng));
+                }
+            }
+            else
+            {
+                final RandomizedList<AbstractCard> first = new RandomizedList<>();
+                final RandomizedList<AbstractCard> last = new RandomizedList<>();
+                for (AbstractCard c : cardSource.group)
+                {
+                    if (priority.Check(c))
+                    {
+                        first.Add(c);
+                    }
+                    else
+                    {
+                        last.Add(c);
+                    }
+                }
+
+                final int max1 = Math.min(amount, first.Size());
+                for (int i = 0; i < max1; i++)
+                {
+                    selectedCards.add(first.Retrieve(rng));
+                }
+
+                final int max2 = Math.min(amount - selectedCards.size(), last.Size());
+                for (int i = 0; i < max2; i++)
+                {
+                    selectedCards.add(last.Retrieve(rng));
+                }
             }
 
             Complete(selectedCards);
@@ -154,7 +202,7 @@ public class SelectFromHand extends EYBActionWithCallback<ArrayList<AbstractCard
             reAddCards = true;
         }
 
-        AbstractDungeon.handCardSelectScreen.open(CreateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
+        AbstractDungeon.handCardSelectScreen.open(UpdateMessage(), amount, anyNumber, canPickZero, forTransform, forUpgrade, upTo);
     }
 
     @Override

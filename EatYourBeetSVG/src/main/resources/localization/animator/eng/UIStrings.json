@@ -1,6 +1,6 @@
 
 {
-	"animator:Synergies":
+	"animator:Series":
 	{
 		"TEXT":
 		[
@@ -90,7 +90,12 @@
 			"Scry {0}",
 			"Next turn: Gain {0} [Block]",
 			"Next turn: Draw {0} card(s)",
-			"Next turn: Gain {0} [E]"
+			"Next turn: Gain {0} [E]",
+			"Enter any stance",
+			"Pay {0} [E]",
+			"Lose {0} [HP]",
+			"Lose {0} [MHP]",
+			"Recover {0} [HP]"
 		]
 	},
 
@@ -121,10 +126,11 @@
 			"Only contains Cards with this synergy. WARNING: once you click on this, the other 2 Card rewards will disappear.",
 			"Bonus Relic",
 			"Cursed Relic",
-			"Banish",
+			"Reroll",
 			"+{0} Max HP",
 			"+{0} Gold",
-			"Aura Effects"
+			"Common Upgrade",
+			"#pRight-Click to preview."
 		]
 	},
 
@@ -135,10 +141,11 @@
 			"Contains {0} cards.",
 			"Cards from this series NL may have a random NL {Bonus} upon pickup.",
 			"Selecting this series will NL not unlock trophies for NL the current run.",
-			"Select #ySeries for a total of #b75 or more cards to proceed. Obtain an additional starting #yRelic if you select at least #b100 cards.",
+			"Select a total of at least #b{0} cards to proceed. Obtain an additional starting #yRelic if you select at least #b{1} #ySeries.",
 			"Pickup Bonus",
 			"Obtain a bonus for each #ydifferent card you obtain (up to 6). NL The bonus will improve as you obtain more cards.",
-			"#pRight-Click a series to view cards from its pool."
+			"#pRight-Click a series to view cards from its pool.",
+			"Meant for #yCasual gameplay. NL Gives the player a custom chance to dodge while at low health. NL #yDisables trophies and certain rewards (but you can still gain Ascension levels)."
 		]
 	},
 	
@@ -149,9 +156,11 @@
 			"Show Beta Series.",
 			"Deselect All",
 			"Random ({0} cards)",
+			"Random ({0} series)",
 			"Select All",
 			"Show card pool",
-			"Proceed"
+			"Proceed",
+			"Enable Plot Armor"
 		]
 	},
 
@@ -161,7 +170,12 @@
 		[
 			"Starting Cards: ",
 			"###############",
-			"Unlocks at Level {0} (You are Level {1})"
+			"Unlocks at Level {0} (You are Level {1})",
+			"Invalid Loadout (Please Edit)",
+			"Unlocks at Ascension {0}",
+			"Starting Deck Editor",
+			"#pLeft-Click to open the editor. NL #pRight-Click to change preset.",
+			"Obtain #yBronze #yTrophy at ascension #b{0} to unlock"
 		]
 	},
 	
@@ -181,7 +195,69 @@
 			"Display Beta Series",
 			"Translation",
 			"Highlight Synergies.",
-			"Simplify Card UI"
+			"Simplify Card UI",
+			"Certain rewards are disabled for one or more of these reasons: NL NL - Non-Animator class or cards NL - Custom or Endless mode NL - Non-Official mod version NL - Used console commands NL - Edited save file",
+			"The console is disabled while in this act.",
+			"To prevent infinite healing, some cards will give you [THP] instead of [HP] when played more than 1 time (This is disabled in Endless mode).",
+			"(Max #b{0} stacks)",
+			"(Above #b{0} stacks, gain [Block] instead)",
+			"(Max #b{0} [Block])",
+			"Max Copies",
+			"If you have reached or surpassed the maximum number of copies, this card will stop appearing in card rewards and shops.",
+			"Mulligan",
+			"At the start of combat, before playing any card, you may #pRight-Click a card to shuffle it into your draw pile and draw #b1 card. Take #b1 [DD] on the first use and #b2 [DD] on the second use."
+		]
+	},
+	
+	"animator:SpecialActions":
+	{
+		"TEXT":
+		[
+			"Downgrade. Gain #b{0} [Gold].",
+			"Reset card #yUpgrades in exchange for #yGold. You can only #yDowngrade #b1 card per floor.",
+			
+			"Improve. Lose #b{0} [Gold].",
+			"Transform this card into an #yImproved #yBasic card of your choice. You can only perform this action at #yRest #ySites.",
+			
+			"Transform. Receive [Grief Seed].",
+			"Transform. Lose #b{0} [HP].",
+			"Transform. Lose #b{0} Max [HP].",
+			"Transform this card into {0}. NL You can only perform this action at #yRest #ySites, and if you don't already have {0}.",
+			"If you have {0}, transform this card into {1}. NL You can only perform this action at #yRest #ySites, and if you don't already have {1}.",
+			"Remove {0} and {1} to transform this card into {2}. NL You can only perform this action at #yRest #ySites, and if you don't already have {2}.",
+			
+			"Obtain card. Gain #b{0} [Vulnerable].",
+			"Obtain {0} and start your next combat with #b{1} [Vulnerable]. NL You can only perform this action at #yRest #ySites, and if you don't already have {0}.",
+			
+			"Obtain Curse. Heal #b{0} [HP].",
+			"If you have at least #b{0} Curses, Obtain {1}. NL You can only perform this action at #yRest #ySites, and if you don't already have {1}.",
+		]
+	},
+	
+	"animator:Affinities":
+	{
+		"TEXT":
+		[
+			"Current: #b{0}. Max: #b{1}. NL Points are refreshed each turn. They also prevent your [{2}] from decreasing below #b{1}.",
+			"Up to #b{0} time(s) this turn, you may #pRight-Click a card to #ySeal it and reshuffle it."
+		]
+	},
+	
+	"animator:Tutorial":
+	{
+		"TEXT":
+		[
+			"#pClick #pto #pcycle #p({0}/{1}). NL ",
+			
+			"Cards can have a combination of the following #yAffinity ( [A_Gen] ) NL colors: [A_Red], [A_Green], [A_Blue], [A_Light], [A_Dark]. NL NL Card #yAffinities are further distinguished in #yLV1 [A_Gen] (normal border) and #yLV2 [A_Gen] (animated border). NL NL Some #yLV1 [A_Gen] can be upgraded to #yLV2 (different border).",
+			
+			"A card #ySynergizes with the previously played card if both of them share an [A_Gen] color, and if at least one of the shared [A_Gen] color is #yLV2. NL NL Once per turn, when a card's #yLV2 [A_Gen] #ySynergizes with the previous card played, gain one of the powers shown below.",
+			
+			"On this panel, the counter for each #yAffinity is equal to the number of cards in your hand with that #yAffinity. NL NL The generic #yAffinity ( [Affinity] ) counter is equal to your highest #yAffinity counter. NL NL Some card effects require a certain amount of hand #yAffinity to activate (ignoring themselves).",
+			
+			"Some cards will scale with the powers shown on the right of this panel (called [A_Gen] #yPowers^) at a rate of #b3:1^. NL NL For example, an #yAttack with #bx1 [F] scaling will deal #b1 additional damage every #b3 points of [F]. NL NL Similarly, a #ySkill with #bx1 [F] scaling will grant #b1 additional #yBlock every #b3 points of [F].",
+			
+			"While playing this character, most of the effects that deal damage during your turn or make you lose [HP] will let you survive with #b1 [HP]. NL NL Some common powers and mechanics have also been limited while not in endless mode (this is reflected on their tooltips)."
 		]
 	}
 }

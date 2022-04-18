@@ -1,39 +1,46 @@
 package eatyourbeets.relics.animator;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import eatyourbeets.interfaces.subscribers.OnModifyDamageFirstSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
+import eatyourbeets.utilities.GameUtilities;
 
-public class Hoodie extends AnimatorRelic
+public class Hoodie extends AnimatorRelic implements OnModifyDamageFirstSubscriber
 {
     public static final String ID = CreateFullID(Hoodie.class);
-    public static final int MAX_HP_BONUS = 3;
 
     public Hoodie()
     {
-        super(ID, RelicTier.UNCOMMON, LandingSound.FLAT);
+        super(ID, RelicTier.RARE, LandingSound.FLAT);
     }
 
     @Override
-    public String getUpdatedDescription()
+    protected void ActivateBattleEffect()
     {
-        return FormatDescription(MAX_HP_BONUS);
+        super.ActivateBattleEffect();
+
+        CombatStats.onModifyDamageFirst.Subscribe(this);
     }
 
     @Override
-    public void onVictory()
+    protected void DeactivateBattleEffect()
     {
-        super.onVictory();
-        if (GameActionManager.damageReceivedThisCombat == 0)
+        super.DeactivateBattleEffect();
+
+        CombatStats.onModifyDamageFirst.Unsubscribe(this);
+    }
+
+    @Override
+    public int OnModifyDamageFirst(AbstractCreature target, DamageInfo info, int damage)
+    {
+        if (target == player && GameUtilities.IsPlayerTurn(false) && (info.type != DamageInfo.DamageType.NORMAL || info.owner == null || info.owner.isPlayer))
         {
-            player.increaseMaxHp(MAX_HP_BONUS, true);
             flash();
+            return damage / 2;
         }
-    }
 
-    @Override
-    public boolean canSpawn()
-    {
-        return super.canSpawn() && AbstractDungeon.floorNum < 24;
+        return damage;
     }
 }

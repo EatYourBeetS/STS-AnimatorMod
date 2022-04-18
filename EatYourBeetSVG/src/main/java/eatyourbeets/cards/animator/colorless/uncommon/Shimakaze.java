@@ -1,34 +1,42 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.animator.status.Status_Dazed;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 
 public class Shimakaze extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Shimakaze.class).SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Shimakaze.class)
+            .SetAttack(1, CardRarity.UNCOMMON).SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Kancolle);
 
     public Shimakaze()
     {
         super(DATA);
 
-        Initialize(3, 3, 3);
-        SetUpgrade(1, 1, 1);
-
-        SetSynergy(Synergies.Kancolle);
+        Initialize(2, 2, 3);
+        
+        SetAffinity_Green(1);
+        SetExhaust(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_LIGHT);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_LIGHT);
+
+        GameActions.Bottom.RetainPower(Affinity.Green);
         GameActions.Bottom.Draw(magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(new Dazed());
+        GameActions.Bottom.MakeCardInDrawPile(new Status_Dazed());
     }
 }

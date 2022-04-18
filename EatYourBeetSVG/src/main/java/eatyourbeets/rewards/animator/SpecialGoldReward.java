@@ -22,6 +22,7 @@ public class SpecialGoldReward extends AnimatorReward
     {
         super(ImageMaster.UI_GOLD,amount + GOLD_STRING + " (" + text + ")", GR.Enums.Rewards.SPECIAL_GOLD);
 
+        this.cards = null;
         this.text = text;
         this.goldAmt = amount;
     }
@@ -48,7 +49,7 @@ public class SpecialGoldReward extends AnimatorReward
         @Override
         public RewardSave onSave(CustomReward customReward)
         {
-            SpecialGoldReward reward = JUtils.SafeCast(customReward, SpecialGoldReward.class);
+            final SpecialGoldReward reward = JUtils.SafeCast(customReward, SpecialGoldReward.class);
             if (reward != null)
             {
                 return new RewardSave(customReward.type.toString(), reward.text, reward.goldAmt, 0);

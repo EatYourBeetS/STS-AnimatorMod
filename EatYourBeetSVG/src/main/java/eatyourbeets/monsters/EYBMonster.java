@@ -35,6 +35,7 @@ public abstract class EYBMonster extends CustomMonster
         BaseMod.addMonster(HornedBat.ID, HornedBat::CreateMonsterGroup);
 
         Encounters.add(new EYBMonsterInfo(TheCity.ID, EnemyType.ELITE, HornedBat.ID, 0.8f));
+        Encounters.add(new EYBMonsterInfo(TheCity.ID, EnemyType.NORMAL, UnnamedEnemyGroup.TWO_NORMAL_SHAPES, 1.8f, 13));
     }
 
     public EYBMonster(EYBMonsterData data, EnemyType type)
@@ -60,7 +61,7 @@ public abstract class EYBMonster extends CustomMonster
     @Override
     public void takeTurn()
     {
-        EYBAbstractMove move = moveset.GetMove(nextMove);
+        final EYBAbstractMove move = moveset.GetMove(nextMove);
         if (move != null)
         {
             move.Execute(AbstractDungeon.player);
@@ -87,7 +88,7 @@ public abstract class EYBMonster extends CustomMonster
 
     protected void SetNextMove(int roll, int historySize)
     {
-        moveset.FindNextMove(roll, previousMove).Select();
+        moveset.FindNextMove(roll, previousMove).Select(false);
     }
 
     protected ArrayList<EYBAbstractMove> GetRotation()

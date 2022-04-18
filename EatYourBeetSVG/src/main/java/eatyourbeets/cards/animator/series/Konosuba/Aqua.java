@@ -6,33 +6,38 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.RainbowCardEffect;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
+import eatyourbeets.cards.base.attributes.MixedHPAttribute;
 import eatyourbeets.utilities.GameActions;
 
 public class Aqua extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Aqua.class).SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new Aqua(true), true);
-    }
+    public static final EYBCardData DATA = Register(Aqua.class)
+            .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Aqua(true), true));
 
     private boolean transformed = false;
-    private Aqua(boolean transformed)
-    {
-        this();
-
-        SetTransformed(transformed);
-    }
 
     public Aqua()
     {
+        this(false);
+    }
+
+    private Aqua(boolean transformed)
+    {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 2);
+        SetUpgrade(0, 0, 0, 0);
+
+        SetAffinity_Light(2);
+        SetAffinity_Blue(1);
 
         SetHealing(true);
-        SetSynergy(Synergies.Konosuba);
+        SetTransformed(transformed);
     }
 
     @Override
@@ -40,35 +45,22 @@ public class Aqua extends AnimatorCard
     {
         SetTransformed(transformed);
     }
-
+    
     @Override
-    public void triggerOnManualDiscard()
+    public AbstractAttribute GetSpecialInfo()
     {
-        super.triggerOnManualDiscard();
-
-        if (upgraded && transformed)
-        {
-            GameActions.Bottom.GainTemporaryHP(secondaryValue);
-        }
+        return transformed ? null : upgraded
+             ? MixedHPAttribute.Instance.SetCard(this, true)
+             : HPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
-    public void triggerOnExhaust()
-    {
-        super.triggerOnExhaust();
-
-        if (upgraded && transformed)
-        {
-            GameActions.Bottom.GainTemporaryHP(secondaryValue);
-        }
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (!transformed)
         {
-            GameActions.Bottom.Heal(magicNumber);
+            GameActions.Bottom.GainBlessing(1, upgraded);
+            GameActions.Bottom.Heal(magicNumber).Overheal(upgraded);
             GameActions.Bottom.Draw(1);
             GameActions.Bottom.Callback(() -> SetTransformed(true));
         }
@@ -76,12 +68,6 @@ public class Aqua extends AnimatorCard
         {
             GameActions.Bottom.VFX(new RainbowCardEffect());
         }
-    }
-
-    @Override
-    public boolean canUpgrade()
-    {
-        return !upgraded;
     }
 
     @Override
@@ -121,7 +107,7 @@ public class Aqua extends AnimatorCard
         if (transformed)
         {
             LoadImage("2");
-            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[upgraded ? 1 : 0], true);
+            cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
             type = CardType.STATUS;
         }
         else

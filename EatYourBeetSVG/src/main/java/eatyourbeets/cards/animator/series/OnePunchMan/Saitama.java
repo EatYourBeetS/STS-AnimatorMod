@@ -1,9 +1,7 @@
 package eatyourbeets.cards.animator.series.OnePunchMan;
 
 import com.evacipated.cardcrawl.mod.stslib.powers.StunMonsterPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.PummelDamageAction;
-import com.megacrit.cardcrawl.actions.utility.ShakeScreenAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -13,26 +11,34 @@ import com.megacrit.cardcrawl.powers.BufferPower;
 import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
 import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.InvinciblePower;
-import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Saitama extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Saitama.class).SetSkill(0, CardRarity.RARE, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new Saitama(1), false);
-        DATA.AddPreview(new Saitama(2), false);
-        DATA.AddPreview(new Saitama(3), false);
-        DATA.AddPreview(new Saitama(4), false);
-        DATA.AddPreview(new Saitama(5), false);
-    }
+    public static final EYBCardData DATA = Register(Saitama.class)
+            .SetSkill(0, CardRarity.RARE, EYBCardTarget.None)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Saitama(1), false);
+                data.AddPreview(new Saitama(2), false);
+                data.AddPreview(new Saitama(3), false);
+                data.AddPreview(new Saitama(4), false);
+                data.AddPreview(new Saitama(5), false);
+            });
 
     private int stage;
+
+    public Saitama()
+    {
+        this(0);
+    }
 
     private Saitama(int stage)
     {
@@ -40,23 +46,20 @@ public class Saitama extends AnimatorCard
 
         Initialize(0, 0);
 
-        SetAttackType(EYBAttackType.Normal);
-        SetSynergy(Synergies.OnePunchMan);
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Light(1);
 
+        SetAttackType(EYBAttackType.Normal);
         GameUtilities.ModifyCostForCombat(this, stage, false);
         this.stage = this.misc = stage;
         SetEffect(stage);
     }
 
-    public Saitama()
-    {
-        this(0);
-    }
-
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        AbstractAttribute damage = super.GetDamageInfo();
+        final AbstractAttribute damage = super.GetDamageInfo();
         if (damage != null && stage == 4)
         {
             damage.AddMultiplier(magicNumber);
@@ -93,7 +96,7 @@ public class Saitama extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         switch (stage)
         {
@@ -141,7 +144,7 @@ public class Saitama extends AnimatorCard
                 {
                     GameActions.Bottom.Add(new PummelDamageAction(m, new DamageInfo(p, this.damage, this.damageTypeForTurn)));
                 }
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
 
                 break;
             }
@@ -153,9 +156,9 @@ public class Saitama extends AnimatorCard
                 GameActions.Bottom.RemovePower(p, m, IntangiblePlayerPower.POWER_ID);
                 GameActions.Bottom.RemovePower(p, m, InvinciblePower.POWER_ID);
 
-                GameActions.Bottom.VFX(new VerticalImpactEffect(m.hb.cX + m.hb.width / 4f, m.hb.cY - m.hb.height / 4f));
-                GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE).SetPiercing(true, true);
-                GameActions.Bottom.Add(new ShakeScreenAction(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED));
+                GameActions.Bottom.VFX(VFX.VerticalImpact(m.hb));
+                GameActions.Bottom.DealDamage(this, m, AttackEffects.PUNCH).SetPiercing(true, true);
+                GameActions.Bottom.ShakeScreen(0.5f, ScreenShake.ShakeDur.MED, ScreenShake.ShakeIntensity.MED);
 
                 GameActions.Bottom.ApplyPower(p, m, new StunMonsterPower(m, 1));
 
@@ -233,6 +236,8 @@ public class Saitama extends AnimatorCard
                 this.target = CardTarget.SELF;
                 this.type = CardType.SKILL;
 
+                AddScaling(Affinity.Red, 3);
+
                 LoadImage("_2");
 
                 break;
@@ -244,7 +249,8 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[3], true);
 
                 Initialize(6, 0, 8, 0);
-                SetScaling(0, 3, 3);
+                
+                AddScaling(Affinity.Green, 1);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
@@ -261,11 +267,14 @@ public class Saitama extends AnimatorCard
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[4], true);
 
                 Initialize(999, 0, 0, 0);
-                SetScaling(0, 99, 99);
+
+                SetScaling(Affinity.Red, 99);
+                SetScaling(Affinity.Green, 99);
 
                 this.attackType = EYBAttackType.Normal;
                 this.target = CardTarget.ENEMY;
                 this.type = CardType.ATTACK;
+                this.cropPortrait = false;
 
                 LoadImage("_4");
 

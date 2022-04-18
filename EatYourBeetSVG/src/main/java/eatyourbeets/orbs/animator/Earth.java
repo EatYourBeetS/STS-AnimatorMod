@@ -1,69 +1,106 @@
 package eatyourbeets.orbs.animator;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.actions.defect.EvokeSpecificOrbAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import eatyourbeets.actions.orbs.EarthOrbEvokeAction;
 import eatyourbeets.actions.orbs.EarthOrbPassiveAction;
+import eatyourbeets.effects.Projectile;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnPostDrawSubscriber;
 import eatyourbeets.orbs.AnimatorOrb;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.resources.GR;
+import eatyourbeets.ui.TextureCache;
+import eatyourbeets.utilities.*;
+
+import java.util.ArrayList;
 
 public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscriber
 {
     public static final String ORB_ID = CreateFullID(Earth.class);
+    public static final int BASE_PROJECTILES = 6;
+    public static final int MAX_PROJECTILES = 24;
+    public static final int PROJECTILES_PER_TURN = 2;
+    public static final int PROJECTILE_DAMAGE = 2;
+    public static final int THORNS_PER_CHANNEL = 2;
+    public static final int MAX_CHANNEL_EFFECTS = 3;
 
-    public static Texture imgRight;
-    public static Texture imgLeft;
-    public static Texture imgMid;
+    private static final TextureCache[] images = { IMAGES.Earth1, IMAGES.Earth2, IMAGES.Earth3, IMAGES.Earth4 };
+    private static final RandomizedList<TextureCache> textures = new RandomizedList<>();
+    private float vfxTimer;
 
-    private final boolean hFlip1;
-    private final boolean hFlip2;
+    public final ArrayList<Projectile> projectiles = new ArrayList<>();
+    public boolean evoked;
+    public int projectilesCount;
+    public int turns;
 
-    private boolean evoked;
-    private int turns;
+    public static Texture GetRandomTexture()
+    {
+        if (textures.Size() <= 1) // Adds some randomness but still ensures all textures are cycled through
+        {
+            textures.AddAll(images);
+        }
+
+        return textures.RetrieveUnseeded(true).Texture();
+    }
 
     public Earth()
     {
-        super(ORB_ID, true);
+        super(ORB_ID, Timing.EndOfTurn);
 
-        if (imgRight == null)
-        {
-            imgRight = ImageMaster.loadImage("images/orbs/animator/EarthRight.png");
-            imgLeft = ImageMaster.loadImage( "images/orbs/animator/EarthLeft.png");
-            imgMid = ImageMaster.loadImage(  "images/orbs/animator/EarthMid.png");
-        }
-
-        this.hFlip1 = MathUtils.randomBoolean();
-        this.hFlip2 = MathUtils.randomBoolean();
         this.evoked = false;
-        this.baseEvokeAmount = 16;
-        this.evokeAmount = this.baseEvokeAmount;
-        this.basePassiveAmount = 2;
-        this.passiveAmount = this.basePassiveAmount;
+        this.evokeAmount = this.baseEvokeAmount = PROJECTILE_DAMAGE;
+        this.passiveAmount = this.basePassiveAmount = PROJECTILES_PER_TURN;
+        this.projectilesCount = BASE_PROJECTILES;
         this.channelAnimTimer = 0.5f;
         this.turns = 3;
+
         this.updateDescription();
     }
 
+    public void AddProjectiles(int amount)
+    {
+        final int max = Math.min(MAX_PROJECTILES - projectiles.size(), amount);
+        for (int i = 0; i < max; i++)
+        {
+            projectiles.add(new Projectile(GetRandomTexture(), IMAGE_SIZE * 0.5f, IMAGE_SIZE * 0.5f)
+            .SetPosition(cX, cY)
+            .SetColor(Colors.Random(0.9f, 1f, false))
+            .SetScale(0.05f)
+            .SetTargetScale(MathUtils.random(0.6f, 1f), null)
+            .SetFlip(projectiles.size() % 2 == 0, null)
+            .SetOffset(0f, 0f, MathUtils.random(0f, 360f), null)
+            .SetSpeed(2f, 2f, MathUtils.random(18f, 24f), null));
+        }
+    }
+
+    @Override
+    public void onChannel()
+    {
+        turns = 3;
+        evoked = false;
+        projectiles.clear();
+        AddProjectiles(projectilesCount);
+
+        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        if (CombatStats.TryActivateLimited(ID, MAX_CHANNEL_EFFECTS))
+        {
+            GameActions.Bottom.GainThorns(THORNS_PER_CHANNEL);
+        }
+    }
+
+    @Override
     public void updateDescription()
     {
-        final String[] desc = orbStrings.DESCRIPTION;
-
         this.applyFocus();
-        this.description = desc[0] + this.passiveAmount + desc[1] + this.evokeAmount + desc[2] + this.turns + desc[3];
+        this.description = JUtils.Format(orbStrings.DESCRIPTION[0], passiveAmount, MAX_PROJECTILES, evokeAmount, turns);
     }
 
     @Override
@@ -88,57 +125,53 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     public void onEndOfTurn()
     {
-        if (evoked)
+        if (!evoked && turns > 0)
         {
-            return;
-        }
-
-        if (turns > 0)
-        {
-            PassiveEffect();
+            Passive();
         }
 
         this.updateDescription();
     }
 
     @Override
-    public void triggerEvokeAnimation()
-    {
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.1f);
-        //CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_EVOKE", 0.1f);
-        GameEffects.Queue.Add(new DarkOrbActivateEffect(this.cX, this.cY));
-    }
-
-    @Override
     public void applyFocus()
     {
-        int focus = GetFocus();
-        if (focus > 0)
-        {
-            this.passiveAmount = Math.max(0, this.basePassiveAmount + focus);
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + (focus * 2));
-        }
-        else
-        {
-            this.evokeAmount = this.baseEvokeAmount;
-            this.passiveAmount = this.basePassiveAmount;
-        }
+        this.passiveAmount = Math.max(0, this.basePassiveAmount + GetFocus());
     }
 
     @Override
     public void updateAnimation()
     {
         super.updateAnimation();
-        this.angle += Gdx.graphics.getDeltaTime() * 18f; //180f;
+
+        final float delta = GR.UI.Delta();
+        for (Projectile texture : projectiles)
+        {
+            texture.SetPosition(cX, cY).SetTargetRotation(angle, null).Update(delta);
+        }
+
+        if (!evoked && (vfxTimer -= delta) <= 0)
+        {
+            final float w = hb.width * 0.5f;
+            final float h = hb.height * 0.5f;
+            for (Projectile texture : projectiles)
+            {
+                texture.SetTargetOffset((w * 0.5f) - MathUtils.random(w), (h * 0.5f) - MathUtils.random(h), null, null);
+            }
+            vfxTimer = 1.5f;
+        }
+
+        this.angle += delta * 180f;
     }
 
     @Override
     public void render(SpriteBatch sb)
     {
-        sb.setColor(this.c);
-        sb.draw(imgLeft, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f - this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
-        sb.draw(imgMid, this.cX - 48f - this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 2f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip2, false);
-        sb.draw(imgRight, this.cX - 48f + this.bobEffect.y / 4f, this.cY - 48f + this.bobEffect.y / 4f, 48f, 48f, 96f, 96f, this.scale, this.scale, 0f, 0, 0, 96, 96, this.hFlip1, false);
+        for (Projectile projectile : projectiles)
+        {
+            projectile.Render(sb, Colors.Copy(projectile.color, c.a));
+        }
+
         this.renderText(sb);
         this.hb.render(sb);
     }
@@ -146,50 +179,69 @@ public class Earth extends AnimatorOrb implements OnStartOfTurnPostDrawSubscribe
     @Override
     protected void renderText(SpriteBatch sb)
     {
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.evokeAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.passiveAmount), this.cX + NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
-        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX - NUM_X_OFFSET, this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, this.c, this.fontScale);
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, evokeAmount + "x" + projectilesCount, this.cX + NUM_X_OFFSET,
+                this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET - 4f * Settings.scale, new Color(0.2f, 1f, 1f, this.c.a), this.fontScale);
+
+        FontHelper.renderFontCentered(sb, FontHelper.cardEnergyFont_L, Integer.toString(this.turns), this.cX + NUM_X_OFFSET,
+                this.cY + this.bobEffect.y / 2f + NUM_Y_OFFSET + 20f * Settings.scale, new Color(0.8f, 0.7f, 0.2f, this.c.a), this.fontScale);
     }
 
     @Override
     public void playChannelSFX()
     {
-        CardCrawlGame.sound.play("ANIMATOR_ORB_EARTH_CHANNEL", 0.2f);
-        turns = 3;
-        evoked = false;
-        CombatStats.onStartOfTurnPostDraw.Subscribe(this);
+        SFX.Play(SFX.ANIMATOR_ORB_EARTH_CHANNEL, 0.8f, 1.2f);
     }
 
     @Override
     public AbstractOrb makeCopy()
     {
-        Earth copy = new Earth();
+        final Earth copy = new Earth();
         if (!evoked)
         {
             copy.turns = turns;
+            copy.projectilesCount = projectilesCount;
         }
 
         return copy;
     }
 
     @Override
-    public void PassiveEffect()
+    public void Passive()
     {
-        GameActions.Bottom.Add(new EarthOrbPassiveAction(passiveAmount));
-        super.PassiveEffect();
+        GameActions.Bottom.Add(new EarthOrbPassiveAction(this, passiveAmount));
+
+        super.Passive();
     }
 
     @Override
-    public void EvokeEffect()
+    public void Evoke()
     {
         if (evokeAmount > 0)
         {
-            GameActions.Top.Add(new EarthOrbEvokeAction(evokeAmount));
-            super.EvokeEffect();
+            if (projectiles.isEmpty())
+            {
+                AddProjectiles(projectilesCount);
+            }
+
+            GameActions.Bottom.Add(new EarthOrbEvokeAction(this, evokeAmount));
+
+            super.Evoke();
         }
 
         turns = 0;
-        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
         evoked = true;
+        CombatStats.onStartOfTurnPostDraw.Unsubscribe(this);
+    }
+
+    @Override
+    protected Color GetColor1()
+    {
+        return new Color(0.3f, 0.25f, 0f, 1f);
+    }
+
+    @Override
+    protected Color GetColor2()
+    {
+        return Color.DARK_GRAY;
     }
 }

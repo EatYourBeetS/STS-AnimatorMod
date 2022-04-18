@@ -4,8 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import eatyourbeets.cards.animator.curse.Curse_Dizziness;
+import eatyourbeets.cards.animator.curse.special.Curse_Dizziness;
 import eatyourbeets.cards.animator.special.HinaKagiyama;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.events.base.EYBEventPhase;
@@ -21,6 +20,11 @@ public class TheCursedForest extends EYBEvent
 
     public static TheCursedForest TryCreate(Random rng)
     {
+        if (AbstractDungeon.floorNum < 16)
+        {
+            return null;
+        }
+
         int curseCount = 0;
         for (AbstractCard card : AbstractDungeon.player.masterDeck.group)
         {
@@ -38,16 +42,16 @@ public class TheCursedForest extends EYBEvent
         {
             case  0: return null;
             case  1: return null;
-            case  2: return rng.randomBoolean(0.06f) ? new TheCursedForest() : null;
-            case  3: return rng.randomBoolean(0.24f) ? new TheCursedForest() : null;
-            case  4: return rng.randomBoolean(0.36f) ? new TheCursedForest() : null;
-            default: return rng.randomBoolean(0.60f) ? new TheCursedForest() : null;
+            case  2: return rng.randomBoolean(0.04f) ? new TheCursedForest() : null;
+            case  3: return rng.randomBoolean(0.18f) ? new TheCursedForest() : null;
+            case  4: return rng.randomBoolean(0.28f) ? new TheCursedForest() : null;
+            default: return rng.randomBoolean(0.50f) ? new TheCursedForest() : null;
         }
     }
 
     public TheCursedForest()
     {
-        super(ID, STRINGS, "CursedForest.png");
+        super(ID, STRINGS, IMAGES.CursedForest.Path());
 
         RegisterPhase(0, new Introduction());
         RegisterPhase(1, new Offer());
@@ -87,8 +91,8 @@ public class TheCursedForest extends EYBEvent
 
         private void Embrace()
         {
-            GameEffects.List.Add(new ShowCardAndObtainEffect(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f));
-            GameEffects.List.Add(new ShowCardAndObtainEffect(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2f));
+            GameEffects.List.ShowAndObtain(card, (float) Settings.WIDTH * 0.45f, (float) Settings.HEIGHT / 2f, false);
+            GameEffects.List.ShowAndObtain(curse, (float) Settings.WIDTH * 0.55f, (float) Settings.HEIGHT / 2f, false);
             ProgressPhase();
         }
 

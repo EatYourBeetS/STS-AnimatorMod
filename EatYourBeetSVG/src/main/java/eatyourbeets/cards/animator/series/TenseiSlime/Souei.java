@@ -1,62 +1,142 @@
 package eatyourbeets.cards.animator.series.TenseiSlime;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
+import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
+import eatyourbeets.actions.special.SelectCreature;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Souei extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Souei.class).SetSkill(2, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Souei.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .ObtainableAsReward((data, deck) -> data.GetTotalCopies(deck) <= 0 || deck.size() >= 24);
+    private static final int POISON_AMOUNT = 3;
+    private static final int ACTIVATIONS_STEP = 3;
+    private static final int TURNS = 2;
 
     public Souei()
     {
         super(DATA);
 
-        Initialize(0, 0, 6);
-        SetUpgrade(0, 0, 2);
+        Initialize(0, 0, 3, 2);
+        SetUpgrade(0, 0, 0, 1);
 
-        SetSynergy(Synergies.TenSura);
-        SetMartialArtist();
+        SetAffinity_Green(1);
+        SetAffinity_Dark(2);
+
+        SetEthereal(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnDrag(AbstractMonster m)
     {
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        super.OnDrag(m);
 
-        if (CombatStats.TryActivateSemiLimited(cardID))
+        for (EnemyIntent intent : GameUtilities.GetIntents())
         {
-            GameActions.Bottom.Callback(() ->
+            intent.AddPlayerIntangible();
+        }
+    }
+
+    @Override
+    public ColoredString GetSpecialVariableString()
+    {
+        return super.GetSpecialVariableString(TURNS);
+    }
+
+    @Override
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainCorruption(1, true);
+        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.DiscardFromHand(name, secondaryValue, false)
+        .SetOptions(true, true, true)
+        .AddCallback(cards ->
+        {
+            final int amount = cards.size();
+            if (amount > 0)
             {
-                final int intangible = GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID);
-                for (AbstractMonster enemy : GameUtilities.GetEnemies(true))
+                GameActions.Bottom.StackPower(new SoueiPower(player, TURNS, amount));
+            }
+        });
+
+        if (info.IsSynergizing && info.TryActivateLimited())
+        {
+            GameActions.Bottom.GainIntangible(1);
+        }
+    }
+
+    protected static class SoueiPower extends AnimatorPower
+    {
+        private int poisonAmount;
+
+        public SoueiPower(AbstractCreature owner, int turns, int poison)
+        {
+            super(owner, Souei.DATA);
+
+            ID += poison;
+            poisonAmount = poison;
+
+            Initialize(turns, PowerType.BUFF, true);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, poisonAmount);
+        }
+
+        @Override
+        public void onUseCard(AbstractCard card, UseCardAction action)
+        {
+            super.onUseCard(card, action);
+
+            if (card.type == CardType.SKILL)
+            {
+                GameActions.Delayed.SelectCreature(SelectCreature.Targeting.Random, name)
+                .AutoSelectSingleTarget(true)
+                .SkipConfirmation(true)
+                .AddCallback(m ->
                 {
-                    PoisonPower poison = GameUtilities.GetPower(enemy, PoisonPower.class);
-                    if (poison != null)
+                    if (GameUtilities.IsValidTarget(m))
                     {
-                        GameActions.Top.Callback(new PoisonLoseHpAction(enemy, player, poison.amount, AbstractGameAction.AttackEffect.POISON))
-                        .AddCallback(intangible, (baseIntangible, action) ->
-                        {
-                            if (GameUtilities.IsFatal(action.target, true))
-                            {
-                                if (GameUtilities.GetPowerAmount(IntangiblePlayerPower.POWER_ID) == baseIntangible)
-                                {
-                                    GameActions.Top.StackPower(new IntangiblePlayerPower(player, 1));
-                                }
-                            }
-                        });
+                        GameActions.Top.ApplyPoison(owner, m, poisonAmount);
+                        GameActions.Top.VFX(VFX.ThrowDagger(m.hb, 0.1f).PlaySFX(false)
+                        .SetColor(new Color(0.2f, 1.0f, 0.2f, 1f)), 0.33f, true);
                     }
-                }
-            });
+                });
+                flash();
+            }
+        }
+
+        @Override
+        public void atStartOfTurnPostDraw()
+        {
+            super.atStartOfTurnPostDraw();
+
+            ReducePower(1);
+        }
+
+        @Override
+        protected ColoredString GetSecondaryAmount(Color c)
+        {
+            return new ColoredString(poisonAmount, Colors.Green(c.a));
         }
     }
 }

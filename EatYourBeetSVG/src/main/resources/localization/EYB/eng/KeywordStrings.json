@@ -1,34 +1,115 @@
 
 {
-	"Aether":
+	"Force":
 	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["aether", "aether+"],
-		"PROPER_NAME": "Aether"
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [F], gain #yStrength.",
+		"NAMES": ["force"],
+		"PROPER_NAME": "Force"
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yAgility, gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [A], gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
+	"Blessing":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [B], gain #yVitality.",
+		"NAMES": ["blessing"],
+		"PROPER_NAME": "Blessing"
+	},
+	"Intellect":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [I], gain #yFocus.",
+		"NAMES": ["intellect"],
+		"PROPER_NAME": "Intellect"
+	},
+	"Corruption":
+	{
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8 and #b12 [C], gain #yInvocation.",
+		"NAMES": ["corruption"],
+		"PROPER_NAME": "Corruption"
+	},
+	
+	"Agility Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a] scaling"],
+		"PROPER_NAME": "[A] Scaling"
+	},
+	"Force Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[f] scaling"],
+		"PROPER_NAME": "[F] Scaling"
+	},
+	"Intellect Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[i] scaling"],
+		"PROPER_NAME": "[I] Scaling"
+	},
+	"Blessing Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[b] scaling"],
+		"PROPER_NAME": "[B] Scaling"
+	},
+	"Corruption Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[c] scaling"],
+		"PROPER_NAME": "[C] Scaling"
+	},
+	"Multicolor Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_star] scaling"],
+		"PROPER_NAME": "[A_Star] Scaling"
+	},
+	
+	"Invocation":
+	{
+		"DESCRIPTION": "Gains #b1 charge and #yRecover #b2 [HP] each turn. When applied, and every #b3 charges, add a #yCrystallize to the top of your draw pile. At #b12 charges, obtain #pSummoning #pRitual.",
+		"NAMES": ["invocation"],
+		"PROPER_NAME": "Invocation"
+	},
+	
+	"Affinity":
+	{
+		"DESCRIPTION": "#yAffinity can be of any color NL between [A_Red], [A_Green], [A_Blue], [A_Light], [A_Dark]. NL [A_Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"NAMES": ["affinity", "affinities"],
+		"PROPER_NAME": "Affinity"
+	},
+	"Affinity Seal":
+	{
+		"DESCRIPTION": "#ySealing a card transfers all its [A_Gen] to your [A_Gen] pool. Once per turn, #pRight-Click a card to manually #ySeal and reshuffle it.",
+		"NAMES": ["seal", "seals", "sealing", "sealed", "unseal", "unsealed"],
+		"PROPER_NAME": "Sealed Affinity"
+	},
+	"Affinity Power":
+	{
+		"DESCRIPTION": "[A_Red] -> [F], [A_Green] -> [A], [A_Blue] -> [I], NL [A_Light] -> [B], [A_Dark] -> [C]",
+		"NAMES": ["[a_gen] power", "[a_gen] powers", "affinity power", "affinity powers"],
+		"PROPER_NAME": "Affinity Power"
+	},
+	"Affinity Token":
+	{
+		"DESCRIPTION": "Card which increases your #yAffinity for the rest of combat.",
+		"NAMES": ["[a_gen] token", "[a_gen] tokens", "affinity token", "affinity tokens"],
+		"PROPER_NAME": "Affinity Token"
+	},
 	"Agility Stance":
 	{
-		"DESCRIPTION": "#g+2 #gDexterity, #r-1 #rStrength, #r-1 #rFocus. NL On Enter: #yBoost #yAgility.",
+		"DESCRIPTION": "<LOAD FROM STANCE>",
 		"NAMES": ["[a] stance", "agility stance"],
 		"PROPER_NAME": "Agility Stance"
 	},
 	"Autoplay":
 	{
-		"DESCRIPTION": "Automatically played. Requires [E].",
+		"DESCRIPTION": "Automatically played, using your [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
-	},
-	"Blur":
-	{
-		"DESCRIPTION": "Your #yBlock will not be removed at the start of your next turn.",
-		"NAMES": ["blur"],
-		"PROPER_NAME": "Blur"
 	},
 	"Boost":
 	{
@@ -36,9 +117,15 @@
 		"NAMES": ["boost"],
 		"PROPER_NAME": "Boost"
 	},
+	"Burn":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["burn", "burn+"],
+		"PROPER_NAME": "Burn"
+	},
 	"Burning":
 	{
-		"DESCRIPTION": "Take damage at the start of your turn. Also take #b4% more #yAttack damage per stack. Reduced by 1 each turn.",
+		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to half the amount of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
 	},
@@ -50,7 +137,7 @@
 	},
 	"Common Debuff":
 	{
-		"DESCRIPTION": "#yPoison, #yWeak, #yVulnerable, #yBurning, #yShackles.",
+		"DESCRIPTION": "[Poison], [Weak], [Vulnerable], [Burning], [Freezing], [Shackles].",
 		"NAMES": ["common debuff", "common debuffs"],
 		"PROPER_NAME": "Common Debuff"
 	},
@@ -60,11 +147,41 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
+	"Corruption Stance":
+	{
+		"DESCRIPTION": "<LOAD FROM STANCE>",
+		"NAMES": ["[c] stance", "demon stance"],
+		"PROPER_NAME": "Demon Stance"
+	},
+	"Counter-Attack":
+	{
+		"DESCRIPTION": "If you fully block all enemy #yAttacks this turn (at least #b1^), gain #yVigor and apply #b1 [Vulnerable] to ALL enemies.",
+		"NAMES": ["counter-attack"],
+		"PROPER_NAME": "Counter-Attack"
+	},
+	"Curse":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["curse", "curses"],
+		"PROPER_NAME": "Curse"
+	},
 	"Cycle":
 	{
 		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
 		"NAMES": ["cycle"],
 		"PROPER_NAME": "Cycle"
+	},
+	"Debuff":
+	{
+		"DESCRIPTION": "Power with a negative effect.",
+		"NAMES": ["debuff", "debuffs"],
+		"PROPER_NAME": "Debuff"
+	},
+	"Delayed Damage":
+	{
+		"DESCRIPTION": "Take damage at the end of your turn. Ignores [Artifact] if smaller than #b4.",
+		"NAMES": ["delayed damage"],
+		"PROPER_NAME": "Delayed Damage"
 	},
 	"Demon Form":
 	{
@@ -72,17 +189,17 @@
 		"NAMES": ["demon form", "demon_form"],
 		"PROPER_NAME": "Demon Form"
 	},
-	"Earth":
+	"Discard":
 	{
-		"DESCRIPTION": "Orb: Gain temporary #yThorns while #yChanneled. Automatically #yEvoked after 3 turns, dealing damage split randomly amongst ALL enemies.",
-		"NAMES": ["earth", "earth+"],
-		"PROPER_NAME": "Earth"
+		"DESCRIPTION": "",
+		"NAMES": ["discard", "discarded", "discarding"],
+		"PROPER_NAME": "Discard"
 	},
-	"Enchanted Armor":
+	"Energized":
 	{
-		"DESCRIPTION": "Take less damage from Attacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
-		"NAMES": ["enchanted armor", "ench. armor"],
-		"PROPER_NAME": "Enchanted Armor"
+		"DESCRIPTION": "Gain [E] at the start of next turn.",
+		"NAMES": ["energized"],
+		"PROPER_NAME": "Energized"
 	},
 	"Envenom":
 	{
@@ -90,11 +207,11 @@
 		"NAMES": ["envenom"],
 		"PROPER_NAME": "Envenom"
 	},
-	"Fire":
+	"Fetch":
 	{
-		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
-		"NAMES": ["fire", "fire+"],
-		"PROPER_NAME": "Fire"
+		"DESCRIPTION": "Choose a card and move it to your hand.",
+		"NAMES": ["fetch"],
+		"PROPER_NAME": "Fetch"
 	},
 	"Flame Barrier":
 	{
@@ -104,27 +221,33 @@
 	},
 	"Flight":
 	{
-		"DESCRIPTION": "Take 50% less #yAttack damage. Lose 1 stack until end of turn when taking damage, the power is cancelled at 0 stacks.",
+		"DESCRIPTION": "Take 50% less #yAttack damage. Lose #b1 stack until end of turn when taking damage, the power is cancelled at #b0 stacks.",
 		"NAMES": ["flight"],
 		"PROPER_NAME": "Flight"
 	},
-	"Force":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yForce, gain #yStrength.",
-		"NAMES": ["force"],
-		"PROPER_NAME": "Force"
-	},
 	"Force Stance":
 	{
-		"DESCRIPTION": "#g+2 #gStrength, #r-1 #rFocus, #r-1 #rDexterity. NL On Enter: #yBoost #yForce.",
+		"DESCRIPTION": "<LOAD FROM STANCE>",
 		"NAMES": ["[f] stance", "force stance"],
 		"PROPER_NAME": "Force Stance"
 	},
+	"Freezing":
+	{
+		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
+		"NAMES": ["freezing"],
+		"PROPER_NAME": "Freezing"
+	},
+	"Health":
+	{
+		"DESCRIPTION": "-",
+		"NAMES": ["~hp", "health"],
+		"PROPER_NAME": "Health"
+	},
 	"High-Cost":
 	{
-		"DESCRIPTION": "Cards which cost 2 or more [E].",
+		"DESCRIPTION": "Card which costs #b2 or more [E].",
 		"NAMES": ["high-cost", "high cost"],
-		"PROPER_NAME": "High-Cost"
+		"PROPER_NAME": "High-Cost Card"
 	},
 	"Hindrance":
 	{
@@ -132,15 +255,21 @@
 		"NAMES": ["hindrance", "hindrances"],
 		"PROPER_NAME": "Hindrance"
 	},
-	"Intellect":
+	"Imitate":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b4, #b6, and #b8 #yIntellect, gain #yFocus.",
-		"NAMES": ["intellect"],
-		"PROPER_NAME": "Intellect"
+		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
+		"NAMES": ["imitate", "imitation", "imitations"],
+		"PROPER_NAME": "Imitate"
+	},
+	"Inspiration":
+	{
+		"DESCRIPTION": "Once per turn, when you activate an interactable #yPower, #yMotivate #b1, then reduce [Inspiration] by #b1.",
+		"NAMES": ["inspiration"],
+		"PROPER_NAME": "Inspiration"
 	},
 	"Intellect Stance":
 	{
-		"DESCRIPTION": "#g+2 #gFocus, #r-1 #rStrength, #r-1 #rDexterity. NL On Enter: #yBoost #yIntellect.",
+		"DESCRIPTION": "<LOAD FROM STANCE>",
 		"NAMES": ["[i] stance", "intellect stance"],
 		"PROPER_NAME": "Intellect Stance"
 	},
@@ -156,11 +285,11 @@
 		"NAMES": ["limited"],
 		"PROPER_NAME": "Limited"
 	},
-	"~Lock-On":
+	"Low-Cost":
 	{
-		"DESCRIPTION": "Receive #b50% more damage from Orbs and #yRanged attacks.",
-		"NAMES": ["~lock-on"],
-		"PROPER_NAME": "Lock-On"
+		"DESCRIPTION": "Card which costs #b0 or #b1 [E].",
+		"NAMES": ["low-cost", "low cost"],
+		"PROPER_NAME": "Low-Cost Card"
 	},
 	"Malleable":
 	{
@@ -174,17 +303,41 @@
 		"NAMES": ["metallicize"],
 		"PROPER_NAME": "Metallicize"
 	},
+	"Motivate":
+	{
+		"DESCRIPTION": "Reduce the cost of a random card in hand by 1 until played. Repeated N times.",
+		"NAMES": ["motivate"],
+		"PROPER_NAME": "Motivate"
+	},
+	"Multi HP":
+	{
+		"DESCRIPTION": "Refers to your combined [HP] and [THP].",
+		"NAMES": ["multi hp"],
+		"PROPER_NAME": "Mixed HP"
+	},
+	"Multicolor":
+	{
+		"DESCRIPTION": "Counts as an #yAffinity of any color.",
+		"NAMES": ["multicolor"],
+		"PROPER_NAME": "Multicolor"
+	},
 	"Neutral Stance":
 	{
 		"DESCRIPTION": "",
 		"NAMES": ["neutral stance"],
 		"PROPER_NAME": "Neutral Stance"
 	},
-	"Starter":
+	"Noxious Fumes":
 	{
-		"DESCRIPTION": "Activates if played at the start of turn.",
-		"NAMES": ["starter"],
-		"PROPER_NAME": "Starter"
+		"DESCRIPTION": "At the start of each turn, apply [Poison] to ALL enemies.",
+		"NAMES": ["noxious fumes"],
+		"PROPER_NAME": "Noxious Fumes"
+	},
+	"Orb Slot":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["orb slot", "orb slots"],
+		"PROPER_NAME": "Orb Slot"
 	},
 	"Plated Armor":
 	{
@@ -204,6 +357,12 @@
 		"NAMES": ["rebound"],
 		"PROPER_NAME": "Rebound"
 	},
+	"Recover":
+	{
+		"DESCRIPTION": "Gain [HP] up to the amount you had at the end of your last turn.",
+		"NAMES": ["recover", "recovered", "recovering"],
+		"PROPER_NAME": "Recover"
+	},
 	"Semi-Limited":
 	{
 		"DESCRIPTION": "This effect can only trigger once per turn, across all copies of this card.",
@@ -212,15 +371,33 @@
 	},
 	"Shackles":
 	{
-		"DESCRIPTION": "#yStrength reduction until end of turn.",
+		"DESCRIPTION": "Reduce #yStrength until end of turn.",
 		"NAMES": ["shackles"],
 		"PROPER_NAME": "Shackles"
+	},
+	"Slimed":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["slimed", "slimed+"],
+		"PROPER_NAME": "Slimed"
 	},
 	"Slow":
 	{
 		"DESCRIPTION": "For every card you have played this turn, enemy takes #b10% more damage from #yAttacks.",
 		"NAMES": ["slow"],
 		"PROPER_NAME": "Slow"
+	},
+	"Special Action":
+	{
+		"DESCRIPTION": "Special action available for this card. Check the card details from your deck or from the card reward screen.",
+		"NAMES": ["special action"],
+		"PROPER_NAME": "Special Action"
+	},
+	"Starter":
+	{
+		"DESCRIPTION": "Activates if played at the start of turn (Can also activate if the first card was autoplayed).",
+		"NAMES": ["starter"],
+		"PROPER_NAME": "Starter"
 	},
 	"Stun":
 	{
@@ -230,15 +407,51 @@
 	},
 	"Temporary HP":
 	{
-		"DESCRIPTION": "Temporary HP last until end of combat.",
+		"DESCRIPTION": "Temporary HP lasts until end of combat.",
 		"NAMES": ["temporary hp", "temp. hp"],
 		"PROPER_NAME": "Temporary HP"
+	},
+	"Vitality":
+	{
+		"DESCRIPTION": "At the start of each turn, gain [THP].",
+		"NAMES": ["vitality"],
+		"PROPER_NAME": "Vitality"
+	},
+	"Void":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["void", "void+"],
+		"PROPER_NAME": "Void"
+	},
+	"Zero-Cost":
+	{
+		"DESCRIPTION": "Card which costs #b0 [E].",
+		"NAMES": ["0-cost", "zero-cost"],
+		"PROPER_NAME": "Zero-Cost Card"
+	},
+	"~Blur":
+	{
+		"DESCRIPTION": "Retain up to #b30 #yBlock until the start of your next turn.",
+		"NAMES": ["~blur"],
+		"PROPER_NAME": "Blur"
+	},
+	"Poison":
+	{
+		"DESCRIPTION": "At the start of each turn, lose [HP] equal to [Poison], then reduce [Poison] by #b1.",
+		"NAMES": ["poison"],
+		"PROPER_NAME": "Poison"
 	},
 	"~Damage":
 	{
 		"DESCRIPTION": "-",
 		"NAMES": ["~damage"],
 		"PROPER_NAME": "Normal Damage"
+	},
+	"~Delayed":
+	{
+		"DESCRIPTION": "The first time this is shuffled into your draw pile, place it on the bottom half.",
+		"NAMES": ["~delayed"],
+		"PROPER_NAME": "Delayed"
 	},
 	"~Elemental":
 	{
@@ -252,17 +465,41 @@
 		"NAMES": ["~ethereal"],
 		"PROPER_NAME": "Ethereal"
 	},
+	"~Fading":
+	{
+		"DESCRIPTION": "Convert #yFading to #yExhaust after #b1 use.",
+		"NAMES": ["~fading"],
+		"PROPER_NAME": "Fading"
+	},
 	"~Haste":
 	{
-		"DESCRIPTION": "When drawn, lose #yHaste and draw 1 card.",
+		"DESCRIPTION": "When drawn, lose #yHaste and draw #b1 card.",
 		"NAMES": ["~haste"],
 		"PROPER_NAME": "Haste"
+	},
+	"~Recast":
+	{
+		"DESCRIPTION": "Next turn, play a copy of this card. The copy #yPurges and does not #yRecast.",
+		"NAMES": ["~recast"],
+		"PROPER_NAME": "Recast"
 	},
 	"~Innate":
 	{
 		"DESCRIPTION": "Start each combat with this card in hand.",
 		"NAMES": ["~innate"],
 		"PROPER_NAME": "Innate"
+	},
+	"~Intangible":
+	{
+		"DESCRIPTION": "Reduces incoming damage and [HP] Loss by #b50%. Reduces outgoing #yAttack damage by #b50%.",
+		"NAMES": ["~intangible"],
+		"PROPER_NAME": "Intangible"
+	},
+	"~Lock-On":
+	{
+		"DESCRIPTION": "Receive #b50% more damage from Orbs and #b25% from #yRanged attacks.",
+		"NAMES": ["~lock-on"],
+		"PROPER_NAME": "Lock-On"
 	},
 	"~Piercing":
 	{
@@ -278,9 +515,15 @@
 	},
 	"~Retain":
 	{
-		"DESCRIPTION": "Not discarded at the end of turn.",
+		"DESCRIPTION": "Not discarded at the end of turn. NL Or, if it is an [A_Gen] Power, not reduced at the start of next turn.",
 		"NAMES": ["~retain"],
 		"PROPER_NAME": "Retain"
+	},
+	"~RetainOnce":
+	{
+		"DESCRIPTION": "Not discarded at the end of turn.",
+		"NAMES": ["~retain once"],
+		"PROPER_NAME": "Retain Once"
 	},
 	"~Steal":
 	{

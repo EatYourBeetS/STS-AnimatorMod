@@ -1,29 +1,32 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class ZankiKiguchi extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(ZankiKiguchi.class).SetAttack(0, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(ZankiKiguchi.class)
+            .SetAttack(0, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public ZankiKiguchi()
     {
         super(DATA);
 
-        Initialize(2, 0, 2);
+        Initialize(3, 0, 2);
         SetUpgrade(3, 0, 0);
-        SetScaling(0, 1, 1);
 
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAffinity_Red(1);
+        SetAffinity_Green(0, 0, 1);
     }
 
     @Override
@@ -31,19 +34,37 @@ public class ZankiKiguchi extends AnimatorCard
     {
         super.triggerOnExhaust();
 
-        GameActions.Bottom.MoveCard(this, player.hand)
-        .ShowEffect(true, true);
-        SetPurge(true);
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.GainInspiration(1);
+        }
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-
-        if (!player.stance.ID.equals(NeutralStance.STANCE_ID) && CombatStats.TryActivateSemiLimited(cardID))
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.ChangeStance(NeutralStance.STANCE_ID)
+        .AddCallback(info, (info2, stance) ->
         {
-            player.stance.onEnterStance();
+            if (stance != null && !stance.ID.equals(NeutralStance.STANCE_ID))
+            {
+                GameActions.Bottom.SFX(SFX.DAMARU, 0.8f, 0.95f, 0.5f);
+                GameActions.Bottom.GainForce(1, true);
+                GameActions.Bottom.GainAgility(1, true);
+                GameActions.Bottom.Draw(magicNumber);
+            }
+        });
+
+        if (info.IsSynergizing && info.TryActivateLimited())
+        {
+            GameActions.Bottom.GainInspiration(1);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return !GameUtilities.InStance(NeutralStance.STANCE_ID);
     }
 }

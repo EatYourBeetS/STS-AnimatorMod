@@ -1,13 +1,12 @@
 package eatyourbeets.cards.base;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.evacipated.cardcrawl.modthespire.lib.SpireOverride;
 import com.evacipated.cardcrawl.modthespire.lib.SpireSuper;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -31,7 +30,6 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride protected void updateGlow() { SpireSuper.call(); }
     @SpireOverride protected void renderBack(SpriteBatch sb, boolean hovered, boolean selected) { SpireSuper.call(sb, hovered, selected); }
     @SpireOverride protected void renderTint(SpriteBatch sb) { SpireSuper.call(sb); }
-    @SpireOverride protected void renderMainBorder(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderDescription(SpriteBatch sb) { SpireSuper.call(sb); }
     @SpireOverride protected void renderJokePortrait(SpriteBatch sb) { renderPortrait(sb); }
     @SpireOverride private void renderDescriptionCN(SpriteBatch sb) { throw new RuntimeException("Not Implemented"); }
@@ -68,6 +66,7 @@ public abstract class EYBCardBase extends AbstractCard
     protected static final Color COLOR_RARE = new Color(0.95f, 0.85f, 0.3f, 1f);
     protected static final Color COLOR_SPECIAL = new Color(1f, 1f, 1f, 1f);
 
+    public static boolean canCropPortraits = true;
     public static AbstractPlayer player = null;
     public static Random rng = null;
 
@@ -82,12 +81,33 @@ public abstract class EYBCardBase extends AbstractCard
     public int baseSecondaryValue = 0;
     public int secondaryValue = 0;
 
+    protected AdvancedTexture portraitImg;
+    protected AdvancedTexture portraitForeground;
+
+    public static String GetTypeText(CardType type)
+    {
+        switch (type)
+        {
+            case ATTACK: return TEXT[0];
+            case STATUS: return TEXT[7];
+            case CURSE: return TEXT[3];
+            case SKILL: return TEXT[1];
+            case POWER: return TEXT[2];
+            default: return TEXT[5];
+        }
+    }
+
     public EYBCardBase(String id, String name, String imagePath, int cost, String rawDescription, CardType type, CardColor color, CardRarity rarity, CardTarget target)
     {
-        super(id, name, "status/beta", "status/beta", cost, rawDescription, type, color, rarity, target);
+        super(id, name, "status/cards_beta", "status/cards_beta", cost, rawDescription, type, color, rarity, target);
 
         portrait = null;
         assetUrl = imagePath;
+
+        if (rarity == CardRarity.SPECIAL)
+        {
+            SoulboundField.soulbound.set(this, true);
+        }
 
         if (imagePath != null)
         {
@@ -97,7 +117,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     public void LoadImage(String suffix)
     {
-        portraitImg = GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true);
+        portraitImg = new AdvancedTexture(GR.GetTexture(suffix == null ? assetUrl : assetUrl.replace(".png", suffix + ".png"), true), null);
     }
 
     public boolean IsOnScreen()
@@ -123,11 +143,18 @@ public abstract class EYBCardBase extends AbstractCard
     {
         this.hb.update();
 
+        if (!GR.UI.CanHoverCards)
+        {
+            hb.hovered = false;
+            hb.clicked = false;
+            hb.clickStarted = false;
+        }
+
         if (this.hb.hovered)
         {
             hover();
 
-            this.hoverDuration += Gdx.graphics.getRawDeltaTime();
+            this.hoverDuration += GR.UI.Delta();
             this.renderTip = (this.hoverDuration > 0.2f && !Settings.hideCards);
         }
         else
@@ -195,6 +222,8 @@ public abstract class EYBCardBase extends AbstractCard
 
         if (GameUtilities.CanShowUpgrades(library) && !isPreview && !isPopup && canUpgrade())
         {
+            updateGlow();
+            renderGlow(sb);
             renderUpgradePreview(sb);
             return;
         }
@@ -261,6 +290,45 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SpireOverride
+    protected void renderMainBorder(SpriteBatch sb)
+    {
+        if (!this.isGlowing)
+        {
+            return;
+        }
+
+        final TextureAtlas.AtlasRegion img;
+        switch (this.type)
+        {
+            case ATTACK:
+                img = ImageMaster.CARD_ATTACK_BG_SILHOUETTE;
+                break;
+
+            case POWER:
+                img = ImageMaster.CARD_POWER_BG_SILHOUETTE;
+                break;
+
+            default:
+                img = ImageMaster.CARD_SKILL_BG_SILHOUETTE;
+                break;
+        }
+
+        if (GameUtilities.InBattle(false))
+        {
+            sb.setColor(this.glowColor);
+        }
+        else
+        {
+            sb.setColor(GREEN_BORDER_GLOW_COLOR);
+        }
+
+        sb.setBlendFunction(770, 1);
+        sb.draw(img, this.current_x + img.offsetX - (img.originalWidth / 2f), this.current_y + img.offsetY - (img.originalWidth / 2f),
+                (img.originalWidth / 2f) - img.offsetX, (img.originalWidth / 2f) - img.offsetY, img.packedWidth, img.packedHeight,
+                this.drawScale * Settings.scale * 1.04f, this.drawScale * Settings.scale * 1.03f, this.angle);
+    }
+
+    @SpireOverride
     protected void renderImage(SpriteBatch sb, boolean hovered, boolean selected)
     {
         if (player != null)
@@ -271,7 +339,7 @@ public abstract class EYBCardBase extends AbstractCard
             }
 
             RenderAtlas(sb, new Color(0, 0, 0, transparency * 0.25f), getCardBgAtlas(), current_x + SHADOW_OFFSET_X * drawScale, current_y - SHADOW_OFFSET_Y * drawScale);
-            if (player.hoveredCard == this && (player.isDraggingCard && player.isHoveringDropZone || player.inSingleTargetMode))
+            if ((player.hoveredCard == this) && ((player.isDraggingCard && player.isHoveringDropZone) || player.inSingleTargetMode))
             {
                 RenderAtlas(sb, HOVER_IMG_COLOR, getCardBgAtlas(), current_x, current_y);
             }
@@ -290,31 +358,72 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderPortrait(SpriteBatch sb)
     {
-        Texture portraitImg = this.portraitImg;
-        boolean cropPortrait = this.cropPortrait;
         if (!isSeen || isLocked)
         {
-            portraitImg = GR.GetTexture(QuestionMark.DATA.ImagePath);
-            cropPortrait = false;
+            RenderPortraitImage(sb, GR.GetTexture(QuestionMark.DATA.ImagePath), _renderColor.Get(this), 1, false, false, false);
+            return;
         }
 
-        if (cropPortrait && drawScale > 0.6f && drawScale < 1 && GR.Animator.Config.CropCardImages.Get())
+        final boolean cropPortrait = canCropPortraits && (this.cropPortrait && GR.Animator.Config.CropCardImages.Get());
+        AdvancedTexture image = GetPortraitImage();
+        if (image != null)
         {
-            int width = portraitImg.getWidth();
-            int height = portraitImg.getHeight();
-            int offset_x = (int) ((1 - drawScale) * (0.5f * width));
-            int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
-            int offset_y2 = (int) ((1 - drawScale) * (1f * height));
-            TextureRegion region = new TextureRegion(portraitImg, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
-            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1);
+            RenderPortraitImage(sb, image.texture, image.color, image.GetScale(), cropPortrait, false, false);
+        }
+        image = GetPortraitForeground();
+        if (image != null)
+        {
+            RenderPortraitImage(sb, image.texture, image.color, image.GetScale(), cropPortrait, image.GetScale() != 1, true);
+        }
+    }
+
+    protected void RenderPortraitImage(SpriteBatch sb, Texture texture, Color color, float scale, boolean cropPortrait, boolean useTextureSize, boolean foreground)
+    {
+        if (color == null)
+        {
+            color = _renderColor.Get(this);
+        }
+
+        final float render_width = useTextureSize ? texture.getWidth() : 250;
+        final float render_height = useTextureSize ? texture.getWidth() : 190;
+        if (cropPortrait && drawScale > 0.6f && drawScale < 1)
+        {
+            final int width = texture.getWidth();
+            final int offset_x = (int) ((1 - drawScale) * (0.5f * width));
+            TextureAtlas.AtlasRegion region = foreground ? jokePortrait : portrait;
+            if (region == null || texture != region.getTexture() || (region.getRegionX() != offset_x) || GR.UI.Elapsed50())
+            {
+                final int height = texture.getHeight();
+                final int offset_y1 = 0;//(int) ((1-drawScale) * (0.5f * height));
+                final int offset_y2 = (int) ((1 - drawScale) * (1f * height));
+                if (region == null)
+                {
+                    region = new TextureAtlas.AtlasRegion(texture, offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+                    if (foreground)
+                    {
+                        jokePortrait = region; // let's just reuse this.
+                    }
+                    else
+                    {
+                        portrait = region;
+                    }
+                }
+                else
+                {
+                    region.setRegion(texture);
+                    region.setRegion(offset_x, offset_y1, width - (2 * offset_x), height - offset_y1 - offset_y2);
+                }
+            }
+
+            RenderHelpers.DrawOnCardAuto(sb, this, region, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
         else if (isPopup)
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 500, 380, _renderColor.Get(this), transparency, 0.5f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width * 2, render_height * 2, color, transparency, scale * 0.5f);
         }
         else
         {
-            RenderHelpers.DrawOnCardAuto(sb, this, portraitImg, new Vector2(0, 72), 250, 190, _renderColor.Get(this), transparency, 1f);
+            RenderHelpers.DrawOnCardAuto(sb, this, texture, new Vector2(0, 72), render_width, render_height, color, transparency, scale);
         }
     }
 
@@ -339,10 +448,16 @@ public abstract class EYBCardBase extends AbstractCard
     @SpireOverride
     protected void renderCardBg(SpriteBatch sb, float x, float y)
     {
-        if (!TryRenderCentered(sb, GetCardBackground()))
+        if (type == CardType.CURSE)
+        {
+            RenderHelpers.DrawOnCardCentered(sb, this, new Color(0.3f, 0.3f, 0.3f, transparency), GR.Animator.Images.CARD_BACKGROUND_SKILL_UR.Texture(), x, y);
+        }
+        else if (!TryRenderCentered(sb, GetCardBackground()))
         {
             SpireSuper.call(sb, x, y);
         }
+
+        TryRenderCentered(sb, GetCardBorderIndicator());
     }
 
     @SpireOverride
@@ -383,12 +498,27 @@ public abstract class EYBCardBase extends AbstractCard
         }
     }
 
-    protected ColoredTexture GetPortraitFrame()
+    protected AdvancedTexture GetPortraitImage()
+    {
+        return portraitImg;
+    }
+
+    protected AdvancedTexture GetPortraitForeground()
+    {
+        return portraitForeground;
+    }
+
+    protected AdvancedTexture GetPortraitFrame()
     {
         return null;
     }
 
-    protected ColoredTexture GetCardBanner()
+    protected AdvancedTexture GetCardBanner()
+    {
+        return null;
+    }
+
+    protected AdvancedTexture GetCardBorderIndicator()
     {
         return null;
     }
@@ -405,74 +535,64 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected String GetTypeText()
     {
-        switch(this.type)
-        {
-            case ATTACK:
-                return TEXT[0];
-
-            case CURSE:
-                return TEXT[3];
-
-            case STATUS:
-                return TEXT[7];
-
-            case SKILL:
-                return TEXT[1];
-
-            case POWER:
-                return TEXT[2];
-
-            default:
-                return TEXT[5];
-        }
+        return GetTypeText(type);
     }
 
     public ColoredString GetMagicNumberString()
     {
         if (isMagicNumberModified)
         {
-            return new ColoredString(magicNumber, magicNumber >= baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(magicNumber, magicNumber >= baseMagicNumber ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseMagicNumber, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetBlockString()
     {
         if (isBlockModified)
         {
-            return new ColoredString(block, block >= baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(block, block >= baseBlock ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseBlock, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseBlock, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetDamageString()
     {
         if (isDamageModified)
         {
-            return new ColoredString(damage, damage >= baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(damage, damage >= baseDamage ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
-        else
-        {
-            return new ColoredString(baseDamage, Settings.CREAM_COLOR, transparency);
-        }
+
+        return new ColoredString(baseDamage, Settings.CREAM_COLOR);
     }
 
     public ColoredString GetSecondaryValueString()
     {
         if (isSecondaryValueModified)
         {
-            return new ColoredString(secondaryValue, secondaryValue >= baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR, transparency);
+            return new ColoredString(secondaryValue, secondaryValue >= baseSecondaryValue ? Settings.GREEN_TEXT_COLOR : Settings.RED_TEXT_COLOR);
         }
         else
         {
-            return new ColoredString(baseSecondaryValue, Settings.CREAM_COLOR, transparency);
+            return new ColoredString(baseSecondaryValue, Settings.CREAM_COLOR);
         }
+    }
+
+    public ColoredString GetSpecialVariableString()
+    {
+        return new ColoredString(misc, misc > 0 ? Settings.GREEN_TEXT_COLOR : Settings.CREAM_COLOR);
+    }
+
+    protected ColoredString GetSpecialVariableString(int value)
+    {
+        return new ColoredString(value, Settings.CREAM_COLOR);
+    }
+
+    protected ColoredString GetSpecialVariableString(int value, int baseValue)
+    {
+        return new ColoredString(value, (value > baseValue) ? Settings.GREEN_TEXT_COLOR : (value < baseValue) ? Settings.RED_TEXT_COLOR : Settings.CREAM_COLOR);
     }
 
     public Color GetRarityColor(boolean alt)
@@ -498,7 +618,7 @@ public abstract class EYBCardBase extends AbstractCard
 
     protected ColoredString GetCostString()
     {
-        ColoredString result = new ColoredString();
+        final ColoredString result = new ColoredString();
 
         if (cost == -1)
         {
@@ -509,7 +629,7 @@ public abstract class EYBCardBase extends AbstractCard
             result.text = freeToPlay() ? "0" : Integer.toString(Math.max(0, this.costForTurn));
         }
 
-        if (player != null && player.hand.contains(this) && !this.hasEnoughEnergy())
+        if (player != null && player.hand.contains(this) && (!this.hasEnoughEnergy() || GameUtilities.IsUnplayableThisTurn(this)))
         {
             result.color = new Color(1f, 0.3f, 0.3f, transparency);
         }
@@ -545,7 +665,7 @@ public abstract class EYBCardBase extends AbstractCard
     }
 
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean TryRenderCentered(SpriteBatch sb, ColoredTexture texture)
+    private boolean TryRenderCentered(SpriteBatch sb, AdvancedTexture texture)
     {
         if (texture != null)
         {

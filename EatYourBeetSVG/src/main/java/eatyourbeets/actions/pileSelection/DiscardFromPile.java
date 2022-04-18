@@ -3,7 +3,6 @@ package eatyourbeets.actions.pileSelection;
 import com.megacrit.cardcrawl.actions.common.DiscardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import eatyourbeets.actions.basic.MoveCard;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
@@ -29,31 +28,17 @@ public class DiscardFromPile extends SelectFromPile
     @Override
     protected void Complete(ArrayList<AbstractCard> result)
     {
-        ArrayList<MoveCard> actions = new ArrayList<>();
         for (AbstractCard card : result)
         {
-            MoveCard action = new MoveCard(card, player.discardPile);
-            if (showEffect)
-            {
-                GameActions.Top.Add(action).ShowEffect(showEffect, realtime);
-            }
-            else
-            {
-                actions.add(action);
-            }
+            GameActions.Top.MoveCard(card, player.discardPile).ShowEffect(showEffect, realtime);
         }
 
         super.Complete(result);
-
-        for (MoveCard action : actions)
-        {
-            action.update(); // only once
-        }
     }
 
     @Override
-    public String CreateMessage()
+    public String UpdateMessage()
     {
-        return super.CreateMessageInternal(DiscardAction.TEXT[0]);
+        return super.UpdateMessageInternal(DiscardAction.TEXT[0]);
     }
 }

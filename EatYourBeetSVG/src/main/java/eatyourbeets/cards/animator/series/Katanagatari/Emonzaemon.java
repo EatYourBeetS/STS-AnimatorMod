@@ -1,29 +1,27 @@
 package eatyourbeets.cards.animator.series.Katanagatari;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.special.EntouJyuu;
+import eatyourbeets.cards.animator.special.Emonzaemon_EntouJyuu;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
 
 import java.util.ArrayList;
 
 public class Emonzaemon extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Emonzaemon.class).SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged);
-    static
-    {
-        DATA.AddPreview(new EntouJyuu(), true);
-    }
+    public static final EYBCardData DATA = Register(Emonzaemon.class)
+            .SetAttack(1, CardRarity.COMMON, EYBAttackType.Ranged)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(new Emonzaemon_EntouJyuu(), false));
 
     public Emonzaemon()
     {
@@ -31,10 +29,9 @@ public class Emonzaemon extends AnimatorCard
 
         Initialize(4, 0);
         SetUpgrade(2, 0);
-        SetScaling(0, 1, 0);
 
-        SetSynergy(Synergies.Katanagatari);
-        SetMartialArtist();
+        SetAffinity_Green(2);
+        SetAffinity_Dark(1);
     }
 
     @Override
@@ -44,36 +41,44 @@ public class Emonzaemon extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
-        GameActions.Bottom.SFX("ATTACK_FIRE");
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.NONE);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
+        GameActions.Bottom.WaitRealtime(0.25f);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.55f, 0.65f);
 
-        if (!CombatStats.HasActivatedLimited(cardID))
+        if (CheckSpecialCondition(true))
         {
-            ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
-            int size = cardsPlayed.size();
-            if (size >= 3)
+            GameActions.Bottom.MakeCardInDrawPile(new Emonzaemon_EntouJyuu());
+        }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        if (CombatStats.CanActivateLimited(cardID))
+        {
+            final ArrayList<AbstractCard> cardsPlayed = AbstractDungeon.actionManager.cardsPlayedThisTurn;
+            final int size = cardsPlayed.size();
+            final int count = tryUse ? 3 : 2;
+            if (size >= count)
             {
-                boolean threeInARow = true;
-                for (int i = 1; i <= 3; i++)
+                boolean canActivate = true;
+                for (int i = 1; i <= count; i++)
                 {
                     if (cardsPlayed.get(size - i).type != CardType.ATTACK)
                     {
-                        threeInARow = false;
+                        canActivate = false;
                     }
                 }
 
-                if (threeInARow)
+                if (canActivate)
                 {
-                    CombatStats.TryActivateLimited(cardID);
-                    GameActions.Bottom.MakeCardInDrawPile(new EntouJyuu())
-                    .SetDestination(CardSelection.Bottom)
-                    .SetUpgrade(upgraded, false);
+                    return !tryUse || CombatStats.TryActivateLimited(cardID);
                 }
             }
         }
+
+        return false;
     }
 }

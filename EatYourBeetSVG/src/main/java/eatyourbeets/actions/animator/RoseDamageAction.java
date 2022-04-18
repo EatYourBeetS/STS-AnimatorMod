@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 import eatyourbeets.actions.EYBAction;
 import eatyourbeets.actions.damage.DealDamage;
 import eatyourbeets.cards.animator.ultrarare.Rose;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -48,8 +49,9 @@ public class RoseDamageAction extends EYBAction
                         Explosion(m.hb);
                     }
 
-                    int[] damageMatrix = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
-                    GameActions.Bottom.DealDamageToAll(damageMatrix, DamageInfo.DamageType.THORNS, AttackEffect.NONE);
+                    final int[] damage = DamageInfo.createDamageMatrix(rose.secondaryValue, true);
+                    GameActions.Bottom.DealDamageToAll(damage, DamageInfo.DamageType.THORNS, AttackEffect.NONE)
+                    .SetVFX(true, false);
                 }
                 else if (times > 1)
                 {
@@ -63,14 +65,16 @@ public class RoseDamageAction extends EYBAction
         {
             Explosion(target.hb);
 
-            action = new DealDamage(target, new DamageInfo(player, damage, rose.damageTypeForTurn))
-            .SetPiercing(true, false).SetVFX(true, false);
+            action = new DealDamage(target, new DamageInfo(player, damage, rose.damageTypeForTurn), AttackEffects.GUNSHOT)
+            .SetSoundPitch(0.25f, 0.45f)
+            .SetPiercing(true, false)
+            .SetVFX(true, false);
         }
     }
 
     private void Explosion(Hitbox hb)
     {
         GameActions.Top.VFX(new ExplosionSmallEffect(hb.cX + MathUtils.random(-0.05f, 0.05f),
-                                                     hb.cY + MathUtils.random(-0.05f, 0.05f)),0.1f);
+                                                     hb.cY + MathUtils.random(-0.05f, 0.05f)),0f);
     }
 }

@@ -1,7 +1,8 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -9,7 +10,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardPreview;
-import eatyourbeets.cards.base.Synergies;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -25,40 +25,36 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         Dark,
     }
 
-    public static final EYBCardData DATA = Register(Elesis.class).SetAttack(-2, CardRarity.RARE);
-    static
-    {
-        DATA.AddPreview(new Elesis(Form.Saber, false), true);
-        DATA.AddPreview(new Elesis(Form.Pyro, false), true);
-        DATA.AddPreview(new Elesis(Form.Dark, false), true);
-    }
+    public static final EYBCardData DATA = Register(Elesis.class)
+            .SetAttack(-2, CardRarity.RARE)
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Elesis(Form.Saber, false), true);
+                data.AddPreview(new Elesis(Form.Pyro, false), true);
+                data.AddPreview(new Elesis(Form.Dark, false), true);
+            });
 
     private Form currentForm;
     private int bonusDamage = 0;
-
-    private Elesis(Form form, boolean upgraded)
-    {
-        super(DATA);
-
-        SetSynergy(Synergies.Elsword);
-        this.upgraded = upgraded;
-        ChangeForm(form);
-    }
 
     public Elesis()
     {
         this(Form.None, false);
     }
 
+    private Elesis(Form form, boolean upgraded)
+    {
+        super(DATA);
+
+        this.upgraded = upgraded;
+        ChangeForm(form);
+    }
+
     @Override
     public EYBCardPreview GetCardPreview()
     {
-        if (currentForm != Form.None)
-        {
-            return null;
-        }
-
-        return super.GetCardPreview();
+        return currentForm != Form.None ? null : super.GetCardPreview();
     }
 
     @Override
@@ -93,9 +89,9 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.SLASH_HEAVY);
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
         switch (currentForm)
         {
@@ -103,8 +99,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 GameActions.Bottom.SpendEnergy(999, true).AddCallback(amount ->
                 {
-                    GameActions.Bottom.GainForce(amount);
-                    GameActions.Bottom.GainAgility(amount);
+                    GameActions.Bottom.GainForce(amount * 2);
+                    GameActions.Bottom.GainBlessing(amount * 2);
                 });
                 AddDamageBonus(-bonusDamage);
                 break;
@@ -112,8 +108,8 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
             case Pyro:
             {
-                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers)).SkipIfZero(true);
-                if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+                GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
+                if (HasSynergy() && info.TryActivateSemiLimited())
                 {
                     GameActions.Bottom.Draw(1);
                 }
@@ -128,85 +124,16 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         }
     }
 
-    protected void ChangeForm(Form form)
+    @Override
+    public AbstractCard makeStatEquivalentCopy()
     {
-        if (this.currentForm == form)
-        {
-            return;
-        }
-
-        this.currentForm = form;
-
-        switch (form)
-        {
-            case None:
-            {
-                LoadImage(null);
-
-                cardText.OverrideDescription(null, true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = -2;
-
-                break;
-            }
-
-            case Saber:
-            {
-                LoadImage("_Saber");
-
-                Initialize(3, 0, 5);
-                SetUpgrade(0, 0, 2);
-                SetScaling(0, 1, 1);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
-
-                break;
-            }
-
-            case Pyro:
-            {
-                LoadImage("_Pyro");
-
-                Initialize(6, 0, 0);
-                SetUpgrade(4, 0, 0);
-                SetScaling(0, 1, 0);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 1;
-
-                break;
-            }
-
-            case Dark:
-            {
-                LoadImage("_Dark");
-
-                Initialize(9, 0, 3);
-                SetUpgrade(0, 0, -1);
-                SetScaling(0, 0, 2);
-
-                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
-                this.isCostModified = this.isCostModifiedForTurn = false;
-                this.cost = this.costForTurn = 0;
-
-                break;
-            }
-        }
-
-        if (upgraded)
-        {
-            upgraded = false;
-            upgrade();
-        }
+        return currentForm == Form.None ? makeCopy() : super.makeStatEquivalentCopy();
     }
 
     @Override
     public AbstractCard makeCopy()
     {
-        if (currentForm == Form.None && GameUtilities.InBattle() && GameUtilities.GetMasterDeckInstance(uuid) == null)
+        if (currentForm == Form.None && GameUtilities.InBattle(true) && GameUtilities.GetMasterDeckInstance(uuid) == null)
         {
             int roll = rng.random(0, 2);
             if (roll == 0)
@@ -246,11 +173,11 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         if (currentForm == Form.Dark && startOfBattle)
         {
             GameEffects.List.ShowCopy(this);
-            GameActions.Bottom.LoseHP(magicNumber, AbstractGameAction.AttackEffect.SLASH_DIAGONAL);
+            GameActions.Delayed.LoseHP(magicNumber, AttackEffects.SLASH_DIAGONAL).CanKill(false);
         }
         else if (currentForm == Form.None)
         {
-            CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
             group.group.add(new Elesis(Form.Saber, upgraded));
             group.group.add(new Elesis(Form.Pyro, upgraded));
             group.group.add(new Elesis(Form.Dark, upgraded));
@@ -265,7 +192,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
 
                     ChangeForm(card.currentForm);
 
-                    AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(uuid);
+                    final AbstractCard inDeck = GameUtilities.GetMasterDeckInstance(uuid);
                     if (inDeck != null)
                     {
                         ((Elesis) inDeck).ChangeForm(currentForm);
@@ -275,7 +202,95 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
         }
     }
 
-    private void AddDamageBonus(int amount)
+    protected void ChangeForm(Form form)
+    {
+        if (this.currentForm == form)
+        {
+            return;
+        }
+
+        this.currentForm = form;
+
+        switch (form)
+        {
+            case None:
+            {
+                LoadImage(null);
+
+                affinities.Clear();
+                SetAffinity_Star(2);
+
+                cardText.OverrideDescription(null, true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = -2;
+
+                break;
+            }
+
+            case Saber:
+            {
+                LoadImage("_Saber");
+
+                Initialize(4, 0, 5);
+                SetUpgrade(0, 0, 2);
+
+                affinities.Clear();
+                SetAffinity_Red(1, 0, 1);
+                SetAffinity_Green(1);
+                SetAffinity_Light(2, 0, 3);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[0], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Pyro:
+            {
+                LoadImage("_Pyro");
+
+                Initialize(3, 0, 2);
+                SetUpgrade(4, 0, 0);
+
+                affinities.Clear();
+                SetAffinity_Red(1, 0, 1);
+                SetAffinity_Green(2, 0, 2);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 1;
+
+                break;
+            }
+
+            case Dark:
+            {
+                LoadImage("_Dark");
+
+                Initialize(9, 0, 3);
+                SetUpgrade(0, 0, -1);
+
+                affinities.Clear();
+                SetAffinity_Red(2);
+                SetAffinity_Dark(2);
+
+                this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
+                this.isCostModified = this.isCostModifiedForTurn = false;
+                this.cost = this.costForTurn = 0;
+
+                break;
+            }
+        }
+
+        if (upgraded)
+        {
+            upgraded = false;
+            upgrade();
+        }
+    }
+
+    protected void AddDamageBonus(int amount)
     {
         bonusDamage += amount;
         baseDamage += amount;

@@ -13,24 +13,31 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.modifiers.PersistentCardModifiers;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
+import eatyourbeets.relics.EnchantableRelic;
 import eatyourbeets.relics.animator.ExquisiteBloodVial;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.Mathf;
 
 import java.util.ArrayList;
 
 public class UnnamedRelicEquipEffect extends AbstractGameEffect
 {
-    private final int goldBonus;
+    private final int baseGold;
+    private final int baseHP;
+    private EYBCardData customApparition;
 
-    private int apparitionsCount = 0;
-
-    public UnnamedRelicEquipEffect(int goldBonus)
+    public UnnamedRelicEquipEffect()
     {
-        this.goldBonus = goldBonus;
         this.duration = 1f;
+        this.baseGold = CalculateGoldBonus();
+        this.baseHP = CalculateMaxHealth();
     }
 
     private void ReplaceCard(ArrayList<AbstractCard> replacement, String cardID)
@@ -41,17 +48,34 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     public void update()
     {
+        PersistentCardModifiers.Clear();
         ModHelper.setModsFalse();
+
+        if (customApparition == null)
+        {
+            customApparition = GameUtilities.GetCardReplacement(null, Apparition.ID);
+        }
 
         final AbstractPlayer p = AbstractDungeon.player;
         final ArrayList<AbstractCard> replacement = TheUnnamedReign.GetCardReplacements(p.masterDeck.group, true);
+        final int apparitionsCount = JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID) || customApparition.ID.equals(c.cardID));
+        final float hpPercentage = GameUtilities.GetHealthPercentage(p);
 
-        apparitionsCount = JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID));
+        int hp = this.baseHP;
+        int goldBonus = this.baseGold;
 
-        int hp = CalculateMaxHealth();
-        if (hp < 999 && apparitionsCount > 1)
+        for (AnimatorRuntimeLoadout series : GR.Animator.Dungeon.Loadouts)
         {
-            hp *= 1 - (0.1f * (apparitionsCount - 1));
+            if (series.promoted)
+            {
+                goldBonus += series.bonus * 7;
+                hp += series.bonus;
+            }
+        }
+
+        if (hp < 999 && apparitionsCount > 0)
+        {
+            hp *= 1 - (0.1f * apparitionsCount);
 
             if (hp < 10)
             {
@@ -60,7 +84,8 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         }
 
         p.gold = goldBonus;
-        p.maxHealth = p.currentHealth = hp;
+        p.maxHealth = hp;
+        p.currentHealth = Math.min(p.maxHealth, Mathf.FloorToInt(p.maxHealth * hpPercentage * 1.075f));
         p.healthBarUpdatedEvent();
 
         p.potionSlots = AbstractDungeon.ascensionLevel < 11 ? 3 : 2;
@@ -98,28 +123,43 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     public static int CalculateMaxHealth()
     {
-        CharSelectInfo info = AbstractDungeon.player.getLoadout();
+        final CharSelectInfo info = AbstractDungeon.player.getLoadout();
+
         int hp = 100;
         if (info != null)
         {
             float startingHP = info.maxHp;
-            if (startingHP > 71)
+            if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
             {
-                startingHP = Math.max(71, startingHP * 0.95f);
+                if (GameUtilities.GetAscensionLevel() >= 14)
+                {
+                    hp = (int) Math.ceil(Math.min(999, startingHP * 1.1f));
+                }
+                else
+                {
+                    hp = (int) Math.ceil(Math.min(999, startingHP * 1.2f));
+                }
             }
             else
             {
-                startingHP = Math.min(71, startingHP * 1.05f);
+                if (GameUtilities.GetAscensionLevel() >= 14)
+                {
+                    hp = (int) Math.ceil(Math.min(999, startingHP * 1.25f));
+                }
+                else
+                {
+                    hp = (int) Math.ceil(Math.min(999, startingHP * 1.35f));
+                }
             }
+        }
 
-            if (GameUtilities.GetActualAscensionLevel() >= 14)
-            {
-                hp = (int)Math.ceil(Math.min(999, startingHP * 1.3f));
-            }
-            else
-            {
-                hp = (int)Math.ceil(Math.min(999, startingHP * 1.4f));
-            }
+        if (hp < 75)
+        {
+            hp = (int)Mathf.Clamp(hp + ((75 - hp) * 0.4f), 1, 75);
+        }
+        else if (hp > 75)
+        {
+            hp = (int)Mathf.Clamp(hp - ((hp - 75) * 0.4f), 75, 999);
         }
         
         return hp;
@@ -127,63 +167,37 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
     public static int CalculateGoldBonus()
     {
-        AbstractPlayer p = AbstractDungeon.player;
+        final AbstractPlayer player = AbstractDungeon.player;
+        final CharSelectInfo info = player.getLoadout();
 
-        int bonus = 60;
-        for (AbstractRelic r : p.relics)
+        int bonus = info.gold / 2;
+        for (AbstractRelic r : player.relics)
         {
             if (!(r instanceof OnEquipUnnamedReignRelicListener))
             {
+                bonus += GetRelicTierGoldValue(r.tier);
                 if (r instanceof ExquisiteBloodVial)
                 {
-                    bonus += 30 + ((r.counter > 0) ? (r.counter * 10) : 0);
+                    bonus += ((r.counter > 0) ? (r.counter * 10) : 0);
                 }
-                else switch (r.tier)
-                {
-                    case STARTER:
-                        bonus += 0;
-                        break;
-
-                    case COMMON:
-                        bonus += 6;
-                        break;
-
-                    case UNCOMMON:
-                        bonus += 10;
-                        break;
-
-                    case RARE:
-                        bonus += 18;
-                        break;
-
-                    case BOSS:
-                        bonus += 30;
-                        break;
-
-                    case SHOP:
-                        bonus += 10;
-                        break;
-
-                    case SPECIAL: default:
-                        bonus += 25;
-                        break;
-                }
+            }
+            else if (r instanceof EnchantableRelic)
+            {
+                final int level = ((EnchantableRelic)r).GetEnchantmentLevel();
+                bonus += GetRelicTierGoldValue(r.tier);
+                bonus -= level >= 2 ? 220 : level == 1 ? 130 : 75;
             }
         }
 
-        for (AbstractCard c : p.masterDeck.group)
+        for (AbstractCard c : player.masterDeck.group)
         {
             bonus += Math.min(c.timesUpgraded, 20) * 5;
         }
 
-        for (AbstractPotion potion : p.potions)
+        for (AbstractPotion potion : player.potions)
         {
             switch (potion.rarity)
             {
-                case PLACEHOLDER:
-                    bonus += 0;
-                    break;
-
                 case COMMON:
                     bonus += 6;
                     break;
@@ -198,9 +212,23 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
             }
         }
 
-        bonus += p.maxHealth / 2;
-        bonus += p.gold / 7;
+        //bonus += player.currentHealth / 2;
+        bonus += player.gold / 7;
 
-        return Math.min(999, bonus);
+        return Mathf.Clamp(bonus, 10, 999);
+    }
+
+    private static int GetRelicTierGoldValue(AbstractRelic.RelicTier tier)
+    {
+        switch (tier)
+        {
+            case COMMON: return 6;
+            case UNCOMMON: return 10;
+            case RARE: return 18;
+            case BOSS: return 30;
+            case SHOP: return 10;
+            case SPECIAL: return 25;
+            default: return 1;
+        }
     }
 }

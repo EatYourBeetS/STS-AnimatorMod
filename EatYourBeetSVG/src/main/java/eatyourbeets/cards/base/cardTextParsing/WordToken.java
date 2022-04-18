@@ -1,20 +1,20 @@
 package eatyourbeets.cards.base.cardTextParsing;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.ColoredString;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class WordToken extends CTToken
 {
     protected EYBCardTooltip tooltip = null;
     protected String modifier = "";
-    protected Color overrideColor = null;
+    protected ColoredString coloredString = new ColoredString(null, null);
 
     protected static boolean IsValidCharacter(Character character, boolean firstCharacter)
     {
@@ -37,20 +37,20 @@ public class WordToken extends CTToken
     {
         if (modifier.isEmpty())
         {
-            return GetWidth(context.font, text);
+            return GetWidth(context.font, rawText);
         }
         else if (modifier.equals("s"))
         {
-            if (context.card != null && context.card.magicNumber == 1)
+            if (context.card != null && (context.card.magicNumber == 1 || context.card.magicNumber == -1))
             {
-                return GetWidth(context.font, text);
+                return GetWidth(context.font, rawText);
             }
 
-            return GetWidth(context.font, text + "s");
+            return GetWidth(context.font, rawText + "s");
         }
         else
         {
-            return GetWidth(context.font, text + "(0)");
+            return GetWidth(context.font, rawText + "(0)");
         }
     }
 
@@ -78,7 +78,7 @@ public class WordToken extends CTToken
                 {
                     break;
                 }
-                else if (next == '/')
+                else if (next == '|')
                 {
                     if (parser.card.upgraded)
                     {
@@ -120,9 +120,8 @@ public class WordToken extends CTToken
                 i += 1;
             }
 
-            String word = builder.toString();
-
-            WordToken token;
+            final WordToken token;
+            final String word = builder.toString();
             if (word.charAt(0) == '~' && word.length() > 1)
             {
                 token = new WordToken(word.substring(1));
@@ -135,10 +134,14 @@ public class WordToken extends CTToken
             if (parser.card != null)
             {
                 EYBCardTooltip tooltip = CardTooltips.FindByName(word.toLowerCase());
-                if (tooltip != null)
+                if (tooltip != null && (tooltip.requiredColor == null || tooltip.requiredColor == parser.cardColor))
                 {
+                    if (tooltip.isKeyword)
+                    {
+                        token.coloredString.SetColor(Settings.GOLD_COLOR);
+                    }
+
                     parser.AddTooltip(tooltip);
-                    token.overrideColor = Settings.GOLD_COLOR.cpy();
                     token.tooltip = tooltip;
                 }
             }
@@ -155,32 +158,47 @@ public class WordToken extends CTToken
     @Override
     public void Render(SpriteBatch sb, CTContext context)
     {
-        String text = this.text;
+        if (coloredString.text == null || GR.UI.Elapsed25())
+        {
+            UpdateString(context);
+        }
+
+        super.Render(sb, context, coloredString);
+    }
+
+    private void UpdateString(CTContext context)
+    {
+        coloredString.text = this.rawText;
         if (modifier.equals("s")) // pluralize
         {
             // TODO: improve this logic
             if (context.card.magicNumber == 0 || context.card.magicNumber > 1)
             {
-                text += "s";
+                coloredString.text += "s";
             }
         }
 
-        if (overrideColor != null)
+        if (coloredString.color != null)
         {
-            overrideColor.a = context.card.transparency;
+            coloredString.color.a = 1;
 
-            if (tooltip == GR.Tooltips.Starter && !AbstractDungeon.actionManager.cardsPlayedThisTurn.isEmpty())
+            if (!GameUtilities.InGame())
             {
-                overrideColor.a = context.card.transparency * 0.6f;
+                return;
+            }
+
+            if (GR.Tooltips.Starter.Is(tooltip) && !CombatStats.CanActivatedStarter())
+            {
+                coloredString.color.a = 0.6f;
             }
             else
             {
                 Integer t = null;
-                if (tooltip == GR.Tooltips.Limited)
+                if (GR.Tooltips.Limited.Is(tooltip))
                 {
                     t = CombatStats.GetCombatData(context.card.cardID, null);
                 }
-                else if (tooltip == GR.Tooltips.SemiLimited)
+                else if (GR.Tooltips.SemiLimited.Is(tooltip))
                 {
                     t = CombatStats.GetTurnData(context.card.cardID, null);
                 }
@@ -190,24 +208,18 @@ public class WordToken extends CTToken
                     if (!modifier.isEmpty())
                     {
                         int n = JUtils.ParseInt(modifier, 0);
-                        text += "(" + Math.max(0, n - t) + ")";
+                        coloredString.text += "(" + Math.max(0, n - t) + ")";
                         if (t >= n)
                         {
-                            overrideColor.a = context.card.transparency * 0.6f;
+                            coloredString.color.a = 0.6f;
                         }
                     }
                     else if (t > 0)
                     {
-                        overrideColor.a = context.card.transparency * 0.6f;
+                        coloredString.color.a = 0.6f;
                     }
                 }
             }
-
-            Render(sb, context, text, overrideColor);
-        }
-        else
-        {
-            Render(sb, context, text, context.color);
         }
     }
 }

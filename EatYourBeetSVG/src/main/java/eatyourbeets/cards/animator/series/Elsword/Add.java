@@ -4,66 +4,60 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.DrawCardNextTurnPower;
-import com.megacrit.cardcrawl.powers.EnergizedBluePower;
 import eatyourbeets.cards.animator.special.OrbCore;
-import eatyourbeets.cards.animator.status.Crystallize;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
 public class Add extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Add.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
-    static
-    {
-        DATA.AddPreview(new Crystallize(), false);
-        for (OrbCore core : OrbCore.GetAllCores())
-        {
-            DATA.AddPreview(core, false);
-        }
-    }
+    public static final EYBCardData DATA = Register(Add.class)
+            .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage()
+            .ObtainableAsReward((data, deck) -> deck.size() >= (14 + (10 * data.GetTotalCopies(deck))))
+            .PostInitialize(data -> data.AddPreviews(OrbCore.GetAllCores(), false));
 
     public Add()
     {
         super(DATA);
 
-        Initialize(0, 0, 2, 3);
-        SetUpgrade(0, 0, 1, 0);
+        Initialize(0, 0, 2, 2);
+
+        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Dark(1, 1, 0);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Elsword);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EnergizedBluePower(p, 2));
-        GameActions.Bottom.StackPower(new DrawCardNextTurnPower(p, magicNumber));
+        GameActions.Bottom.GainCorruption(secondaryValue);
+        GameActions.Bottom.GainEnergyNextTurn(1);
+        GameActions.Bottom.DrawNextTurn(magicNumber);
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (isSynergizing)
+        if (TryUseAffinity(Affinity.Dark))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.drawPile, p.discardPile)
             .AddCallback(this::OnCardChosen);
         }
-
-        GameActions.Bottom.MakeCardInDrawPile(new Crystallize()).Repeat(secondaryValue);
     }
 
     private void OnCardChosen(ArrayList<AbstractCard> cards)
     {
         if (cards != null && cards.size() > 0)
         {
-            AbstractCard c = cards.get(0);
             CardGroup cardGroup = null;
+            final AbstractCard c = cards.get(0);
             if (player.hand.contains(c))
             {
                 cardGroup = player.hand;
@@ -79,7 +73,7 @@ public class Add extends AnimatorCard
 
             if (cardGroup != null)
             {
-                GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1)
+                GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1, 3)
                 .AddCallback(cardGroup, this::OrbChosen));
             }
         }
@@ -92,24 +86,13 @@ public class Add extends AnimatorCard
             switch (cardGroup.type)
             {
                 case DRAW_PILE:
-                    GameActions.Bottom.MakeCardInDrawPile(chosen.get(0));
-                    break;
-
                 case HAND:
-                    GameActions.Bottom.MakeCardInHand(chosen.get(0));
-                    break;
-
                 case DISCARD_PILE:
-                    GameActions.Bottom.MakeCardInDiscardPile(chosen.get(0));
+                    GameActions.Bottom.MakeCard(chosen.get(0), cardGroup);
                     break;
 
-                case MASTER_DECK:
-                    break;
-                case EXHAUST_PILE:
-                    break;
-                case CARD_POOL:
-                    break;
-                case UNSPECIFIED:
+                default:
+                    JUtils.LogWarning(this, "Invalid card group type: " + cardGroup.type);
                     break;
             }
         }

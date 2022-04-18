@@ -1,51 +1,58 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.monsters.EnemyIntent;
+import eatyourbeets.powers.common.CounterAttackPower;
+import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
 public class Sebas extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Sebas.class).SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None);
+    public static final EYBCardData DATA = Register(Sebas.class)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSeriesFromClassPackage();
 
     public Sebas()
     {
         super(DATA);
 
-        Initialize(0, 6, 3);
-        SetUpgrade(0, 3);
-        SetScaling(0, 1, 2);
+        Initialize(0, 10, 2);
+        SetUpgrade(0, 2, 0);
+
+        SetAffinity_Red(1, 1, 1);
+        SetAffinity_Light(1);
 
         SetExhaust(true);
-        SetSynergy(Synergies.Overlord);
+
+        SetAffinityRequirement(Affinity.Red, 4);
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        super.triggerOnManualDiscard();
+        GameActions.Bottom.GainBlock(block);
 
-        GameActions.Bottom.GainTemporaryHP(magicNumber);
-    }
-
-    @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
-    {
-        GameActions.Bottom.GainBlock(block).AddCallback(() ->
+        final int counter = JUtils.Count(GameUtilities.GetIntents(), EnemyIntent::IsAttacking);
+        if (counter > 0)
         {
-            for (EnemyIntent intent : JUtils.Filter(GameUtilities.GetIntents(), i -> i.isAttacking))
-            {
-                GameActions.Bottom.DealDamage(player, intent.enemy, player.currentBlock, DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
-            }
-        });
+            GameActions.Bottom.GainForce(counter);
+            GameActions.Bottom.StackPower(new CounterAttackPower(p, counter * magicNumber));
+        }
+
+        int energy = 0;
+        if (AgilityStance.IsActive())
+        {
+            energy += 1;
+        }
+        if (CheckAffinity(Affinity.Red))
+        {
+            energy += 1;
+        }
+
+        GameActions.Bottom.GainEnergy(energy);
     }
 }

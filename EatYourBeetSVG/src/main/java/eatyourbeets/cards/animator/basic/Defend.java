@@ -1,30 +1,19 @@
 package eatyourbeets.cards.animator.basic;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
-import eatyourbeets.resources.GR;
+import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Defend extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Defend.class).SetSkill(1, CardRarity.BASIC, EYBCardTarget.None);
-
-    public Defend(String id, int cost, CardTarget target)
-    {
-        super(GetStaticData(id), id, GR.GetCardImage(DATA.ID + "Alt"), cost, CardType.SKILL, CardColor.COLORLESS,
-                CardRarity.BASIC, target);
-
-        //setBannerTexture("images\\cardui\\512\\banner_uncommon.png","images\\cardui\\1024\\banner_uncommon.png");
-
-        this.cropPortrait = false;
-        this.tags.add(CardTags.STARTER_DEFEND);
-        this.tags.add(GR.Enums.CardTags.IMPROVED_DEFEND);
-    }
+    public static final EYBCardData DATA = Register(Defend.class)
+            .SetSkill(1, CardRarity.BASIC, EYBCardTarget.None)
+            .PostInitialize(data -> data.AddPopupAction(new EYBCardPopupActions.ImproveBasicCard()));
 
     public Defend()
     {
@@ -38,20 +27,8 @@ public class Defend extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public AbstractCard makeCopy()
-    {
-        AnimatorCard copy = (AnimatorCard) super.makeCopy();
-        if (GameUtilities.GetActualAscensionLevel() < 9)
-        {
-            copy.SetSynergy(null);
-        }
-
-        return copy;
     }
 }

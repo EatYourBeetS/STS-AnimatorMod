@@ -10,19 +10,19 @@
 		"NAME": "Haunted",
 		"DESCRIPTION": ["That was a bad idea."]
 	},
-	"animator:UltimateCrystal":
+	"animator:UltimateCrystalBlight":
 	{
 		"NAME": "Ultimate Crystal",
 		"DESCRIPTION": ["At the start of each combat, move #b{0} cards from your hand to your draw pile."]
 	},
-	"animator:UltimateCube":
+	"animator:UltimateCubeBlight":
 	{
 		"NAME": "Ultimate Cube",
-		"DESCRIPTION": ["At the end of your first turn, take #b{0} damage."]
+		"DESCRIPTION": ["At the end of each turn, take #b{0} damage. NL Reduce the damage amount by #b1 for every point of unblocked #yAttack damage you deal."]
 	},
-	"animator:UltimateWisp":
+	"animator:UltimateWispBlight":
 	{
 		"NAME": "Ultimate Wisp",
-		"DESCRIPTION": ["Whenever you shuffle your deck, add #b{0} #yVoid to your draw pile."]
+		"DESCRIPTION": ["Whenever you shuffle your deck, add #b{0} {1} to your draw pile."]
 	}
 }

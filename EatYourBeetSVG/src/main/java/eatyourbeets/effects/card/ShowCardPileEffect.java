@@ -14,7 +14,10 @@ import eatyourbeets.resources.GR;
 import eatyourbeets.ui.controls.GUI_CardGrid;
 import eatyourbeets.ui.controls.GUI_Toggle;
 import eatyourbeets.utilities.EYBFontHelper;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.InputManager;
+
+import java.util.ArrayList;
 
 public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
 {
@@ -48,9 +51,15 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
     }
 
     private final CardGroup cards;
-    private boolean draggingScreen = false;
+    private boolean draggingScreen;
+    private boolean showTopPanelOnComplete;
     private Color screenColor;
     private GUI_CardGrid grid;
+
+    public ShowCardPileEffect(ArrayList<AbstractCard> cards)
+    {
+        this(GameUtilities.CreateCardGroup(cards));
+    }
 
     public ShowCardPileEffect(CardGroup cards)
     {
@@ -62,12 +71,17 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         this.screenColor.a = 0.8f;
 
         AbstractDungeon.overlayMenu.proceedButton.hide();
-        ToggleViewUpgrades(false);
 
         if (cards.isEmpty())
         {
             Complete(cards);
             return;
+        }
+
+        if (GameUtilities.IsTopPanelVisible())
+        {
+            showTopPanelOnComplete = true;
+            GameUtilities.SetTopPanelVisible(false);
         }
 
         this.grid = new GUI_CardGrid()
@@ -112,7 +126,6 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         {
             if (InputManager.LeftClick.IsJustReleased() || InputManager.RightClick.IsJustReleased())
             {
-                ToggleViewUpgrades(false);
                 Complete(this.cards);
                 return;
             }
@@ -130,6 +143,18 @@ public class ShowCardPileEffect extends EYBEffectWithCallback<CardGroup>
         upgradeToggle.Render(sb);
         zoomToggle.Render(sb);
         simplifyCardUIToggle.Render(sb);
+    }
+
+    @Override
+    protected void Complete()
+    {
+        super.Complete();
+
+        if (showTopPanelOnComplete)
+        {
+            GameUtilities.SetTopPanelVisible(true);
+            showTopPanelOnComplete = false;
+        }
     }
 
     private static void ToggleViewUpgrades(boolean value)

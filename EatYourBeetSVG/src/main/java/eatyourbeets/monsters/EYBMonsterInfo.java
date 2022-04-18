@@ -8,12 +8,19 @@ public class EYBMonsterInfo
     public final AbstractMonster.EnemyType type;
     public final String encounterID;
     public final String dungeonID;
+    public final int minimumAscension;
     public final float baseWeight;
     public final MonsterInfo info;
 
     public EYBMonsterInfo(String dungeonID, AbstractMonster.EnemyType type, String encounterID, float weight)
     {
+        this(dungeonID, type, encounterID, weight, 0);
+    }
+
+    public EYBMonsterInfo(String dungeonID, AbstractMonster.EnemyType type, String encounterID, float weight, int ascension)
+    {
         this.info = new MonsterInfo(encounterID, weight);
+        this.minimumAscension = ascension;
         this.encounterID = encounterID;
         this.dungeonID = dungeonID;
         this.baseWeight = weight;

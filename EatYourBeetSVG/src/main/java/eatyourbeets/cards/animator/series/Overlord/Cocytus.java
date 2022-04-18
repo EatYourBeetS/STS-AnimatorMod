@@ -1,45 +1,68 @@
 package eatyourbeets.cards.animator.series.Overlord;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
-import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Cocytus extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Cocytus.class).SetAttack(1, CardRarity.COMMON);
+    public static final EYBCardData DATA = Register(Cocytus.class)
+            .SetAttack(2, CardRarity.COMMON)
+            .SetSeriesFromClassPackage();
 
     public Cocytus()
     {
         super(DATA);
 
-        Initialize(6, 0, 2, 1);
-        SetUpgrade(1, 0, 1, 0);
-        SetScaling(0, 0, 2);
+        Initialize(13, 0, 2, 1);
+        SetUpgrade(0, 0, 1, 1);
 
-        SetSynergy(Synergies.Overlord);
+        SetAffinity_Red(2, 0, 3);
+
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnDrag(AbstractMonster m)
     {
-        GameActions.Bottom.DealDamage(this, m, AbstractGameAction.AttackEffect.BLUNT_HEAVY);
+        super.OnDrag(m);
 
-        if (GameUtilities.GetPowerAmount(p, ForcePower.POWER_ID) <= magicNumber)
+        final AbstractOrb orb = GameUtilities.GetFirstOrb(Frost.ORB_ID);
+        if (orb != null)
         {
-            GameActions.Bottom.GainForce(1, true);
+            orb.showEvokeValue();
         }
+    }
 
-        if (HasSynergy() && CombatStats.TryActivateSemiLimited(cardID))
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
+        GameActions.Bottom.EvokeOrb(1)
+        .SetFilter(o -> Frost.ORB_ID.equals(o.ID))
+        .AddCallback(orbs ->
         {
-            GameActions.Bottom.GainPlatedArmor(secondaryValue);
-            GameActions.Bottom.GainThorns(secondaryValue);
+            if (orbs.size() > 0)
+            {
+                GameActions.Bottom.GainForce(magicNumber);
+            }
+            else
+            {
+                GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
+            }
+        });
+
+        if (CheckAffinity(Affinity.Blue))
+        {
+            GameActions.Bottom.ApplyFreezing(p, m, 1);
         }
     }
 }

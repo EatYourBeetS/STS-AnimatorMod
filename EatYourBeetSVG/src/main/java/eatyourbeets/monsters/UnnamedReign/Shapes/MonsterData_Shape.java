@@ -18,7 +18,7 @@ public class MonsterData_Shape extends EYBMonsterData
         this.shape = shape;
         this.tier = tier;
 
-        String filePath = "images/monsters/animator/" + shape + "/" + shape + "_" + element + "_" + tier.GetId();
+        String filePath = "images/animator/monsters/" + shape + "/" + shape + "_" + element + "_" + Math.max(1, tier.GetId());
         atlasUrl = filePath + ".atlas";
         jsonUrl = filePath + ".json";
         imgUrl = filePath + ".png";
@@ -57,9 +57,12 @@ public class MonsterData_Shape extends EYBMonsterData
         {
             case Small:
             {
-                hb_w = 120;
-                hb_h = 120;
-                maxHealth = 120;
+                offsetY = 40;
+                scale = 0.9f;
+                hb_y = -30f;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 100;
                 break;
             }
 
@@ -90,7 +93,7 @@ public class MonsterData_Shape extends EYBMonsterData
                 hb_y = -60f;
                 hb_w = 230;
                 hb_h = 230;
-                maxHealth = 640;
+                maxHealth = 490;
                 break;
             }
         }
@@ -102,9 +105,12 @@ public class MonsterData_Shape extends EYBMonsterData
         {
             case Small:
             {
-                hb_w = 110;
-                hb_h = 110;
-                maxHealth = 120;
+                scale = 1.4f;
+                offsetY = 55;
+                hb_y = -60;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 90;
                 break;
             }
 
@@ -147,9 +153,12 @@ public class MonsterData_Shape extends EYBMonsterData
         {
             case Small:
             {
-                hb_w = 240;
-                hb_h = 240;
-                maxHealth = 80;
+                scale = 0.8f;
+                offsetY = 40;
+                hb_y = -30;
+                hb_w = 140;
+                hb_h = 140;
+                maxHealth = 72;
                 break;
             }
 

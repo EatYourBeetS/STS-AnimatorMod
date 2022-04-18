@@ -1,28 +1,124 @@
 
 {
-	"EYB:SelfDamagePower":
+	"eyb:AgilityPower":
 	{
-		"DESCRIPTIONS": ["At the end of this turn, take #b", " damage."],
-		"NAME": "Self Damage"
-	},
-	"EYB:MarkedPower":
-	{
-		"DESCRIPTIONS": ["Take #b{0} additional damage on the next #yAttack."],
-		"NAME": "Marked"
-	},
-	"EYB:ForcePower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #yForce at the start of each turn.", " If you reach #b{0} #yForce, gain #b{1} #yStrength."],
-		"NAME": "Force"
-	},
-	"EYB:AgilityPower":
-	{
-		"DESCRIPTIONS": ["Lose #b1 #yAgility at the start of each turn.", " If you reach #b{0} #yAgility, gain #b{1} #yDexterity."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 [A].", " At #b{0} [A]: Gain #b{1} #yDexterity."],
 		"NAME": "Agility"
 	},
-	"EYB:IntellectPower":
+	"eyb:ForcePower":
 	{
-		"DESCRIPTIONS": ["Lose #b1 #yIntellect at the start of each turn.", " If you reach #b{0} #yIntellect, gain #b{1} #yFocus."],
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 [F].", " At #b{0} [F]: Gain #b{1} #yStrength."],
+		"NAME": "Force"
+	},
+	"eyb:IntellectPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 [I].", " At #b{0} [I]: Gain #b{1} #yFocus."],
 		"NAME": "Intellect"
+	},
+	"eyb:BlessingPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 [B].", " At #b{0} [B]: Gain #b{1} #yVitality."],
+		"NAME": "Blessing"
+	},
+	"eyb:CorruptionPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b1 [C].", " At #b{0} [C]: Gain #b{1} #yInvocation."],
+		"NAME": "Corruption"
+	},
+	
+	"eyb:AftershockPower":
+	{
+		"DESCRIPTIONS": ["When dealing #yAttack damage, deal additional #b{0} damage at the end of turn."],
+		"NAME": "Aftershock"
+	},
+	"eyb:BurningPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, lose #b{0} HP. Receive #b{1}% more #yAttack damage (min. #b1 additional damage)."],
+		"NAME": "Burning"
+	},
+	"eyb:CounterAttackPower":
+	{
+		"DESCRIPTIONS": ["If you fully block all enemy #yAttacks, gain #b{0} #yVigor and apply #b{1} [Vulnerable] to ALL enemies."],
+		"NAME": "Counter-Attack"
+	},
+	"eyb:DelayedDamagePower":
+	{
+		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
+		"NAME": "Delayed Damage"
+	},
+	"eyb:EnergizedPower":
+	{
+		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],
+		"NAME": "Energized"
+	},
+	"eyb:FreezingPower":
+	{
+		"DESCRIPTIONS": ["Deal #b{0} less #yAttack damage."],
+		"NAME": "Freezing"
+	},
+	"eyb:InspirationPower":
+	{
+		"DESCRIPTIONS": ["Once per turn, when you activate an interactable power, #yMotivate #b1, then reduce this power by #b1."],
+		"NAME": "Inspiration"
+	},
+	"eyb:InvocationPower":
+	{
+		"DESCRIPTIONS": ["At the end of turn, #yRecover #b{0} [HP] and gain #b{1} charge(s). When applied, and every #b{2} charges, add a #yCrystallize to the top of your draw pile. At #b{3} charges, obtain #pSummoning #pRitual."],
+		"NAME": "Invocation"
+	},
+	"eyb:DeEnergizedPower":
+	{
+		"DESCRIPTIONS": ["Lose #b{0} [E] at the start of turn."],
+		"NAME": "De-Energized"
+	},
+	"eyb:DelayedStrengthPower":
+	{
+		"DESCRIPTIONS": ["At the end of turn, gain #b{0} [Strength]."],
+		"NAME": "Delayed Strength"
+	},
+	"eyb:NextTurnDrawReductionPower":
+	{
+		"DESCRIPTIONS": ["Next turn, draw #b{0} less card(s)."],
+		"NAME": "Draw Reduction"
+	},
+	"eyb:PoisonPlayerPower":
+	{
+		"DESCRIPTIONS": ["At the start of turn, lose #b{0} HP and reduce [Poison] by #b1. If this effect would kill you, survive with #b1 HP."],
+		"NAME": "Poison"
+	},
+	"eyb:ShacklesPower":
+	{
+		"DESCRIPTIONS": ["Lose #b{0} #yStrength until the end of this turn."],
+		"NAME": "Shackles"
+	},
+	"eyb:TemporaryDamageModifierPower":
+	{
+		"DESCRIPTIONS": ["Your next #yAttack deals #b{0}% additional damage this turn."],
+		"NAME": "Damage UP"
+	},
+	"eyb:TemporaryHealthReductionPower":
+	{
+		"DESCRIPTIONS": ["At the end of combat, heal to #b{0} [HP]."],
+		"NAME": "Health Reduction"
+	},
+	"eyb:TemporaryStatsPower":
+	{
+		"DESCRIPTIONS": ["Until end of turn, have:"],
+		"NAME": "Temporary Stats"
+	},
+	"eyb:DelayedBuffPower":
+	{
+		"DESCRIPTIONS": ["Next turn, gain:"],
+		"NAME": "Next Turn Power"
+	},
+	"eyb:NextTurnPlayCardPower":
+	{
+		"DESCRIPTIONS": ["Next turn, play:"],
+		"NAME": "Next Turn Play"
+	},
+	"eyb:VitalityPower":
+	{
+		"DESCRIPTIONS": ["At the start of each turn, gain #b{0} #yTemporary #yHP (Max #b{1})."],
+		"NAME": "Vitality"
 	}
 }

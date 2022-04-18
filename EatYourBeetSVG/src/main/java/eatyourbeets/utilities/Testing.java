@@ -41,7 +41,7 @@ public class Testing
 
     public static Color TryGetColor()
     {
-        return TryGetColor(Color.WHITE);
+        return TryGetColor(Color.WHITE.cpy());
     }
 
     public static Color TryGetColor(Color defaultColor)

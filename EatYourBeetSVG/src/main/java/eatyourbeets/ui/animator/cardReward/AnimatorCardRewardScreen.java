@@ -2,7 +2,9 @@ package eatyourbeets.ui.animator.cardReward;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -14,16 +16,17 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public final AnimatorCardRewardBonus rewardBundle = new AnimatorCardRewardBonus();
     public final AnimatorCardRewardInfo cardBadgeLegend = new AnimatorCardRewardInfo();
-    public final AnimatorCardRewardBanish purgingStoneUI = new AnimatorCardRewardBanish(rewardBundle::Add, rewardBundle::Remove);
+    public final AnimatorCardRewardReroll purgingStoneUI = new AnimatorCardRewardReroll(rewardBundle::Add, rewardBundle::Remove);
 
     public void Open(ArrayList<AbstractCard> cards, RewardItem rItem, String header)
     {
-        if (GameUtilities.InBattle())
+        if (GameUtilities.InBattle(true) || cards == null || rItem == null)
         {
             Close();
             return;
         }
 
+        GR.UI.CardAffinities.Open(AbstractDungeon.player.masterDeck.group);
         rewardBundle.Open(rItem, cards);
         purgingStoneUI.Open(rItem, cards);
         cardBadgeLegend.Open();
@@ -31,6 +34,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void Close()
     {
+        GR.UI.CardAffinities.Close();
         cardBadgeLegend.Close();
         rewardBundle.Close();
         purgingStoneUI.Close();
@@ -38,6 +42,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void Update()
     {
+        GR.UI.CardAffinities.TryUpdate();
         purgingStoneUI.TryUpdate();
         rewardBundle.TryUpdate();
         cardBadgeLegend.TryUpdate();
@@ -45,6 +50,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void PreRender(SpriteBatch sb)
     {
+        GR.UI.CardAffinities.TryRender(sb);
         cardBadgeLegend.TryRender(sb);
         purgingStoneUI.TryRender(sb);
     }
@@ -56,6 +62,7 @@ public class AnimatorCardRewardScreen extends GUIElement
 
     public void OnCardObtained(AbstractCard hoveredCard)
     {
+        GameUtilities.SetCardTag(hoveredCard, GR.Enums.CardTags.MARKED, false);
         rewardBundle.OnCardObtained(hoveredCard);
     }
 }

@@ -1,5 +1,6 @@
 package eatyourbeets.actions.pileSelection;
 
+import com.evacipated.cardcrawl.mod.stslib.patches.CenterGridCardSelectScreen;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,10 +12,7 @@ import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GridCardSelectScreenPatch;
-import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.GenericCondition;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,9 +25,12 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     protected final CardGroup[] groups;
 
     protected GenericCondition<AbstractCard> filter;
-    protected CardSelection origin;
+    protected ListSelection<AbstractCard> origin;
+    protected boolean hideTopPanel;
     protected boolean canPlayerCancel;
+    protected boolean canPickLower;
     protected boolean anyNumber;
+    protected boolean selected;
 
     public SelectFromPile(String sourceName, int amount, CardGroup... groups)
     {
@@ -42,9 +43,16 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
         this.groups = groups;
         this.canPlayerCancel = false;
-        this.message = GR.Common.Strings.GridSelection.ChooseCards;
+        this.message = GR.Common.Strings.GridSelection.ChooseCards_F1;
 
         Initialize(amount, sourceName);
+    }
+
+    public SelectFromPile HideTopPanel(boolean hideTopPanel)
+    {
+        this.hideTopPanel = hideTopPanel;
+
+        return this;
     }
 
     public SelectFromPile CancellableFromPlayer(boolean value)
@@ -70,17 +78,24 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
     public SelectFromPile SetOptions(boolean isRandom, boolean anyNumber)
     {
-        this.anyNumber = anyNumber;
+        return SetOptions(isRandom, anyNumber, true);
+    }
 
+    public SelectFromPile SetOptions(boolean isRandom, boolean anyNumber, boolean canPickLower)
+    {
         if (isRandom)
         {
             this.origin = CardSelection.Random;
         }
 
+        this.anyNumber = anyNumber;
+        this.canPickLower = canPickLower;
+
         return this;
     }
 
-    public SelectFromPile SetOptions(CardSelection origin, boolean anyNumber)
+
+    public SelectFromPile SetOptions(ListSelection<AbstractCard> origin, boolean anyNumber)
     {
         this.origin = origin;
         this.anyNumber = anyNumber;
@@ -105,11 +120,16 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
     @Override
     protected void FirstUpdate()
     {
+        if (hideTopPanel)
+        {
+            GameUtilities.SetTopPanelVisible(false);
+        }
+
         GridCardSelectScreenPatch.Clear();
 
         for (CardGroup group : groups)
         {
-            CardGroup temp = new CardGroup(group.type);
+            final CardGroup temp = new CardGroup(group.type);
             for (AbstractCard card : group.group)
             {
                 if (filter == null || filter.Check(card))
@@ -131,7 +151,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
             else
             {
-                if (temp.type == CardGroup.CardGroupType.DRAW_PILE)
+                if (temp.type == CardGroup.CardGroupType.DRAW_PILE && origin == null)
                 {
                     if (GameUtilities.HasRelicEffect(FrozenEye.ID))
                     {
@@ -148,7 +168,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
             }
         }
 
-        CardGroup mergedGroup = GridCardSelectScreenPatch.GetCardGroup();
+        final CardGroup mergedGroup = GridCardSelectScreenPatch.GetCardGroup();
         if (mergedGroup.isEmpty())
         {
             player.hand.group.addAll(fakeHandGroup.group);
@@ -159,19 +179,19 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
         if (origin != null)
         {
-            List<AbstractCard> temp = new ArrayList<>(mergedGroup.group);
-
-            boolean remove = origin.mode.IsRandom();
-            int max = Math.min(temp.size(), amount);
+            final List<AbstractCard> temp = new ArrayList<>(mergedGroup.group);
+            final boolean remove = origin.mode.IsRandom();
+            final int max = Math.min(temp.size(), amount);
             for (int i = 0; i < max; i++)
             {
-                AbstractCard card = origin.GetCard(temp, i, remove);
+                final AbstractCard card = origin.Get(temp, i, remove);
                 if (card != null)
                 {
                     selectedCards.add(card);
                 }
             }
 
+            selected = true;
             GridCardSelectScreenPatch.Clear();
             Complete(selectedCards);
         }
@@ -179,22 +199,35 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         {
             if (anyNumber)
             {
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, CreateMessage());
+                FIX_STS_LIB();
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, amount, true, UpdateMessage());
             }
             else
             {
+                if (amount > mergedGroup.size())
+                {
+                    if (canPickLower)
+                    {
+                        if (amount > 1)
+                        {
+                            AbstractDungeon.gridSelectScreen.selectedCards.addAll(mergedGroup.group);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
                 if (canPlayerCancel)
                 {
                     // Setting canCancel to true does not ensure the cancel button will be shown...
                     AbstractDungeon.overlayMenu.cancelButton.show(GridCardSelectScreen.TEXT[1]);
                 }
-                else if (amount > 1 && amount > mergedGroup.size())
-                {
-                    AbstractDungeon.gridSelectScreen.selectedCards.addAll(mergedGroup.group);
-                    return;
-                }
 
-                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), CreateMessage(), false, false, canPlayerCancel, false);
+                FIX_STS_LIB();
+                AbstractDungeon.gridSelectScreen.open(mergedGroup, Math.min(mergedGroup.size(), amount), UpdateMessage(), false, false, canPlayerCancel, false);
             }
         }
     }
@@ -217,15 +250,44 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
         if (AbstractDungeon.gridSelectScreen.selectedCards.size() != 0)
         {
             selectedCards.addAll(AbstractDungeon.gridSelectScreen.selectedCards);
+            selected = true;
 
             player.hand.group.addAll(fakeHandGroup.group);
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
             GridCardSelectScreenPatch.Clear();
         }
 
-        if (TickDuration(deltaTime))
+        if (selected)
         {
-            Complete(selectedCards);
+            if (TickDuration(deltaTime))
+            {
+                Complete(selectedCards);
+            }
+            return;
         }
+
+        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID) // cancelled
+        {
+            Complete();
+        }
+    }
+
+    @Override
+    protected void Complete()
+    {
+        if (hideTopPanel)
+        {
+            GameUtilities.SetTopPanelVisible(true);
+        }
+
+        super.Complete();
+    }
+
+    private static final FieldInfo<Boolean> _save_isJustForConfirming = JUtils.GetField("save_isJustForConfirming", CenterGridCardSelectScreen.class);
+    private static void FIX_STS_LIB()
+    {
+        _save_isJustForConfirming.Set(null, false);
+        CenterGridCardSelectScreen.centerGridSelect = false;
+        AbstractDungeon.gridSelectScreen.isJustForConfirming = false;
     }
 }

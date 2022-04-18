@@ -1,21 +1,25 @@
 package eatyourbeets.stances;
 
 import com.badlogic.gdx.graphics.Color;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.cards.base.Affinity;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.stance.StanceAura;
 import eatyourbeets.effects.stance.StanceParticleVertical;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.ForcePower;
+import eatyourbeets.powers.affinity.ForcePower;
+import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ForceStance extends EYBStance
 {
+    public static final Affinity AFFINITY = ForcePower.AFFINITY_TYPE;
     public static final String STANCE_ID = CreateFullID(ForceStance.class);
-    public static final int STAT_GAIN_AMOUNT = 2;
-    public static final int STAT_LOSE_AMOUNT = 1;
-    public static final int TEMP_HP_AMOUNT = 3;
+    public static final int STAT_GAIN_AMOUNT = 3;
+    public static final int SELF_DAMAGE_AMOUNT = 1;
 
     public static boolean IsActive()
     {
@@ -42,12 +46,10 @@ public class ForceStance extends EYBStance
     {
         super.onEnterStance();
 
-        GameActions.Bottom.GainForce(1, true);
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
 
         if (TryApplyStance(STANCE_ID))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, -STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, -STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, +STAT_GAIN_AMOUNT);
         }
     }
@@ -59,16 +61,26 @@ public class ForceStance extends EYBStance
 
         if (TryApplyStance(null))
         {
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Focus, +STAT_LOSE_AMOUNT);
-            GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Dexterity, +STAT_LOSE_AMOUNT);
             GameUtilities.ApplyPowerInstantly(owner, PowerHelper.Strength, -STAT_GAIN_AMOUNT);
+            GameActions.Bottom.RemovePower(owner, owner, DelayedDamagePower.POWER_ID);
+        }
+    }
+
+    @Override
+    public void onPlayCard(AbstractCard card)
+    {
+        super.onPlayCard(card);
+
+        if (card.type == AbstractCard.CardType.ATTACK)
+        {
+            GameActions.Bottom.TakeDamageAtEndOfTurn(1, AttackEffects.NONE).ShowEffect(false, true);
         }
     }
 
     @Override
     public void onRefreshStance()
     {
-        ForcePower.PreserveOnce();
+        GameActions.Bottom.StackAffinityPower(AFFINITY, 1, true);
     }
 
     @Override
@@ -92,6 +104,6 @@ public class ForceStance extends EYBStance
     @Override
     public void updateDescription()
     {
-        description = FormatDescription(STAT_GAIN_AMOUNT, STAT_LOSE_AMOUNT, TEMP_HP_AMOUNT);
+        description = FormatDescription(STAT_GAIN_AMOUNT, SELF_DAMAGE_AMOUNT);
     }
 }

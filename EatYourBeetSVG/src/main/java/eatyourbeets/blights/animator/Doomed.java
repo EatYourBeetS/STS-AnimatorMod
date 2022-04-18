@@ -2,15 +2,20 @@ package eatyourbeets.blights.animator;
 
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import eatyourbeets.actions.special.KillCharacterAction;
 import eatyourbeets.blights.AnimatorBlight;
 import eatyourbeets.effects.combatOnly.BlightAboveCreatureEffect;
+import eatyourbeets.relics.animator.unnamedReign.TheEruzaStone;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
+import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 
 public class Doomed extends AnimatorBlight
 {
     public static final String ID = CreateFullID(Doomed.class);
+    private TheEruzaStone relic;
 
     public Doomed()
     {
@@ -20,6 +25,38 @@ public class Doomed extends AnimatorBlight
     public Doomed(int turns)
     {
         super(ID, turns);
+    }
+
+    @Override
+    public void onEquip()
+    {
+        super.onEquip();
+
+        relic = GameUtilities.GetRelic(TheEruzaStone.ID);
+        if (relic != null)
+        {
+            relic.flash();
+            this.flash();
+            setCounter(counter + relic.GetDoomedTurnIncrease());
+        }
+
+        updateDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(name, description));
+        initializeTips();
+    }
+
+    @Override
+    public void updateDescription()
+    {
+        super.updateDescription();
+
+        description = JUtils.Format(strings.DESCRIPTION[0], counter);
+
+        if (relic != null)
+        {
+            description += " NL " + relic.GetDoomedString();
+        }
     }
 
     @Override

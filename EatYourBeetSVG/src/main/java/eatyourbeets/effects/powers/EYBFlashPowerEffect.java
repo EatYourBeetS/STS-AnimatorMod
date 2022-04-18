@@ -22,6 +22,12 @@ public class EYBFlashPowerEffect extends AbstractGameEffect
     {
         this.scale = Settings.scale;
 
+        if (power == null)
+        {
+            isDone = true;
+            return;
+        }
+
         if (power.owner != null && !power.owner.isDeadOrEscaped())
         {
             this.x = power.owner.hb.cX;
@@ -52,12 +58,22 @@ public class EYBFlashPowerEffect extends AbstractGameEffect
 
     public void update()
     {
+        if (isDone)
+        {
+            return;
+        }
+
         super.update();
         this.scale = Interpolation.exp5In.apply(Settings.scale, Settings.scale * 0.3f, this.duration / this.startingDuration);
     }
 
     public void render(SpriteBatch sb)
     {
+        if (isDone)
+        {
+            return;
+        }
+
         sb.setBlendFunction(770, 1);
         sb.setColor(this.color);
         if (this.region128 != null)

@@ -1,13 +1,13 @@
 package eatyourbeets.monsters.Elites;
 
-import com.megacrit.cardcrawl.cards.status.Dazed;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import eatyourbeets.cards.animator.status.Status_Dazed;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.TemporaryConfusionPower;
 import eatyourbeets.powers.monsters.HornedBat_PurplePower;
+import eatyourbeets.powers.replacement.TemporaryConfusionPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,7 +22,7 @@ public class HornedBat_P extends HornedBat
     {
         super(new Data(ID), x, y);
 
-        confusionMove = moveset.Special.ShuffleCard(new Dazed(), 1)
+        confusionMove = moveset.Special.ShuffleCard(new Status_Dazed(), 1)
         .SetOnSelect((m) -> TurnData.Get().UsedConfusion = true)
         .SetCanUse((m, b) -> m.CanUseFallback(b) && !TurnData.Get().UsedConfusion)
         .SetOnUse((m, t) -> GameActions.Bottom.StackPower(this, new TemporaryConfusionPower(t)));
@@ -47,7 +47,7 @@ public class HornedBat_P extends HornedBat
         });
 
         //Rotation:
-        moveset.Normal.ShuffleCard(new Dazed(), 1)
+        moveset.Normal.ShuffleCard(new Status_Dazed(), 1)
         .SkipAnimation(true)
         .SetIntent(Intent.DEFEND_DEBUFF)
         .SetMiscBonus(17, 1)
@@ -81,8 +81,8 @@ public class HornedBat_P extends HornedBat
                 SetMaxHP(24, 28);
             }
 
-            atlasUrl = "images/monsters/animator/HornedBat/HornedBat_P.atlas";
-            jsonUrl = "images/monsters/animator/HornedBat/HornedBat.json";
+            atlasUrl = "images/animator/monsters/HornedBat/HornedBat_P.atlas";
+            jsonUrl = "images/animator/monsters/HornedBat/HornedBat.json";
             scale = 1f;
 
             SetHB(0, 0, 120, 150, 0, 50);

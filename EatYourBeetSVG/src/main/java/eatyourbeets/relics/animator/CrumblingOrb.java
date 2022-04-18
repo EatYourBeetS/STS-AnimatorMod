@@ -1,23 +1,29 @@
 package eatyourbeets.relics.animator;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import com.megacrit.cardcrawl.random.Random;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.RandomizedList;
+import eatyourbeets.utilities.JUtils;
 
 public class CrumblingOrb extends AnimatorRelic
 {
     public static final String ID = CreateFullID(CrumblingOrb.class);
+    public static final int CHOOSE_AMOUNT = 2;
+    public static final int CHOOSE_SIZE = 4;
+
+    private Random battleRNG;
 
     public CrumblingOrb()
     {
         super(ID, RelicTier.BOSS, LandingSound.MAGICAL);
+    }
+
+    @Override
+    public String getUpdatedDescription()
+    {
+        return FormatDescription(0, CHOOSE_AMOUNT, CHOOSE_SIZE);
     }
 
     @Override
@@ -37,59 +43,40 @@ public class CrumblingOrb extends AnimatorRelic
     }
 
     @Override
-    public void atPreBattle()
+    public void atBattleStartPreDraw()
     {
-        super.atPreBattle();
+        super.atBattleStartPreDraw();
 
-        if (!GameUtilities.InBossRoom() && !GameUtilities.InEliteRoom())
+        battleRNG = new Random(rng.randomLong(), 0);
+    }
+
+    @Override
+    public void onVictory()
+    {
+        super.onVictory();
+
+        battleRNG = null;
+    }
+
+    @Override
+    public void atTurnStart()
+    {
+        super.atTurnStart();
+
+        if (battleRNG == null)
         {
-            return;
+            JUtils.LogError(this, "atTurnStart called before atBattleStartPreDraw");
+            battleRNG = new Random(rng.randomLong(), 0);
         }
 
-        boolean basic = true;
-        RandomizedList<AbstractCard> randomList = new RandomizedList<>();
-        for (AbstractCard card : player.masterDeck.group)
+        final AbstractCard card = GameUtilities.GetCardsInCombatWeighted(null).Retrieve(battleRNG).makeCopy();
+        if (card.canUpgrade() && battleRNG.randomBoolean(0.3f))
         {
-            if (!GameUtilities.IsCurseOrStatus(card))
-            {
-                if (basic || card.rarity != AbstractCard.CardRarity.BASIC)
-                {
-                    randomList.Add(card);
-                    basic = false;
-                }
-            }
+            card.upgrade();
         }
 
-        CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        while (group.size() < 3 && randomList.Size() > 0)
-        {
-            group.addToBottom(randomList.Retrieve(rng, true));
-        }
-
-        GameActions.Top.SelectFromPile(name, 2, group)
-        .SetOptions(false, false)
-        .CancellableFromPlayer(false)
-        .AddCallback(cards ->
-        {
-            float x_offset = 0;
-            for (AbstractCard c : cards)
-            {
-                AbstractCard replacement = GameUtilities.GetRandomRewardCard(true, true);
-                if (replacement != null)
-                {
-                    replacement = replacement.makeCopy();
-                    AbstractDungeon.player.masterDeck.removeCard(c);
-
-                    if (c.upgraded)
-                    {
-                        replacement.upgrade();
-                    }
-
-                    GameEffects.TopLevelQueue.Add(new ShowCardAndObtainEffect(replacement, (float) Settings.WIDTH / 3f + x_offset, (float) Settings.HEIGHT / 2f, false));
-                    GameActions.Top.ReplaceCard(c.uuid, replacement);
-                    x_offset += (float) Settings.WIDTH / 6f;
-                }
-            }
-        });
+        player.drawPile.addToTop(card);
+        CombatStats.OnCardCreated(card, false);
+        flash();
     }
 }

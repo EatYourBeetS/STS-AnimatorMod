@@ -7,9 +7,9 @@ public class DarkCrystalPower extends AbstractCrystalPower
 {
     public static final String POWER_ID = CreateFullID(DarkCrystalPower.class);
 
-    public DarkCrystalPower(AbstractCreature owner, int value)
+    public DarkCrystalPower(AbstractCreature owner, int amount)
     {
-        super(POWER_ID, owner, value);
+        super(POWER_ID, owner, amount);
     }
 
     @Override

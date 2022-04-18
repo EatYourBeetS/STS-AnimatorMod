@@ -1,94 +1,114 @@
 package eatyourbeets.cards.animator.ultrarare;
 
-import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeOrbAction;
-import com.megacrit.cardcrawl.actions.defect.EvokeWithoutRemovingOrbAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.AnimatorCard_UltraRare;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.JUtils;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.RandomizedList;
 
 public class Walpurgisnacht extends AnimatorCard_UltraRare
 {
-    public static final EYBCardData DATA = Register(Walpurgisnacht.class).SetPower(3, CardRarity.SPECIAL).SetColor(CardColor.COLORLESS);
-
-    private static final RandomizedList<AnimatorCard> spellcasterPool = new RandomizedList<>();
+    public static final EYBCardData DATA = Register(Walpurgisnacht.class)
+            .SetPower(3, CardRarity.SPECIAL)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.MadokaMagica);
 
     public Walpurgisnacht()
     {
         super(DATA);
 
         Initialize(0, 0, 2);
-        SetUpgrade(0, 0, 1);
 
-        SetSynergy(Synergies.MadokaMagica);
-        SetSpellcaster();
+        SetAffinity_Blue(2);
+        SetAffinity_Dark(2);
+
+        SetEthereal(true);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    protected void OnUpgrade()
     {
-        if (spellcasterPool.Size() == 0)
-        {
-            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetNonColorlessCard(), c -> c.hasTag(SPELLCASTER)));
-            spellcasterPool.AddAll(JUtils.Filter(Synergies.GetColorlessCards(), c -> c.hasTag(SPELLCASTER)));
-        }
+        SetEthereal(false);
+    }
 
-        for (int i = 0; i < magicNumber; i++)
-        {
-            AnimatorCard spellcaster = spellcasterPool.Retrieve(rng, false);
-            if (spellcaster != null)
-            {
-                GameActions.Bottom.MakeCardInHand(spellcaster)
-                .SetUpgrade(false, true)
-                .AddCallback(c -> c.setCostForTurn(0));
-            }
-        }
-
-        GameActions.Bottom.ApplyPower(p, p, new WalpurgisnachtPower(p));
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        GameActions.Bottom.GainEnergyNextTurn(magicNumber);
+        GameActions.Bottom.StackPower(new WalpurgisnachtPower(p, 1));
     }
 
     public static class WalpurgisnachtPower extends AnimatorPower
     {
-        public WalpurgisnachtPower(AbstractPlayer owner)
+        private final RandomizedList<AbstractCard> cardPool = new RandomizedList<>();
+
+        public WalpurgisnachtPower(AbstractPlayer owner, int amount)
         {
             super(owner, Walpurgisnacht.DATA);
 
-            this.amount = -1;
-
-            updateDescription();
+            Initialize(amount);
         }
 
         @Override
-        public void updateDescription()
+        public void playApplyPowerSfx()
         {
-            description = FormatDescription(0, amount);
+            SFX.Play(SFX.ORB_DARK_EVOKE, 0.45f, 0.55f, 0.95f);
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void onAfterCardPlayed(AbstractCard usedCard)
         {
-            GameActions.Bottom.Callback(() ->
+            super.onAfterCardPlayed(usedCard);
+
+            final EYBCardAffinities a = GameUtilities.GetAffinities(usedCard);
+            if (a != null && a.GetLevel(Affinity.Blue, true) <= 0 && a.GetLevel(Affinity.Dark, true) <= 0)
             {
-                int count = JUtils.Count(player.hand.group, c -> c.type == CardType.CURSE || c.hasTag(AnimatorCard.SPELLCASTER));
-                if (count > 0)
+                for (int i = 0; i < amount; i++)
                 {
-                    for (int i = 1; i < count; i++)
-                    {
-                        GameActions.Bottom.Add(new AnimateOrbAction(1));
-                        GameActions.Bottom.Add(new EvokeWithoutRemovingOrbAction(1));
-                    }
-
-                    GameActions.Bottom.Add(new AnimateOrbAction(1));
-                    GameActions.Bottom.Add(new EvokeOrbAction(1));
+                    GameActions.Bottom.MakeCardInHand(GetCardPool().Retrieve(rng).makeCopy())
+                    .SetUpgrade(true, false);
                 }
-            });
+
+                flash();
+            }
+        }
+
+        protected RandomizedList<AbstractCard> GetCardPool()
+        {
+            final boolean betaSeries = GR.Animator.Dungeon.HasBetaSeries;
+            final RandomizedList<AbstractCard> randomCards = new RandomizedList<>();
+            for (AbstractCard c : CardLibrary.getAllCards())
+            {
+                if (GameUtilities.IsObtainableInCombat(c))
+                {
+                    final EYBCardAffinities b = GameUtilities.GetAffinities(c);
+                    if (b != null && (b.GetLevel(Affinity.Blue, true) > 0 || b.GetLevel(Affinity.Dark, true) > 0))
+                    {
+                        if (!betaSeries && c instanceof AnimatorCard)
+                        {
+                            final AnimatorCard c2 = (AnimatorCard) c;
+                            final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(c2.series);
+                            if (loadout == null || !loadout.IsBeta)
+                            {
+                                cardPool.Add(c);
+                            }
+                        }
+                        else
+                        {
+                            cardPool.Add(c);
+                        }
+                    }
+                }
+            }
+
+            return cardPool;
         }
     }
 }

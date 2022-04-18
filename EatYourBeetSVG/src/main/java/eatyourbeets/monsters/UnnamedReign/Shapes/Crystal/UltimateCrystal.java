@@ -5,14 +5,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.WraithFormPower;
+import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.actions.monsters.MoveMonsterAction;
 import eatyourbeets.actions.monsters.SummonMonsterAction;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.blights.animator.UltimateCrystalBlight;
 import eatyourbeets.cards.animator.status.Crystallize;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMoveset;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Attack;
 import eatyourbeets.monsters.SharedMoveset.special.EYBMove_AttackDefend_ViceCrush;
@@ -20,13 +20,15 @@ import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterElement;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterShape;
 import eatyourbeets.monsters.UnnamedReign.Shapes.MonsterTier;
 import eatyourbeets.powers.PowerHelper;
-import eatyourbeets.powers.common.AntiArtifactSlowPower;
+import eatyourbeets.powers.common.AftershockPower;
 import eatyourbeets.powers.monsters.UltimateCrystalPower;
-import eatyourbeets.resources.GR;
+import eatyourbeets.powers.replacement.AntiArtifactSlowPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
+
+import java.util.ArrayList;
 
 public class UltimateCrystal extends Crystal
 {
@@ -65,27 +67,32 @@ public class UltimateCrystal extends Crystal
         // Rotation:
         moveset.mode = EYBMoveset.Mode.Sequential;
 
-        if (original == null)
+        moveset.Normal.Buff(PowerHelper.Strength, 5)
+        .AddPower(PowerHelper.Artifact, 2)
+        .SetOnUse((move, __) ->
         {
-            moveset.Normal.Buff(PowerHelper.Strength, 3)
-            .AddPower(PowerHelper.Artifact, 2);
+            final int strength = GameUtilities.GetPowerAmount(this, StrengthPower.POWER_ID);
+            final int aftershock = GameUtilities.GetPowerAmount(this, AftershockPower.POWER_ID);
+            if (moveHistory.size() > 1 && strength < 40 && aftershock < 40)
+            {
+                final int bonus = (aftershock > strength) ? (35 - aftershock) : (10 + (30 - strength));
+                if (bonus > 0)
+                {
+                    GameActions.Bottom.StackPower(new AftershockPower(this, bonus));
+                }
+            }
+        });
 
-            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
-            .SetBlockScaling(0.5f);
+        moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
+        .SetBlockScaling(0.5f);
 
-            moveset.Normal.ShuffleCard(new Crystallize(), 2)
-            .SetMiscBonus(4, 1);
-        }
-        else
+        moveset.Normal.ShuffleCard(new Crystallize(), 2)
+        .SetMiscBonus(4, 1);
+
+        if (original != null)
         {
-            moveset.Normal.ShuffleCard(new Crystallize(), 2)
-            .SetMiscBonus(4, 1);
-
-            moveset.Normal.Buff(PowerHelper.Strength, 3)
-            .AddPower(PowerHelper.Artifact, 2);
-
-            moveset.Normal.Add(new EYBMove_AttackDefend_ViceCrush(1, 11))
-            .SetBlockScaling(0.5f);
+            final ArrayList<EYBAbstractMove> moves = moveset.Normal.rotation;
+            moves.add(0, moves.remove(moves.size() - 1));
         }
     }
 
@@ -118,23 +125,30 @@ public class UltimateCrystal extends Crystal
             GameActions.Bottom.StackPower(new UltimateCrystalPower(this, 6));
             GameActions.Bottom.StackPower(new AntiArtifactSlowPower(this, 1));
 
+            if (UltimateCrystalBlight.ID.equals(GameUtilities.GetAscensionBlightChoice()))
+            {
+                GameActions.Bottom.StackPower(new RegenPower(this, 4));
+            }
+
             GameEffects.List.Callback(new WaitRealtimeAction(15), () -> CardCrawlGame.music.unsilenceBGM());
 
-            CardCrawlGame.sound.play(GR.Common.Audio_TheUltimateCrystal, true);
+            CardCrawlGame.sound.play(SFX.ANIMATOR_THE_ULTIMATE_CRYSTAL, true);
         }
         else
         {
+            this.powers.clear();
             for (AbstractPower p : original.powers)
             {
                 CloneablePowerInterface cloneablePower = JUtils.SafeCast(p, CloneablePowerInterface.class);
                 if (cloneablePower != null)
                 {
-                    AbstractPower power = cloneablePower.makeCopy();
+                    final AbstractPower power = cloneablePower.makeCopy();
                     if (power != null)
                     {
+                        this.powers.add(power);
                         power.amount = p.amount;
                         power.owner = this;
-                        this.powers.add(power);
+                        power.onInitialApplication();
                     }
                 }
             }

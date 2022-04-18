@@ -3,18 +3,18 @@ package eatyourbeets.cards.animator.series.Katanagatari;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.Synergies;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.misc.NanamiEffects.NanamiEffect;
+import eatyourbeets.cards.effects.NanamiEffects.NanamiEffect;
 import eatyourbeets.ui.cards.TargetEffectPreview;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Nanami extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Nanami.class).SetSkill(-1, CardRarity.UNCOMMON);
+    public static final EYBCardData DATA = Register(Nanami.class)
+            .SetSkill(X_COST, CardRarity.UNCOMMON)
+            .SetMaxCopies(2)
+            .SetSeriesFromClassPackage();
 
     private TargetEffectPreview effectPreview = new TargetEffectPreview(this::ChangeEffect);
     private NanamiEffect currentEffect = null;
@@ -26,14 +26,19 @@ public class Nanami extends AnimatorCard
         Initialize(5, 4, 3);
         SetUpgrade(1, 1, 1);
 
+        SetAffinity_Red(2);
+        SetAffinity_Green(2);
+        SetAffinity_Dark(2);
+
         SetAttackType(EYBAttackType.Normal);
         SetExhaust(true);
-        SetSynergy(Synergies.Katanagatari);
     }
 
     @Override
     public void OnDrag(AbstractMonster m)
     {
+        super.OnDrag(m);
+
         if (currentEffect != null)
         {
             currentEffect.OnDrag(m);
@@ -43,23 +48,13 @@ public class Nanami extends AnimatorCard
     @Override
     public AbstractAttribute GetDamageInfo()
     {
-        if (currentEffect != null)
-        {
-            return currentEffect.GetDamageInfo(this);
-        }
-
-        return null;
+        return currentEffect != null ? currentEffect.GetDamageInfo(this) : null;
     }
 
     @Override
     public AbstractAttribute GetBlockInfo()
     {
-        if (currentEffect != null)
-        {
-            return currentEffect.GetBlockInfo(this);
-        }
-
-        return null;
+        return currentEffect != null ? currentEffect.GetBlockInfo(this) : null;
     }
 
     @Override
@@ -88,7 +83,7 @@ public class Nanami extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         energyOnUse = GameUtilities.UseXCostEnergy(this);
         NanamiEffect.GetEffect(m).EnqueueActions(this, p, m);

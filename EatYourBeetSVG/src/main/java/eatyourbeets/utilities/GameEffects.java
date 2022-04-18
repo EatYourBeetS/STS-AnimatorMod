@@ -1,13 +1,23 @@
 package eatyourbeets.utilities;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
+import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import com.megacrit.cardcrawl.vfx.combat.RoomTintEffect;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.EYBEffect;
+import eatyourbeets.effects.VFX;
 import eatyourbeets.effects.combatOnly.TalkEffect;
 import eatyourbeets.effects.player.ObtainRelicEffect;
 import eatyourbeets.effects.player.RemoveRelicEffect;
@@ -22,10 +32,12 @@ import java.util.ArrayList;
 
 public final class GameEffects
 {
+    public final static ArrayList<AbstractGameEffect> UnlistedEffects = new ArrayList<>();
     public final static GameEffects List = new GameEffects(EffectType.List);
     public final static GameEffects Queue = new GameEffects(EffectType.Queue);
     public final static GameEffects TopLevelList = new GameEffects(EffectType.TopLevelList);
     public final static GameEffects TopLevelQueue = new GameEffects(EffectType.TopLevelQueue);
+    public final static GameEffects Manual = new GameEffects(EffectType.Manual);
 
     protected final EffectType effectType;
 
@@ -49,9 +61,52 @@ public final class GameEffects
 
             case TopLevelQueue:
                 return AbstractDungeon.topLevelEffectsQueue;
+
+            case Manual:
+                return UnlistedEffects;
         }
 
         throw new RuntimeException("Enum value does not exist.");
+    }
+
+    public static boolean IsEmpty()
+    {
+        for (AbstractGameEffect effect : AbstractDungeon.topLevelEffects)
+        {
+            if (effect instanceof EYBEffect)
+            {
+                return false;
+            }
+        }
+
+        return UnlistedEffects.isEmpty();
+    }
+
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax)
+    {
+        return Attack(source, target, attackEffect, pitchMin, pitchMax, null, source == target ? 0 : 0.15f);
+    }
+
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor)
+    {
+        return Attack(source, target, attackEffect, pitchMin, pitchMax, vfxColor, source == target ? 0 : 0.15f);
+    }
+
+    public EYBEffect Attack(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, float pitchMin, float pitchMax, Color vfxColor, float spread)
+    {
+        AttackEffects.PlaySound(attackEffect, pitchMin, pitchMax);
+        return AttackWithoutSound(source, target, attackEffect, vfxColor, spread);
+    }
+
+    public EYBEffect AttackWithoutSound(AbstractCreature source, AbstractCreature target, AbstractGameAction.AttackEffect attackEffect, Color vfxColor, float spread)
+    {
+        final EYBEffect effect = Add(AttackEffects.GetVFX(attackEffect, source, VFX.RandomX(target.hb, spread), VFX.RandomY(target.hb, spread)));
+        if (vfxColor != null)
+        {
+            effect.SetColor(vfxColor);
+        }
+
+        return effect;
     }
 
     public int Count()
@@ -81,9 +136,14 @@ public final class GameEffects
         return Add(new CallbackEffect2(effect, onCompletion));
     }
 
-    public CallbackEffect2 Callback(AbstractGameEffect effect, Object state, ActionT2<Object, AbstractGameEffect> onCompletion)
+    public <T> CallbackEffect2 Callback(AbstractGameEffect effect, T state, ActionT2<T, AbstractGameEffect> onCompletion)
     {
         return Add(new CallbackEffect2(effect, state, onCompletion));
+    }
+
+    public CallbackEffect Callback(ActionT0 onCompletion)
+    {
+        return Add(new CallbackEffect(new WaitAction(0.01f), onCompletion));
     }
 
     public CallbackEffect Callback(AbstractGameAction action)
@@ -106,6 +166,16 @@ public final class GameEffects
         return Add(new CallbackEffect(action, state, onCompletion));
     }
 
+    public BorderFlashEffect BorderFlash(Color color)
+    {
+        return Add(new BorderFlashEffect(color, true));
+    }
+
+    public BorderLongFlashEffect BorderLongFlash(Color color)
+    {
+        return Add(new BorderLongFlashEffect(color, true));
+    }
+
     public SpawnRelicEffect SpawnRelic(AbstractRelic relic, float x, float y)
     {
         return Add(new SpawnRelicEffect(relic, x, y));
@@ -121,19 +191,43 @@ public final class GameEffects
         return Add(new RemoveRelicEffect(relic));
     }
 
+    public RoomTintEffect RoomTint(Color color, float transparency)
+    {
+        return Add(new RoomTintEffect(color.cpy(), transparency));
+    }
+
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card)
     {
-        return Add(new ShowCardBrieflyEffect(card));
+        final ShowCardBrieflyEffect effect = Add(new ShowCardBrieflyEffect(card));
+        effect.duration = effect.startingDuration /= 2;
+        return effect;
     }
 
     public ShowCardBrieflyEffect ShowCardBriefly(AbstractCard card, float x, float y)
     {
-        return Add(new ShowCardBrieflyEffect(card, x, y));
+        final ShowCardBrieflyEffect effect = Add(new ShowCardBrieflyEffect(card, x, y));
+        effect.duration = effect.startingDuration /= 2;
+        return effect;
     }
 
     public ShowCardBrieflyEffect ShowCopy(AbstractCard card)
     {
         return ShowCardBriefly(card.makeStatEquivalentCopy());
+    }
+
+    public ShowCardBrieflyEffect ShowCopy(AbstractCard card, float x, float y)
+    {
+        return ShowCardBriefly(card.makeStatEquivalentCopy(), x, y);
+    }
+
+    public ShowCardAndObtainEffect ShowAndObtain(AbstractCard card)
+    {
+        return ShowAndObtain(card, Settings.WIDTH * 0.5f, Settings.HEIGHT * 0.5f, true);
+    }
+
+    public ShowCardAndObtainEffect ShowAndObtain(AbstractCard card, float x, float y, boolean converge)
+    {
+        return Add(new ShowCardAndObtainEffect(card, x, y, converge));
     }
 
     public TalkEffect Talk(AbstractCreature source, String message)
@@ -156,6 +250,7 @@ public final class GameEffects
         List,
         Queue,
         TopLevelList,
-        TopLevelQueue
+        TopLevelQueue,
+        Manual
     }
 }

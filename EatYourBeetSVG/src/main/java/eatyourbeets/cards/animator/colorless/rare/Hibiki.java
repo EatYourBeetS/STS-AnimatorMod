@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.colorless.rare;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.badlogic.gdx.graphics.Color;
+import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -10,16 +11,26 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Hibiki extends AnimatorCard
 {
-    public static final EYBCardData DATA = Register(Hibiki.class).SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random).SetColor(CardColor.COLORLESS);
+    public static final EYBCardData DATA = Register(Hibiki.class)
+            .SetAttack(1, CardRarity.RARE, EYBAttackType.Ranged, EYBCardTarget.Random)
+            .SetColor(CardColor.COLORLESS)
+            .SetSeries(CardSeries.Kancolle);
 
     public Hibiki()
     {
         super(DATA);
 
-        Initialize(2, 0, 3, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(1, 0, 3, 1);
+        SetUpgrade(0, 0, 1, 0);
 
-        SetSynergy(Synergies.Kancolle);
+        SetAffinity_Star(0, 0, 1);
+        SetAffinity_Green(1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        upgradedDamage = true;
     }
 
     @Override
@@ -29,12 +40,15 @@ public class Hibiki extends AnimatorCard
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, boolean isSynergizing)
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         for (int i = 0; i < magicNumber; i++)
         {
-            GameActions.Bottom.DealDamageToRandomEnemy(this, AbstractGameAction.AttackEffect.BLUNT_LIGHT)
-            .SetOptions(true, false);
+            GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.GUNSHOT)
+            .SetSoundPitch(3.3f, 3.6f)
+            .SetVFXColor(Color.LIGHT_GRAY)
+            .SetOptions(true, false)
+            .SetDuration(0.025f, false);
         }
 
         GameActions.Bottom.ModifyAllInstances(uuid, c -> GameUtilities.IncreaseMagicNumber(c, secondaryValue, false));

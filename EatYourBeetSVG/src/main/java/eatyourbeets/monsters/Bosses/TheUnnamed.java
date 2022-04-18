@@ -11,7 +11,6 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AngryPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.powers.PoisonPower;
 import com.megacrit.cardcrawl.powers.RegenPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.TrueVictoryRoom;
@@ -26,13 +25,17 @@ import eatyourbeets.actions.special.SendMinionsAway;
 import eatyourbeets.actions.utility.WaitRealtimeAction;
 import eatyourbeets.blights.animator.Doomed;
 import eatyourbeets.cards.animator.special.Respite;
+import eatyourbeets.effects.SFX;
 import eatyourbeets.monsters.EYBAbstractMove;
 import eatyourbeets.monsters.EYBMonster;
 import eatyourbeets.monsters.EYBMonsterData;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Special;
 import eatyourbeets.monsters.SharedMoveset.EYBMove_Unknown;
 import eatyourbeets.powers.animator.EarthenThornsPower;
-import eatyourbeets.powers.monsters.InfinitePower;
+import eatyourbeets.powers.common.PoisonPlayerPower;
+import eatyourbeets.powers.monsters.TheUnnamedPower;
+import eatyourbeets.relics.animator.unnamedReign.TheUnnamedMark;
+import eatyourbeets.relics.animator.unnamedReign.Ynitaph;
 import eatyourbeets.resources.GR;
 import eatyourbeets.scenes.TheUnnamedReignScene;
 import eatyourbeets.utilities.*;
@@ -51,7 +54,7 @@ public class TheUnnamed extends EYBMonster
     private final EYBAbstractMove movePoison;
     private final EYBAbstractMove moveSummon;
     private final EYBAbstractMove moveTaunt;
-    private final InfinitePower infinitePower;
+    private final TheUnnamedPower infinitePower;
     private boolean triedUsingDeathNote;
 
     public TheUnnamed()
@@ -59,16 +62,16 @@ public class TheUnnamed extends EYBMonster
         super(new Data(ID), EnemyType.BOSS);
 
         data.SetIdleAnimation(this, 1);
-        infinitePower = new InfinitePower(this);
+        infinitePower = new TheUnnamedPower(this);
 
         moveFading = moveset.Special.Add(new EYBMove_Special()).SetMisc(4)
         .SetCanUse((m, __) -> !AbstractDungeon.player.hasBlight(Doomed.ID))
         .SetOnUse((m, t) ->
         {
             final int turns = m.misc.Calculate();
-            GameActions.Bottom.SFX("MONSTER_COLLECTOR_DEBUFF");
+            GameActions.Bottom.SFX(SFX.MONSTER_COLLECTOR_DEBUFF);
             GameActions.Bottom.VFX(new CollectorCurseEffect(t.hb.cX, t.hb.cY), 2f);
-            GameActions.Bottom.Callback(turns, (i, __) ->GameUtilities.ObtainBlight(hb.cX, hb.cY, new Doomed((int)i)));
+            GameActions.Bottom.Callback(turns, (i, __) ->GameUtilities.ObtainBlight(hb.cX, hb.cY, new Doomed(i)));
             GameActions.Bottom.Add(new PlayTempBgmAction("MINDBLOOM", 1));
             AbstractDungeon.player.drawPile.addToTop(new Respite());
         });
@@ -85,7 +88,7 @@ public class TheUnnamed extends EYBMonster
             {
                 GameActions.Bottom.VFX(new PotionBounceEffect(t.hb.cX + MathUtils.random(-5, 5),
                 t.hb.cY + MathUtils.random(-5, 5), t.hb.cX, t.hb.cY), 0.4f);
-                GameActions.Bottom.StackPower(this, new PoisonPower(t, this, poisonAmount));
+                GameActions.Bottom.StackPower(this, new PoisonPlayerPower(t, this, poisonAmount));
                 GameActions.Bottom.WaitRealtime(0.1f);
             }
 
@@ -108,6 +111,72 @@ public class TheUnnamed extends EYBMonster
     }
 
     @Override
+    public void usePreBattleAction()
+    {
+        if (!GR.Common.Dungeon.IsUnnamedReign())
+        {
+            if (GameUtilities.IsTestMode())
+            {
+                GR.Common.Dungeon.SetCheating();
+            }
+            else
+            {
+                AbstractDungeon.player.isDead = true;
+                AbstractDungeon.player.currentHealth = 0;
+                AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
+                return;
+            }
+        }
+
+        super.usePreBattleAction();
+
+        int marks = 0;
+        final String seed = Settings.seed.toString();
+        final String saveData = GR.Animator.Config.UnnamedData.Get(null);
+        if (saveData != null && saveData.startsWith(seed))
+        {
+            marks = JUtils.ParseInt(saveData.substring(seed.length() + 1), 0);
+        }
+
+        if (marks == 0)
+        {
+            GameEffects.List.Talk(this, data.strings.DIALOG[30]);
+        }
+        else
+        {
+            GameEffects.List.Talk(this, data.strings.DIALOG[(marks == 1) ? 31 : 32]);
+
+            final int max = Math.min(TheUnnamedMark.MAX_MARKS, marks);
+            for (int i = 0; i < max; i++)
+            {
+                GameUtilities.ObtainRelic(this.hb.cX, this.hb.cY, new TheUnnamedMark(i));
+            }
+        }
+
+        GR.Animator.Config.UnnamedData.Set(seed + ":" + (marks + 1), true);
+
+        AbstractDungeon.getCurrRoom().rewardAllowed = false;
+        AbstractDungeon.getCurrRoom().rewards.clear();
+
+        if (AbstractDungeon.player.maxHealth > 400)
+        {
+            GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
+            moveFading.SetMisc(4);
+            moveFading.QueueActions(AbstractDungeon.player);
+        }
+        else
+        {
+            CardCrawlGame.music.silenceTempBgmInstantly();
+            CardCrawlGame.music.silenceBGM();
+            AbstractDungeon.scene.fadeOutAmbiance();
+            CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
+            CardCrawlGame.music.updateVolume();
+        }
+
+        GameActions.Bottom.ApplyPower(this, this, infinitePower);
+    }
+
+    @Override
     public void die()
     {
         if (!infinitePower.phase2)
@@ -125,46 +194,19 @@ public class TheUnnamed extends EYBMonster
             this.onBossVictoryLogic();
             this.onFinalBossVictoryLogic();
 
-            CardCrawlGame.stopClock = true;
+            if (Ynitaph.CanSpawn())
+            {
+                GameUtilities.ObtainRelic(hb.cX, hb.cY, new Ynitaph(1, true));
 
+                if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass) && Settings.seed != null)
+                {
+                    GR.Animator.Config.LastSeed.Set(Settings.seed.toString(), true);
+                }
+            }
+
+            CardCrawlGame.stopClock = true;
             GameEffects.Queue.Add(new VictoryEffect());
         }
-    }
-
-    @Override
-    public void usePreBattleAction()
-    {
-        if (!GR.Common.Dungeon.IsUnnamedReign())
-        {
-            AbstractDungeon.player.isDead = true;
-            AbstractDungeon.player.currentHealth = 0;
-            AbstractDungeon.deathScreen = new DeathScreen(AbstractDungeon.getMonsters());
-            return;
-        }
-
-        super.usePreBattleAction();
-
-        GameEffects.List.Talk(this, data.strings.DIALOG[30]);
-
-        AbstractDungeon.getCurrRoom().rewardAllowed = false;
-        AbstractDungeon.getCurrRoom().rewards.clear();
-
-        if (AbstractDungeon.player.maxHealth > 400)
-        {
-            GameActions.Bottom.Talk(this, data.strings.DIALOG[1], 3, 4);
-            moveFading.SetMisc(3);
-            moveFading.QueueActions(AbstractDungeon.player);
-        }
-        else
-        {
-            CardCrawlGame.music.silenceTempBgmInstantly();
-            CardCrawlGame.music.silenceBGM();
-            AbstractDungeon.scene.fadeOutAmbiance();
-            CardCrawlGame.music.playTempBgmInstantly("BOSS_ENDING", true);
-            CardCrawlGame.music.updateVolume();
-        }
-
-        GameActions.Bottom.ApplyPower(this, this, infinitePower);
     }
 
     @Override
@@ -181,7 +223,7 @@ public class TheUnnamed extends EYBMonster
     @Override
     protected void SetNextMove(int roll, int historySize)
     {
-        if (!hasPower(InfinitePower.POWER_ID))
+        if (!hasPower(TheUnnamedPower.POWER_ID))
         {
             GameActions.Bottom.ApplyPower(this, infinitePower)
             .ShowEffect(false, true);
@@ -189,7 +231,7 @@ public class TheUnnamed extends EYBMonster
 
         if (infinitePower.phase2 && moveFading.CanUse(previousMove))
         {
-            moveFading.Select();
+            moveFading.Select(false);
 
             return;
         }
@@ -198,14 +240,14 @@ public class TheUnnamed extends EYBMonster
         {
             if (moveSummon.CanUse(previousMove))
             {
-                moveSummon.Select();
+                moveSummon.Select(false);
                 return;
             }
         }
 
         if (moveTaunt.id == previousMove)
         {
-            movePoison.Select();
+            movePoison.Select(false);
 
             return;
         }
@@ -227,6 +269,7 @@ public class TheUnnamed extends EYBMonster
     public void OnDollDeath()
     {
         minionsCount -= 1;
+
         if (minionsCount <= 0)
         {
             StartPhase2();
@@ -240,8 +283,7 @@ public class TheUnnamed extends EYBMonster
             return;
         }
 
-        infinitePower.phase2 = true;
-
+        infinitePower.BeginPhase2();
         GameActions.Bottom.VFX(new BorderLongFlashEffect(Color.BLACK, false));
         CardCrawlGame.music.silenceTempBgmInstantly();
         CardCrawlGame.music.silenceBGMInstantly();
@@ -314,8 +356,8 @@ public class TheUnnamed extends EYBMonster
             super(id);
 
             maxHealth = 1000 + (GameUtilities.GetAscensionLevel() * 5);
-            atlasUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.atlas";
-            jsonUrl = "images/monsters/animator/TheUnnamed/TheUnnamed.json";
+            atlasUrl = "images/animator/monsters/TheUnnamed/TheUnnamed.atlas";
+            jsonUrl = "images/animator/monsters/TheUnnamed/TheUnnamed.json";
 
             SetHB(0, -20, 200, 260, 0, 80);
         }
@@ -323,8 +365,7 @@ public class TheUnnamed extends EYBMonster
 
     protected static class VictoryEffect extends AbstractGameEffect
     {
-        boolean fastMode;
-        WaitRealtimeAction wait;
+        private final WaitRealtimeAction wait;
 
         public VictoryEffect()
         {
@@ -338,15 +379,13 @@ public class TheUnnamed extends EYBMonster
             wait.update();
             if (wait.isDone)
             {
-                MapRoomNode cur = AbstractDungeon.currMapNode;
+                MapRoomNode node = AbstractDungeon.currMapNode;
+                node.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
 
-                cur.getRoom().phase = AbstractRoom.RoomPhase.COMPLETE;
-
-                AbstractDungeon.nextRoom = new MapRoomNode(cur.x, cur.y + 1);
+                AbstractDungeon.nextRoom = new MapRoomNode(node.x, node.y + 1);
                 AbstractDungeon.nextRoom.room = new TrueVictoryRoom();
                 AbstractDungeon.nextRoomTransitionStart();
 
-                Settings.FAST_MODE = fastMode;
                 this.isDone = true;
             }
         }

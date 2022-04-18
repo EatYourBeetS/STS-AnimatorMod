@@ -1,10 +1,10 @@
 package eatyourbeets.relics.animator;
 
-import basemod.Pair;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.relics.AnimatorRelic;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.TupleT2;
 import eatyourbeets.utilities.TargetHelper;
 import eatyourbeets.utilities.WeightedList;
 
@@ -12,7 +12,7 @@ public class OldCoffin extends AnimatorRelic
 {
     public static final String ID = CreateFullID(OldCoffin.class);
 
-    private static final WeightedList<Pair<PowerHelper, Integer>> Debuffs = new WeightedList<>();
+    private static final WeightedList<TupleT2<PowerHelper, Integer>> Debuffs = new WeightedList<>();
     private static final int ACTIVATION_THRESHOLD = 4;
 
     public OldCoffin()
@@ -21,11 +21,12 @@ public class OldCoffin extends AnimatorRelic
 
         if (Debuffs.Size() == 0)
         {
-            Debuffs.Add(new Pair<>(PowerHelper.Vulnerable, 1), 5);
-            Debuffs.Add(new Pair<>(PowerHelper.Weak, 1), 5);
-            Debuffs.Add(new Pair<>(PowerHelper.Poison, 3), 3);
-            Debuffs.Add(new Pair<>(PowerHelper.Burning, 3), 3);
-            Debuffs.Add(new Pair<>(PowerHelper.Constricted, 2), 2);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Vulnerable, 1), 5);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Weak, 1), 5);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Poison, 3), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Burning, 3), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Freezing, 2), 3);
+            Debuffs.Add(new TupleT2<>(PowerHelper.Constricted, 2), 2);
         }
     }
 
@@ -54,8 +55,8 @@ public class OldCoffin extends AnimatorRelic
 
         if (SetEnabled(AddCounter(1) > ACTIVATION_THRESHOLD))
         {
-            Pair<PowerHelper, Integer> pair = Debuffs.Retrieve(rng, false);
-            GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(null), pair.getKey(), pair.getValue())
+            TupleT2<PowerHelper, Integer> pair = Debuffs.Retrieve(rng, false);
+            GameActions.Bottom.StackPower(TargetHelper.RandomEnemy(null), pair.V1, pair.V2)
             .AddCallback(power -> GameActions.Top.Add(new RelicAboveCreatureAction(power.owner, this)));
 
             flash();

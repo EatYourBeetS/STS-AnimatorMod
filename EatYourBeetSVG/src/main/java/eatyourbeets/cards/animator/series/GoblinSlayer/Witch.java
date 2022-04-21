@@ -63,7 +63,7 @@ public class Witch extends AnimatorCard
             GameActions.Bottom.GainEnergy(1);
         }
 
-        if (info.IsSynergizing && Spearman.DATA.IsCard(info.PreviousCard))
+        if (Spearman.DATA.IsCard(info.PreviousCard))
         {
             if (choices.TryInitialize(new Spearman()))
             {

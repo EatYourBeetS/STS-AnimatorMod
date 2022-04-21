@@ -37,14 +37,6 @@ public class Spearman extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        cardPreview.enabled = HasSynergy();
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SPEAR).SetVFXColor(Color.LIGHT_GRAY).SetSoundPitch(0.75f, 0.85f);
@@ -52,7 +44,7 @@ public class Spearman extends AnimatorCard
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
 
-        if (info.IsSynergizing)
+        if (info.TryActivateStarter())
         {
             GameActions.Bottom.Draw(1)
             .SetFilter(Witch.DATA::IsCard, false)

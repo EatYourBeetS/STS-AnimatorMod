@@ -28,7 +28,7 @@ public class Noah extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Noah extends AnimatorCard
             }
         }
 
-        if (!CheckAffinity(Affinity.Dark))
+        if (!TryUseAffinity(Affinity.Dark))
         {
             GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
         }

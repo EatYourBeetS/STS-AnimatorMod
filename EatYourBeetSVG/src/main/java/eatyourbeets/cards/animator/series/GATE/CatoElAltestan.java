@@ -27,7 +27,7 @@ public class CatoElAltestan extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Blue, 4);
+        SetAffinityRequirement(Affinity.Blue, 3);
         SetCardPreview(GameUtilities::HasBlueAffinity);
     }
 

@@ -30,8 +30,8 @@ public class Lust extends AnimatorCard
         Initialize(2, 0, 2, 3);
         SetUpgrade(1, 0, 0, 1);
 
-        SetAffinity_Star(2);
-        SetAffinity_Green(0, 0, 1);
+        SetAffinity_Dark(1, 1, 0);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

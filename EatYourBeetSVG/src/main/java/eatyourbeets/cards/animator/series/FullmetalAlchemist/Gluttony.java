@@ -29,7 +29,7 @@ public class Gluttony extends AnimatorCard
         Initialize(0, 0, 8, 2);
         SetUpgrade(0, 0, 0, 2);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1, 1, 0);
         SetAffinity_Dark(2);
 
         SetHealing(true);

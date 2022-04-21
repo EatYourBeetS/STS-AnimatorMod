@@ -24,8 +24,8 @@ public class LizardPriest extends AnimatorCard
         Initialize(0, 7, 0, 3);
         SetUpgrade(0, 2, 0, 0);
 
-        SetAffinity_Red(1, 1, 0);
-        SetAffinity_Light(2);
+        SetAffinity_Red(1, 0, 0);
+        SetAffinity_Light(1, 1, 0);
     }
 
     @Override
@@ -49,39 +49,5 @@ public class LizardPriest extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
-        {
-            GameActions.Bottom.GainInspiration(1);
-        }
     }
-
-//    public static class LizardPriestPower extends AnimatorPower
-//    {
-//        public LizardPriestPower(AbstractCreature owner, int amount)
-//        {
-//            super(owner, LizardPriest.DATA);
-//
-//            Initialize(amount);
-//        }
-//
-//        @Override
-//        public void atEndOfTurn(boolean isPlayer)
-//        {
-//            super.atEndOfTurn(isPlayer);
-//
-//            GameActions.Bottom.SelectFromHand(name, amount, false)
-//            .SetOptions(true, true, true)
-//            .SetMessage(RetainCardsAction.TEXT[0])
-//            .SetFilter(c -> GameUtilities.CanRetain(c) && GameUtilities.HasLightAffinity(c))
-//            .AddCallback(cards ->
-//            {
-//                for (AbstractCard c : cards)
-//                {
-//                    GameUtilities.Retain(c);
-//                }
-//            });
-//            RemovePower();
-//        }
-//    }
 }

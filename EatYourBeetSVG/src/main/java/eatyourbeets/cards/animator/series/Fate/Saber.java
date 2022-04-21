@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Fate;
 
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -25,10 +26,12 @@ public class Saber extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1, 1, 0);
 
         SetCooldown(8, 0, this::OnCooldownCompleted);
         SetLoyal(true);
+
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class Saber extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
 
-        cooldown.ProgressCooldownAndTrigger(info.IsSynergizing ? 3 : 1, m);
+        cooldown.ProgressCooldownAndTrigger(TryUseAffinity(Affinity.Light) ? 3 : 1, m);
     }
 
     protected void OnCooldownCompleted(AbstractMonster m)

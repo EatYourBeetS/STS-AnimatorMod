@@ -4,8 +4,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class LeleiLaLalena extends AnimatorCard
 {
@@ -25,17 +27,6 @@ public class LeleiLaLalena extends AnimatorCard
     }
 
     @Override
-    public void OnDrag(AbstractMonster m)
-    {
-        super.OnDrag(m);
-
-        if (m != null && HasSynergy())
-        {
-            GameUtilities.GetIntent(m).AddWeak();
-        }
-    }
-
-    @Override
     public void Refresh(AbstractMonster enemy)
     {
         super.Refresh(enemy);
@@ -46,16 +37,6 @@ public class LeleiLaLalena extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing)
-        {
-            if (m == null)
-            {
-                m = GameUtilities.GetRandomEnemy(true);
-            }
-
-            GameActions.Bottom.ApplyWeak(p, m, 1);
-        }
-
         GameActions.Bottom.RetainPower(Affinity.Blue);
     }
 
@@ -66,5 +47,13 @@ public class LeleiLaLalena extends AnimatorCard
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
+    }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.ApplyWeak(TargetHelper.RandomEnemy(), 1);
     }
 }

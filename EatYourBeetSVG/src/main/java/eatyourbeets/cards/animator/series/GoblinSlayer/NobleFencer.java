@@ -5,11 +5,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -26,8 +25,8 @@ public class NobleFencer extends AnimatorCard
 
         Initialize(0, 2, 3);
 
-        SetAffinity_Green(2);
-        SetAffinity_Blue(2);
+        SetAffinity_Green(1);
+        SetAffinity_Blue(1);
 
         SetExhaust(true);
     }
@@ -65,7 +64,7 @@ public class NobleFencer extends AnimatorCard
         GameActions.Bottom.StackPower(new NobleFencerPower(p, 3));
     }
 
-    public class NobleFencerPower extends AnimatorPower
+    public static class NobleFencerPower extends AnimatorPower implements OnAffinitySealedSubscriber
     {
         public NobleFencerPower(AbstractCreature owner, int amount)
         {
@@ -80,6 +79,31 @@ public class NobleFencer extends AnimatorCard
             super.atEndOfTurn(isPlayer);
 
             RemovePower();
+        }
+
+        @Override
+        public void OnAffinitySealed(EYBCard card, boolean manual)
+        {
+            if (GameUtilities.HasGreenAffinity(card)) {
+                GameActions.Bottom.ChannelOrb(new Lightning());
+                flash();
+            }
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
         }
     }
 }

@@ -1,15 +1,21 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.effects.SFX;
+import eatyourbeets.effects.VFX;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 
 public class Eve extends AnimatorCard
 {
@@ -50,7 +56,7 @@ public class Eve extends AnimatorCard
         GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
     }
 
-    public static class EvePower extends AnimatorPower
+    public static class EvePower extends AnimatorPower implements OnAffinitySealedSubscriber
     {
         public EvePower(AbstractCreature owner, int amount)
         {
@@ -74,33 +80,44 @@ public class Eve extends AnimatorCard
             }));
         }
 
-//        @Override
-//        public void onAfterCardPlayed(AbstractCard usedCard)
-//        {
-//            super.onAfterCardPlayed(usedCard);
-//
-//            if (CombatStats.Affinities.IsSynergizing(usedCard))
-//            {
-//                final int damage = CombatStats.Affinities.GetHandAffinityLevel(Affinity.General, usedCard);
-//                if (damage > 0)
-//                {
-//                    //GameEffects.Queue.BorderFlash(Color.SKY);
-//                    for (int i = 0; i < amount; i++)
-//                    {
-//                        GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-//                        .SetOptions(true, false)
-//                        .SetDamageEffect(enemy ->
-//                        {
-//                            SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
-//                            GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
-//                            return 0f;
-//                        });
-//                    }
-//
-//                    this.flash();
-//                    this.updateDescription();
-//                }
-//            }
-//        }
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnAffinitySealed(EYBCard card, boolean manual)
+        {
+            final int damage = CombatStats.Affinities.GetAffinityLevel(Affinity.General);
+            if (damage > 0)
+            {
+                GameEffects.Queue.BorderFlash(Color.SKY);
+                for (int i = 0; i < amount; i++)
+                {
+                    GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+                            .SetOptions(true, false)
+                            .SetDamageEffect(enemy ->
+                            {
+                                SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
+                                GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
+                                return 0f;
+                            });
+                }
+
+                this.flash();
+                this.updateDescription();
+            }
+        }
     }
 }

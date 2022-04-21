@@ -29,8 +29,8 @@ public class Laby extends AnimatorCard
 
         Initialize(0, 0, 3, 2);
 
-        SetAffinity_Light(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Light(1, 1, 0);
+        SetAffinity_Dark(1, 1, 0);
 
         SetEthereal(true);
     }

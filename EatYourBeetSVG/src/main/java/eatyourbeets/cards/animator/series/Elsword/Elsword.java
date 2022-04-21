@@ -23,7 +23,7 @@ public class Elsword extends AnimatorCard
         Initialize(13, 0, 2);
         SetUpgrade(4, 0, 0);
 
-        SetAffinity_Red(2, 0, 2);
+        SetAffinity_Red(1, 0, 2);
         SetAffinity_Light(1);
     }
 
@@ -40,7 +40,7 @@ public class Elsword extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).SetVFXColor(Color.RED);
 
-        if (info.IsSynergizing)
+        if (info.TryActivateStarter())
         {
             GameActions.Bottom.ChannelOrb(new Fire());
         }

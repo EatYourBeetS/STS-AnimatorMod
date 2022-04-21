@@ -24,8 +24,8 @@ public class Kuribayashi extends AnimatorCard
         Initialize(8, 0, 2);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
 
         SetAffinityRequirement(Affinity.Green, 2);
     }
@@ -42,7 +42,7 @@ public class Kuribayashi extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.6f, 0.8f);
         GameActions.Bottom.ApplyVulnerable(p, m, magicNumber);
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Green))
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.StackPower(new KuribayashiPower(p, 1));
         }

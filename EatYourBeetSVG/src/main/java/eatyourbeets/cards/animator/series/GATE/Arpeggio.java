@@ -3,13 +3,14 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Arpeggio extends AnimatorCard
 {
@@ -24,7 +25,7 @@ public class Arpeggio extends AnimatorCard
 
         Initialize(0, 0, POWER_ENERGY_COST);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1, 1, 0);
 
         SetDelayed(true);
     }
@@ -41,7 +42,7 @@ public class Arpeggio extends AnimatorCard
         GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower
+    public static class ArpeggioPower extends AnimatorClickablePower implements OnAffinitySealedSubscriber
     {
         private static final int MAX_BONUS = 2;
         private int intellectBonus;
@@ -61,14 +62,30 @@ public class Arpeggio extends AnimatorCard
             return FormatDescription(0, triggerCondition.requiredAmount, intellectBonus, MAX_BONUS);
         }
 
-//        @Override
-//        protected void onAmountChanged(int previousAmount, int difference)
-//        {
-//            intellectBonus = Math.min(MAX_BONUS, amount);
-//            CombatStats.Affinities.GetRow(Affinity.Blue).ActivationPowerAmount += intellectBonus - Math.min(MAX_BONUS, previousAmount);
-//
-//            super.onAmountChanged(previousAmount, difference);
-//        }
+        @Override
+        public void OnAffinitySealed(EYBCard card, boolean manual)
+        {
+            if (GameUtilities.HasBlueAffinity(card)) {
+                CombatStats.Affinities.AddTempAffinity(Affinity.Blue, amount);
+                flash();
+            }
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
+        }
 
         @Override
         public void OnUse(AbstractMonster m)

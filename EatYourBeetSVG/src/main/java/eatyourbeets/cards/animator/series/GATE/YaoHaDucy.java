@@ -5,13 +5,16 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TupleT3;
 
-public class YaoHaDucy extends AnimatorCard
+public class YaoHaDucy extends AnimatorCard implements OnAffinitySealedSubscriber
 {
     public static final EYBCardData DATA = Register(YaoHaDucy.class)
             .SetAttack(0, CardRarity.COMMON)
@@ -27,6 +30,21 @@ public class YaoHaDucy extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Green(1);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+        CombatStats.onAffinitySealed.Subscribe(this);
+    }
+
+    @Override
+    public void OnAffinitySealed(EYBCard card, boolean manual)
+    {
+        if (card == this) {
+            this.affinities.sealed = false;
+        }
     }
 
     @Override

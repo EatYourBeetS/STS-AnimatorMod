@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -33,6 +34,8 @@ public class AcuraAkari extends AnimatorCard
 
         SetAffinity_Red(1, 0, 1);
         SetAffinity_Green(1);
+
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override

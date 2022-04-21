@@ -26,8 +26,8 @@ public class RoryMercury extends AnimatorCard
         Initialize(5, 0, 0);
         SetUpgrade(2, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Red(1, 0, 1);
+        SetAffinity_Green(1, 0, 1);
     }
 
     @Override

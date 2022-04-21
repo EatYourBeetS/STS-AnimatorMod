@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.*;
 
@@ -25,7 +26,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super(DATA);
 
-        Initialize(0, 2, 0, 1);
+        Initialize(0, 2, 0, 2);
         SetUpgrade(0, 0, 0, 1);
 
         SetAffinity_Dark(1, 1, 0);
@@ -36,7 +37,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     @Override
     protected void OnUpgrade()
     {
-        if (magicNumberString.text.startsWith("X"))
+        if (magicNumberString.text.endsWith("X"))
         {
             OnReset();
         }
@@ -45,7 +46,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     @Override
     public void OnReset()
     {
-        magicNumberString.SetText("X+"+secondaryValue).SetColor(Colors.Cream(1));
+        magicNumberString.SetText(secondaryValue+"X").SetColor(Colors.Cream(1));
     }
 
     @Override
@@ -67,7 +68,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.Green) + secondaryValue;
+        magicNumber = CombatStats.Affinities.GetAffinityLevel(Affinity.Green) * secondaryValue;
         isMagicNumberModified = magicNumber > secondaryValue;
         magicNumberString = super.GetMagicNumberString();
     }
@@ -92,6 +93,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             }
         }
 
+        TryUseAffinity(Affinity.Green);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
     }
 }

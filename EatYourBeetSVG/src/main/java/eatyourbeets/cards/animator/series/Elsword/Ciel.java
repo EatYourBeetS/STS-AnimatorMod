@@ -31,10 +31,10 @@ public class Ciel extends AnimatorCard
         Initialize(0, 4, 8, 2);
         SetUpgrade(0, 1, 0, 1);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 0, 1);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Ciel extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlock(block);
 
-        info.SetTempData(CheckAffinity(Affinity.Dark));
+        info.SetTempData(TryUseAffinity(Affinity.Dark));
         GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
         .AddCallback(info, (info2, c) ->
         {

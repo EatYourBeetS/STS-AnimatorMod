@@ -409,13 +409,13 @@
 		},
 		"animator:Elsword":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). || Synergy or Discard: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle !M! card(s). || <ST> or Discard: ** Channel 1 [Fire].",
 			"NAME": "Elsword"
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Synergize: Deal ** damage equal to <W> to a ** random enemy !M! times. || At the start of turn: ** Obtain 1 of 3 {<W> Tokens}.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, obtain #b1 <W> #yToken. ** Whenever a card #ySynergizes, deal damage equal to <W> to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "When you Seal: Deal ** damage equal to <W> to a ** random enemy !M! times. || At the start of turn: ** Obtain 1 of 3 {<W> Tokens}.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn, obtain #b1 <W> #yToken. ** Whenever you #ySeal, deal damage equal to <W> to a random enemy #b{0} time(s)."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
@@ -431,7 +431,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Freezing] ** to all other enemies. || Less than !A! <D>: ** Take !S! [DD].",
+			"DESCRIPTION": "Boost [C]. Apply !M! [Freezing] ** to all other enemies. || Lose !A! <D> or Take !S! [DD].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -471,7 +471,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! Strength. || Gain !S! [Frail] and !M! [C]. || Synergy: Channel [Dark].",
+			"DESCRIPTION": "Steal !M! Strength. Gain !S! [Frail] and !M! [C]. || When Sealed: Channel [Dark].",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
@@ -502,7 +502,7 @@
 		},
 		"animator:Rider":
 		{
-			"DESCRIPTION": "Apply !M! [Shackles]. || Decrease your [DD] ** by !S! to gain [A] [I].",
+			"DESCRIPTION": "Apply !M! [Shackles]. || Lose !S! [DD] ** to gain [A] [I].",
 			"NAME": "Rider"
 		},
 		"animator:RinTohsaka":
@@ -512,7 +512,7 @@
 		},
 		"animator:Saber":
 		{
-			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile: Move it to your draw pile. || Synergy: Reduce this card's ** Cooldown by an additional 2.",
+			"DESCRIPTION": "Cooldown !S! : Purge, then ** add {Excalibur} to your hand. || If this would enter your discard ** pile: Move it to your draw pile. || !A! <L>: Reduce this card's ** Cooldown by an additional 2.",
 			"NAME": "Saber"
 		},
 		"animator:Saber_Excalibur":
@@ -595,12 +595,12 @@
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || Synergy or !A! <R>: Raise ** the damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || !A! <R>: Raise ** the damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || Synergy: Move a card ** from your Exhaust pile ** to your discard pile. If ** you do, take !S! [DD].",
+			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || !A! <R>: Move a card ** from your Exhaust pile ** to your discard pile. If ** you do, take !S! [DD].",
 			"EXTENDED_DESCRIPTION": ["Move a card to your discard pile, then take {0} damage."],
 			"NAME": "Scar"
 		},
@@ -626,14 +626,13 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Your <B> Synergy bonus ** grants 1 additional [I]. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || Your <B> Synergy bonus grants #b{1} additional [I] (max #b{2}^)."],
+			"DESCRIPTION": "Sealing <B> cards ** gives 1 {Temp.} <B>. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || Sealing <B> cards grants #b{1} #yTemporary <B>."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
 		{
-			"DESCRIPTION": "Motivate !M!. || Whenever you ** Synergize this ** turn: Gain [Support Damage].",
-			"EXTENDED_DESCRIPTION": ["Whenever you #ySynergize, gain #b{0} [Support Damage]."],
+			"DESCRIPTION": "Motivate !M!. || You may Seal an additional card this turn.",
 			"NAME": "Bozes"
 		},
 		"animator:CatoElAltestan":
@@ -644,7 +643,7 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || Synergy: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || !A! <L>: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
 		},
 		"animator:MariKurokawa":
@@ -654,15 +653,15 @@
 		},
 		"animator:Kuribayashi":
 		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || Synergy or !A! <G>: ** Retain 1 {Attack}.",
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <G>: ** Retain an {Attack}.",
 			"EXTENDED_DESCRIPTION": ["At the end of turn, Retain #b{0} #yAttack(s)."],
 			"NAME": "Kuribayashi"
 		},
 		"animator:LeleiLaLalena":
 		{
-			"DESCRIPTION": "Retain [I]. || Discard a random card ** to {Channel} !M! [Frost]. || Synergy: Apply 1 [Weak].",
+			"DESCRIPTION": "Retain [I]. Discard a random card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy.",
 			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Retain [I]. || Discard a card ** to {Channel} !M! [Frost]. || Synergy: Apply 1 [Weak]."
+			"UPGRADE_DESCRIPTION": "Retain [I]. Discard a card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy."
 		},
 		"animator:MoltSolAugustus":
 		{
@@ -677,7 +676,7 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "Unplayable unless you ** Synergized this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
+			"DESCRIPTION": "Unplayable unless you ** have no Seals left this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
@@ -702,7 +701,7 @@
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Shackles]. || Synergy with {0-Cost}.",
+			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Shackles]. || This card may be Sealed any number of times.",
 			"NAME": "Yao Ha Ducy"
 		}
 	},
@@ -722,7 +721,7 @@
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "Channel 1 [Earth]. || Synergy or !A! <W>: ** Upgrade 1 card.",
+			"DESCRIPTION": "Channel 1 [Earth]. || !A! <B>: ** Upgrade 1 card.",
 			"NAME": "Dwarf Shaman"
 		},
 		"animator:GoblinSlayer":
@@ -748,14 +747,14 @@
 		},
 		"animator:LizardPriest":
 		{
-			"DESCRIPTION": "If you have [Earth]: Gain ** !S! additional [Block]. || <slm>. Synergy or ** Exhaust: Gain 1 [Inspiration].",
+			"DESCRIPTION": "If you have [Earth]: Gain ** !S! additional [Block]. || <slm>. When Exhausted: Gain 1 [Inspiration].",
 			"EXTENDED_DESCRIPTION": ["At the end of this turn, #yRetain #b{0} <L> card(s)."],
 			"NAME": "Lizard Priest"
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "<ST>. Gain [A] [I]. || Evoke your first [Lightning]. || On your next !M! Synergies ** this turn: Channel 1 [Lightning].",
-			"EXTENDED_DESCRIPTION": ["When you #ySynergize, Channel #b1 [Lightning]."],
+			"DESCRIPTION": "<ST>. Gain [A] [I]. || Evoke your first [Lightning]. || When you Seal a <G> card this turn: Channel 1 [Lightning].",
+			"EXTENDED_DESCRIPTION": ["When you #ySeal a <G> card, Channel #b1 [Lightning]."],
 			"NAME": "Noble Fencer"
 		},
 		"animator:Priestess":
@@ -765,7 +764,7 @@
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A] [F]. ** Receive a {Wound}. || Synergy: Draw {Witch} ** and Retain it.",
+			"DESCRIPTION": "Boost [A] [F]. ** Receive a {Wound}. || <ST>: Draw {Witch} ** and Retain it.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
@@ -775,7 +774,7 @@
 		},
 		"animator:Witch":
 		{
-			"DESCRIPTION": "Evoke your leftmost ** [Fire] or [Dark] to gain [E]. || Synergy with {Spearman}: ** Enter any Stance.",
+			"DESCRIPTION": "Evoke your leftmost ** [Fire] or [Dark] to gain [E]. || If the last card played was {Spearman}: ** Enter any Stance.",
 			"NAME": "Witch"
 		}
 	},

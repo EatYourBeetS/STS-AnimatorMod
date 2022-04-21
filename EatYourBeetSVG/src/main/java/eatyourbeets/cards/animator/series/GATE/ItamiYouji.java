@@ -2,10 +2,7 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBAttackType;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.animator.SupportDamagePower;
@@ -30,6 +27,8 @@ public class ItamiYouji extends AnimatorCard
         SetAffinity_Light(1);
 
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class ItamiYouji extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(1.3f, 1.5f);
         }
 
-        if (info.IsSynergizing)
+        if (TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

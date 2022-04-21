@@ -25,7 +25,7 @@ public class DwarfShaman extends AnimatorCard
         SetAffinity_Blue(1, 0, 2);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
         SetEvokeOrbCount(1);
     }
 
@@ -40,7 +40,7 @@ public class DwarfShaman extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing || CheckAffinity(Affinity.General))
+        if (TryUseAffinity(Affinity.Blue))
         {
             GameActions.Bottom.UpgradeFromHand(name, 1, false);
         }

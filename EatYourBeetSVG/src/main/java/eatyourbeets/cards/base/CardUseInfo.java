@@ -9,10 +9,9 @@ import java.util.ArrayList;
 
 public class CardUseInfo
 {
-    public final EYBCard Card;
+    public final AbstractCard Card;
     public final AbstractMonster Target;
     public final AbstractCard PreviousCard;
-    public final EYBCardAffinities Synergies;
     public final ArrayList<AbstractMonster> Enemies;
     public final boolean CanActivateSemiLimited;
     public final boolean CanActivateLimited;
@@ -21,12 +20,11 @@ public class CardUseInfo
 
     protected Object data;
 
-    public CardUseInfo(EYBCard card, AbstractMonster target)
+    public CardUseInfo(AbstractCard card, AbstractMonster target)
     {
         this.Card = card;
         this.Target = target;
         this.PreviousCard = CombatStats.Affinities.GetLastCardPlayed();
-        this.Synergies = null;
         this.Enemies = GameUtilities.GetEnemies(true);
         this.CanActivateSemiLimited = CombatStats.CanActivateSemiLimited(card.cardID);
         this.CanActivateLimited = CombatStats.CanActivateLimited(card.cardID);

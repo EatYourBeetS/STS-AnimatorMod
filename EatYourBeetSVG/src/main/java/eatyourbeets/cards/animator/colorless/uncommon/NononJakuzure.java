@@ -4,9 +4,12 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class NononJakuzure extends AnimatorCard
+public class NononJakuzure extends AnimatorCard implements OnAffinitySealedSubscriber
 {
     public static final EYBCardData DATA = Register(NononJakuzure.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
@@ -30,30 +33,30 @@ public class NononJakuzure extends AnimatorCard
         SetRetainOnce(true);
     }
 
-//    @Override
-//    public void Refresh(AbstractMonster enemy)
-//    {
-//        super.Refresh(enemy);
-//
-//        if (player.hand.contains(this))
-//        {
-//            CombatStats.onSynergy.Subscribe(this);
-//        }
-//    }
-//
-//    @Override
-//    public void OnSynergy(AbstractCard card)
-//    {
-//        if (!player.hand.contains(this))
-//        {
-//            CombatStats.onSynergy.Unsubscribe(this);
-//        }
-//        else if (card != this)
-//        {
-//            GameUtilities.IncreaseSecondaryValue(this, 1, false);
-//            flash();
-//        }
-//    }
+    @Override
+    public void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        if (player.hand.contains(this))
+        {
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+    }
+
+    @Override
+    public void OnAffinitySealed(EYBCard card, boolean manual)
+   {
+        if (!player.hand.contains(this))
+        {
+            CombatStats.onAffinitySealed.Unsubscribe(this);
+        }
+        else if (card != this)
+        {
+            GameUtilities.IncreaseSecondaryValue(this, 1, false);
+            flash();
+       }
+    }
 
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

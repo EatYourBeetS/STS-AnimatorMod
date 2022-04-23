@@ -31,7 +31,7 @@ public class Megumin extends AnimatorCard
         Initialize(0, 0, 2);
 
         SetAffinity_Blue(2);
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
 
         SetExhaust(true);
     }

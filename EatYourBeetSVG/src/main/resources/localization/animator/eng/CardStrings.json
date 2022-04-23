@@ -145,7 +145,7 @@
 		},
 		"animator:TanyaDegurechaff":
 		{
-			"DESCRIPTION": "Discard the top !M! ** {Hindrances} of your ** draw pile. || <LIM>. !A! <W>: Add {Type ** 95} to your draw pile.",
+			"DESCRIPTION": "Discard the top !M! ** {Hindrances} of your ** draw pile. || <LIM>. !A! <S>: Add {Type ** 95} to your draw pile.",
 			"NAME": "Tanya Degurechaff"
 		},
 		"animator:TanyaDegurechaff_Type95":
@@ -242,7 +242,7 @@
 		},
 		"animator:NononJakuzure":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Synergize ** while this is in your hand: ** Increase this card's ** Motivate by 1.",
+			"DESCRIPTION": "Cycle !M! card(s). Motivate !S!. || Whenever you Seal ** while this is in your hand: ** Increase this card's ** Motivate by 1.",
 			"NAME": "Nonon Jakuzure"
 		},
 		"animator:QuestionMark":
@@ -527,7 +527,7 @@
 		},
 		"animator:MatouShinji":
 		{
-			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <LIM>. On Synergy: ** Obtain {Command Spell}.",
+			"DESCRIPTION": "Apply !M! [Poison] to ** a random enemy. || <LIM>. !A! <D>: ** Obtain {Command Spell}.",
 			"NAME": "Shinji Matou"
 		},
 		"animator:MatouShinji_CommandSpell":
@@ -783,9 +783,9 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <slm>. Synergy: ** Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || !A! <G>: ** Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari",
-			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <slm>. Synergy: ** Gain !S! {Temp}. [Envenom]."
+			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || !A! <G>: ** Gain !S! {Temp}. [Envenom]."
 		},
 		"animator:AcuraShin":
 		{
@@ -795,7 +795,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Obtain !S! [T-Knife], then ** Upgrade all [T-Knife] in hand. || <LIM>. Synergy: ** Obtain {<G> Token}.",
+			"DESCRIPTION": "Obtain !S! [T-Knife], then ** Upgrade all [T-Knife] in hand. || <LIM>. When Discarded: ** Obtain {<G> Token}.",
 			"NAME": "Tooru"
 		},
 		"animator:AcuraTooru_Dragoon":
@@ -829,12 +829,12 @@
 		},
 		"animator:ChaikaGaz":
 		{
-			"DESCRIPTION": "Gain !M! [C], then, if ** you have !S! or more [C]: ** Channel [Dark] and Exhaust. || <SLM>. Synergy: ** Obtain <B> or {<D> Token}.",
+			"DESCRIPTION": "Gain !M! [C], then, if ** you have !S! or more [C]: ** Channel [Dark] and Exhaust. || When Sealed: ** Obtain <B> or {<D> Token}.",
 			"NAME": "Chaika Gaz"
 		},
 		"animator:ClaudiaDodge":
 		{
-			"DESCRIPTION": "Apply !M! [~Lock-On]. Reload: ** Trigger your next orb. || If you play a {LV2} <B> ** card: Add a Dazed to your ** hand and Cycle this card.",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. Reload: ** Trigger your next orb. || If you play a <B> ** card: Add a Dazed to your ** hand and Cycle this card.",
 			"NAME": "Claudia Dodge"
 		},
 		"animator:Fredrika":
@@ -866,7 +866,7 @@
 		},
 		"animator:Nikolay":
 		{
-			"DESCRIPTION": "{~Retain} [F]. Motivate all ** other copies of this card. || <slm>. Synergy or ** <FS>: Gain !M! [Block].",
+			"DESCRIPTION": "{~Retain} [F]. Motivate all ** other copies of this card. || <slm>. <FS> or <IS>: Gain !M! [Block].",
 			"NAME": "Nikolay"
 		},
 		"animator:Viivi":
@@ -890,8 +890,8 @@
 		},
 		"animator:Biyorigo":
 		{
-			"DESCRIPTION": "Your <R> Synergy bonus ** also grants !M! [Metallicize]. || Once|Twice per combat, ** pay [E]: Gain [Artifact].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || Your <R> #ySynergy bonus also grants #b{1} [Metallicize] (Max #b{2}^)."],
+			"DESCRIPTION": "Sealing <R> cards ** also grants !M! [Metallicize]. || Once|Twice per combat, ** pay [E]: Gain [Artifact].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || #ySealing <R> cards also grants #b{1} [Metallicize] (Max #b{2}^)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -919,7 +919,7 @@
 		},
 		"animator:Konayuki":
 		{
-			"DESCRIPTION": "Gain !M! [F]. Reduce ** your max [F] to !S!. || Synergy or Exhaust: ** Apply [Vulnerable] to a random ** enemy, ignoring [Artifact].",
+			"DESCRIPTION": "Gain !M! [F]. Reduce ** your max [F] to !S!. || !A! <R> or Exhaust: ** Apply [Vulnerable] to a random ** enemy, ignoring [Artifact].",
 			"NAME": "Konayuki"
 		},
 		"animator:ManiwaKyouken":
@@ -967,7 +967,7 @@
 		},
 		"animator:ZankiKiguchi":
 		{
-			"DESCRIPTION": "Exit your Stance to Boost ** [F] [A] and <DRW-M>. || <LIM>. On Synergy ** or Exhaust: Gain [Inspiration].",
+			"DESCRIPTION": "Exit your Stance to Boost ** [F] [A] and <DRW-M>. || <LIM>. When Exhausted: Gain [Inspiration].",
 			"NAME": "Zanki Kiguchi"
 		}
 	},
@@ -1037,12 +1037,12 @@
 		},
 		"animator:Sylvia":
 		{
-			"DESCRIPTION": "Downgrade the <B> {LV} ** of all cards in hand. For ** each: Gain !S! [THP] and give ** this card a random <W> {LV}. || Synergy: Cycle 1 card.",
+			"DESCRIPTION": "Downgrade the <B> {LV} ** of all cards in hand. For ** each: Gain !S! [THP] and give ** this card a random <W> {LV}. || When Sealed: Cycle 1 card and Exhaust.",
 			"NAME": "Sylvia"
 		},
 		"animator:Sylvia_Chimera":
 		{
-			"DESCRIPTION": "X <W>: Apply !M! [Poison] ** and gain !M! [Plated Armor]. || Downgrade the <W> {LV} ** of all cards in hand.",
+			"DESCRIPTION": "X <D>: Apply !M! [Poison] ** and gain !M! [Plated Armor]. || Downgrade the <W> {LV} ** of all cards in hand.",
 			"NAME": "Chimera"
 		},
 		"animator:Vanir":
@@ -1197,12 +1197,12 @@
 		},
 		"animator:IrohaTamaki":
 		{
-			"DESCRIPTION": "Halve all damage modifiers ** that affect this card. || Synergy or !A! <W>: Give ** {~Ethereal} and {~Haste} to the top ** Hindrance of your draw pile.",
+			"DESCRIPTION": "Halve all damage modifiers ** that affect this card. || !A! <L>: Give ** {~Ethereal} and {~Haste} to the top ** Hindrance of your draw pile.",
 			"NAME": "Iroha Tamaki"
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Put 1 card on top ** of your draw pile. || Synergy or !A! <R>: Gain ** [F] and Channel 1 [Fire].",
+			"DESCRIPTION": "Put 1 card on top ** of your draw pile. || !A! <R>: Gain ** [F] and Channel 1 [Fire].",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:KyokoSakura_Ophelia":
@@ -1228,7 +1228,7 @@
 		},
 		"animator:MamiTomoe":
 		{
-			"DESCRIPTION": "Draw !M! {0-Cost} card(s). || Synergy or discard: ** Obtain {<L> Token}.",
+			"DESCRIPTION": "Draw !M! {0-Cost} card(s). || <SLM>. When discarded or Exhausted: ** Obtain {<L> Token}.",
 			"NAME": "Mami Tomoe"
 		},
 		"animator:MamiTomoe_Candeloro":
@@ -1311,7 +1311,7 @@
 		},
 		"animator:DolaRiku":
 		{
-			"DESCRIPTION": "Discard 1 {Skill} ** to draw 1 {Attack}. || Synergy: Draw it from ** your discard pile.",
+			"DESCRIPTION": "Discard 1 {Skill} ** to draw 1 {Attack}. || !A! <B>: Draw it from ** your discard pile.",
 			"NAME": "Riku"
 		},
 		"animator:DolaSchwi":
@@ -1321,12 +1321,12 @@
 		},
 		"animator:DolaStephanie":
 		{
-			"DESCRIPTION": "Reshuffle 1 card. || Synergy or !A! <W>: Obtain ** an {<W> Token} based on ** that card's Affinities.",
+			"DESCRIPTION": "Reshuffle 1 card. || !A! <S>: Obtain ** an {<W> Token} based on ** that card's Affinities.",
 			"NAME": "Stephanie"
 		},
 		"animator:EmirEins":
 		{
-			"DESCRIPTION": "Exhaust a card. Obtain ** 1 of 2 random {Attacks+} ** of the same rarity. || <LIM>. !A! <R> and <D>: ** Obtain {<W> Token}.",
+			"DESCRIPTION": "Exhaust a card. Obtain ** 1 of 2 random {Attacks+} ** of the same rarity. || <LIM>. When Sealed: ** Take !M! [DD] and Obtain {<W> Token}.",
 			"NAME": "Emir-Eins"
 		},
 		"animator:FielNirvalen":
@@ -1348,7 +1348,7 @@
 		},
 		"animator:Jibril":
 		{
-			"DESCRIPTION": "Channel 1 [Dark]. || On Synergy: Shuffle ** your orbs, then trigger ** your first !M! orbs.",
+			"DESCRIPTION": "Channel 1 [Dark]. || On Discard: Shuffle ** your orbs, then trigger ** your first !M! orbs.",
 			"NAME": "Jibril"
 		},
 		"animator:Miko":
@@ -1439,17 +1439,17 @@
 		},
 		"animator:Melzalgald_1":
 		{
-			"DESCRIPTION": "Next turn: Gain [E]. || !A! <W>: Gain !M! [F].",
+			"DESCRIPTION": "Next turn: Gain [E]. || !A! <R>: Gain !M! [F].",
 			"NAME": "Melzalgald"
 		},
 		"animator:Melzalgald_2":
 		{
-			"DESCRIPTION": "Next turn: Gain [E]. || !A! <W>: Gain !M! [I].",
+			"DESCRIPTION": "Next turn: Gain [E]. || !A! <G>: Gain !M! [I].",
 			"NAME": "Melzalgald"
 		},
 		"animator:Melzalgald_3":
 		{
-			"DESCRIPTION": "Next turn: Gain [E]. || !A! <W>: Gain !M! [A].",
+			"DESCRIPTION": "Next turn: Gain [E]. || !A! <B>: Gain !M! [A].",
 			"NAME": "Melzalgald"
 		},
 		"animator:MetalKnight":
@@ -1482,12 +1482,12 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || Limited. Synergy: ** Enter <AS>.",
+			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || <LIM>. !A! <R>: ** Enter <AS>.",
 			"NAME": "Silver Fang"
 		},
 		"animator:Sonic":
 		{
-			"DESCRIPTION": "Gain !S! [~Blur]. || Next turn: Discard ** !M! random card(s). || Synergy: Obtain [T-Knife].",
+			"DESCRIPTION": "Gain !S! [~Blur]. || Next turn: Discard ** !M! random card(s). || !A! <G>: Obtain [T-Knife].",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, discard #b{0} random card(s)."],
 			"NAME": "Sonic"
 		},
@@ -1525,7 +1525,7 @@
 		},
 		"animator:Entoma":
 		{
-			"DESCRIPTION": "{~Retain} [C]. Apply !M! [Poison]. || Synergy or !A! <D>: Whenever ** you apply [Poison] to the enemy, or ** whenever it takes [Poison] damage: ** Gain 1 [THP] (Does not stack).",
+			"DESCRIPTION": "{~Retain} [C]. Apply !M! [Poison]. || !A! <D>: Whenever ** you apply [Poison] to the enemy, or ** whenever it takes [Poison] damage: ** Gain 1 [THP] (Does not stack).",
 			"EXTENDED_DESCRIPTION": ["When receiving [Poison] #yDebuff or [Poison] damage, the source of this power gains #b{0} [THP]."],
 			"NAME": "Entoma"
 		},
@@ -1603,7 +1603,7 @@
 		},
 		"animator:HiiragiShinya":
 		{
-			"DESCRIPTION": "Apply !M! [~Lock-On]. || Fetch a card from your ** discard pile and Retain it. ** Raise its cost by 1 this turn. || Synergy or !A! <B>: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. || Fetch a card from your ** discard pile and Retain it. ** Raise its cost by 1 this turn. || !A! <B>: Gain !S! [Support Damage].",
 			"NAME": "Shinya Hiiragi"
 		},
 		"animator:KimizugiShiho":
@@ -1623,12 +1623,12 @@
 		},
 		"animator:Mikaela":
 		{
-			"DESCRIPTION": "Boost [F]. If the enemy is ** attacking: Take !S! [DD]. || Synergy: Exhaust a card ** in hand or discard pile.",
+			"DESCRIPTION": "Boost [F]. If the enemy is ** attacking: Take !S! [DD]. || !A! <R>: Exhaust a card ** in hand or discard pile.",
 			"NAME": "Mikaela"
 		},
 		"animator:Mitsuba":
 		{
-			"DESCRIPTION": "Synergy with {Attacks}. || At the start of {Elite} ** combats: Increase ** damage and [Block] by !M!.",
+			"DESCRIPTION": "At the start of {Elite} ** combats: Increase ** damage and [Block] by !M!. || <LIM>. When Sealed, un-Seal this.",
 			"NAME": "Mitsuba"
 		},
 		"animator:GoshiNorito":
@@ -1648,7 +1648,7 @@
 		},
 		"animator:Yoichi":
 		{
-			"DESCRIPTION": "Discard 1 card. ** Gain 1 [Support Damage]. || <slm>. Synergy: ** Activate your [Support Damage].",
+			"DESCRIPTION": "Discard 1 card. ** Gain 1 [Support Damage]. || <slm>. !A! <L>: ** Activate your [Support Damage].",
 			"NAME": "Yoichi"
 		},
 		"animator:Yuuichirou":
@@ -1688,7 +1688,7 @@
 		},
 		"animator:Millim":
 		{
-			"DESCRIPTION": "{~Unique}. ** Gain a random ** {<W> Power} !M! times. || !A! <W>: Channel 1 [Chaos].",
+			"DESCRIPTION": "{~Unique}. ** Gain a random ** {<W> Power} !M! times. || <LIM>. !A! <S>: Channel 1 [Chaos].",
 			"NAME": "Millim"
 		},
 		"animator:Ramiris":
@@ -1708,7 +1708,7 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Discard !M! <R> or <L> ** card(s) to gain !S! [Block]. || <LIM>. Synergy: ** Enter <FS>.",
+			"DESCRIPTION": "Discard !M! <R> or <L> ** card(s) to gain !S! [Block]. || <LIM>. !A! <R>: ** Enter <FS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
@@ -1728,7 +1728,7 @@
 		},
 		"animator:Souei":
 		{
-			"DESCRIPTION": "Discard X cards (max !S!). || Boost [A] [C]. For !K! turns, ** when playing a {Skill}: Apply ** X [Poison] to a random enemy. || <LIM>. Synergy: Gain [~Intangible].",
+			"DESCRIPTION": "Discard X cards (max !S!). || Boost [A] [C]. For !K! turns, ** when playing a {Skill}: Apply ** X [Poison] to a random enemy. || <LIM>. !A! <G>: Gain [~Intangible].",
 			"EXTENDED_DESCRIPTION": ["Whenever you play a #ySkill, apply #b{0} [Poison] to a random enemy."],
 			"NAME": "Souei"
 		},
@@ -1783,12 +1783,12 @@
 		},
 		"animator:ReimuHakurei":
 		{
-			"DESCRIPTION": "Obtain 1 {<L> Token}. || <slm>. Synergy: ** Retain all {<W> Tokens} ** and give them +!S! [Block].",
+			"DESCRIPTION": "Obtain 1 {<L> Token}. || When Sealed: ** Retain all {<W> Tokens} ** and give them +!S! [Block].",
 			"NAME": "Reimu Hakurei"
 		},
 		"animator:ReisenInaba":
 		{
-			"DESCRIPTION": "Discard 1 card. Choose: ** Apply !M! [Vulnerable] and give !S! [Strength]; ** Apply !M! [Weak] and give !S! [Malleable]. || Synergy: Exhaust 1 card ** instead of discarding it.",
+			"DESCRIPTION": "Discard 1 card. Choose: ** Apply !M! [Vulnerable] and give !S! [Strength]; ** Apply !M! [Weak] and give !S! [Malleable]. || !A! <S>: Exhaust 1 card ** instead of discarding it.",
 			"EXTENDED_DESCRIPTION": ["Apply !M! [Vulnerable]. Give !S! [Strength].", "Apply !M! [Weak]. Give !S! [Malleable]."],
 			"NAME": "Reisen U. Inaba"
 		},
@@ -1806,10 +1806,10 @@
 		},
 		"animator:SakuyaIzayoi":
 		{
-			"DESCRIPTION": "Gain X-1 [A]. Next turn: ** Add X [T-Knife] to your hand. || Synergy and/or <AS>: Increase X by 1.",
+			"DESCRIPTION": "Gain X-1 [A]. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <AS>: Increase X by 1.",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, add #b{0} [T-Knife] to your hand."],
 			"NAME": "Sakuya Izayoi",
-			"UPGRADE_DESCRIPTION": "Gain X [A]. Next turn: ** Add X [T-Knife] to your hand. || Synergy and/or <AS>: Increase X by 1."
+			"UPGRADE_DESCRIPTION": "Gain X [A]. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <AS>: Increase X by 1."
 		},
 		"animator:SanaeKochiya":
 		{

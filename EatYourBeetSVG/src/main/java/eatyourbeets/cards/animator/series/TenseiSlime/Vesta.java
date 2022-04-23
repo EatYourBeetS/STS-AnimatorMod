@@ -45,7 +45,7 @@ public class Vesta extends AnimatorCard
         GameActions.Bottom.RetainPower(Affinity.Blue);
 
         //TODO: This could all be done in VestaPower
-        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), CheckAffinity(Affinity.Blue));
+        VestaElixirEffects.BeginCreateElixir((Vesta) this.makeStatEquivalentCopy(), TryUseAffinity(Affinity.Blue));
     }
 
     public void ResearchElixir(Vesta_Elixir elixir)

@@ -46,7 +46,7 @@ public class AcuraAkari extends AnimatorCard
         .SetOptions(true, false, true)
         .AddCallback(cards -> GameActions.Bottom.CreateThrowingKnives(cards.size()));
 
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.StackPower(new TemporaryEnvenomPower(p, secondaryValue));
         }

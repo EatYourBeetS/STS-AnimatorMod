@@ -26,7 +26,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
         Initialize(0, 0, 2);
         SetUpgrade(0, 0, 3);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
 
         SetExhaust(true);
     }

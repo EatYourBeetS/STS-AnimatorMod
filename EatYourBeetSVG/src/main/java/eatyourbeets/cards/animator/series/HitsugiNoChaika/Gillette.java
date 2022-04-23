@@ -25,7 +25,7 @@ public class Gillette extends AnimatorCard
         SetUpgrade(3, 0, 0);
 
         SetAffinity_Green(1, 0, 1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
     }
 
     @Override

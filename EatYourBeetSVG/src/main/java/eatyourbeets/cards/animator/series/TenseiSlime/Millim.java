@@ -35,7 +35,7 @@ public class Millim extends AnimatorCard implements OnReceiveRewardsListener
 
         SetAffinity_Star(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.Star, 3);
         SetUnique(true, true);
     }
 
@@ -73,7 +73,7 @@ public class Millim extends AnimatorCard implements OnReceiveRewardsListener
             GameActions.Bottom.GainRandomAffinityPower(1, false);
         }
 
-        if (CheckAffinity(Affinity.General))
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Star) && info.TryActivateLimited())
         {
             GameActions.Bottom.ChannelOrb(new Chaos());
         }

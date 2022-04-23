@@ -2,6 +2,7 @@ package eatyourbeets.cards.animator.series.TenseiSlime;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -25,6 +26,8 @@ public class Shion extends AnimatorCard
 
         SetAffinity_Red(2, 0, 2);
         SetAffinity_Light(1);
+
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override
@@ -47,7 +50,7 @@ public class Shion extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing && info.TryActivateLimited())
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Red) && info.TryActivateLimited())
         {
             GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID);
         }

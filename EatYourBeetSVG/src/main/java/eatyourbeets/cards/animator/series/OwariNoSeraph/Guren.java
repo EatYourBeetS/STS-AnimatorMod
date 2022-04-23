@@ -26,7 +26,7 @@ public class Guren extends AnimatorCard implements OnPhaseChangedSubscriber
         Initialize(0, 0,2);
         SetUpgrade(0, 0,1);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1, 1, 0);
         SetAffinity_Light(1);
 
         SetExhaust(true);

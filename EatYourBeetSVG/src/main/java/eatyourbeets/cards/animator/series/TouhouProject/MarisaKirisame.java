@@ -44,7 +44,7 @@ public class MarisaKirisame extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Blue))
+        if (TryUseAffinity(Affinity.Blue))
         {
             GameActions.Bottom.TriggerOrbPassive(1)
             .SetFilter(orb -> Fire.ORB_ID.equals(orb.ID))

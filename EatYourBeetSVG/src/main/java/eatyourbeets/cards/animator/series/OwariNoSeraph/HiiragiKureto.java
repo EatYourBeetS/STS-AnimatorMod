@@ -31,7 +31,7 @@ public class HiiragiKureto extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Red(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

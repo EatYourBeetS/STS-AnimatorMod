@@ -15,7 +15,7 @@ public abstract class Sora_BattlePlan extends AnimatorCard
     {
         super(cardData);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
 
         SetExhaust(true);
 

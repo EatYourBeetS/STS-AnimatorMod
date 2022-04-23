@@ -35,8 +35,8 @@ public class RemiliaScarlet extends AnimatorCard
         Initialize(0, 0, RECOVER_AMOUNT);
         SetCostUpgrade(-1);
 
-        SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Red(1, 1, 0);
+        SetAffinity_Green(1);
         SetAffinity_Dark(1);
     }
 

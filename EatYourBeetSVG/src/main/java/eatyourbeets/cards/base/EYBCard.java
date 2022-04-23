@@ -325,7 +325,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckAffinity(Affinity affinity)
     {
-        return GetHandAffinity(affinity, true) >= affinities.GetRequirement(affinity);
+        return CombatStats.Affinities.GetAffinityLevel(affinity) >= affinities.GetRequirement(affinity);
     }
 
     public boolean TryUseAffinity(Affinity affinity)
@@ -463,11 +463,10 @@ public abstract class EYBCard extends EYBCardBase
         final ColoredString result = new ColoredString();
         if (player != null && player.hand.contains(this))
         {
-            final EYBCardAffinities hand = CombatStats.Affinities.GetPlayerAffinities();
             for (Affinity t : types)
             {
                 final int req = affinities.GetRequirement(t);
-                final int level = hand.GetRequirement(t);
+                final int level = CombatStats.Affinities.GetAffinityLevel(t);
                 result.SetText(req);
 
                 if (requireAll)

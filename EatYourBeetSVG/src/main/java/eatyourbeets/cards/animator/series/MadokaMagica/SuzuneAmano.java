@@ -25,7 +25,7 @@ public class SuzuneAmano extends AnimatorCard
         SetUpgrade(3, 0);
 
         SetAffinity_Red(2, 0, 1);
-        SetAffinity_Dark(2, 0, 1);
+        SetAffinity_Dark(1, 0, 1);
     }
 
     @Override

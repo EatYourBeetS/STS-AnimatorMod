@@ -34,7 +34,7 @@ public class Boros extends AnimatorCard
         Initialize(0, 0, 2, 12);
 
         SetAffinity_Red(2);
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
         SetAffinity_Dark(2);
 
         SetEthereal(true);

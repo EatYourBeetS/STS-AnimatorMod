@@ -25,7 +25,7 @@ public class ManiwaHouou extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Green(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
     }
 
     @Override

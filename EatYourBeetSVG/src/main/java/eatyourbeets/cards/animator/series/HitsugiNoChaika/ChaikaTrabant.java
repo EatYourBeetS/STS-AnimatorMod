@@ -26,7 +26,7 @@ public class ChaikaTrabant extends AnimatorCard
         SetUpgrade(2, 0, 1);
 
         SetAffinity_Blue(2, 0, 2);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1);
     }
 
     @Override

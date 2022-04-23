@@ -22,7 +22,7 @@ public class Crystallize extends AnimatorCard
 
         Initialize(0, 0, 4, 3);
 
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
 
         SetEndOfTurnPlay(false);
         SetExhaust(true);

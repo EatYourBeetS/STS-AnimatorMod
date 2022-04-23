@@ -25,7 +25,7 @@ public class Shigure extends AnimatorCard
         SetUpgrade(3, 0, 0, 0);
 
         SetAffinity_Light(1);
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 1, 1);
 
         SetAffinityRequirement(Affinity.Green, 2);
         SetAffinityRequirement(Affinity.Light, 2);
@@ -43,12 +43,12 @@ public class Shigure extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(enemy -> GameEffects.List.Add(VFX.DaggerSpray()).duration);
 
-        if (CheckAffinity(Affinity.Green))
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.ApplyPoison(p, m, magicNumber);
         }
 
-        if (CheckAffinity(Affinity.Light))
+        if (TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

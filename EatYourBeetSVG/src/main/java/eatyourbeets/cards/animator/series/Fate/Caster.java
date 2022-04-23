@@ -69,6 +69,7 @@ public class Caster extends AnimatorCard
     @Override
     public void triggerOnAffinitySeal(boolean manual)
     {
+        super.triggerOnAffinitySeal(manual);
         GameActions.Bottom.ChannelOrb(new Dark());
     }
 }

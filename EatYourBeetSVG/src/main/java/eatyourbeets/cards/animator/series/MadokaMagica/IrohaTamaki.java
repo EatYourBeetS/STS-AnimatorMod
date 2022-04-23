@@ -26,9 +26,9 @@ public class IrohaTamaki extends AnimatorCard
         SetUpgrade(1, 0, 0, 0);
 
         SetAffinity_Green(1);
-        SetAffinity_Light(2);
+        SetAffinity_Light(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.General, 3);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class IrohaTamaki extends AnimatorCard
             .SetDuration(0.05f, false);
         }
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.General))
+        if (TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.drawPile)
             .SetFilter(GameUtilities::IsHindrance)

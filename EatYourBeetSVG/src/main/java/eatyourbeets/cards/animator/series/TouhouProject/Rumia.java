@@ -51,7 +51,7 @@ public class Rumia extends AnimatorCard
             }
         });
 
-        if (CheckAffinity(Affinity.Dark))
+        if (TryUseAffinity(Affinity.Dark))
         {
             GameActions.Bottom.EvokeOrb(1)
             .SetFilter(o -> Dark.ORB_ID.equals(o.ID))

@@ -49,7 +49,7 @@ public class YunYun extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.LIGHTNING);
 
-        if (CheckAffinity(Affinity.Blue))
+        if (TryUseAffinity(Affinity.Blue))
         {
             GameActions.Bottom.ChannelOrb(new Lightning());
         }

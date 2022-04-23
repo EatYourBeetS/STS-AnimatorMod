@@ -9,6 +9,7 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -46,22 +47,6 @@ public class ChaikaGaz extends AnimatorCard
     {
         GameActions.Bottom.GainTemporaryHP(TEMP_HP_AMOUNT);
         GameActions.Bottom.GainCorruption(magicNumber, false);
-
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
-        {
-            final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-            group.group.add(AffinityToken.GetCopy(Affinity.Blue, false));
-            group.group.add(AffinityToken.GetCopy(Affinity.Dark, false));
-            GameActions.Bottom.SelectFromPile(name, 1, group)
-            .SetOptions(false, false)
-            .AddCallback(cards2 ->
-            {
-                for (AbstractCard c : cards2)
-                {
-                    GameActions.Bottom.MakeCardInHand(c);
-                }
-            });
-        }
     }
 
     @Override
@@ -75,6 +60,24 @@ public class ChaikaGaz extends AnimatorCard
                GameActions.Bottom.Exhaust(this);
            }
         });
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+        group.group.add(AffinityToken.GetCopy(Affinity.Blue, false));
+        group.group.add(AffinityToken.GetCopy(Affinity.Dark, false));
+        GameActions.Bottom.SelectFromPile(name, 1, group)
+                .SetOptions(false, false)
+                .AddCallback(cards2 ->
+                {
+                    for (AbstractCard c : cards2)
+                    {
+                        GameActions.Bottom.MakeCardInHand(c);
+                    }
+                });
     }
 
     @Override

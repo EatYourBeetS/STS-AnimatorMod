@@ -32,7 +32,7 @@ public class DolaStephanie extends AnimatorCard
 
         SetAffinity_Star(1);
 
-        SetAffinityRequirement(Affinity.General, 4);
+        SetAffinityRequirement(Affinity.Star, 2);
 
         SetExhaust(true);
     }
@@ -55,7 +55,7 @@ public class DolaStephanie extends AnimatorCard
                 GameActions.Top.MoveCard(c, player.hand, player.drawPile);
 
                 final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-                if (a != null && (info2.IsSynergizing || CheckAffinity(Affinity.General)))
+                if (a != null && TryUseAffinity(Affinity.Star))
                 {
                     final int star = a.GetLevel(Affinity.Star, true);
                     if (star > 0)

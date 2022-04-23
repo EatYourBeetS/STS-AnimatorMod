@@ -19,7 +19,7 @@ public class GazefStronoff extends AnimatorCard
 
         Initialize(0, 14, 2);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1, 1, 0);
         SetAffinity_Light(1);
 
         SetAffinityRequirement(Affinity.Red, 5);
@@ -39,7 +39,7 @@ public class GazefStronoff extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainTemporaryStats(magicNumber, 0, 0);
 
-        if (!CheckAffinity(Affinity.Red))
+        if (!TryUseAffinity(Affinity.Red))
         {
             GameActions.Bottom.StackPower(new DeEnergizedPower(p, 1)).ShowEffect(false, false);
         }

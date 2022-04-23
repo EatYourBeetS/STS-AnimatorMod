@@ -48,7 +48,7 @@ public class Sebas extends AnimatorCard
         {
             energy += 1;
         }
-        if (CheckAffinity(Affinity.Red))
+        if (TryUseAffinity(Affinity.Red))
         {
             energy += 1;
         }

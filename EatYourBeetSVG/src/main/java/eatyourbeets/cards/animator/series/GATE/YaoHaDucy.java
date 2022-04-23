@@ -14,7 +14,7 @@ import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TupleT3;
 
-public class YaoHaDucy extends AnimatorCard implements OnAffinitySealedSubscriber
+public class YaoHaDucy extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(YaoHaDucy.class)
             .SetAttack(0, CardRarity.COMMON)
@@ -33,18 +33,10 @@ public class YaoHaDucy extends AnimatorCard implements OnAffinitySealedSubscribe
     }
 
     @Override
-    public void triggerWhenCreated(boolean startOfBattle)
+    public void triggerOnAffinitySeal(boolean manual)
     {
-        super.triggerWhenCreated(startOfBattle);
-        CombatStats.onAffinitySealed.Subscribe(this);
-    }
-
-    @Override
-    public void OnAffinitySealed(EYBCard card, boolean manual)
-    {
-        if (card == this) {
-            this.affinities.sealed = false;
-        }
+        super.triggerOnAffinitySeal(manual);
+        this.affinities.sealed = false;
     }
 
     @Override

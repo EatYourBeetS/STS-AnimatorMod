@@ -11,6 +11,7 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.interfaces.listeners.OnCardResetListener;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.GameActions;
@@ -47,7 +48,7 @@ public class Sylvia_Chimera extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = GetHandAffinity(Affinity.General, true);
+        magicNumber = CombatStats.Affinities.GetAffinityLevel(Affinity.Dark);
         isMagicNumberModified = magicNumber > 0;
         magicNumberString = super.GetMagicNumberString();
     }
@@ -64,11 +65,11 @@ public class Sylvia_Chimera extends AnimatorCard implements OnCardResetListener
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        final int amount = GetHandAffinity(Affinity.General, true);
-        if (amount > 0)
+        if (magicNumber > 0)
         {
-            GameActions.Bottom.ApplyPoison(player, m, amount);
-            GameActions.Bottom.GainPlatedArmor(amount);
+            GameActions.Bottom.ApplyPoison(player, m, magicNumber);
+            GameActions.Bottom.GainPlatedArmor(magicNumber);
+            TryUseAffinity(Affinity.Dark);
         }
 
         GameActions.Bottom.ModifyAffinityLevel(player.hand, BaseMod.MAX_HAND_SIZE, Affinity.General, -1, true)

@@ -26,7 +26,7 @@ public class MareBelloFiore extends AnimatorCard
         Initialize(0, 0, 6, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
         SetAffinity_Green(1);
 
         SetAffinityRequirement(Affinity.Blue, 2);
@@ -70,11 +70,11 @@ public class MareBelloFiore extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (CheckAffinity(Affinity.Blue))
+        if (TryUseAffinity(Affinity.Blue))
         {
             GameActions.Bottom.GainTemporaryHP(magicNumber);
         }
-        if (CheckAffinity(Affinity.Green))
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.ApplyWeak(p, m, WEAK);
         }

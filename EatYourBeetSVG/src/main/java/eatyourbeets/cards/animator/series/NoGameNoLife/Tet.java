@@ -25,7 +25,7 @@ public class Tet extends AnimatorCard
         Initialize(0, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
 
         SetInnate(true);
         SetRetain(true);

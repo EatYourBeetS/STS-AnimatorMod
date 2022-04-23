@@ -28,7 +28,7 @@ public class AlinaGray extends AnimatorCard
 
         Initialize(0, 0, 1, 3);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1, 1, 0);
         SetAffinity_Green(1);
         SetAffinity_Dark(1);
 

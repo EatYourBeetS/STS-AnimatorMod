@@ -26,7 +26,7 @@ public class Rimuru extends AnimatorCard implements OnAfterCardPlayedSubscriber
 
         Initialize(0, 0);
 
-        SetAffinity_Star(2, 0, 0);
+        SetAffinity_Star(1, 1, 0);
         SetVolatile(true);
 
         this.copy = this;

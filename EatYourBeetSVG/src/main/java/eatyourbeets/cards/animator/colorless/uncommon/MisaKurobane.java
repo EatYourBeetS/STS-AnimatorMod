@@ -36,7 +36,7 @@ public class MisaKurobane extends AnimatorCard
         GameActions.Bottom.ChannelOrb(new Fire());
         GameActions.Bottom.Draw(magicNumber);
 
-        if (CheckAffinity(Affinity.Light))
+        if (TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.MakeCardInDrawPile(new MisaKurobane_Yusarin());
         }

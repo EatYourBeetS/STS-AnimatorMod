@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.Projectile;
 import eatyourbeets.effects.SFX;
@@ -25,6 +26,7 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -111,14 +113,29 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean TryUseAffinity(Affinity affinity, int requirement)
     {
-        final int amount = PlayerAffinities.GetRequirement(affinity);
-        if (amount < requirement)
-        {
-            return false;
-        }
+        if (affinity == Affinity.Star) {
+            for (Affinity a : Affinity.Basic()) {
+                if (PlayerAffinities.GetRequirement(a) < requirement)
+                {
+                    return false;
+                }
+            }
 
-        PlayerAffinities.SetRequirement(affinity, amount - requirement);
-        return true;
+            for (Affinity a : Affinity.Basic()) {
+                PlayerAffinities.SetRequirement(a, PlayerAffinities.GetRequirement(a) - requirement);
+            }
+            return true;
+        }
+        else {
+            final int amount = PlayerAffinities.GetRequirement(affinity);
+            if (amount < requirement)
+            {
+                return false;
+            }
+
+            PlayerAffinities.SetRequirement(affinity, amount - requirement);
+            return true;
+        }
     }
 
     public void AddTempAffinity(Affinity affinity, int amount)
@@ -128,6 +145,10 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public int GetAffinityLevel(Affinity affinity)
     {
+        if (affinity == Affinity.Star) {
+            EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(PlayerAffinities.List, ac -> ac.type.ID >= 0), af -> af.level);
+            return min != null ? min.level : 0;
+        }
         return PlayerAffinities.GetLevel(affinity, false);
     }
 
@@ -370,12 +391,18 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         info_button.ShowTooltip(!draggingCard);
         info_button.Update();
 
-        if (hoveredCard != null && !draggingCard && !hoveredCard.affinities.sealed
+        if (hoveredCard != null && !draggingCard
                 && InputManager.RightClick.IsJustPressed() && GameUtilities.CanAcceptInput(true)
                 && PlayerAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
         {
-            SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, 0.95f);
-            GameActions.Bottom.SealAffinities(hoveredCard, true);
+            if (hoveredCard.affinities.sealed) {
+                GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
+            }
+            else {
+                SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, 0.95f);
+                GameActions.Bottom.SealAffinities(hoveredCard, true);
+            }
+
         }
     }
 

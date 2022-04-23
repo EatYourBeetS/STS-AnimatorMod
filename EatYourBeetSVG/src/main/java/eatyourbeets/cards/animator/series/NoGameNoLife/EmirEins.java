@@ -7,6 +7,7 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.GameActions;
@@ -25,14 +26,11 @@ public class EmirEins extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, 2);
         SetUpgrade(0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Dark(1);
-
-        SetAffinityRequirement(Affinity.Red, 3);
-        SetAffinityRequirement(Affinity.Dark, 3);
 
         SetEthereal(true);
     }
@@ -41,6 +39,17 @@ public class EmirEins extends AnimatorCard
     protected void OnUpgrade()
     {
         SetEthereal(false);
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.TakeDamageAtEndOfTurn(magicNumber);
+            GameActions.Bottom.ObtainAffinityToken(Affinity.General, false);
+        }
     }
 
     @Override
@@ -63,11 +72,6 @@ public class EmirEins extends AnimatorCard
                 });
             }
         });
-
-        if (info.TryActivateLimited() && CheckAffinity(Affinity.Dark) && CheckAffinity(Affinity.Red))
-        {
-            GameActions.Bottom.ObtainAffinityToken(Affinity.General, false);
-        }
     }
 
     private CardGroup GetReplacement(AbstractCard card, int size)

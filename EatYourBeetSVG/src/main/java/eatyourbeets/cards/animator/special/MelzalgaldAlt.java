@@ -17,11 +17,9 @@ public abstract class MelzalgaldAlt extends AnimatorCard
         Initialize(4, 0, 2);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Star(2);
+        SetAffinity_Star(1);
 
         SetRetainOnce(true);
         SetExhaust(true);
-
-        SetAffinityRequirement(Affinity.General, 3);
     }
 }

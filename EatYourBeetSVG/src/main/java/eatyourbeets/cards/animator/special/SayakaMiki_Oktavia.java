@@ -40,7 +40,7 @@ public class SayakaMiki_Oktavia extends AnimatorCard
         GameActions.Bottom.DrawReduction(secondaryValue);
         GameActions.Bottom.RecoverHP(magicNumber);
 
-        if (CheckAffinity(Affinity.Dark))
+        if (TryUseAffinity(Affinity.Dark))
         {
             GameActions.Bottom.FetchFromPile(name, 999, p.drawPile, p.discardPile)
             .SetOptions(true, true)

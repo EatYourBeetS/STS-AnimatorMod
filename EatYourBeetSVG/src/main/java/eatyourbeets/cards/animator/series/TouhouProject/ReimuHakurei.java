@@ -1,6 +1,7 @@
 package eatyourbeets.cards.animator.series.TouhouProject;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
@@ -37,25 +38,20 @@ public class ReimuHakurei extends AnimatorCard
     }
 
     @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    public void triggerOnAffinitySeal(boolean manual)
     {
-        super.OnLateUse(p, m, info);
-
-        if (info.IsSynergizing && info.TryActivateSemiLimited())
+        GameActions.Delayed.Callback(() ->
         {
-            GameActions.Delayed.Callback(() ->
+            for (AbstractCard c : player.hand.group)
             {
-                for (AbstractCard c : player.hand.group)
+                if (c instanceof AffinityToken)
                 {
-                    if (c instanceof AffinityToken)
-                    {
-                        GameUtilities.Retain(c);
-                        BlockModifiers.For(c).Add(cardID, secondaryValue);
-                        c.superFlash();
-                    }
+                    GameUtilities.Retain(c);
+                    BlockModifiers.For(c).Add(cardID, secondaryValue);
+                    c.superFlash();
                 }
-            });
-        }
+            }
+        });
     }
 }
 

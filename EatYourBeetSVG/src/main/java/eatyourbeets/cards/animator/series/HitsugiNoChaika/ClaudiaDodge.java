@@ -36,7 +36,7 @@ public class ClaudiaDodge extends AnimatorCard
     {
         super.triggerOnOtherCardPlayed(c);
 
-        if (player.hand.contains(this) && GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 2)
+        if (player.hand.contains(this) && GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 1)
         {
             GameActions.Top.MakeCardInHand(new Status_Dazed());
             GameActions.Delayed.MoveCard(this, player.hand, player.discardPile)

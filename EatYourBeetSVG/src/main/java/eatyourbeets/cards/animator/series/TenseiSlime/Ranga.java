@@ -23,7 +23,7 @@ public class Ranga extends AnimatorCard implements OnEvokeOrbSubscriber
 
         Initialize(6, 0);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
         SetAffinity_Light(1, 0, 1);
         SetAffinity_Dark(1, 0, 1);
 

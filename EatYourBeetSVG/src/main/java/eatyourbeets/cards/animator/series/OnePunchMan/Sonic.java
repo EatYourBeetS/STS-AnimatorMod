@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -32,7 +29,9 @@ public class Sonic extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Green(2);
-        SetAffinity_Dark(2);
+        SetAffinity_Dark(1);
+
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class Sonic extends AnimatorCard
         GameActions.Bottom.GainBlur(secondaryValue);
         GameActions.Bottom.StackPower(new SonicPower(p, magicNumber));
 
-        if (info.IsSynergizing)
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.CreateThrowingKnives(1);
         }

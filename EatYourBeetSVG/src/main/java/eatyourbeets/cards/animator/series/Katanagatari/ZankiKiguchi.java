@@ -55,11 +55,6 @@ public class ZankiKiguchi extends AnimatorCard
                 GameActions.Bottom.Draw(magicNumber);
             }
         });
-
-        if (info.IsSynergizing && info.TryActivateLimited())
-        {
-            GameActions.Bottom.GainInspiration(1);
-        }
     }
 
     @Override

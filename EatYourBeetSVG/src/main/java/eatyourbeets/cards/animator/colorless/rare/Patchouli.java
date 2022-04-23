@@ -93,7 +93,7 @@ public class Patchouli extends AnimatorCard
             GameActions.Bottom.WaitRealtime(0.2f);
         }
 
-        if ((info.IsSynergizing || CheckAffinity(Affinity.Blue)) && info.TryActivateLimited())
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
             GameActions.Bottom.Add(OrbCore.SelectCoreAction(name, 1, 5, true)
             .AddCallback(cards ->

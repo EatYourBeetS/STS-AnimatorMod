@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.AcuraTooru_Dragoon;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.orbs.animator.Fire;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 
@@ -31,20 +33,27 @@ public class AcuraTooru extends AnimatorCard
         Initialize(0, 5, 0, 1);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Green(2);
+        SetAffinity_Green(1);
         SetAffinity_Red(1);
     }
+
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        if (CombatStats.TryActivateLimited(cardID))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
+        }
+    }
+
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.CreateThrowingKnives(secondaryValue);
-
-        if (info.IsSynergizing && info.TryActivateLimited())
-        {
-            GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
-        }
     }
 
     @Override

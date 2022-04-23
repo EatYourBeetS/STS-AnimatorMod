@@ -27,7 +27,7 @@ public class Megumin_Explosion extends AnimatorCard
         SetUpgrade(5, 0);
 
         SetAffinity_Blue(2);
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
         SetAffinity_Light(2);
         SetAffinity_Star(0, 0, 3);
 

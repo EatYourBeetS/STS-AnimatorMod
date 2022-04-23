@@ -30,10 +30,21 @@ public class MamiTomoe extends AnimatorCard
         Initialize(7, 0, 1);
         SetUpgrade(0, 0, 1);
 
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 1, 1);
         SetAffinity_Light(2);
 
         SetCardPreview(c -> c.costForTurn == 0);
+    }
+
+    @Override
+    public void triggerOnExhaust()
+    {
+        super.triggerOnExhaust();
+
+        if (CombatStats.TryActivateSemiLimited(cardID))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
+        }
     }
 
     @Override
@@ -54,10 +65,5 @@ public class MamiTomoe extends AnimatorCard
         .SetVFXColor(Color.GOLD).SetSoundPitch(0.6f, 0.6f);
         GameActions.Bottom.Draw(magicNumber)
         .SetFilter(c -> c.costForTurn == 0, false);
-
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
-        }
     }
 }

@@ -44,7 +44,7 @@ public class Entoma extends AnimatorCard
         GameActions.Bottom.RetainPower(Affinity.Dark);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
-        if ((info.IsSynergizing || CheckAffinity(Affinity.Dark)) && !m.hasPower(EntomaPower.DeriveID(cardID)))
+        if (TryUseAffinity(Affinity.Dark) && !m.hasPower(EntomaPower.DeriveID(cardID)))
         {
             GameActions.Bottom.ApplyPower(new EntomaPower(m, p, 1));
         }

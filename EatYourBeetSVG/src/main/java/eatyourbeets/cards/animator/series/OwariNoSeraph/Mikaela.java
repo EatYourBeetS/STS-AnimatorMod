@@ -3,6 +3,7 @@ package eatyourbeets.cards.animator.series.OwariNoSeraph;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Status_Wound;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
@@ -26,8 +27,10 @@ public class Mikaela extends AnimatorCard
         Initialize(6, 0, 2, 5);
         SetUpgrade(3, 0, 0, 0);
 
-        SetAffinity_Red(2, 0, 1);
+        SetAffinity_Red(1, 1, 1);
         SetAffinity_Dark(1);
+
+        SetAffinityRequirement(Affinity.Red, 2);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class Mikaela extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
         GameActions.Bottom.GainForce(1, true);
 
-        if (info.IsSynergizing)
+        if (TryUseAffinity(Affinity.Red))
         {
             GameActions.Bottom.ExhaustFromPile(name, 1, p.hand, p.discardPile)
             .SetOptions(false, false);

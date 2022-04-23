@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.resources.GR;
 import eatyourbeets.stances.ForceStance;
+import eatyourbeets.stances.IntellectStance;
 import eatyourbeets.utilities.GameActions;
 
 
@@ -51,7 +52,7 @@ public class Nikolay extends AnimatorCard
             }
         });
 
-        if ((ForceStance.IsActive() || info.IsSynergizing) && info.TryActivateSemiLimited())
+        if ((ForceStance.IsActive() || IntellectStance.IsActive()) && info.TryActivateSemiLimited())
         {
             GameActions.Bottom.GainBlock(magicNumber);
         }

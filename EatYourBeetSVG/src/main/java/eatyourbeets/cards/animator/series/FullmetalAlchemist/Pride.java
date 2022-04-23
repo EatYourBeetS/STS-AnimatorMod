@@ -28,7 +28,7 @@ public class Pride extends AnimatorCard
 
         Initialize(0, 0, 1, 2);
 
-        SetAffinity_Star(1, 1, 0);
+        SetAffinity_Star(1, 0, 0);
 
         SetEvokeOrbCount(magicNumber);
         SetEthereal(true);

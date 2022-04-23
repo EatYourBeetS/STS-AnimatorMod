@@ -8,6 +8,7 @@ import eatyourbeets.actions.orbs.ShuffleOrbs;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
 
 public class Jibril extends AnimatorCard
@@ -36,11 +37,14 @@ public class Jibril extends AnimatorCard
         GameActions.Bottom.VFX(VFX.ShockWave(p.hb, Color.VIOLET), 0.3f);
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
         GameActions.Bottom.ChannelOrb(new Dark());
+    }
 
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.Add(new ShuffleOrbs(1));
-            GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);
-        }
+    @Override
+    public void triggerOnManualDiscard()
+    {
+        super.triggerOnManualDiscard();
+
+        GameActions.Bottom.Add(new ShuffleOrbs(1));
+        GameActions.Bottom.TriggerOrbPassive(magicNumber).SetSequential(true);
     }
 }

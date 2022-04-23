@@ -34,7 +34,7 @@ public class ChlammyZell extends AnimatorCard
         GameActions.Bottom.Draw(1);
         GameActions.Bottom.DrawNextTurn(magicNumber);
 
-        if (CheckAffinity(Affinity.Blue) && CheckAffinity(Affinity.Dark) && info.TryActivateLimited())
+        if (info.CanActivateLimited && CheckAffinity(Affinity.Blue) && TryUseAffinity(Affinity.Dark) && TryUseAffinity(Affinity.Blue) && info.TryActivateLimited())
         {
             GameActions.Bottom.MakeCardInHand(new ChlammyZell_Scheme());
         }

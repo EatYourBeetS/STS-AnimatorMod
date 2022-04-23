@@ -56,7 +56,7 @@ public class Evileye extends AnimatorCard
         choices.AddEffect(new GenericEffect_Draw(magicNumber));
         choices.Select(1, m);
 
-        if (CheckAffinity(Affinity.Dark) || CheckAffinity(Affinity.Light))
+        if (TryUseAffinity(Affinity.Dark) || TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.GainEnergy(1);
             this.exhaustOnUseOnce = true;

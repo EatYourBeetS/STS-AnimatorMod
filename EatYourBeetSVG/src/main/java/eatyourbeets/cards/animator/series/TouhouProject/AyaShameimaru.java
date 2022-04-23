@@ -26,7 +26,7 @@ public class AyaShameimaru extends AnimatorCard
         Initialize(0, 5, 2, 1);
         SetUpgrade(0, 3, 0, 0);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 1, 1);
         SetAffinity_Light(1);
     }
 

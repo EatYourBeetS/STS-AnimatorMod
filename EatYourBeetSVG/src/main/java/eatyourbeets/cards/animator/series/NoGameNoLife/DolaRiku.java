@@ -3,10 +3,7 @@ package eatyourbeets.cards.animator.series.NoGameNoLife;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.ui.cards.CardPreview;
 import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
@@ -30,6 +27,8 @@ public class DolaRiku extends AnimatorCard
         SetAffinity_Light(1);
         SetAffinity_Green(1);
 
+        SetAffinityRequirement(Affinity.Blue, 2);
+
         discardPilePreview = SetCardPreview(c -> c.type == CardType.ATTACK)
         .SetSelection(CardSelection.Top, 1)
         .SetGroupType(CardGroup.CardGroupType.DISCARD_PILE);
@@ -52,11 +51,11 @@ public class DolaRiku extends AnimatorCard
         GameActions.Bottom.DiscardFromHand(name, 1, false)
         .SetOptions(true, true, false)
         .SetFilter(c -> c.type == CardType.SKILL)
-        .AddCallback(info, (info2, cards) ->
+        .AddCallback(cards ->
         {
             if (cards.size() >= 1)
             {
-                if (info2.IsSynergizing)
+                if (TryUseAffinity(Affinity.Blue))
                 {
                     GameActions.Bottom.FetchFromPile(name, 1, player.discardPile)
                     .ShowEffect(true, false)

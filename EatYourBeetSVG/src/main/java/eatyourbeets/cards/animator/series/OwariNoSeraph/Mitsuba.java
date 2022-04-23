@@ -4,11 +4,14 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class Mitsuba extends AnimatorCard
@@ -26,6 +29,16 @@ public class Mitsuba extends AnimatorCard
 
         SetAffinity_Red(1);
         SetAffinity_Light(1);
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        if (CombatStats.TryActivateLimited(cardID)) {
+            GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
+            this.affinities.sealed = false;
+        }
     }
 
     @Override

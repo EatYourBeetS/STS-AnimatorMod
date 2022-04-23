@@ -43,7 +43,7 @@ public class KyokoSakura extends AnimatorCard
     {
         GameActions.Bottom.DealDamageToRandomEnemy(this, AttackEffects.SPEAR).SetVFXColor(Color.RED);
 
-        if (info.IsSynergizing || CheckAffinity(Affinity.Red))
+        if (TryUseAffinity(Affinity.Red))
         {
             GameActions.Bottom.GainForce(1);
             GameActions.Bottom.ChannelOrb(new Fire());

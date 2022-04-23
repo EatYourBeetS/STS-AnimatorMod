@@ -23,7 +23,7 @@ public class Chris extends AnimatorCard
         Initialize(3, 0, 5, 3);
         SetUpgrade(2, 0, 0, 1);
 
-        SetAffinity_Green(2, 0, 1);
+        SetAffinity_Green(1, 1, 1);
     }
 
     @Override

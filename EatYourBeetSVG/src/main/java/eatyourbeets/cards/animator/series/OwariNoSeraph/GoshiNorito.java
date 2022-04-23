@@ -32,7 +32,7 @@ public class GoshiNorito extends AnimatorCard
         SetCostUpgrade(-1);
 
         SetAffinity_Red(1);
-        SetAffinity_Blue(2, 0, 1);
+        SetAffinity_Blue(1, 0, 1);
 
         SetExhaust(true);
     }

@@ -25,7 +25,7 @@ public class FeliciaMitsuki extends AnimatorCard
 
         Initialize(0, 0, 50, 5);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1);
 
         SetEthereal(true);
     }

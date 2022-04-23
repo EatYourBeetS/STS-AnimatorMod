@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.Dark;
 import eatyourbeets.cards.animator.special.Sylvia_Chimera;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -66,6 +68,13 @@ public class Sylvia extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        GameActions.Bottom.Cycle(name, 1);
+        GameActions.Last.Exhaust(this);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
@@ -99,10 +108,5 @@ public class Sylvia extends AnimatorCard
                 }
             }
         });
-
-        if (info.IsSynergizing)
-        {
-            GameActions.Bottom.Cycle(name, 1);
-        }
     }
 }

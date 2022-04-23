@@ -21,7 +21,9 @@ public class Konayuki extends AnimatorCard
         Initialize(0, 0, 3, 12);
         SetUpgrade(0, 0, 1, 0);
 
-        SetAffinity_Red(2);
+        SetAffinity_Red(1, 1, 0);
+
+        SetAffinityRequirement(Affinity.Red, 3);
     }
 
     @Override
@@ -38,8 +40,7 @@ public class Konayuki extends AnimatorCard
         GameActions.Bottom.GainForce(magicNumber);
         CombatStats.Affinities.GetPower(Affinity.Red).SetMaximumAmount(secondaryValue);
 
-        if (info.IsSynergizing)
-        {
+        if (TryUseAffinity(Affinity.Red)) {
             GameActions.Bottom.ApplyVulnerable(TargetHelper.RandomEnemy(), 1).IgnoreArtifact(true);
         }
     }

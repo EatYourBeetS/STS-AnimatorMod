@@ -87,7 +87,7 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void Seal(EYBCardAffinities cardAffinities)
     {
-        final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, false), 0, 2);
+        final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, true), 0, 2);
         final EYBCardAffinity a = System.PlayerAffinities.Get(Type, true);
         a.level += level;
         a.requirement += level;

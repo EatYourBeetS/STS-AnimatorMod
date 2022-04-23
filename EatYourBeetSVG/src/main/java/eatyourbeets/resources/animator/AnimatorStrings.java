@@ -98,6 +98,7 @@ public class AnimatorStrings
         public final String MaxCopiesDescription = Strings.TEXT[20];
         public final String MulliganHeader = Strings.TEXT[21];
         public final String MulliganDescription = Strings.TEXT[22];
+        public final String CannotSeal = Strings.TEXT[23];
 
         public final String MaxStacks(int stacks)
         {

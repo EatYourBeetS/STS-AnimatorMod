@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 import eatyourbeets.cards.animator.special.MatouShinji_CommandSpell;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -30,6 +27,8 @@ public class MatouShinji extends AnimatorCard
         SetUpgrade(0, 0, 2);
 
         SetAffinity_Dark(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class MatouShinji extends AnimatorCard
         })
         .SetDuration(0.02f, false);
 
-        if (info.IsSynergizing && info.TryActivateLimited())
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Dark) && info.TryActivateLimited())
         {
             GameActions.Bottom.MakeCardInHand(new MatouShinji_CommandSpell());
         }

@@ -44,7 +44,7 @@ public class MadokaKaname extends AnimatorCard
         GameActions.Bottom.ObtainAffinityToken(Affinity.Light, upgraded)
         .AddCallback(c -> GameActions.Bottom.Motivate(c, 1));
 
-        if (CheckAffinity(Affinity.Light) && info.TryActivateLimited())
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Light) && info.TryActivateLimited())
         {
             GameActions.Bottom.VFX(new BorderFlashEffect(Color.PINK, true));
             GameActions.Bottom.ExhaustFromPile(name, 999, p.drawPile, p.hand, p.discardPile)

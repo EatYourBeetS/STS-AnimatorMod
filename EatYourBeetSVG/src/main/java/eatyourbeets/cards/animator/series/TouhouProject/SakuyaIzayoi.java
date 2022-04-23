@@ -4,10 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.stances.AgilityStance;
 import eatyourbeets.utilities.GameActions;
@@ -38,6 +35,8 @@ public class SakuyaIzayoi extends AnimatorCard
         SetAffinity_Green(1);
 
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class SakuyaIzayoi extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         int x = GameUtilities.UseXCostEnergy(this);
-        if (info.IsSynergizing)
+        if (TryUseAffinity(Affinity.Green))
         {
             x += 1;
         }

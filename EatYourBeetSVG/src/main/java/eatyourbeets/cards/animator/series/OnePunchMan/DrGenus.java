@@ -80,7 +80,7 @@ public class DrGenus extends AnimatorCard
         {
            for (AbstractCard c : cards)
            {
-               if (CheckAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
+               if (info.CanActivateLimited && TryUseAffinity(Affinity.Blue) && CombatStats.TryActivateLimited(cardID))
                {
                    GameActions.Bottom.StackPower(new DrGenusPower(player, c, secondaryValue));
                }

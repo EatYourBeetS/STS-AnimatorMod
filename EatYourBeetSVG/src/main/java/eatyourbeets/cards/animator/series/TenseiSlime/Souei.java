@@ -7,10 +7,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.special.SelectCreature;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.VFX;
 import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.AnimatorPower;
@@ -37,10 +34,12 @@ public class Souei extends AnimatorCard
         Initialize(0, 0, 3, 2);
         SetUpgrade(0, 0, 0, 1);
 
-        SetAffinity_Green(1);
-        SetAffinity_Dark(2);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Dark(1);
 
         SetEthereal(true);
+
+        SetAffinityRequirement(Affinity.Green, 3);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class Souei extends AnimatorCard
             }
         });
 
-        if (info.IsSynergizing && info.TryActivateLimited())
+        if (info.CanActivateLimited && TryUseAffinity(Affinity.Green) && info.TryActivateLimited())
         {
             GameActions.Bottom.GainIntangible(1);
         }

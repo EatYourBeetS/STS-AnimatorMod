@@ -26,6 +26,7 @@ public class GiftBox extends AnimatorCard
         Initialize(0, 0, 5, 12);
         SetUpgrade(0, 0, 2, 4);
 
+        SetAffinity_Star(9);
         SetPurge(true);
     }
 

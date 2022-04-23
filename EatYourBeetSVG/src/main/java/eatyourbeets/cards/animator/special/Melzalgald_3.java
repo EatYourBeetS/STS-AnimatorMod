@@ -19,6 +19,8 @@ public class Melzalgald_3 extends MelzalgaldAlt
         super(DATA);
 
         SetAffinity_Green(0, 0, 2);
+
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Melzalgald_3 extends MelzalgaldAlt
         GameActions.Bottom.GainEnergyNextTurn(1);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
 
-        if (CheckAffinity(Affinity.General))
+        if (TryUseAffinity(Affinity.Blue))
         {
             GameActions.Bottom.GainAgility(magicNumber);
         }

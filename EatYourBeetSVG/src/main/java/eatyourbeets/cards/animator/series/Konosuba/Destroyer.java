@@ -32,7 +32,7 @@ public class Destroyer extends AnimatorCard
 
         Initialize(0, 0, 2, BASE_DAMAGE);
 
-        SetAffinity_Blue(2);
+        SetAffinity_Blue(1);
         SetAffinity_Dark(2);
         SetAffinity_Red(2);
     }

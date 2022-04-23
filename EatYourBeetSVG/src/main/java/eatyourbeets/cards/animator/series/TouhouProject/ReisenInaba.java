@@ -32,6 +32,8 @@ public class ReisenInaba extends AnimatorCard
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Star(1);
+
+        SetAffinityRequirement(Affinity.Star, 1);
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ReisenInaba extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        if (info.IsSynergizing)
+        if (TryUseAffinity(Affinity.Star))
         {
             GameActions.Bottom.ExhaustFromHand(name, 1, false)
             .SetOptions(false, false, false);

@@ -1095,11 +1095,6 @@ public final class GameActions
         return MoveCard(card, sourcePile, player.drawPile).SetDestination(CardSelection.Bottom(GameUtilities.GetRNG().random((int)(player.drawPile.size() * 0.8f))));
     }
 
-    public ApplyAffinityPower RetainPower(Affinity affinity)
-    {
-        return StackAffinityPower(affinity, 0, true);
-    }
-
     public PlaySFX SFX(String key)
     {
         return SFX(key, 1, 1, 1);
@@ -1163,6 +1158,16 @@ public final class GameActions
     public SpendEnergy SpendEnergy(int amount, boolean canSpendLess)
     {
         return Add(new SpendEnergy(amount, canSpendLess));
+    }
+
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity)
+    {
+        return StackAffinityPower(affinity, 1, false);
+    }
+
+    public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount)
+    {
+        return StackAffinityPower(affinity, amount, false);
     }
 
     public ApplyAffinityPower StackAffinityPower(Affinity affinity, int amount, boolean retain)

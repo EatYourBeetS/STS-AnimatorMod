@@ -42,7 +42,7 @@ public class Nikolay extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HEAVY);
-        GameActions.Bottom.RetainPower(Affinity.Red);
+        GameActions.Bottom.StackAffinityPower(Affinity.Red);
         GameActions.Bottom.ModifyAllCopies(cardID)
         .AddCallback(c ->
         {

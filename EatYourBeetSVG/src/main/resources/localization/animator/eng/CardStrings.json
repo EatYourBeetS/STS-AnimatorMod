@@ -15,56 +15,56 @@
 
 		"animator:Strike_Red":
 		{
-			"DESCRIPTION": "Retain [F].",
+			"DESCRIPTION": "Gain [F].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Red":
 		{
-			"DESCRIPTION": "Retain [F].",
+			"DESCRIPTION": "Gain [F].",
 			"NAME": "Improved Defend"
 		},
 
 		"animator:Strike_Green":
 		{
-			"DESCRIPTION": "Retain [A].",
+			"DESCRIPTION": "Gain [A].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Green":
 		{
-			"DESCRIPTION": "Retain [A].",
+			"DESCRIPTION": "Gain [A].",
 			"NAME": "Improved Defend"
 		},
 
 		"animator:Strike_Blue":
 		{
-			"DESCRIPTION": "Retain [I].",
+			"DESCRIPTION": "Gain [I].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Blue":
 		{
-			"DESCRIPTION": "Retain [I].",
+			"DESCRIPTION": "Gain [I].",
 			"NAME": "Improved Defend"
 		},
 
 		"animator:Strike_Light":
 		{
-			"DESCRIPTION": "Retain [B].",
+			"DESCRIPTION": "Gain [B].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Light":
 		{
-			"DESCRIPTION": "Retain [B].",
+			"DESCRIPTION": "Gain [B].",
 			"NAME": "Improved Defend"
 		},
 
 		"animator:Strike_Dark":
 		{
-			"DESCRIPTION": "Retain [C].",
+			"DESCRIPTION": "Gain [C].",
 			"NAME": "Improved Strike"
 		},
 		"animator:Defend_Dark":
 		{
-			"DESCRIPTION": "Retain [C].",
+			"DESCRIPTION": "Gain [C].",
 			"NAME": "Improved Defend"
 		},
 
@@ -201,7 +201,7 @@
 		},
 		"animator:Kuroyukihime_BlackLotus":
 		{
-			"DESCRIPTION": "{~Retain} [F] [A]. || !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
+			"DESCRIPTION": "Gain [F] [A]. || !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
 			"NAME": "Black Lotus"
 		},
 		"animator:LimeBell":
@@ -253,7 +253,7 @@
 		},
 		"animator:Shimakaze":
 		{
-			"DESCRIPTION": "{~Retain} [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
+			"DESCRIPTION": "Gain [A]. || <DRW-M>. ** Add 1 Dazed to ** your draw pile.",
 			"NAME": "Shimakaze"
 		},
 		"animator:Rorona":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Discard 1 card. || !A! <G>: <DRW-M>.",
+			"DESCRIPTION": "Gain [A]. Discard 1 card. || !A! <G>: <DRW-M>.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -398,7 +398,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "<ST>. Apply !S! [~Lock-On]. || !A! <D>: Give all copies of {Lu} +!M! damage and {~Haste}.",
+			"DESCRIPTION": "<ST> or when Sealed: Apply !S! [~Lock-On] to ALL enemies. || !A! <D>: Give all copies of {Lu} +!M! damage and {~Haste}.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -496,7 +496,7 @@
 		},
 		"animator:Lancer":
 		{
-			"DESCRIPTION": "{~Retain} [A]. Apply 1 [Vulnerable]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
+			"DESCRIPTION": "Gain [A]. Apply 1 [Vulnerable]. || <slm>. For 2 turns: ** Increase the effect of [Vulnerable] ** on enemies by 25%.",
 			"EXTENDED_DESCRIPTION": ["Enemies take {0}% more damage from [Vulnerable]."],
 			"NAME": "Lancer"
 		},
@@ -541,7 +541,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || {~Retain} all {<W> Powers} ** gained this turn.",
+			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || <LIM>. <ST>. Seal a card in your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -659,9 +659,9 @@
 		},
 		"animator:LeleiLaLalena":
 		{
-			"DESCRIPTION": "Retain [I]. Discard a random card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy.",
+			"DESCRIPTION": "Gain [I]. Discard a random card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy.",
 			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Retain [I]. Discard a card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy."
+			"UPGRADE_DESCRIPTION": "Gain [I]. Discard a card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy."
 		},
 		"animator:MoltSolAugustus":
 		{
@@ -742,7 +742,7 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "Starter. <DRW>. || If the enemy has no ** [Artifact]: Apply !S! [~Lock-On].",
+			"DESCRIPTION": "If the enemy has no ** [Artifact]: Apply !S! [~Lock-On]. || When Sealed: <DRW>.",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
@@ -753,7 +753,7 @@
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "<ST>. Gain [A] [I]. || Evoke your first [Lightning]. || When you Seal a <G> card this turn: Channel 1 [Lightning].",
+			"DESCRIPTION": "Evoke your first [Lightning] to gain [A] [I]. Otherwise, Channel [Lightning]. || When Sealed: Gain [A] [I].",
 			"EXTENDED_DESCRIPTION": ["When you #ySeal a <G> card, Channel #b1 [Lightning]."],
 			"NAME": "Noble Fencer"
 		},
@@ -866,7 +866,7 @@
 		},
 		"animator:Nikolay":
 		{
-			"DESCRIPTION": "{~Retain} [F]. Motivate all ** other copies of this card. || <slm>. <FS> or <IS>: Gain !M! [Block].",
+			"DESCRIPTION": "Gain [F]. Motivate all ** other copies of this card. || <slm>. <FS> or <IS>: Gain !M! [Block].",
 			"NAME": "Nikolay"
 		},
 		"animator:Viivi":
@@ -896,7 +896,7 @@
 		},
 		"animator:Emonzaemon":
 		{
-			"DESCRIPTION": "<LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu} to ** your draw pile.",
+			"DESCRIPTION": "When Sealed: <DRW> next turn. || <LIM>. If this is your ** third attack in a row: ** Add {Entou Jyuu} to ** your draw pile.",
 			"NAME": "Emonzaemon"
 		},
 		"animator:Emonzaemon_EntouJyuu":
@@ -1005,7 +1005,7 @@
 		},
 		"animator:Eris":
 		{
-			"DESCRIPTION": "{~Retain} [B]. Add !M! {Miracles} ** to your draw pile. || For 1 turn, survive damage ** with 1 [HP] and lose Max [HP] ** equal to remaining damage.",
+			"DESCRIPTION": "Gain [B]. Add !M! {Miracles} ** to your draw pile. || For 1 turn, survive damage ** with 1 [HP] and lose Max [HP] ** equal to remaining damage.",
 			"EXTENDED_DESCRIPTION": ["Survive lethal damage with 1 [HP] and lose Max [HP] equal to remaining damage."],
 			"NAME": "Eris"
 		},
@@ -1343,7 +1343,7 @@
 		"animator:IzunaHatsuse":
 		{
 			"DESCRIPTION": "Apply 1 [Weak]. ** Lose !M! {Temp.} [Strength]. || If you play an {Attack}: ** Change form this turn.",
-			"EXTENDED_DESCRIPTION": ["{~Retain} [F] [A]. || Recover !M! [HP]."],
+			"EXTENDED_DESCRIPTION": ["Gain [F] [A]. || Recover !M! [HP]."],
 			"NAME": "Izuna Hatsuse"
 		},
 		"animator:Jibril":
@@ -1353,7 +1353,7 @@
 		},
 		"animator:Miko":
 		{
-			"DESCRIPTION": "Scry !M!. || If you have 6 or ** more [B]: {~Retain} [B]. ** Otherwise: Gain !S! [B].",
+			"DESCRIPTION": "Scry !M!. || If you have 6 or ** more [B]: Scry !S! more. ** Otherwise: Gain !S! [B].",
 			"NAME": "Miko"
 		},
 		"animator:NinaCliffe":
@@ -1525,7 +1525,7 @@
 		},
 		"animator:Entoma":
 		{
-			"DESCRIPTION": "{~Retain} [C]. Apply !M! [Poison]. || !A! <D>: Whenever ** you apply [Poison] to the enemy, or ** whenever it takes [Poison] damage: ** Gain 1 [THP] (Does not stack).",
+			"DESCRIPTION": "Gain [C]. Apply !M! [Poison]. || !A! <D>: Whenever ** you apply [Poison] to the enemy, or ** whenever it takes [Poison] damage: ** Gain 1 [THP] (Does not stack).",
 			"EXTENDED_DESCRIPTION": ["When receiving [Poison] #yDebuff or [Poison] damage, the source of this power gains #b{0} [THP]."],
 			"NAME": "Entoma"
 		},
@@ -1608,7 +1608,7 @@
 		},
 		"animator:KimizugiShiho":
 		{
-			"DESCRIPTION": "{~Retain} [F]. || Draw 1 {Hindrance}. || When Discarded or ** Exhausted: Gain [F].",
+			"DESCRIPTION": "Gain [F]. || Draw 1 {Hindrance}. || When Discarded or ** Exhausted: Gain [F].",
 			"NAME": "Shiho Kimizugi"
 		},
 		"animator:LestKarr":
@@ -1734,7 +1734,7 @@
 		},
 		"animator:Vesta":
 		{
-			"DESCRIPTION": "{~Retain} [I]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
+			"DESCRIPTION": "Gain [I]. || Research an {Elixir} ** for the next !M! turns. || !A! <B>: Upgrade it.",
 			"EXTENDED_DESCRIPTION": ["Researching #yElixir. #b{0} turn(s) left."],
 			"NAME": "Vesta"
 		},
@@ -1818,7 +1818,7 @@
 		},
 		"animator:TenshiHinanawi":
 		{
-			"DESCRIPTION": "<ST>. <DRW>. || Trigger your first ** [Earth] to deal !M! [DD].",
+			"DESCRIPTION": "Trigger your first ** [Earth] to deal !M! [DD]. || When Sealed: <DRW>.",
 			"NAME": "Tenshi Hinanawi"
 		},
 		"animator:YoumuKonpaku":

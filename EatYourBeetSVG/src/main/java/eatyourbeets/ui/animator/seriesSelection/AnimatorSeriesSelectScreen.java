@@ -32,8 +32,8 @@ import java.util.Collection;
 
 public class AnimatorSeriesSelectScreen extends AbstractScreen
 {
-    protected static final int MINIMUM_CARDS = 70;
-    protected static final int BONUS_RELIC_THRESHOLD = 7;
+    protected static final int MINIMUM_CARDS = 80;
+    protected static final int BONUS_RELIC_THRESHOLD = 8;
     protected static final Random rng = new Random();
     protected ShowCardPileEffect previewCardsEffect;
     protected int totalCardsCache = 0;

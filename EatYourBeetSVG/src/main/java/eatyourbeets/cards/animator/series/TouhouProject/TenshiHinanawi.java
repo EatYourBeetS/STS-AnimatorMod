@@ -42,15 +42,17 @@ public class TenshiHinanawi extends AnimatorCard
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (info.IsStarter)
-        {
-            GameActions.Bottom.Draw(1);
-        }
-
         if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.DealDamageAtEndOfTurn(p, m, magicNumber, AttackEffects.SMASH);
         }
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        GameActions.Bottom.Draw(1);
     }
 
     @Override

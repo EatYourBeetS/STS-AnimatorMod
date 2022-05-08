@@ -44,4 +44,11 @@ public class HighElfArcher extends AnimatorCard
             GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);
         }
     }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        GameActions.Bottom.Draw(1);
+    }
 }

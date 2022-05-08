@@ -72,42 +72,43 @@ public class CombatStats extends EYBPower implements InvisiblePower
 
     static final ArrayList<GameEvent<?>> events = new ArrayList<>();
     //
-    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnPlayerMinionActionSubscriber> onPlayerMinionAction = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnHealthBarUpdatedSubscriber> onHealthBarUpdated = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnBlockGainedSubscriber> onBlockGained = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnClickablePowerUsedSubscriber> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAffinitySealedSubscriber> onAffinitySealed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAffinityThresholdReachedSubscriber> onAffinityThresholdReached = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardDiscardedSubscriber> onAfterCardDiscarded = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardDrawnSubscriber> onAfterCardDrawn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardExhaustedSubscriber> onAfterCardExhausted = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAttackSubscriber> onAttack = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnLosingHPSubscriber> onLosingHP = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnLoseHPSubscriber> onLoseHP = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnBeforeLoseBlockSubscriber> onBeforeLoseBlock = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnBlockBrokenSubscriber> onBlockBroken = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnBlockGainedSubscriber> onBlockGained = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardResetSubscriber> onCardReset = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnCardReshuffledSubscriber> onCardReshuffled = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnChannelOrbSubscriber> onChannelOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnClickablePowerUsedSubscriber> onClickablePowerUsed = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEndOfTurnFirstSubscriber> onEndOfTurnFirst = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnEndOfTurnLastSubscriber> onEndOfTurnLast = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnShuffleSubscriber> onShuffle = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnApplyPowerSubscriber> onApplyPower = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnAfterDeathSubscriber> onAfterDeath = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEnemyDyingSubscriber> onEnemyDying = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEnergyRechargeSubscriber> onEnergyRecharge = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnEvokeOrbSubscriber> onEvokeOrb = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnHealthBarUpdatedSubscriber> onHealthBarUpdated = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnLoseHPSubscriber> onLoseHP = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnLosingHPSubscriber> onLosingHP = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnModifyDamageFirstSubscriber> onModifyDamageFirst = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnModifyDamageLastSubscriber> onModifyDamageLast = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnModifyDebuffSubscriber> onModifyDebuff = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnEnergyRechargeSubscriber> onEnergyRecharge = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnCardResetSubscriber> onCardReset = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnCardCreatedSubscriber> onCardCreated = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnCardReshuffledSubscriber> onCardReshuffled = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
-    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnOrbPassiveEffectSubscriber> onOrbPassiveEffect = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnPhaseChangedSubscriber> onPhaseChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnPlayCardSubscriber> onPlayCard = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnPlayerMinionActionSubscriber> onPlayerMinionAction = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnShuffleSubscriber> onShuffle = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnStanceChangedSubscriber> onStanceChanged = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnStartOfTurnPostDrawSubscriber> onStartOfTurnPostDraw = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnStartOfTurnSubscriber> onStartOfTurn = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = RegisterEvent(new GameEvent<>());
     //
     public static final GameEvent<OnStatsClearedSubscriber> onStatsCleared = new GameEvent<>();
     public static final GameEvent<OnBattleStartSubscriber> onBattleStart = new GameEvent<>();
@@ -846,6 +847,16 @@ public class CombatStats extends EYBPower implements InvisiblePower
             }
             orbsEvokedThisCombat.add(orb);
             orbsEvokedThisTurn.add(orb);
+        }
+    }
+
+    @Override
+    public void onPlayCard(AbstractCard card, AbstractMonster m) {
+        super.onPlayCard(card, m);
+
+        for (OnPlayCardSubscriber p : onPlayCard.GetSubscribers())
+        {
+            p.OnPlayCard(card, m);
         }
     }
 

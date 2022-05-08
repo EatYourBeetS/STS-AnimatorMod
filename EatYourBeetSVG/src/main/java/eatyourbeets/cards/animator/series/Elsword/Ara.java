@@ -21,13 +21,13 @@ public class Ara extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2);
+        Initialize(3, 0, 1, 2);
         SetUpgrade(2, 0);
 
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Green, 3);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -46,6 +46,7 @@ public class Ara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.GainAgility(secondaryValue);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true);
 

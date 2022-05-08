@@ -9,6 +9,7 @@ import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.TargetHelper;
 
 public class Ciel extends AnimatorCard
 {
@@ -28,7 +29,7 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 8, 2);
+        Initialize(0, 4, 8, 1);
         SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Green(1, 0, 1);
@@ -71,7 +72,14 @@ public class Ciel extends AnimatorCard
 
         if (info.TryActivateStarter())
         {
-            GameActions.Bottom.StackPower(new LockOnPower(m, secondaryValue));
+            GameActions.Bottom.ApplyLockOn(TargetHelper.Enemies(), secondaryValue);
         }
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        GameActions.Bottom.ApplyLockOn(TargetHelper.Enemies(), secondaryValue);
     }
 }

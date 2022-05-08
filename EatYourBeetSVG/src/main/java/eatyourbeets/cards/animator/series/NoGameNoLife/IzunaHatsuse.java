@@ -119,8 +119,8 @@ public class IzunaHatsuse extends AnimatorCard implements OnEndOfTurnLastSubscri
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL);
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL);
             GameActions.Bottom.RecoverHP(magicNumber);
-            GameActions.Bottom.RetainPower(Affinity.Red);
-            GameActions.Bottom.RetainPower(Affinity.Green);
+            GameActions.Bottom.StackAffinityPower(Affinity.Red);
+            GameActions.Bottom.StackAffinityPower(Affinity.Green);
         }
         else
         {

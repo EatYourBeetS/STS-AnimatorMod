@@ -4,6 +4,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
+import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
@@ -50,60 +52,31 @@ public class NobleFencer extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean manual)
+    {
+        super.triggerOnAffinitySeal(manual);
+        GameActions.Bottom.GainAgility(1);
+        GameActions.Bottom.GainIntellect(1);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
 
-        if (info.TryActivateStarter())
-        {
-            GameActions.Bottom.GainAgility(1);
-            GameActions.Bottom.GainIntellect(1);
-        }
-
-        GameActions.Bottom.EvokeOrb(1).SetFilter(Lightning.class::isInstance);
-        GameActions.Bottom.StackPower(new NobleFencerPower(p, 3));
-    }
-
-    public static class NobleFencerPower extends AnimatorPower implements OnAffinitySealedSubscriber
-    {
-        public NobleFencerPower(AbstractCreature owner, int amount)
-        {
-            super(owner, NobleFencer.DATA);
-
-            Initialize(amount);
-        }
-
-        @Override
-        public void atEndOfTurn(boolean isPlayer)
-        {
-            super.atEndOfTurn(isPlayer);
-
-            RemovePower();
-        }
-
-        @Override
-        public void OnAffinitySealed(EYBCard card, boolean manual)
-        {
-            if (GameUtilities.HasGreenAffinity(card)) {
-                GameActions.Bottom.ChannelOrb(new Lightning());
-                flash();
-            }
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onAffinitySealed.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onAffinitySealed.Unsubscribe(this);
-        }
+        GameActions.Bottom.EvokeOrb(1)
+                .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
+                .AddCallback(orbs ->
+                {
+                    if (orbs.size() > 0)
+                    {
+                        GameActions.Bottom.GainAgility(1);
+                        GameActions.Bottom.GainIntellect(1);
+                    }
+                    else
+                    {
+                        GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
+                    }
+                });
     }
 }

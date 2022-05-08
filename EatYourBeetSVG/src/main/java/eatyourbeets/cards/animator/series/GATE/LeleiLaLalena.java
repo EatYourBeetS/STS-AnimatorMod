@@ -37,7 +37,7 @@ public class LeleiLaLalena extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RetainPower(Affinity.Blue);
+        GameActions.Bottom.StackAffinityPower(Affinity.Blue);
     }
 
     @Override

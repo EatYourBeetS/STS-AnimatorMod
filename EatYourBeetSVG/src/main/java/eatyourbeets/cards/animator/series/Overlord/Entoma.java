@@ -41,7 +41,7 @@ public class Entoma extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.POISON)
         .SetDamageEffect(e -> GameEffects.List.Add(VFX.Bite(e.hb, Color.GREEN)).duration);
-        GameActions.Bottom.RetainPower(Affinity.Dark);
+        GameActions.Bottom.StackAffinityPower(Affinity.Dark);
         GameActions.Bottom.ApplyPoison(p, m, magicNumber);
 
         if (TryUseAffinity(Affinity.Dark) && !m.hasPower(EntomaPower.DeriveID(cardID)))

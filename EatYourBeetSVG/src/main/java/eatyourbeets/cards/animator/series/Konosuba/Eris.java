@@ -38,7 +38,7 @@ public class Eris extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.RetainPower(Affinity.Light);
+        GameActions.Bottom.StackAffinityPower(Affinity.Light);
         GameActions.Bottom.MakeCard(new Special_Miracle(), p.drawPile).Repeat(magicNumber);
         GameActions.Bottom.StackPower(new ErisPower(p, 1));
     }

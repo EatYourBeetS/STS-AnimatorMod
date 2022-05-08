@@ -29,15 +29,15 @@ public class Miko extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.Scry(magicNumber);
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Bottom.GainBlessing(secondaryValue);
+            GameActions.Bottom.Scry(magicNumber + secondaryValue);
         }
         else
         {
-            GameActions.Bottom.RetainPower(Affinity.Light);
+            GameActions.Bottom.Scry(magicNumber);
+            GameActions.Bottom.StackAffinityPower(Affinity.Light);
         }
     }
 

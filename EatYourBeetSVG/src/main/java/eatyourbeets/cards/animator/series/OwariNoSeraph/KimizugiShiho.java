@@ -58,7 +58,7 @@ public class KimizugiShiho extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.DAGGER).SetVFXColor(Color.RED);
         }
 
-        GameActions.Bottom.RetainPower(Affinity.Red);
+        GameActions.Bottom.StackAffinityPower(Affinity.Red);
         GameActions.Bottom.Draw(1).SetFilter(GameUtilities::IsHindrance, false);
     }
 }

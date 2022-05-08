@@ -24,7 +24,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 2);
+        Initialize(0, 2, 6);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
@@ -40,21 +40,11 @@ public class ElricAlphonse extends AnimatorCard
         {
             GameActions.Bottom.GainIntellect(1);
         }
-    }
 
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.Callback(() ->
-        {
-            for (AbstractAffinityPower power : CombatStats.Affinities.Powers)
-            {
-                if (power.amountGainedThisTurn > 0)
-                {
-                    power.RetainOnce();
-                }
-            }
-        });
+        if (info.TryActivateStarter() && info.TryActivateLimited()) {
+            GameActions.Bottom.SealAffinities(p.discardPile, 1, true);
+        }
+
     }
 
     @Override

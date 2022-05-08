@@ -44,7 +44,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         }
         else
         {
-            Initialize(0, 5);
+            Initialize(0, 5, 1);
             SetUpgrade(0, 2);
         }
 
@@ -58,7 +58,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
 
         if (affinity != Affinity.Star)
         {
-            GameActions.Bottom.RetainPower(affinity);
+            GameActions.Bottom.StackAffinityPower(affinity, magicNumber, false);
         }
     }
 }

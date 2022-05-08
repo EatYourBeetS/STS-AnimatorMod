@@ -62,7 +62,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
 
         if (affinity != Affinity.Star)
         {
-            GameActions.Bottom.RetainPower(affinity);
+            GameActions.Bottom.StackAffinityPower(affinity);
         }
     }
 }

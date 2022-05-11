@@ -17,8 +17,6 @@ public class Enchantment1 extends Enchantment
 {
     public static final EYBCardData DATA = RegisterInternal(Enchantment1.class);
     public static final int INDEX = 1;
-    public static final int UP1_GAIN_BLOCK = 4;
-    public static final int UP3_TAKE_DAMAGE = 3;
 
     private static final CardEffectChoice choices = new CardEffectChoice();
     private static final float D_X = CardGroup.DRAW_PILE_X * 1.5f;
@@ -29,14 +27,7 @@ public class Enchantment1 extends Enchantment
         super(DATA, INDEX);
 
         Initialize(0, 0, 0, 2);
-    }
-
-    @Override
-    protected String GetRawDescription()
-    {
-        return upgradeIndex == 1 ? super.GetRawDescription(UP1_GAIN_BLOCK)
-             : upgradeIndex == 3 ? super.GetRawDescription(UP3_TAKE_DAMAGE)
-             : super.GetRawDescription();
+        SetUpgrade(0, 0, 0, -1);
     }
 
     @Override
@@ -64,18 +55,17 @@ public class Enchantment1 extends Enchantment
             }
 
             choices.Select(1, null);
-            GameActions.Bottom.Add(new EndPlayerTurn());
-            return;
+        }
+        else {
+            switch (upgradeIndex)
+            {
+                case 1: GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID); break;
+                case 2: GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID); break;
+                case 3: GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID); break;
+                default: throw new RuntimeException("Invalid upgrade index: " + upgradeIndex);
+            }
         }
 
-        GameActions.Bottom.Add(new RandomCostReduction(1, false));
-
-        switch (upgradeIndex)
-        {
-            case 1: GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID); return;
-            case 2: GameActions.Bottom.ChangeStance(AgilityStance.STANCE_ID); return;
-            case 3: GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID); return;
-            default: throw new RuntimeException("Invalid upgrade index: " + upgradeIndex);
-        }
+        GameActions.Bottom.Add(new EndPlayerTurn());
     }
 }

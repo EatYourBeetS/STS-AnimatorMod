@@ -159,7 +159,7 @@
 	{
 		"animator:Canti":
 		{
-			"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage.",
+			"DESCRIPTION": "Deal additional ** damage equal to the ** enemy's current ** attack damage. || <LIM>. When Sealed: Cycle any number of cards in hand.",
 			"NAME": "Canti"
 		},
 		"animator:Cirno":
@@ -221,7 +221,7 @@
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Give a card {LV2} <S>. || <LIM>. When Discarded: ** Create and add a random ** <S> card to your hand.",
+			"DESCRIPTION": "Exhaust a card. Obtain a new copy of it. || <LIM>. When Sealed: ** Obtain a random card and Seal it.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
@@ -924,7 +924,7 @@
 		},
 		"animator:ManiwaKyouken":
 		{
-			"DESCRIPTION": "Draw !M! card(s). ** Discard cards equal ** to double your [E]. || 3 [C]: Exhaust, then give ** a random card {LV2} <S>.",
+			"DESCRIPTION": "Draw !M! card(s). ** Discard cards equal ** to double your [E]. || 3 [C]: Exhaust, then Seal a card.",
 			"NAME": "Maniwa Kyouken"
 		},
 		"animator:ManiwaHouou":
@@ -1412,7 +1412,7 @@
 				"After #b{0} turn(s), create a copy of {1}.",
 				"Double its damage ** and [Block] and increase ** its base cost by 1.",
 				"Give it {~Ethereal} and **  reduce its base cost ** by 1 (Minimum 1).",
-				"Give it LV1 <S> and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
+				"Seal it and ** modify its damage and ** [Block] by a random amount ** between -2 and 2."
 			],
 			"NAME": "Dr. Genus"
 		},
@@ -1841,9 +1841,9 @@
 			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Choose and ** Enter any Stance, ** then end your turn.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, pay !S! ** [E]: Enter <FS> and ** reduce a random card's ** cost by 1 this turn.",
-				"Once per combat, pay !S! ** [E]: Enter <AS> and ** reduce a random card's ** cost by 1 this turn.",
-				"Once per combat, pay !S! ** [E]: Enter <IS> and ** reduce a random card's ** cost by 1 this turn."
+				"Once per combat, pay !S! ** [E]: Enter <FS>, ** then end your turn.",
+				"Once per combat, pay !S! ** [E]: Enter <AS>, ** then end your turn.",
+				"Once per combat, pay !S! ** [E]: Enter <IS>, ** then end your turn."
 			],
 			"NAME": "Stances"
 		},
@@ -1852,9 +1852,9 @@
 			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Obtain ** 1 {<W> Token}.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, ** pay !S! [E]: Obtain ** 1 {<W> Token+}.",
-				"Once per combat, ** take !S! [DD]: Have +!M! <S> ** this turn, and {LV2} <S> ** Synergy for the ** next card played.",
-				"Once per combat, ** pay !S! [E]: Play a ** {0-Block} {<W> Token+}."
+				"Once per combat, ** take !S! [DD]: Obtain ** 1 {<W> Token+}.",
+				"Once per combat, ** take !S! [DD]: Have +!M! <S> ** this turn.",
+				"Once per combat, ** take !S! [DD]: Seal 1 card."
 			],
 			"NAME": "Affinities"
 		},
@@ -1874,11 +1874,11 @@
 			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Boost ** all {<W> Powers}.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, ** pay !S! [E]: Gain {0} [F] ** and gain !M! [Plated Armor].",
-				"Once per combat, ** pay !S! [E]: Gain {0} [A] ** and Retain !M! card(s).",
-				"Once per combat, ** pay !S! [E]: Gain {0} [I] ** and gain !M! [Orb_S].",
-				"Once per combat, ** pay !S! [E]: Gain {0} [B] ** and gain !M! [Artifact].",
-				"Once per combat, ** pay !S! [E]: Gain {0} [C] and ** convert {1} [HP] to !M! [THP]."
+				"Once per turn, ** pay !S! <R>: Boost [F], ** then increase this cost by 1.",
+				"Once per turn, ** pay !S! <G>: Boost [A], ** then increase this cost by 1.",
+				"Once per turn, ** pay !S! <B>: Boost [I], ** then increase this cost by 1.",
+				"Once per turn, ** pay !S! <L>: Boost [B], ** then increase this cost by 1.",
+				"Once per turn, ** pay !S! <D>: Boost [C], ** then increase this cost by 1."
 			],
 			"NAME": "Powers"
 		}

@@ -19,7 +19,9 @@ public class ModifyAffinityLevel extends GenericCardSelection
     protected boolean relative;
     protected boolean includeStar;
     protected boolean seal;
-    protected boolean seal_manual;
+    protected boolean seal_reshuffle;
+    protected boolean seal_free;
+
     protected Color flashColor = Colors.Gold(1).cpy();
     protected int level;
 
@@ -42,10 +44,11 @@ public class ModifyAffinityLevel extends GenericCardSelection
         this(card, null, 1, affinity, level, relative);
     }
 
-    public ModifyAffinityLevel Seal(boolean seal, boolean manual)
+    public ModifyAffinityLevel Seal(boolean seal, boolean reshuffle, boolean free)
     {
         this.seal = seal;
-        this.seal_manual = manual;
+        this.seal_reshuffle = reshuffle;
+        this.seal_free = free;
 
         return this;
     }
@@ -82,7 +85,7 @@ public class ModifyAffinityLevel extends GenericCardSelection
         {
             if (changed = !affinities.sealed)
             {
-                CombatStats.Affinities.Seal(affinities, seal_manual);
+                CombatStats.Affinities.Seal(affinities, seal_reshuffle, seal_free);
             }
         }
         else if (affinity == Affinity.General) // Modify all existing levels

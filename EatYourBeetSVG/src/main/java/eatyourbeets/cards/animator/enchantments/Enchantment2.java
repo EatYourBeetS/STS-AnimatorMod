@@ -11,6 +11,7 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerCondition;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Enchantment2 extends Enchantment
 {
@@ -21,26 +22,25 @@ public class Enchantment2 extends Enchantment
     {
         super(DATA, INDEX);
 
-        Initialize(0, 0, 0, 1);
+        Initialize(0, 0, 2, 1);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        if (upgradeIndex == 1)
-        {
-            upgradeSecondaryValue(1);
-        }
-        else if (upgradeIndex == 2)
-        {
-            upgradeMagicNumber(2);
-        }
+        upgradeSecondaryValue(upgradeIndex);
     }
 
     @Override
     public int GetMaxUpgradeIndex()
     {
         return 3;
+    }
+
+    @Override
+    public boolean CanUsePower(int cost)
+    {
+        return upgradeIndex > 0 || super.CanUsePower(cost);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Enchantment2 extends Enchantment
     @Override
     public void PayPowerCost(int cost)
     {
-        if (upgradeIndex == 2)
+        if (upgradeIndex >= 1)
         {
             GameActions.Bottom.TakeDamageAtEndOfTurn(secondaryValue);
         }
@@ -78,32 +78,23 @@ public class Enchantment2 extends Enchantment
         }
         else if (upgradeIndex == 2)
         {
-            final EYBCard fakeCard = new Defend_Star();
-            fakeCard.affinities.SetStar(2);
-            CombatStats.Affinities.SetLastCardPlayed(fakeCard);
             for (Affinity a : Affinity.Basic())
             {
-                CombatStats.Affinities.PlayerAffinities.Add(a, magicNumber);
+                CombatStats.Affinities.AddTempAffinity(a, magicNumber);
             }
-            CombatStats.onEndOfTurnLast.SubscribeOnce(__ ->
-            {
-                for (Affinity a : Affinity.Basic())
-                {
-                    CombatStats.Affinities.PlayerAffinities.Add(a, -magicNumber);
-                }
-            });
             GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.95f, 1.05f);
         }
         else if (upgradeIndex == 3)
         {
-            GameActions.Bottom.Add(AffinityToken.SelectTokenAction(name, true, true, 1))
-            .AddCallback(cards ->
-            {
-               for (AbstractCard c : cards)
-               {
-                   GameActions.Bottom.PlayCard(c, null);
-               }
-            });
+            GameActions.Last.SelectFromHand(name, 1, false)
+                    .SetFilter(c -> !GameUtilities.IsSealed(c))
+                    .AddCallback(cards ->
+                    {
+                        for (AbstractCard c : cards)
+                        {
+                            GameActions.Bottom.SealAffinities(c, false, true);
+                        }
+                    });
         }
         else
         {

@@ -823,14 +823,14 @@ public final class GameActions
         .SetUpgrade(upgraded, false);
     }
 
-    public ModifyAffinityLevel SealAffinities(AbstractCard card, boolean manual)
+    public ModifyAffinityLevel SealAffinities(AbstractCard card, boolean reshuffle, boolean free)
     {
-        return Add(new ModifyAffinityLevel(card, null, 0, false)).Seal(true, manual);
+        return Add(new ModifyAffinityLevel(card, null, 0, false)).Seal(true, reshuffle, free);
     }
 
-    public ModifyAffinityLevel SealAffinities(CardGroup group, int cards, boolean reshuffle)
+    public ModifyAffinityLevel SealAffinities(CardGroup group, int cards, boolean reshuffle, boolean free)
     {
-        return Add(new ModifyAffinityLevel(group, cards, null, 0, false)).Seal(true, reshuffle);
+        return Add(new ModifyAffinityLevel(group, cards, null, 0, false)).Seal(true, reshuffle, free);
     }
 
     public ModifyAffinityLevel ModifyAffinityLevel(AbstractCard card, Affinity affinity, int amount, boolean relative)

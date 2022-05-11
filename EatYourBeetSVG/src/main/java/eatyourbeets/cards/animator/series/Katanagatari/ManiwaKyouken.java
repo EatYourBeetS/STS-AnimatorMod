@@ -67,13 +67,13 @@ public class ManiwaKyouken extends AnimatorCard
 
         if (CheckSpecialCondition(true))
         {
-            GameActions.Last.SelectFromHand(name, 1, true)
-            .SetFilter(c -> GameUtilities.GetAffinityLevel(c, Affinity.Star, false) < 2)
+            GameActions.Last.SelectFromHand(name, 1, false)
+            .SetFilter(c -> !GameUtilities.IsSealed(c))
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.ModifyAffinityLevel(c, Affinity.Star, 2, false);
+                    GameActions.Bottom.SealAffinities(c, false, true);
                 }
             });
             this.exhaustOnUseOnce = true;

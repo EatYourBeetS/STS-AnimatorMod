@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -7,6 +8,7 @@ import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.RandomizedList;
 
@@ -16,8 +18,6 @@ public class MamizouFutatsuiwa extends AnimatorCard
             .SetSkill(1, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetColor(CardColor.COLORLESS)
             .SetSeries(CardSeries.TouhouProject);
-
-    private static final RandomizedList<AnimatorCard> shapeshifterPool = new RandomizedList<>();
 
     public MamizouFutatsuiwa()
     {
@@ -38,22 +38,18 @@ public class MamizouFutatsuiwa extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public void triggerOnAffinitySeal(boolean manual)
     {
-        super.triggerOnManualDiscard();
+        super.triggerOnAffinitySeal(manual);
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            if (shapeshifterPool.Size() == 0)
+            AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
+            if (card != null)
             {
-                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetNonColorlessCard(), c -> c.affinities.GetLevel(Affinity.Star) > 0));
-                shapeshifterPool.AddAll(JUtils.Filter(CardSeries.GetColorlessCards(), c -> c.affinities.GetLevel(Affinity.Star) > 0));
-            }
-
-            AnimatorCard shapeshifter = shapeshifterPool.Retrieve(rng, false);
-            if (shapeshifter != null)
-            {
-                GameActions.Bottom.MakeCardInHand(shapeshifter.makeCopy());
+                GameActions.Bottom.MakeCardInHand(card.makeCopy()).AddCallback(c -> {
+                    GameActions.Bottom.SealAffinities(c, false, true);
+                });
             }
         }
     }
@@ -67,17 +63,13 @@ public class MamizouFutatsuiwa extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromHand(name, 1, false)
+        GameActions.Bottom.ExhaustFromHand(name, 1, false)
         .SetOptions(false, false, false)
         .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0])
-        .SetFilter(c -> c instanceof AnimatorCard && !((AnimatorCard)c).affinities.HasStar())
         .AddCallback(cards ->
         {
-            AnimatorCard card = JUtils.SafeCast(cards.get(0), AnimatorCard.class);
-            if (card != null)
-            {
-                card.affinities.Set(Affinity.Star, 2);
-                card.flash();
+            for (AbstractCard c : cards) {
+                GameActions.Bottom.MakeCardInHand(c.makeCopy());
             }
         });
     }

@@ -470,6 +470,12 @@ public class GameUtilities
         return GetAffinityLevel(card, Affinity.Star, true) > 0;
     }
 
+    public static boolean IsSealed(AbstractCard card)
+    {
+        final EYBCardAffinities a = GetAffinities(card);
+        return a != null && a.sealed;
+    }
+
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
     {
         AbstractRoom room = GetCurrentRoom();

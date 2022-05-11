@@ -266,21 +266,23 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.33f);
     }
 
-    public void Seal(EYBCardAffinities affinities, boolean manual)
+    public void Seal(EYBCardAffinities affinities, boolean manual, boolean free)
     {
         if (affinities.sealed)
         {
             return;
         }
 
-        final int seal = PlayerAffinities.GetLevel(Affinity.Sealed);
-        if (seal <= 0)
-        {
-            return;
+        if (!free) {
+            final int seal = PlayerAffinities.GetLevel(Affinity.Sealed);
+            if (seal <= 0)
+            {
+                return;
+            }
+            PlayerAffinities.Set(Affinity.Sealed, seal - 1);
         }
 
         affinities.sealed = true;
-        PlayerAffinities.Set(Affinity.Sealed, seal - 1);
 
         final ArrayList<Affinity> list = new ArrayList<>();
         if (affinities.HasStar())
@@ -400,7 +402,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
             else {
                 SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, 0.95f);
-                GameActions.Bottom.SealAffinities(hoveredCard, true);
+                GameActions.Bottom.SealAffinities(hoveredCard, true, false);
             }
 
         }

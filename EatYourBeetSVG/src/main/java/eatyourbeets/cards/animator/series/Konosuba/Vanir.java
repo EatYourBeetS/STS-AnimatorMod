@@ -63,6 +63,7 @@ public class Vanir extends AnimatorCard
             GameActions.Bottom.Wait(0.25f);
             GameActions.Bottom.DealDamage(this, m, AttackEffects.SMASH);
         }
+
         GameActions.Bottom.ModifyAllInstances(uuid, c -> c.baseDamage = Math.max(0, c.baseDamage - c.magicNumber));
     }
 }

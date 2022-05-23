@@ -1,16 +1,13 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
-import eatyourbeets.powers.AnimatorPower;
-import eatyourbeets.powers.CombatStats;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -65,18 +62,18 @@ public class NobleFencer extends AnimatorCard
         GameActions.Bottom.GainBlock(block);
 
         GameActions.Bottom.EvokeOrb(1)
-                .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
-                .AddCallback(orbs ->
-                {
-                    if (orbs.size() > 0)
-                    {
-                        GameActions.Bottom.GainAgility(1);
-                        GameActions.Bottom.GainIntellect(1);
-                    }
-                    else
-                    {
-                        GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
-                    }
-                });
+        .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
+        .AddCallback(orbs ->
+        {
+            if (orbs.size() > 0)
+            {
+                GameActions.Bottom.GainAgility(1);
+                GameActions.Bottom.GainIntellect(1);
+            }
+            else
+            {
+                GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
+            }
+        });
     }
 }

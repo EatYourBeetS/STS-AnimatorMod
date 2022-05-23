@@ -26,7 +26,6 @@ import eatyourbeets.ui.hitboxes.RelativeHitbox;
 import eatyourbeets.utilities.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
@@ -61,7 +60,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
 
-        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f),  Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f), Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
@@ -113,20 +112,24 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public boolean TryUseAffinity(Affinity affinity, int requirement)
     {
-        if (affinity == Affinity.Star) {
-            for (Affinity a : Affinity.Basic()) {
+        if (affinity == Affinity.Star)
+        {
+            for (Affinity a : Affinity.Basic())
+            {
                 if (PlayerAffinities.GetRequirement(a) < requirement)
                 {
                     return false;
                 }
             }
 
-            for (Affinity a : Affinity.Basic()) {
+            for (Affinity a : Affinity.Basic())
+            {
                 PlayerAffinities.SetRequirement(a, PlayerAffinities.GetRequirement(a) - requirement);
             }
             return true;
         }
-        else {
+        else
+        {
             final int amount = PlayerAffinities.GetRequirement(affinity);
             if (amount < requirement)
             {
@@ -145,7 +148,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public int GetAffinityLevel(Affinity affinity)
     {
-        if (affinity == Affinity.Star) {
+        if (affinity == Affinity.Star)
+        {
             EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(PlayerAffinities.List, ac -> ac.type.ID >= 0), af -> af.level);
             return min != null ? min.level : 0;
         }
@@ -266,14 +270,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.33f);
     }
 
-    public void Seal(EYBCardAffinities affinities, boolean manual, boolean free)
+    public void Seal(EYBCardAffinities affinities, boolean manual)
     {
         if (affinities.sealed)
         {
             return;
         }
 
-        if (!free) {
+        if (manual)
+        {
             final int seal = PlayerAffinities.GetLevel(Affinity.Sealed);
             if (seal <= 0)
             {
@@ -368,7 +373,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
             if (player.hoveredCard instanceof EYBCard)
             {
-                hoveredCard = (EYBCard)player.hoveredCard;
+                hoveredCard = (EYBCard) player.hoveredCard;
             }
         }
 
@@ -394,17 +399,18 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         info_button.Update();
 
         if (hoveredCard != null && !draggingCard
-                && InputManager.RightClick.IsJustPressed() && GameUtilities.CanAcceptInput(true)
-                && PlayerAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
+         && InputManager.RightClick.IsJustPressed() && GameUtilities.CanAcceptInput(true)
+         && PlayerAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
         {
-            if (hoveredCard.affinities.sealed) {
+            if (hoveredCard.affinities.sealed)
+            {
                 GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
             }
-            else {
+            else
+            {
                 SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, 0.95f);
-                GameActions.Bottom.SealAffinities(hoveredCard, true, false);
+                GameActions.Bottom.SealAffinities(hoveredCard, true);
             }
-
         }
     }
 

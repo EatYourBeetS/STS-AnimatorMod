@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonse_Alt;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -43,18 +42,18 @@ public class ElricAlphonse extends AnimatorCard
             GameActions.Bottom.GainIntellect(1);
         }
 
-        if (info.TryActivateStarter() && info.TryActivateLimited()) {
+        if (info.TryActivateStarter() && info.TryActivateLimited())
+        {
             GameActions.Last.SelectFromPile(name, 1, p.discardPile)
-                    .SetFilter(c -> !GameUtilities.IsSealed(c))
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard c : cards)
-                        {
-                            GameActions.Bottom.SealAffinities(c, false, true);
-                        }
-                    });
+            .SetFilter(GameUtilities::CanSeal)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.SealAffinities(c, false);
+                }
+            });
         }
-
     }
 
     @Override

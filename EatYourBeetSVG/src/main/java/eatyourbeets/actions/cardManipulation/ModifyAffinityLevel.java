@@ -44,11 +44,10 @@ public class ModifyAffinityLevel extends GenericCardSelection
         this(card, null, 1, affinity, level, relative);
     }
 
-    public ModifyAffinityLevel Seal(boolean seal, boolean reshuffle, boolean free)
+    public ModifyAffinityLevel Seal(boolean seal, boolean reshuffle)
     {
         this.seal = seal;
         this.seal_reshuffle = reshuffle;
-        this.seal_free = free;
 
         return this;
     }
@@ -85,7 +84,7 @@ public class ModifyAffinityLevel extends GenericCardSelection
         {
             if (changed = !affinities.sealed)
             {
-                CombatStats.Affinities.Seal(affinities, seal_reshuffle, seal_free);
+                CombatStats.Affinities.Seal(affinities, seal_reshuffle);
             }
         }
         else if (affinity == Affinity.General) // Modify all existing levels

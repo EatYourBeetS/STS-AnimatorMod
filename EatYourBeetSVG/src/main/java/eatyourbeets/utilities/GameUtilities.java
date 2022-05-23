@@ -476,10 +476,16 @@ public class GameUtilities
         return a != null && a.sealed;
     }
 
+    public static boolean CanSeal(AbstractCard card)
+    {
+        final EYBCardAffinities a = GetAffinities(card);
+        return a != null && !a.sealed;
+    }
+
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)
     {
-        AbstractRoom room = GetCurrentRoom();
-        ArrayList<AbstractCreature> characters = new ArrayList<>();
+        final AbstractRoom room = GetCurrentRoom();
+        final ArrayList<AbstractCreature> characters = new ArrayList<>();
         if (room != null && room.monsters != null)
         {
             for (AbstractMonster m : room.monsters.monsters)

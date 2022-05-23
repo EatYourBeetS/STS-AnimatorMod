@@ -137,7 +137,7 @@ public class DrGenus extends AnimatorCard
                 {
                     DamageModifiers.For(card).Add(cardID, rng.random(-2, 2));
                 }
-                GameActions.Bottom.SealAffinities(card, false, true);
+                GameActions.Bottom.SealAffinities(card, false);
                 break;
         }
     }

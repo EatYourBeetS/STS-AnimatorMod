@@ -49,6 +49,7 @@ public class HighElfArcher extends AnimatorCard
     public void triggerOnAffinitySeal(boolean manual)
     {
         super.triggerOnAffinitySeal(manual);
+
         GameActions.Bottom.Draw(1);
     }
 }

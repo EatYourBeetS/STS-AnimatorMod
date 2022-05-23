@@ -2,7 +2,6 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.cardManipulation.RandomCostReduction;
 import eatyourbeets.actions.player.EndPlayerTurn;
 import eatyourbeets.cards.base.CardEffectChoice;
 import eatyourbeets.cards.base.EYBCardData;
@@ -56,7 +55,8 @@ public class Enchantment1 extends Enchantment
 
             choices.Select(1, null);
         }
-        else {
+        else
+        {
             switch (upgradeIndex)
             {
                 case 1: GameActions.Bottom.ChangeStance(ForceStance.STANCE_ID); break;

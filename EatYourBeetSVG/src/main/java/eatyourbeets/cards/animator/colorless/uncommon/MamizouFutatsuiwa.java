@@ -9,8 +9,6 @@ import eatyourbeets.cards.base.attributes.TempHPAttribute;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.RandomizedList;
 
 public class MamizouFutatsuiwa extends AnimatorCard
 {
@@ -47,9 +45,8 @@ public class MamizouFutatsuiwa extends AnimatorCard
             AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
             if (card != null)
             {
-                GameActions.Bottom.MakeCardInHand(card.makeCopy()).AddCallback(c -> {
-                    GameActions.Bottom.SealAffinities(c, false, true);
-                });
+                GameActions.Bottom.MakeCardInHand(card.makeCopy())
+                .AddCallback(c -> GameActions.Bottom.SealAffinities(c, false));
             }
         }
     }

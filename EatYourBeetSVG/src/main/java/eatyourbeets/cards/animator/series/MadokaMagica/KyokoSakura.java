@@ -60,7 +60,7 @@ public class KyokoSakura extends AnimatorCard
             for (int i = cards.size() - 1; i >= 0; i--)
             {
                 GameActions.Top.MoveCard(cards.get(i), player.hand, player.drawPile)
-                        .SetDestination(CardSelection.Top);
+                .SetDestination(CardSelection.Top);
             }
         });
     }

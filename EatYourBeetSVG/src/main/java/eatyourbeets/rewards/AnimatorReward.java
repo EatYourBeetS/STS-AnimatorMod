@@ -13,8 +13,8 @@ import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.animator.ultrarare.Azami;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
-import eatyourbeets.relics.animator.Destiny;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
@@ -27,45 +27,6 @@ public abstract class AnimatorReward extends CustomReward
     public static String CreateFullID(Class<? extends AnimatorReward> type)
     {
         return GR.Animator.CreateID(type.getSimpleName());
-    }
-
-    public static float GetUltraRareChance(AnimatorLoadout loadout)
-    {
-        final Float rate = GR.Common.Dungeon.GetFloat("UR_RATE", null);
-        if (rate != null)
-        {
-            if (rate > 0 && GameUtilities.InGame())
-            {
-                GR.Common.Dungeon.SetCheating();
-            }
-
-            return rate;
-        }
-
-        float bonus = 1;
-        int level = GR.Animator.Data.SpecialTrophies.Trophy1;
-        if (level > 0)
-        {
-            bonus += level / (level + 100f);
-        }
-
-        if (GameUtilities.HasRelic(Destiny.ID))
-        {
-            bonus += 0.4f;
-        }
-
-        if (loadout == null)
-        {
-            return 7f * bonus;
-        }
-        else if (loadout.IsBeta)
-        {
-            return 6f * bonus;
-        }
-        else
-        {
-            return 4f * bonus;
-        }
     }
 
     public AnimatorReward(String id, String text, RewardType type)
@@ -152,7 +113,7 @@ public abstract class AnimatorReward extends CustomReward
 
         final AbstractPlayer player = AbstractDungeon.player;
         final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
-        float chances = GetUltraRareChance(loadout);
+        float chances = AnimatorDungeonData.GetUltraRareChance();
         if (chances <= 0)
         {
             return;

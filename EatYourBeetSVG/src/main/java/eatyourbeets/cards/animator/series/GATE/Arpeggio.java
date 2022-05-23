@@ -65,7 +65,7 @@ public class Arpeggio extends AnimatorCard
         @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            if (GameUtilities.HasBlueAffinity(card)) {
+            if (GameUtilities.GetAffinityLevel(card, Affinity.Blue, true, true) > 0) {
                 CombatStats.Affinities.AddTempAffinity(Affinity.Blue, amount);
                 flash();
             }

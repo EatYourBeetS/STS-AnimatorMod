@@ -6,10 +6,10 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.resources.animator.misc.AnimatorTrophies;
-import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.hitboxes.AdvancedHitbox;
@@ -50,7 +50,7 @@ public class AnimatorSpecialTrophiesRenderer extends GUIElement
             return;
         }
 
-        trophyString = (specialTrophies.Trophy1 > 0) ? (" " + String.format("%.2f", AnimatorReward.GetUltraRareChance(GR.Animator.Data.SelectedLoadout)) + "%") : null;
+        trophyString = (specialTrophies.Trophy1 > 0) ? (" " + String.format("%.2f", AnimatorDungeonData.GetUltraRareChance()) + "%") : null;
         trophy_image.SetTexture(trophyString != null ? images.PLATINUM_TROPHY.Texture() : images.LOCKED_TROPHY.Texture()).Update();
 
         if (trophy_image.hb.hovered)

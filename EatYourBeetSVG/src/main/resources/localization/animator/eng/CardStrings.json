@@ -221,7 +221,7 @@
 		},
 		"animator:MamizouFutatsuiwa":
 		{
-			"DESCRIPTION": "Exhaust a card. Obtain a new copy of it. || <LIM>. When Sealed: ** Obtain a random card and Seal it.",
+			"DESCRIPTION": "Exhaust a card. Obtain a new copy of it. || <LIM>. When Sealed: ** Reshuffle your discard pile.",
 			"EXTENDED_DESCRIPTION": ["turn into a Shapeshifter."],
 			"NAME": "Mamizou Futatsuiwa"
 		},
@@ -247,9 +247,9 @@
 		},
 		"animator:QuestionMark":
 		{
-			"DESCRIPTION": "When drawn: ** Temporarily turn this ** another random card, ** and give it {LV1} <S>.",
+			"DESCRIPTION": "Unplayable. || When Sealed: ** Exhaust, then Obtain a random card.",
 			"NAME": "Question Mark",
-			"UPGRADE_DESCRIPTION": "When drawn: ** Temporarily turn this into another random ** Upgraded card, and ** give it {LV2} <S>."
+			"UPGRADE_DESCRIPTION": "Unplayable. || When Sealed: ** Exhaust, then Obtain a random upgraded card."
 		},
 		"animator:Shimakaze":
 		{
@@ -891,7 +891,7 @@
 		"animator:Biyorigo":
 		{
 			"DESCRIPTION": "Sealing <R> cards ** also grants !M! [Metallicize]. || Once|Twice per combat, ** pay [E]: Gain [Artifact].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || #ySealing <R> cards also grants #b{1} [Metallicize] (Max #b{2}^)."],
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E] to gain #b1 #yTemporary [Artifact]. || #ySealing <R> cards also grants #b{1} [Metallicize] (Max #b{2}^ per Seal)."],
 			"NAME": "Biyorigo"
 		},
 		"animator:Emonzaemon":
@@ -1454,8 +1454,8 @@
 		},
 		"animator:MetalKnight":
 		{
-			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, pay [E]: ** Convert 1 [Lightning] to [Plasma].",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: Convert #b1 [Lightning] to [Plasma]."],
+			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, pay [E]: ** Channel 1 [Plasma].",
+			"EXTENDED_DESCRIPTION": ["Pay [E]: Channel #b1 [Plasma]."],
 			"NAME": "Metal Knight"
 		},
 		"animator:MetalBat":

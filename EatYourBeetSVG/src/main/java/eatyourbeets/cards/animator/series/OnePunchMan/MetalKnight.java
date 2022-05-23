@@ -63,7 +63,7 @@ public class MetalKnight extends AnimatorCard
         {
             super(owner, MetalKnight.DATA, PowerTriggerConditionType.Energy, 1);
 
-            triggerCondition.SetUses(amount, false, true).SetCondition(__ -> GameUtilities.HasOrb(Lightning.ORB_ID));
+            triggerCondition.SetUses(amount, false, true);
 
             Initialize(amount);
         }
@@ -73,15 +73,7 @@ public class MetalKnight extends AnimatorCard
         {
             super.OnUse(m);
 
-            GameActions.Bottom.Callback(() ->
-            {
-                final AbstractOrb orb = GameUtilities.GetFirstOrb(Lightning.ORB_ID);
-                if (orb != null)
-                {
-                    GameActions.Top.ChannelOrb(new Plasma());
-                    GameActions.Top.Add(new RemoveOrb(orb));
-                }
-            });
+            GameActions.Bottom.ChannelOrb(new Plasma());
             ReducePower(1);
         }
     }

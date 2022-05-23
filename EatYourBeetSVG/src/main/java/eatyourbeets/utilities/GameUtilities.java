@@ -334,10 +334,14 @@ public class GameUtilities
         return (a != null && !a.sealed) ? a.Get(affinity, false) : null;
     }
 
-    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel)
+    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel) {
+        return GetAffinityLevel(card, affinity, useStarLevel, false);
+    }
+
+    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel, boolean ignoreSealed)
     {
         final EYBCardAffinities a = GetAffinities(card);
-        return (a != null && !a.sealed) ? a.GetLevel(affinity, useStarLevel) : 0;
+        return (a != null && (ignoreSealed || !a.sealed)) ? a.GetLevel(affinity, useStarLevel) : 0;
     }
 
     public static AnimatorAscensionManager GetAscensionData()

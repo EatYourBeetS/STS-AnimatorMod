@@ -7,17 +7,20 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.effects.SFX;
+import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
+import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
-public class AnimatorCharacter extends EYBPlayerCharacter
+public class AnimatorCharacter extends EYBPlayerCharacter implements OnReceiveRewardsListener
 {
     public static final CharacterStrings characterStrings = AnimatorResources.GetCharacterStrings("Animator");
     public static final String[] NAMES = characterStrings.NAMES;
@@ -148,5 +151,14 @@ public class AnimatorCharacter extends EYBPlayerCharacter
         }
 
         return GR.Animator.Data.SelectedLoadout;
+    }
+
+    @Override
+    public void OnReceiveRewards(ArrayList<RewardItem> rewards, boolean normalRewards)
+    {
+        if (normalRewards)
+        {
+            GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, AnimatorDungeonData.GetUltraRareChance(), true, AnimatorDungeonData.CreateUltraRare(this));
+        }
     }
 }

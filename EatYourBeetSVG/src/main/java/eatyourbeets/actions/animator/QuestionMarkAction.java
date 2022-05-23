@@ -56,7 +56,7 @@ public class QuestionMarkAction extends EYBAction
             player.hand.group.add(index, copy);
             player.hand.glowCheck();
 
-            CombatStats.onStartOfTurn.Subscribe(questionMark);
+            //CombatStats.onStartOfTurn.Subscribe(questionMark);
         }
 
         Complete();

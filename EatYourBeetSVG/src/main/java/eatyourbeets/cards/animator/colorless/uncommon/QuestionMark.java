@@ -4,15 +4,13 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.actions.animator.QuestionMarkAction;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
-public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscriber
+public class QuestionMark extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(QuestionMark.class)
             .SetSkill(-2, CardRarity.UNCOMMON, EYBCardTarget.ALL)
@@ -33,50 +31,21 @@ public class QuestionMark extends AnimatorCard implements OnStartOfTurnSubscribe
     }
 
     @Override
-    public void triggerWhenDrawn()
-    {
-        super.triggerWhenDrawn();
-
-        GameActions.Bottom.Add(new QuestionMarkAction(this));
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
 
     }
 
     @Override
-    public void OnStartOfTurn()
+    public void triggerOnAffinitySeal(boolean manual)
     {
-        if (!player.hand.contains(copy))
+        super.triggerOnAffinitySeal(manual);
+
+        AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
+        if (card != null)
         {
-            if (TransformBack(player.drawPile) || TransformBack(player.discardPile) || TransformBack(player.exhaustPile))
-            {
-                CombatStats.onStartOfTurn.Unsubscribe(this);
-            }
+            GameActions.Bottom.MakeCardInHand(card.makeCopy()).SetUpgrade(upgraded, false);
+            GameActions.Last.Exhaust(this);
         }
-    }
-
-    private boolean TransformBack(CardGroup group)
-    {
-        int index = group.group.indexOf(copy);
-        if (index >= 0)
-        {
-            group.group.remove(index);
-            group.group.add(index, this);
-
-            this.current_x = copy.current_x;
-            this.current_y = copy.current_y;
-            this.target_x  = copy.target_x;
-            this.target_y  = copy.target_y;
-
-            this.untip();
-            this.stopGlowing();
-
-            return true;
-        }
-
-        return false;
     }
 }

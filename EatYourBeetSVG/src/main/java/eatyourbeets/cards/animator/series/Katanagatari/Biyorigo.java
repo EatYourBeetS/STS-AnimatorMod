@@ -82,7 +82,7 @@ public class Biyorigo extends AnimatorCard
         @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            if (GameUtilities.HasRedAffinity(card)) {
+            if (GameUtilities.GetAffinityLevel(card, Affinity.Red, true, true) > 0) {
                 GameActions.Bottom.GainMetallicize(amount);
                 flash();
             }

@@ -44,13 +44,7 @@ public class MamizouFutatsuiwa extends AnimatorCard
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
-            if (card != null)
-            {
-                GameActions.Bottom.MakeCardInHand(card.makeCopy()).AddCallback(c -> {
-                    GameActions.Bottom.SealAffinities(c, false, true);
-                });
-            }
+            GameActions.Delayed.ReshuffleDiscardPile(false);
         }
     }
 

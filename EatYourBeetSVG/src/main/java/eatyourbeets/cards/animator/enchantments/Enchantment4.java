@@ -3,10 +3,8 @@ package eatyourbeets.cards.animator.enchantments;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerCondition;
-import eatyourbeets.powers.replacement.TemporaryRetainPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Enchantment4 extends Enchantment
@@ -49,7 +47,8 @@ public class Enchantment4 extends Enchantment
             secondaryValue += 1;
             isSecondaryValueModified = true;
         }
-        else {
+        else
+        {
             super.PayPowerCost(cost);
         }
     }

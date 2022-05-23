@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.BlockModifiers;
 import eatyourbeets.cards.base.modifiers.DamageModifiers;
@@ -35,7 +34,9 @@ public class Mitsuba extends AnimatorCard
     public void triggerOnAffinitySeal(boolean manual)
     {
         super.triggerOnAffinitySeal(manual);
-        if (CombatStats.TryActivateLimited(cardID)) {
+
+        if (CombatStats.TryActivateLimited(cardID))
+        {
             GameEffects.Queue.ShowCardBriefly(makeStatEquivalentCopy());
             this.affinities.sealed = false;
         }

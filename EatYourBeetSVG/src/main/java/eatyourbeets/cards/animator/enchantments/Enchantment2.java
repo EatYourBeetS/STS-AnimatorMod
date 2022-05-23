@@ -2,10 +2,8 @@ package eatyourbeets.cards.animator.enchantments;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.basic.Defend_Star;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
@@ -87,14 +85,14 @@ public class Enchantment2 extends Enchantment
         else if (upgradeIndex == 3)
         {
             GameActions.Last.SelectFromHand(name, 1, false)
-                    .SetFilter(c -> !GameUtilities.IsSealed(c))
-                    .AddCallback(cards ->
-                    {
-                        for (AbstractCard c : cards)
-                        {
-                            GameActions.Bottom.SealAffinities(c, false, true);
-                        }
-                    });
+            .SetFilter(GameUtilities::CanSeal)
+            .AddCallback(cards ->
+            {
+                for (AbstractCard c : cards)
+                {
+                    GameActions.Bottom.SealAffinities(c, false);
+                }
+            });
         }
         else
         {

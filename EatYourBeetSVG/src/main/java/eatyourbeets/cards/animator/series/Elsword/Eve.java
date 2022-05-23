@@ -106,13 +106,13 @@ public class Eve extends AnimatorCard
                 for (int i = 0; i < amount; i++)
                 {
                     GameActions.Bottom.DealDamageToRandomEnemy(damage, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
-                            .SetOptions(true, false)
-                            .SetDamageEffect(enemy ->
-                            {
-                                SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
-                                GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
-                                return 0f;
-                            });
+                    .SetOptions(true, false)
+                    .SetDamageEffect(enemy ->
+                    {
+                        SFX.Play(SFX.ATTACK_MAGIC_BEAM_SHORT, 0.9f, 1.1f);
+                        GameEffects.List.Add(VFX.SmallLaser(owner.hb, enemy.hb, Color.CYAN));
+                        return 0f;
+                    });
                 }
 
                 this.flash();

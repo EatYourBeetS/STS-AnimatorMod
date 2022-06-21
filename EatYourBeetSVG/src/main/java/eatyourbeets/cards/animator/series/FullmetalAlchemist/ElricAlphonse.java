@@ -42,18 +42,15 @@ public class ElricAlphonse extends AnimatorCard
             GameActions.Bottom.GainIntellect(1);
         }
 
-        if (info.TryActivateStarter() && info.TryActivateLimited())
-        {
-            GameActions.Last.SelectFromPile(name, 1, p.discardPile)
-            .SetFilter(GameUtilities::CanSeal)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
+        GameActions.Last.SelectFromPile(name, 1, p.discardPile)
+                .SetFilter(GameUtilities::CanSeal)
+                .AddCallback(cards ->
                 {
-                    GameActions.Bottom.SealAffinities(c, false);
-                }
-            });
-        }
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.SealAffinities(c, false);
+                    }
+                });
     }
 
     @Override

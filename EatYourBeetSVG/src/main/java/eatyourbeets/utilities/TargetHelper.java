@@ -169,11 +169,10 @@ public class TargetHelper
             {
                 case Normal:
                 {
-                    if (target == null)
+                    if (target != null)
                     {
-                        throw new RuntimeException("TargetSelection.Mode." + mode.name() + " requires a fixed target.");
+                        targets.add(target);
                     }
-                    targets.add(target);
                     break;
                 }
 

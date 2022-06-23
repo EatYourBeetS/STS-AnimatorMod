@@ -43,6 +43,7 @@ public class ElricAlphonse extends AnimatorCard
         }
 
         GameActions.Last.SelectFromPile(name, 1, p.discardPile)
+                .SetOptions(false, true)
                 .SetFilter(GameUtilities::CanSeal)
                 .AddCallback(cards ->
                 {

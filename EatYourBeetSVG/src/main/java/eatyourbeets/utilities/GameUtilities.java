@@ -483,7 +483,7 @@ public class GameUtilities
     public static boolean CanSeal(AbstractCard card)
     {
         final EYBCardAffinities a = GetAffinities(card);
-        return a != null && !a.sealed;
+        return a != null && !a.sealed && a.GetLevel(Affinity.General) > 0;
     }
 
     public static ArrayList<AbstractCreature> GetAllCharacters(boolean aliveOnly)

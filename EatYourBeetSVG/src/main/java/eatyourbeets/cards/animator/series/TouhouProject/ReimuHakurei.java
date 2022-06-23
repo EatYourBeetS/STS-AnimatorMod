@@ -34,24 +34,23 @@ public class ReimuHakurei extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_VERTICAL);
-        GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
+        GameActions.Last.SelectFromPile(name, 1, p.hand)
+                .SetOptions(false, true)
+                .SetFilter(GameUtilities::CanSeal)
+                .AddCallback(cards ->
+                {
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.SealAffinities(c, false);
+                    }
+                });
     }
 
     @Override
     public void triggerOnAffinitySeal(boolean manual)
     {
-        GameActions.Delayed.Callback(() ->
-        {
-            for (AbstractCard c : player.hand.group)
-            {
-                if (c instanceof AffinityToken)
-                {
-                    GameUtilities.Retain(c);
-                    BlockModifiers.For(c).Add(cardID, secondaryValue);
-                    c.superFlash();
-                }
-            }
-        });
+        super.triggerOnAffinitySeal(manual);
+        GameActions.Bottom.ObtainAffinityToken(Affinity.Light, false);
     }
 }
 

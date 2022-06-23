@@ -40,6 +40,7 @@ public class TukaLunaMarceau extends AnimatorCard
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Last.SelectFromPile(name, 1, p.drawPile)
+                .SetOptions(false, true)
                 .SetFilter(GameUtilities::CanSeal)
                 .AddCallback(cards ->
                 {

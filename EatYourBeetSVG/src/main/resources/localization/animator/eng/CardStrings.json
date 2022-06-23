@@ -201,7 +201,7 @@
 		},
 		"animator:Kuroyukihime_BlackLotus":
 		{
-			"DESCRIPTION": "Gain [F] [A]. || !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
+			"DESCRIPTION": "Gain [F] [A]. || !A! <G>: <DRW-M>, ** then increase <G> ** requirement by 1.",
 			"NAME": "Black Lotus"
 		},
 		"animator:LimeBell":
@@ -1783,7 +1783,7 @@
 		},
 		"animator:ReimuHakurei":
 		{
-			"DESCRIPTION": "Obtain 1 {<L> Token}. || When Sealed: ** Retain all {<W> Tokens} ** and give them +!S! [Block].",
+			"DESCRIPTION": "Seal a card in hand. || When Sealed: Obtain 1 {<L> Token}.",
 			"NAME": "Reimu Hakurei"
 		},
 		"animator:ReisenInaba":

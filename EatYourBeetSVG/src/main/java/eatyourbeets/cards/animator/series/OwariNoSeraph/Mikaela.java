@@ -17,8 +17,7 @@ public class Mikaela extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Mikaela.class)
             .SetAttack(1, CardRarity.COMMON)
-            .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(new Status_Wound(), false));
+            .SetSeriesFromClassPackage();
 
     public Mikaela()
     {

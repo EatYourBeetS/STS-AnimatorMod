@@ -240,7 +240,7 @@ public class GR
             {
                 try
                 {
-                    logger.info("Adding: " + s);
+                    //logger.info("Adding: " + s);
 
                     LoadCustomRelic(Class.forName(s), cardColor);
                 }
@@ -282,7 +282,7 @@ public class GR
             {
                 try
                 {
-                    logger.info("Adding: " + s);
+                    //logger.info("Adding: " + s);
 
                     LoadCustomCard(Class.forName(s));
                 }
@@ -334,7 +334,7 @@ public class GR
             {
                 try
                 {
-                    logger.info("Adding: " + s);
+                    //logger.info("Adding: " + s);
 
                     Class<?> type = Class.forName(s);
                     if (CanInstantiate(type))

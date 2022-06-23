@@ -52,8 +52,10 @@ public class EYBCardPreview
         }
         else if (AbstractDungeon.player == null || !AbstractDungeon.player.isDraggingCard)
         {
-            final float offset_y = (AbstractCard.IMG_HEIGHT * 0.5f - AbstractCard.IMG_HEIGHT * 0.4f) * card.drawScale;
-            final float offset_x = (AbstractCard.IMG_WIDTH * 0.5f + AbstractCard.IMG_WIDTH * 0.4f + 16f) * ((card.current_x > Settings.WIDTH * 0.7f) ? card.drawScale : -card.drawScale);
+            final float offset_y = (AbstractCard.IMG_HEIGHT * 0.5f - AbstractCard.IMG_HEIGHT * 0.4f)
+                    * ((card.current_x > Settings.WIDTH * 0.85f) ? card.drawScale * (card.current_y > Settings.HEIGHT * 0.7f ? -10 : 6) : card.drawScale);
+            final float offset_x = (AbstractCard.IMG_WIDTH * 0.5f + AbstractCard.IMG_WIDTH * 0.4f + 16f)
+                    * (card.current_x > Settings.WIDTH * 0.85f ? 0 : card.current_x > Settings.WIDTH * 0.7f ? card.drawScale : -card.drawScale);
 
             preview.current_x = card.current_x + offset_x;
             preview.current_y = card.current_y + offset_y;

@@ -27,7 +27,7 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Green(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.General, 2);
+        SetAffinityRequirement(Affinity.Green, 2);
     }
 
     @Override
@@ -41,14 +41,14 @@ public class Kuroyukihime_BlackLotus extends AnimatorCard
         GameActions.Bottom.StackAffinityPower(Affinity.Red);
         GameActions.Bottom.StackAffinityPower(Affinity.Green);
 
-        if (TryUseAffinity(Affinity.General))
+        if (TryUseAffinity(Affinity.Green))
         {
             GameActions.Bottom.Draw(magicNumber);
             GameActions.Bottom.ModifyAllInstances(uuid)
             .AddCallback(card ->
             {
                 final Kuroyukihime_BlackLotus c = (Kuroyukihime_BlackLotus)card;
-                c.SetAffinityRequirement(Affinity.General, c.affinities.GetRequirement(Affinity.General) + 1);
+                c.SetAffinityRequirement(Affinity.General, c.affinities.GetRequirement(Affinity.Green) + 1);
             });
         }
     }

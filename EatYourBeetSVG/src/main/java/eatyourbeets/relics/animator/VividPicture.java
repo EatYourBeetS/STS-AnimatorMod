@@ -46,6 +46,7 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
         relic.targetY = targetY;
         relic.instantObtain(player, index >= 0 ? index : player.relics.size(), true);
         relic.OnEquipUnnamedReignRelic();
+        player.relics.remove(this);
     }
 
     @Override

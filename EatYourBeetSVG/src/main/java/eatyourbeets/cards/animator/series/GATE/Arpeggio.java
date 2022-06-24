@@ -10,7 +10,6 @@ import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Arpeggio extends AnimatorCard
 {
@@ -65,7 +64,8 @@ public class Arpeggio extends AnimatorCard
         @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            if (GameUtilities.GetAffinityLevel(card, Affinity.Blue, true, true) > 0) {
+            if (card.affinities.GetLevel(Affinity.Blue, true) > 0)
+            {
                 CombatStats.Affinities.AddTempAffinity(Affinity.Blue, amount);
                 flash();
             }

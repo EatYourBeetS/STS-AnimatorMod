@@ -43,7 +43,7 @@ public class SanaeKochiya extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-        GameActions.Bottom.GainBlessing(magicNumber, true);
+        GameActions.Bottom.GainBlessing(magicNumber, false);
     }
 
     @Override

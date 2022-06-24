@@ -334,7 +334,8 @@ public class GameUtilities
         return (a != null && !a.sealed) ? a.Get(affinity, false) : null;
     }
 
-    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel) {
+    public static int GetAffinityLevel(AbstractCard card, Affinity affinity, boolean useStarLevel)
+    {
         return GetAffinityLevel(card, affinity, useStarLevel, false);
     }
 

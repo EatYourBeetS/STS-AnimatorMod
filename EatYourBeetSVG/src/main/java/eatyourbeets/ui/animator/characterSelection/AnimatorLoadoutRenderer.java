@@ -73,11 +73,11 @@ public class AnimatorLoadoutRenderer extends GUIElement
         startingCardsRightHb.move(startingCardsSelectedHb.x + startingCardsSelectedHb.width + (10 * Settings.scale), POS_Y - (10 * Settings.scale));
 
         RandomizeButton = new GUI_Button(GR.Common.Images.Randomize.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(70)).SetText("")
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(110), POS_Y - Scale(55)).SetText("")
         .SetOnClick(this::RandomizeLoadout);
 
         LoadoutEditorButton = new GUI_Button(GR.Common.Images.SwapCards.Texture(), new AdvancedHitbox(0, 0, Scale(64), Scale(64)))
-        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(70)).SetText("")
+        .SetPosition(startingCardsRightHb.x + startingCardsRightHb.width - Scale(50), POS_Y - Scale(55)).SetText("")
         .SetTooltip(charSelectStrings.DeckEditor, charSelectStrings.DeckEditorInfo, false)
         .SetOnRightClick(this::ChangePreset)
         .SetOnClick(this::OpenLoadoutEditor);
@@ -281,11 +281,11 @@ public class AnimatorLoadoutRenderer extends GUIElement
         FontHelper.renderFont(sb, font, subtitle.text, startingCardsSelectedHb.x, startingCardsSelectedHb.cY + (20 * Settings.scale), subtitle.color);
         if (score1.text != null)
         {
-            FontHelper.renderFont(sb, font, score1.text, startingCardsSelectedHb.x + (5 * Settings.scale), startingCardsSelectedHb.cY - (65 * Settings.scale), score1.color);
+            FontHelper.renderFont(sb, font, score1.text, startingCardsSelectedHb.x + (5 * Settings.scale), startingCardsSelectedHb.cY - (50 * Settings.scale), score1.color);
         }
         if (score2.text != null)
         {
-            FontHelper.renderFont(sb, font, score2.text, startingCardsSelectedHb.x + (60 * Settings.scale), startingCardsSelectedHb.cY - (65 * Settings.scale), score2.color);
+            FontHelper.renderFont(sb, font, score2.text, startingCardsSelectedHb.x + (60 * Settings.scale), startingCardsSelectedHb.cY - (50 * Settings.scale), score2.color);
         }
         font.getData().setScale(originalScale);
 

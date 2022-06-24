@@ -201,7 +201,7 @@
 		},
 		"animator:Kuroyukihime_BlackLotus":
 		{
-			"DESCRIPTION": "Gain [F] [A]. || !A! <W>: <DRW-M>, ** then increase <W> ** requirement by 1.",
+			"DESCRIPTION": "Gain [F] [A]. || !A! <G>: <DRW-M>, ** then increase <G> ** requirement by 1.",
 			"NAME": "Black Lotus"
 		},
 		"animator:LimeBell":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Gain [A]. Discard 1 card. || !A! <G>: <DRW-M>.",
+			"DESCRIPTION": "Gain !S! [A]. Discard 1 card. || !A! <G>: <DRW-M>.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -404,7 +404,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. Synergy or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. When discarded: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -541,7 +541,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || <LIM>. <ST>. Seal a card in your discard pile.",
+			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || Seal a card in your discard pile.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -691,7 +691,7 @@
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "Retain 1 {<W> Token} ** and give it +!M! [Block]. || If you have no [Block]: ** <DRW>.",
+			"DESCRIPTION": "Seal a card in your draw pile. || If you have no [Block]: ** <DRW>.",
 			"NAME": "Tuka"
 		},
 		"animator:Tyuule":
@@ -1783,7 +1783,7 @@
 		},
 		"animator:ReimuHakurei":
 		{
-			"DESCRIPTION": "Obtain 1 {<L> Token}. || When Sealed: ** Retain all {<W> Tokens} ** and give them +!S! [Block].",
+			"DESCRIPTION": "Seal a card in hand. || When Sealed: Obtain 1 {<L> Token}.",
 			"NAME": "Reimu Hakurei"
 		},
 		"animator:ReisenInaba":

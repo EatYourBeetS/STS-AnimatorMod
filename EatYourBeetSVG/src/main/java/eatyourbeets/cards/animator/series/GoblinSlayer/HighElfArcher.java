@@ -34,11 +34,6 @@ public class HighElfArcher extends AnimatorCard
         GameActions.Bottom.DealDamage(this, m, AttackEffects.NONE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.ThrowDagger(c.hb, 0.15f).SetColor(Color.TAN)).duration * 0.5f);
 
-        if (info.IsStarter)
-        {
-            GameActions.Bottom.Draw(1);
-        }
-
         if (!GameUtilities.HasArtifact(m))
         {
             GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);

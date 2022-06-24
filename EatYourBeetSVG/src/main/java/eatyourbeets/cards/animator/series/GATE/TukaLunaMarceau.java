@@ -39,21 +39,16 @@ public class TukaLunaMarceau extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.SelectFromHand(name, 1, false)
-        .SetOptions(false, false, false)
-        .SetFilter(AffinityToken.class::isInstance)
-        .AddCallback(cards ->
-        {
-            for (AbstractCard c : cards)
-            {
-                if (c instanceof AffinityToken)
+        GameActions.Last.SelectFromPile(name, 1, p.drawPile)
+                .SetOptions(false, true)
+                .SetFilter(GameUtilities::CanSeal)
+                .AddCallback(cards ->
                 {
-                    GameUtilities.Retain(c);
-                    BlockModifiers.For(c).Add(cardID, magicNumber);
-                    c.superFlash();
-                }
-            }
-        });
+                    for (AbstractCard c : cards)
+                    {
+                        GameActions.Bottom.SealAffinities(c, false);
+                    }
+                });
     }
 
     @Override

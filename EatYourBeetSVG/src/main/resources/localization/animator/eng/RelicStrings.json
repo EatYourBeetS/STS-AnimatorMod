@@ -14,7 +14,7 @@
 	},
 	"animator:BattleDrones":
 	{
-		"DESCRIPTIONS": ["Whenever a card #ySynergizes, deal #b{0} damage to a random enemy and gain #b{1} #yBlock."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a card, deal #b{0} damage to a random enemy and gain #b{1} #yBlock."],
 		"FLAVOR": "Engineering perfection.",
 		"NAME": "Battle Drones"
 	},

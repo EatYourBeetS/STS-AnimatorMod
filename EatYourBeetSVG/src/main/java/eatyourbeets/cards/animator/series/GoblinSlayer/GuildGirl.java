@@ -10,6 +10,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -67,11 +68,12 @@ public class GuildGirl extends AnimatorCard
         }
 
         @Override
-        protected void onAmountChanged(int previousAmount, int difference)
+        public void atStartOfTurnPostDraw()
         {
-            super.onAmountChanged(previousAmount, difference);
+            super.atStartOfTurnPostDraw();
 
-            //GR.UI.CombatScreen.Mulligan.AddUsesPerTurn(difference);
+            GameActions.Delayed.Cycle(name, amount);
+            this.flash();
         }
 
         @Override
@@ -82,6 +84,12 @@ public class GuildGirl extends AnimatorCard
                 GameActions.Top.Add(new GainGold(GOLD_GAIN, true));
                 this.flash();
             }
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, amount, GOLD_GAIN);
         }
     }
 }

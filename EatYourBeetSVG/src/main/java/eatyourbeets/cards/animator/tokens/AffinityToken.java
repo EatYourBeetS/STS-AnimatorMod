@@ -93,7 +93,7 @@ public abstract class AffinityToken extends AnimatorCard
     @Override
     public void triggerOnAffinitySeal(boolean manual)
     {
-        GameActions.Top.Exhaust(this);
+        GameActions.Last.Exhaust(this);
     }
 
     public static SelectFromPile SelectTokenAction(String name, boolean upgraded, boolean noBlock, int amount)

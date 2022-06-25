@@ -731,8 +731,8 @@
 		},
 		"animator:GuildGirl":
 		{
-			"DESCRIPTION": "Once per turn: Send a card to ** your draw pile to draw 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold] ** (Does not stack).",
-			"EXTENDED_DESCRIPTION": ["Send a card to your draw pile to draw #b1 card. #pRight-Click a card to use (#b{0} use(s))."],
+			"DESCRIPTION": "Once per turn: Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold] ** (Does not stack).",
+			"EXTENDED_DESCRIPTION": ["Cycle #b{0} card. Whenever a non-minion enemy dies, gain #b{1} #yGold."],
 			"NAME": "Guild Girl"
 		},
 		"animator:HeavyWarrior":

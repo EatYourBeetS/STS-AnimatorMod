@@ -268,6 +268,7 @@ public class SelectFromPile extends EYBActionWithCallback<ArrayList<AbstractCard
 
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.GRID) // cancelled
         {
+            player.hand.group.addAll(fakeHandGroup.group);
             Complete();
         }
     }

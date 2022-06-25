@@ -10,7 +10,6 @@ import eatyourbeets.powers.AnimatorClickablePower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Biyorigo extends AnimatorCard
 {
@@ -82,7 +81,8 @@ public class Biyorigo extends AnimatorCard
         @Override
         public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            if (GameUtilities.GetAffinityLevel(card, Affinity.Red, true, true) > 0) {
+            if (card.affinities.GetLevel(Affinity.Red, true) > 0)
+            {
                 GameActions.Bottom.GainMetallicize(amount);
                 flash();
             }

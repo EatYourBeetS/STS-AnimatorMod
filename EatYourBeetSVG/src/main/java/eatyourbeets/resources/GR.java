@@ -240,13 +240,15 @@ public class GR
             {
                 try
                 {
-                    //logger.info("Adding: " + s);
-
                     LoadCustomRelic(Class.forName(s), cardColor);
                 }
                 catch (ClassNotFoundException e)
                 {
                     logger.warn("Class not found : " + s);
+                }
+                catch (Exception e)
+                {
+                    logger.error("Failed to load relic : " + s, e);
                 }
             }
         }
@@ -282,13 +284,15 @@ public class GR
             {
                 try
                 {
-                    //logger.info("Adding: " + s);
-
                     LoadCustomCard(Class.forName(s));
                 }
                 catch (ClassNotFoundException e)
                 {
                     logger.warn("Class not found : " + s);
+                }
+                catch (Exception e)
+                {
+                    logger.error("Failed to load card : " + s, e);
                 }
             }
         }
@@ -334,8 +338,6 @@ public class GR
             {
                 try
                 {
-                    //logger.info("Adding: " + s);
-
                     Class<?> type = Class.forName(s);
                     if (CanInstantiate(type))
                     {
@@ -345,6 +347,10 @@ public class GR
                 catch (ClassNotFoundException e)
                 {
                     logger.warn("Class not found : " + s);
+                }
+                catch (Exception e)
+                {
+                    logger.error("Failed to load power : " + s, e);
                 }
             }
         }

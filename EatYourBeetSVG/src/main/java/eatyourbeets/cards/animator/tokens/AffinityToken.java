@@ -77,8 +77,8 @@ public abstract class AffinityToken extends AnimatorCard
     {
         super(cardData);
 
-        Initialize(0, 5, 1, 2);
-        SetUpgrade(0, 2, 0, 0);
+        Initialize(0, 6, 1, 2);
+        SetUpgrade(0, 0, 0, 1);
         InitializeAffinity(affinity, 1, 1, 0);
 
         this.affinity = affinity;
@@ -91,7 +91,7 @@ public abstract class AffinityToken extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
         GameActions.Last.Exhaust(this);
     }

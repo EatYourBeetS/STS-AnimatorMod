@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Fate;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Dark;
@@ -8,7 +7,6 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -31,6 +29,8 @@ public class Caster extends AnimatorCard
 
         SetEthereal(true);
         SetExhaust(true);
+
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
@@ -64,12 +64,18 @@ public class Caster extends AnimatorCard
         GameActions.Bottom.ReduceStrength(m, magicNumber, false).SetStrengthGain(true);
         GameActions.Bottom.ApplyFrail(info.IsStarter ? p : null, p, secondaryValue);
         GameActions.Bottom.GainCorruption(magicNumber);
+
+        if (TryUseAffinity(Affinity.Dark))
+        {
+            GameActions.Bottom.ChannelOrb(new Dark());
+        }
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
+
         GameActions.Bottom.ChannelOrb(new Dark());
     }
 }

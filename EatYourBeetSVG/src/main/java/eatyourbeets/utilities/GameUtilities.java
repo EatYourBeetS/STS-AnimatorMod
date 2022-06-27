@@ -1306,11 +1306,11 @@ public class GameUtilities
         }
         if (card.cost >= 0)
         {
-            ModifyCostForCombat(card, 0, false);
+            ModifyCostForCombat(card, Mathf.Max(0, card.cost - 2), false);
         }
 
         card.tags.add(EYBCard.PURGE);
-        card.freeToPlayOnce = true;
+        //card.freeToPlayOnce = true;
 
         return card;
     }

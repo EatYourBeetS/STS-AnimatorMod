@@ -46,9 +46,15 @@ public class Ara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainAgility(secondaryValue);
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
-        .SetOptions(false, false, true);
+        .SetOptions(false, false, true)
+        .AddCallback(cards ->
+        {
+            if (cards.size() >= magicNumber)
+            {
+                GameActions.Bottom.GainAgility(secondaryValue);
+            }
+        });
 
         if (TryUseAffinity(Affinity.Green))
         {

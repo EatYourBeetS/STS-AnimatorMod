@@ -22,7 +22,7 @@ public class NobleFencer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3);
+        Initialize(0, 2, 3, 1);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
@@ -49,9 +49,9 @@ public class NobleFencer extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
         GameActions.Bottom.GainAgility(1);
         GameActions.Bottom.GainIntellect(1);
     }

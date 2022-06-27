@@ -20,8 +20,8 @@ public class RoyMustang extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(6, 0, 0, BURNING_ATTACK_BONUS);
-        SetUpgrade(3, 0, 0);
+        Initialize(7, 0, 0, BURNING_ATTACK_BONUS);
+        SetUpgrade(2, 0, 0);
 
         SetAffinity_Blue(1, 1, 1);
         SetAffinity_Light(1);

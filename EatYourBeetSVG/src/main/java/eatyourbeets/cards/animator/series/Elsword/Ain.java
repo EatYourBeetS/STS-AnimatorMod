@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -21,7 +20,7 @@ public class Ain extends AnimatorCard
     public static final EYBCardData DATA = Register(Ain.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeries(CardSeries.Elsword)
-            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), false));
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.Blue), true));
 
     public Ain()
     {
@@ -32,6 +31,9 @@ public class Ain extends AnimatorCard
 
         SetAffinity_Light(1);
         SetAffinity_Blue(2, 0, 1);
+
+        SetAffinityRequirement(Affinity.Blue, 2);
+        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override
@@ -62,15 +64,9 @@ public class Ain extends AnimatorCard
 
         GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
 
-        if (CheckSpecialCondition(true))
+        if (CheckAffinity(Affinity.Light) && TryUseAffinity(Affinity.Blue) && TryUseAffinity(Affinity.Light))
         {
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
-    }
-
-    @Override
-    public boolean CheckSpecialCondition(boolean tryUse)
-    {
-        return GameActionManager.totalDiscardedThisTurn > 0;
     }
 }

@@ -8,9 +8,8 @@ import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.cards.base.attributes.MixedHPAttribute;
+import eatyourbeets.cards.base.attributes.HPAttribute;
 import eatyourbeets.utilities.CardSelection;
-import eatyourbeets.utilities.ColoredString;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -19,15 +18,14 @@ public class Gluttony extends AnimatorCard
     public static final EYBCardData DATA = Register(Gluttony.class)
             .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
-            .ObtainableAsReward((data, deck) -> deck.size() >= (18 + (4 * data.GetTotalCopies(deck))));
-    public static final int EXHAUST_AMOUNT = 4;
+            .ObtainableAsReward((data, deck) -> deck.size() >= (18 + (6 * data.GetTotalCopies(deck))));
 
     public Gluttony()
     {
         super(DATA);
 
-        Initialize(0, 0, 8, 2);
-        SetUpgrade(0, 0, 0, 2);
+        Initialize(0, 0, 6, 4);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Dark(2);
@@ -37,15 +35,9 @@ public class Gluttony extends AnimatorCard
     }
 
     @Override
-    public ColoredString GetSpecialVariableString()
-    {
-        return super.GetSpecialVariableString(EXHAUST_AMOUNT);
-    }
-
-    @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return (inBattle && CheckSpecialCondition(false)) ? MixedHPAttribute.Instance.SetCard(this, true) : null;
+        return HPAttribute.Instance.SetCard(this, true);
     }
 
     @Override
@@ -62,18 +54,21 @@ public class Gluttony extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Top.HealPlayerLimited(this, magicNumber);
+
         if (CheckSpecialCondition(true))
         {
-            GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, EXHAUST_AMOUNT)
+            GameActions.Top.MoveCards(p.drawPile, p.exhaustPile, secondaryValue)
             .ShowEffect(true, true)
             .SetOrigin(CardSelection.Top)
             .AddCallback(cards ->
             {
-                if (cards.size() >= EXHAUST_AMOUNT)
+                for (AbstractCard c : cards)
                 {
-                    GameActions.Bottom.HealPlayerLimited(this, magicNumber).Overheal(true);
-                    GameActions.Bottom.GainForce(secondaryValue, false);
-                    GameActions.Bottom.GainCorruption(secondaryValue, false);
+                    if (GameUtilities.CanSeal(c))
+                    {
+                        GameActions.Top.SealAffinities(c, false);
+                    }
                 }
             });
         }
@@ -82,6 +77,6 @@ public class Gluttony extends AnimatorCard
     @Override
     public boolean CheckSpecialCondition(boolean tryUse)
     {
-        return player.drawPile.size() >= EXHAUST_AMOUNT;
+        return player.drawPile.size() >= secondaryValue;
     }
 }

@@ -35,7 +35,7 @@ public class Enchantment4 extends Enchantment
     @Override
     public boolean CanUsePower(int cost)
     {
-        return upgradeIndex > 0 ? CombatStats.Affinities.GetAffinityLevel(GetAffinity()) >= secondaryValue : super.CanUsePower(cost);
+        return upgradeIndex > 0 ? CombatStats.Affinities.GetUsableAffinity(GetAffinity()) >= secondaryValue : super.CanUsePower(cost);
     }
 
     @Override

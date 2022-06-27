@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Pride extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Pride.class)
-            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.None)
+            .SetSkill(2, CardRarity.UNCOMMON, EYBCardTarget.Normal)
             .SetMaxCopies(2)
             .SetSeriesFromClassPackage();
 
@@ -28,7 +28,7 @@ public class Pride extends AnimatorCard
 
         Initialize(0, 0, 1, 2);
 
-        SetAffinity_Star(1, 0, 0);
+        SetAffinity_Star(1, 1, 0);
 
         SetEvokeOrbCount(magicNumber);
         SetEthereal(true);
@@ -36,27 +36,22 @@ public class Pride extends AnimatorCard
     }
 
     @Override
-    protected void OnUpgrade()
-    {
-        SetEthereal(false);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        GameActions.Bottom.ApplyConstricted(p, m, secondaryValue);
         GameActions.Bottom.ChannelOrbs(Dark::new, magicNumber);
-        GameActions.Bottom.StackPower(new PridePower(p, secondaryValue));
+        GameActions.Bottom.StackPower(new PridePower(p));
     }
 
     public static class PridePower extends AnimatorPower
     {
-        public PridePower(AbstractPlayer owner, int amount)
+        public PridePower(AbstractPlayer owner)
         {
             super(owner, Pride.DATA);
 
             this.priority = -99;
 
-            Initialize(amount);
+            Initialize(1);
         }
 
         @Override
@@ -76,11 +71,6 @@ public class Pride extends AnimatorCard
                 if (damageAmount > 0)
                 {
                     damageAmount = AbsorbDamage(damageAmount, darkOrbs);
-                }
-
-                if (info.owner != null && info.owner.isPlayer != owner.isPlayer)
-                {
-                    GameActions.Bottom.ApplyConstricted(owner, info.owner, amount);
                     flashWithoutSound();
                 }
             }

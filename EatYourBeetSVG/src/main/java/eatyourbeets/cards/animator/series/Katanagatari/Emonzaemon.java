@@ -41,9 +41,9 @@ public class Emonzaemon extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
         GameActions.Bottom.DrawNextTurn(1);
     }
 

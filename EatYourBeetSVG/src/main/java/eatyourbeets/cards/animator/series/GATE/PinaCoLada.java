@@ -31,7 +31,7 @@ public class PinaCoLada extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetUnplayable(CombatStats.Affinities.GetAffinityLevel(Affinity.Sealed) > 0);
+        SetUnplayable(CombatStats.Affinities.GetUsableAffinity(Affinity.Sealed) > 0);
     }
 
     @Override

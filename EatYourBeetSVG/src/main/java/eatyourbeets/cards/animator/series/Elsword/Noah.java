@@ -28,7 +28,7 @@ public class Noah extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Dark, 2);
+        SetAffinityRequirement(Affinity.Dark, 3);
     }
 
     @Override
@@ -61,7 +61,6 @@ public class Noah extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
-        GameActions.Bottom.GainCorruption(1, true);
 
         for (AbstractMonster target : GameUtilities.GetEnemies(true))
         {
@@ -71,7 +70,11 @@ public class Noah extends AnimatorCard
             }
         }
 
-        if (!TryUseAffinity(Affinity.Dark))
+        if (TryUseAffinity(Affinity.Dark))
+        {
+            GameActions.Bottom.GainCorruption(1, true);
+        }
+        else
         {
             GameActions.Bottom.StackPower(new DelayedDamagePower(p, secondaryValue));
         }

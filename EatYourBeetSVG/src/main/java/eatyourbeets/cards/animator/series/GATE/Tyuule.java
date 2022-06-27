@@ -68,7 +68,7 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = CombatStats.Affinities.GetAffinityLevel(Affinity.Green) * secondaryValue;
+        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Green) * secondaryValue;
         isMagicNumberModified = magicNumber > secondaryValue;
         magicNumberString = super.GetMagicNumberString();
     }

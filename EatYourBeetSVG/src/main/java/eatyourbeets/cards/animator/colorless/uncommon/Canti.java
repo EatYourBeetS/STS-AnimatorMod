@@ -1,15 +1,14 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ViolentAttackEffect;
 import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -67,9 +66,9 @@ public class Canti extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
 
         if (CombatStats.TryActivateLimited(cardID)) {
             GameActions.Bottom.Cycle(name, player.hand.size());

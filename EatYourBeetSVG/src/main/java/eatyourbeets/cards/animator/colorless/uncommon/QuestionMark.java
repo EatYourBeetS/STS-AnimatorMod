@@ -1,12 +1,8 @@
 package eatyourbeets.cards.animator.colorless.uncommon;
 
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.QuestionMarkAction;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnStartOfTurnSubscriber;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -37,9 +33,9 @@ public class QuestionMark extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
 
         AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
         if (card != null)

@@ -68,7 +68,7 @@ public class Sylvia extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
         GameActions.Bottom.Cycle(name, 1);
         GameActions.Last.Exhaust(this);

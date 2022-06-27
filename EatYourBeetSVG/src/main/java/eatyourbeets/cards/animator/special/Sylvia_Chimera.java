@@ -48,7 +48,7 @@ public class Sylvia_Chimera extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = CombatStats.Affinities.GetAffinityLevel(Affinity.Dark);
+        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Dark);
         isMagicNumberModified = magicNumber > 0;
         magicNumberString = super.GetMagicNumberString();
     }

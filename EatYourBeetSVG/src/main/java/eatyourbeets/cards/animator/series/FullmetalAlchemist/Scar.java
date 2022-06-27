@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
@@ -25,7 +24,7 @@ public class Scar extends AnimatorCard
         SetAffinity_Red(1);
         SetAffinity_Blue(1);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override
@@ -52,17 +51,17 @@ public class Scar extends AnimatorCard
             }
         });
 
-        if (TryUseAffinity(Affinity.Red))
+        if (CheckAffinity(Affinity.Blue))
         {
             GameActions.Bottom.SelectFromPile(name, 1, p.exhaustPile)
             .SetMessage(cardData.Strings.EXTENDED_DESCRIPTION[0], secondaryValue)
             .SetOptions(false, true)
             .AddCallback(cards ->
             {
-                for (AbstractCard c : cards)
+                if (cards.size() > 0 && TryUseAffinity(Affinity.Blue))
                 {
                     GameActions.Bottom.TakeDamageAtEndOfTurn(secondaryValue, AttackEffects.SMASH);
-                    GameActions.Top.MoveCard(c, player.exhaustPile, player.discardPile)
+                    GameActions.Top.MoveCard(cards.get(0), player.exhaustPile, player.discardPile)
                     .ShowEffect(true, true);
                 }
             });

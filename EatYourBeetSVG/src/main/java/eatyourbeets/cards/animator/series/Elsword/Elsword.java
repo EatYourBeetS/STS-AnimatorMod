@@ -36,14 +36,17 @@ public class Elsword extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean reshuffle)
+    {
+        super.triggerOnAffinitySeal(reshuffle);
+
+        GameActions.Bottom.ChannelOrb(new Fire());
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_DIAGONAL).SetVFXColor(Color.RED);
-
-        if (info.TryActivateStarter())
-        {
-            GameActions.Bottom.ChannelOrb(new Fire());
-        }
     }
 
     @Override

@@ -89,6 +89,11 @@ public abstract class AnimatorLoadout
                 }
             }
 
+            if (AffinityLevel > 0)
+            {
+                AffinityLevel -= 1;
+            }
+
             if ((data.Gold - BASE_GOLD) % GOLD_STEP != 0)
             {
                 data.Gold = BASE_GOLD;

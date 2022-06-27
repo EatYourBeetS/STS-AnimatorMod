@@ -1,6 +1,5 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.ElricAlphonse_Alt;
@@ -8,7 +7,6 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ElricAlphonse extends AnimatorCard
 {
@@ -25,7 +23,7 @@ public class ElricAlphonse extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 6);
+        Initialize(0, 2, 3);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
@@ -42,16 +40,10 @@ public class ElricAlphonse extends AnimatorCard
             GameActions.Bottom.GainIntellect(1);
         }
 
-        GameActions.Last.SelectFromPile(name, 1, p.discardPile)
-                .SetOptions(false, true)
-                .SetFilter(GameUtilities::CanSeal)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard c : cards)
-                    {
-                        GameActions.Bottom.SealAffinities(c, false);
-                    }
-                });
+        if (info.TryActivateLimited())
+        {
+            CombatStats.Affinities.AddAffinitySealUses(1);
+        }
     }
 
     @Override

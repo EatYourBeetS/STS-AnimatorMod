@@ -196,7 +196,7 @@
 		},
 		"animator:Kuroyukihime":
 		{
-			"DESCRIPTION": "Discard !M! cards to ** obtain {Black Lotus}. || Then, if you have ** !A! <W>: Upgrade it.",
+			"DESCRIPTION": "Discard !M! cards to ** obtain {Black Lotus}. || Then, if you have ** !A! <S>: Upgrade it.",
 			"NAME": "Kuroyukihime"
 		},
 		"animator:Kuroyukihime_BlackLotus":
@@ -378,7 +378,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Obtain {<B> Token}{+}. || If you discarded ** a card this turn: ** Enter <IS>.",
+			"DESCRIPTION": "Obtain {<B> Token}{+}. || !A! <B> and <L>: ** Enter <IS>.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Gain !S! [A]. Discard 1 card. || !A! <G>: <DRW-M>.",
+			"DESCRIPTION": "Discard 1 card ** to gain !S! [A]. || !A! <G>: <DRW-M>.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -398,7 +398,7 @@
 		},
 		"animator:Ciel":
 		{
-			"DESCRIPTION": "<ST> or when Sealed: Apply !S! [~Lock-On] to ALL enemies. || !A! <D>: Give all copies of {Lu} +!M! damage and {~Haste}.",
+			"DESCRIPTION": "<ST> or when Sealed: ** Apply !S! [~Lock-On] to ALL enemies. || !A! <D>: Give all copies of {Lu} ** +!M! damage and {~Haste}.",
 			"NAME": "Ciel"
 		},
 		"animator:Elesis":
@@ -409,13 +409,13 @@
 		},
 		"animator:Elsword":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). || <ST> or Discard: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle !M! card(s). || Sealed or Discard: ** Channel 1 [Fire].",
 			"NAME": "Elsword"
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "When you Seal: Deal ** damage equal to <W> to a ** random enemy !M! times. || At the start of turn: ** Obtain 1 of 3 {<W> Tokens}.",
-			"EXTENDED_DESCRIPTION": ["At the start of turn, obtain #b1 <W> #yToken. ** Whenever you #ySeal, deal damage equal to <W> to a random enemy #b{0} time(s)."],
+			"DESCRIPTION": "At the start of each ** turn: Gain 1 <P> and ** Obtain 1 {<W> Token}{+}. || Pay !M! <S>: Deal !S! damage ** to a random enemy.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} <S>: Deal #b{1} damage to a random enemy. || At the start of turn, gain #b{2} <P> and obtain #b{2} <W> #yToken(s)."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
@@ -431,7 +431,7 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Boost [C]. Apply !M! [Freezing] ** to all other enemies. || Lose !A! <D> or Take !S! [DD].",
+			"DESCRIPTION": "Apply !M! [Freezing] to ** all other enemies. || !A! <D>: Boost [C]. ** Else: Take !S! [DD].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
@@ -541,7 +541,7 @@
 	{
 		"animator:ElricAlphonse":
 		{
-			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || Seal a card in your discard pile.",
+			"DESCRIPTION": "If you have less ** than !M! [I]: Gain [I]. || <LIM>. Gain 1 <P>.",
 			"NAME": "Alphonse Elric"
 		},
 		"animator:ElricAlphonse_Alt":
@@ -558,8 +558,8 @@
 		},
 		"animator:Envy":
 		{
-			"DESCRIPTION": "At the start of each turn: ** Upgrade the <W> levels ** of a random card. || Once per turn, pay 2 [E]: ** Gain 1 [Vitality], or 2 if you ** are below 25% [HP].",
-			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Vitality]. || At the start of each turn: Increase the <W> levels of #b{1} random card(s) to #yLV2."],
+			"DESCRIPTION": "Imitate the next card ** you Seal this combat. || Once per turn, pay !M! [E]: ** Gain 1 [Vitality], or 2 if you ** are below 25% [HP].",
+			"EXTENDED_DESCRIPTION": ["Pay 2 [E] to gain #b{0} [Vitality]. || #yImitate the next #b{1} card(s) you #ySeal this combat."],
 			"NAME": "Envy"
 		},
 		"animator:Father":
@@ -569,7 +569,7 @@
 		},
 		"animator:Gluttony":
 		{
-			"DESCRIPTION": "Exhaust the top !K! cards ** of your draw pile to heal ** !M! [MHP] and gain !S! [F] [C]. || While in hand, if you play ** a <D> card: Retain this.",
+			"DESCRIPTION": "Exhaust and Seal the top ** !S! cards of your draw pile. || While in hand, if you play ** a <D> card: Retain this.",
 			"NAME": "Gluttony"
 		},
 		"animator:Greed":
@@ -584,23 +584,23 @@
 		},
 		"animator:MaesHughes":
 		{
-			"DESCRIPTION": "<DRW> for every ** !M! cards in draw pile. || <SLM>. If you ** have [I]: Motivate 1.",
+			"DESCRIPTION": "<DRW> for every ** !M! cards in draw pile. || !A! <B>: Motivate 1.",
 			"NAME": "Maes Hughes"
 		},
 		"animator:Pride":
 		{
-			"DESCRIPTION": "Channel !M! [Dark]. || Until next turn: [Dark] absorbs ** all unblocked damage you ** would take, and it applies ** !S! [Constricted] to the attacker.",
-			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all unblock damage, and it applies #b{0} [Constricted] to the attacker."],
+			"DESCRIPTION": "Apply !S! [Constricted]. ** Channel !M! [Dark]. || Until next turn: [Dark] ** absorbs all incoming ** unblocked damage.",
+			"EXTENDED_DESCRIPTION": ["Your [Dark] absorbs all incoming unblock damage."],
 			"NAME": "Pride"
 		},
 		"animator:RoyMustang":
 		{
-			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || !A! <R>: Raise ** the damage bonus of [Burning] ** by !S!% this combat.",
+			"DESCRIPTION": "Channel 1 [Fire] ** for each enemy. || !A! <R>: Raise the ** damage bonus of [Burning] ** by !S!% this combat.",
 			"NAME": "Roy Mustang"
 		},
 		"animator:Scar":
 		{
-			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || !A! <R>: Move a card ** from your Exhaust pile ** to your discard pile. If ** you do, take !S! [DD].",
+			"DESCRIPTION": "Exhaust a card ** to Channel 1 [Earth]. || !A! <B>: Move a card ** from your Exhaust pile ** to your discard pile. If ** you do, take !S! [DD].",
 			"EXTENDED_DESCRIPTION": ["Move a card to your discard pile, then take {0} damage."],
 			"NAME": "Scar"
 		},
@@ -1888,7 +1888,7 @@
 	{
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain !M! [{1}] ** and !S! {Temp.} {0}. || When Sealed: ** Exhaust this.",
+			"DESCRIPTION": "Gain !M! [{1}] ** and !S! {Temp.} {0}. || When Sealed: Exhaust.",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
@@ -1918,7 +1918,7 @@
 		},
 		"animator:AffinityToken_General":
 		{
-			"DESCRIPTION": "Choose an {<W> Token}{+} ** and activate its effect. || On <W>: Exhaust.",
+			"DESCRIPTION": "Choose an {<W> ** Token}{+} effect. || When Sealed: Exhaust.",
 			"NAME": "Affinity Token"
 		},
 

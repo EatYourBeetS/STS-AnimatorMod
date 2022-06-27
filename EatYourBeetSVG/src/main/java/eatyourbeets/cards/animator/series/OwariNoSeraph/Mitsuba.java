@@ -31,9 +31,9 @@ public class Mitsuba extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnAffinitySeal(manual);
+        super.triggerOnAffinitySeal(reshuffle);
 
         if (CombatStats.TryActivateLimited(cardID))
         {

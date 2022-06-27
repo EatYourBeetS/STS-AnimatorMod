@@ -53,7 +53,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = CombatStats.Affinities.GetAffinityLevel(Affinity.Red);
+        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Red);
         isMagicNumberModified = magicNumber > 0;
         magicNumberString = super.GetMagicNumberString();
 

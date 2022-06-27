@@ -295,9 +295,9 @@ public abstract class EYBCard extends EYBCardBase
         }
     }
 
-    public void triggerOnAffinitySeal(boolean manual)
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        if (manual)
+        if (reshuffle)
         {
             GameActions.Top.Reshuffle(affinities.Card, player.hand);
         }
@@ -325,7 +325,7 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckAffinity(Affinity affinity)
     {
-        return CombatStats.Affinities.GetAffinityLevel(affinity) >= affinities.GetRequirement(affinity);
+        return CombatStats.Affinities.GetUsableAffinity(affinity) >= affinities.GetRequirement(affinity);
     }
 
     public boolean TryUseAffinity(Affinity affinity)
@@ -466,7 +466,7 @@ public abstract class EYBCard extends EYBCardBase
             for (Affinity t : types)
             {
                 final int req = affinities.GetRequirement(t);
-                final int level = CombatStats.Affinities.GetAffinityLevel(t);
+                final int level = CombatStats.Affinities.GetUsableAffinity(t);
                 result.SetText(req);
 
                 if (requireAll)

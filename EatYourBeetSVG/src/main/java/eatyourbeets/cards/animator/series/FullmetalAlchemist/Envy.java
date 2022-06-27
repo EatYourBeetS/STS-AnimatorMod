@@ -1,10 +1,14 @@
 package eatyourbeets.cards.animator.series.FullmetalAlchemist;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
 import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
@@ -21,16 +25,19 @@ public class Envy extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0);
+        Initialize(0, 0, TEMP_HP_ENERGY_COST);
 
         SetAffinity_Star(1, 1, 0);
 
+        SetDelayed(true);
         SetEthereal(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
+        super.OnUpgrade();
+
         SetEthereal(false);
     }
 
@@ -40,7 +47,7 @@ public class Envy extends AnimatorCard
         GameActions.Bottom.StackPower(new EnvyPower(p, 1));
     }
 
-    public static class EnvyPower extends AnimatorClickablePower
+    public static class EnvyPower extends AnimatorClickablePower implements OnAffinitySealedSubscriber
     {
         private int vitality;
 
@@ -49,8 +56,36 @@ public class Envy extends AnimatorCard
             super(owner, Envy.DATA, PowerTriggerConditionType.Energy, Envy.TEMP_HP_ENERGY_COST);
 
             triggerCondition.SetUses(1, true, false);
+            canBeZero = true;
 
             Initialize(amount);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnAffinitySealed(EYBCard card, boolean manual)
+        {
+            if (amount > 0)
+            {
+                GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(card));
+                reducePower(1);
+                flashWithoutSound();
+            }
         }
 
         @Override
@@ -71,19 +106,6 @@ public class Envy extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
-        {
-            super.atStartOfTurnPostDraw();
-
-            GameActions.Last.Callback(() ->
-            {
-                GameActions.Top.ModifyAffinityLevel(player.hand, amount, Affinity.General, 2, false)
-                .SetFilter(EnvyPower::HasUpgradableAffinities);
-                flash();
-            });
-        }
-
-        @Override
         public void OnUse(AbstractMonster m)
         {
             super.OnUse(m);
@@ -100,28 +122,6 @@ public class Envy extends AnimatorCard
                 vitality = newValue;
                 updateDescription();
             }
-        }
-
-        private static boolean HasUpgradableAffinities(AbstractCard c)
-        {
-            final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-            if (a != null)
-            {
-                if (a.Star != null && a.Star.level == 1)
-                {
-                    return true;
-                }
-
-                for (EYBCardAffinity affinity : a.List)
-                {
-                    if (affinity.level == 1)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
         }
     }
 }

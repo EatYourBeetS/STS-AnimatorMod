@@ -141,19 +141,34 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
     }
 
+    public int GetRemainingSealUses()
+    {
+        return PlayerAffinities.GetLevel(Affinity.Sealed);
+    }
+
+    public void AddAffinitySealUses(int uses)
+    {
+        final int remainingUses = GetRemainingSealUses();
+        if (remainingUses < 3)
+        {
+            PlayerAffinities.Set(Affinity.Sealed, Mathf.Clamp(remainingUses + uses, 0, 3));
+        }
+    }
+
     public void AddTempAffinity(Affinity affinity, int amount)
     {
         PlayerAffinities.Get(affinity).requirement += amount;
     }
 
-    public int GetAffinityLevel(Affinity affinity)
+    public int GetUsableAffinity(Affinity affinity)
     {
-        if (affinity == Affinity.Star)
+        if (affinity == Affinity.Star || affinity == Affinity.General)
         {
-            EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(PlayerAffinities.List, ac -> ac.type.ID >= 0), af -> af.level);
-            return min != null ? min.level : 0;
+            EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(PlayerAffinities.List, ac -> ac.type.ID >= 0), af -> af.requirement);
+            return min != null ? min.requirement : 0;
         }
-        return PlayerAffinities.GetLevel(affinity, false);
+
+        return PlayerAffinities.GetRequirement(affinity);
     }
 
     public EYBCardAffinityRow GetRow(Affinity affinity)
@@ -191,7 +206,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     @Override
     public void OnStartOfTurn()
     {
-        PlayerAffinities.Set(Affinity.Sealed, 1);
+        AddAffinitySealUses(1);
 
         for (EYBCardAffinityRow row : rows)
         {
@@ -270,14 +285,14 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.33f);
     }
 
-    public void Seal(EYBCardAffinities affinities, boolean manual)
+    public void Seal(EYBCardAffinities affinities, boolean reshuffle)
     {
         if (affinities.sealed)
         {
             return;
         }
 
-        if (manual)
+        if (reshuffle)
         {
             final int seal = PlayerAffinities.GetLevel(Affinity.Sealed);
             if (seal <= 0)
@@ -288,6 +303,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
 
         affinities.sealed = true;
+        SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, reshuffle ? 0.95f : 0.75f);
 
         final ArrayList<Affinity> list = new ArrayList<>();
         if (affinities.HasStar())
@@ -319,7 +335,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             GetRow(a).Seal(affinities);
         }
 
-        CombatStats.OnAffinitySealed(affinities, manual);
+        CombatStats.OnAffinitySealed(affinities, reshuffle);
     }
 
     // ====================== //
@@ -408,7 +424,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
             else
             {
-                SFX.Play(SFX.RELIC_ACTIVATION, 0.75f, 0.85f, 0.95f);
                 GameActions.Bottom.SealAffinities(hoveredCard, true);
             }
         }

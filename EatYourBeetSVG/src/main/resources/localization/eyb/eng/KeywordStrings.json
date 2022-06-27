@@ -2,31 +2,31 @@
 {
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [F], gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [A], gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [B], gain #yVitality.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain #yVitality.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8, and #b12 [I], gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b2, #b5, #b8 and #b12 [C], gain #yInvocation.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9 and #b12 [C], gain #yInvocation.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
@@ -257,7 +257,7 @@
 	},
 	"Imitate":
 	{
-		"DESCRIPTION": "#yImitating a card creates a #y0-Cost copy of it with #yPurge, and with base damage and #yBlock reduced to #b1.",
+		"DESCRIPTION": "#yImitating a card creates a copy of it with #yPurge, base damage and #yBlock reduced to #b1, and [E] cost reduced by #b2.",
 		"NAMES": ["imitate", "imitation", "imitations"],
 		"PROPER_NAME": "Imitate"
 	},
@@ -317,7 +317,7 @@
 	},
 	"Multicolor":
 	{
-		"DESCRIPTION": "Counts as an #yAffinity of any color.",
+		"DESCRIPTION": "Counts as an #yAffinity of each color.",
 		"NAMES": ["multicolor"],
 		"PROPER_NAME": "Multicolor"
 	},

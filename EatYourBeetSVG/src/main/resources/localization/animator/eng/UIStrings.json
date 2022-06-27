@@ -240,7 +240,7 @@
 		"TEXT":
 		[
 			"Current: #b{0}. Max: #b{1}. NL Points are refreshed each turn. They also prevent your [{2}] from decreasing below #b{1}.",
-			"Up to #b{0} time(s) this turn, you may #pRight-Click a card to #ySeal it and reshuffle it."
+			"You may #pRight-Click a card to #ySeal it and reshuffle it. Gain #b1 use each turn. Store up to #b3 uses."
 		]
 	},
 	

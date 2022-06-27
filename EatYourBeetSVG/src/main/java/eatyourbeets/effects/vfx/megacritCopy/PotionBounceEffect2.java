@@ -127,7 +127,7 @@ public class PotionBounceEffect2 extends AbstractGameEffect
 
         for (int i = 5; i < this.previousPos.size(); ++i)
         {
-            sb.draw(ImageMaster.POWER_UP_2, ((Vector2) this.previousPos.get(i)).x - (float) (img.packedWidth / 2), ((Vector2) this.previousPos.get(i)).y - (float) (img.packedHeight / 2), (float) img.packedWidth / 2.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale / (40.0F / (float) i), this.scale / (40.0F / (float) i), this.rotation);
+            sb.draw(ImageMaster.POWER_UP_2, this.previousPos.get(i).x - (float) (img.packedWidth / 2), this.previousPos.get(i).y - (float) (img.packedHeight / 2), (float) img.packedWidth / 2.0F, (float) img.packedHeight / 2.0F, (float) img.packedWidth, (float) img.packedHeight, this.scale / (40.0F / (float) i), this.scale / (40.0F / (float) i), this.rotation);
         }
 
         sb.setColor(this.color);

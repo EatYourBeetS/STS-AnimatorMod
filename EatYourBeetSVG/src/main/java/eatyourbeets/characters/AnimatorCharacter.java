@@ -13,9 +13,9 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
+import eatyourbeets.rewards.AnimatorReward;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
@@ -158,7 +158,13 @@ public class AnimatorCharacter extends EYBPlayerCharacter implements OnReceiveRe
     {
         if (normalRewards)
         {
-            GR.Common.Dungeon.TryReplaceFirstCardReward(rewards, AnimatorDungeonData.GetUltraRareChance(), true, AnimatorDungeonData.CreateUltraRare(this));
+            for (RewardItem rItem : rewards)
+            {
+                if (rItem.type == RewardItem.RewardType.CARD && rItem.cards.size() > 0)
+                {
+                    AnimatorReward.TryGenerateUltraRare(rItem.cards, null);
+                }
+            }
         }
     }
 }

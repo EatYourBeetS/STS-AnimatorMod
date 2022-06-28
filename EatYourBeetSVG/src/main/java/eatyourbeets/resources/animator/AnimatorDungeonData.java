@@ -15,13 +15,15 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.base.*;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
+import eatyourbeets.cards.base.EYBCard;
+import eatyourbeets.cards.base.EYBCardBase;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.relics.AnimatorRelic;
-import eatyourbeets.relics.animator.Destiny;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.loadouts._FakeLoadout;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
@@ -29,12 +31,9 @@ import eatyourbeets.resources.animator.misc.AnimatorRuntimeLoadout;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, StartGameSubscriber, StartActSubscriber
 {
@@ -46,70 +45,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     protected ArrayList<AnimatorLoadoutProxy> loadouts = new ArrayList<>();
     protected int startingLoadout = -1;
     protected boolean isBeta;
-
-    public static float GetUltraRareChance()
-    {
-        final Float rate = GR.Common.Dungeon.GetFloat("UR_RATE", null);
-        if (rate != null)
-        {
-            if (rate > 0 && GameUtilities.InGame())
-            {
-                GR.Common.Dungeon.SetCheating();
-            }
-
-            return rate;
-        }
-
-        final int currentLevel = GR.Animator.GetUnlockLevel();
-        if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
-        {
-            return 0;
-        }
-
-        float bonus = 4;
-        int level = GR.Animator.Data.SpecialTrophies.Trophy1;
-        if (level > 0)
-        {
-            bonus += level * 1.33f / (level + 100f);
-        }
-
-        if (GameUtilities.HasRelic(Destiny.ID))
-        {
-            bonus += 1.6f;
-        }
-
-        return bonus;
-    }
-
-    public static EYBCardData CreateUltraRare(AbstractPlayer player)
-    {
-        final HashMap<CardSeries, Integer> possibleSeries = new HashMap<>();
-        final HashSet<CardSeries> urSeries = new HashSet<>();
-        for (AbstractCard c : player.masterDeck.group)
-        {
-            CardSeries s = GameUtilities.GetSeries(c);
-            if (s != null)
-            {
-                possibleSeries.merge(s, 1, Integer::sum);
-                if (c instanceof AnimatorCard_UltraRare)
-                {
-                    urSeries.add(s);
-                }
-            }
-        }
-
-        final WeightedList<CardSeries> weighted = new WeightedList<>();
-        for (Map.Entry<CardSeries, Integer> entry : possibleSeries.entrySet())
-        {
-            if (!urSeries.contains(entry.getKey()))
-            {
-                weighted.Add(entry.getKey(), entry.getValue());
-            }
-        }
-
-        final CardSeries selected = weighted.Retrieve(AbstractDungeon.cardRng);
-        return AnimatorCard_UltraRare.GetCardData(GR.Animator.Data.GetLoadout(selected));
-    }
 
     public static AnimatorDungeonData Register(String id)
     {

@@ -4,7 +4,6 @@ import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.daily.mods.Binary;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -13,14 +12,17 @@ import eatyourbeets.cards.animator.colorless.uncommon.QuestionMark;
 import eatyourbeets.cards.animator.ultrarare.Azami;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
+import eatyourbeets.relics.animator.Destiny;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorDungeonData;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.WeightedList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public abstract class AnimatorReward extends CustomReward
 {
@@ -69,7 +71,7 @@ public abstract class AnimatorReward extends CustomReward
 
         if (result.size() > 0)
         {
-            AddUltraRare(result, context.series);
+            TryGenerateUltraRare(result, context.series);
         }
         else
         {
@@ -100,56 +102,6 @@ public abstract class AnimatorReward extends CustomReward
                     }
                 }
             }
-        }
-    }
-
-    private void AddUltraRare(ArrayList<AbstractCard> cards, CardSeries series)
-    {
-        final int currentLevel = GR.Animator.GetUnlockLevel();
-        if (currentLevel <= 2 || cards.isEmpty() || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
-        {
-            return;
-        }
-
-        final AbstractPlayer player = AbstractDungeon.player;
-        final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
-        float chances = AnimatorDungeonData.GetUltraRareChance();
-        if (chances <= 0)
-        {
-            return;
-        }
-
-        for (AbstractCard c : player.masterDeck.group)
-        {
-            if (c instanceof AnimatorCard_UltraRare)
-            {
-                CardSeries s = ((AnimatorCard_UltraRare) c).series;
-                if (s != null && series.ID == s.ID)
-                {
-                    return; // No duplicates
-                }
-                else
-                {
-                    chances *= 0.5f;
-                }
-            }
-        }
-
-        EYBCardData ur = null;
-        float roll = AbstractDungeon.cardRng.random(100f);
-        if (roll < chances)
-        {
-            ur = AnimatorCard_UltraRare.GetCardData(loadout);
-        }
-        else if (!GR.Animator.Dungeon.BannedCards.contains(Azami.DATA.ID) && !Azami.DATA.ShouldCancel() && roll < (chances * 3))
-        {
-            GR.Animator.Dungeon.Ban(Azami.DATA.ID);
-            ur = Azami.DATA;
-        }
-
-        if (ur != null)
-        {
-            cards.set(Math.min(1, cards.size() - 1), ur.CreateNewInstance());
         }
     }
 
@@ -219,5 +171,121 @@ public abstract class AnimatorReward extends CustomReward
 
             rewards.add(card);
         }
+    }
+
+    public static boolean TryGenerateUltraRare(ArrayList<AbstractCard> cards, CardSeries series)
+    {
+        final int currentLevel = GR.Animator.GetUnlockLevel();
+        if (currentLevel <= 2 || cards.isEmpty() || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
+        {
+            return false;
+        }
+
+        if (series == null)
+        {
+            final HashMap<CardSeries, Integer> possibleSeries = new HashMap<>();
+            final HashSet<CardSeries> urSeries = new HashSet<>();
+            for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+            {
+                final CardSeries s = GameUtilities.GetSeries(c);
+                if (s != null)
+                {
+                    JUtils.IncrementMapElement(possibleSeries, s, 1);
+
+                    if (c instanceof AnimatorCard_UltraRare)
+                    {
+                        urSeries.add(s);
+                    }
+                }
+            }
+
+            final WeightedList<CardSeries> weighted = new WeightedList<>();
+            for (Map.Entry<CardSeries, Integer> entry : possibleSeries.entrySet())
+            {
+                if (!urSeries.contains(entry.getKey()))
+                {
+                    weighted.Add(entry.getKey(), entry.getValue());
+                }
+            }
+
+            series = weighted.Retrieve(AbstractDungeon.cardRng);
+        }
+
+        final EYBCardData ur = TryGenerateUltraRare(series);
+        if (ur != null)
+        {
+            cards.set(Math.min(1, cards.size() - 1), ur.CreateNewInstance());
+            return true;
+        }
+
+        return false;
+    }
+
+    public static EYBCardData TryGenerateUltraRare(CardSeries series)
+    {
+        final AnimatorLoadout loadout = GR.Animator.Data.GetLoadout(series);
+        float chances = GetUltraRareChance(loadout);
+        if (chances <= 0)
+        {
+            return null;
+        }
+
+        for (AbstractCard c : AbstractDungeon.player.masterDeck.group)
+        {
+            if (c instanceof AnimatorCard_UltraRare)
+            {
+                CardSeries s = ((AnimatorCard_UltraRare) c).series;
+                if (s != null && series.ID == s.ID)
+                {
+                    return null; // No duplicates
+                }
+                else
+                {
+                    chances *= 0.5f;
+                }
+            }
+        }
+
+        EYBCardData ur = null;
+        float roll = AbstractDungeon.cardRng.random(100f);
+        if (roll < chances)
+        {
+            ur = AnimatorCard_UltraRare.GetCardData(loadout);
+        }
+        else if (!GR.Animator.Dungeon.BannedCards.contains(Azami.DATA.ID) && !Azami.DATA.ShouldCancel() && roll < (chances * 3))
+        {
+            GR.Animator.Dungeon.Ban(Azami.DATA.ID);
+            ur = Azami.DATA;
+        }
+
+        return ur;
+    }
+
+    public static float GetUltraRareChance(AnimatorLoadout loadout)
+    {
+        final Float rate = GR.Common.Dungeon.GetFloat("UR_RATE", null);
+        if (rate != null)
+        {
+            if (rate > 0 && GameUtilities.InGame())
+            {
+                GR.Common.Dungeon.SetCheating();
+            }
+
+            return rate;
+        }
+
+        float bonus = 1;
+        int level = GR.Animator.Data.SpecialTrophies.Trophy1;
+        if (level > 0)
+        {
+            bonus += level / (level + 100f);
+        }
+
+        if (GameUtilities.HasRelic(Destiny.ID))
+        {
+            bonus += 0.4f;
+        }
+
+        return bonus * (loadout == null ? 2.75f : loadout.IsBeta ? 2.25f : 1.75f);
     }
 }

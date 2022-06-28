@@ -1,13 +1,12 @@
 package eatyourbeets.cards.animator.series.GATE;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.cards.base.modifiers.BlockModifiers;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class TukaLunaMarceau extends AnimatorCard
 {
@@ -26,6 +25,15 @@ public class TukaLunaMarceau extends AnimatorCard
     }
 
     @Override
+    public void triggerOnAffinitySeal(boolean reshuffle)
+    {
+        super.triggerOnAffinitySeal(reshuffle);
+
+        GameActions.Bottom.GainAgility(1, true);
+        GameActions.Bottom.GainBlessing(1, true);
+    }
+
+    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         if (CheckSpecialCondition(true))
@@ -34,21 +42,6 @@ public class TukaLunaMarceau extends AnimatorCard
         }
 
         GameActions.Bottom.GainBlock(block);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Last.SelectFromPile(name, 1, p.drawPile)
-                .SetOptions(false, true)
-                .SetFilter(GameUtilities::CanSeal)
-                .AddCallback(cards ->
-                {
-                    for (AbstractCard c : cards)
-                    {
-                        GameActions.Bottom.SealAffinities(c, false);
-                    }
-                });
     }
 
     @Override

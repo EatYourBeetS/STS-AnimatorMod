@@ -27,16 +27,20 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
         super(DATA);
 
         Initialize(0, 2, 0, 2);
-        SetUpgrade(0, 0, 0, 1);
+        SetUpgrade(0, 1, 0, 0);
 
         SetAffinity_Dark(1, 1, 0);
         SetAffinity_Green(1);
+
+        SetExhaust(true);
         OnReset();
     }
 
     @Override
     protected void OnUpgrade()
     {
+        SetExhaust(false);
+
         if (magicNumberString.text.endsWith("X"))
         {
             OnReset();
@@ -68,7 +72,9 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
     {
         super.Refresh(enemy);
 
-        magicNumber = CombatStats.Affinities.GetUsableAffinity(Affinity.Green) * secondaryValue;
+        final int totalAffinity = CombatStats.Affinities.GetUsableAffinity(Affinity.Green);
+        SetAffinityRequirement(Affinity.Green, totalAffinity);
+        magicNumber = totalAffinity * secondaryValue;
         isMagicNumberModified = magicNumber > secondaryValue;
         magicNumberString = super.GetMagicNumberString();
     }
@@ -93,7 +99,9 @@ public class Tyuule extends AnimatorCard implements OnCardResetListener
             }
         }
 
-        TryUseAffinity(Affinity.Green);
-        GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        if (TryUseAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.ApplyPoison(p, m, magicNumber);
+        }
     }
 }

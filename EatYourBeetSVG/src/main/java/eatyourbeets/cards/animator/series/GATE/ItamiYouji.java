@@ -28,7 +28,7 @@ public class ItamiYouji extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Light, 2);
+        SetAffinityRequirement(Affinity.Star, 2);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ItamiYouji extends AnimatorCard
             GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(1.3f, 1.5f);
         }
 
-        if (TryUseAffinity(Affinity.Light))
+        if (TryUseAffinity(Affinity.Star))
         {
             GameActions.Bottom.StackPower(new SupportDamagePower(p, secondaryValue));
         }

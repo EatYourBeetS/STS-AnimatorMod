@@ -54,9 +54,7 @@ public class Eve extends AnimatorCard
 
         public EvePower(AbstractCreature owner, int amount, boolean upgraded)
         {
-            super(owner, Eve.DATA, PowerTriggerConditionType.Special, POWER_COST,
-                    cost -> CombatStats.Affinities.GetUsableAffinity(Affinity.Star) >= cost,
-                    cost -> CombatStats.Affinities.TryUseAffinity(Affinity.Star, cost));
+            super(owner, Eve.DATA, PowerTriggerConditionType.Affinity_Star, POWER_COST);
 
             triggerCondition.SetUses(-1, false, false);
 

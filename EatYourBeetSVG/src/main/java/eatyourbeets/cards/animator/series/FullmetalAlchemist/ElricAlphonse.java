@@ -24,7 +24,7 @@ public class ElricAlphonse extends AnimatorCard
         super(DATA);
 
         Initialize(0, 2, 3);
-        SetUpgrade(0, 0, 1);
+        SetUpgrade(0, 1, 1);
 
         SetAffinity_Blue(1);
         SetAffinity_Light(1);

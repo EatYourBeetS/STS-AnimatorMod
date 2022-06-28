@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
 import basemod.abstracts.CustomSavable;
-import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardPreview;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -109,7 +106,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             case Pyro:
             {
                 GameActions.Bottom.ApplyBurning(p, m, GameUtilities.GetDebuffsCount(m.powers) * magicNumber).SkipIfZero(true);
-                if (HasSynergy() && info.TryActivateSemiLimited())
+                if (TryUseAffinity(Affinity.Green) && info.TryActivateSemiLimited())
                 {
                     GameActions.Bottom.Draw(1);
                 }
@@ -256,6 +253,7 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
                 affinities.Clear();
                 SetAffinity_Red(1, 0, 1);
                 SetAffinity_Green(2, 0, 2);
+                SetAffinityRequirement(Affinity.Green, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[1], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

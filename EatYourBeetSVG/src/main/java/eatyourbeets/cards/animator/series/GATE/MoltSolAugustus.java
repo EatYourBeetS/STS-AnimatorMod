@@ -20,7 +20,7 @@ public class MoltSolAugustus extends AnimatorCard
             .SetPower(3, CardRarity.RARE)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new MoltSolAugustus_ImperialArchers(), false));
-    private static final int ENERGY_COST = 1;
+    private static final int POWER_AFFINITY_COST = 3;
     private static final int ARCHERS_AMOUNT = 2;
 
     public MoltSolAugustus()
@@ -28,7 +28,7 @@ public class MoltSolAugustus extends AnimatorCard
         super(DATA);
 
         Initialize(0, 0, 2, ARCHERS_AMOUNT);
-        SetUpgrade(0, 0, 2);
+        SetUpgrade(0, 0, 1);
 
         SetAffinity_Red(1);
 
@@ -45,7 +45,7 @@ public class MoltSolAugustus extends AnimatorCard
     {
         public MoltSolAugustusPower(AbstractCreature owner, int amount)
         {
-            super(owner, MoltSolAugustus.DATA, PowerTriggerConditionType.Energy, MoltSolAugustus.ENERGY_COST);
+            super(owner, MoltSolAugustus.DATA, PowerTriggerConditionType.Affinity_Red, MoltSolAugustus.POWER_AFFINITY_COST);
 
             triggerCondition.SetUses(1, true, true);
             canBeZero = true;

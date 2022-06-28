@@ -2,11 +2,9 @@ package eatyourbeets.cards.animator.series.GATE;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.animator.PinaCoLadaPower;
 import eatyourbeets.utilities.GameActions;
 
@@ -20,8 +18,8 @@ public class PinaCoLada extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 0);
-        SetUpgrade(0, 4, 0);
+        Initialize(0, 0, 5);
+        SetUpgrade(0, 0, -3);
 
         SetAffinity_Light(2);
     }
@@ -31,13 +29,13 @@ public class PinaCoLada extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetUnplayable(CombatStats.Affinities.GetUsableAffinity(Affinity.Sealed) > 0);
+        SetUnplayable(player.currentBlock < magicNumber);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
+        GameActions.Bottom.LoseBlock(magicNumber);
         GameActions.Bottom.StackPower(new PinaCoLadaPower(p, 1));
     }
 }

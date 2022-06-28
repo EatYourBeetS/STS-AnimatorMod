@@ -3,17 +3,16 @@ package eatyourbeets.cards.animator.series.GATE;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.Frost;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
-import eatyourbeets.utilities.TargetHelper;
 
 public class LeleiLaLalena extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(LeleiLaLalena.class)
             .SetSkill(0, CardRarity.UNCOMMON, EYBCardTarget.None)
-            .SetSeriesFromClassPackage();
+            .SetSeriesFromClassPackage()
+            .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), true));
 
     public LeleiLaLalena()
     {
@@ -24,20 +23,19 @@ public class LeleiLaLalena extends AnimatorCard
         SetAffinity_Blue(1);
 
         SetEvokeOrbCount(1);
-    }
 
-    @Override
-    public void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        target = HasSynergy() ? CardTarget.SELF_AND_ENEMY : CardTarget.SELF;
+        SetAffinityRequirement(Affinity.Blue, 5);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackAffinityPower(Affinity.Blue);
+        GameActions.Bottom.GainIntellect(1);
+
+        if (TryUseAffinity(Affinity.Blue))
+        {
+            GameActions.Bottom.ObtainAffinityToken(Affinity.General, upgraded);
+        }
     }
 
     @Override
@@ -47,13 +45,5 @@ public class LeleiLaLalena extends AnimatorCard
         .ShowEffect(!upgraded, !upgraded)
         .SetOptions(false, false, false)
         .AddCallback(() -> GameActions.Bottom.ChannelOrbs(Frost::new, magicNumber));
-    }
-
-    @Override
-    public void triggerOnManualDiscard()
-    {
-        super.triggerOnManualDiscard();
-
-        GameActions.Bottom.ApplyWeak(TargetHelper.RandomEnemy(), 1);
     }
 }

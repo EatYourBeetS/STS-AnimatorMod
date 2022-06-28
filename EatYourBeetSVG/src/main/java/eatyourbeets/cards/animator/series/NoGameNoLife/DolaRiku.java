@@ -41,7 +41,7 @@ public class DolaRiku extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        cardPreview = HasSynergy() ? discardPilePreview : drawPilePreview;
+        cardPreview = CheckAffinity(Affinity.Blue) ? discardPilePreview : drawPilePreview;
     }
 
     @Override

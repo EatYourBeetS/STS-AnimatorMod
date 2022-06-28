@@ -55,7 +55,7 @@ public class Caster extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        SetEvokeOrbCount(HasSynergy() ? 1 : 0);
+        SetEvokeOrbCount(CheckAffinity(Affinity.Dark) ? 1 : 0);
     }
 
     @Override

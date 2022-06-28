@@ -13,7 +13,7 @@ import eatyourbeets.utilities.TargetHelper;
 public class Ciel extends AnimatorCard
 {
     public static final EYBCardData DATA = Register(Ciel.class)
-            .SetSkill(2, CardRarity.COMMON)
+            .SetSkill(2, CardRarity.COMMON, EYBCardTarget.None)
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(new Lu(), false))
             .ModifyRewards((data, rewards) ->

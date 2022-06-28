@@ -27,7 +27,7 @@ public class Ara extends AnimatorCard
         SetAffinity_Green(1, 0, 1);
         SetAffinity_Red(1);
 
-        SetAffinityRequirement(Affinity.Green, 2);
+        SetAffinityRequirement(Affinity.Green, 1);
     }
 
     @Override
@@ -46,6 +46,11 @@ public class Ara extends AnimatorCard
     @Override
     public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
+        if (TryUseAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.Draw(magicNumber);
+        }
+
         GameActions.Bottom.DiscardFromHand(name, magicNumber, false)
         .SetOptions(false, false, true)
         .AddCallback(cards ->
@@ -55,10 +60,5 @@ public class Ara extends AnimatorCard
                 GameActions.Bottom.GainAgility(secondaryValue);
             }
         });
-
-        if (TryUseAffinity(Affinity.Green))
-        {
-            GameActions.Bottom.Draw(magicNumber);
-        }
     }
 }

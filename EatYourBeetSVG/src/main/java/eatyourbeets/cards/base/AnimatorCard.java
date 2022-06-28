@@ -143,9 +143,4 @@ public abstract class AnimatorCard extends EYBCard
     {
         return cooldown != null ? cooldown.GetSecondaryValueString() : super.GetSecondaryValueString();
     }
-
-    public boolean HasSynergy()
-    {
-        return affinities.GetLevel(Affinity.General) > 0;
-    }
 }

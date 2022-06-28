@@ -1,12 +1,13 @@
 package eatyourbeets.cards.animator.series.GATE;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
+import eatyourbeets.utilities.JUtils;
 import eatyourbeets.utilities.TargetHelper;
 
 public class ShunyaKengun extends AnimatorCard
@@ -28,7 +29,7 @@ public class ShunyaKengun extends AnimatorCard
         SetAffinityRequirement(Affinity.Red, 2);
         SetAffinityRequirement(Affinity.Green, 2);
 
-        SetCardPreview(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c));
+        SetCardPreview(ShunyaKengun::Filter);
     }
 
     @Override
@@ -45,6 +46,17 @@ public class ShunyaKengun extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.GUNSHOT).SetSoundPitch(0.9f, 1f);
         GameActions.Bottom.Draw(1)
-        .SetFilter(c -> c.type == CardType.ATTACK && GameUtilities.HasGreenAffinity(c), false);
+        .SetFilter(ShunyaKengun::Filter, false);
+    }
+
+    private static boolean Filter(AbstractCard card)
+    {
+        if (card.type != CardType.ATTACK)
+        {
+            return false;
+        }
+
+        final EYBCard c = JUtils.SafeCast(card, EYBCard.class);
+        return c != null && c.attackType == EYBAttackType.Ranged;
     }
 }

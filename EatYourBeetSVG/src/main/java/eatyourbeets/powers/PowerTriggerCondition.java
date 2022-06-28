@@ -3,6 +3,7 @@ package eatyourbeets.powers;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.delegates.ActionT1;
@@ -146,6 +147,19 @@ public class PowerTriggerCondition
             case SacrificeMinion:
                 return CombatStats.Dolls.Any();
 
+            case Affinity_Red:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Red) >= requiredAmount;
+            case Affinity_Green:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Green) >= requiredAmount;
+            case Affinity_Blue:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Blue) >= requiredAmount;
+            case Affinity_Light:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Light) >= requiredAmount;
+            case Affinity_Dark:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Dark) >= requiredAmount;
+            case Affinity_Star:
+                return CombatStats.Affinities.GetUsableAffinity(Affinity.Star) >= requiredAmount;
+
             case TakeDelayedDamage:
             default:
                 return result;
@@ -221,6 +235,36 @@ public class PowerTriggerCondition
             case SacrificeMinion:
             {
                 GameActions.Bottom.SacrificeDoll(power.name).IsCancellable(false).AutoSelectSingleTarget(true);
+                break;
+            }
+            case Affinity_Red:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Red, requiredAmount);
+                break;
+            }
+            case Affinity_Green:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Green, requiredAmount);
+                break;
+            }
+            case Affinity_Blue:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Blue, requiredAmount);
+                break;
+            }
+            case Affinity_Light:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Light, requiredAmount);
+                break;
+            }
+            case Affinity_Dark:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Dark, requiredAmount);
+                break;
+            }
+            case Affinity_Star:
+            {
+                CombatStats.Affinities.TryUseAffinity(Affinity.Star, requiredAmount);
                 break;
             }
         }

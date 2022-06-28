@@ -14,5 +14,12 @@ public enum PowerTriggerConditionType
     Gold,
     None,
     Special,
-    SacrificeMinion
+    SacrificeMinion,
+
+    Affinity_Red,
+    Affinity_Green,
+    Affinity_Blue,
+    Affinity_Light,
+    Affinity_Dark,
+    Affinity_Star
 }

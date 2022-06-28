@@ -40,7 +40,7 @@ public class Marielle extends AnimatorCard
     @Override
     public AbstractAttribute GetSpecialInfo()
     {
-        return HasSynergy() ? TempHPAttribute.Instance.SetCard(this, true) : super.GetSpecialInfo();
+        return TempHPAttribute.Instance.SetCard(this, true);
     }
 
     @Override

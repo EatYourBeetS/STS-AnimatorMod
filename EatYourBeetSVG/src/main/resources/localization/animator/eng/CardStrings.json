@@ -373,7 +373,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Gain !S! [C]. Next turn: ** Gain [E] and <DRW>. || !A! <D>: Exhaust a card ** anywhere and replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Gain !S! [C]. Next turn: ** Gain [E] and <DRW-M>. || !A! <D>: Exhaust a card ** anywhere and replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Discard 1 card ** to gain !S! [A]. || !A! <G>: <DRW-M>.",
+			"DESCRIPTION": "!A! <G>: <DRW-M>. || Discard 1 card ** to gain !S! [A].",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -404,7 +404,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <slm>. When discarded: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <SLM>. !A! <G> or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -471,7 +471,7 @@
 		},
 		"animator:Caster":
 		{
-			"DESCRIPTION": "Steal !M! Strength. Gain !S! [Frail] and !M! [C]. || When Sealed: Channel [Dark].",
+			"DESCRIPTION": "Steal !M! Strength. ** Gain !S! [Frail] and !M! [C]. || When Sealed: ** Channel [Dark].",
 			"NAME": "Caster"
 		},
 		"animator:EmiyaKiritsugu":
@@ -532,7 +532,7 @@
 		},
 		"animator:MatouShinji_CommandSpell":
 		{
-			"DESCRIPTION": "Lose 1 [Orb_S] to ** Fetch a <R> or <G> card ** from your discard pile. ** Give it <S> scaling equal to ** its cost and Motivate it.",
+			"DESCRIPTION": "Lose 1 [Orb_S] to Fetch ** a <P> card from your ** discard pile. Give it <S> ** scaling equal to its ** cost and Motivate it.",
 			"NAME": "Command Spell"
 		}
 	},
@@ -626,13 +626,14 @@
 	{
 		"animator:Arpeggio":
 		{
-			"DESCRIPTION": "Sealing <B> cards ** gives 1 {Temp.} <B>. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || Sealing <B> cards grants #b{1} #yTemporary <B>."],
+			"DESCRIPTION": "Imitate the first {<W> ** Token} you play each turn. || Once per combat, ** pay !M! [E]: Gain 1 [Orb_S] ** and Channel 1 [Earth].",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} [E]: Gain [Orb_S], #yChannel [Earth]. || #yImitate the next #b{1} <W> #yToken(s) played."],
 			"NAME": "Arpeggio"
 		},
 		"animator:Bozes":
 		{
-			"DESCRIPTION": "Motivate !M!. || You may Seal an additional card this turn.",
+			"DESCRIPTION": "Motivate !M!. || This turn, whenever ** you Seal a card in ** hand, gain 1 [Support Damage] and ** <DRW>.",
+			"EXTENDED_DESCRIPTION": ["This turn, whenever you #ySeal a card in hand, gain #b{0} [Support Damage] and <DRW>."],
 			"NAME": "Bozes"
 		},
 		"animator:CatoElAltestan":
@@ -643,30 +644,30 @@
 		},
 		"animator:ItamiYouji":
 		{
-			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || !A! <L>: Gain !S! [Support Damage].",
+			"DESCRIPTION": "Attack 1 additional time ** for each card played ** this turn (max 10). || !A! <S>: Gain !S! [Support Damage].",
 			"NAME": "Itami Youji"
+		},
+		"animator:Kuribayashi":
+		{
+			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <G>: Retain 1 {Attack}. || !A! <R>: Deal !S! [DD].",
+			"EXTENDED_DESCRIPTION": ["At the end of turn, Retain #b{0} #yAttack(s)."],
+			"NAME": "Kuribayashi"
+		},
+		"animator:LeleiLaLalena":
+		{
+			"DESCRIPTION": "Gain [I]. Discard ** a random card ** to {Channel} !M! [Frost]. || !A! <B>: Obtain {<W> Token}.",
+			"NAME": "Lelei La Lalena",
+			"UPGRADE_DESCRIPTION": "Gain [I]. Discard a ** card to {Channel} !M! [Frost]. || !A! <B>: Obtain {<W> Token}{+}."
 		},
 		"animator:MariKurokawa":
 		{
 			"DESCRIPTION": "Recover !M! [HP]. || If you haven't played ** an {Attack} this turn: ** Gain !S! [Block] and discard ** !K! random {Attacks}.",
 			"NAME": "Kurokawa"
 		},
-		"animator:Kuribayashi":
-		{
-			"DESCRIPTION": "Apply !M! [Vulnerable]. || !A! <G>: ** Retain an {Attack}.",
-			"EXTENDED_DESCRIPTION": ["At the end of turn, Retain #b{0} #yAttack(s)."],
-			"NAME": "Kuribayashi"
-		},
-		"animator:LeleiLaLalena":
-		{
-			"DESCRIPTION": "Gain [I]. Discard a random card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy.",
-			"NAME": "Lelei La Lalena",
-			"UPGRADE_DESCRIPTION": "Gain [I]. Discard a card to {Channel} !M! [Frost]. || When Discarded: Apply 1 [Weak] to a random enemy."
-		},
 		"animator:MoltSolAugustus":
 		{
-			"DESCRIPTION": "!M! times per turn, when you play a <R> card: <DRW>. || Once per turn, pay [E]: ** Add !S! {Imperial Archers} ** to your draw pile.",
-			"EXTENDED_DESCRIPTION": ["Pay [E] to add #b{0} #yImperial #yArchers to your draw pile. || On the next #b{1} <R> card(s) played, draw #b1 card."],
+			"DESCRIPTION": "!M! times per turn, when you play a <R> card: <DRW>. || Once per turn, pay 3 <R>: ** Add !S! {Imperial Archers} ** to your draw pile.",
+			"EXTENDED_DESCRIPTION": ["Pay #b{0} <R> to add #b{0} #yImperial #yArchers to your draw pile. || On the next #b{1} <R> card(s) played, draw #b1 card."],
 			"NAME": "Molt Sol Augustus"
 		},
 		"animator:MoltSolAugustus_ImperialArchers":
@@ -676,7 +677,7 @@
 		},
 		"animator:PinaCoLada":
 		{
-			"DESCRIPTION": "Unplayable unless you ** have no Seals left this turn. || The first {0-Cost} card ** you play each turn is ** played twice.",
+			"DESCRIPTION": "Lose !M! [Block] to play. || The first {0-Cost} card ** you play each turn is ** played twice.",
 			"NAME": "Pina Co Lada"
 		},
 		"animator:RoryMercury":
@@ -686,12 +687,12 @@
 		},
 		"animator:ShunyaKengun":
 		{
-			"DESCRIPTION": "Draw 1 <G> {Attack}. || When drawn: Apply ** 1 [~Lock-On] to a random ** enemy, ignoring [Artifact].",
+			"DESCRIPTION": "Draw 1 [~Ranged] {Attack}. || When drawn: Apply ** 1 [~Lock-On] to a random ** enemy, ignoring [Artifact].",
 			"NAME": "Kengun"
 		},
 		"animator:TukaLunaMarceau":
 		{
-			"DESCRIPTION": "Seal a card in your draw pile. || If you have no [Block]: ** <DRW>.",
+			"DESCRIPTION": "If you have no [Block]: ** <DRW>. || When Sealed: ** Boost [A] [B].",
 			"NAME": "Tuka"
 		},
 		"animator:Tyuule":
@@ -701,7 +702,7 @@
 		},
 		"animator:YaoHaDucy":
 		{
-			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Shackles]. || This card may be Sealed any number of times.",
+			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [Shackles]. || When Sealed: ** Gain !S! [Block].",
 			"NAME": "Yao Ha Ducy"
 		}
 	},

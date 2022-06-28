@@ -1,15 +1,18 @@
 package eatyourbeets.cards.animator.series.GATE;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.*;
-import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
+import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardUseInfo;
+import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Earth;
 import eatyourbeets.powers.AnimatorClickablePower;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
+import eatyourbeets.utilities.GameUtilities;
 
 public class Arpeggio extends AnimatorCard
 {
@@ -24,7 +27,7 @@ public class Arpeggio extends AnimatorCard
 
         Initialize(0, 0, POWER_ENERGY_COST);
 
-        SetAffinity_Blue(1, 1, 0);
+        SetAffinity_Blue(2);
 
         SetDelayed(true);
     }
@@ -41,16 +44,14 @@ public class Arpeggio extends AnimatorCard
         GameActions.Bottom.StackPower(new ArpeggioPower(p, 1));
     }
 
-    public static class ArpeggioPower extends AnimatorClickablePower implements OnAffinitySealedSubscriber
+    public static class ArpeggioPower extends AnimatorClickablePower
     {
-        private static final int MAX_BONUS = 2;
-        private int intellectBonus;
-
         public ArpeggioPower(AbstractCreature owner, int amount)
         {
             super(owner, Arpeggio.DATA, PowerTriggerConditionType.Energy, Arpeggio.POWER_ENERGY_COST);
 
             triggerCondition.SetUses(1, false, true);
+            canBeZero = true;
 
             Initialize(amount);
         }
@@ -58,33 +59,27 @@ public class Arpeggio extends AnimatorCard
         @Override
         public String GetUpdatedDescription()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, intellectBonus, MAX_BONUS);
+            return FormatDescription(0, triggerCondition.requiredAmount, amount);
+        }
+
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            ResetAmount();
         }
 
         @Override
-        public void OnAffinitySealed(EYBCard card, boolean manual)
+        public void onAfterCardPlayed(AbstractCard usedCard)
         {
-            if (card.affinities.GetLevel(Affinity.Blue, true) > 0)
+            super.onAfterCardPlayed(usedCard);
+
+            if (usedCard instanceof AffinityToken && amount > 0)
             {
-                CombatStats.Affinities.AddTempAffinity(Affinity.Blue, amount);
-                flash();
+                GameActions.Bottom.MakeCardInHand(GameUtilities.Imitate(usedCard));
+                reducePower(1);
+                flashWithoutSound();
             }
-        }
-
-        @Override
-        public void onInitialApplication()
-        {
-            super.onInitialApplication();
-
-            CombatStats.onAffinitySealed.Subscribe(this);
-        }
-
-        @Override
-        public void onRemove()
-        {
-            super.onRemove();
-
-            CombatStats.onAffinitySealed.Unsubscribe(this);
         }
 
         @Override

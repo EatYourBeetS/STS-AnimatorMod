@@ -20,7 +20,7 @@ public class Raven extends AnimatorCard
         super(DATA);
 
         Initialize(4, 0, 2);
-        SetUpgrade(2, 0, 1);
+        SetUpgrade(3, 0, 0);
 
         SetAffinity_Red(1);
         SetAffinity_Green(1, 0, 1);

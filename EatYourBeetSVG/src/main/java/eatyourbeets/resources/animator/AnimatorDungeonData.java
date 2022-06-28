@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.animator.ultrarare.Azami;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
@@ -61,7 +60,6 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
             return rate;
         }
 
-
         final int currentLevel = GR.Animator.GetUnlockLevel();
         if (currentLevel <= 2 || AbstractDungeon.floorNum < 8 || AbstractDungeon.floorNum > 36)
         {
@@ -83,27 +81,33 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
         return bonus;
     }
 
-    public static EYBCardData CreateUltraRare(AbstractPlayer player) {
-        HashMap<CardSeries, Integer> possibleSeries = new HashMap<>();
-        HashSet<CardSeries> urSeries = new HashSet<>();
+    public static EYBCardData CreateUltraRare(AbstractPlayer player)
+    {
+        final HashMap<CardSeries, Integer> possibleSeries = new HashMap<>();
+        final HashSet<CardSeries> urSeries = new HashSet<>();
         for (AbstractCard c : player.masterDeck.group)
         {
             CardSeries s = GameUtilities.GetSeries(c);
-            if (s != null) {
+            if (s != null)
+            {
                 possibleSeries.merge(s, 1, Integer::sum);
-                if (c instanceof AnimatorCard_UltraRare) {
+                if (c instanceof AnimatorCard_UltraRare)
+                {
                     urSeries.add(s);
                 }
             }
         }
-        WeightedList<CardSeries> weighted = new WeightedList<>();
-        for (Map.Entry<CardSeries, Integer> entry : possibleSeries.entrySet()) {
-            if (!urSeries.contains(entry.getKey())) {
+
+        final WeightedList<CardSeries> weighted = new WeightedList<>();
+        for (Map.Entry<CardSeries, Integer> entry : possibleSeries.entrySet())
+        {
+            if (!urSeries.contains(entry.getKey()))
+            {
                 weighted.Add(entry.getKey(), entry.getValue());
             }
         }
 
-        CardSeries selected = weighted.Retrieve(AbstractDungeon.cardRng);
+        final CardSeries selected = weighted.Retrieve(AbstractDungeon.cardRng);
         return AnimatorCard_UltraRare.GetCardData(GR.Animator.Data.GetLoadout(selected));
     }
 

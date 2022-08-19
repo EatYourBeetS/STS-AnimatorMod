@@ -276,7 +276,7 @@ public class SoraAction extends EYBAction
             AnimatorClassicCardBuilder builder = new AnimatorClassicCardBuilder(Sora.DATA.ID + "Alt");
 
             builder.SetText(cardName, cardDescription, "");
-            builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
+            builder.SetProperties(AbstractCard.CardType.SKILL, GR.Enums.Cards.THE_ANIMATOR_CLASSIC, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.ALL);
             builder.SetOnUse(onUseAction);
 
             if (this == GainBlock)

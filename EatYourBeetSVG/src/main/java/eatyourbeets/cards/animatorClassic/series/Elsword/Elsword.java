@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.orbs.animator.Fire;
-import eatyourbeets.powers.animatorClassic.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Elsword extends AnimatorClassicCard

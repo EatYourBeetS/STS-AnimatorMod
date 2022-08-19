@@ -599,7 +599,8 @@
 		},
 		"animatorClassic:Hitei":
 		{
-			"DESCRIPTION": "At the start of turn: ** Exhaust 1 of !S! random ** cards in draw or discard ** pile, then draw 1 card.",
+			"DESCRIPTION": "At the start of turn: ** Exhaust 1 of !M! random ** cards in draw or discard ** pile, then draw !S! card.",
+		  	"EXTENDED_DESCRIPTION": ["At the start of each turn, #yExhaust #b1 of #b{0} random cards in your draw or discard pile, then draw #b{1} card(s)."],
 			"NAME": "Hitei"
 		},
 		"animatorClassic:Konayuki":

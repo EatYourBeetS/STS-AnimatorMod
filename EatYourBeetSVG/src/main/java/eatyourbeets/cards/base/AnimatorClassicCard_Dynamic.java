@@ -8,6 +8,7 @@ import eatyourbeets.interfaces.delegates.ActionT1;
 import eatyourbeets.interfaces.delegates.ActionT3;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.interfaces.delegates.FuncT2;
+import eatyourbeets.resources.GR;
 
 public class AnimatorClassicCard_Dynamic extends AnimatorClassicCard
 {
@@ -26,7 +27,7 @@ public class AnimatorClassicCard_Dynamic extends AnimatorClassicCard
 
     public AnimatorClassicCard_Dynamic(AnimatorClassicCardBuilder builder)
     {
-        super(new EYBCardData(AnimatorClassicCard_Dynamic.class, builder.id, builder.cardStrings), builder.id, builder.imagePath,
+        super(new EYBCardData(AnimatorClassicCard_Dynamic.class, builder.id, builder.cardStrings, GR.AnimatorClassic), builder.id, builder.imagePath,
             builder.cost, builder.cardType, builder.cardColor, builder.cardRarity, builder.cardTarget);
 
         Initialize(builder.damage, builder.block, builder.magicNumber, builder.secondaryValue);

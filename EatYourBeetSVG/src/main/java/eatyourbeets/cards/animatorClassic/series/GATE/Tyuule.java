@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.*;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.powers.animatorClassic.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 

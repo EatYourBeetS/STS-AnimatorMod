@@ -3,7 +3,7 @@ package eatyourbeets.cards.animatorClassic.series.NoGameNoLife;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.actions.animator.SoraAction;
+import eatyourbeets.actions.animatorClassic.SoraAction;
 import eatyourbeets.cards.base.AnimatorClassicCard;
 import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;

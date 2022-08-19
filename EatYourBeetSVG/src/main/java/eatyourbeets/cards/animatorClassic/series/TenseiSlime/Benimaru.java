@@ -8,7 +8,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.vfx.megacritCopy.FireballEffect2;
 import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.animatorClassic.BurningPower;
+import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.utilities.GameActions;
 
 public class Benimaru extends AnimatorClassicCard

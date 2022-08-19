@@ -62,17 +62,17 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID, AbstractResources resources)
     {
-        this(type, cardID, GR.GetCardStrings(cardID));
+        this(type, cardID, GR.GetCardStrings(cardID), resources);
 
-        this.Resources = resources;
         this.ImagePath = GR.GetCardImage(cardID);
     }
 
-    public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings)
+    public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings, AbstractResources resources)
     {
         this.ID = cardID;
         this.MaxCopies = -1;
         this.Strings = EYBCardText.ProcessCardStrings(strings);
+        this.Resources = resources;
         this.type = type;
     }
 

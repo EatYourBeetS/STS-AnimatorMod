@@ -1,13 +1,14 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Lightning;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.cards.base.*;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -22,18 +23,13 @@ public class NobleFencer extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 2, 3, 1);
+        Initialize(0, 2);
+        SetUpgrade(0, 2);
 
-        SetAffinity_Green(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Green(1, 1, 0);
+        SetAffinity_Blue(1, 1, 1);
 
         SetExhaust(true);
-    }
-
-    @Override
-    protected void OnUpgrade()
-    {
-        SetExhaust(false);
     }
 
     @Override
@@ -49,31 +45,55 @@ public class NobleFencer extends AnimatorCard
     }
 
     @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-        GameActions.Bottom.GainAgility(1);
-        GameActions.Bottom.GainIntellect(1);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
-
         GameActions.Bottom.EvokeOrb(1)
-        .SetFilter(o -> Lightning.ORB_ID.equals(o.ID))
-        .AddCallback(orbs ->
+        .SetFilter(o -> Lightning.ORB_ID.equals(o.ID));
+        GameActions.Bottom.StackPower(new NobleFencerPower(p, 1));
+    }
+
+    public class NobleFencerPower extends AnimatorPower implements OnAffinitySealedSubscriber
+    {
+        public NobleFencerPower(AbstractCreature owner, int amount)
         {
-            if (orbs.size() > 0)
+            super(owner, NobleFencer.DATA);
+
+            Initialize(amount);
+        }
+
+        @Override
+        public void onInitialApplication()
+        {
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
+        }
+
+        @Override
+        public void OnAffinitySealed(EYBCard card, boolean manual)
+        {
+            if (player.hand.contains(card))
             {
-                GameActions.Bottom.GainAgility(1);
-                GameActions.Bottom.GainIntellect(1);
+                GameActions.Bottom.ChannelOrb(new Lightning());
+                flashWithoutSound();
             }
-            else
-            {
-                GameActions.Bottom.ChannelOrbs(Lightning::new, secondaryValue);
-            }
-        });
+        }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            RemovePower();
+        }
     }
 }

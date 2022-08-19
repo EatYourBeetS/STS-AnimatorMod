@@ -52,7 +52,7 @@ public class AnimatorSsssserpent extends AbstractImageEvent
             this.goldReward = GOLD_REWARD;
         }
 
-        this.curse = GameUtilities.GetCardReplacementOrDefault(null, Doubt.ID, false);
+        this.curse = GameUtilities.TryReplace(null, Doubt.ID, false);
         this.imageEventText.setDialogOption(OPTIONS[0] + this.goldReward + OPTIONS[1], curse.makeStatEquivalentCopy());
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }

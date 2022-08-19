@@ -14,7 +14,9 @@ import com.megacrit.cardcrawl.random.Random;
 import eatyourbeets.cards.animator.curse.special.Curse_AscendersBane;
 import eatyourbeets.cards.animator.special.CardNotFound;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
+import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
 import eatyourbeets.utilities.FieldInfo;
@@ -39,8 +41,22 @@ public class CardLibraryPatches
         }
 
         return playerClass == GR.Animator.PlayerClass ? CardLibraryPatches_Animator.GetReplacement(cardID) :
+               playerClass == GR.AnimatorClassic.PlayerClass ? CardLibraryPatches_AnimatorClassic.GetReplacement(cardID) :
                playerClass == GR.Unnamed.PlayerClass ? CardLibraryPatches_Unnamed.GetReplacement(cardID) :
                null;
+    }
+
+    public static AbstractCard TryReplace(AbstractResources resources, AbstractCard card)
+    {
+        if (card.cardID.startsWith(resources.Prefix))
+        {
+            return card;
+        }
+        else
+        {
+            final EYBCardData data = GetReplacement(resources.PlayerClass, card.cardID);
+            return data == null ? card : data.MakeCopy(card.upgraded);
+        }
     }
 
     public static void TryReplace(AbstractCard[] card)
@@ -72,6 +88,14 @@ public class CardLibraryPatches
                 if (AnimatorCard_UltraRare.IsSeen(key))
                 {
                     final AbstractCard card = AnimatorCard_UltraRare.GetCards().get(key);
+                    if (card != null)
+                    {
+                        return SpireReturn.Return(card.makeCopy());
+                    }
+                }
+                if (AnimatorClassicCard_UltraRare.IsSeen(key))
+                {
+                    final AbstractCard card = AnimatorClassicCard_UltraRare.GetCards().get(key);
                     if (card != null)
                     {
                         return SpireReturn.Return(card.makeCopy());

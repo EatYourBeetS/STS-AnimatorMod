@@ -15,7 +15,7 @@ public class Fireblast extends UnnamedCard
 {
     public static final EYBCardData DATA = Register(Fireblast.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
-            .PostInitialize(data -> data.AddPreview(GameUtilities.GetCardReplacement(PLAYER_CLASS, Burn.ID, false), false));
+            .PostInitialize(data -> data.AddPreview(GameUtilities.GetReplacement(PLAYER_CLASS, Burn.ID, false), false));
 
     public Fireblast()
     {
@@ -29,7 +29,7 @@ public class Fireblast extends UnnamedCard
     public void OnUse(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
-        GameActions.Bottom.MakeCardInDrawPile(GameUtilities.GetCardReplacementOrDefault(PLAYER_CLASS, Burn.ID, false))
+        GameActions.Bottom.MakeCardInDrawPile(GameUtilities.TryReplace(PLAYER_CLASS, Burn.ID, false))
         .AddCallback(card ->
         {
             if (card != null && IsSolo())

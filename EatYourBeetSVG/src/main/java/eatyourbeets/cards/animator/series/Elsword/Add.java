@@ -30,7 +30,7 @@ public class Add extends AnimatorCard
         SetAffinity_Blue(1, 1, 0);
         SetAffinity_Dark(2);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 2);
 
         SetExhaust(true);
     }

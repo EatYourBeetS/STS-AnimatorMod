@@ -23,7 +23,7 @@ public class Wiz extends AnimatorCard
             .SetSkill(1, CardRarity.RARE, EYBCardTarget.None)
             .SetMaxCopies(1)
             .SetSeriesFromClassPackage()
-            .PostInitialize(data -> data.AddPreview(GameUtilities.GetCardReplacement(PLAYER_CLASS, Apparition.ID, false), false));
+            .PostInitialize(data -> data.AddPreview(GameUtilities.GetReplacement(PLAYER_CLASS, Apparition.ID, false), false));
 
     public Wiz()
     {
@@ -71,7 +71,7 @@ public class Wiz extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.MakeCardInDrawPile(GameUtilities.GetCardReplacement(GR.Animator.PlayerClass, Apparition.ID, false));
+                GameActions.Bottom.MakeCardInDrawPile(GameUtilities.GetReplacement(GR.Animator.PlayerClass, Apparition.ID, false));
                 GameActions.Bottom.StackPower(new WizPower(player, 1));
             }
         });

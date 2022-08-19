@@ -110,13 +110,13 @@
 	},
 	"animator:LivingPicture":
 	{
-		"DESCRIPTIONS": ["Up to #b{0} times per combat, when you manually #ySeal a card, draw #b1 card."],
+		"DESCRIPTIONS": ["Whenever you #ySeal a card, gain #b{0} [DE]."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Living Picture"
 	},
 	"animator:VividPicture":
 	{
-		"DESCRIPTIONS": ["Replaces #yLiving #yPicture. Up to #b{0} times per combat, when you manually #ySeal a card, draw #b{1} cards."],
+		"DESCRIPTIONS": ["Replaces #yLiving #yPicture. Once pwe turn, when you #ySeal a card, gain #b{0} [DE]."],
 		"FLAVOR": "It's always watching.",
 		"NAME": "Vivid Picture"
 	},

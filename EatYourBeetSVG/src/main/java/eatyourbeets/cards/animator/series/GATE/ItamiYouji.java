@@ -28,7 +28,7 @@ public class ItamiYouji extends AnimatorCard
 
         SetExhaust(true);
 
-        SetAffinityRequirement(Affinity.Star, 2);
+        SetAffinityRequirement(Affinity.Star, 1);
     }
 
     @Override

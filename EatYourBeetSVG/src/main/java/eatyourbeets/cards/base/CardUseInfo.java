@@ -16,7 +16,7 @@ public class CardUseInfo
     public final boolean CanActivateSemiLimited;
     public final boolean CanActivateLimited;
     public final boolean IsStarter;
-    public final boolean IsSynergizing = true;
+    public final boolean IsSynergizing;
 
     protected Object data;
 
@@ -29,6 +29,7 @@ public class CardUseInfo
         this.CanActivateSemiLimited = CombatStats.CanActivateSemiLimited(card.cardID);
         this.CanActivateLimited = CombatStats.CanActivateLimited(card.cardID);
         this.IsStarter = CombatStats.CanActivatedStarter();
+        this.IsSynergizing = CardSeries.Synergy.WouldSynergize(card);
     }
 
     public boolean TryActivateStarter()
@@ -46,9 +47,9 @@ public class CardUseInfo
         return CombatStats.TryActivateSemiLimited(Card.cardID);
     }
 
-    public void SetTempData(Object data)
+    public <T> T SetData(T data)
     {
-        this.data = data;
+        return (T)(this.data = data);
     }
 
     public <T> T GetData(T defaultValue)

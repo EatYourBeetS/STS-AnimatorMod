@@ -14,7 +14,7 @@ public class RoyMustang extends AnimatorCard
     public static final EYBCardData DATA = Register(RoyMustang.class)
             .SetAttack(2, CardRarity.UNCOMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
             .SetSeriesFromClassPackage();
-    public static final int BURNING_ATTACK_BONUS = 15;
+    public static final int BURNING_ATTACK_BONUS = 25;
 
     public RoyMustang()
     {

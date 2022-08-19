@@ -2,6 +2,8 @@ package eatyourbeets.cards.base;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -66,7 +68,7 @@ public class CardSeries
     public final static CardSeries GenshinImpact = Add(51, "GenshinImpact");
 
     private static AbstractCard currentSynergy = null;
-    private static AnimatorCard lastCardPlayed = null;
+    private static EYBCard lastCardPlayed = null;
 
     public final int ID;
     public final String Name;
@@ -90,18 +92,6 @@ public class CardSeries
         {
             CardSeries s = mapIDs.get(k);
             s.LocalizedName = GR.Animator.Strings.Series.SeriesName(k);
-        }
-    }
-
-    public static void AddCards(CardSeries series, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
-    {
-        for (AbstractCard c : source)
-        {
-            AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
-            if (card != null && (series == null || series.Equals(card.series) || series.Equals(CardSeries.ANY)))
-            {
-                destination.add(card);
-            }
         }
     }
 
@@ -145,37 +135,15 @@ public class CardSeries
         return mapNames.get(name);
     }
 
-    public static AnimatorCard GetLastCardPlayed()
+    public static void SetLastCardPlayed(AbstractCard card)
+    {
+        lastCardPlayed = JUtils.SafeCast(card, EYBCard.class);
+        currentSynergy = null;
+    }
+
+    public static EYBCard GetLastCardPlayed()
     {
         return lastCardPlayed;
-    }
-
-    public static Map<CardSeries, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
-    {
-        return JUtils.Group(cards, card ->
-        {
-            final AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
-            if (c != null && c.series != null)
-            {
-                return c.series;
-            }
-
-            return ANY;
-        });
-    }
-
-    public static ArrayList<AnimatorCard> GetColorlessCards()
-    {
-        final ArrayList<AnimatorCard> result = new ArrayList<>();
-        for (AbstractCard c : AbstractDungeon.srcColorlessCardPool.group)
-        {
-            if (c instanceof AnimatorCard)
-            {
-                result.add((AnimatorCard) c);
-            }
-        }
-
-        return result;
     }
 
     public static String GetLocalizedSeriesString()
@@ -183,38 +151,231 @@ public class CardSeries
         return GR.Animator.Strings.Series.Series;
     }
 
-    public static ArrayList<AnimatorCard> GetNonColorlessCard()
+    public static class Affinity
     {
-        final ArrayList<AnimatorCard> result = new ArrayList<>();
-        AddCards(null, AbstractDungeon.srcCommonCardPool.group, result);
-        AddCards(null, AbstractDungeon.srcUncommonCardPool.group, result);
-        AddCards(null, AbstractDungeon.srcRareCardPool.group, result);
-
-        return result;
-    }
-
-    public static ArrayList<AnimatorCard> GetNonColorlessCard(CardSeries series)
-    {
-        final ArrayList<AnimatorCard> result = new ArrayList<>();
-        AddCards(series, AbstractDungeon.srcCommonCardPool.group, result);
-        AddCards(series, AbstractDungeon.srcUncommonCardPool.group, result);
-        AddCards(series, AbstractDungeon.srcRareCardPool.group, result);
-
-        return result;
-    }
-
-    public static HashSet<CardSeries> GetAllSeries(ArrayList<AbstractCard> cards)
-    {
-        final HashSet<CardSeries> result = new HashSet<>();
-        for (AbstractCard card : cards)
+        public static Map<CardSeries, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
         {
-            AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
-            if (c != null && c.series != null)
+            return JUtils.Group(cards, card ->
             {
-                result.add(c.series);
+                final AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
+                if (c != null && c.series != null)
+                {
+                    return c.series;
+                }
+
+                return ANY;
+            });
+        }
+
+        public static ArrayList<AnimatorCard> GetColorlessCards()
+        {
+            final ArrayList<AnimatorCard> result = new ArrayList<>();
+            for (AbstractCard c : AbstractDungeon.srcColorlessCardPool.group)
+            {
+                if (c instanceof AnimatorCard)
+                {
+                    result.add((AnimatorCard) c);
+                }
+            }
+
+            return result;
+        }
+
+        public static ArrayList<AnimatorCard> GetNonColorlessCard()
+        {
+            final ArrayList<AnimatorCard> result = new ArrayList<>();
+            AddCards(null, AbstractDungeon.srcCommonCardPool.group, result);
+            AddCards(null, AbstractDungeon.srcUncommonCardPool.group, result);
+            AddCards(null, AbstractDungeon.srcRareCardPool.group, result);
+
+            return result;
+        }
+
+        public static ArrayList<AnimatorCard> GetNonColorlessCard(CardSeries series)
+        {
+            final ArrayList<AnimatorCard> result = new ArrayList<>();
+            AddCards(series, AbstractDungeon.srcCommonCardPool.group, result);
+            AddCards(series, AbstractDungeon.srcUncommonCardPool.group, result);
+            AddCards(series, AbstractDungeon.srcRareCardPool.group, result);
+
+            return result;
+        }
+
+        public static void AddCards(CardSeries series, ArrayList<AbstractCard> source, ArrayList<AnimatorCard> destination)
+        {
+            for (AbstractCard c : source)
+            {
+                AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+                if (card != null && (series == null || series.Equals(card.series) || series.Equals(CardSeries.ANY)))
+                {
+                    destination.add(card);
+                }
             }
         }
 
-        return result;
+        public static HashSet<CardSeries> GetAllSeries(ArrayList<AbstractCard> cards)
+        {
+            final HashSet<CardSeries> result = new HashSet<>();
+            for (AbstractCard card : cards)
+            {
+                AnimatorCard c = JUtils.SafeCast(card, AnimatorCard.class);
+                if (c != null && c.series != null)
+                {
+                    result.add(c.series);
+                }
+            }
+
+            return result;
+        }
+    }
+
+    public static class Synergy
+    {
+        public static boolean IsSynergizing(AbstractCard card)
+        {
+            if (card == null || currentSynergy == null)
+            {
+                return false;
+            }
+
+            return currentSynergy.uuid == card.uuid;
+        }
+
+        public static Map<CardSeries, List<AbstractCard>> GetCardsBySynergy(ArrayList<AbstractCard> cards)
+        {
+            return JUtils.Group(cards, card ->
+            {
+                final AnimatorClassicCard c = JUtils.SafeCast(card, AnimatorClassicCard.class);
+                if (c != null && c.series != null)
+                {
+                    return c.series;
+                }
+
+                return ANY;
+            });
+        }
+
+        public static ArrayList<AnimatorClassicCard> GetColorlessCards()
+        {
+            final ArrayList<AnimatorClassicCard> result = new ArrayList<>();
+            for (AbstractCard c : AbstractDungeon.srcColorlessCardPool.group)
+            {
+                if (c instanceof AnimatorClassicCard)
+                {
+                    result.add((AnimatorClassicCard) c);
+                }
+            }
+
+            return result;
+        }
+
+        public static ArrayList<AnimatorClassicCard> GetNonColorlessCard()
+        {
+            final ArrayList<AnimatorClassicCard> result = new ArrayList<>();
+            AddCards(null, AbstractDungeon.srcCommonCardPool.group, result);
+            AddCards(null, AbstractDungeon.srcUncommonCardPool.group, result);
+            AddCards(null, AbstractDungeon.srcRareCardPool.group, result);
+
+            return result;
+        }
+
+        public static ArrayList<AnimatorClassicCard> GetNonColorlessCard(CardSeries series)
+        {
+            final ArrayList<AnimatorClassicCard> result = new ArrayList<>();
+            AddCards(series, AbstractDungeon.srcCommonCardPool.group, result);
+            AddCards(series, AbstractDungeon.srcUncommonCardPool.group, result);
+            AddCards(series, AbstractDungeon.srcRareCardPool.group, result);
+
+            return result;
+        }
+
+        public static void AddCards(CardSeries series, ArrayList<AbstractCard> source, ArrayList<AnimatorClassicCard> destination)
+        {
+            for (AbstractCard c : source)
+            {
+                AnimatorClassicCard card = JUtils.SafeCast(c, AnimatorClassicCard.class);
+                if (card != null && (series == null || series.Equals(card.series) || series.Equals(CardSeries.ANY)))
+                {
+                    destination.add(card);
+                }
+            }
+        }
+
+        public static HashSet<CardSeries> GetAllSeries(ArrayList<AbstractCard> cards)
+        {
+            final HashSet<CardSeries> result = new HashSet<>();
+            for (AbstractCard card : cards)
+            {
+                AnimatorClassicCard c = JUtils.SafeCast(card, AnimatorClassicCard.class);
+                if (c != null && c.series != null)
+                {
+                    result.add(c.series);
+                }
+            }
+
+            return result;
+        }
+
+        public static boolean TrySynergize(AbstractCard card)
+        {
+            if (WouldSynergize(card))
+            {
+                currentSynergy = card;
+                return true;
+            }
+
+            currentSynergy = null;
+            return false;
+        }
+
+        public static boolean WouldSynergize(AbstractCard card)
+        {
+            return WouldSynergize(card, lastCardPlayed);
+        }
+
+        public static boolean WouldSynergize(AbstractCard card, AbstractCard other)
+        {
+            for (OnSynergyCheckSubscriber s : CombatStats.onSynergyCheck.GetSubscribers())
+            {
+                if (s.OnSynergyCheck(card, other))
+                {
+                    return true;
+                }
+            }
+
+            if (card == null || other == null)
+            {
+                return false;
+            }
+
+            final AnimatorClassicCard a = JUtils.SafeCast(card, AnimatorClassicCard.class);
+            final AnimatorClassicCard b = JUtils.SafeCast(other, AnimatorClassicCard.class);
+
+            if (a != null)
+            {
+                if (b != null)
+                {
+                    return a.HasDirectSynergy(b) || b.HasDirectSynergy(a);
+                }
+                else
+                {
+                    return a.HasDirectSynergy(other);
+                }
+            }
+
+            if (b != null)
+            {
+                return b.HasDirectSynergy(card);
+            }
+
+            return HasTagSynergy(card, other);
+        }
+
+        public static boolean HasTagSynergy(AbstractCard a, AbstractCard b)
+        {
+            return ((a.hasTag(AnimatorClassicCard.SHAPESHIFTER) || b.hasTag(AnimatorClassicCard.SHAPESHIFTER))
+                    || (a.hasTag(AnimatorClassicCard.MARTIAL_ARTIST) && b.hasTag(AnimatorClassicCard.MARTIAL_ARTIST))
+                    || (a.hasTag(AnimatorClassicCard.SPELLCASTER) && b.hasTag(AnimatorClassicCard.SPELLCASTER)));
+        }
     }
 }

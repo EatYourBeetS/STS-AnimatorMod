@@ -25,6 +25,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.resources.animator.AnimatorResources;
+import eatyourbeets.resources.animatorClassic.AnimatorClassicResources;
 import eatyourbeets.resources.common.CommonResources;
 import eatyourbeets.resources.unnamed.UnnamedResources;
 import eatyourbeets.utilities.JUtils;
@@ -53,12 +54,13 @@ public class GR
     public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;
+    public static AnimatorClassicResources AnimatorClassic;
     public static UnnamedResources Unnamed;
     public static CommonResources Common;
 
     public static boolean IsLoaded()
     {
-        return Common != null && (Common.isLoaded && Animator.isLoaded && Unnamed.isLoaded);
+        return Common != null && (Common.isLoaded && Animator.isLoaded && AnimatorClassic.isLoaded && Unnamed.isLoaded);
     }
 
     public static void Initialize()
@@ -70,10 +72,12 @@ public class GR
 
         Common = new CommonResources();
         Animator = new AnimatorResources();
+        AnimatorClassic = new AnimatorClassicResources();
         Unnamed = new UnnamedResources();
 
         Initialize(Common);
         Initialize(Animator);
+        Initialize(AnimatorClassic);
         Initialize(Unnamed);
     }
 
@@ -440,18 +444,21 @@ public class GR
         public static class Characters
         {
             @SpireEnum public static AbstractPlayer.PlayerClass THE_ANIMATOR;
+            @SpireEnum public static AbstractPlayer.PlayerClass THE_ANIMATOR_CLASSIC;
             @SpireEnum public static AbstractPlayer.PlayerClass THE_UNNAMED;
         }
 
         public static class Cards
         {
             @SpireEnum public static AbstractCard.CardColor THE_ANIMATOR;
+            @SpireEnum public static AbstractCard.CardColor THE_ANIMATOR_CLASSIC;
             @SpireEnum public static AbstractCard.CardColor THE_UNNAMED;
         }
 
         public static class Library
         {
             @SpireEnum public static CardLibrary.LibraryType THE_ANIMATOR;
+            @SpireEnum public static CardLibrary.LibraryType THE_ANIMATOR_CLASSIC;
             @SpireEnum public static CardLibrary.LibraryType THE_UNNAMED;
         }
 
@@ -486,10 +493,16 @@ public class GR
             @SpireEnum public static AbstractCard.CardTags HASTE;
             @SpireEnum public static AbstractCard.CardTags PURGING;
             @SpireEnum public static AbstractCard.CardTags LOYAL;
+            @SpireEnum public static AbstractCard.CardTags FADING;
+            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
+            //Classic
+            @SpireEnum public static AbstractCard.CardTags SHAPESHIFTER;
+            @SpireEnum public static AbstractCard.CardTags MARTIAL_ARTIST;
+            @SpireEnum public static AbstractCard.CardTags SPELLCASTER;
+            //Unnamed
             @SpireEnum public static AbstractCard.CardTags SUMMON;
             @SpireEnum public static AbstractCard.CardTags ATTACHMENT;
             @SpireEnum public static AbstractCard.CardTags RECAST;
-            @SpireEnum public static AbstractCard.CardTags IMPROVED_BASIC_CARD;
         }
 
         public static class AttackEffect

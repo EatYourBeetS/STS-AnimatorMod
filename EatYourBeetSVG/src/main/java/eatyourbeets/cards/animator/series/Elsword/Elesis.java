@@ -135,19 +135,19 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             int roll = rng.random(0, 2);
             if (roll == 0)
             {
-                return new Elesis(Form.Saber, upgraded);
+                return new Elesis(Form.Saber, false);
             }
             else if (roll == 1)
             {
-                return new Elesis(Form.Pyro, upgraded);
+                return new Elesis(Form.Pyro, false);
             }
             else
             {
-                return new Elesis(Form.Dark, upgraded);
+                return new Elesis(Form.Dark, false);
             }
         }
 
-        return new Elesis(currentForm, upgraded);
+        return new Elesis(currentForm, false);
     }
 
     @Override
@@ -266,12 +266,12 @@ public class Elesis extends AnimatorCard implements CustomSavable<Elesis.Form>
             {
                 LoadImage("_Dark");
 
-                Initialize(9, 0, 3);
-                SetUpgrade(0, 0, -1);
+                Initialize(5, 0, 2);
+                SetUpgrade(3, 0, 0);
 
                 affinities.Clear();
                 SetAffinity_Red(2);
-                SetAffinity_Dark(2);
+                SetAffinity_Dark(2, 0, 1);
 
                 this.cardText.OverrideDescription(cardData.Strings.EXTENDED_DESCRIPTION[2], true);
                 this.isCostModified = this.isCostModifiedForTurn = false;

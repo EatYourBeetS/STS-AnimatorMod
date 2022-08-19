@@ -16,7 +16,8 @@ public abstract class ImprovedBasicCard extends AnimatorCard
     {
         super(data);
 
-        InitializeAffinity(affinity, 1, 1, affinity == Affinity.Star ? 0 : 1);
+        final int bonus = affinity == Affinity.Star ? 0 : 1;
+        InitializeAffinity(affinity, 1, bonus, bonus);
 
         this.affinity = affinity;
         this.cropPortrait = false;

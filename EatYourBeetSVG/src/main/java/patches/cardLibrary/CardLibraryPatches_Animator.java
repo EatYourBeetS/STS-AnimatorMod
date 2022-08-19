@@ -11,12 +11,19 @@ import eatyourbeets.cards.animator.curse.common.*;
 import eatyourbeets.cards.animator.curse.special.Curse_AscendersBane;
 import eatyourbeets.cards.animator.special.*;
 import eatyourbeets.cards.animator.status.*;
+import eatyourbeets.cards.base.AnimatorClassicCard;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.resources.GR;
 
 public class CardLibraryPatches_Animator
 {
     public static EYBCardData GetReplacement(String cardID)
     {
+        if (cardID.startsWith(GR.AnimatorClassic.Prefix))
+        {
+            return AnimatorClassicCard.GetStaticData(GR.AnimatorClassic.ConvertID(cardID, false));
+        }
+
         switch (cardID)
         {
             case AscendersBane.ID: return Curse_AscendersBane.DATA;

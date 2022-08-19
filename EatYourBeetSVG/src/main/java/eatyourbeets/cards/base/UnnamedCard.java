@@ -26,7 +26,7 @@ public abstract class UnnamedCard extends EYBCard
 
     protected static EYBCardData Register(Class<? extends UnnamedCard> type)
     {
-        final EYBCardData data = RegisterCardData(type, GR.Unnamed.CreateID(type.getSimpleName()))
+        final EYBCardData data = RegisterCardData(type, GR.Unnamed.CreateID(type.getSimpleName()), GR.Unnamed)
         .SetColor(GR.Unnamed.CardColor).SetMetadataSource(GR.Unnamed.CardData);
 
         if (!Gdx.files.internal(data.ImagePath).exists())
@@ -201,6 +201,12 @@ public abstract class UnnamedCard extends EYBCard
         {
             OnUse(p, m);
         }
+    }
+
+    @Override
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+        OnUse(p, m);
     }
 
     public abstract void OnUse(AbstractPlayer p, AbstractMonster m);

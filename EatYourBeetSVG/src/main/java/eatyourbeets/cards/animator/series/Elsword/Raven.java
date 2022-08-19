@@ -2,9 +2,11 @@ package eatyourbeets.cards.animator.series.Elsword;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -14,16 +16,26 @@ public class Raven extends AnimatorCard
     public static final EYBCardData DATA = Register(Raven.class)
             .SetAttack(1, CardRarity.COMMON)
             .SetSeriesFromClassPackage();
+    protected boolean canGainBlock = false;
 
     public Raven()
     {
         super(DATA);
 
-        Initialize(4, 0, 2);
-        SetUpgrade(3, 0, 0);
+        Initialize(3, 4);
+        SetUpgrade(3, 0);
 
         SetAffinity_Red(1);
-        SetAffinity_Green(1, 0, 1);
+        SetAffinity_Green(1);
+
+        SetAffinityRequirement(Affinity.Green, 1);
+        SetAffinityRequirement(Affinity.Red, 1);
+    }
+
+    @Override
+    public AbstractAttribute GetBlockInfo()
+    {
+        return canGainBlock ? super.GetBlockInfo() : null;
     }
 
     @Override
@@ -35,6 +47,14 @@ public class Raven extends AnimatorCard
         {
             GameUtilities.GetIntent(m).AddWeak();
         }
+    }
+
+    @Override
+    protected void Refresh(AbstractMonster enemy)
+    {
+        super.Refresh(enemy);
+
+        canGainBlock = CheckAffinities(Affinity.Red, Affinity.Green);
     }
 
     @Override
@@ -51,6 +71,9 @@ public class Raven extends AnimatorCard
             GameActions.Bottom.ApplyVulnerable(p, m, 2);
         }
 
-        GameActions.Bottom.BlockNextTurn(magicNumber);
+        if (canGainBlock && TryUseAffinities(Affinity.Red, Affinity.Green))
+        {
+            GameActions.Bottom.GainBlock(block);
+        }
     }
 }

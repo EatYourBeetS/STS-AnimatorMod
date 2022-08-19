@@ -18,7 +18,7 @@ public abstract class AnimatorCard extends EYBCard
 
     protected static EYBCardData Register(Class<? extends AnimatorCard> type)
     {
-        return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName()))
+        return RegisterCardData(type, GR.Animator.CreateID(type.getSimpleName()), GR.Animator)
         .SetColor(GR.Animator.CardColor).SetMetadataSource(GR.Animator.CardData);
     }
 
@@ -34,7 +34,7 @@ public abstract class AnimatorCard extends EYBCard
 
         if (cardData.Series != null)
         {
-            SetSeries(cardData.Series);
+             SetSeries(cardData.Series);
         }
     }
 
@@ -64,16 +64,6 @@ public abstract class AnimatorCard extends EYBCard
 
         OnUse(p1, m1, info);
         OnLateUse(p1, m1, info);
-    }
-
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-
-    }
-
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-
     }
 
     @Override

@@ -28,7 +28,7 @@ public class MatouShinji extends AnimatorCard
 
         SetAffinity_Dark(1, 0, 1);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override

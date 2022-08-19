@@ -1,12 +1,13 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.special.AcuraTooru_Dragoon;
 import eatyourbeets.cards.animator.special.ThrowingKnife;
+import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.orbs.animator.Fire;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.ui.common.EYBCardPopupActions;
 import eatyourbeets.utilities.GameActions;
@@ -38,16 +39,26 @@ public class AcuraTooru extends AnimatorCard
     }
 
     @Override
-    public void triggerOnManualDiscard()
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnManualDiscard();
+        super.triggerOnAffinitySeal(reshuffle);
 
         if (CombatStats.TryActivateLimited(cardID))
         {
-            GameActions.Bottom.ObtainAffinityToken(Affinity.Green, false);
+            final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            group.group.add(AffinityToken.GetCopy(Affinity.Red, false));
+            group.group.add(AffinityToken.GetCopy(Affinity.Green, false));
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+            .SetOptions(false, false)
+            .AddCallback(cards2 ->
+            {
+                for (AbstractCard c : cards2)
+                {
+                    GameActions.Bottom.MakeCardInHand(c);
+                }
+            });
         }
     }
-
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)

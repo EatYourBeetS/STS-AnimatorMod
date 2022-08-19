@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import basemod.DevConsole;
 import basemod.abstracts.CustomCard;
 import basemod.cardmods.EtherealMod;
 import basemod.helpers.CardModifierManager;
@@ -61,6 +62,7 @@ import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.powers.common.BurningPower;
 import eatyourbeets.powers.common.ShacklesPower;
 import eatyourbeets.powers.replacement.TemporaryArtifactPower;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorAscensionManager;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
@@ -366,21 +368,39 @@ public class GameUtilities
         return data == null ? null : data.GetBlightChoice();
     }
 
-    public static EYBCardData GetCardReplacement(AbstractPlayer.PlayerClass playerClass, String cardID)
+    public static AbstractCard TryReplace(AbstractCard card)
+    {
+        if (player == null || player.chosenClass == null)
+        {
+            return card;
+        }
+
+        return (player.chosenClass == GR.Animator.PlayerClass) ? TryReplace(GR.Animator, card) :
+               (player.chosenClass == GR.AnimatorClassic.PlayerClass) ? TryReplace(GR.AnimatorClassic, card) :
+               (player.chosenClass == GR.Unnamed.PlayerClass) ? TryReplace(GR.Unnamed, card) :
+                card;
+    }
+
+    public static AbstractCard TryReplace(AbstractResources resources, AbstractCard card)
+    {
+        return CardLibraryPatches.TryReplace(resources, card);
+    }
+
+    public static AbstractCard TryReplace(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
+    {
+        final EYBCardData data = GetReplacement(playerClass, cardID);
+        return data == null ? CardLibrary.getCopy(cardID, upgraded ? 1 : 0, 0) : data.CreateNewInstance(upgraded);
+    }
+
+    public static EYBCardData GetReplacement(AbstractPlayer.PlayerClass playerClass, String cardID)
     {
         return CardLibraryPatches.GetReplacement(playerClass, cardID);
     }
 
-    public static EYBCard GetCardReplacement(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
+    public static EYBCard GetReplacement(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
     {
-        final EYBCardData data = GetCardReplacement(playerClass, cardID);
+        final EYBCardData data = GetReplacement(playerClass, cardID);
         return data == null ? null : data.CreateNewInstance(upgraded);
-    }
-
-    public static AbstractCard GetCardReplacementOrDefault(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
-    {
-        final EYBCardData data = GetCardReplacement(playerClass, cardID);
-        return data == null ? CardLibrary.getCopy(cardID, upgraded ? 1 : 0, 0) : data.CreateNewInstance(upgraded);
     }
 
     public static AbstractOrb GetFirstOrb(String orbID)
@@ -1576,6 +1596,11 @@ public class GameUtilities
         return c != null && c.isPlayer;
     }
 
+    public static AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return InGame() && player != null ? player.chosenClass : null;
+    }
+
     public static boolean IsPlayerClass(AbstractPlayer.PlayerClass playerClass)
     {
         return player != null && player.chosenClass == playerClass;
@@ -1583,7 +1608,9 @@ public class GameUtilities
 
     public static boolean IsEYBPlayerClass()
     {
-        return player != null && (player.chosenClass == GR.Animator.PlayerClass || player.chosenClass == GR.Unnamed.PlayerClass);
+        return player != null && (player.chosenClass == GR.Animator.PlayerClass
+                               || player.chosenClass == GR.AnimatorClassic.PlayerClass
+                               || player.chosenClass == GR.Unnamed.PlayerClass);
     }
 
     public static boolean IsPlayerTurn(boolean beforeEndTurnEvents)
@@ -1601,7 +1628,8 @@ public class GameUtilities
     {
         return IsPlayerTurn(true) && actionManager.phase == GameActionManager.Phase.WAITING_ON_USER
             && !player.isDraggingCard && !player.inSingleTargetMode && (canHoverCard || player.hoveredCard == null)
-            && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen;
+            && AbstractDungeon.actionManager.cardQueue.isEmpty() && AbstractDungeon.actionManager.actions.isEmpty()
+            && !DevConsole.visible && !AbstractDungeon.isScreenUp && !CardCrawlGame.isPopupOpen;
     }
 
     public static boolean IsTestMode()
@@ -1726,7 +1754,7 @@ public class GameUtilities
         card.use(player, m);
         actionManager.cardsPlayedThisTurn.add(card);
         actionManager.cardsPlayedThisCombat.add(card);
-        CombatStats.Affinities.SetLastCardPlayed(card);
+        CardSeries.SetLastCardPlayed(card);
     }
 
     public static void RefreshHandLayout()

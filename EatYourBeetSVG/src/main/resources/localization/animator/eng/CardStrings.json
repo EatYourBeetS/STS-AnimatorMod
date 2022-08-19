@@ -378,7 +378,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Obtain {<B> Token}{+}. || !A! <B> and <L>: ** Enter <IS>.",
+			"DESCRIPTION": "Obtain {<B> Token}{+}. || !A! <B>, or if you have ** discarded a card this ** turn: Enter <IS>.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "!A! <G>: <DRW-M>. || Discard 1 card ** to gain !S! [A].",
+			"DESCRIPTION": "Discard 1 card ** to gain !M! [A]. || Sealed or !A! <G>: ** <DRW>.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -404,7 +404,7 @@
 		"animator:Elesis":
 		{
 			"DESCRIPTION": "At the start of combat, ** choose 1 of 3 {Forms} and ** permanently change ** this card into it.",
-			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: **  Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <SLM>. !A! <G> or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
+			"EXTENDED_DESCRIPTION": ["Spend your remaining [E]: ** Gain twice that much [F] [B]. || When Drawn or Discarded: ** Increase this card's damage ** by !M! until played.", "Apply !M! [Burning] for every ** {Debuff} on the enemy. || <SLM>. !A! <G> or ** Discard: <DRW>.", "Apply 1 [Vulnerable]. || At the start of each ** combat: Lose !M! [HP]."],
 			"NAME": "Elesis"
 		},
 		"animator:Elsword":
@@ -414,8 +414,8 @@
 		},
 		"animator:Eve":
 		{
-			"DESCRIPTION": "At the start of each ** turn: Gain 1 <P> and ** Obtain 1 {<W> Token}{+}. || Pay !M! <S>: Deal !S! damage ** to a random enemy.",
-			"EXTENDED_DESCRIPTION": ["Pay #b{0} <S>: Deal #b{1} damage to a random enemy. || At the start of turn, gain #b{2} <P> and obtain #b{2} <W> #yToken(s)."],
+			"DESCRIPTION": "Start of turn: Add 1 {<W> ** Token} to your draw pile. || Whenever you Seal a ** card: Deal !M! damage ** to a random enemy.",
+			"EXTENDED_DESCRIPTION": ["At the start of turn: Add #b1 <W> #yToken to your draw pile. || Whenever you #ySeal a card: Deal #b{0} damage to a random enemy."],
 			"NAME": "Eve"
 		},
 		"animator:Laby":
@@ -431,12 +431,12 @@
 		},
 		"animator:Noah":
 		{
-			"DESCRIPTION": "Apply !M! [Freezing] to ** all other enemies. || !A! <D>: Boost [C]. ** Else: Take !S! [DD].",
+			"DESCRIPTION": "Apply !M! [Freezing]. || !A! <D>: Boost [C]. ** Else: Take !S! [DD].",
 			"NAME": "Noah"
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 2 [Vulnerable]. || Next turn: Gain !M! [Block].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 2 [Vulnerable]. || !A! <G> and <R>: Gain !B! [Block].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -711,18 +711,17 @@
 	{
 		"animator:ApprenticeCleric":
 		{
-			"DESCRIPTION": "Gain [B]. Give !M! random ** <R> or <G> card(s) in draw ** pile +1 [B] scaling (Max 2). || When Drawn with !S! ** or less [B]: Gain [B].",
+			"DESCRIPTION": "Seal 1 <R> or <G> card in ** draw pile, discard it and ** give it +1 [B] scaling. || When Drawn or ** !A! <L>: Gain [B].",
 			"NAME": "Apprentice Cleric"
 		},
 		"animator:CowGirl":
 		{
-			"DESCRIPTION": "Fetch a {0-Cost} card ** from your draw pile. || <LIM>. When ** Discarded: Motivate 1.",
-			"NAME": "Cow Girl",
-			"UPGRADE_DESCRIPTION": "Fetch a {0-Cost} card from ** your draw or discard pile. || <LIM>. When ** Discarded: Motivate 1."
+			"DESCRIPTION": "Gain !S! {Temp. <S>}. || <LIM>. When ** Discarded: Motivate 1.",
+			"NAME": "Cow Girl"
 		},
 		"animator:DwarfShaman":
 		{
-			"DESCRIPTION": "Channel 1 [Earth]. || !A! <B>: ** Upgrade 1 card.",
+			"DESCRIPTION": "Channel 1 [Earth]. || !A! <S>: Upgrade ** and Seal 1 card.",
 			"NAME": "Dwarf Shaman"
 		},
 		"animator:GoblinSlayer":
@@ -732,8 +731,8 @@
 		},
 		"animator:GuildGirl":
 		{
-			"DESCRIPTION": "Once per turn: Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold] ** (Does not stack).",
-			"EXTENDED_DESCRIPTION": ["Cycle #b{0} card. Whenever a non-minion enemy dies, gain #b{1} #yGold."],
+			"DESCRIPTION": "Once per turn, when you play a <P> card: Cycle 1 card. || Whenever a non-minion ** enemy dies: Gain !M! [Gold] ** (Does not stack).",
+			"EXTENDED_DESCRIPTION": ["#b{0} time(s) this turn, when you play a <P> card, Cycle #b1 card. Whenever a non-minion enemy dies, gain #b{1} #yGold."],
 			"NAME": "Guild Girl"
 		},
 		"animator:HeavyWarrior":
@@ -743,19 +742,18 @@
 		},
 		"animator:HighElfArcher":
 		{
-			"DESCRIPTION": "If the enemy has no ** [Artifact]: Apply !S! [~Lock-On]. || When Sealed: <DRW>.",
+			"DESCRIPTION": "If the enemy has ** no [Artifact]: Apply !M! [~Lock-On]. || !A! <G>: Deal !S! [DD].",
 			"NAME": "High Elf Archer"
 		},
 		"animator:LizardPriest":
 		{
-			"DESCRIPTION": "If you have [Earth]: Gain ** !S! additional [Block]. || <slm>. When Exhausted: Gain 1 [Inspiration].",
-			"EXTENDED_DESCRIPTION": ["At the end of this turn, #yRetain #b{0} <L> card(s)."],
+			"DESCRIPTION": "If you have [Earth]: Gain ** !S! additional [Block]. || <LIM>. When ** Sealed: Gain 1 [Inspiration].",
 			"NAME": "Lizard Priest"
 		},
 		"animator:NobleFencer":
 		{
-			"DESCRIPTION": "Evoke your first [Lightning] to gain [A] [I]. Otherwise, Channel [Lightning]. || When Sealed: Gain [A] [I].",
-			"EXTENDED_DESCRIPTION": ["When you #ySeal a <G> card, Channel #b1 [Lightning]."],
+			"DESCRIPTION": "Evoke your first [Lightning]. || This turn, whenever ** you Seal a card in ** hand, Channel 1 [Lightning].",
+			"EXTENDED_DESCRIPTION": ["When you manually #ySeal a card, Channel #b1 [Lightning]."],
 			"NAME": "Noble Fencer"
 		},
 		"animator:Priestess":
@@ -765,7 +763,7 @@
 		},
 		"animator:Spearman":
 		{
-			"DESCRIPTION": "Boost [A] [F]. ** Receive a {Wound}. || <ST>: Draw {Witch} ** and Retain it.",
+			"DESCRIPTION": "Boost [A] [F]. ** Receive a {Wound}. || !A! <R>: Draw {Witch} ** and Retain it.",
 			"NAME": "Spearman"
 		},
 		"animator:SwordMaiden":
@@ -775,7 +773,7 @@
 		},
 		"animator:Witch":
 		{
-			"DESCRIPTION": "Evoke your leftmost ** [Fire] or [Dark] to gain [E]. || If the last card played was {Spearman}: ** Enter any Stance.",
+			"DESCRIPTION": "Evoke your leftmost ** [Fire] or [Dark] to gain [E]. || If the previous card ** played is {Spearman}: ** Enter any Stance.",
 			"NAME": "Witch"
 		}
 	},
@@ -784,9 +782,9 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || !A! <G>: ** Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <AS> or !A! <S>: ** Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari",
-			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || !A! <G>: ** Gain !S! {Temp}. [Envenom]."
+			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <AS> or !A! <S>: ** Gain !S! {Temp}. [Envenom]."
 		},
 		"animator:AcuraShin":
 		{
@@ -796,7 +794,7 @@
 		},
 		"animator:AcuraTooru":
 		{
-			"DESCRIPTION": "Obtain !S! [T-Knife], then ** Upgrade all [T-Knife] in hand. || <LIM>. When Discarded: ** Obtain {<G> Token}.",
+			"DESCRIPTION": "Obtain !S! [T-Knife], then ** Upgrade all [T-Knife] in hand. || <LIM>. When Sealed: ** Obtain <G> or {<R> Token}.",
 			"NAME": "Tooru"
 		},
 		"animator:AcuraTooru_Dragoon":
@@ -820,22 +818,22 @@
 		},
 		"animator:ChaikaBohdan":
 		{
-			"DESCRIPTION": "Gain [A]. Cycle 1 card. || While in hand, whenever ** you {Attack}: Raise damage ** by !M! until played.",
+			"DESCRIPTION": "Gain [A]. Cycle 1 card. || If in hand at the end ** of turn: Gain !M! [Block].",
 			"NAME": "Chaika Bohdan"
 		},
 		"animator:ChaikaTrabant":
 		{
-			"DESCRIPTION": "Gain [I]. When drawn: ** Deal this card's damage ** to ALL enemies with [~Lock-On]. || When Discarded: Apply ** !M! [~Lock-On] to a random enemy.",
+			"DESCRIPTION": "Gain [I]. When drawn: ** Deal this card's damage ** to ALL enemies with [~Lock-On]. || When Discarded or ** Sealed: Apply !M! [~Lock-On].",
 			"NAME": "Chaika Trabant"
 		},
 		"animator:ChaikaGaz":
 		{
-			"DESCRIPTION": "Gain !M! [C], then, if ** you have !S! or more [C]: ** Channel [Dark] and Exhaust. || When Sealed: ** Obtain <B> or {<D> Token}.",
+			"DESCRIPTION": "Gain !M! [C], then, if ** you have !S! or more [C]: ** Channel [Dark] and Exhaust. || <LIM>. When Sealed: ** Obtain <B> or {<D> Token}.",
 			"NAME": "Chaika Gaz"
 		},
 		"animator:ClaudiaDodge":
 		{
-			"DESCRIPTION": "Apply !M! [~Lock-On]. Reload: ** Trigger your next orb. || If you play a <B> ** card: Add a Dazed to your ** hand and Cycle this card.",
+			"DESCRIPTION": "Apply !M! [~Lock-On]. Reload: ** Trigger your next orb. || <SLM>. When ** Drawn: Add 1 {Dazed} ** to your hand.",
 			"NAME": "Claudia Dodge"
 		},
 		"animator:Fredrika":
@@ -867,7 +865,7 @@
 		},
 		"animator:Nikolay":
 		{
-			"DESCRIPTION": "Gain [F]. Motivate all ** other copies of this card. || <slm>. <FS> or <IS>: Gain !M! [Block].",
+			"DESCRIPTION": "Gain [F]. Motivate all ** other copies of this card. || <FS>: Gain !M! [Block].",
 			"NAME": "Nikolay"
 		},
 		"animator:Viivi":
@@ -877,7 +875,7 @@
 		},
 		"animator:ZitaBrusasco":
 		{
-			"DESCRIPTION": "<ST>. Gain [I]. || If you have less [Frost] ** than [Lightning]: Channel [Frost]. ** Otherwise: Channel [Lightning].",
+			"DESCRIPTION": "<ST>: Gain 1 <P>. || If you have less [Lightning] ** than [Frost]: Channel [Lightning]. ** Otherwise: Channel [Frost].",
 			"NAME": "Zita Brusasco"
 		}
 	},
@@ -1842,9 +1840,9 @@
 			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Choose and ** Enter any Stance, ** then end your turn.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, pay !S! ** [E]: Enter <FS>, ** then end your turn.",
-				"Once per combat, pay !S! ** [E]: Enter <AS>, ** then end your turn.",
-				"Once per combat, pay !S! ** [E]: Enter <IS>, ** then end your turn."
+				"Once per combat, pay ** !S! [E]: Enter <FS>, ** then end your turn.",
+				"Once per combat, pay ** !S! [E]: Enter <AS>, ** then end your turn.",
+				"Once per combat, pay ** !S! [E]: Enter <IS>, ** then end your turn."
 			],
 			"NAME": "Stances"
 		},
@@ -1854,8 +1852,8 @@
 			"EXTENDED_DESCRIPTION":
 			[
 				"Once per combat, ** take !S! [DD]: Obtain ** 1 {<W> Token+}.",
-				"Once per combat, ** take !S! [DD]: Have +!M! <S> ** this turn.",
-				"Once per combat, ** take !S! [DD]: Seal 1 card."
+				"Once per combat, ** take !S! [DD]: Gain ** !M! {Temp.} <S>.",
+				"Once per combat, ** take !S! [DD]: Gain !M! <P>."
 			],
 			"NAME": "Affinities"
 		},
@@ -1889,7 +1887,7 @@
 	{
 		"animator:AffinityToken":
 		{
-			"DESCRIPTION": "Gain !M! [{1}] ** and !S! {Temp.} {0}. || When Sealed: Exhaust.",
+			"DESCRIPTION": "Unplayable. || When Sealed: Gain ** this card's [Block] and ** 1 <P>, then Exhaust.",
 			"NAME": "Affinity Token"
 		},
 		"animator:AffinityToken_Red":
@@ -1919,7 +1917,7 @@
 		},
 		"animator:AffinityToken_General":
 		{
-			"DESCRIPTION": "Choose an {<W> ** Token}{+} effect. || When Sealed: Exhaust.",
+			"DESCRIPTION": "Unplayable. || When Sealed: Gain ** 1 <P>, then Exhaust.",
 			"NAME": "Affinity Token"
 		},
 

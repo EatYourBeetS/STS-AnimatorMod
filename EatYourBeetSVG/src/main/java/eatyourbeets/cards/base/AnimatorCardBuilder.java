@@ -24,7 +24,7 @@ public class AnimatorCardBuilder extends DynamicCardBuilder
 
         if (card instanceof AnimatorCard)
         {
-            SetSeries(((AnimatorCard)card).series);
+             SetSeries(((AnimatorCard)card).series);
         }
     }
 

@@ -62,7 +62,7 @@ public class Tetora extends AnimatorCard
     {
         super.Refresh(enemy);
 
-        GameUtilities.ModifyMagicNumber(this, GetHandAffinity(Affinity.General), true);
+        GameUtilities.ModifyMagicNumber(this, GetPlayerAffinity(Affinity.General), true);
     }
 
     @Override

@@ -55,7 +55,7 @@ public abstract class SpecialToken extends CTToken
 
                     if (tooltip != null)
                     {
-                        if (tooltip.requiredColor != null && parser.cardColor != tooltip.requiredColor)
+                        if (tooltip.requiredColor != null && tooltip.requiredColor != parser.resources.CardColor)
                         {
                             tooltip = null;
                         }
@@ -67,7 +67,7 @@ public abstract class SpecialToken extends CTToken
 
                     if (word.startsWith("~"))
                     {
-                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
+                        internalParser.Initialize(null, parser.resources, word.substring(1)); // card must be null
                     }
                     else if (word.startsWith("+"))
                     {
@@ -84,7 +84,7 @@ public abstract class SpecialToken extends CTToken
                             return i + 1;
                         }
 
-                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
+                        internalParser.Initialize(null, parser.resources, word.substring(1)); // card must be null
                     }
                     else if (word.startsWith("-"))
                     {
@@ -93,11 +93,11 @@ public abstract class SpecialToken extends CTToken
                             return i + 1;
                         }
 
-                        internalParser.Initialize(null, parser.cardColor, word.substring(1)); // card must be null
+                        internalParser.Initialize(null, parser.resources, word.substring(1)); // card must be null
                     }
                     else
                     {
-                        internalParser.Initialize(null, parser.cardColor, word); // card must be null
+                        internalParser.Initialize(null, parser.resources, word); // card must be null
                     }
 
                     for (CTToken token : internalParser.lines.get(0).tokens) // All the tokens are in the first line, regardless of width and type

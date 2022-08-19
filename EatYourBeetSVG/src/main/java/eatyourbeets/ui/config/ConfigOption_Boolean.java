@@ -54,6 +54,19 @@ public class ConfigOption_Boolean extends ConfigOption<Boolean>
         return Value;
     }
 
+    public Boolean Toggle(boolean save)
+    {
+        Value = !Value;
+        Config.setBool(Key, Value);
+
+        if (save)
+        {
+            Save();
+        }
+
+        return Value;
+    }
+
     @Override
     public void AddToPanel(ModPanel panel, String label, float x, float y)
     {

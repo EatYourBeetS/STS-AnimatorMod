@@ -193,7 +193,7 @@ public abstract class AbstractMissingPiece extends AnimatorRelic implements OnRe
     private WeightedList<CardSeries> CreateWeightedList()
     {
         final WeightedList<CardSeries> list = new WeightedList<>();
-        final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.GetCardsBySynergy(player.masterDeck.group);
+        final Map<CardSeries, List<AbstractCard>> synergyListMap = CardSeries.Synergy.GetCardsBySynergy(player.masterDeck.group);
 
         if (GR.Animator.Dungeon.Loadouts.isEmpty())
         {

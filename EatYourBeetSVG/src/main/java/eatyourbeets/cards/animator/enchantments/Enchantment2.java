@@ -9,7 +9,6 @@ import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.PowerTriggerCondition;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class Enchantment2 extends Enchantment
 {
@@ -76,23 +75,12 @@ public class Enchantment2 extends Enchantment
         }
         else if (upgradeIndex == 2)
         {
-            for (Affinity a : Affinity.Basic())
-            {
-                CombatStats.Affinities.AddTempAffinity(a, magicNumber);
-            }
+            CombatStats.Affinities.AddTempAffinity(Affinity.Star, magicNumber);
             GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.95f, 1.05f);
         }
         else if (upgradeIndex == 3)
         {
-            GameActions.Last.SelectFromHand(name, 1, false)
-            .SetFilter(GameUtilities::CanSeal)
-            .AddCallback(cards ->
-            {
-                for (AbstractCard c : cards)
-                {
-                    GameActions.Bottom.SealAffinities(c, false);
-                }
-            });
+            CombatStats.Affinities.AddAffinitySealUses(magicNumber);
         }
         else
         {

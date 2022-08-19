@@ -12,10 +12,7 @@ import eatyourbeets.ui.GUIElement;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
-import eatyourbeets.utilities.Colors;
-import eatyourbeets.utilities.EYBFontHelper;
-import eatyourbeets.utilities.JUtils;
-import eatyourbeets.utilities.Mathf;
+import eatyourbeets.utilities.*;
 
 public class EYBCardAffinityRow extends GUIElement
 {
@@ -69,7 +66,7 @@ public class EYBCardAffinityRow extends GUIElement
 
     public void OnStartOfTurn()
     {
-        RefreshLevels(true);
+        RefreshLevels();
 
         if (Power != null)
         {
@@ -85,18 +82,21 @@ public class EYBCardAffinityRow extends GUIElement
         }
     }
 
-    public void Seal(EYBCardAffinities cardAffinities)
+    public void Seal(EYBCardAffinities cardAffinities, boolean manual)
     {
         final int level = Mathf.Clamp(cardAffinities.GetLevel(Type, true), 0, 2);
-        final EYBCardAffinity a = System.PlayerAffinities.Get(Type, true);
-        a.level += level;
-        a.requirement += level;
-        Power.IncreaseMinimumAmount(level);
+        System.BaseAffinities.Add(Type, level);
+        System.CurrentAffinities.Add(Type, level);
+
+        if (manual)
+        {
+            GameActions.Bottom.StackAffinityPower(Type, 1, level > 1);
+        }
     }
 
-    public void Update(EYBCardAffinities affinities, EYBCard hoveredCard, boolean draggingCard)
+    public void Update(EYBCard hoveredCard, boolean draggingCard)
     {
-        RefreshLevels(false);
+        RefreshLevels();
 
         image_background.SetColor(COLOR_DEFAULT);
         image_synergy.color.a = 1f;
@@ -124,7 +124,7 @@ public class EYBCardAffinityRow extends GUIElement
             {
                 if (BaseLevel > 0)
                 {
-                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(Level, BaseLevel, Type);
+                    tooltip.description = GR.Animator.Strings.Affinities.AffinityStatus(Level, BaseLevel);
                     EYBCardTooltip.QueueTooltip(tooltip, image_background.hb, false);
                 }
 
@@ -139,7 +139,7 @@ public class EYBCardAffinityRow extends GUIElement
             }
         }
 
-        if (Level == BaseLevel)
+        if (Type == Affinity.Sealed || Level == BaseLevel)
         {
             text_affinity.SetText(Level).SetColor(Colors.Cream(Level > 0 ? 1 : 0.6f));
         }
@@ -174,22 +174,9 @@ public class EYBCardAffinityRow extends GUIElement
         }
     }
 
-    private void RefreshLevels(boolean startOfTurn)
+    private void RefreshLevels()
     {
-        final EYBCardAffinity a = System.PlayerAffinities.Get(Type, true);
-        if (Type == Affinity.Sealed)
-        {
-            BaseLevel = Level = a.requirement = a.level;
-        }
-        else
-        {
-            if (startOfTurn)
-            {
-                a.requirement = a.level;
-            }
-
-            BaseLevel = a.level;
-            Level = a.requirement;
-        }
+        BaseLevel = System.BaseAffinities.GetLevel(Type, true);
+        Level = System.CurrentAffinities.GetLevel(Type, true);
     }
 }

@@ -40,7 +40,7 @@ public abstract class ImprovedDefend extends ImprovedBasicCard
         if (affinity == Affinity.Star)
         {
             Initialize(0, 6);
-            SetUpgrade(0, 2);
+            SetUpgrade(0, 3);
         }
         else
         {

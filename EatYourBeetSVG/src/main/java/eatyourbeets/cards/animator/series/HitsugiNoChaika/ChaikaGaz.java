@@ -9,6 +9,7 @@ import eatyourbeets.cards.animator.tokens.AffinityToken;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
 import eatyourbeets.cards.base.attributes.TempHPAttribute;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -28,11 +29,11 @@ public class ChaikaGaz extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 4);
+        Initialize(0, 0, 2, 5);
         SetUpgrade(0, 0, 1);
 
         SetAffinity_Blue(1);
-        SetAffinity_Dark(1);
+        SetAffinity_Dark(1, 1, 0);
     }
 
     @Override
@@ -65,18 +66,22 @@ public class ChaikaGaz extends AnimatorCard
     public void triggerOnAffinitySeal(boolean reshuffle)
     {
         super.triggerOnAffinitySeal(reshuffle);
-        final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        group.group.add(AffinityToken.GetCopy(Affinity.Blue, false));
-        group.group.add(AffinityToken.GetCopy(Affinity.Dark, false));
-        GameActions.Bottom.SelectFromPile(name, 1, group)
-        .SetOptions(false, false)
-        .AddCallback(cards2 ->
+
+        if (CombatStats.TryActivateLimited(cardID))
         {
-            for (AbstractCard c : cards2)
+            final CardGroup group = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
+            group.group.add(AffinityToken.GetCopy(Affinity.Blue, false));
+            group.group.add(AffinityToken.GetCopy(Affinity.Dark, false));
+            GameActions.Bottom.SelectFromPile(name, 1, group)
+            .SetOptions(false, false)
+            .AddCallback(cards2 ->
             {
-                GameActions.Bottom.MakeCardInHand(c);
-            }
-        });
+                for (AbstractCard c : cards2)
+                {
+                    GameActions.Bottom.MakeCardInHand(c);
+                }
+            });
+        }
     }
 
     @Override

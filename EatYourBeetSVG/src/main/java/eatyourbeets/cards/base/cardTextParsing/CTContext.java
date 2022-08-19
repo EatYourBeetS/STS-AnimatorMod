@@ -4,10 +4,10 @@ import basemod.helpers.CardModifierManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.utilities.Colors;
 import eatyourbeets.utilities.EYBFontHelper;
 import eatyourbeets.utilities.JUtils;
@@ -35,12 +35,12 @@ public class CTContext
     protected float scaleModifier;
 
     public EYBCard card;
-    public AbstractCard.CardColor cardColor;
+    public AbstractResources resources;
     public float start_y;
     public float start_x;
     public Color color;
 
-    public void Initialize(EYBCard card, AbstractCard.CardColor cardColor, String text)
+    public void Initialize(EYBCard card, AbstractResources resources, String text)
     {
         if (card != null)
         {
@@ -49,7 +49,7 @@ public class CTContext
 
         this.font = EYBFontHelper.CardDescriptionFont_Normal;
         this.card = card;
-        this.cardColor = cardColor;
+        this.resources = resources;
         this.text = text;
         this.lines.clear();
         this.scaleModifier = 1;

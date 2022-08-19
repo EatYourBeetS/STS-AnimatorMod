@@ -44,7 +44,7 @@ public abstract class ImprovedStrike extends ImprovedBasicCard
         if (affinity == Affinity.Star)
         {
             Initialize(7, 0);
-            SetUpgrade(2, 0);
+            SetUpgrade(3, 0);
         }
         else
         {

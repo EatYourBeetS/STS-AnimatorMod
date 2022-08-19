@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.Elsword;
 
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -62,11 +63,22 @@ public class Ain extends AnimatorCard
             GameActions.Bottom.DealDamageToAll(this, AttackEffects.NONE).SetVFX(true, false);
         }
 
-        GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.Blue, upgraded));
+        GameActions.Bottom.ObtainAffinityToken(Affinity.Blue, upgraded);
 
-        if (CheckAffinity(Affinity.Light) && TryUseAffinity(Affinity.Blue) && TryUseAffinity(Affinity.Light))
+        if (CheckSpecialCondition(true))
         {
             GameActions.Bottom.ChangeStance(IntellectStance.STANCE_ID);
         }
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        if (GameActionManager.totalDiscardedThisTurn > 0)
+        {
+            return true;
+        }
+
+        return tryUse ? TryUseAffinity(Affinity.Blue) : CheckAffinity(Affinity.Blue);
     }
 }

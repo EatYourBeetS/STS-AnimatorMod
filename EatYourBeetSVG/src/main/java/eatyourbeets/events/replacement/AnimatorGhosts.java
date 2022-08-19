@@ -112,7 +112,7 @@ public class AnimatorGhosts extends AbstractImageEvent
 
     private static AbstractCard CreateApparition(boolean upgraded)
     {
-        return GameUtilities.GetCardReplacement(null, Apparition.ID, upgraded);
+        return GameUtilities.GetReplacement(null, Apparition.ID, upgraded);
     }
 
     static

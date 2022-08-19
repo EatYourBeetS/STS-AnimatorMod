@@ -16,6 +16,8 @@ public class Status_Wound extends AnimatorCard
 
         Initialize(0, 0, 2);
 
+        SetAffinity_Dark(1);
+
         SetEndOfTurnPlay(false);
     }
 

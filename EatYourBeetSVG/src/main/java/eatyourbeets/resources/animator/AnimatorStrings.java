@@ -2,7 +2,6 @@ package eatyourbeets.resources.animator;
 
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
@@ -489,17 +488,25 @@ public class AnimatorStrings
     public class Affinities
     {
         private final UIStrings Strings = GetUIStrings("Affinities");
-        private final String AffinityStatus_F3 = Strings.TEXT[0];
+        private final String AffinityStatus_F2 = Strings.TEXT[0];
         private final String SealedUses_F1 = Strings.TEXT[1];
+        private final String LockMessage = Strings.TEXT[2];
+        private final String Hold = Strings.TEXT[3];
+        private final String Toggle = Strings.TEXT[4];
 
-        public String AffinityStatus(int current, int max, Affinity affinity)
+        public String AffinityStatus(int current, int max)
         {
-            return JUtils.Format(AffinityStatus_F3, current, max, affinity.GetPowerTooltip().id);
+            return JUtils.Format(AffinityStatus_F2, current, max);
         }
 
         public String SealedUses(int availableUses)
         {
             return JUtils.Format(SealedUses_F1, availableUses);
+        }
+
+        public String LockMessage(boolean hold)
+        {
+            return LockMessage + (hold ? Hold : Toggle);
         }
     }
 

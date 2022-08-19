@@ -18,7 +18,9 @@ public class AnimatorImages
     public final String ORB_C_PNG = "images/animator/cardui/512/energy_orb_default_c.png";
     public final String ORB_COLORLESS_A_PNG = "images/animator/cardui/512/energy_orb_colorless_a.png";
     public final String CHAR_BUTTON_PNG = "images/animator/ui/charselect/animator_button.png";
-    public final String CHAR_PORTRAIT_JPG = "images/animator/ui/charselect/animator_portrait.jpg";
+    public final String CHAR_BUTTON_CLASSIC_PNG = "images/animator/ui/charselect/animatorClassic_button.png";
+    public final String CHAR_PORTRAIT_PATH = "images/animator/ui/charselect/animator_portrait_";
+    public final String CHAR_PORTRAIT_EMPTY_PNG = "images/animator/ui/charselect/animator_portrait_0.png";
 
     public final String BANNER_SPECIAL_P_PNG = "images/animator/cardui/1024/banner_special.png";
     public final String BANNER_SPECIAL2_P_PNG = "images/animator/cardui/1024/banner_special2.png";
@@ -73,7 +75,8 @@ public class AnimatorImages
     public final TextureCache GOLD_TROPHY_SLOT            = new TextureCache("images/animator/ui/rewards/Slot2.png");
     public final TextureCache PLATINUM_TROPHY_SLOT        = new TextureCache("images/animator/ui/rewards/Slot3.png");
     public final TextureCache SYNERGY_CARD_REWARD         = new TextureCache("images/animator/ui/rewards/SynergyCardsReward.png");
-    public final TextureCache CHARACTER_BUTTON            = new TextureCache("images/animator/ui/charselect/animator_button.png");
+//    public final TextureCache CHARACTER_BUTTON            = new TextureCache("images/animator/ui/charselect/animator_button.png");
+//    public final TextureCache CHARACTER_BUTTON_CLASSIC    = new TextureCache("images/animator/ui/charselect/animatorClassic_button.png");
 
     private final static HashMap<Integer, RotatingList<Texture>> portraits = new HashMap<>();
 
@@ -94,17 +97,17 @@ public class AnimatorImages
                 portraits.put(id, images);
 
                 Texture t;
-                t = GR.GetTexture("images/animator/ui/charselect/animator_portrait_" + id + ".png");
+                t = GR.GetTexture(GR.Animator.Images.CHAR_PORTRAIT_PATH + id + ".png");
                 if (t != null)
                 {
                     images.Add(t);
                 }
-                t = GR.GetTexture("images/animator/ui/charselect/animator_portrait_" + id + "b.png");
+                t = GR.GetTexture(GR.Animator.Images.CHAR_PORTRAIT_PATH + id + "b.png");
                 if (t != null)
                 {
                     images.Add(t);
                 }
-                t = GR.GetTexture("images/animator/ui/charselect/animator_portrait_" + id + "c.png");
+                t = GR.GetTexture(GR.Animator.Images.CHAR_PORTRAIT_PATH + id + "c.png");
                 if (t != null)
                 {
                     images.Add(t);

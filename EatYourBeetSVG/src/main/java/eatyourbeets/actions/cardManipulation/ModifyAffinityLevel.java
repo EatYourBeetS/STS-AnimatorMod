@@ -70,7 +70,7 @@ public class ModifyAffinityLevel extends GenericCardSelection
     protected boolean CanSelect(AbstractCard card)
     {
         final EYBCardAffinities a = GameUtilities.GetAffinities(card);
-        return a != null && (seal || !a.sealed);
+        return a != null && (!seal || GameUtilities.CanSeal(card) || forceSelect);
     }
 
     @Override

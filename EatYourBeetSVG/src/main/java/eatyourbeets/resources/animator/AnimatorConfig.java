@@ -28,6 +28,7 @@ public class AnimatorConfig
     private static final String CUSTOM_LOADOUTS_KEY =  "TheAnimator-Loadouts";
     private static final String CROP_CARD_PORTRAIT =  "TheAnimator-UseCroppedPortrait";
     private static final String DISPLAY_BETA_SERIES =  "TheAnimator-DisplayBetaSeries";
+    private static final String HOLD_SHIFT_TO_LOCK_AFFINITIES =  "TheAnimator-HoldShiftToLockAffinities";
     private static final String FADE_CARDS_WITHOUT_SYNERGY =  "TheAnimator-FadeNonSynergicCards";
     private static final String HIDE_TIP_DESCRIPTION =  "TheAnimator-HideTipDescription";
     private static final String HIDE_BLOCK_DAMAGE_BACKGROUND =  "TheAnimator-HideBlockDamageBackground";
@@ -47,6 +48,7 @@ public class AnimatorConfig
     public ConfigOption_Boolean SimplifyCardUI = new ConfigOption_Boolean(HIDE_BLOCK_DAMAGE_BACKGROUND, false);
     public ConfigOption_Boolean CropCardImages = new ConfigOption_Boolean(CROP_CARD_PORTRAIT, false);
     public ConfigOption_Boolean DisplayBetaSeries = new ConfigOption_Boolean(DISPLAY_BETA_SERIES, true);
+    public ConfigOption_Boolean HoldShiftToLockAffinities = new ConfigOption_Boolean(HOLD_SHIFT_TO_LOCK_AFFINITIES, true);
     public ConfigOption_Vector2 AffinitySystemPosition = new ConfigOption_Vector2(AFFINITY_SYSTEM_POSITION, null);
 
     public void Load(int slot)
@@ -80,6 +82,7 @@ public class AnimatorConfig
             SimplifyCardUI.SetConfig(config);
             CropCardImages.SetConfig(config);
             DisplayBetaSeries.SetConfig(config);
+            HoldShiftToLockAffinities.SetConfig(config);
             AffinitySystemPosition.SetConfig(config);
         }
         catch (IOException e)

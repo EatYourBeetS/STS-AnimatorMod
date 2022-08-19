@@ -1,0 +1,259 @@
+
+{
+	"animator:ApprenticeCleric":
+	{
+		"cropPortrait": false
+	},
+	"animator:Archer":
+	{
+		"cropPortrait": false
+	},
+	"animator:AuraBellaFiora":
+	{
+		"cropPortrait": false
+	},
+	"animator:Azami":
+	{
+		"cropPortrait": false
+	},
+	"animator:Boros":
+	{
+		"cropPortrait": false
+	},
+	"animator:CatoElAltestan":
+	{
+		"cropPortrait": false
+	},
+	"animator:ChlammyZell_Scheme":
+	{
+		"cropPortrait": false
+	},
+	"animator:Cthulhu_Madness":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Clumsy":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Decay":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Doubt":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Greed":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Injury":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Normality":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Pain":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Parasite":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Regret":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Shame":
+	{
+		"cropPortrait": false
+	},
+	"animator:Curse_Writhe":
+	{
+		"cropPortrait": false
+	},
+	"animator:Destroyer":
+	{
+		"cropPortrait": false
+	},
+	"animator:DolaSchwi":
+	{
+		"cropPortrait": false
+	},
+	"animator:DwarfShaman":
+	{
+		"cropPortrait": false
+	},
+	"animator:EmirEins":
+	{
+		"cropPortrait": false
+	},
+	"animator:Emonzaemon_EntouJyuu":
+	{
+		"cropPortrait": false
+	},
+	"animator:Essence_Egnaro":
+	{
+		"cropPortrait": false
+	},
+	"animator:Essence_Eruza":
+	{
+		"cropPortrait": false
+	},
+	"animator:Essence_Wolley":
+	{
+		"cropPortrait": false
+	},
+	"animator:Genos":
+	{
+		"cropPortrait": false
+	},
+	"animator:GiftBox":
+	{
+		"cropPortrait": false
+	},
+	"animator:Gillette":
+	{
+		"cropPortrait": false
+	},
+	"animator:Hans_Slimed":
+	{
+		"cropPortrait": false
+	},
+	"animator:Hero":
+	{
+		"cropPortrait": false
+	},
+	"animator:ItamiYouji":
+	{
+		"cropPortrait": false
+	},
+	"animator:Kaijin":
+	{
+		"cropPortrait": false
+	},
+	"animator:Khajiit_SkeletalDragon":
+	{
+		"cropPortrait": false
+	},
+	"animator:King":
+	{
+		"cropPortrait": false
+	},
+	"animator:Kira":
+	{
+		"cropPortrait": false
+	},
+	"animator:Kuribayashi":
+	{
+		"cropPortrait": false
+	},
+	"animator:Kyubey":
+	{
+		"cropPortrait": false
+	},
+	"animator:LestKarr":
+	{
+		"cropPortrait": false
+	},
+	"animator:MisaKurobane":
+	{
+		"cropPortrait": false
+	},
+	"animator:MoltSolAugustus_ImperialArchers":
+	{
+		"cropPortrait": false
+	},
+	"animator:NagisaMomoe_CharlotteAlt":
+	{
+		"cropPortrait": false
+	},
+	"animator:QuestionMark":
+	{
+		"cropPortrait": false
+	},
+	"animator:Rumia":
+	{
+		"cropPortrait": false
+	},
+	"animator:Scar":
+	{
+		"cropPortrait": false
+	},
+	"animator:SeriousSaitama":
+	{
+		"cropPortrait": false
+	},
+	"animator:Sloth":
+	{
+		"cropPortrait": false
+	},
+	"animator:Special_Apparition":
+	{
+		"cropPortrait": false
+	},
+	"animator:Special_Bite":
+	{
+		"cropPortrait": false
+	},
+	"animator:Special_Miracle":
+	{
+		"cropPortrait": false
+	},
+	"animator:Special_Refrain":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Burn":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Dazed":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Slimed":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Void":
+	{
+		"cropPortrait": false
+	},
+	"animator:Status_Wound":
+	{
+		"cropPortrait": false
+	},
+	"animator:Sylvia_Amalgamate":
+	{
+		"cropPortrait": false
+	},
+	"animator:TanyaDegurechaff":
+	{
+		"cropPortrait": false
+	},
+	"animator:Tatsumaki":
+	{
+		"cropPortrait": false
+	},
+	"animator:ThrowingKnife":
+	{
+		"cropPortrait": false
+	},
+	"animator:Tyuule":
+	{
+		"cropPortrait": false
+	},
+	"animator:Veldora":
+	{
+		"cropPortrait": false
+	},
+	"animator:Vesta_Elixir":
+	{
+		"cropPortrait": false
+	}
+}

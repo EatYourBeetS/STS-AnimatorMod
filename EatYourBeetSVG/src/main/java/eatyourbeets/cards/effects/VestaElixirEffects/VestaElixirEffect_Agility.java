@@ -1,7 +1,7 @@
 package eatyourbeets.cards.effects.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.special.Vesta_Elixir;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 
@@ -19,7 +19,7 @@ public class VestaElixirEffect_Agility extends VestaElixirEffect
     }
 
     @Override
-    public void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player)
+    public void EnqueueAction(EYBCard elixir, AbstractPlayer player)
     {
         GameActions.Bottom.GainAgility(amount);
     }

@@ -17,6 +17,7 @@ import eatyourbeets.interfaces.delegates.FuncT2;
 import eatyourbeets.interfaces.listeners.OnAddingToCardRewardListener;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.interfaces.markers.Hidden;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.common.EYBCardPopupAction;
 import eatyourbeets.utilities.RotatingList;
@@ -39,6 +40,7 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
     public final Class<? extends EYBCard> type;
     public final CardStrings Strings;
 
+    public AbstractResources Resources;
     public EYBCardMetadata Metadata;
     public Object Shared;
     public String ImagePath;
@@ -58,10 +60,11 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
 
     private TextureAtlas.AtlasRegion cardIcon = null;
 
-    public EYBCardData(Class<? extends EYBCard> type, String cardID)
+    public EYBCardData(Class<? extends EYBCard> type, String cardID, AbstractResources resources)
     {
         this(type, cardID, GR.GetCardStrings(cardID));
 
+        this.Resources = resources;
         this.ImagePath = GR.GetCardImage(cardID);
     }
 
@@ -183,7 +186,7 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
 
     public EYBCardData SetSeriesFromClassPackage()
     {
-        final int length = "eatyourbeets.cards.animator.".length();
+        final int length = "eatyourbeets.cards.".length() + Resources.Prefix.length() + 1;
         final String name = type.getPackage().getName();
         final CardSeries series = CardSeries.GetByName(name.substring(length + ((name.charAt(length) == 'b') ? "cards_beta.series." : "series.").length()), false);
         if (series == null)

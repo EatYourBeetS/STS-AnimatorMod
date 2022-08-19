@@ -19,11 +19,6 @@ import eatyourbeets.utilities.*;
 
 public abstract class AbstractAffinityPower extends CommonPower
 {
-    //@Formatter: off
-    @Override public final void renderIcons(SpriteBatch sb, float x, float y, Color c) { }
-    @Override public final void renderAmount(SpriteBatch sb, float x, float y, Color c) { }
-    //@Formatter: on
-
     public final Affinity affinity;
     public final String symbol;
     public int amountGainedThisTurn;
@@ -123,10 +118,15 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         if (amount > 0)
         {
-            super.stackPower(amount, true);
-            this.amountGainedThisTurn += amount;
+            stackPower(amount, true);
         }
+    }
 
+    @Override
+    public void stackPower(int stackAmount)
+    {
+        super.stackPower(stackAmount);
+        this.amountGainedThisTurn += amount;
         UpdateThreshold();
     }
 
@@ -167,6 +167,11 @@ public abstract class AbstractAffinityPower extends CommonPower
         {
             if (amount >= thresholds[i])
             {
+                if (minimumAmount < thresholds[i])
+                {
+                    minimumAmount = thresholds[i];
+                }
+
                 thresholdIndex += 1;
                 OnThresholdReached();
                 CombatStats.OnAffinityThresholdReached(this, thresholdIndex);
@@ -213,6 +218,39 @@ public abstract class AbstractAffinityPower extends CommonPower
         else if (this.retainedTurns > 0)
         {
             this.retainedTurns -= 1;
+        }
+    }
+
+    @Override
+    public final void renderIcons(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (!CombatStats.Affinities.isActive)
+        {
+            super.renderIcons(sb, x, y, c);
+        }
+    }
+
+    @Override
+    public final void renderAmount(SpriteBatch sb, float x, float y, Color c)
+    {
+        if (!CombatStats.Affinities.isActive)
+        {
+            final Integer threshold = GetCurrentThreshold();
+            final Color c1 = (retainedTurns != 0 ? Colors.Green(c.a) : Colors.Blue(c.a)).cpy();
+            if (threshold != null)
+            {
+                final float offset_x = -24 * Settings.scale;
+                final float offset_y = -5 * Settings.scale;
+                final float offset_x2 = 0 * Settings.scale;
+                final float offset_y2 = -5 * Settings.scale;
+                final Color c2 = Colors.Cream(c.a).cpy();
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, " /" + threshold, x + offset_x2, y + offset_y2, 1, c2);
+                FontHelper.renderFontRightTopAligned(sb, FontHelper.powerAmountFont, Integer.toString(this.amount), x + offset_x, y + offset_y, fontScale, c1);
+            }
+            else
+            {
+                super.renderAmount(sb, x, y, c1);
+            }
         }
     }
 
@@ -264,11 +302,14 @@ public abstract class AbstractAffinityPower extends CommonPower
     {
         super.update(slot);
 
-        hb.update();
-
-        if (hb.hovered)
+        if (hb != null)
         {
-            EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f), false);
+            hb.update();
+
+            if (hb.hovered)
+            {
+                EYBCardTooltip.QueueTooltip(tooltip, InputHelper.mX + hb.width, InputHelper.mY + (hb.height * 0.5f), false);
+            }
         }
     }
 

@@ -24,7 +24,6 @@ import eatyourbeets.monsters.Bosses.TheUnnamed;
 import eatyourbeets.monsters.UnnamedReign.UltimateShape.UltimateShape;
 import eatyourbeets.relics.unnamed.Incomplete;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameEffects;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import java.util.HashSet;
 
 public class UnnamedCharacter extends EYBPlayerCharacter
 {
-    public static final CharacterStrings characterStrings = AnimatorResources.GetCharacterStrings("Unnamed");
+    public static final CharacterStrings characterStrings = GR.GetCharacterStrings("Unnamed");
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
     public static final String ORIGINAL_NAME = NAMES[0];

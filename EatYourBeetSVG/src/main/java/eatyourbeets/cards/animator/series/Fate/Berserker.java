@@ -28,7 +28,7 @@ public class Berserker extends AnimatorCard
 
         SetAffinity_Red(2, 0, 6);
 
-        SetAffinityRequirement(Affinity.Red, 2);
+        SetAffinityRequirement(Affinity.Red, 1);
     }
 
     @Override

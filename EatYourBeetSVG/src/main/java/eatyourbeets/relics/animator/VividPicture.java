@@ -16,8 +16,7 @@ import java.util.ArrayList;
 public class VividPicture extends EnchantableRelic implements CustomSavable<Integer>, OnEquipUnnamedReignRelicListener, OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(VividPicture.class);
-    public static final int USES = 3;
-    public static final int CARD_DRAW = 2;
+    public static final int DRAW_ESSENCE = 5;
 
     public VividPicture()
     {
@@ -32,7 +31,7 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, USES, CARD_DRAW);
+        return FormatDescription(0, DRAW_ESSENCE);
     }
 
     @Override
@@ -78,7 +77,6 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     {
         super.ActivateBattleEffect();
 
-        SetCounter(USES);
         SetEnabled(true);
         CombatStats.onAffinitySealed.Subscribe(this);
     }
@@ -88,30 +86,25 @@ public class VividPicture extends EnchantableRelic implements CustomSavable<Inte
     {
         super.DeactivateBattleEffect();
 
-        SetCounter(-1);
         SetEnabled(true);
         CombatStats.onAffinitySealed.Unsubscribe(this);
     }
 
     @Override
-    public void atTurnStartPostDraw()
+    public void atTurnStart()
     {
-        super.atTurnStartPostDraw();
+        super.atTurnStart();
 
-        if (counter > 0)
-        {
-            SetEnabled(true);
-        }
+        SetEnabled(true);
     }
 
     @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        if (manual && IsEnabled())
+        if (IsEnabled())
         {
-            GameActions.Bottom.Draw(CARD_DRAW);
+            GameActions.Bottom.GainDrawEssence(DRAW_ESSENCE);
             SetEnabled(false);
-            AddCounter(-1);
             flash();
         }
     }

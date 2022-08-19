@@ -33,7 +33,8 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
-    public final EYBCardAffinities PlayerAffinities = new EYBCardAffinities(null);
+    public final EYBCardAffinities BaseAffinities = new EYBCardAffinities(null);
+    public final EYBCardAffinities CurrentAffinities = new EYBCardAffinities(null);
     public final ForcePower Force;
     public final AgilityPower Agility;
     public final IntellectPower Intellect;
@@ -44,23 +45,26 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     protected final GUI_Image dragPanel_image;
     protected final GUI_Image draggable_icon;
     protected final GUI_Button info_button;
+    protected final GUI_Button lock_button;
     protected final ArrayList<EYBCardAffinityRow> rows = new ArrayList<>();
     protected RotatingList<String> tooltipMessages;
-    protected EYBCardTooltip tooltip;
+    protected EYBCardTooltip info_tooltip;
+    protected EYBCardTooltip lock_tooltip;
     protected Vector2 savedPosition;
-
-    protected AbstractCard currentSynergy = null;
-    protected AnimatorCard lastCardPlayed = null;
+    protected boolean canUseAffinities = true;
+    protected boolean holdingShift;
 
     public EYBCardAffinitySystem()
     {
+        final Affinity[] affinityTypes = Affinity.Basic();
+
         Powers.add(Force = new ForcePower());
         Powers.add(Agility = new AgilityPower());
         Powers.add(Intellect = new IntellectPower());
         Powers.add(Blessing = new BlessingPower());
         Powers.add(Corruption = new CorruptionPower());
 
-        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.425f), Scale(80f), Scale(40f), true);
+        hb = new DraggableHitbox(ScreenW(0.0366f), ScreenH(0.43f), Scale(80f), Scale(40f), true);
         hb.SetBounds(hb.width * 0.6f, Settings.WIDTH - (hb.width * 0.6f), ScreenH(0.35f), ScreenH(0.85f));
 
         dragPanel_image = new GUI_Image(GR.Common.Images.Panel_Rounded.Texture(), hb)
@@ -70,24 +74,35 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         .SetColor(Colors.White(0.75f));
 
         tooltipMessages = new RotatingList<>(GR.Animator.Strings.Tutorial.GetStrings());
-        tooltip = new EYBCardTooltip("Animator Info", "");
-        UpdateTooltip(false);
+        info_tooltip = new EYBCardTooltip("Animator Info", "");
+        lock_tooltip = new EYBCardTooltip("Lock Affinity", "");
+        UpdateInfoTooltip(false);
 
         info_button = new GUI_Button(GR.Common.Images.Panel_Rounded.Texture(), new RelativeHitbox(hb, Scale(60f), Scale(30f), Scale(120f), Scale(20f), false))
         .SetFont(EYBFontHelper.CardTooltipFont, 1f)
         .SetColor(new Color(0.1f, 0.1f, 0.1f, 0.6f))
         .SetTextColor(new Color(1f, 1f, 0.8f, 1f))
         .SetText("info")
-        .SetTooltip(tooltip, false)
-        .SetOnClick(() -> UpdateTooltip(true));
+        .SetTooltip(info_tooltip, false)
+        .SetOnClick(() -> UpdateInfoTooltip(true));
 
-        final Affinity[] types = Affinity.Basic();
-        for (int i = 0; i < types.length; i++)
+        for (Affinity type : affinityTypes)
         {
-            rows.add(new EYBCardAffinityRow(this, types[i], i));
+            rows.add(new EYBCardAffinityRow(this, type, rows.size()));
         }
 
-        rows.add(new EYBCardAffinityRow(this, Affinity.Sealed, types.length));
+        lock_button = new GUI_Button(GR.Common.Images.Panel_Elliptical_Half_H.Texture(), new RelativeHitbox(hb, 1, 1, 1.55f, -0.5f -(rows.size() * 0.975f)))
+        .SetFont(EYBFontHelper.CardTooltipFont, 1f)
+        .SetColor(new Color(0.05f, 0.05f, 0.05f, 1f))
+        .SetTooltip(lock_tooltip, false);
+        lock_button.SetOnRightClick(() ->
+        {
+            boolean hold = GR.Animator.Config.HoldShiftToLockAffinities.Toggle(true);
+            lock_tooltip.SetText(lock_tooltip.title, GR.Animator.Strings.Affinities.LockMessage(hold));
+        });
+        lock_button.SetOnClick(() -> UnlockAffinities(!canUseAffinities));
+
+        rows.add(new EYBCardAffinityRow(this, Affinity.Sealed, rows.size()));
     }
 
     public EYBCardAffinities GetAffinities(Iterable<AbstractCard> cards, boolean unsealed)
@@ -107,16 +122,16 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public EYBCardAffinities GetPlayerAffinities()
     {
-        return PlayerAffinities;
+        return CurrentAffinities;
     }
 
-    public boolean TryUseAffinity(Affinity affinity, int requirement)
+    public boolean TryUseAffinity(Affinity affinity, int amount)
     {
         if (affinity == Affinity.Star)
         {
             for (Affinity a : Affinity.Basic())
             {
-                if (PlayerAffinities.GetRequirement(a) < requirement)
+                if (CurrentAffinities.GetLevel(a) < amount)
                 {
                     return false;
                 }
@@ -124,26 +139,33 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
             for (Affinity a : Affinity.Basic())
             {
-                PlayerAffinities.SetRequirement(a, PlayerAffinities.GetRequirement(a) - requirement);
+                CurrentAffinities.Set(a, CurrentAffinities.GetLevel(a) - amount);
             }
+
             return true;
         }
         else
         {
-            final int amount = PlayerAffinities.GetRequirement(affinity);
-            if (amount < requirement)
+            final int level = CurrentAffinities.GetLevel(affinity);
+            if (level < amount)
             {
                 return false;
             }
 
-            PlayerAffinities.SetRequirement(affinity, amount - requirement);
+            CurrentAffinities.Add(affinity, -amount);
+
             return true;
         }
     }
 
+    public boolean CanUseAffinities()
+    {
+        return canUseAffinities;
+    }
+
     public int GetRemainingSealUses()
     {
-        return PlayerAffinities.GetLevel(Affinity.Sealed);
+        return CurrentAffinities.GetLevel(Affinity.Sealed);
     }
 
     public void AddAffinitySealUses(int uses)
@@ -151,24 +173,40 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         final int remainingUses = GetRemainingSealUses();
         if (remainingUses < 3)
         {
-            PlayerAffinities.Set(Affinity.Sealed, Mathf.Clamp(remainingUses + uses, 0, 3));
+            uses = (Mathf.Clamp(remainingUses + uses, 0, 3));
+            CurrentAffinities.Set(Affinity.Sealed, uses);
+            BaseAffinities.Set(Affinity.Sealed, uses);
         }
     }
 
     public void AddTempAffinity(Affinity affinity, int amount)
     {
-        PlayerAffinities.Get(affinity).requirement += amount;
+        if (affinity == Affinity.Star || affinity == Affinity.General)
+        {
+            for (Affinity a : Affinity.Basic())
+            {
+                AddTempAffinity(a, amount);
+            }
+        }
+        else if (affinity == Affinity.Sealed)
+        {
+            throw new RuntimeException("Do not use AddTempAffinity() for Affinity.Sealed, use AddAffinitySealUses() instead.");
+        }
+        else
+        {
+            CurrentAffinities.Add(affinity, amount);
+        }
     }
 
     public int GetUsableAffinity(Affinity affinity)
     {
         if (affinity == Affinity.Star || affinity == Affinity.General)
         {
-            EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(PlayerAffinities.List, ac -> ac.type.ID >= 0), af -> af.requirement);
-            return min != null ? min.requirement : 0;
+            EYBCardAffinity min = JUtils.FindMin(JUtils.Filter(CurrentAffinities.List, ac -> ac.type.ID >= 0), af -> af.level);
+            return min != null ? min.level : 0;
         }
 
-        return PlayerAffinities.GetRequirement(affinity);
+        return CurrentAffinities.GetLevel(affinity);
     }
 
     public EYBCardAffinityRow GetRow(Affinity affinity)
@@ -210,24 +248,23 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         for (EYBCardAffinityRow row : rows)
         {
+            final int value = Mathf.Min(BaseAffinities.GetLevel(row.Type), CurrentAffinities.GetLevel(row.Type));
+            CurrentAffinities.Set(row.Type, value);
+            BaseAffinities.Set(row.Type, value);
+
             row.OnStartOfTurn();
         }
     }
 
     public int GetLastAffinityLevel(Affinity affinity)
     {
+        final EYBCard lastCardPlayed = GetLastCardPlayed();
         return lastCardPlayed == null ? 0 : GameUtilities.GetAffinityLevel(lastCardPlayed, affinity, true);
     }
 
-    public AnimatorCard GetLastCardPlayed()
+    public EYBCard GetLastCardPlayed()
     {
-        return lastCardPlayed;
-    }
-
-    public void SetLastCardPlayed(AbstractCard card)
-    {
-        lastCardPlayed = JUtils.SafeCast(card, AnimatorCard.class);
-        currentSynergy = null;
+        return CardSeries.GetLastCardPlayed();
     }
 
     public float ModifyBlock(float block, EYBCard card)
@@ -294,12 +331,12 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         if (reshuffle)
         {
-            final int seal = PlayerAffinities.GetLevel(Affinity.Sealed);
+            final int seal = CurrentAffinities.GetLevel(Affinity.Sealed);
             if (seal <= 0)
             {
                 return;
             }
-            PlayerAffinities.Set(Affinity.Sealed, seal - 1);
+            CurrentAffinities.Set(Affinity.Sealed, seal - 1);
         }
 
         affinities.sealed = true;
@@ -332,7 +369,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             GameEffects.TopLevelQueue.Add(VFX.ThrowProjectile(p, CombatStats.Affinities.GetRow(a).image_affinity.hb))
             .SetDuration(Mathf.Abs(targetHB.cX - hb.cX) / (Settings.WIDTH * 0.5f), false);
 
-            GetRow(a).Seal(affinities);
+            GetRow(a).Seal(affinities, reshuffle);
         }
 
         CombatStats.OnAffinitySealed(affinities, reshuffle);
@@ -344,8 +381,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public void Initialize()
     {
-        PlayerAffinities.Star = null;
-        PlayerAffinities.List.clear();
+        BaseAffinities.Clear();
+        CurrentAffinities.Clear();
         CombatStats.onStartOfTurn.Subscribe(this);
 
         if (savedPosition != null)
@@ -359,6 +396,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
                 GR.Animator.Config.AffinitySystemPosition.Set(savedPosition.cpy(), true);
             }
         }
+
+        UnlockAffinities(holdingShift != canUseAffinities);
+        holdingShift = false;
 
         for (EYBCardAffinityRow row : rows)
         {
@@ -393,10 +433,9 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             }
         }
 
-        final EYBCardAffinities handAffinities = GetPlayerAffinities();
         for (EYBCardAffinityRow row : rows)
         {
-            row.Update(PlayerAffinities, hoveredCard, draggingCard);
+            row.Update(hoveredCard, draggingCard);
         }
 
         if (AbstractDungeon.isScreenUp || CardCrawlGame.isPopupOpen)
@@ -411,20 +450,41 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         dragPanel_image.Update();
         draggable_icon.Update();
-        info_button.ShowTooltip(!draggingCard);
-        info_button.Update();
+        info_button.ShowTooltip(!draggingCard).Update();
+        lock_button.ShowTooltip(!draggingCard).Update();
 
-        if (hoveredCard != null && !draggingCard
-         && InputManager.RightClick.IsJustPressed() && GameUtilities.CanAcceptInput(true)
-         && PlayerAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
+        if (!draggingCard && GameUtilities.CanAcceptInput(true))
         {
-            if (hoveredCard.affinities.sealed)
+            if (hoveredCard != null && InputManager.RightClick.IsJustPressed() && CurrentAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
             {
-                GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
+                if (hoveredCard.affinities.sealed)
+                {
+                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
+                }
+                else
+                {
+                    GameActions.Bottom.SealAffinities(hoveredCard, true);
+                }
             }
-            else
+
+            if (InputManager.Shift.IsJustPressed())
             {
-                GameActions.Bottom.SealAffinities(hoveredCard, true);
+                SFX.Play(SFX.UI_CLICK_2, 1.2f, 1.3f, 0.85f);
+                UnlockAffinities(!canUseAffinities);
+                player.hand.applyPowers();
+
+                if (GR.Animator.Config.HoldShiftToLockAffinities.Get())
+                {
+                    holdingShift = true;
+                }
+            }
+            else if (holdingShift && InputManager.Shift.IsReleased())
+            {
+                SFX.Play(SFX.UI_CLICK_2, 0.75f, 0.85f, 0.85f);
+                UnlockAffinities(!canUseAffinities);
+                player.hand.applyPowers();
+
+                holdingShift = false;
             }
         }
     }
@@ -439,6 +499,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         dragPanel_image.Render(sb);
         draggable_icon.Render(sb);
         info_button.Render(sb);
+        lock_button.Render(sb);
 
         for (EYBCardAffinityRow t : rows)
         {
@@ -446,9 +507,25 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         }
     }
 
-    private void UpdateTooltip(boolean next)
+    private void UnlockAffinities(boolean unlock)
     {
-        tooltip.description = next ? tooltipMessages.Next(true) : tooltipMessages.Current(false);
-        tooltip.description = GR.Animator.Strings.Tutorial.ClickToCycle(tooltipMessages.GetIndex() + 1, tooltipMessages.GetInnerList().size()) + tooltip.description;
+        if (unlock)
+        {
+            this.lock_button.SetText("USE").SetTextColor(new Color(0.6f, 1f, 0.6f, 1f));
+            this.canUseAffinities = true;
+        }
+        else
+        {
+            this.lock_button.SetText("LOCK").SetTextColor(new Color(1f, 0.6f, 0.6f, 1f));
+            this.canUseAffinities = false;
+        }
+
+        lock_tooltip.description = GR.Animator.Strings.Affinities.LockMessage(GR.Animator.Config.HoldShiftToLockAffinities.Get());
+    }
+
+    private void UpdateInfoTooltip(boolean next)
+    {
+        info_tooltip.description = next ? tooltipMessages.Next(true) : tooltipMessages.Current(false);
+        info_tooltip.description = GR.Animator.Strings.Tutorial.ClickToCycle(tooltipMessages.GetIndex() + 1, tooltipMessages.GetInnerList().size()) + info_tooltip.description;
     }
 }

@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.relics.Calipers;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import eatyourbeets.actions.special.HasteAction;
-import eatyourbeets.cards.base.AnimatorCard;
+import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardAffinities;
@@ -96,6 +96,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
     public static final GameEvent<OnTryUsingCardSubscriber> onTryUsingCard = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnPlayCardSubscriber> onPlayCard = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnAfterCardPlayedSubscriber> onAfterCardPlayed = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnSynergySubscriber> onSynergy = RegisterEvent(new GameEvent<>());
+    public static final GameEvent<OnSynergyCheckSubscriber> onSynergyCheck = RegisterEvent(new GameEvent<>());
     //
     public static final GameEvent<OnAttackSubscriber> onAttack = RegisterEvent(new GameEvent<>());
     public static final GameEvent<OnModifyDamageFirstSubscriber> onModifyDamageFirst = RegisterEvent(new GameEvent<>());
@@ -207,10 +209,10 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
 
         CardGlowBorderPatches.overrideColor = null;
-        CombatStats.PurgedCards.clear();
-        CombatStats.Affinities.Initialize();
-        CombatStats.Affinities.SetLastCardPlayed(null);
-        CombatStats.Dolls.Initialize();
+        PurgedCards.clear();
+        Affinities.Initialize();
+        Dolls.Initialize();
+        CardSeries.SetLastCardPlayed(null);
 
         for (OnStatsClearedSubscriber s : onStatsCleared.GetSubscribers())
         {
@@ -520,6 +522,17 @@ public class CombatStats extends EYBPower implements InvisiblePower
         ClearStats();
     }
 
+    public static void OnSynergy(AbstractCard card)
+    {
+        for (OnSynergySubscriber s : onSynergy.GetSubscribers())
+        {
+            s.OnSynergy(card);
+        }
+
+        synergiesThisTurn.add(card);
+        synergiesThisCombat.add(card);
+    }
+
     public static void OnUsingCard(AbstractCard c, AbstractPlayer p, AbstractMonster m)
     {
         if (c == null)
@@ -537,7 +550,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
             GameActions.Last.PlayNextTurn(copy, m);
         }
 
-        final AnimatorCard card = JUtils.SafeCast(c, AnimatorCard.class);
+        final EYBCard card = JUtils.SafeCast(c, EYBCard.class);
         if (card == null)
         {
             c.use(p, m);
@@ -552,6 +565,11 @@ public class CombatStats extends EYBPower implements InvisiblePower
         final CardUseInfo info = new CardUseInfo(card, m);
 
         card.OnUse(p, m, info);
+
+        if (info.IsSynergizing)
+        {
+            OnSynergy(card);
+        }
 
         final ArrayList<AbstractGameAction> actions = GameActions.GetActions();
         cachedActions.clear();
@@ -863,6 +881,8 @@ public class CombatStats extends EYBPower implements InvisiblePower
         {
             p.OnPlayCard(card, m);
         }
+
+        CardSeries.Synergy.TrySynergize(card);
     }
 
     @Override
@@ -901,7 +921,7 @@ public class CombatStats extends EYBPower implements InvisiblePower
         }
         resetAfterPlay.clear();
 
-        CombatStats.Affinities.SetLastCardPlayed(card);
+        CardSeries.SetLastCardPlayed(card);
         player.hand.glowCheck();
     }
 
@@ -1145,6 +1165,6 @@ public class CombatStats extends EYBPower implements InvisiblePower
         orbsEvokedThisTurn.clear();
         turnCount += 1;
 
-        CombatStats.Affinities.SetLastCardPlayed(null);
+        CardSeries.SetLastCardPlayed(null);
     }
 }

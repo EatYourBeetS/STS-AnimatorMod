@@ -5,18 +5,14 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.tokens.AffinityToken;
-import eatyourbeets.cards.base.Affinity;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardUseInfo;
-import eatyourbeets.cards.base.EYBCardData;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.powers.AnimatorClickablePower;
+import eatyourbeets.interfaces.subscribers.OnAffinitySealedSubscriber;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerTriggerConditionType;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
@@ -28,14 +24,12 @@ public class Eve extends AnimatorCard
             .SetSeriesFromClassPackage()
             .PostInitialize(data -> data.AddPreview(AffinityToken.GetCard(Affinity.General), true));
 
-    public static final int POWER_COST = 4;
-    public static final int POWER_DAMAGE = 9;
-
     public Eve()
     {
         super(DATA);
 
-        Initialize(0, 0, POWER_COST, POWER_DAMAGE);
+        Initialize(0, 0, 3);
+        SetUpgrade(0, 0, 2);
 
         SetAffinity_Blue(2);
         SetAffinity_Light(1);
@@ -45,31 +39,32 @@ public class Eve extends AnimatorCard
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.StackPower(new EvePower(p, 1, upgraded));
+        GameActions.Bottom.StackPower(new EvePower(p, magicNumber));
     }
 
-    public static class EvePower extends AnimatorClickablePower
+    public static class EvePower extends AnimatorPower implements OnAffinitySealedSubscriber
     {
-        private int upgradedAmount = 0;
-
-        public EvePower(AbstractCreature owner, int amount, boolean upgraded)
+        public EvePower(AbstractCreature owner, int amount)
         {
-            super(owner, Eve.DATA, PowerTriggerConditionType.Affinity_Star, POWER_COST);
-
-            triggerCondition.SetUses(-1, false, false);
-
-            if (upgraded)
-            {
-                upgradedAmount += 1;
-            }
+            super(owner, Eve.DATA);
 
             Initialize(amount);
         }
 
         @Override
-        public String GetUpdatedDescription()
+        public void onInitialApplication()
         {
-            return FormatDescription(0, triggerCondition.requiredAmount, POWER_DAMAGE, amount);
+            super.onInitialApplication();
+
+            CombatStats.onAffinitySealed.Subscribe(this);
+        }
+
+        @Override
+        public void onRemove()
+        {
+            super.onRemove();
+
+            CombatStats.onAffinitySealed.Unsubscribe(this);
         }
 
         @Override
@@ -77,37 +72,15 @@ public class Eve extends AnimatorCard
         {
             super.atStartOfTurnPostDraw();
 
-            CombatStats.Affinities.AddAffinitySealUses(amount);
-
-            final int unupgradedAmount = amount - upgradedAmount;
-            if (unupgradedAmount > 0)
-            {
-                GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.General, false)).Repeat(unupgradedAmount);
-            }
-            if (upgradedAmount > 0)
-            {
-                GameActions.Bottom.MakeCardInHand(AffinityToken.GetCopy(Affinity.General, true)).Repeat(upgradedAmount);
-            }
-
+            GameActions.Bottom.MakeCardInDrawPile(AffinityToken.GetCopy(Affinity.General, false));
             flashWithoutSound();
         }
 
         @Override
-        protected void OnSamePowerApplied(AbstractPower power)
+        public void OnAffinitySealed(EYBCard card, boolean manual)
         {
-            super.OnSamePowerApplied(power);
-
-            final EvePower other = (EvePower) power;
-            upgradedAmount += other.upgradedAmount;
-        }
-
-        @Override
-        public void OnUse(AbstractMonster m)
-        {
-            super.OnUse(m);
-
             GameEffects.Queue.BorderFlash(Color.SKY);
-            GameActions.Bottom.DealDamageToRandomEnemy(POWER_DAMAGE, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
+            GameActions.Bottom.DealDamageToRandomEnemy(amount, DamageInfo.DamageType.THORNS, AttackEffects.NONE)
             .SetOptions(true, false)
             .SetDamageEffect(enemy ->
             {

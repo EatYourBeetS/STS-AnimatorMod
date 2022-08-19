@@ -44,7 +44,7 @@ public class RacePiece extends AnimatorRelic
     {
         if (super.canSpawn())
         {
-            HashSet<CardSeries> synergies = CardSeries.GetAllSeries(player.masterDeck.group);
+            HashSet<CardSeries> synergies = CardSeries.Affinity.GetAllSeries(player.masterDeck.group);
             for (AnimatorRuntimeLoadout loadout : GR.Animator.Dungeon.Loadouts)
             {
                 if (synergies.contains(CardSeries.GetByID(loadout.ID)))
@@ -156,7 +156,7 @@ public class RacePiece extends AnimatorRelic
             WeightedList<AnimatorCard> rewards = new WeightedList<>();
 
             ArrayList<AnimatorCard> cards = new ArrayList<>();
-            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
+            CardSeries.Affinity.AddCards(series, CardLibrary.getAllCards(), cards);
 
             for (AnimatorCard c : cards)
             {

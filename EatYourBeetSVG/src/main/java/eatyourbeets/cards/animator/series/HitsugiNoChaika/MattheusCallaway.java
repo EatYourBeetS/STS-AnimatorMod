@@ -20,8 +20,8 @@ public class MattheusCallaway extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 5, 3);
-        SetUpgrade(0, 0, 3);
+        Initialize(0, 4, 5);
+        SetUpgrade(0, 3, 0);
 
         SetAffinity_Green(1);
         SetAffinity_Blue(1);
@@ -30,7 +30,7 @@ public class MattheusCallaway extends AnimatorCard
     @Override
     protected float GetInitialBlock()
     {
-        return super.GetInitialBlock() + ((GameActionManager.totalDiscardedThisTurn > 0) ? magicNumber : 0);
+        return super.GetInitialBlock() + (CheckSpecialCondition(false) ? magicNumber : 0);
     }
 
     @Override
@@ -50,5 +50,11 @@ public class MattheusCallaway extends AnimatorCard
                 GameActions.Bottom.ChannelOrb(new Earth());
             }
         });
+    }
+
+    @Override
+    public boolean CheckSpecialCondition(boolean tryUse)
+    {
+        return GameActionManager.totalDiscardedThisTurn > 0;
     }
 }

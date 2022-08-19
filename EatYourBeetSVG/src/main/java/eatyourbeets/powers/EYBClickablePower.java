@@ -198,6 +198,18 @@ public abstract class EYBClickablePower extends EYBPower
         }
     }
 
+    public boolean TryClick()
+    {
+        if (triggerCondition.CanUse())
+        {
+            SFX.Play(SFX.UI_CLICK_1);
+            OnClick();
+            return true;
+        }
+
+        return false;
+    }
+
     public void OnClick()
     {
         final ArrayList<AbstractMonster> enemies = GameUtilities.GetEnemies(true);

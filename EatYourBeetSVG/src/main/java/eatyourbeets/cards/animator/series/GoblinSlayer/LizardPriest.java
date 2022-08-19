@@ -35,9 +35,9 @@ public class LizardPriest extends AnimatorCard
     }
 
     @Override
-    public void triggerOnExhaust()
+    public void triggerOnAffinitySeal(boolean reshuffle)
     {
-        super.triggerOnExhaust();
+        super.triggerOnAffinitySeal(reshuffle);
 
         if (CombatStats.TryActivateSemiLimited(cardID))
         {

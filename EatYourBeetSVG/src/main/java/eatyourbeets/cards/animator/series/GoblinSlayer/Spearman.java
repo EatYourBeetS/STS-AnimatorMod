@@ -34,6 +34,8 @@ public class Spearman extends AnimatorCard
         SetAffinity_Green(1);
 
         SetCardPreview(Witch.DATA::IsCard);
+
+        SetAffinityRequirement(Affinity.Red, 1);
     }
 
     @Override
@@ -44,10 +46,10 @@ public class Spearman extends AnimatorCard
         GameActions.Bottom.GainForce(1, true);
         GameActions.Bottom.MakeCardInHand(new Status_Wound());
 
-        if (info.TryActivateStarter())
+        if (CheckAffinity(Affinity.Red))
         {
             GameActions.Bottom.Draw(1)
-            .SetFilter(Witch.DATA::IsCard, false)
+            .SetFilter(c -> Witch.DATA.IsCard(c) && TryUseAffinity(Affinity.Green), false)
             .AddCallback(cards ->
             {
                 for (AbstractCard c : cards)

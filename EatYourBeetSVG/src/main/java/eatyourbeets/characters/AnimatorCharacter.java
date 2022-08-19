@@ -13,16 +13,15 @@ import eatyourbeets.cards.animator.basic.Strike;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.interfaces.listeners.OnReceiveRewardsListener;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.resources.animator.misc.AnimatorLoadout;
-import eatyourbeets.rewards.AnimatorReward;
+import eatyourbeets.rewards.AnimatorUltrarareGenerator;
 import eatyourbeets.utilities.RandomizedList;
 
 import java.util.ArrayList;
 
 public class AnimatorCharacter extends EYBPlayerCharacter implements OnReceiveRewardsListener
 {
-    public static final CharacterStrings characterStrings = AnimatorResources.GetCharacterStrings("Animator");
+    public static final CharacterStrings characterStrings = GR.GetCharacterStrings("Animator");
     public static final String[] NAMES = characterStrings.NAMES;
     public static final String[] TEXT = characterStrings.TEXT;
     public static final String ORIGINAL_NAME = NAMES[0];
@@ -160,9 +159,10 @@ public class AnimatorCharacter extends EYBPlayerCharacter implements OnReceiveRe
         {
             for (RewardItem rItem : rewards)
             {
-                if (rItem.type == RewardItem.RewardType.CARD && rItem.cards.size() > 0)
+                if (rItem.type == RewardItem.RewardType.CARD)
                 {
-                    AnimatorReward.TryGenerateUltraRare(rItem.cards, null);
+                    AnimatorUltrarareGenerator.TryAdd(rItem.cards, null);
+                    return;
                 }
             }
         }

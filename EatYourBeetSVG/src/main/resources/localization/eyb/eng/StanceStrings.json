@@ -5,7 +5,7 @@
 		"NAME": "Force Stance",
 		"DESCRIPTION": 
 		[
-			"#g+{0} [Strength]. Upon entering: #yBoost [F]. NL Whenever you play an #yAttack, take #b{1} [DD]. NL Upon exiting: Remove your [DD]."
+			"#g+{0} [Strength]. Upon entering: #yBoost [F]. NL Whenever you hit an enemy, take #b{1} [DD]. NL Upon exiting: Reduce your [DD] by #b{2}."
 		]
 	},
 	"eyb:AgilityStance":

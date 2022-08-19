@@ -27,6 +27,7 @@ import eatyourbeets.interfaces.delegates.ActionT2;
 import eatyourbeets.interfaces.delegates.FuncT1;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.replacement.PlayerFlightPower;
+import eatyourbeets.resources.AbstractResources;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.ui.cards.CardPreview;
@@ -41,13 +42,14 @@ public abstract class EYBCard extends EYBCardBase
 {
     private static final Map<String, EYBCardData> staticCardData = new HashMap<>();
 
-    protected static final AnimatorImages ANIMATOR_IMAGES = GR.Animator.Images;
+    protected static final AnimatorImages ANIMATOR_IMAGES = GR.AnimatorClassic.Images;
     protected static final Color blueGlowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
     protected static final Color goldenGlowColor = new Color(1, 0.843f, 0, 0.25f);
     protected static final Color greenGlowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR.cpy();
     protected static final Color redGlowColor = new Color(1, 0.15f, 0.15f, 0.25f);
     protected Color borderIndicatorColor;
     protected CardPreview cardPreview;
+    protected boolean usingAffinities;
 
     public static final String UNPLAYABLE_MESSAGE = CardCrawlGame.languagePack.getCardStrings(Tactician.ID).EXTENDED_DESCRIPTION[0];
     public static final int UNPLAYABLE_COST = -2;
@@ -61,6 +63,7 @@ public abstract class EYBCard extends EYBCardBase
     public static final CardTags SUMMON = GR.Enums.CardTags.SUMMON;
     public static final CardTags ATTACHMENT = GR.Enums.CardTags.ATTACHMENT;
     public static final CardTags RECAST = GR.Enums.CardTags.RECAST;
+    public static final CardTags FADING = GR.Enums.CardTags.FADING;
     public final EYBCardText cardText;
     public final EYBCardData cardData;
     public final EYBCardAffinities affinities;
@@ -85,9 +88,9 @@ public abstract class EYBCard extends EYBCardBase
         return staticCardData.get(cardID);
     }
 
-    public static EYBCardData RegisterCardData(Class<? extends EYBCard> type, String cardID)
+    public static EYBCardData RegisterCardData(Class<? extends EYBCard> type, String cardID, AbstractResources resources)
     {
-        final EYBCardData cardData = new EYBCardData(type, cardID);
+        final EYBCardData cardData = new EYBCardData(type, cardID, resources);
         staticCardData.put(cardData.ID, cardData);
         return cardData;
     }
@@ -181,6 +184,16 @@ public abstract class EYBCard extends EYBCardBase
         return upgraded && cardData.Strings.UPGRADE_DESCRIPTION != null
                 ? JUtils.Format(cardData.Strings.UPGRADE_DESCRIPTION, args)
                 : JUtils.Format(cardData.Strings.DESCRIPTION, args);
+    }
+
+    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+
+    }
+
+    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    {
+
     }
 
     @Override
@@ -277,7 +290,7 @@ public abstract class EYBCard extends EYBCardBase
 
         if (CheckSpecialCondition(false))
         {
-            this.glowColor = AbstractCard.GREEN_BORDER_GLOW_COLOR;
+            this.glowColor = greenGlowColor;
             this.borderIndicatorColor = glowColor;
         }
     }
@@ -325,22 +338,70 @@ public abstract class EYBCard extends EYBCardBase
 
     public boolean CheckAffinity(Affinity affinity)
     {
-        return CombatStats.Affinities.GetUsableAffinity(affinity) >= affinities.GetRequirement(affinity);
+        return CheckAffinity(affinity, affinities.GetRequirement(affinity));
+    }
+
+    public boolean CheckAffinity(Affinity affinity, int amount)
+    {
+        if (!CombatStats.Affinities.CanUseAffinities())
+        {
+            return false;
+        }
+
+        return CombatStats.Affinities.GetUsableAffinity(affinity) >= amount;
+    }
+
+    public boolean CheckAffinities(Affinity... affinities)
+    {
+        for (Affinity a : affinities)
+        {
+            if (!CheckAffinity(a))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean TryUseAffinities(Affinity... affinities)
+    {
+        if (CheckAffinities(affinities))
+        {
+            for (Affinity a : affinities)
+            {
+                TryUseAffinity(a);
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public boolean TryUseAffinity(Affinity affinity)
     {
-        return CombatStats.Affinities.TryUseAffinity(affinity, affinities.GetRequirement(affinity));
+        return TryUseAffinity(affinity, affinities.GetRequirement(affinity));
     }
 
-    public int GetHandAffinity(Affinity affinity)
+    public boolean TryUseAffinity(Affinity affinity, int amount)
     {
-        return GetHandAffinity(affinity, true);
+        if (!CombatStats.Affinities.CanUseAffinities())
+        {
+            return false;
+        }
+
+        return CombatStats.Affinities.TryUseAffinity(affinity, amount);
     }
 
-    public int GetHandAffinity(Affinity affinity, boolean ignoreSelf)
+    public int GetPlayerAffinity(Affinity affinity)
     {
-        return CombatStats.Affinities.GetPlayerAffinities().GetRequirement(affinity);
+        if (!CombatStats.Affinities.CanUseAffinities())
+        {
+            return -1;
+        }
+
+        return CombatStats.Affinities.GetPlayerAffinities().GetLevel(affinity);
     }
 
     public boolean IsStarter()
@@ -401,6 +462,10 @@ public abstract class EYBCard extends EYBCardBase
         if (exhaust || exhaustOnUseOnce)
         {
             dynamicTooltips.add(GR.Tooltips.Exhaust);
+        }
+        else if (hasTag(FADING))
+        {
+            dynamicTooltips.add(GR.Tooltips.Fading);
         }
         if (affinities.HasStar())
         {
@@ -466,7 +531,7 @@ public abstract class EYBCard extends EYBCardBase
             for (Affinity t : types)
             {
                 final int req = affinities.GetRequirement(t);
-                final int level = CombatStats.Affinities.GetUsableAffinity(t);
+                final int level = GetPlayerAffinity(t);
                 result.SetText(req);
 
                 if (requireAll)
@@ -482,7 +547,13 @@ public abstract class EYBCard extends EYBCardBase
                 }
             }
 
-            return result.SetColor(requireAll ? Settings.GREEN_TEXT_COLOR : MUTED_TEXT_COLOR);
+
+            if (requireAll)
+            {
+                return result.SetColor(Settings.GREEN_TEXT_COLOR);
+            }
+
+            return result.SetColor(MUTED_TEXT_COLOR);
         }
 
         return result.SetText(affinities.GetRequirement(types.get(0))).SetColor(Settings.CREAM_COLOR);

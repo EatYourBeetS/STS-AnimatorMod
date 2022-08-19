@@ -65,10 +65,7 @@ public class Gluttony extends AnimatorCard
             {
                 for (AbstractCard c : cards)
                 {
-                    if (GameUtilities.CanSeal(c))
-                    {
-                        GameActions.Top.SealAffinities(c, false);
-                    }
+                    GameActions.Top.SealAffinities(c, false);
                 }
             });
         }

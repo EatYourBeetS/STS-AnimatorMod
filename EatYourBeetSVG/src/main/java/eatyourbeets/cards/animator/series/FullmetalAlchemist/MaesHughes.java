@@ -21,7 +21,7 @@ public class MaesHughes extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Light(1, 1, 0);
 
-        SetAffinityRequirement(Affinity.Blue, 3);
+        SetAffinityRequirement(Affinity.Blue, 2);
     }
 
     @Override

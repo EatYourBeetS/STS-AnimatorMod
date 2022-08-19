@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
+import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
 public class ZitaBrusasco extends AnimatorCard
@@ -22,12 +23,19 @@ public class ZitaBrusasco extends AnimatorCard
         super(DATA);
 
         Initialize(0, 3);
-        SetUpgrade(0, 2);
 
         SetAffinity_Light(1);
-        SetAffinity_Blue(1);
+        SetAffinity_Blue(1, 0, 1);
 
         SetEvokeOrbCount(1);
+
+        SetExhaust(true);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        SetExhaust(false);
     }
 
     @Override
@@ -37,7 +45,7 @@ public class ZitaBrusasco extends AnimatorCard
 
         if (info.TryActivateStarter())
         {
-            GameActions.Bottom.GainIntellect(1);
+            CombatStats.Affinities.AddAffinitySealUses(1);
         }
 
         GameActions.Bottom.ChannelOrb(CheckSpecialCondition(true) ? new Frost() : new Lightning());
@@ -60,6 +68,6 @@ public class ZitaBrusasco extends AnimatorCard
             }
         }
 
-        return frost < lightning;
+        return frost <= lightning;
     }
 }

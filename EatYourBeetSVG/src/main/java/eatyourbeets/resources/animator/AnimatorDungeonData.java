@@ -15,10 +15,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.*;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import eatyourbeets.cards.base.AnimatorCard;
-import eatyourbeets.cards.base.CardSeries;
-import eatyourbeets.cards.base.EYBCard;
-import eatyourbeets.cards.base.EYBCardBase;
+import eatyourbeets.cards.base.*;
 import eatyourbeets.events.base.EYBEvent;
 import eatyourbeets.interfaces.listeners.OnAddToDeckListener;
 import eatyourbeets.interfaces.listeners.OnCardPoolChangedListener;
@@ -205,21 +202,51 @@ public class AnimatorDungeonData implements CustomSavable<AnimatorDungeonData>, 
     public void InitializeCardPool(boolean startGame)
     {
         final AbstractPlayer player = CombatStats.RefreshPlayer();
+        if (player.chosenClass != GR.AnimatorClassic.PlayerClass)
+        {
+            AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
+            AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
+            AbstractDungeon.curseCardPool.group.removeIf(AnimatorClassicCard.class::isInstance);
+        }
+
         if (player.chosenClass != GR.Animator.PlayerClass)
         {
             AbstractDungeon.srcColorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.colorlessCardPool.group.removeIf(AnimatorCard.class::isInstance);
             AbstractDungeon.curseCardPool.group.removeIf(AnimatorCard.class::isInstance);
-            EYBEvent.UpdateEvents(false);
-            AnimatorRelic.UpdateRelics(false);
-        }
 
-        if (!GameUtilities.IsEYBPlayerClass())
-        {
-            return;
-        }
+            if (player.chosenClass == GR.AnimatorClassic.PlayerClass)
+            {
+                EYBEvent.UpdateEvents(true);
+                AnimatorRelic.UpdateRelics(true);
 
-        if (player.chosenClass == GR.Animator.PlayerClass) // TODO: Call AnimatorDungeonData and UnnamedDungeonData from CommonDungeonData
+                final ArrayList<CardGroup> groups = new ArrayList<>();
+                groups.addAll(GameUtilities.GetCardPools());
+                groups.addAll(GameUtilities.GetSourceCardPools());
+                for (CardGroup group : groups)
+                {
+                    group.group.removeIf(card ->
+                    {
+                        if (card.color == AbstractCard.CardColor.CURSE || card.color == AbstractCard.CardColor.COLORLESS)
+                        {
+                            return !(card instanceof EYBCardBase) && !(card instanceof CustomCard);
+                        }
+                        else if (card.color != GR.AnimatorClassic.CardColor)
+                        {
+                            return false;
+                        }
+
+                        return BannedCards.contains(card.cardID);
+                    });
+                }
+            }
+            else
+            {
+                EYBEvent.UpdateEvents(false);
+                AnimatorRelic.UpdateRelics(false);
+            }
+        }
+        else // TODO: Call AnimatorDungeonData and UnnamedDungeonData from CommonDungeonData
         {
             EYBEvent.UpdateEvents(true);
             AnimatorRelic.UpdateRelics(true);

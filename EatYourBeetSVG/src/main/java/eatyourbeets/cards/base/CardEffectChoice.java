@@ -73,7 +73,8 @@ public class CardEffectChoice
     public DynamicCardBuilder AddEffect(String text, ActionT3<EYBCard, AbstractPlayer, AbstractMonster> onUse)
     {
         final DynamicCardBuilder builder = ((source instanceof AnimatorCard) ?
-        new AnimatorCardBuilder(source.cardID, source, text, false):
+        new AnimatorCardBuilder(source.cardID, source, text, false) : (source instanceof AnimatorClassicCard) ?
+        new AnimatorClassicCardBuilder(source.cardID, source, text, false) :
         new UnnamedCardBuilder(source.cardID, source, text, false))
         .SetOnUse(onUse);
         effects.add(builder);
@@ -83,7 +84,8 @@ public class CardEffectChoice
     public DynamicCardBuilder AddEffect(GenericEffect effect)
     {
         final DynamicCardBuilder builder = ((source instanceof AnimatorCard) ?
-        new AnimatorCardBuilder(source.cardID, source, effect.GetText(), false):
+        new AnimatorCardBuilder(source.cardID, source, effect.GetText(), false) : (source instanceof AnimatorClassicCard) ?
+        new AnimatorClassicCardBuilder(source.cardID, source, effect.GetText(), false) :
         new UnnamedCardBuilder(source.cardID, source, effect.GetText(), false))
         .CanUse(effect::CanUse).SetOnUse(effect::Use);
         if (effect.id != null)

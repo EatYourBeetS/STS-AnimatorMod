@@ -53,7 +53,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         if (customApparition == null)
         {
-            customApparition = GameUtilities.GetCardReplacement(null, Apparition.ID);
+            customApparition = GameUtilities.GetReplacement(null, Apparition.ID);
         }
 
         final AbstractPlayer p = AbstractDungeon.player;

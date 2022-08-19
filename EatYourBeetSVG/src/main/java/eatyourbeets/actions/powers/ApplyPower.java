@@ -226,7 +226,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         return GameUtilities.AreMonstersBasicallyDead() || super.shouldCancelAction();
     }
 
-    private void StackPower(AbstractPower power)
+    protected void StackPower(AbstractPower power)
     {
         callbackResult = power;
         power.stackPower(amount);
@@ -268,7 +268,7 @@ public class ApplyPower extends EYBActionWithCallback<AbstractPower>
         power.updateDescription();
     }
 
-    private void AddPower()
+    protected void AddPower()
     {
         callbackResult = powerToApply;
         target.addPower(powerToApply);

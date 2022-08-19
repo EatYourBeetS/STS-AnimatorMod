@@ -24,7 +24,7 @@ public class LeleiLaLalena extends AnimatorCard
 
         SetEvokeOrbCount(1);
 
-        SetAffinityRequirement(Affinity.Blue, 5);
+        SetAffinityRequirement(Affinity.Blue, 3);
     }
 
     @Override

@@ -60,7 +60,7 @@ public class EYBCardText
             card.rawDescription = card.GetRawDescription();
         }
 
-        context.Initialize(card, card.color, card.rawDescription);
+        context.Initialize(card, card.cardData.Resources, card.rawDescription);
     }
 
     public void OverrideDescription(String description, boolean forceRefresh)
@@ -106,8 +106,20 @@ public class EYBCardText
             ColoredString bottom = card.GetBottomText();
             if (bottom != null)
             {
-                BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
-                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, -0.47f * AbstractCard.RAW_H, bottom.color, true);
+                final BitmapFont font = RenderHelpers.GetSmallTextFont(card, bottom.text);
+                float yPos = AbstractCard.RAW_H;
+
+                if (inHand && card instanceof AnimatorClassicCard)
+                {
+                    font.getData().scale(0.175f);
+                    yPos *= 0.57f;
+                }
+                else
+                {
+                    yPos *= -0.47f;
+                }
+
+                RenderHelpers.WriteOnCard(sb, card, font, bottom.text, 0, yPos, bottom.color, true);
                 RenderHelpers.ResetFont(font);
             }
         }
@@ -189,6 +201,11 @@ public class EYBCardText
         {
             //noinspection UnusedAssignment
             offset_y -= RenderBadge(sb, BADGES.Exhaust.Texture(), offset_y, alpha, null);
+        }
+        else if (card.hasTag(EYBCard.FADING))
+        {
+            //noinspection UnusedAssignment
+            offset_y -= RenderBadge(sb, BADGES.Fading.Texture(), offset_y, alpha, null);
         }
 
         offset_y = 0;

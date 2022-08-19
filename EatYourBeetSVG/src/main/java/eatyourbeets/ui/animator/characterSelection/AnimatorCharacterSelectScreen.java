@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import eatyourbeets.characters.AnimatorClassicCharacter;
 import eatyourbeets.characters.UnnamedCharacter;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
@@ -84,6 +85,15 @@ public class AnimatorCharacterSelectScreen
                 {
                     TipHelper.renderGenericTip((float) InputHelper.mX + 70.0F * Settings.xScale, (float) InputHelper.mY - 10.0F * Settings.scale,
                             CharacterOption.TEXT[0], UnnamedCharacter.TEXT[0]);
+                }
+            }
+
+            if (o.c.chosenClass == GR.Enums.Characters.THE_ANIMATOR_CLASSIC)
+            {
+                if (o.hb.hovered)
+                {
+                    TipHelper.renderGenericTip((float) InputHelper.mX + 70.0F * Settings.xScale, (float) InputHelper.mY - 10.0F * Settings.scale,
+                            AnimatorClassicCharacter.OVERRIDE_NAME, AnimatorClassicCharacter.TEXT[0]);
                 }
             }
 

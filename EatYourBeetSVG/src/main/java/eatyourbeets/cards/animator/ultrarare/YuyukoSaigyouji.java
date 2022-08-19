@@ -108,7 +108,7 @@ public class YuyukoSaigyouji extends AnimatorCard_UltraRare
         final int times = info.HasData() ? info.GetData(baseTimes) : baseTimes;
         if (times > 0)
         {
-            info.SetTempData(times - 1);
+            info.SetData(times - 1);
             GameEffects.Queue.Add(new PetalEffect());
             GameEffects.Queue.Add(new PetalEffect());
             GameEffects.Queue.Callback(new WaitRealtimeAction(0.1f))

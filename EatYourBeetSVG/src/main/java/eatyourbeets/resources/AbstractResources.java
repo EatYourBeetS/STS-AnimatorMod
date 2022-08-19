@@ -23,17 +23,17 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
            EditRelicsSubscriber, EditStringsSubscriber, PostInitializeSubscriber,
            AddAudioSubscriber
 {
+    public final String Prefix;
     public final AbstractCard.CardColor CardColor;
     public final AbstractPlayer.PlayerClass PlayerClass;
 
     protected final FileHandle testFolder;
-    protected final String prefix;
     protected String defaultLanguagePath;
     protected boolean isLoaded;
 
     protected AbstractResources(String prefix, AbstractCard.CardColor cardColor, AbstractPlayer.PlayerClass playerClass)
     {
-        this.prefix = prefix;
+        this.Prefix = prefix;
         this.CardColor = cardColor;
         this.PlayerClass = playerClass;
         this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");
@@ -41,7 +41,14 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public String CreateID(String suffix)
     {
-        return CreateID(prefix, suffix);
+        return CreateID(Prefix, suffix);
+    }
+
+    public String ConvertID(String id, boolean fromAnimator)
+    {
+        return fromAnimator ?
+                (Prefix + id.substring(GR.Animator.Prefix.length())) :
+                (GR.Animator.Prefix + id.substring(Prefix.length()));
     }
 
     public int GetUnlockLevel()
@@ -122,7 +129,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     public FileHandle GetFallbackFile(String fileName)
     {
-        return Gdx.files.internal("localization/" + prefix.toLowerCase() + "/eng/" + fileName);
+        return Gdx.files.internal("localization/" + Prefix.toLowerCase() + "/eng/" + fileName);
     }
 
     public <T> T GetFallbackStrings(String fileName, Type typeOfT)
@@ -157,7 +164,7 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
                 language = Settings.GameLanguage.ENG;
             }
 
-            return Gdx.files.internal("localization/" + prefix.toLowerCase() + "/" + language.name().toLowerCase() + "/" + fileName);
+            return Gdx.files.internal("localization/" + Prefix.toLowerCase() + "/" + language.name().toLowerCase() + "/" + fileName);
         }
     }
 
@@ -173,17 +180,17 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
 
     protected void LoadCustomRelics()
     {
-        super.LoadCustomRelics(prefix, CardColor);
+        super.LoadCustomRelics(Prefix, CardColor);
     }
 
     protected void LoadCustomCards()
     {
-        super.LoadCustomCards(prefix);
+        super.LoadCustomCards(Prefix);
     }
 
     protected void LoadCustomPowers()
     {
-        super.LoadCustomPowers(prefix);
+        super.LoadCustomPowers(Prefix);
     }
 
     protected void LoadCustomStrings(Class<?> type)

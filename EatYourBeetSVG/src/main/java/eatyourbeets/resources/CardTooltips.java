@@ -58,6 +58,7 @@ public class CardTooltips
     public EYBCardTooltip Dexterity = FindByID("Dexterity");
     public EYBCardTooltip Focus = FindByID("Focus");
 
+    public EYBCardTooltip DrawEssence = FindByID("Draw Essence");
     public EYBCardTooltip SpecialAction = FindByID("Special Action");
     public EYBCardTooltip Starter = FindByID("Starter");
     public EYBCardTooltip Limited = FindByID("Limited");
@@ -88,6 +89,9 @@ public class CardTooltips
     public EYBCardTooltip CorruptionStance = FindByID("Corruption Stance");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
+    public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
+    public EYBCardTooltip MartialArtist = FindByID("Martial Artist");
+    public EYBCardTooltip Shapeshifter = FindByID("Shapeshifter");
     public EYBCardTooltip OrbCore = FindByID("~Orb Core");
     public EYBCardTooltip Innate = FindByID("~Innate");
     public EYBCardTooltip Delayed = FindByID("~Delayed");
@@ -226,6 +230,7 @@ public class CardTooltips
         RegisterID("Grief Seed", GriefSeed);
         RegisterID("T-Knife", ThrowingKnife);
         RegisterID("Gold", Gold);
+        RegisterID("DE", DrawEssence);
     }
 
     public void InitializeIcons()
@@ -315,6 +320,7 @@ public class CardTooltips
         LoadFromPower(Withering, new WitheringPower(FakeCharacter.Instance, 0));
         LoadFromPower(SummoningSickness, new SummoningSicknessPower(FakeCharacter.Instance, 0));
         LoadFromPower(Mark, new MarkedPower(FakeCharacter.Instance));
+        LoadFromPower(DrawEssence, new DrawEssencePower(FakeCharacter.Instance, 0));
 
         //These use AbstractDungeon.player
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);

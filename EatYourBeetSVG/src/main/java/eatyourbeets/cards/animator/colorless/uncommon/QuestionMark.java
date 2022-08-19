@@ -37,7 +37,7 @@ public class QuestionMark extends AnimatorCard
     {
         super.triggerOnAffinitySeal(reshuffle);
 
-        AnimatorCard card = GameUtilities.GetRandomElement(CardSeries.GetNonColorlessCard());
+        AnimatorClassicCard card = GameUtilities.GetRandomElement(CardSeries.Synergy.GetNonColorlessCard());
         if (card != null)
         {
             GameActions.Bottom.MakeCardInHand(card.makeCopy()).SetUpgrade(upgraded, false);

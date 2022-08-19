@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.effects.AttackEffects;
 import eatyourbeets.effects.VFX;
-import eatyourbeets.monsters.EnemyIntent;
 import eatyourbeets.powers.common.DelayedDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
@@ -28,7 +27,7 @@ public class Noah extends AnimatorCard
         SetAffinity_Green(1);
         SetAffinity_Dark(2, 0, 1);
 
-        SetAffinityRequirement(Affinity.Dark, 3);
+        SetAffinityRequirement(Affinity.Dark, 2);
     }
 
     @Override
@@ -46,13 +45,7 @@ public class Noah extends AnimatorCard
 
         if (m != null)
         {
-            for (EnemyIntent intent : GameUtilities.GetIntents())
-            {
-                if (intent.enemy != m)
-                {
-                    intent.AddFreezing();
-                }
-            }
+            GameUtilities.GetIntent(m).AddFreezing();
         }
     }
 
@@ -61,14 +54,7 @@ public class Noah extends AnimatorCard
     {
         GameActions.Bottom.DealDamage(this, m, AttackEffects.SLASH_HORIZONTAL)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.Clash(c.hb)).SetColors(Color.PURPLE, Color.LIGHT_GRAY, Color.VIOLET, Color.BLUE).duration * 0.6f);
-
-        for (AbstractMonster target : GameUtilities.GetEnemies(true))
-        {
-            if (target != m)
-            {
-                GameActions.Bottom.ApplyFreezing(p, target, magicNumber);
-            }
-        }
+        GameActions.Bottom.ApplyFreezing(p, m, magicNumber);
 
         if (TryUseAffinity(Affinity.Dark))
         {

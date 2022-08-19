@@ -504,14 +504,14 @@ public class ParseGenericCommand extends ConsoleCommand
                     final ArrayList<AnimatorCard> cards = new ArrayList<>();
                     if (name.equals("colorless"))
                     {
-                        cards.addAll(CardSeries.GetColorlessCards());
+                        cards.addAll(CardSeries.Affinity.GetColorlessCards());
                     }
                     else
                     {
                         final CardSeries series = CardSeries.GetByName(name, false);
                         if (series != null)
                         {
-                            CardSeries.AddCards(series, CardLibrary.getAllCards(), cards);
+                            CardSeries.Affinity.AddCards(series, CardLibrary.getAllCards(), cards);
                         }
                     }
 

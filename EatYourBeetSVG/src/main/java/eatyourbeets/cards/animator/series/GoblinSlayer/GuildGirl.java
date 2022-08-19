@@ -1,5 +1,6 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -10,7 +11,6 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
 import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -48,7 +48,15 @@ public class GuildGirl extends AnimatorCard
         {
             super(owner, GuildGirl.DATA);
 
+            this.canBeZero = true;
+
             Initialize(amount);
+        }
+
+        @Override
+        public void updateDescription()
+        {
+            this.description = FormatDescription(0, amount, GOLD_GAIN);
         }
 
         @Override
@@ -68,12 +76,24 @@ public class GuildGirl extends AnimatorCard
         }
 
         @Override
-        public void atStartOfTurnPostDraw()
+        public void atEndOfTurn(boolean isPlayer)
         {
-            super.atStartOfTurnPostDraw();
+            super.atEndOfTurn(isPlayer);
 
-            GameActions.Delayed.Cycle(name, amount);
-            this.flash();
+            ResetAmount();
+        }
+
+        @Override
+        public void onAfterCardPlayed(AbstractCard usedCard)
+        {
+            super.onAfterCardPlayed(usedCard);
+
+            if (GameUtilities.IsSealed(usedCard))
+            {
+                GameActions.Bottom.Cycle(name, 1);
+                reducePower(1);
+                flashWithoutSound();
+            }
         }
 
         @Override
@@ -84,12 +104,6 @@ public class GuildGirl extends AnimatorCard
                 GameActions.Top.Add(new GainGold(GOLD_GAIN, true));
                 this.flash();
             }
-        }
-
-        @Override
-        public void updateDescription()
-        {
-            this.description = FormatDescription(0, amount, GOLD_GAIN);
         }
     }
 }

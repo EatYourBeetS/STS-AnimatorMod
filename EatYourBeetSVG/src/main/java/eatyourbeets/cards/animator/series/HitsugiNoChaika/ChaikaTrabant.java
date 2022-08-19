@@ -60,7 +60,15 @@ public class ChaikaTrabant extends AnimatorCard
     {
         super.triggerOnManualDiscard();
 
-        GameActions.Bottom.ApplyLockOn(TargetHelper.RandomEnemy(), magicNumber);
+        ApplyLockOn();
+    }
+
+    @Override
+    public void triggerOnAffinitySeal(boolean reshuffle)
+    {
+        super.triggerOnAffinitySeal(reshuffle);
+
+        ApplyLockOn();
     }
 
     @Override
@@ -69,5 +77,18 @@ public class ChaikaTrabant extends AnimatorCard
         GameActions.Bottom.GainIntellect(1);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.FIRE)
         .SetDamageEffect(c -> GameEffects.List.Add(VFX.SmallLaser(player.hb, c.hb, Color.WHITE)).duration * 0.3f);
+    }
+
+    private void ApplyLockOn()
+    {
+        GameActions.Bottom.SelectCreature(this)
+        .AutoSelectSingleTarget(true)
+        .AddCallback(c ->
+        {
+            if (GameUtilities.IsValidTarget(c))
+            {
+                GameActions.Bottom.ApplyLockOn(player, c, magicNumber);
+            }
+        });
     }
 }

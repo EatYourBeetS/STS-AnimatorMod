@@ -20,6 +20,8 @@ public class Status_Dazed extends AnimatorCard
 
         Initialize(0, 0);
 
+        SetAffinity_Dark(1);
+
         SetEndOfTurnPlay(false);
         SetEthereal(true);
     }

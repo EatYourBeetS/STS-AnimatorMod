@@ -80,7 +80,7 @@ public class HeavyWarrior extends AnimatorCard implements OnCardResetListener
 
         if (magicNumber > 0)
         {
-            TryUseAffinity(Affinity.Red);
+            TryUseAffinity(Affinity.Red, magicNumber);
             GameActions.Bottom.GainForce(magicNumber);
         }
     }

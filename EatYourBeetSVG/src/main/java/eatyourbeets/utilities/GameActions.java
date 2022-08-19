@@ -71,6 +71,7 @@ import eatyourbeets.powers.common.*;
 import eatyourbeets.powers.replacement.*;
 import eatyourbeets.powers.unnamed.AmplificationPower;
 import eatyourbeets.powers.unnamed.WitheringPower;
+import eatyourbeets.resources.GR;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -532,6 +533,11 @@ public final class GameActions
         return VFX(new CardFlashVfx(card, color.cpy(), superFlash));
     }
 
+    public ApplyPower GainDrawEssence(int amount)
+    {
+        return StackPower(new DrawEssencePower(player, amount));
+    }
+
     public ApplyAffinityPower GainAgility(int amount)
     {
         return GainAgility(amount, false);
@@ -679,7 +685,12 @@ public final class GameActions
 
     public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain)
     {
-        return StackAffinityPower(null, amount, retain);
+        if (GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
+        {
+            return StackAffinityPower(null, amount, retain);
+        }
+        
+        return GainRandomAffinityPower(amount, retain, Affinity.Red, Affinity.Green, Affinity.Blue);
     }
 
     public ApplyAffinityPower GainRandomAffinityPower(int amount, boolean retain, Affinity... affinities)

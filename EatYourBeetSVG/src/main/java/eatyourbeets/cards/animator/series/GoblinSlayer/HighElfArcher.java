@@ -21,10 +21,12 @@ public class HighElfArcher extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(3, 0, 2, 1);
-        SetUpgrade(0, 0, 0, 1);
+        Initialize(3, 0, 1, 4);
+        SetUpgrade(1, 0, 1, 0);
 
-        SetAffinity_Green(1, 1, 1);
+        SetAffinity_Green(1, 0, 1);
+
+        SetAffinityRequirement(Affinity.Green, 1);
     }
 
     @Override
@@ -36,15 +38,12 @@ public class HighElfArcher extends AnimatorCard
 
         if (!GameUtilities.HasArtifact(m))
         {
-            GameActions.Bottom.ApplyLockOn(player, m, secondaryValue);
+            GameActions.Bottom.ApplyLockOn(player, m, magicNumber);
         }
-    }
 
-    @Override
-    public void triggerOnAffinitySeal(boolean reshuffle)
-    {
-        super.triggerOnAffinitySeal(reshuffle);
-
-        GameActions.Bottom.Draw(1);
+        if (TryUseAffinity(Affinity.Green))
+        {
+            GameActions.Bottom.DealDamageAtEndOfTurn(p, m, secondaryValue);
+        }
     }
 }

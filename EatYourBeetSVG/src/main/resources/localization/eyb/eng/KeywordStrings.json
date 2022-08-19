@@ -2,31 +2,31 @@
 {
 	"Force":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength and increase minimum [F] to that number.",
 		"NAMES": ["force"],
 		"PROPER_NAME": "Force"
 	},
 	"Agility":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity and increase minimum [A] to that number.",
 		"NAMES": ["agility"],
 		"PROPER_NAME": "Agility"
 	},
 	"Blessing":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain #yVitality.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain #yVitality and increase minimum [B] to that number.",
 		"NAMES": ["blessing"],
 		"PROPER_NAME": "Blessing"
 	},
 	"Intellect":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus and increase minimum [I] to that number.",
 		"NAMES": ["intellect"],
 		"PROPER_NAME": "Intellect"
 	},
 	"Corruption":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9 and #b12 [C], gain #yInvocation.",
+		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9 and #b12 [C], gain #yInvocation and increase minimum [C] to that number.",
 		"NAMES": ["corruption"],
 		"PROPER_NAME": "Corruption"
 	},
@@ -194,6 +194,12 @@
 		"DESCRIPTION": "",
 		"NAMES": ["discard", "discarded", "discarding"],
 		"PROPER_NAME": "Discard"
+	},
+	"Draw Essence":
+	{
+		"DESCRIPTION": "You can pay #b3 [DE] during your turn to draw #b1 card.",
+		"NAMES": ["de"],
+		"PROPER_NAME": "Draw Essence"
 	},
 	"Energized":
 	{

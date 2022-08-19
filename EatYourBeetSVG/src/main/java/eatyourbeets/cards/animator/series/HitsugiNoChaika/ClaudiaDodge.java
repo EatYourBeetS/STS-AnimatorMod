@@ -1,15 +1,12 @@
 package eatyourbeets.cards.animator.series.HitsugiNoChaika;
 
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.animator.status.Status_Dazed;
-import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 
 public class ClaudiaDodge extends AnimatorCard
 {
@@ -32,22 +29,12 @@ public class ClaudiaDodge extends AnimatorCard
     }
 
     @Override
-    public void triggerOnOtherCardPlayed(AbstractCard c)
+    public void triggerWhenDrawn()
     {
-        super.triggerOnOtherCardPlayed(c);
+        super.triggerWhenDrawn();
 
-        if (player.hand.contains(this) && GameUtilities.GetAffinityLevel(c, Affinity.Blue, true) >= 1)
-        {
-            GameActions.Top.MakeCardInHand(new Status_Dazed());
-            GameActions.Delayed.MoveCard(this, player.hand, player.discardPile)
-            .AddCallback(card ->
-            {
-                if (card != null)
-                {
-                    GameActions.Bottom.Draw(1);
-                }
-            });
-        }
+        GameActions.Bottom.MakeCardInHand(new Status_Dazed());
+        GameActions.Bottom.Flash(this);
     }
 
     @Override

@@ -1,14 +1,10 @@
 package eatyourbeets.cards.animator.series.GoblinSlayer;
 
-import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
-import eatyourbeets.utilities.CardSelection;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
 public class ApprenticeCleric extends AnimatorCard
@@ -21,11 +17,20 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 0, 1, 3);
-        SetUpgrade(0, 0, 1);
+        Initialize(0, 0);
 
         SetAffinity_Light(1, 1, 0);
         SetAffinity_Blue(1);
+
+        SetAffinityRequirement(Affinity.Light, 1);
+    }
+
+    @Override
+    protected void OnUpgrade()
+    {
+        super.OnUpgrade();
+
+        SetRetainOnce(true);
     }
 
     @Override
@@ -33,41 +38,32 @@ public class ApprenticeCleric extends AnimatorCard
     {
         super.triggerWhenDrawn();
 
-        if (GameUtilities.GetPowerAmount(Affinity.Light) <= secondaryValue)
-        {
-            GameActions.Bottom.GainBlessing(1);
-            GameActions.Bottom.Flash(this);
-        }
+        GameActions.Bottom.GainBlessing(1);
+        GameActions.Bottom.Flash(this);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlessing(1, false);
-    }
-
-    @Override
-    public void OnLateUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
-    {
-        GameActions.Bottom.IncreaseScaling(p.drawPile, BaseMod.MAX_HAND_SIZE, Affinity.Light, 1)
+        GameActions.Bottom.DiscardFromPile(name, 1, player.drawPile)
+        .ShowEffect(true, true)
         .SetFilter(c ->
         {
             final EYBCardAffinities a = GameUtilities.GetAffinities(c);
-            if (a != null && (a.GetLevel(Affinity.Red, true) > 0 || a.GetLevel(Affinity.Green, true) > 0))
-            {
-                return a.GetScaling(Affinity.Light, false) < 2;
-            }
-
-            return false;
+            return (a != null && !a.sealed && (a.GetLevel(Affinity.Red, true) > 0 || a.GetLevel(Affinity.Green, true) > 0));
         })
-        .SetSelection(CardSelection.Random, magicNumber)
         .AddCallback(cards ->
         {
-            for (int i = 0; i < cards.size(); i++)
+            for (AbstractCard c : cards)
             {
-                final float x = AbstractCard.IMG_WIDTH * 0.5f * i;
-                GameEffects.List.ShowCopy(cards.get(i), (Settings.WIDTH * 0.2f) + x, Settings.HEIGHT * 0.4f);
+                GameActions.Top.IncreaseScaling(c, Affinity.Light, 1);
+                GameActions.Top.SealAffinities(c, false);
             }
         });
+
+        if (TryUseAffinity(Affinity.Light))
+        {
+            GameActions.Bottom.GainBlessing(1);
+        }
     }
 }

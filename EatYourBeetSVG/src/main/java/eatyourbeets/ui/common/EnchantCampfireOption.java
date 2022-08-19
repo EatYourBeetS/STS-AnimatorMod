@@ -53,7 +53,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
     public void Refresh()
     {
         this.usable = false;
-        this.goldCost = 100;
+        this.goldCost = 80;
 
         for (AbstractRelic r : AbstractDungeon.player.relics)
         {
@@ -61,7 +61,7 @@ public class EnchantCampfireOption extends AbstractCampfireOption
             if (er != null && er.GetEnchantmentLevel() < 2)
             {
                 relic = er;
-                goldCost += (er.GetEnchantmentLevel() * 50);
+                goldCost += (er.GetEnchantmentLevel() * 80);
                 break;
             }
         }

@@ -1,11 +1,9 @@
 package eatyourbeets.actions.powers;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
-import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
@@ -13,12 +11,13 @@ import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
+public class ApplyAffinityPower extends ApplyPower
 {
-    public AbstractAffinityPower power;
     public boolean showEffect;
     public boolean playSFX;
     public boolean retain;
+
+    private boolean ignoreAffinity;
 
     public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount)
     {
@@ -27,26 +26,15 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
 
     public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount, boolean retain)
     {
-        super(ActionType.POWER, Settings.ACTION_DUR_XFAST);
+        super(source, AbstractDungeon.player, CreatePower(affinity, source), amount);
 
         this.retain = retain;
+        this.ignoreAffinity = !CombatStats.Affinities.isActive;
 
-        if (affinity != null)
-        {
-            this.power = CombatStats.Affinities.GetPower(affinity);
-        }
-        else
-        {
-            this.power = GameUtilities.GetRandomElement(CombatStats.Affinities.Powers, EYBCard.rng);
-        }
-
-        if (power == null || GameUtilities.AreMonstersBasicallyDead())
+        if (powerToApply == null)
         {
             Complete();
-            return;
         }
-
-        Initialize(source, power.owner, amount);
     }
 
     public ApplyAffinityPower Retain(boolean retain)
@@ -67,20 +55,27 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     @Override
     protected void FirstUpdate()
     {
+        if (ignoreAffinity)
+        {
+            super.FirstUpdate();
+            return;
+        }
+
+        final AbstractAffinityPower powerToApply = (AbstractAffinityPower) this.powerToApply;
         if (amount == 0)
         {
             if (retain)
             {
-                power.RetainOnce();
+                powerToApply.RetainOnce();
             }
 
             Complete();
             return;
         }
 
-        if (shouldCancelAction() || !GameUtilities.CanApplyPower(source, target, power, this))
+        if (shouldCancelAction() || !GameUtilities.CanApplyPower(source, target, powerToApply, this))
         {
-            Complete(power);
+            Complete(powerToApply);
             return;
         }
 
@@ -88,24 +83,24 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
         {
             for (AbstractPower power : source.powers)
             {
-                power.onApplyPower(this.power, target, source);
+                power.onApplyPower(this.powerToApply, target, source);
             }
         }
 
-        power.Stack(amount, retain);
+        powerToApply.Stack(amount, retain);
 
         if (playSFX)
         {
-            power.flash();
+            powerToApply.flash();
         }
         else
         {
-            power.flashWithoutSound();
+            powerToApply.flashWithoutSound();
         }
 
         if (showEffect)
         {
-            GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, "+" + amount + " " + power.name));
+            GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, "+" + amount + " " + powerToApply.name));
         }
 
         AbstractDungeon.onModifyPower();
@@ -114,9 +109,53 @@ public class ApplyAffinityPower extends EYBActionWithCallback<AbstractPower>
     @Override
     protected void UpdateInternal(float deltaTime)
     {
+        if (ignoreAffinity)
+        {
+            super.UpdateInternal(deltaTime);
+            return;
+        }
+
         if (TickDuration(deltaTime))
         {
-            Complete(power);
+            Complete(powerToApply);
+        }
+    }
+
+    @Override
+    protected void Complete(AbstractPower result)
+    {
+        if (ignoreAffinity && retain)
+        {
+            ((AbstractAffinityPower)result).RetainOnce();
+        }
+
+        super.Complete(result);
+    }
+
+    @Override
+    protected void AddPower()
+    {
+        powerToApply.stackPower(amount);
+
+        super.AddPower();
+    }
+
+    protected static AbstractAffinityPower CreatePower(Affinity affinity, AbstractCreature source)
+    {
+        if (!CombatStats.Affinities.isActive)
+        {
+            AbstractAffinityPower result = CombatStats.Affinities.GetPower(affinity);
+            result.owner = source;
+            CombatStats.ApplyPowerPriority(result);
+            return result;
+        }
+        else if (affinity != null)
+        {
+            return CombatStats.Affinities.GetPower(affinity);
+        }
+        else
+        {
+            return GameUtilities.GetRandomElement(CombatStats.Affinities.Powers, EYBCard.rng);
         }
     }
 }

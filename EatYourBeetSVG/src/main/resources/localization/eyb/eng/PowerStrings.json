@@ -46,6 +46,11 @@
 		"DESCRIPTIONS": ["Take #b{0} damage at the end of your turn."],
 		"NAME": "Delayed Damage"
 	},
+	"eyb:DrawEssencePower":
+	{
+		"DESCRIPTIONS": ["Pay #b{0} [DE]: Draw #b1 card. NL NL You can also activate this power by pressing #pCTRL."],
+		"NAME": "Draw Essence"
+	},
 	"eyb:EnergizedPower":
 	{
 		"DESCRIPTIONS": ["Gain #b{0} additional [E] next turn."],

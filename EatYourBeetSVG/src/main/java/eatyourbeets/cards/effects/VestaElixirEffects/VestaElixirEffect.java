@@ -1,7 +1,7 @@
 package eatyourbeets.cards.effects.VestaElixirEffects;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import eatyourbeets.cards.animator.special.Vesta_Elixir;
+import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 
@@ -17,5 +17,5 @@ public abstract class VestaElixirEffect
     }
 
     public abstract String GetDescription();
-    public abstract void EnqueueAction(Vesta_Elixir elixir, AbstractPlayer player);
+    public abstract void EnqueueAction(EYBCard elixir, AbstractPlayer player);
 }

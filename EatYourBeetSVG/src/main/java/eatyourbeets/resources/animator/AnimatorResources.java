@@ -30,7 +30,7 @@ public class AnimatorResources extends AbstractResources
 {
     public static final String ID = "animator";
 
-    public final String OfficialName = "Animator (redesign)"; // Don't change this
+    public final String OfficialName = "Animator";
     public final AnimatorDungeonData Dungeon = AnimatorDungeonData.Register(CreateID("Data"));
     public final AnimatorPlayerData Data = new AnimatorPlayerData();
     public final AnimatorStrings Strings = new AnimatorStrings();
@@ -120,7 +120,7 @@ public class AnimatorResources extends AbstractResources
             return;
         }
 
-        BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_JPG, PlayerClass);
+        BaseMod.addCharacter(new AnimatorCharacter(), Images.CHAR_BUTTON_PNG, Images.CHAR_PORTRAIT_EMPTY_PNG, PlayerClass);
     }
 
     @Override

@@ -73,5 +73,13 @@ public class Bozes extends AnimatorCard
                 flashWithoutSound();
             }
         }
+
+        @Override
+        public void atStartOfTurn()
+        {
+            super.atStartOfTurn();
+
+            RemovePower();
+        }
     }
 }

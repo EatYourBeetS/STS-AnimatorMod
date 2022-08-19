@@ -12,8 +12,7 @@ import eatyourbeets.utilities.GameActions;
 public class LivingPicture extends EnchantableRelic implements CustomSavable<Integer>, OnEquipUnnamedReignRelicListener, OnAffinitySealedSubscriber
 {
     public static final String ID = CreateFullID(LivingPicture.class);
-    public static final int USES = 3;
-    public static final int CARD_DRAW = 1;
+    public static final int DRAW_ESSENCE = 2;
 
     public LivingPicture()
     {
@@ -28,7 +27,7 @@ public class LivingPicture extends EnchantableRelic implements CustomSavable<Int
     @Override
     public String getUpdatedDescription()
     {
-        return FormatDescription(0, USES, CARD_DRAW);
+        return FormatDescription(0, DRAW_ESSENCE);
     }
 
     @Override
@@ -42,8 +41,6 @@ public class LivingPicture extends EnchantableRelic implements CustomSavable<Int
     {
         super.ActivateBattleEffect();
 
-        SetCounter(USES);
-        SetEnabled(true);
         CombatStats.onAffinitySealed.Subscribe(this);
     }
 
@@ -52,30 +49,15 @@ public class LivingPicture extends EnchantableRelic implements CustomSavable<Int
     {
         super.DeactivateBattleEffect();
 
-        SetCounter(-1);
-        SetEnabled(true);
         CombatStats.onAffinitySealed.Unsubscribe(this);
-    }
-
-    @Override
-    public void atTurnStartPostDraw()
-    {
-        super.atTurnStartPostDraw();
-
-        if (counter > 0)
-        {
-            SetEnabled(true);
-        }
     }
 
     @Override
     public void OnAffinitySealed(EYBCard card, boolean manual)
     {
-        if (manual && IsEnabled())
+        if (IsEnabled())
         {
-            GameActions.Bottom.Draw(CARD_DRAW);
-            SetEnabled(false);
-            AddCounter(-1);
+            GameActions.Bottom.GainDrawEssence(DRAW_ESSENCE);
             flash();
         }
     }

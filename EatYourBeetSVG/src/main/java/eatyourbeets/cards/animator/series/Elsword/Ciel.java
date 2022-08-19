@@ -4,7 +4,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
 import eatyourbeets.cards.base.attributes.AbstractAttribute;
-import eatyourbeets.powers.CombatStats;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
@@ -28,7 +27,7 @@ public class Ciel extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(0, 4, 8, 1);
+        Initialize(0, 4, 16, 1);
         SetUpgrade(0, 1, 0, 1);
 
         SetAffinity_Green(1, 0, 1);
@@ -44,29 +43,30 @@ public class Ciel extends AnimatorCard
     }
 
     @Override
-    protected void Refresh(AbstractMonster enemy)
-    {
-        super.Refresh(enemy);
-
-        SetAttackTarget(CombatStats.CanActivatedStarter() ? EYBCardTarget.Normal : EYBCardTarget.None);
-    }
-
-    @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.GainBlock(block);
 
-        info.SetTempData(TryUseAffinity(Affinity.Dark));
         GameActions.Bottom.ModifyAllCopies(Lu.DATA.ID)
         .AddCallback(info, (info2, c) ->
         {
-            GameUtilities.IncreaseDamage(c, magicNumber, false);
-            if (info2.GetData(false))
+            final boolean activate;
+            if (!info2.HasData())
             {
-                GameUtilities.SetCardTag(c, HASTE, true);
+                activate = info2.SetData(TryUseAffinity(Affinity.Dark));
             }
-            c.flash();
+            else
+            {
+                activate = info2.GetData(false);
+            }
+
+            if (activate)
+            {
+                GameUtilities.IncreaseDamage(c, magicNumber, false);
+                GameUtilities.SetCardTag(c, HASTE, true);
+                c.flash();
+            }
         });
 
         if (info.TryActivateStarter())

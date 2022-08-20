@@ -122,11 +122,10 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
     }
 
-    @Override
-    public void stackPower(int stackAmount)
+    public void stackPower(int stackAmount, boolean updateBaseAmount)
     {
-        super.stackPower(stackAmount);
-        this.amountGainedThisTurn += amount;
+        super.stackPower(stackAmount, updateBaseAmount);
+        this.amountGainedThisTurn += stackAmount;
         UpdateThreshold();
     }
 

@@ -55,13 +55,17 @@ public class ApplyAffinityPower extends ApplyPower
     @Override
     protected void FirstUpdate()
     {
+        final AbstractAffinityPower powerToApply = (AbstractAffinityPower) this.powerToApply;
         if (ignoreAffinity)
         {
+            if (retain)
+            {
+                powerToApply.RetainOnce();
+            }
             super.FirstUpdate();
             return;
         }
 
-        final AbstractAffinityPower powerToApply = (AbstractAffinityPower) this.powerToApply;
         if (amount == 0)
         {
             if (retain)
@@ -119,17 +123,6 @@ public class ApplyAffinityPower extends ApplyPower
         {
             Complete(powerToApply);
         }
-    }
-
-    @Override
-    protected void Complete(AbstractPower result)
-    {
-        if (ignoreAffinity && retain)
-        {
-            ((AbstractAffinityPower)result).RetainOnce();
-        }
-
-        super.Complete(result);
     }
 
     @Override

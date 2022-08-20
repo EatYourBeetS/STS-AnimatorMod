@@ -1280,6 +1280,12 @@
 			"DESCRIPTION": "Gain !M! [A].",
 			"NAME": "Melzalgald"
 		},
+		"animatorClassic:OrbCore":
+		{
+		  "DESCRIPTION": "",
+		  "EXTENDED_DESCRIPTION": ["Needs {0} more #ySynergy."],
+		  "NAME": "Orb Core"
+		},
 		"animatorClassic:OrbCore_Aether":
 		{
 			"DESCRIPTION": "Channel !S! [Aether]. || On your second ** Synergy each turn: ** <DRW-M>, then ** discard 1 card.",

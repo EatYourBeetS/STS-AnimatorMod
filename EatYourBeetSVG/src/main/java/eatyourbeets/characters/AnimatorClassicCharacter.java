@@ -134,7 +134,7 @@ public class AnimatorClassicCharacter extends EYBPlayerCharacter
     @Override
     public CharSelectInfo getLoadout()
     {
-        return new CharSelectInfo(NAMES[0], TEXT[0], BASE_HP, BASE_HP, 0, BASE_GOLD, 5, this, getStartingRelics(), getStartingDeck(), false);
+        return new CharSelectInfo(NAMES[0], TEXT[0], BASE_HP, BASE_HP, 3, BASE_GOLD, 5, this, getStartingRelics(), getStartingDeck(), false);
     }
 
     @Override

@@ -31,6 +31,11 @@ public class GameEvent<T>
         subscribers.clear();
     }
 
+    public boolean ToggleSubscription(T subscriber, boolean subscribe)
+    {
+        return subscribe ? Subscribe(subscriber) : Unsubscribe(subscriber);
+    }
+
     public boolean Unsubscribe(T subscriber)
     {
         return subscribers.remove(subscriber);

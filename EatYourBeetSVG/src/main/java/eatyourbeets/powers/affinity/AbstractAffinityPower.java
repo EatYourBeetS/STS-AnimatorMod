@@ -207,12 +207,9 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         this.amountGainedThisTurn = 0;
 
-        if (this.retainedTurns == 0)
+        if (CanDecrease())
         {
-            if (amount > minimumAmount)
-            {
-                reducePower(1);
-            }
+            reducePower(1);
         }
         else if (this.retainedTurns > 0)
         {
@@ -264,7 +261,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cY = hb.cY;
 
         Color amountColor;
-        if (retainedTurns != 0)
+        if (!CanDecrease())
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
             RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);
@@ -327,5 +324,10 @@ public abstract class AbstractAffinityPower extends CommonPower
 
         GameActions.Top.StackPower(TargetHelper.Source(owner), powerHelper, 1)
         .ShowEffect(true, true);
+    }
+
+    protected boolean CanDecrease()
+    {
+        return amount > minimumAmount && retainedTurns != 0;
     }
 }

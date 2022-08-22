@@ -244,12 +244,6 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     @Override
     public void OnStartOfTurn()
     {
-        if (!isActive)
-        {
-            CombatStats.onStartOfTurn.Unsubscribe(this);
-            return;
-        }
-
         AddAffinitySealUses(1);
 
         for (EYBCardAffinityRow row : rows)
@@ -389,7 +383,8 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
     {
         BaseAffinities.Clear();
         CurrentAffinities.Clear();
-        CombatStats.onStartOfTurn.Subscribe(this);
+
+        CombatStats.onStartOfTurn.ToggleSubscription(this, GR.Animator.IsSelected());
 
         if (savedPosition != null)
         {

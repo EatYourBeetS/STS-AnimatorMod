@@ -386,6 +386,11 @@ public class GameUtilities
         return CardLibraryPatches.TryReplace(resources, card);
     }
 
+    public static AbstractCard TryReplace(String cardID, boolean upgraded)
+    {
+        return TryReplace(player.chosenClass, cardID, upgraded);
+    }
+
     public static AbstractCard TryReplace(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
     {
         final EYBCardData data = GetReplacement(playerClass, cardID);

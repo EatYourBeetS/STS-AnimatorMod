@@ -1,11 +1,15 @@
 package eatyourbeets.cards.animatorClassic.special;
 
+import basemod.BaseMod;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerToRandomEnemyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.cards.base.CardUseInfo;
+import com.megacrit.cardcrawl.powers.VulnerablePower;
+import com.megacrit.cardcrawl.powers.WeakPower;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animatorClassic.OrbCore_DarkPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Dark extends OrbCore
@@ -16,17 +20,34 @@ public class OrbCore_Dark extends OrbCore
 
     public OrbCore_Dark()
     {
-        super(DATA);
+        super(DATA, Dark::new, 2);
 
-        Initialize(0, 0, VALUE, 1);
-
-        SetEvokeOrbCount(secondaryValue);
+        Initialize(0, 0, VALUE, 2);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    protected AnimatorPower GetPower()
     {
-        GameActions.Bottom.ChannelOrbs(Dark::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_DarkPower(p, 1));
+        return new OrbCore_DarkPower(player, 1);
+    }
+
+    public static class OrbCore_DarkPower extends OrbCorePower
+    {
+        public OrbCore_DarkPower(AbstractCreature owner, int amount)
+        {
+            super(DATA, owner, amount, VALUE);
+
+            updateDescription();
+        }
+
+        @Override
+        protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
+        {
+            if (p.hand.size() < BaseMod.MAX_HAND_SIZE)
+            {
+                GameActions.Bottom.Add(new ApplyPowerToRandomEnemyAction(p, new VulnerablePower(null, value, false), value));
+                GameActions.Bottom.Add(new ApplyPowerToRandomEnemyAction(p, new WeakPower(null, value, false), value));
+            }
+        }
     }
 }

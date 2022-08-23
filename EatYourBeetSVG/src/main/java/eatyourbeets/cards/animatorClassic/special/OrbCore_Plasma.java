@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animatorClassic.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.Plasma;
-import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animatorClassic.OrbCore_PlasmaPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Plasma extends OrbCore
@@ -16,17 +16,30 @@ public class OrbCore_Plasma extends OrbCore
 
     public OrbCore_Plasma()
     {
-        super(DATA);
+        super(DATA, Plasma::new, 1);
 
         Initialize(0, 0, VALUE, 1);
-
-        SetEvokeOrbCount(secondaryValue);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    protected AnimatorPower GetPower()
     {
-        GameActions.Bottom.ChannelOrbs(Plasma::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_PlasmaPower(p, 1));
+        return new OrbCore_PlasmaPower(player, 1);
+    }
+
+    public static class OrbCore_PlasmaPower extends OrbCorePower
+    {
+        public OrbCore_PlasmaPower(AbstractCreature owner, int amount)
+        {
+            super(DATA, owner, amount, VALUE);
+
+            updateDescription();
+        }
+
+        @Override
+        protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
+        {
+            GameActions.Bottom.GainTemporaryHP(value);
+        }
     }
 }

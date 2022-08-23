@@ -1283,42 +1283,55 @@
 		"animatorClassic:OrbCore":
 		{
 		  "DESCRIPTION": "",
-		  "EXTENDED_DESCRIPTION": ["Needs {0} more #ySynergy."],
+		  "EXTENDED_DESCRIPTION": ["Needs #b1 more #ySynergy."],
 		  "NAME": "Orb Core"
 		},
 		"animatorClassic:OrbCore_Aether":
 		{
-			"DESCRIPTION": "Channel !S! [Aether]. || On your second ** Synergy each turn: ** <DRW-M>, then ** discard 1 card.",
+			"DESCRIPTION": "Channel !K! [Aether]. || On your second ** Synergy each turn: ** <DRW-M>, then ** discard 1 card.",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Draw #b{1} cards, then discard #b1 card."],
 			"NAME": "Aether Core"
 		},
 		"animatorClassic:OrbCore_Chaos":
 		{
-			"DESCRIPTION": "Channel !S! Random Orb. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+			"DESCRIPTION": "Channel !K! Random Orb. || On your second ** Synergy each turn: ** Choose 1 of 3 cards to ** obtain, it costs 1 less.",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Obtain #b1 of #b{1} cards, it costs #b1 less."],
 			"NAME": "Chaos Core"
 		},
 		"animatorClassic:OrbCore_Dark":
 		{
-			"DESCRIPTION": "Channel !S! [Dark]. || On your second ** Synergy each turn: ** Apply !M! [Vulnerable] and !M! [Weak] to a random enemy.",
+			"DESCRIPTION": "Channel !K! [Dark]. || On your second ** Synergy each turn: ** Apply !M! [Vulnerable] and !M! [Weak] to a random enemy.",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Apply #b{1} [Vulnerable][Weak] to a random enemy."],
 			"NAME": "Dark Core"
+		},
+		"animatorClassic:OrbCore_Earth":
+		{
+		  "DESCRIPTION": "Channel !K! [Earth]. || On your second ** Synergy each turn: ** Gain !M! Temp. [Thorns].",
+		  "EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Gain #b{1} Temp. [Thorns]."],
+		  "NAME": "Earth Core"
 		},
 		"animatorClassic:OrbCore_Fire":
 		{
-			"DESCRIPTION": "Channel !S! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] to ** ALL enemies.",
+			"DESCRIPTION": "Channel !K! [Fire]. || On your second ** Synergy each turn: ** Apply !M! [Burning] to ** ALL enemies.",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Apply #b{1} [Burning] to ALL enemies."],
 			"NAME": "Fire Core"
 		},
 		"animatorClassic:OrbCore_Frost":
 		{
-			"DESCRIPTION": "Channel !S! [Frost]. || On your second ** Synergy each turn: ** Gain !M! [Plated Armor].",
+			"DESCRIPTION": "Channel !K! [Frost]. || On your second ** Synergy each turn: ** Gain !M! [Plated Armor].",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Gain #b{1} [Plated Armor]."],
 			"NAME": "Frost Core"
 		},
 		"animatorClassic:OrbCore_Lightning":
 		{
-			"DESCRIPTION": "Channel !S! [Lightning]. || On your second ** Synergy each turn: ** Deal !M! damage ** to ALL enemies.",
+			"DESCRIPTION": "Channel !K! [Lightning]. || On your second ** Synergy each turn: ** Deal !M! damage ** to ALL enemies.",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Deal #b{1} damage to ALL enemies."],
 			"NAME": "Lightning Core"
 		},
 		"animatorClassic:OrbCore_Plasma":
 		{
-			"DESCRIPTION": "Channel !S! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temporary HP].",
+			"DESCRIPTION": "Channel !K! [Plasma]. || On your second ** Synergy each turn: ** Gain !M! [Temporary HP].",
+		  	"EXTENDED_DESCRIPTION": ["On your next {0} #ySynergies this turn, Gain #b{1} [THP]."],
 			"NAME": "Plasma Core"
 		},
 		"animatorClassic:Respite":

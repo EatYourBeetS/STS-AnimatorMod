@@ -261,7 +261,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         final float cY = hb.cY;
 
         Color amountColor;
-        if (!CanDecrease())
+        if (retainedTurns != 0)
         {
             RenderHelpers.DrawCentered(sb, Colors.Gold(0.7f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, (w / scale) + 8, (h / scale) + 8, 1, 0);
             RenderHelpers.DrawCentered(sb, Colors.Black(0.9f), GR.Common.Images.Panel_Elliptical_Half_H.Texture(), cX, cY, w / scale, h / scale, 1, 0);

@@ -1,11 +1,11 @@
 package eatyourbeets.cards.animatorClassic.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.orbs.Frost;
-import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBCardData;
-import eatyourbeets.powers.animatorClassic.OrbCore_FrostPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Frost extends OrbCore
@@ -16,17 +16,30 @@ public class OrbCore_Frost extends OrbCore
 
     public OrbCore_Frost()
     {
-        super(DATA);
+        super(DATA, Frost::new, 2);
 
         Initialize(0, 0, VALUE, 2);
-
-        SetEvokeOrbCount(secondaryValue);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    protected AnimatorPower GetPower()
     {
-        GameActions.Bottom.ChannelOrbs(Frost::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_FrostPower(p, 1));
+        return new OrbCore_FrostPower(player, 1);
+    }
+
+    public static class OrbCore_FrostPower extends OrbCorePower
+    {
+        public OrbCore_FrostPower(AbstractCreature owner, int amount)
+        {
+            super(DATA, owner, amount, OrbCore_Frost.VALUE);
+
+            updateDescription();
+        }
+
+        @Override
+        protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
+        {
+            GameActions.Bottom.GainPlatedArmor(value);
+        }
     }
 }

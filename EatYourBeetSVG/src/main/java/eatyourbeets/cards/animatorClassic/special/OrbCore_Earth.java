@@ -1,12 +1,12 @@
 package eatyourbeets.cards.animatorClassic.special;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.cards.base.CardUseInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.interfaces.markers.Hidden;
 import eatyourbeets.orbs.animator.Earth;
-import eatyourbeets.powers.animatorClassic.OrbCore_EarthPower;
+import eatyourbeets.powers.AnimatorPower;
 import eatyourbeets.utilities.GameActions;
 
 public class OrbCore_Earth extends OrbCore implements Hidden
@@ -17,17 +17,30 @@ public class OrbCore_Earth extends OrbCore implements Hidden
 
     public OrbCore_Earth()
     {
-        super(DATA);
+        super(DATA, Earth::new, 1);
 
-        Initialize(0, 0, VALUE, 2);
-
-        SetEvokeOrbCount(secondaryValue);
+        Initialize(0, 0, VALUE, 1);
     }
 
     @Override
-    public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
+    protected AnimatorPower GetPower()
     {
-        GameActions.Bottom.ChannelOrbs(Earth::new, secondaryValue);
-        GameActions.Bottom.StackPower(new OrbCore_EarthPower(p, 1));
+        return new OrbCore_EarthPower(player, 1);
+    }
+
+    public static class OrbCore_EarthPower extends OrbCorePower
+    {
+        public OrbCore_EarthPower(AbstractCreature owner, int amount)
+        {
+            super(DATA, owner, amount, VALUE);
+
+            updateDescription();
+        }
+
+        @Override
+        protected void OnSynergy(AbstractPlayer p, AbstractCard usedCard)
+        {
+            GameActions.Bottom.GainTemporaryThorns(value);
+        }
     }
 }

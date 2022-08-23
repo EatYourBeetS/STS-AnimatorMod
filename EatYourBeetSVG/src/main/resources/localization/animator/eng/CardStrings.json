@@ -782,9 +782,9 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <AS> or !A! <S>: ** Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <AS> or !A! <D>: ** Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari",
-			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <AS> or !A! <S>: ** Gain !S! {Temp}. [Envenom]."
+			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <AS> or !A! <D>: ** Gain !S! {Temp}. [Envenom]."
 		},
 		"animator:AcuraShin":
 		{

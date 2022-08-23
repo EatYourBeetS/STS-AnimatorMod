@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -29,7 +30,7 @@ public class ApplyAffinityPower extends ApplyPower
         super(source, AbstractDungeon.player, CreatePower(affinity, source), amount);
 
         this.retain = retain;
-        this.ignoreAffinity = !CombatStats.Affinities.isActive;
+        this.ignoreAffinity = !GR.Animator.IsSelected();
 
         if (powerToApply == null)
         {
@@ -135,7 +136,7 @@ public class ApplyAffinityPower extends ApplyPower
 
     protected static AbstractAffinityPower CreatePower(Affinity affinity, AbstractCreature source)
     {
-        if (!CombatStats.Affinities.isActive)
+        if (!GR.Animator.IsSelected())
         {
             AbstractAffinityPower result = CombatStats.Affinities.GetPower(affinity);
             result.owner = source;

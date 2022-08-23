@@ -220,7 +220,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override
     public final void renderIcons(SpriteBatch sb, float x, float y, Color c)
     {
-        if (!CombatStats.Affinities.isActive)
+        if (!GR.Animator.IsSelected())
         {
             super.renderIcons(sb, x, y, c);
         }
@@ -229,7 +229,7 @@ public abstract class AbstractAffinityPower extends CommonPower
     @Override
     public final void renderAmount(SpriteBatch sb, float x, float y, Color c)
     {
-        if (!CombatStats.Affinities.isActive)
+        if (!GR.Animator.IsSelected())
         {
             final Integer threshold = GetCurrentThreshold();
             final Color c1 = (retainedTurns != 0 ? Colors.Green(c.a) : Colors.Blue(c.a)).cpy();

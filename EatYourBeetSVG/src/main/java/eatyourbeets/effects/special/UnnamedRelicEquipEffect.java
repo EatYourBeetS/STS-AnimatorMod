@@ -58,7 +58,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 
         final AbstractPlayer p = AbstractDungeon.player;
         final ArrayList<AbstractCard> replacement = TheUnnamedReign.GetCardReplacements(p.masterDeck.group, true);
-        final int apparitionsCount = JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID) || customApparition.ID.equals(c.cardID));
+        final int apparitionsCount = customApparition != null ? JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID) || customApparition.ID.equals(c.cardID)) : JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID));
         final float hpPercentage = GameUtilities.GetHealthPercentage(p);
 
         int hp = this.baseHP;

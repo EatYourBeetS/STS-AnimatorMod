@@ -10,7 +10,6 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +111,7 @@ public class AnimatorGhosts extends AbstractImageEvent
 
     private static AbstractCard CreateApparition(boolean upgraded)
     {
-        return GameUtilities.GetReplacement(null, Apparition.ID, upgraded);
+        return GR.CardLibrary.GetCurrentClassCard(Apparition.ID, upgraded);
     }
 
     static

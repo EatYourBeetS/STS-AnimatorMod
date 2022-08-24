@@ -13,7 +13,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.modifiers.PersistentCardModifiers;
 import eatyourbeets.dungeons.TheUnnamedReign;
 import eatyourbeets.interfaces.listeners.OnEquipUnnamedReignRelicListener;
@@ -31,7 +30,7 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
 {
     private final int baseGold;
     private final int baseHP;
-    private EYBCardData customApparition;
+    private String customApparitionID;
 
     public UnnamedRelicEquipEffect()
     {
@@ -51,14 +50,9 @@ public class UnnamedRelicEquipEffect extends AbstractGameEffect
         PersistentCardModifiers.Clear();
         ModHelper.setModsFalse();
 
-        if (customApparition == null)
-        {
-            customApparition = GameUtilities.GetReplacement(null, Apparition.ID);
-        }
-
         final AbstractPlayer p = AbstractDungeon.player;
         final ArrayList<AbstractCard> replacement = TheUnnamedReign.GetCardReplacements(p.masterDeck.group, true);
-        final int apparitionsCount = customApparition != null ? JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID) || customApparition.ID.equals(c.cardID)) : JUtils.Count(replacement, c -> Apparition.ID.equals(c.cardID));
+        final int apparitionsCount = JUtils.Count(replacement, c -> GR.CardLibrary.SameBaseID(c.cardID, Apparition.ID));
         final float hpPercentage = GameUtilities.GetHealthPercentage(p);
 
         int hp = this.baseHP;

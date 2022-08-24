@@ -41,7 +41,7 @@ public class AnimatorResources extends AbstractResources
 
     public AnimatorResources()
     {
-        super(ID, Enums.Cards.THE_ANIMATOR, Enums.Characters.THE_ANIMATOR);
+        super(ID, Enums.Cards.THE_ANIMATOR, Enums.Characters.THE_ANIMATOR, new AnimatorCardLibrary());
     }
 
     public int GetUnlockCost()
@@ -136,6 +136,7 @@ public class AnimatorResources extends AbstractResources
         Strings.Initialize();
         CardSeries.InitializeStrings();
         LoadCustomCards();
+        CardLibrary.Initialize(this);
         EYBCardData.PostInitialize();
     }
 

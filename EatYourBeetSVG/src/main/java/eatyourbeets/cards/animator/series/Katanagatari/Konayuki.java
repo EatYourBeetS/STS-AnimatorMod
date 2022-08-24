@@ -4,8 +4,8 @@ import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.cards.base.*;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
-import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.TargetHelper;
 
 public class Konayuki extends AnimatorCard
@@ -39,7 +39,7 @@ public class Konayuki extends AnimatorCard
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
         GameActions.Bottom.GainForce(magicNumber);
-        GameActions.Bottom.MakeCardInDrawPile(GameUtilities.TryReplace(Wound.ID, false));
+        GameActions.Bottom.MakeCardInDrawPile(GR.CardLibrary.GetCurrentClassCard(Wound.ID, false));
 
         if (TryUseAffinity(Affinity.Red))
         {

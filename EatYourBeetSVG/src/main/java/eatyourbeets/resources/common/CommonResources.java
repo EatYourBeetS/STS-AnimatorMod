@@ -37,7 +37,7 @@ public class CommonResources extends AbstractResources
 
     public CommonResources()
     {
-        super(ID, AbstractCard.CardColor.COLORLESS, null);
+        super(ID, AbstractCard.CardColor.COLORLESS, null, null);
     }
 
     @Override

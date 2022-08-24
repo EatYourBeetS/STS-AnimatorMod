@@ -45,6 +45,7 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
     public Object Shared;
     public String ImagePath;
     public String ID;
+    public String SharedID;
     public AbstractCard.CardType CardType;
     public int BaseCost;
     public int MaxCopies;
@@ -69,7 +70,7 @@ public class EYBCardData implements OnAddingToCardRewardListener, OnReceiveRewar
 
     public EYBCardData(Class<? extends EYBCard> type, String cardID, CardStrings strings, AbstractResources resources)
     {
-        this.ID = cardID;
+        this.ID = this.SharedID = cardID;
         this.MaxCopies = -1;
         this.Strings = EYBCardText.ProcessCardStrings(strings);
         this.Resources = resources;

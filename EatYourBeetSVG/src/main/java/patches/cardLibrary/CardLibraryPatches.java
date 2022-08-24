@@ -6,12 +6,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.colorless.Madness;
-import com.megacrit.cardcrawl.cards.curses.AscendersBane;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.random.Random;
-import eatyourbeets.cards.animator.curse.special.Curse_AscendersBane;
 import eatyourbeets.cards.animator.special.CardNotFound;
 import eatyourbeets.cards.base.AnimatorCard_UltraRare;
 import eatyourbeets.cards.base.AnimatorClassicCard_UltraRare;
@@ -29,22 +26,10 @@ import java.util.Map;
 
 public class CardLibraryPatches
 {
+    private static final HashMap<String, String> _cardIDs = new HashMap<>();
     private static final FieldInfo<HashMap<String, AbstractCard>> _curses = JUtils.GetField("curses", CardLibrary.class);
     private static final byte[] whatever = {0x61, 0x6e, 0x69, 0x6d, 0x61, 0x74, 0x6f, 0x72, 0x3a, 0x75, 0x72, 0x3a};
     private static final String idPrefix = new String(whatever);
-
-    public static EYBCardData GetReplacement(AbstractPlayer.PlayerClass playerClass, String cardID)
-    {
-        if (playerClass == null)
-        {
-            playerClass = AbstractDungeon.player != null ? AbstractDungeon.player.chosenClass : null;
-        }
-
-        return playerClass == GR.Animator.PlayerClass ? CardLibraryPatches_Animator.GetReplacement(cardID) :
-               playerClass == GR.AnimatorClassic.PlayerClass ? CardLibraryPatches_AnimatorClassic.GetReplacement(cardID) :
-               playerClass == GR.Unnamed.PlayerClass ? CardLibraryPatches_Unnamed.GetReplacement(cardID) :
-               null;
-    }
 
     public static AbstractCard TryReplace(AbstractResources resources, AbstractCard card)
     {
@@ -54,17 +39,17 @@ public class CardLibraryPatches
         }
         else
         {
-            final EYBCardData data = GetReplacement(resources.PlayerClass, card.cardID);
-            return data == null ? card : data.MakeCopy(card.upgraded);
+            final EYBCardData data = GR.CardLibrary.GetCardData(resources, card.cardID);
+            return data == null ? card : data.CreateNewInstance(card.upgraded);
         }
     }
 
     public static void TryReplace(AbstractCard[] card)
     {
-        final EYBCardData data = GetReplacement(null, card[0].cardID);
+        final EYBCardData data = GR.CardLibrary.GetCurrentClassCardData(card[0].cardID);
         if (data != null)
         {
-            card[0] = data.MakeCopy(card[0].upgraded);
+            card[0] = data.CreateNewInstance(card[0].upgraded);
         }
     }
 
@@ -102,10 +87,10 @@ public class CardLibraryPatches
                     }
                 }
 
-                final EYBCardData data = GetReplacement(null, key);
+                final EYBCardData data = GR.CardLibrary.GetCurrentClassCardData(key);
                 if (data != null)
                 {
-                    return SpireReturn.Return(data.MakeCopy(false));
+                    return SpireReturn.Return(data.CreateNewInstance(false));
                 }
             }
 
@@ -131,10 +116,6 @@ public class CardLibraryPatches
                 }
 
                 return SpireReturn.Return(card);
-            }
-            else if (key.equals(AscendersBane.ID) && GameUtilities.IsPlayerClass(GR.Animator.PlayerClass))
-            {
-                return SpireReturn.Return(Curse_AscendersBane.DATA.MakeCopy(false));
             }
 
             return SpireReturn.Continue();

@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameUtilities;
 
 public class AnimatorSsssserpent extends AbstractImageEvent
 {
@@ -52,7 +51,7 @@ public class AnimatorSsssserpent extends AbstractImageEvent
             this.goldReward = GOLD_REWARD;
         }
 
-        this.curse = GameUtilities.TryReplace(null, Doubt.ID, false);
+        this.curse = GR.CardLibrary.GetCurrentClassCard(Doubt.ID, false);
         this.imageEventText.setDialogOption(OPTIONS[0] + this.goldReward + OPTIONS[1], curse.makeStatEquivalentCopy());
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }

@@ -18,8 +18,6 @@ public class ApplyAffinityPower extends ApplyPower
     public boolean playSFX;
     public boolean retain;
 
-    private boolean ignoreAffinity;
-
     public ApplyAffinityPower(AbstractCreature source, Affinity affinity, int amount)
     {
         this(source, affinity, amount, false);
@@ -30,7 +28,6 @@ public class ApplyAffinityPower extends ApplyPower
         super(source, AbstractDungeon.player, CreatePower(affinity, source), amount);
 
         this.retain = retain;
-        this.ignoreAffinity = !GR.Animator.IsSelected();
 
         if (powerToApply == null)
         {
@@ -57,24 +54,20 @@ public class ApplyAffinityPower extends ApplyPower
     protected void FirstUpdate()
     {
         final AbstractAffinityPower powerToApply = (AbstractAffinityPower) this.powerToApply;
-        if (ignoreAffinity)
+        if (retain)
         {
-            if (retain)
-            {
-                powerToApply.RetainOnce();
-            }
-            super.FirstUpdate();
-            return;
+            powerToApply.RetainOnce();
         }
 
         if (amount == 0)
         {
-            if (retain)
-            {
-                powerToApply.RetainOnce();
-            }
-
             Complete();
+            return;
+        }
+
+        if (!GR.Animator.IsSelected())
+        {
+            super.FirstUpdate();
             return;
         }
 
@@ -114,13 +107,11 @@ public class ApplyAffinityPower extends ApplyPower
     @Override
     protected void UpdateInternal(float deltaTime)
     {
-        if (ignoreAffinity)
+        if (!GR.Animator.IsSelected())
         {
             super.UpdateInternal(deltaTime);
-            return;
         }
-
-        if (TickDuration(deltaTime))
+        else if (TickDuration(deltaTime))
         {
             Complete(powerToApply);
         }

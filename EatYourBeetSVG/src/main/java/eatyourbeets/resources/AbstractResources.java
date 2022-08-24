@@ -26,16 +26,18 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
     public final String Prefix;
     public final AbstractCard.CardColor CardColor;
     public final AbstractPlayer.PlayerClass PlayerClass;
+    public final AbstractCardLibrary CardLibrary;
 
     protected final FileHandle testFolder;
     protected String defaultLanguagePath;
     protected boolean isLoaded;
 
-    protected AbstractResources(String prefix, AbstractCard.CardColor cardColor, AbstractPlayer.PlayerClass playerClass)
+    protected AbstractResources(String prefix, AbstractCard.CardColor cardColor, AbstractPlayer.PlayerClass playerClass, AbstractCardLibrary cardLibrary)
     {
         this.Prefix = prefix;
         this.CardColor = cardColor;
         this.PlayerClass = playerClass;
+        this.CardLibrary = cardLibrary;
         this.testFolder = new FileHandle("c:/temp/" + prefix + "-localization/");
     }
 

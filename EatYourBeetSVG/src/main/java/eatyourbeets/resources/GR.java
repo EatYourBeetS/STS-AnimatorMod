@@ -51,6 +51,7 @@ public class GR
     protected static final ArrayList<String> powerClassNames = JUtils.GetClassNamesFromJarFile("eatyourbeets.powers.");
     protected static final HashMap<String, Texture> textures = new HashMap<>();
 
+    public static EYBCardLibrary CardLibrary = new EYBCardLibrary();
     public static CardTooltips Tooltips = null; // Created by CommonResources
     public static UIManager UI = new UIManager();
     public static AnimatorResources Animator;

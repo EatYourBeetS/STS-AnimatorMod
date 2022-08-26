@@ -71,7 +71,7 @@ public class Wiz extends AnimatorCard
         {
             if (cards.size() > 0)
             {
-                GameActions.Bottom.MakeCardInDrawPile(GR.CardLibrary.GetCurrentClassCard(Apparition.ID, false));
+                GameActions.Bottom.MakeCardInDrawPile(new Apparition());
                 GameActions.Bottom.StackPower(new WizPower(player, 1));
             }
         });

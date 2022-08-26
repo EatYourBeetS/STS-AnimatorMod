@@ -99,6 +99,12 @@ public class EYBCardLibrary
         return data != null ? data.CreateNewInstance(upgrade) : CardLibrary.getCopy(cardID, upgrade ? 1 : 0, 0);
     }
 
+    public AbstractCard TryReplace(AbstractCard card)
+    {
+        final EYBCardData data = GetCurrentClassCardData(card.cardID);
+        return (data == null || data.IsCard(card)) ? card : data.CreateNewInstance(card.upgraded);
+    }
+
     public boolean SameBaseID(String cardID, String otherID)
     {
         return GetBaseID(cardID).equals(GetBaseID(otherID));

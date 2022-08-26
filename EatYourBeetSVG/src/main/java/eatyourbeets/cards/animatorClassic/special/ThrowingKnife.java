@@ -1,14 +1,11 @@
 package eatyourbeets.cards.animatorClassic.special;
 
 import com.badlogic.gdx.graphics.Color;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.cards.base.CardSeries;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
 import eatyourbeets.cards.base.EYBCardData;
@@ -78,6 +75,17 @@ public class ThrowingKnife extends AnimatorClassicCard
     public AbstractCard makeCopy()
     {
         return (misc == 0 && GameUtilities.InBattle()) ? GetRandomCardInBattle() : new ThrowingKnife(misc);
+    }
+
+    @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        if (misc == 0)
+        {
+            ChangeIndex(rng.random(INDEX_WEAK, INDEX_POISON));
+        }
     }
 
     @Override

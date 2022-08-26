@@ -14,6 +14,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndAddToHandEffect;
 import eatyourbeets.actions.EYBActionWithCallback;
 import eatyourbeets.effects.SFX;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 
 public class GenerateCard extends EYBActionWithCallback<AbstractCard>
@@ -33,7 +34,7 @@ public class GenerateCard extends EYBActionWithCallback<AbstractCard>
     {
         super(ActionType.CARD_MANIPULATION, Settings.ACTION_DUR_FAST);
 
-        this.card = card;
+        this.card = GR.CardLibrary.TryReplace(card);
         this.cardGroup = group;
 
         if (!UnlockTracker.isCardSeen(card.cardID) || !card.isSeen)

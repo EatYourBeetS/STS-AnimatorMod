@@ -80,6 +80,17 @@ public class ThrowingKnife extends AnimatorCard
     }
 
     @Override
+    public void triggerWhenCreated(boolean startOfBattle)
+    {
+        super.triggerWhenCreated(startOfBattle);
+
+        if (misc == 0)
+        {
+            ChangeIndex(rng.random(INDEX_WEAK, INDEX_POISON));
+        }
+    }
+
+    @Override
     public void onMoveToDiscard()
     {
         super.onMoveToDiscard();

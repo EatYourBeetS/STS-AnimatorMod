@@ -40,14 +40,14 @@ public class CardLibraryPatches
         else
         {
             final EYBCardData data = GR.CardLibrary.GetCardData(resources, card.cardID);
-            return data == null ? card : data.CreateNewInstance(card.upgraded);
+            return (data == null || data.IsCard(card)) ? card : data.CreateNewInstance(card.upgraded);
         }
     }
 
     public static void TryReplace(AbstractCard[] card)
     {
         final EYBCardData data = GR.CardLibrary.GetCurrentClassCardData(card[0].cardID);
-        if (data != null)
+        if (data != null && !data.IsCard(card[0]))
         {
             card[0] = data.CreateNewInstance(card[0].upgraded);
         }

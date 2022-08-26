@@ -15,13 +15,14 @@ import eatyourbeets.utilities.GameUtilities;
 
 public class Melzalgald extends AnimatorClassicCard
 {
-    public static final EYBCardData DATA = Register(Melzalgald.class).SetAttack(3, CardRarity.UNCOMMON);
-    static
-    {
-        DATA.AddPreview(new Melzalgald_1(), true);
-        DATA.AddPreview(new Melzalgald_2(), true);
-        DATA.AddPreview(new Melzalgald_3(), true);
-    }
+    public static final EYBCardData DATA = Register(Melzalgald.class)
+            .SetAttack(3, CardRarity.UNCOMMON)
+            .PostInitialize(data ->
+            {
+                data.AddPreview(new Melzalgald_1(), true);
+                data.AddPreview(new Melzalgald_2(), true);
+                data.AddPreview(new Melzalgald_3(), true);
+            });
 
     public Melzalgald()
     {

@@ -32,7 +32,7 @@ public class UnnamedResources extends AbstractResources
 
     public UnnamedResources()
     {
-        super(ID, Enums.Cards.THE_UNNAMED, Enums.Characters.THE_UNNAMED);
+        super(ID, Enums.Cards.THE_UNNAMED, Enums.Characters.THE_UNNAMED, new UnnamedCardLibrary());
     }
 
     @Override
@@ -111,6 +111,7 @@ public class UnnamedResources extends AbstractResources
 
         Strings.Initialize();
         LoadCustomCards();
+        CardLibrary.Initialize(this);
         EYBCardData.PostInitialize();
     }
 

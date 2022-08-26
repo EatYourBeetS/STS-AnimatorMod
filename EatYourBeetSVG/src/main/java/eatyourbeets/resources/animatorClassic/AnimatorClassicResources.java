@@ -40,7 +40,7 @@ public class AnimatorClassicResources extends AbstractResources
 
     public AnimatorClassicResources()
     {
-        super(ID, Enums.Cards.THE_ANIMATOR_CLASSIC, Enums.Characters.THE_ANIMATOR_CLASSIC);
+        super(ID, Enums.Cards.THE_ANIMATOR_CLASSIC, Enums.Characters.THE_ANIMATOR_CLASSIC, new AnimatorClassicCardLibrary());
     }
 
     @Override
@@ -120,6 +120,7 @@ public class AnimatorClassicResources extends AbstractResources
         Strings.Initialize();
         CardSeries.InitializeStrings();
         LoadCustomCards();
+        CardLibrary.Initialize(this);
         EYBCardData.PostInitialize();
     }
 

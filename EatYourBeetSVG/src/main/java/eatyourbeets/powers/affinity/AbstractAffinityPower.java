@@ -328,6 +328,6 @@ public abstract class AbstractAffinityPower extends CommonPower
 
     protected boolean CanDecrease()
     {
-        return amount > minimumAmount && retainedTurns != 0;
+        return amount > minimumAmount && retainedTurns == 0;
     }
 }

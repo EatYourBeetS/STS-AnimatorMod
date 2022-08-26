@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import eatyourbeets.resources.GR;
-import eatyourbeets.utilities.GameUtilities;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +46,7 @@ public abstract class AnimatorClassicCard_UltraRare extends AnimatorClassicCard
         {
             for (AnimatorCard_UltraRare card : AnimatorCard_UltraRare.GetCards().values())
             {
-                EYBCardData data = GameUtilities.GetReplacement(GR.AnimatorClassic.PlayerClass, card.cardID);
+                final EYBCardData data = GR.CardLibrary.GetCardData(GR.AnimatorClassic.PlayerClass, card.cardID);
                 if (data != null)
                 {
                     cards.put(data.ID, (AnimatorClassicCard_UltraRare)data.CreateNewInstance());

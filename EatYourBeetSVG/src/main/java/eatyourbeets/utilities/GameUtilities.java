@@ -68,7 +68,6 @@ import eatyourbeets.resources.animator.AnimatorAscensionManager;
 import eatyourbeets.rewards.animator.SpecialGoldReward;
 import eatyourbeets.rooms.AnimatorCustomEliteRoom;
 import org.apache.commons.lang3.StringUtils;
-import patches.cardLibrary.CardLibraryPatches;
 
 import java.util.*;
 
@@ -204,6 +203,14 @@ public class GameUtilities
     public static void ClearPostCombatActions()
     {
         AbstractDungeon.actionManager.clearPostCombatActions();
+    }
+
+    public static AbstractResources GetResources(AbstractPlayer.PlayerClass playerClass)
+    {
+        return playerClass == GR.Animator.PlayerClass ? GR.Animator :
+               playerClass == GR.AnimatorClassic.PlayerClass ? GR.AnimatorClassic :
+               playerClass == GR.Unnamed.PlayerClass ? GR.Unnamed :
+               null;
     }
 
     public static void ResetVisualProperties(AbstractCard card)
@@ -366,46 +373,6 @@ public class GameUtilities
     {
         final AnimatorAscensionManager data = GameUtilities.GetAscensionData(false);
         return data == null ? null : data.GetBlightChoice();
-    }
-
-    public static AbstractCard TryReplace(AbstractCard card)
-    {
-        if (player == null || player.chosenClass == null)
-        {
-            return card;
-        }
-
-        return (player.chosenClass == GR.Animator.PlayerClass) ? TryReplace(GR.Animator, card) :
-               (player.chosenClass == GR.AnimatorClassic.PlayerClass) ? TryReplace(GR.AnimatorClassic, card) :
-               (player.chosenClass == GR.Unnamed.PlayerClass) ? TryReplace(GR.Unnamed, card) :
-                card;
-    }
-
-    public static AbstractCard TryReplace(AbstractResources resources, AbstractCard card)
-    {
-        return CardLibraryPatches.TryReplace(resources, card);
-    }
-
-    public static AbstractCard TryReplace(String cardID, boolean upgraded)
-    {
-        return TryReplace(player.chosenClass, cardID, upgraded);
-    }
-
-    public static AbstractCard TryReplace(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
-    {
-        final EYBCardData data = GetReplacement(playerClass, cardID);
-        return data == null ? CardLibrary.getCopy(cardID, upgraded ? 1 : 0, 0) : data.CreateNewInstance(upgraded);
-    }
-
-    public static EYBCardData GetReplacement(AbstractPlayer.PlayerClass playerClass, String cardID)
-    {
-        return CardLibraryPatches.GetReplacement(playerClass, cardID);
-    }
-
-    public static EYBCard GetReplacement(AbstractPlayer.PlayerClass playerClass, String cardID, boolean upgraded)
-    {
-        final EYBCardData data = GetReplacement(playerClass, cardID);
-        return data == null ? null : data.CreateNewInstance(upgraded);
     }
 
     public static AbstractOrb GetFirstOrb(String orbID)

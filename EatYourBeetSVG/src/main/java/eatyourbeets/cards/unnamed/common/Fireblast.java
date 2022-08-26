@@ -8,6 +8,7 @@ import eatyourbeets.cards.base.EYBCardData;
 import eatyourbeets.cards.base.EYBCardTarget;
 import eatyourbeets.cards.base.UnnamedCard;
 import eatyourbeets.effects.AttackEffects;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
@@ -15,7 +16,7 @@ public class Fireblast extends UnnamedCard
 {
     public static final EYBCardData DATA = Register(Fireblast.class)
             .SetAttack(0, CardRarity.COMMON, EYBAttackType.Elemental, EYBCardTarget.ALL)
-            .PostInitialize(data -> data.AddPreview(GameUtilities.GetReplacement(PLAYER_CLASS, Burn.ID, false), false));
+            .PostInitialize(data -> data.AddPreview(GR.CardLibrary.GetCard(PLAYER_CLASS, Burn.ID, false), false));
 
     public Fireblast()
     {
@@ -29,7 +30,7 @@ public class Fireblast extends UnnamedCard
     public void OnUse(AbstractPlayer p, AbstractMonster m)
     {
         GameActions.Bottom.DealDamageToAll(this, AttackEffects.FIRE);
-        GameActions.Bottom.MakeCardInDrawPile(GameUtilities.TryReplace(PLAYER_CLASS, Burn.ID, false))
+        GameActions.Bottom.MakeCardInDrawPile(GR.CardLibrary.GetCurrentClassCard(Burn.ID, false))
         .AddCallback(card ->
         {
             if (card != null && IsSolo())

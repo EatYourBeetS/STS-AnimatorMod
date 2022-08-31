@@ -273,10 +273,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    block = ApplyScaling(p, card, block);
-                }
+                block = ApplyScaling(p, card, block);
             }
         }
 
@@ -289,10 +286,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    damage = ApplyScaling(p, card, damage);
-                }
+                damage = ApplyScaling(p, card, damage);
             }
         }
 
@@ -305,10 +299,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         {
             for (AbstractAffinityPower p : Powers)
             {
-                if (p.amount > 0)
-                {
-                    base = ApplyScaling(p, card, base);
-                }
+                base = ApplyScaling(p, card, base);
             }
 
             return base;
@@ -319,7 +310,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
     public float ApplyScaling(AbstractAffinityPower power, EYBCard card, float base)
     {
-        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.amount * 0.33f);
+        return base + MathUtils.ceil(card.affinities.GetScaling(power.affinity, true) * power.GetScalingAmount() * 0.33f);
     }
 
     public void Seal(EYBCardAffinities affinities, boolean reshuffle)

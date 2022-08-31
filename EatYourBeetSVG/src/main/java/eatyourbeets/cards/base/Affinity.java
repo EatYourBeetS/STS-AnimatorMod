@@ -104,6 +104,30 @@ public enum Affinity implements Comparable<Affinity>
         }
     }
 
+    public TextureRegion GetThresholdIcon()
+    {
+        switch (this)
+        {
+            case Red: return GR.Tooltips.Strength.icon;
+
+            case Green: return GR.Tooltips.Dexterity.icon;
+
+            case Blue: return GR.Tooltips.Focus.icon;
+
+            case Light: return GR.Tooltips.Vitality.icon;
+
+            case Dark: return GR.Tooltips.Invocation.icon;
+
+            case Star: return GR.Tooltips.Affinity_Star.icon;
+
+            case General: return GR.Tooltips.Affinity_General.icon;
+
+            case Sealed: return GR.Tooltips.Affinity_Sealed.icon;
+
+            default: return null;
+        }
+    }
+
     public Color GetAlternateColor(float lerp)
     {
         return Color.WHITE.cpy().lerp(GetAlternateColor(), lerp);

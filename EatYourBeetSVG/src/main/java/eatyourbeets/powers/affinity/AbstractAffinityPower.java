@@ -309,6 +309,20 @@ public abstract class AbstractAffinityPower extends CommonPower
         }
     }
 
+    public int GetScalingAmount()
+    {
+        if (GR.Animator.IsSelected())
+        {
+            PowerHelper threshold = GetThresholdBonusPower();
+            if (threshold == null)
+            {
+                throw new RuntimeException(name + " must override either GetThresholdBonusPower or RefreshThresholdBonus.");
+            }
+            return GameUtilities.GetPowerAmount(player, threshold.ID);
+        }
+        return amount;
+    }
+
     protected PowerHelper GetThresholdBonusPower()
     {
         return null;

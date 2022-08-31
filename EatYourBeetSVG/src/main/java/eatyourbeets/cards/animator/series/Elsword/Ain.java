@@ -34,7 +34,6 @@ public class Ain extends AnimatorCard
         SetAffinity_Blue(2, 0, 1);
 
         SetAffinityRequirement(Affinity.Blue, 2);
-        SetAffinityRequirement(Affinity.Light, 2);
     }
 
     @Override

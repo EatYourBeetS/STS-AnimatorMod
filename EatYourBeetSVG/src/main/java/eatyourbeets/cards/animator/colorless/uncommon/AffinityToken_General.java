@@ -27,8 +27,8 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
     {
         super(DATA, AFFINITY_TYPE);
 
-        Initialize(0, 0);
-        SetUpgrade(0, 0);
+        Initialize(0, 1);
+        SetUpgrade(0, 3);
 
         SetUnplayable(true);
     }
@@ -45,7 +45,7 @@ public class AffinityToken_General extends AffinityToken implements OnAddToDeckL
         GameActions.Top.Exhaust(this);
         CombatStats.Affinities.AddAffinitySealUses(1);
         GameActions.Bottom.SFX(SFX.RELIC_ACTIVATION, 0.75f, 0.85f);
-        //GameActions.Bottom.GainBlock(block).SetVFX(true, true);
+        GameActions.Bottom.GainBlock(block).SetVFX(true, true);
     }
 
 //    @Override

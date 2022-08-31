@@ -26,7 +26,7 @@
 	},
 	"Enchanted Armor":
 	{
-		"DESCRIPTION": "For every point of [Enchanted Armor], take #b10% less #yAttack damage (max #b40%^) and convert #b1 [Block] to [THP] at the start of each turn.",
+		"DESCRIPTION": "For every point of [Enchanted Armor], take #b10% less #yAttack damage (max #b50%^) and convert #b1 [Block] to [THP] at the start of each turn.",
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
 	},

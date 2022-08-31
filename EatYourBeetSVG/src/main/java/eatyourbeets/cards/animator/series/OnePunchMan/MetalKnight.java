@@ -3,11 +3,8 @@ package eatyourbeets.cards.animator.series.OnePunchMan;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.orbs.Plasma;
 import com.megacrit.cardcrawl.vfx.combat.WeightyImpactEffect;
-import eatyourbeets.actions.orbs.RemoveOrb;
 import eatyourbeets.cards.base.AnimatorCard;
 import eatyourbeets.cards.base.CardUseInfo;
 import eatyourbeets.cards.base.EYBAttackType;
@@ -29,23 +26,25 @@ public class MetalKnight extends AnimatorCard
     {
         super(DATA);
 
-        Initialize(14, 2, 3);
+        Initialize(13, 0, 3);
 
-        SetAffinity_Red(1, 1, 0);
-        SetAffinity_Blue(1);
+        SetAffinity_Red(1);
+        SetAffinity_Blue(1, 0, 2);
         SetAffinity_Dark(1);
+
+        SetExhaust(true);
+        SetInnate(true);
     }
 
     @Override
     protected void OnUpgrade()
     {
-        SetInnate(true);
+        SetExhaust(false);
     }
 
     @Override
     public void OnUse(AbstractPlayer p, AbstractMonster m, CardUseInfo info)
     {
-        GameActions.Bottom.GainBlock(block);
         GameActions.Bottom.VFX(new WeightyImpactEffect(m.hb.cX, m.hb.cY), 0.6f, true);
         GameActions.Bottom.DealDamage(this, m, AttackEffects.BLUNT_HEAVY);
         GameActions.Bottom.StackPower(new MetalKnightPower(p, 1));
@@ -61,7 +60,7 @@ public class MetalKnight extends AnimatorCard
     {
         public MetalKnightPower(AbstractCreature owner, int amount)
         {
-            super(owner, MetalKnight.DATA, PowerTriggerConditionType.Energy, 1);
+            super(owner, MetalKnight.DATA, PowerTriggerConditionType.Affinity_Star, 1);
 
             triggerCondition.SetUses(amount, false, true);
 

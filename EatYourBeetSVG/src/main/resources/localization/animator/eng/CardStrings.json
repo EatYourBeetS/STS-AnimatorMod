@@ -373,7 +373,7 @@
 	{
 		"animator:Add":
 		{
-			"DESCRIPTION": "Gain !S! [C]. Next turn: ** Gain [E] and <DRW-M>. || !A! <D>: Exhaust a card ** anywhere and replace ** it with an {Orb Core}.",
+			"DESCRIPTION": "Gain !S! [C] and !M! [DE]. ** Next turn: Gain [E]. || !A! <D>: Exhaust a card ** anywhere and replace ** it with an {Orb Core}.",
 			"NAME": "Add"
 		},
 		"animator:Ain":
@@ -388,7 +388,7 @@
 		},
 		"animator:Ara":
 		{
-			"DESCRIPTION": "Discard 1 card ** to gain !M! [A]. || Sealed or !A! <G>: ** <DRW>.",
+			"DESCRIPTION": "Discard 1 card ** to gain !M! [A]. || When Sealed or ** !A! <G>: <DRW>.",
 			"NAME": "Ara"
 		},
 		"animator:Chung":
@@ -409,7 +409,7 @@
 		},
 		"animator:Elsword":
 		{
-			"DESCRIPTION": "Cycle !M! card(s). || Sealed or Discard: ** Channel 1 [Fire].",
+			"DESCRIPTION": "Cycle !M! card(s). || When Discarded or ** Sealed: Channel [Fire].",
 			"NAME": "Elsword"
 		},
 		"animator:Eve":
@@ -436,7 +436,7 @@
 		},
 		"animator:Raven":
 		{
-			"DESCRIPTION": "If the enemy is ** attacking: Apply 1 [Weak]. ** Otherwise: Apply 2 [Vulnerable]. || !A! <G> and <R>: Gain !B! [Block].",
+			"DESCRIPTION": "If the enemy is ** attacking: Apply !M! [Weak]. ** Else: Apply !M! [Vulnerable]. || !A! <G> <R>: Gain !S! [Block].",
 			"NAME": "Raven"
 		},
 		"animator:Rena":
@@ -1201,7 +1201,7 @@
 		},
 		"animator:KyokoSakura":
 		{
-			"DESCRIPTION": "Put 1 card on top ** of your draw pile. || !A! <R>: Gain ** [F] and Channel 1 [Fire].",
+			"DESCRIPTION": "Put 1 card on top ** of your draw pile. || !A! <R>: Gain [F] ** and Channel 1 [Fire].",
 			"NAME": "Kyoko Sakura"
 		},
 		"animator:KyokoSakura_Ophelia":
@@ -1453,8 +1453,8 @@
 		},
 		"animator:MetalKnight":
 		{
-			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, pay [E]: ** Channel 1 [Plasma].",
-			"EXTENDED_DESCRIPTION": ["Pay [E]: Channel #b1 [Plasma]."],
+			"DESCRIPTION": "Gain !M! [Metallicize], then reduce ** this by 1 for all copies. || Once this combat, ** pay <S>: Channel 1 [Plasma].",
+			"EXTENDED_DESCRIPTION": ["Pay <S>: Channel #b1 [Plasma]."],
 			"NAME": "Metal Knight"
 		},
 		"animator:MetalBat":
@@ -1749,7 +1749,7 @@
 	{
 		"animator:AliceMargatroid":
 		{
-			"DESCRIPTION": "Gain [I]. <DRW-M>. || Raise the passive amount ** of the next orb by !S!, ** skipping orbs that are ** already affected by this.",
+			"DESCRIPTION": "Gain [I]. <DRW-M>. || Raise the passive amount ** of your next orb by !S!, ** skipping orbs that are ** already affected by this.",
 			"NAME": "Alice Margatroid"
 		},
 		"animator:AyaShameimaru":
@@ -1917,7 +1917,7 @@
 		},
 		"animator:AffinityToken_General":
 		{
-			"DESCRIPTION": "Unplayable. || When Sealed: Gain ** 1 <P>, then Exhaust.",
+			"DESCRIPTION": "Unplayable. || When Sealed: Gain ** this card's [Block] and ** 1 <P>, then Exhaust.",
 			"NAME": "Affinity Token"
 		},
 

@@ -14,7 +14,7 @@ public class EnchantedArmorPlayerPower extends AnimatorPower
     private static final DecimalFormat decimalFormat = new DecimalFormat("#.0");
 
     public static final String POWER_ID = CreateFullID(EnchantedArmorPlayerPower.class);
-    public static final int MAX_REDUCTION = 40;
+    public static final int MAX_REDUCTION = 50;
 
     public static float CalculatePercentage(int amount)
     {

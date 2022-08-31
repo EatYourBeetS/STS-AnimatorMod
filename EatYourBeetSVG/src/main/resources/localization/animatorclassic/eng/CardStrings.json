@@ -615,7 +615,7 @@
 		},
 		"animatorClassic:Shichika":
 		{
-			"DESCRIPTION": "Gain/Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
+			"DESCRIPTION": "Gain|Boost [F] [A]. || Add {Kyotouryuu} ** to your hand.",
 			"NAME": "Shichika"
 		},
 		"animatorClassic:Togame":
@@ -682,7 +682,7 @@
 		},
 		"animatorClassic:Mitsurugi":
 		{
-			"DESCRIPTION": "Gain/Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! [Block].",
+			"DESCRIPTION": "Gain|Boost [F]. Can only ** deal damage if the ** enemy is attacking. || When Exhausted: ** Gain !S! [Block].",
 			"NAME": "Mitsurugi"
 		},
 		"animatorClassic:Vanir":
@@ -758,7 +758,7 @@
 		},
 		"animatorClassic:Nyanta":
 		{
-			"DESCRIPTION": "Gain/Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
+			"DESCRIPTION": "Gain|Boost [A]. Apply a ** random {Common Debuff} ** on each attack. || Any Stance: Attack 1 ** additional time",
 			"NAME": "Nyanta"
 		},
 		"animatorClassic:Rayneshia":
@@ -851,7 +851,7 @@
 		},
 		"animatorClassic:NagisaMomoe":
 		{
-			"DESCRIPTION": "Randomly Gain/Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
+			"DESCRIPTION": "Randomly Gain|Boost ** [A], [F] or [I] !M! times. || When Exhausted: Add ** {Charlotte} and a [Grief Seed] to ** your discard pile.",
 			"NAME": "Nagisa Momoe"
 		},
 		"animatorClassic:SayakaMiki_Oktavia":

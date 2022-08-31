@@ -456,15 +456,15 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
 
         if (!draggingCard && GameUtilities.CanAcceptInput(true))
         {
-            if (hoveredCard != null && InputManager.RightClick.IsJustPressed() && CurrentAffinities.GetLevel(Affinity.Sealed) > 0 && hoveredCard.affinities.GetLevel(Affinity.General) > 0)
+            if (hoveredCard != null && InputManager.RightClick.IsJustPressed() && CurrentAffinities.GetLevel(Affinity.Sealed) > 0)
             {
-                if (hoveredCard.affinities.sealed)
+                if (GameUtilities.CanSeal(hoveredCard))
                 {
-                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
+                    GameActions.Bottom.SealAffinities(hoveredCard, true);
                 }
                 else
                 {
-                    GameActions.Bottom.SealAffinities(hoveredCard, true);
+                    GameEffects.List.Add(new ThoughtBubble(player.dialogX, player.dialogY, 3, GR.Animator.Strings.Misc.CannotSeal, true));
                 }
             }
 

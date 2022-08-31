@@ -35,7 +35,7 @@ public class KyokoSakura extends AnimatorCard
         SetAffinity_Red(1, 1, 0);
         SetAffinity_Blue(1);
 
-        SetAffinityRequirement(Affinity.Red, 3);
+        SetAffinityRequirement(Affinity.Red, 1);
     }
 
     @Override

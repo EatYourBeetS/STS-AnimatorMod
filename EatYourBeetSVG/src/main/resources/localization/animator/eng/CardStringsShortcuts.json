@@ -17,6 +17,10 @@
 	"<IS>": "{[I] Stance}",
 	"<AS>": "{[A] Stance}",
 	"<CS>": "{[C] Stance}",
+	"<RS>": "{[A_Red] Stance}",
+	"<GS>": "{[A_Green] Stance}",
+	"<BS>": "{[A_Blue] Stance}",
+	"<DS>": "{[A_Dark] Stance}",
 
 	"<R>": "[A_Red]",
 	"<G>": "[A_Green]",

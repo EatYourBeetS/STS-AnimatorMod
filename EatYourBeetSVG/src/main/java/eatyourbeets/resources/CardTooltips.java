@@ -30,6 +30,7 @@ public class CardTooltips
 {
     protected static final HashMap<String, EYBCardTooltip> tooltipIDs = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final HashMap<EYBCardTooltip, EYBCardTooltip> classicTooltips = new HashMap<>();
 
     public EYBCardTooltip Energy = FindByName("[E]").ShowText(false);
     public EYBCardTooltip Unplayable = FindByID("Unplayable").ShowText(false);
@@ -87,6 +88,10 @@ public class CardTooltips
     public EYBCardTooltip ForceStance = FindByID("Force Stance");
     public EYBCardTooltip IntellectStance = FindByID("Intellect Stance");
     public EYBCardTooltip CorruptionStance = FindByID("Corruption Stance");
+    public EYBCardTooltip RedStance = FindByID("Red Stance");
+    public EYBCardTooltip GreenStance = FindByID("Green Stance");
+    public EYBCardTooltip BlueStance = FindByID("Blue Stance");
+    public EYBCardTooltip DarkStance = FindByID("Dark Stance");
     public EYBCardTooltip NeutralStance = FindByID("Neutral Stance");
     public EYBCardTooltip SupportDamage = FindByID("Support Damage");
     public EYBCardTooltip Spellcaster = FindByID("Spellcaster");
@@ -139,6 +144,7 @@ public class CardTooltips
     public EYBCardTooltip Affinity_General = FindByID("Affinity");
     public EYBCardTooltip Affinity_Power = FindByID("Affinity Power");
     public EYBCardTooltip Affinity_Token = FindByID("Affinity Token");
+    public EYBCardTooltip Boost = FindByID("Boost");
 
     // Unnamed
     public EYBCardTooltip Summon = FindByID("Summon");
@@ -148,6 +154,10 @@ public class CardTooltips
     public EYBCardTooltip SummoningSickness = FindByID("Summoning Sickness");
     public EYBCardTooltip Mark = FindByID("Mark");
     public EYBCardTooltip Recast = FindByID("~Recast");
+
+    // Replacements
+    public EYBCardTooltip BoostClassic = FindByID("~Boost_Classic");
+    public EYBCardTooltip EnchantedArmorClassic = FindByID("~Enchanted Armor_Classic");
 
     // No Description
     public EYBCardTooltip Card = new EYBCardTooltip("Card", null).ShowText(false);
@@ -189,6 +199,11 @@ public class CardTooltips
     public static EYBCardTooltip FindByID(String id)
     {
         return tooltipIDs.get(id);
+    }
+
+    public static EYBCardTooltip GetClassic(EYBCardTooltip tooltip)
+    {
+        return classicTooltips.getOrDefault(tooltip, tooltip);
     }
 
     public static String FindName(EYBCardTooltip tooltip)
@@ -270,6 +285,10 @@ public class CardTooltips
         Affinity_Star.SetIcon(affinities.Star.Texture(), 8);
         Affinity_Sealed.SetIcon(affinities.Seal.Texture(), 8);
         Affinity_General.SetIcon(affinities.General.Texture(), 8);
+        RedStance.icon = Affinity_Red.icon;
+        GreenStance.icon = Affinity_Green.icon;
+        BlueStance.icon = Affinity_Blue.icon;
+        DarkStance.icon = Affinity_Dark.icon;
         Affinity_Power.icon = Affinity_Token.icon = Affinity_General.icon;
 
         CommonImages.Tooltips tooltips = GR.Common.Images.Tooltips;
@@ -326,6 +345,16 @@ public class CardTooltips
         LoadFromPower(Weak, new WeakPower(null, 0, false)).SetIconSizeMulti(1f, 0.9f);
         LoadFromPower(Vulnerable, new VulnerablePower(null, 0, false));
         LoadFromPower(Frail, new FrailPower(null, 0, false));
+
+        // Copy icons for replacements
+        SetClassicReplacement(EnchantedArmor, EnchantedArmorClassic);
+        SetClassicReplacement(Boost, BoostClassic);
+    }
+
+    private void SetClassicReplacement(EYBCardTooltip original, EYBCardTooltip classicVersion)
+    {
+        classicVersion.icon = original.icon;
+        classicTooltips.put(original, classicVersion);
     }
 
     private EYBCardTooltip LoadFromPower(EYBCardTooltip tooltip, AbstractPower power)

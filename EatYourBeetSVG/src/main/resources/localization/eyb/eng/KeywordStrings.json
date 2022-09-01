@@ -111,9 +111,15 @@
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
 	},
+	"Blue Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_blue] stance", "blue stance"],
+	  "PROPER_NAME": "Blue Stance"
+	},
 	"Boost":
 	{
-		"DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
+		"DESCRIPTION": "Gain the specified [A_Gen]. Also gain its associated threshold power until the end of turn.",
 		"NAMES": ["boost"],
 		"PROPER_NAME": "Boost"
 	},
@@ -170,6 +176,12 @@
 		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
 		"NAMES": ["cycle"],
 		"PROPER_NAME": "Cycle"
+	},
+	"Dark Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_dark] stance", "dark stance"],
+	  "PROPER_NAME": "Demon Stance"
 	},
 	"Debuff":
 	{
@@ -242,6 +254,12 @@
 		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
+	},
+	"Green Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_green] stance", "green stance"],
+	  "PROPER_NAME": "Green Stance"
 	},
 	"Health":
 	{
@@ -368,6 +386,12 @@
 		"DESCRIPTION": "Gain [HP] up to the amount you had at the end of your last turn.",
 		"NAMES": ["recover", "recovered", "recovering"],
 		"PROPER_NAME": "Recover"
+	},
+	"Red Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_red] stance", "red stance"],
+	  "PROPER_NAME": "Red Stance"
 	},
 	"Semi-Limited":
 	{

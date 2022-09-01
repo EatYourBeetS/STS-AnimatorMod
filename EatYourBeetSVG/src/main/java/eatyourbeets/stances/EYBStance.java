@@ -24,6 +24,7 @@ public abstract class EYBStance extends AbstractStance
 {
     protected static final HashMap<String, FuncT0<AbstractStance>> stances = new HashMap<>();
     protected static final HashMap<String, EYBCardTooltip> tooltips = new HashMap<>();
+    protected static final HashMap<String, EYBCardTooltip> affinityTooltips = new HashMap<>();
     protected static long sfxId = -1L;
     protected final AbstractCreature owner;
     protected final StanceStrings strings;
@@ -42,9 +43,17 @@ public abstract class EYBStance extends AbstractStance
         tooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.IntellectStance);
         tooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.CorruptionStance);
 
+        affinityTooltips.clear();
+        affinityTooltips.put(ForceStance.STANCE_ID, GR.Tooltips.RedStance);
+        affinityTooltips.put(AgilityStance.STANCE_ID, GR.Tooltips.GreenStance);
+        affinityTooltips.put(IntellectStance.STANCE_ID, GR.Tooltips.BlueStance);
+        affinityTooltips.put(CorruptionStance.STANCE_ID, GR.Tooltips.DarkStance);
+
+        // TODO have a way to map tooltips/stances to their associated affinity to make the replacement more dynamic
         for (String key : tooltips.keySet())
         {
-            tooltips.get(key).description = stances.get(key).Invoke().description;
+            String baseDesc = tooltips.get(key).description = stances.get(key).Invoke().description;
+            affinityTooltips.get(key).description = baseDesc.replace("[F]","[A_Red]").replace("[A]","[A_Green]").replace("[I]","[A_Blue]");
         }
 
         tooltips.put(NeutralStance.STANCE_ID, GR.Tooltips.NeutralStance);

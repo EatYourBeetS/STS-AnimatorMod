@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import eatyourbeets.powers.EYBClickablePower;
 import eatyourbeets.powers.EYBPower;
 import eatyourbeets.relics.EYBRelic;
+import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.*;
 import org.apache.commons.lang3.StringUtils;
@@ -63,6 +64,7 @@ public class EYBCardTooltip
     private static final ArrayList<EYBCardTooltip> genericTooltips = new ArrayList<>();
     private static EYBCardTooltip maxCopiesTooltip;
     private static boolean inHand;
+    private static AbstractCard.CardColor currentColor;
     private static EYBCard card;
     private static EYBRelic relic;
     private static AbstractCreature creature;
@@ -222,11 +224,16 @@ public class EYBCardTooltip
 
         int totalHidden = 0;
         inHand = AbstractDungeon.player != null && AbstractDungeon.player.hand.contains(card);
+        currentColor = AbstractDungeon.player != null ? AbstractDungeon.player.getCardColor() : card.color;
         tooltips.clear();
         card.GenerateDynamicTooltips(tooltips);
 
         for (EYBCardTooltip tip : card.tooltips)
         {
+            if (currentColor == GR.AnimatorClassic.CardColor)
+            {
+                tip = CardTooltips.GetClassic(tip);
+            }
             if (tip.canRender && !tooltips.contains(tip))
             {
                 tooltips.add(tip);
@@ -346,6 +353,8 @@ public class EYBCardTooltip
             return;
         }
 
+        currentColor = AbstractDungeon.player != null ? AbstractDungeon.player.getCardColor() : relic.mainTooltip != null ? relic.mainTooltip.requiredColor : null;
+
         float x;
         float y;
         if ((float) InputHelper.mX >= 1400.0F * Settings.scale)
@@ -382,6 +391,10 @@ public class EYBCardTooltip
         for (int i = 0; i < relic.tips.size(); i++)
         {
             EYBCardTooltip tip = relic.tips.get(i);
+            if (currentColor == GR.AnimatorClassic.CardColor)
+            {
+                tip = CardTooltips.GetClassic(tip);
+            }
             if (tip.hideDescription == null)
             {
                 tip.hideDescription = !StringUtils.isEmpty(tip.id) && GR.Animator.Config.HideTipDescription(tip.id);

@@ -378,7 +378,7 @@
 		},
 		"animator:Ain":
 		{
-			"DESCRIPTION": "Obtain {<B> Token}{+}. || !A! <B>, or if you have ** discarded a card this ** turn: Enter <IS>.",
+			"DESCRIPTION": "Obtain {<B> Token}{+}. || !A! <B>, or if you have ** discarded a card this ** turn: Enter <BS>.",
 			"NAME": "Ain"
 		},
 		"animator:Aisha":
@@ -426,7 +426,7 @@
 		},
 		"animator:Lu":
 		{
-			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || When Drawn: If in ** Neutral Stance, take !M! ** [DD] and enter <FS>.",
+			"DESCRIPTION": "Channel 1 [Dark] and [Frost]. || When Drawn: If in ** Neutral Stance, take !M! ** [DD] and enter <RS>.",
 			"NAME": "Lu"
 		},
 		"animator:Noah":
@@ -450,7 +450,7 @@
 	{
 		"animator:Alexander":
 		{
-			"DESCRIPTION": "<FS>: Gain !M! [Block]. ** Otherwise: Gain <R>. || When Exhausted: ** Play this card.",
+			"DESCRIPTION": "<RS>: Gain !M! [Block]. ** Otherwise: Gain <R>. || When Exhausted: ** Play this card.",
 			"NAME": "Alexander"
 		},
 		"animator:Archer":
@@ -466,7 +466,7 @@
 		},
 		"animator:Berserker":
 		{
-			"DESCRIPTION": "Gain !M! <R>. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <FS>.",
+			"DESCRIPTION": "Gain !M! <R>. || If the enemy dies or ** loses its [Block]: Gain !S! [Block]. || !A! <R>: Enter <RS>.",
 			"NAME": "Berserker"
 		},
 		"animator:Caster":
@@ -782,9 +782,9 @@
 	{
 		"animator:AcuraAkari":
 		{
-			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <AS> or !A! <D>: ** Gain !S! {Temp}. [Envenom].",
+			"DESCRIPTION": "Discard !M! card(s) ** to obtain !M! [T-Knife]. || <GS> or !A! <D>: ** Gain !S! {Temp}. [Envenom].",
 			"NAME": "Akari",
-			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <AS> or !A! <D>: ** Gain !S! {Temp}. [Envenom]."
+			"UPGRADE_DESCRIPTION": "Discard 1 or !M! cards ** to obtain 1 or !M! [T-Knife]. || <GS> or !A! <D>: ** Gain !S! {Temp}. [Envenom]."
 		},
 		"animator:AcuraShin":
 		{
@@ -808,7 +808,7 @@
 			"EXTENDED_DESCRIPTION":
 			[
 				"At the start of turn, choose and activate an #yEffect.",
-				"Enter <CS>. || Add {Void+} to your ** discard pile.",
+				"Enter <DS>. || Add {Void+} to your ** discard pile.",
 				"Gain !M! [Block] and !S! ** of each {<W> Power}. || Discard a random ** {Attack}.",
 				"Draw !M! cards. || Move !S! cards to ** your draw pile.",
 				"Gain !M! [Metallicize]. || Take [DD] equal ** to your [Metallicize].",
@@ -865,7 +865,7 @@
 		},
 		"animator:Nikolay":
 		{
-			"DESCRIPTION": "Gain <R>. Motivate all ** other copies of this card. || <FS>: Gain !M! [Block].",
+			"DESCRIPTION": "Gain <R>. Motivate all ** other copies of this card. || <RS>: Gain !M! [Block].",
 			"NAME": "Nikolay"
 		},
 		"animator:Viivi":
@@ -939,8 +939,8 @@
 		},
 		"animator:Shichika":
 		{
-			"DESCRIPTION": "Choose 1: ** Enter <AS> ** and gain !M! [Counter-Attack]; ** Enter <FS> and ** obtain {Kyotouryuu}.",
-			"EXTENDED_DESCRIPTION": ["Enter <FS>. ** Obtain {{0}}.", "Enter <AS>. ** Gain {0} [Counter-Attack]."],
+			"DESCRIPTION": "Choose 1: ** Enter <GS> ** and gain !M! [Counter-Attack]; ** Enter <RS> and ** obtain {Kyotouryuu}.",
+			"EXTENDED_DESCRIPTION": ["Enter <RS>. ** Obtain {{0}}.", "Enter <GS>. ** Gain {0} [Counter-Attack]."],
 			"NAME": "Shichika"
 		},
 		"animator:Shichika_Kyotouryuu":
@@ -1481,7 +1481,7 @@
 		},
 		"animator:SilverFang":
 		{
-			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || <LIM>. !A! <R>: ** Enter <AS>.",
+			"DESCRIPTION": "Whenever you play an ** {Attack} while in hand: ** Raise [Block] by 1 until played. || <LIM>. !A! <R>: ** Enter <GS>.",
 			"NAME": "Silver Fang"
 		},
 		"animator:Sonic":
@@ -1492,7 +1492,7 @@
 		},
 		"animator:Tatsumaki":
 		{
-			"DESCRIPTION": "Channel 1 [Aether]. ** Gain !M! {Temp.} [Focus]. || This turn, pay 1 [E]: ** Enter <IS>.",
+			"DESCRIPTION": "Channel 1 [Aether]. ** Gain !M! {Temp.} [Focus]. || This turn, pay 1 [E]: ** Enter <BS>.",
 			"EXTENDED_DESCRIPTION": ["Pay 1 [E]: Enter <B> #yStance."],
 			"NAME": "Tatsumaki"
 		}
@@ -1566,7 +1566,7 @@
 		},
 		"animator:Sebas":
 		{
-			"DESCRIPTION": "Gain 1 <R> and !M! [Counter-Attack] ** for each enemy who ** intends to {Attack}. || <AS> and/or ** !A! <R>: Gain [E].",
+			"DESCRIPTION": "Gain 1 <R> and !M! [Counter-Attack] ** for each enemy who ** intends to {Attack}. || <GS> and/or ** !A! <R>: Gain [E].",
 			"NAME": "Sebas"
 		},
 		"animator:Shalltear":
@@ -1612,7 +1612,7 @@
 		},
 		"animator:LestKarr":
 		{
-			"DESCRIPTION": "Any Stance: Obtain {<D> Token}{+}. ** Otherwise: Enter <IS>. || <slm>. When Drawn: ** Boost <B> <D> and add a {Burn} to ** your draw and discard pile.",
+			"DESCRIPTION": "Any Stance: Obtain {<D> Token}{+}. ** Otherwise: Enter <BS>. || <slm>. When Drawn: ** Boost <B> <D> and add a {Burn} to ** your draw and discard pile.",
 			"NAME": "Lest Karr"
 		},
 		"animator:KrulTepes":
@@ -1657,7 +1657,7 @@
 		},
 		"animator:Yuuichirou_Asuramaru":
 		{
-			"DESCRIPTION": "Enter <CS>. ** Receive 2 {Void+}. || Gain !M! of each {<W> ** Power} except <L>.",
+			"DESCRIPTION": "Enter <DS>. ** Receive 2 {Void+}. || Gain !M! of each {<W> ** Power} except <L>.",
 			"NAME": "Asuramaru"
 		}
 	},
@@ -1676,7 +1676,7 @@
 		},
 		"animator:Hakurou":
 		{
-			"DESCRIPTION": "Neutral Stance: ** Enter <AS>. || <LIM>. When Drawn: ** Obtain {<G> Token}.",
+			"DESCRIPTION": "Neutral Stance: ** Enter <GS>. || <LIM>. When Drawn: ** Obtain {<G> Token}.",
 			"NAME": "Hakurou"
 		},
 		"animator:Kaijin":
@@ -1707,7 +1707,7 @@
 		},
 		"animator:Shion":
 		{
-			"DESCRIPTION": "Discard !M! <R> or <L> ** card(s) to gain !S! [Block]. || <LIM>. !A! <R>: ** Enter <FS>.",
+			"DESCRIPTION": "Discard !M! <R> or <L> ** card(s) to gain !S! [Block]. || <LIM>. !A! <R>: ** Enter <RS>.",
 			"NAME": "Shion"
 		},
 		"animator:Shizu":
@@ -1717,7 +1717,7 @@
 		},
 		"animator:Shizu_Ifrit":
 		{
-			"DESCRIPTION": "Enter <CS>. ** Receive 2 {Burn+}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
+			"DESCRIPTION": "Enter <DS>. ** Receive 2 {Burn+}. || Increase the ** damage bonus of [Burning] ** by !M!% this combat.",
 			"NAME": "Ifrit"
 		},
 		"animator:Shuna":
@@ -1754,7 +1754,7 @@
 		},
 		"animator:AyaShameimaru":
 		{
-			"DESCRIPTION": "Gain !S! [~Blur]. ** <DRW-M>. || This turn, pay 1 [E]: ** Enter <AS>.",
+			"DESCRIPTION": "Gain !S! [~Blur]. ** <DRW-M>. || This turn, pay 1 [E]: ** Enter <GS>.",
 			"EXTENDED_DESCRIPTION": ["Pay 1 [E]: Enter <G> #yStance."],
 			"NAME": "Aya Shameimaru"
 		},
@@ -1805,10 +1805,10 @@
 		},
 		"animator:SakuyaIzayoi":
 		{
-			"DESCRIPTION": "Gain X-1 <G>. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <AS>: Increase X by 1.",
+			"DESCRIPTION": "Gain X-1 <G>. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <GS>: Increase X by 1.",
 			"EXTENDED_DESCRIPTION": ["At the start of turn, add #b{0} [T-Knife] to your hand."],
 			"NAME": "Sakuya Izayoi",
-			"UPGRADE_DESCRIPTION": "Gain X <G>. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <AS>: Increase X by 1."
+			"UPGRADE_DESCRIPTION": "Gain X <G>. Next turn: ** Add X [T-Knife] to your hand. || !A! <G> and/or <GS>: Increase X by 1."
 		},
 		"animator:SanaeKochiya":
 		{
@@ -1822,7 +1822,7 @@
 		},
 		"animator:YoumuKonpaku":
 		{
-			"DESCRIPTION": "Deals double damage to ** enemies with full [HP]. || <slm>. <AS>: ** Next turn: Fetch this card ** from your discard pile.",
+			"DESCRIPTION": "Deals double damage to ** enemies with full [HP]. || <slm>. <GS>: ** Next turn: Fetch this card ** from your discard pile.",
 			"NAME": "Youmu Konpaku"
 		},
 		"animator:YukariYakumo":
@@ -1840,9 +1840,9 @@
 			"DESCRIPTION": "Once per combat, ** pay !S! [E]: Choose and ** Enter any Stance, ** then end your turn.",
 			"EXTENDED_DESCRIPTION":
 			[
-				"Once per combat, pay ** !S! [E]: Enter <FS>, ** then end your turn.",
-				"Once per combat, pay ** !S! [E]: Enter <AS>, ** then end your turn.",
-				"Once per combat, pay ** !S! [E]: Enter <IS>, ** then end your turn."
+				"Once per combat, pay ** !S! [E]: Enter <RS>, ** then end your turn.",
+				"Once per combat, pay ** !S! [E]: Enter <GS>, ** then end your turn.",
+				"Once per combat, pay ** !S! [E]: Enter <BS>, ** then end your turn."
 			],
 			"NAME": "Stances"
 		},

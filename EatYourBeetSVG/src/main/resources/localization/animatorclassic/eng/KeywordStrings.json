@@ -66,6 +66,18 @@
 		"NAMES": ["teamwork"],
 		"PROPER_NAME": "Teamwork"
 	},
+	"~Boost_Classic":
+	{
+	  "DESCRIPTION": "Gain the specified power, it does not decrease at the start of next turn.",
+	  "NAMES": [""],
+	  "PROPER_NAME": "Boost"
+	},
+	"~Enchanted Armor_Classic":
+	{
+	  "DESCRIPTION": "Take less damage from Attacks. NL Example: NL #b10 -> #g10%, #b25 -> #g20%, NL #b50 -> #g33%, #b100 -> #g50%",
+	  "NAMES": [""],
+	  "PROPER_NAME": "Enchanted Armor"
+	},
 	"~Orb Core":
 	{
 		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",

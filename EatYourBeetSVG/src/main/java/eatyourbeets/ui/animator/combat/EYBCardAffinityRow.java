@@ -9,6 +9,7 @@ import eatyourbeets.cards.base.*;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.GUIElement;
+import eatyourbeets.ui.controls.GUI_Button;
 import eatyourbeets.ui.controls.GUI_Image;
 import eatyourbeets.ui.controls.GUI_Label;
 import eatyourbeets.ui.hitboxes.RelativeHitbox;
@@ -16,6 +17,7 @@ import eatyourbeets.utilities.*;
 
 public class EYBCardAffinityRow extends GUIElement
 {
+    public static final Color COLOR_BUTTON = new Color(0.13f, 0.13f, 0.13f, 1f);
     public static final Color COLOR_DEFAULT = new Color(0.05f, 0.05f, 0.05f, 1f);
     public static final Color COLOR_HIGHLIGHT_WEAK = new Color(0.5f, 0.5f, 0.5f, 0.75f);
     public static final Color COLOR_HIGHLIGHT_STRONG = new Color(0.75f, 0.75f, 0.35f, 0.75f);
@@ -25,12 +27,14 @@ public class EYBCardAffinityRow extends GUIElement
     public final AbstractAffinityPower Power;
     public int BaseLevel;
     public int Level;
+    public int ThresholdCost;
 
     protected static final EYBCardTooltip tooltip = new EYBCardTooltip("Affinities", "");
     protected final GUI_Image image_background;
     protected final GUI_Image image_affinity;
     protected final GUI_Label text_affinity;
     protected final GUI_Image image_synergy;
+    protected final GUI_Button threshold_button;
 
     public EYBCardAffinityRow(EYBCardAffinitySystem system, Affinity affinity, int index)
     {
@@ -41,10 +45,9 @@ public class EYBCardAffinityRow extends GUIElement
         System = system;
         Power = system.GetPower(affinity);
 
-        if (Power != null)
-        {
-            Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
-        }
+        threshold_button = new GUI_Button(GR.Common.Images.Tag.Texture(),
+                new RelativeHitbox(hb, 1f, 0.92f, 1.6f, offset_y))
+                .SetColor(COLOR_BUTTON);
 
         image_background = new GUI_Image(GR.Common.Images.Panel_Elliptical_Half_H.Texture(),
         new RelativeHitbox(hb, 1, 1, 0.5f, offset_y))
@@ -61,7 +64,17 @@ public class EYBCardAffinityRow extends GUIElement
         image_synergy = new GUI_Image(GR.Common.Images.Arrow_Right.Texture(),
         new RelativeHitbox(hb, Scale(20), Scale(20), hb.width - Scale(18f), offset_y * hb.height, false));
 
-        image_synergy.SetActive(Power != null);
+        if (Power != null)
+        {
+            // TODO Only set the hitbox when playing as Classic Animator
+            //Power.hb = new RelativeHitbox(hb, 1, 1, 1.5f, offset_y);
+            threshold_button.SetOnClick(this::SpendCost).SetFont(null, 0.5f);
+        }
+        else
+        {
+            image_synergy.SetActive(false);
+            threshold_button.SetActive(false);
+        }
     }
 
     public void OnStartOfTurn()
@@ -140,6 +153,11 @@ public class EYBCardAffinityRow extends GUIElement
                     }
                 }
             }
+            else if (threshold_button.hb.hovered && Power != null)
+            {
+                tooltip.description = GR.Animator.Strings.Affinities.Threshold(ThresholdCost, Type.GetTooltip(), Type.GetThresholdTooltip());
+                EYBCardTooltip.QueueTooltip(tooltip, false);
+            }
         }
 
         if (Type == Affinity.Sealed || Level == BaseLevel)
@@ -149,6 +167,13 @@ public class EYBCardAffinityRow extends GUIElement
         else
         {
             text_affinity.SetText(Level).SetColor(Colors.LightGreen(1));
+        }
+
+        if (Power != null)
+        {
+            threshold_button
+                    .SetText("+1 " + Type.GetThresholdTooltip() + " (" + ThresholdCost + ") ", true, true)
+                    .SetTextColor(Level >= ThresholdCost ? Colors.LightGreen(1) : Colors.Cream(0.6f));
         }
 
         Update();
@@ -161,6 +186,7 @@ public class EYBCardAffinityRow extends GUIElement
         image_affinity.TryUpdate();
         text_affinity.TryUpdate();
         image_synergy.TryUpdate();
+        threshold_button.TryUpdate();
     }
 
     @Override
@@ -170,10 +196,22 @@ public class EYBCardAffinityRow extends GUIElement
         image_affinity.TryRender(sb);
         text_affinity.TryRender(sb);
         image_synergy.TryRender(sb);
+        threshold_button.TryRender(sb);
 
-        if (Power != null)
+        // TODO Render power for Classic Animator
+/*        if (Power != null)
         {
             Power.Render(sb);
+        }*/
+    }
+
+    protected void SpendCost()
+    {
+        if (Power != null && System.TryUseAffinity(Type, ThresholdCost))
+        {
+            GameActions.Bottom.StackPower(TargetHelper.Player(), Power.GetThresholdBonusPower(), 1);
+            System.BaseAffinities.SetRequirement(Type, ThresholdCost + 1);
+            RefreshLevels();
         }
     }
 
@@ -181,5 +219,6 @@ public class EYBCardAffinityRow extends GUIElement
     {
         BaseLevel = System.BaseAffinities.GetLevel(Type, true);
         Level = System.CurrentAffinities.GetLevel(Type, true);
+        ThresholdCost = System.BaseAffinities.GetRequirement(Type);
     }
 }

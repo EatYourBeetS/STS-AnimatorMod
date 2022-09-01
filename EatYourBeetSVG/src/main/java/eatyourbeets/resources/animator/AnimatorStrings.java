@@ -493,6 +493,7 @@ public class AnimatorStrings
         private final String LockMessage = Strings.TEXT[2];
         private final String Hold = Strings.TEXT[3];
         private final String Toggle = Strings.TEXT[4];
+        private final String Threshold = Strings.TEXT[5];
 
         public String AffinityStatus(int current, int max)
         {
@@ -507,6 +508,11 @@ public class AnimatorStrings
         public String LockMessage(boolean hold)
         {
             return LockMessage + (hold ? Hold : Toggle);
+        }
+
+        public String Threshold(int cost, Object payment, Object threshold)
+        {
+            return JUtils.Format(Threshold, cost, payment, threshold);
         }
     }
 

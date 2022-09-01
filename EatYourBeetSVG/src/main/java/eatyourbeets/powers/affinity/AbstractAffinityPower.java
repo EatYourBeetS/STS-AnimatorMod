@@ -323,7 +323,7 @@ public abstract class AbstractAffinityPower extends CommonPower
         return amount;
     }
 
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return null;
     }

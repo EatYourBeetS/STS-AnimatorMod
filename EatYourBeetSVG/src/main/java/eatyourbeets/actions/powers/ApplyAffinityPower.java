@@ -7,10 +7,15 @@ import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import eatyourbeets.cards.base.Affinity;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
+import eatyourbeets.powers.common.TemporaryStatsPower;
 import eatyourbeets.resources.GR;
+import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.GameUtilities;
+
+import java.util.HashMap;
 
 public class ApplyAffinityPower extends ApplyPower
 {
@@ -54,54 +59,32 @@ public class ApplyAffinityPower extends ApplyPower
     protected void FirstUpdate()
     {
         final AbstractAffinityPower powerToApply = (AbstractAffinityPower) this.powerToApply;
-        if (retain)
-        {
-            powerToApply.RetainOnce();
-        }
 
-        if (amount == 0)
+        // Animator classic has the abstract affinity power applied directly to them
+        if (GR.AnimatorClassic.IsSelected())
         {
-            Complete();
-            return;
-        }
+            if (retain)
+            {
+                powerToApply.RetainOnce();
+            }
 
-        if (!GR.Animator.IsSelected())
-        {
+            if (amount == 0)
+            {
+                Complete();
+                return;
+            }
+
             super.FirstUpdate();
             return;
         }
 
-        if (shouldCancelAction() || !GameUtilities.CanApplyPower(source, target, powerToApply, this))
+        // Affinity animator gets the affinity bonus and temporary power (if retain)
+        if (retain)
         {
-            Complete(powerToApply);
-            return;
+            GameActions.Bottom.GainTemporaryStats(amount, powerToApply.GetThresholdBonusPower());
         }
 
-        if (source != null)
-        {
-            for (AbstractPower power : source.powers)
-            {
-                power.onApplyPower(this.powerToApply, target, source);
-            }
-        }
-
-        powerToApply.Stack(amount, retain);
-
-        if (playSFX)
-        {
-            powerToApply.flash();
-        }
-        else
-        {
-            powerToApply.flashWithoutSound();
-        }
-
-        if (showEffect)
-        {
-            GameEffects.List.Add(new PowerBuffEffect(target.hb.cX - target.animX, target.hb.cY + target.hb.height / 2f, "+" + amount + " " + powerToApply.name));
-        }
-
-        AbstractDungeon.onModifyPower();
+        CombatStats.Affinities.AddAffinity(powerToApply.affinity, amount);
     }
 
     @Override

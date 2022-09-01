@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.powers.CombatStats;
+import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
@@ -106,23 +107,29 @@ public enum Affinity implements Comparable<Affinity>
 
     public TextureRegion GetThresholdIcon()
     {
+        EYBCardTooltip tip = GetThresholdTooltip();
+        return tip != null ? tip.icon : null;
+    }
+
+    public EYBCardTooltip GetThresholdTooltip()
+    {
         switch (this)
         {
-            case Red: return GR.Tooltips.Strength.icon;
+            case Red: return GR.Tooltips.Strength;
 
-            case Green: return GR.Tooltips.Dexterity.icon;
+            case Green: return GR.Tooltips.Dexterity;
 
-            case Blue: return GR.Tooltips.Focus.icon;
+            case Blue: return GR.Tooltips.Focus;
 
-            case Light: return GR.Tooltips.Vitality.icon;
+            case Light: return GR.Tooltips.Vitality;
 
-            case Dark: return GR.Tooltips.Invocation.icon;
+            case Dark: return GR.Tooltips.Invocation;
 
-            case Star: return GR.Tooltips.Affinity_Star.icon;
+            case Star: return GR.Tooltips.Affinity_Star;
 
-            case General: return GR.Tooltips.Affinity_General.icon;
+            case General: return GR.Tooltips.Affinity_General;
 
-            case Sealed: return GR.Tooltips.Affinity_Sealed.icon;
+            case Sealed: return GR.Tooltips.Affinity_Sealed;
 
             default: return null;
         }

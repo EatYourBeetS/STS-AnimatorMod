@@ -15,7 +15,7 @@ public class CorruptionPower extends AbstractAffinityPower
     }
 
     @Override
-    protected PowerHelper GetThresholdBonusPower()
+    public PowerHelper GetThresholdBonusPower()
     {
         return PowerHelper.Invocation;
     }

@@ -46,6 +46,7 @@ public class GUI_Button extends GUIElement
     public Color disabledTextColor = TEXT_DISABLED_COLOR.cpy();
 
     protected boolean smartText;
+    protected boolean adjustIconSize;
     protected BitmapFont font;
     protected float fontScale;
     protected float currentClickDelay = 0f;
@@ -124,6 +125,15 @@ public class GUI_Button extends GUIElement
     {
         this.text = text;
         this.smartText = smartText;
+
+        return this;
+    }
+
+    public GUI_Button SetText(String text, boolean smartText, boolean resizeIcons)
+    {
+        this.text = text;
+        this.smartText = smartText;
+        this.adjustIconSize = resizeIcons;
 
         return this;
     }
@@ -314,7 +324,7 @@ public class GUI_Button extends GUIElement
             {
                 font.getData().setScale(fontScale * scale);
                 final float width = RenderHelpers.GetSmartWidth(font, text);
-                RenderHelpers.WriteSmartText(sb, font, text, hb.cX - (width * 0.5f), hb.y + (hb.height * 0.625f), hb.width, color);
+                RenderHelpers.WriteSmartText(sb, font, text, hb.cX - (width * 0.5f), hb.y + (hb.height * 0.625f), hb.width, color, adjustIconSize);
             }
             else
             {

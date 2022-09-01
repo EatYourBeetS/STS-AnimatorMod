@@ -470,7 +470,17 @@ public class RenderHelpers
         WriteSmartText(sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor);
     }
 
+    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, Color baseColor, boolean resizeIcons)
+    {
+        WriteSmartText(sb, font, text, x, y, lineWidth, font.getLineHeight() * Settings.scale, baseColor, resizeIcons);
+    }
+
     public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor)
+    {
+        WriteSmartText(sb, font, text, x, y, lineWidth, lineSpacing, baseColor, false);
+    }
+
+    public static void WriteSmartText(SpriteBatch sb, BitmapFont font, String text, float x, float y, float lineWidth, float lineSpacing, Color baseColor, boolean resizeIcons)
     {
         if (text != null)
         {
@@ -480,6 +490,8 @@ public class RenderHelpers
             float curWidth = 0f;
             float curHeight = 0f;
             float spaceWidth = layout.width;
+            final float sizeMultiplier = resizeIcons ? (0.667f + (font.getScaleX() / 3f)) : 1;
+            final float imgSize = sizeMultiplier * CARD_ENERGY_IMG_WIDTH;
 
             final FuncT3<Boolean, String, Integer, Character> compare = (s, i, c) -> c == ((i < s.length()) ? s.charAt(i) : null);
             final FuncT1<String, StringBuilder> build = (stringBuilder) ->
@@ -509,21 +521,21 @@ public class RenderHelpers
                     {
                         final float orbWidth = icon.getRegionWidth();
                         final float orbHeight = icon.getRegionHeight();
-                        final float scaleX = CARD_ENERGY_IMG_WIDTH / orbWidth;
-                        final float scaleY = CARD_ENERGY_IMG_WIDTH / orbHeight;
+                        final float scaleX = imgSize / orbWidth;
+                        final float scaleY = imgSize / orbHeight;
 
                         //sb.setColor(baseColor);
                         sb.setColor(1f, 1f, 1f, baseColor.a);
-                        if (curWidth + CARD_ENERGY_IMG_WIDTH > lineWidth)
+                        if (curWidth + imgSize > lineWidth)
                         {
                             curHeight -= lineSpacing;
-                            sb.draw(icon, x - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
-                            curWidth = CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                            sb.draw(icon, x - orbWidth / 2f + sizeMultiplier * 13f * Settings.scale, y + curHeight - sizeMultiplier * orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
+                            curWidth = imgSize + spaceWidth;
                         }
                         else
                         {
-                            sb.draw(icon, x + curWidth - orbWidth / 2f + 13f * Settings.scale, y + curHeight - orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
-                            curWidth += CARD_ENERGY_IMG_WIDTH + spaceWidth;
+                            sb.draw(icon, x + curWidth - orbWidth / 2f + sizeMultiplier * 13f * Settings.scale, y + curHeight - sizeMultiplier * orbHeight / 2f - 8f * Settings.scale, orbWidth / 2f, orbHeight / 2f, orbWidth, orbHeight, scaleX, scaleY, 0f);
+                            curWidth += imgSize + spaceWidth;
                         }
                     }
                 }

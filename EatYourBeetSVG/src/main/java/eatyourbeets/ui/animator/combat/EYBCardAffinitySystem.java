@@ -32,6 +32,8 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSubscriber
 {
+    public static final int BASE_COST = 2;
+
     public final ArrayList<AbstractAffinityPower> Powers = new ArrayList<>();
     public final EYBCardAffinities BaseAffinities = new EYBCardAffinities(null);
     public final EYBCardAffinities CurrentAffinities = new EYBCardAffinities(null);
@@ -176,6 +178,26 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
             uses = (Mathf.Clamp(remainingUses + uses, 0, 3));
             CurrentAffinities.Set(Affinity.Sealed, uses);
             BaseAffinities.Set(Affinity.Sealed, uses);
+        }
+    }
+
+    public void AddAffinity(Affinity affinity, int amount)
+    {
+        if (affinity == Affinity.Star || affinity == Affinity.General)
+        {
+            for (Affinity a : Affinity.Basic())
+            {
+                AddAffinity(a, amount);
+            }
+        }
+        else if (affinity == Affinity.Sealed)
+        {
+            throw new RuntimeException("Do not use AddAffinity() for Affinity.Sealed, use AddAffinitySealUses() instead.");
+        }
+        else
+        {
+            CurrentAffinities.Add(affinity, amount);
+            BaseAffinities.Add(affinity, amount);
         }
     }
 
@@ -395,6 +417,7 @@ public class EYBCardAffinitySystem extends GUIElement implements OnStartOfTurnSu
         for (EYBCardAffinityRow row : rows)
         {
             row.Initialize();
+            BaseAffinities.SetRequirement(row.Type, BASE_COST);
         }
     }
 

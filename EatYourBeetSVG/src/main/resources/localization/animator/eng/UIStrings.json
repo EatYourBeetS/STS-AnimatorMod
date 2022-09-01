@@ -239,11 +239,12 @@
 	{
 		"TEXT":
 		[
-			"Current: #b{0}. Base: #b{1}. NL When manually #ySealing, also gain the corresponding power on the right.",
+			"Current: #b{0}. Base: #b{1}.",
 			"You may #pRight-Click a card to #ySeal it and reshuffle it. Gain #b1 use each turn. Store up to #b3 uses.",
 			"While Locked, your #yAffinity points will not be spent to activate certain cards effect. NL NL Besides pressing this button, you can also alternate between #yLOCK and #yUSE with #pSHIFT. NL NL #pRight-Click to change #pSHIFT mode. Current Mode: #y",
 			"HOLD",
-			"TOGGLE"
+			"TOGGLE",
+		  	"Spend #b{0} {1} to gain #b1 {2}, then increase this cost by #b1."
 		]
 	},
 	

@@ -1,5 +1,6 @@
 package eatyourbeets.utilities;
 
+import basemod.devcommands.power.Power;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -742,6 +743,17 @@ public final class GameActions
         if (focus != 0)
         {
             powers.put(PowerHelper.Focus, focus);
+        }
+
+        return StackPower(new TemporaryStatsPower(player, powers));
+    }
+
+    public ApplyPower GainTemporaryStats(int amount, PowerHelper... powerHelpers)
+    {
+        final HashMap<PowerHelper, Integer> powers = new HashMap<>();
+        for (PowerHelper power : powerHelpers)
+        {
+            powers.put(power, amount);
         }
 
         return StackPower(new TemporaryStatsPower(player, powers));

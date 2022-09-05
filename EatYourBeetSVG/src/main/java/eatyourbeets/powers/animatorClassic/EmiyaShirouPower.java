@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import eatyourbeets.interfaces.subscribers.OnBlockBrokenSubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.RandomizedList;
 
-public class EmiyaShirouPower extends AnimatorPower implements OnBlockBrokenSubscriber
+public class EmiyaShirouPower extends AnimatorClassicPower implements OnBlockBrokenSubscriber
 {
     public static final String POWER_ID = CreateFullID(EmiyaShirouPower.class);
 

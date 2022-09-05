@@ -6,12 +6,12 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.series.OwariNoSeraph.FeridBathory;
 import eatyourbeets.effects.vfx.megacritCopy.HemokinesisEffect2;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 
-public class FeridBathoryPower extends AnimatorPower
+public class FeridBathoryPower extends AnimatorClassicPower
 {
     public static final int EXHAUST_PILE_THRESHOLD = 20;
     public static final int FORCE_AMOUNT = 10;

@@ -3,12 +3,12 @@ package eatyourbeets.powers.animatorClassic;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.animator.SupportDamagePower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class BozesPower extends AnimatorPower
+public class BozesPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(BozesPower.class);
 

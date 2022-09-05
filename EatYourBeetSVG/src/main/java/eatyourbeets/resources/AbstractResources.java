@@ -170,13 +170,13 @@ implements EditCharactersSubscriber, EditCardsSubscriber, EditKeywordsSubscriber
         }
     }
 
-    protected void LoadKeywords(AbstractCard.CardColor requiredColor)
+    protected void LoadKeywords(AbstractPlayer.PlayerClass requiredClass)
     {
-        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"), requiredColor);
+        super.LoadKeywords(GetFallbackFile("KeywordStrings.json"), requiredClass);
 
         if (IsBetaTranslation() || IsTranslationSupported(Settings.language))
         {
-            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"), requiredColor);
+            super.LoadKeywords(GetFile(Settings.language, "KeywordStrings.json"), requiredClass);
         }
     }
 

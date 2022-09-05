@@ -3,11 +3,11 @@ package eatyourbeets.powers.animatorClassic;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.cards.animator.series.Elsword.Laby;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.TargetHelper;
 
-public class LabyPower extends AnimatorPower
+public class LabyPower extends AnimatorClassicPower
 {
     protected int upgradedAmount = 0;
 

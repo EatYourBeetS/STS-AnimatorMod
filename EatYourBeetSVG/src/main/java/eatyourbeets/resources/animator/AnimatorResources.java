@@ -163,7 +163,7 @@ public class AnimatorResources extends AbstractResources
 
         JUtils.LogInfo(this, "InitializeKeywords();");
 
-        LoadKeywords(CardColor);
+        LoadKeywords(PlayerClass);
     }
 
     @Override

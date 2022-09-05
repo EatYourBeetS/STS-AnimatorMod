@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.vfx.BorderLongFlashEffect;
 import eatyourbeets.cards.animator.series.Overlord.Ainz;
 import eatyourbeets.cards.base.AnimatorClassicCardBuilder;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorStrings;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.WeightedList;
 
-public class AinzPower extends AnimatorPower
+public class AinzPower extends AnimatorClassicPower
 {
     private static final String NAME = Ainz.DATA.Strings.NAME;
     private static final AnimatorStrings.Actions ACTIONS = GR.Animator.Strings.Actions;

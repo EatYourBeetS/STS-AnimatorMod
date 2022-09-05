@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class BorosPower extends AnimatorPower
+public class BorosPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(BorosPower.class);
 

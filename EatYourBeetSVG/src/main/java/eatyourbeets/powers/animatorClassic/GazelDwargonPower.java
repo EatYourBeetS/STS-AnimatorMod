@@ -4,9 +4,9 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.relics.Calipers;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 
-public class GazelDwargonPower extends AnimatorPower
+public class GazelDwargonPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(GazelDwargonPower.class);
 

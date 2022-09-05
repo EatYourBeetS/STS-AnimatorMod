@@ -350,11 +350,6 @@
 		"DESCRIPTIONS": ["For the next #b", " turns, when playing a card which does not target this character, gains #b", " #yMax #yHP. NL NL ", "On death, ALL characters gain #b", " #yStrength."],
 		"NAME": "Unnamed Doll"
 	},
-	"animatorClassic:VitalityPower":
-	{
-		"DESCRIPTIONS": ["Whenever you are attacked this turn, gain #b", " #yTemporary #HP."],
-		"NAME": "Vitality"
-	},
 	"animatorClassic:YukoShionjiPower":
 	{
 		"DESCRIPTIONS": ["Reveal the top card of your draw pile, NL you may #pLeft-Click to draw it ( #b", " use(s) ), or #pRight-Click to discard it ( #b", " use(s))."],

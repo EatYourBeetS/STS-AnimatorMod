@@ -9,12 +9,12 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import eatyourbeets.cards.base.AnimatorClassicCard;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameEffects;
 import eatyourbeets.utilities.JUtils;
 
-public class EvePower extends AnimatorPower
+public class EvePower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(EvePower.class);
     public static final int GROWTH_AMOUNT = 1;

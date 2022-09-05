@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animatorClassic.special.HinaKagiyama;
 import eatyourbeets.cards.animatorClassic.special.HinaKagiyama_Miracle;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class HinaKagiyamaPower extends AnimatorPower
+public class HinaKagiyamaPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(HinaKagiyamaPower.class);
     public static final int CARD_DRAW_AMOUNT = 2;

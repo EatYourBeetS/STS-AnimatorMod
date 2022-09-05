@@ -49,6 +49,12 @@ public abstract class AnimatorCard extends EYBCard
     }
 
     @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.Animator.PlayerClass;
+    }
+
+    @Override
     public AbstractCard makeStatEquivalentCopy()
     {
         AnimatorCard copy = (AnimatorCard) super.makeStatEquivalentCopy();

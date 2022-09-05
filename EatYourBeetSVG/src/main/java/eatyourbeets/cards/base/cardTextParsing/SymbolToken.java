@@ -2,9 +2,11 @@ package eatyourbeets.cards.base.cardTextParsing;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.base.EYBCard;
 import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.resources.CardTooltips;
+import eatyourbeets.resources.GR;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.HashMap;
@@ -19,19 +21,19 @@ public class SymbolToken extends CTToken
     {
 //        tokenCache.put("R", new SymbolToken("[R]"));
 //        tokenCache.put("G", new SymbolToken("[G]"));
-        tokenCache.put("W", new SymbolToken("[W]"));
-        tokenCache.put("E", new SymbolToken("[E]")); // Energy
-        tokenCache.put("F", new SymbolToken("[F]")); // Force
-        tokenCache.put("A", new SymbolToken("[A]")); // Agility
-        tokenCache.put("I", new SymbolToken("[I]")); // Intellect
-        tokenCache.put("B", new SymbolToken("[B]")); // Blessing
-        tokenCache.put("C", new SymbolToken("[C]")); // Corruption
+//        tokenCache.put("W", new SymbolToken(null, "[W]"));
+        tokenCache.put("E", new SymbolToken(null, "[E]")); // Energy
+        tokenCache.put("F", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[F]")); // Force
+        tokenCache.put("A", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[A]")); // Agility
+        tokenCache.put("I", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[I]")); // Intellect
+        tokenCache.put("B", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[B]")); // Blessing
+        tokenCache.put("C", new SymbolToken(GR.AnimatorClassic.PlayerClass, "[C]")); // Corruption
     }
 
-    private SymbolToken(String text)
+    private SymbolToken(AbstractPlayer.PlayerClass playerClass, String text)
     {
         super(CTTokenType.Symbol, text);
-        this.tooltip = CardTooltips.FindByName(text);
+        this.tooltip = CardTooltips.FindByName(playerClass, text);
     }
 
     private SymbolToken(EYBCardTooltip tooltip)
@@ -66,11 +68,11 @@ public class SymbolToken extends CTToken
                     SymbolToken token = tokenCache.get(key);
                     if (token == null)
                     {
-                        final EYBCardTooltip tooltip = CardTooltips.FindByID(key);
+                        final EYBCardTooltip tooltip = CardTooltips.FindByID(parser.resources.PlayerClass, key);
                         if (tooltip != null)
                         {
                             token = new SymbolToken(tooltip);
-                            tokenCache.put(key, token);
+                            //tokenCache.put(key, token);
                         }
                         else
                         {

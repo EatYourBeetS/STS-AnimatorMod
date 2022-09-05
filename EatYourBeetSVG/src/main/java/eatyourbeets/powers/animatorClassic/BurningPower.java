@@ -10,10 +10,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class BurningPower extends AnimatorPower implements HealthBarRenderPower
+public class BurningPower extends AnimatorClassicPower implements HealthBarRenderPower
 {
     private static final Color healthBarColor = Color.ORANGE.cpy();
 

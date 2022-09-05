@@ -2,9 +2,9 @@ package eatyourbeets.powers.animatorClassic;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animator.series.Katanagatari.HigakiRinne;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 
-public class HigakiRinnePower extends AnimatorPower
+public class HigakiRinnePower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(HigakiRinnePower.class);
 

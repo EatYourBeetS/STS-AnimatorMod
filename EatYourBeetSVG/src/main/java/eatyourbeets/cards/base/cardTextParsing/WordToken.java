@@ -133,8 +133,8 @@ public class WordToken extends CTToken
 
             if (parser.card != null)
             {
-                EYBCardTooltip tooltip = CardTooltips.FindByName(word.toLowerCase());
-                if (tooltip != null && (tooltip.requiredColor == null || tooltip.requiredColor == parser.resources.CardColor))
+                final EYBCardTooltip tooltip = CardTooltips.FindByName(parser.resources.PlayerClass, word.toLowerCase());
+                if (tooltip != null)
                 {
                     if (tooltip.isKeyword)
                     {

@@ -57,6 +57,12 @@ public abstract class UnnamedCard extends EYBCard
     }
 
     @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.Unnamed.PlayerClass;
+    }
+
+    @Override
     protected Texture GetCardBackground()
     {
         if (color == GR.Unnamed.CardColor)

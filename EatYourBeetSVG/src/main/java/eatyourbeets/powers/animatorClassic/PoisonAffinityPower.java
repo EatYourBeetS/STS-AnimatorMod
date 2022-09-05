@@ -7,11 +7,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
 import eatyourbeets.actions.powers.ApplyPower;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameUtilities;
 import eatyourbeets.utilities.JUtils;
 
-public class PoisonAffinityPower extends AnimatorPower
+public class PoisonAffinityPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(PoisonAffinityPower.class);
 

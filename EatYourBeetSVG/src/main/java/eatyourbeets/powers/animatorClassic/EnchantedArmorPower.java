@@ -2,11 +2,11 @@ package eatyourbeets.powers.animatorClassic;
 
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 
 import java.text.DecimalFormat;
 
-public class EnchantedArmorPower extends AnimatorPower
+public class EnchantedArmorPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(EnchantedArmorPower.class);
 

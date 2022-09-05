@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import eatyourbeets.powers.CombatStats;
-import eatyourbeets.powers.PowerHelper;
 import eatyourbeets.powers.affinity.AbstractAffinityPower;
 import eatyourbeets.resources.GR;
 import eatyourbeets.ui.TextureCache;
@@ -105,34 +104,10 @@ public enum Affinity implements Comparable<Affinity>
         }
     }
 
-    public TextureRegion GetThresholdIcon()
+    public TextureRegion GetPowerIcon(boolean classic)
     {
-        EYBCardTooltip tip = GetThresholdTooltip();
+        final EYBCardTooltip tip = GetPowerTooltip(classic);
         return tip != null ? tip.icon : null;
-    }
-
-    public EYBCardTooltip GetThresholdTooltip()
-    {
-        switch (this)
-        {
-            case Red: return GR.Tooltips.Strength;
-
-            case Green: return GR.Tooltips.Dexterity;
-
-            case Blue: return GR.Tooltips.Focus;
-
-            case Light: return GR.Tooltips.Vitality;
-
-            case Dark: return GR.Tooltips.Invocation;
-
-            case Star: return GR.Tooltips.Affinity_Star;
-
-            case General: return GR.Tooltips.Affinity_General;
-
-            case Sealed: return GR.Tooltips.Affinity_Sealed;
-
-            default: return null;
-        }
     }
 
     public Color GetAlternateColor(float lerp)
@@ -192,28 +167,45 @@ public enum Affinity implements Comparable<Affinity>
     {
         switch (this)
         {
-            case Red: return GR.Tooltips.ForceScaling;
-            case Green: return GR.Tooltips.AgilityScaling;
-            case Blue: return GR.Tooltips.IntellectScaling;
-            case Light: return GR.Tooltips.BlessingScaling;
-            case Dark: return GR.Tooltips.CorruptionScaling;
+            case Red: return GR.Tooltips.RedScaling;
+            case Green: return GR.Tooltips.GreenScaling;
+            case Blue: return GR.Tooltips.BlueScaling;
+            case Light: return GR.Tooltips.LightScaling;
+            case Dark: return GR.Tooltips.DarkScaling;
             case Star: return GR.Tooltips.MulticolorScaling;
 
             default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
         }
     }
 
-    public EYBCardTooltip GetPowerTooltip()
+    public EYBCardTooltip GetPowerTooltip(boolean classic)
     {
-        switch (this)
+        if (classic)
         {
-            case Red: return GR.Tooltips.Force;
-            case Green: return GR.Tooltips.Agility;
-            case Blue: return GR.Tooltips.Intellect;
-            case Light: return GR.Tooltips.Blessing;
-            case Dark: return GR.Tooltips.Corruption;
+            switch (this)
+            {
+                case Red: return GR.Tooltips.Force;
+                case Green: return GR.Tooltips.Agility;
+                case Blue: return GR.Tooltips.Intellect;
+                case Light: return GR.Tooltips.Blessing;
+                case Dark: return GR.Tooltips.Corruption;
 
-            default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+                default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+            }
+        }
+        else
+        {
+            switch (this)
+            {
+                case Red: return GR.Tooltips.Strength;
+                case Green: return GR.Tooltips.Dexterity;
+                case Blue: return GR.Tooltips.Focus;
+                case Light: return GR.Tooltips.Vitality;
+                case Dark: return GR.Tooltips.Invocation;
+                case Star: return GR.Tooltips.Affinity_Star;
+
+                default: throw new EnumConstantNotPresentException(Affinity.class, this.name());
+            }
         }
     }
 

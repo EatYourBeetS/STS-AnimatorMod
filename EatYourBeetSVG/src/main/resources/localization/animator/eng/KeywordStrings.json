@@ -1,69 +1,108 @@
 
 {
-	"Aether":
+	"Affinity":
 	{
-		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
-		"NAMES": ["aether", "aether+"],
-		"PROPER_NAME": "Aether"
+		"DESCRIPTION": "#yAffinity can be of any color NL between [A_Red], [A_Green], [A_Blue], [A_Light], [A_Dark]. NL [A_Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
+		"NAMES": ["affinity", "affinities"],
+		"PROPER_NAME": "Affinity"
 	},
-	"Chaos":
+	"Affinity Seal":
 	{
-		"DESCRIPTION": "Orb: Changes into a random orb when you play an #yAttack. Permanently retains its last form at the end of turn.",
-		"NAMES": ["chaos", "chaos+"],
-		"PROPER_NAME": "Chaos"
+		"DESCRIPTION": "#ySealing a card transfers all its [A_Gen] to your [A_Gen] pool. Once per turn, #pRight-Click a card to manually #ySeal and reshuffle it.",
+		"NAMES": ["seal", "seals", "sealing", "sealed", "unseal", "unsealed"],
+		"PROPER_NAME": "Sealed Affinity"
 	},
-	"Cooldown":
+	"Affinity Power":
 	{
-		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect.",
-		"NAMES": ["cooldown"],
-		"PROPER_NAME": "Cooldown"
+		"DESCRIPTION": "[A_Red] -> [F], [A_Green] -> [A], [A_Blue] -> [I], NL [A_Light] -> [B], [A_Dark] -> [C]",
+		"NAMES": ["[a_gen] power", "[a_gen] powers", "affinity power", "affinity powers"],
+		"PROPER_NAME": "Affinity Power"
 	},
-	"Earth":
+	"Affinity Token":
 	{
-		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
-		"NAMES": ["earth", "earth+"],
-		"PROPER_NAME": "Earth"
+		"DESCRIPTION": "Card which increases your #yAffinity for the rest of combat.",
+		"NAMES": ["[a_gen] token", "[a_gen] tokens", "affinity token", "affinity tokens"],
+		"PROPER_NAME": "Affinity Token"
+	},
+	"Multicolor":
+	{
+		"DESCRIPTION": "Counts as an #yAffinity of each color.",
+		"NAMES": ["multicolor"],
+		"PROPER_NAME": "Multicolor"
+	},
+	
+	"Blue Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_blue] stance", "blue stance"],
+	  "PROPER_NAME": "Blue Stance"
+	},
+	"Dark Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_dark] stance", "dark stance"],
+	  "PROPER_NAME": "Demon Stance"
+	},
+	"Green Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_green] stance", "green stance"],
+	  "PROPER_NAME": "Green Stance"
+	},
+	"Red Stance":
+	{
+	  "DESCRIPTION": "<LOAD FROM STANCE>",
+	  "NAMES": ["[a_red] stance", "red stance"],
+	  "PROPER_NAME": "Red Stance"
+	},
+	
+	"Green Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_green] scaling"],
+		"PROPER_NAME": "[A_Green] Scaling"
+	},
+	"Red Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_red] scaling"],
+		"PROPER_NAME": "[A_Red] Scaling"
+	},
+	"Blue Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_blue] scaling"],
+		"PROPER_NAME": "[A_Blue] Scaling"
+	},
+	"Light Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_light] scaling"],
+		"PROPER_NAME": "[A_Light] Scaling"
+	},
+	"Dark Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_dark] scaling"],
+		"PROPER_NAME": "[A_Dark] Scaling"
+	},
+	"Multicolor Scaling":
+	{
+		"DESCRIPTION": "",
+		"NAMES": ["[a_star] scaling"],
+		"PROPER_NAME": "[A_Star] Scaling"
+	},
+	
+	"Boost":
+	{
+		"DESCRIPTION": "Gain the specified [A_Gen]. Also gain its associated threshold power until the end of turn.",
+		"NAMES": ["boost"],
+		"PROPER_NAME": "Boost"
 	},
 	"Enchanted Armor":
 	{
 		"DESCRIPTION": "For every point of [Enchanted Armor], take #b10% less #yAttack damage (max #b50%^) and convert #b1 [Block] to [THP] at the start of each turn.",
 		"NAMES": ["enchanted armor", "ench. armor"],
 		"PROPER_NAME": "Enchanted Armor"
-	},
-	"Fire":
-	{
-		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
-		"NAMES": ["fire", "fire+"],
-		"PROPER_NAME": "Fire"
-	},
-	"Phasing":
-	{
-		"DESCRIPTION": "You have a 35% chance to dodge each attack. Reduce this chance by 5% each turn. Stacking this power resets and delays the chance reduction by 1 turn.",
-		"NAMES": ["phasing"],
-		"PROPER_NAME": "Phasing"
-	},
-	"Reload":
-	{
-		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
-		"NAMES": ["reload"],
-		"PROPER_NAME": "Reload"
-	},
-	"Support Damage":
-	{
-		"DESCRIPTION": "Deal #yRanged damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
-		"NAMES": ["support damage", "supp. damage"],
-		"PROPER_NAME": "Support Damage"
-	},
-	"Synergy":
-	{
-		"DESCRIPTION": "A card #ySynergizes if the last card played this turn shares an #yAffinity color, with at least #b1 of the #b2 #yAffinities being #yLV2.",
-		"NAMES": ["synergy", "synergies", "synergize", "synergizes", "synergized", "synergic"],
-		"PROPER_NAME": "Synergy"
-	},
-	"~Orb Core":
-	{
-		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
-		"NAMES": ["~orb core", "~orb cores"],
-		"PROPER_NAME": "Orb Core"
 	}
 }

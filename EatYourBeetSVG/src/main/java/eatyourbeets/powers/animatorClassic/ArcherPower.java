@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.GameUtilities;
 
-public class ArcherPower extends AnimatorPower
+public class ArcherPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(ArcherPower.class);
 

@@ -1,10 +1,10 @@
 package eatyourbeets.powers.animatorClassic;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class ShiroPower extends AnimatorPower
+public class ShiroPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(ShiroPower.class);
 

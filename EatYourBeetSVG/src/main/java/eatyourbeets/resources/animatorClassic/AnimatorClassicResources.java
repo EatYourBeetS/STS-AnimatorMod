@@ -15,7 +15,10 @@ import eatyourbeets.cards.base.EYBCardMetadata;
 import eatyourbeets.characters.AnimatorClassicCharacter;
 import eatyourbeets.potions.FalseLifePotion;
 import eatyourbeets.potions.GrowthPotion;
+import eatyourbeets.powers.affinity.*;
 import eatyourbeets.resources.AbstractResources;
+import eatyourbeets.resources.CardTooltips;
+import eatyourbeets.resources.GR;
 import eatyourbeets.resources.animator.AnimatorImages;
 import eatyourbeets.rewards.animator.MissingPieceReward;
 import eatyourbeets.rewards.animator.SpecialCardReward;
@@ -147,7 +150,13 @@ public class AnimatorClassicResources extends AbstractResources
 
         JUtils.LogInfo(this, "InitializeKeywords();");
 
-        LoadKeywords(CardColor);
+        LoadKeywords(PlayerClass);
+
+        CardTooltips.RegisterPowerTooltip(GR.AnimatorClassic.PlayerClass, "[F]", "Force", new ForcePower());
+        CardTooltips.RegisterPowerTooltip(GR.AnimatorClassic.PlayerClass, "[A]", "Agility", new AgilityPower());
+        CardTooltips.RegisterPowerTooltip(GR.AnimatorClassic.PlayerClass, "[I]", "Intellect", new IntellectPower());
+        CardTooltips.RegisterPowerTooltip(GR.AnimatorClassic.PlayerClass, "[B]", "Blessing", new BlessingPower());
+        CardTooltips.RegisterPowerTooltip(GR.AnimatorClassic.PlayerClass, "[C]", "Corruption", new CorruptionPower());
     }
 
     @Override

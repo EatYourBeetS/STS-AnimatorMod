@@ -8,7 +8,6 @@ import eatyourbeets.cards.base.EYBCardTooltip;
 import eatyourbeets.interfaces.delegates.FuncT0;
 import eatyourbeets.resources.CardTooltips;
 import eatyourbeets.resources.GR;
-import eatyourbeets.resources.animator.AnimatorResources;
 import eatyourbeets.utilities.GameActions;
 
 public class GenericEffect_ChannelOrb extends GenericEffect
@@ -51,7 +50,7 @@ public class GenericEffect_ChannelOrb extends GenericEffect
 
     public EYBCardTooltip GetOrbTooltip(AbstractOrb orb)
     {
-        return CardTooltips.FindByID(orb.ID.replace(AnimatorResources.ID + ":", ""));
+        return CardTooltips.FindByID(null, orb.ID.substring(orb.ID.lastIndexOf(':')));
     }
 
     @Override

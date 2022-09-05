@@ -64,6 +64,12 @@ public abstract class AnimatorClassicCard extends EYBCard
         super(data, id, imagePath, cost, type, color, rarity, target);
     }
 
+    @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.AnimatorClassic.PlayerClass;
+    }
+
     public void SetSeries(CardSeries series)
     {
         this.series = series;

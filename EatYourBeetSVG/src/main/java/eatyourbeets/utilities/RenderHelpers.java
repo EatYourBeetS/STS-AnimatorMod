@@ -832,7 +832,7 @@ public class RenderHelpers
                 return AbstractCard.orb_special;
 
             default:
-                final EYBCardTooltip tooltip = CardTooltips.FindByID(id);
+                final EYBCardTooltip tooltip = CardTooltips.FindByID(GameUtilities.GetPlayerClass(), id);
                 return (tooltip != null) ? tooltip.icon : null;
         }
     }

@@ -1,5 +1,6 @@
 package eatyourbeets.relics;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.*;
 import eatyourbeets.relics.animator.AbstractMissingPiece;
@@ -66,6 +67,12 @@ public abstract class AnimatorRelic extends EYBRelic
     @Override
     public boolean canSpawn()
     {
-        return AbstractDungeon.player.chosenClass == GR.Animator.PlayerClass;
+        return AbstractDungeon.player.chosenClass == GetPlayerClass();
+    }
+
+    @Override
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return GR.Animator.PlayerClass;
     }
 }

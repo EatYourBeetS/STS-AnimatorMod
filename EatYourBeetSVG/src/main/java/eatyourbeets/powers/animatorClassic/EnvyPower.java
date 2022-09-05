@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import eatyourbeets.interfaces.subscribers.OnSynergyCheckSubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.CombatStats;
 
-public class EnvyPower extends AnimatorPower implements OnSynergyCheckSubscriber
+public class EnvyPower extends AnimatorClassicPower implements OnSynergyCheckSubscriber
 {
     public static final String POWER_ID = CreateFullID(EnvyPower.class);
 

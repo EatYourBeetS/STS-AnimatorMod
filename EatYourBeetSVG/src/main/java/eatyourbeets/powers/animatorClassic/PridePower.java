@@ -5,13 +5,13 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.Dark;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
 import java.util.ArrayList;
 
-public class PridePower extends AnimatorPower
+public class PridePower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(PridePower.class);
 

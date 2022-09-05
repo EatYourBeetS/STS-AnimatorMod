@@ -3,11 +3,11 @@ package eatyourbeets.powers.animatorClassic;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import eatyourbeets.cards.animator.series.FullmetalAlchemist.WinryRockbell;
 import eatyourbeets.interfaces.subscribers.OnAfterCardDiscardedSubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class WinryRockbellPower extends AnimatorPower implements OnAfterCardDiscardedSubscriber
+public class WinryRockbellPower extends AnimatorClassicPower implements OnAfterCardDiscardedSubscriber
 {
     public static final int BLOCK_AMOUNT = 4;
 

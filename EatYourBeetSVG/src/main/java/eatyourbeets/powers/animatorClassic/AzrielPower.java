@@ -2,10 +2,10 @@ package eatyourbeets.powers.animatorClassic;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.*;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class AzrielPower extends AnimatorPower
+public class AzrielPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(AzrielPower.class);
 

@@ -41,6 +41,11 @@ public abstract class EYBRelic extends CustomRelic
         this(id, id, tier, sfx);
     }
 
+    public AbstractPlayer.PlayerClass GetPlayerClass()
+    {
+        return null;
+    }
+
     public TextureAtlas.AtlasRegion GetPowerIcon()
     {
         final Texture texture = img;
@@ -219,6 +224,7 @@ public abstract class EYBRelic extends CustomRelic
         mainTooltip = new EYBCardTooltip(name, description);
         tips.add(mainTooltip);
 
+        final AbstractPlayer.PlayerClass playerClass = GetPlayerClass();
         final Scanner desc = new Scanner(this.description);
         String s;
         boolean alreadyExists;
@@ -248,7 +254,7 @@ public abstract class EYBRelic extends CustomRelic
             s = s.trim();
             s = s.toLowerCase();
 
-            EYBCardTooltip tip = CardTooltips.FindByName(s);
+            EYBCardTooltip tip = CardTooltips.FindByName(playerClass, s);
             if (tip != null && !tips.contains(tip))
             {
                 tips.add(tip);

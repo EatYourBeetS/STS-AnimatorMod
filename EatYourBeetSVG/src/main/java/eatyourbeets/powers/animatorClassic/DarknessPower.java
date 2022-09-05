@@ -3,10 +3,10 @@ package eatyourbeets.powers.animatorClassic;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import eatyourbeets.cards.animatorClassic.special.Darkness_Adrenaline;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class DarknessPower extends AnimatorPower
+public class DarknessPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(DarknessPower.class);
 

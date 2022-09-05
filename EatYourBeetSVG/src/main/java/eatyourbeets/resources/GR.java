@@ -361,7 +361,7 @@ public class GR
         }
     }
 
-    protected void LoadKeywords(FileHandle file, AbstractCard.CardColor requiredColor)
+    protected void LoadKeywords(FileHandle file, AbstractPlayer.PlayerClass requiredClass)
     {
         if (!file.exists())
         {
@@ -379,16 +379,11 @@ public class GR
             final Keyword keyword = pair.getValue();
             final EYBCardTooltip tooltip = new EYBCardTooltip(keyword);
 
-            if (requiredColor != null)
-            {
-                tooltip.requiredColor = requiredColor;
-            }
-
-            CardTooltips.RegisterID(id, tooltip);
+            CardTooltips.RegisterID(requiredClass, id, tooltip);
 
             for (String name : keyword.NAMES)
             {
-                CardTooltips.RegisterName(name, tooltip);
+                CardTooltips.RegisterName(requiredClass, name, tooltip);
             }
         }
     }

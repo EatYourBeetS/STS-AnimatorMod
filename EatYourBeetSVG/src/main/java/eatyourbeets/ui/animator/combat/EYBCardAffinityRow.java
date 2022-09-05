@@ -155,7 +155,7 @@ public class EYBCardAffinityRow extends GUIElement
             }
             else if (threshold_button.hb.hovered && Power != null)
             {
-                tooltip.description = GR.Animator.Strings.Affinities.Threshold(ThresholdCost, Type.GetTooltip(), Type.GetThresholdTooltip());
+                tooltip.description = GR.Animator.Strings.Affinities.Threshold(ThresholdCost, Type.GetTooltip(), Type.GetPowerTooltip(false));
                 EYBCardTooltip.QueueTooltip(tooltip, false);
             }
         }
@@ -172,7 +172,7 @@ public class EYBCardAffinityRow extends GUIElement
         if (Power != null)
         {
             threshold_button
-                    .SetText("+1 " + Type.GetThresholdTooltip() + " (" + ThresholdCost + ") ", true, true)
+                    .SetText("+1 " + Type.GetPowerTooltip(false) + " (" + ThresholdCost + ") ", true, true)
                     .SetTextColor(Level >= ThresholdCost ? Colors.LightGreen(1) : Colors.Cream(0.6f));
         }
 

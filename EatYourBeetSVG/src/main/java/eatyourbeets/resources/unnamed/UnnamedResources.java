@@ -138,7 +138,7 @@ public class UnnamedResources extends AbstractResources
 
         JUtils.LogInfo(this, "InitializeKeywords();");
 
-        LoadKeywords(CardColor);
+        LoadKeywords(PlayerClass);
     }
 
     @Override

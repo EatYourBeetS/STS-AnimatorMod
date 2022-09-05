@@ -6,11 +6,11 @@ import com.megacrit.cardcrawl.powers.MinionPower;
 import com.megacrit.cardcrawl.powers.RegrowPower;
 import eatyourbeets.actions.player.GainGold;
 import eatyourbeets.interfaces.subscribers.OnEnemyDyingSubscriber;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.powers.CombatStats;
 import eatyourbeets.utilities.GameActions;
 
-public class GuildGirlPower extends AnimatorPower implements OnEnemyDyingSubscriber
+public class GuildGirlPower extends AnimatorClassicPower implements OnEnemyDyingSubscriber
 {
     public static final String POWER_ID = CreateFullID(GuildGirlPower.class);
     public static final int GOLD_GAIN = 4;

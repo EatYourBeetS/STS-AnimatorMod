@@ -228,7 +228,7 @@ public class EYBCardText
                     cs.text = "x" + scaling;
                 }
 
-                offset_y += RenderScaling(sb, card.color == GR.AnimatorClassic.CardColor ? affinity.GetPowerIcon() : affinity.GetThresholdIcon(), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
+                offset_y += RenderScaling(sb, affinity.GetPowerIcon(card.GetPlayerClass() == GR.AnimatorClassic.PlayerClass), cs, offset_y, Color.BLACK);//affinity.GetAlternateColor());
             }
         }
     }

@@ -4,11 +4,11 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import eatyourbeets.actions.animator.HiteiAction;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 import eatyourbeets.utilities.JUtils;
 
-public class HiteiPower extends AnimatorPower
+public class HiteiPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(HiteiPower.class);
 

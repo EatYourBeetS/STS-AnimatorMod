@@ -18,7 +18,7 @@ public class GenericEffect_GainOrBoost extends GenericEffect
     {
         this.affinity = affinity;
         this.affinityPower = affinity.GetPower();
-        this.tooltip = affinity.GetPowerTooltip();
+        this.tooltip = affinity.GetPowerTooltip(false);
         this.id = affinityPower.ID;
         this.amount = amount;
         this.retain = retain;

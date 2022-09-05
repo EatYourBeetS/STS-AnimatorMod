@@ -83,6 +83,8 @@ public abstract class EYBCard extends EYBCardBase
     public int upgrade_block;
     public int upgrade_cost;
 
+    public abstract AbstractPlayer.PlayerClass GetPlayerClass();
+
     public static EYBCardData GetStaticData(String cardID)
     {
         return staticCardData.get(cardID);

@@ -4,10 +4,10 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class PinaCoLadaPower extends AnimatorPower
+public class PinaCoLadaPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(PinaCoLadaPower.class);
 

@@ -3,10 +3,10 @@ package eatyourbeets.powers.animatorClassic;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import eatyourbeets.powers.AnimatorPower;
+import eatyourbeets.powers.AnimatorClassicPower;
 import eatyourbeets.utilities.GameActions;
 
-public class FlamingWeaponPower extends AnimatorPower
+public class FlamingWeaponPower extends AnimatorClassicPower
 {
     public static final String POWER_ID = CreateFullID(FlamingWeaponPower.class);
 

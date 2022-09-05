@@ -1,127 +1,16 @@
 
 {
-	"Force":
+	"Aether":
 	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [F], gain #yStrength and increase minimum [F] to that number.",
-		"NAMES": ["force"],
-		"PROPER_NAME": "Force"
-	},
-	"Agility":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [A], gain #yDexterity and increase minimum [A] to that number.",
-		"NAMES": ["agility"],
-		"PROPER_NAME": "Agility"
-	},
-	"Blessing":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [B], gain #yVitality and increase minimum [B] to that number.",
-		"NAMES": ["blessing"],
-		"PROPER_NAME": "Blessing"
-	},
-	"Intellect":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9, and #b12 [I], gain #yFocus and increase minimum [I] to that number.",
-		"NAMES": ["intellect"],
-		"PROPER_NAME": "Intellect"
-	},
-	"Corruption":
-	{
-		"DESCRIPTION": "Reduced by #b1 each turn. Upon reaching NL #b3, #b6, #b9 and #b12 [C], gain #yInvocation and increase minimum [C] to that number.",
-		"NAMES": ["corruption"],
-		"PROPER_NAME": "Corruption"
-	},
-	
-	"Agility Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[a] scaling"],
-		"PROPER_NAME": "[A] Scaling"
-	},
-	"Force Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[f] scaling"],
-		"PROPER_NAME": "[F] Scaling"
-	},
-	"Intellect Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[i] scaling"],
-		"PROPER_NAME": "[I] Scaling"
-	},
-	"Blessing Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[b] scaling"],
-		"PROPER_NAME": "[B] Scaling"
-	},
-	"Corruption Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[c] scaling"],
-		"PROPER_NAME": "[C] Scaling"
-	},
-	"Multicolor Scaling":
-	{
-		"DESCRIPTION": "",
-		"NAMES": ["[a_star] scaling"],
-		"PROPER_NAME": "[A_Star] Scaling"
-	},
-	
-	"Invocation":
-	{
-		"DESCRIPTION": "Gains #b1 charge and #yRecover #b2 [HP] each turn. When applied, and every #b3 charges, add a #yCrystallize to the top of your draw pile. At #b12 charges, obtain #pSummoning #pRitual.",
-		"NAMES": ["invocation"],
-		"PROPER_NAME": "Invocation"
-	},
-	
-	"Affinity":
-	{
-		"DESCRIPTION": "#yAffinity can be of any color NL between [A_Red], [A_Green], [A_Blue], [A_Light], [A_Dark]. NL [A_Gen] refers either to generic #yAffinity, or your current best #yAffinity.",
-		"NAMES": ["affinity", "affinities"],
-		"PROPER_NAME": "Affinity"
-	},
-	"Affinity Seal":
-	{
-		"DESCRIPTION": "#ySealing a card transfers all its [A_Gen] to your [A_Gen] pool. Once per turn, #pRight-Click a card to manually #ySeal and reshuffle it.",
-		"NAMES": ["seal", "seals", "sealing", "sealed", "unseal", "unsealed"],
-		"PROPER_NAME": "Sealed Affinity"
-	},
-	"Affinity Power":
-	{
-		"DESCRIPTION": "[A_Red] -> [F], [A_Green] -> [A], [A_Blue] -> [I], NL [A_Light] -> [B], [A_Dark] -> [C]",
-		"NAMES": ["[a_gen] power", "[a_gen] powers", "affinity power", "affinity powers"],
-		"PROPER_NAME": "Affinity Power"
-	},
-	"Affinity Token":
-	{
-		"DESCRIPTION": "Card which increases your #yAffinity for the rest of combat.",
-		"NAMES": ["[a_gen] token", "[a_gen] tokens", "affinity token", "affinity tokens"],
-		"PROPER_NAME": "Affinity Token"
-	},
-	"Agility Stance":
-	{
-		"DESCRIPTION": "<LOAD FROM STANCE>",
-		"NAMES": ["[a] stance", "agility stance"],
-		"PROPER_NAME": "Agility Stance"
+		"DESCRIPTION": "Orb: Deal #yPiercing damage to ALL enemies.",
+		"NAMES": ["aether", "aether+"],
+		"PROPER_NAME": "Aether"
 	},
 	"Autoplay":
 	{
 		"DESCRIPTION": "Automatically played, using your [E].",
 		"NAMES": ["autoplay", "autoplayed"],
 		"PROPER_NAME": "Autoplay"
-	},
-	"Blue Stance":
-	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_blue] stance", "blue stance"],
-	  "PROPER_NAME": "Blue Stance"
-	},
-	"Boost":
-	{
-		"DESCRIPTION": "Gain the specified [A_Gen]. Also gain its associated threshold power until the end of turn.",
-		"NAMES": ["boost"],
-		"PROPER_NAME": "Boost"
 	},
 	"Burn":
 	{
@@ -134,6 +23,12 @@
 		"DESCRIPTION": "Increases incoming #yAttack damage by #b15% (min. #b1 additional damage). NL At the start of turn, lose HP equal to half the amount of [Burning] and reduce [Burning] by #b1.",
 		"NAMES": ["burning"],
 		"PROPER_NAME": "Burning"
+	},
+	"Chaos":
+	{
+		"DESCRIPTION": "Orb: Changes into a random orb when you play an #yAttack. Permanently retains its last form at the end of turn.",
+		"NAMES": ["chaos", "chaos+"],
+		"PROPER_NAME": "Chaos"
 	},
 	"Choked":
 	{
@@ -153,11 +48,11 @@
 		"NAMES": ["constricted"],
 		"PROPER_NAME": "Constricted"
 	},
-	"Corruption Stance":
+	"Cooldown":
 	{
-		"DESCRIPTION": "<LOAD FROM STANCE>",
-		"NAMES": ["[c] stance", "demon stance"],
-		"PROPER_NAME": "Demon Stance"
+		"DESCRIPTION": "Whenever you play or discard this card, reduce its #yCooldown by #b1. If it is at #b0, activate this effect.",
+		"NAMES": ["cooldown"],
+		"PROPER_NAME": "Cooldown"
 	},
 	"Counter-Attack":
 	{
@@ -176,12 +71,6 @@
 		"DESCRIPTION": "Discard a certain number of cards then draw that many cards.",
 		"NAMES": ["cycle"],
 		"PROPER_NAME": "Cycle"
-	},
-	"Dark Stance":
-	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_dark] stance", "dark stance"],
-	  "PROPER_NAME": "Demon Stance"
 	},
 	"Debuff":
 	{
@@ -213,6 +102,12 @@
 		"NAMES": ["de"],
 		"PROPER_NAME": "Draw Essence"
 	},
+	"Earth":
+	{
+		"DESCRIPTION": "Orb: Gain #b2 [Thorns] the first #b3 times it is #yChanneled. It is #yEvoked after #b3 turns, dealing damage to random enemies.",
+		"NAMES": ["earth", "earth+"],
+		"PROPER_NAME": "Earth"
+	},
 	"Energized":
 	{
 		"DESCRIPTION": "Gain [E] at the start of next turn.",
@@ -231,6 +126,12 @@
 		"NAMES": ["fetch"],
 		"PROPER_NAME": "Fetch"
 	},
+	"Fire":
+	{
+		"DESCRIPTION": "Orb: Applies #yBurning and damages the highest health enemy.",
+		"NAMES": ["fire", "fire+"],
+		"PROPER_NAME": "Fire"
+	},
 	"Flame Barrier":
 	{
 		"DESCRIPTION": "Whenever you are attacked this turn, deal #b1 damage back.",
@@ -243,23 +144,11 @@
 		"NAMES": ["flight"],
 		"PROPER_NAME": "Flight"
 	},
-	"Force Stance":
-	{
-		"DESCRIPTION": "<LOAD FROM STANCE>",
-		"NAMES": ["[f] stance", "force stance"],
-		"PROPER_NAME": "Force Stance"
-	},
 	"Freezing":
 	{
 		"DESCRIPTION": "Reduces #yAttack damage by #b3, or by #b4 if at least #b1 [Frost] is #yChanneled. At the end of turn, reduce [Freezing] by #b1.",
 		"NAMES": ["freezing"],
 		"PROPER_NAME": "Freezing"
-	},
-	"Green Stance":
-	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_green] stance", "green stance"],
-	  "PROPER_NAME": "Green Stance"
 	},
 	"Health":
 	{
@@ -291,11 +180,11 @@
 		"NAMES": ["inspiration"],
 		"PROPER_NAME": "Inspiration"
 	},
-	"Intellect Stance":
+	"Invocation":
 	{
-		"DESCRIPTION": "<LOAD FROM STANCE>",
-		"NAMES": ["[i] stance", "intellect stance"],
-		"PROPER_NAME": "Intellect Stance"
+		"DESCRIPTION": "Gains #b1 charge and #yRecover #b2 [HP] each turn. When applied, and every #b3 charges, add a #yCrystallize to the top of your draw pile. At #b12 charges, obtain #pSummoning #pRitual.",
+		"NAMES": ["invocation"],
+		"PROPER_NAME": "Invocation"
 	},
 	"Juggernaut":
 	{
@@ -339,12 +228,6 @@
 		"NAMES": ["multi hp"],
 		"PROPER_NAME": "Mixed HP"
 	},
-	"Multicolor":
-	{
-		"DESCRIPTION": "Counts as an #yAffinity of each color.",
-		"NAMES": ["multicolor"],
-		"PROPER_NAME": "Multicolor"
-	},
 	"Neutral Stance":
 	{
 		"DESCRIPTION": "",
@@ -369,6 +252,12 @@
 		"NAMES": ["plated armor", "plat. armor"],
 		"PROPER_NAME": "Plated Armor"
 	},
+	"Poison":
+	{
+		"DESCRIPTION": "At the start of each turn, lose [HP] equal to [Poison], then reduce [Poison] by #b1.",
+		"NAMES": ["poison"],
+		"PROPER_NAME": "Poison"
+	},
 	"Purge":
 	{
 		"DESCRIPTION": "Removed from combat.",
@@ -387,11 +276,11 @@
 		"NAMES": ["recover", "recovered", "recovering"],
 		"PROPER_NAME": "Recover"
 	},
-	"Red Stance":
+	"Reload":
 	{
-	  "DESCRIPTION": "<LOAD FROM STANCE>",
-	  "NAMES": ["[a_red] stance", "red stance"],
-	  "PROPER_NAME": "Red Stance"
+		"DESCRIPTION": "Discard any number of cards, activate this effect that many times.",
+		"NAMES": ["reload"],
+		"PROPER_NAME": "Reload"
 	},
 	"Semi-Limited":
 	{
@@ -435,6 +324,12 @@
 		"NAMES": ["stun", "stunned", "stslib:stunned"],
 		"PROPER_NAME": "Stun"
 	},
+	"Support Damage":
+	{
+		"DESCRIPTION": "Deal #yRanged damage to the enemy with the lowest HP at the end of each turn. Affected by damage modifiers.",
+		"NAMES": ["support damage", "supp. damage"],
+		"PROPER_NAME": "Support Damage"
+	},
 	"Temporary HP":
 	{
 		"DESCRIPTION": "Temporary HP lasts until end of combat.",
@@ -464,12 +359,6 @@
 		"DESCRIPTION": "Retain up to #b30 #yBlock until the start of your next turn.",
 		"NAMES": ["~blur"],
 		"PROPER_NAME": "Blur"
-	},
-	"Poison":
-	{
-		"DESCRIPTION": "At the start of each turn, lose [HP] equal to [Poison], then reduce [Poison] by #b1.",
-		"NAMES": ["poison"],
-		"PROPER_NAME": "Poison"
 	},
 	"~Damage":
 	{
@@ -507,12 +396,6 @@
 		"NAMES": ["~haste"],
 		"PROPER_NAME": "Haste"
 	},
-	"~Recast":
-	{
-		"DESCRIPTION": "Next turn, play a copy of this card. The copy #yPurges and does not #yRecast.",
-		"NAMES": ["~recast"],
-		"PROPER_NAME": "Recast"
-	},
 	"~Innate":
 	{
 		"DESCRIPTION": "Start each combat with this card in hand.",
@@ -531,6 +414,12 @@
 		"NAMES": ["~lock-on"],
 		"PROPER_NAME": "Lock-On"
 	},
+	"~Orb Core":
+	{
+		"DESCRIPTION": "Channel 1 orb. NL  NL Gain a bonus effect on your second Synergy each turn.",
+		"NAMES": ["~orb core", "~orb cores"],
+		"PROPER_NAME": "Orb Core"
+	},
 	"~Piercing":
 	{
 		"DESCRIPTION": "Ignores #yBlock and #yThorns.",
@@ -542,6 +431,12 @@
 		"DESCRIPTION": "Ignores #yThorns and #yFlight.",
 		"NAMES": ["~ranged"],
 		"PROPER_NAME": "Ranged Damage"
+	},
+	"~Recast":
+	{
+		"DESCRIPTION": "Next turn, play a copy of this card. The copy #yPurges and does not #yRecast.",
+		"NAMES": ["~recast"],
+		"PROPER_NAME": "Recast"
 	},
 	"~Retain":
 	{

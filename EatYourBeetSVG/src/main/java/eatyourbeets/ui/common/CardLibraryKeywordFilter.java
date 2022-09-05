@@ -24,7 +24,7 @@ public class CardLibraryKeywordFilter extends GUIElement implements FuncT1<Boole
 
     public CardLibraryKeywordFilter(CardLibraryKeywordFilters container, Hitbox hb, int row, int column, EYBCardTooltip tooltip)
     {
-        final String text = ((tooltip.icon != null && CardTooltips.FindByID(tooltip.id) != null) ? ("[" + tooltip.id + "] ") : "") + tooltip.title;
+        final String text = ((tooltip.icon != null && CardTooltips.FindByID(GR.Animator.PlayerClass, tooltip.id) != null) ? ("[" + tooltip.id + "] ") : "") + tooltip.title;
         this.container = container;
         this.tooltip = tooltip;
         this.button = new GUI_Button(GR.Common.Images.Panel_Rounded_Half_H.Texture(), hb)

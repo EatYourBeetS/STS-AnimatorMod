@@ -164,7 +164,7 @@ public class CardLibraryKeywordFilters extends GUIElement
 
                 for (EYBCardTooltip tooltip : temp)
                 {
-                    if (CardTooltips.FindByID(tooltip.id) != null)
+                    if (CardTooltips.FindByID(GR.Animator.PlayerClass, tooltip.id) != null)
                     {
                         tooltipMap.computeIfAbsent(tooltip, k -> new ArrayList<>()).add(c);
                     }
@@ -182,15 +182,12 @@ public class CardLibraryKeywordFilters extends GUIElement
         int column = 0;
         for (EYBCardTooltip tooltip : tooltips)
         {
-            if (tooltip.requiredColor == GR.Animator.CardColor || tooltip.requiredColor == null)
-            {
-                AddKeywordButton(tooltip, row, column);
+            AddKeywordButton(tooltip, row, column);
 
-                if (++row > maxRows)
-                {
-                    row = 0;
-                    column += 1;
-                }
+            if (++row > maxRows)
+            {
+                row = 0;
+                column += 1;
             }
         }
     }

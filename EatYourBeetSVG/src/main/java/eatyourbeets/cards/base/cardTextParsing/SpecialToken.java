@@ -48,21 +48,14 @@ public abstract class SpecialToken extends CTToken
                     }
 
                     final String word = builder.toString();
-                    EYBCardTooltip tooltip = CardTooltips.FindByName(word
+                    EYBCardTooltip tooltip = CardTooltips.FindByName(parser.resources.PlayerClass, word
                     .replace(" NL ", " ")
                     .split("\\(")[0] // Ignore modifiers
                     .toLowerCase());
 
                     if (tooltip != null)
                     {
-                        if (tooltip.requiredColor != null && tooltip.requiredColor != parser.resources.CardColor)
-                        {
-                            tooltip = null;
-                        }
-                        else
-                        {
-                            parser.AddTooltip(tooltip);
-                        }
+                        parser.AddTooltip(tooltip);
                     }
 
                     if (word.startsWith("~"))
